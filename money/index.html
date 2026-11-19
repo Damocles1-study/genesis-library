@@ -1,0 +1,2236 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="从泥板上的一笔债，到手机里的一条消息：金钱怎样诞生、怎样变形、怎样在世界各地互相牵连——一部带对白、装置和小游戏的编年史。">
+<meta property="og:title" content="点石成金 · 金钱创世记">
+<meta property="og:description" content="从泥板上的一笔债，到手机里的一条消息：金钱怎样诞生、怎样变形、怎样在世界各地互相牵连。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23b0352b'/%3E%3Crect x='11.5' y='11.5' width='9' height='9' fill='%23f2ead6'/%3E%3C/svg%3E">
+<title>点石成金</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;600;700&family=ZCOOL+XiaoWei&display=swap">
+<style>
+/* 版式：一本夹着钞票的旧账簿。正文是账页，装置是夹进去的票据；卷首做成钞票的票面。 */
+:root{
+  --paper:#f1ead8;      /* 账簿纸 */
+  --paper-2:#e8dfc8;
+  --card:#f8f3e6;
+  --ink:#1c2621;        /* 墨绿黑 */
+  --ink-2:#4b5650;
+  --ink-3:#7d857f;
+  --rule:#cfc4a8;
+  --seal:#b0352b;       /* 朱砂 */
+  --seal-2:#d9564a;
+  --intag:#2c6652;      /* 凹版绿 */
+  --intag-2:#6fa58f;
+  --gold:#a7802c;
+  --silver:#8e9aa3;
+  --copper:#b06a3b;
+  --sea:#4f7c93;
+  --hl:color-mix(in srgb,var(--gold) 26%,transparent);
+  --f-display:"ZCOOL XiaoWei","Songti SC","STSong","Noto Serif SC",serif;
+  --f-body:"Noto Serif SC","Songti SC","Source Han Serif SC","STSong",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#101613; --paper-2:#151d19; --card:#18211c; --ink:#e6e0cf; --ink-2:#aab0a4; --ink-3:#757f78;
+  --rule:#2c3832; --seal:#e0604f; --seal-2:#f08a76; --intag:#73b79c; --intag-2:#3f7a65;
+  --gold:#d9b25a; --silver:#b8c3cb; --copper:#d98c58; --sea:#7fb1c9; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#101613; --paper-2:#151d19; --card:#18211c; --ink:#e6e0cf; --ink-2:#aab0a4; --ink-3:#757f78;
+  --rule:#2c3832; --seal:#e0604f; --seal-2:#f08a76; --intag:#73b79c; --intag-2:#3f7a65;
+  --gold:#d9b25a; --silver:#b8c3cb; --copper:#d98c58; --sea:#7fb1c9; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+.g{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit;text-decoration-color:var(--seal);text-underline-offset:3px}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--seal);outline-offset:2px}
+svg text{font-family:var(--f-body)}
+
+/* 页眉 */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+.bar-in{max-width:56rem;margin:0 auto;display:flex;align-items:center;gap:12px;padding-block:8px}
+.bar .home{text-decoration:none;font-size:13px;color:var(--ink-3);white-space:nowrap;border:1px solid var(--rule);border-radius:999px;padding:1px 9px}
+.bar .name{font-family:var(--f-display);font-size:19px;letter-spacing:.05em;white-space:nowrap}
+.bar .vol{margin-left:auto;font-size:13px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.bar .yr{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:15px;color:var(--seal);min-width:5.6em;text-align:right}
+.bar .tocbtn{border:1px solid var(--rule);background:transparent;border-radius:6px;padding:0 8px;font-size:13px;cursor:pointer;color:var(--ink-2);white-space:nowrap}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;background:var(--seal);width:0}
+
+/* 浮动目录 */
+.drawer{position:fixed;inset:0;z-index:40;display:none}
+.drawer.on{display:block}
+.drawer .mask{position:absolute;inset:0;background:rgba(0,0,0,.35)}
+.drawer .panel{position:absolute;right:0;top:0;bottom:0;width:min(360px,88vw);background:var(--paper);border-left:1px solid var(--rule);overflow:auto;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px))}
+.drawer h5{font-family:var(--f-display);font-weight:400;font-size:20px;margin:0 0 10px}
+.drawer ol{list-style:none;margin:0;padding:0}
+.drawer li a{display:flex;gap:10px;padding:7px 0;border-bottom:1px dashed var(--rule);text-decoration:none;font-size:15px;line-height:1.5}
+.drawer li a .n{font-family:var(--f-mono);font-size:12px;color:var(--seal);min-width:3.2em;padding-top:2px}
+.drawer li a small{display:block;color:var(--ink-3);font-size:12px}
+.drawer .x{position:absolute;right:12px;top:10px;border:0;background:transparent;font-size:22px;cursor:pointer;color:var(--ink-2)}
+
+main{display:block}
+.col{max-width:38rem;margin-inline:auto}
+.wide{max-width:54rem;margin-inline:auto}
+.col p{margin:0 0 1.05em;text-indent:2em}
+.col p.ni,.col .ni{text-indent:0}
+h2,h3,h4{text-wrap:balance}
+h3{font-family:var(--f-display);font-weight:400;font-size:24px;line-height:1.4;margin:2.2em 0 .7em;letter-spacing:.03em}
+h3 .y{font-family:var(--f-mono);font-size:13px;color:var(--ink-3);margin-left:10px;letter-spacing:0;white-space:nowrap}
+.mono{font-family:var(--f-mono)}
+em{font-style:normal;background:linear-gradient(transparent 62%,var(--hl) 62%)}
+strong{font-weight:600}
+blockquote{margin:1.4em 0;padding:.2em 0 .2em 1.2em;border-left:2px solid var(--seal);color:var(--ink-2)}
+blockquote p{text-indent:0!important;margin:0 0 .4em}
+blockquote cite{font-style:normal;font-size:14px;color:var(--ink-3)}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.figcap{font-size:14px;color:var(--ink-2);line-height:1.7;margin-top:8px}
+svg{max-width:100%;height:auto;display:block}
+
+/* 开篇 */
+.hero{padding-block:48px 24px}
+.hero .eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;color:var(--ink-3)}
+.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(56px,13vw,120px);line-height:1;margin:.25em 0 .3em;letter-spacing:.08em}
+.hero h1 .sm{display:block;font-size:.22em;letter-spacing:.3em;color:var(--seal);margin-top:.5em}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:36px;align-items:center}
+.hero-grid p{margin:0 0 1em;font-size:18px}
+
+/* 钞票 */
+.bill{position:relative;aspect-ratio:2.1/1;border-radius:6px;background:var(--card);border:1px solid var(--rule);overflow:hidden;transition:filter .8s,opacity .8s;box-shadow:0 1px 0 var(--rule)}
+.bill svg.gl{position:absolute;inset:0;width:100%;height:100%}
+.bill .frame{position:absolute;inset:7px;border:1.5px solid var(--intag);border-radius:4px}
+.bill .frame::after{content:"";position:absolute;inset:3px;border:.5px solid var(--intag);border-radius:3px}
+.bill .den{position:absolute;font-family:var(--f-display);color:var(--intag);font-size:clamp(22px,4.6vw,34px);line-height:1;transition:opacity .8s}
+.bill .den.tl{left:16px;top:14px}.bill .den.br{right:16px;bottom:12px}
+.bill .mid{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;font-family:var(--f-display);color:var(--ink)}
+.bill .mid .big{font-size:clamp(22px,4.2vw,38px);letter-spacing:.1em;line-height:1.1;white-space:nowrap;transition:opacity .8s}
+.bill .mid .tiny{font-family:var(--f-mono);font-size:10px;letter-spacing:.2em;color:var(--ink-3)}
+.bill .serial{position:absolute;right:18px;top:14px;font-family:var(--f-mono);font-size:11px;color:var(--seal);letter-spacing:.1em}
+.bill .seal{position:absolute;left:18px;bottom:14px;width:40px;height:40px;border:2px solid var(--seal);color:var(--seal);border-radius:4px;display:grid;place-items:center;font-family:var(--f-display);font-size:13px;line-height:1.05;text-align:center;transform:rotate(-8deg);transition:opacity .8s}
+.bill.doubt{filter:grayscale(1) contrast(.7);opacity:.75}
+.bill.doubt .den,.bill.doubt .seal,.bill.doubt .gl{opacity:.06}
+.bill .plain{position:absolute;inset:0;display:grid;place-items:center;font-size:14px;color:var(--ink-3);opacity:0;transition:opacity .8s;pointer-events:none}
+.bill.doubt .plain{opacity:1}.bill.doubt .mid{opacity:0}
+.billbox{display:flex;flex-direction:column;gap:12px}
+.billbox .cap{font-size:14px;color:var(--ink-2);line-height:1.7;min-height:3.4em}
+
+/* 目录 */
+.toc{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--rule)}
+.toc li a{display:grid;grid-template-columns:3.6em minmax(0,1fr) auto;gap:10px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--rule);text-decoration:none}
+.toc .n{font-family:var(--f-mono);font-size:12px;color:var(--seal)}
+.toc .t{font-family:var(--f-display);font-size:21px;line-height:1.3}
+.toc .t small{display:block;font-family:var(--f-body);font-size:13px;color:var(--ink-3);margin-top:2px}
+.toc .r{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);text-align:right;white-space:nowrap}
+.toc li a:hover .t{color:var(--seal)}
+
+/* 卷首：票面 */
+section.vol{padding-top:30px}
+.volhead{position:relative;max-width:54rem;margin:46px auto 28px;padding:28px 22px 22px;border:1.5px solid var(--intag);border-radius:6px;overflow:hidden;background:var(--card)}
+.volhead::after{content:"";position:absolute;inset:5px;border:.5px solid var(--intag);border-radius:4px;pointer-events:none}
+.volhead svg.gl{position:absolute;right:-60px;top:50%;transform:translateY(-50%);width:300px;height:300px;opacity:.45;pointer-events:none}
+.volhead .num{font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;color:var(--seal)}
+.volhead h2{position:relative;font-family:var(--f-display);font-weight:400;font-size:clamp(56px,12vw,88px);line-height:1;margin:.12em 0 .18em;letter-spacing:.1em}
+.volhead .meta{position:relative;display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13.5px;color:var(--ink-2)}
+.volhead .meta .range{font-family:var(--f-mono);color:var(--ink)}
+.volhead .lede{position:relative;max-width:30em;margin:12px 0 0;font-size:15px;color:var(--ink-2);line-height:1.75}
+.volhead .sn{position:absolute;right:18px;top:16px;font-family:var(--f-mono);font-size:11px;color:var(--seal);letter-spacing:.12em}
+
+/* 对白：一场戏 */
+.scene{margin:2em 0;border:1px solid var(--rule);border-radius:6px;background:var(--card);overflow:hidden}
+.scene .sh{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;padding:10px 16px;border-bottom:1px solid var(--rule);background:var(--paper-2)}
+.scene .sh b{font-family:var(--f-display);font-weight:400;font-size:18px;letter-spacing:.06em}
+.scene .sh span{font-size:13px;color:var(--ink-3)}
+.scene .bd{padding:12px 16px 14px}
+.scene .ln{display:grid;grid-template-columns:4.2em minmax(0,1fr);gap:10px;margin:0 0 .55em;line-height:1.8}
+.scene .ln .who{font-size:13px;text-align:right;padding-top:3px;white-space:nowrap;color:var(--ink-2)}
+.scene .ln .who.s{color:var(--intag);font-weight:600}
+.scene .ln .who.d{color:var(--seal);font-weight:600}
+.scene .ln .who.j{color:var(--gold);font-weight:600}
+.scene .ln p{margin:0;text-indent:0!important}
+.scene .sd{color:var(--ink-3);font-size:14px;margin:.2em 0 .7em 5.2em;line-height:1.7}
+.scene .sd::before{content:"（"}.scene .sd::after{content:"）"}
+.cast{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15em),1fr));gap:12px;margin:1.4em 0}
+.cast div{border:1px solid var(--rule);border-radius:6px;padding:12px 14px;background:var(--card);font-size:14.5px;line-height:1.7}
+.cast b{display:block;font-family:var(--f-display);font-weight:400;font-size:19px;margin-bottom:2px}
+.cast .s b{color:var(--intag)}.cast .d b{color:var(--seal)}.cast .j b{color:var(--gold)}
+
+/* 装置 */
+.fig{margin:2.2em auto;padding:20px 18px;background:var(--card);border:1px solid var(--rule);border-radius:6px}
+.fig-label{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.12em;color:var(--seal)}
+.fig h4{font-family:var(--f-display);font-weight:400;font-size:22px;margin:.25em 0 .35em}
+.fig .how{font-size:14.5px;color:var(--ink-2);margin:0 0 14px;line-height:1.75}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btn{border:1px solid var(--ink-3);background:transparent;border-radius:999px;padding:4px 14px;font-size:14px;cursor:pointer;line-height:1.6;color:var(--ink)}
+.btn:hover{border-color:var(--ink)}
+.btn.pri{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.btn.red{background:var(--seal);color:#fff;border-color:var(--seal)}
+.btn.on{background:var(--intag);border-color:var(--intag);color:#fff}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.readout{font-size:14.5px;color:var(--ink-2);line-height:1.7}
+.readout b{color:var(--ink);font-family:var(--f-mono);font-weight:500}
+.big-num{font-family:var(--f-mono);font-size:28px;line-height:1.2;color:var(--ink);word-break:break-all}
+.rng{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;font-size:14px;margin:6px 0}
+.rng output{font-family:var(--f-mono);min-width:4.5em;text-align:right}
+input[type=range]{width:100%;accent-color:var(--seal)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+.panel{border:1px dashed var(--rule);border-radius:6px;padding:12px}
+.panel h5{margin:0 0 6px;font-size:13px;color:var(--ink-3);font-weight:400;letter-spacing:.08em}
+.log{font-size:13.5px;line-height:1.65;color:var(--ink-2);max-height:13em;overflow:auto;border-top:1px dashed var(--rule);margin-top:10px;padding-top:8px}
+.log div{margin:0 0 3px}
+.tag{display:inline-block;font-size:12px;border:1px solid var(--rule);border-radius:4px;padding:0 6px;margin-right:4px;color:var(--ink-2)}
+.meter{height:8px;border-radius:4px;background:var(--paper-2);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--intag);transition:width .3s}
+
+/* 眉批（史上的回声） */
+.echo{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;margin:1.6em 0;padding:14px 14px 10px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.echo .stamp{writing-mode:vertical-rl;font-family:var(--f-display);font-size:15px;color:var(--seal);border:1.5px solid var(--seal);border-radius:3px;padding:6px 2px;letter-spacing:.2em;align-self:start}
+.echo[data-k="讽刺"] .stamp{color:var(--intag);border-color:var(--intag)}
+.echo[data-k="存疑"] .stamp{color:var(--ink-3);border-color:var(--ink-3)}
+.echo[data-k="联系"] .stamp{color:var(--sea);border-color:var(--sea)}
+.echo[data-k="生活"] .stamp{color:var(--gold);border-color:var(--gold)}
+.echo p{text-indent:0!important;margin:0 0 .5em;font-size:15.5px;line-height:1.8}
+.echo .rh{font-family:var(--f-display);font-size:18px;margin-bottom:.2em}
+.echo .ry{font-family:var(--f-mono);font-size:12px;color:var(--ink-3);margin-right:8px}
+
+/* 戏里戏外 */
+.drama{margin:2em 0;padding:16px 18px;border-radius:6px;background:var(--ink);color:var(--paper)}
+.drama .dh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.drama .dh b{font-family:var(--f-display);font-weight:400;font-size:19px;letter-spacing:.06em}
+.drama .dh span{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.14em;opacity:.65}
+.drama p{text-indent:0!important;margin:0 0 .6em;font-size:15.5px;line-height:1.85}
+.drama em{background:linear-gradient(transparent 62%,color-mix(in srgb,var(--seal) 55%,transparent) 62%)}
+.drama .src{font-size:12.5px;opacity:.6}
+
+/* 带走一句 */
+.takeaway{margin:2.4em 0 1em;padding:16px 18px;border:1.5px solid var(--seal);border-radius:6px;position:relative}
+.takeaway::before{content:"带走";position:absolute;top:-11px;left:14px;background:var(--paper);padding:0 6px;font-family:var(--f-display);color:var(--seal);font-size:15px;letter-spacing:.2em}
+.takeaway p{text-indent:0!important;margin:0 0 .4em}
+.takeaway .life{font-size:15px;color:var(--ink-2)}
+
+/* 表 */
+table.t{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.6}
+table.t th,table.t td{border-bottom:1px solid var(--rule);padding:7px 8px;text-align:left;vertical-align:top}
+table.t th{font-weight:400;color:var(--ink-3);font-size:13px}
+table.t{min-width:520px}table.t td:first-child{white-space:nowrap}
+table.t td.y{font-family:var(--f-mono);white-space:nowrap;color:var(--ink-2)}
+
+/* 各装置专用 */
+.vill{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,9.5em),1fr));gap:10px}
+.vill button{border:1px solid var(--rule);border-radius:8px;background:var(--paper);padding:10px 8px;text-align:center;cursor:pointer;line-height:1.5}
+.vill button .ic{font-size:26px;display:block}
+.vill button small{display:block;font-size:12px;color:var(--ink-3)}
+.vill button.hit{border-color:var(--intag);box-shadow:0 0 0 2px color-mix(in srgb,var(--intag) 30%,transparent)}
+.vill button.miss{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.inv{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:12px 0 4px;font-size:15px}
+.inv .hand{font-size:26px}
+.yap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:16px;align-items:start}
+.coinwrap{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:center}
+.dots{display:grid;grid-template-columns:repeat(20,1fr);gap:3px;max-width:420px}
+.dots i{aspect-ratio:1;border-radius:50%;background:var(--silver);transition:background .4s,opacity .4s}
+.dots i.bad{background:var(--copper)}
+.dots i.gone{opacity:.12}
+.mapnode{cursor:pointer}
+.mapnode circle{transition:r .2s}
+.mapnode:hover circle,.mapnode.on circle{stroke:var(--seal);stroke-width:2.5}
+.mapinfo{min-height:7em}
+.mapinfo h5{font-family:var(--f-display);font-weight:400;font-size:19px;margin:0 0 4px}
+.mapinfo p{margin:0;font-size:14.5px;line-height:1.75;text-indent:0!important}
+.queue{display:flex;flex-wrap:wrap;gap:4px;min-height:34px;margin:8px 0}
+.queue span{font-size:20px;line-height:1}
+.vault{font-family:var(--f-mono);font-size:30px}
+.ticker{font-size:14px;color:var(--ink-2);min-height:3.2em;border-left:2px solid var(--gold);padding-left:10px;margin:8px 0}
+canvas.chart{width:100%;height:220px;display:block;background:var(--paper);border:1px solid var(--rule);border-radius:4px}
+.cbank .stat{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:10px 0}
+.cbank .stat div{border:1px solid var(--rule);border-radius:6px;padding:6px 10px;font-size:12.5px;color:var(--ink-3)}
+.cbank .stat b{display:block;font-family:var(--f-mono);font-size:20px;color:var(--ink);font-weight:500}
+.quiz .opt{display:block;width:100%;text-align:left;border:1px solid var(--rule);border-radius:8px;background:var(--paper);padding:10px 12px;margin:6px 0;cursor:pointer;line-height:1.6}
+.quiz .opt.pick{border-color:var(--seal);box-shadow:0 0 0 2px color-mix(in srgb,var(--seal) 25%,transparent)}
+.tl{position:relative}
+.tlfilters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.tlcard{min-height:6em;border-top:1px dashed var(--rule);margin-top:10px;padding-top:10px}
+.tlcard p{text-indent:0!important;margin:0 0 .3em;font-size:15px}
+.tlcard .k{font-family:var(--f-mono);font-size:12px;color:var(--ink-3)}
+
+/* 尾部 */
+footer{max-width:38rem;margin:60px auto 0;padding:24px 0 calc(40px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--rule);font-size:14px;color:var(--ink-3);line-height:1.8}
+footer p{text-indent:0!important}
+.nextbook{display:block;margin:20px 0;padding:14px 16px;border:1px solid var(--rule);border-radius:6px;text-decoration:none;background:var(--card)}
+.nextbook b{font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--ink)}
+
+@media (max-width:700px){
+  body{font-size:16.5px}
+  .hero-grid,.two,.yap{grid-template-columns:minmax(0,1fr)}
+  .toc li a{grid-template-columns:3em minmax(0,1fr)}
+  .toc .r{grid-column:2;text-align:left}
+  .scene .ln{grid-template-columns:minmax(0,1fr);gap:0}
+  .scene .ln .who{text-align:left;padding-top:0}
+  .scene .sd{margin-left:0}
+  .volhead svg.gl{width:220px;height:220px;right:-70px}
+  .coinwrap{grid-template-columns:minmax(0,1fr)}
+  .bar .vol{display:none}
+  .cbank .stat b{font-size:17px}
+}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="bar-in g">
+    <a class="home" href="../" title="回创世书房">书房</a>
+    <span class="name">点石成金</span>
+    <span class="vol" id="barVol">序</span>
+    <span class="yr" id="barYr" aria-live="off">2026</span>
+    <button class="tocbtn" id="tocBtn" aria-label="打开目录">目录</button>
+  </div>
+  <div class="progress" id="prog"></div>
+</header>
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="mask" data-close></div>
+  <nav class="panel" aria-label="目录">
+    <button class="x" data-close aria-label="关闭">×</button>
+    <h5>目录</h5>
+    <ol id="drawerList"></ol>
+  </nav>
+</div>
+<main class="g">
+
+<!-- ============ 序 ============ -->
+<section class="hero" data-vol="序">
+  <div class="wide" data-y="2026">
+    <div class="eyebrow">金钱创世记 · 一部关于“人凭什么相信一张纸”的编年史</div>
+    <h1>点石成金<span class="sm">从一笔债到一条消息</span></h1>
+    <div class="hero-grid">
+      <div>
+        <p>你钱包里那张钞票，造价以分计。手机里那串余额，连纸都不是，只是某台服务器上的几个数字。可你拿着它，能换来一顿饭、一张车票、一个月的房租。</p>
+        <p>它凭什么？</p>
+        <p>这本小书讲人类大约五千年里怎样一次次回答这个问题：用泥板、用贝壳、用铜、用纸、用白银、用黄金，最后什么都不用。每一种答案都管用过一阵子，然后在某个国王、某个皇帝、某位大臣手里出了事。出事的样子，换个朝代、换个大陆，几乎一模一样。</p>
+      </div>
+      <div class="billbox">
+        <div class="bill" id="heroBill">
+          <svg class="gl" data-gl="hero" viewBox="0 0 420 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
+          <div class="frame"></div>
+          <div class="den tl">壹佰</div>
+          <div class="den br">100</div>
+          <div class="serial">№ 0000001</div>
+          <div class="mid"><div class="big">众人之信</div><div class="tiny">PAYABLE IN BELIEF</div></div>
+          <div class="seal">信<br>用</div>
+          <div class="plain">一张印了花纹的纸。</div>
+        </div>
+        <div class="btns"><button class="btn pri" id="billBtn" aria-pressed="false">假如大家都不信了</button></div>
+        <div class="cap" id="billCap">现在，所有人都相信它值一百。所以它值一百。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3 data-y="2026">先认识三个人</h3>
+    <p>这本书里的历史都是真的，年份、人名、数字尽量核对过。但每一卷的结尾，会插进一场<em>虚构</em>的戏。戏里有三个固定角色。如果你看过英剧《是，大臣》《是，首相》，或者看过《大明王朝1566》，大概会觉得他们眼熟。这是故意的：那几部剧说的道理，这五千年里一直在重演。</p>
+    <div class="cast">
+      <div class="s"><b>钱师爷</b>财政衙门的常任幕僚。在这个位置上干了大约五千年，国王、皇帝、首相换了几百任，他一直在。说话绕，从不说“不”，只说“这需要更周全的考虑”。他见过每一次货币出事，所以总说：太阳底下没有新鲜事。</div>
+      <div class="d"><b>大人</b>每一卷换一位：巴比伦王的大臣、罗马皇帝的财务官、大明户部的堂官、英国财政大臣、美联储主席……身份不同，处境相同：缺钱，而且下个月就要用。</div>
+      <div class="j"><b>阿鉴</b>新来的小书吏，永远年轻，永远第一天上班，永远问那个最不该问的问题。名字取“以史为鉴”的鉴，虽然他每次都没鉴成。</div>
+    </div>
+
+    <div class="scene">
+      <div class="sh"><b>序幕 · 报到</b><span>某个衙门 · 某一年 · 任何一年</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who j">阿鉴</span><p>请问，您就是钱师爷？听说您在这儿当差很多年了。</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>“很多年”是一个相当保守的表述。准确地说，从有人第一次在泥板上刻下“某某欠神庙大麦三十斛”开始，我就坐在这张桌子后面了。</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>那您一定见过大场面。</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>我见过一个场面，大约见了四百遍。一位大人走进来说：国库空了，仗还要打，宫殿还要修，百姓不能再加税。然后他看着我，问我有没有办法。</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>那您怎么回答？</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>我总是说：办法是有的。办法永远是有的。只是每一个办法都有一笔账，要记在某个人头上，通常是那个不在这间屋子里的人。</p></div>
+        <div class="sd">阿鉴掏出小本子，认真记下。钱师爷看了一眼，叹了口气。</div>
+        <div class="ln"><span class="who s">钱师爷</span><p>你也会忘的。每一任都会忘。不然我也不至于在这里坐五千年。</p></div>
+      </div>
+    </div>
+
+    <p>下面是目录。可以从头读，也可以挑感兴趣的一卷跳进去；右上角的“目录”按钮随时能叫出来。每一卷都有一个能动手玩的装置，有几个是小游戏；正文旁边的<em>眉批</em>标着“轮回”“讽刺”“联系”“存疑”“生活”五种印章，最后一卷会把它们全收拢到一张时间轴上。</p>
+
+    <ol class="toc" id="toc">
+      <li><a href="#v1"><span class="n">卷一</span><span class="t">债<small>泥板、大麦、第一个表示“自由”的词</small></span><span class="r">前 3000—前 1750</span></a></li>
+      <li><a href="#v2"><span class="n">卷二</span><span class="t">贝<small>海贝、铜贝、沉在海底的石头</small></span><span class="r">商—1900</span></a></li>
+      <li><a href="#v3"><span class="n">卷三</span><span class="t">铸<small>吕底亚、半两、五铢、开元通宝</small></span><span class="r">前 630—621</span></a></li>
+      <li><a href="#v4"><span class="n">卷四</span><span class="t">剪<small>罗马的银、王莽的二十八品、铜鼻子国王</small></span><span class="r">64—1551</span></a></li>
+      <li><a href="#v5"><span class="n">卷五</span><span class="t">纸<small>交子、元钞、大明宝钞</small></span><span class="r">1023—1450</span></a></li>
+      <li><a href="#v6"><span class="n">卷六</span><span class="t">银<small>波托西、马尼拉大帆船、一条鞭法、改稻为桑</small></span><span class="r">1545—1840</span></a></li>
+      <li><a href="#v7"><span class="n">卷七</span><span class="t">信<small>美第奇、金匠的收据、英格兰银行、日升昌</small></span><span class="r">1397—1823</span></a></li>
+      <li><a href="#v8"><span class="n">卷八</span><span class="t">狂<small>郁金香、约翰·劳、南海公司</small></span><span class="r">1637—1720</span></a></li>
+      <li><a href="#v9"><span class="n">卷九</span><span class="t">金<small>牛顿的失误、金本位、魏玛、布雷顿森林</small></span><span class="r">1717—1971</span></a></li>
+      <li><a href="#v10"><span class="n">卷十</span><span class="t">数<small>美元、量化宽松、比特币、扫码</small></span><span class="r">1971—今</span></a></li>
+      <li><a href="#v11"><span class="n">卷十一</span><span class="t">魔<small>复利、损失厌恶、钱与幸福</small></span><span class="r">你的一生</span></a></li>
+      <li><a href="#v12"><span class="n">尾声</span><span class="t">轮回<small>历史不重复，但押韵</small></span><span class="r">全部</span></a></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ 卷一 债 ============ -->
+<section class="vol" id="v1" data-vol="卷一 · 债">
+  <div class="volhead" data-y="-3000">
+    <svg class="gl" data-gl="rose" viewBox="0 0 300 300" aria-hidden="true"></svg>
+    <span class="sn">№ 0001</span>
+    <div class="num">卷一</div>
+    <h2>债</h2>
+    <div class="meta"><span class="range">前 3000—前 1750</span><span>两河流域 · 苏美尔 · 巴比伦</span></div>
+    <p class="lede">教科书说：先有物物交换，后来太麻烦，才发明了钱。泥板上写的却是另一个故事：先有欠账。</p>
+  </div>
+
+  <div class="col">
+    <h3 data-y="1776">一个讲了两百年的故事<span class="y">1776 · 格拉斯哥</span></h3>
+    <p>1776 年，亚当·斯密在《国富论》里讲了一个场景：屠夫手里的肉吃不完，想换面包和啤酒；可面包师和酿酒师眼下都不缺肉。屠夫只好干等。为了不干等，人们慢慢挑出一种大家都愿意收的东西，先换成它，再拿它去换别的。这东西就是钱。</p>
+    <p>一百年后，英国经济学家杰文斯给这个麻烦起了个名字，叫“需求的双重巧合”：你要的东西他正好有，他要的东西你也正好有，两件巧事得同时发生，交易才做得成。这个故事干净、合理，几乎每本经济学课本的第一章都在讲。下面这个装置就是它。</p>
+  </div>
+
+  <div class="wide fig" id="fig-barter">
+    <div class="fig-label">装置 1 / 集市</div>
+    <h4>你有一条鱼，想要一双鞋</h4>
+    <p class="how">你是渔夫，手里一条鱼，想换一双鞋。点一位村民去找他换。每找一次人，鱼就不新鲜一分，新鲜度见底，这条鱼就臭了。先用“物物交换”玩一遍，再换另外两种玩法试试。</p>
+    <div class="btns" style="margin-bottom:10px">
+      <button class="btn on" data-bm="barter">物物交换</button>
+      <button class="btn" data-bm="credit">记账</button>
+      <button class="btn" data-bm="shell">贝壳</button>
+      <button class="btn" id="bReset">重来</button>
+    </div>
+    <div class="inv"><span>手里：</span><span class="hand" id="bHand">🐟</span><span style="margin-left:auto;font-size:13px;color:var(--ink-3)">新鲜度</span><div class="meter" style="width:120px"><i id="bFresh" style="width:100%"></i></div></div>
+    <div class="vill" id="bVill"></div>
+    <div class="ticker" id="bMsg">先想一想：谁想要鱼？</div>
+    <div class="rng" style="margin-top:14px"><span>村里有</span><input type="range" id="bN" min="3" max="60" value="10"><output id="bNo">10 种货</output></div>
+    <p class="readout" id="bCount"></p>
+  </div>
+
+  <div class="col">
+    <p>故事讲得通，问题只有一个：没人找到过这样的村子。</p>
+    <p>人类学家跑遍了各大洲，找过两百年，没找到一个“日常靠物物交换过活”的社会。英国人类学家卡罗琳·汉弗莱 1985 年的结论大意是：纯粹的物物交换经济，从来没有被描述过一个实例。真实的熟人村庄里，你缺鞋，鞋匠给你一双，你说“回头还你”。村里人记得谁欠谁。物物交换当然存在，但多半发生在陌生人之间、敌人之间、不打算再见面的人之间。</p>
+    <p>也就是说，第二种玩法“记账”，才更接近人类最初的样子。</p>
+
+    <h3 data-y="-3300">文字是为了记账发明的<span class="y">约前 3300 · 乌鲁克</span></h3>
+    <p>两河流域，今天的伊拉克南部。考古学家在这里挖出大量小泥块，有圆锥形的、球形的、圆柱形的，每一种代表一样东西：一只羊、一罐油、一斛大麦。泥块被封进空心泥球里，当作一份契约的凭证。后来人们干脆把泥块的形状压印在泥球表面，再后来，连泥块都省了，直接在泥板上画记号。</p>
+    <p>这就是楔形文字最早的样子。目前已知人类最早的成批文字材料，内容大多不是诗，不是神话，是<em>账</em>：谁交了多少羊，谁领了多少大麦，谁欠神庙多少油。</p>
+    <p>苏美尔的城邦以神庙和王宫为中心，它们管着仓库、土地和成千上万的劳力。为了算清这么大一本账，神庙定了一套换算：一个“舍客勒”的银子（约 8.3 克），折合多少大麦。普通农民一辈子未必摸过几回银子，但他欠的账是按银子计价的，到了秋收，用大麦还。酒馆里喝的啤酒也可以先记上，等收成下来再结。</p>
+    <p>银子在这里主要不是用来“花”的，而是用来<em>量</em>的。它像一把尺子，好让羊、油、大麦、劳力能写进同一本账里。</p>
+
+    <aside class="echo" data-k="联系" data-year="-2400" data-place="两河流域" data-pat="债" data-title="利息就是“生小牛”">
+      <span class="stamp">联系</span>
+      <div>
+        <p class="rh"><span class="ry">前 2400 前后 · 三种语言</span>利息就是“生小牛”</p>
+        <p>苏美尔语里表示利息的词 máš，本义是小山羊、小牛犊：借出一群羊，来年它们会生小羊，多出来的就该归出借人。古希腊语的 tokos 同时指“后代”和“利息”。汉语的“利息”，“息”字也有“滋生、繁衍”的意思，旧时管儿子叫“子息”。三个互不相识的文明，都把钱生钱想成了牲口下崽。</p>
+      </div>
+    </aside>
+
+    <h3 data-y="-1754">二成与三成三<span class="y">约前 1754 · 巴比伦</span></h3>
+    <p>汉谟拉比法典刻在一块两米多高的黑色玄武岩上，今天在卢浮宫。里面有不少条款是管债的：借银子，年息最高二成；借大麦，最高三成三。大麦利息定得更高，大概是因为粮食会霉、会被老鼠吃，出借的风险更大。</p>
+    <p>还不上怎么办？可以拿妻子、儿女抵债去干活。法典第 117 条规定，这样的债务劳役最多三年，第四年必须放人。这在今天读来很残酷，但它已经是一种限制：在它之前，抵债的人可能一辈子回不了家。</p>
+
+    <h3 data-y="-2400">第一个表示“自由”的词<span class="y">约前 2400 · 拉格什</span></h3>
+    <p>债会滚。一个坏年景，一家人借粮；第二年利滚利，还不上，儿女去抵债；再过几年，田也抵出去了。等到整个城邦的农民都欠了一屁股债，国王就有大麻烦：农民是兵源，欠债的人逃进山里，仗就没人打了。</p>
+    <p>于是苏美尔和巴比伦的国王们发明了一招：登基时，或者遇到大灾，颁一道诏令，把百姓欠的消费性债务一笔勾销，抵债的人放回家，抵出去的田还给原主。拉格什的统治者恩美铁纳大约在公元前 2400 年留下了这类诏令最早的记录之一。</p>
+    <p>苏美尔人管这件事叫 amargi，字面意思是“回到母亲身边”：抵债的孩子可以回家了。这是目前已知人类文字里最早表示“自由”的词。</p>
+    <p>人类最早的自由，是<em>从债里</em>获得的自由。</p>
+
+    <aside class="echo" data-k="轮回" data-year="-500" data-place="迦南" data-pat="赦债" data-title="五十年一次的禧年">
+      <span class="stamp">轮回</span>
+      <div>
+        <p class="rh"><span class="ry">《利未记》· 成书约前 6—前 5 世纪</span>五十年一次的禧年</p>
+        <p>希伯来圣经《利未记》规定，每过五十年是一个“禧年”，卖掉的土地要归还原主，卖身为奴的同胞要放回家。后来的许多年里，“债务大赦”一次次出现：古希腊梭伦的“解负令”（约前 594）、中国历代新君登基时常见的“蠲免逋欠”、2005 年八国集团同意免除一批最穷国家的多边债务。每一次的理由都差不多：债滚到一定地步，不免掉，整个社会会先崩。</p>
+      </div>
+    </aside>
+
+    <div class="scene">
+      <div class="sh"><b>第一场 · 赦债</b><span>巴比伦王宫 · 约前 1792 · 新王登基前夜</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who d">大人</span><p>师爷，新王明天登基，想颁一道赦债令。你看如何？</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>非常英明，大人。只是在措辞上，我建议我们不说“赦债”。</p></div>
+        <div class="ln"><span class="who d">大人</span><p>那说什么？</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>说“恢复公正”。赦债听起来像是有人吃了亏，恢复公正听起来像是有人做了好事。事情是同一件事，但第二种说法没有人会反对。</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>可是总有人吃亏吧？债主收不回钱了。</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>这正是本方案最精妙之处。城里最大的债主是谁？</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>是……神庙和王宫？</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>所以王免掉的，大半是欠他自己的债。他放弃了一笔本来就收不上来的账，换回一群能种地、能打仗、会感恩戴德的子民。至于城里那几家放贷的商人……</p></div>
+        <div class="ln"><span class="who d">大人</span><p>他们会不高兴。</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>他们会在诏令颁布之前三个月，忽然变得非常不愿意借钱给人。每一任新王登基前都是如此。大人记一下：<b>人们最先学会的，不是还债，而是预测赦免。</b></p></div>
+      </div>
+    </div>
+
+    <div class="takeaway">
+      <p><b>钱最早不是一样东西，而是一笔账。</b>先有“你欠我”，后有“拿去”。银子起初是尺子，不是货。</p>
+      <p class="life">放到自己身上：在熟人之间，你的信用是你最早的本钱。借了要还，答应了要做，这本账别人都记着。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 卷二 贝 ============ -->
+<section class="vol" id="v2" data-vol="卷二 · 贝">
+  <div class="volhead" data-y="-1250">
+    <svg class="gl" data-gl="rose" viewBox="0 0 300 300" aria-hidden="true"></svg>
+    <span class="sn">№ 0002</span>
+    <div class="num">卷二</div>
+    <h2>贝</h2>
+    <div class="meta"><span class="range">商—1900</span><span>殷墟 · 云南 · 马尔代夫 · 西非 · 雅浦岛</span></div>
+    <p class="lede">一枚从印度洋漂来的小贝壳，既进过商王的墓，也被装进运奴船的压舱舱。它凭什么值钱？凭难得，凭大家都认。</p>
+  </div>
+
+  <div class="col">
+    <h3 data-y="-1200">财、货、贵、贱、买、卖<span class="y">约前 1200 · 殷</span></h3>
+    <p>翻开字典数一数：财、货、贵、贱、贫、赚、赔、贷、贿、赂、贡、赋、赏、赐……这一大串和钱打交道的字，偏旁都是“贝”（繁体的“买”“卖”是“買”“賣”，底下也是贝）。造这些字的时候，“贝”就是值钱的东西。</p>
+    <p>这种贝叫货贝，背面鼓起、腹面有一道带齿的缝，长不过两三厘米。它生在温暖的海里，中原没有。从印度洋和南海一路辗转传到黄河边，路远，所以稀罕。殷墟妇好墓里出土了六千八百多枚。商周的青铜器铭文里常见“赐贝十朋”，“朋”是串起来的一挂贝，王拿它赏给有功的臣子。</p>
+    <p>贝有几样天生的好处：小，好带；硬，不坏；天然一个个分开，好数；最重要的是，<em>本地造不出来</em>。一样东西要当钱，第一条就是不能谁想要就能随手弄到。</p>
+
+    <h3 data-y="-1100">铜贝：不必是它，像它就行<span class="y">商晚期—战国</span></h3>
+    <p>可是海贝越用越不够。商代晚期的墓里开始出现用骨头、石头、蚌壳仿刻的贝，再往后，出现了青铜铸的贝。到了战国，南方的楚国还在铸一种铜贝，上面的阴文笔画像一张怪脸，后人叫它“鬼脸钱”或“蚁鼻钱”。</p>
+    <p>这一步很要紧。真贝变成铜贝的那一刻，人们其实默默承认了一件事：钱的价值不在贝壳本身，而在“大家把它当贝”。只要大家认，换个材料也行。这个念头再往前走两千年，就会走到纸。</p>
+
+    <aside class="echo" data-k="联系" data-year="1650" data-place="云南" data-pat="贝" data-title="云南用贝用到明末">
+      <span class="stamp">联系</span>
+      <div>
+        <p class="rh"><span class="ry">13—17 世纪 · 云南</span>云南用贝用到明末</p>
+        <p>中原早已改用铜钱，云南却一直拿海贝当钱用，马可·波罗路过时也记下了这种“白色的贝”。直到明末清初，云南才彻底改用铜钱。原因不难猜：云南离印度洋的贸易路线更近，贝源源不断，从缅甸、孟加拉方向进来。钱长什么样，取决于你挨着哪条商路。</p>
+      </div>
+    </aside>
+
+    <h3 data-y="1700">同一种贝，两个大陆<span class="y">17—19 世纪 · 马尔代夫 → 西非</span></h3>
+    <p>印度洋中的马尔代夫群岛盛产货贝，几百年来是这一带最大的“贝币产地”。贝从这里运往孟加拉、运往东南亚，也运往一个遥远得多的地方：西非。</p>
+    <p>西非沿岸的不少王国很早就用贝当钱。十七、十八世纪，葡萄牙、荷兰、英国的商船从马尔代夫买进成吨的贝，先运回欧洲，再装上开往西非的船，在那里用贝换取象牙、棕榈油，以及人。在一些年份和港口，贝是购买奴隶的主要货币之一。</p>
+    <p>十九世纪，欧洲商人发现东非桑给巴尔一带有另一种更大、更便宜的环纹货贝，于是大批运往西非。贝一下子多了，价钱一路往下掉。到十九世纪末，在一些西非市场，买一头牛要用掉成麻袋的贝。</p>
+    <p>这是贝壳版的<em>通货膨胀</em>。原理和你以后会在本书里看到的每一次印钞都一样：钱的数量涨得比东西快，每一枚钱就不值钱了。只不过这一次，印钞机是一条从东非开来的船。</p>
+
+    <aside class="echo" data-k="轮回" data-year="1880" data-place="西非" data-pat="印钞" data-title="贝壳的通货膨胀">
+      <span class="stamp">轮回</span>
+      <div>
+        <p class="rh"><span class="ry">19 世纪 · 西非</span>贝壳的通货膨胀</p>
+        <p>环纹货贝大量涌入后，西非的贝价持续下跌。钱不是只有纸会“印多”。任何一种钱，只要有人能大量、便宜地弄到它，它就会贬值。后面的章节里，换成铜、换成银、换成纸、换成电子记账，这件事都会再来一遍。</p>
+      </div>
+    </aside>
+
+    <h3 data-y="1910">沉在海底的石头<span class="y">1910 · 雅浦岛</span></h3>
+    <p>太平洋西部有个小岛叫雅浦，属今天的密克罗尼西亚联邦。岛上的钱是石头：中间凿了孔的石灰岩圆盘，小的像盘子，大的直径三四米，几个壮汉都抬不动。这种石头雅浦本岛不产，要划独木舟到四百公里外的帕劳去开采，再冒着风浪运回来。</p>
+    <p>1910 年，美国人类学家弗内斯出版了一本书，记下了雅浦人用石币的方式。最让人吃惊的是：大石币买卖之后，<em>常常根本不挪地方</em>。一块石头立在甲家门口，卖给了乙家，它还立在甲家门口，只是全村都知道它现在归乙家了。</p>
+    <p>弗内斯还记下一个故事。很早以前，有一户人家从帕劳运回一块极大的石币，回程遇上风暴，石头沉进了海里。船员回来作证：石头很大，很好，只是不幸沉了。村里人商量之后认为，石头的价值不会因为沉了就消失。于是这户人家一直被当作富户，他们的财富躺在几十米深的海底，没人见过，但人人承认。</p>
+
+    <aside class="echo" data-k="联系" data-year="1932" data-place="纽约" data-pat="信" data-title="纽约地下的“雅浦石”">
+      <span class="stamp">联系</span>
+      <div>
+        <p class="rh"><span class="ry">1932 · 纽约</span>纽约地下的“雅浦石”</p>
+        <p>经济学家弗里德曼 1991 年写过一篇文章，题目就叫《石币之岛》。他拿雅浦对照了 1932 年的一件事：法兰西银行担心美元贬值，要求把手里的美元换成黄金。纽约联邦储备银行的做法是，把地下金库里的一批金条贴上标签，写明“归法国所有”。黄金一步没挪。可第二天，报上惊呼美国黄金大量流失，美国的银行业跟着紧张起来。弗里德曼问：这和雅浦人认定海底那块石头属于谁，有什么本质区别？</p>
+      </div>
+    </aside>
+  </div>
+
+  <div class="wide fig" id="fig-yap">
+    <div class="fig-label">装置 2 / 雅浦账本</div>
+    <h4>石头不动，账在动</h4>
+    <p class="how">岛上有三块石币，其中一块沉在海底。选一块石头和新主人，点“过户”：石头哪儿也不去，只有右边的账本改了。最后试试“有人不信了”。</p>
+    <div class="yap">
+      <svg viewBox="0 0 420 230" id="yapSvg" role="img" aria-label="雅浦岛三户人家和三块石币示意"></svg>
+      <div>
+        <div class="rng" style="grid-template-columns:auto minmax(0,1fr)"><span>石头</span><select id="yapStone" style="border:1px solid var(--rule);border-radius:6px;background:var(--paper);padding:3px 6px"></select></div>
+        <div class="rng" style="grid-template-columns:auto minmax(0,1fr)"><span>过户给</span><select id="yapTo" style="border:1px solid var(--rule);border-radius:6px;background:var(--paper);padding:3px 6px"></select></div>
+        <div class="btns" style="margin:8px 0"><button class="btn pri" id="yapGo">过户</button><button class="btn" id="yapDoubt">有人不信了</button></div>
+        <div class="panel"><h5>全村记得的账</h5><div id="yapLedger" style="font-size:14.5px;line-height:1.8"></div></div>
+      </div>
+    </div>
+    <p class="readout" id="yapMsg" style="margin-top:10px">搬一块大石头要十几个人。记住“它是谁的”，只要大家都记得。</p>
+  </div>
+
+  <div class="col">
+    <h3 data-y="1872">太容易得到的石头<span class="y">1870 年代 · 雅浦</span></h3>
+    <p>雅浦石币的故事还有一段续集。1870 年代，一个叫奥基夫的爱尔兰裔美国船长漂到雅浦，他有铁器、有大船，于是和岛民做起生意：他帮忙把石头从帕劳运回来，换岛上的椰干。石头一下子好运了。</p>
+    <p>结果呢？岛上的人很快区分开了两种石币：靠独木舟、拿命拼回来的老石头，和坐奥基夫的大船轻松运来的新石头。后者明显不那么值钱。</p>
+    <p>雅浦人凭直觉懂得了一件事：钱的价值，部分来自<em>得到它有多难</em>。黄金要深挖，比特币要“挖矿”耗电，道理相通。一种钱如果谁都能轻松变出来，它就不再是钱了。</p>
+
+    <div class="scene">
+      <div class="sh"><b>第二场 · 贝荒</b><span>殷 · 王室府库 · 约前 1150</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who d">大人</span><p>师爷，南边的贝今年又没运到。王下月要赏有功的将士，库里的贝不够了。</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>大人可曾想过，将士们要的究竟是贝，还是“王赏了我贝”这件事？</p></div>
+        <div class="ln"><span class="who d">大人</span><p>这有区别吗？</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>区别很大。如果是前者，我们只能等船。如果是后者，那我们只需要一些“看起来是王赏的贝”的东西。比如，青铜铸的贝。上面铸着王室的纹样，比海里捞的还体面。</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>可铜贝不是真贝啊。大家会认吗？</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>王说它是贝，它就是贝。将士们拿着它去换粮，粮商收下，因为他知道下一个人也会收。只要这个链条不断，它比真贝还真。</p></div>
+        <div class="ln"><span class="who d">大人</span><p>妙。那铜不够了呢？</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>大人，这个问题请留给三千年后的同僚。他们会想出一个更省事的办法，用纸。</p></div>
+        <div class="sd">阿鉴在小本子上写下“铜不够了怎么办”，打了个问号。这个问号以后会变得很大。</div>
+      </div>
+    </div>
+
+    <div class="takeaway">
+      <p><b>钱是什么材料不重要，重要的是两条：难得，大家都认。</b>少了第一条，它会被滥造；少了第二条，它只是一块石头。</p>
+      <p class="life">放到自己身上：“大家都认”不等于“永远都认”。你攒下的任何一种“钱”，不管是现金、房子、证书还是某个圈子里的名声，都要问一句：如果有一天大家不认了，它还剩下什么？</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 卷三 铸 ============ -->
+<section class="vol" id="v3" data-vol="卷三 · 铸">
+  <div class="volhead" data-y="-630">
+    <svg class="gl" data-gl="rose" viewBox="0 0 300 300" aria-hidden="true"></svg>
+    <span class="sn">№ 0003</span>
+    <div class="num">卷三</div>
+    <h2>铸</h2>
+    <div class="meta"><span class="range">前 630—621</span><span>吕底亚 · 雅典 · 秦 · 汉 · 唐</span></div>
+    <p class="lede">在一块金属上敲一个印，它就从“一块金属”变成了“一枚钱”。这个印是谁的？谁能敲？敲一下能赚多少？中国人为这三个问题吵了八百年。</p>
+  </div>
+
+  <div class="col">
+    <h3 data-y="-630">狮子头<span class="y">约前 630 · 吕底亚</span></h3>
+    <p>用金银交易的麻烦是：每次都得称，还得验成色，银锭里会不会掺了铅？今天土耳其西部，古国吕底亚的人想出了一个办法：把天然的金银合金（琥珀金）做成大小一致的小块，在上面敲一个狮子头的印。有印，就说明国王担保了它的重量和成色，收钱的人不必再称。</p>
+    <p>这就是目前所知最早的硬币之一。希腊历史学家希罗多德说，吕底亚人是最早使用金银铸币、也是最早开零售店的人。吕底亚后来的国王克洛伊索斯（约前 560—前 546 在位）把金币和银币分开铸造，富到在希腊语里成了“富豪”的代名词。</p>
+    <p>硬币传得很快。雅典在劳里昂发现了一条富银矿，铸出印着猫头鹰的银币，“雅典的猫头鹰”在地中海四处流通。前 483 年，雅典人在矿里挖到了一个新的大矿脉，政治家地米斯托克利说服公民别分掉这笔银子，拿去造战舰。三年后，这支舰队在萨拉米斯海战中打败了波斯人。<em>一条银矿，改写了一场战争。</em></p>
+
+    <aside class="echo" data-k="联系" data-year="-600" data-place="三地" data-pat="铸" data-title="三个地方几乎同时想到了">
+      <span class="stamp">联系</span>
+      <div>
+        <p class="rh"><span class="ry">前 7—前 5 世纪</span>三个地方几乎同时想到了</p>
+        <p>吕底亚和希腊铸硬币的同一时期，恒河流域出现了打着各种符号印记的银片（“戳印币”），黄河流域出现了铜铸的布币和刀币。三地之间几乎没有往来，却在差不多同一时期想到了“给金属打上公家的印”。这也是各地开始出现大规模职业军队的时期。有学者认为两者有关：要给成千上万的士兵发饷，最方便的就是发一块块有固定价值的金属。</p>
+      </div>
+    </aside>
+
+    <h3 data-y="-500">铲子、刀和一个洞<span class="y">春秋战国</span></h3>
+    <p>中国早期的铜钱长得很古怪。中原的晋、韩、赵、魏一带用“布币”，形状是一把铲子，因为它脱胎于农具“镈”；东边的齐、北边的燕用“刀币”，形状是一把小刀；秦和魏的一部分用“圜钱”，圆形，中间一个孔；楚国用前面说过的铜贝。</p>
+    <p>钱的样子，就是各国日常生活的样子：种地的地方用铲子，渔猎的地方用刀。</p>
+
+    <h3 data-y="-221">外圆内方<span class="y">前 221 · 秦</span></h3>
+    <p>秦始皇统一六国，也统一了钱。司马迁在《史记·平准书》里记下了这次改革：</p>
+    <blockquote><p>黄金以溢名，为上币；铜钱识曰半两，重如其文，为下币。而珠玉、龟贝、银锡之属为器饰宝藏，不为币。</p><cite>——《史记·平准书》</cite></blockquote>
+    <p>意思是：黄金是上等货币，铜钱是下等货币，铜钱上铸着“半两”二字，实际重量也就是半两（十二铢）。珠玉、龟甲、贝壳从此只能当装饰和收藏，不再是钱。用了一千多年的贝，到这里正式退场。</p>
+    <p>半两钱圆形方孔。圆，好拿好滚；方孔，可以穿在方木棍上一串串地锉边，也方便用绳子穿成“贯”。后人还给它加了一层寓意：天圆地方。从这一枚开始，外圆内方的样子在中国用了两千多年，一直用到清末。</p>
+
+    <h3 data-y="-175">让天下人一起铸钱<span class="y">前 175 · 汉文帝</span></h3>
+    <p>汉朝刚建立时，觉得秦的半两钱太重，允许民间自己铸轻钱。结果钱越铸越轻，轻得像榆树的荚子，人称“荚钱”。东西却没变多，于是物价飞涨，《平准书》说米一石卖到一万钱，马一匹要一百斤金子。</p>
+    <p>到了汉文帝五年（前 175 年），朝廷定下四铢重的半两钱，同时废除了“盗铸钱令”：<em>允许民间合法铸钱</em>，只要按标准铸。</p>
+    <p>年轻的贾谊上了一道《谏铸钱疏》，大意是：铸钱利润太大，农民会扔下锄头去铸钱；人人都铸，就有人往铜里掺铅掺铁，劣钱满天下；而且铜矿在谁手里，钱就在谁手里，天下的财权就散了。</p>
+    <p>文帝没听。他把蜀郡严道的一座铜山赏给了宠臣邓通，准许他自己铸钱。“邓通钱”很快流遍天下。另一边，东南的吴王刘濞靠封地里的铜山铸钱、海水煮盐，富得不用向百姓收赋税。前 154 年，吴王领头发动了“七国之乱”。贾谊担心的事，以最坏的方式应验了：铜山在谁手里，兵就在谁手里。</p>
+
+    <aside class="echo" data-k="讽刺" data-year="-157" data-place="长安" data-pat="铸" data-title="给天下铸钱的人，饿死时身无分文">
+      <span class="stamp">讽刺</span>
+      <div>
+        <p class="rh"><span class="ry">前 157 之后 · 长安</span>给天下铸钱的人，饿死时身无分文</p>
+        <p>据《史记·佞幸列传》，文帝曾让相面的人给邓通看相，说他将来会“贫饿死”。文帝说：能让邓通富的是我，怎么会穷？于是赐他铜山。文帝一死，景帝即位，没收了邓通全部家产，他最后“竟不得名一钱，寄死人家”，一个铜板都没有，死在别人家里。他铸出的钱流遍了整个帝国，没有一枚是他的。</p>
+      </div>
+    </aside>
+
+    <h3 data-y="-118">五铢：用了七百年的钱<span class="y">前 118 · 汉武帝</span></h3>
+    <p>汉武帝要打匈奴，钱怎么都不够。他试过好几招：用宫苑里的白鹿皮，一尺见方，绣上花纹，定价四十万钱一张，规定王侯朝见时必须拿它垫着献玉璧，等于逼贵族花钱买一张皮；又用银锡合金铸“白金三品”，面值远高于用料，结果民间大规模盗铸，抓都抓不完。</p>
+    <p>最后他换了思路。前 118 年铸五铢钱，用料足、制作精；前 113 年收回各郡国的铸币权，只许中央的“上林三官”铸钱。从此，铸钱成了朝廷独有的权力。同一时期，他还把盐和铁收归官营。</p>
+    <p>五铢钱从汉武帝一直用到唐初，前后七百多年，是中国历史上流通最久的钱币之一。</p>
+
+    <h3 data-y="621">“钱”这个字的来历<span class="y">621 · 唐</span></h3>
+    <p>唐高祖武德四年（621 年），五铢钱被“开元通宝”取代。开元通宝每枚重二铢四絫，十枚正好一两。于是“一枚钱的重量”就成了一个重量单位：<em>一钱</em>，十钱为一两。今天中药铺里称“三钱当归”，说的就是三枚开元通宝那么重。</p>
+    <p>钱从此不再以重量命名，“半两”“五铢”这样的名字退出了历史，钱币上铸的变成了年号和“通宝”“元宝”。钱的价值，从“它有多重”变成了“朝廷说它值多少”。</p>
+  </div>
+
+  <div class="wide fig" id="fig-coin">
+    <div class="fig-label">装置 3 / 一枚铜钱的账</div>
+    <h4>面值、成本，和两种死法</h4>
+    <p class="how">一枚钱的面值是 1 文。拖动滑块，改变铸这枚钱所用铜料的价值。看看铜料太少或太多时分别会发生什么。下面的按钮是几个真实的历史位置。</p>
+    <div class="coinwrap">
+      <svg viewBox="0 0 160 160" width="150" id="coinSvg" role="img" aria-label="一枚方孔铜钱，铜料部分随滑块变化"></svg>
+      <div>
+        <div class="rng"><span>铜料价值</span><input type="range" id="coinR" min="10" max="160" value="90"><output id="coinO">0.90 文</output></div>
+        <div class="meter" style="height:14px;position:relative;margin:10px 0 4px;background:linear-gradient(90deg,var(--seal) 0 33%,var(--intag) 33% 60%,var(--copper) 60% 100%)"><i id="coinPin" style="position:absolute;top:-3px;width:3px;height:20px;background:var(--ink);left:50%"></i></div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink-3)"><span>盗铸区</span><span>安全区</span><span>熔毁区</span></div>
+        <p class="readout" id="coinRead" style="margin-top:8px"></p>
+        <div class="btns"><button class="btn" data-coin="banliang">秦半两</button><button class="btn" data-coin="jia">汉初荚钱</button><button class="btn" data-coin="baijin">武帝白金</button><button class="btn" data-coin="wuzhu">五铢</button><button class="btn" data-coin="song">宋代钱荒</button></div>
+      </div>
+    </div>
+    <p class="readout" id="coinNote" style="margin-top:10px"></p>
+  </div>
+
+  <div class="col">
+    <aside class="echo" data-k="联系" data-year="1200" data-place="日本" data-pat="铸" data-title="用了几百年中国铜钱的日本">
+      <span class="stamp">联系</span>
+      <div>
+        <p class="rh"><span class="ry">10—16 世纪 · 日本</span>用了几百年中国铜钱的日本</p>
+        <p>日本在 958 年之后长期不再自己铸造官钱，市面上流通的大量是从中国运去的铜钱：宋钱，后来还有明朝的永乐通宝。宋朝的铜钱经海路大量外流，加上国内有人把钱熔了铸铜器、铸佛像，宋朝反而常常闹“钱荒”，朝廷屡下“钱禁”，禁止铜钱出海。一边是日本缺钱，一边是宋朝铸了很多钱还缺钱，同一批铜钱牵着两个国家。</p>
+      </div>
+    </aside>
+
+    <div class="scene">
+      <div class="sh"><b>第三场 · 放铸</b><span>长安 · 前 175 · 未央宫外的值房</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who d">大人</span><p>陛下要放开民间铸钱。贾谊那个年轻人又上了一道疏，说这是乱天下之道。师爷怎么看？</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>贾大夫说得在理，陛下的考虑也在理。这件事的妙处在于，两边都对。</p></div>
+        <div class="ln"><span class="who d">大人</span><p>那到底放不放？</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>放。但请大人在奏报里用“与民休息、藏富于民”这样的字眼。将来若出了乱子，那是“奸民盗铸、有司失察”；若没出乱子，那是“圣德广被”。</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>可是贾大夫说，铜山在谁手里，谁就能造反……</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>阿鉴，你又在关心“会发生什么”了。我们这一行，关心的是“发生了以后怎么写”。</p></div>
+        <div class="ln"><span class="who d">大人</span><p>那邓通呢？陛下要赏他一座铜山。</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>大人，一座铜山是不会让人变富的。让人变富的，是“只有他能用这座铜山”。陛下赏的不是铜，是独家。独家这种东西，换一个皇帝就会收回去。</p></div>
+        <div class="sd">二十年后，景帝收回了邓通的一切。钱师爷没有说“我早说过”。他只是在一本很厚的册子里，又画了一道。</div>
+      </div>
+    </div>
+
+    <div class="takeaway">
+      <p><b>谁能铸钱，谁就有一笔不用收的税：面值减去成本。</b>这叫“铸币税”。钱的历史，有一半是在争这笔钱归谁。</p>
+      <p class="life">放到自己身上：看一套规则，先看谁站在“印章”那一头。很多收入不叫“税”，但它就是税。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 卷四 剪 ============ -->
+<section class="vol" id="v4" data-vol="卷四 · 剪">
+  <div class="volhead" data-y="64">
+    <svg class="gl" data-gl="rose" viewBox="0 0 300 300" aria-hidden="true"></svg>
+    <span class="sn">№ 0004</span>
+    <div class="num">卷四</div>
+    <h2>剪</h2>
+    <div class="meta"><span class="range">64—1551</span><span>罗马 · 新莽 · 都铎英格兰</span></div>
+    <p class="lede">缺钱的统治者很快发现一条捷径：钱的面值不变，里面的银子少放一点。没有人宣布加税，可每个人手里的钱都缩水了。</p>
+  </div>
+
+  <div class="col">
+    <h3 data-y="64">尼禄之后<span class="y">64 · 罗马</span></h3>
+    <p>罗马的主力银币叫第纳尔，共和时期几乎是纯银。它是罗马军团的饷钱，也是整个地中海的硬通货，“钱”（money）这个英文词就来自罗马铸币厂所在的朱诺·莫涅塔神庙。</p>
+    <p>公元 64 年罗马大火之后，皇帝尼禄要重建城市、修他的金宫，于是把第纳尔减重，含银量也降到九成出头。这是一个开头。此后两百年，几乎每一位手头紧的皇帝都要往里多掺一点铜：图拉真打仗要钱，马可·奥勒留抗击日耳曼人要钱，塞维鲁给军队涨饷要钱。到了三世纪中叶，罗马陷入半个世纪的混乱，前后几十位皇帝和篡位者走马灯似的上台，每一位都得先给拥立他的士兵发一大笔赏钱。</p>
+    <p>银子从哪来？从钱里来。到 260 年代皇帝加里恩努斯的时候，名义上的“银币”含银只剩百分之几，是一枚镀了一层薄银的铜片，用不了多久，银皮磨掉，露出铜色。</p>
+  </div>
+
+  <div class="wide fig" id="fig-rome">
+    <div class="fig-label">装置 4 / 罗马银币</div>
+    <h4>两百年，从银到铜</h4>
+    <p class="how">拖动滑块，从共和时期走到三世纪。左边的硬币会随含银量变色，右边的曲线是主力银币的大致含银比例（不同学者的估算有出入，这里取常见的约值）。</p>
+    <div class="coinwrap">
+      <svg viewBox="0 0 160 160" width="150" id="romeCoin" role="img" aria-label="罗马银币，颜色随含银量从银变铜"></svg>
+      <div>
+        <canvas class="chart" id="romeChart" height="220" aria-label="罗马银币含银量曲线"></canvas>
+        <div class="rng"><span>年份</span><input type="range" id="romeR" min="0" max="8" value="0" step="1"><output id="romeO"></output></div>
+      </div>
+    </div>
+    <p class="readout" id="romeNote" style="margin-top:8px"></p>
+  </div>
+
+  <div class="col">
+    <p>士兵不傻。银子一少，商人就涨价；涨了价，士兵觉得饷钱不够，就要求加饷；皇帝没银子，就再掺铜。这是一个停不下来的螺旋。</p>
+
+    <h3 data-y="301">死刑也管不住的物价<span class="y">301 · 戴克里先</span></h3>
+    <p>戴克里先结束了三世纪的混乱，开始收拾烂摊子。301 年，他颁布了《最高价格敕令》，给一千多种商品和服务定了最高价：一斤猪肉多少钱、一双军靴多少钱、一个理发师剪一次头多少钱，连律师写一份诉状都有定价。违者处死。</p>
+    <p>敕令的序言写得义正辞严，把涨价归罪于商人的贪婪。结果是：商人不卖了。同时代的作家拉克坦提乌斯记载，为了些小东西流了很多血，市场上什么也买不到，最后这道敕令只好不了了之。</p>
+    <p>戴克里先的处方，后世几乎每一次恶性通胀都会有人再开一遍：<em>先把钱弄坏，再把涨价怪到卖东西的人头上。</em></p>
+
+    <aside class="echo" data-k="轮回" data-year="301" data-place="罗马" data-pat="限价" data-title="限价令的长名单">
+      <span class="stamp">轮回</span>
+      <div>
+        <p class="rh"><span class="ry">301 及以后</span>限价令的长名单</p>
+        <p>戴克里先 301 年的限价、王莽的“五均赊贷”、法国大革命时期 1793 年的《全面最高限价法》、1948 年国民政府发行金圆券时的“八一九限价”……这类命令有一个共同结局：明面上的价格被按住了，东西就从明面上消失，跑进黑市。金圆券的限价只撑了七十来天。</p>
+      </div>
+    </aside>
+
+    <h3 data-y="9">二十八种钱<span class="y">9—14 · 新莽</span></h3>
+    <p>在罗马人开始往银币里掺铜的时候，地球另一头的中国也有一位以“改革”著称的统治者，王莽。他从公元 7 年到 14 年改了四次币制，每一次都比上一次更复杂。</p>
+    <p>第一次，他在五铢钱之外加铸了几种大钱，其中一种“错刀”，刀身上用黄金嵌出“一刀平五千”几个字：一枚抵五千个五铢钱，铜料却远远不值。第二次，他干脆废了五铢钱和刀币。理由之一据说颇为奇特：汉朝皇帝姓刘，“劉”字拆开是“卯、金、刀”，他要把和刘氏有关的“金”与“刀”从钱上清除出去。</p>
+    <p>第三次，公元 10 年，他推出了“宝货制”：金、银、铜、龟甲、贝壳五种材料，分成六大类二十八个品级，彼此之间都有固定的比价。老百姓光是记清楚一枚龟甲值几枚铜贝，就要费半天工夫。</p>
+    <p>没人愿意用。大家偷偷接着用五铢钱。王莽下令，私藏五铢钱的发配边疆；后来盗铸太多，又规定“一家铸钱，五家坐之，没入为奴婢”，一家犯法，邻居五家一起罚做奴婢。据《汉书·食货志》，被罚没的人成群结队押往长安的铸钱工场，路上死了十之六七。</p>
+    <p>公元 23 年，绿林军攻进长安，王莽死于乱兵之中。他留下的钱币倒是铸得极精美，今天是钱币收藏里的名品。</p>
+
+    <h3 data-y="1526">劣币驱逐良币<span class="y">前 405 · 1526 · 1558</span></h3>
+    <p>如果你手里有两枚面值一样的钱，一枚是足银的，一枚是掺了铜的，你会先花哪一枚？</p>
+    <p>当然是掺铜的。足银的那枚你会留着，熔了，或者拿去跟外国人做生意，因为外国人只认银子的重量。于是市面上流通的钱越来越差，好钱都躲进了箱底。这个规律后来被叫作“格雷欣法则”：<em>劣币驱逐良币</em>。</p>
+    <p>托马斯·格雷欣是伊丽莎白一世的财政顾问，1558 年他给女王写信解释英国的好钱为什么都不见了。不过他远不是第一个注意到这件事的人。公元前 405 年，阿里斯托芬在喜剧《蛙》里就拿它挖苦雅典：城邦弃用好的银币、改用劣质铜币，正如它弃用好人、改用坏蛋。1526 年，天文学家哥白尼写了一篇讨论铸币的论文，也讲了同样的道理。提出日心说的人，顺手也看懂了钱。</p>
+  </div>
+
+  <div class="wide fig" id="fig-gresham">
+    <div class="fig-label">装置 5 / 格雷欣法则</div>
+    <h4>好钱去哪儿了</h4>
+    <p class="how">市面上有 200 枚钱，银色是足银的好钱，铜色是掺了铜的劣钱，起初各占一半。每过一年，人们付钱时先花劣钱，收到好钱就留下来；官府每年还会再铸一批劣钱。点“过一年”看看市面上流通的是什么。</p>
+    <div class="dots" id="gDots"></div>
+    <div class="btns" style="margin-top:12px"><button class="btn pri" id="gStep">过一年</button><button class="btn" id="gReset">重来</button></div>
+    <p class="readout" id="gRead" style="margin-top:8px"></p>
+  </div>
+
+  <div class="col">
+    <h3 data-y="1544">铜鼻子国王<span class="y">1544—1551 · 英格兰</span></h3>
+    <p>英王亨利八世一生打了好几场昂贵的仗，修了很多宫殿，还娶了六位王后。1544 年起，他开始大规模降低银币成色，史称“大贬值”。到他儿子爱德华六世在位的 1551 年，一部分“银币”含银只剩四分之一左右。</p>
+    <p>亨利晚年的银币上铸着他正面的头像，鼻子是硬币上最凸的地方，最先被磨。银皮一磨掉，就露出底下的铜，百姓于是给他起了个外号：“铜鼻子老头”。</p>
+    <p>伊丽莎白一世即位后，在格雷欣等人的建议下，于 1560—1561 年收回全部劣币，重铸足银的新币。这件事花了大钱，却给英国的货币挣回了一百多年的信誉。</p>
+
+    <aside class="echo" data-k="生活" data-year="1662" data-place="英格兰" data-pat="剪边" data-title="硬币边上那圈竖纹">
+      <span class="stamp">生活</span>
+      <div>
+        <p class="rh"><span class="ry">17 世纪 · 伦敦</span>硬币边上那圈竖纹</p>
+        <p>除了国王从里面掺铜，百姓也会从外面“剪”：拿剪刀沿着银币的边剪下一小圈银屑，攒多了熔掉卖钱，剪过的钱照样按面值花出去。十七世纪英国用机器压制硬币后，在边缘压出竖纹或文字，边一被剪，一眼就看得出来。今天你兜里一元硬币的边上还有那圈细纹，就是这场猫鼠游戏留下的。</p>
+      </div>
+    </aside>
+
+    <div class="scene">
+      <div class="sh"><b>第四场 · 成色</b><span>罗马 · 约 260 · 皇帝行营的财务帐篷</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who d">大人</span><p>军团又闹饷了。皇帝说，下个月要是发不出赏钱，换皇帝的就不是元老院，是军团。</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>大人，我们手头有多少银子？</p></div>
+        <div class="ln"><span class="who d">大人</span><p>够铸二十万枚。可要发四十万枚。</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>那我们就铸四十万枚。</p></div>
+        <div class="ln"><span class="who d">大人</span><p>银子从哪来？</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>大人，我建议我们不要把它叫作“掺铜”。我们是在“优化每一枚钱币中贵金属的使用效率”，让帝国有限的白银“惠及更多的将士”。</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>可士兵们拿到钱，迟早会发现它变轻了、变红了……</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>他们会发现的。但他们首先发现的是面包贵了。而面包是面包师卖的。所以，他们会去骂面包师。</p></div>
+        <div class="ln"><span class="who d">大人</span><p>那再过几年，面包贵到大家受不了呢？</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>那时我们就颁布一道敕令，规定面包的最高价格，并严厉谴责奸商。大人放心，这一招每一次都能为朝廷赢得一片掌声。至少在面包从市场上消失之前。</p></div>
+        <div class="sd">阿鉴想问“面包消失之后呢”，看了看师爷的脸色，把话咽了回去。四十年后，戴克里先的限价令替他问了。</div>
+      </div>
+    </div>
+
+    <div class="takeaway">
+      <p><b>钱被稀释的时候，离钱最近的人最先察觉，拿死工资的人最后察觉。</b>掺铜是一种不用开口的加税。</p>
+      <p class="life">放到自己身上：工资十年没涨，就是在被悄悄“剪边”。看收入别只看数字，要看它能买什么。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 卷五 纸 ============ -->
+<section class="vol" id="v5" data-vol="卷五 · 纸">
+  <div class="volhead" data-y="1023">
+    <svg class="gl" data-gl="rose" viewBox="0 0 300 300" aria-hidden="true"></svg>
+    <span class="sn">№ 0005</span>
+    <div class="num">卷五</div>
+    <h2>纸</h2>
+    <div class="meta"><span class="range">1023—1450</span><span>成都 · 临安 · 大都 · 南京</span></div>
+    <p class="lede">中国人比欧洲人早六百多年用上纸币。接下来的四百年，中国人也比欧洲人早六百多年，把所有可能犯的纸币错误都犯了一遍。</p>
+  </div>
+
+  <div class="col">
+    <h3 data-y="1000">一百多斤铁钱<span class="y">10 世纪末 · 成都</span></h3>
+    <p>宋初的四川很特别：这里不用铜钱，用铁钱。铁便宜，铁钱就得铸得又大又沉，面值还低。史料里说，在成都买一匹丝织品，要付上百斤铁钱，得找人挑着去。四川又是丝绸、茶叶的大产地，生意大，钱重，商人苦不堪言。</p>
+    <p>于是成都的商人想了个办法：把铁钱存进一家铺子，铺子给你开一张纸做的存款凭证，上面写明金额，盖上铺子的印和密押。你拿着这张纸去做生意，对方收下，需要时可以拿它到铺子换回铁钱，每换一次收一点手续费。这种纸叫“交子”，“交”是交合、相交，合券取钱的意思。</p>
+    <p>后来，成都十六户富商联合起来，统一印制交子，共同担保兑现。这是一个私人发行、私人担保的纸币联盟。</p>
+
+    <h3 data-y="1023">交子务<span class="y">1023—1024 · 益州</span></h3>
+    <p>好景不长。有的富商家道中落，交子兑不出钱，闹出了官司。宋仁宗天圣元年（1023 年），朝廷收回交子发行权，在益州（成都）设立“交子务”，第二年发出第一批官交子。这通常被看作世界上最早由政府正式发行的纸币。</p>
+    <p>官交子的规矩定得很聪明：</p>
+    <p><em>第一，限额。</em>每一期（叫一“界”）发行一百二十五万多贯，不许多印。<em>第二，准备金。</em>交子务备下三十六万贯铁钱作“本钱”，约占发行额的三成，随时供人兑现。<em>第三，到期换新。</em>每界大约三年，到期旧交子换成新交子，换不了的作废。</p>
+    <p>这三条，今天的中央银行看了也会点头：发行有上限，兑换有准备，旧钞有回收。头几十年，交子运转良好，四川人觉得纸比铁好用多了。</p>
+
+    <h3 data-y="1100">然后，朝廷要打仗<span class="y">11 世纪末—12 世纪</span></h3>
+    <p>北宋后期，朝廷对西夏连年用兵，军费吃紧。纸币的诱惑太大了：印一张纸几乎不花钱，却能当钱花。于是交子一界接一界地增发，准备金却没有跟着加。到宋徽宗时，交子改名“钱引”，发行额一度比最初翻了二十多倍，一张面值一贯的钱引，市面上往往只值面值的零头。</p>
+    <p>南宋在临安发行“会子”，走了同一条路：开头有节制，打起仗来就加印，越到后期越收不住。贾似道当权时，会子已经不大值钱了。</p>
+
+    <aside class="echo" data-k="联系" data-year="1275" data-place="大都" data-pat="纸" data-title="马可·波罗看不懂的纸">
+      <span class="stamp">联系</span>
+      <div>
+        <p class="rh"><span class="ry">13 世纪末 · 元大都</span>马可·波罗看不懂的纸</p>
+        <p>元朝忽必烈 1260 年发行“中统钞”，后来又发“至元钞”，在全国推行纸币。马可·波罗回到威尼斯后，在游记里花了不少篇幅描写这件奇事：大汗用桑树皮造纸，在纸上盖印，它就成了钱，全国通用，谁敢拒收就是死罪。他把这当作大汗权力大得近乎魔法的证据。欧洲人读了，很多人当成天方夜谭。欧洲第一批像样的银行券，要到 1661 年才在瑞典出现。</p>
+      </div>
+    </aside>
+
+    <h3 data-y="1375">大明宝钞<span class="y">1375 · 南京</span></h3>
+    <p>元朝末年，纸钞滥发，物价飞涨，民间传唱“钞买钞，何曾见”。朱元璋是从这场乱世里起家的，按说该最懂纸币的危险。</p>
+    <p>洪武八年（1375 年），他发行“大明宝钞”。宝钞是中国历史上票面最大的纸币之一，比一张 A4 纸还大，上面印着“户部奏准印造大明宝钞，与铜钱通行使用，伪造者斩”。一贯宝钞定价一千文铜钱，或一两白银。</p>
+    <p>可交子那三条规矩，宝钞一条都没守：<em>没有发行上限，没有准备金，不能兑换</em>，而且永不作废、不回收。朝廷用它发俸禄、发赏赐、买东西，却不太愿意在收税时收它。钱只往外流、不往回收，结果可想而知。</p>
+    <p>据《明史·食货志》，才过了十五年，到洪武二十三年（1390 年），两浙一带已经有人把一贯宝钞折成二百五十文铜钱用，只剩面值的四分之一。朝廷的应对是：禁止民间用金银交易，后来又一度禁用铜钱，逼大家只能用宝钞。</p>
+    <p>法令可以逼人收下一张纸，却逼不了人相信它。大家照样私下用银子，宝钞越来越不值钱。到十五世纪中叶，一贯宝钞在市面上往往只值几文钱。朝廷还在用它给官员折算俸禄，官员们拿到手的，是一沓沓没人要的纸。</p>
+    <p>正统元年（1436 年），朝廷准许南方一些地方把田赋折成白银缴纳，这叫“金花银”。这像是一种承认：民间早就用脚投了票，大明真正的钱是白银。</p>
+  </div>
+
+  <div class="wide fig" id="fig-press">
+    <div class="fig-label">装置 6 / 印钞局</div>
+    <h4>你来管一个交子务</h4>
+    <p class="how">这是一个简化的模型，不是史料数据。你掌管一个发纸币的衙门，每年决定加印多少，还有准备金留多少。市面上的货物每年大约多 3%。纸币的“信用”取决于印得快不快、准备金够不够。先试试两个预设：守规矩的“北宋早期交子”和不守规矩的“大明宝钞”。</p>
+    <div class="btns" style="margin-bottom:8px"><button class="btn" data-press="jiaozi">交子（早期）</button><button class="btn" data-press="baochao">宝钞</button><button class="btn" data-press="war">交子（打仗以后）</button></div>
+    <div class="rng"><span>每年加印</span><input type="range" id="pGrow" min="0" max="60" value="4"><output id="pGrowO">4%</output></div>
+    <div class="rng"><span>准备金比例</span><input type="range" id="pRes" min="0" max="60" value="28"><output id="pResO">28%</output></div>
+    <canvas class="chart" id="pChart" height="220" aria-label="纸币购买力随年份变化"></canvas>
+    <div class="btns" style="margin-top:10px"><button class="btn pri" id="pRun">开印三十年</button></div>
+    <p class="readout" id="pRead" style="margin-top:8px">按“开印三十年”看看一贯纸币三十年后还能买多少东西。</p>
+  </div>
+
+  <div class="col">
+    <div class="drama">
+      <div class="dh"><b>戏里戏外 · 没有病人的医院</b><span>YES MINISTER</span></div>
+      <p>英剧《是，大臣》里有一集很出名：一家新建的大医院，配了五百来名行政人员，却一个病人都没有，因为没钱招医生护士。部长去视察，觉得荒唐至极；常任秘书汉弗莱爵士却认为这家医院运转得非常好：管理到位，开支合规，没有病人，所以也没有医疗事故。</p>
+      <p>大明宝钞后期也有这种味道：宝钞已经没人要了，管印钞的衙门照样设着、照样印着，朝廷照样用它给官员折俸。<em>一个机构的存在，会慢慢变成它自己存在的理由。</em>这在钱的历史上并不少见：一种钱死了，管它的衙门往往还活很久。</p>
+      <p class="src">剧情为概述，非台词原文。</p>
+    </div>
+
+    <div class="scene">
+      <div class="sh"><b>第五场 · 宝钞</b><span>南京 · 户部 · 洪武末年</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who d">大人</span><p>师爷，宝钞又跌了。外面一贯只肯折二百多文。皇上大怒，问户部有什么办法。</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>办法有三个，大人。第一，再加印一批。</p></div>
+        <div class="ln"><span class="who d">大人</span><p>跌了还加印？</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>跌了，每一贯能买的东西少了，朝廷要买同样多的东西，自然要更多的贯。这在账面上是完全说得通的。</p></div>
+        <div class="ln"><span class="who d">大人</span><p>第二呢？</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>第二，下令禁止民间用金银交易。大家没有别的钱可用，自然就只能用宝钞。</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>可是……大家要是偷偷用银子呢？</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>那就是第三个办法：抓。</p></div>
+        <div class="ln"><span class="who d">大人</span><p>三个办法一起用，宝钞就能稳住？</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>大人，宝钞稳不稳住，我不敢担保。但我可以担保，三个办法一起用，户部会显得非常有作为。</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>那有没有第四个办法？比如……少印一点，收税的时候也收宝钞？</p></div>
+        <div class="sd">屋里安静了一会儿。</div>
+        <div class="ln"><span class="who s">钱师爷</span><p>阿鉴，那个办法确实管用。它唯一的缺点是，朝廷要少花钱。在这间屋子里，我们不讨论没有缺点以外的缺点。</p></div>
+      </div>
+    </div>
+
+    <div class="takeaway">
+      <p><b>纸币不是败在纸上，是败在“想印就印”。</b>交子活了几十年，靠的是限额、准备金和回收；宝钞死得快，因为三条全没有。</p>
+      <p class="life">放到自己身上：信用透支起来很快，补回来很慢。许诺、借贷、人情都是一样：一旦别人开始给你的话“打折”，就很难再按面值收回了。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 卷六 银 ============ -->
+<section class="vol" id="v6" data-vol="卷六 · 银">
+  <div class="volhead" data-y="1545">
+    <svg class="gl" data-gl="rose" viewBox="0 0 300 300" aria-hidden="true"></svg>
+    <span class="sn">№ 0006</span>
+    <div class="num">卷六</div>
+    <h2>银</h2>
+    <div class="meta"><span class="range">1545—1840</span><span>波托西 · 阿卡普尔科 · 马尼拉 · 月港 · 石见 · 广州</span></div>
+    <p class="lede">一座南美的山，一条横跨太平洋的航线，一位大明首辅的税法改革，和一部关于“改稻为桑”的电视剧。它们其实在讲同一件事：第一次全球化，是用白银串起来的。</p>
+  </div>
+
+  <div class="col">
+    <h3 data-y="1545">值一个波托西<span class="y">1545 · 上秘鲁</span></h3>
+    <p>1545 年，西班牙殖民者在今天玻利维亚的高原上发现了一座山，山里的银矿富得惊人，人称“富山”。山脚下很快冒出一座城，叫波托西，海拔四千米，十七世纪初人口据说超过十万，和当时的伦敦差不多大。</p>
+    <p>西班牙语里从此多了一句俗话：“值一个波托西”，意思是价值连城，《堂吉诃德》里也用过。可这座城的财富是用人命换来的。殖民当局沿用并改造了印加时代的“米塔”轮役制，强征印第安男子下矿；1570 年代以后，银矿改用汞齐法提炼，矿工长年接触水银和粉尘。死在富山里的人究竟有多少，至今没有可靠的数字，只知道极多。</p>
+
+    <h3 data-y="1571">1571 年，全球化出生<span class="y">1571 · 马尼拉</span></h3>
+    <p>波托西的银子有两条路出海。一条往东，翻过安第斯山，经大西洋运回西班牙塞维利亚。另一条往西，运到墨西哥太平洋岸的阿卡普尔科，装上一年一两趟的大帆船，横渡太平洋，开到菲律宾的马尼拉。</p>
+    <p>1571 年西班牙人在马尼拉建城。等在那里的，是从福建月港、广州开来的中国商船，船上装着丝绸、瓷器、茶叶。银子换丝绸，大帆船再满载中国货开回美洲，从那里转运到欧洲。这条“马尼拉大帆船”航线，一直跑到 1815 年。</p>
+    <p>有历史学家认为，1571 年才是全球贸易真正诞生的一年：从这一年起，地球上所有有人居住的大陆，第一次被一条持续不断的贸易链连在了一起。而这条链的终点，很大程度上是中国。</p>
+
+    <h3 data-y="1567">大明为什么要银子<span class="y">1567 · 1581</span></h3>
+    <p>上一卷说到，大明宝钞失败后，民间改用白银。可中国本土银矿不多，银子从哪来？</p>
+    <p>答案是从海外来。嘉靖年间，海禁严厉，走私猖獗，倭寇之患连年不断。嘉靖皇帝 1566 年底去世，第二年，隆庆皇帝放开福建月港，准许民间商船出海贸易，史称“隆庆开关”。从此日本的银子（日本石见银山此时正处在产量高峰）和美洲的银子，源源不断地流进来。</p>
+    <p>1581 年，首辅张居正在全国推行“一条鞭法”：把名目繁多的田赋、徭役、杂税合并成一条，统一折成白银缴纳。税收变简单了，官员不好上下其手了，可这也意味着，<em>大明的财政从此系在了白银上</em>。每一个种田的农民，都得先把粮食卖成银子才能交税。而银子，很大一部分来自地球另一边的矿山和航线。</p>
+    <p>有学者估算，美洲出产的白银，有三分之一甚至更多最终流进了中国。具体比例争议很大，但方向没有争议：<em>银往东流，货往西流</em>。</p>
+  </div>
+
+  <div class="wide fig" id="fig-silver">
+    <div class="fig-label">装置 7 / 白银之路</div>
+    <h4>一枚银元的环球旅行</h4>
+    <p class="how">示意图，不按真实比例。亮点是银子的流向，点任意一个地点看它在这条链上的位置；“换个方向”可以看反向流动的是什么货。</p>
+    <div class="scroll-x"><svg viewBox="0 0 900 430" id="silverMap" role="img" aria-label="十六至十八世纪白银流动示意图" style="min-width:640px"></svg></div>
+    <div class="btns" style="margin:10px 0"><button class="btn on" id="smSilver">看银子</button><button class="btn" id="smGoods">换个方向：看货物</button></div>
+    <div class="mapinfo" id="smInfo"><h5>点一个地点</h5><p>从玻利维亚的高原出发。</p></div>
+  </div>
+
+  <div class="col">
+    <aside class="echo" data-k="讽刺" data-year="1557" data-place="西班牙" data-pat="白银" data-title="最有钱的帝国，破产了好几次">
+      <span class="stamp">讽刺</span>
+      <div>
+        <p class="rh"><span class="ry">1557—1596 · 马德里</span>最有钱的帝国，破产了好几次</p>
+        <p>坐拥波托西的西班牙王室，在腓力二世一朝就宣布了好几次停止偿债（1557、1560、1575、1596 年）。银子一船船运到塞维利亚，又一船船流向热那亚的银行家、荷兰和英国的商人，用来还债、打仗、买别国造的东西。十六世纪西班牙的物价涨了好几倍，史称“价格革命”。银子太多，反而让西班牙的手工业失去了竞争力。<em>挖出银子的人，不一定留得住银子。</em></p>
+      </div>
+    </aside>
+
+    <h3 data-y="1600">元、圆、円、원，还有 dollar<span class="y">16—19 世纪</span></h3>
+    <p>西班牙人在美洲铸的大银币，叫八里亚尔，重约二十七克，成色稳定，成了当时的“世界货币”。它流进中国，被叫作“本洋”；后来墨西哥独立后铸的鹰洋也大量流入。因为是圆形的银币，中国人管它叫“银圆”，一块一块地数。</p>
+    <p>这个“圆”后来简写作“元”，就是人民币的单位。日本 1871 年改革币制，定名“圆”，日本新字体写作“円”，读作 yen；朝鲜半岛后来的 원（won），也是同一个字。东亚三国今天的货币名称，都可以追溯到一枚圆形的外国银币。</p>
+    <p>英语的 dollar 则来自另一座银矿。1519 年起，波希米亚的约阿希姆斯塔尔（今属捷克）铸造一种大银币，叫“塔勒”（thaler），荷兰人叫 daler，英国人叫 dollar。北美殖民地日常用的正是西班牙的八里亚尔，英国人也管它叫“西班牙 dollar”。1792 年美国定币制时，美元的标准就照着这枚西班牙银币定。</p>
+
+    <aside class="echo" data-k="联系" data-year="1871" data-place="东亚" data-pat="白银" data-title="一个字连着三个国家">
+      <span class="stamp">联系</span>
+      <div>
+        <p class="rh"><span class="ry">1871 · 东京</span>一个字连着三个国家</p>
+        <p>人民币的“元”、日元的“円”、韩元的“원”，在字源上都是“圆”。美元的 dollar 来自一座捷克山谷，而美元最早的样子来自一枚墨西哥铸造的西班牙银币。你钱包里不同国家的钞票，名字里藏着同一张五百年前的贸易网。</p>
+      </div>
+    </aside>
+
+    <div class="drama">
+      <div class="dh"><b>戏里戏外 · 改稻为桑</b><span>大明王朝 1566</span></div>
+      <p>电视剧《大明王朝1566》开场就是户部算账：国库亏空，北边要防蒙古，东南要剿倭寇，宫里还要修宫观。剧中当权的严党拿出一个方案，叫“改稻为桑”：把浙江大片稻田改种桑树，多产生丝、多织丝绸，卖给西洋商人换白银，填补亏空。</p>
+      <p>账面上，这是一笔漂亮的生意。可剧里一层层剥开：稻田变桑田，农民吃什么？田要改，农民不愿意卖怎么办？于是有人打起了“毁堤淹田”的主意，先把田淹了，再让大户趁灾低价买进。织造局的太监、替宫里做生意的商人沈一石、地方的巡抚和按察使、清流与严党、海瑞这样不肯低头的知县，每个人都在这一本账里有自己的位置。</p>
+      <p>“改稻为桑”是编剧的艺术虚构，但它站在真实的地基上：嘉靖朝的财政确实捉襟见肘；江南丝绸确实是换取海外白银的主力货；剧情所在的 1566 年之后一年，隆庆开关，白银潮正式到来。这部剧把本卷的主题演成了一场戏：<em>远方对白银的饥渴，会落成江南某一块田里的一道决堤。</em></p>
+      <p class="src">剧情为概述。“改稻为桑”“毁堤淹田”为剧中情节，非正史记载。</p>
+    </div>
+
+    <blockquote><p>嘉靖者，言家家皆净而无财用也。</p><cite>——海瑞《治安疏》，1566 年</cite></blockquote>
+    <p class="ni">这是历史上真实存在的一句话。嘉靖四十五年，户部主事海瑞买好棺材、遣散家人，上疏批评皇帝，说百姓拿年号“嘉靖”开玩笑，意思是“家家都净了，没钱了”。嘉靖大怒，将他下狱，却始终没有杀他。几个月后，嘉靖去世，海瑞出狱。</p>
+
+    <h3 data-y="1830">银子倒流<span class="y">1820—1840 · 广州</span></h3>
+    <p>两百多年里，银子一直往中国流。十八世纪英国人爱上了中国茶，东印度公司只能拿白银来买，英国对华贸易长期逆差。为了把银子赚回去，他们找到了一样中国人会花银子买的东西：鸦片。</p>
+    <p>大约从 1820 年代起，流向反转了。鸦片进来，白银出去。白银少了，银价就涨：清代百姓日常用铜钱、交税用白银，过去一两银子换八九百到一千文铜钱，到 1840 年代涨到一千五六百文甚至更多。农民卖粮收的是铜钱，交税要折成银子，<em>税额没变，负担却差不多翻了一倍</em>。这叫“银贵钱贱”。</p>
+    <p>1839 年林则徐到广州禁烟，第二年，鸦片战争爆发。再过十年，太平天国起事。这一连串大事背后，都有白银流向反转的影子。</p>
+
+    <aside class="echo" data-k="存疑" data-year="1640" data-place="大明" data-pat="白银" data-title="白银断流与明亡">
+      <span class="stamp">存疑</span>
+      <div>
+        <p class="rh"><span class="ry">1630—1640 年代</span>白银断流与明亡</p>
+        <p>有一种流行的说法：1630 年代后，日本限制白银出口、西班牙与中国在马尼拉冲突，流入大明的白银骤减，银价上涨、税负加重，加速了明朝灭亡。这是美国学者艾维四等人提出的观点，影响很大，但也有不少学者用数据反驳，认为当时白银进口并没有减少那么多。小冰期、天灾、党争、辽饷，都在起作用。这里记作“存疑”：白银很重要，但别用一个原因解释一个王朝。</p>
+      </div>
+    </aside>
+
+    <div class="scene">
+      <div class="sh"><b>第六场 · 年终算账</b><span>北京 · 户部大堂 · 嘉靖末年 · 腊月</span></div>
+      <div class="bd">
+        <div class="sd">堂上摆着几摞账册。窗外下着雪。</div>
+        <div class="ln"><span class="who d">大人</span><p>今年又亏了。九边的军饷、东南的兵饷、宫里的工程，哪一笔都不能少。明年怎么办？</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>大人，有人递上来一个法子：东南多种桑、多织绸，卖给番商，换回银子。</p></div>
+        <div class="ln"><span class="who d">大人</span><p>这法子好啊。一不加赋，二不印钞，银子从海外来。</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>账上确实很好看。一亩桑的绸子换的银子，比一亩稻的粮食多好几倍。</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>那种稻的人呢？田改成了桑，他们吃什么？</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>他们可以拿卖丝的钱去买粮。</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>可是桑树要三年才长成，这三年呢？还有，几十万亩稻田一起改，粮价不会涨吗？</p></div>
+        <div class="sd">大人和师爷对视了一眼。</div>
+        <div class="ln"><span class="who s">钱师爷</span><p>阿鉴，你翻翻这本账。这里有一栏“绸”，一栏“银”，一栏“饷”。你找找看，有没有一栏叫“百姓”？</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>……没有。</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>所以，在这间屋子里，这个问题是不存在的。它要等到账上的数字落到某一块田里，变成一场水、一场饥荒、一个知县的奏本，才会存在。到那时，它会出现在另一本账上。那本账，叫史书。</p></div>
+        <div class="sd">雪下得更大了。阿鉴悄悄在自己的小本子上，添了一栏。</div>
+      </div>
+    </div>
+
+    <div class="takeaway">
+      <p><b>一个地方的钱，会在另一个地方的田里结出果。</b>波托西的矿工、马尼拉的商船、江南的蚕农、大明的户部，系在同一根银链上。</p>
+      <p class="life">放到自己身上：你感受到的物价、工作和机会，常常是千里之外某个决定的余波。看新闻时多问一句：钱从哪里来，流到哪里去？</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 卷七 信 ============ -->
+<section class="vol" id="v7" data-vol="卷七 · 信">
+  <div class="volhead" data-y="1397">
+    <svg class="gl" data-gl="rose" viewBox="0 0 300 300" aria-hidden="true"></svg>
+    <span class="sn">№ 0007</span>
+    <div class="num">卷七</div>
+    <h2>信</h2>
+    <div class="meta"><span class="range">1397—1823</span><span>佛罗伦萨 · 威尼斯 · 阿姆斯特丹 · 伦敦 · 平遥</span></div>
+    <p class="lede">银行做的生意，说穿了只有一句：大家不会同时来取钱。把这句话当真，就能凭空多出很多钱；大家一旦不信了，钱就凭空消失。</p>
+  </div>
+
+  <div class="col">
+    <h3 data-y="1397">长凳<span class="y">1397 · 佛罗伦萨</span></h3>
+    <p>中世纪意大利的钱商在集市上摆一张长凳（banco），桌上铺块布，帮人兑换各地五花八门的钱币。英语的 bank 就从这张凳子来。还有一个流传很广的说法：哪个钱商赖账，人们就把他的凳子砸断，“断凳”（banca rotta）后来成了“破产”（bankrupt）。这个词源说法常见，但语言学家并不全认。</p>
+    <p>1397 年，乔万尼·德·美第奇在佛罗伦萨开了一家银行。教会禁止放贷收息，美第奇家族就用“汇票”绕过去：你在佛罗伦萨交一笔弗罗林，拿一张票到布鲁日或伦敦去取当地的钱，汇率里不动声色地含着利息。美第奇银行替教皇收钱，在欧洲开了一串分行，家族后来出了好几位教皇，还资助了半个文艺复兴。</p>
+
+    <h3 data-y="1494">左边一笔，右边一笔<span class="y">1494 · 威尼斯</span></h3>
+    <p>同一时期，意大利商人普遍用起了一种新的记账法：每一笔交易同时记两次，一边记“借”，一边记“贷”，两边永远相等。如果对不上，就说明哪里出了错，或者有人做了手脚。1494 年，修士数学家卢卡·帕乔利在威尼斯出版了一本数学书，其中一章系统讲解了这种方法，它就是“复式记账”。</p>
+    <p>复式记账让一个商人能管住散在各地的分行，让一家公司的账可以被外人审查。歌德借他小说里一位商人之口称赞它是人类心智最美妙的发明之一。没有它，就不会有后来的股份公司和银行体系。</p>
+
+    <h3 data-y="1640">金匠的收据<span class="y">17 世纪 · 伦敦</span></h3>
+    <p>1640 年，手头拮据的英王查理一世扣押了商人们寄存在伦敦塔造币厂里的黄金。从此，伦敦商人不再信任王家的金库，转而把金子存进金匠铺。金匠有坚固的保险柜，收下金子，开一张收据。</p>
+    <p>很快，人们发现直接拿收据付账比拿金子方便。收据在城里转来转去，金子一直躺在保险柜里。金匠也发现了另一件事：每天来取金子的人，只是存金子的人里的一小部分。那剩下的金子，能不能先借出去生利息？</p>
+    <p>能。于是金匠开出的收据，加起来比柜子里的金子多。这就是“<em>部分准备金</em>”银行的雏形：银行只留一部分准备金应付取款，其余的放贷。贷出去的钱又会被存进别的银行，再被贷出去……一笔存款，在体系里滚出了好几倍的钱。</p>
+  </div>
+
+  <div class="wide fig" id="fig-bank">
+    <div class="fig-label">装置 8 / 金匠铺</div>
+    <h4>上半场：凭空多出来的钱</h4>
+    <p class="how">有人存进 100 两金子。银行留下一部分当准备金，其余贷出去；借钱的人花掉之后，这笔钱又被存进银行……拖动准备金比例，看最后市面上一共“有”多少钱。</p>
+    <div class="rng"><span>准备金比例</span><input type="range" id="rr" min="5" max="100" value="20"><output id="rrO">20%</output></div>
+    <svg viewBox="0 0 560 170" id="rrSvg" role="img" aria-label="每一轮存款与贷款的柱状图"></svg>
+    <p class="readout" id="rrRead"></p>
+    <h4 style="margin-top:22px">下半场：挤兑</h4>
+    <p class="how">你开着一家金匠铺，二十位储户每人存了 10 两，总共 200 两。按照上面的比例，你柜子里实际只留着一部分。点“有人说你要倒闭了”开始。每一轮都有储户来取钱，传言越凶，来的人越多。你可以试试各种应对。</p>
+    <div class="two">
+      <div class="panel"><h5>保险柜</h5><div class="vault" id="vault">40 两</div><div class="meter" style="margin-top:6px"><i id="vaultBar" style="width:100%"></i></div><div class="readout" style="margin-top:6px">恐慌程度 <b id="panicV">0</b></div></div>
+      <div class="panel"><h5>门口排队的储户</h5><div class="queue" id="queue"></div></div>
+    </div>
+    <div class="btns" style="margin-top:10px">
+      <button class="btn red" id="runStart">有人说你要倒闭了</button>
+      <button class="btn" id="runNotice" disabled>贴告示：本号一切正常</button>
+      <button class="btn" id="runSlow" disabled>柜台只开一个窗口</button>
+      <button class="btn" id="runLolr" disabled>求援：最后贷款人</button>
+      <button class="btn" id="runReset">重来</button>
+    </div>
+    <div class="log" id="runLog"></div>
+  </div>
+
+  <div class="col">
+    <aside class="echo" data-k="轮回" data-year="2023" data-place="硅谷" data-pat="挤兑" data-title="一天四百二十亿美元">
+      <span class="stamp">轮回</span>
+      <div>
+        <p class="rh"><span class="ry">1672 · 2007 · 2023</span>一天四百二十亿美元</p>
+        <p>1672 年，英王查理二世宣布“财政署停兑”，暂停偿还金匠银行家的借款，一批伦敦金匠因此破产。2007 年，英国北岩银行门口排起长队，那是英国一百多年来第一次大规模银行挤兑。2023 年 3 月，美国硅谷银行的储户在一天之内试图提走约四百二十亿美元，不用排队，手机上点几下就行。银行第二天就被监管机构接管。挤兑的样子从金匠铺门口的人群，变成了一条条转账记录。速度变了，人心没变。</p>
+      </div>
+    </aside>
+
+    <h3 data-y="1661">欧洲的第一张纸币，和它的主人<span class="y">1661—1668 · 斯德哥尔摩</span></h3>
+    <p>1661 年，斯德哥尔摩银行开始发行银行券，这是欧洲最早的一批纸币。当时瑞典用铜板当钱，一块大铜板能重达十几公斤，纸确实方便多了。可银行很快印多了，兑不出来，1668 年倒闭。创办人帕尔姆斯特鲁赫被判了死刑，后来改判。</p>
+    <p>瑞典议会接手了这个烂摊子，成立了一家新的银行，这就是今天的瑞典中央银行，世界上最古老的中央银行。四百年前的成都十六户富商之后，同样的剧本在北欧又演了一遍：私人发钞，印多了，出事，官方接管。</p>
+
+    <h3 data-y="1694">国王的债，变成了全国的钱<span class="y">1694 · 伦敦</span></h3>
+    <p>1694 年，英王威廉三世正在和法国打仗，缺钱。一群伦敦商人提出一个交易：我们凑一百二十万英镑借给国王，年息八厘；作为回报，国王特许我们成立一家银行，并且可以发行银行券。</p>
+    <p>这家银行就是英格兰银行。它的本钱是一笔借给国王的债，它发出的钞票，背后是国王会付利息的承诺。于是，<em>国王的债变成了全国流通的钱</em>。从这一天起，“国债”和“货币”紧紧缠在了一起，再也没有分开。今天各国中央银行的钞票，背后很大一部分仍然是本国政府的债券。</p>
+
+    <h3 data-y="1823">汇通天下<span class="y">1823 · 平遥</span></h3>
+    <p>同一时期的中国，也长出了自己的金融网络。山西商人走南闯北，做茶叶、盐、颜料生意，常年要在各地之间运送大量银两，路上有劫匪，镖局费用也高。</p>
+    <p>平遥城里一家叫西裕成的颜料庄，在掌柜雷履泰的主持下，开始专门替人异地汇兑：在平遥交银子，拿一张票到北京、汉口去取。1823 年前后，它改组成专营汇兑的“日升昌”票号，号称“汇通天下”。票号用一套暗号“密押”防伪，只有总号和分号的人懂。此后几十年，山西票号开遍全国，一度掌握了清朝大半的汇兑生意。</p>
+    <p>票号靠的是信：东家、掌柜、伙计之间的信，票号和客户之间的信。伙计入号要有保人，出了错要连带赔偿。这套靠人情和担保维系的信用网，在清末民初的战乱和现代银行的竞争中逐渐衰落了。</p>
+
+    <div class="drama">
+      <div class="dh"><b>戏里戏外 · 金融城的“自律”</b><span>YES, PRIME MINISTER</span></div>
+      <p>《是，首相》里有一集，伦敦金融城的一家机构出了丑闻，首相哈克想借机整顿，常任秘书汉弗莱却搬出金融城由来已久的“自律传统”：这里的事最好由这里的人自己处理，外人插手只会坏事。</p>
+      <p>剧中的讽刺在于，“自律”这两个字说得越动听，背后的人情网就越密。这和本卷讲的银行是一回事：<em>银行业本来就建立在“信”上，而“信”最容易被拿来当作不受监督的理由。</em>2008 年金融危机之后，“自律”一词在英国金融圈里变得相当刺耳。</p>
+      <p class="src">剧情为概述，非台词原文。</p>
+    </div>
+
+    <div class="scene">
+      <div class="sh"><b>第七场 · 一张特许状</b><span>伦敦 · 财政部 · 1694 · 春</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who d">大人</span><p>国王要钱打法国人，议会不肯再加税。城里那帮商人说，可以借一百二十万镑，条件是让他们开一家银行。师爷，这买卖做得做不得？</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>做得，大人。这是我在这张桌子后面坐了几千年见过的最优雅的一笔交易。</p></div>
+        <div class="ln"><span class="who d">大人</span><p>优雅在哪？</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>国王借了钱，欠了债。商人拿着这张债，开出银行券。银行券在市面上流通，人人都当钱用。也就是说，国王欠的债，变成了全国人手里的钱。</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>那……要是国王把债还清了呢？</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>阿鉴，你又问到了要害。如果国王把债还清，这些钱的根就没了。所以这笔债最好永远不要还清。我们只付利息，世世代代地付。</p></div>
+        <div class="ln"><span class="who d">大人</span><p>永远不还？这听起来像是破产。</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>大人，一个人永远不还债，叫破产。一个国家永远不还债，叫“国债市场”。区别在于，后者有一座很体面的大楼。</p></div>
+        <div class="sd">三百多年后，那座大楼还在针线街上。人们管它叫“针线街的老妇人”。</div>
+      </div>
+    </div>
+
+    <div class="takeaway">
+      <p><b>银行把“大家不会同时来取钱”变成了生意，也把“大家同时来取钱”变成了灾难。</b>现代的钱，大部分不是印出来的，是银行贷出来的。</p>
+      <p class="life">放到自己身上：“有钱”和“随时能拿到钱”是两回事。别把全部家当放进一个你没法马上取出来的地方；遇到急事，能救命的是流动性。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 卷八 狂 ============ -->
+<section class="vol" id="v8" data-vol="卷八 · 狂">
+  <div class="volhead" data-y="1637">
+    <svg class="gl" data-gl="rose" viewBox="0 0 300 300" aria-hidden="true"></svg>
+    <span class="sn">№ 0008</span>
+    <div class="num">卷八</div>
+    <h2>狂</h2>
+    <div class="meta"><span class="range">1637—1720</span><span>哈勒姆 · 巴黎 · 伦敦 · 新奥尔良</span></div>
+    <p class="lede">钱能买东西，也能买“以后会更值钱的东西”。一旦大家买的只是“以后会更值钱”，价格就和东西本身没关系了。这一卷讲三场狂热，和一个从泡沫废墟里诞生的职位：首相。</p>
+  </div>
+
+  <div class="col">
+    <h3 data-y="1637">风的生意<span class="y">1636—1637 · 荷兰</span></h3>
+    <p>十七世纪的荷兰是欧洲最富的地方，阿姆斯特丹有世界上第一家证券交易所，东印度公司的股票天天在交易。这时候，一种从奥斯曼土耳其传来的花成了身份的象征：郁金香。尤其是那些花瓣上带着火焰般条纹的品种，最出名的一种叫“永远的奥古斯都”。后来人们才知道，那些美丽的条纹其实是一种病毒造成的。</p>
+    <p>1636 年冬天，郁金香的交易突然变了味。球根埋在地里，要到来年春天才挖出来，可买卖在冬天就在小酒馆里热火朝天地进行，交易的是一张张“明年交货”的契约。荷兰人管这叫“风的生意”：买卖的东西看不见、摸不着，只有风。</p>
+    <p>据当时的小册子记载，一枚稀有球根的价格一度相当于一栋运河边的房子。1637 年 2 月初，哈勒姆的一场拍卖会上，忽然没人出价了。几天之内，价格崩了。</p>
+
+    <aside class="echo" data-k="存疑" data-year="1637" data-place="荷兰" data-pat="泡沫" data-title="郁金香狂热，可能没那么狂">
+      <span class="stamp">存疑</span>
+      <div>
+        <p class="rh"><span class="ry">1637 · 1841 · 2007</span>郁金香狂热，可能没那么狂</p>
+        <p>“荷兰人为郁金香倾家荡产、有人跳河”的故事，大多出自 1841 年苏格兰记者麦凯的畅销书《大癫狂》，而麦凯又抄自当年宣扬道德教训的小册子。2007 年，历史学家安妮·戈德加翻查了当时的档案，几乎找不到因郁金香破产的人，也没有经济崩溃的迹象。参与者主要是富裕商人和工匠，很多契约最后不了了之。郁金香是一场真实的价格狂热，但“举国疯狂”的那部分，可能是后人添的油。<em>关于泡沫的故事，本身也会起泡沫。</em></p>
+      </div>
+    </aside>
+
+    <h3 data-y="1716">一个杀过人的赌徒，当上了法国财政总监<span class="y">1716—1720 · 巴黎</span></h3>
+    <p>约翰·劳是苏格兰人，银行家的儿子，数学好，爱赌。1694 年他在伦敦与人决斗，杀死了对手，被判死刑，后来越狱逃到欧洲大陆，靠在各国赌场里算概率为生。他一边赌，一边琢磨一套理论：一个国家缺的不是金银，是钱；只要有一家可靠的银行发行纸币，让钱多起来，生意就会兴旺。</p>
+    <p>1715 年路易十四去世，留下一个五岁的国王，和一笔几乎还不清的国债。摄政的奥尔良公爵病急乱投医，找到了约翰·劳。</p>
+    <p>1716 年，劳在巴黎开了通用银行，发行纸币，头两年办得不错。1717 年，他拿下了法属路易斯安那（当时指密西西比河流域一大片土地）的贸易垄断权，成立“密西西比公司”。宣传册上，那里遍地金矿银矿。为了纪念摄政王，殖民者在密西西比河口建了一座城，就是今天的新奥尔良。</p>
+    <p>接下来的一步是天才也是疯狂：劳让公司接手法国的国债，国债持有人可以把债券换成公司股票。为了让股价涨，银行（此时已改名“王家银行”）大量印发纸币借给人买股票；股价涨了，又能发行更多新股。股价从每股五百里弗尔，一年多涨到将近一万。巴黎的坎康普瓦街上挤满了买股票的人，“百万富翁”（millionaire）这个词据说就是在这时流行起来的。</p>
+    <p>1720 年 1 月，劳被任命为法国财政总监。他几乎同时掌管着法国的银行、最大的公司和国家财政，权力之大，空前绝后。</p>
+    <p>然后，有人开始把股票换成纸币，再把纸币换成金银。劳下令限制金银的使用，甚至一度禁止私人持有大量金银。他越是用命令托着，大家越想跑。到 1720 年底，股价已跌去大半，纸币几乎没人肯收；再过一年，股价跌回了原点附近。劳逃离法国，1729 年在威尼斯穷困潦倒地死去。</p>
+    <p>据说他在晚年仍然坚信，自己的理论没有错，只是被执行坏了。</p>
+
+    <h3 data-y="1720">同一年，伦敦<span class="y">1720 · 南海公司</span></h3>
+    <p>英吉利海峡对面，英国人看得眼红。南海公司名义上垄断对南美西班牙殖民地的贸易，实际上没做成多少生意。1720 年，它也照着劳的路子，接手英国国债、换成股票。股价从年初的一百多英镑，半年涨到一千英镑左右。一时间，各种新公司冒出来募股，有的项目听起来就荒唐。</p>
+    <p>为了不让别的公司分走资金，南海公司推动国会在 6 月通过了《泡沫法》，限制未经特许成立股份公司。讽刺的是，这道法令反而在几个月后成了戳破泡沫的一根针。秋天，股价跌回一两百英镑，无数人血本无归。</p>
+
+    <aside class="echo" data-k="存疑" data-year="1720" data-place="伦敦" data-pat="泡沫" data-title="牛顿亏了两万镑？">
+      <span class="stamp">存疑</span>
+      <div>
+        <p class="rh"><span class="ry">1720 · 伦敦</span>牛顿亏了两万镑？</p>
+        <p>广为流传的故事说，牛顿早早买入南海股票赚了一笔，卖掉后看股价继续涨，忍不住又追了进去，最后亏了大约两万英镑，还留下一句“我能算出天体的运行，却算不出人类的疯狂”。牛顿确实持有南海股票，也可能确实亏了钱，但具体数额和那句名言都没有可靠的原始出处。另一个常被引用的故事，“一家公司募股，用途是一项大有好处的事业，但没人知道是什么”，也多半是后人编的。可这些故事能流传三百年，恰恰说明人们觉得它们像真的。</p>
+      </div>
+    </aside>
+
+    <aside class="echo" data-k="讽刺" data-year="1721" data-place="伦敦" data-pat="泡沫" data-title="财政大臣进了伦敦塔，首相诞生了">
+      <span class="stamp">讽刺</span>
+      <div>
+        <p class="rh"><span class="ry">1721 · 威斯敏斯特</span>财政大臣进了伦敦塔，首相诞生了</p>
+        <p>南海泡沫破灭后，议会调查发现，公司向不少官员和议员行贿，送他们“不用付钱的股票”。时任财政大臣约翰·艾斯拉比被逐出下议院，关进了伦敦塔。收拾残局的是罗伯特·沃波尔，他稳住了局面，也替不少权贵遮掩了丑闻，人称“掩护总管”。1721 年起，沃波尔主持英国政府长达二十一年，被后人视为英国第一任首相。<em>英国的首相制度，是从一场金融泡沫的废墟里长出来的。</em>《是，首相》里那间屋子，最早就是为了收拾这样的烂摊子才有的。</p>
+      </div>
+    </aside>
+  </div>
+
+  <div class="wide fig" id="fig-bubble">
+    <div class="fig-label">装置 9 / 交易所</div>
+    <h4>你能先跑吗</h4>
+    <p class="how">你有 1000 两本钱，市场上只有一只“好望角远洋贸易公司”的股票。每一刻价格都会变，消息栏会告诉你街上在传什么。你可以随时全仓买进或全部卖出。泡沫一定会破，但没人知道是哪一刻。每局走势都不一样。</p>
+    <canvas class="chart" id="bChart" height="220" aria-label="股价走势"></canvas>
+    <div class="ticker" id="bNews">市场还没开张。</div>
+    <div class="cbank"><div class="stat"><div>股价<b id="bPrice">100</b></div><div>你的现金<b id="bCash">1000</b></div><div>你的总值<b id="bWorth">1000</b></div></div></div>
+    <div class="btns"><button class="btn pri" id="bOpen">开市</button><button class="btn" id="bBuy" disabled>全仓买进</button><button class="btn" id="bSell" disabled>全部卖出</button></div>
+    <p class="readout" id="bResult" style="margin-top:8px"></p>
+  </div>
+
+  <div class="col">
+    <p>泡沫的剧本惊人地相似。经济学家金德尔伯格和明斯基把它拆成几步：先有一个真实的新东西（新航线、新大陆、铁路、互联网），带来一阵合理的乐观；然后价格上涨本身变成了买入的理由；借钱来买的人越来越多，平时不碰投资的人也进场了；最后，某个不起眼的消息让一部分人想落袋为安，而价格只要不涨，靠借钱撑着的人就撑不住了。</p>
+    <p>每一次，身在其中的人都说：<em>这一次不一样。</em></p>
+
+    <div class="scene">
+      <div class="sh"><b>第八场 · 王家银行</b><span>巴黎 · 1720 年 1 月 · 财政总监的官邸</span></div>
+      <div class="sd">这一次，“大人”就是约翰·劳本人。他刚刚就任财政总监，春风得意。</div>
+      <div class="bd">
+        <div class="ln"><span class="who d">劳</span><p>师爷，股价九千了。全巴黎都在买，连马车夫都在问哪天能再发新股。你还担心什么？</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>大人，我什么都不担心。我只是想请教一个技术性的小问题：股价是靠什么撑着的？</p></div>
+        <div class="ln"><span class="who d">劳</span><p>靠路易斯安那的金矿，靠公司的贸易，靠法兰西的未来。</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>那么请问，路易斯安那目前运回了多少金子？</p></div>
+        <div class="ln"><span class="who d">劳</span><p>……这需要时间。</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>当然。那么在这段时间里，股价是靠什么撑着的？</p></div>
+        <div class="ln"><span class="who d">劳</span><p>靠王家银行的纸币。大家用纸币买股票。</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>而纸币是靠什么撑着的？</p></div>
+        <div class="ln"><span class="who d">劳</span><p>靠……公司的股票。银行持有大量股票。</p></div>
+        <div class="sd">一阵沉默。</div>
+        <div class="ln"><span class="who j">阿鉴</span><p>那不就是……股票撑着纸币，纸币撑着股票？</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>阿鉴，在我们这一行，这叫作“良性循环”。直到它反过来转的那一天，才改叫“恶性循环”。两者的区别，仅仅在于转的方向。</p></div>
+        <div class="ln"><span class="who d">劳</span><p>那我们只要确保它永远朝一个方向转就行了！</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>大人英明。我这就去起草一道命令，禁止它往另一个方向转。</p></div>
+        <div class="sd">那年冬天，劳离开了巴黎。据说钱师爷在春天就悄悄把自己那几股卖了，用的是金币结算。</div>
+      </div>
+    </div>
+
+    <div class="takeaway">
+      <p><b>泡沫里人人都知道是泡沫，人人都以为自己能先跑。</b>价格上涨本身变成买入理由的时候，就该小心了。</p>
+      <p class="life">放到自己身上：当你身边平时从不谈投资的人，都在讲同一个暴富故事，那是离场的铃声，不是入场的号角。还有，永远别借钱去追一个只会涨的东西。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 卷九 金 ============ -->
+<section class="vol" id="v9" data-vol="卷九 · 金">
+  <div class="volhead" data-y="1717">
+    <svg class="gl" data-gl="rose" viewBox="0 0 300 300" aria-hidden="true"></svg>
+    <span class="sn">№ 0009</span>
+    <div class="num">卷九</div>
+    <h2>金</h2>
+    <div class="meta"><span class="range">1717—1971</span><span>伦敦 · 芝加哥 · 柏林 · 上海 · 布雷顿森林 · 戴维营</span></div>
+    <p class="lede">吃过纸币的苦，人们想给钱拴一根锚：每一张钞票都能换一定重量的黄金。这根锚稳了两百年，也勒死过不少人。最后，有人在一个周末把它剪断了，还说只是“暂时”。</p>
+  </div>
+
+  <div class="col">
+    <h3 data-y="1717">牛顿的一个小失误<span class="y">1717 · 伦敦塔</span></h3>
+    <p>艾萨克·牛顿后半生的正式工作不是物理，而是管钱：1696 年起任皇家造币厂督办，1699 年升任厂长，直到去世。他干得很认真，亲自追查伪币案，把伪币团伙的头目送上了绞架。</p>
+    <p>当时英国金币银币并用，官方规定一枚金几尼值多少先令银币。1717 年，牛顿给出了一个新比价：一几尼等于二十一先令。问题是，这个比价让金子在英国比在欧洲大陆“值钱”一点点。商人们马上算明白了：把英国的银币运到大陆换金子，再运回英国，能赚差价。于是银币大量流出，英国市面上剩下的主要是金币。</p>
+    <p>牛顿本意只是调整一下比价，结果英国不知不觉走上了“金本位”：钱的价值，由一定重量的黄金来定。1816 年，英国以法律正式确认了这一点。这算得上历史上影响最深远的一个四舍五入。</p>
+
+    <h3 data-y="1873">黄金的十字架<span class="y">1873—1896</span></h3>
+    <p>十九世纪后半叶，英国是世界第一强国，伦敦是世界金融中心，其他国家纷纷跟进金本位。德国 1871 年打赢普法战争，拿到法国五十亿法郎的赔款，随即改行金本位；美国在内战后也逐步转向黄金。到十九世纪末，主要工业国家的货币都可以按固定比率兑换黄金，汇率因此稳定，国际贸易和投资空前繁荣。这一段被称为“古典金本位时代”。</p>
+    <p>可黄金有个毛病：它的数量取决于矿里挖出多少，而不是经济需要多少。经济长得比黄金快，钱就不够用，物价就往下掉。1873 年以后的二十多年，欧美物价长期下跌。对拿着钱的人来说，这挺好，钱越来越值钱；对欠着钱的人来说，比如借钱买地买农具的美国农民，粮价跌了，债却一分没少，等于越还越多。</p>
+    <p>1896 年，民主党总统候选人布赖恩在芝加哥的大会上，替农民和欠债的人发出一声怒吼，要求让白银也能当钱、让钱多起来。他的演讲以一句话收尾：</p>
+    <blockquote><p>你们不能把人类钉死在黄金的十字架上。</p><cite>——威廉·詹宁斯·布赖恩，1896 年</cite></blockquote>
+    <p>布赖恩输掉了大选。四年后，美国正式立法确立金本位。</p>
+
+    <aside class="echo" data-k="存疑" data-year="1900" data-place="美国" data-pat="金" data-title="《绿野仙踪》是一篇货币寓言？">
+      <span class="stamp">存疑</span>
+      <div>
+        <p class="rh"><span class="ry">1900 · 1964</span>《绿野仙踪》是一篇货币寓言？</p>
+        <p>1900 年出版的《绿野仙踪》常被解读成一篇金本位寓言：多萝西走的是黄砖路（黄金），原著里她穿的是一双银鞋（白银，电影改成了红宝石鞋），翡翠城是绿色的美钞，“奥兹”（Oz）恰好是“盎司”的缩写，稻草人是农民，铁皮人是工人，胆小的狮子是布赖恩。这个解读是一位中学老师 1964 年才提出来的，作者鲍姆本人从没这么说过。但它好记、好玩，经济学课上经常讲。</p>
+      </div>
+    </aside>
+
+    <h3 data-y="1923">一个面包，两千亿马克<span class="y">1914—1923 · 柏林</span></h3>
+    <p>1914 年第一次世界大战爆发，各国纷纷暂停纸币兑换黄金：打仗太费钱，锚只能先拔掉。德国靠借债和印钞打仗，以为打赢了让对方赔。结果输了，还要赔给协约国一大笔钱。</p>
+    <p>1923 年，法国和比利时出兵占领德国的工业心脏鲁尔区，德国政府号召工人消极抵抗，然后印钱给罢工的工人发工资。于是马克的价值以惊人的速度蒸发。</p>
+  </div>
+
+  <div class="wide fig" id="fig-weimar">
+    <div class="fig-label">装置 10 / 马克的蒸发</div>
+    <h4>一美元能换多少马克</h4>
+    <p class="how">拖动滑块，或者按“播放”，从 1914 年走到 1923 年 11 月。上面的数字是一美元能换到的纸马克（常见的历史数据，取近似值）；注意数字的长度，以及图表纵轴每升高一格就是乘以十。</p>
+    <div class="big-num" id="wNum">4.2</div>
+    <div class="readout" id="wLabel" style="margin:4px 0 10px"></div>
+    <canvas class="chart" id="wChart" height="220" aria-label="美元兑马克汇率对数图"></canvas>
+    <div class="rng"><span>月份</span><input type="range" id="wR" min="0" max="15" value="0"><output id="wO">1914.7</output></div>
+    <div class="btns"><button class="btn pri" id="wPlay">播放</button></div>
+    <p class="readout" id="wNote" style="margin-top:8px"></p>
+  </div>
+
+  <div class="col">
+    <p>到 1923 年 11 月，一美元可以换四万二千亿马克，柏林的一个面包要价约两千亿马克。工人一天领两次工资，领到钱撒腿就往商店跑，因为下午物价又要涨；有人用成捆的钞票生炉子，因为纸币比柴火便宜；孩子们拿一沓沓钞票搭积木。一辈子省吃俭用存钱的中产阶级，存款一夜归零。</p>
+    <p>1923 年 11 月，德国推出“地租马克”，一地租马克换一万亿旧马克，再加上严格控制发行，通胀几乎立刻止住。印钞机一停，奇迹就发生了。这说明病根从来不在纸上。</p>
+
+    <aside class="echo" data-k="存疑" data-year="1933" data-place="德国" data-pat="印钞" data-title="是通胀把希特勒送上台的吗？">
+      <span class="stamp">存疑</span>
+      <div>
+        <p class="rh"><span class="ry">1923 · 1930—1933</span>是通胀把希特勒送上台的吗？</p>
+        <p>常听人说，是 1923 年的恶性通胀毁了德国中产阶级，把他们推向了纳粹。这个说法有一部分道理：通胀确实摧毁了很多人对魏玛共和国的信任。但纳粹在 1928 年的选举里只拿到不到 3% 的选票，真正暴涨是在 1930—1932 年，那时德国面对的是大萧条和政府紧缩带来的<em>通货紧缩</em>与大规模失业。两场方向相反的货币灾难，前后夹击了同一个国家。</p>
+      </div>
+    </aside>
+
+    <h3 data-y="1929">锚变成了石头<span class="y">1929—1936</span></h3>
+    <p>1929 年 10 月，纽约股市崩盘，随后是大萧条。按照金本位的规矩，黄金流出时，国家就得收紧货币、提高利率，以保住黄金储备。于是在经济最需要钱的时候，各国央行反而把钱收紧了。据经济学家弗里德曼和施瓦茨的研究，1929 到 1933 年，美国的货币存量缩水了约三分之一。</p>
+    <p>后来的研究发现一个规律：<em>哪个国家越早放弃金本位，就越早走出萧条。</em>英国 1931 年放弃，美国 1933 年事实上放弃，法国一直撑到 1936 年，也苦得最久。原本用来稳住船的锚，在风暴里变成了一块拖着船往下沉的石头。</p>
+    <p>凯恩斯早在 1923 年就把金本位称为“野蛮的遗迹”。</p>
+
+    <aside class="echo" data-k="联系" data-year="1935" data-place="上海" data-pat="白银" data-title="美国的银价，中国的萧条">
+      <span class="stamp">联系</span>
+      <div>
+        <p class="rh"><span class="ry">1934—1935 · 华盛顿 → 上海</span>美国的银价，中国的萧条</p>
+        <p>当时中国还用银本位，大萧条初期银价下跌，中国反而躲过了一劫。1934 年，美国为了讨好产银州，通过了《白银收购法》，大量收购白银，国际银价暴涨。中国的白银于是大量外流，国内通货紧缩、工商业凋敝。1935 年，国民政府被迫实行“法币改革”，放弃银本位，改用政府发行的纸币。四百年前，美洲的白银流进中国，带来了繁荣；四百年后，美国的一项白银政策，又把中国的白银吸了回去。</p>
+      </div>
+    </aside>
+
+    <aside class="echo" data-k="轮回" data-year="1948" data-place="上海" data-pat="印钞" data-title="金圆券的十个月">
+      <span class="stamp">轮回</span>
+      <div>
+        <p class="rh"><span class="ry">1948.8 — 1949 · 上海</span>金圆券的十个月</p>
+        <p>法币在抗战和内战中被滥发到了天文数字。1948 年 8 月 19 日，国民政府改发金圆券，一金圆换三百万法币，同时冻结物价、强制民间交出金银外币，派蒋经国到上海“打老虎”。限价撑了七十来天就崩了，金圆券随后滥发得比法币还快，不到一年几乎成了废纸。1955 年新中国发行第二套人民币，新币一元兑旧币一万元。王莽、宝钞、魏玛的剧本，在二十世纪的中国又演了一遍。</p>
+      </div>
+    </aside>
+
+    <h3 data-y="1944">布雷顿森林<span class="y">1944 · 新罕布什尔</span></h3>
+    <p>二战还没打完，1944 年 7 月，四十四个国家的代表聚在美国新罕布什尔州的布雷顿森林，商量战后的钱该怎么管。英国代表是凯恩斯，他主张建立一种超越国家的国际货币，叫“班科”；美国代表是财政部的怀特，他代表的是一个手握全世界大约三分之二黄金储备的国家。</p>
+    <p>结果当然是美国的方案：美元和黄金挂钩，三十五美元换一盎司黄金；其他国家的货币和美元挂钩。从此，美元成了“像黄金一样好”的钱，全世界的央行都存美元。</p>
+    <p>但这套体系有个先天的矛盾，经济学家特里芬在 1960 年指了出来：全世界需要越来越多的美元做生意，美国就得不断向外输出美元；美元输出得越多，美国手里的黄金就越不够兑换。要么世界缺美元，要么美元失信。没有第三条路。法国财政部长德斯坦管美国这种地位叫“过分的特权”，法国干脆开始成船地拿美元去换美国的黄金。</p>
+
+    <div class="scene">
+      <div class="sh"><b>第九场 · 周末</b><span>马里兰州 · 戴维营 · 1971 年 8 月 · 一个周五的下午</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who d">大人</span><p>外国人手里的美元，已经比我们地库里的黄金多出好几倍了。英国人刚刚又要求换一大笔。再这样下去，诺克斯堡就要搬空了。</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>那我们就把兑换的窗口关上。</p></div>
+        <div class="ln"><span class="who d">大人</span><p>关上？那不就是违约吗？我们向全世界承诺过，三十五美元一盎司。</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>大人，我们不说“关上”，我们说“暂停”。而且是“暂时暂停”。</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>暂时是多久？</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>“暂时”是一个非常灵活的时间单位，阿鉴。罗马的银币是“暂时”掺铜的，大明的宝钞是“暂时”不兑换的，一战时各国停兑黄金也是“暂时”的。它的长度，取决于什么时候有人敢问。</p></div>
+        <div class="ln"><span class="who d">大人</span><p>那盟国那边怎么交代？他们手里全是美元。</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>可以这样告诉他们：美元是我们的货币，但它是你们的问题。</p></div>
+        <div class="ln"><span class="who d">大人</span><p>这……也太直白了吧？</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>是的，大人。所以这句话应该由一位您不太喜欢的同僚去说。</p></div>
+        <div class="sd">8 月 15 日，星期日晚上，美国总统在电视上宣布“暂时停止美元兑换黄金”。几个月后，美国财政部长对欧洲同行说了那句关于“我们的货币、你们的问题”的名言。截至本书写作时，这个“暂时”已经过去五十多年了。</div>
+      </div>
+    </div>
+
+    <div class="takeaway">
+      <p><b>锚能稳住船，也能拖沉船。</b>金本位给了钱纪律，也让钱在最需要的时候不够用。它最终被放弃，不是因为人们不再相信黄金，而是因为黄金不够了。</p>
+      <p class="life">放到自己身上：规矩要守，但要知道规矩是为了什么。当守规矩开始让你沉下去，问问这条规矩当初是为了防哪种风险。还有：当权威说“暂时”的时候，记下日期。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 卷十 数 ============ -->
+<section class="vol" id="v10" data-vol="卷十 · 数">
+  <div class="volhead" data-y="1971">
+    <svg class="gl" data-gl="rose" viewBox="0 0 300 300" aria-hidden="true"></svg>
+    <span class="sn">№ 0010</span>
+    <div class="num">卷十</div>
+    <h2>数</h2>
+    <div class="meta"><span class="range">1971—今</span><span>华盛顿 · 曼谷 · 哈拉雷 · 内罗毕 · 杭州 · 互联网</span></div>
+    <p class="lede">锚断了以后，钱不再挂在任何东西上，只挂在“央行会管好它”这个承诺上。它也越来越不像一样东西，越来越像一条消息。</p>
+  </div>
+
+  <div class="col">
+    <h3 data-y="1979">一位很高的行长<span class="y">1979—1987 · 华盛顿</span></h3>
+    <p>脱离黄金后的头十年并不顺利。1973 年中东战争引发石油危机，油价翻了几番；美国一边印钱，一边物价飞涨，同时失业率也高，经济学家原以为通胀和失业不会同时变坏，这下全乱了，人们发明了个新词叫“滞胀”。1980 年，美国的通胀率一度接近 15%。</p>
+    <p>1979 年，身高两米多的保罗·沃尔克出任美联储主席。他的办法简单粗暴：把利率提到前所未有的高度，1981 年联邦基金利率一度达到 20% 左右。借钱贵到离谱，企业倒闭，失业飙升，愤怒的农民开着拖拉机堵住美联储大楼，建筑商把卖不出去的房子的木料寄给他。沃尔克没有松手。到 1983 年，通胀降到了 3% 左右。</p>
+    <p>从此，各国央行的信用有了一个新的来源：不是黄金，而是<em>“我们真的敢让大家吃苦来保住钱的价值”</em>。这种信用看不见、摸不着，却比黄金管用。前提是，它真的被兑现过。</p>
+
+    <h3 data-y="2014">你的钱，大部分不是钞票<span class="y">今天</span></h3>
+    <p>你也许以为钱主要是央行印出来的钞票。2014 年，英格兰银行发表了一篇文章，开头就纠正了这个常见的误解：在英国，流通中的钱大约 97% 是银行存款，钞票和硬币只占 3% 左右。而存款的大部分，是商业银行在发放贷款的那一刻“创造”出来的：银行借给你一笔钱，就在你的账户上写一个数字，钱就这样出现了。</p>
+    <p>卷七的金匠，把他的收据开到了整个世界。</p>
+
+    <aside class="echo" data-k="轮回" data-year="1997" data-place="曼谷" data-pat="挤兑" data-title="亚洲金融风暴">
+      <span class="stamp">轮回</span>
+      <div>
+        <p class="rh"><span class="ry">1997.7.2 · 曼谷</span>亚洲金融风暴</p>
+        <p>泰国长期把泰铢和美元挂钩，大量借入美元，热钱涌入房地产和股市。国际投机资本看准泰国外汇储备撑不住，大举做空泰铢。1997 年 7 月 2 日，泰国放弃挂钩，泰铢暴跌，危机迅速蔓延到印尼、韩国、马来西亚。这是一场国家规模的挤兑：大家同时想把泰铢换成美元，而柜台里的美元不够。</p>
+      </div>
+    </aside>
+
+    <h3 data-y="2008">不叫印钱的印钱<span class="y">2008 · 纽约</span></h3>
+    <p>2008 年 9 月 15 日，美国第四大投资银行雷曼兄弟申请破产。在此之前，美国的房价涨了十年，银行把大量还不起的房贷打包成复杂的证券卖向全世界。房价一跌，链条一环环断开，全球金融体系差一点停摆。</p>
+    <p>利率已经降到了零，降无可降。各国央行于是用了一招新办法：凭空创造出央行准备金，去买国债和各种债券，把钱直接灌进金融系统。这叫“量化宽松”。美联储的资产负债表从 2008 年前的大约九千亿美元，涨到 2014 年的四万五千亿，2020 年疫情之后又翻了一倍，一度接近九万亿。</p>
+    <p>央行一再强调，这不是印钞：钱是以电子准备金的形式存在的，主要停留在银行体系里。这在技术上是对的。但在普通人听来，它和印钱的区别，大概就像“优化银的使用效率”和“掺铜”的区别。</p>
+
+    <aside class="echo" data-k="轮回" data-year="2008" data-place="哈拉雷" data-pat="印钞" data-title="一百万亿面值的钞票">
+      <span class="stamp">轮回</span>
+      <div>
+        <p class="rh"><span class="ry">2008—2009 · 津巴布韦</span>一百万亿面值的钞票</p>
+        <p>同一时期，非洲的津巴布韦经历了现代最严重的恶性通胀之一。据经济学家汉克估算，2008 年 11 月，当地月通胀率高达 796 亿个百分点，物价大约每一天翻一倍。2009 年初，央行发行了面值一百万亿津元的钞票，不久后津元被彻底放弃，人们改用美元和南非兰特。今天，那张一百万亿的钞票成了卖给游客的纪念品，售价几美元。它的收藏价值，远远超过了它的面值。</p>
+      </div>
+    </aside>
+
+    <h3 data-y="2009">刻在第一块里的一条新闻<span class="y">2009.1.3 · 互联网</span></h3>
+    <p>2008 年 10 月 31 日，一个署名“中本聪”的人在网上发布了一篇九页的论文，标题是《比特币：一种点对点的电子现金系统》。他提出：能不能造一种不需要银行、不需要央行、谁都不能随便多印的钱？</p>
+    <p>办法是一本人人都有副本的公共账本。每一笔转账都要写进账本，而往账本上添一页（一个“区块”）需要算一道极难的数学题，算出来的人得到一笔新的比特币作为奖励。这道题故意设计得很费电、很费时间，好让伪造账本的代价高到不划算。</p>
+    <p>还记得雅浦岛吗？石头本身哪里也不去，大家记着它是谁的；石头之所以值钱，是因为运回来要冒死划四百公里独木舟。比特币把这两件事都搬上了网：一本全村共享的账，和一道“得到它很难”的门槛。</p>
+    <p>2009 年 1 月 3 日，比特币的第一个区块诞生。中本聪在里面嵌进了一行字，那是当天英国《泰晤士报》的头版标题：</p>
+    <blockquote><p>The Times 03/Jan/2009 Chancellor on brink of second bailout for banks</p><cite>——比特币创世区块中嵌入的文字（意为：财政大臣即将对银行进行第二轮纾困）</cite></blockquote>
+    <p>一条关于<em>财政大臣</em>和银行救助的新闻，被刻进了一种新货币的第一页。它是时间戳，大概也是一句抗议。</p>
+    <p>头一年多，比特币几乎一文不值。2010 年 5 月 22 日，一位程序员用一万个比特币换了两张披萨，这被认为是比特币第一次用于购买实物。后来，这一天被币圈称为“比特币披萨节”。按后来的价格算，那两张披萨值几亿美元。</p>
+    <p>比特币没有成为中本聪设想的“日常现金”：它价格大起大落，转账慢，耗电惊人，更多被当作投机品和“数字黄金”。围绕它的交易所也重演了这本书里几乎每一种剧情：泡沫、挤兑、跑路、监管。2022 年，一家大型加密交易所 FTX 在几天之内崩盘，客户的钱被挪用，创始人后来被判了重刑。想造一种不需要信任的钱，最后还是绕回了“你信谁”。</p>
+
+    <h3 data-y="2007">扫一下<span class="y">2007 · 内罗毕 · 2013 · 杭州</span></h3>
+    <p>真正改变普通人日常的，反而是一些不那么浪漫的东西。2007 年，肯尼亚的一家电信公司推出了 M-Pesa：用最普通的功能机发短信，就能转账、存钱、付款。很多从没进过银行的肯尼亚人，第一次有了“账户”。在外打工的人，把钱一条短信寄回乡下的家里。</p>
+    <p>中国走得更远。支付宝 2004 年诞生，微信支付 2013 年上线，几年之间，从菜市场到街头卖艺，一个二维码就能收钱。很多中国年轻人已经好几年没摸过纸币了。2020 年前后，中国人民银行开始在多个城市试点数字人民币，各国央行也在研究自己的“央行数字货币”。</p>
+    <p>钱从泥板上的刻痕开始，经过贝壳、铜、纸、银、金，绕了五千年，又变回了一笔记录。只不过这一次，记在一台你看不见的服务器上。</p>
+  </div>
+
+  <div class="wide fig cbank" id="fig-cbank">
+    <div class="fig-label">装置 11 / 央行行长</div>
+    <h4>你来定利率</h4>
+    <p class="how">八轮，每轮一年，每一轮都会遇到一件历史上真发生过的事。你的目标是让通胀接近 2%、失业接近 5%。提高利率会压住通胀，但会让失业上升；降低利率反过来。效果有滞后。这是一个极度简化的模型，真实世界比这难得多。</p>
+    <div class="stat"><div>通胀率<b id="cbInf">2.0%</b></div><div>失业率<b id="cbUne">5.0%</b></div><div>你的得分<b id="cbScore">—</b></div></div>
+    <div class="ticker" id="cbEvent">按“上任”开始。</div>
+    <div class="rng"><span>利率</span><input type="range" id="cbRate" min="0" max="20" step="0.5" value="3" disabled><output id="cbRateO">3.0%</output></div>
+    <div class="btns"><button class="btn pri" id="cbStart">上任</button><button class="btn" id="cbNext" disabled>就这么定，过一年</button><button class="btn" id="cbQE" disabled>量化宽松</button></div>
+    <canvas class="chart" id="cbChart" height="220" aria-label="通胀率与失业率走势" style="margin-top:12px"></canvas>
+    <div class="log" id="cbLog"></div>
+  </div>
+
+  <div class="col">
+    <div class="drama">
+      <div class="dh"><b>戏里戏外 · 烟幕</b><span>YES, PRIME MINISTER</span></div>
+      <p>《是，首相》有一集叫《烟幕》。卫生部长主张大力反烟，首相哈克一时被说动，想在任上做一件青史留名的好事。可财政部的账本立刻跳了出来：烟草税每年给国库带来数十亿英镑，烟草行业还养着大量就业；更别说抽烟的人寿命短，还替国家省下了一大笔养老金。</p>
+      <p>剧里最妙的地方在于结局：反烟计划最后成了首相和财政部讨价还价的筹码，换到了他想要的东西，然后就被悄悄收了起来。<em>一个政府嘴上反对的东西，可能正是它账上离不开的东西。</em>这本书里，从盐铁专卖、鸦片贸易到今天的各种“罪恶税”，这样的账一直都有。</p>
+      <p class="src">剧情为概述，非台词原文。</p>
+    </div>
+
+    <div class="scene">
+      <div class="sh"><b>第十场 · 资产负债表</b><span>某国央行 · 2008 年深秋 · 凌晨两点</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who d">大人</span><p>利率已经降到零了，市场还在跌。董事会说要“量化宽松”。师爷，说白了，这是不是印钱？</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>大人，绝对不是。印钱是一个粗俗的、十八世纪的概念，需要纸张、油墨和印刷机。我们只是在电脑上扩大本行的资产负债表，以增加金融体系的流动性。</p></div>
+        <div class="ln"><span class="who d">大人</span><p>听起来好多了。那我在记者会上怎么说？</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>说“我们有充足的政策工具”“我们将采取一切必要措施”，然后在最关键的地方停顿一下。记者们会把停顿理解为信心。</p></div>
+        <div class="sd">天快亮了。阿鉴抱着一叠报纸进来，那是几周后的报纸。</div>
+        <div class="ln"><span class="who j">阿鉴</span><p>师爷，您看这个。有人造了一种新的钱，叫比特币，说是谁都印不了。它的第一页上，刻着今天《泰晤士报》的头条：“财政大臣即将对银行进行第二轮纾困”。</p></div>
+        <div class="sd">钱师爷接过报纸，看了很久。</div>
+        <div class="ln"><span class="who s">钱师爷</span><p>五千年了，这是头一回，有人想造一种不需要我的钱。</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>那您……要失业了？</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>阿鉴，不需要国王的钱，很快就会需要交易所；不需要央行的钱，很快就会需要有人来管交易所。只要钱还需要“信”，就总得有人坐在桌子后面，告诉大家可以信谁。</p></div>
+        <div class="sd">十几年后，钱师爷的名片上多了一行小字：某加密资产合规顾问。</div>
+      </div>
+    </div>
+
+    <div class="takeaway">
+      <p><b>今天的钱不挂在任何东西上，只挂在“有人会管好它”的承诺上。</b>它越来越不像一样东西，越来越像一条消息。而消息，是可以被删改、被冻结、被疯传的。</p>
+      <p class="life">放到自己身上：手机付款太顺手，钱就感觉不到“离开”了。记账的意义，不在于省几块钱，在于让你重新看见钱在流动。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 卷十一 魔 ============ -->
+<section class="vol" id="v11" data-vol="卷十一 · 魔">
+  <div class="volhead" data-y="2026">
+    <svg class="gl" data-gl="rose" viewBox="0 0 300 300" aria-hidden="true"></svg>
+    <span class="sn">№ 0011</span>
+    <div class="num">卷十一</div>
+    <h2>魔</h2>
+    <div class="meta"><span class="range">你的一生</span><span>心里的账</span></div>
+    <p class="lede">前十卷讲钱怎样在国家之间、朝代之间变形。这一卷把镜头转回一个人：钱在你脑子里做了什么。它的魔力，一半在利息里，一半在人心里。</p>
+  </div>
+
+  <div class="col">
+    <h3>时间是钱最大的放大器</h3>
+    <p>卷一说过，利息最早的样子是“羊生小羊”。小羊长大了也会生小羊，这就是复利：利息本身也生利息。它在头几年几乎看不出来，到了后面却快得吓人。</p>
+    <p>有一个心算的小办法，叫“72 法则”：用 72 除以年收益率，大约就是钱翻一倍需要的年数。年收益 6%，大约 12 年翻倍；3%，大约 24 年。反过来也成立：如果通胀每年 3%，你放在床底下的现金，大约 24 年后购买力就只剩一半。</p>
+    <p>网上常说爱因斯坦称复利是“世界第八大奇迹”，这句话找不到可靠出处，多半是后人安在他头上的。但复利本身不需要名人背书。</p>
+  </div>
+
+  <div class="wide fig" id="fig-comp">
+    <div class="fig-label">装置 12 / 复利与通胀</div>
+    <h4>每月存一点，三十年后</h4>
+    <p class="how">设置每月存多少、存多少年、每年的收益率和通胀率。深色线是账面上的钱，浅色线是扣掉通胀后“相当于今天的多少钱”。灰色线是你一共存进去的本金。</p>
+    <div class="rng"><span>每月存</span><input type="range" id="cMon" min="100" max="5000" step="100" value="1000"><output id="cMonO">1000 元</output></div>
+    <div class="rng"><span>年数</span><input type="range" id="cYrs" min="1" max="45" value="30"><output id="cYrsO">30 年</output></div>
+    <div class="rng"><span>年收益</span><input type="range" id="cRet" min="0" max="12" step="0.5" value="5"><output id="cRetO">5%</output></div>
+    <div class="rng"><span>年通胀</span><input type="range" id="cInf" min="0" max="10" step="0.5" value="2.5"><output id="cInfO">2.5%</output></div>
+    <canvas class="chart" id="cChart" height="220" aria-label="复利与通胀曲线"></canvas>
+    <p class="readout" id="cRead" style="margin-top:8px"></p>
+  </div>
+
+  <div class="col">
+    <h3 data-y="1979">输一百块，比赢一百块更疼<span class="y">1979 · 普林斯顿</span></h3>
+    <p>心理学家卡尼曼和特沃斯基 1979 年发表了“前景理论”，后来卡尼曼因此获得诺贝尔经济学奖。其中最著名的发现叫<em>损失厌恶</em>：失去一笔钱的痛苦，大约是得到同样一笔钱的快乐的两倍。</p>
+    <p>这解释了很多“不理性”的行为：股票亏了舍不得卖，总想“等回本”；为了避免一笔小损失，甘愿冒更大的风险；同样的方案，说成“能救 200 人”大家就支持，说成“会死 400 人”大家就反对。下面这个小测试，你可以自己试试。</p>
+  </div>
+
+  <div class="wide fig quiz" id="fig-quiz">
+    <div class="fig-label">装置 13 / 你脑子里的账</div>
+    <h4>两道题，凭直觉选</h4>
+    <div id="qBox"></div>
+    <p class="readout" id="qRead" style="margin-top:10px"></p>
+  </div>
+
+  <div class="col">
+    <h3>同样一百块，不一样的钱</h3>
+    <p>行为经济学家塞勒（2017 年诺贝尔奖得主）提出过“心理账户”：人们会把钱分进脑子里不同的抽屉。工资是“辛苦钱”，舍不得花；年终奖、彩票、红包是“意外之财”，花起来就大手大脚。可在银行账户里，每一块钱都一模一样。</p>
+    <p>商家深谙此道：分期付款把一笔大钱切成很多笔“小钱”；会员卡里的余额感觉像“已经花掉了”，再花就不心疼；手机支付让钱的离开没有任何触感。上一卷说钱越来越像一条消息，而消息，是很容易被忽略的。</p>
+
+    <h3 data-y="2023">钱能买到快乐吗<span class="y">2010 · 2021 · 2023</span></h3>
+    <p>2010 年，卡尼曼和经济学家迪顿发表了一项研究：美国人的日常情绪随收入上升而改善，但年收入超过约七万五千美元后，情绪就基本不再变好了。这个“七万五”被广为传播。</p>
+    <p>2021 年，另一位研究者基林斯沃思用手机实时调查了三万多人，发现幸福感在高收入段并没有停住，还在继续上升。两人观点相左，于是做了一件学界少见的事：一起合作重新分析数据。2023 年他们联合发表的结论是：对大多数人来说，收入越高，幸福感越高，没有明显的天花板；只有在最不快乐的那大约 20% 人群里，收入到一定程度后，钱就再也帮不上忙了。</p>
+    <p>换句话说，<em>钱能缓解很多种不快乐，但治不了所有的不快乐。</em>钱解决的是“缺”，解决不了“空”。</p>
+
+    <aside class="echo" data-k="生活" data-year="1587" data-place="南京" data-pat="信" data-title="海瑞死时，箱子里有八两银子">
+      <span class="stamp">生活</span>
+      <div>
+        <p class="rh"><span class="ry">1587 · 南京</span>海瑞死时，箱子里有八两银子</p>
+        <p>据《明史·海瑞传》，海瑞在南京右都御史任上去世，同僚检视他的遗物，只有俸银八两、葛布一端、旧衣几件。他一生以清廉出名，连他的反对者也承认这一点。对照卷三的邓通：一个给天下铸钱，死时身无分文，因为他的钱全靠一个人的恩宠；一个一辈子没碰过不该碰的钱，死时也只剩八两，但没有人能从他身上拿走什么。<em>钱可以被收回，名节收不回。</em></p>
+      </div>
+    </aside>
+
+    <div class="drama">
+      <div class="dh"><b>戏里戏外 · 沈一石的账</b><span>大明王朝 1566</span></div>
+      <p>《大明王朝1566》里最让人唏嘘的人物之一，是江南首富沈一石。他替织造局、替宫里经营丝绸生意，富可敌国，养着戏班，读书弹琴，风雅得像个名士。可剧情一步步揭开：他的财富从来不是他自己的。他是权力的钱袋子，钱从他手里过，却不归他。当权力需要牺牲一个人来收场的时候，最有钱的那个人，往往最先被推出去。</p>
+      <p>剧中沈一石的结局，是一把火，和一本账。这和卷三的邓通、卷八的约翰·劳，构成了一个有点刺骨的系列：<em>离权力太近的钱，是借来的钱。</em></p>
+      <p class="src">剧情为概述。</p>
+    </div>
+
+    <div class="scene">
+      <div class="sh"><b>第十一场 · 下值之后</b><span>衙门后院 · 今天 · 傍晚</span></div>
+      <div class="bd">
+        <div class="sd">大人们都走了。阿鉴收拾好账册，没有走。</div>
+        <div class="ln"><span class="who j">阿鉴</span><p>师爷，我跟您学了这么多朝代的钱，可我自己……还是不知道该怎么对待钱。</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>今天大人不在，我不用绕弯子。你想听真话，我就说几句。</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>第一，钱是放大器。它放大你的选择，也放大你的焦虑。一个人本来就慌，给他更多钱，他会慌得更贵。</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>第二，时间站在慢的那一边。复利只奖励两种人：开始得早的，和中途不下车的。所有让你“快”的东西，都要多看一眼。</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>第三，你最值钱的资产不在账上，在你脑子里和你的名声里。贝会贬值，银会外流，纸会作废，但一个说话算数、手艺过硬的人，在哪个朝代都换得到饭吃。</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>第四，看清楚你的钱站在谁的影子里。邓通、沈一石、约翰·劳，他们的钱都来得太顺，顺得像是借来的。</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>还有第五吗？</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>第五，够了，就要知道够了。这一条，我五千年都没教会一位大人。</p></div>
+        <div class="sd">阿鉴合上小本子。这一次，他没有记，因为他记住了。</div>
+      </div>
+    </div>
+
+    <div class="takeaway">
+      <p><b>钱的魔力一半在利息里，一半在人心里。</b>复利让时间变成钱，损失厌恶和心理账户让钱变成情绪。</p>
+      <p class="life">放到自己身上：早一点开始，慢一点花，少一点借，多一点学。记住“够了”是一个可以主动说出口的词。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 尾声 轮回 ============ -->
+<section class="vol" id="v12" data-vol="尾声 · 轮回">
+  <div class="volhead" data-y="2026">
+    <svg class="gl" data-gl="rose" viewBox="0 0 300 300" aria-hidden="true"></svg>
+    <span class="sn">№ 0012</span>
+    <div class="num">尾声</div>
+    <h2>轮回</h2>
+    <div class="meta"><span class="range">前 3000—今</span><span>全书的眉批，收拢在一条时间轴上</span></div>
+    <p class="lede">常有人说历史是个轮回。更准确的说法也许是：历史不会简单重复，但它押韵。下面这条时间轴，收集了全书每一条眉批。按主题筛一筛，看看同一个韵脚在哪些年代、哪些地方响起过。</p>
+  </div>
+
+  <div class="wide fig tl" id="fig-tl">
+    <div class="fig-label">装置 14 / 押韵的历史</div>
+    <h4>同一个韵脚，五千年</h4>
+    <p class="how">每个点是一条眉批。点主题按钮筛选，点圆点看内容，点“跳过去”回到正文。横轴不是等比例的：越近的年代拉得越宽。</p>
+    <div class="tlfilters" id="tlF"></div>
+    <div class="scroll-x"><svg viewBox="0 0 900 190" id="tlSvg" role="img" aria-label="全书眉批时间轴" style="min-width:620px"></svg></div>
+    <div class="tlcard" id="tlCard"><p class="k">点一个圆点</p></div>
+  </div>
+
+  <div class="col">
+    <h3>五个韵脚</h3>
+    <p class="ni">把这五千年的故事压成一张表，大概是这样：</p>
+    <div class="scroll-x">
+    <table class="t">
+      <thead><tr><th>韵脚</th><th>发生了什么</th><th>在本书里响过的地方</th></tr></thead>
+      <tbody>
+        <tr><td><b>稀释</b></td><td>缺钱的统治者让每一枚钱少含一点“真东西”，或者多印一些</td><td>汉初荚钱 · 罗马掺铜 · 王莽大钱 · 铜鼻子国王 · 宋钱引 · 大明宝钞 · 魏玛 · 金圆券 · 津巴布韦</td></tr>
+        <tr><td><b>限价</b></td><td>钱坏了，怪卖东西的人，下令不许涨价</td><td>戴克里先 · 王莽 · 大明禁用金银 · 约翰·劳禁金 · 1793 法国 · 1948 八一九限价</td></tr>
+        <tr><td><b>泡沫</b></td><td>价格上涨本身成为买入的理由</td><td>郁金香 · 密西西比 · 南海 · 1929 · 2000 · 2008 · 加密货币</td></tr>
+        <tr><td><b>挤兑</b></td><td>大家同时想把“承诺”换成“东西”</td><td>成都交子户 · 斯德哥尔摩银行 · 1672 财政署停兑 · 1997 泰铢 · 2007 北岩 · 2023 硅谷银行</td></tr>
+        <tr><td><b>赦免</b></td><td>债滚到撑不住，只能一笔勾销</td><td>amargi · 禧年 · 梭伦解负令 · 历代蠲免 · 2005 减免穷国债务</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>每一次，身在其中的人都觉得自己的处境是全新的。每一次，事后看都似曾相识。</p>
+
+    <h3>为什么三部剧能讲这么多道理</h3>
+    <p>写这本书时，作者一直把三部剧放在手边。</p>
+    <p>《是，大臣》和《是，首相》是 1980 年代的英国政治喜剧，讲一位政客和他手下那位永远不说“不”、却总能让事情办不成的常任秘书。它被不少人笑称为“半部英剧治天下”，因为它讲透了一件事：<em>制度有自己的利益</em>。一个衙门想要更多预算，一项政策要能写成好听的话，每个人都在保护自己的位置。钱的历史里，几乎每一次出事都有这样一间屋子。</p>
+    <p>《大明王朝1566》讲的是嘉靖末年的一盘大棋。它讲透的是另一件事：<em>账本背后是人</em>。国库的一个窟窿，经过一层层传导，最后会落到一个具体的农民、一个具体的商人、一个具体的知县身上。账算得再漂亮，也得问一句“这笔账记在谁头上”。</p>
+    <p>两部剧一东一西，一个喜剧一个正剧，说的其实是同一个道理：<em>钱从来不只是钱，它是权力、制度和人心互相角力时留下的记录。</em>读懂了钱，就读懂了一半的历史，也读懂了一半的生活。</p>
+
+    <div class="scene">
+      <div class="sh"><b>终场 · 交接备忘录</b><span>财政衙门 · 某一年 · 任何一年</span></div>
+      <div class="bd">
+        <div class="sd">又一位新大人要上任了。钱师爷照例在他桌上放了一份备忘录。阿鉴偷偷看了一眼。</div>
+        <div class="ln"><span class="who s">备忘录</span><p>致下一任大人：</p></div>
+        <div class="ln"><span class="who s"></span><p>一、您上任后会发现国库是空的。这不是前任的错，至少不全是。国库从来就没满过。</p></div>
+        <div class="ln"><span class="who s"></span><p>二、会有人向您推荐一个“不加税、不借债、也不用少花钱”的好办法。请让他把这个办法写下来，并在下面签上自己的名字。大多数人会在这一步放弃。</p></div>
+        <div class="ln"><span class="who s"></span><p>三、钱的价值来自信。信要攒很多年，花掉只要一个周末。</p></div>
+        <div class="ln"><span class="who s"></span><p>四、每当您说出“这一次不一样”的时候，请翻开本衙门的旧档。在那里，您会找到四百位说过同样的话的大人。</p></div>
+        <div class="ln"><span class="who s"></span><p>五、账本上没有“百姓”这一栏。请您自己加上。</p></div>
+        <div class="ln"><span class="who s"></span><p>您忠实的，钱师爷</p></div>
+        <div class="sd">阿鉴看完，发现第五条的笔迹和前四条不太一样。墨还是新的。</div>
+      </div>
+    </div>
+
+    <h3>附：存疑与出处</h3>
+    <p class="ni" style="font-size:15px;color:var(--ink-2)">本书正文中的史实尽量依据通行的史书和研究，以下几处争议较大或流传失真，单独列出：</p>
+    <ul style="font-size:15px;line-height:1.8;color:var(--ink-2);padding-left:1.2em">
+      <li>“物物交换在前、货币在后”的说法被许多人类学家质疑，参见汉弗莱（1985）与格雷伯《债：第一个五千年》（2011）。</li>
+      <li>罗马银币含银量、马尼拉航线白银流入中国的比例、宝钞历年价值，各家估算差别很大，文中数字均为常见的约值。</li>
+      <li>郁金香狂热的规模参见戈德加《郁金香狂热》（2007）；牛顿亏损两万镑、神秘募股公司等故事缺乏可靠原始出处。</li>
+      <li>“白银断流导致明亡”为艾维四等学者的观点，学界有反驳。</li>
+      <li>《绿野仙踪》的货币寓言解读出自利特菲尔德（1964），并非作者本意。</li>
+      <li>“改稻为桑”“毁堤淹田”是《大明王朝1566》的剧情虚构；《是，大臣》《是，首相》的剧情均为概述，非台词原文。</li>
+      <li>文中所有对白场景均为虚构；钱师爷、阿鉴为原创角色，“大人”除约翰·劳一场外均不指具体历史人物。</li>
+      <li>魏玛汇率取自常见的历史统计（近似值）；津巴布韦通胀率为汉克的估算；钱与幸福的研究参见卡尼曼与迪顿（2010）、基林斯沃思（2021）及三人合作论文（2023）。</li>
+    </ul>
+    <p class="ni" style="font-size:15px;color:var(--ink-2)">如发现错漏，欢迎指出。</p>
+  </div>
+</section>
+</main>
+
+<footer class="g">
+  <a class="nextbook" href="../computer/"><span style="font-size:12px;color:var(--ink-3)">书房里的另一本书</span><br><b>计算机创世记</b><br><span style="font-size:14px;color:var(--ink-2)">从开关和导线，到能装下虚拟世界的机器。</span></a>
+  <p>《点石成金 · 金钱创世记》，创世书房藏书之一。正文由 Claude 协助写作，史实已尽量核对。纯静态网页，无框架，只从 Google Fonts 加载字体。</p>
+  <p><a href="../">回书房</a> · <a href="#top" id="toTop">回到开头</a></p>
+</footer>
+
+<script>
+(function(){
+'use strict';
+const $ = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => [...(r || document).querySelectorAll(s)];
+const cv = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const rnd = (a, b) => a + Math.random() * (b - a);
+const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+const NS = 'http://www.w3.org/2000/svg';
+const fmtN = n => Math.round(n).toLocaleString('en-US');
+const redraws = [];
+function onRedraw(f){ redraws.push(f); f(); }
+let rzT; window.addEventListener('resize', () => { clearTimeout(rzT); rzT = setTimeout(() => redraws.forEach(f => f()), 120); });
+const mq = window.matchMedia('(prefers-color-scheme: dark)');
+if (mq.addEventListener) mq.addEventListener('change', () => redraws.forEach(f => f()));
+
+/* ---------- 画布与折线图 ---------- */
+function setup(c){
+  const w = c.clientWidth || c.parentNode.clientWidth || 300;
+  const h = c.clientHeight || 220;
+  const d = window.devicePixelRatio || 1;
+  c.width = Math.round(w * d); c.height = Math.round(h * d);
+  const x = c.getContext('2d'); x.setTransform(d, 0, 0, d, 0, 0);
+  return {x, w, h};
+}
+function chart(c, o){
+  const {x, w, h} = setup(c);
+  const P = {l: o.padL || 46, r: 12, t: 14, b: 26};
+  const ink = cv('--ink'), ink3 = cv('--ink-3'), rule = cv('--rule');
+  x.clearRect(0, 0, w, h);
+  const ty = v => o.log ? Math.log10(Math.max(v, 1e-12)) : v;
+  const y0 = ty(o.y0), y1 = ty(o.y1);
+  const X = v => P.l + (v - o.x0) / (o.x1 - o.x0) * (w - P.l - P.r);
+  const Y = v => P.t + (1 - (ty(v) - y0) / (y1 - y0)) * (h - P.t - P.b);
+  x.font = '11px ' + cv('--f-mono'); x.textBaseline = 'middle';
+  x.strokeStyle = rule; x.fillStyle = ink3; x.lineWidth = 1;
+  (o.yticks || []).forEach(([v, lab]) => { const yy = Math.round(Y(v)) + .5; x.beginPath(); x.moveTo(P.l, yy); x.lineTo(w - P.r, yy); x.stroke(); x.textAlign = 'right'; x.fillText(lab, P.l - 6, yy); });
+  x.textAlign = 'center'; x.textBaseline = 'top';
+  (o.xticks || []).forEach(([v, lab]) => x.fillText(lab, X(v), h - P.b + 7));
+  (o.bands || []).forEach(b => { x.globalAlpha = b.alpha || 1; x.fillStyle = b.color; x.fillRect(P.l, Y(b.to), w - P.l - P.r, Y(b.from) - Y(b.to)); x.globalAlpha = 1; });
+  (o.series || []).forEach(s => {
+    if (!s.pts.length) return;
+    x.strokeStyle = s.color || ink; x.lineWidth = s.width || 2; x.setLineDash(s.dash || []);
+    x.beginPath(); s.pts.forEach(([a, b], i) => i ? x.lineTo(X(a), Y(b)) : x.moveTo(X(a), Y(b))); x.stroke(); x.setLineDash([]);
+    if (s.dots) { x.fillStyle = s.color || ink; s.pts.forEach(([a, b]) => { x.beginPath(); x.arc(X(a), Y(b), 2.6, 0, 7); x.fill(); }); }
+  });
+  (o.marks || []).forEach(m => { x.fillStyle = m.color || cv('--seal'); x.beginPath(); x.arc(X(m.x), Y(m.y), m.r || 5, 0, 7); x.fill(); if (m.label) { x.font = '12px ' + cv('--f-body'); x.textAlign = m.align || 'left'; x.textBaseline = 'bottom'; x.fillStyle = ink; x.fillText(m.label, X(m.x) + (m.align === 'right' ? -8 : 8), Y(m.y) - 6); } });
+  (o.legend || []).forEach((l, i) => { x.font = '12px ' + cv('--f-body'); x.textAlign = 'left'; x.textBaseline = 'middle'; x.fillStyle = l.color; x.fillRect(P.l + 8 + i * 110, P.t + 6, 14, 3); x.fillStyle = ink; x.fillText(l.label, P.l + 26 + i * 110, P.t + 7); });
+}
+
+/* ---------- 钞票纹 ---------- */
+function rose(svg, cx, cy, R, layers, color, op){
+  let h = '';
+  layers.forEach(([r, d, k, sw]) => {
+    let p = '';
+    const N = 900, T = Math.PI * 2 * k;
+    for (let i = 0; i <= N; i++) {
+      const t = T * i / N;
+      const x = cx + (R - r) * Math.cos(t) + d * Math.cos((R - r) / r * t);
+      const y = cy + (R - r) * Math.sin(t) - d * Math.sin((R - r) / r * t);
+      p += (i ? 'L' : 'M') + x.toFixed(1) + ',' + y.toFixed(1);
+    }
+    h += '<path d="' + p + '" fill="none" stroke="' + color + '" stroke-width="' + sw + '" opacity="' + op + '"/>';
+  });
+  svg.insertAdjacentHTML('beforeend', h);
+}
+$$('svg[data-gl]').forEach(s => {
+  if (s.dataset.gl === 'hero') {
+    rose(s, 210, 100, 92, [[23, 31, 23, .5], [17, 26, 17, .4], [29, 20, 29, .35]], 'var(--intag)', .55);
+    let w = ''; for (let k = 0; k < 7; k++) { let p = ''; for (let x = 0; x <= 420; x += 4) { const y = 22 + k * 2.2 + Math.sin(x / 13 + k) * 4; p += (x ? 'L' : 'M') + x + ',' + y.toFixed(1); } w += '<path d="' + p + '" fill="none" stroke="var(--intag)" stroke-width=".4" opacity=".5"/>'; }
+    for (let k = 0; k < 7; k++) { let p = ''; for (let x = 0; x <= 420; x += 4) { const y = 170 + k * 2.2 + Math.sin(x / 13 - k) * 4; p += (x ? 'L' : 'M') + x + ',' + y.toFixed(1); } w += '<path d="' + p + '" fill="none" stroke="var(--intag)" stroke-width=".4" opacity=".5"/>'; }
+    s.insertAdjacentHTML('afterbegin', w);
+  } else {
+    const n = +((s.closest('section') || {}).id || 'v1').replace(/\D/g, '') || 1;
+    rose(s, 150, 150, 140, [[37 + n % 5, 45 + n % 7, 37 + n % 5, .5], [23 + n % 4, 30, 23 + n % 4, .4]], 'var(--intag)', .6);
+  }
+});
+
+/* ---------- 页眉：年份、卷名、进度、目录 ---------- */
+const yEls = $$('[data-y]');
+const barYr = $('#barYr'), barVol = $('#barVol'), prog = $('#prog');
+let tick = false;
+function yLab(y){ y = +y; return y < 0 ? '前 ' + (-y) : String(y); }
+function onScroll(){
+  tick = false;
+  const lim = innerHeight * 0.4; let cur = null;
+  for (const e of yEls) { if (e.getBoundingClientRect().top < lim) cur = e; else break; }
+  if (cur) { barYr.textContent = yLab(cur.dataset.y); const v = cur.closest('[data-vol]'); if (v) barVol.textContent = v.dataset.vol; }
+  const H = document.documentElement.scrollHeight - innerHeight;
+  prog.style.width = (H > 0 ? scrollY / H * 100 : 0) + '%';
+}
+window.addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(onScroll); } }, {passive: true});
+onScroll();
+const drawer = $('#drawer');
+$('#drawerList').innerHTML = $$('#toc a').map(a => '<li><a href="' + a.getAttribute('href') + '"><span class="n">' + $('.n', a).textContent + '</span><span>' + $('.t', a).innerHTML + '</span></a></li>').join('');
+function openD(on){ drawer.classList.toggle('on', on); drawer.setAttribute('aria-hidden', on ? 'false' : 'true'); }
+$('#tocBtn').addEventListener('click', () => openD(true));
+drawer.addEventListener('click', e => { if (e.target.closest('[data-close]') || e.target.closest('a')) openD(false); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') openD(false); });
+const toTop = $('#toTop'); if (toTop) toTop.addEventListener('click', e => { e.preventDefault(); scrollTo({top: 0, behavior: 'smooth'}); });
+
+/* ---------- 序：钞票 ---------- */
+(function(){
+  const b = $('#heroBill'), btn = $('#billBtn'), cap = $('#billCap');
+  btn.addEventListener('click', () => {
+    const d = !b.classList.contains('doubt');
+    b.classList.toggle('doubt', d); btn.setAttribute('aria-pressed', d);
+    btn.textContent = d ? '大家又信了' : '假如大家都不信了';
+    cap.textContent = d ? '纸还是那张纸，油墨一点没少。它只是失去了唯一支撑它的东西。' : '现在，所有人都相信它值一百。所以它值一百。';
+  });
+})();
+
+/* ---------- 装置 1：集市 ---------- */
+(function(){
+  const IC = {'鱼': '🐟', '鞋': '👞', '麦': '🌾', '盐': '🧂', '布': '🧵', '陶罐': '🏺', '贝': '🐚'};
+  const V0 = [
+    {name: '鞋匠', ic: '👞', has: '鞋', want: '麦'},
+    {name: '农夫', ic: '🧑‍🌾', has: '麦', want: '盐'},
+    {name: '盐贩', ic: '🧂', has: '盐', want: '布'},
+    {name: '织女', ic: '🧵', has: '布', want: '鱼'},
+    {name: '陶匠', ic: '🏺', has: '陶罐', want: '鞋'}
+  ];
+  let mode = 'barter', hand, fresh, steps, seen, done, V;
+  const vill = $('#bVill'), msg = $('#bMsg'), handEl = $('#bHand'), fr = $('#bFresh');
+  function reset(){
+    V = V0.slice().sort(() => Math.random() - .5);
+    hand = '鱼'; fresh = 7; steps = 0; seen = {}; done = false;
+    msg.textContent = mode === 'barter' ? '先想一想：谁想要鱼？你不知道别人想要什么，只能一个个去问。' : mode === 'credit' ? '在熟人村子里，你可以直接去找鞋匠。' : '村里人都认贝壳。先把鱼卖给随便哪个人。';
+    render();
+  }
+  function render(){
+    handEl.textContent = IC[hand] || hand; fr.style.width = (fresh / 7 * 100) + '%';
+    vill.innerHTML = V.map((v, i) => '<button data-i="' + i + '"><span class="ic">' + v.ic + '</span>' + v.name + '<small>有' + v.has + ' · 想要' + (mode !== 'barter' || seen[v.name] ? v.want : '？') + '</small></button>').join('');
+  }
+  function bump(btn, ok){ btn.classList.remove('hit', 'miss'); void btn.offsetWidth; btn.classList.add(ok ? 'hit' : 'miss'); }
+  vill.addEventListener('click', e => {
+    const btn = e.target.closest('button'); if (!btn || done) return;
+    const v = V[+btn.dataset.i]; steps++;
+    if (mode === 'barter') {
+      fresh--; seen[v.name] = 1;
+      if (v.want === hand) { msg.textContent = v.name + '收下你的' + hand + '，给了你' + v.has + '。'; hand = v.has; render(); bump($('[data-i="' + V.indexOf(v) + '"]', vill), true); }
+      else { msg.textContent = v.name + '摇头：“我不要' + hand + '，我想要' + v.want + '。”'; render(); bump($('[data-i="' + V.indexOf(v) + '"]', vill), false); }
+      if (hand === '鞋') { done = true; msg.textContent = '终于换到鞋了！你跑了 ' + steps + ' 趟。最少也要 4 趟：鱼→布→盐→麦→鞋。这就是“需求的双重巧合”。'; }
+      else if (fresh <= 0) { done = true; handEl.textContent = '🦴'; msg.textContent = '天黑了，鱼臭了。你跑了 ' + steps + ' 趟，还是光着脚。'; }
+    } else if (mode === 'credit') {
+      if (v.has === '鞋') { hand = '鞋'; done = true; render(); msg.textContent = '鞋匠给了你一双鞋：“先穿着，回头有鱼了给我送两条。”他在心里记了一笔。你只跑了 1 趟。人类学家说，熟人之间大多是这样过日子的。'; }
+      else { fresh--; render(); msg.textContent = v.name + '：“我这儿没鞋啊，你去找鞋匠，跟他说回头还他就行。”'; }
+    } else {
+      if (hand === '鱼') { hand = '贝'; render(); msg.textContent = v.name + '用几枚贝壳买下了你的鱼。现在去找有鞋的人。'; }
+      else if (hand === '贝' && v.has === '鞋') { hand = '鞋'; done = true; render(); msg.textContent = '用贝壳买到了鞋。一共 ' + steps + ' 趟。一个大家都认的中间物，把一条长链剪成了两段。'; }
+      else { fresh--; render(); msg.textContent = v.name + '没有鞋卖。'; }
+    }
+    fr.style.width = (Math.max(fresh, 0) / 7 * 100) + '%';
+  });
+  $$('[data-bm]').forEach(b => b.addEventListener('click', () => { mode = b.dataset.bm; $$('[data-bm]').forEach(x => x.classList.toggle('on', x === b)); reset(); }));
+  $('#bReset').addEventListener('click', reset);
+  const n = $('#bN'), no = $('#bNo'), cnt = $('#bCount');
+  function upd(){ const k = +n.value; no.textContent = k + ' 种货'; cnt.innerHTML = '没有钱：每两种货之间都要一个兑换比例，一共 <b>' + fmtN(k * (k - 1) / 2) + '</b> 个，“一双鞋换几斤盐”“一斤盐换几尺布”都得记住。有了钱：每种货只要一个价格，<b>' + k + '</b> 个就够了。'; }
+  n.addEventListener('input', upd); upd(); reset();
+})();
+
+/* ---------- 装置 2：雅浦账本 ---------- */
+(function(){
+  const svg = $('#yapSvg');
+  const owners = ['甲家', '乙家', '丙家'];
+  const stones = [{n: '门口的大石币', o: 0, x: 70, y: 150, r: 26}, {n: '路边的中石币', o: 1, x: 210, y: 158, r: 18}, {n: '海底那块巨石', o: 2, x: 350, y: 212, r: 30, sea: 1}];
+  let doubt = false; const hist = [];
+  function draw(){
+    let h = '<rect x="0" y="186" width="420" height="44" fill="var(--sea)" opacity=".22"/>';
+    for (let k = 0; k < 3; k++) { let p = ''; for (let x = 0; x <= 420; x += 6) p += (x ? 'L' : 'M') + x + ',' + (190 + k * 12 + Math.sin(x / 14 + k) * 2.5).toFixed(1); h += '<path d="' + p + '" fill="none" stroke="var(--sea)" stroke-width="1" opacity=".6"/>'; }
+    owners.forEach((o, i) => { const x = 70 + i * 140; h += '<g transform="translate(' + (x - 30) + ',40)"><polygon points="0,30 30,4 60,30" fill="var(--paper-2)" stroke="var(--ink-2)"/><rect x="8" y="30" width="44" height="34" fill="var(--paper-2)" stroke="var(--ink-2)"/><rect x="24" y="44" width="12" height="20" fill="var(--ink-3)"/></g><text x="' + x + '" y="30" text-anchor="middle" font-size="14" fill="var(--ink)">' + o + '</text>'; });
+    stones.forEach((s, i) => {
+      h += '<g opacity="' + (doubt ? .35 : 1) + '"><circle cx="' + s.x + '" cy="' + s.y + '" r="' + s.r + '" fill="var(--paper-2)" stroke="var(--ink-2)" stroke-width="1.5"/><circle cx="' + s.x + '" cy="' + s.y + '" r="' + (s.r * .3) + '" fill="' + (s.sea ? 'var(--sea)' : 'var(--paper)') + '" stroke="var(--ink-2)"/></g>';
+      h += '<text x="' + s.x + '" y="' + (s.sea ? s.y - s.r - 4 : s.y + s.r + 15) + '" text-anchor="middle" font-size="12" fill="' + (doubt ? 'var(--ink-3)' : 'var(--seal)') + '">' + (doubt ? '归谁？' : '归' + owners[s.o]) + '</text>';
+    });
+    svg.innerHTML = h;
+    $('#yapLedger').innerHTML = stones.map(s => '<div' + (doubt ? ' style="text-decoration:line-through;color:var(--ink-3)"' : '') + '>' + s.n + ' → <b>' + owners[s.o] + '</b></div>').join('') + hist.slice(-3).map(t => '<div style="font-size:12.5px;color:var(--ink-3)">' + t + '</div>').join('');
+  }
+  $('#yapStone').innerHTML = stones.map((s, i) => '<option value="' + i + '">' + s.n + '</option>').join('');
+  $('#yapTo').innerHTML = owners.map((o, i) => '<option value="' + i + '">' + o + '</option>').join('');
+  $('#yapTo').value = 1;
+  $('#yapGo').addEventListener('click', () => {
+    if (doubt) { $('#yapMsg').textContent = '大家都不认账了，过户给谁也没有意义。'; return; }
+    const s = stones[+$('#yapStone').value], to = +$('#yapTo').value;
+    if (s.o === to) { $('#yapMsg').textContent = '它已经是' + owners[to] + '的了。'; return; }
+    hist.push(owners[s.o] + ' → ' + owners[to] + '：' + s.n + '，原地未动'); s.o = to; draw();
+    $('#yapMsg').textContent = s.sea ? '海底那块石头换了主人。没有人潜下去看过它，可全村都改口了：它现在是' + owners[to] + '的。' : '石头一寸没挪，全村人都知道它现在归' + owners[to] + '了。';
+  });
+  $('#yapDoubt').addEventListener('click', () => {
+    doubt = !doubt; draw();
+    $('#yapDoubt').textContent = doubt ? '大家又认账了' : '有人不信了';
+    $('#yapMsg').textContent = doubt ? '假如有一天，大家不再承认这本账：海底那块石头只是海底的一块石头，门口的大石头只是一块挡路的石头。所有的财富同时消失了，而没有一块石头挪过窝。' : '账又回来了。石头还是那几块石头。';
+  });
+  draw();
+})();
+
+/* ---------- 装置 3：一枚铜钱的账 ---------- */
+(function(){
+  const r = $('#coinR'), o = $('#coinO'), svg = $('#coinSvg'), rd = $('#coinRead'), pin = $('#coinPin'), note = $('#coinNote');
+  const P = {
+    banliang: [100, '秦半两：钱上铸“半两”，实重也是半两，重如其文。铜料与面值大致相当，盗铸没什么赚头，朝廷铸钱也几乎不赚钱。（位置为示意）'],
+    jia: [30, '汉初荚钱：轻如榆荚，铸一枚就赚一大半，人人想铸，钱越来越多，《史记》说米一石卖到一万钱。（位置为示意）'],
+    baijin: [15, '武帝“白金三品”：面值远高于用料。据《史记·平准书》，几年之间因盗铸被判死罪、后来遇赦的吏民有数十万人。（位置为示意）'],
+    wuzhu: [85, '汉五铢：用料足、做工精，又只许中央铸造，民间盗铸无利可图，于是用了七百年。（位置为示意）'],
+    song: [125, '宋代“钱荒”：铜价上涨，把铜钱熔了铸铜器、或者运去日本，比拿它当钱花更划算。朝廷铸得越多，市面上越缺钱。（位置为示意）']
+  };
+  function draw(){
+    const v = +r.value / 100; o.textContent = v.toFixed(2) + ' 文';
+    pin.style.left = clamp((v - .1) / 1.5 * 100, 0, 100) + '%';
+    const R1 = 62, rr = R1 * Math.sqrt(Math.min(v, 1.6) / 1.6) * 1.26;
+    svg.innerHTML = '<circle cx="80" cy="80" r="' + Math.min(rr, 78).toFixed(1) + '" fill="var(--copper)" opacity=".85"/>' +
+      '<circle cx="80" cy="80" r="' + R1 + '" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="4 3"/>' +
+      '<rect x="68" y="68" width="24" height="24" fill="var(--card)" stroke="var(--ink)" stroke-width="1.5"/>' +
+      '<text x="80" y="35" text-anchor="middle" font-size="13" fill="var(--ink)">面值 1 文</text>' +
+      '<text x="80" y="134" text-anchor="middle" font-size="12" fill="var(--ink)">铜料 ' + v.toFixed(2) + '</text>';
+    const gov = 1 - v - .1, priv = 1 - v - .25;
+    let z, t;
+    if (v < .6) { z = '<b style="color:var(--seal)">盗铸区</b>'; t = '私铸一枚能净赚约 ' + priv.toFixed(2) + ' 文。只要有利可图，杀头也拦不住，假钱会淹没市场，物价上涨。'; }
+    else if (v <= 1.0) { z = '<b style="color:var(--intag)">安全区</b>'; t = priv > 0 ? '私铸还有一点点利润（' + priv.toFixed(2) + ' 文），但扣掉被抓的风险就不划算了。' : '私铸不赚钱。钱能安安稳稳地流通。'; }
+    else { z = '<b style="color:var(--copper)">熔毁区</b>'; t = '一枚钱的铜比它的面值还值钱：熔一枚赚 ' + (v - 1).toFixed(2) + ' 文。钱会被熔掉、被运走，市面上闹“钱荒”。'; }
+    rd.innerHTML = z + ' · 官府每铸一枚，铸币税 <b>' + gov.toFixed(2) + '</b> 文' + (gov < 0 ? '（亏本）' : '') + '<br>' + t;
+  }
+  r.addEventListener('input', () => { note.textContent = ''; draw(); });
+  $$('[data-coin]').forEach(b => b.addEventListener('click', () => { const p = P[b.dataset.coin]; r.value = p[0]; draw(); note.textContent = p[1]; }));
+  draw();
+})();
+
+/* ---------- 装置 4：罗马银币 ---------- */
+(function(){
+  const D = [
+    ['共和时期', -211, 97, '第纳尔诞生，几乎是纯银。'],
+    ['奥古斯都', 14, 97, '帝国初年，成色依旧。'],
+    ['尼禄', 64, 93, '罗马大火之后减重降色，开了头。'],
+    ['图拉真', 117, 89, '征服达契亚，打仗要钱。'],
+    ['马可·奥勒留', 180, 75, '抗击日耳曼人，又一次稀释。'],
+    ['塞维鲁', 211, 50, '给军队大幅涨饷，含银跌到一半上下。他据说给儿子们的遗言是：让士兵发财，别的都别管。'],
+    ['卡拉卡拉', 215, 48, '推出新银币“安东尼尼安”，面值两枚第纳尔，含银却只有约一枚半。'],
+    ['加里恩努斯', 268, 4, '三世纪危机最深处，“银币”只剩一层银皮。'],
+    ['奥勒良', 274, 5, '改革币制，在钱上标明含银约 5%，算是诚实地承认了现实。']
+  ];
+  const r = $('#romeR'), o = $('#romeO'), coin = $('#romeCoin'), note = $('#romeNote'), c = $('#romeChart');
+  function mix(p){ const a = [201, 208, 214], b = [176, 106, 59], t = 1 - p / 100; return 'rgb(' + a.map((v, i) => Math.round(v + (b[i] - v) * t)).join(',') + ')'; }
+  function draw(){
+    const i = +r.value, d = D[i];
+    o.textContent = d[1] < 0 ? '前' + (-d[1]) : d[1];
+    coin.innerHTML = '<circle cx="80" cy="80" r="64" fill="' + mix(d[2]) + '" stroke="var(--ink-2)" stroke-width="1.5"/><circle cx="80" cy="80" r="56" fill="none" stroke="rgba(0,0,0,.25)" stroke-dasharray="2 3"/>' +
+      '<path d="M62 98 Q60 70 76 58 Q92 50 98 64 Q104 76 96 84 L100 96 Q90 104 78 104 Z" fill="rgba(0,0,0,.18)"/>' +
+      '<text x="80" y="150" text-anchor="middle" font-size="13" fill="var(--ink)">含银约 ' + d[2] + '%</text>';
+    note.innerHTML = '<b>' + d[0] + '</b>（' + (d[1] < 0 ? '前 ' + (-d[1]) : d[1]) + ' 年前后）：' + d[3];
+    chart(c, {x0: -230, x1: 290, y0: 0, y1: 100, padL: 40,
+      yticks: [[0, '0%'], [25, '25%'], [50, '50%'], [75, '75%'], [100, '100%']],
+      xticks: [[-200, '前200'], [0, '0'], [100, '100'], [200, '200'], [274, '274']],
+      series: [{pts: D.map(d => [d[1], d[2]]), color: cv('--silver'), width: 2.5, dots: true}],
+      marks: [{x: d[1], y: d[2], color: cv('--seal'), r: 6, label: d[0], align: d[1] > 150 ? 'right' : 'left'}]});
+  }
+  r.addEventListener('input', draw); onRedraw(draw);
+})();
+
+/* ---------- 装置 5：格雷欣 ---------- */
+(function(){
+  const box = $('#gDots'), rd = $('#gRead');
+  let S, yr;
+  function reset(){ S = []; for (let i = 0; i < 200; i++) S.push(i < 80 ? 'g' : i < 160 ? 'b' : 'e'); S.sort(() => Math.random() - .5); yr = 0; draw(); }
+  function draw(){
+    box.innerHTML = S.map(s => '<i class="' + (s === 'b' ? 'bad' : s === 'h' ? 'gone' : s === 'e' ? 'gone bad' : '') + '"' + (s === 'e' ? ' style="opacity:0"' : '') + '></i>').join('');
+    const g = S.filter(s => s === 'g').length, b = S.filter(s => s === 'b').length, h = S.filter(s => s === 'h').length;
+    rd.innerHTML = '第 <b>' + yr + '</b> 年 · 市面流通：好钱 <b>' + g + '</b> 枚，劣钱 <b>' + b + '</b> 枚 · 藏在箱底的好钱 <b>' + h + '</b> 枚（淡色）' + (yr && g === 0 ? '<br>好钱一枚都不流通了。它们没有消失，只是被藏了起来、被熔掉了、被运到了只认重量的外国。' : '');
+  }
+  $('#gStep').addEventListener('click', () => {
+    yr++;
+    S = S.map(s => s === 'g' && Math.random() < .4 ? 'h' : s);
+    let add = 8; S = S.map(s => (s === 'e' && add-- > 0) ? 'b' : s);
+    draw();
+  });
+  $('#gReset').addEventListener('click', reset); reset();
+})();
+
+/* ---------- 装置 6：印钞局 ---------- */
+(function(){
+  const g = $('#pGrow'), go = $('#pGrowO'), rs = $('#pRes'), ro = $('#pResO'), c = $('#pChart'), rd = $('#pRead');
+  let pts = [], timer = null;
+  function sim(){
+    const gr = +g.value / 100, res = +rs.value / 100;
+    let M = 100, G = 100, t = 1; const out = [[0, 100]];
+    for (let y = 1; y <= 30; y++) {
+      M *= 1 + gr; G *= 1.03;
+      const cov = res * 100 / M;
+      const ex = (gr - .03) * 100;
+      t -= Math.max(0, ex) * .002 + (cov < .1 ? .012 : 0) + (cov < .02 ? .012 : 0);
+      if (cov > .2 && ex <= 1) t += .02;
+      t = clamp(t, .15, 1);
+      const price = (M / G) / Math.pow(t, 1.5);
+      out.push([y, 100 / price]);
+    }
+    return out;
+  }
+  function draw(){
+    chart(c, {x0: 0, x1: 30, y0: .01, y1: 300, log: true, padL: 48,
+      yticks: [[.01, '0.01%'], [.1, '0.1%'], [1, '1%'], [10, '10%'], [100, '100%']],
+      xticks: [[0, '第0年'], [10, '10'], [20, '20'], [30, '30年']],
+      legend: [{label: '一贯纸币的购买力', color: cv('--seal')}],
+      series: [{pts: [[0, 100], [30, 100]], color: cv('--rule'), width: 1, dash: [4, 4]}, {pts, color: cv('--seal'), width: 2.5}]});
+  }
+  function lab(){ go.textContent = g.value + '%'; ro.textContent = rs.value + '%'; }
+  function run(){
+    clearInterval(timer); const all = sim(); pts = []; let k = 0;
+    timer = setInterval(() => {
+      pts.push(all[k++]); draw();
+      if (k >= all.length) {
+        clearInterval(timer); const last = all[all.length - 1][1];
+        let v = last > 95 ? '纸币稳稳当当，甚至更值钱了一点。这大概就是交子头几十年的样子。' : last > 50 ? '慢慢在贬值，但还撑得住。很多朝代的纸币都是这样一点点松下去的。' : last > 5 ? '购买力跌去了一大半。拿俸禄和存钱的人最吃亏。' : '纸币几乎成了废纸。大家会想尽办法用别的东西交易，比如白银。';
+        rd.innerHTML = '三十年后，一贯纸币的购买力还剩 <b>' + (last < 1 ? last.toPrecision(2) : last.toFixed(0)) + '%</b>，相当于开头的 <b>' + (last * 10 < 10 ? (last * 10).toPrecision(2) : (last * 10).toFixed(0)) + '</b> 文。' + v;
+      }
+    }, 60);
+  }
+  [g, rs].forEach(e => e.addEventListener('input', lab));
+  $$('[data-press]').forEach(b => b.addEventListener('click', () => { const p = {jiaozi: [3, 28], baochao: [12, 0], war: [8, 28]}[b.dataset.press]; g.value = p[0]; rs.value = p[1]; lab(); run(); }));
+  $('#pRun').addEventListener('click', run);
+  lab(); onRedraw(draw);
+})();
+
+/* ---------- 装置 7：白银之路 ---------- */
+(function(){
+  const svg = $('#silverMap'), info = $('#smInfo');
+  const N = {
+    potosi: [230, 300, '波托西', '1545 年发现的“富山”，十六、十七世纪全球白银最重要的产地之一。被强征的印第安矿工在这里付出了巨大的代价。'],
+    aca: [150, 190, '阿卡普尔科', '墨西哥太平洋岸的港口，马尼拉大帆船的美洲端。每年一两趟，船上装满白银出发，横渡太平洋。'],
+    manila: [800, 248, '马尼拉', '1571 年西班牙人在此建城。美洲白银在这里换中国的丝绸和瓷器，福建商人是最大的贸易伙伴。'],
+    china: [762, 182, '月港 · 广州', '1567 年隆庆开关后，月港成为民间出海贸易的合法港口。这里是白银之链的终点：一条鞭法让每个交税的农民都要用银子。'],
+    japan: [842, 128, '石见 · 长崎', '日本石见银山在十六、十七世纪之交产量极高。葡萄牙商人把日本白银运到澳门换中国生丝，再卖回日本。'],
+    seville: [448, 158, '塞维利亚', '西班牙的白银入口。银子在这里往往停不久：还热那亚银行家的债，付荷兰、英国的货款，给欧洲各地的军队发饷。'],
+    ams: [470, 96, '阿姆斯特丹 · 伦敦', '荷兰和英国东印度公司的总部。他们拿美洲白银去亚洲买香料、棉布和茶叶，因为亚洲人对欧洲的货不感兴趣，只认银子。'],
+    india: [640, 222, '印度', '莫卧儿帝国是另一个吸收白银的大户。欧洲人拿银子换印度的棉布，再运往非洲、欧洲和美洲。']
+  };
+  const R = [
+    'M230,300 C200,280 160,250 150,190',
+    'M150,190 C110,205 50,220 0,230',
+    'M900,262 C860,258 830,252 800,248',
+    'M800,248 C790,225 778,200 762,182',
+    'M230,300 C300,250 380,190 448,158',
+    'M448,158 C455,130 462,112 470,96',
+    'M470,96 C420,200 470,360 520,368 C580,372 610,300 640,222',
+    'M640,222 C690,205 730,190 762,182',
+    'M842,128 C815,145 790,165 762,182'
+  ];
+  let h = '<rect x="0" y="0" width="900" height="430" fill="var(--sea)" opacity=".08"/>';
+  for (let x = 0; x <= 900; x += 75) h += '<line x1="' + x + '" y1="0" x2="' + x + '" y2="430" stroke="var(--sea)" stroke-width=".5" opacity=".35"/>';
+  for (let y = 0; y <= 430; y += 72) h += '<line x1="0" y1="' + y + '" x2="900" y2="' + y + '" stroke="var(--sea)" stroke-width=".5" opacity=".35"/>';
+  [[200, 120, '美 洲'], [470, 55, '欧 洲'], [500, 280, '非 洲'], [700, 110, '亚 洲'], [330, 380, '大 西 洋'], [640, 395, '印 度 洋'], [60, 330, '太平洋 →'], [850, 330, '← 太平洋']].forEach(([x, y, t]) => h += '<text x="' + x + '" y="' + y + '" text-anchor="middle" font-size="18" fill="var(--ink-3)" opacity=".55" letter-spacing="4">' + t + '</text>');
+  h += '<text x="450" y="418" text-anchor="middle" font-size="11.5" fill="var(--ink-3)">地图左右两端在太平洋上相连：大帆船从左边驶出，从右边驶入马尼拉。</text>';
+  R.forEach((d, i) => h += '<path id="sr' + i + '" d="' + d + '" fill="none" stroke="var(--silver)" stroke-width="2.4" stroke-dasharray="1 5" stroke-linecap="round"/>');
+  h += '<g id="smDots"></g>';
+  Object.entries(N).forEach(([k, [x, y, n]]) => h += '<g class="mapnode" data-k="' + k + '" tabindex="0" role="button" aria-label="' + n + '"><circle cx="' + x + '" cy="' + y + '" r="8" fill="var(--card)" stroke="var(--ink)" stroke-width="1.5"/><text x="' + x + '" y="' + (y - 14) + '" text-anchor="middle" font-size="13.5" fill="var(--ink)">' + n + '</text></g>');
+  svg.innerHTML = h;
+  const paths = R.map((_, i) => $('#sr' + i, svg)), dotsG = $('#smDots', svg);
+  let dots = '';
+  paths.forEach((p, i) => { for (let k = 0; k < 3; k++) dots += '<circle r="4" data-p="' + i + '" data-o="' + (k / 3) + '" fill="var(--silver)" stroke="var(--ink-2)" stroke-width=".8"/>'; });
+  dotsG.innerHTML = dots;
+  const dEls = $$('circle', dotsG); const lens = paths.map(p => p.getTotalLength());
+  let rev = false, t0 = performance.now(), vis = true;
+  const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => { vis = es[0].isIntersecting; if (vis) requestAnimationFrame(step); }) : null;
+  if (io) io.observe(svg);
+  function step(now){
+    const T = (now - t0) / 4200;
+    dEls.forEach(d => { const i = +d.dataset.p; let u = (T + +d.dataset.o) % 1; if (rev) u = 1 - u; const pt = paths[i].getPointAtLength(u * lens[i]); d.setAttribute('cx', pt.x.toFixed(1)); d.setAttribute('cy', pt.y.toFixed(1)); });
+    if (vis && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+  function pick(k){ $$('.mapnode', svg).forEach(g => g.classList.toggle('on', g.dataset.k === k)); const n = N[k]; info.innerHTML = '<h5>' + n[2] + '</h5><p>' + n[3] + '</p>'; }
+  $$('.mapnode', svg).forEach(g => { g.addEventListener('click', () => pick(g.dataset.k)); g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(g.dataset.k); } }); });
+  function setMode(r){
+    rev = r; $('#smSilver').classList.toggle('on', !r); $('#smGoods').classList.toggle('on', r);
+    dEls.forEach(d => { d.setAttribute('fill', r ? 'var(--gold)' : 'var(--silver)'); d.setAttribute('r', r ? 5 : 4); });
+    paths.forEach(p => p.setAttribute('stroke', r ? 'var(--gold)' : 'var(--silver)'));
+    info.innerHTML = r ? '<h5>反方向流动的是货</h5><p>中国的丝绸、瓷器、茶叶，印度的棉布，东南亚的香料，一路往西、往美洲和欧洲去。银子越往东走，换回的货越往西走。</p>' : '<h5>银往东流</h5><p>从玻利维亚的高原出发，两条路最后都通向中国。点一个地点看看。</p>';
+  }
+  $('#smSilver').addEventListener('click', () => setMode(false));
+  $('#smGoods').addEventListener('click', () => setMode(true));
+})();
+
+/* ---------- 装置 8：金匠铺 ---------- */
+(function(){
+  const r = $('#rr'), o = $('#rrO'), svg = $('#rrSvg'), rd = $('#rrRead');
+  function draw(){
+    const k = +r.value / 100; o.textContent = r.value + '%';
+    let h = '', d = 100, tot = 0;
+    for (let i = 0; i < 14; i++) {
+      const x = 20 + i * 38, bh = d * 1.3, res = d * k * 1.3;
+      h += '<rect x="' + x + '" y="' + (150 - bh) + '" width="28" height="' + bh + '" fill="var(--intag)" opacity=".35"/><rect x="' + x + '" y="' + (150 - res) + '" width="28" height="' + res + '" fill="var(--gold)"/>';
+      h += '<text x="' + (x + 14) + '" y="165" text-anchor="middle" font-size="10" fill="var(--ink-3)">' + (i + 1) + '</text>';
+      tot += d; d *= (1 - k);
+    }
+    h += '<rect x="400" y="6" width="10" height="10" fill="var(--gold)"/><text x="414" y="15" font-size="11" fill="var(--ink-2)">留作准备金</text><rect x="400" y="22" width="10" height="10" fill="var(--intag)" opacity=".35"/><text x="414" y="31" font-size="11" fill="var(--ink-2)">贷出去，又被存进来</text><text x="20" y="15" font-size="11" fill="var(--ink-3)">第几轮存款 →</text>';
+    svg.innerHTML = h;
+    const T = 100 / k;
+    rd.innerHTML = '最初只有 <b>100</b> 两真金子。一轮轮存了又贷、贷了又存，体系里的存款最终约 <b>' + fmtN(T) + '</b> 两，其中 <b>' + fmtN(T - 100) + '</b> 两是贷款“创造”出来的。准备金比例越低，凭空多出来的钱越多，柜子里的金子相对也越少。';
+  }
+  r.addEventListener('input', draw); draw();
+
+  const vEl = $('#vault'), bar = $('#vaultBar'), pEl = $('#panicV'), q = $('#queue'), log = $('#runLog');
+  const bS = $('#runStart'), bN = $('#runNotice'), bW = $('#runSlow'), bL = $('#runLolr');
+  let st = null, tm = null;
+  function L(t){ log.insertAdjacentHTML('afterbegin', '<div>' + t + '</div>'); }
+  function show(){
+    vEl.textContent = st.vault + ' 两'; bar.style.width = clamp(st.vault / st.v0 * 100, 0, 100) + '%';
+    bar.style.background = st.vault < 20 ? 'var(--seal)' : 'var(--intag)';
+    pEl.textContent = Math.round(st.panic);
+    q.innerHTML = '🧍'.repeat(st.line) + '<span style="opacity:.35">' + '🧍'.repeat(Math.max(st.left - st.line, 0)) + '</span>';
+  }
+  function init(){
+    clearInterval(tm); log.innerHTML = '';
+    const v = Math.max(10, Math.round(200 * +r.value / 100 / 10) * 10);
+    st = {vault: v, v0: v, panic: 0, left: 20, line: 0, slow: 0, lolr: false, quiet: 0, on: false};
+    [bN, bW, bL].forEach(b => b.disabled = true); bS.disabled = false; show();
+    L('二十位储户，每人存了 10 两，共 200 两。按 ' + r.value + '% 的准备金，柜子里实际只有 ' + v + ' 两，其余都借出去了。');
+  }
+  function end(t){ clearInterval(tm); st.on = false; [bN, bW, bL].forEach(b => b.disabled = true); L('<b>' + t + '</b>'); }
+  function tickRun(){
+    let n = 0;
+    for (let i = 0; i < st.left; i++) if (Math.random() < st.panic / 100 * .22) n++;
+    if (st.slow > 0) { n = Math.min(n, 1); st.slow--; }
+    st.line = n;
+    for (let i = 0; i < n; i++) {
+      if (st.vault < 10) { show(); end('柜子空了，还有人没取到钱。铺子倒了。' + (st.lolr ? '' : '没有人能借钱给你。')); return; }
+      st.vault -= 10; st.left--;
+    }
+    if (n > 0) { st.panic = clamp(st.panic + 4 + n * 2, 0, 100); st.quiet = 0; L('有 ' + n + ' 人取走了钱。门口的队伍让更多人紧张起来。'); }
+    else { st.panic = clamp(st.panic - 12, 0, 100); st.quiet++; }
+    show();
+    if (st.left === 0) { end('所有储户都把钱取走了，而你居然一直兑付到最后。你的准备金够多。可这也意味着你几乎没放出多少贷款，没赚到什么钱。'); return; }
+    if (st.panic <= 0 && st.quiet >= 2) end('风波平息了。大家发现钱确实取得出来，就不急着取了。挤兑的解药，从来就是“随时都能取”。');
+  }
+  bS.addEventListener('click', () => {
+    if (st.on) return; st.on = true; st.panic = 35; bS.disabled = true; [bN, bW, bL].forEach(b => b.disabled = false);
+    L('街上有人说你的铺子要倒了。恐慌程度 35。'); show(); tm = setInterval(tickRun, 1500);
+  });
+  bN.addEventListener('click', () => { st.panic = clamp(st.panic + 22, 0, 100); bN.disabled = true; L('你贴出告示：“本号一切正常，请勿听信谣言。”本来没听说的人，现在也都听说了。恐慌 +22。'); show(); });
+  bW.addEventListener('click', () => { st.slow = 3; st.panic = clamp(st.panic + 8, 0, 100); bW.disabled = true; L('你只开一个窗口，慢慢数钱，拖住了三轮。队伍排得更长，看着更吓人。这是历史上银行家常用的拖延术。'); show(); });
+  bL.addEventListener('click', () => { st.vault += 120; st.v0 = Math.max(st.v0, st.vault); st.panic = clamp(st.panic - 40, 0, 100); st.lolr = true; bL.disabled = true; L('中央银行以你的贷款作抵押，借给你 120 两。英格兰银行在十九世纪逐渐担起了这个“最后贷款人”的角色：看见柜台上堆着钱，大家就不急着取了。恐慌 −40。'); show(); });
+  $('#runReset').addEventListener('click', init);
+  r.addEventListener('change', () => { if (!st.on) init(); });
+  init();
+})();
+
+/* ---------- 装置 9：交易所 ---------- */
+(function(){
+  const c = $('#bChart'), news = $('#bNews'), pE = $('#bPrice'), cE = $('#bCash'), wE = $('#bWorth'), res = $('#bResult');
+  const bO = $('#bOpen'), bB = $('#bBuy'), bS = $('#bSell');
+  const NEWS = {
+    calm: ['好望角公司拿到了一纸王家特许状。', '有人说远洋那边遍地是香料。', '咖啡馆里有几位商人在谈这家公司。'],
+    rise: ['股价又涨了，咖啡馆里人人在谈。', '公司宣布再发新股，认购的人排到了街角。', '据说连某位大科学家也买了。', '银行愿意借钱给你买股票，用股票本身作抵押。'],
+    mania: ['你的鞋匠告诉你，他把铺子抵押了去买股。', '报上说：这一次不一样，新航线将永远改变世界。', '有人成立了一家新公司，用途保密，半天募满。', '马车夫在问哪天还能再发新股。'],
+    pre: ['几位董事悄悄卖出了一些股票。', '公司的船还没回来。', '股价涨得慢了一点。'],
+    crash: ['有人想卖，没人接。', '银行要求追加抵押，否则强行平仓。', '议会宣布成立调查委员会。', '咖啡馆里没人说话。'],
+    after: ['街上安静了。', '公司的船回来了，舱里没什么货。', '报上开始讨论“人性的贪婪”。']
+  };
+  let S = null, tm = null;
+  function pickN(k){ const a = NEWS[k]; return a[Math.floor(Math.random() * a.length)]; }
+  function draw(){
+    const pts = S ? S.hist.map((p, i) => [i, p]) : [[0, 100]];
+    const mx = Math.max(200, ...pts.map(p => p[1])) * 1.1;
+    const marks = S ? S.trades.map(t => ({x: t.i, y: t.p, color: t.buy ? cv('--intag') : cv('--seal'), r: 5})) : [];
+    chart(c, {x0: 0, x1: 40, y0: 0, y1: mx, padL: 44,
+      yticks: [0, .25, .5, .75, 1].map(f => [mx * f / 1.1, fmtN(mx * f / 1.1)]),
+      xticks: [[0, '开市'], [20, '20'], [40, '收市']],
+      series: [{pts, color: cv('--ink'), width: 2}], marks});
+  }
+  function upd(){ const w = S.cash + S.sh * S.p; pE.textContent = fmtN(S.p); cE.textContent = fmtN(S.cash); wE.textContent = fmtN(w); bB.disabled = !S.on || S.cash < 1; bS.disabled = !S.on || S.sh <= 0; }
+  function step(){
+    const t = ++S.t;
+    if (t < S.crash) {
+      const ph = t / S.crash, dr = ph < .2 ? .01 : ph < .55 ? .045 : .085;
+      S.p *= 1 + dr + rnd(-.035, .035);
+      if (t === S.crash - 2 || t === S.crash - 1) { S.p *= rnd(.97, 1.01); news.textContent = pickN('pre'); }
+      else news.textContent = pickN(ph < .2 ? 'calm' : ph < .55 ? 'rise' : 'mania');
+    } else if (t < S.crash + 4) { S.p *= rnd(.58, .75); news.textContent = pickN('crash'); }
+    else { S.p *= rnd(.94, 1.04); news.textContent = pickN('after'); }
+    S.p = Math.max(S.p, 8); S.peak = Math.max(S.peak, S.p); S.hist.push(S.p); upd(); draw();
+    if (t >= 40) finish();
+  }
+  function finish(){
+    clearInterval(tm); S.on = false; upd();
+    const w = S.cash + S.sh * S.p, best = 1000 * S.peak / 100;
+    let v;
+    if (!S.trades.length) v = '你一直没进场。看着别人赚钱的那几十秒很难熬，但你的 1000 两原封不动。在一场泡沫里，这已经胜过了大多数人。';
+    else if (w > 3000) v = '你先跑了，赚了 ' + (w / 1000).toFixed(1) + ' 倍。请诚实地回答自己：是因为判断，还是因为运气？下一局再试一次看看。';
+    else if (w >= 1000) v = '赚了一点，但离最高点很远。这很正常：在泡沫里，最后一块钱永远留给别人赚。';
+    else v = '你亏了。你和 1720 年的很多人一样，在别人都在买的时候买，在别人都在卖的时候卖不掉。';
+    res.innerHTML = '收市。你的总值 <b>' + fmtN(w) + '</b> 两。如果在开盘买进、恰好在最高点卖出，能有 <b>' + fmtN(best) + '</b> 两，可惜没人知道哪一刻是最高点。<br>' + v;
+    bO.disabled = false; bO.textContent = '再来一局';
+  }
+  bO.addEventListener('click', () => {
+    clearInterval(tm);
+    S = {t: 0, p: 100, cash: 1000, sh: 0, hist: [100], trades: [], crash: Math.floor(rnd(20, 33)), peak: 100, on: true};
+    res.textContent = ''; bO.disabled = true; news.textContent = '开市了。'; upd(); draw();
+    tm = setInterval(step, 600);
+  });
+  bB.addEventListener('click', () => { if (!S || !S.on || S.cash < 1) return; S.sh += S.cash / S.p; S.cash = 0; S.trades.push({i: S.t, p: S.p, buy: true}); upd(); draw(); });
+  bS.addEventListener('click', () => { if (!S || !S.on || S.sh <= 0) return; S.cash += S.sh * S.p; S.sh = 0; S.trades.push({i: S.t, p: S.p, buy: false}); upd(); draw(); });
+  onRedraw(draw);
+})();
+
+/* ---------- 装置 10：马克 ---------- */
+(function(){
+  const D = [
+    ['1914.7', 4.2, '一战爆发前，一美元约换 4.2 马克。'],
+    ['1919.1', 8.9, '战败。'],
+    ['1919.12', 47, '《凡尔赛和约》签订之后。'],
+    ['1920.6', 39, '一度回稳，很多人以为最坏的时候过去了。'],
+    ['1921.6', 75, '赔款开始支付。'],
+    ['1921.12', 190, ''],
+    ['1922.6', 320, '外交部长拉特瑙遇刺，人们对政府的信心开始崩塌。'],
+    ['1922.8', 1135, ''],
+    ['1922.12', 7600, '柏林一个面包约 160 马克。'],
+    ['1923.1', 17972, '法国和比利时出兵占领鲁尔区，政府印钱给罢工工人发工资。'],
+    ['1923.4', 24457, ''],
+    ['1923.6', 109996, ''],
+    ['1923.7', 353412, '工资开始一天发两次。'],
+    ['1923.8', 4620455, ''],
+    ['1923.9', 98860000, '一个面包约 150 万马克。'],
+    ['1923.11', 4.2e12, '一个面包约 2000 亿马克。11 月 15 日起发行地租马克，一换一万亿，通胀几乎立刻止住。']
+  ];
+  const r = $('#wR'), o = $('#wO'), num = $('#wNum'), lab = $('#wLabel'), note = $('#wNote'), c = $('#wChart');
+  function cn(n){ if (n >= 1e12) return (n / 1e12).toFixed(1) + ' 万亿'; if (n >= 1e8) return (n / 1e8).toFixed(1) + ' 亿'; if (n >= 1e4) return (n / 1e4).toFixed(1) + ' 万'; return String(n); }
+  function draw(){
+    const i = +r.value, d = D[i];
+    o.textContent = d[0];
+    num.textContent = d[1] < 100 ? String(d[1]) : fmtN(d[1]);
+    lab.innerHTML = '一美元 = <b>' + cn(d[1]) + '</b> 纸马克 · 数字长度 <b>' + String(Math.round(d[1])).length + '</b> 位';
+    note.textContent = d[2];
+    chart(c, {x0: 0, x1: 15, y0: 1, y1: 1e13, log: true, padL: 52,
+      yticks: [[1, '1'], [1e3, '千'], [1e6, '百万'], [1e9, '十亿'], [1e12, '万亿']],
+      xticks: [[0, '1914'], [2, '1919'], [5, '1921'], [8, '1922'], [12, '1923.7'], [15, '1923.11']],
+      series: [{pts: D.slice(0, i + 1).map((d, k) => [k, d[1]]), color: cv('--seal'), width: 2.5, dots: true}, {pts: D.slice(i).map((d, k) => [k + i, d[1]]), color: cv('--rule'), width: 1, dash: [3, 4]}],
+      marks: [{x: i, y: d[1], color: cv('--seal'), r: 6}]});
+  }
+  let tm = null;
+  $('#wPlay').addEventListener('click', () => { clearInterval(tm); r.value = 0; draw(); tm = setInterval(() => { if (+r.value >= 15) { clearInterval(tm); return; } r.value = +r.value + 1; draw(); }, 700); });
+  r.addEventListener('input', () => { clearInterval(tm); draw(); });
+  onRedraw(draw);
+})();
+
+/* ---------- 装置 11：央行行长 ---------- */
+(function(){
+  const EV = [
+    {y: 1973, t: '石油危机：中东战争爆发，油价翻了几番。', dpi: 4, dg: -1},
+    {y: 1979, t: '通胀已经成了习惯，工会要求涨工资，商家年年提价，大家都预期明年还会涨。', dpi: 2, dg: 0},
+    {y: 1987, t: '“黑色星期一”：股市一天暴跌两成。', dpi: 0, dg: -1.5},
+    {y: 1999, t: '互联网热潮，股市和投资都很火，人人都在谈“新经济”。', dpi: .5, dg: 2},
+    {y: 2001, t: '互联网泡沫破裂，科技股跌去大半。', dpi: -.5, dg: -2.5},
+    {y: 2008, t: '雷曼兄弟倒闭，全球金融危机。利率降到零也许还不够。', dpi: -1, dg: -5, qe: 1},
+    {y: 2020, t: '疫情来了，整个经济突然停摆。', dpi: -1, dg: -6, qe: 1},
+    {y: 2021, t: '大规模补贴之后，需求回来了，供应链却还堵着。', dpi: 4, dg: 2}
+  ];
+  const rate = $('#cbRate'), ro = $('#cbRateO'), ev = $('#cbEvent'), log = $('#cbLog'), c = $('#cbChart');
+  const bS = $('#cbStart'), bN = $('#cbNext'), bQ = $('#cbQE');
+  let S = null;
+  function draw(){
+    const pi = S ? S.hist.map((h, i) => [i, h[0]]) : [[0, 2]], un = S ? S.hist.map((h, i) => [i, h[1]]) : [[0, 5]];
+    chart(c, {x0: 0, x1: 8, y0: -4, y1: 16, padL: 40,
+      yticks: [[-4, '-4%'], [0, '0%'], [2, '2%'], [5, '5%'], [10, '10%'], [15, '15%']],
+      xticks: [[0, '上任'], ...EV.map((e, i) => [i + 1, String(e.y)])],
+      bands: [{from: 1.5, to: 2.5, color: cv('--seal'), alpha: .12}],
+      legend: [{label: '通胀率', color: cv('--seal')}, {label: '失业率', color: cv('--intag')}],
+      series: [{pts: pi, color: cv('--seal'), width: 2.5, dots: true}, {pts: un, color: cv('--intag'), width: 2.5, dots: true}]});
+  }
+  function stat(){ $('#cbInf').textContent = S.pi.toFixed(1) + '%'; $('#cbUne').textContent = S.u.toFixed(1) + '%'; }
+  function showEv(){ const e = EV[S.k]; ev.innerHTML = '<b>' + e.y + '</b> · ' + e.t; bQ.disabled = !e.qe; S.qe = false; bQ.classList.remove('on'); }
+  rate.addEventListener('input', () => ro.textContent = (+rate.value).toFixed(1) + '%');
+  bS.addEventListener('click', () => {
+    S = {pi: 2, u: 5, k: 0, hist: [[2, 5]], pen: 0, qe: false}; log.innerHTML = ''; rate.disabled = false; bN.disabled = false; bS.disabled = true;
+    $('#cbScore').textContent = '—'; stat(); showEv(); draw();
+  });
+  bQ.addEventListener('click', () => { S.qe = !S.qe; bQ.classList.toggle('on', S.qe); });
+  bN.addEventListener('click', () => {
+    const e = EV[S.k], i = +rate.value;
+    const gap = clamp(-0.6 * ((i - S.pi) - 1.5) + e.dg + (S.qe ? 2 : 0), -8, 6);
+    S.pi = clamp(S.pi + 0.35 * gap + e.dpi + (S.qe ? .3 : 0), -3, 18);
+    S.u = clamp(5 - 0.55 * gap, 2.5, 15);
+    S.hist.push([S.pi, S.u]);
+    const pen = Math.abs(S.pi - 2) + 0.7 * Math.abs(S.u - 5); S.pen += pen;
+    let cm = pen < 1.5 ? '不错，两头都照顾到了。' : S.pi > 6 ? '物价涨得厉害，拿工资和存款的人在骂你。' : S.u > 8 ? '失业的人太多了，街上有人在游行。' : S.pi < 0 ? '物价在跌，听起来是好事，其实大家都不敢花钱了。' : '还过得去，但不算理想。';
+    log.insertAdjacentHTML('afterbegin', '<div><b>' + e.y + '</b> 利率 ' + i.toFixed(1) + '%' + (S.qe ? ' + 量化宽松' : '') + ' → 通胀 ' + S.pi.toFixed(1) + '%，失业 ' + S.u.toFixed(1) + '%。' + cm + '</div>');
+    stat(); draw(); S.k++;
+    if (S.k >= EV.length) {
+      const sc = Math.max(0, Math.round(100 - S.pen * 3)); $('#cbScore').textContent = sc;
+      const v = sc >= 75 ? '钱师爷：“大人，您可以考虑连任了。不过请记住，真实世界里您看不到下一年发生什么。”' : sc >= 45 ? '钱师爷：“大人表现稳健。报纸会批评您，但历史会说您尽力了。”' : '钱师爷：“大人，我们可以说这八年‘充满挑战’。另外，沃尔克当年也被骂得很惨。”';
+      ev.innerHTML = '任期结束，得分 <b>' + sc + '</b>。' + v; rate.disabled = true; bN.disabled = true; bQ.disabled = true; bS.disabled = false; bS.textContent = '再干一任';
+    } else showEv();
+  });
+  onRedraw(draw);
+})();
+
+/* ---------- 装置 12：复利 ---------- */
+(function(){
+  const I = {m: $('#cMon'), n: $('#cYrs'), r: $('#cRet'), f: $('#cInf')}, c = $('#cChart'), rd = $('#cRead');
+  function draw(){
+    const m = +I.m.value, n = +I.n.value, r = +I.r.value / 100, f = +I.f.value / 100;
+    $('#cMonO').textContent = m + ' 元'; $('#cYrsO').textContent = n + ' 年'; $('#cRetO').textContent = I.r.value + '%'; $('#cInfO').textContent = I.f.value + '%';
+    let b = 0; const nom = [[0, 0]], real = [[0, 0]], pr = [[0, 0]];
+    for (let mo = 1; mo <= n * 12; mo++) { b = b * (1 + r / 12) + m; if (mo % 12 === 0) { const y = mo / 12; nom.push([y, b]); real.push([y, b / Math.pow(1 + f, y)]); pr.push([y, m * 12 * y]); } }
+    const mx = Math.max(b, 1) * 1.08, w = v => v >= 1e4 ? (v / 1e4).toFixed(v >= 1e6 ? 0 : 1) + '万' : fmtN(v);
+    chart(c, {x0: 0, x1: n, y0: 0, y1: mx, padL: 52,
+      yticks: [0, .25, .5, .75, 1].map(k => [mx / 1.08 * k, w(mx / 1.08 * k)]),
+      xticks: [[0, '0'], [Math.round(n / 2), Math.round(n / 2) + '年'], [n, n + '年']],
+      legend: [{label: '账面', color: cv('--ink')}, {label: '折合今天', color: cv('--intag')}, {label: '本金', color: cv('--ink-3')}],
+      series: [{pts: pr, color: cv('--ink-3'), width: 1.5, dash: [4, 4]}, {pts: real, color: cv('--intag'), width: 2.5}, {pts: nom, color: cv('--ink'), width: 2.5}]});
+    const P = m * 12 * n, R = b / Math.pow(1 + f, n);
+    rd.innerHTML = n + ' 年后，账面上有 <b>' + fmtN(b) + '</b> 元，你一共存进去 <b>' + fmtN(P) + '</b> 元，其中 <b>' + fmtN(b - P) + '</b> 元是利息生的。扣掉通胀，它大约相当于今天的 <b>' + fmtN(R) + '</b> 元。' +
+      (r > 0 ? '按 72 法则，年收益 ' + I.r.value + '% 时钱大约每 ' + (72 / (r * 100)).toFixed(0) + ' 年翻一倍' : '没有收益，钱只会被通胀慢慢吃掉') + (f > 0 ? '；年通胀 ' + I.f.value + '% 时，床底下的现金大约每 ' + (72 / (f * 100)).toFixed(0) + ' 年购买力减半。' : '。');
+  }
+  Object.values(I).forEach(e => e.addEventListener('input', draw)); onRedraw(draw);
+})();
+
+/* ---------- 装置 13：小测试 ---------- */
+(function(){
+  const Q = [
+    {t: '第一题：你可以选——', a: 'A. 直接拿走 500 元。', b: 'B. 抛一枚硬币：正面拿 1000 元，反面什么也拿不到。'},
+    {t: '第二题：你先拿到了 1000 元。然后你必须选——', a: 'A. 直接退回 500 元。', b: 'B. 抛一枚硬币：正面要退回全部 1000 元，反面一分不用退。'}
+  ];
+  const box = $('#qBox'), rd = $('#qRead'), ans = [null, null];
+  box.innerHTML = Q.map((q, i) => '<p class="ni" style="margin:10px 0 4px">' + q.t + '</p><button class="opt" data-q="' + i + '" data-v="a">' + q.a + '</button><button class="opt" data-q="' + i + '" data-v="b">' + q.b + '</button>').join('');
+  box.addEventListener('click', e => {
+    const b = e.target.closest('.opt'); if (!b) return;
+    const i = +b.dataset.q; ans[i] = b.dataset.v;
+    $$('.opt[data-q="' + i + '"]', box).forEach(x => x.classList.toggle('pick', x === b));
+    if (ans[0] && ans[1]) {
+      const typ = ans[0] === 'a' && ans[1] === 'b';
+      rd.innerHTML = '仔细看：两道题的<b>最终结果完全一样</b>。选 A，你最后都确定拿到 500 元；选 B，你最后都是一半机会拿 1000 元、一半机会拿 0 元。' +
+        (typ ? '<br>你第一题选了稳的 A，第二题选了赌一把的 B。大多数人都和你一样：<b>面对收益时求稳，面对损失时冒险</b>。同一件事，换个说法，人就变了。这就是前景理论。' : ans[0] === ans[1] ? '<br>你两题选得一致，说明你没被说法带着走，这比大多数人强。很多人会第一题选 A、第二题选 B：面对收益求稳，面对损失冒险。' : '<br>你第一题赌、第二题求稳，和大多数人恰好相反。很多人会第一题选 A、第二题选 B：面对收益求稳，面对损失冒险。');
+    }
+  });
+})();
+
+/* ---------- 装置 14：押韵的历史 ---------- */
+(function(){
+  const E = $$('.echo').map((el, k) => { el.id = el.id || 'echo-' + k; const ps = $$('p', el); const PM = {'印钞': '稀释', '剪边': '稀释', '限价': '限价', '泡沫': '泡沫', '挤兑': '挤兑', '赦债': '赦免', '债': '赦免', '白银': '白银之链'}; return {id: el.id, y: +el.dataset.year, pat: PM[el.dataset.pat] || '钱的形态', kind: el.dataset.k, place: el.dataset.place, title: el.dataset.title, ry: ($('.ry', el) || {}).textContent || '', text: ps.slice(1).map(p => p.textContent).join(' ')}; }).sort((a, b) => a.y - b.y);
+  const B = [[-3000, 40], [0, 250], [1000, 380], [1500, 470], [1800, 640], [1950, 780], [2026, 870]];
+  const X = y => { for (let i = 1; i < B.length; i++) if (y <= B[i][0]) { const [a, xa] = B[i - 1], [b, xb] = B[i]; return xa + (y - a) / (b - a) * (xb - xa); } return 870; };
+  const col = {'轮回': 'var(--seal)', '讽刺': 'var(--intag)', '存疑': 'var(--ink-3)', '联系': 'var(--sea)', '生活': 'var(--gold)'};
+  const svg = $('#tlSvg'), card = $('#tlCard'), F = $('#tlF');
+  const pats = [...new Set(E.map(e => e.pat))];
+  let cur = 'all';
+  F.innerHTML = '<button class="btn on" data-f="all">全部 ' + E.length + '</button>' + pats.map(p => '<button class="btn" data-f="' + p + '">' + p + ' ' + E.filter(e => e.pat === p).length + '</button>').join('');
+  function draw(){
+    let h = '<line x1="30" y1="150" x2="880" y2="150" stroke="var(--rule)" stroke-width="1.5"/>';
+    B.forEach(([y, x]) => h += '<line x1="' + x + '" y1="146" x2="' + x + '" y2="154" stroke="var(--ink-3)"/><text x="' + x + '" y="172" text-anchor="middle" font-size="11" fill="var(--ink-3)" font-family="IBM Plex Mono,monospace">' + (y < 0 ? '前' + (-y) : y) + '</text>');
+    const used = [];
+    E.forEach((e, k) => {
+      const x = X(e.y); let lv = 0; while (used.some(u => u.lv === lv && Math.abs(u.x - x) < 15)) lv++; used.push({x, lv});
+      const on = cur === 'all' || e.pat === cur, yy = 132 - lv * 17;
+      h += '<g class="mapnode" data-k="' + k + '" tabindex="0" role="button" aria-label="' + e.title + '" opacity="' + (on ? 1 : .12) + '"><line x1="' + x + '" y1="150" x2="' + x + '" y2="' + yy + '" stroke="var(--rule)"/><circle cx="' + x + '" cy="' + yy + '" r="6.5" fill="' + col[e.kind] + '" stroke="var(--card)" stroke-width="1.5"/></g>';
+    });
+    Object.entries(col).forEach(([k, c], i) => h += '<circle cx="' + (40 + i * 70) + '" cy="14" r="5" fill="' + c + '"/><text x="' + (49 + i * 70) + '" y="18" font-size="12" fill="var(--ink-2)">' + k + '</text>');
+    svg.innerHTML = h;
+    $$('.mapnode', svg).forEach(g => { const f = () => pick(+g.dataset.k); g.addEventListener('click', f); g.addEventListener('keydown', ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); f(); } }); });
+  }
+  function pick(k){
+    const e = E[k];
+    card.innerHTML = '<p class="k">' + e.ry + ' · <span style="color:' + col[e.kind] + '">' + e.kind + '</span> · 韵脚「' + e.pat + '」</p><p><b>' + e.title + '</b></p><p style="font-size:14.5px;color:var(--ink-2)">' + e.text + '</p><p><a href="#' + e.id + '">跳过去 →</a></p>';
+  }
+  F.addEventListener('click', ev => { const b = ev.target.closest('[data-f]'); if (!b) return; cur = b.dataset.f; $$('[data-f]', F).forEach(x => x.classList.toggle('on', x === b)); draw(); const first = E.findIndex(e => cur === 'all' || e.pat === cur); if (first >= 0) pick(first); });
+  draw();
+})();
+
+})();
+
+</script>
+</body>
+</html>

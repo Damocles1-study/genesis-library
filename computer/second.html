@@ -1,0 +1,1229 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="从 1943 年纸上的神经元到 Transformer 与 ChatGPT：机器第二次被创造的八十年。">
+<meta property="og:title" content="第二次创世">
+<meta property="og:description" content="从 1943 年纸上的神经元到 Transformer 与 ChatGPT：机器第二次被创造的八十年。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23161412'/%3E%3Cpath d='M9 22V10h3l4 7 4-7h3v12' stroke='%23e8dcc4' stroke-width='2.4' fill='none'/%3E%3C/svg%3E">
+<title>第二次创世</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;600;700&family=ZCOOL+XiaoWei&display=swap">
+<style>
+
+/* 版式：一本窄栏的编年史。正文是书页，装置是夹在书里的工作台；页眉的年份随阅读推进。 */
+:root{
+  --paper:#e7eae2;      /* 账簿纸：偏冷的灰绿 */
+  --paper-2:#dde1d6;
+  --card:#f3f5ef;       /* 装置台面 */
+  --ink:#1b2430;        /* 蓝黑墨水 */
+  --ink-2:#4e5965;
+  --ink-3:#7b858f;
+  --rule:#c3cabd;
+  --nixie:#cf4e19;      /* 辉光管的橙 */
+  --glow:#ff8d4e;
+  --wire:#2c6a6e;       /* 铜绿 */
+  --off:#c6ccc1;
+  --thread-a:#2b3a4a;
+  --thread-b:#c9b98c;
+  --m-wood:#8a6a48; --m-brass:#a9862f; --m-relay:#9a5b34; --m-paper:#bfae7c;
+  --m-tube:#d8742a; --m-si:#56708a; --m-sym:#1b2430; --m-crt:#3a8f57; --m-net:#a5603a; --m-rule:#6f7f2f;
+  --f-display:"ZCOOL XiaoWei","Songti SC","STSong","Noto Serif SC",serif;
+  --f-body:"Noto Serif SC","Songti SC","Source Han Serif SC","STSong",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#111518; --paper-2:#161b1f; --card:#192024; --ink:#e0e5dd; --ink-2:#a3ada6; --ink-3:#717c77;
+  --rule:#2b3439; --nixie:#ff7a3e; --glow:#ffb07a; --wire:#67b6b1; --off:#323b41;
+  --thread-a:#9fb4c8; --thread-b:#5a5136;
+  --m-wood:#b48e66; --m-brass:#d4b04f; --m-relay:#cc8656; --m-paper:#d9c890;
+  --m-tube:#ff9a4a; --m-si:#8eaacb; --m-sym:#e0e5dd; --m-crt:#66cc88; --m-net:#d88a5c; --m-rule:#a9bd52;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#111518; --paper-2:#161b1f; --card:#192024; --ink:#e0e5dd; --ink-2:#a3ada6; --ink-3:#717c77;
+  --rule:#2b3439; --nixie:#ff7a3e; --glow:#ffb07a; --wire:#67b6b1; --off:#323b41;
+  --thread-a:#9fb4c8; --thread-b:#5a5136;
+  --m-wood:#b48e66; --m-brass:#d4b04f; --m-relay:#cc8656; --m-paper:#d9c890;
+  --m-tube:#ff9a4a; --m-si:#8eaacb; --m-sym:#e0e5dd; --m-crt:#66cc88; --m-net:#d88a5c; --m-rule:#a9bd52;
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.9;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+.g{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit;text-decoration-color:var(--nixie);text-underline-offset:3px}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--nixie);outline-offset:2px}
+
+/* 页眉 */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+.bar-in{max-width:56rem;margin:0 auto;display:flex;align-items:center;gap:14px;padding-block:8px}
+.bar .name{font-family:var(--f-display);font-size:19px;letter-spacing:.05em;white-space:nowrap}
+.bar .vol{margin-left:auto;font-size:13px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.bar .yr{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:15px;color:var(--nixie);min-width:5.4em;text-align:right;letter-spacing:.04em}
+.bar .yr small{font-size:11px;color:var(--ink-3);margin-right:4px}
+
+main{display:block}
+.col{max-width:38rem;margin-inline:auto}
+.wide{max-width:54rem;margin-inline:auto}
+.col p{margin:0 0 1.05em;text-indent:2em}
+.col p.ni{text-indent:0}
+h2,h3{text-wrap:balance}
+h3{font-family:var(--f-display);font-weight:400;font-size:24px;line-height:1.4;margin:2.2em 0 .7em;letter-spacing:.03em}
+h3 .y{font-family:var(--f-mono);font-size:13px;color:var(--ink-3);margin-left:10px;letter-spacing:0}
+.mono{font-family:var(--f-mono)}
+em{font-style:normal;background:linear-gradient(transparent 62%,color-mix(in srgb,var(--nixie) 22%,transparent) 62%)}
+blockquote{margin:1.4em 0;padding:.2em 0 .2em 1.2em;border-left:1px solid var(--ink-3);color:var(--ink-2)}
+blockquote p{text-indent:0!important;margin:0 0 .4em}
+blockquote cite{font-style:normal;font-size:14px;color:var(--ink-3)}
+
+/* 开篇 */
+.hero{padding-block:56px 30px}
+.hero .eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;color:var(--ink-3);text-transform:uppercase}
+.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(56px,13vw,124px);line-height:1;margin:.25em 0 .3em;letter-spacing:.06em}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:40px;align-items:center}
+.hero-grid p{margin:0 0 1em;font-size:18px}
+.switchbox{display:flex;flex-direction:column;align-items:center;gap:16px;padding:26px 16px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.switchrow{display:flex;align-items:center;gap:26px}
+.bigswitch{width:64px;height:112px;border-radius:10px;border:2px solid var(--ink);background:var(--paper-2);position:relative;cursor:pointer;padding:0}
+.bigswitch .knob{position:absolute;left:8px;right:8px;height:44px;bottom:8px;background:var(--ink);border-radius:5px;transition:bottom .18s ease}
+.bigswitch[aria-pressed="true"] .knob{bottom:56px}
+.bigswitch::after{content:"通";position:absolute;top:-24px;left:0;right:0;text-align:center;font-size:12px;color:var(--ink-3)}
+.bigswitch::before{content:"断";position:absolute;bottom:-24px;left:0;right:0;text-align:center;font-size:12px;color:var(--ink-3)}
+.lamp{width:56px;height:56px;border-radius:50%;background:var(--off);border:2px solid var(--ink);transition:background .15s,box-shadow .25s}
+.lamp.on{background:var(--glow);box-shadow:0 0 0 6px color-mix(in srgb,var(--glow) 25%,transparent),0 0 36px var(--glow)}
+.bitbig{font-family:var(--f-mono);font-size:56px;line-height:1;width:1ch;color:var(--ink)}
+.switchbox .cap{font-size:14px;color:var(--ink-2);text-align:center}
+
+/* 三股绳 */
+.strands{margin-block:34px 10px}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.strands svg{display:block;width:100%;min-width:660px;height:auto}
+.figcap{font-size:14px;color:var(--ink-2);margin-top:8px}
+
+/* 目录 */
+.toc{list-style:none;margin:30px 0 0;padding:0;border-top:1px solid var(--rule)}
+.toc li{border-bottom:1px solid var(--rule)}
+.toc a{display:grid;grid-template-columns:4.8em minmax(0,1fr) auto;gap:12px;align-items:baseline;padding:10px 0;text-decoration:none}
+.toc .n{font-family:var(--f-display);font-size:20px}
+.toc .t{min-width:0}
+.toc .t small{color:var(--ink-3);margin-left:8px;font-size:13px}
+.toc .r{font-family:var(--f-mono);font-size:12px;color:var(--ink-3);white-space:nowrap}
+.toc a:hover .n{color:var(--nixie)}
+
+/* 卷首 */
+.vol{padding-block:40px 20px}
+.volhead{max-width:54rem;margin:30px auto 26px;padding-top:26px;border-top:2px solid var(--ink);display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 26px;align-items:end}
+.volhead .num{font-family:var(--f-display);font-size:clamp(48px,9vw,84px);line-height:1;grid-row:span 2}
+.volhead h2{font-family:var(--f-display);font-weight:400;font-size:clamp(26px,4.4vw,38px);margin:0;line-height:1.25;letter-spacing:.04em}
+.volhead .meta{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;font-size:13px;color:var(--ink-2)}
+.volhead .range{font-family:var(--f-mono)}
+.mat{display:inline-flex;align-items:center;gap:6px}
+.mat i{width:12px;height:12px;display:inline-block;background:var(--c);border:1px solid var(--ink)}
+
+/* 当时的反应 */
+.react{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;margin:26px 0;padding:14px 0;border-top:1px dashed var(--rule);border-bottom:1px dashed var(--rule)}
+.stamp{font-family:var(--f-display);font-size:18px;color:var(--sc,var(--nixie));border:2px solid var(--sc,var(--nixie));padding:4px 6px;line-height:1.1;height:max-content;transform:rotate(-6deg);margin-top:6px;writing-mode:vertical-rl;letter-spacing:.2em}
+.react[data-tag="冷遇"]{--sc:var(--ink-3)}
+.react[data-tag="误判"]{--sc:var(--wire)}
+.react[data-tag="传说"] .stamp{border-style:dashed;--sc:var(--ink-2)}
+.react[data-tag="迟到"]{--sc:var(--m-brass)}
+.react[data-tag="争论"]{--sc:var(--m-si)}
+.react p{margin:0 0 .4em;text-indent:0!important;font-size:15.5px;line-height:1.8}
+.react .rh{font-weight:600}
+.react .ry{font-family:var(--f-mono);font-weight:400;color:var(--ink-3);margin-right:8px;font-size:13px}
+
+/* 装置 */
+.fig{background:var(--card);border:1px solid var(--rule);padding:20px;margin-block:30px}
+.fig-label{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.12em;color:var(--ink-3);text-transform:uppercase;margin-bottom:4px}
+.fig h4{font-family:var(--f-display);font-weight:400;font-size:22px;margin:0 0 4px}
+.fig .how{font-size:14.5px;color:var(--ink-2);margin:0 0 16px;line-height:1.75}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btn{border:1px solid var(--ink);background:transparent;padding:5px 12px;font-size:14px;cursor:pointer;line-height:1.5}
+.btn:hover{background:var(--paper-2)}
+.btn.pri{background:var(--ink);color:var(--paper)}
+.btn.pri:hover{background:var(--ink-2)}
+.btn:disabled{opacity:.4;cursor:default}
+.readout{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:14px;color:var(--ink-2)}
+.readout b{color:var(--ink);font-weight:500}
+
+/* 卦 */
+.hexa{display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px 36px;align-items:center}
+.hexlines{display:flex;flex-direction:column;gap:9px;width:150px}
+.hl{height:20px;display:flex;gap:18px;cursor:pointer;background:none;border:0;padding:0;width:100%}
+.hl span{flex:1;background:var(--ink)}
+.hl.yang span:nth-child(2){display:none}
+.hl:hover span{background:var(--nixie)}
+.hexinfo .big{font-family:var(--f-mono);font-size:34px;letter-spacing:.12em;line-height:1.2}
+.hexinfo .big .eq{color:var(--ink-3);letter-spacing:0;font-size:22px;margin:0 8px}
+.hexinfo .dec{color:var(--nixie)}
+.hexinfo .tri{font-size:15px;color:var(--ink-2);margin:6px 0 14px}
+
+/* 织机 */
+.loom{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px}
+.deck{display:flex;flex-direction:column;gap:3px}
+.card{display:grid;grid-template-columns:2.2em repeat(16,minmax(0,1fr));gap:2px;align-items:center;background:var(--m-paper);padding:3px 4px;border-radius:2px}
+.card .cn{font-family:var(--f-mono);font-size:10px;color:#3a3020}
+.hole{aspect-ratio:1;border-radius:50%;border:0;padding:0;background:color-mix(in srgb,var(--m-paper) 70%,#000 12%);cursor:pointer;min-width:0}
+.hole.on{background:#1b1b18}
+.fabric{width:100%;aspect-ratio:2/1;display:block;border:1px solid var(--rule)}
+.loom .side h5{font-weight:600;font-size:14px;margin:0 0 6px;color:var(--ink-2)}
+
+/* 差分机 */
+.engine{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px}
+.cols{display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap}
+.ecol{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 8px;border:1px solid var(--rule);background:var(--paper);transition:border-color .2s,box-shadow .2s}
+.ecol.hot{border-color:var(--nixie);box-shadow:0 0 0 2px color-mix(in srgb,var(--nixie) 30%,transparent)}
+.ecol .lab{font-size:12.5px;color:var(--ink-2);text-align:center;line-height:1.4}
+.drums{display:flex;gap:2px}
+.drum{width:30px;height:42px;overflow:hidden;background:var(--m-brass);border:1px solid var(--ink);position:relative}
+.drum .strip{position:absolute;left:0;right:0;top:0;transition:transform .35s cubic-bezier(.3,.7,.2,1)}
+.drum .strip span{display:block;height:42px;line-height:42px;text-align:center;font-family:var(--f-mono);font-size:22px;color:#1d1608}
+.plus{font-family:var(--f-mono);color:var(--ink-3);align-self:center}
+.crank{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.printout{font-family:var(--f-mono);font-size:13px;background:var(--paper);border:1px solid var(--rule);height:236px;overflow-y:auto;padding:8px 12px;margin:0;list-style:none}
+.printout li{display:grid;grid-template-columns:3.5em 4.5em minmax(0,1fr);gap:6px;border-bottom:1px dotted var(--rule);font-variant-numeric:tabular-nums}
+.printout li .p{color:var(--ink-3)}
+.printout li.np .p{color:var(--nixie)}
+.printout li.new{animation:flash .9s}
+@keyframes flash{from{background:color-mix(in srgb,var(--glow) 40%,transparent)}to{background:transparent}}
+
+/* 加法器 */
+.adder{display:grid;grid-template-columns:62px 26px 62px 26px 62px 26px 62px 26px 62px;justify-content:center;row-gap:10px;min-width:400px}
+.ac{display:flex;flex-direction:column;align-items:center;gap:10px}
+.ac .bl{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);height:30px;line-height:1.35;text-align:center}
+.sw{width:40px;height:40px;border:2px solid var(--ink);background:var(--paper);font-family:var(--f-mono);font-size:18px;cursor:pointer;padding:0}
+.sw.on{background:var(--ink);color:var(--paper)}
+.sw.ghost{visibility:hidden}
+.fa{width:58px;height:46px;border:1px solid var(--ink-2);display:grid;place-items:center;font-size:11px;color:var(--ink-2);background:var(--paper);line-height:1.2;text-align:center}
+.fa.ghost{border-style:dashed;color:var(--ink-3)}
+.sl{width:30px;height:30px;border-radius:50%;background:var(--off);border:2px solid var(--ink);display:grid;place-items:center;font-family:var(--f-mono);font-size:13px;color:var(--ink-3);transition:background .15s,box-shadow .2s}
+.sl.on{background:var(--glow);color:#3a1400;box-shadow:0 0 14px var(--glow)}
+.sl.wait{background:transparent;border-style:dotted}
+.cw{display:flex;flex-direction:column;align-items:center;justify-content:center}
+.cw .spacer{height:30px}
+.cw .slot{height:40px}
+.cw .wire{height:46px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-family:var(--f-mono);font-size:11px;color:var(--ink-3)}
+.cw .dot{width:14px;height:14px;border-radius:50%;background:var(--off);border:1.5px solid var(--ink);transition:background .15s,box-shadow .2s}
+.cw .dot.on{background:var(--glow);box-shadow:0 0 10px var(--glow)}
+.adder-legend{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px 20px;margin-top:16px}
+
+/* 图灵机 */
+.tape{display:flex;gap:3px;justify-content:center;margin:26px 0 10px;min-width:max-content;padding-top:22px}
+.cell{width:38px;height:44px;border:1px solid var(--ink);background:var(--paper);display:grid;place-items:center;font-family:var(--f-mono);font-size:20px;position:relative}
+.cell.head{background:color-mix(in srgb,var(--glow) 30%,var(--paper));border-width:2px}
+.cell.head::before{content:"▼";position:absolute;top:-22px;font-size:13px;color:var(--nixie)}
+.cell .ix{position:absolute;bottom:-17px;font-size:9.5px;color:var(--ink-3)}
+.tm{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;margin-top:22px}
+table.rules{border-collapse:collapse;font-family:var(--f-mono);font-size:13px;width:100%}
+table.rules th,table.rules td{border-bottom:1px solid var(--rule);padding:4px 6px;text-align:left;white-space:nowrap}
+table.rules th{font-family:var(--f-body);font-weight:600;color:var(--ink-2);font-size:12.5px}
+table.rules tr.cur td{background:color-mix(in srgb,var(--glow) 30%,transparent)}
+.tm-ctl input{font-family:var(--f-mono);font-size:15px;width:8em;padding:4px 8px;border:1px solid var(--ink);background:var(--paper);color:var(--ink)}
+
+/* 存储程序机 */
+.mach{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:22px}
+.mem{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.mc{border:1px solid var(--rule);background:var(--paper);padding:5px 6px 6px;transition:border-color .15s,background .3s}
+.mc .ad{font-family:var(--f-mono);font-size:10.5px;color:var(--ink-3);display:flex;justify-content:space-between}
+.mc input{width:100%;font-family:var(--f-mono);font-size:19px;border:0;background:transparent;color:var(--ink);padding:0;font-variant-numeric:tabular-nums}
+.mc .dc{font-family:var(--f-mono);font-size:10.5px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mc.pc{border:2px solid var(--nixie);padding:4px 5px 5px}
+.mc.w{background:color-mix(in srgb,var(--glow) 32%,var(--paper))}
+.regs{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-family:var(--f-mono);font-size:14px;align-items:baseline;margin-bottom:14px}
+.regs dt{color:var(--ink-3);font-size:12px}
+.regs dd{margin:0;font-size:22px;font-variant-numeric:tabular-nums}
+.isa{font-family:var(--f-mono);font-size:12px;color:var(--ink-2);line-height:1.7;margin-top:14px;border-top:1px solid var(--rule);padding-top:10px}
+
+/* 摩尔 */
+.moore svg{display:block;width:100%;min-width:560px;height:auto}
+.moore .pt{cursor:pointer}
+.moore .pt:focus{outline:none}
+.moore .pt:focus circle:first-child,.moore .pt:hover circle:first-child{r:7}
+.mread{min-height:2.6em;margin-top:8px}
+
+/* 塔 */
+.tower{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
+.layers{display:flex;flex-direction:column-reverse;gap:4px;align-items:center}
+.layer{width:var(--w);border:1px solid var(--ink);background:var(--paper);padding:6px 10px;cursor:pointer;display:flex;justify-content:space-between;gap:10px;font-size:14px;text-align:left}
+.layer .ly{font-family:var(--f-mono);font-size:11px;color:var(--ink-3)}
+.layer[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.layer[aria-pressed="true"] .ly{color:var(--paper);opacity:.7}
+.ldet h5{font-family:var(--f-display);font-weight:400;font-size:24px;margin:0 0 8px}
+.ldet p{margin:0 0 .8em;font-size:15px;line-height:1.8}
+.ldet .k{font-size:12px;color:var(--ink-3);font-family:var(--f-mono);letter-spacing:.08em}
+
+/* LO */
+.lo svg{display:block;width:100%;height:auto;max-height:220px}
+.lolog{font-family:var(--f-mono);font-size:13px;list-style:none;margin:10px 0 0;padding:0;min-height:8.5em}
+.lolog li{padding:2px 0;border-bottom:1px dotted var(--rule)}
+.lolog li.bad{color:var(--nixie)}
+
+/* 生命 */
+.life canvas{display:block;width:100%;border:1px solid var(--rule);background:var(--paper);touch-action:none;cursor:crosshair}
+
+/* 附录 */
+.rtab-wrap{overflow-x:auto}
+table.rtab{border-collapse:collapse;width:100%;font-size:14.5px;min-width:520px}
+table.rtab th,table.rtab td{border-bottom:1px solid var(--rule);padding:7px 8px;text-align:left;vertical-align:top}
+table.rtab th{font-weight:600;color:var(--ink-2);font-size:13px}
+table.rtab td.y{font-family:var(--f-mono);white-space:nowrap;color:var(--ink-2)}
+table.rtab td.tg{white-space:nowrap}
+table.rtab td.tg span{font-family:var(--f-display);border:1.5px solid currentColor;padding:0 6px}
+.end{padding-block:40px 70px}
+.end .closing{font-family:var(--f-display);font-size:clamp(24px,4vw,32px);line-height:1.6;margin:1.6em 0;text-align:left}
+footer{border-top:1px solid var(--rule);padding-block:24px 50px;color:var(--ink-3);font-size:13px}
+footer .col p{text-indent:0}
+
+/* 间章与卷十一、十二 */
+.react[data-tag="反噬"]{--sc:var(--m-relay)}
+#btnS[aria-pressed="true"],#btnR[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+#btnS,#btnR{touch-action:none;user-select:none;-webkit-user-select:none}
+.zoomw{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:24px;align-items:start}
+.zlist{display:flex;flex-direction:column;gap:4px}
+.zl{display:flex;gap:10px;align-items:center;text-align:left;border:1px solid var(--ink);background:var(--paper);padding:6px 10px;cursor:pointer;font-size:15px;margin-left:calc(var(--d) * 10px)}
+.zl .zn{font-family:var(--f-mono);font-size:11px;color:var(--ink-3)}
+.zl[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.zl[aria-pressed="true"] .zn{color:var(--paper)}
+.zdet h5{font-family:var(--f-display);font-weight:400;font-size:24px;margin:0 0 8px}
+.zdet p{font-size:15px;line-height:1.8;margin:0 0 12px}
+.zdet .k{font-family:var(--f-mono);font-size:12px;color:var(--ink-3)}
+table.knew td:first-child{white-space:nowrap;font-weight:600}
+.seg{display:inline-flex;border:1px solid var(--ink)}
+.seg button{border:0;background:transparent;padding:4px 12px;font-size:14px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.chart svg{display:block;width:100%;height:auto;min-width:540px}
+.rng{display:grid;grid-template-columns:5em minmax(0,1fr) 4.2em;gap:10px;align-items:center;font-size:14px;margin:8px 0}
+.rng input{width:100%;accent-color:var(--nixie)}
+.rng output{font-family:var(--f-mono);font-variant-numeric:tabular-nums;text-align:right}
+.atomread{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;margin:6px 0 10px;font-size:15px}
+.atomread .atn{font-family:var(--f-mono);font-size:28px;color:var(--nixie)}
+.atomcv{display:block;width:100%;border:1px solid var(--rule)}
+.ebars{display:flex;flex-direction:column;gap:8px}
+.eb{display:grid;grid-template-columns:9em minmax(0,1fr) 5em;gap:10px;align-items:center;font-size:14px}
+.et{height:16px;background:var(--paper);border:1px solid var(--rule)}
+.ef{height:100%;background:var(--wire)}
+.ef.mv{background:var(--nixie)}
+.ev{font-family:var(--f-mono);font-size:13px;text-align:right;color:var(--ink-2)}
+.amd{display:flex;flex-direction:column;gap:8px;margin-top:10px;max-width:36rem}
+.amrow{display:grid;grid-template-columns:4em minmax(0,1fr) 6.5em;gap:10px;align-items:center;font-size:14px}
+.amrow b{font-family:var(--f-mono);font-weight:500;text-align:right}
+.amtrack{height:18px;border:1px solid var(--rule);background:var(--paper)}
+.amfill{height:100%;background:var(--nixie);transition:width .2s}
+.amcap{height:100%;background:var(--ink-3);opacity:.5;transition:width .2s}
+.nextvol{margin-top:22px;padding:18px 20px;border:2px solid var(--ink);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 20px;align-items:center;text-decoration:none}
+.nextvol:hover{background:var(--paper-2)}
+.nextvol .nv1{font-family:var(--f-mono);font-size:12px;color:var(--ink-3);letter-spacing:.1em}
+.nextvol .nv2{font-family:var(--f-display);font-size:28px;line-height:1.2}
+.nextvol .nv3{font-size:14px;color:var(--ink-2);text-indent:0}
+.nextvol .arr{font-size:30px;grid-row:span 3}
+@media (max-width:760px){.zoomw{grid-template-columns:minmax(0,1fr)}.zl{margin-left:0}.eb{grid-template-columns:7.2em minmax(0,1fr) 4.4em;font-size:13px}}
+
+@media (max-width:760px){
+  body{font-size:16.5px}
+  .hero-grid,.loom,.engine,.tm,.mach,.tower,.hexa{grid-template-columns:minmax(0,1fr)}
+  .hero{padding-block:34px 20px}
+  .fig{padding:16px 14px}
+  .bar .name{font-size:16px}
+  .toc a{grid-template-columns:3.6em minmax(0,1fr)}
+  .toc .r{grid-column:2}
+  .layers{align-items:stretch}
+  .layer{width:100%!important}
+  .hexlines{width:130px}
+}
+@media (max-width:520px){
+  .adder{grid-template-columns:48px 14px 48px 14px 48px 14px 48px 14px 48px;min-width:0}
+  .sw{width:36px;height:36px;font-size:16px}
+  .cw .slot{height:36px}
+  .fa{width:46px;font-size:10px}
+  .cw .wire span{display:none}
+}
+@media (max-width:420px){.bar .vol{display:none}.bar .yr{margin-left:auto}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
+
+/* —— 下卷新增 —— */
+.same{margin:22px 0;padding:10px 0 10px 14px;border-left:3px double var(--rule);font-size:14.5px;line-height:1.8;color:var(--ink-2)}
+.same b{font-family:var(--f-mono);font-weight:500;color:var(--ink-3);margin-right:8px;font-size:12px;letter-spacing:.1em}
+.cv{display:block;width:100%;border:1px solid var(--rule);background:var(--paper);touch-action:manipulation}
+.two{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:22px;align-items:start}
+.seg{display:inline-flex;border:1px solid var(--ink)}
+.seg button{border:0;background:transparent;padding:4px 12px;font-size:14px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.rng{display:grid;grid-template-columns:5.5em minmax(0,1fr) 3.4em;gap:10px;align-items:center;font-size:14px;margin:8px 0}
+.rng input{width:100%;accent-color:var(--nixie)}
+.rng output{font-family:var(--f-mono);font-variant-numeric:tabular-nums;text-align:right}
+/* 神经元 */
+.neuron{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px 28px;align-items:center}
+.nin{display:flex;flex-direction:column;gap:12px}
+.truth{border-collapse:collapse;font-family:var(--f-mono);font-size:13.5px}
+.truth td,.truth th{border-bottom:1px solid var(--rule);padding:3px 12px;text-align:center}
+.truth th{font-family:var(--f-body);font-weight:600;font-size:12.5px;color:var(--ink-2)}
+.truth td.o1{color:var(--nixie);font-weight:500}
+.verdict{font-family:var(--f-display);font-size:24px;margin:6px 0}
+/* 注意力 */
+.toks{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0}
+.tok{border:1px solid var(--ink);padding:6px 10px;font-size:18px;cursor:pointer;background:color-mix(in srgb,var(--nixie) calc(var(--a,0) * 100%),var(--paper));color:var(--ink);min-width:2.2em;text-align:center;transition:background .25s}
+.tok.sel{outline:2px solid var(--ink);outline-offset:2px}
+.tok.hot{color:#2a0e00}
+.abars{display:grid;grid-template-columns:3em minmax(0,1fr) 3em;gap:4px 10px;font-size:13.5px;align-items:center;max-width:30rem}
+.abars .bar{height:10px;background:var(--nixie);transition:width .3s}
+.abars .v{font-family:var(--f-mono);color:var(--ink-3);text-align:right}
+/* 接龙 */
+.gen-out{font-size:20px;line-height:1.8;min-height:3.6em;padding:10px 12px;background:var(--paper);border:1px solid var(--rule);word-break:break-all}
+.gen-out .last{background:color-mix(in srgb,var(--glow) 45%,transparent)}
+.cand{display:grid;grid-template-columns:2em minmax(0,1fr) 3.6em;gap:4px 10px;align-items:center;font-size:15px;margin-top:12px;max-width:26rem}
+.cand .bar{height:12px;background:var(--wire)}
+.cand .v{font-family:var(--f-mono);font-size:12.5px;color:var(--ink-3);text-align:right}
+/* 回路 */
+.loopw{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:20px;align-items:center}
+.loopw svg{width:100%;height:auto;display:block}
+.loopw .node{cursor:pointer}
+.loopw .node:focus{outline:none}
+.loopw .node:focus rect,.loopw .node:hover rect{stroke-width:2.5}
+.loopw .node.on rect{fill:var(--ink)}
+.loopw .node.on text{fill:var(--paper)}
+.ltxt h5{font-family:var(--f-display);font-weight:400;font-size:22px;margin:0 0 6px}
+.ltxt p{margin:0 0 .7em;font-size:15px;line-height:1.8}
+.ltxt .k{font-family:var(--f-mono);font-size:12px;color:var(--ink-3)}
+.chart svg{display:block;width:100%;height:auto;min-width:540px}
+.chart .pt{cursor:pointer}.chart .pt:focus{outline:none}.chart .pt:hover circle:first-child,.chart .pt:focus circle:first-child{r:7}
+.backlink{display:inline-block;margin-top:10px;border:1px solid var(--ink);padding:8px 14px;text-decoration:none;font-size:15px}
+.backlink:hover{background:var(--paper-2)}
+@media (max-width:760px){.two,.neuron,.loopw{grid-template-columns:minmax(0,1fr)}.tok{font-size:16px;padding:5px 8px}}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-in g">
+    <a class="homelink" href="../" title="回创世书房" style="text-decoration:none;font-size:13px;color:var(--ink-3);white-space:nowrap;border:1px solid var(--rule);border-radius:999px;padding:1px 9px">书房</a>
+    <span class="name">第二次创世</span>
+    <span class="vol" id="barVol">序</span>
+    <span class="yr" id="barYr" aria-live="off">2026</span>
+  </div>
+</header>
+
+<main class="g">
+
+<section class="hero" data-vol="序">
+  <div class="wide" data-y="2026">
+    <div class="eyebrow">计算机创世记 · 下卷</div>
+    <h1>第二次创世</h1>
+    <div class="two">
+      <div>
+        <p>上卷讲的是第一次创世：人把规则一条条写下来，机器一丝不苟地照做。三百多年里，几乎所有程序都是这么来的。</p>
+        <p>可有些事情写不成规则。想让机器认出一只猫？你先得说清楚什么是猫：两只尖耳朵，有胡子，四条腿……然后你会发现，侧着睡的猫、只露出半张脸的猫、炸了毛的猫、缩在纸箱里只剩一截尾巴的猫，统统不符合你的规则。而你三岁的时候就能一眼认出它们，却从来没人给过你一条规则。</p>
+        <p>第二次创世换了一种做法：不写规则，给例子。给机器看一百万张猫的照片，让它自己长出“猫是什么”。长出来的规则藏在几十亿个数里，谁都读不懂，包括造它的人。</p>
+        <p>这一卷讲这件事是怎么发生的。它前后花了八十年，中间死过两次。</p>
+      </div>
+      <div>
+        <canvas class="cv" id="pcCv" aria-label="感知机学习演示"></canvas>
+        <p class="how" style="margin:10px 0 8px">橙点和蓝点是“例子”，那条直线是机器自己的“规则”。按「学习」，它每看错一个点，就把线挪一点。点画布可以添加新例子。</p>
+        <div class="btns" style="align-items:center">
+          <button class="btn pri" id="pcLearn">学习</button>
+          <button class="btn" id="pcReset">打乱重来</button>
+          <span class="seg" role="group" aria-label="新点的颜色"><button id="pcO" aria-pressed="true">加橙点</button><button id="pcB" aria-pressed="false">加蓝点</button></span>
+        </div>
+        <p class="readout" id="pcRead" style="margin-top:8px"></p>
+      </div>
+    </div>
+  </div>
+  <div class="col" style="margin-top:34px">
+    <ol class="toc">
+      <li><a href="#d1"><span class="n">卷一</span><span class="t">神经元<small>麦卡洛克、皮茨、达特茅斯</small></span><span class="r">1943—1956</span></a></li>
+      <li><a href="#d2"><span class="n">卷二</span><span class="t">感知机<small>罗森布拉特、异或、第一次寒冬</small></span><span class="r">1957—1980</span></a></li>
+      <li><a href="#d3"><span class="n">卷三</span><span class="t">规则的帝国<small>专家系统、第五代、深蓝</small></span><span class="r">1980—1997</span></a></li>
+      <li><a href="#d4"><span class="n">卷四</span><span class="t">下山<small>反向传播、杨立昆、ImageNet</small></span><span class="r">1986—2011</span></a></li>
+      <li><a href="#d5"><span class="n">卷五</span><span class="t">2012<small>AlexNet、拍卖、AlphaGo</small></span><span class="r">2012—2016</span></a></li>
+      <li><a href="#d6"><span class="n">卷六</span><span class="t">词变成点<small>word2vec</small></span><span class="r">2013</span></a></li>
+      <li><a href="#d7"><span class="n">卷七</span><span class="t">注意力<small>Transformer</small></span><span class="r">2017</span></a></li>
+      <li><a href="#d8"><span class="n">卷八</span><span class="t">接龙<small>GPT、缩放定律、ChatGPT</small></span><span class="r">2018—2022</span></a></li>
+      <li><a href="#d9"><span class="n">卷九</span><span class="t">反补<small>AI 回头改造计算机</small></span><span class="r">2016—</span></a></li>
+      <li><a href="#d10"><span class="n">卷十</span><span class="t">卡在哪<small>数据、电、搬运、幻觉</small></span><span class="r">今天</span></a></li>
+      <li><a href="#dend"><span class="n">尾声</span><span class="t">第三次？</span><span class="r"></span></a></li>
+    </ol>
+    <p class="ni" style="font-size:14px;color:var(--ink-3);margin-top:14px">读完约五十分钟，夹着十个装置。每卷末尾的灰框“同一时期”写的是那几年世界上正在发生什么，很多事情要放在一起看才说得通。</p>
+  </div>
+</section>
+
+<!-- 卷一 -->
+<section class="vol" id="d1" data-vol="卷一 · 神经元">
+  <div class="volhead" data-y="1943">
+    <div class="num">卷一</div><h2>神经元</h2>
+    <div class="meta"><span class="range">1943—1956</span><span class="mat" style="--c:var(--m-wood)"><i></i>载体：纸上的神经</span></div>
+  </div>
+  <div class="col">
+    <h3 data-y="1943">一个四十五岁，一个十九岁<span class="y">1943 · 芝加哥</span></h3>
+    <p>神经生理学家沃伦·麦卡洛克四十五岁。他的合作者沃尔特·皮茨十九岁，没有学位，也没有住处。据说皮茨十二岁时躲在图书馆里三天读完了罗素的《数学原理》，写信给罗素指出书里几处问题，罗素回信邀请他去剑桥读研究生。那年他十二岁。十五岁，他离家出走，在芝加哥大学附近流浪，溜进教室旁听。麦卡洛克把他接回自己家住。</p>
+    <p>两人合写了一篇论文。他们把脑子里的神经元简化成一个小开关：从别的神经元收到的信号，各自乘上一个“权重”再加起来，超过某个门槛就“发火”，输出 1；否则输出 0。他们证明，这样的神经元连成网，能算出任何逻辑式。</p>
+    <p>换句话说，大脑也许就是一台由开关组成的机器。两年后，冯·诺依曼写那份《EDVAC 报告书初稿》（上卷卷五）时，描述计算机部件用的正是麦卡洛克和皮茨的神经元符号。两个创世，从一开始就缠在一起。</p>
+  </div>
+  <div class="wide fig">
+    <div class="fig-label">装置 1 / 一个神经元</div>
+    <h4>同一个神经元，拧拧旋钮就变成不同的逻辑</h4>
+    <p class="how">两个输入各乘一个权重，加起来跟门槛比。调权重和门槛，看右边的真值表变成了什么。试试能不能调出“异或”（输出 0 1 1 0）。调不出来的话，别急，那正是卷二的故事。</p>
+    <div class="neuron">
+      <div class="nin">
+        <div class="rng"><label for="nw1">权重 w₁</label><input type="range" id="nw1" min="-2" max="2" step="0.5" value="1"><output id="nw1o">1</output></div>
+        <div class="rng"><label for="nw2">权重 w₂</label><input type="range" id="nw2" min="-2" max="2" step="0.5" value="1"><output id="nw2o">1</output></div>
+        <div class="rng"><label for="nth">门槛 θ</label><input type="range" id="nth" min="-2" max="3" step="0.5" value="2"><output id="ntho">2</output></div>
+        <div class="btns"><button class="btn" data-np="1,1,2">与</button><button class="btn" data-np="1,1,1">或</button><button class="btn" data-np="-1,-1,-0.5">与非</button></div>
+      </div>
+      <div>
+        <div class="verdict" id="nVerdict">与</div>
+        <table class="truth"><thead><tr><th>x₁</th><th>x₂</th><th>加权和</th><th>输出</th></tr></thead><tbody id="nTruth"></tbody></table>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <p>麦卡洛克和皮茨的神经元是死的：权重是人定好的。1949 年，心理学家唐纳德·赫布提出了一个猜想：两个神经元如果经常同时发火，它们之间的连接就会变强。这句话让“学习”第一次有了能写成规则的样子：<em>学习就是调整连接的强弱</em>。后面七十年的所有 AI，本质上都在做这一件事。</p>
+    <p>皮茨后来去了麻省理工，跟着“控制论之父”维纳工作，被同行看作天才中的天才。1952 年，维纳突然和他断绝一切往来，据说原因是维纳的妻子编造了一个谎言，和学问毫无关系。皮茨烧掉了自己写了多年的博士论文，此后再没发表过重要的东西，靠酒精度日。1969 年他去世，四十六岁。四个月后，麦卡洛克也去世了。</p>
+
+    <h3 data-y="1956">一个夏天，十个人<span class="y">1955 — 1956 · 达特茅斯</span></h3>
+    <p>1955 年夏天，二十八岁的数学家约翰·麦卡锡，联合明斯基、罗切斯特，还有香农（对，就是上卷卷三那个香农），向洛克菲勒基金会申请一笔经费：1956 年夏天，十个人，两个月，研究怎样让机器使用语言、形成概念、解决原本只有人能解决的问题、并且改进自己。</p>
+    <p>为了给这份申请起个响亮的名字，麦卡锡造了一个词：artificial intelligence，人工智能。</p>
+    <aside class="react" data-year="1955" data-tag="误判" data-title="一个夏天就能取得重大进展">
+      <span class="stamp">误判</span>
+      <div>
+        <p class="rh"><span class="ry">1955.08</span>“一个夏天”</p>
+        <p>申请书里写：如果精心挑选一组科学家一起工作一个夏天，就能在其中一个或几个问题上取得重大进展。那个夏天到今天还没结束。</p>
+      </div>
+    </aside>
+    <div class="same"><b>同一时期</b>1956 年，中国制定《十二年科学技术发展远景规划》，把计算技术列为四项“紧急措施”之一。两年后，中国第一台电子计算机“103 机”在北京试制成功。1957 年苏联发射第一颗人造卫星，美国大受刺激，第二年成立了国防部高级研究计划局（ARPA）。这个机构后来既出钱建了互联网的前身（上卷卷九），也养活了整整一代 AI 实验室。</div>
+  </div>
+</section>
+
+<!-- 卷二 -->
+<section class="vol" id="d2" data-vol="卷二 · 感知机">
+  <div class="volhead" data-y="1958">
+    <div class="num">卷二</div><h2>感知机</h2>
+    <div class="meta"><span class="range">1957—1980</span><span class="mat" style="--c:var(--m-relay)"><i></i>载体：光电管与电位器</span></div>
+  </div>
+  <div class="col">
+    <h3 data-y="1958">会自己拧旋钮的机器<span class="y">1958</span></h3>
+    <p>1958 年，康奈尔航空实验室的心理学家弗兰克·罗森布拉特，在美国海军资助下公布了“感知机”。后来造出的 Mark I 感知机有一只由 20 × 20 = 400 个光电管组成的“眼睛”，后面连着一排排电位器，也就是可以转动的旋钮，那就是“权重”。给它看卡片上的图形，它猜错了，电动机就自动把相关的旋钮拧一点。开头那个装置做的就是这件事，只不过旋钮换成了数。</p>
+    <p>它真的学会了分辨一些简单的形状。这是机器第一次不靠人写规则，自己从例子里学到了东西。</p>
+    <aside class="react" data-year="1958" data-tag="轰动" data-title="海军说它将来会意识到自己存在">
+      <span class="stamp">轰动</span>
+      <div>
+        <p class="rh"><span class="ry">1958.07.08</span>“能意识到自己的存在”</p>
+        <p>《纽约时报》报道：海军展示了一台电子计算机的雏形，期望它将来能走路、说话、看东西、写字、自我复制，并且意识到自己的存在。当时它能做的，是分辨卡片上的标记在左边还是右边。</p>
+      </div>
+    </aside>
+    <aside class="react" data-year="1965" data-tag="误判" data-title="二十年内机器能做人能做的任何工作">
+      <span class="stamp">误判</span>
+      <div>
+        <p class="rh"><span class="ry">1965</span>“二十年之内”</p>
+        <p>后来拿了诺贝尔经济学奖的赫伯特·西蒙写道：二十年之内，机器将能做人能做的任何工作。那时的研究者真心相信这件事，因为他们刚刚看见机器证明了数学定理、下赢了跳棋。他们没想到，对机器来说，证明定理比认出一张脸容易得多。</p>
+      </div>
+    </aside>
+
+    <h3 data-y="1969">一条直线画不开的四个点<span class="y">1969</span></h3>
+    <p>1969 年，明斯基和派珀特出版了一本书，书名就叫《感知机》。书里证明了一件看起来很小的事：单层感知机连“异或”都学不会。异或是说，两个输入恰好一个为 1 时输出 1，都为 0 或都为 1 时输出 0。</p>
+    <p>原因画出来一眼就懂：单层感知机只会用一条直线把平面分成两半。而异或的四个点，橙的在对角，蓝的在另一条对角，你怎么画一条直线都分不开。</p>
+  </div>
+  <div class="wide fig">
+    <div class="fig-label">装置 2 / 异或</div>
+    <h4>一条线不行，两条线可以</h4>
+    <p class="how">四个点就是异或的真值表。先让单层感知机试试：它会一直把线挪来挪去，永远至少错一个。再切到“两层”：中间加一层两个神经元，各画一条线，最后一个神经元把两条线的结果合起来。</p>
+    <div class="two">
+      <canvas class="cv" id="xorCv" aria-label="异或问题演示"></canvas>
+      <div>
+        <div class="btns"><button class="btn pri" id="xor1">单层试试</button><button class="btn" id="xor2">换成两层</button></div>
+        <p class="readout" id="xorRead" style="margin-top:12px">四个点：(0,0) 和 (1,1) 是蓝的，(0,1) 和 (1,0) 是橙的。</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <p>明斯基他们其实知道，多加一层就能解决。问题是当时没人知道多层网络怎么训练：最后答错了，该怪中间哪一层的哪个旋钮？这本书的结论读起来像是给整个方向判了死刑。资助迅速枯竭，做神经网络成了一件让人尴尬的事。</p>
+    <p>1971 年 7 月 11 日，罗森布拉特在切萨皮克湾划船时遇难。那天是他四十三岁生日。</p>
+    <h3 data-y="1973">第一次寒冬<span class="y">1969 — 1980</span></h3>
+    <p>坏消息不止一个。1969 年美国国会通过曼斯菲尔德修正案，要求国防部只资助和军事直接相关的研究，以前那种“看人给钱、不问项目”的好日子结束了。越战正在吞掉预算，石油危机又在路上。</p>
+    <aside class="react" data-year="1973" data-tag="冷遇" data-title="莱特希尔报告">
+      <span class="stamp">冷遇</span>
+      <div>
+        <p class="rh"><span class="ry">1973</span>莱特希尔报告</p>
+        <p>英国政府请应用数学家莱特希尔评估 AI 研究。他的结论是：这个领域远远没有兑现当初的承诺，那些在小问题上管用的方法，一碰到真实世界的复杂度就会爆炸。英国几乎砍光了相关经费。这段时间后来被叫作第一次“AI 寒冬”。</p>
+      </div>
+    </aside>
+    <div class="same"><b>同一时期</b>1969 年阿波罗 11 号登月。把人送上月球的导航计算机，可擦写内存只有两千多个字。它的程序存在“磁芯绳存储器”里：工厂里的女工拿着铜线，按程序一根根穿过或绕过小磁环，0 和 1 就这样被“织”了进去。上卷卷二的织机，一百六十多年后又回来了。</div>
+  </div>
+</section>
+
+<!-- 卷三 -->
+<section class="vol" id="d3" data-vol="卷三 · 规则的帝国">
+  <div class="volhead" data-y="1980">
+    <div class="num">卷三</div><h2>规则的帝国</h2>
+    <div class="meta"><span class="range">1980—1997</span><span class="mat" style="--c:var(--m-sym)"><i></i>载体：如果……那么……</span></div>
+  </div>
+  <div class="col">
+    <p>让机器自己学走不通，那就退回第一次创世的老办法：把专家脑子里的知识，一条条写成规则塞进去。“如果病人发烧，并且白细胞升高，那么……”八十年代初，这种“专家系统”火了。数字设备公司（DEC）用一套叫 XCON 的系统帮客户配置计算机订单，几千条规则，据说每年替公司省下数千万美元。</p>
+    <h3 data-y="1982">日本的十年<span class="y">1982 — 1992</span></h3>
+    <p>1982 年，正处在经济巅峰的日本启动了“第五代计算机”计划：十年，约四亿美元，造能推理、能对话的智能机器。那几年日本的汽车和芯片正在打败美国同行，美国和欧洲是真的吓坏了，赶紧各自上马对抗项目。十年后计划悄悄收场，大部分目标没有实现。</p>
+    <p>1987 年，专门运行 AI 语言 Lisp 的昂贵工作站市场几乎一夜崩塌，因为普通的个人电脑已经便宜又够快了（上卷卷六的摩尔定律在这里顺手砸了一个行业）。第二次寒冬到来。</p>
+    <p>规则的毛病在于：世界上的例外比规则多，而专家自己也说不清自己是怎么判断的。一个老医生看一眼就知道这个病人不对劲，你问他为什么，他会说“凭经验”。你很难把“凭经验”写成一条 if。</p>
+    <h3 data-y="1997">深蓝<span class="y">1997.05 · 纽约</span></h3>
+    <p>1997 年 5 月，IBM 的深蓝在六局比赛中以 3.5 比 2.5 击败国际象棋世界冠军卡斯帕罗夫。它每秒评估大约两亿个局面，靠的是专用芯片、蛮力搜索，加上象棋大师帮忙调出来的评估规则，几乎没有“学习”的成分。它是第一次创世做到极致的样子。</p>
+    <aside class="react" data-year="1997" data-tag="争论" data-title="卡斯帕罗夫怀疑深蓝背后有人">
+      <span class="stamp">争论</span>
+      <div>
+        <p class="rh"><span class="ry">1997.05</span>“它下得太像人了”</p>
+        <p>第二局里深蓝走出一步极有人味的棋，卡斯帕罗夫怀疑幕后有人类大师在帮忙，要求公开日志和复赛。IBM 拒绝复赛，不久就让深蓝退役了。人类第一次输给机器时的第一反应，是不相信那是机器。</p>
+      </div>
+    </aside>
+    <div class="same"><b>同一时期</b>1997 年 9 月，两个斯坦福研究生注册了一个域名：google.com。十七年后，这家公司花大约五亿美元买下了伦敦的一家小公司 DeepMind，后者在卷五里会用一种完全不同的办法，去攻下比象棋难得多的围棋。</div>
+  </div>
+</section>
+
+<!-- 卷四 -->
+<section class="vol" id="d4" data-vol="卷四 · 下山">
+  <div class="volhead" data-y="1986">
+    <div class="num">卷四</div><h2>下山</h2>
+    <div class="meta"><span class="range">1986—2011</span><span class="mat" style="--c:var(--m-si)"><i></i>载体：导数</span></div>
+  </div>
+  <div class="col">
+    <h3 data-y="1986">该怪谁<span class="y">1986</span></h3>
+    <p>多层网络最后答错了，该怪哪一层的哪个旋钮？这个让感知机判了死刑的问题，答案其实一直躺在大一的微积分课本里：链式法则。</p>
+    <p>网络最后错了多少，可以一层一层往回算：每个旋钮如果稍微拧一点，最后的错误会变大还是变小、变多少。算出来以后，把每个旋钮都往“让错误变小”的方向拧一点点。再给一个例子，再算，再拧。这叫<em>反向传播</em>。七十年代就有好几个人独立想到过它，但 1986 年鲁梅尔哈特、辛顿和威廉斯发表在《自然》上的那篇论文让它真正出了名。</p>
+    <p>把“错误”想象成一片山地，网络的每一种旋钮组合是山上的一个位置，越低代表错得越少。你蒙着眼站在山上，只能用脚感觉哪边往下，然后往下迈一小步，再感觉，再迈。这就是“学习”在数学上的全部意思。</p>
+  </div>
+  <div class="wide fig">
+    <div class="fig-label">装置 3 / 梯度下降</div>
+    <h4>蒙着眼下山</h4>
+    <p class="how">曲线是“错误”，小球是网络当前的状态。每一步，小球按脚下的坡度往下挪，挪多远由“步子大小”（学习率）决定。步子太小走得慢；太大会在两边来回蹦，甚至飞出去。从右边出发，它会卡在一个不是最低的坑里。</p>
+    <canvas class="cv" id="gdCv" aria-label="梯度下降演示"></canvas>
+    <div class="rng" style="max-width:30rem;margin-top:12px"><label for="gdLr">步子大小</label><input type="range" id="gdLr" min="0.02" max="1.4" step="0.02" value="0.1"><output id="gdLro">0.10</output></div>
+    <div class="btns" style="align-items:center">
+      <button class="btn pri" id="gdGo">走 30 步</button>
+      <button class="btn" id="gdStep">走一步</button>
+      <button class="btn" id="gdR">从右边出发</button>
+      <button class="btn" id="gdL">从左边出发</button>
+      <span class="readout" id="gdRead"></span>
+    </div>
+  </div>
+  <div class="col">
+    <p>真正的网络不是一条曲线，是几百万、几十亿个旋钮组成的几十亿维山地，没有人能画出来。但脚下的坡度照样能算，下山的办法一模一样。后来人们还发现，维度越高，“卡在坑里出不来”反而越少见：在几十亿个方向里，总有一个方向是往下的。</p>
+    <h3 data-y="1989">贝尔实验室又出手了<span class="y">1989</span></h3>
+    <p>1989 年，就在发明晶体管的那个贝尔实验室（上卷卷六），年轻的法国人杨立昆用反向传播训练了一个“卷积神经网络”，读手写的邮政编码。到九十年代末，他参与开发的系统每天读取美国大约一成以上的支票。这是神经网络第一次在真实世界里赚钱。</p>
+    <p>然而九十年代末到两千年代，风向又变了。另一类数学上更漂亮、更好分析的方法占了上风，“神经网络”几个字一度成了论文被拒的理由。辛顿在多伦多、杨立昆在纽约、本吉奥在蒙特利尔，靠着加拿大一个研究基金的小额资助坚持着，被人半开玩笑地叫作“加拿大黑手党”。2006 年，辛顿给这个不受待见的方向换了个新名字：深度学习。</p>
+    <h3 data-y="2009">一千四百万张图<span class="y">2006 — 2009</span></h3>
+    <p>还有一个人在做一件同行觉得没什么意义的事。年轻的教授李飞飞认为，机器学不会看东西，问题可能不在算法，在于它看过的东西太少：一个小孩到三岁，眼睛已经“拍”了上亿张画面。她决定建一个巨大的图片库，每张都标好里面是什么。</p>
+    <p>雇学生标注要几十年。她用了亚马逊刚推出的众包平台，前后请了来自 167 个国家的约四万九千人，给一千四百多万张图片标上了两万多个类别。2009 年 ImageNet 发布，第二年起举办年度识别比赛。</p>
+    <aside class="react" data-year="2009" data-tag="冷遇" data-title="ImageNet只拿到一个展板">
+      <span class="stamp">冷遇</span>
+      <div>
+        <p class="rh"><span class="ry">2009.06</span>会场角落的一块展板</p>
+        <p>ImageNet 第一次亮相是在计算机视觉年会上，被安排成一张海报，没有上台演讲的机会。很多人的看法是：数据多一点少一点有什么要紧，好算法才是关键。三年后，正是这个数据集点燃了整个深度学习。</p>
+      </div>
+    </aside>
+    <div class="same"><b>同一时期</b>2007 年 iPhone 发布，2008 年金融危机，同年苹果开了应用商店。接下来几年，几十亿人把手机摄像头对准了一切，把照片传上网。ImageNet 的图片就是从网上搜来的。也是 2007 年，英伟达推出 CUDA，让显卡这种原本只用来画游戏画面的芯片，可以拿去做通用计算。三条线在当时毫无关系。</div>
+  </div>
+</section>
+
+<!-- 卷五 -->
+<section class="vol" id="d5" data-vol="卷五 · 2012">
+  <div class="volhead" data-y="2012">
+    <div class="num">卷五</div><h2>2012</h2>
+    <div class="meta"><span class="range">2012—2016</span><span class="mat" style="--c:var(--m-tube)"><i></i>载体：游戏显卡</span></div>
+  </div>
+  <div class="col">
+    <h3 data-y="2012">卧室里的两块显卡<span class="y">2012.09</span></h3>
+    <p>2012 年秋天，ImageNet 比赛结果出来。往年冠军的错误率每年只降一两个百分点，这一年，多伦多大学的一支三人小队，辛顿和他的两个学生克里热夫斯基、苏茨克维，把错误率从 26% 一下砸到了 15%。会场里的人一开始以为是算错了。</p>
+    <p>他们的网络后来叫 AlexNet，有六千万个参数，是在两块 GTX 580 游戏显卡上训练了五六天训出来的。据说训练就在克里热夫斯基父母家的卧室里进行。</p>
+    <p>三样东西在这一年撞到了一起：数据（ImageNet，靠手机和互联网攒下的照片）、算力（显卡，靠一代代游戏玩家掏钱推动的产业）、算法（反向传播，加上几个让深层网络训得动的小技巧）。少了任何一样，都不会有这一年。而这三样东西，当初都不是为 AI 准备的。</p>
+  </div>
+  <div class="wide fig chart">
+    <div class="fig-label">图表 / ImageNet 比赛历年冠军错误率</div>
+    <h4>2012 年那一下</h4>
+    <p class="how">纵轴是“前五个猜测里都没有正确答案”的比例。虚线是人的水平，约 5.1%，那是研究者卡帕西亲自做了几百张题测出来的。2015 年，机器第一次越过这条线。</p>
+    <div class="scroll-x"><svg id="inSvg" viewBox="0 0 680 330" role="img" aria-label="2010到2017年ImageNet冠军错误率"></svg></div>
+  </div>
+  <div class="col">
+    <aside class="react" data-year="2012" data-tag="轰动" data-title="三个人的公司拍出4400万美元">
+      <span class="stamp">轰动</span>
+      <div>
+        <p class="rh"><span class="ry">2012.12</span>赌场里的拍卖</p>
+        <p>辛顿和两个学生刚注册了一家只有三个人、没有任何产品的公司。在太浩湖一家赌场酒店里（那年的学术会议恰好在那儿开），谷歌、微软、百度和一家叫 DeepMind 的小公司通过电子邮件轮流加价。价格涨到 4400 万美元时，辛顿叫停了拍卖，选了谷歌。他后来说，他更在乎研究能在哪儿做下去。</p>
+      </div>
+    </aside>
+    <p>此后几年的进展快到让人眩晕。2014 年，蒙特利尔的博士生伊恩·古德费洛在酒吧里和朋友争论怎样让机器生成逼真的图片，回家当晚就写出了“生成对抗网络”：让一个网络负责造假，另一个负责打假，两个互相逼着进步。据他说，代码第一次跑就成功了。这大概是 AI 史上最划算的一顿酒。</p>
+    <h3 data-y="2016">第 37 手<span class="y">2016.03 · 首尔</span></h3>
+    <p>围棋的变化比宇宙里的原子还多，深蓝那种蛮力搜索在这里完全不管用。被谷歌收购的 DeepMind 让程序先学人类棋谱，再自己跟自己下几百万盘。2016 年 3 月，AlphaGo 在首尔以 4 比 1 战胜李世石。</p>
+    <p>第二局第 37 手，AlphaGo 在第五线下了一步“肩冲”，现场解说一开始以为它下错了。职业棋手看了很久才明白，这一步人类几千年的棋谱里都没人这么下过，而它是对的。第四局，李世石用第 78 手一记妙手扳回一局，那是人类在这场比赛里唯一的胜利。</p>
+    <aside class="react" data-year="2016" data-tag="轰动" data-title="李世石输给AlphaGo">
+      <span class="stamp">轰动</span>
+      <div>
+        <p class="rh"><span class="ry">2016.03 · 2019.11</span>“一个不可战胜的存在”</p>
+        <p>比赛在中日韩引起的震动，远大于当年深蓝在西方的震动。三年后李世石宣布退役，他说，即使自己成为第一，也有一个无法战胜的存在。而另一方面，此后十年职业棋手的水平整体明显上涨了：人类开始跟着 AI 学下棋。</p>
+      </div>
+    </aside>
+    <div class="same"><b>同一时期</b>2017 年前后的加密货币热潮，让矿工们抢购显卡挖矿，显卡一度涨价到游戏玩家买不起。同一种芯片，在同几年里被游戏、挖矿和 AI 三方争抢。英伟达自己也没完全想到，它最大的客户会从玩家变成数据中心。</div>
+  </div>
+</section>
+
+<!-- 卷六 -->
+<section class="vol" id="d6" data-vol="卷六 · 词变成点">
+  <div class="volhead" data-y="2013">
+    <div class="num">卷六</div><h2>词变成点</h2>
+    <div class="meta"><span class="range">2013</span><span class="mat" style="--c:var(--m-paper)"><i></i>载体：向量</span></div>
+  </div>
+  <div class="col">
+    <p>图片本来就是数：每个像素有红绿蓝三个亮度。可文字怎么办？“猫”和“狗”在计算机里只是两个编号，就像学号 1037 和 2215，编号之间没有任何关系。机器无从知道猫和狗都是宠物，而猫和“汽车”就差得很远。</p>
+    <p>1957 年，英国语言学家弗斯说过一句话：要认识一个词，就看它跟谁在一起。2013 年，谷歌米科洛夫的团队把这句话变成了程序 word2vec：让机器读大量文本，练习根据周围的词猜中间的词。练完之后，每个词变成了几百个数，也就是几百维空间里的一个点。</p>
+    <p>然后奇妙的事发生了。意思相近的词自己靠到了一起，而且<em>方向本身带着意思</em>：从“男人”指向“女人”的那一段箭头，跟从“国王”指向“女王”的那一段几乎平行。“国王 − 男人 + 女人”，算出来离得最近的点是“女王”。没人教过它性别是什么，它从“谁跟谁一起出现”里自己算出来了。</p>
+  </div>
+  <div class="wide fig">
+    <div class="fig-label">装置 4 / 词向量</div>
+    <h4>做一道词的加减法</h4>
+    <p class="how">真实的词向量有几百维，这里压成两维示意，位置是手摆的，但关系的样子跟真的一样。点一道题，看箭头怎么搬过去。</p>
+    <div class="btns" style="margin-bottom:10px">
+      <button class="btn pri" data-an="0">国王 − 男人 + 女人</button>
+      <button class="btn" data-an="1">北京 − 中国 + 日本</button>
+      <button class="btn" data-an="2">走 − 慢 + 快</button>
+    </div>
+    <div class="scroll-x"><svg id="embSvg" viewBox="0 0 640 380" style="display:block;width:100%;min-width:480px;height:auto" role="img" aria-label="词向量二维示意图"></svg></div>
+    <p class="readout" id="embRead" style="margin-top:8px">点上面的按钮。</p>
+  </div>
+  <div class="col">
+    <p>这一步看起来像个小把戏，其实是第二次创世的一块基石：从此以后，词、句子、图片、声音、蛋白质，全都可以变成高维空间里的点。“意思”变成了“位置”，“相似”变成了“距离”，“类比”变成了“平移”。而点和点之间，是可以做加减乘除的。</p>
+  </div>
+</section>
+
+<!-- 卷七 -->
+<section class="vol" id="d7" data-vol="卷七 · 注意力">
+  <div class="volhead" data-y="2017">
+    <div class="num">卷七</div><h2>注意力</h2>
+    <div class="meta"><span class="range">2017</span><span class="mat" style="--c:var(--m-crt)"><i></i>载体：矩阵乘法</span></div>
+  </div>
+  <div class="col">
+    <h3 data-y="2017">用吸管读书<span class="y">2017 之前</span></h3>
+    <p>在 2017 年之前，处理句子最好的办法是“循环神经网络”：一个字一个字地读，每读一个字，就把读到的东西压进一个小小的记忆里，再带着它读下一个字。这像是用一根吸管读书：一次只能看一个字，读到句尾，句首已经忘得差不多了。</p>
+    <p>更要命的是它没法并行。第十个字必须等第九个字读完才能读，显卡上成千上万个计算单元只能排队干等。</p>
+    <h3 data-y="2017">注意力就是你所需要的一切<span class="y">2017.06</span></h3>
+    <p>2017 年 6 月，谷歌的八位研究者贴出一篇论文，标题叫《Attention Is All You Need》，化用了披头士那首《All You Need Is Love》。作者栏里注明：贡献相同，排名随机。他们的目标很朴素：把机器翻译做得更好、更快。</p>
+    <p>做法是扔掉“一个字一个字读”，让句子里每个词同时去看所有其他词，自己决定该注意谁、注意多少。具体说，每个词都发出一个问题：“我在找什么？”（叫 Query）；每个词也都挂出一块牌子：“我这儿有什么。”（叫 Key）。问题和牌子越对得上，就从那个词身上取越多内容（叫 Value）。</p>
+    <p>所有这些“对一对、取一取”，算起来全是矩阵乘法，而矩阵乘法恰好是显卡最擅长的事。一句话里所有词可以同时算，句子再长也不用排队。游戏显卡为了画三维画面练出来的本事，在这里被用到了极致。</p>
+  </div>
+  <div class="wide fig">
+    <div class="fig-label">装置 5 / 注意力</div>
+    <h4>“它”指的是谁？</h4>
+    <p class="how">这是谷歌介绍 Transformer 时用过的一个例子。句子末尾只差一个字，“它”指的东西就完全变了。点“它”看它把注意力分给了谁；换一个结尾再看。也可以点别的词。（示意：真实模型有几十层、每层几十个注意力“头”，这里画的是其中一个头可能学到的样子。）</p>
+    <div class="seg" role="group" aria-label="句子结尾"><button id="atA" aria-pressed="true">……因为它太累了</button><button id="atB" aria-pressed="false">……因为它太宽了</button></div>
+    <div class="toks" id="toks"></div>
+    <div class="abars" id="abars"></div>
+  </div>
+  <div class="col">
+    <p>论文里给这个新结构起名叫 Transformer。据说这个名字是作者之一乌兹科赖特随口起的，只因为他喜欢这个词的发音。它在翻译比赛上刷新了纪录，当年看起来，也就是一篇很好的翻译论文。</p>
+    <p>八位作者后来陆续全部离开了谷歌，有人创业，有人去了别的公司。其中一位当时还是实习生。谷歌发明了这把钥匙，最先用它打开大门的，却是别人。</p>
+    <div class="same"><b>同一时期</b>2017 年，谷歌已经在自家数据中心里用了两年自研的 AI 芯片 TPU，专门做矩阵乘法。也是这一年，苹果的手机芯片里第一次放进了“神经网络引擎”，用来解锁面部识别。为一种算法专门造芯片，这件事在上卷的时代几乎是不可想象的。</div>
+  </div>
+</section>
+
+<!-- 卷八 -->
+<section class="vol" id="d8" data-vol="卷八 · 接龙">
+  <div class="volhead" data-y="2018">
+    <div class="num">卷八</div><h2>接龙</h2>
+    <div class="meta"><span class="range">2018—2022</span><span class="mat" style="--c:var(--m-net)"><i></i>载体：参数</span></div>
+  </div>
+  <div class="col">
+    <h3 data-y="2018">一个很傻的任务<span class="y">2018</span></h3>
+    <p>2018 年，旧金山的 OpenAI 拿 Transformer 做了一件看起来很傻的事：只训练它猜“下一个字”。给它读海量文本，遮住后面的部分，让它猜下一个字是什么，猜错就调旋钮。就这一个任务，叫 GPT。</p>
+    <p>为什么“猜下一个字”能学出那么多东西？因为要猜准“苹果从树上掉下来，是因为___”，你得懂一点物理；要猜准一行代码的下一个符号，你得懂编程；要猜准侦探小说最后一页凶手的名字，你得读懂整个故事。为了把接龙接好，它被逼着去学文本背后的那个世界。（至少，学到了足以让我们觉得它懂了的那部分。这个争论还没有结束。）</p>
+  </div>
+  <div class="wide fig">
+    <div class="fig-label">装置 6 / 接龙机</div>
+    <h4>一个只看前一个字的语言模型</h4>
+    <p class="how">这台接龙机的“统计表”是刚才从你正在读的这一页里现数出来的：每个字后面跟过哪些字、各跟过几次。它每次只看最后一个字，按比例抽下一个字。下面的柱子是候选字和概率。“随性”调高，它更敢选冷门的字；调低，它只挑最常见的。</p>
+    <div class="gen-out" id="genOut"></div>
+    <div class="cand" id="genCand"></div>
+    <div class="rng" style="max-width:30rem;margin-top:12px"><label for="genT">随性程度</label><input type="range" id="genT" min="0.3" max="2" step="0.1" value="1"><output id="genTo">1.0</output></div>
+    <div class="btns">
+      <button class="btn pri" id="genOne">接一个字</button>
+      <button class="btn" id="genLine">接到句号</button>
+      <button class="btn" id="genNew">重来</button>
+    </div>
+    <p class="readout" id="genInfo" style="margin-top:8px"></p>
+  </div>
+  <div class="col">
+    <p>它接出来的句子，每两个字之间都挺顺，整句却在胡说八道。这正是早期语言模型的样子。GPT 做的是同一件事，区别在于：它看的不是前一个字，而是前面几千到上百万个字；它的“表”也不是数出来的，是几十亿到上万亿个参数现算出来的。区别只是量，可量变到一定程度，看起来就像质变了。</p>
+    <h3 data-y="2019">越大越好<span class="y">2019 — 2020</span></h3>
+    <p>GPT-1 有 1.17 亿个参数。一年后的 GPT-2 有 15 亿个。</p>
+    <aside class="react" data-year="2019" data-tag="争论" data-title="GPT-2太危险不敢公开">
+      <span class="stamp">争论</span>
+      <div>
+        <p class="rh"><span class="ry">2019.02</span>“太危险，暂不公开”</p>
+        <p>OpenAI 宣布 GPT-2 写的假新闻太以假乱真，担心被滥用，决定先不公开完整模型，分阶段放出。有人赞同这种谨慎，也有很多人嘲笑这是营销。九个月后完整模型公开了，世界没有因此毁灭。但“该不该公开”这个问题，从此跟着每一代模型。</p>
+      </div>
+    </aside>
+    <p>2020 年，OpenAI 的卡普兰等人发现了一组“缩放定律”：模型越大、数据越多、算力越多，错误就沿着一条非常平稳的曲线往下降，平稳到可以提前预测。这条线跟上卷的摩尔定律长得很像：它也是一个观察，后来也成了整个行业的时间表。同年的 GPT-3 有 1750 亿个参数，人们发现它不用专门训练，只看几个例子就能学会新任务。</p>
+  </div>
+  <div class="wide fig chart">
+    <div class="fig-label">图表 / 神经网络的参数个数</div>
+    <h4>从六万到六千亿</h4>
+    <p class="how">纵轴对数刻度，每格乘十。横线是人脑突触数的粗略估计，放在这里只为感受量级：参数和突触不是一回事，就像不能拿汽车的螺丝数去比马的骨头数。部分最新模型的参数量没有公开，图里只画公开过的。</p>
+    <div class="scroll-x"><svg id="parSvg" viewBox="0 0 680 360" role="img" aria-label="1998到2024年神经网络参数量对数图"></svg></div>
+    <p class="readout mread" id="parRead"></p>
+  </div>
+  <div class="col">
+    <h3 data-y="2022">研究预览<span class="y">2022.11.30</span></h3>
+    <p>光会接龙的模型，像一个读完了整座图书馆、却没人教过它怎么跟人说话的人：你问它问题，它可能接着编出十个类似的问题。研究者请人给它的回答打分，再用这些分数继续训练它，这叫“基于人类反馈的强化学习”。它这才学会好好回答。</p>
+    <p>2022 年 11 月 30 日，OpenAI 把一个这样训练过的对话版本挂到网上，名义上只是“研究预览”，内部也没指望太多。</p>
+    <aside class="react" data-year="2022" data-tag="轰动" data-title="ChatGPT两个月用户过亿">
+      <span class="stamp">轰动</span>
+      <div>
+        <p class="rh"><span class="ry">2022.12—2023.01</span>五天，两个月</p>
+        <p>五天用户破百万，两个月月活跃用户估计过亿，是当时历史上增长最快的消费级应用。学校开会讨论要不要禁用，公司开会讨论要不要裁员，程序员一边用它写代码一边担心它抢饭碗。上一次全世界的普通人同时感到“机器变了”，大概还是 1946 年报纸上的“电子大脑”。</p>
+      </div>
+    </aside>
+    <p>顺便坦白一件事：写这两卷书的，也是这一族模型里的一个。它没有亲眼见过书里的任何一件事，它知道的一切，都来自人类写下的文字。如果某处读起来太顺了，请想起本卷开头那个还没结束的争论，有疑问的数字，值得自己再查一遍。</p>
+  </div>
+</section>
+
+<!-- 卷九 -->
+<section class="vol" id="d9" data-vol="卷九 · 反补">
+  <div class="volhead" data-y="2016">
+    <div class="num">卷九</div><h2>反补</h2>
+    <div class="meta"><span class="range">2016—</span><span class="mat" style="--c:var(--m-brass)"><i></i>载体：回路</span></div>
+  </div>
+  <div class="col">
+    <p>上卷讲的都是“前因后果”：齿轮催生了卡片，卡片催生了电路。到了第二次创世，因果开始转圈：后代回过头来改造祖先。最典型的一个圈，就从游戏开始，又回到游戏。</p>
+  </div>
+  <div class="wide fig">
+    <div class="fig-label">装置 7 / 一个转了二十五年的圈</div>
+    <h4>游戏养大了显卡，显卡养大了 AI，AI 又反过来替游戏作画</h4>
+    <p class="how">点圈上任意一站。</p>
+    <div class="loopw">
+      <svg id="loopSvg" viewBox="0 0 420 420" role="img" aria-label="游戏、显卡、AI之间的反馈回路"></svg>
+      <div class="ltxt" id="loopTxt"></div>
+    </div>
+  </div>
+  <div class="col">
+    <h3 data-y="2024">物理学奖<span class="y">2024.10</span></h3>
+    <p>2024 年 10 月，诺贝尔物理学奖颁给了霍普菲尔德和辛顿，表彰他们为神经网络打下的基础。辛顿接到电话时说，他完全没想到。第二天，化学奖的一半颁给了 DeepMind 的哈萨比斯和琼珀，因为 AlphaFold：它能从一串氨基酸序列预测蛋白质折叠成什么形状，这个问题生物学家攻了五十年。</p>
+    <p>颁奖前一年，辛顿辞去了谷歌的职位，理由是想自由地谈论 AI 可能带来的风险。为一个方向坚持了四十年、终于被证明是对的人，第一件事是提醒大家小心它。</p>
+    <aside class="react" data-year="2024" data-tag="迟到" data-title="神经网络拿到诺贝尔物理学奖">
+      <span class="stamp">迟到</span>
+      <div>
+        <p class="rh"><span class="ry">1982 → 2024</span>四十二年</p>
+        <p>霍普菲尔德提出他那种网络是在 1982 年，辛顿那篇反向传播论文是 1986 年。中间隔着一整个寒冬，和一个“神经网络会让论文被拒”的年代。不少物理学家对这个奖颇有微词：这算物理吗？争论本身说明，这个东西已经大到装不进任何一个旧学科了。</p>
+      </div>
+    </aside>
+    <h3 data-y="2025">一夜之间<span class="y">2025.01</span></h3>
+    <aside class="react" data-year="2025" data-tag="轰动" data-title="DeepSeek让英伟达一天蒸发近六千亿美元">
+      <span class="stamp">轰动</span>
+      <div>
+        <p class="rh"><span class="ry">2025.01.27</span>一天，近六千亿美元</p>
+        <p>中国公司深度求索发布推理模型 DeepSeek-R1，水平接近当时最强的模型，公布的训练成本却低得多，而且模型权重直接公开。消息发酵后的那个周一，英伟达股价一天跌掉约 17%，市值蒸发近六千亿美元，创下美股单日最大跌幅纪录。市场慌的是同一个问题：如果不需要那么多芯片也能做出好模型呢？几个月后，大家发现答案是：省下来的算力，会被用到更多地方去。</p>
+      </div>
+    </aside>
+    <p>反补还在别处发生：程序员用 AI 写代码，AI 又在这些代码上被训练；芯片公司用 AI 帮忙摆放电路，造出来的芯片再去训练 AI；为了给数据中心供电，微软在 2024 年签约重启三里岛核电站的一台机组，那里在 1979 年发生过美国历史上最严重的核事故（出事的是另一台机组）。上卷开头那个只会通断的开关，现在开始需要一座核电站来喂了。</p>
+  </div>
+</section>
+
+<!-- 卷十 -->
+<section class="vol" id="d10" data-vol="卷十 · 卡在哪">
+  <div class="volhead" data-y="2026">
+    <div class="num">卷十</div><h2>卡在哪</h2>
+    <div class="meta"><span class="range">今天</span><span class="mat" style="--c:var(--m-rule)"><i></i>载体：电、数据、和我们自己</span></div>
+  </div>
+  <div class="col">
+    <p>缩放定律让人相信只要继续堆，就会继续变好。可每一样要堆的东西，都开始碰到墙。</p>
+    <h3 data-y="2026">数据快吃完了</h3>
+    <p>最好的模型已经读过了互联网上大部分公开的高质量文字。研究机构估计，按现在的速度，人类写下的可用文本会在 2020 年代后期到 2030 年代之间被用完。拿模型自己生成的文字去训练下一代模型？研究发现，一代代这样喂下去，模型会越来越平庸、越来越偏，像近亲繁殖。</p>
+    <h3>电和钱</h3>
+    <p>训练一个最前沿的模型，要几万块顶级芯片连续跑几个月，花费以亿美元计。数据中心的用电量开始出现在国家能源规划里。这不只是钱的问题：电网扩建、变电站、冷却用水，都要按年计算，不是写一行代码就能变出来的。</p>
+    <h3>搬运比计算贵</h3>
+    <p>大模型回答你一个问题时，绝大部分时间不是在算，而是在等：等几百亿个参数从显存搬到计算单元。搬一次数据消耗的能量，可以是做一次加法的几千倍。这就是上卷卷十二讲的“内存墙”，AI 把它推到了最前台。专门为 AI 做的高带宽显存（HBM）因此成了最紧俏的芯片之一。</p>
+    <h3>它会一本正经地编</h3>
+    <p>语言模型被训练成说“像真的”的话，而不是“真的”话。绝大多数时候两者重合，所以它显得博学；少数时候不重合，它就会面不改色地编出一篇并不存在的论文、一个并不存在的判例。人们管这个叫“幻觉”。目前有很多缓解办法，但还没有根治的办法。</p>
+    <h3>我们读不懂它</h3>
+    <p>最奇怪的一堵墙在我们自己这边。上卷那台差分机，每一个齿轮在干什么都清清楚楚；而今天的大模型，我们知道它的每一行代码，却说不清几千亿个参数里哪一个代表什么。研究者在努力打开这个黑箱，已经能找到一些代表具体概念的“方向”，但离读懂整本书还很远。</p>
+    <p>所以，回答“为什么卡住了”：一部分卡在物理，电、热和搬运；一部分卡在数据；还有一部分卡在理解。巴贝奇的时代，想法跑在制造前面一百五十年；今天反过来了，我们造出来的东西，跑在我们对它的理解前面。</p>
+  </div>
+</section>
+
+<section class="end" id="dend" data-vol="尾声">
+  <div class="volhead" data-y="2026">
+    <div class="num">尾声</div><h2>第三次？</h2>
+    <div class="meta"><span class="range">今天以后</span></div>
+  </div>
+  <div class="col">
+    <p>第一次创世，人写规则，机器照做。第二次创世，人写下“怎样学习”的规则，机器从例子里长出别的规则。</p>
+    <p>和上卷一样，几乎没有人知道自己在造什么。皮茨想弄清大脑怎样做逻辑；罗森布拉特想研究知觉；李飞飞被告诉数据不重要；游戏玩家买显卡是为了看更逼真的爆炸；Transformer 的八位作者想把德语翻译成英语。这些碎片在某一年撞到一起，然后一切都变了。</p>
+    <p>还有一件事和上卷一模一样：每一次，都有人先失去什么。里昂砸织机的织工，退役的李世石，正在被改变的许多职业。也每一次，都要过一代人，大家才知道该怎样和新东西相处。</p>
+    <p class="closing">第三次创世会是什么，现在没有人知道。如果历史还有一点参考价值，它大概会来自某个当时看起来毫不相干的角落，而当事人正在忙着做别的事。</p>
+    <p class="ni"><a class="backlink" id="toUp" href="./">← 回到上卷《计算机创世记》</a></p>
+  </div>
+  <div class="wide" id="reactions" data-y="2026" style="margin-top:56px">
+    <div class="fig-label">附录</div>
+    <h3 style="margin-top:.2em">当时的人怎么看</h3>
+    <p style="color:var(--ink-2);font-size:15px;margin-top:0">下卷的图章按年份排。AI 史上的“误判”格外多，而且两个方向都有：有时过分乐观，有时过分悲观。</p>
+    <div class="rtab-wrap"><table class="rtab" id="rtab"><thead><tr><th>年份</th><th>事件</th><th>反应</th></tr></thead><tbody></tbody></table></div>
+  </div>
+</section>
+</main>
+
+<footer class="g">
+  <div class="col">
+    <p>年份和数字取自当事人的论文、公开报道与通行的史学研究，引文均为中文转述。词向量、注意力两个装置是示意，位置和权重为手工设定；感知机、异或、梯度下降、接龙机四个装置是真的在你的浏览器里计算。参数量只列公开过的数字。</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+const RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = s => document.querySelector(s);
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const themeL = []; const onTheme = f => themeL.push(f);
+const fire = () => themeL.forEach(f => { try{ f(); }catch(e){} });
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', fire);
+new MutationObserver(fire).observe(document.documentElement, {attributes:true, attributeFilter:['data-theme']});
+function canvas(cv, ratio){
+  const dpr = window.devicePixelRatio || 1, w = cv.clientWidth || 300, h = Math.round(w * ratio);
+  cv.style.height = h + 'px'; cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+  const x = cv.getContext('2d'); x.setTransform(dpr,0,0,dpr,0,0); return {x, w, h};
+}
+function rng(seed){ return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+/* 页眉年份 */
+(function(){
+  const marks = [...document.querySelectorAll('[data-y]')], yrEl = $('#barYr'), volEl = $('#barVol');
+  let shown = null, raf = 0, aid = 0;
+  function setYear(y){
+    if (shown === y) return; cancelAnimationFrame(aid);
+    if (shown === null || RM) { shown = y; yrEl.textContent = y; return; }
+    const from = shown, t0 = performance.now(); shown = y;
+    const tick = t => { const k = Math.min(1, (t - t0) / 450), e = 1 - Math.pow(1 - k, 3); yrEl.textContent = Math.round(from + (y - from) * e); if (k < 1) aid = requestAnimationFrame(tick); };
+    aid = requestAnimationFrame(tick);
+  }
+  function update(){ raf = 0; const line = innerHeight * .38; let cur = marks[0]; for (const m of marks) if (m.getBoundingClientRect().top < line) cur = m; setYear(+cur.dataset.y); const s = cur.closest('[data-vol]'); volEl.textContent = s ? s.dataset.vol : ''; }
+  addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(update); }, {passive:true});
+  addEventListener('resize', update); update();
+})();
+
+/* 开篇：感知机 */
+(function(){
+  const cv = $('#pcCv'); let pts, w, b, epoch, timer = null, addCls = 1, C;
+  const R = rng(7);
+  function seed(){
+    pts = []; const r = rng(Math.floor(Math.random() * 1e6));
+    while (pts.length < 26) {
+      const x = r() * 1.8 - .9, y = r() * 1.8 - .9, d = y - (0.55 * x + 0.1);
+      if (Math.abs(d) < .14) continue;
+      pts.push([x, y, d > 0 ? 1 : -1]);
+    }
+    w = [0.8, -0.35]; b = 0.3; epoch = 0; draw();
+  }
+  const map = (x, y) => [(x + 1) / 2 * C.w, (1 - (y + 1) / 2) * C.h];
+  const errs = () => pts.filter(p => Math.sign(w[0]*p[0] + w[1]*p[1] + b || -1) !== p[2]).length;
+  function draw(){
+    C = canvas(cv, .75); const {x} = C;
+    const O = css('--nixie'), B = css('--wire'), ink = css('--ink'), bg = css('--paper');
+    x.fillStyle = bg; x.fillRect(0, 0, C.w, C.h);
+    const n = 30;
+    for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) {
+      const px = (i + .5) / n * 2 - 1, py = 1 - (j + .5) / n * 2;
+      x.fillStyle = (w[0]*px + w[1]*py + b) > 0 ? O : B; x.globalAlpha = .09;
+      x.fillRect(i * C.w / n, j * C.h / n, C.w / n + 1, C.h / n + 1);
+    }
+    x.globalAlpha = 1;
+    // 判别线
+    x.strokeStyle = ink; x.lineWidth = 2; x.beginPath();
+    if (Math.abs(w[1]) > Math.abs(w[0])) { const y1 = -(w[0]*-1.2 + b) / w[1], y2 = -(w[0]*1.2 + b) / w[1]; x.moveTo(...map(-1.2, y1)); x.lineTo(...map(1.2, y2)); }
+    else { const x1 = -(w[1]*-1.2 + b) / w[0], x2 = -(w[1]*1.2 + b) / w[0]; x.moveTo(...map(x1, -1.2)); x.lineTo(...map(x2, 1.2)); }
+    x.stroke();
+    pts.forEach(p => {
+      const [px, py] = map(p[0], p[1]); const wrong = Math.sign(w[0]*p[0] + w[1]*p[1] + b || -1) !== p[2];
+      x.beginPath(); x.arc(px, py, 6, 0, 7); x.fillStyle = p[2] > 0 ? O : B; x.fill();
+      if (wrong) { x.lineWidth = 2; x.strokeStyle = ink; x.beginPath(); x.arc(px, py, 10, 0, 7); x.stroke(); }
+    });
+    const e = errs();
+    $('#pcRead').innerHTML = '第 <b>' + epoch + '</b> 轮 · 分错 <b>' + e + '</b> 个（画圈的）' + (e === 0 && epoch > 0 ? ' · 全对了，它自己找到了规则。' : '');
+  }
+  function oneEpoch(){
+    epoch++;
+    for (const p of pts) { const s = Math.sign(w[0]*p[0] + w[1]*p[1] + b || -1); if (s !== p[2]) { w[0] += .04 * p[2] * p[0]; w[1] += .04 * p[2] * p[1]; b += .04 * p[2]; } }
+    draw();
+  }
+  function stop(){ clearInterval(timer); timer = null; $('#pcLearn').textContent = '学习'; }
+  $('#pcLearn').addEventListener('click', () => {
+    if (timer) return stop();
+    $('#pcLearn').textContent = '暂停';
+    timer = setInterval(() => { oneEpoch(); if (errs() === 0 || epoch > 300) stop(); }, RM ? 60 : 450);
+  });
+  $('#pcReset').addEventListener('click', () => { stop(); seed(); });
+  $('#pcO').addEventListener('click', () => { addCls = 1; $('#pcO').setAttribute('aria-pressed', 'true'); $('#pcB').setAttribute('aria-pressed', 'false'); });
+  $('#pcB').addEventListener('click', () => { addCls = -1; $('#pcB').setAttribute('aria-pressed', 'true'); $('#pcO').setAttribute('aria-pressed', 'false'); });
+  cv.addEventListener('click', e => { const r = cv.getBoundingClientRect(); pts.push([(e.clientX - r.left) / r.width * 2 - 1, 1 - (e.clientY - r.top) / r.height * 2, addCls]); draw(); });
+  addEventListener('resize', draw); onTheme(draw); seed();
+})();
+
+/* 神经元 */
+(function(){
+  const NAMES = {'0001':'与','0111':'或','1000':'或非','1110':'与非','0000':'永远是 0','1111':'永远是 1','0011':'照抄 x₁','0101':'照抄 x₂','1100':'非 x₁','1010':'非 x₂','0010':'x₁ 并且非 x₂','0100':'x₂ 并且非 x₁','1011':'x₁ 或非 x₂','1101':'非 x₁ 或 x₂'};
+  const w1 = $('#nw1'), w2 = $('#nw2'), th = $('#nth');
+  function up(){
+    const a = +w1.value, b = +w2.value, t = +th.value;
+    $('#nw1o').textContent = a; $('#nw2o').textContent = b; $('#ntho').textContent = t;
+    let pat = '', h = '';
+    [[0,0],[0,1],[1,0],[1,1]].forEach(([p, q]) => { const s = a*p + b*q, o = s >= t ? 1 : 0; pat += o; h += '<tr><td>' + p + '</td><td>' + q + '</td><td>' + s + '</td><td class="' + (o ? 'o1' : '') + '">' + o + '</td></tr>'; });
+    $('#nTruth').innerHTML = h; $('#nVerdict').textContent = NAMES[pat] || pat;
+  }
+  [w1, w2, th].forEach(e => e.addEventListener('input', up));
+  document.querySelectorAll('[data-np]').forEach(bt => bt.addEventListener('click', () => { const [a, b, t] = bt.dataset.np.split(','); w1.value = a; w2.value = b; th.value = t; up(); }));
+  up();
+})();
+
+/* 异或 */
+(function(){
+  const cv = $('#xorCv'); const P = [[0,0,-1],[1,1,-1],[0,1,1],[1,0,1]];
+  let mode = 'none', w = [1, -.3], b = -.2, ep = 0, timer = null, best = 4, C;
+  const map = (x, y) => [(x + .5) / 2 * C.w, (1 - (y + .5) / 2) * C.h];
+  const step = v => v > 0 ? 1 : 0;
+  const mlp = (x, y) => step(step(x + y - .5) + step(-x - y + 1.5) - 1.5);
+  function line(a, c, d, ink){ // a x + c y + d = 0
+    const {x} = C; x.strokeStyle = ink; x.lineWidth = 2; x.beginPath();
+    if (Math.abs(c) > Math.abs(a)) { x.moveTo(...map(-.6, -(a*-.6 + d) / c)); x.lineTo(...map(1.6, -(a*1.6 + d) / c)); }
+    else { x.moveTo(...map(-(c*-.6 + d) / a, -.6)); x.lineTo(...map(-(c*1.6 + d) / a, 1.6)); }
+    x.stroke();
+  }
+  function draw(){
+    C = canvas(cv, .8); const {x} = C;
+    const O = css('--nixie'), B = css('--wire'), ink = css('--ink'), bg = css('--paper'), mut = css('--ink-3');
+    x.fillStyle = bg; x.fillRect(0, 0, C.w, C.h);
+    const n = 40;
+    if (mode !== 'none') for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) {
+      const px = (i + .5) / n * 2 - .5, py = 1.5 - (j + .5) / n * 2;
+      const pos = mode === 'mlp' ? mlp(px, py) : (w[0]*px + w[1]*py + b > 0);
+      x.fillStyle = pos ? O : B; x.globalAlpha = .1; x.fillRect(i * C.w / n, j * C.h / n, C.w / n + 1, C.h / n + 1);
+    }
+    x.globalAlpha = 1;
+    if (mode === 'one') line(w[0], w[1], b, ink);
+    if (mode === 'mlp') { line(1, 1, -.5, mut); line(-1, -1, 1.5, mut); }
+    P.forEach(p => {
+      const [px, py] = map(p[0], p[1]); x.beginPath(); x.arc(px, py, 11, 0, 7); x.fillStyle = p[2] > 0 ? O : B; x.fill();
+      x.fillStyle = bg; x.font = '11px "IBM Plex Mono", monospace'; x.textAlign = 'center'; x.fillText(p[2] > 0 ? '1' : '0', px, py + 4);
+    });
+  }
+  const err = () => P.filter(p => ((w[0]*p[0] + w[1]*p[1] + b > 0) ? 1 : -1) !== p[2]).length;
+  function stop(){ clearInterval(timer); timer = null; }
+  $('#xor1').addEventListener('click', () => {
+    stop(); mode = 'one'; w = [1, -.3]; b = -.2; ep = 0; best = 4; draw();
+    timer = setInterval(() => {
+      ep++;
+      for (const p of P) { const s = (w[0]*p[0] + w[1]*p[1] + b > 0) ? 1 : -1; if (s !== p[2]) { w[0] += .3 * p[2] * p[0]; w[1] += .3 * p[2] * p[1]; b += .3 * p[2]; } }
+      best = Math.min(best, err()); draw();
+      $('#xorRead').innerHTML = '单层感知机，第 <b>' + ep + '</b> 轮，这一轮错 <b>' + err() + '</b> 个，历史最好也错 <b>' + best + '</b> 个。' + (ep >= 30 ? '<br>试了 30 轮，还是不行。不是它笨，是一条直线根本做不到。' : '');
+      if (ep >= 30) stop();
+    }, RM ? 40 : 300);
+  });
+  $('#xor2').addEventListener('click', () => {
+    stop(); mode = 'mlp'; draw();
+    $('#xorRead').innerHTML = '两层网络：第一个隐藏神经元画了一条线（“或”），第二个画了另一条（“与非”），最后一个神经元取两者的“与”。中间那条带子是橙色区，四个点<b>全对</b>。<br>多加一层，就能把平面切成更复杂的形状。层数越多，形状越复杂。';
+  });
+  addEventListener('resize', draw); onTheme(draw); draw();
+})();
+
+/* 梯度下降 */
+(function(){
+  const cv = $('#gdCv'); const f = x => .04*x**4 - .6*x*x + .25*x, df = x => .16*x**3 - 1.2*x + .25;
+  let x0 = 3.6, trail = [], timer = null, lost = false, C;
+  const X0 = -4.6, X1 = 4.6, Y0 = -3.6, Y1 = 4.2;
+  const mx = x => (x - X0) / (X1 - X0) * C.w, my = y => (1 - (y - Y0) / (Y1 - Y0)) * C.h;
+  function draw(){
+    C = canvas(cv, .42); const {x} = C;
+    x.fillStyle = css('--paper'); x.fillRect(0, 0, C.w, C.h);
+    x.strokeStyle = css('--ink'); x.lineWidth = 2; x.beginPath();
+    for (let i = 0; i <= 200; i++) { const t = X0 + (X1 - X0) * i / 200; i ? x.lineTo(mx(t), my(f(t))) : x.moveTo(mx(t), my(f(t))); }
+    x.stroke();
+    x.fillStyle = css('--ink-3'); x.font = '12px "Noto Serif SC", serif'; x.textAlign = 'center';
+    x.fillText('最低点', mx(-2.83), my(f(-2.83)) + 22); x.fillText('一个坑（不是最低）', mx(2.63), my(f(2.63)) + 22);
+    trail.forEach((t, i) => { x.globalAlpha = .25 + .5 * i / trail.length; x.fillStyle = css('--wire'); x.beginPath(); x.arc(mx(t), my(f(t)), 3, 0, 7); x.fill(); });
+    x.globalAlpha = 1;
+    if (!lost) { x.fillStyle = css('--nixie'); x.beginPath(); x.arc(mx(x0), my(f(x0)) - 8, 8, 0, 7); x.fill(); }
+    $('#gdRead').innerHTML = lost ? '<b>小球飞出去了。</b>步子太大，越蹦越远。' : '位置 <b>' + x0.toFixed(2) + '</b> · 错误 <b>' + f(x0).toFixed(2) + '</b>';
+  }
+  function stepOnce(){
+    if (lost) return; trail.push(x0); if (trail.length > 40) trail.shift();
+    x0 = x0 - (+$('#gdLr').value) * df(x0);
+    if (!isFinite(x0) || Math.abs(x0) > 6) { lost = true; stop(); }
+    draw();
+  }
+  function stop(){ clearInterval(timer); timer = null; }
+  function start(v){ stop(); x0 = v; trail = []; lost = false; draw(); }
+  $('#gdLr').addEventListener('input', e => $('#gdLro').textContent = (+e.target.value).toFixed(2));
+  $('#gdStep').addEventListener('click', () => { stop(); stepOnce(); });
+  $('#gdGo').addEventListener('click', () => { stop(); if (lost) start(3.6); let n = 0; timer = setInterval(() => { stepOnce(); if (++n >= 30) stop(); }, RM ? 20 : 120); });
+  $('#gdR').addEventListener('click', () => start(3.6));
+  $('#gdL').addEventListener('click', () => start(-4.1));
+  addEventListener('resize', draw); onTheme(draw); draw();
+})();
+
+/* ImageNet */
+(function(){
+  const D = [[2010,28.2,'NEC 等'],[2011,25.8,'XRCE'],[2012,15.3,'AlexNet'],[2013,11.7,'ZFNet 等'],[2014,6.7,'GoogLeNet'],[2015,3.57,'ResNet'],[2016,2.99,''],[2017,2.25,'SENet']];
+  const X0 = 60, X1 = 650, Y0 = 290, Y1 = 20, sx = y => X0 + (y - 2009.5) / 8 * (X1 - X0), sy = v => Y0 - v / 30 * (Y0 - Y1);
+  let h = '';
+  for (let v = 0; v <= 30; v += 5) h += '<line x1="' + X0 + '" x2="' + X1 + '" y1="' + sy(v) + '" y2="' + sy(v) + '" stroke="var(--rule)"/><text x="' + (X0 - 8) + '" y="' + (sy(v) + 4) + '" text-anchor="end" font-size="11" fill="var(--ink-3)" font-family="IBM Plex Mono, monospace">' + v + '%</text>';
+  D.forEach(d => { h += '<text x="' + sx(d[0]) + '" y="' + (Y0 + 20) + '" text-anchor="middle" font-size="11" fill="var(--ink-3)" font-family="IBM Plex Mono, monospace">' + d[0] + '</text>'; });
+  h += '<line x1="' + X0 + '" x2="' + X1 + '" y1="' + sy(5.1) + '" y2="' + sy(5.1) + '" stroke="var(--wire)" stroke-dasharray="5 5" stroke-width="1.5"/><text x="' + (X1 - 4) + '" y="' + (sy(5.1) - 6) + '" text-anchor="end" font-size="12" fill="var(--wire)" font-family="Noto Serif SC, serif">人 · 约 5.1%</text>';
+  D.forEach(d => {
+    const bw = 44, x = sx(d[0]) - bw / 2;
+    h += '<rect x="' + x + '" y="' + sy(d[1]) + '" width="' + bw + '" height="' + (Y0 - sy(d[1])) + '" fill="' + (d[0] === 2012 ? 'var(--nixie)' : 'var(--ink-3)') + '" opacity="' + (d[0] === 2012 ? 1 : .55) + '"/>';
+    h += '<text x="' + sx(d[0]) + '" y="' + (sy(d[1]) - 6) + '" text-anchor="middle" font-size="11.5" fill="var(--ink)" font-family="IBM Plex Mono, monospace">' + d[1] + '</text>';
+    if (d[2]) h += '<text x="' + sx(d[0]) + '" y="' + (sy(d[1]) - 20) + '" text-anchor="middle" font-size="11" fill="var(--ink-2)" font-family="Noto Serif SC, serif">' + d[2] + '</text>';
+  });
+  h += '<text x="' + (sx(2012) + 30) + '" y="' + (sy(21)) + '" font-size="12" fill="var(--nixie)" font-family="Noto Serif SC, serif">一年降了 10.5 个百分点</text>';
+  $('#inSvg').innerHTML = h;
+})();
+
+/* 词向量 */
+(function(){
+  const W = {'男人':[1.2,1.4],'女人':[1.2,3.6],'国王':[4.0,1.6],'女王':[4.0,3.8],'中国':[6.6,5.2],'北京':[8.6,6.0],'日本':[6.9,7.5],'东京':[8.9,8.3],'慢':[1.6,6.6],'快':[3.4,7.6],'走':[2.4,8.4],'跑':[4.2,9.4],'猫':[6.0,1.2],'狗':[6.6,1.6],'苹果':[8.8,2.4],'香蕉':[9.3,2.9]};
+  const AN = [['国王','男人','女人','女王'],['北京','中国','日本','东京'],['走','慢','快','跑']];
+  const svg = $('#embSvg');
+  const sx = x => 30 + x / 10 * 580, sy = y => 350 - y / 10 * 330;
+  function base(){
+    let h = '<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--nixie)"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--wire)"/></marker></defs>';
+    h += '<rect x="1" y="1" width="638" height="378" fill="none" stroke="var(--rule)"/>';
+    for (const k in W) { const [x, y] = W[k]; h += '<circle cx="' + sx(x) + '" cy="' + sy(y) + '" r="4.5" fill="var(--ink)"/><text x="' + (sx(x) + 8) + '" y="' + (sy(y) + 4) + '" font-size="14" fill="var(--ink)" font-family="Noto Serif SC, serif">' + k + '</text>'; }
+    h += '<text x="' + sx(6.3) + '" y="' + sy(0.35) + '" font-size="11" fill="var(--ink-3)" font-family="Noto Serif SC, serif">动物挨着动物，水果挨着水果</text>';
+    return h;
+  }
+  svg.innerHTML = base();
+  document.querySelectorAll('[data-an]').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('[data-an]').forEach(o => o.classList.toggle('pri', o === b));
+    const [A, Bn, Cn, Dn] = AN[+b.dataset.an];
+    const a = W[A], bb = W[Bn], c = W[Cn];
+    const r = [a[0] - bb[0] + c[0], a[1] - bb[1] + c[1]];
+    let h = base();
+    h += '<line x1="' + sx(bb[0]) + '" y1="' + sy(bb[1]) + '" x2="' + sx(c[0]) + '" y2="' + sy(c[1]) + '" stroke="var(--wire)" stroke-width="2.5" marker-end="url(#ah2)"/>';
+    h += '<line x1="' + sx(a[0]) + '" y1="' + sy(a[1]) + '" x2="' + sx(r[0]) + '" y2="' + sy(r[1]) + '" stroke="var(--nixie)" stroke-width="2.5" stroke-dasharray="6 4" marker-end="url(#ah)"><animate attributeName="stroke-dashoffset" from="60" to="0" dur="0.8s"/></line>';
+    h += '<circle cx="' + sx(r[0]) + '" cy="' + sy(r[1]) + '" r="13" fill="none" stroke="var(--nixie)" stroke-width="2"/>';
+    svg.innerHTML = h;
+    $('#embRead').innerHTML = '从“' + Bn + '”到“' + Cn + '”的箭头（青色），原样平移到“' + A + '”身上（橙色），落点最近的词是 <b>' + Dn + '</b>。';
+  }));
+})();
+
+/* 注意力 */
+(function(){
+  const S = {
+    A: ['动物','没有','穿过','马路','，','因为','它','太','累','了'],
+    B: ['动物','没有','穿过','马路','，','因为','它','太','宽','了']
+  };
+  const IT = { A: [.58,.03,.05,.14,.01,.03,.07,.02,.06,.01], B: [.12,.02,.05,.6,.01,.03,.07,.02,.07,.01] };
+  let v = 'A', sel = 6;
+  function weights(i){
+    if (i === 6) return IT[v];
+    const n = S[v].length, raw = [];
+    for (let j = 0; j < n; j++) { const d = Math.abs(i - j); raw.push(d === 0 ? 4 : d === 1 ? 2.2 : d === 2 ? 1 : .35); }
+    if (i === 8) { raw[6] += 2.5; raw[v === 'A' ? 0 : 3] += 3; }
+    if (i === 2) { raw[0] += 2; raw[3] += 2.5; }
+    const s = raw.reduce((a, b) => a + b, 0); return raw.map(r => r / s);
+  }
+  function draw(){
+    const ws = weights(sel), mx = Math.max(...ws), toks = S[v];
+    $('#toks').innerHTML = toks.map((t, i) => '<button class="tok' + (i === sel ? ' sel' : '') + (ws[i] / mx > .55 ? ' hot' : '') + '" data-i="' + i + '" style="--a:' + (ws[i] / mx * .85).toFixed(2) + '">' + t + '</button>').join('');
+    $('#toks').querySelectorAll('.tok').forEach(b => b.addEventListener('click', () => { sel = +b.dataset.i; draw(); }));
+    $('#abars').innerHTML = '<div style="grid-column:1/-1;font-size:13px;color:var(--ink-3)">“' + toks[sel] + '”把注意力分给了：</div>' + toks.map((t, i) => '<span>' + t + '</span><div><div class="bar" style="width:' + (ws[i] / mx * 100).toFixed(0) + '%"></div></div><span class="v">' + (ws[i] * 100).toFixed(0) + '%</span>').join('');
+  }
+  $('#atA').addEventListener('click', () => { v = 'A'; $('#atA').setAttribute('aria-pressed', 'true'); $('#atB').setAttribute('aria-pressed', 'false'); draw(); });
+  $('#atB').addEventListener('click', () => { v = 'B'; $('#atB').setAttribute('aria-pressed', 'true'); $('#atA').setAttribute('aria-pressed', 'false'); draw(); });
+  draw();
+})();
+
+/* 接龙机 */
+(function(){
+  const text = [...document.querySelectorAll('main .col p, main .react p, main .same')].map(e => e.textContent).join('。');
+  const ok = c => /[一-鿿，。、；：？！“”]/.test(c);
+  const chars = [...text].filter(ok).join('').replace(/。+/g, '。');
+  const T = {};
+  for (let i = 0; i < chars.length - 1; i++) { const a = chars[i], b = chars[i + 1]; (T[a] = T[a] || {}); T[a][b] = (T[a][b] || 0) + 1; }
+  const starts = Object.keys(T['。'] || {}).filter(c => /[一-鿿]/.test(c));
+  let out = [];
+  function dist(c){
+    const row = T[c] || T['。'], t = +$('#genT').value;
+    const e = Object.entries(row).map(([k, n]) => [k, Math.pow(n, 1 / t)]);
+    const s = e.reduce((a, b) => a + b[1], 0);
+    return e.map(([k, n]) => [k, n / s]).sort((a, b) => b[1] - a[1]);
+  }
+  function sample(d){ let r = Math.random(), acc = 0; for (const [k, p] of d) { acc += p; if (r <= acc) return k; } return d[0][0]; }
+  function show(){
+    const o = $('#genOut');
+    o.innerHTML = out.slice(0, -1).join('') + '<span class="last">' + (out[out.length - 1] || '') + '</span>';
+    const d = dist(out[out.length - 1]).slice(0, 6);
+    $('#genCand').innerHTML = '<div style="grid-column:1/-1;font-size:13px;color:var(--ink-3)">“' + out[out.length - 1] + '”后面最可能的字：</div>' + d.map(([k, p]) => '<span style="font-size:17px">' + k + '</span><div><div class="bar" style="width:' + Math.max(2, p / d[0][1] * 100).toFixed(0) + '%"></div></div><span class="v">' + (p * 100).toFixed(1) + '%</span>').join('');
+  }
+  function one(){ out.push(sample(dist(out[out.length - 1]))); show(); }
+  function reset(){ out = [starts[Math.floor(Math.random() * starts.length)] || '机']; show(); }
+  $('#genOne').addEventListener('click', one);
+  $('#genLine').addEventListener('click', () => { let n = 0; do { one(); n++; } while (out[out.length - 1] !== '。' && n < 60); });
+  $('#genNew').addEventListener('click', reset);
+  $('#genT').addEventListener('input', e => { $('#genTo').textContent = (+e.target.value).toFixed(1); show(); });
+  $('#genInfo').textContent = '统计表：从本页 ' + chars.length.toLocaleString() + ' 个字里数出 ' + Object.keys(T).length.toLocaleString() + ' 个不同的字、' + Object.values(T).reduce((a, r) => a + Object.keys(r).length, 0).toLocaleString() + ' 种“谁跟在谁后面”。';
+  reset(); for (let i = 0; i < 6; i++) one();
+})();
+
+/* 参数量 */
+(function(){
+  const D = [[1998,'LeNet-5',6e4,'杨立昆读支票的网络。'],[2012,'AlexNet',6e7,'卷五那两块显卡上训出来的。'],[2014,'VGG-16',1.38e8,''],[2017,'Transformer',2.13e8,'论文里的大号版本。'],[2018,'GPT-1',1.17e8,''],[2018.8,'BERT-Large',3.4e8,'谷歌用 Transformer 做的“读懂”模型。'],[2019,'GPT-2',1.5e9,'“太危险，暂不公开”的那个。'],[2020,'GPT-3',1.75e11,'看几个例子就能学会新任务。'],[2022,'PaLM',5.4e11,'谷歌。'],[2024.5,'Llama 3.1',4.05e11,'Meta 公开权重的最大版本。'],[2024.9,'DeepSeek-V3',6.71e11,'总参数 6710 亿，但每次只动用其中约 370 亿（“混合专家”结构）。']];
+  const X0 = 74, X1 = 660, Y0 = 320, Y1 = 20, yr0 = 1996, yr1 = 2026, L0 = 4, L1 = 15;
+  const sx = y => X0 + (y - yr0) / (yr1 - yr0) * (X1 - X0), sy = n => Y0 - (Math.log10(n) - L0) / (L1 - L0) * (Y0 - Y1);
+  const U = {4:'1万',5:'10万',6:'100万',7:'1000万',8:'1亿',9:'10亿',10:'100亿',11:'1000亿',12:'1万亿',13:'10万亿',14:'100万亿',15:'1000万亿'};
+  let h = '';
+  for (let p = L0; p <= L1; p++) h += '<line x1="' + X0 + '" x2="' + X1 + '" y1="' + sy(10**p) + '" y2="' + sy(10**p) + '" stroke="var(--rule)"/><text x="' + (X0 - 8) + '" y="' + (sy(10**p) + 4) + '" text-anchor="end" font-size="11" fill="var(--ink-3)" font-family="Noto Serif SC, serif">' + U[p] + '</text>';
+  for (let y = 2000; y <= 2025; y += 5) h += '<text x="' + sx(y) + '" y="' + (Y0 + 20) + '" text-anchor="middle" font-size="11" fill="var(--ink-3)" font-family="IBM Plex Mono, monospace">' + y + '</text>';
+  h += '<line x1="' + X0 + '" x2="' + X1 + '" y1="' + sy(1e14) + '" y2="' + sy(1e14) + '" stroke="var(--wire)" stroke-dasharray="5 5" stroke-width="1.5"/><text x="' + (X0 + 6) + '" y="' + (sy(1e14) - 6) + '" font-size="11.5" fill="var(--wire)" font-family="Noto Serif SC, serif">人脑突触，粗估约 100 万亿（不是同一种东西）</text>';
+  D.forEach((d, i) => { h += '<g class="pt" tabindex="0" data-i="' + i + '" role="button" aria-label="' + d[1] + '"><circle cx="' + sx(d[0]) + '" cy="' + sy(d[2]) + '" r="5" fill="var(--nixie)" stroke="var(--card)" stroke-width="1.5"/><circle cx="' + sx(d[0]) + '" cy="' + sy(d[2]) + '" r="14" fill="transparent"/></g>'; });
+  [[0,8,16],[1,-8,-8],[6,-8,-8],[7,-8,-8],[10,-6,-12]].forEach(([i, dx, dy]) => { const d = D[i]; h += '<text x="' + (sx(d[0]) + dx) + '" y="' + (sy(d[2]) + dy) + '" text-anchor="' + (dx < 0 ? 'end' : 'start') + '" font-size="11.5" fill="var(--ink)" font-family="Noto Serif SC, serif">' + d[1] + '</text>'; });
+  const svg = $('#parSvg'); svg.innerHTML = h;
+  const fmt = n => n >= 1e8 ? (n / 1e8).toLocaleString('zh-CN', {maximumFractionDigits: 1}) + ' 亿' : (n / 1e4).toLocaleString('zh-CN') + ' 万';
+  const show = i => { const d = D[i]; $('#parRead').innerHTML = '<b>' + d[1] + '</b> · ' + Math.floor(d[0]) + ' · ' + fmt(d[2]) + ' 个参数。' + d[3]; };
+  svg.querySelectorAll('.pt').forEach(g => { const i = +g.dataset.i; ['mouseenter','focus','click'].forEach(ev => g.addEventListener(ev, () => show(i))); });
+  show(7);
+})();
+
+/* 反补回路 */
+(function(){
+  const N = [
+    ['游戏玩家','1990 年代起','玩家想要更逼真的三维画面：更多的多边形、更真的光影、更大的爆炸。他们愿意每隔两三年就花钱换一块新显卡。这笔钱一年年投进去，养活了一个产业。'],
+    ['显卡','1999','1999 年英伟达推出 GeForce 256，自称“世界上第一个 GPU”。画三维画面，说到底是同时对几百万个像素做同样的算术，所以显卡里塞的不是几个聪明的核心，而是成千上万个简单的计算单元。'],
+    ['通用计算','2007','科学家发现显卡这种“一大群小学生同时算”的本事，可以拿来算天气、算分子，2007 年英伟达推出 CUDA，让普通程序员也能用显卡做非图形的计算。当时很多人觉得这是不务正业。'],
+    ['深度学习','2012','神经网络的训练恰好就是海量的矩阵乘法：同样的算术做亿万遍。2012 年的 AlexNet 用两块游戏显卡把错误率砸穿（卷五）。从这一刻起，显卡的主业开始变了。'],
+    ['AI 需求','2022','ChatGPT 之后，全世界的公司都在抢 AI 芯片。数据中心取代游戏玩家，成了英伟达最大的客户，2024 年它一度成为全球市值最高的公司。台积电、高带宽显存（HBM）厂商的产能被提前好几年订光。'],
+    ['AI 画游戏','2018—','圈在这里合上了：2018 年起，英伟达的显卡用一个小神经网络来“猜”游戏画面，先用低分辨率渲染，再由 AI 补出高清细节和中间帧（DLSS）。今天很多游戏画面里，有相当一部分像素不是“画”出来的，是 AI“猜”出来的。玩家花钱养大的东西，回过头来替他们画画。']
+  ];
+  const svg = $('#loopSvg'), cx = 210, cy = 210, R = 150;
+  let h = '<defs><marker id="la" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--ink-3)"/></marker></defs>';
+  const pos = N.map((_, i) => { const a = -Math.PI / 2 + i * 2 * Math.PI / N.length; return [cx + R * Math.cos(a), cy + R * Math.sin(a), a]; });
+  pos.forEach((p, i) => {
+    const a1 = p[2] + .32, a2 = pos[(i + 1) % N.length][2] - .32 + (i === N.length - 1 ? 2 * Math.PI : 0);
+    const r2 = R;
+    h += '<path d="M' + (cx + r2 * Math.cos(a1)) + ',' + (cy + r2 * Math.sin(a1)) + ' A' + r2 + ',' + r2 + ' 0 0,1 ' + (cx + r2 * Math.cos(a2)) + ',' + (cy + r2 * Math.sin(a2)) + '" fill="none" stroke="var(--ink-3)" stroke-width="1.5" marker-end="url(#la)"/>';
+  });
+  h += '<text x="' + cx + '" y="' + (cy - 6) + '" text-anchor="middle" font-size="15" fill="var(--ink-2)" font-family="ZCOOL XiaoWei, serif">衍生物</text><text x="' + cx + '" y="' + (cy + 16) + '" text-anchor="middle" font-size="15" fill="var(--ink-2)" font-family="ZCOOL XiaoWei, serif">反补祖先</text>';
+  pos.forEach((p, i) => { h += '<g class="node" tabindex="0" role="button" data-i="' + i + '"><rect x="' + (p[0] - 50) + '" y="' + (p[1] - 19) + '" width="100" height="38" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.5"/><text x="' + p[0] + '" y="' + (p[1] + 5) + '" text-anchor="middle" font-size="14" fill="var(--ink)" font-family="Noto Serif SC, serif">' + N[i][0] + '</text></g>'; });
+  svg.innerHTML = h;
+  function pick(i){
+    svg.querySelectorAll('.node').forEach(g => g.classList.toggle('on', +g.dataset.i === i));
+    $('#loopTxt').innerHTML = '<div class="k">第 ' + (i + 1) + ' 站 · ' + N[i][1] + '</div><h5>' + N[i][0] + '</h5><p>' + N[i][2] + '</p><div class="btns"><button class="btn" id="loopNext">下一站 →</button></div>';
+    $('#loopNext').addEventListener('click', () => pick((i + 1) % N.length));
+  }
+  svg.querySelectorAll('.node').forEach(g => { const i = +g.dataset.i; g.addEventListener('click', () => pick(i)); g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(i); } }); });
+  pick(0);
+})();
+
+/* 附录 */
+(function(){
+  const rows = [...document.querySelectorAll('.react')].map(r => { const v = r.closest('[data-vol]'); return {y: +r.dataset.year, tag: r.dataset.tag, title: r.dataset.title, yl: r.querySelector('.ry').textContent, vol: v ? v.dataset.vol : '', id: v ? v.id : ''}; }).sort((p, q) => p.y - q.y);
+  const color = {'轰动':'var(--nixie)','冷遇':'var(--ink-3)','误判':'var(--wire)','传说':'var(--ink-2)','迟到':'var(--m-brass)','争论':'var(--m-si)'};
+  $('#rtab tbody').innerHTML = rows.map(r => '<tr><td class="y">' + r.yl + '</td><td>' + r.title + ' <a href="#' + r.id + '" style="font-size:12.5px;color:var(--ink-3)">' + r.vol + '</a></td><td class="tg"><span style="color:' + color[r.tag] + '">' + r.tag + '</span></td></tr>').join('');
+})();
+})();
+
+</script>
+</body>
+</html>

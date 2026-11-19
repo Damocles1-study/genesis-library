@@ -1,0 +1,2017 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="人类如何用开关、导线和约定，从无到有造出一个能装下虚拟世界的机器——一部带可视化装置的编年史。">
+<meta property="og:title" content="计算机创世记">
+<meta property="og:description" content="人类如何用开关、导线和约定，从无到有造出一个能装下虚拟世界的机器——一部带可视化装置的编年史。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23161412'/%3E%3Cpath d='M9 22V10h3l4 7 4-7h3v12' stroke='%23e8dcc4' stroke-width='2.4' fill='none'/%3E%3C/svg%3E">
+<title>计算机创世记</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;600;700&family=ZCOOL+XiaoWei&display=swap">
+<style>
+/* 版式：一本窄栏的编年史。正文是书页，装置是夹在书里的工作台；页眉的年份随阅读推进。 */
+:root{
+  --paper:#e7eae2;      /* 账簿纸：偏冷的灰绿 */
+  --paper-2:#dde1d6;
+  --card:#f3f5ef;       /* 装置台面 */
+  --ink:#1b2430;        /* 蓝黑墨水 */
+  --ink-2:#4e5965;
+  --ink-3:#7b858f;
+  --rule:#c3cabd;
+  --nixie:#cf4e19;      /* 辉光管的橙 */
+  --glow:#ff8d4e;
+  --wire:#2c6a6e;       /* 铜绿 */
+  --off:#c6ccc1;
+  --thread-a:#2b3a4a;
+  --thread-b:#c9b98c;
+  --m-wood:#8a6a48; --m-brass:#a9862f; --m-relay:#9a5b34; --m-paper:#bfae7c;
+  --m-tube:#d8742a; --m-si:#56708a; --m-sym:#1b2430; --m-crt:#3a8f57; --m-net:#a5603a; --m-rule:#6f7f2f;
+  --f-display:"ZCOOL XiaoWei","Songti SC","STSong","Noto Serif SC",serif;
+  --f-body:"Noto Serif SC","Songti SC","Source Han Serif SC","STSong",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#111518; --paper-2:#161b1f; --card:#192024; --ink:#e0e5dd; --ink-2:#a3ada6; --ink-3:#717c77;
+  --rule:#2b3439; --nixie:#ff7a3e; --glow:#ffb07a; --wire:#67b6b1; --off:#323b41;
+  --thread-a:#9fb4c8; --thread-b:#5a5136;
+  --m-wood:#b48e66; --m-brass:#d4b04f; --m-relay:#cc8656; --m-paper:#d9c890;
+  --m-tube:#ff9a4a; --m-si:#8eaacb; --m-sym:#e0e5dd; --m-crt:#66cc88; --m-net:#d88a5c; --m-rule:#a9bd52;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#111518; --paper-2:#161b1f; --card:#192024; --ink:#e0e5dd; --ink-2:#a3ada6; --ink-3:#717c77;
+  --rule:#2b3439; --nixie:#ff7a3e; --glow:#ffb07a; --wire:#67b6b1; --off:#323b41;
+  --thread-a:#9fb4c8; --thread-b:#5a5136;
+  --m-wood:#b48e66; --m-brass:#d4b04f; --m-relay:#cc8656; --m-paper:#d9c890;
+  --m-tube:#ff9a4a; --m-si:#8eaacb; --m-sym:#e0e5dd; --m-crt:#66cc88; --m-net:#d88a5c; --m-rule:#a9bd52;
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.9;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+.g{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit;text-decoration-color:var(--nixie);text-underline-offset:3px}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--nixie);outline-offset:2px}
+
+/* 页眉 */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+.bar-in{max-width:56rem;margin:0 auto;display:flex;align-items:center;gap:14px;padding-block:8px}
+.bar .name{font-family:var(--f-display);font-size:19px;letter-spacing:.05em;white-space:nowrap}
+.bar .vol{margin-left:auto;font-size:13px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.bar .yr{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:15px;color:var(--nixie);min-width:5.4em;text-align:right;letter-spacing:.04em}
+.bar .yr small{font-size:11px;color:var(--ink-3);margin-right:4px}
+
+main{display:block}
+.col{max-width:38rem;margin-inline:auto}
+.wide{max-width:54rem;margin-inline:auto}
+.col p{margin:0 0 1.05em;text-indent:2em}
+.col p.ni{text-indent:0}
+h2,h3{text-wrap:balance}
+h3{font-family:var(--f-display);font-weight:400;font-size:24px;line-height:1.4;margin:2.2em 0 .7em;letter-spacing:.03em}
+h3 .y{font-family:var(--f-mono);font-size:13px;color:var(--ink-3);margin-left:10px;letter-spacing:0}
+.mono{font-family:var(--f-mono)}
+em{font-style:normal;background:linear-gradient(transparent 62%,color-mix(in srgb,var(--nixie) 22%,transparent) 62%)}
+blockquote{margin:1.4em 0;padding:.2em 0 .2em 1.2em;border-left:1px solid var(--ink-3);color:var(--ink-2)}
+blockquote p{text-indent:0!important;margin:0 0 .4em}
+blockquote cite{font-style:normal;font-size:14px;color:var(--ink-3)}
+
+/* 开篇 */
+.hero{padding-block:56px 30px}
+.hero .eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;color:var(--ink-3);text-transform:uppercase}
+.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(56px,13vw,124px);line-height:1;margin:.25em 0 .3em;letter-spacing:.06em}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:40px;align-items:center}
+.hero-grid p{margin:0 0 1em;font-size:18px}
+.switchbox{display:flex;flex-direction:column;align-items:center;gap:16px;padding:26px 16px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.switchrow{display:flex;align-items:center;gap:26px}
+.bigswitch{width:64px;height:112px;border-radius:10px;border:2px solid var(--ink);background:var(--paper-2);position:relative;cursor:pointer;padding:0}
+.bigswitch .knob{position:absolute;left:8px;right:8px;height:44px;bottom:8px;background:var(--ink);border-radius:5px;transition:bottom .18s ease}
+.bigswitch[aria-pressed="true"] .knob{bottom:56px}
+.bigswitch::after{content:"通";position:absolute;top:-24px;left:0;right:0;text-align:center;font-size:12px;color:var(--ink-3)}
+.bigswitch::before{content:"断";position:absolute;bottom:-24px;left:0;right:0;text-align:center;font-size:12px;color:var(--ink-3)}
+.lamp{width:56px;height:56px;border-radius:50%;background:var(--off);border:2px solid var(--ink);transition:background .15s,box-shadow .25s}
+.lamp.on{background:var(--glow);box-shadow:0 0 0 6px color-mix(in srgb,var(--glow) 25%,transparent),0 0 36px var(--glow)}
+.bitbig{font-family:var(--f-mono);font-size:56px;line-height:1;width:1ch;color:var(--ink)}
+.switchbox .cap{font-size:14px;color:var(--ink-2);text-align:center}
+
+/* 三股绳 */
+.strands{margin-block:34px 10px}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.strands svg{display:block;width:100%;min-width:660px;height:auto}
+.figcap{font-size:14px;color:var(--ink-2);margin-top:8px}
+
+/* 目录 */
+.toc{list-style:none;margin:30px 0 0;padding:0;border-top:1px solid var(--rule)}
+.toc li{border-bottom:1px solid var(--rule)}
+.toc a{display:grid;grid-template-columns:4.8em minmax(0,1fr) auto;gap:12px;align-items:baseline;padding:10px 0;text-decoration:none}
+.toc .n{font-family:var(--f-display);font-size:20px}
+.toc .t{min-width:0}
+.toc .t small{color:var(--ink-3);margin-left:8px;font-size:13px}
+.toc .r{font-family:var(--f-mono);font-size:12px;color:var(--ink-3);white-space:nowrap}
+.toc a:hover .n{color:var(--nixie)}
+
+/* 卷首 */
+.vol{padding-block:40px 20px}
+.volhead{max-width:54rem;margin:30px auto 26px;padding-top:26px;border-top:2px solid var(--ink);display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 26px;align-items:end}
+.volhead .num{font-family:var(--f-display);font-size:clamp(48px,9vw,84px);line-height:1;grid-row:span 2}
+.volhead h2{font-family:var(--f-display);font-weight:400;font-size:clamp(26px,4.4vw,38px);margin:0;line-height:1.25;letter-spacing:.04em}
+.volhead .meta{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;font-size:13px;color:var(--ink-2)}
+.volhead .range{font-family:var(--f-mono)}
+.mat{display:inline-flex;align-items:center;gap:6px}
+.mat i{width:12px;height:12px;display:inline-block;background:var(--c);border:1px solid var(--ink)}
+
+/* 当时的反应 */
+.react{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;margin:26px 0;padding:14px 0;border-top:1px dashed var(--rule);border-bottom:1px dashed var(--rule)}
+.stamp{font-family:var(--f-display);font-size:18px;color:var(--sc,var(--nixie));border:2px solid var(--sc,var(--nixie));padding:4px 6px;line-height:1.1;height:max-content;transform:rotate(-6deg);margin-top:6px;writing-mode:vertical-rl;letter-spacing:.2em}
+.react[data-tag="冷遇"]{--sc:var(--ink-3)}
+.react[data-tag="误判"]{--sc:var(--wire)}
+.react[data-tag="传说"] .stamp{border-style:dashed;--sc:var(--ink-2)}
+.react[data-tag="迟到"]{--sc:var(--m-brass)}
+.react[data-tag="争论"]{--sc:var(--m-si)}
+.react p{margin:0 0 .4em;text-indent:0!important;font-size:15.5px;line-height:1.8}
+.react .rh{font-weight:600}
+.react .ry{font-family:var(--f-mono);font-weight:400;color:var(--ink-3);margin-right:8px;font-size:13px}
+
+/* 装置 */
+.fig{background:var(--card);border:1px solid var(--rule);padding:20px;margin-block:30px}
+.fig-label{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.12em;color:var(--ink-3);text-transform:uppercase;margin-bottom:4px}
+.fig h4{font-family:var(--f-display);font-weight:400;font-size:22px;margin:0 0 4px}
+.fig .how{font-size:14.5px;color:var(--ink-2);margin:0 0 16px;line-height:1.75}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btn{border:1px solid var(--ink);background:transparent;padding:5px 12px;font-size:14px;cursor:pointer;line-height:1.5}
+.btn:hover{background:var(--paper-2)}
+.btn.pri{background:var(--ink);color:var(--paper)}
+.btn.pri:hover{background:var(--ink-2)}
+.btn:disabled{opacity:.4;cursor:default}
+.readout{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:14px;color:var(--ink-2)}
+.readout b{color:var(--ink);font-weight:500}
+
+/* 卦 */
+.hexa{display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px 36px;align-items:center}
+.hexlines{display:flex;flex-direction:column;gap:9px;width:150px}
+.hl{height:20px;display:flex;gap:18px;cursor:pointer;background:none;border:0;padding:0;width:100%}
+.hl span{flex:1;background:var(--ink)}
+.hl.yang span:nth-child(2){display:none}
+.hl:hover span{background:var(--nixie)}
+.hexinfo .big{font-family:var(--f-mono);font-size:34px;letter-spacing:.12em;line-height:1.2}
+.hexinfo .big .eq{color:var(--ink-3);letter-spacing:0;font-size:22px;margin:0 8px}
+.hexinfo .dec{color:var(--nixie)}
+.hexinfo .tri{font-size:15px;color:var(--ink-2);margin:6px 0 14px}
+
+/* 织机 */
+.loom{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px}
+.deck{display:flex;flex-direction:column;gap:3px}
+.card{display:grid;grid-template-columns:2.2em repeat(16,minmax(0,1fr));gap:2px;align-items:center;background:var(--m-paper);padding:3px 4px;border-radius:2px}
+.card .cn{font-family:var(--f-mono);font-size:10px;color:#3a3020}
+.hole{aspect-ratio:1;border-radius:50%;border:0;padding:0;background:color-mix(in srgb,var(--m-paper) 70%,#000 12%);cursor:pointer;min-width:0}
+.hole.on{background:#1b1b18}
+.fabric{width:100%;aspect-ratio:2/1;display:block;border:1px solid var(--rule)}
+.loom .side h5{font-weight:600;font-size:14px;margin:0 0 6px;color:var(--ink-2)}
+
+/* 差分机 */
+.engine{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px}
+.cols{display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap}
+.ecol{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 8px;border:1px solid var(--rule);background:var(--paper);transition:border-color .2s,box-shadow .2s}
+.ecol.hot{border-color:var(--nixie);box-shadow:0 0 0 2px color-mix(in srgb,var(--nixie) 30%,transparent)}
+.ecol .lab{font-size:12.5px;color:var(--ink-2);text-align:center;line-height:1.4}
+.drums{display:flex;gap:2px}
+.drum{width:30px;height:42px;overflow:hidden;background:var(--m-brass);border:1px solid var(--ink);position:relative}
+.drum .strip{position:absolute;left:0;right:0;top:0;transition:transform .35s cubic-bezier(.3,.7,.2,1)}
+.drum .strip span{display:block;height:42px;line-height:42px;text-align:center;font-family:var(--f-mono);font-size:22px;color:#1d1608}
+.plus{font-family:var(--f-mono);color:var(--ink-3);align-self:center}
+.crank{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.printout{font-family:var(--f-mono);font-size:13px;background:var(--paper);border:1px solid var(--rule);height:236px;overflow-y:auto;padding:8px 12px;margin:0;list-style:none}
+.printout li{display:grid;grid-template-columns:3.5em 4.5em minmax(0,1fr);gap:6px;border-bottom:1px dotted var(--rule);font-variant-numeric:tabular-nums}
+.printout li .p{color:var(--ink-3)}
+.printout li.np .p{color:var(--nixie)}
+.printout li.new{animation:flash .9s}
+@keyframes flash{from{background:color-mix(in srgb,var(--glow) 40%,transparent)}to{background:transparent}}
+
+/* 加法器 */
+.adder{display:grid;grid-template-columns:62px 26px 62px 26px 62px 26px 62px 26px 62px;justify-content:center;row-gap:10px;min-width:400px}
+.ac{display:flex;flex-direction:column;align-items:center;gap:10px}
+.ac .bl{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);height:30px;line-height:1.35;text-align:center}
+.sw{width:40px;height:40px;border:2px solid var(--ink);background:var(--paper);font-family:var(--f-mono);font-size:18px;cursor:pointer;padding:0}
+.sw.on{background:var(--ink);color:var(--paper)}
+.sw.ghost{visibility:hidden}
+.fa{width:58px;height:46px;border:1px solid var(--ink-2);display:grid;place-items:center;font-size:11px;color:var(--ink-2);background:var(--paper);line-height:1.2;text-align:center}
+.fa.ghost{border-style:dashed;color:var(--ink-3)}
+.sl{width:30px;height:30px;border-radius:50%;background:var(--off);border:2px solid var(--ink);display:grid;place-items:center;font-family:var(--f-mono);font-size:13px;color:var(--ink-3);transition:background .15s,box-shadow .2s}
+.sl.on{background:var(--glow);color:#3a1400;box-shadow:0 0 14px var(--glow)}
+.sl.wait{background:transparent;border-style:dotted}
+.cw{display:flex;flex-direction:column;align-items:center;justify-content:center}
+.cw .spacer{height:30px}
+.cw .slot{height:40px}
+.cw .wire{height:46px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-family:var(--f-mono);font-size:11px;color:var(--ink-3)}
+.cw .dot{width:14px;height:14px;border-radius:50%;background:var(--off);border:1.5px solid var(--ink);transition:background .15s,box-shadow .2s}
+.cw .dot.on{background:var(--glow);box-shadow:0 0 10px var(--glow)}
+.adder-legend{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px 20px;margin-top:16px}
+
+/* 图灵机 */
+.tape{display:flex;gap:3px;justify-content:center;margin:26px 0 10px;min-width:max-content;padding-top:22px}
+.cell{width:38px;height:44px;border:1px solid var(--ink);background:var(--paper);display:grid;place-items:center;font-family:var(--f-mono);font-size:20px;position:relative}
+.cell.head{background:color-mix(in srgb,var(--glow) 30%,var(--paper));border-width:2px}
+.cell.head::before{content:"▼";position:absolute;top:-22px;font-size:13px;color:var(--nixie)}
+.cell .ix{position:absolute;bottom:-17px;font-size:9.5px;color:var(--ink-3)}
+.tm{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;margin-top:22px}
+table.rules{border-collapse:collapse;font-family:var(--f-mono);font-size:13px;width:100%}
+table.rules th,table.rules td{border-bottom:1px solid var(--rule);padding:4px 6px;text-align:left;white-space:nowrap}
+table.rules th{font-family:var(--f-body);font-weight:600;color:var(--ink-2);font-size:12.5px}
+table.rules tr.cur td{background:color-mix(in srgb,var(--glow) 30%,transparent)}
+.tm-ctl input{font-family:var(--f-mono);font-size:15px;width:8em;padding:4px 8px;border:1px solid var(--ink);background:var(--paper);color:var(--ink)}
+
+/* 存储程序机 */
+.mach{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:22px}
+.mem{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.mc{border:1px solid var(--rule);background:var(--paper);padding:5px 6px 6px;transition:border-color .15s,background .3s}
+.mc .ad{font-family:var(--f-mono);font-size:10.5px;color:var(--ink-3);display:flex;justify-content:space-between}
+.mc input{width:100%;font-family:var(--f-mono);font-size:19px;border:0;background:transparent;color:var(--ink);padding:0;font-variant-numeric:tabular-nums}
+.mc .dc{font-family:var(--f-mono);font-size:10.5px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mc.pc{border:2px solid var(--nixie);padding:4px 5px 5px}
+.mc.w{background:color-mix(in srgb,var(--glow) 32%,var(--paper))}
+.regs{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-family:var(--f-mono);font-size:14px;align-items:baseline;margin-bottom:14px}
+.regs dt{color:var(--ink-3);font-size:12px}
+.regs dd{margin:0;font-size:22px;font-variant-numeric:tabular-nums}
+.isa{font-family:var(--f-mono);font-size:12px;color:var(--ink-2);line-height:1.7;margin-top:14px;border-top:1px solid var(--rule);padding-top:10px}
+
+/* 摩尔 */
+.moore svg{display:block;width:100%;min-width:560px;height:auto}
+.moore .pt{cursor:pointer}
+.moore .pt:focus{outline:none}
+.moore .pt:focus circle:first-child,.moore .pt:hover circle:first-child{r:7}
+.mread{min-height:2.6em;margin-top:8px}
+
+/* 塔 */
+.tower{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
+.layers{display:flex;flex-direction:column-reverse;gap:4px;align-items:center}
+.layer{width:var(--w);border:1px solid var(--ink);background:var(--paper);padding:6px 10px;cursor:pointer;display:flex;justify-content:space-between;gap:10px;font-size:14px;text-align:left}
+.layer .ly{font-family:var(--f-mono);font-size:11px;color:var(--ink-3)}
+.layer[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.layer[aria-pressed="true"] .ly{color:var(--paper);opacity:.7}
+.ldet h5{font-family:var(--f-display);font-weight:400;font-size:24px;margin:0 0 8px}
+.ldet p{margin:0 0 .8em;font-size:15px;line-height:1.8}
+.ldet .k{font-size:12px;color:var(--ink-3);font-family:var(--f-mono);letter-spacing:.08em}
+
+/* LO */
+.lo svg{display:block;width:100%;height:auto;max-height:220px}
+.lolog{font-family:var(--f-mono);font-size:13px;list-style:none;margin:10px 0 0;padding:0;min-height:8.5em}
+.lolog li{padding:2px 0;border-bottom:1px dotted var(--rule)}
+.lolog li.bad{color:var(--nixie)}
+
+/* 生命 */
+.life canvas{display:block;width:100%;border:1px solid var(--rule);background:var(--paper);touch-action:none;cursor:crosshair}
+
+/* 附录 */
+.rtab-wrap{overflow-x:auto}
+table.rtab{border-collapse:collapse;width:100%;font-size:14.5px;min-width:520px}
+table.rtab th,table.rtab td{border-bottom:1px solid var(--rule);padding:7px 8px;text-align:left;vertical-align:top}
+table.rtab th{font-weight:600;color:var(--ink-2);font-size:13px}
+table.rtab td.y{font-family:var(--f-mono);white-space:nowrap;color:var(--ink-2)}
+table.rtab td.tg{white-space:nowrap}
+table.rtab td.tg span{font-family:var(--f-display);border:1.5px solid currentColor;padding:0 6px}
+.end{padding-block:40px 70px}
+.end .closing{font-family:var(--f-display);font-size:clamp(24px,4vw,32px);line-height:1.6;margin:1.6em 0;text-align:left}
+footer{border-top:1px solid var(--rule);padding-block:24px 50px;color:var(--ink-3);font-size:13px}
+footer .col p{text-indent:0}
+
+/* 间章与卷十一、十二 */
+.react[data-tag="反噬"]{--sc:var(--m-relay)}
+#btnS[aria-pressed="true"],#btnR[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+#btnS,#btnR{touch-action:none;user-select:none;-webkit-user-select:none}
+.zoomw{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:24px;align-items:start}
+.zlist{display:flex;flex-direction:column;gap:4px}
+.zl{display:flex;gap:10px;align-items:center;text-align:left;border:1px solid var(--ink);background:var(--paper);padding:6px 10px;cursor:pointer;font-size:15px;margin-left:calc(var(--d) * 10px)}
+.zl .zn{font-family:var(--f-mono);font-size:11px;color:var(--ink-3)}
+.zl[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.zl[aria-pressed="true"] .zn{color:var(--paper)}
+.zdet h5{font-family:var(--f-display);font-weight:400;font-size:24px;margin:0 0 8px}
+.zdet p{font-size:15px;line-height:1.8;margin:0 0 12px}
+.zdet .k{font-family:var(--f-mono);font-size:12px;color:var(--ink-3)}
+table.knew td:first-child{white-space:nowrap;font-weight:600}
+.seg{display:inline-flex;border:1px solid var(--ink)}
+.seg button{border:0;background:transparent;padding:4px 12px;font-size:14px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.chart svg{display:block;width:100%;height:auto;min-width:540px}
+.rng{display:grid;grid-template-columns:5em minmax(0,1fr) 4.2em;gap:10px;align-items:center;font-size:14px;margin:8px 0}
+.rng input{width:100%;accent-color:var(--nixie)}
+.rng output{font-family:var(--f-mono);font-variant-numeric:tabular-nums;text-align:right}
+.atomread{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;margin:6px 0 10px;font-size:15px}
+.atomread .atn{font-family:var(--f-mono);font-size:28px;color:var(--nixie)}
+.atomcv{display:block;width:100%;border:1px solid var(--rule)}
+.ebars{display:flex;flex-direction:column;gap:8px}
+.eb{display:grid;grid-template-columns:9em minmax(0,1fr) 5em;gap:10px;align-items:center;font-size:14px}
+.et{height:16px;background:var(--paper);border:1px solid var(--rule)}
+.ef{height:100%;background:var(--wire)}
+.ef.mv{background:var(--nixie)}
+.ev{font-family:var(--f-mono);font-size:13px;text-align:right;color:var(--ink-2)}
+.amd{display:flex;flex-direction:column;gap:8px;margin-top:10px;max-width:36rem}
+.amrow{display:grid;grid-template-columns:4em minmax(0,1fr) 6.5em;gap:10px;align-items:center;font-size:14px}
+.amrow b{font-family:var(--f-mono);font-weight:500;text-align:right}
+.amtrack{height:18px;border:1px solid var(--rule);background:var(--paper)}
+.amfill{height:100%;background:var(--nixie);transition:width .2s}
+.amcap{height:100%;background:var(--ink-3);opacity:.5;transition:width .2s}
+.nextvol{margin-top:22px;padding:18px 20px;border:2px solid var(--ink);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 20px;align-items:center;text-decoration:none}
+.nextvol:hover{background:var(--paper-2)}
+.nextvol .nv1{font-family:var(--f-mono);font-size:12px;color:var(--ink-3);letter-spacing:.1em}
+.nextvol .nv2{font-family:var(--f-display);font-size:28px;line-height:1.2}
+.nextvol .nv3{font-size:14px;color:var(--ink-2);text-indent:0}
+.nextvol .arr{font-size:30px;grid-row:span 3}
+@media (max-width:760px){.zoomw{grid-template-columns:minmax(0,1fr)}.zl{margin-left:0}.eb{grid-template-columns:7.2em minmax(0,1fr) 4.4em;font-size:13px}}
+
+@media (max-width:760px){
+  body{font-size:16.5px}
+  .hero-grid,.loom,.engine,.tm,.mach,.tower,.hexa{grid-template-columns:minmax(0,1fr)}
+  .hero{padding-block:34px 20px}
+  .fig{padding:16px 14px}
+  .bar .name{font-size:16px}
+  .toc a{grid-template-columns:3.6em minmax(0,1fr)}
+  .toc .r{grid-column:2}
+  .layers{align-items:stretch}
+  .layer{width:100%!important}
+  .hexlines{width:130px}
+}
+@media (max-width:520px){
+  .adder{grid-template-columns:48px 14px 48px 14px 48px 14px 48px 14px 48px;min-width:0}
+  .sw{width:36px;height:36px;font-size:16px}
+  .cw .slot{height:36px}
+  .fa{width:46px;font-size:10px}
+  .cw .wire span{display:none}
+}
+@media (max-width:420px){.bar .vol{display:none}.bar .yr{margin-left:auto}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-in g">
+    <a class="homelink" href="../" title="回创世书房" style="text-decoration:none;font-size:13px;color:var(--ink-3);white-space:nowrap;border:1px solid var(--rule);border-radius:999px;padding:1px 9px">书房</a>
+    <span class="name">计算机创世记</span>
+    <span class="vol" id="barVol">序</span>
+    <span class="yr" id="barYr" aria-live="off">2026</span>
+  </div>
+</header>
+
+<main class="g">
+
+<!-- ============ 序 ============ -->
+<section class="hero" data-vol="序">
+  <div class="wide" data-y="2026">
+    <div class="eyebrow">一部关于“东西怎样学会按规则变化”的编年史</div>
+    <h1>一沙一世界</h1>
+    <div class="hero-grid">
+      <div>
+        <p>你此刻读这行字用的机器，里面没有一个零件“懂”任何事。它只有开关，几百亿个，每个只会两件事：通，或者断。</p>
+        <p>这里就有一个。</p>
+        <p>这本小书讲的是，人类花了大约三百五十年，把这样一个开关变成了能下棋、能画画、能装下一整座城市的东西。中间没有哪一步是凭空变出来的。每一步都只比上一步多想了一点，只是这些“一点”摞起来，高得让人眩晕。</p>
+      </div>
+      <div class="switchbox">
+        <div class="switchrow">
+          <button class="bigswitch" id="heroSwitch" aria-pressed="false" aria-label="拨动开关"><span class="knob"></span></button>
+          <div class="lamp" id="heroLamp"></div>
+          <div class="bitbig" id="heroBit">0</div>
+        </div>
+        <div class="cap" id="heroCap">按一下开关。灯亮，记作 1；灯灭，记作 0。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wide strands">
+    <div class="scroll-x">
+    <svg viewBox="0 0 800 250" role="img" aria-label="三股绳示意：算、控、理三条线在1936到1945年间汇成计算机">
+      <g font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--ink-3)">
+        <line x1="40" y1="228" x2="600" y2="228" stroke="var(--rule)"/>
+        <g stroke="var(--rule)"><line x1="40" y1="224" x2="40" y2="232"/><line x1="202" y1="224" x2="202" y2="232"/><line x1="365" y1="224" x2="365" y2="232"/><line x1="527" y1="224" x2="527" y2="232"/></g>
+        <text x="40" y="245" text-anchor="middle">1600</text><text x="202" y="245" text-anchor="middle">1700</text><text x="365" y="245" text-anchor="middle">1800</text><text x="527" y="245" text-anchor="middle">1900</text>
+        <text x="690" y="245" text-anchor="middle">1945 之后</text>
+      </g>
+      <g fill="none" stroke-width="2.4">
+        <path d="M40,50 L500,50 C560,50 560,118 600,118" stroke="var(--m-brass)"/>
+        <path d="M40,118 L600,118" stroke="var(--m-paper)"/>
+        <path d="M40,186 L500,186 C560,186 560,118 600,118" stroke="var(--wire)"/>
+        <path d="M600,118 L770,118" stroke="var(--ink)" stroke-width="7"/>
+      </g>
+      <polygon points="770,108 790,118 770,128" fill="var(--ink)"/>
+      <g font-family="Noto Serif SC, serif" font-size="13" fill="var(--ink)">
+        <text x="40" y="36">算 · 让机器做算术</text>
+        <text x="40" y="104">控 · 让机器照一张可换的单子做事</text>
+        <text x="40" y="214">理 · 让推理变成电路</text>
+      </g>
+      <g fill="var(--paper)" stroke="var(--ink)" stroke-width="1.5">
+        <circle cx="108" cy="50" r="5"/><circle cx="158" cy="50" r="5"/><circle cx="400" cy="50" r="5"/>
+        <circle cx="371" cy="118" r="5"/><circle cx="425" cy="118" r="5"/><circle cx="511" cy="118" r="5"/>
+        <circle cx="207" cy="186" r="5"/><circle cx="452" cy="186" r="5"/><circle cx="587" cy="122" r="5"/>
+      </g>
+      <g font-family="Noto Serif SC, serif" font-size="12" fill="var(--ink-2)" text-anchor="middle">
+        <text x="108" y="72">帕斯卡 1642</text><text x="190" y="72" text-anchor="start">莱布尼茨 1673</text><text x="400" y="72">差分机 1822</text>
+        <text x="371" y="140">雅卡尔</text><text x="371" y="154" font-size="10.5" font-family="IBM Plex Mono, monospace">1804</text>
+        <text x="425" y="140">分析机</text><text x="425" y="154" font-size="10.5" font-family="IBM Plex Mono, monospace">1837</text>
+        <text x="511" y="140">霍列瑞斯</text><text x="511" y="154" font-size="10.5" font-family="IBM Plex Mono, monospace">1890</text>
+        <text x="207" y="176">二进制 1703</text><text x="452" y="176">布尔 1854</text>
+        <text x="572" y="162">香农 1937</text>
+      </g>
+      <g font-family="Noto Serif SC, serif" text-anchor="middle">
+        <text x="690" y="96" font-size="13" fill="var(--nixie)">图灵 1936 · 冯·诺依曼 1945</text>
+        <text x="690" y="148" font-size="13" fill="var(--ink)">计算机</text>
+        <text x="690" y="166" font-size="11" fill="var(--ink-3)">晶体管 → 芯片 → 网 → 世界</text>
+      </g>
+    </svg>
+    </div>
+    <div class="figcap">三股绳。很长一段时间里，它们是互不相干的三件事：做算术的齿轮、控制织机的纸卡、研究推理的代数。1936 到 1945 年间，它们被拧成了一股。横轴按真实年份画，1945 年之后另算。</div>
+  </div>
+
+  <div class="col">
+    <ol class="toc">
+      <li><a href="#v1"><span class="n">卷一</span><span class="t">数<small>算筹、算盘、帕斯卡、莱布尼茨</small></span><span class="r">木与骨 · 前 400—1703</span></a></li>
+      <li><a href="#v2"><span class="n">卷二</span><span class="t">织<small>雅卡尔、巴贝奇、阿达</small></span><span class="r">黄铜与纸卡 · 1804—1843</span></a></li>
+      <li><a href="#v3"><span class="n">卷三</span><span class="t">理<small>布尔、霍列瑞斯、香农</small></span><span class="r">继电器 · 1854—1937</span></a></li>
+      <li><a href="#v4"><span class="n">卷四</span><span class="t">纸带<small>图灵</small></span><span class="r">纸与铅笔 · 1936</span></a></li>
+      <li><a href="#v5"><span class="n">卷五</span><span class="t">电子<small>Z3、巨人、ENIAC、存储程序</small></span><span class="r">电子管 · 1941—1952</span></a></li>
+      <li><a href="#v6"><span class="n">卷六</span><span class="t">沙<small>晶体管、集成电路、4004</small></span><span class="r">硅 · 1947—1971</span></a></li>
+      <li><a href="#v7"><span class="n">卷七</span><span class="t">语言<small>bug、编译器、Unix</small></span><span class="r">符号 · 1947—1973</span></a></li>
+      <li><a href="#vx"><span class="n">间章</span><span class="t">死物怎么动起来<small>逻辑、记忆、心跳、约定</small></span><span class="r">拆开看</span></a></li>
+      <li><a href="#v8"><span class="n">卷八</span><span class="t">窗<small>太空大战、演示之母、桌面</small></span><span class="r">荧光屏 · 1962—1984</span></a></li>
+      <li><a href="#v9"><span class="n">卷九</span><span class="t">网<small>LO、TCP/IP、万维网</small></span><span class="r">电话线 · 1969—1994</span></a></li>
+      <li><a href="#v10"><span class="n">卷十</span><span class="t">世界<small>生命游戏、MUD、虚拟机</small></span><span class="r">规则 · 1970—</span></a></li>
+      <li><a href="#v11"><span class="n">卷十一</span><span class="t">芯<small>IBM PC、ARM、台积电、光刻机</small></span><span class="r">光 · 1981—2020</span></a></li>
+      <li><a href="#v12"><span class="n">卷十二</span><span class="t">墙<small>为什么现在卡住了</small></span><span class="r">物理定律 · 2004—</span></a></li>
+      <li><a href="#end"><span class="n">尾声</span><span class="t">为什么会有一个世界</span><span class="r"></span></a></li>
+      <li><a href="#reactions"><span class="n">附</span><span class="t">当时的人怎么看</span><span class="r">一览表</span></a></li>
+    </ol>
+    <p class="ni" style="font-size:14px;color:var(--ink-3);margin-top:14px">读完大约一小时十分钟。书里夹着十四个可以动手的装置，每个都只做一件事，玩一下再往下读，比只看字容易懂。人工智能那一段历史写在下卷《第二次创世》，链接在尾声。</p>
+  </div>
+</section>
+
+<!-- ============ 卷一 ============ -->
+<section class="vol" id="v1" data-vol="卷一 · 数">
+  <div class="volhead" data-y="-400">
+    <div class="num">卷一</div>
+    <h2>数</h2>
+    <div class="meta"><span class="range">前 400—1703</span><span class="mat" style="--c:var(--m-wood)"><i></i>载体：木与骨</span></div>
+  </div>
+  <div class="col">
+    <p>人最早的计算机是手。十根手指不够用了，就用石子、绳结、木棍。战国时的中国人用算筹：一把小竹棍，横摆竖摆表示不同的数字，在桌上排开来算。后来算筹缩进一个木框，串上珠子，成了算盘。</p>
+    <p>算盘很快，快到让后来的工程师难堪。可它有一件事做不到：它不会自己进位。珠子只负责记住数，“满十进一”这个动作仍然发生在拨珠子的人脑子里。</p>
+    <h3 data-y="1642">一个十九岁的少年<span class="y">1642</span></h3>
+    <p>第一个想把进位也交给机器的人，是个十九岁的法国少年。布莱兹·帕斯卡的父亲在鲁昂当税务官，天天对账到深夜。帕斯卡做了一个铜盒子，里面是一串齿轮：一个齿轮转满十格，就拨动旁边那个转一格。</p>
+    <p>这是进位第一次发生在人的脑子之外。这台机器后来叫“帕斯卡林”，前后造了几十台，卖得并不好，太贵，也太容易坏。但从这一刻起，“计算”开始可以从人身上拆下来，交给一堆铜。</p>
+    <h3 data-y="1673">莱布尼茨的两张纸<span class="y">1673 · 1703</span></h3>
+    <p>三十年后，德国人莱布尼茨做出了能做乘法的步进计算器，1673 年带到伦敦皇家学会展示。他更深远的贡献写在纸上：只用 0 和 1 两个数字，就能写出所有的数。</p>
+    <p>1703 年，他收到一封从北京寄来的信。在华的法国传教士白晋给他寄了一张伏羲六十四卦图，那是北宋邵雍排定的次序。莱布尼茨惊讶地发现，把阴爻看作 0、阳爻看作 1，这张图恰好是从 0 数到 63。他相信自己找到了东西方智慧相通的证据，同年写成了介绍二进制算术的论文。</p>
+  </div>
+
+  <div class="wide fig" id="fig-hexa">
+    <div class="fig-label">装置 1 / 卦与二进制</div>
+    <h4>六根线，六十四个数</h4>
+    <p class="how">点任意一爻，阴阳互换。阳爻（一整根）记 1，阴爻（断开的）记 0。从最下面的初爻读到最上面的上爻，就是一个六位二进制数。按“+1”可以一个一个往上数，看卦象怎样变。</p>
+    <div class="hexa">
+      <div class="hexlines" id="hexLines" aria-label="六爻"></div>
+      <div class="hexinfo">
+        <div class="big"><span id="hexBin">000000</span><span class="eq">=</span><span class="dec" id="hexDec">0</span></div>
+        <div class="tri" id="hexTri">上卦 坤 ☷ · 下卦 坤 ☷</div>
+        <div class="btns">
+          <button class="btn pri" id="hexInc">+1</button>
+          <button class="btn" id="hexZero">全阴 · 坤（0）</button>
+          <button class="btn" id="hexMax">全阳 · 乾（63）</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <p>二进制在当时几乎没有用处。没有人愿意用这么啰嗦的方式写数：十进制写 63 只要两位，二进制要六位。它要再等两百多年，等到出现一种东西，天生就只有两种状态。</p>
+    <aside class="react" data-year="1946" data-tag="冷遇" data-title="算盘赢了电动计算器">
+      <span class="stamp">冷遇</span>
+      <div>
+        <p class="rh"><span class="ry">后话 · 1946.11</span>算盘赢了</p>
+        <p>二战刚结束，美军《星条旗报》在东京办了一场比赛：日本邮政储蓄局的职员松崎喜义拿算盘，对阵美军里最快的电动计算器操作员。加减乘除和混合运算五个项目，算盘赢了四项。那时候，很多人觉得“机器算账”不过是个噱头。</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ 卷二 ============ -->
+<section class="vol" id="v2" data-vol="卷二 · 织">
+  <div class="volhead" data-y="1804">
+    <div class="num">卷二</div>
+    <h2>织</h2>
+    <div class="meta"><span class="range">1804—1843</span><span class="mat" style="--c:var(--m-brass)"><i></i>载体：黄铜与纸卡</span></div>
+  </div>
+  <div class="col">
+    <h3 data-y="1804">一叠纸卡替掉一个孩子<span class="y">1804 · 里昂</span></h3>
+    <p>以前织一匹带花纹的丝绸，织机顶上要蹲一个孩子，按照花样一根一根提起经线，织工在下面投梭。一行花纹提一次，几千行就是几千次，一出错整匹布就毁了。</p>
+    <p>里昂的约瑟夫-玛丽·雅卡尔用一串打了孔的硬纸卡替掉了这个孩子。卡片上有孔的地方，钩针穿过去，提起对应的经线；没孔的地方，钩针被挡住，经线不动。一张卡织一行，卡片用绳子串成长链，一张接一张地翻过去。换一串卡，同一台织机就能织出完全不同的花。</p>
+    <p>这是人类第一次把“做什么”和“用什么做”分开。机器不变，变的是那叠卡片。后来我们管那叠卡片叫<em>程序</em>。</p>
+  </div>
+
+  <div class="wide fig" id="fig-loom">
+    <div class="fig-label">装置 2 / 纸卡织机</div>
+    <h4>打孔，然后看布</h4>
+    <p class="how">“卡片组”里是 8 张卡片，每张 16 个孔位，点一下打孔或补上。有孔的地方经线（深色）被提起、浮在布面上；没孔的地方露出纬线（浅色）。“织出的布”把这 8 行花样重复织了几遍。</p>
+    <div class="loom">
+      <div class="side">
+        <h5>卡片组</h5>
+        <div class="deck" id="deck"></div>
+        <div class="btns" style="margin-top:12px">
+          <button class="btn" data-loom="twill">斜纹</button>
+          <button class="btn" data-loom="diamond">菱形</button>
+          <button class="btn" data-loom="check">方格</button>
+          <button class="btn" data-loom="clear">全部补上</button>
+        </div>
+      </div>
+      <div class="side">
+        <h5>织出的布</h5>
+        <canvas class="fabric" id="fabric" aria-label="根据卡片织出的布样"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <p>织工们并不高兴。新织机让许多人丢了饭碗，里昂发生过砸毁织机的事。这个场面以后还会一次次重演：每当机器学会一件人做的事，总有人先失去生计，再过一代人，大家才习惯它。</p>
+    <aside class="react" data-year="1839" data-tag="轰动" data-title="两万四千张卡织出的肖像">
+      <span class="stamp">轰动</span>
+      <div>
+        <p class="rh"><span class="ry">1839</span>两万四千张卡织出的肖像</p>
+        <p>里昂的作坊用大约两万四千张纸卡，在丝绸上织出了一幅雅卡尔的黑白肖像，细到能看清头发。英国数学家巴贝奇买了一幅挂在客厅，常常请客人猜它是怎么做的。大多数人以为是铜版画。</p>
+      </div>
+    </aside>
+
+    <h3 data-y="1821">“真希望这些是蒸汽算出来的”<span class="y">1821 · 伦敦</span></h3>
+    <p>那位巴贝奇，正是被数表折磨的人。十九世纪的航海、天文、保险、炮兵都靠印成书的数表：对数表、三角函数表、潮汐表。这些表由一群叫“计算员”的人手算出来，再由排字工排版。算错、抄错、排错，层层叠加。船只按错的表航行，是会触礁的。</p>
+    <p>1821 年，巴贝奇和天文学家赫歇尔一起核对一批数表，错误一个接一个冒出来。他说了一句后来很有名的抱怨：真希望这些计算是用蒸汽完成的。</p>
+    <p>他设计的“差分机”只会做加法，却能造出整张多项式数表。诀窍在于“差分”：以 x² + x + 41 为例，相邻两个值之差是 2、4、6、8……而这些差的差，永远是 2。所以只要知道开头三个数，之后每一个新值都只需要两次加法，不用乘法，也不用人动脑。</p>
+  </div>
+
+  <div class="wide fig" id="fig-engine">
+    <div class="fig-label">装置 3 / 差分机</div>
+    <h4>摇一圈，出一个数</h4>
+    <p class="how">三列黄铜数字轮。每摇一圈，机器做两件事：先把“一阶差”加进“结果”，再把“二阶差”加进“一阶差”。旁边是它印出来的数表。据记载，巴贝奇在客厅给客人演示时用的就是 x² + x + 41：它在 x = 0 到 39 时给出的全是素数。摇到第 40 圈看看会发生什么。</p>
+    <div class="engine">
+      <div>
+        <div class="cols">
+          <div class="ecol" id="ecF"><div class="drums" id="drF"></div><div class="lab">结果<br>f(x)</div></div>
+          <div class="plus">←</div>
+          <div class="ecol" id="ecD1"><div class="drums" id="drD1"></div><div class="lab">一阶差<br>Δ</div></div>
+          <div class="plus">←</div>
+          <div class="ecol" id="ecD2"><div class="drums" id="drD2"></div><div class="lab">二阶差<br>Δ²（不变）</div></div>
+        </div>
+        <div class="crank">
+          <button class="btn pri" id="crank1">摇一圈</button>
+          <button class="btn" id="crank10">连摇十圈</button>
+          <button class="btn" id="crank0">复位</button>
+        </div>
+        <p class="readout" id="engRead" style="margin-top:12px">x = <b>0</b> · 一共做了 <b>0</b> 次加法，0 次乘法</p>
+      </div>
+      <ol class="printout" id="printout" aria-label="印出的数表"></ol>
+    </div>
+  </div>
+
+  <div class="col">
+    <p>英国政府前后拨了一万七千英镑。1833 年，巴贝奇和他的工程师克莱门特因为钱和图纸闹翻，工程停了，只留下一小块能动的样机。</p>
+    <h3 data-y="1837">仓库与磨坊<span class="y">1834—1871</span></h3>
+    <p>可巴贝奇的心思早就不在差分机上了。差分机只能算一类题，他想要一台什么题都能算的机器。他把这台“分析机”分成两部分：存放数字的“仓库”（store），做运算的“磨坊”（mill）。指令用雅卡尔的打孔卡送进去；更要紧的是，机器可以根据算到一半的结果，决定接下来翻到哪一张卡。</p>
+    <p>把这几个名字换掉：仓库叫内存，磨坊叫 CPU，打孔卡叫程序，“根据结果决定翻到哪张卡”叫条件跳转。结构和今天的计算机几乎一样。只是它要用蒸汽驱动，有上万个齿轮，巴贝奇到死也没能造出来。</p>
+    <h3 data-y="1843">阿达的注释<span class="y">1843</span></h3>
+    <p>1843 年，二十七岁的阿达·洛芙莱斯把一篇介绍分析机的法文论文译成英文。她加的注释比原文长了大约两倍。在最后一条注释 G 里，她用一张大表一步一步写出分析机怎样计算伯努利数，这常被称作历史上第一个计算机程序。</p>
+    <p>但她写下的另一些话看得更远。她认为分析机处理的不必是数：只要事物之间的关系能用符号表示，比如音高与和声，这台机器就可能谱出任意复杂、任意长度的乐曲。一百年后才有人真的这样用计算机。</p>
+    <blockquote>
+      <p>分析机编织代数的图案，就像雅卡尔织机编织花朵和叶子。</p>
+      <cite>阿达·洛芙莱斯，1843 年注释（中文转述）</cite>
+    </blockquote>
+    <p>阿达 1852 年去世，年仅三十六岁。巴贝奇 1871 年去世，脑子被保存了下来，今天还在伦敦的博物馆里。</p>
+    <aside class="react" data-year="1991" data-tag="迟到" data-title="按原图纸造出的差分机算对了">
+      <span class="stamp">迟到</span>
+      <div>
+        <p class="rh"><span class="ry">1991</span>晚了一百五十年的验证</p>
+        <p>巴贝奇诞辰两百周年，伦敦科学博物馆照着他留下的差分机二号图纸，只用十九世纪能达到的加工精度，造出了整台机器，数千个零件，重达数吨。它第一次运转，就算对了。问题从来不在设计，在于他的时代造不出、也不愿意为它付钱。</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ 卷三 ============ -->
+<section class="vol" id="v3" data-vol="卷三 · 理">
+  <div class="volhead" data-y="1854">
+    <div class="num">卷三</div>
+    <h2>理</h2>
+    <div class="meta"><span class="range">1854—1937</span><span class="mat" style="--c:var(--m-relay)"><i></i>载体：继电器</span></div>
+  </div>
+  <div class="col">
+    <h3 data-y="1854">把推理写成算式<span class="y">1854</span></h3>
+    <p>1854 年，一位没上过大学、靠自学成才的英国数学教师乔治·布尔出版了《思维规律的研究》。他想做的事听起来很狂妄：把人的推理写成代数。</p>
+    <p>“真”记作 1，“假”记作 0。“并且”像乘法：1 × 1 = 1，只要有一个 0 就得 0。“或者”像加法，但规定 1 + 1 仍然等于 1。于是“如果下雨并且没带伞，就会淋湿”这样的话，可以写成算式来算。同时代几乎没人觉得这有什么用，它被当作逻辑学里一个漂亮的角落。</p>
+    <p>就在同一时期，电报线正在铺满世界。电报里有一种小零件叫<em>继电器</em>：一个电磁铁，通电时把一片铁吸过来，接通另一条电路。它是一个能被电控制的开关。没人想到，布尔的代数和这个小零件，有一天会被同一个人放在一起。</p>
+
+    <h3 data-y="1890">统计一个国家<span class="y">1890 · 美国</span></h3>
+    <p>美国宪法规定每十年普查一次人口。1880 年那次的数据，人工统计了七八年。人口还在暴涨，照这个速度，下一次还没统计完，再下一次就该开始了。</p>
+    <p>普查局的年轻雇员赫尔曼·霍列瑞斯借来了两样东西：列车员在车票上打孔记录乘客特征的办法，和织机的卡片。每个人一张卡，孔的位置代表性别、年龄、出生地。卡片压进读卡器，金属针穿过孔碰到下面的水银杯，电路接通，对应的计数盘就跳一格。1890 年的普查，几个星期就出了人口总数。</p>
+    <p>这是电第一次被用来处理信息。霍列瑞斯的公司几经合并，1924 年改了个名字：国际商业机器公司，IBM。</p>
+
+    <h3 data-y="1937">一篇硕士论文<span class="y">1937 · 麻省理工</span></h3>
+    <p>1937 年，二十一岁的研究生克劳德·香农在麻省理工给一台叫“微分分析机”的庞然大物打下手。那台机器的控制部分是一大堆继电器，接线乱得像一团麻。</p>
+    <p>香农看着这些电路，想起了大学时选修过的布尔代数。两个开关串联，只有都闭合灯才亮，这就是“并且”；两个开关并联，任何一个闭合灯就亮，这就是“或者”。所以可以用代数来设计电路，反过来，也可以用电路来做代数。</p>
+    <p>他接着往下想：二进制加法本身就是逻辑。两个一位数相加，本位是“两个里恰好一个为 1”（异或），进位是“两个都是 1”（并且）。把这样的电路一位一位接起来，开关就会做加法。</p>
+    <p>莱布尼茨的二进制，在这里终于等到了天生只有两种状态的东西。</p>
+  </div>
+
+  <div class="wide fig" id="fig-adder">
+    <div class="fig-label">装置 4 / 继电器加法器</div>
+    <h4>开关会做加法</h4>
+    <p class="how">上面两排开关输入两个四位二进制数。每个方框是一个“全加器”，它只看三个输入：A、B，和右边传过来的进位。点任意一个开关，看进位像推倒的骨牌，从右往左一格一格传过去。</p>
+    <div class="scroll-x"><div class="adder" id="adder"></div></div>
+    <div class="adder-legend">
+      <span class="readout" id="addRead"></span>
+      <span class="readout">本位 = A ⊕ B ⊕ 进位 · 进位 = 三个里至少两个是 1</span>
+    </div>
+  </div>
+
+  <div class="col">
+    <p>这篇硕士论文第二年发表，后来被人称为“二十世纪最重要的硕士论文”。从这以后，设计计算机电路变成了一门可以计算的学问，不再靠工程师的手感。</p>
+  </div>
+</section>
+
+<!-- ============ 卷四 ============ -->
+<section class="vol" id="v4" data-vol="卷四 · 纸带">
+  <div class="volhead" data-y="1936">
+    <div class="num">卷四</div>
+    <h2>纸带</h2>
+    <div class="meta"><span class="range">1936</span><span class="mat" style="--c:var(--m-paper)"><i></i>载体：纸与铅笔</span></div>
+  </div>
+  <div class="col">
+    <p>到这里为止，所有的机器都在回答“怎么算”。1936 年，一个二十四岁的英国人问了一个更根本的问题：什么叫“能算”？</p>
+    <p>阿兰·图灵想象了一台最简单的机器，它甚至不需要真的造出来。一条无限长的纸带，分成一个个格子；一个读写头，每次只看一格；一张规则表，上面写着：“在某个状态下，看到某个符号，就写下一个符号，向左或向右挪一格，换到某个状态。”</p>
+    <p>就这些。图灵论证，凡是一个人拿着纸和笔、按明确的步骤能算出来的东西，这台机器都能算出来。</p>
+  </div>
+
+  <div class="wide fig" id="fig-tm">
+    <div class="fig-label">装置 5 / 图灵机</div>
+    <h4>一条纸带给二进制数加一</h4>
+    <p class="how">纸带上是一个二进制数。机器先一路向右走到数的末尾，再回头处理进位：遇到 1 就写 0 继续往左，遇到 0 或空格就写 1 停机。规则表就是这台机器的全部“智力”，当前用到的那一行会亮起来。</p>
+    <div class="scroll-x"><div class="tape" id="tape"></div></div>
+    <div class="tm">
+      <div class="tm-ctl">
+        <p class="readout" style="margin:0 0 10px">状态 <b id="tmState">向右</b> · 已走 <b id="tmSteps">0</b> 步</p>
+        <div class="btns" style="margin-bottom:12px">
+          <button class="btn pri" id="tmStep">单步</button>
+          <button class="btn" id="tmRun">运行</button>
+          <button class="btn" id="tmReset">重来</button>
+        </div>
+        <label class="readout" for="tmInput">换一个数：</label>
+        <input id="tmInput" value="1011" maxlength="10" inputmode="numeric" aria-describedby="tmMsg">
+        <p class="readout" id="tmMsg" style="margin-top:10px">十进制 11。</p>
+      </div>
+      <div class="scroll-x">
+        <table class="rules" id="tmRules"><thead><tr><th>状态</th><th>读到</th><th>写下</th><th>移动</th><th>转到</th></tr></thead><tbody></tbody></table>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <p>更惊人的是下一步。规则表本身也是一串符号，也可以抄到纸带上。于是可以设计一台“通用机器”：它先读纸带上写的另一台机器的规则表，再照着那张表去做。这样，一台机器就能模仿任何一台机器。</p>
+    <p>这句话值得多停一下。在图灵之前，算加法的机器就是算加法的机器，织布的机器就是织布的机器。图灵说：只要造出一台通用的，其余的全都可以写成纸带。</p>
+    <p>“计算机里能有一个世界”的种子，就埋在这里。只要一样东西能用规则描述，天气、棋局、一座城市里车流的走法，通用机器就能把它演出来。</p>
+    <p>讽刺的是，图灵写这篇论文的目的，是证明有些问题机器永远算不出来，比如“任给一个程序，判断它会不会停下来”。为了说清楚什么“不能”，他先得把什么叫“能”说清楚。几年后，他去了布莱切利园，用真正的机器破译德军的密码。</p>
+  </div>
+</section>
+
+<!-- ============ 卷五 ============ -->
+<section class="vol" id="v5" data-vol="卷五 · 电子">
+  <div class="volhead" data-y="1941">
+    <div class="num">卷五</div>
+    <h2>电子</h2>
+    <div class="meta"><span class="range">1941—1952</span><span class="mat" style="--c:var(--m-tube)"><i></i>载体：电子管</span></div>
+  </div>
+  <div class="col">
+    <p>战争来了，算力突然变成了人命。炮弹的射表、敌人的密码、原子弹里的方程，都在等人算。</p>
+    <h3 data-y="1941">柏林的继电器<span class="y">1941</span></h3>
+    <p>1941 年 5 月，柏林，工程师康拉德·楚泽在自家公寓里造出 Z3：两千六百个继电器，使用二进制，程序打在废旧的电影胶片上。它被看作世界上第一台能实际工作的、可编程的全自动计算机。两年后，它在一次空袭中被炸毁。</p>
+    <p>继电器是机械的，铁片开合一次要几毫秒，还会咔嗒作响、会磨损。电子管不一样：它没有活动部件，电子在真空里飞过去，开关一次只要几微秒，快上千倍。代价是它像灯泡一样发热，也像灯泡一样会烧坏。</p>
+    <h3 data-y="1944">消失的巨人<span class="y">1944 · 布莱切利园</span></h3>
+    <p>英国邮政局的工程师汤米·弗劳尔斯，用大约一千六百个电子管造出了“巨人”（Colossus）。从 1944 年起，它帮布莱切利园破译德军最高统帅部的洛伦兹密码，诺曼底登陆前后，盟军靠它读到了希特勒的部分命令。</p>
+    <p>战后，大部分“巨人”被下令拆毁，图纸被销毁，参与者发誓保密。它的存在被藏了三十年。很长一段时间里，世界上几乎没有人知道它存在过，弗劳尔斯也没法跟任何人说自己造过什么。</p>
+
+    <h3 data-y="1946">三十吨的大脑<span class="y">1946.02 · 费城</span></h3>
+    <p>美国宾夕法尼亚大学，埃克特和莫奇利为陆军算射表，造出了 ENIAC。1946 年 2 月向公众公开时，它有 17,468 个电子管，重约三十吨，占满一间一百多平方米的大屋子，耗电一百五十千瓦。它每秒能做五千次加法。一条炮弹的飞行轨迹，人用台式计算器要算二十个小时左右，ENIAC 只要三十秒，比炮弹在空中飞得还快。</p>
+    <p>它大约每两天就要烧掉一根电子管。工程师们发现，电子管最容易在开机、关机的冷热交替时损坏，于是干脆让它尽量一直开着。</p>
+  </div>
+
+  <div class="col">
+    <aside class="react" data-year="1946" data-tag="轰动" data-title="报纸上的“电子大脑”">
+      <span class="stamp">轰动</span>
+      <div>
+        <p class="rh"><span class="ry">1946.02</span>报纸上的“电子大脑”</p>
+        <p>ENIAC 的公开演示上了全美报纸的头版。记者们找不到现成的词，只好叫它“电子大脑”“巨型大脑”“数学机器人”。演示时，工程师特意在面板的指示灯上罩了切成两半的乒乓球，写上数字，让灯闪起来更好看，后来的电影里“计算机满墙闪灯”的样子，就是从这里来的。</p>
+      </div>
+    </aside>
+    <aside class="react" data-year="1946" data-tag="传说" data-title="ENIAC一开机费城灯就暗">
+      <span class="stamp">传说</span>
+      <div>
+        <p class="rh"><span class="ry">流传</span>“一开机，整个费城的灯都暗了”</p>
+        <p>这个说法流传很广，但没有可靠的记载。ENIAC 的耗电确实惊人，相当于一个小街区，但它有专门的供电线路。人们愿意相信这个故事，说明它带给当时人的震撼，大到需要一个夸张的说法来装。</p>
+      </div>
+    </aside>
+    <p>让 ENIAC 真正运转起来的，是六个年轻女性：凯·麦克纳尔蒂、贝蒂·琼·詹宁斯、贝蒂·斯奈德、马琳·韦斯科夫、弗兰·比拉斯、露丝·利希特曼。ENIAC 没有地方存程序，“编程”就是在几十块面板之间拔插电缆、拨动几千个开关。没有手册，她们靠着机器的逻辑框图和接线图自学。</p>
+    <p>公开演示后的庆祝晚宴，她们没有被邀请。此后几十年，照片里站在机器前的她们，常常被当成摆拍的模特。</p>
+
+    <h3 data-y="1945">把程序放进记忆里<span class="y">1945 — 1948</span></h3>
+    <p>ENIAC 换一道题，要重新接线，可能要好几天。还在造它的时候，团队就知道下一步该怎么走：把程序也存进机器的存储器里，像数据一样。</p>
+    <p>1945 年 6 月，数学家约翰·冯·诺依曼执笔写了一份《EDVAC 报告书初稿》，把这种结构说清楚了：运算器、控制器、存储器、输入、输出五个部分；指令和数据放在同一个存储器里，都写成二进制数，机器按顺序一条条取出来执行。这份草稿流传出去时只署了他一个人的名字，埃克特和莫奇利为此耿耿于怀了一辈子。今天教科书里的“冯·诺依曼结构”，就是从这份草稿来的。</p>
+    <p>为什么“程序和数据放在一起”这么重要？因为这样一来，程序就只是一串数。数可以被读、被改、被复制、被另一个程序生成。换一道题不用再接线，只需要往内存里写一串新的数。</p>
+  </div>
+
+  <div class="wide fig" id="fig-mach">
+    <div class="fig-label">装置 6 / 存储程序计算机</div>
+    <h4>指令和数据长得一模一样</h4>
+    <p class="how">一台只有 16 格内存的小机器，每格放一个三位数。百位是操作，后两位是地址（规则见右下）。第 0–8 格是程序，第 13–15 格是数据，它们用的是同一种格子、同一种数。程序在算 5 + 4 + 3 + 2 + 1。每一格都能直接改：试试把第 13 格的 5 改成 10，或者把第 7 格的 500 改成 0。</p>
+    <div class="mach">
+      <div class="mem" id="mem"></div>
+      <div>
+        <dl class="regs">
+          <dt>程序计数器</dt><dd id="rPC">0</dd>
+          <dt>累加器</dt><dd id="rACC">0</dd>
+          <dt>第 14 格（结果）</dt><dd id="rOUT">0</dd>
+        </dl>
+        <p class="readout" id="mMsg" style="margin:0 0 12px">准备好了。</p>
+        <div class="btns">
+          <button class="btn pri" id="mStep">单步</button>
+          <button class="btn" id="mRun">运行</button>
+          <button class="btn" id="mReset">重来</button>
+          <button class="btn" id="mOrig">恢复原程序</button>
+        </div>
+        <div class="isa">1xx 取出第 xx 格到累加器<br>2xx 加上第 xx 格 · 3xx 减去第 xx 格<br>4xx 把累加器存进第 xx 格<br>5xx 跳到第 xx 格 · 6xx 累加器为 0 就跳<br>000 停机</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <p>1948 年 6 月 21 日，英国曼彻斯特大学，一台绰号“宝宝”（Baby）的小机器第一次运行了存放在自己存储器里的程序。程序是汤姆·基尔伯恩写的，任务是找出 2¹⁸ 的最大真因数。它跑了五十二分钟，给出了正确答案 131072。程序第一次住进了机器的记忆里。</p>
+    <aside class="react" data-year="1949" data-tag="误判" data-title="未来的计算机也许只有一吨半">
+      <span class="stamp">误判</span>
+      <div>
+        <p class="rh"><span class="ry">1949.03</span>“也许只有一吨半重”</p>
+        <p>《大众机械》杂志展望未来：ENIAC 装着一万八千个电子管、重三十吨，而未来的计算机也许只要一千个电子管，重量或许只有一吨半。这在当时已经是很大胆的预言了。今天一台手机里的开关数，是 ENIAC 电子管的一百万倍。</p>
+      </div>
+    </aside>
+    <aside class="react" data-year="1952" data-tag="轰动" data-title="UNIVAC预测大选，电视台不敢播">
+      <span class="stamp">轰动</span>
+      <div>
+        <p class="rh"><span class="ry">1952.11</span>电视台不敢播的预测</p>
+        <p>美国大选之夜，哥伦比亚广播公司请来商用计算机 UNIVAC 做直播嘉宾。开票才开始不久，它就预测艾森豪威尔会以压倒性优势获胜，而当时的民调都说两人势均力敌。电视台不信，没有照实播出，工程师也把参数改得保守了些。最后的结果，艾森豪威尔拿下 442 张选举人票，UNIVAC 最初的预测是 438 张。第二天，“电脑”第一次成了美国家家户户都知道的东西。</p>
+      </div>
+    </aside>
+    <aside class="react" data-year="1943" data-tag="传说" data-title="全世界只需要五台计算机">
+      <span class="stamp">传说</span>
+      <div>
+        <p class="rh"><span class="ry">据说 1943</span>“全世界大概只需要五台计算机”</p>
+        <p>这句话常被安在 IBM 总裁老沃森头上，用来嘲笑当年的人目光短浅。但没有任何可靠的出处。比较可能的来源，是 1953 年他儿子小沃森在股东会上说：本来预计 IBM 701 只能接到五份订单，结果接到了十八份。</p>
+      </div>
+    </aside>
+    <aside class="react" data-year="1950" data-tag="争论" data-title="机器能思考吗">
+      <span class="stamp">争论</span>
+      <div>
+        <p class="rh"><span class="ry">1950.10</span>“机器能思考吗？”</p>
+        <p>图灵在哲学期刊《心》上发表论文，第一句话就是这个问题。他建议换一个能检验的问法：如果隔着一道帘子用文字交谈，你分不出对面是人还是机器，你还有什么理由说它不会思考？这场争论持续到今天，现在读这页的人，大概比任何一代人都更能体会它。</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ 卷六 ============ -->
+<section class="vol" id="v6" data-vol="卷六 · 沙">
+  <div class="volhead" data-y="1947">
+    <div class="num">卷六</div>
+    <h2>沙</h2>
+    <div class="meta"><span class="range">1947—1971</span><span class="mat" style="--c:var(--m-si)"><i></i>载体：硅</span></div>
+  </div>
+  <div class="col">
+    <h3 data-y="1947">一块锗和两片金箔<span class="y">1947.12 · 贝尔实验室</span></h3>
+    <p>电子管会烧、发烫、个头大，一台机器装上一万多个就是极限了。电话公司比谁都头疼：全美国的电话交换机里塞满了电子管和继电器。</p>
+    <p>1947 年 12 月，贝尔实验室的巴丁和布拉顿把两条贴得极近的金箔触点压在一小块锗晶体上，发现一边的微弱电流可以控制另一边的大电流。这就是第一个<em>晶体管</em>。他们的上司肖克利不甘心被落下，几周后想出了更好造的结型晶体管。它能做电子管能做的事，放大，或者当开关，但是小、凉、几乎不会坏，而且原则上可以做得非常、非常小。</p>
+    <aside class="react" data-year="1948" data-tag="冷遇" data-title="晶体管登上《纽约时报》第46版">
+      <span class="stamp">冷遇</span>
+      <div>
+        <p class="rh"><span class="ry">1948.07.01</span>第 46 版的几段话</p>
+        <p>贝尔实验室召开发布会的第二天，《纽约时报》在第 46 版“广播新闻”栏的末尾，用几段话报道了这个发明，说它也许能用在助听器和收音机里。二十世纪最重要的发明之一，就这样被夹在了广播节目预告旁边。</p>
+      </div>
+    </aside>
+    <p>1956 年，三人分享了诺贝尔物理学奖。肖克利后来回到加州老家开公司，脾气太坏，八个最优秀的员工在 1957 年集体出走，自立门户成立了仙童半导体。仙童又像蒲公英一样散出几十家公司，其中一家叫英特尔。那片原本种杏子和李子的山谷，因为满地都是做硅片的公司，被人叫成了“硅谷”。</p>
+
+    <h3 data-y="1958">数量的暴政<span class="y">1958 — 1959</span></h3>
+    <p>晶体管小了，新的麻烦又来了：把成千上万个晶体管、电阻、电容用导线一根根焊起来，焊点越多，出错的地方越多。工程师们管这个叫“数量的暴政”。</p>
+    <p>1958 年夏天，德州仪器的新员工杰克·基尔比因为刚入职、没资格休假，一个人留在空荡荡的实验室里。他想：既然晶体管是用半导体做的，为什么不把电阻、电容也用同一块半导体做出来，干脆把整个电路做在一块材料上？9 月，他的第一块“集成电路”通电成功，样子很丑，几根金线还飞在外面。</p>
+    <p>1959 年，仙童的罗伯特·诺伊斯用“平面工艺”在硅片上做出了可以大规模生产的版本。从此电路不再是焊出来的，而是像洗照片一样，用光一层层“印”在硅上。印一个和印一百万个，工序是一样的。这就是为什么后来的东西能便宜得不可思议。</p>
+
+    <h3 data-y="1965">一条画在纸上的线<span class="y">1965</span></h3>
+    <p>1965 年，仙童的戈登·摩尔给《电子学》杂志写了篇文章，画了一张只有几个点的图：一块芯片上的元件数，大约每年翻一番。1975 年他把它修正为每两年翻一番。这本来只是观察，后来却成了整个产业的时间表：每家公司都按这个节奏规划下一代产品，于是它就真的按这个节奏发生了。</p>
+  </div>
+
+  <div class="wide fig moore" id="fig-moore">
+    <div class="fig-label">图表 / 一块芯片上的晶体管数</div>
+    <h4>五十年，翻了二十五次</h4>
+    <p class="how">纵轴是对数刻度，每往上一格就多乘十倍。虚线是从 1971 年的 4004 出发、严格“每两年翻一番”画出来的线，点是真实芯片。横着的那条线是 ENIAC 的电子管数。把鼠标停在点上，或者用手指点一下。</p>
+    <div class="scroll-x"><svg id="mooreSvg" viewBox="0 0 720 400" role="img" aria-label="1971年到2023年芯片晶体管数量对数图"></svg></div>
+    <p class="readout mread" id="mooreRead">Intel 4004 · 1971 · 2,300 个晶体管。和 ENIAC 差不多的算力，装进了 12 平方毫米。</p>
+  </div>
+
+  <div class="col">
+    <h3 data-y="1971">指甲盖上的 ENIAC<span class="y">1971</span></h3>
+    <p>1971 年，日本计算器公司 Busicom 找英特尔定做一套计算器芯片，原计划要十几块专用芯片。英特尔的特德·霍夫提议：不如只做一块通用的、可以编程的芯片，具体功能写成程序放进存储器。意大利工程师费德里科·费金和 Busicom 派来的岛正利完成了设计。</p>
+    <p>这就是 Intel 4004，第一块商用微处理器。两千三百个晶体管，指甲盖大小，算力与那台三十吨的 ENIAC 相当。从占满一间屋子到缩进一个指甲盖，只用了二十五年。</p>
+    <p>而这时候，图灵 1936 年在纸上想象的那台“通用机器”，第一次便宜到可以塞进一台计算器里。</p>
+  </div>
+</section>
+
+<!-- ============ 卷七 ============ -->
+<section class="vol" id="v7" data-vol="卷七 · 语言">
+  <div class="volhead" data-y="1947">
+    <div class="num">卷七</div>
+    <h2>语言</h2>
+    <div class="meta"><span class="range">1947—1973</span><span class="mat" style="--c:var(--m-sym)"><i></i>载体：符号</span></div>
+  </div>
+  <div class="col">
+    <p>机器有了，可它只听得懂一串 0 和 1。最早的程序员直接写机器码，像装置 6 里那样一格一格地填数；好一点的，写“ADD 13”这样的助记符，再一条条手工翻译成数。这叫汇编。</p>
+    <h3 data-y="1947">一只真正的虫子<span class="y">1947.09.09</span></h3>
+    <p>1947 年 9 月 9 日，哈佛的 Mark II 计算机出了故障。操作员在第 70 号继电器里找到一只被夹死的飞蛾，把它用胶带粘在工作日志上，旁边写着：“第一个真正找到 bug 的案例。”</p>
+    <p>“bug”这个词在工程界早就有，爱迪生就用它来称呼机器里莫名其妙的毛病。这页日志之所以出名，正因为它是个双关：这一次，真的是只虫子。那页纸和那只蛾子，今天还保存在史密森尼博物馆里。</p>
+    <h3 data-y="1952">让机器迁就人<span class="y">1952 — 1959</span></h3>
+    <p>海军军官、数学家葛丽丝·霍珀坚信应该让机器迁就人，而不是让人迁就机器。1952 年她做出了最早的编译器之一：人写接近人话的东西，由一个程序把它翻译成机器码。她后来回忆，当时很多人根本不信：计算机只会做算术，怎么可能自己写程序？</p>
+    <p>1957 年，IBM 约翰·巴库斯的团队推出 FORTRAN，科学家第一次可以写 <span class="mono">Y = A*X + B</span> 这样的式子，让机器自己去想怎么算。1959 年，霍珀参与推动的 COBOL 问世，银行和政府开始用它记账，有些系统一直用到今天。</p>
+    <p>这里藏着计算机史上最重要的一个手法，叫<em>抽象</em>。每一层只管自己那一层的事，把下面的复杂藏起来，只向上面交出一套更简单的说法。写 FORTRAN 的人不用知道晶体管怎么开合；造晶体管的人也不用知道程序在算什么。</p>
+
+    <h3 data-y="1969">每个人都以为机器是自己的<span class="y">1969 — 1973</span></h3>
+    <p>计算机越来越快，也越来越贵，一次只给一个人用太浪费了。于是有了<em>操作系统</em>：一个管理其他程序的程序。它让很多程序、很多人轮流使用同一台机器，切换得足够快，每个人都觉得机器在专心为自己服务；它还给每个程序一块“自己的内存”，哪怕实际上大家挤在同一块芯片里。</p>
+    <p>这其实是计算机里的第一个“虚拟世界”：一个精心维持的假象。</p>
+    <p>1969 年，贝尔实验室的肯·汤普森在一台没人用的旧 PDP-7 上写出了 Unix 的雏形。他的同事丹尼斯·里奇随后发明了 C 语言，1973 年，他们用 C 重写了 Unix，于是它能被搬到别的机器上。今天的安卓、苹果的系统、互联网上绝大多数服务器，血统都能追溯到这里。</p>
+  </div>
+
+  <div class="wide fig" id="fig-tower">
+    <div class="fig-label">装置 7 / 抽象之塔</div>
+    <h4>每一层只需要相信下面那一层</h4>
+    <p class="how">从最底下的硅到最上面的虚拟世界，一共十层。点一层，看它向上承诺了什么、向下依赖什么。你在屏幕上看到的任何东西，都同时活在这十层里。</p>
+    <div class="tower">
+      <div class="layers" id="layers"></div>
+      <div class="ldet" id="ldet"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ 间章 ============ -->
+<section class="vol" id="vx" data-vol="间章 · 死物怎么动起来">
+  <div class="volhead" data-y="1973">
+    <div class="num">间章</div>
+    <h2>死物怎么动起来</h2>
+    <div class="meta"><span class="range">把前七卷拆开看</span><span class="mat" style="--c:var(--m-relay)"><i></i>载体：一根绕回来的线</span></div>
+  </div>
+  <div class="col">
+    <p>读到这里，你可能仍然觉得哪里不对劲：开关就是开关，铜线就是铜线，连着连着，怎么就“活”了？怎么就有了程序、有了一颗会吸飞船的假恒星？</p>
+    <p>这一章停下来，只回答这一个问题。答案分四步，每一步都只比上一步多一点点。没有哪一步需要魔法。</p>
+
+    <h3>第一步：开关拨动开关</h3>
+    <p>一个普通的电灯开关，是人的手去拨它。电报继电器第一次做到了：一个开关的结果（通电或不通电）去拨动另一个开关。于是开关可以一级一级串下去，前一个的输出就是后一个的输入，中间不需要人。</p>
+    <p>有了这一条，香农就能把开关连成“并且”“或者”“非”（卷三），再连成加法器（装置 4）。这一步给了机器<em>逻辑</em>。但这时的电路还很“健忘”：输入一变，输出立刻跟着变，它什么都留不住。</p>
+
+    <h3>第二步：让线掉头</h3>
+    <p>如果把一个电路的输出，接回它自己的输入，会发生什么？</p>
+    <p>它会自己撑住自己。下面是两个“或非”门，各自的输出接到对方的输入上，像两个人互相搭着肩膀站着。轻轻推一下，它们就换一种姿势站住，并且一直保持，直到你再推一下。</p>
+  </div>
+
+  <div class="wide fig" id="fig-latch">
+    <div class="fig-label">装置 10 / 锁存器</div>
+    <h4>记忆，来自一根掉头的线</h4>
+    <p class="how">“或非”的规则是：两个输入全是 0，输出才是 1。按一下“置位”再松开，看 Q 会不会跟着变回去。然后试试“复位”。亮橙色的线代表通电（1）。</p>
+    <div class="scroll-x">
+      <svg id="latchSvg" viewBox="0 0 540 240" style="display:block;width:100%;min-width:460px;height:auto" role="img" aria-label="由两个或非门组成的锁存器">
+        <g fill="none" stroke-width="3" stroke-linejoin="round">
+          <path id="wR" d="M70,52 L200,52"/>
+          <path id="wS" d="M70,192 L200,192"/>
+          <path id="wQ" d="M280,66 L440,66 M310,66 L310,108 L182,136 L182,162 L200,162"/>
+          <path id="wQb" d="M280,176 L440,176 M300,176 L300,136 L172,108 L172,80 L200,80"/>
+        </g>
+        <g fill="var(--paper)" stroke="var(--ink)" stroke-width="2">
+          <rect x="200" y="36" width="80" height="60"/>
+          <rect x="200" y="146" width="80" height="60"/>
+        </g>
+        <g font-family="Noto Serif SC, serif" font-size="14" fill="var(--ink)" text-anchor="middle">
+          <text x="240" y="71">或非</text><text x="240" y="181">或非</text>
+        </g>
+        <g font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--ink-2)">
+          <text x="20" y="57">R</text><text x="20" y="197">S</text>
+          <text x="490" y="71">Q</text><text x="490" y="181">Q̄</text>
+        </g>
+        <circle id="lQ" cx="460" cy="66" r="13" stroke="var(--ink)" stroke-width="2"/>
+        <circle id="lQb" cx="460" cy="176" r="13" stroke="var(--ink)" stroke-width="2"/>
+      </svg>
+    </div>
+    <div class="btns" style="margin-top:12px;align-items:center">
+      <button class="btn" id="btnS" aria-pressed="false">置位 S（按住）</button>
+      <button class="btn" id="btnR" aria-pressed="false">复位 R（按住）</button>
+      <span class="readout">Q = <b id="qv">0</b></span>
+    </div>
+    <p class="readout" id="latchMsg" style="margin-top:10px">现在 Q 是 0。按住“置位”试试。</p>
+  </div>
+
+  <div class="col">
+    <p>这就是记忆。没有任何“储存”的材料，只有两个门互相撑着。你内存里的每一个比特，最早都是这样一对互相搭肩的开关（今天的内存换了做法，但思路相同：让电路有一个能自己维持的状态）。这一步给了机器<em>状态</em>：它的现在，取决于它的过去。</p>
+
+    <h3>第三步：给它一颗心跳</h3>
+    <p>有了逻辑和记忆，还差一样：步调。几亿个开关各干各的，会乱成一锅粥。于是芯片上有一块会以固定频率振荡的晶体，像节拍器一样“嘀嗒”。每嘀嗒一下，所有记忆单元同时把新值记下来，然后整台机器往前走一步：取一条指令，执行，再取下一条。</p>
+    <p>一台 4 GHz 的处理器，就是一秒嘀嗒四十亿次。这一步给了机器<em>时间</em>。从此它不再只是一个算式，而是一个会一步一步演变下去的过程。</p>
+
+    <h3>第四步：数可以代表任何东西</h3>
+    <p>内存里有一个数：65。它是什么？</p>
+    <p>它可以是一个人的年龄，可以是字母 A（按照一张叫 ASCII 的约定表），可以是一个像素的红色亮度，可以是太空大战里飞船的横坐标，也可以是一条指令。电路自己不知道，也不需要知道。<em>意义不在电路里，在约定里。</em></p>
+    <p>而程序本身也是数（卷五），所以一个程序可以去读另一个程序、解释它、执行它，这就是图灵说的那台通用机器真正落了地。在此之上可以再搭一层，再搭一层（卷七的抽象之塔）。</p>
+    <p>到这里，“虚拟世界”就不再神秘了。一个虚拟世界只需要三样东西：一堆数（每个东西在哪、往哪动）；一段每秒执行六十次的循环，按规则（比如引力）更新这些数；另一段循环，把这些数翻译成屏幕上的像素颜色。开关负责通断，逻辑负责计算，记忆负责保存，心跳负责往前走，约定负责“意义”。五样东西摞在一起，一个世界就动起来了。</p>
+  </div>
+
+  <div class="wide fig" id="fig-zoom">
+    <div class="fig-label">装置 11 / 一帧画面背后</div>
+    <h4>你按下一个键，到底发生了什么</h4>
+    <p class="how">从屏幕一路放大到电子，一共七层。点任意一层，或者按“再放大一层”。</p>
+    <div class="zoomw">
+      <div class="zlist" id="zList"></div>
+      <div class="zdet" id="zDet"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>他们知道自己在造什么吗？</h3>
+    <p>几乎都不知道。把前面出场的人排在一起，看他们当时想解决的问题，和那件东西后来变成了什么：</p>
+  </div>
+  <div class="wide">
+    <div class="rtab-wrap">
+      <table class="rtab knew">
+        <thead><tr><th>谁</th><th>当时想解决什么</th><th>后来变成了什么</th></tr></thead>
+        <tbody>
+          <tr><td>莱布尼茨</td><td>证明东西方的智慧相通，二进制有神学含义</td><td>所有数字设备的基础</td></tr>
+          <tr><td>雅卡尔</td><td>别再让小孩蹲在织机顶上提线</td><td>“程序”这个想法</td></tr>
+          <tr><td>巴贝奇</td><td>消灭数表里的印刷错误</td><td>通用计算机的结构</td></tr>
+          <tr><td>布尔</td><td>用代数描述人类思维的规律</td><td>每一块芯片的设计语言</td></tr>
+          <tr><td>霍列瑞斯</td><td>统计完美国人口普查</td><td>IBM</td></tr>
+          <tr><td>香农</td><td>理清一团乱麻的继电器接线</td><td>数字电路设计</td></tr>
+          <tr><td>图灵</td><td>证明有些数学问题不可判定</td><td>计算机的理论基础</td></tr>
+          <tr><td>贝尔实验室</td><td>替换电话网里会烧的电子管</td><td>今天的一切电子产品</td></tr>
+          <tr><td>太空大战的学生</td><td>给新机器做个好玩的演示</td><td>游戏产业，后来又养大了显卡和 AI（见下卷）</td></tr>
+          <tr><td>ARPANET</td><td>让各地研究者共享昂贵的计算机</td><td>互联网</td></tr>
+          <tr><td>伯纳斯-李</td><td>让物理学家方便地互相查文档</td><td>万维网</td></tr>
+          <tr><td>Acorn 的工程师</td><td>为了用便宜的塑料封装，把功耗压低</td><td>几乎全世界手机里的芯片（见卷十一）</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col">
+    <p style="margin-top:1.2em">规律很明显：几乎每一块基石，都是有人在解决一个具体而且有点无聊的问题时顺手造出来的。只有一个例外接近“有意为之”：图灵和冯·诺依曼确实知道自己在定义一种全新的机器。但就连他们，也没想到它会便宜到人人一台，更没想到上面会长出一个世界。</p>
+  </div>
+</section>
+
+<!-- ============ 卷八 ============ -->
+<section class="vol" id="v8" data-vol="卷八 · 窗">
+  <div class="volhead" data-y="1962">
+    <div class="num">卷八</div>
+    <h2>窗</h2>
+    <div class="meta"><span class="range">1962—1984</span><span class="mat" style="--c:var(--m-crt)"><i></i>载体：荧光屏</span></div>
+  </div>
+  <div class="col">
+    <p>早期的计算机没有屏幕。你把一叠打孔卡交到机房窗口，第二天再来取一卷打印纸。如果卡片顺序掉乱了，或者有一个孔打错了，那就明天再来。</p>
+    <h3 data-y="1962">一颗并不存在的恒星<span class="y">1962 · 麻省理工</span></h3>
+    <p>1962 年，麻省理工的几个学生在一台带圆形显示器的 PDP-1 上写了《太空大战！》（Spacewar!）：两艘飞船在星空里互相射击，屏幕中央有一颗恒星，它有引力，会把飞得太近的飞船吸进去。</p>
+    <p>那颗恒星不存在。它只是内存里的几个数和一段计算引力的程序。可飞船真的会被它吸过去，玩家真的会为躲开它手心冒汗。这可能是第一个有自己“物理定律”的虚拟空间。</p>
+    <h3 data-y="1963">光笔与终极显示<span class="y">1963 — 1968</span></h3>
+    <p>1963 年，伊凡·萨瑟兰的博士论文“画板”（Sketchpad）让人第一次用一支光笔直接在屏幕上画图。画出来的线不是死的像素，而是“对象”：可以拉伸、复制、给它加约束，改了一处，其余跟着变。</p>
+    <p>两年后，他写了一篇只有两页的短文《终极显示》。他设想，终极的显示器应该是一个房间，计算机能在里面控制物质的存在：显示出的椅子可以坐，显示出的子弹足以致命。1968 年，他做出了第一个头戴式显示器，因为太重，只能用机械臂吊在天花板上，实验室的人给它起了个外号：达摩克利斯之剑。</p>
+  </div>
+  <div class="col">
+    <aside class="react" data-year="1968" data-tag="轰动" data-title="演示之母：全场起立">
+      <span class="stamp">轰动</span>
+      <div>
+        <p class="rh"><span class="ry">1968.12.09</span>九十分钟之后，全场起立</p>
+        <p>旧金山的一场计算机会议上，斯坦福研究所的道格拉斯·恩格尔巴特上台做了九十分钟演示。台下大约一千人第一次看到：一个叫“鼠标”的木头小盒子、屏幕上分割的窗口、点一下就跳转的超链接，以及他和三十英里外的同事通过视频画面，同时编辑同一份文档。演示结束，全场起立鼓掌。后来人们叫它“所有演示之母”，而这些东西要再过二十多年才走进普通人的家。</p>
+      </div>
+    </aside>
+    <h3 data-y="1973">桌面这个比喻<span class="y">1973 — 1984</span></h3>
+    <p>1973 年，施乐公司帕洛阿尔托研究中心做出了 Alto：屏幕上有窗口、图标、可以拖动的文件，鼠标点哪里，哪里就响应。他们还给它配了以太网和激光打印机。施乐总部的人看不太懂这是什么生意，主要把它当研究项目。</p>
+    <p>1979 年，年轻的史蒂夫·乔布斯去参观了这个研究中心。1984 年 1 月，苹果发售 Macintosh。</p>
+    <p>“桌面”“文件夹”“窗口”“回收站”，这些词本身就构成了一个由比喻搭起来的世界。屏幕后面并没有桌子，也没有纸，只有内存里的数字。但从这时候起，普通人不需要知道这一点了，他们只需要相信那张桌子。</p>
+    <aside class="react" data-year="1981" data-tag="误判" data-title="施乐没把图形界面当回事">
+      <span class="stamp">误判</span>
+      <div>
+        <p class="rh"><span class="ry">1973—1981</span>守着金矿的复印机公司</p>
+        <p>施乐的研究员几乎发明了整个个人计算机时代：图形界面、以太网、激光打印、所见即所得的编辑器。公司 1981 年终于推出的商用机 Star 卖一万六千多美元一台，几乎无人问津。施乐的主业是复印机，它没看出屏幕上那张“桌面”比复印机更值钱。</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ 卷九 ============ -->
+<section class="vol" id="v9" data-vol="卷九 · 网">
+  <div class="volhead" data-y="1969">
+    <div class="num">卷九</div>
+    <h2>网</h2>
+    <div class="meta"><span class="range">1969—1994</span><span class="mat" style="--c:var(--m-net)"><i></i>载体：电话线</span></div>
+  </div>
+  <div class="col">
+    <h3 data-y="1969">L，O<span class="y">1969.10.29 · 22:30</span></h3>
+    <p>1969 年 10 月 29 日晚上十点半，洛杉矶加州大学的学生查理·克莱恩，准备通过刚接通的 ARPANET 登录五百多公里外斯坦福研究所的一台计算机。他要输入的是 LOGIN。两边的人还在通着电话，一个字母一个字母地确认。</p>
+  </div>
+
+  <div class="wide fig lo" id="fig-lo">
+    <div class="fig-label">装置 8 / 第一条消息</div>
+    <h4>重演 1969 年 10 月 29 日</h4>
+    <p class="how">按下按钮，看那天晚上发生了什么。</p>
+    <svg id="loSvg" viewBox="0 0 640 170" role="img" aria-label="UCLA到SRI的第一条网络消息动画">
+      <line x1="110" y1="80" x2="530" y2="80" stroke="var(--ink-3)" stroke-width="2" stroke-dasharray="6 5"/>
+      <text x="320" y="70" text-anchor="middle" font-size="12" fill="var(--ink-3)" font-family="Noto Serif SC, serif">约 560 公里租用电话线</text>
+      <g id="loA"><rect x="40" y="52" width="70" height="56" fill="var(--paper)" stroke="var(--ink)" stroke-width="2"/><text x="75" y="85" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" fill="var(--ink)">UCLA</text><text x="75" y="130" text-anchor="middle" font-size="12" fill="var(--ink-2)" font-family="Noto Serif SC, serif">洛杉矶</text></g>
+      <g id="loB"><rect id="loBrect" x="530" y="52" width="70" height="56" fill="var(--paper)" stroke="var(--ink)" stroke-width="2"/><text x="565" y="85" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" fill="var(--ink)">SRI</text><text x="565" y="130" text-anchor="middle" font-size="12" fill="var(--ink-2)" font-family="Noto Serif SC, serif">斯坦福研究所</text></g>
+      <g id="loPkt" opacity="0"><rect x="-14" y="-14" width="28" height="28" fill="var(--nixie)"/><text id="loPktT" x="0" y="6" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="17" fill="var(--paper)">L</text></g>
+      <text id="loRecv" x="565" y="40" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="18" fill="var(--nixie)"></text>
+    </svg>
+    <div class="btns"><button class="btn pri" id="loGo">重演</button></div>
+    <ul class="lolog" id="loLog"><li>还没开始。</li></ul>
+  </div>
+
+  <div class="col">
+    <p>于是，互联网上传输的第一条消息是“LO”。像是一声没说完的“看哪”（lo and behold）。一个小时后，他们修好系统，完整地登录了。</p>
+    <p>这张网络的核心想法叫“分组交换”：不像打电话那样占住一整条线路，而是把消息切成一个个小包，每个包写上地址，各自找路，到了终点再拼起来。任何一条线断了，包会绕道走。到 1969 年底，网上一共只有四台计算机。</p>
+    <aside class="react" data-year="1969" data-tag="传说" data-title="ARPANET是为了扛住核战争">
+      <span class="stamp">传说</span>
+      <div>
+        <p class="rh"><span class="ry">流传</span>“互联网是为了在核战争中幸存而建的”</p>
+        <p>只说对了一半。分组交换这个想法，有一个源头确实来自兰德公司的巴兰，他研究的正是怎样让通信网在核打击下活下来。但 ARPANET 本身的立项理由要朴素得多：计算机太贵，各地的研究者想共享彼此的机器。几位当事人后来都出来澄清过。</p>
+      </div>
+    </aside>
+    <h3 data-y="1983">一门共同语言<span class="y">1974 — 1983</span></h3>
+    <p>网络多了，彼此说的“话”不一样。1974 年，温顿·瑟夫和罗伯特·卡恩提出了一套让不同网络互相连通的协议，后来叫 TCP/IP。1983 年 1 月 1 日，ARPANET 全部切换到 TCP/IP，这一天常被当作互联网的生日。网络从此成了“网络的网络”，谁都可以接进来，只要说同一种语言。</p>
+    <h3 data-y="1989">模糊，但令人兴奋<span class="y">1989 — 1993 · 日内瓦</span></h3>
+    <p>1989 年 3 月，欧洲核子研究中心的英国工程师蒂姆·伯纳斯-李交了一份提案：让散落在各台计算机上的文档用“超链接”互相指向，点一下就能跳过去。他的上司在封面上批了一句：“模糊，但令人兴奋。”</p>
+    <p>1991 年，第一个网站上线。1993 年 4 月，欧洲核子研究中心宣布，万维网的技术免费向所有人开放，不收专利费。如果当时决定收费，今天的互联网也许会是另一副样子。</p>
+    <aside class="react" data-year="1995" data-tag="误判" data-title="网上购物和网络报纸不会成功">
+      <span class="stamp">误判</span>
+      <div>
+        <p class="rh"><span class="ry">1995.02</span>“网络不会改变政府的运作方式”</p>
+        <p>天文学家、早期的网络老用户克利福德·斯托尔在《新闻周刊》上撰文，断言网上购物、网络报纸、在线教育都不会成功，没有人会在屏幕上读书。多年后他公开承认自己错得离谱。他其实是网络的行家，这才是这则误判最值得记住的地方。</p>
+      </div>
+    </aside>
+    <h3 data-y="1987">越过长城<span class="y">1987 · 1994</span></h3>
+    <p>1987 年 9 月，北京的一台计算机经由意大利的线路，向德国卡尔斯鲁厄大学发出了一封电子邮件：“越过长城，走向世界。”（Across the Great Wall we can reach every corner in the world.）</p>
+    <p>1994 年 4 月 20 日，中国通过一条 64K 的国际专线全功能接入互联网。那条线路的速度，还不够今天的手机加载一张照片。</p>
+  </div>
+</section>
+
+<!-- ============ 卷十 ============ -->
+<section class="vol" id="v10" data-vol="卷十 · 世界">
+  <div class="volhead" data-y="1970">
+    <div class="num">卷十</div>
+    <h2>世界</h2>
+    <div class="meta"><span class="range">1970—</span><span class="mat" style="--c:var(--m-rule)"><i></i>载体：规则</span></div>
+  </div>
+  <div class="col">
+    <h3 data-y="1970">四条规则<span class="y">1970.10</span></h3>
+    <p>1970 年 10 月，马丁·加德纳在《科学美国人》的数学游戏专栏里，介绍了剑桥数学家约翰·康威发明的一个“游戏”。它没有玩家，只有一张方格纸和四条规则：</p>
+    <p class="ni">每个格子要么活，要么死。每过一代：活格子周围如果有 2 个或 3 个活邻居，就继续活着；少于 2 个，孤独而死；多于 3 个，拥挤而死；死格子周围如果恰好有 3 个活邻居，就活过来。</p>
+    <p>就这些。可人们在里面找到了会自己向前爬的“滑翔机”，找到了会不停发射滑翔机的“枪”。后来有人证明，用这四条规则可以搭出一台完整的通用计算机。图灵 1936 年那台机器，能在一张方格纸上重新长出来。</p>
+  </div>
+
+  <div class="wide fig life" id="fig-life">
+    <div class="fig-label">装置 9 / 生命游戏</div>
+    <h4>一个只有四条物理定律的世界</h4>
+    <p class="how">载入的是 1970 年底比尔·戈斯珀找到的“滑翔机枪”，它每 30 代向右下方射出一架滑翔机。可以在格子上点画自己的图案，或者撒一把随机的种子，看它们怎样繁衍、厮杀、最后安定下来。</p>
+    <canvas id="lifeCv" aria-label="生命游戏画布，可点击绘制"></canvas>
+    <div class="btns" style="margin-top:12px;align-items:center">
+      <button class="btn pri" id="lfRun">运行</button>
+      <button class="btn" id="lfStep">一代</button>
+      <button class="btn" id="lfGun">滑翔机枪</button>
+      <button class="btn" id="lfRand">随机撒种</button>
+      <button class="btn" id="lfClear">清空</button>
+      <span class="readout" style="margin-left:6px">第 <b id="lfGen">0</b> 代 · 活着 <b id="lfPop">0</b></span>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3 data-y="1978">走进去<span class="y">1978 — 1992</span></h3>
+    <p>1978 年，英国埃塞克斯大学的两个学生罗伊·特鲁布肖和理查德·巴特尔写出了 MUD，第一个多人在线的文字世界。大家用键盘在一个个由文字描述的房间里走动、聊天、合伙打怪。屏幕上什么图像都没有，可玩家们会说“我昨晚在那个洞穴里遇见了谁”。</p>
+    <p>1986 年，卢卡斯影业做出了 Habitat，让人第一次在一个图形化的虚拟小镇里拥有了自己的“化身”（avatar），这个词就是从那时开始这样用的。小镇里很快出现了婚礼、教堂、报纸、抢劫和选举，开发者发现，他们管理的不是一个程序，而是一个社会。</p>
+    <p>小说家们抢先给这个地方起了名字。1984 年，威廉·吉布森的《神经漫游者》让“赛博空间”流行起来；1992 年，尼尔·斯蒂芬森在《雪崩》里写下了“元宇宙”。</p>
+    <h3 data-y="1972">机器里的机器<span class="y">1967 —</span></h3>
+    <p>工程师们则在造另一种“世界里的世界”：虚拟机。上世纪六十年代末，IBM 让一台大型机假装成许多台独立的计算机，每一台都以为自己独占硬件，可以装自己的操作系统。今天云服务器上的大部分程序，你手机浏览器里运行的网页，都跑在这样一层套一层的“假装”里。</p>
+    <p>这正是图灵说过的事：一台通用机器可以模仿任何机器，也包括它自己。</p>
+  </div>
+</section>
+
+
+<!-- ============ 卷十一 ============ -->
+<section class="vol" id="v11" data-vol="卷十一 · 芯">
+  <div class="volhead" data-y="1981">
+    <div class="num">卷十一</div>
+    <h2>芯</h2>
+    <div class="meta"><span class="range">1981—2020</span><span class="mat" style="--c:var(--m-si)"><i></i>载体：光</span></div>
+  </div>
+  <div class="col">
+    <p>卷六停在 1971 年那块 4004。此后五十年，处理器从两千多个晶体管长到几百亿个。推动它的不只是天才，还有赶工期、打价格战、被对手逼到墙角，以及好几次纯粹的运气。</p>
+
+    <h3 data-y="1981">赶出来的标准<span class="y">1980 — 1981</span></h3>
+    <p>1980 年，IBM 决定要在一年之内拿出一台个人电脑。按 IBM 的老规矩，什么都自己造，一年根本来不及。佛罗里达的小团队于是破了例：全部用现成零件。处理器买英特尔的 8088，它比 8086 便宜，配套芯片也现成；操作系统从一家叫微软的小公司买，并且合同允许微软把它卖给别人。</p>
+    <p>1981 年 IBM PC 发售，大获成功。接着，任何人都可以买同样的零件、装同样的系统，造出“兼容机”。几年之内，IBM 就失去了对这个市场的控制，而英特尔的 x86 指令集和微软的系统，统治了此后四十年。你今天电脑里那套指令，是一个为了赶工期做的决定选出来的。</p>
+    <aside class="react" data-year="1981" data-tag="误判" data-title="IBM把操作系统的权利留给了微软">
+      <span class="stamp">误判</span>
+      <div>
+        <p class="rh"><span class="ry">1981</span>“硬件才值钱”</p>
+        <p>IBM 当时认定利润在硬件上，软件只是配套，没坚持买断操作系统。十几年后，微软的市值超过了 IBM。这大概是商业史上代价最高的一份合同条款之一。</p>
+      </div>
+    </aside>
+
+    <h3 data-y="1985">走出门，再走进门<span class="y">1985</span></h3>
+    <p>八十年代中期，日本厂商的内存芯片又好又便宜，英特尔起家的内存业务亏得一塌糊涂。1985 年，总裁格鲁夫问董事长摩尔（就是摩尔定律那个摩尔）：如果董事会把我们赶走，换一个新 CEO 进来，他会怎么做？摩尔想了想说：他会放弃内存。格鲁夫说：那我们为什么不自己走出这扇门，再走回来，亲手做这件事？</p>
+    <p>英特尔退出内存，押上全部身家做处理器。没过几年，处理器成了它最赚钱的生意。被逼到墙角，有时候是一种运气。</p>
+
+    <h3 data-y="1985">一颗没插电也在跑的芯片<span class="y">1985 · 剑桥</span></h3>
+    <p>同一年，英国剑桥一家叫 Acorn 的小公司，想给自家的教育电脑换一颗处理器，看了一圈都不满意，干脆自己设计。索菲·威尔逊和史蒂夫·弗伯用了当时刚冒头的思路：精简指令集（RISC）。伯克利和斯坦福的研究者刚刚证明，指令少而简单，每条都能飞快执行，整体反而更快。</p>
+    <p>小公司没钱，只能用便宜的塑料封装，而塑料封装散热差，所以芯片必须非常省电。1985 年 4 月第一批 ARM 芯片拿回来测试，它工作正常。随后工程师发现了一件怪事：电源线根本没接好，芯片是靠输入信号线上漏过来的那一点电在跑的。</p>
+    <p>省电是被成本逼出来的副产品。二十年后，手机需要一颗靠电池撑一整天的芯片，几乎全世界的手机都选了 ARM。2020 年，苹果又把它搬进了自家电脑。</p>
+
+    <h3 data-y="1995">流水线、缓存和猜<span class="y">1990 年代</span></h3>
+    <p>频率之外，处理器变快靠三招，每一招都能在生活里找到影子。</p>
+    <p class="ni"><b>流水线</b>：洗衣房不会等一批衣服洗完、烘完、叠完才收下一批，而是洗衣机、烘干机、叠衣台同时开工，各处理一批。处理器把一条指令拆成取指、译码、执行、写回几步，同一时刻有好几条指令在不同工位上。</p>
+    <p class="ni"><b>缓存</b>：内存比处理器慢几百倍，处理器就在身边放几个小抽屉，存最近用过的数。因为程序有个习惯：刚用过的东西，很快还会再用（计算机课本里管这叫“局部性原理”）。</p>
+    <p class="ni"><b>猜</b>：遇到“如果……就……”，处理器不等条件算出来，先猜一条路走下去；猜对了白赚时间，猜错了把做过的作废，退回来重走。现代处理器的猜对率能到九成五以上。</p>
+    <aside class="react" data-year="2018" data-tag="反噬" data-title="幽灵与熔断：猜测执行变成漏洞">
+      <span class="stamp">反噬</span>
+      <div>
+        <p class="rh"><span class="ry">2018.01</span>幽灵与熔断</p>
+        <p>研究者公布了两个漏洞，起名“幽灵”（Spectre）和“熔断”（Meltdown）：处理器“猜着往下执行”时，虽然最后把结果作废了，却在缓存里留下了痕迹，恶意程序可以通过测量时间，偷看本不该看到的数据。二十多年里几乎所有高性能芯片都中招。为了快而发明的聪明办法，变成了藏在每一台电脑里的后门。</p>
+      </div>
+    </aside>
+
+    <h3 data-y="2004">十个吉赫兹的梦<span class="y">2000 — 2006</span></h3>
+    <p>2000 年，英特尔推出奔腾 4，架构设计目标据说是将来冲到 10 GHz。主频成了最好卖的数字，广告上比的就是它。2004 年，奔腾 4 爬到 3.8 GHz，然后停住了：再往上，芯片烫得没法散热。原计划的下一代被取消。</p>
+    <p>救场的是一支几乎被总部忽视的团队。以色列海法的工程师为笔记本电脑设计了一颗省电的奔腾 M，不追求高频，追求每一度电做更多的事。2006 年，英特尔以它为基础推出酷睿，此后处理器不再拼主频，改拼核心数：一颗芯片里装两个、四个、几十个处理器。卷十二会讲为什么非这样不可。</p>
+
+    <h3 data-y="1987">只造不设计<span class="y">1987 · 新竹</span></h3>
+    <p>1987 年，五十六岁的张忠谋在台湾创办台积电，商业模式在当时看来很怪：只替别人制造芯片，自己一颗都不设计。那时的芯片公司都是自己设计、自己造。</p>
+    <p>结果正因为有了台积电，“只设计、不建厂”才成为可能：英伟达、苹果、高通，后来连 AMD 也卖掉了自己的工厂。造一座先进工厂要几百亿美元，几乎没有公司负担得起，于是越来越多的设计流向少数几家代工厂。今天最先进的芯片，绝大多数出自台积电。</p>
+
+    <h3 data-y="2019">用光写字<span class="y">1990 年代 — 2019</span></h3>
+    <p>芯片是“照”出来的（卷六）。在硅片上涂一层感光胶，让光透过一张画着电路的“底片”照上去，洗掉感光的部分，再刻蚀、镀膜，一层一层重复几十到上百遍。想刻得越细，光的波长就得越短，就像想写小字，笔尖得细。</p>
+    <p>用了二十年的深紫外光，波长 193 纳米。工程师们靠各种奇招，比如把镜头泡在水里、把一层图案拆成几次曝光，硬是用它刻出了比波长小十倍的线条。再往下，奇招也不够了，需要波长 13.5 纳米的极紫外光（EUV）。</p>
+    <p>这种光几乎会被一切东西吸收，包括空气和玻璃。所以整台机器内部抽成真空，所有透镜换成反射镜。光源的做法像科幻小说：每秒五万次，让一颗比头发丝还细的熔融锡珠落下，先用一束激光把它打扁，再用一束更强的激光把它轰成二十多万度的等离子体，等离子体发出极紫外光。负责反射镜的蔡司说，这些镜子光滑到：如果把它放大成德国那么大，最高的起伏也只有零点一毫米。</p>
+    <p>荷兰的 ASML 从九十年代开始研究这项技术，前后二十多年、上百亿美元，2019 年前后才真正用于量产。一台机器一亿多美元，重一百多吨，要拆开装进几十个集装箱运走。全世界只有这一家公司能造。</p>
+  </div>
+</section>
+
+<!-- ============ 卷十二 ============ -->
+<section class="vol" id="v12" data-vol="卷十二 · 墙">
+  <div class="volhead" data-y="2004">
+    <div class="num">卷十二</div>
+    <h2>墙</h2>
+    <div class="meta"><span class="range">2004—今天</span><span class="mat" style="--c:var(--m-rule)"><i></i>载体：物理定律</span></div>
+  </div>
+  <div class="col">
+    <p>为什么今天好像卡住了？是知识没突破，还是被别的东西限制住了？</p>
+    <p>先说结论：是好几堵墙叠在一起。有的是物理定律，谁来都绕不过去；有的是工程难度和钱；只有一部分是真的“还不知道”。过去五十年，人类靠同一招“把晶体管做小”一用再用，每次都灵。现在这一招撞上了热、原子和光的极限，每往前一步都得换一个新招，而新招一个比一个贵。好比登山，前面一直是缓坡，现在到了冰壁。</p>
+
+    <h3 data-y="2004">第一堵：热<span class="y">2004</span></h3>
+    <p>芯片的动态功耗，大致正比于“电容 × 电压² × 频率”。1974 年 IBM 的登纳德发现了一条好规律：晶体管缩小时，电压可以跟着等比例降低，于是频率提高了，单位面积的发热却不变。三十年里，处理器每一代都更快，却不更烫。</p>
+    <p>2005 年前后，电压降不动了。原因有个外号，叫“玻尔兹曼暴政”：在室温下，电子本身在热运动，晶体管不可能干脆利落地“一刀切”开关。要让电流变化十倍，加在开关上的电压至少要变化大约 60 毫伏。这个数由温度和物理常数决定（kT/q × ln10），跟工艺好坏无关。电压压得太低，“关着”的晶体管就关不严，漏电猛增。</p>
+    <p>电压降不下来，频率再往上提，发热就失控。所以主频从 2004 年起在 4 到 6 GHz 之间徘徊了二十年，厂商只好改成堆核心。晶体管还在变多，但它们不再能一起跑得更快了。</p>
+  </div>
+
+  <div class="wide fig chart" id="fig-freq">
+    <div class="fig-label">图表 · 装置 12 / 撞墙</div>
+    <h4>主频在 2004 年停住了，核心数接着往上涨</h4>
+    <p class="how">每个点是当年英特尔桌面旗舰处理器的最高频率（2008 年以后计入睿频）。切换看核心数。晶体管总数一直在涨，见卷六的图。</p>
+    <div class="seg" role="group" aria-label="切换数据"><button id="frF" aria-pressed="true">主频</button><button id="frC" aria-pressed="false">核心数</button></div>
+    <div class="scroll-x" style="margin-top:10px"><svg id="freqSvg" viewBox="0 0 680 340" role="img" aria-label="1971到2023年处理器主频与核心数"></svg></div>
+  </div>
+
+  <div class="col">
+    <aside class="react" data-year="2001" data-tag="争论" data-title="芯片会像太阳表面一样热">
+      <span class="stamp">争论</span>
+      <div>
+        <p class="rh"><span class="ry">2001.02</span>“像火箭喷口，然后像太阳表面”</p>
+        <p>英特尔的技术主管基辛格在一场大会上放出一张后来很有名的图：照当时的趋势，芯片单位面积的发热，几年后会赶上核反应堆，再往后是火箭喷口，到 2010 年代就到太阳表面了。他是在警告：这条路走不下去了。三年后，奔腾 4 撞墙。</p>
+      </div>
+    </aside>
+
+    <h3 data-y="2007">第二堵：原子<span class="y">2007 — 今天</span></h3>
+    <p>硅原子之间的距离大约 0.24 纳米。2000 年代初，晶体管里有一层绝缘的二氧化硅薄膜，已经薄到只有一纳米多，五六个原子厚。薄到这个地步，量子力学开始捣乱：电子会直接“穿墙”过去，这叫隧穿。关着的门在漏。</p>
+    <p>工程师一次次换招：2007 年换上新的绝缘材料和金属栅极；2011 年把平躺的晶体管竖起来，做成鳍片的形状，从三面包住电流通道；2022 年以后再进一步，从四面包住。每换一招，都是几十亿美元的研发和好几年的时间。</p>
+    <p>顺便拆穿一个误会：今天说的“3 纳米”“2 纳米”工艺，已经不是哪个部件真有 3 纳米宽。它是从前沿用下来的代号，大约从 2000 年代中期起就和实际尺寸脱钩了。真实的最小线条在十几到几十纳米，但最薄的那几层确实只剩几个原子。</p>
+  </div>
+
+  <div class="wide fig" id="fig-atoms">
+    <div class="fig-label">装置 13 / 缩到原子</div>
+    <h4>如果真有这么宽，横跨几个硅原子？</h4>
+    <p class="how">拖动滑杆，从 1971 年的 10 微米走到今天的“3 纳米”。下面每个圆点代表一个硅原子（按相距 0.24 纳米算）。早期的数字基本代表真实尺寸，后期只是代号，但这个量级的感觉没错：已经没有多少原子可以再省了。</p>
+    <div class="rng" style="max-width:36rem"><label for="atR">年份</label><input type="range" id="atR" min="0" max="12" step="1" value="0"><output id="atO">1971</output></div>
+    <div class="atomread"><span class="atn" id="atN">10 μm</span><span id="atT"></span></div>
+    <canvas class="atomcv" id="atCv" aria-label="原子数示意"></canvas>
+  </div>
+
+  <div class="col">
+    <h3>第三堵：搬运</h3>
+    <p>处理器越算越快，内存却没快多少。1995 年就有人写论文，管这叫“撞上内存墙”。更扎心的是能量账：从内存里把一个数搬到处理器，花的电是用它做一次加法的几千倍。今天一块芯片大部分的电，不是花在“算”上，而是花在“搬”上。</p>
+  </div>
+
+  <div class="wide fig chart" id="fig-energy">
+    <div class="fig-label">图表 / 一次操作花多少电</div>
+    <h4>搬一次，比算一次贵几千倍</h4>
+    <p class="how">斯坦福的霍罗威茨 2014 年给出的经典估算（45 纳米工艺，单位皮焦，1 皮焦 = 万亿分之一焦耳）。横轴是对数刻度。工艺换代后绝对值都变小了，但比例关系基本没变。</p>
+    <div class="ebars" id="ebars"></div>
+  </div>
+
+  <div class="col">
+    <p>这就是为什么缓存越做越大，为什么显卡要把内存叠在芯片旁边（高带宽显存），为什么有人在研究直接在内存里做计算。下卷会讲到，AI 把这堵墙推到了最前台。</p>
+
+    <h3>第四堵：不是所有事都能分给更多人做</h3>
+    <p>核心多了，程序就一定快吗？1967 年 IBM 的阿姆达尔给过答案：一个任务里总有些步骤必须一步接一步地做，没法分给别人。哪怕只有 10% 是这样的，你就算有一万个核心，最多也只能快 10 倍。九个女人一起，也不能一个月生出一个孩子。</p>
+  </div>
+
+  <div class="wide fig" id="fig-amdahl">
+    <div class="fig-label">装置 14 / 阿姆达尔定律</div>
+    <h4>加核心，到底能快多少</h4>
+    <p class="how">调“能并行的比例”和“核心数”。灰色的长条是天花板：无论加多少核心都快不过它。</p>
+    <div class="rng" style="max-width:36rem"><label for="amP">能并行</label><input type="range" id="amP" min="0" max="99.9" step="0.1" value="90"><output id="amPo">90%</output></div>
+    <div class="rng" style="max-width:36rem"><label for="amN">核心数</label><input type="range" id="amN" min="0" max="13" step="1" value="3"><output id="amNo">8</output></div>
+    <div class="amd">
+      <div class="amrow"><span>实际快</span><div class="amtrack"><div class="amfill" id="amFill"></div></div><b id="amV"></b></div>
+      <div class="amrow"><span>天花板</span><div class="amtrack"><div class="amcap" id="amCap"></div></div><b id="amC"></b></div>
+    </div>
+    <p class="readout" id="amMsg" style="margin-top:8px"></p>
+  </div>
+
+  <div class="col">
+    <h3>第五堵：光和钱</h3>
+    <p>能造最先进光刻机的公司只有一家（卷十一），能用它量产最先进芯片的工厂屈指可数。一座先进工厂造价超过两百亿美元，而且这个数字大约每几年就翻一番。一条供应链横跨荷兰的光刻机、德国的镜头、日本的材料、美国的设计软件、台湾和韩国的工厂，任何一环出问题，全世界都会感觉到：2021 年疫情期间的芯片短缺，让汽车厂停工排队；国际上的出口管制，也让一些国家和公司拿不到最先进的设备。这堵墙不是物理定律，却同样实在。</p>
+
+    <h3>真正“还不知道”的部分</h3>
+    <p>剩下的才是知识的边界。人们在找一种能突破那 60 毫伏限制的新开关（隧穿晶体管、负电容、利用电子自旋的器件），在试几个原子厚的新材料，在把芯片一层层叠起来（可叠得越高越难散热），在用光代替铜线传数据。还有量子计算机，它不是“更快的普通电脑”，只在某些特定问题上有巨大优势，而且如何纠正它极其脆弱的错误，至今仍是难题。</p>
+    <p>所以回到那个问题：不是知识全面停滞，而是容易的部分用完了。卷一的帕斯卡只要把齿轮做准；今天的工程师要和热力学、量子力学、光的波长同时谈判，还得说服有人掏两百亿美元。墙后面一定还有路，只是不再是那条一直往下走的缓坡了。</p>
+  </div>
+</section>
+
+<!-- ============ 尾声 ============ -->
+<section class="end" id="end" data-vol="尾声">
+  <div class="volhead" data-y="2026">
+    <div class="num">尾声</div>
+    <h2>为什么会有一个世界</h2>
+    <div class="meta"><span class="range">今天</span></div>
+  </div>
+  <div class="col">
+    <p>回到开头的问题：人怎么能凭空造出一个世界？</p>
+    <p>答案也许是，从来不是凭空。</p>
+    <p>算盘把数从脑子里拿出来，放到珠子上。帕斯卡把进位交给了齿轮。雅卡尔把“做什么”写进了卡片。布尔把推理写成算式。香农让算式变成电路。图灵证明一台机器可以是所有机器。冯·诺依曼让程序住进了内存。晶体管让开关几乎不要钱。抽象让每一层只需要相信下面那一层。</p>
+    <p>每个人只往前走了一步，而且大多数人并不知道自己在造什么。莱布尼茨想的是神学，巴贝奇想的是数表，霍列瑞斯想的是人口普查，香农想的是电话交换机，图灵想的是一道数学难题。没有一个人在设计“虚拟世界”。</p>
+    <p>可是，一旦你有了一台能执行任何规则的机器，又让它便宜到人人口袋里都有一台，世界几乎是自己长出来的：只要你能写下一个地方的规则，机器就能让那个地方运转起来。</p>
+    <p class="closing">那些开关并不知道自己组成了一座城、一盘棋、一封信。就像你身体里的细胞，也不知道自己正在读这一页。</p>
+    <p>如果你正在学计算机：组成原理讲的是卷三到卷六，那些开关怎样变成会算会记的机器；操作系统讲的是卷七里那个精心维持的假象；计算机网络讲的是卷九那张网；数据结构讲的是人们在这个世界里摆放东西的方法。它们是同一个世界的四张地图。</p>
+    <p>故事到这里还没完。2012 年以后，计算机迎来了第二次创世：人不再给机器写规则，而是给它看例子，让它自己长出规则。那是另一段同样充满巧合、悲剧和误判的历史。</p>
+    <a class="nextvol" href="second.html"><span class="nv1">下卷</span><span class="arr">→</span><span class="nv2">第二次创世</span><span class="nv3">从 1943 年的纸上神经元到 Transformer 和 ChatGPT</span></a>
+  </div>
+
+  <div class="wide" id="reactions" data-y="2026" style="margin-top:56px">
+    <div class="fig-label">附录</div>
+    <h3 style="margin-top:.2em">当时的人怎么看</h3>
+    <p style="color:var(--ink-2);font-size:15px;margin-top:0">书里每一张“图章”都收在这里，按年份排。最重要的发明常常被冷落，被吹得最响的预言常常落空，还有一些流传最广的“名言”根本没有出处。</p>
+    <div class="rtab-wrap"><table class="rtab" id="rtab"><thead><tr><th>年份</th><th>事件</th><th>反应</th></tr></thead><tbody></tbody></table></div>
+  </div>
+</section>
+</main>
+
+<footer class="g">
+  <div class="col">
+    <p>年份、人数、数字取自当事人的论文、博物馆档案与通行的史学研究；引文均为中文转述，非逐字翻译。标为“传说”的条目没有可靠记载，放进来是因为它们流传太广。晶体管数为各厂商公布值。</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+const RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = s => document.querySelector(s);
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const themeListeners = [];
+const onTheme = f => themeListeners.push(f);
+const fireTheme = () => themeListeners.forEach(f => { try{ f(); }catch(e){} });
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', fireTheme);
+new MutationObserver(fireTheme).observe(document.documentElement, {attributes:true, attributeFilter:['data-theme']});
+
+/* ---------- 页眉年份 ---------- */
+(function(){
+  const marks = [...document.querySelectorAll('[data-y]')];
+  const yrEl = $('#barYr'), volEl = $('#barVol');
+  let shown = null, raf = 0, animId = 0;
+  const fmt = y => y < 0 ? '<small>前</small>' + (-y) : String(y);
+  function setYear(y){
+    if (shown === y) return;
+    cancelAnimationFrame(animId);
+    if (shown === null || RM || (shown < 0) !== (y < 0)) { shown = y; yrEl.innerHTML = fmt(y); return; }
+    const from = shown, t0 = performance.now(), dur = 450;
+    shown = y;
+    const tick = t => {
+      const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+      yrEl.innerHTML = fmt(Math.round(from + (y - from) * e));
+      if (k < 1) animId = requestAnimationFrame(tick);
+    };
+    animId = requestAnimationFrame(tick);
+  }
+  function update(){
+    raf = 0;
+    const line = innerHeight * 0.38;
+    let cur = marks[0];
+    for (const m of marks) { if (m.getBoundingClientRect().top < line) cur = m; }
+    setYear(+cur.dataset.y);
+    const sec = cur.closest('[data-vol]');
+    volEl.textContent = sec ? sec.dataset.vol : '';
+  }
+  addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(update); }, {passive:true});
+  addEventListener('resize', update);
+  update();
+})();
+
+/* ---------- 开篇开关 ---------- */
+(function(){
+  const sw = $('#heroSwitch'), lamp = $('#heroLamp'), bit = $('#heroBit'), cap = $('#heroCap');
+  let n = 0;
+  sw.addEventListener('click', () => {
+    const on = sw.getAttribute('aria-pressed') !== 'true';
+    sw.setAttribute('aria-pressed', on);
+    lamp.classList.toggle('on', on);
+    bit.textContent = on ? '1' : '0';
+    n++;
+    if (n === 3) cap.textContent = '把它复制几百亿份，按规则连起来，就是你手里的机器。';
+  });
+})();
+
+/* ---------- 卦 ---------- */
+(function(){
+  const box = $('#hexLines');
+  const TRI = {'111':['乾','☰'],'110':['兑','☱'],'101':['离','☲'],'100':['震','☳'],'011':['巽','☴'],'010':['坎','☵'],'001':['艮','☶'],'000':['坤','☷']};
+  // bits[0] = 初爻（最下，最高位）… bits[5] = 上爻（最上，最低位）
+  let bits = [0,0,0,0,0,0];
+  const names = ['初爻','二爻','三爻','四爻','五爻','上爻'];
+  const btns = [];
+  for (let i = 5; i >= 0; i--) {
+    const b = document.createElement('button');
+    b.className = 'hl'; b.innerHTML = '<span></span><span></span>';
+    b.addEventListener('click', () => { bits[i] ^= 1; draw(); });
+    btns[i] = b; box.appendChild(b);
+  }
+  function draw(){
+    bits.forEach((v, i) => { btns[i].classList.toggle('yang', !!v); btns[i].setAttribute('aria-label', names[i] + (v ? ' 阳 1' : ' 阴 0')); });
+    const s = bits.join('');
+    $('#hexBin').textContent = s;
+    $('#hexDec').textContent = parseInt(s, 2);
+    // 卦的三爻自下而上记：下卦 = 初、二、三爻；上卦 = 四、五、上爻
+    const lo = TRI[bits.slice(0,3).join('')], up = TRI[bits.slice(3).join('')];
+    $('#hexTri').textContent = '上卦 ' + up[0] + ' ' + up[1] + ' · 下卦 ' + lo[0] + ' ' + lo[1];
+  }
+  $('#hexInc').addEventListener('click', () => {
+    let v = (parseInt(bits.join(''), 2) + 1) % 64;
+    bits = v.toString(2).padStart(6, '0').split('').map(Number); draw();
+  });
+  $('#hexZero').addEventListener('click', () => { bits = [0,0,0,0,0,0]; draw(); });
+  $('#hexMax').addEventListener('click', () => { bits = [1,1,1,1,1,1]; draw(); });
+  draw();
+})();
+
+/* ---------- 织机 ---------- */
+(function(){
+  const C = 16, R = 8, REP = 3;
+  const deck = $('#deck'), cv = $('#fabric');
+  let g = [];
+  const P = {
+    twill:   (r,c) => ((c + r) % 4) < 2,
+    diamond: (r,c) => { const x = c % 8; return Math.abs(x - 3.5) + Math.abs(r - 3.5) <= 3.5 && Math.abs(x - 3.5) + Math.abs(r - 3.5) >= 1.5; },
+    check:   (r,c) => ((Math.floor(c / 4) + Math.floor(r / 4)) % 2 === 0) !== (c % 4 === 0),
+    clear:   () => false
+  };
+  const holes = [];
+  for (let r = 0; r < R; r++) {
+    const card = document.createElement('div'); card.className = 'card';
+    card.innerHTML = '<span class="cn">' + String(r + 1).padStart(2, '0') + '</span>';
+    holes[r] = [];
+    for (let c = 0; c < C; c++) {
+      const h = document.createElement('button'); h.className = 'hole';
+      h.setAttribute('aria-label', '第' + (r+1) + '张卡 第' + (c+1) + '孔');
+      h.addEventListener('click', () => { g[r][c] = !g[r][c]; sync(); });
+      holes[r][c] = h; card.appendChild(h);
+    }
+    deck.appendChild(card);
+  }
+  function load(name){ g = []; for (let r = 0; r < R; r++){ g[r] = []; for (let c = 0; c < C; c++) g[r][c] = P[name](r, c); } sync(); }
+  function sync(){ for (let r = 0; r < R; r++) for (let c = 0; c < C; c++) holes[r][c].classList.toggle('on', g[r][c]); weave(); }
+  function weave(){
+    const dpr = window.devicePixelRatio || 1;
+    const w = cv.clientWidth || 300, h = w / 2;
+    cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+    const x = cv.getContext('2d'); x.setTransform(dpr,0,0,dpr,0,0);
+    const cols = C * REP, rows = R * 3;
+    const s = Math.min(w / cols, h / rows);
+    const ox = (w - s * cols) / 2, oy = (h - s * rows) / 2;
+    const A = css('--thread-a'), B = css('--thread-b'), bg = css('--paper');
+    x.fillStyle = bg; x.fillRect(0, 0, w, h);
+    for (let rr = 0; rr < rows; rr++) for (let cc = 0; cc < cols; cc++) {
+      const up = g[rr % R][cc % C];
+      const px = ox + cc * s, py = oy + rr * s;
+      if (up) { // 经线浮起：竖向纹理
+        x.fillStyle = A; x.fillRect(px + s*0.12, py, s*0.76, s);
+        x.fillStyle = 'rgba(255,255,255,.10)'; x.fillRect(px + s*0.3, py, s*0.12, s);
+      } else {  // 纬线露出：横向纹理
+        x.fillStyle = B; x.fillRect(px, py + s*0.12, s, s*0.76);
+        x.fillStyle = 'rgba(0,0,0,.08)'; x.fillRect(px, py + s*0.62, s, s*0.12);
+      }
+    }
+  }
+  document.querySelectorAll('[data-loom]').forEach(b => b.addEventListener('click', () => load(b.dataset.loom)));
+  addEventListener('resize', weave); onTheme(weave);
+  load('diamond');
+})();
+
+/* ---------- 差分机 ---------- */
+(function(){
+  const D = 4;
+  function mkDrums(el){
+    const strips = [];
+    for (let i = 0; i < D; i++) {
+      const d = document.createElement('div'); d.className = 'drum';
+      const s = document.createElement('div'); s.className = 'strip';
+      s.innerHTML = '0123456789'.split('').map(k => '<span>' + k + '</span>').join('');
+      d.appendChild(s); el.appendChild(d); strips.push(s);
+    }
+    return v => { const t = String(v).padStart(D, '0'); strips.forEach((s, i) => s.style.transform = 'translateY(' + (-42 * +t[i]) + 'px)'); };
+  }
+  const setF = mkDrums($('#drF')), setD1 = mkDrums($('#drD1')), setD2 = mkDrums($('#drD2'));
+  const out = $('#printout'), read = $('#engRead');
+  const isPrime = n => { if (n < 2) return false; for (let k = 2; k * k <= n; k++) if (n % k === 0) return false; return true; };
+  const factor = n => { for (let k = 2; k * k <= n; k++) if (n % k === 0) return k + ' × ' + (n / k); return ''; };
+  let x, f, d1, d2, adds, busy = false, queue = 0;
+  function line(fresh){
+    const li = document.createElement('li');
+    const p = isPrime(f);
+    if (!p) li.classList.add('np');
+    if (fresh) li.classList.add('new');
+    li.innerHTML = '<span>x=' + x + '</span><span>' + f + '</span><span class="p">' + (p ? '素数' : '= ' + factor(f) + '，不是素数') + '</span>';
+    out.appendChild(li); out.scrollTop = out.scrollHeight;
+  }
+  function show(){ setF(f); setD1(d1); setD2(d2); read.innerHTML = 'x = <b>' + x + '</b> · 一共做了 <b>' + adds + '</b> 次加法，0 次乘法'; }
+  function reset(){ x = 0; f = 41; d1 = 2; d2 = 2; adds = 0; queue = 0; out.innerHTML = ''; show(); line(false); $('#crank1').disabled = $('#crank10').disabled = false; }
+  const sleep = ms => new Promise(r => setTimeout(r, RM ? 0 : ms));
+  async function turn(){
+    if (f + d1 > 9999) { $('#crank1').disabled = $('#crank10').disabled = true; read.innerHTML += ' · 数字轮满了'; queue = 0; return; }
+    $('#ecF').classList.add('hot'); $('#ecD1').classList.add('hot');
+    f += d1; adds++; setF(f); await sleep(260);
+    $('#ecF').classList.remove('hot'); $('#ecD2').classList.add('hot');
+    d1 += d2; adds++; x++; setD1(d1); await sleep(260);
+    $('#ecD1').classList.remove('hot'); $('#ecD2').classList.remove('hot');
+    show(); line(true);
+  }
+  async function pump(){
+    if (busy) return; busy = true;
+    while (queue > 0) { queue--; await turn(); }
+    busy = false;
+  }
+  $('#crank1').addEventListener('click', () => { queue++; pump(); });
+  $('#crank10').addEventListener('click', () => { queue += 10; pump(); });
+  $('#crank0').addEventListener('click', () => { if (!busy) reset(); else { queue = 0; setTimeout(reset, 600); } });
+  reset();
+})();
+
+/* ---------- 加法器 ---------- */
+(function(){
+  const box = $('#adder');
+  let A = [0,1,1,0], B = [1,1,1,0]; // 下标 0 为最低位
+  let gen = 0;
+  // 列：进位输出 | c4 | b3 | c3 | b2 | c2 | b1 | c1 | b0
+  let h = '';
+  h += '<div class="ac"><div class="bl">溢出<br>×16</div><button class="sw ghost" tabindex="-1" aria-hidden="true"></button><button class="sw ghost" tabindex="-1" aria-hidden="true"></button><div class="fa ghost">最高<br>进位</div><div class="sl" id="s4">0</div></div>';
+  for (let i = 3; i >= 0; i--) {
+    h += '<div class="cw"><div class="spacer"></div><div class="slot"></div><div class="slot"></div><div class="wire"><div class="dot" id="c' + (i+1) + '"></div><span>←</span></div></div>';
+    h += '<div class="ac"><div class="bl">第' + i + '位<br>×' + (1 << i) + '</div><button class="sw" data-a="' + i + '" aria-label="A 第' + i + '位"></button><button class="sw" data-b="' + i + '" aria-label="B 第' + i + '位"></button><div class="fa">全加器</div><div class="sl" id="s' + i + '">0</div></div>';
+  }
+  box.innerHTML = h;
+  box.querySelectorAll('[data-a]').forEach(b => b.addEventListener('click', () => { A[+b.dataset.a] ^= 1; run(); }));
+  box.querySelectorAll('[data-b]').forEach(b => b.addEventListener('click', () => { B[+b.dataset.b] ^= 1; run(); }));
+  const lamp = (id, v, cls) => { const e = document.getElementById(id); e.classList.remove('wait'); e.classList.toggle('on', !!v); if (cls) e.classList.add(cls); if (e.classList.contains('sl')) e.textContent = v; };
+  function run(){
+    const my = ++gen;
+    box.querySelectorAll('[data-a]').forEach(b => { const v = A[+b.dataset.a]; b.classList.toggle('on', !!v); b.textContent = v; });
+    box.querySelectorAll('[data-b]').forEach(b => { const v = B[+b.dataset.b]; b.classList.toggle('on', !!v); b.textContent = v; });
+    for (let i = 0; i <= 4; i++) { const s = document.getElementById('s' + i); s.classList.remove('on'); s.classList.add('wait'); s.textContent = '·'; }
+    for (let i = 1; i <= 4; i++) document.getElementById('c' + i).classList.remove('on');
+    let c = 0;
+    const step = i => {
+      if (my !== gen) return;
+      if (i === 4) { lamp('s4', c); done(); return; }
+      const s = A[i] ^ B[i] ^ c;
+      const co = (A[i] & B[i]) | (A[i] & c) | (B[i] & c);
+      lamp('s' + i, s);
+      document.getElementById('c' + (i+1)).classList.toggle('on', !!co);
+      c = co;
+      setTimeout(() => step(i + 1), RM ? 0 : 230);
+    };
+    step(0);
+  }
+  function done(){
+    const a = A.reduce((t, v, i) => t + (v << i), 0), b = B.reduce((t, v, i) => t + (v << i), 0);
+    const bin = arr => arr.slice().reverse().join('');
+    $('#addRead').innerHTML = bin(A) + ' + ' + bin(B) + ' = ' + ((a + b) >> 4 & 1) + bin([0,1,2,3].map(i => (a + b) >> i & 1)) + ' · 十进制 <b>' + a + ' + ' + b + ' = ' + (a + b) + '</b>';
+  }
+  run();
+})();
+
+/* ---------- 图灵机 ---------- */
+(function(){
+  const RULES = [
+    ['R','0','0','→','R'], ['R','1','1','→','R'], ['R','□','□','←','C'],
+    ['C','1','0','←','C'], ['C','0','1','←','H'], ['C','□','1','←','H']
+  ];
+  const SN = {R:'向右', C:'进位', H:'停机'};
+  const tbody = $('#tmRules tbody');
+  tbody.innerHTML = RULES.map((r, i) => '<tr data-i="' + i + '"><td>' + SN[r[0]] + '</td><td>' + r[1] + '</td><td>' + r[2] + '</td><td>' + r[3] + '</td><td>' + SN[r[4]] + '</td></tr>').join('');
+  let tape, head, state, steps, lo, hi, timer = null, input = '1011';
+  const tapeEl = $('#tape');
+  function reset(){
+    stop(); tape = {}; for (let i = 0; i < input.length; i++) tape[i] = input[i];
+    head = 0; state = 'R'; steps = 0; lo = -3; hi = input.length + 2;
+    $('#tmMsg').textContent = '十进制 ' + parseInt(input, 2) + '。';
+    draw(-1);
+  }
+  const sym = i => tape[i] || '□';
+  function curRule(){ return RULES.findIndex(r => r[0] === state && r[1] === sym(head)); }
+  function draw(hl){
+    let h = '';
+    for (let i = lo; i <= hi; i++) h += '<div class="cell' + (i === head ? ' head' : '') + '">' + (sym(i) === '□' ? '' : sym(i)) + '<span class="ix">' + i + '</span></div>';
+    tapeEl.innerHTML = h;
+    $('#tmState').textContent = SN[state];
+    $('#tmSteps').textContent = steps;
+    tbody.querySelectorAll('tr').forEach(tr => tr.classList.toggle('cur', +tr.dataset.i === hl));
+    $('#tmStep').disabled = state === 'H';
+  }
+  function step(){
+    if (state === 'H') { stop(); return; }
+    const i = curRule(); const r = RULES[i];
+    if (r[2] === '□') delete tape[head]; else tape[head] = r[2];
+    head += r[3] === '→' ? 1 : -1; state = r[4]; steps++;
+    if (head < lo) lo = head; if (head > hi) hi = head;
+    draw(i);
+    if (state === 'H') {
+      stop();
+      const keys = Object.keys(tape).map(Number).sort((a, b) => a - b);
+      const s = keys.map(k => tape[k]).join('').replace(/^0+(?=.)/, '');
+      $('#tmMsg').innerHTML = '停机。纸带上是 <b>' + s + '</b>，十进制 ' + parseInt(input, 2) + ' + 1 = <b>' + parseInt(s, 2) + '</b>。';
+    }
+  }
+  function stop(){ if (timer) { clearInterval(timer); timer = null; } $('#tmRun').textContent = '运行'; }
+  $('#tmStep').addEventListener('click', () => { stop(); step(); });
+  $('#tmRun').addEventListener('click', () => {
+    if (timer) { stop(); return; }
+    if (state === 'H') reset();
+    $('#tmRun').textContent = '暂停';
+    timer = setInterval(step, RM ? 120 : 420);
+  });
+  $('#tmReset').addEventListener('click', reset);
+  $('#tmInput').addEventListener('input', e => {
+    const v = e.target.value.trim();
+    if (/^[01]{1,10}$/.test(v)) { input = v; reset(); }
+    else $('#tmMsg').textContent = '只能输入 0 和 1，最多 10 位。';
+  });
+  reset();
+})();
+
+/* ---------- 存储程序机 ---------- */
+(function(){
+  const ORIG = [114,213,414,113,315,413,608,500,0,0,0,0,0,5,0,1];
+  let saved = ORIG.slice(), mem, pc, acc, timer = null, halted, count;
+  const OPS = {0:'停机',1:'取',2:'加',3:'减',4:'存',5:'跳',6:'为0跳'};
+  const box = $('#mem');
+  const cells = [];
+  for (let i = 0; i < 16; i++) {
+    const d = document.createElement('div'); d.className = 'mc';
+    d.innerHTML = '<div class="ad"><span>#' + i + '</span><span class="role"></span></div><input aria-label="第' + i + '格" inputmode="numeric" maxlength="4"><div class="dc"></div>';
+    const inp = d.querySelector('input');
+    inp.addEventListener('change', () => {
+      const v = parseInt(inp.value, 10);
+      if (isNaN(v) || v < 0 || v > 999) { inp.value = mem[i]; return; }
+      mem[i] = v; saved[i] = v; paint();
+    });
+    cells.push(d); box.appendChild(d);
+  }
+  const decode = v => {
+    if (v === 0) return '停机';
+    const op = Math.floor(v / 100), a = v % 100;
+    if (!(op in OPS)) return '（不是指令）';
+    return OPS[op] + ' #' + a;
+  };
+  function paint(w){
+    cells.forEach((d, i) => {
+      const inp = d.querySelector('input');
+      if (document.activeElement !== inp) inp.value = mem[i];
+      d.querySelector('.dc').textContent = '当指令读：' + decode(mem[i]);
+      d.querySelector('.role').textContent = i <= 8 ? '程序' : (i >= 13 ? '数据' : '');
+      d.classList.toggle('pc', i === pc && !halted);
+      d.classList.toggle('w', i === w);
+    });
+    $('#rPC').textContent = pc; $('#rACC').textContent = acc; $('#rOUT').textContent = mem[14];
+  }
+  function reset(){ stop(); mem = saved.slice(); pc = 0; acc = 0; halted = false; count = 0; $('#mMsg').textContent = '准备好了。'; paint(); }
+  function fail(msg){ halted = true; stop(); $('#mMsg').textContent = msg; paint(); }
+  function step(){
+    if (halted) return;
+    if (pc < 0 || pc > 15) return fail('程序计数器跑出了内存，机器停了。');
+    const v = mem[pc], op = Math.floor(v / 100), a = v % 100;
+    if (++count > 400) return fail('跑了 400 步还没停，多半进了死循环，先停下。');
+    if (v !== 0 && a > 15) return fail('第 ' + pc + ' 格要访问第 ' + a + ' 格，可内存只有 16 格。');
+    let w;
+    switch (op) {
+      case 0: halted = true; stop(); $('#mMsg').textContent = '停机。结果在第 14 格：' + mem[14] + '。共执行 ' + count + ' 条指令。'; paint(); return;
+      case 1: acc = mem[a]; pc++; break;
+      case 2: acc = acc + mem[a]; pc++; break;
+      case 3: acc = acc - mem[a]; pc++; break;
+      case 4: mem[a] = acc; w = a; pc++; break;
+      case 5: pc = a; break;
+      case 6: pc = acc === 0 ? a : pc + 1; break;
+      default: return fail('第 ' + pc + ' 格的 ' + v + ' 不是任何指令，机器不知道该做什么。');
+    }
+    $('#mMsg').textContent = '刚执行：' + decode(v) + '。';
+    paint(w);
+  }
+  function stop(){ if (timer) { clearInterval(timer); timer = null; } $('#mRun').textContent = '运行'; }
+  $('#mStep').addEventListener('click', () => { stop(); if (halted) reset(); step(); });
+  $('#mRun').addEventListener('click', () => {
+    if (timer) { stop(); return; }
+    if (halted) reset();
+    $('#mRun').textContent = '暂停';
+    timer = setInterval(step, RM ? 60 : 280);
+  });
+  $('#mReset').addEventListener('click', reset);
+  $('#mOrig').addEventListener('click', () => { saved = ORIG.slice(); reset(); });
+  reset();
+})();
+
+/* ---------- 摩尔 ---------- */
+(function(){
+  const D = [
+    [1971,'Intel 4004',2300,'第一块商用微处理器。和 ENIAC 差不多的算力，装进了 12 平方毫米。'],
+    [1974,'Intel 8080',4500,'早期个人电脑 Altair 8800 用的就是它。'],
+    [1978,'Intel 8086',29000,'今天电脑里 x86 指令集的祖先。'],
+    [1982,'Intel 80286',134000,'IBM PC/AT 的处理器。'],
+    [1985,'Intel 80386',275000,'第一块 32 位的 x86 处理器。'],
+    [1989,'Intel 80486',1180235,'第一次突破一百万个晶体管。'],
+    [1993,'Pentium',3100000,'“奔腾”，很多人记忆里的第一台电脑。'],
+    [1997,'Pentium II',7500000,''],
+    [2000,'Pentium 4',42000000,''],
+    [2006,'Core 2 Duo',291000000,'双核成为主流。'],
+    [2013,'Apple A7',1000000000,'手机芯片超过十亿个晶体管。'],
+    [2017,'Apple A11',4300000000,''],
+    [2020,'Apple M1',16000000000,''],
+    [2022,'Apple M1 Ultra',114000000000,'一千一百四十亿个。从 4004 算起，正好在“每两年翻一番”的线上。'],
+    [2023,'Apple A17 Pro',19000000000,'一部手机里的数量：一百九十亿。']
+  ];
+  const svg = $('#mooreSvg'), read = $('#mooreRead');
+  const X0 = 70, X1 = 700, Y0 = 360, Y1 = 24, yr0 = 1968, yr1 = 2026, L0 = 3, L1 = 12;
+  const sx = y => X0 + (y - yr0) / (yr1 - yr0) * (X1 - X0);
+  const sy = n => Y0 - (Math.log10(n) - L0) / (L1 - L0) * (Y0 - Y1);
+  const U = ['千','万','十万','百万','千万','亿','十亿','百亿','千亿','万亿'];
+  const fmt = n => n.toLocaleString('en-US');
+  let h = '';
+  for (let p = L0; p <= L1; p++) {
+    const y = sy(Math.pow(10, p));
+    h += '<line x1="' + X0 + '" x2="' + X1 + '" y1="' + y + '" y2="' + y + '" stroke="var(--rule)" stroke-width="1"/>';
+    h += '<text x="' + (X0 - 8) + '" y="' + (y + 4) + '" text-anchor="end" font-size="11" fill="var(--ink-3)" font-family="Noto Serif SC, serif">' + U[p - 3] + '</text>';
+  }
+  for (let y = 1970; y <= 2020; y += 10) {
+    h += '<text x="' + sx(y) + '" y="' + (Y0 + 20) + '" text-anchor="middle" font-size="11" fill="var(--ink-3)" font-family="IBM Plex Mono, monospace">' + y + '</text>';
+    h += '<line x1="' + sx(y) + '" x2="' + sx(y) + '" y1="' + Y0 + '" y2="' + (Y0 + 5) + '" stroke="var(--ink-3)"/>';
+  }
+  const ey = sy(17468);
+  h += '<line x1="' + X0 + '" x2="' + X1 + '" y1="' + ey + '" y2="' + ey + '" stroke="var(--wire)" stroke-width="1.5"/>';
+  h += '<text x="' + (X1 - 4) + '" y="' + (ey - 6) + '" text-anchor="end" font-size="11.5" fill="var(--wire)" font-family="Noto Serif SC, serif">ENIAC 的电子管：17,468 根</text>';
+  const t0 = 1971, t1 = 2024, f = y => 2300 * Math.pow(2, (y - 1971) / 2);
+  h += '<line x1="' + sx(t0) + '" y1="' + sy(f(t0)) + '" x2="' + sx(t1) + '" y2="' + sy(f(t1)) + '" stroke="var(--ink-3)" stroke-width="1.5" stroke-dasharray="5 5"/>';
+  h += '<text x="' + (sx(2009) - 6) + '" y="' + (sy(f(2009)) - 10) + '" text-anchor="end" font-size="11.5" fill="var(--ink-2)" font-family="Noto Serif SC, serif">每两年翻一番</text>';
+  h += '<polyline fill="none" stroke="var(--nixie)" stroke-width="1" opacity=".45" points="' + D.filter(d => d[1] !== 'Apple A17 Pro').map(d => sx(d[0]) + ',' + sy(d[2])).join(' ') + '"/>';
+  D.forEach((d, i) => {
+    h += '<g class="pt" tabindex="0" data-i="' + i + '" role="button" aria-label="' + d[1] + ' ' + d[0] + '"><circle cx="' + sx(d[0]) + '" cy="' + sy(d[2]) + '" r="5" fill="var(--nixie)" stroke="var(--card)" stroke-width="1.5"/><circle cx="' + sx(d[0]) + '" cy="' + sy(d[2]) + '" r="14" fill="transparent"/></g>';
+  });
+  const lab = [[0,'4004',8,16],[6,'奔腾',-8,-10],[13,'M1 Ultra',-10,-6],[14,'A17 Pro',8,16]];
+  lab.forEach(([i, t, dx, dy]) => {
+    const d = D[i];
+    h += '<text x="' + (sx(d[0]) + dx) + '" y="' + (sy(d[2]) + dy) + '" text-anchor="' + (dx < 0 ? 'end' : 'start') + '" font-size="11.5" fill="var(--ink)" font-family="Noto Serif SC, serif">' + t + '</text>';
+  });
+  svg.innerHTML = h;
+  const show = i => { const d = D[i]; read.innerHTML = '<b>' + d[1] + '</b> · ' + d[0] + ' · ' + fmt(d[2]) + ' 个晶体管，约为 ENIAC 电子管数的 ' + (d[2] / 17468 >= 10 ? Math.round(d[2] / 17468).toLocaleString('en-US') : (d[2] / 17468).toFixed(2)) + ' 倍。' + (d[3] ? ' ' + d[3] : ''); };
+  svg.querySelectorAll('.pt').forEach(g => {
+    const i = +g.dataset.i;
+    g.addEventListener('mouseenter', () => show(i));
+    g.addEventListener('focus', () => show(i));
+    g.addEventListener('click', () => show(i));
+  });
+  show(0);
+})();
+
+/* ---------- 抽象之塔 ---------- */
+(function(){
+  const L = [
+    ['硅与电子','',  '掺入少量杂质的硅，让电子在电压推动下按想要的方向流动。','什么都不承诺，它就是物理。','量子力学。'],
+    ['晶体管','1947','一个电压能控制另一处电流的通断：一个开关。','“给我高电压，我就导通。”','材料的电学性质。'],
+    ['逻辑门','1937','几个晶体管连成“与”“或”“非”。','“两个输入都是 1，我就输出 1。”不管晶体管怎么做的。','晶体管会按时通断。'],
+    ['加法器与寄存器','','门连成能做加法的电路，和能记住一个数的电路。','“给我两个数，我给你和；给我一个数，我替你记住。”','逻辑门不出错。'],
+    ['处理器','1971','取一条指令、执行、再取下一条，永远循环。','“把指令放进内存，我会一条条照做。”','加法器、寄存器、存储器各自可靠。'],
+    ['机器码与汇编','1949','像装置 6 里那样的一串数，每个数是一条指令。','“写下这些数，处理器就会这样动。”','处理器的指令手册。'],
+    ['操作系统','1969','管理其他程序的程序。让它们轮流用处理器，假装各有一整块内存。','“你就当整台机器都是你的。”','处理器的中断、内存管理这些硬件机制。'],
+    ['高级语言','1957','Y = A*X + B。人写接近人话的东西，编译器翻成机器码。','“你只管写想算什么，怎么算交给我。”','编译器翻译正确，操作系统提供文件和内存。'],
+    ['应用','','文字处理、浏览器、聊天、地图。','“点这里就保存，点那里就发送。”','语言、系统库、网络都按约定工作。'],
+    ['虚拟世界','1962','一个有自己物理规则、可以走进去的地方：一颗有引力的假恒星，一座有人结婚的像素小镇。','“这里有重力，有天气，有别人。”','下面九层全部按承诺运转，一层都不能塌。']
+  ];
+  const box = $('#layers'), det = $('#ldet');
+  const btns = L.map((l, i) => {
+    const b = document.createElement('button'); b.className = 'layer';
+    b.style.setProperty('--w', (100 - i * 5) + '%');
+    b.innerHTML = '<span>' + l[0] + '</span><span class="ly">' + (l[1] || '') + '</span>';
+    b.setAttribute('aria-pressed', 'false');
+    b.addEventListener('click', () => pick(i));
+    box.appendChild(b); return b;
+  });
+  function pick(i){
+    btns.forEach((b, j) => b.setAttribute('aria-pressed', i === j));
+    const l = L[i];
+    det.innerHTML = '<div class="k">第 ' + (i + 1) + ' 层' + (l[1] ? ' · 约 ' + l[1] + ' 年出现' : '') + '</div><h5>' + l[0] + '</h5><p>' + l[2] + '</p><div class="k">向上承诺</div><p>' + l[3] + '</p><div class="k">向下只需相信</div><p>' + l[4] + '</p>';
+  }
+  pick(6);
+})();
+
+/* ---------- LO ---------- */
+(function(){
+  const pkt = $('#loPkt'), pt = $('#loPktT'), recv = $('#loRecv'), log = $('#loLog'), rect = $('#loBrect'), go = $('#loGo');
+  let run = 0;
+  const sleep = ms => new Promise(r => setTimeout(r, RM ? Math.min(ms, 120) : ms));
+  const add = (t, bad) => { const li = document.createElement('li'); li.textContent = t; if (bad) li.className = 'bad'; log.appendChild(li); };
+  function fly(ch, my, ms){
+    return new Promise(res => {
+      pt.textContent = ch; pkt.setAttribute('opacity', 1);
+      const t0 = performance.now();
+      const tick = t => {
+        if (my !== run) return res(false);
+        const k = Math.min(1, (t - t0) / ms);
+        pkt.setAttribute('transform', 'translate(' + (110 + 420 * k) + ',80)');
+        if (k < 1) requestAnimationFrame(tick); else { pkt.setAttribute('opacity', 0); res(true); }
+      };
+      if (RM) { pkt.setAttribute('opacity', 0); res(true); } else requestAnimationFrame(tick);
+    });
+  }
+  go.addEventListener('click', async () => {
+    const my = ++run;
+    log.innerHTML = ''; recv.textContent = ''; rect.setAttribute('fill', 'var(--paper)');
+    add('22:30  UCLA 的克莱恩键入 L');
+    if (!await fly('L', my, 1400) || my !== run) return;
+    recv.textContent = 'L'; add('       电话里：“收到 L 了。”');
+    await sleep(700); if (my !== run) return;
+    add('       键入 O');
+    if (!await fly('O', my, 1400) || my !== run) return;
+    recv.textContent = 'LO'; add('       电话里：“收到 O 了。”');
+    await sleep(700); if (my !== run) return;
+    add('       键入 G');
+    if (!await fly('G', my, 1400) || my !== run) return;
+    rect.setAttribute('fill', 'var(--nixie)');
+    add('       SRI 的系统崩溃了。', true);
+    await sleep(1300); if (my !== run) return;
+    rect.setAttribute('fill', 'var(--paper)');
+    add('       第一条消息：LO');
+    await sleep(900); if (my !== run) return;
+    add('约一小时后  修好重连，LOGIN 完整送达。');
+  });
+})();
+
+/* ---------- 生命游戏 ---------- */
+(function(){
+  const W = 72, H = 44, PAD = 48, GW = W + PAD * 2, GH = H + PAD * 2;
+  let a = new Uint8Array(GW * GH), b = new Uint8Array(GW * GH);
+  const cv = $('#lifeCv'), ctx = cv.getContext('2d');
+  let gen = 0, timer = null, s = 8, ink = '#000', bg = '#fff', grid = '#ccc', userTouched = false;
+  const idx = (x, y) => (y + PAD) * GW + (x + PAD);
+  const GUN = [[24,0],[22,1],[24,1],[12,2],[13,2],[20,2],[21,2],[34,2],[35,2],[11,3],[15,3],[20,3],[21,3],[34,3],[35,3],[0,4],[1,4],[10,4],[16,4],[20,4],[21,4],[0,5],[1,5],[10,5],[14,5],[16,5],[17,5],[22,5],[24,5],[10,6],[16,6],[24,6],[11,7],[15,7],[12,8],[13,8]];
+  function colors(){ ink = css('--ink'); bg = css('--paper'); grid = css('--rule'); }
+  function size(){
+    const dpr = window.devicePixelRatio || 1;
+    const w = cv.clientWidth || 600;
+    s = w / W; const h = s * H;
+    cv.style.height = h + 'px';
+    cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    draw();
+  }
+  function draw(){
+    const w = s * W, h = s * H;
+    ctx.fillStyle = bg; ctx.fillRect(0, 0, w, h);
+    if (s >= 6) {
+      ctx.strokeStyle = grid; ctx.lineWidth = .5; ctx.beginPath();
+      for (let x = 1; x < W; x++) { ctx.moveTo(x * s, 0); ctx.lineTo(x * s, h); }
+      for (let y = 1; y < H; y++) { ctx.moveTo(0, y * s); ctx.lineTo(w, y * s); }
+      ctx.stroke();
+    }
+    ctx.fillStyle = ink; let pop = 0;
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) if (a[idx(x, y)]) { pop++; ctx.fillRect(x * s + .5, y * s + .5, s - 1, s - 1); }
+    $('#lfGen').textContent = gen; $('#lfPop').textContent = pop;
+  }
+  function tick(){
+    for (let y = 1; y < GH - 1; y++) for (let x = 1; x < GW - 1; x++) {
+      const i = y * GW + x;
+      const n = a[i-GW-1] + a[i-GW] + a[i-GW+1] + a[i-1] + a[i+1] + a[i+GW-1] + a[i+GW] + a[i+GW+1];
+      b[i] = (n === 3 || (n === 2 && a[i])) ? 1 : 0;
+    }
+    [a, b] = [b, a]; gen++; draw();
+  }
+  function clear(){ a.fill(0); gen = 0; }
+  function gun(){ clear(); GUN.forEach(([x, y]) => a[idx(x + 2, y + 3)] = 1); draw(); }
+  function rand(){ clear(); for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) a[idx(x, y)] = Math.random() < .28 ? 1 : 0; draw(); }
+  function play(){ if (timer) return; timer = setInterval(tick, 80); $('#lfRun').textContent = '暂停'; }
+  function pause(){ clearInterval(timer); timer = null; $('#lfRun').textContent = '运行'; }
+  $('#lfRun').addEventListener('click', () => { userTouched = true; timer ? pause() : play(); });
+  $('#lfStep').addEventListener('click', () => { userTouched = true; pause(); tick(); });
+  $('#lfGun').addEventListener('click', () => { gun(); });
+  $('#lfRand').addEventListener('click', () => { rand(); });
+  $('#lfClear').addEventListener('click', () => { userTouched = true; pause(); clear(); draw(); });
+  let paint = -1;
+  const cellAt = e => { const r = cv.getBoundingClientRect(); return [Math.floor((e.clientX - r.left) / s), Math.floor((e.clientY - r.top) / s)]; };
+  cv.addEventListener('pointerdown', e => {
+    const [x, y] = cellAt(e); if (x < 0 || y < 0 || x >= W || y >= H) return;
+    userTouched = true; paint = a[idx(x, y)] ? 0 : 1; a[idx(x, y)] = paint; draw();
+    cv.setPointerCapture(e.pointerId);
+  });
+  cv.addEventListener('pointermove', e => {
+    if (paint < 0) return; const [x, y] = cellAt(e);
+    if (x < 0 || y < 0 || x >= W || y >= H) return;
+    if (a[idx(x, y)] !== paint) { a[idx(x, y)] = paint; draw(); }
+  });
+  const up = () => paint = -1;
+  cv.addEventListener('pointerup', up); cv.addEventListener('pointercancel', up);
+  colors(); gun(); size();
+  addEventListener('resize', size);
+  onTheme(() => { colors(); draw(); });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(es => es.forEach(en => {
+      if (en.isIntersecting) { if (!RM && !userTouched) play(); }
+      else if (timer) pause();
+    }), {threshold: .35}).observe(cv);
+  }
+})();
+
+
+/* ---------- 锁存器 ---------- */
+(function(){
+  let S = 0, R = 0, Q = 0, Qb = 1;
+  const on = 'var(--nixie)', off = 'var(--ink-3)';
+  function settle(){ for (let k = 0; k < 6; k++) { Q = (R || Qb) ? 0 : 1; Qb = (S || Q) ? 0 : 1; } }
+  function draw(prevQ){
+    const set = (id, v) => { const e = document.getElementById(id); e.setAttribute('stroke', v ? on : off); e.setAttribute('stroke-width', v ? 3.5 : 2.5); };
+    set('wS', S); set('wR', R); set('wQ', Q); set('wQb', Qb);
+    document.getElementById('lQ').setAttribute('fill', Q ? 'var(--glow)' : 'var(--off)');
+    document.getElementById('lQb').setAttribute('fill', Qb ? 'var(--glow)' : 'var(--off)');
+    document.getElementById('qv').textContent = Q;
+    document.getElementById('btnS').setAttribute('aria-pressed', !!S);
+    document.getElementById('btnR').setAttribute('aria-pressed', !!R);
+    document.getElementById('btnS').classList.toggle('pri', !!S);
+    document.getElementById('btnR').classList.toggle('pri', !!R);
+    let m;
+    if (S && R) m = '两个一起按：两边输出都被压成 0。这在规则里是禁止的，松手时谁后松开谁说了算，结果说不准。电路设计里叫“竞争”。';
+    else if (S) m = '按住置位：Q 变成 1。现在松手看看。';
+    else if (R) m = '按住复位：Q 变成 0。';
+    else m = Q ? '你已经松手了，Q 仍然是 1。没有任何东西在“存”它，是两个门互相撑着。它记住了你按过一下。' : (prevQ === 1 ? '松手了，Q 停在 0。它记住的是“最后一次按的是复位”。' : '现在 Q 是 0。按住“置位”试试。');
+    document.getElementById('latchMsg').textContent = m;
+  }
+  function bind(id, set){
+    const b = document.getElementById(id);
+    const down = e => { e.preventDefault(); const p = Q; set(1); settle(); draw(p); };
+    const up = () => { const p = Q; set(0); settle(); draw(p); };
+    b.addEventListener('pointerdown', down);
+    b.addEventListener('pointerup', up); b.addEventListener('pointerleave', () => { if (b.getAttribute('aria-pressed') === 'true') up(); }); b.addEventListener('pointercancel', up);
+    b.addEventListener('keydown', e => { if ((e.key === ' ' || e.key === 'Enter') && !e.repeat) down(e); });
+    b.addEventListener('keyup', e => { if (e.key === ' ' || e.key === 'Enter') up(); });
+  }
+  bind('btnS', v => S = v); bind('btnR', v => R = v);
+  settle(); draw(0);
+})();
+
+/* ---------- 一帧画面背后 ---------- */
+(function(){
+  const L = [
+    ['屏幕','1/60 秒','你按下“右”，游戏角色向右走了一步。这一帧画面必须在大约 16.7 毫秒内画好，否则你会觉得卡。'],
+    ['程序','每帧几百万到上亿条指令','角色的位置只是内存里的一个数 x。程序执行 x = x + 速度，检查有没有撞墙，然后把整个画面重新算一遍：每个像素该是什么颜色。'],
+    ['指令','几条','“x = x + 速度”被编译成几条机器指令：取出 x，取出速度，相加，存回去。和装置 6 里那台小机器干的是同一件事，只是内存格子多了几十亿倍。'],
+    ['加法器','64 个全加器','“相加”这一步交给处理器里的加法器。64 位的数，就是 64 个全加器排成一排，进位从一头传到另一头（装置 4 是 4 个；真实芯片用了更快的“超前进位”，不必傻等）。'],
+    ['逻辑门','每个全加器几十个晶体管','每个全加器由几十个晶体管组成（一种经典设计正好用 28 个），它们拼成与、或、异或。这一层是香农 1937 年那篇论文的世界。'],
+    ['晶体管','手机芯片里一两百亿个','每个晶体管就是一个开关：栅极上加电压，下面的通道就导通。开合一次只要几十亿分之一秒，一秒钟可以开合几十亿次。'],
+    ['电子','几纳米','“导通”的意思是：电压把一群电子推过一道只有几纳米长的通道。再往下就是量子力学了，卷十二会讲它在那里制造的麻烦。']
+  ];
+  const list = document.getElementById('zList'), det = document.getElementById('zDet');
+  let cur = 0;
+  const btns = L.map((l, i) => { const b = document.createElement('button'); b.className = 'zl'; b.style.setProperty('--d', i); b.innerHTML = '<span class="zn">' + (i + 1) + '</span>' + l[0]; b.addEventListener('click', () => pick(i)); list.appendChild(b); return b; });
+  function pick(i){
+    cur = i; btns.forEach((b, j) => b.setAttribute('aria-pressed', i === j));
+    det.innerHTML = '<div class="k">第 ' + (i + 1) + ' 层 / 共 7 层 · ' + L[i][1] + '</div><h5>' + L[i][0] + '</h5><p>' + L[i][2] + '</p>' + (i < 6 ? '<button class="btn pri" id="zNext">再放大一层 →</button>' : '<button class="btn" id="zNext">回到屏幕</button>');
+    document.getElementById('zNext').addEventListener('click', () => pick((i + 1) % 7));
+  }
+  pick(0);
+})();
+
+/* ---------- 主频墙 ---------- */
+(function(){
+  const D = [[1971,'4004',0.74,1],[1974,'8080',2,1],[1978,'8086',10,1],[1982,'80286',12,1],[1985,'80386',16,1],[1989,'80486',25,1],[1993,'Pentium',66,1],[1995,'Pentium Pro',200,1],[1997,'Pentium II',300,1],[1999,'Pentium III',600,1],[2000,'Pentium 4',1500,1],[2002,'Pentium 4',3060,1],[2004,'Pentium 4',3800,1],[2005,'Pentium D',3200,2],[2006,'Core 2',2930,2],[2008,'Core i7-965',3460,4],[2010,'i7-980X',3600,6],[2013,'i7-4770K',3900,4],[2015,'i7-6700K',4200,4],[2017,'i7-8700K',4700,6],[2020,'i9-10900K',5300,10],[2022,'i9-13900K',5800,24],[2023,'i9-14900K',6000,24]];
+  const svg = document.getElementById('freqSvg');
+  const X0 = 70, X1 = 660, Y0 = 300, Y1 = 20, sx = y => X0 + (y - 1969) / (2026 - 1969) * (X1 - X0);
+  function draw(mode){
+    let h = '', sy, ticks;
+    if (mode === 'f') { sy = v => Y0 - (Math.log10(v) + 0.3) / (4 + 0.3) * (Y0 - Y1); ticks = [[1,'1 MHz'],[10,'10 MHz'],[100,'100 MHz'],[1000,'1 GHz'],[10000,'10 GHz']]; }
+    else { sy = v => Y0 - v / 26 * (Y0 - Y1); ticks = [[1,'1'],[4,'4'],[8,'8'],[12,'12'],[16,'16'],[20,'20'],[24,'24']]; }
+    ticks.forEach(([v, t]) => { h += '<line x1="' + X0 + '" x2="' + X1 + '" y1="' + sy(v) + '" y2="' + sy(v) + '" stroke="var(--rule)"/><text x="' + (X0 - 8) + '" y="' + (sy(v) + 4) + '" text-anchor="end" font-size="11" fill="var(--ink-3)" font-family="IBM Plex Mono, monospace">' + t + '</text>'; });
+    for (let y = 1970; y <= 2020; y += 10) h += '<text x="' + sx(y) + '" y="' + (Y0 + 20) + '" text-anchor="middle" font-size="11" fill="var(--ink-3)" font-family="IBM Plex Mono, monospace">' + y + '</text>';
+    h += '<rect x="' + sx(2004) + '" y="' + Y1 + '" width="' + (sx(2026) - sx(2004)) + '" height="' + (Y0 - Y1) + '" fill="var(--nixie)" opacity=".06"/>';
+    h += '<line x1="' + sx(2004) + '" x2="' + sx(2004) + '" y1="' + Y1 + '" y2="' + Y0 + '" stroke="var(--nixie)" stroke-dasharray="4 4"/>';
+    h += '<text x="' + (sx(2004) + 6) + '" y="' + (Y1 + 14) + '" font-size="12" fill="var(--nixie)" font-family="Noto Serif SC, serif">2004 · 撞墙</text>';
+    const val = d => mode === 'f' ? d[2] : d[3];
+    h += '<polyline fill="none" stroke="var(--ink-3)" stroke-width="1.2" points="' + D.map(d => sx(d[0]) + ',' + sy(val(d))).join(' ') + '"/>';
+    D.forEach(d => { h += '<circle cx="' + sx(d[0]) + '" cy="' + sy(val(d)) + '" r="4.5" fill="var(--nixie)" stroke="var(--card)" stroke-width="1.2"><title>' + d[0] + ' ' + d[1] + '：' + (mode === 'f' ? (d[2] >= 1000 ? (d[2] / 1000) + ' GHz' : d[2] + ' MHz') : d[3] + ' 核') + '</title></circle>'; });
+    const lab = mode === 'f' ? [[0,8,14],[12,-8,-10],[22,-6,-12]] : [[12,-6,-12],[20,-6,-12],[22,-6,-12]];
+    lab.forEach(([i, dx, dy]) => { const d = D[i]; h += '<text x="' + (sx(d[0]) + dx) + '" y="' + (sy(val(d)) + dy) + '" text-anchor="' + (dx < 0 ? 'end' : 'start') + '" font-size="11.5" fill="var(--ink)" font-family="Noto Serif SC, serif">' + d[1] + ' · ' + (mode === 'f' ? (d[2] >= 1000 ? (d[2] / 1000) + ' GHz' : d[2] + ' MHz') : d[3] + ' 核') + '</text>'; });
+    svg.innerHTML = h;
+  }
+  const bF = document.getElementById('frF'), bC = document.getElementById('frC');
+  bF.addEventListener('click', () => { bF.setAttribute('aria-pressed', 'true'); bC.setAttribute('aria-pressed', 'false'); draw('f'); });
+  bC.addEventListener('click', () => { bC.setAttribute('aria-pressed', 'true'); bF.setAttribute('aria-pressed', 'false'); draw('c'); });
+  draw('f');
+})();
+
+/* ---------- 缩到原子 ---------- */
+(function(){
+  const N = [[1971,'10 μm',10000],[1977,'3 μm',3000],[1985,'1 μm',1000],[1993,'500 nm',500],[1997,'250 nm',250],[2001,'130 nm',130],[2004,'90 nm',90],[2007,'45 nm',45],[2012,'22 nm',22],[2014,'14 nm',14],[2018,'7 nm',7],[2020,'5 nm',5],[2022,'3 nm',3]];
+  const r = document.getElementById('atR'), cv = document.getElementById('atCv');
+  function draw(){
+    const d = N[+r.value], atoms = Math.round(d[2] / 0.24);
+    document.getElementById('atO').textContent = d[0];
+    document.getElementById('atN').textContent = d[1];
+    document.getElementById('atT').innerHTML = '约 <b>' + atoms.toLocaleString('en-US') + '</b> 个硅原子' + (d[0] >= 2007 ? ' · <span style="color:var(--ink-3)">此时已是代号，不是真实尺寸</span>' : '');
+    const dpr = window.devicePixelRatio || 1, w = cv.clientWidth || 400, h = 64;
+    cv.style.height = h + 'px'; cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+    const x = cv.getContext('2d'); x.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+    x.fillStyle = css('--paper'); x.fillRect(0, 0, w, h);
+    const ink = css('--ink'), mut = css('--ink-3');
+    if (atoms <= 120) {
+      const step = Math.min(24, (w - 20) / atoms), rad = Math.max(2, step * .38), y0 = h / 2;
+      const total = step * atoms, ox = (w - total) / 2 + step / 2;
+      x.fillStyle = ink;
+      for (let i = 0; i < atoms; i++) { x.beginPath(); x.arc(ox + i * step, y0, rad, 0, 7); x.fill(); }
+    } else {
+      const rows = 4, per = Math.floor((w - 20) / 6), shown = Math.min(atoms, rows * per);
+      x.fillStyle = ink;
+      for (let i = 0; i < shown; i++) { const rr = Math.floor(i / per), cc = i % per; x.beginPath(); x.arc(12 + cc * 6, 12 + rr * 13, 2, 0, 7); x.fill(); }
+      x.fillStyle = mut; x.font = '12px "Noto Serif SC", serif'; x.textAlign = 'right';
+      x.fillText('……这里只画了 ' + shown + ' 个，后面还有 ' + (atoms - shown).toLocaleString('en-US') + ' 个', w - 10, h - 4);
+    }
+  }
+  r.addEventListener('input', draw); addEventListener('resize', draw); draw();
+})();
+
+/* ---------- 能量 ---------- */
+(function(){
+  const E = [['8 位整数加法',0.03,'算'],['32 位整数加法',0.1,'算'],['32 位浮点乘法',3.7,'算'],['从小缓存读 32 位',5,'搬'],['从内存读 32 位',640,'搬']];
+  const lo = Math.log10(0.01), hi = Math.log10(1000);
+  document.getElementById('ebars').innerHTML = E.map(e => {
+    const pct = (Math.log10(e[1]) - lo) / (hi - lo) * 100;
+    return '<div class="eb"><span class="el">' + e[0] + '</span><div class="et"><div class="ef ' + (e[2] === '搬' ? 'mv' : '') + '" style="width:' + pct.toFixed(1) + '%"></div></div><span class="ev">' + e[1] + ' pJ</span></div>';
+  }).join('') + '<p class="readout" style="margin:10px 0 0">从内存读一个数（640）÷ 做一次 32 位加法（0.1）≈ <b>6400 倍</b>。橙色是“搬”，青色是“算”。</p>';
+})();
+
+/* ---------- 阿姆达尔 ---------- */
+(function(){
+  const p = document.getElementById('amP'), n = document.getElementById('amN');
+  function up(){
+    const P = +p.value / 100, N = Math.pow(2, +n.value), s = 1 / ((1 - P) + P / N), cap = 1 / (1 - P);
+    document.getElementById('amPo').textContent = (+p.value).toFixed(1).replace(/\.0$/, '') + '%';
+    document.getElementById('amNo').textContent = N.toLocaleString('en-US');
+    const scale = v => Math.min(100, Math.log10(v) / 3 * 100);
+    document.getElementById('amFill').style.width = scale(s) + '%';
+    document.getElementById('amCap').style.width = scale(cap) + '%';
+    document.getElementById('amV').textContent = s.toFixed(s < 10 ? 2 : 1) + ' 倍';
+    document.getElementById('amC').textContent = cap >= 1000 ? '1000 倍以上' : cap.toFixed(cap < 10 ? 2 : 1) + ' 倍';
+    document.getElementById('amMsg').textContent = N + ' 个核心只发挥出 ' + (s / N * 100).toFixed(0) + '% 的理论效率。' + (P < .999 && N >= 64 ? '再加核心，也挤不过天花板了。' : '');
+  }
+  p.addEventListener('input', up); n.addEventListener('input', up); up();
+})();
+
+/* ---------- 附录：反应一览 ---------- */
+(function(){
+  const rows = [...document.querySelectorAll('.react')].map(r => {
+    const vol = r.closest('[data-vol]');
+    return {y: +r.dataset.year, tag: r.dataset.tag, title: r.dataset.title, ylabel: r.querySelector('.ry').textContent, vol: vol ? vol.dataset.vol : '', id: vol ? vol.id : ''};
+  }).sort((p, q) => p.y - q.y);
+  const color = {'轰动':'var(--nixie)','冷遇':'var(--ink-3)','误判':'var(--wire)','传说':'var(--ink-2)','迟到':'var(--m-brass)','争论':'var(--m-si)','反噬':'var(--m-relay)'};
+  $('#rtab tbody').innerHTML = rows.map(r => '<tr><td class="y">' + r.ylabel + '</td><td>' + r.title + ' <a href="#' + r.id + '" style="font-size:12.5px;color:var(--ink-3)">' + r.vol + '</a></td><td class="tg"><span style="color:' + color[r.tag] + (r.tag === '传说' ? ';border-style:dashed' : '') + '">' + r.tag + '</span></td></tr>').join('');
+})();
+})();
+</script>
+</body>
+</html>

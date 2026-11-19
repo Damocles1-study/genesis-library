@@ -1,0 +1,91 @@
+
+<!-- ============ 卷十一 魔 ============ -->
+<section class="vol" id="v11" data-vol="卷十一 · 魔">
+  <div class="volhead" data-y="2026">
+    <svg class="gl" data-gl="rose" viewBox="0 0 300 300" aria-hidden="true"></svg>
+    <span class="sn">№ 0011</span>
+    <div class="num">卷十一</div>
+    <h2>魔</h2>
+    <div class="meta"><span class="range">你的一生</span><span>心里的账</span></div>
+    <p class="lede">前十卷讲钱怎样在国家之间、朝代之间变形。这一卷把镜头转回一个人：钱在你脑子里做了什么。它的魔力，一半在利息里，一半在人心里。</p>
+  </div>
+
+  <div class="col">
+    <h3>时间是钱最大的放大器</h3>
+    <p>卷一说过，利息最早的样子是“羊生小羊”。小羊长大了也会生小羊，这就是复利：利息本身也生利息。它在头几年几乎看不出来，到了后面却快得吓人。</p>
+    <p>有一个心算的小办法，叫“72 法则”：用 72 除以年收益率，大约就是钱翻一倍需要的年数。年收益 6%，大约 12 年翻倍；3%，大约 24 年。反过来也成立：如果通胀每年 3%，你放在床底下的现金，大约 24 年后购买力就只剩一半。</p>
+    <p>网上常说爱因斯坦称复利是“世界第八大奇迹”，这句话找不到可靠出处，多半是后人安在他头上的。但复利本身不需要名人背书。</p>
+  </div>
+
+  <div class="wide fig" id="fig-comp">
+    <div class="fig-label">装置 12 / 复利与通胀</div>
+    <h4>每月存一点，三十年后</h4>
+    <p class="how">设置每月存多少、存多少年、每年的收益率和通胀率。深色线是账面上的钱，浅色线是扣掉通胀后“相当于今天的多少钱”。灰色线是你一共存进去的本金。</p>
+    <div class="rng"><span>每月存</span><input type="range" id="cMon" min="100" max="5000" step="100" value="1000"><output id="cMonO">1000 元</output></div>
+    <div class="rng"><span>年数</span><input type="range" id="cYrs" min="1" max="45" value="30"><output id="cYrsO">30 年</output></div>
+    <div class="rng"><span>年收益</span><input type="range" id="cRet" min="0" max="12" step="0.5" value="5"><output id="cRetO">5%</output></div>
+    <div class="rng"><span>年通胀</span><input type="range" id="cInf" min="0" max="10" step="0.5" value="2.5"><output id="cInfO">2.5%</output></div>
+    <canvas class="chart" id="cChart" height="220" aria-label="复利与通胀曲线"></canvas>
+    <p class="readout" id="cRead" style="margin-top:8px"></p>
+  </div>
+
+  <div class="col">
+    <h3 data-y="1979">输一百块，比赢一百块更疼<span class="y">1979 · 普林斯顿</span></h3>
+    <p>心理学家卡尼曼和特沃斯基 1979 年发表了“前景理论”，后来卡尼曼因此获得诺贝尔经济学奖。其中最著名的发现叫<em>损失厌恶</em>：失去一笔钱的痛苦，大约是得到同样一笔钱的快乐的两倍。</p>
+    <p>这解释了很多“不理性”的行为：股票亏了舍不得卖，总想“等回本”；为了避免一笔小损失，甘愿冒更大的风险；同样的方案，说成“能救 200 人”大家就支持，说成“会死 400 人”大家就反对。下面这个小测试，你可以自己试试。</p>
+  </div>
+
+  <div class="wide fig quiz" id="fig-quiz">
+    <div class="fig-label">装置 13 / 你脑子里的账</div>
+    <h4>两道题，凭直觉选</h4>
+    <div id="qBox"></div>
+    <p class="readout" id="qRead" style="margin-top:10px"></p>
+  </div>
+
+  <div class="col">
+    <h3>同样一百块，不一样的钱</h3>
+    <p>行为经济学家塞勒（2017 年诺贝尔奖得主）提出过“心理账户”：人们会把钱分进脑子里不同的抽屉。工资是“辛苦钱”，舍不得花；年终奖、彩票、红包是“意外之财”，花起来就大手大脚。可在银行账户里，每一块钱都一模一样。</p>
+    <p>商家深谙此道：分期付款把一笔大钱切成很多笔“小钱”；会员卡里的余额感觉像“已经花掉了”，再花就不心疼；手机支付让钱的离开没有任何触感。上一卷说钱越来越像一条消息，而消息，是很容易被忽略的。</p>
+
+    <h3 data-y="2023">钱能买到快乐吗<span class="y">2010 · 2021 · 2023</span></h3>
+    <p>2010 年，卡尼曼和经济学家迪顿发表了一项研究：美国人的日常情绪随收入上升而改善，但年收入超过约七万五千美元后，情绪就基本不再变好了。这个“七万五”被广为传播。</p>
+    <p>2021 年，另一位研究者基林斯沃思用手机实时调查了三万多人，发现幸福感在高收入段并没有停住，还在继续上升。两人观点相左，于是做了一件学界少见的事：一起合作重新分析数据。2023 年他们联合发表的结论是：对大多数人来说，收入越高，幸福感越高，没有明显的天花板；只有在最不快乐的那大约 20% 人群里，收入到一定程度后，钱就再也帮不上忙了。</p>
+    <p>换句话说，<em>钱能缓解很多种不快乐，但治不了所有的不快乐。</em>钱解决的是“缺”，解决不了“空”。</p>
+
+    <aside class="echo" data-k="生活" data-year="1587" data-place="南京" data-pat="信" data-title="海瑞死时，箱子里有八两银子">
+      <span class="stamp">生活</span>
+      <div>
+        <p class="rh"><span class="ry">1587 · 南京</span>海瑞死时，箱子里有八两银子</p>
+        <p>据《明史·海瑞传》，海瑞在南京右都御史任上去世，同僚检视他的遗物，只有俸银八两、葛布一端、旧衣几件。他一生以清廉出名，连他的反对者也承认这一点。对照卷三的邓通：一个给天下铸钱，死时身无分文，因为他的钱全靠一个人的恩宠；一个一辈子没碰过不该碰的钱，死时也只剩八两，但没有人能从他身上拿走什么。<em>钱可以被收回，名节收不回。</em></p>
+      </div>
+    </aside>
+
+    <div class="drama">
+      <div class="dh"><b>戏里戏外 · 沈一石的账</b><span>大明王朝 1566</span></div>
+      <p>《大明王朝1566》里最让人唏嘘的人物之一，是江南首富沈一石。他替织造局、替宫里经营丝绸生意，富可敌国，养着戏班，读书弹琴，风雅得像个名士。可剧情一步步揭开：他的财富从来不是他自己的。他是权力的钱袋子，钱从他手里过，却不归他。当权力需要牺牲一个人来收场的时候，最有钱的那个人，往往最先被推出去。</p>
+      <p>剧中沈一石的结局，是一把火，和一本账。这和卷三的邓通、卷八的约翰·劳，构成了一个有点刺骨的系列：<em>离权力太近的钱，是借来的钱。</em></p>
+      <p class="src">剧情为概述。</p>
+    </div>
+
+    <div class="scene">
+      <div class="sh"><b>第十一场 · 下值之后</b><span>衙门后院 · 今天 · 傍晚</span></div>
+      <div class="bd">
+        <div class="sd">大人们都走了。阿鉴收拾好账册，没有走。</div>
+        <div class="ln"><span class="who j">阿鉴</span><p>师爷，我跟您学了这么多朝代的钱，可我自己……还是不知道该怎么对待钱。</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>今天大人不在，我不用绕弯子。你想听真话，我就说几句。</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>第一，钱是放大器。它放大你的选择，也放大你的焦虑。一个人本来就慌，给他更多钱，他会慌得更贵。</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>第二，时间站在慢的那一边。复利只奖励两种人：开始得早的，和中途不下车的。所有让你“快”的东西，都要多看一眼。</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>第三，你最值钱的资产不在账上，在你脑子里和你的名声里。贝会贬值，银会外流，纸会作废，但一个说话算数、手艺过硬的人，在哪个朝代都换得到饭吃。</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>第四，看清楚你的钱站在谁的影子里。邓通、沈一石、约翰·劳，他们的钱都来得太顺，顺得像是借来的。</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>还有第五吗？</p></div>
+        <div class="ln"><span class="who s">钱师爷</span><p>第五，够了，就要知道够了。这一条，我五千年都没教会一位大人。</p></div>
+        <div class="sd">阿鉴合上小本子。这一次，他没有记，因为他记住了。</div>
+      </div>
+    </div>
+
+    <div class="takeaway">
+      <p><b>钱的魔力一半在利息里，一半在人心里。</b>复利让时间变成钱，损失厌恶和心理账户让钱变成情绪。</p>
+      <p class="life">放到自己身上：早一点开始，慢一点花，少一点借，多一点学。记住“够了”是一个可以主动说出口的词。</p>
+    </div>
+  </div>
+</section>

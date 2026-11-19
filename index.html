@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="一间小书房，放着几本讲“世界怎样被造出来”的网页书：计算机创世记、金钱创世记。">
+<title>创世书房</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231c2621'/%3E%3Crect x='7' y='8' width='5' height='17' fill='%23e8dcc4'/%3E%3Crect x='14' y='6' width='5' height='19' fill='%23d9564a'/%3E%3Crect x='21' y='10' width='4' height='15' fill='%236fa58f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Noto+Serif+SC:wght@400;600&family=ZCOOL+XiaoWei&display=swap">
+<style>
+:root{--paper:#efe9db;--card:#f7f2e6;--ink:#1d2420;--ink-2:#4f5852;--ink-3:#7f877f;--rule:#cfc6ae;--seal:#b0352b;--teal:#2c6652;--wood:#7a5a3c;
+  --f-display:"ZCOOL XiaoWei","Songti SC","STSong",serif;--f-body:"Noto Serif SC","Songti SC","STSong",serif;--f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--paper:#111513;--card:#18201c;--ink:#e6e0cf;--ink-2:#aab0a4;--ink-3:#747d76;--rule:#2d3832;--seal:#e0604f;--teal:#73b79c;--wood:#a8835c;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#111513;--card:#18201c;--ink:#e6e0cf;--ink-2:#aab0a4;--ink-3:#747d76;--rule:#2d3832;--seal:#e0604f;--teal:#73b79c;--wood:#a8835c;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);line-height:1.8;-webkit-font-smoothing:antialiased}
+.g{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:56rem;margin:0 auto;padding-top:calc(48px + env(safe-area-inset-top,0px));padding-bottom:calc(48px + env(safe-area-inset-bottom,0px))}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.16em;color:var(--ink-3)}
+h1{font-family:var(--f-display);font-weight:400;font-size:clamp(52px,12vw,104px);line-height:1;margin:.2em 0 .25em;letter-spacing:.1em}
+.lead{max-width:34em;font-size:17.5px;color:var(--ink-2);margin:0}
+.shelf{margin:44px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr));gap:18px;align-items:stretch}
+.book{position:relative;display:flex;flex-direction:column;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--rule);border-radius:4px 10px 10px 4px;padding:22px 20px 18px 30px;min-height:290px;transition:transform .2s,box-shadow .2s}
+.book::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;border-radius:4px 0 0 4px;background:var(--c)}
+.book:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.08)}
+.book .vol{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.14em;color:var(--c)}
+.book h2{font-family:var(--f-display);font-weight:400;font-size:34px;line-height:1.15;margin:.3em 0 .15em;letter-spacing:.06em}
+.book .sub{font-size:14px;color:var(--ink-3);margin:0 0 .8em}
+.book p{font-size:15px;color:var(--ink-2);margin:0 0 .8em}
+.book .tags{margin-top:auto;display:flex;flex-wrap:wrap;gap:6px}
+.book .tags span{font-size:12px;border:1px solid var(--rule);border-radius:4px;padding:0 6px;color:var(--ink-3)}
+.book.new::after{content:"新";position:absolute;right:14px;top:14px;width:30px;height:30px;border:1.5px solid var(--seal);color:var(--seal);border-radius:3px;display:grid;place-items:center;font-family:var(--f-display);font-size:15px;transform:rotate(8deg)}
+.plank{height:12px;margin-top:-2px;border-radius:2px;background:var(--wood);opacity:.55}
+.note{margin-top:46px;padding-top:18px;border-top:1px solid var(--rule);font-size:14.5px;color:var(--ink-3);max-width:40em}
+.note h3{font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--ink);margin:0 0 .4em}
+.note p{margin:0 0 .7em}
+.note a{color:var(--ink-2);text-decoration-color:var(--seal);text-underline-offset:3px}
+</style>
+</head>
+<body>
+<main class="wrap g">
+  <div class="eyebrow">CHUANGSHI SHUFANG · 一间放“世界怎样被造出来”的小书房</div>
+  <h1>创世书房</h1>
+  <p class="lead">这里放着几本网页书。每一本都讲一样东西从无到有的过程：人类怎样一步一步把它造出来，又怎样被它反过来改变。都配了可以动手玩的装置，手机、平板和电脑都能读。</p>
+
+  <div class="shelf">
+    <a class="book" href="computer/" style="--c:#2c6a6e">
+      <span class="vol">第一本 · 上卷</span>
+      <h2>计算机创世记</h2>
+      <div class="sub">一沙一世界</div>
+      <p>从提花织机、差分机、开关和导线，讲到晶体管、CPU、互联网，和今天芯片撞上的几堵墙。</p>
+      <div class="tags"><span>编年史</span><span>十余个装置</span><span>1642—今</span></div>
+    </a>
+    <a class="book" href="computer/second.html" style="--c:#cf4e19">
+      <span class="vol">第一本 · 下卷</span>
+      <h2>第二次创世</h2>
+      <div class="sub">机器怎样学会“学”</div>
+      <p>从 1943 年纸上的神经元，到感知机、规则的帝国、2012、注意力，一直讲到今天的大模型卡在哪里。</p>
+      <div class="tags"><span>人工智能史</span><span>装置</span><span>1943—今</span></div>
+    </a>
+    <a class="book new" href="money/" style="--c:#b0352b">
+      <span class="vol">第二本</span>
+      <h2>点石成金</h2>
+      <div class="sub">金钱创世记 · 从一笔债到一条消息</div>
+      <p>泥板、贝壳、铜钱、交子、白银、黄金、比特币。十一卷编年史，每卷一场“大人与钱师爷”的戏，十四个装置与小游戏，外加一条把五千年串起来的“押韵时间轴”。</p>
+      <div class="tags"><span>编年史 + 对白</span><span>14 个装置</span><span>前 3000—今</span></div>
+    </a>
+  </div>
+  <div class="plank" aria-hidden="true"></div>
+
+  <div class="note">
+    <h3>关于这间书房</h3>
+    <p>《点石成金》的写法借了三部剧的光：英剧《是，大臣》《是，首相》，和《大明王朝1566》。前两部讲制度怎样保护自己，后一部讲账本背后的人。书里的对白场景都是原创虚构，剧情只做概述。</p>
+    <p>正文由 Claude 协助写作，史实尽量核对过，争议之处在书末单独列出。纯静态网页，无框架，只从 Google Fonts 加载字体。</p>
+  </div>
+</main>
+</body>
+</html>

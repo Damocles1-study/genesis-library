@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="一副给散步时用的卡片：六十张“路上聊”，每张三五分钟能讲完一个真实的故事或问题，结尾留一个抛给对方的问题。从书房里的五本书取材，外加十张书外的新话题。随机抽一张、抽一条路、按主题筛、标记讲过了。">
+<meta name="description" content="一副给散步时用的卡片：一百张“路上聊”，古人的脑洞、动物、天文、电影幕后、名人怪癖、离谱的大人物、至今没人懂的事、保命常识，还有逛博物馆、园林、街道时能讲的。每张三五分钟，结尾留一个抛给对方的问题。可以按主题、类型、地点筛选。">
 <meta property="og:title" content="回宿舍的路 · 路上聊">
-<meta property="og:description" content="从图书馆走回去的那十几分钟，聊点什么？六十张卡，每张一个真实的故事，和一个留给对方的问题。">
+<meta property="og:description" content="从图书馆走回去的那十几分钟，聊点什么？一百张卡，每张一个真实的故事，和一个留给对方的问题。">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23182030'/%3E%3Cpath d='M12,29 V9 Q12,6 15,6 H19' stroke='%23d9c9a3' stroke-width='2' fill='none'/%3E%3Cpath d='M16,7 h6 l-1.5,3 h-3z' fill='%23e8b450'/%3E%3Cpath d='M17.5,10 L11,27 H28 L20.5,10z' fill='%23e8b450' opacity='.35'/%3E%3C/svg%3E">
 <title>回宿舍的路</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +22,7 @@
   --lamp:#8a5a0c; --glow:#e7b54d; --night:#2b4a6f;
   --btn:#2b4a6f; --btn-fg:#f3ebda;
   --sky1:#d9cfb7; --sky2:#e9dfc8; --bld:#b9ab8d; --win:#e7b54d;
-  --c-jq:#2c6a6e; --c-q:#b0352b; --c-ym:#6a4c93; --c-zi:#7d600f; --c-gt:#6e4526; --c-sw:#2f5584;
+  --c-jq:#2c6a6e; --c-nd:#7d600f; --c-dw:#3d6b2e; --c-tk:#2f5584; --c-yp:#8a3557; --c-gr:#6a4c93; --c-lp:#b0352b; --c-md:#2c6a6e; --c-bm:#9a4416; --c-gg:#6e4526;
   --hl:color-mix(in srgb,var(--glow) 34%,transparent);
   --f-display:"Hui Fix","ZCOOL XiaoWei","Songti SC","STSong","Noto Serif SC",serif;
   --f-body:"Noto Serif SC","Songti SC","Source Han Serif SC","STSong",serif;
@@ -33,12 +33,12 @@
   --paper:#11151d; --paper-2:#181d27; --card:#1b212c; --ink:#e8e2d3; --ink-2:#b5afa0; --ink-3:#8d8a80; --rule:#2e3644;
   --lamp:#e7b54d; --glow:#e7b54d; --night:#8fb0e3; --btn:#6b4f17; --btn-fg:#f6e3b0;
   --sky1:#0d1119; --sky2:#151b27; --bld:#232b3a; --win:#e7b54d;
-  --c-jq:#6fb5b0; --c-q:#e87a6c; --c-ym:#b39ae0; --c-zi:#d4b056; --c-gt:#c99a6e; --c-sw:#8fb0e3; color-scheme:dark}}
+  --c-jq:#6fb5b0; --c-nd:#d4b056; --c-dw:#8fc47a; --c-tk:#8fb0e3; --c-yp:#e28aac; --c-gr:#b39ae0; --c-lp:#e87a6c; --c-md:#6fb5b0; --c-bm:#e89a6a; --c-gg:#c99a6e; color-scheme:dark}}
 :root[data-theme="dark"]{
   --paper:#11151d; --paper-2:#181d27; --card:#1b212c; --ink:#e8e2d3; --ink-2:#b5afa0; --ink-3:#8d8a80; --rule:#2e3644;
   --lamp:#e7b54d; --glow:#e7b54d; --night:#8fb0e3; --btn:#6b4f17; --btn-fg:#f6e3b0;
   --sky1:#0d1119; --sky2:#151b27; --bld:#232b3a; --win:#e7b54d;
-  --c-jq:#6fb5b0; --c-q:#e87a6c; --c-ym:#b39ae0; --c-zi:#d4b056; --c-gt:#c99a6e; --c-sw:#8fb0e3; color-scheme:dark}
+  --c-jq:#6fb5b0; --c-nd:#d4b056; --c-dw:#8fc47a; --c-tk:#8fb0e3; --c-yp:#e28aac; --c-gr:#b39ae0; --c-lp:#e87a6c; --c-md:#6fb5b0; --c-bm:#e89a6a; --c-gg:#c99a6e; color-scheme:dark}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -129,8 +129,10 @@ h2.sec small{display:block;font-family:var(--f-mono);font-size:12px;letter-spaci
 .js .grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,17rem),1fr));gap:10px}
 
 .cd{--cc:var(--ink-2);position:relative;background:var(--card);border:1px solid var(--rule);border-top:5px solid var(--cc);border-radius:10px;padding:14px 16px 14px;scroll-margin-top:70px}
-.cd[data-t="机器"]{--cc:var(--c-jq)} .cd[data-t="钱"]{--cc:var(--c-q)} .cd[data-t="衙门"]{--cc:var(--c-ym)}
-.cd[data-t="字与话"]{--cc:var(--c-zi)} .cd[data-t="柜台"]{--cc:var(--c-gt)} .cd[data-t="书外"]{--cc:var(--c-sw)}
+[data-t="脑洞"],[data-theme="脑洞"]{--cc:var(--c-nd)} [data-t="动物"],[data-theme="动物"]{--cc:var(--c-dw)} [data-t="天上"],[data-theme="天上"]{--cc:var(--c-tk)} [data-t="银幕"],[data-theme="银幕"]{--cc:var(--c-yp)} [data-t="怪人"],[data-theme="怪人"]{--cc:var(--c-gr)} [data-t="离谱"],[data-theme="离谱"]{--cc:var(--c-lp)} [data-t="没人懂"],[data-theme="没人懂"]{--cc:var(--c-md)} [data-t="保命"],[data-theme="保命"]{--cc:var(--c-bm)} [data-t="逛"],[data-theme="逛"]{--cc:var(--c-gg)}
+.where{margin:.2em 0 .7em;font-size:12.5px;color:var(--ink-3);font-family:var(--f-mono);letter-spacing:.06em}
+.where i{font-style:normal;display:inline-block;border:1px solid var(--rule);border-radius:99px;padding:0 .6em;margin:0 .3em .2em 0;background:var(--paper)}
+.js .grid .cd .where{display:none}
 .cd-h{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-3)}
 .cd-h .th{font-family:var(--f-mono);letter-spacing:.1em;color:var(--cc)}
 .cd-h .kd{color:var(--cc);border-color:var(--cc);font-size:13px;min-width:1.85em;height:1.85em}
@@ -215,12 +217,12 @@ footer p{margin:0 0 .5em}
 <section class="hero g">
   <div class="wide">
     <div class="eyebrow">CHUANGSHI SHUFANG · 第六本 · 路上聊</div>
-    <h1>回宿舍的路<small>六十张卡 · 一张三五分钟</small></h1>
+    <h1>回宿舍的路<small>一百张卡 · 一张三五分钟</small></h1>
     <div class="hero-grid">
       <div>
         <p>从图书馆走回宿舍，十几分钟。学了一天，脑子里全是题，不想再聊题；可是一路不说话，又有点可惜。</p>
         <p>这是一副给路上用的卡片。每张卡是一个<em>真实的故事或问题</em>，三五分钟能讲完，结尾留一个<em>抛给对方的问题</em>——讲的人只开个头，后半段是两个人一起聊的。</p>
-        <p>前五十张取材于书房里的五本书：机器、钱、衙门、字与话、柜台；最后十张是书外的新话题，算是以后几本书的种子。</p>
+        <p>话题东拉西扯：古人的脑洞、动物、天上、电影幕后、名人的怪癖、离谱的大人物、至今没人懂的事、保命常识，还有逛博物馆、园林、街道时抬手一指就能讲的。周末要去动物园、博物馆或者园林，可以先按“在哪儿”挑几张。</p>
       </div>
       <svg class="scene-svg" viewBox="0 0 480 300" role="img" aria-label="夜里，一条小路从远处的图书馆弯到近处的宿舍楼，路边三盏路灯，两个人在路上走">
         <defs>
@@ -279,6 +281,7 @@ footer p{margin:0 0 .5em}
       <li><b>讲到“抛给对方”就停</b>故事只是引子。问完问题，接下来是听。对方的回答，往往比卡片好听。</li>
       <li><b>用自己的话讲</b>卡片不是台词，记个大概就行。记不清的地方就说“我记得是……”；标了“存疑”的地方，本来就没有定论。</li>
       <li><b>路长就抽一条路</b>“抽一条路”一次给三张不同主题的卡，够走十几分钟。讲完的点“讲过了”，下次不会再抽到。</li>
+      <li><b>出门前按地点挑</b>“在哪儿”选“动物园”“博物馆”“园林”，抽出来的都是到了现场能指着讲的。“路上”是不挑地方、抬头看天就能聊的卡。</li>
     </ol>
     <ul class="kinds" aria-label="卡片的五种类型">
       <li><span class="kd">讲</span>一个故事</li>
@@ -295,6 +298,7 @@ footer p{margin:0 0 .5em}
       </div>
       <div class="fl"><div class="lb">主题</div><div class="chips" id="fT"></div></div>
       <div class="fl"><div class="lb">类型</div><div class="chips" id="fK"></div></div>
+      <div class="fl"><div class="lb">在哪儿</div><div class="chips" id="fP"></div></div>
       <div class="opts">
         <label><input type="checkbox" id="skip" checked> 跳过讲过的</label>
         <span class="stat" id="stat"></span>
@@ -311,888 +315,160 @@ footer p{margin:0 0 .5em}
       </div>
     </section>
 
-    <h2 class="sec" id="all"><small>SIXTY CARDS</small>书架上的六十张</h2>
-    <p class="lede">按主题排好。点任何一张，它会被放到上面的抽卡台上翻开。每张卡末尾的“想细看”通向书房里讲这件事的那一章。</p>
+    <h2 class="sec" id="all"><small>A HUNDRED CARDS</small>书架上的一百张</h2>
+    <p class="lede">按主题排好。点任何一张，它会被放到上面的抽卡台上翻开。标着“存疑”的地方本来就没有定论，讲的时候带一句“据说”。</p>
   </div>
 </section>
-<section class="deck g" id="t1" style="--cc:var(--c-jq)">
+<section class="deck g" id="t1" data-theme="脑洞">
 <div class="wide">
-<div class="deck-h"><h2>机器</h2><span>十张 · 取材于《计算机创世记》上下卷</span></div>
-<p class="lede">开关、齿轮、纸卡、显卡，还有会一本正经胡编的大模型。</p>
+<div class="deck-h"><h2>古人的脑洞</h2><span>十一张 · 想错的、想对的</span></div>
+<p class="lede">古人想错的地方，往往错得很有道理：他们看到的现象是真的，只是解释差了一步。也有些事，他们早就想对了。</p>
 <div class="grid">
 
-<article class="cd" id="w01" data-t="机器" data-k="讲">
-<header class="cd-h"><span class="th">机器</span><span class="kd">讲</span><span class="no">01</span></header>
-<h3>一只真正的虫子</h3>
-<p class="hook">程序出错叫“bug”。有一回，工程师真的从机器里抓出了一只虫子。</p>
+<article class="cd" id="w01" data-t="脑洞" data-k="猜" data-p="园林 夜空">
+<header class="cd-h"><span class="th">脑洞</span><span class="kd">猜</span><span class="no">1</span></header>
+<h3>腐草为萤</h3>
+<p class="hook">古人认为萤火虫是从哪儿来的？</p>
 <div class="body">
-<p>1947 年 9 月 9 日，哈佛大学的 Mark II 计算机出了故障。工程师一路查下去，在一个继电器的触点之间找到一只飞蛾：它被夹死在那儿，把电路卡住了。他们用胶带把飞蛾贴进当天的工作日志，旁边写了一行字，意思是“第一次真的找到了一只虫子”。这页日志今天还保存在美国国家历史博物馆。</p>
-<p>妙就妙在那个“真的”：说明 bug 这个词当时已经在用了。早在 1870 年代，爱迪生就在信里把机器的小毛病叫作 bug。工程师们只是第一次碰上字面意义上的 bug，觉得好笑，才郑重其事地贴了进去。</p>
-<p>这个故事常被安到计算机先驱格蕾丝·霍珀头上。她是那个团队的人，也特别爱讲这件事，但飞蛾多半不是她亲手找到的。后来，debug（除虫）成了每个写程序的人一辈子的日常。</p>
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>腐烂的草变的</b>。《礼记·月令》里，夏天最后一个月的物候就写着“腐草为萤”。</div></details>
+<p>同一篇里还有更大胆的：秋天“爵入大水为蛤”，麻雀飞进海里变成蛤蜊；冬天“雉入大水为蜃”，野鸡变成大蛤。秋天麻雀少了，海边蛤蜊多了，古人就把两件事连在了一起。</p>
+<p>其实“腐草为萤”不算瞎说。很多萤火虫的幼虫就生活在潮湿的草丛和落叶里，有的幼虫也会发光。古人看见光点从烂草堆里升起来，得出这个结论，观察是对的，只是没看到中间那一步。</p>
+<p>欧洲人也一样。17 世纪的比利时医生范·海尔蒙特留下过一个“造老鼠”的配方：脏衬衫加一把麦子，放进罐子里，二十一天后就有老鼠。直到 1668 年意大利人雷迪用纱布罩住肉罐子，证明没有苍蝇产卵就不生蛆；又过了将近两百年，巴斯德用一只鹅颈瓶，才把“自然发生说”彻底收拾掉。</p>
 </div>
 <div class="turn"><b>抛给对方</b><ul>
-<li>你生活里遇到过最离谱的“bug”是什么？最后是怎么“debug”的？</li>
-<li>如果要给“考试时明明会、偏偏写错”起个专门的词，你叫它什么？</li>
+<li>你小时候信过哪些“东西是自己变出来的”？</li>
+<li>今天的常识里，你猜哪一条五百年后会被人笑？</li>
 </ul></div>
-<p class="more">想细看 → <a href="../computer/#v7">《计算机创世记》上卷 · 语言</a></p>
 </article>
 
-<article class="cd" id="w02" data-t="机器" data-k="假">
-<header class="cd-h"><span class="th">机器</span><span class="kd">假</span><span class="no">02</span></header>
-<h3>十九岁的计算器</h3>
-<p class="hook">最早能用的机械计算器之一，是一个十九岁的少年为了帮他爸算税造的。</p>
+<article class="cd" id="w02" data-t="脑洞" data-k="讲" data-p="夜空 随时">
+<header class="cd-h"><span class="th">脑洞</span><span class="kd">讲</span><span class="no">2</span></header>
+<h3>四个角盖不住</h3>
+<p class="hook">两千多年前，就有学生当面问老师：天要是圆的、地要是方的，四个角怎么盖得住？</p>
 <div class="body">
-<p>1642 年，法国鲁昂。布莱兹·帕斯卡的父亲是税务官，每天要算大量的账，常常算到深夜。十九岁的帕斯卡看不下去，开始造一台能自己做加法的机器：一排齿轮，每个齿轮十个齿，转满一圈，就推着左边的齿轮走一格。这就是“进位”。</p>
-<p>据说他前后试了约五十台样机。造出来的机器卖得并不好：太贵、太娇气，而当时会算账的人工又便宜。今天世界上还留着几台。可是“齿轮转满十格，推下一位一格”这个想法，一直用到了二十世纪的手摇计算器。</p>
-<p>这个少年后来成了大数学家、物理学家。压强的单位“帕”，就是他的名字。</p>
+<p>这段对话记在《大戴礼记·曾子天圆》里。学生单居离问曾子：“天圆而地方者，诚有之乎？”曾子的回答很老实：真要是天圆地方，“则是四角之不揜也”——方地的四个角，圆天是盖不住的。接着他解释：所谓天圆地方，说的是天道和地道，不是形状。</p>
+<p>差不多同一时期，地中海边上有人直接把地球量了。公元前 240 年前后，埃拉托色尼听说南边的赛伊尼城夏至中午，太阳能直射到井底；同一时刻在亚历山大城，竖杆的影子却偏了约七度，差不多是一圈的五十分之一。两城相距五千“斯塔德”，乘以五十，就是地球一圈。</p>
+<p>他的误差有多大，要看他用的“斯塔德”到底多长，说法从百分之几到百分之十几不等。但用一根竿子和一点几何算出地球的大小，已经足够惊人。</p>
 </div>
 <div class="turn"><b>抛给对方</b><ul>
-<li>假如你十九岁时要发明一个东西，专门帮家里某个人省事，你会造什么？</li>
-<li>“为了家里人”和“为了改变世界”，你觉得哪种动机更容易做出好东西？</li>
+<li>如果没有卫星照片，你会用什么办法说服别人地是圆的？</li>
+<li>你有没有过“明知道老师讲得不太对，但没敢问”的时候？</li>
 </ul></div>
-<p class="more">想细看 → <a href="../computer/#v1">《计算机创世记》上卷 · 数</a></p>
 </article>
 
-<article class="cd" id="w03" data-t="机器" data-k="猜">
-<header class="cd-h"><span class="th">机器</span><span class="kd">猜</span><span class="no">03</span></header>
-<h3>第一叠“程序卡片”</h3>
-<p class="hook">考你一个：世界上第一台用打孔卡片“编程”的机器，是干什么用的？</p>
+<article class="cd" id="w03" data-t="脑洞" data-k="猜" data-p="博物馆 随时">
+<header class="cd-h"><span class="th">脑洞</span><span class="kd">猜</span><span class="no">3</span></header>
+<h3>用什么想事</h3>
+<p class="hook">古人觉得，人是用哪个器官思考的？</p>
 <div class="body">
-<details class="guess"><summary>先让对方猜，再翻开</summary><div class="ans">答案：<b>织布</b>。确切地说，是织带花纹的绸缎。</div></details>
-<p>1804 年前后，法国里昂的雅卡尔改进出一种提花织机。在那之前，织花纹绸缎要有一个人——常常是个孩子——坐在织机顶上，按花样一根一根提起经线，又累又容易出错。雅卡尔把花样打成一串硬纸卡：有孔的地方，钩子穿过去提起经线；没孔的地方，钩子被挡住。换一叠卡片，就换一种花样。</p>
-<p>后来有人用这种织机织了一幅雅卡尔本人的肖像，据说用了约两万四千张卡片，细得像版画。英国数学家巴贝奇家里就挂着一幅。他设计“分析机”时，明说要借用雅卡尔的卡片。再往后，美国用打孔卡统计人口，IBM 也是从卡片生意起家的。</p>
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>心</b>。孟子说“心之官则思”。古希腊的亚里士多德也这么想。</div></details>
+<p>亚里士多德认为脑子是个散热器，作用是给血液降温；真正有灵魂、管思考的是心脏。古埃及人做木乃伊时，把心脏小心留在体内，因为死后审判要称心的重量；脑子则用铁钩从鼻孔掏出来扔掉。</p>
+<p>古希腊也有反对派。希波克拉底学派和后来的盖伦都认为思想在脑子里，盖伦还做过动物实验：压迫脑子，动物就不动了；压迫心脏，动物还能叫。</p>
+<p>这场争论留下了很多“语言化石”：我们说“心想”“用心”“记在心里”，英语说“learn by heart”（背下来），都是心脏派留下的。</p>
 </div>
 <div class="turn"><b>抛给对方</b><ul>
-<li>“有孔、没孔”就是 1 和 0。生活里还有什么东西，其实也是一串 1 和 0？</li>
-<li>机器替掉了坐在织机顶上的孩子。你觉得这是好事还是坏事？</li>
+<li>“太阳升起”“心想”——还有哪些说法，明知道不对，我们还天天在用？</li>
+<li>如果你只能保留一个器官的“名声”，你觉得心和脑谁更冤？</li>
 </ul></div>
-<p class="more">想细看 → <a href="../computer/#v2">《计算机创世记》上卷 · 织</a></p>
 </article>
 
-<article class="cd" id="w04" data-t="机器" data-k="假">
-<header class="cd-h"><span class="th">机器</span><span class="kd">假</span><span class="no">04</span></header>
-<h3>L，O</h3>
-<p class="hook">网上发出的第一条消息只有两个字母：第三个字母还没打完，对面的系统就崩了。</p>
+<article class="cd" id="w04" data-t="脑洞" data-k="讲" data-p="动物园 饭桌">
+<header class="cd-h"><span class="th">脑洞</span><span class="kd">讲</span><span class="no">4</span></header>
+<h3>树上长出来的鹅</h3>
+<p class="hook">中世纪欧洲有一种鹅，被认为是从海边木头上的贝壳里长出来的。</p>
 <div class="body">
-<p>1969 年 10 月 29 日晚上十点半左右，加州大学洛杉矶分校的一个学生程序员，想通过刚连起来的 ARPANET，登录五百多公里外斯坦福研究所的一台电脑。他要输入的是 LOGIN。两边的人拿着电话，边打边确认：打了 L——收到；打了 O——收到；打 G 的时候，对方的系统崩溃了。</p>
-<p>所以网上的第一条消息是“LO”。后来很多人说，这倒像是天意：英文里 lo 是“瞧啊”，像古书里郑重其事的开场。大约一个小时后，他们修好了，完整地登录成功。</p>
-<p>那时整个网络只有两台主机，到年底也不过四台。</p>
+<p>白颊黑雁每年秋天出现在英国和爱尔兰的海边，可是从来没人见过它们下蛋、孵小鹅。海边漂来的烂木头上，又常常挂着一种贝壳，壳里伸出羽毛一样的触手。于是有了一个说法：鹅是从这种贝壳里长出来的。英语里这种贝壳至今叫“barnacle”，这种雁叫“barnacle goose”。</p>
+<p>12 世纪的威尔士人杰拉尔德写书说，他亲眼见过上千只挂在木头上的小鸟。既然这种鹅不是肉生的，有些地方的教士就在斋戒期照吃不误，说它算不上肉。据说后来教皇还专门下令禁止过。</p>
+<p>真相是：它们夏天飞到北极圈里繁殖，人们自然看不见。今天也有类似的谜：“你见过小鸽子吗？”多数人没见过，因为小鸽子会在窝里待到快和大鸽子一样大才出门。</p>
+<p class="doubt">教皇禁止吃这种鹅的说法流传很广，原始出处不太清楚。</p>
 </div>
 <div class="turn"><b>抛给对方</b><ul>
-<li>假如你只能给全世界发两个字（或两个字母），你发哪两个？</li>
-<li>你第一次上网、或者拿到第一部手机，还记得干的第一件事吗？</li>
+<li>你见过小鸽子吗？还有哪些动物，你从来没见过它的“小时候”？</li>
+<li>古人看不见的东西就靠猜。今天我们看不见的东西，比如宇宙的大部分，靠什么？</li>
 </ul></div>
-<p class="more">想细看 → <a href="../computer/#v9">《计算机创世记》上卷 · 网</a></p>
 </article>
 
-<article class="cd" id="w05" data-t="机器" data-k="辩">
-<header class="cd-h"><span class="th">机器</span><span class="kd">辩</span><span class="no">05</span></header>
-<h3>机器赢了以后</h3>
-<p class="hook">1997 年，电脑赢了国际象棋世界冠军；2016 年，又赢了围棋。那人还下棋干什么？</p>
+<article class="cd" id="w05" data-t="脑洞" data-k="讲" data-p="博物馆">
+<header class="cd-h"><span class="th">脑洞</span><span class="kd">讲</span><span class="no">5</span></header>
+<h3>吃木乃伊</h3>
+<p class="hook">四五百年前，欧洲的药铺里卖一种很贵的药，原料是木乃伊。</p>
 <div class="body">
-<p>1997 年 5 月，IBM 的“深蓝”在纽约赢了卡斯帕罗夫。卡斯帕罗夫很不服气，怀疑背后有人帮忙。2016 年 3 月，首尔，AlphaGo 对李世石的第二局下出了第 37 手，一步人类棋手几乎不会考虑的棋，解说一度以为是失误，后来大家才看懂它的深意。五局下来 AlphaGo 赢了四局。李世石赢下的那一局，靠的是第 78 手，被棋迷叫作“神之一手”。</p>
-<p>奇怪的事情发生在后面：机器赢了以后，下棋的人反而更多了。国际象棋在网上前所未有地火，职业棋手天天用电脑复盘、学新招，整体棋力变强了。也有人说，棋的神秘感没了：每一步都能被打分，像考试有了标准答案。</p>
-<div class="sides"><div><b>一方</b>机器赢了，棋还是人的游戏。有了汽车，人照样跑马拉松。</div><div><b>另一方</b>有了标准答案的游戏，乐趣少了一大半，就像看提前剧透的电影。</div></div>
+<p>16、17 世纪的欧洲，磨成粉的“木乃伊”被当成药，据说能治跌打损伤、内出血，富人家常备。需求太大，埃及的真木乃伊不够用，就有人拿刚死不久的尸体晒干冒充。</p>
+<p>这股风也刮到了中国。李时珍《本草纲目》里真有“木乃伊”一条，转引元朝人的笔记：说阿拉伯有老人自愿舍身，只吃蜂蜜，死后泡在蜜里，百年后开棺，就成了能治伤的“蜜人”。李时珍自己也拿不准，写明“未知果否”，先附在这儿，等见识广的人来判断。</p>
+<p>今天看是荒唐，但道理一样：越稀罕、越难得、越“神秘”的东西，越容易被当成好药。</p>
+<p class="doubt">“蜜人”的故事本身是传说。欧洲药用木乃伊的风气有大量文献，具体疗效记载五花八门。</p>
 </div>
 <div class="turn"><b>抛给对方</b><ul>
-<li>你站哪边？</li>
-<li>如果 AI 能把你正在学的东西全部考满分，学它还有什么意义？</li>
+<li>今天的保健品、偏方里，你觉得哪一样将来会被当成“吃木乃伊”？</li>
+<li>你家里有没有一条“老人说的”养生规矩，你一直半信半疑？</li>
 </ul></div>
-<p class="more">想细看 → <a href="../computer/second.html#d3">《第二次创世》· 规则的帝国</a>、<a href="../computer/second.html#d5">2012</a></p>
 </article>
 
-<article class="cd" id="w06" data-t="机器" data-k="讲">
-<header class="cd-h"><span class="th">机器</span><span class="kd">讲</span><span class="no">06</span></header>
-<h3>卧室里的两块显卡</h3>
-<p class="hook">今天的人工智能热，有一个起点：2012 年，一个研究生在父母家卧室里，用两块游戏显卡训练了五六天。</p>
+<article class="cd" id="w06" data-t="脑洞" data-k="讲" data-p="街上">
+<header class="cd-h"><span class="th">脑洞</span><span class="kd">讲</span><span class="no">6</span></header>
+<h3>理发店的转灯</h3>
+<p class="hook">街边理发店门口那根红白蓝的转灯，据说和放血有关。</p>
 <div class="body">
-<p>2012 年的 ImageNet 图像识别比赛：一千类、上百万张图，看机器能认对多少。前几年，各队的错误率一年只降一两个点。这一年，多伦多大学的辛顿和他的两个学生克里热夫斯基、苏茨克维，把错误率从 26% 左右一下砸到了 15% 左右。会场里的人一开始以为算错了。</p>
-<p>他们的网络后来叫 AlexNet。训练用的是两块 GTX 580，给打游戏的人买的显卡。据说训练就在克里热夫斯基父母家的卧室里跑。显卡本来是为了把游戏画面算快一点，结果恰好特别擅长神经网络要的那种计算：海量简单的乘法加法，同时做。</p>
-<p>所以有个说法：是一代代游戏玩家掏钱养大了显卡产业，顺手托起了人工智能。</p>
+<p>从古希腊的希波克拉底到 19 世纪，西方医学信了两千多年的“四体液说”：人体里有血液、黏液、黄胆汁、黑胆汁，生病是因为某种液体太多了，那就放掉一些。于是放血成了万能疗法，发烧放血，头疼放血，肺炎也放血。</p>
+<p>1799 年 12 月，刚卸任的美国总统华盛顿喉咙感染，医生一天之内给他放了四次血，加起来约两升多，差不多是全身血量的三四成。第二天晚上他就去世了。医生们并不是庸医，他们是按当时最权威的医学在治。</p>
+<p>中世纪欧洲给人放血的，常常是理发师兼外科医生。门口的柱子，据说红色代表血，白色代表绷带；蓝色是后来美国加上的。</p>
+<p class="doubt">转灯颜色的来历是流传最广的说法，未必能考证到底。</p>
 </div>
 <div class="turn"><b>抛给对方</b><ul>
-<li>你玩过的游戏里，有没有哪一个“意外地”教会了你点什么？</li>
-<li>你现在做的哪件小事，十年后可能会变得很重要？</li>
+<li>下次路过理发店，可以考考别人这根柱子是什么意思。</li>
+<li>你觉得今天的医学里，哪种做法最可能是“明天的放血”？</li>
 </ul></div>
-<p class="more">想细看 → <a href="../computer/second.html#d5">《第二次创世》· 2012</a></p>
 </article>
 
-<article class="cd" id="w07" data-t="机器" data-k="猜">
-<header class="cd-h"><span class="th">机器</span><span class="kd">猜</span><span class="no">07</span></header>
-<h3>你兜里有多少个开关</h3>
-<p class="hook">猜猜看：你手机那颗主芯片里，有多少个晶体管？</p>
+<article class="cd" id="w07" data-t="脑洞" data-k="讲" data-p="园林 随时">
+<header class="cd-h"><span class="th">脑洞</span><span class="kd">讲</span><span class="no">7</span></header>
+<h3>不能指彩虹</h3>
+<p class="hook">小时候，有没有人告诉过你：不能用手指彩虹，不然手指会烂？</p>
 <div class="body">
-<details class="guess"><summary>先让对方报一个数</summary><div class="ans">答案：<b>一两百亿个</b>左右，是地球人口的两倍还多。平分给全中国人，每人能分到十几个。</div></details>
-<p>1947 年 12 月，贝尔实验室：一块锗，两片挨得极近的金箔，一根弹簧压着，这就是第一个晶体管，比指甲盖还大。它干的事很简单：用一个小电流，控制一个大电流的通和断。一个开关而已。</p>
-<p>计算机说到底就是“开关拨开关”。1971 年英特尔的第一颗微处理器 4004，有两千三百个左右的晶体管。今天一颗手机芯片里有一两百亿个，最细的地方只有几十个原子宽。这五十年里，芯片上的晶体管大约每两年翻一番，这就是“摩尔定律”。如今它慢下来了：再小下去，就要碰到原子本身。</p>
+<p>这个禁忌非常古老。《诗经》里就有“蝃蝀在东，莫之敢指”——蝃蝀（dì dōng）就是彩虹，在东边出现，没人敢指它。古人把彩虹看成一种会饮水的活物，有的说它是龙，有的说它会钻进溪涧喝水。</p>
+<p>但古人里也有清醒的。北宋沈括在《梦溪笔谈》里记下别人的话：“虹乃雨中日影也，日照雨则有之。”彩虹是阳光照在雨上形成的。他出使契丹时还亲眼验证过：傍晚背对太阳，彩虹清清楚楚；转过身对着太阳，就什么也看不到。</p>
+<p>这个解释已经对了一大半。到 17 世纪，笛卡尔用玻璃球算出彩虹的角度，牛顿用三棱镜把白光分成七色，彩虹才被算清楚。</p>
 </div>
 <div class="turn"><b>抛给对方</b><ul>
-<li>从“一个开关”到“一部能聊天的手机”，你觉得最难想通的是哪一步？</li>
-<li>如果你身上有一样东西能每两年翻一番，你希望是什么？</li>
+<li>你小时候听过最怪的禁忌是什么？现在还会下意识遵守吗？</li>
+<li>不用手机，你能想出几种在家里“造”一道彩虹的办法？</li>
 </ul></div>
-<p class="more">想细看 → <a href="../computer/#v6">《计算机创世记》上卷 · 沙</a>、<a href="../computer/#v12">墙</a></p>
 </article>
 
-<article class="cd" id="w08" data-t="机器" data-k="讲">
-<header class="cd-h"><span class="th">机器</span><span class="kd">讲</span><span class="no">08</span></header>
-<h3>诗人的女儿</h3>
-<p class="hook">第一个想到“计算机不只能算数”的人，是诗人拜伦的女儿。</p>
+<article class="cd" id="w08" data-t="脑洞" data-k="讲" data-p="博物馆">
+<header class="cd-h"><span class="th">脑洞</span><span class="kd">讲</span><span class="no">8</span></header>
+<h3>胸口有洞的人</h3>
+<p class="hook">《山海经》里有个国家，人人胸口有个洞。出门不坐轿子，用一根竿子从胸口穿过去，两个人抬着走。</p>
 <div class="body">
-<p>阿达·洛芙莱斯出生才一个多月，父母就分开了，她再也没见过父亲拜伦。母亲怕她像父亲一样“耽于幻想”，从小逼她学数学。1843 年，她把一篇介绍巴贝奇“分析机”的意大利文论文译成英文，又加了一大堆注释，篇幅差不多是原文的三倍。</p>
-<p>注释里有一个用分析机计算伯努利数的完整步骤，常被称为“第一个计算机程序”（这个称号有争议，巴贝奇自己也写过类似的东西）。更了不起的是她的一个想法：这台机器处理的不一定是数字。只要能把东西变成符号，比如音符，它也许能作曲。</p>
-<p>可惜分析机一直没造出来。阿达三十六岁就去世了，和她父亲去世时一样的年纪。一百年后，真正的计算机才出现。</p>
+<p>《山海经·海外南经》写“贯匈国”：“其为人匈有窍”。同一本书里还有长着翅膀的羽民国、手臂特别长的长臂国、只有一只眼睛的一目国……</p>
+<p>欧洲人也在做一样的事。古罗马的老普林尼在《博物志》里写过：遥远的地方有没有头、脸长在胸口的人，有只长一条大腿、躺下来把脚当伞遮太阳的人。中世纪的世界地图上，这些人就画在地图边缘。</p>
+<p>两边离得那么远，却想出了差不多的东西：越远的地方，人越奇怪。不了解，就往怪里想。</p>
 </div>
 <div class="turn"><b>抛给对方</b><ul>
-<li>小时候被逼着学的东西，后来有没有变成你喜欢的？</li>
-<li>“诗人的想象力”和“数学”，你见过同时长在一个人身上的吗？</li>
+<li>如果外星人只靠我们的电影来想象人类，会把我们画成什么样？</li>
+<li>你第一次去一个陌生的城市，有没有发现它和你想象的完全不一样？</li>
 </ul></div>
-<p class="more">想细看 → <a href="../computer/#v2">《计算机创世记》上卷 · 织</a></p>
 </article>
 
-<article class="cd" id="w09" data-t="机器" data-k="玩">
-<header class="cd-h"><span class="th">机器</span><span class="kd">玩</span><span class="no">09</span></header>
-<h3>一个词一个词地接</h3>
-<p class="hook">来玩个游戏：我们轮流说一个词，接成一句话，看最后这句话被带到哪儿去。</p>
+<article class="cd" id="w09" data-t="脑洞" data-k="猜" data-p="随时">
+<header class="cd-h"><span class="th">脑洞</span><span class="kd">猜</span><span class="no">9</span></header>
+<h3>有人在念叨你</h3>
+<p class="hook">“打喷嚏，是有人在背后念叨你。”你猜这个说法有多老？</p>
 <div class="body">
-<p class="ni"><strong>玩法</strong>：一人说一个词，另一人接下一个，轮流往下，每次只能加一个词。只有一条规则：接上去要通顺。接个十来轮，把整句话念一遍。</p>
-<p>玩完再说这个：ChatGPT 这类大模型，干的本质上就是这件事。根据前面所有的字，猜下一个字最可能是什么，接上去，再猜下一个。只不过它是读了几乎整个互联网练出来的接龙高手，每一步心里都有一张概率表：下一个字是“了”的可能三成，是“的”的可能一成多……</p>
-<p>2018 年前后，研究者把这个看起来很傻的任务做大：模型越大、读得越多，接得越好；接得足够好的时候，它好像就会翻译、写诗、做题了。有人说这只是高级的鹦鹉学舌；也有人说，“猜下一个字”猜到极致，本身就需要理解世界。</p>
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>至少两千年</b>。东汉的郑玄注《诗经》时就记下了：当时的人打喷嚏，会说“人道我”，有人在说我。他还说，这是从更古老的时候传下来的话。</div></details>
+<p>《诗经·终风》里有一句“寤言不寐，愿言则嚏”，郑玄解释：思念一个人，那个人就会打喷嚏。可见“被念叨就打喷嚏”在周朝就有了。</p>
+<p>各地后来又加了很多细则，常见的一种是“一想二骂三感冒”：打一个是有人想你，两个是有人骂你，三个就是真感冒了。</p>
+<p>西方人听见别人打喷嚏要说“Bless you”，来历众说纷纭。流传最广的说法是中世纪瘟疫时，打喷嚏可能是染病的前兆，所以要祝福一句。</p>
+<p class="doubt">“Bless you”起源于瘟疫的说法没有可靠证据。</p>
 </div>
 <div class="turn"><b>抛给对方</b><ul>
-<li>刚才接的时候，你是想好了意思再选词，还是顺嘴接下去的？</li>
-<li>“猜下一个词猜得极准”，算不算理解？</li>
+<li>你们那儿打一个、两个、三个喷嚏，分别是什么意思？</li>
+<li>你还知道哪些“身体有反应，说明有人在想你”的说法？比如耳朵发烫。</li>
 </ul></div>
-<p class="more">想细看 → <a href="../computer/second.html#d8">《第二次创世》· 接龙</a></p>
 </article>
 
-<article class="cd" id="w10" data-t="机器" data-k="辩">
-<header class="cd-h"><span class="th">机器</span><span class="kd">辩</span><span class="no">10</span></header>
-<h3>一本正经地编</h3>
-<p class="hook">大模型会一本正经地胡编。可是，人是不是也一样？</p>
-<div class="body">
-<p>大模型常常编出不存在的书名、论文、人名，说得头头是道，研究者管这叫“幻觉”。原因说起来不复杂：它学的是“什么话听起来像对的”，不是“什么话是对的”。</p>
-<p>人呢？1974 年，心理学家洛夫特斯做过一个实验：给大家看车祸录像，然后问一组人“两车<em>撞碎</em>的时候，车速大概多少？”，问另一组“两车<em>碰到</em>的时候”。前一组估的速度，平均高了将近十英里每小时。一周后，前一组里还有更多人“记得”看到了碎玻璃——录像里根本没有碎玻璃。</p>
-<p>人的记忆不是录像回放，每想起一次，就重新拼一次。拼的时候，也在猜“什么听起来像对的”。</p>
-<div class="sides"><div><b>一方</b>机器编是缺陷，得修。人偶尔记错，但人知道自己可能记错。</div><div><b>另一方</b>人和机器都是“预测机器”，只不过我们对人更宽容。</div></div>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>你有没有一段特别确定、后来发现是记错了的记忆？</li>
-<li>你更信从不说“我不确定”的人，还是常说“我记得大概是……”的人？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../computer/second.html#d10">《第二次创世》· 卡在哪</a></p>
-</article>
-
-</div>
-</div>
-</section>
-<section class="deck g" id="t2" style="--cc:var(--c-q)">
-<div class="wide">
-<div class="deck-h"><h2>钱</h2><span>十张 · 取材于《点石成金》</span></div>
-<p class="lede">泥板上的账、海底的石头、四川的铁钱、两千亿马克的面包，和一枚你不敢抛的硬币。</p>
-<div class="grid">
-
-<article class="cd" id="w11" data-t="钱" data-k="猜">
-<header class="cd-h"><span class="th">钱</span><span class="kd">猜</span><span class="no">11</span></header>
-<h3>最早的文字是一张收据</h3>
-<p class="hook">你猜人类最早写下来的东西是什么？诗？神话？法律？</p>
-<div class="body">
-<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：大多是<b>账</b>。谁交了几袋大麦、谁欠了几只羊、发给工人多少口粮。</div></details>
-<p>约公元前 3300 年，两河流域的乌鲁克城。神庙里的管事要记清楚粮食和牲口的进出。最早刻在泥板上的符号，绝大多数就是这些：一个代表“大麦”的图形，几个代表数目的压痕，再加一个名字。</p>
-<p>有一块很有名的泥板，记着一大笔大麦的账，末尾有一个名字，读作“库希姆”。他可能是个管仓库的官员，也可能这只是个职位的称呼。如果是人名，他就是人类历史上我们知道名字的最早的人之一：不是国王，不是英雄，是个会计。</p>
-<p>诗和神话，要再等好几百年才被写下来。文字最先是为了“别赖账”。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>如果一千年后的人只能看到你的消费记录，他们会觉得你是个什么样的人？</li>
-<li>你最近哪一笔花销最能代表你？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../money/#v1">《点石成金》卷一 · 债</a>、<a href="../reed/#c1">《苇城书记》第一章</a></p>
-</article>
-
-<article class="cd" id="w12" data-t="钱" data-k="讲">
-<header class="cd-h"><span class="th">钱</span><span class="kd">讲</span><span class="no">12</span></header>
-<h3>沉在海底的钱</h3>
-<p class="hook">太平洋上有个岛，钱是几吨重的石头圆盘。有一块沉在了海底，主人照样算有钱。</p>
-<div class="body">
-<p>雅浦岛在西太平洋。岛上的“钱”是中间有孔的石灰岩圆盘，小的像盘子，大的比人还高，重达几吨。这些石头不是本岛产的，要划独木舟到四百多公里外的帕劳去凿，再冒着风浪运回来。</p>
-<p>1910 年，一个美国人类学家记下了一个故事：某户人家的祖上运石头回来时遇上风暴，石头沉进了海里。可同船的人都作证：那块石头又大又好，只是沉了。于是全岛照样承认这户人家拥有一块大石头，可以拿来付账。几代人谁也没见过它。</p>
-<p>大石头平时根本不搬。交易时，大家只要记住“这块石头现在归谁了”就行。这和今天的银行账户有点像：你的钱也不在你手里，只是账本上记着它归你。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>钱到底是一样“东西”，还是大家共同记住的一件“事”？</li>
-<li>如果明天所有人突然都不认钱了，你手里还剩什么值钱的？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../money/#v2">《点石成金》卷二 · 贝</a></p>
-</article>
-
-<article class="cd" id="w13" data-t="钱" data-k="猜">
-<header class="cd-h"><span class="th">钱</span><span class="kd">猜</span><span class="no">13</span></header>
-<h3>一钱有多重</h3>
-<p class="hook">中药方子上写“甘草三钱”，金店里论“几钱”——“钱”怎么变成了重量单位？</p>
-<div class="body">
-<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：因为唐朝有一种铜钱做得极标准，<b>十枚正好一两</b>。一枚的重量，就被叫作“一钱”。</div></details>
-<p>公元 621 年，唐高祖废掉乱七八糟的旧钱，铸了一种新钱，叫“开元通宝”。它做得很规整：每一枚重“二铢四絫”，十枚刚好一两。</p>
-<p>于是，铜钱成了人人手边最方便的砝码。“一钱”慢慢从一枚钱变成了一个重量单位：十钱为一两。这个单位一直用到今天。</p>
-<p>还有个容易搞混的地方：开元通宝不是年号钱。“开元”是“开辟新纪元”的意思。后来唐玄宗的年号也叫开元，很多人就以为这钱是玄宗铸的，其实早了九十多年。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>你还知道哪些东西变成了单位？（一拃、一庹、一马力……）</li>
-<li>如果拿你身边一样东西当新单位，你选什么？“一杯奶茶”？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../money/#v3">《点石成金》卷三 · 铸</a></p>
-</article>
-
-<article class="cd" id="w14" data-t="钱" data-k="讲">
-<header class="cd-h"><span class="th">钱</span><span class="kd">讲</span><span class="no">14</span></header>
-<h3>坏钱赶走好钱</h3>
-<p class="hook">有一条规律，两千多年来反复应验：坏钱会把好钱赶走。生活里好像也是。</p>
-<div class="body">
-<p>假设市面上同时有两种一块钱，一种足银，一种掺了铜，法律规定两种一样值钱。你会怎么花？多半是把掺铜的花出去，把足银的藏起来、熔掉，或者带到国外去。结果市面上只剩下坏钱。</p>
-<p>这条规律后来以十六世纪英国商人格雷欣的名字命名，但发现它的人早得多。公元前 405 年，古希腊剧作家阿里斯托芬就在喜剧里抱怨过雅典人放着好银币不用、偏用劣质铜币。英王亨利八世不断往银币里掺铜，钱上国王头像的鼻子最突出，一磨就露出底下的红铜色，老百姓叫他“铜鼻子老亨利”。</p>
-<p>关键在前提：两种钱被<em>强行规定</em>一样值钱。要是允许好钱按更高的价钱流通，好钱就不会跑。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>你见过生活里的“劣币驱逐良币”吗？比如认真的人反而吃亏？</li>
-<li>反过来，有没有“良币驱逐劣币”的地方？是靠什么做到的？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../money/#v4">《点石成金》卷四 · 剪</a></p>
-</article>
-
-<article class="cd" id="w15" data-t="钱" data-k="猜">
-<header class="cd-h"><span class="th">钱</span><span class="kd">猜</span><span class="no">15</span></header>
-<h3>为什么是四川</h3>
-<p class="hook">世界上最早由官府发行的纸币，出现在中国哪里？为什么是那儿？</p>
-<div class="body">
-<details class="guess"><summary>先让对方猜地方和原因</summary><div class="ans">答案：北宋的<b>四川</b>（益州，今成都）。因为四川用的是<b>铁钱</b>，又重又不值钱。</div></details>
-<p>北宋时，四川和别处不太一样，主要流通铁钱。铁比铜便宜，一枚铁钱值得少，买点像样的东西就得背上一大堆，出门做生意简直是体力活。</p>
-<p>十世纪末，成都的商人开始用一种纸质凭证代替铁钱：把铁钱存进铺子，领一张票，票可以转手，叫“交子”。后来发交子的铺户多了，也有兑不出钱的，闹出纠纷。1023 年，朝廷收归官办，设“益州交子务”，第二年发行官交子。这是世界上最早由政府发行的纸币之一。</p>
-<p>故事有个熟悉的结尾：朝廷后来打仗缺钱，就多印。交子越印越多，越来越不值钱。这一幕在后来一千年里还会反复上演。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>如果让你设计一种钱，你最怕什么？怎么防？</li>
-<li>你现在一个月摸几次现金？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../money/#v5">《点石成金》卷五 · 纸</a></p>
-</article>
-
-<article class="cd" id="w16" data-t="钱" data-k="辩">
-<header class="cd-h"><span class="th">钱</span><span class="kd">辩</span><span class="no">16</span></header>
-<h3>郁金香到底疯没疯</h3>
-<p class="hook">都说十七世纪的荷兰人为郁金香疯了，一个球根换一栋房子。最近的历史学家说：没那么疯。</p>
-<div class="body">
-<p>流行的版本是这样的：1636 到 1637 年，荷兰人狂炒郁金香球根，尤其是花瓣上带火焰条纹的稀有品种，价格翻了几十倍，有人拿房子、田地去换；1637 年 2 月突然崩盘，无数人倾家荡产。</p>
-<p>这个版本很大程度上来自 1841 年一本畅销书，那本书又引了当年的道德宣传小册子。近年有历史学家翻了当时的公证档案，发现参与炒作的主要是富裕商人和工匠的小圈子；崩盘后很多合同干脆没履行，法院也懒得管；真因为郁金香破产的人，找不出几个。</p>
-<p>那些最贵的火焰条纹，后来才知道是一种病毒让花瓣颜色长得不均匀。最贵的花，其实是病了的花。</p>
-<div class="sides"><div><b>一方</b>规模小也是泡沫。哪怕只有一小撮人，也说明人会疯。</div><div><b>另一方</b>故事被讲夸张了，反而让人以为泡沫一定是“全民疯狂”，看不见安静的那种。</div></div>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>你见过什么东西突然被“炒”起来，又一下子凉掉？</li>
-<li>一个故事讲得越夸张，是越能让人记住教训，还是越容易让人误会？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../money/#v8">《点石成金》卷八 · 狂</a></p>
-</article>
-
-<article class="cd" id="w17" data-t="钱" data-k="猜">
-<header class="cd-h"><span class="th">钱</span><span class="kd">猜</span><span class="no">17</span></header>
-<h3>一个面包多少钱</h3>
-<p class="hook">1923 年 11 月，柏林的一个面包要多少马克？报个数。</p>
-<div class="body">
-<details class="guess"><summary>先让对方报价</summary><div class="ans">答案：约<b>两千亿马克</b>。一战刚打完时，一个面包还不到一马克。</div></details>
-<p>一战后德国背着巨额赔款。1923 年，法国和比利时出兵占了鲁尔工业区，德国政府干脆开动印钞机。印到最后，一美元能换四万二千亿马克。</p>
-<p>工人一天领两次工资，拿到钱撒腿就往商店跑，因为下午还要涨；有人拿成捆的钞票生炉子，因为纸币比柴火便宜；孩子拿钞票搭积木。一辈子省吃俭用的中产阶级，存款一夜归零。</p>
-<p>1923 年 11 月，德国推出新货币“地租马克”，一地租马克换一万亿旧马克，再严格控制发行，通胀几乎立刻停了。可那段经历留下的伤很深：直到今天，德国人对通货膨胀都格外警惕。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>如果钱每天下午都会贬值，你明天第一件事干什么？</li>
-<li>你家长辈讲过“钱突然不值钱了”的经历吗？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../money/#v9">《点石成金》卷九 · 金</a></p>
-</article>
-
-<article class="cd" id="w18" data-t="钱" data-k="讲">
-<header class="cd-h"><span class="th">钱</span><span class="kd">讲</span><span class="no">18</span></header>
-<h3>牛顿的两笔账</h3>
-<p class="hook">牛顿管过英国的造币厂。他定的一个价钱，意外让英国走上了金本位；他自己还在股市里亏过一大笔。</p>
-<div class="body">
-<p>牛顿晚年不怎么搞物理了，去管皇家造币厂，而且干得极认真，亲自审问造假币的人。1717 年，他给金币“几尼”定价：一几尼值二十一先令。按当时欧洲的行情，这个价把金子定得稍贵、银子稍贱。结果商人纷纷把银币运到国外去换金子，英国的银币越来越少，市面上实际只剩金子在流通。英国就这么半路“掉”进了金本位。</p>
-<p>另一笔账：1720 年南海公司股票狂涨。据说牛顿先买进，赚了一笔就卖了；看着股价还在涨，又忍不住重新买进，结果在崩盘里亏了约两万英镑，在当时是一大笔钱。</p>
-<p class="doubt">流传很广的那句“我能算出天体的运行，却算不出人的疯狂”，出处很可疑，多半是后人替他编的。亏钱的数目也来自后人的转述。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>聪明人为什么也会在泡沫里亏钱？</li>
-<li>你有过“明明知道，还是忍不住”的时候吗？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../money/#v9">《点石成金》卷九 · 金</a>、<a href="../money/#v8">卷八 · 狂</a></p>
-</article>
-
-<article class="cd" id="w19" data-t="钱" data-k="玩">
-<header class="cd-h"><span class="th">钱</span><span class="kd">玩</span><span class="no">19</span></header>
-<h3>一枚你不敢抛的硬币</h3>
-<p class="hook">抛个硬币：正面你赢一百五，反面你输一百。赌不赌？凭直觉，马上回答。</p>
-<div class="body">
-<p>算一下：一半机会赢 150，一半机会输 100，平均每赌一次能赚 25。按道理该赌。可是大多数人会拒绝。研究里，一般要赢的钱达到输的钱的一倍半到两倍多，人们才愿意赌。</p>
-<p>1979 年，心理学家卡尼曼和特沃斯基提出：同样一百块，输掉的痛苦，大约是赢到的快乐的两倍。这叫“损失厌恶”。卡尼曼后来因此得了诺贝尔经济学奖；特沃斯基那时已经去世，诺奖不颁给去世的人。</p>
-<p>它解释了很多事：股票跌了舍不得卖；“限时优惠，错过就没了”格外管用；免费试用到期，人们多半会续费——因为不续就像“失去”了什么。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>换成赢 300、输 100，你赌吗？赢多少你才肯赌？</li>
-<li>你最近一次因为“怕亏”做的决定是什么？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../money/#v11">《点石成金》卷十一 · 魔</a></p>
-</article>
-
-<article class="cd" id="w20" data-t="钱" data-k="讲">
-<header class="cd-h"><span class="th">钱</span><span class="kd">讲</span><span class="no">20</span></header>
-<h3>全球化的生日</h3>
-<p class="hook">有两位历史学家说，全球化有个生日：1571 年。那年西班牙人在马尼拉建了城。</p>
-<div class="body">
-<p>从那以后，每年都有大帆船从墨西哥的阿卡普尔科出发，横跨太平洋来到马尼拉，船上装的主要是一样东西：白银，南美波托西银山和墨西哥银矿里挖出来的。在马尼拉，福建商人用丝绸和瓷器换走这些白银。</p>
-<p>那时大明正缺银子。一条鞭法推开以后，各种赋税和徭役都折成银子交，全国都要用银。那两三百年里，美洲白银有相当大一部分最终流进了中国，具体是几分之一，学者们争得很厉害。</p>
-<p>于是有了一条绕地球一圈的链子：南美的矿工、太平洋上的水手、马尼拉的商人、福建的织工、江南交税的农民，第一次被拴在了一起。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>你身上哪样东西，走了最远的路才到你手里？</li>
-<li>你觉得全球化让世界更近了，还是更脆弱了？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../money/#v6">《点石成金》卷六 · 银</a></p>
-</article>
-
-</div>
-</div>
-</section>
-<section class="deck g" id="t3" style="--cc:var(--c-ym)">
-<div class="wide">
-<div class="deck-h"><h2>衙门</h2><span>十张 · 取材于《是，大人》</span></div>
-<p class="lede">官话、委员会、老鼠尾巴、年底花光，还有买好了棺材才去上疏的人。古代衙门的事，放到今天的班级、社团、小组作业里一样成立。</p>
-<div class="grid">
-
-<article class="cd" id="w21" data-t="衙门" data-k="玩">
-<header class="cd-h"><span class="th">衙门</span><span class="kd">玩</span><span class="no">21</span></header>
-<h3>官话翻译</h3>
-<p class="hook">玩个翻译游戏：我说一句大白话，你把它翻成“官话”。翻得越稳妥越好。</p>
-<div class="body">
-<p class="ni"><strong>玩法</strong>：一人出一句大白话，另一人把它翻成又长又周全、谁也挑不出错的官话，然后互换。热身：</p>
-<ul class="eg">
-<li>“我没做完。”→ <b>“该项工作已取得阶段性进展，部分环节仍需进一步完善。”</b></li>
-<li>“这主意不行。”→ <b>“这个思路很有启发性，建议在充分调研的基础上审慎研究、稳妥推进。”</b></li>
-<li>“我不知道。”→ <b>“这个问题比较复杂，涉及方方面面，需要综合考虑。”</b></li>
-</ul>
-<p>英剧《是，大臣》里的老练文官，把这门手艺练到了化境。比如他称赞部长的决定“很勇敢”，在文官的词典里，这几乎是最可怕的评语，意思是“你要完了”。中国古代也有：清朝皇帝批奏折，最常见的一句是“知道了”。不说同意，也不说反对，事情就这么放着。</p>
-<p>玩完可以想想：为什么所有的机关、公司、学校，都会自己长出一套官话？</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>你听过最“官话”的一句话是什么？它真正的意思是？</li>
-<li>官话除了推责任，有没有它的好处？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../yes/#c3">《是，大人》第三案 · 官话辞典</a></p>
-</article>
-
-<article class="cd" id="w22" data-t="衙门" data-k="讲">
-<header class="cd-h"><span class="th">衙门</span><span class="kd">讲</span><span class="no">22</span></header>
-<h3>自行车棚</h3>
-<p class="hook">开会的时候，为什么大家偏偏在小事上吵得最久？有人专门研究过。</p>
-<div class="body">
-<p>1955 年，英国历史学家帕金森在《经济学人》上发了一篇半开玩笑的文章，提出“帕金森定律”：工作会自动膨胀，直到填满你给它的所有时间。给你一周写的作业，多半会写满一周。</p>
-<p>两年后，他在书里又讲了一个“琐碎定律”，编了一个委员会开会的场景：造核反应堆，几百万英镑，几分钟就通过了，因为太复杂，大家都不懂，又不好意思说不懂；接着讨论给职员修一个自行车棚，几百英镑，人人都懂车棚，人人都有意见，吵了很久；最后讨论买茶点的那点钱，吵得更久，还没定下来，留到下次再议。</p>
-<p>后来程序员圈子管这叫“自行车棚效应”：事情越简单，越容易引来没完没了的讨论。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>你经历过最长的一次“自行车棚讨论”是什么？</li>
-<li>你有没有“给多少时间，就拖到多少时间”的事？怎么破？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../yes/#c2">《是，大人》第二案 · 成立一个委员会</a></p>
-</article>
-
-<article class="cd" id="w23" data-t="衙门" data-k="讲">
-<header class="cd-h"><span class="th">衙门</span><span class="kd">讲</span><span class="no">23</span></header>
-<h3>老鼠尾巴</h3>
-<p class="hook">1902 年，河内悬赏灭鼠：交一条老鼠尾巴，领一份钱。结果老鼠越来越多。</p>
-<div class="body">
-<p>法国殖民当局在河内修了现代下水道，没想到下水道成了老鼠的高速公路，又赶上鼠疫的威胁。当局先是雇人下去捕鼠，后来干脆向市民悬赏：每交上一条老鼠尾巴，赏一点钱。</p>
-<p>很快，街上出现了没有尾巴的活老鼠。有人抓住老鼠，剪下尾巴去领赏，再把老鼠放走，让它接着生小老鼠，以后还有尾巴可剪。据说城外还有人专门养起了老鼠。</p>
-<p>经济学里有个“古德哈特定律”：一个指标一旦变成考核目标，它就不再是好指标了。人们会想办法让指标好看，而不是让事情变好。</p>
-<p class="doubt">另一个流传很广的版本，说英国统治印度时悬赏眼镜蛇，结果有人养蛇。这个故事找不到可靠的史料，可能是编的。河内的老鼠倒是有档案可查。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>考试、绩点、步数、打卡……你身边有没有“老鼠尾巴”？</li>
-<li>如果让你重新设计河内的灭鼠奖励，怎样才不会被钻空子？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../yes/#c7">《是，大人》第六案 · 考什么，得什么</a></p>
-</article>
-
-<article class="cd" id="w24" data-t="衙门" data-k="辩">
-<header class="cd-h"><span class="th">衙门</span><span class="kd">辩</span><span class="no">24</span></header>
-<h3>年底花光</h3>
-<p class="hook">很多单位一到年底就突击花钱。这真的只是浪费吗？</p>
-<div class="body">
-<p>道理很简单：今年的预算没花完，明年上面就会说“看来你们用不了这么多”，给你砍掉。所以年底剩下的钱，一定要想办法花出去。</p>
-<p>有经济学家真去统计过：美国联邦政府在财政年度最后一周的采购支出，大约是平时一周的近五倍；而且最后一周突击批下来的信息技术项目，事后的质量评分明显更差。</p>
-<p>中国古代也碰到过类似的难题。雍正年间推行“耗羡归公”，把地方官私下多收的“火耗”变成明面上的正式收入，再拿出一部分发给官员当“养廉银”。想法是：与其让潜规则偷偷运转，不如把它写成明规则。</p>
-<div class="sides"><div><b>一方</b>年底花光是制度逼出来的理性选择。该改的是“没花完就砍”的规矩。</div><div><b>另一方</b>不管制度怎样，乱花就是乱花，每个人都该守住自己那一关。</div></div>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>你站哪边？如果你是那个单位的头儿，你花不花？</li>
-<li>你自己有没有“年底花光”的习惯？流量、会员积分、假期……</li>
-</ul></div>
-<p class="more">想细看 → <a href="../yes/#c6">《是，大人》第五案 · 年底花光</a></p>
-</article>
-
-<article class="cd" id="w25" data-t="衙门" data-k="猜">
-<header class="cd-h"><span class="th">衙门</span><span class="kd">猜</span><span class="no">25</span></header>
-<h3>分橙子</h3>
-<p class="hook">两姐妹抢一个橙子。怎么分最好？你先想一个办法。</p>
-<div class="body">
-<details class="guess"><summary>等对方说完办法，再翻开</summary><div class="ans">故事里她们切了一半，一人一半。结果姐姐吃了果肉，把皮扔了；妹妹扔了果肉，只要皮——她要做蛋糕。<b>先问一句“你要它干什么”</b>，两个人本来都能拿到整个橙子里自己想要的那部分。</div></details>
-<p>常见的答案是“切成两半”，或者“一个人切，另一个人先挑”，这已经很公平了。可公平和最好不是一回事。</p>
-<p>这个故事因为 1981 年哈佛谈判项目的一本书《谈判力》（Getting to Yes）流传开来。它讲的道理是：别只盯着“立场”（我要橙子），去问“利益”（我为什么要橙子）。吵架的两个人，想要的常常根本不是同一样东西。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>你和别人争过一样东西，后来发现其实想要的不一样吗？</li>
-<li>下次吵架之前，你觉得自己能记得先问一句“你要它干什么”吗？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../yes/#c9">《是，大人》第八案 · “不”的说法</a></p>
-</article>
-
-<article class="cd" id="w26" data-t="衙门" data-k="讲">
-<header class="cd-h"><span class="th">衙门</span><span class="kd">讲</span><span class="no">26</span></header>
-<h3>买好了棺材</h3>
-<p class="hook">有个官员给皇帝上疏之前，先给自己买好了一口棺材。</p>
-<div class="body">
-<p>1566 年，户部主事海瑞给嘉靖皇帝上了一道《治安疏》。嘉靖这时已经二十多年不怎么上朝，躲在西苑修道。海瑞在疏里直说天下人对皇帝不满已经很久了，还引了一句民间的挖苦话：“嘉靖者，言家家皆净而无财用也。”</p>
-<p>《明史》记载，嘉靖读完大怒，把奏疏扔在地上，叫左右赶快抓人，别让他跑了。旁边的宦官黄锦说：这个人向来有“痴名”，听说他上疏之前自知必死，买了一口棺材，和妻子诀别，家里的僮仆都吓跑了——</p>
-<blockquote>是不遁也。<cite>《明史·海瑞传》</cite></blockquote>
-<p>嘉靖沉默了。过了一会儿又把奏疏捡起来读，一天读好几遍，感叹说这个人可以和比干相比，只是朕不是商纣。海瑞后来还是下了狱，直到嘉靖去世才放出来。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>你见过最敢说真话的人是谁？那个人后来怎么样了？</li>
-<li>说真话，和把真话说得让人听得进去，哪个更难？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../yes/#c14">《是，大人》第十二案 · 可敬的勇气</a></p>
-</article>
-
-<article class="cd" id="w27" data-t="衙门" data-k="假">
-<header class="cd-h"><span class="th">衙门</span><span class="kd">假</span><span class="no">27</span></header>
-<h3>鹿还是马</h3>
-<p class="hook">假如你站在秦二世的朝堂上，赵高牵来一头鹿说“这是马”。你说什么？</p>
-<div class="body">
-<p>公元前 207 年，赵高想知道朝中谁听他的，就做了一次试验。《史记》写得很简洁：</p>
-<blockquote>持鹿献于二世，曰：“马也。”二世笑曰：“丞相误邪？谓鹿为马。”问左右，左右或默，或言马以阿顺赵高，或言鹿。<cite>《史记·秦始皇本纪》</cite></blockquote>
-<p>接下来只有一句：赵高事后暗中用法律罗织罪名，处置了那些说“鹿”的人。从此大臣们都怕他。</p>
-<p>这件事可怕的地方，不在于有人说了假话，而在于它是一次测试。赵高要的不是大家相信那是马，而是看谁愿意<em>当众</em>说那是马。说“马”的人知道那是鹿，赵高也知道他们知道——这才是忠诚的证明。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>先别急着说“我当然说鹿”。如果说“鹿”的代价是丢掉工作，你还说吗？</li>
-<li>“不吭声”是第三条路。你觉得它算什么？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../yes/#c13">《是，大人》第十一案 · 站队</a></p>
-</article>
-
-<article class="cd" id="w28" data-t="衙门" data-k="讲">
-<header class="cd-h"><span class="th">衙门</span><span class="kd">讲</span><span class="no">28</span></header>
-<h3>离皇帝最近的屋子</h3>
-<p class="hook">两千年里，宰相的权力一次又一次被皇帝身边的“秘书”拿走。</p>
-<div class="body">
-<p>汉朝的“尚书”，起初只是宫里管文书的小官，地位很低。可他们每天替皇帝收发文件、起草诏书，离皇帝最近。到东汉，尚书台成了真正的权力中心，名义上的三公反倒被架空了。</p>
-<p>后来皇帝嫌尚书权大，就重用更贴身的“中书”；中书大了，再用“门下”。明朝朱元璋干脆废了丞相，可皇帝一个人批不完奏折，只好让几个翰林在文渊阁帮着出主意，这就是“内阁”。几十年后，内阁首辅权倾朝野。清朝雍正又设了“军机处”，起初只是宫里的几间值房，后来成了全国最核心的机构。</p>
-<p>规律是同一个：权力不在官职表写的位置上，而在离做决定的人最近的那间屋子里。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>你待过的地方（班级、社团、实习单位），“离权力最近的屋子”在哪儿？</li>
-<li>当这样的“秘书”，你觉得是好差事吗？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../yes/#c8">《是，大人》第七案 · 离大人最近的屋子</a></p>
-</article>
-
-<article class="cd" id="w29" data-t="衙门" data-k="猜">
-<header class="cd-h"><span class="th">衙门</span><span class="kd">猜</span><span class="no">29</span></header>
-<h3>四十八万封请愿书</h3>
-<p class="hook">西汉末年，有一件事让官员百姓纷纷上书请愿。猜猜前后一共多少人？</p>
-<div class="body">
-<details class="guess"><summary>先让对方猜人数</summary><div class="ans">《汉书·王莽传》记载：前后上书的吏民共<b>四十八万七千五百七十二人</b>。请愿的内容是：给王莽加封赏。</div></details>
-<p>王莽当时还是大司马，表面上谦恭得不得了。朝廷要加封他，他一再推辞；越推辞，上书请求封赏他的人越多。这个数字精确到个位，听起来像民意汹涌。可是在一个没有报纸、多数人不识字的时代，四十八万人上书，背后得有多少人在组织？</p>
-<p>民意可以是“问”出来的，也可以是“造”出来的，还可以是“选错了人问”出来的。1936 年美国大选，《文学文摘》杂志寄出约一千万份问卷，收回两百多万份，预测共和党的兰登会大胜。结果罗斯福压倒性胜利。问题出在名单：问卷主要寄给电话用户和汽车车主，在大萧条年代，这些人偏富裕。杂志没过两年就停刊了。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>网上的“大家都说……”，你一般信几分？</li>
-<li>如果要摸清全校同学真实的想法，你会怎么问？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../yes/#c4">《是，大人》第四案 · 问法就是答案</a></p>
-</article>
-
-<article class="cd" id="w30" data-t="衙门" data-k="讲">
-<header class="cd-h"><span class="th">衙门</span><span class="kd">讲</span><span class="no">30</span></header>
-<h3>闷死在怀里的鹞鹰</h3>
-<p class="hook">唐太宗有一面最贵的镜子：一个天天跟他唱反调的大臣。</p>
-<div class="body">
-<p>魏征原本是太子李建成的人，还劝过李建成早点除掉李世民。玄武门之变后，李世民质问他为什么挑拨兄弟。魏征说：太子要是早听我的，就不会有今天的祸。李世民反倒欣赏他的直率，重用了他。</p>
-<p>此后十几年，魏征前后进谏两百多件事。《资治通鉴》说，太宗有一次罢朝回宫，气得说“会须杀此田舍翁”——早晚要杀了这个乡巴佬。唐人笔记里还有个小故事：太宗得了一只漂亮的鹞鹰，正架在胳膊上玩，远远看见魏征来了，赶紧藏进怀里。魏征故意奏事奏了很久，等他走了，鹞鹰已经闷死在怀里。</p>
-<p>魏征死后，太宗说：以铜为镜，可以正衣冠；以古为镜，可以知兴替；以人为镜，可以明得失。如今失去了一面镜子。</p>
-<p class="doubt">鹞鹰的故事出自唐人笔记《隋唐嘉话》，是不是真事无从查证。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>你身边有没有一个肯跟你说难听真话的人？你会感谢对方吗？</li>
-<li>你愿意做别人的“镜子”吗？什么时候说、怎么说？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../yes/#c11">《是，大人》第九案 · 揣摩上意</a></p>
-</article>
-
-</div>
-</div>
-</section>
-<section class="deck g" id="t4" style="--cc:var(--c-zi)">
-<div class="wide">
-<div class="deck-h"><h2>字与话</h2><span>十张 · 取材于《苇城书记》</span></div>
-<p class="lede">泥球里的小泥丸、一块刻了三种字的石头、药铺里的龙骨、矿工的字母，和一个一岁小孩每天都在解的难题。</p>
-<div class="grid">
-
-<article class="cd" id="w31" data-t="字与话" data-k="猜">
-<header class="cd-h"><span class="th">字与话</span><span class="kd">猜</span><span class="no">31</span></header>
-<h3>泥球里的秘密</h3>
-<p class="hook">还没有文字的时候，托人送五只羊，怎么保证送到时没少？</p>
-<div class="body">
-<details class="guess"><summary>先让对方想个办法</summary><div class="ans">一种说法是：把五个代表羊的<b>小泥丸</b>封进一个空心泥球，交给送货人。到了地方，打碎泥球一数，对得上，就没少。</div></details>
-<p>考古学家在中东各地挖出了大量小泥块：圆锥、小球、圆片、带刻痕的小饼，大小像弹珠。有学者认为这是记账的“筹码”：一个小圆锥代表一份粮食，一个圆片代表一只羊……</p>
-<p>后来有人想到：封口之前，先把筹码在泥球外面压一下印子，这样不用打碎，看外面就知道里面是什么。再往下想一步：既然外面的印子已经说清楚了，里面的筹码还要干什么？泥球被压扁成了泥板，印子变成了画上去的符号。</p>
-<p>“筹码、泥球、泥板”，是关于文字起源最有名的一种说法。学界对细节还有争论，但很多证据都指向这条路。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>给一个不识字的人留言，告诉他你借走了他三本书，你会画什么？现在就想一个符号。</li>
-<li>“防止赖账”和“表达感情”，哪个更像发明文字的动力？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../reed/#c1">《苇城书记》第一章 · 泥丸</a></p>
-</article>
-
-<article class="cd" id="w32" data-t="字与话" data-k="猜">
-<header class="cd-h"><span class="th">字与话</span><span class="kd">猜</span><span class="no">32</span></header>
-<h3>三种文字，几种语言</h3>
-<p class="hook">罗塞塔石碑上刻了三种文字。那它用了几种语言？</p>
-<div class="body">
-<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>两种</b>。古埃及语（用圣书字和世俗体两种文字写），加上希腊语。</div></details>
-<p>1799 年，拿破仑远征埃及，法军在尼罗河口的罗塞塔修工事，挖出一块黑色石碑。上面刻着同一份诏书的三个版本：最上面是圣书字，就是那种画着鸟、眼睛、蛇的古埃及文字；中间是世俗体，埃及人日常用的草写体；最下面是希腊文。</p>
-<p>希腊文有人读得懂，这块石碑就像一本对照词典。可是破译还是花了二十多年。最大的障碍是一个成见：大家都以为圣书字是纯粹的“图画表意”。法国人商博良证明了，其中很多符号其实是<em>表音</em>的，突破口就是那些框在椭圆圈里的国王名字，比如“托勒密”。1822 年，他宣布破译成功。据说他冲进哥哥的办公室喊了一声“我找到了！”，然后晕了过去。</p>
-<p>石碑后来被英国人拿走，现在在大英博物馆。埃及一直要求归还。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>你觉得这块石碑应该放在哪儿？</li>
-<li>学英语或别的语言时，你有过“突然开窍”的瞬间吗？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../reed/#c7">《苇城书记》第七章 · 双语</a></p>
-</article>
-
-<article class="cd" id="w33" data-t="字与话" data-k="讲">
-<header class="cd-h"><span class="th">字与话</span><span class="kd">讲</span><span class="no">33</span></header>
-<h3>建筑师的业余爱好</h3>
-<p class="hook">一种三千多年前的文字，最后是被一个业余爱好者破译的。他的正职是建筑师。</p>
-<div class="body">
-<p>1900 年，英国考古学家伊文思在克里特岛挖出几千块泥板，上面是一种没人认识的文字，叫“线形文字 B”。伊文思坚信它记的是一种失传的克里特本地语言，绝不是希腊语。他名气太大，大家都跟着这么想。</p>
-<p>十四岁的男孩文特里斯听过伊文思的一次讲座，从此着了迷。他后来当了建筑师，业余一直在琢磨。在他之前，美国学者艾丽丝·科伯已经用手工卡片做了大量统计，把符号排进一张“格子”：哪些可能共用一个辅音，哪些共用一个元音。文特里斯接着往格子里填。1952 年，他试着代入几个克里特的地名，格子一下亮了：这是希腊语，比荷马史诗还早几百年的希腊语。</p>
-<p>破译出来的内容很朴实：几头羊、几辆战车、多少罐油。又是账本。文特里斯 1956 年死于车祸，才三十四岁。科伯没等到格子亮起来，1950 年就去世了。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>你有没有一样业余爱好，钻得比专业的人还深？</li>
-<li>一个权威的错误判断能拖慢一件事多久？你见过吗？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../reed/#c8">《苇城书记》第八章 · 格子</a></p>
-</article>
-
-<article class="cd" id="w34" data-t="字与话" data-k="讲">
-<header class="cd-h"><span class="th">字与话</span><span class="kd">讲</span><span class="no">34</span></header>
-<h3>药铺里的龙骨</h3>
-<p class="hook">商朝人占卜用的甲骨，十九世纪末差点全被当成中药磨成粉吃掉。</p>
-<div class="body">
-<p>河南安阳小屯一带的农民，常在地里挖出刻着奇怪纹路的龟甲和兽骨，当作“龙骨”卖给药商。龙骨是一味中药。据说有的药商嫌刻痕影响卖相，还会把字刮掉。</p>
-<p>流行的故事是：1899 年，国子监祭酒王懿荣生病，从药铺抓来的药里有龙骨，他一看上面的字比青铜器上的金文还古老，于是开始高价收购。“看药认字”的细节多有附会，但王懿荣在 1899 年前后认出并收藏甲骨，是可以确定的。第二年八国联军攻入北京，他殉国了。</p>
-<p>后来罗振玉找到了甲骨真正的出土地：商朝晚期的都城“殷墟”。王国维又从卜辞里一个一个找出商王的名字，和司马迁《史记》记的商王世系大体对得上。一千多年前写成的史书，被地下挖出来的骨头证实了。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>你还知道哪些“被当成别的东西用掉了”的宝贝？</li>
-<li>如果三千年后有人挖到你的手机，他们最想读懂的会是什么？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../reed/#c9">《苇城书记》第九章 · 烧掉的书</a></p>
-</article>
-
-<article class="cd" id="w35" data-t="字与话" data-k="玩">
-<header class="cd-h"><span class="th">字与话</span><span class="kd">玩</span><span class="no">35</span></header>
-<h3>倒过来的 A</h3>
-<p class="hook">在手心里写一个大写的 A，然后倒过来看。像什么？</p>
-<div class="body">
-<p>先让对方试试。A 倒过来是 ∀：一张脸，两只角——像不像一个牛头？</p>
-<p>这不是巧合。大约三千八百年前（年代有争论），西奈半岛的绿松石矿里，一群说闪米特语的工人，看着埃及人的圣书字，想出了一个聪明办法：借一个图形，只取它名字的第一个音。牛在他们的语言里叫 ʾalp，就用牛头代表开头那个音；房子叫 bayt，就用房子的图形代表 b。几百个符号的复杂系统，一下缩成了二三十个。</p>
-<p>这套字母经过腓尼基商人传到希腊，又传到罗马。牛头转了个方向，变成 A；房子变成了 B。希腊人管它们叫 alpha、beta。英语的“字母表”alphabet，念的其实就是“牛、房子”。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>用同样的办法给汉语造字母：“妈”的 m，你画什么？“水”的 sh 呢？</li>
-<li>汉字好学还是字母好学？各要付出什么代价？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../reed/#c5">《苇城书记》第五章 · 矿工的字母</a></p>
-</article>
-
-<article class="cd" id="w36" data-t="字与话" data-k="讲">
-<header class="cd-h"><span class="th">字与话</span><span class="kd">讲</span><span class="no">36</span></header>
-<h3>最后一个读者</h3>
-<p class="hook">一种文字，可能在某一天，随着最后一个会读它的人一起死去。</p>
-<div class="body">
-<p>湖南江永县的一些村子里，曾经流传着一种只在女人之间使用的文字，叫“女书”。字形细长、微微倾斜，用来记当地土话：写诗、写信、写给结拜姊妹的心里话，写在扇子上、手帕上、布面的小册子里。按当地习俗，主人去世时，女书作品常常随葬或烧掉，所以留下来的老文本很少。</p>
-<p>1980 年代起，女书才被外界广泛知道。被认为最后一位自然传承女书的阳焕宜老人，2004 年去世。今天女书作为非物质文化遗产，由后来的学习者传习。</p>
-<p>文字会死。已知最晚的楔形文字泥板，大约写于公元 75 年；埃及圣书字最后一次被刻上石头，是公元 394 年。在那之后的一千多年里，世界上没有一个人读得懂它们。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>如果你和最好的朋友有一种只有你们俩懂的暗号，你们会用它写什么？</li>
-<li>你家乡话里，有没有你觉得快没人说了的词？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../reed/#c11">《苇城书记》第十一章 · 最后一个读者</a></p>
-</article>
-
-<article class="cd" id="w37" data-t="字与话" data-k="猜">
-<header class="cd-h"><span class="th">字与话</span><span class="kd">猜</span><span class="no">37</span></header>
-<h3>一天学几个词</h3>
-<p class="hook">一个人从出生到十八岁，平均每天学会几个新词？</p>
-<div class="body">
-<details class="guess"><summary>先让对方猜</summary><div class="ans">按一种常见的粗算，大约<b>十个</b>左右，连睡觉的日子都算上。</div></details>
-<p>这个粗算是这样来的：一个高中毕业生大约认识六万个词（不同研究差别很大），除以十七八年，差不多每天十个。没人专门教你，你就这么学会了。</p>
-<p>更神奇的是怎么学会的。哲学家蒯因出过一道难题：你跟着一个说陌生语言的人走，一只兔子跑过，他指着说“gavagai”。gavagai 是什么意思？兔子？兔子的耳朵？“跑过去了”？“看，晚饭”？逻辑上，你永远没法确定。可一两岁的小孩每天都在做这道题，而且几乎都能猜对。</p>
-<p>心理学家发现，小孩有一些“默认的猜法”：新词多半指整个东西，而不是它的一部分；多半指这一类东西，而不只是这一只。所以很多一岁多的小孩会把所有四条腿的动物都叫“狗狗”。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>你记得自己小时候把什么东西叫错过吗？或者家里人讲过你小时候的口误？</li>
-<li>今天你学到了什么新词？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../reed/#c12">《苇城书记》第十二章 · 那是什么</a></p>
-</article>
-
-<article class="cd" id="w38" data-t="字与话" data-k="讲">
-<header class="cd-h"><span class="th">字与话</span><span class="kd">讲</span><span class="no">38</span></header>
-<h3>Long time no see</h3>
-<p class="hook">“好久不见”的英语 long time no see，很可能是从中国人嘴里学去的。</p>
-<div class="body">
-<p>十九世纪，上海有一条小河叫洋泾浜，是英租界和法租界的界河，后来填平成了今天的延安东路。码头上、洋行里，中国人和外国人做生意，谁也说不了对方的话，就凑出一种混合语：英语的词，汉语的语法，再加上比划。上海人叫它“洋泾浜英语”。英语管这种混合语叫 pidgin，一般认为就来自中国人对 business（生意）的念法。</p>
-<p>这种话简单，但管用。“好久不见”按英语语法该说 I haven't seen you for a long time，混合语就一个字一个字直译成 long time no see。还有 lose face（丢脸）、no can do（做不到），后来都进了正式的英语。</p>
-<p>混合语还有一个奇妙的命运：如果说它的人的孩子从小就讲它，它会长出完整的语法，变成一门真正的母语。语言学家叫它“克里奥尔语”。</p>
-<p class="doubt">long time no see 的来历没有定论，也有人认为它来自北美原住民和英语混杂的说法。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>你能说一句外国人也听得懂的“中式英语”吗？比如 good good study, day day up。</li>
-<li>你和朋友之间，有没有只有你们才懂的“混合语”？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../reed/#c14">《苇城书记》第十四章 · 通事</a></p>
-</article>
-
-<article class="cd" id="w39" data-t="字与话" data-k="猜">
-<header class="cd-h"><span class="th">字与话</span><span class="kd">猜</span><span class="no">39</span></header>
-<h3>青是什么颜色</h3>
-<p class="hook">青天、青草、青丝、青出于蓝——“青”到底是什么颜色？</p>
-<div class="body">
-<details class="guess"><summary>先让对方说一个颜色</summary><div class="ans">都对，又都不全对：<b>青天是蓝，青草是绿，青丝是黑</b>。古汉语的“青”，横跨了今天的蓝、绿，甚至黑。</div></details>
-<p>“青丝”是乌黑的头发；京剧里的“青衣”，得名于剧中人常穿的黑褶子。“青出于蓝”说的是从蓼蓝草里提炼出的靛青，比草本身更蓝。</p>
-<p>这不是汉语一家的怪事。1969 年，两位美国学者伯林和凯比较了很多语言的颜色词，发现不少语言不分“蓝”和“绿”，一个词管两种颜色。日语里，绿灯叫“青信号”。俄语反过来，把浅蓝和深蓝分成两个不同的基本颜色词，就像我们分“红”和“粉”。有实验发现，说俄语的人分辨浅蓝和深蓝，比说英语的人稍快一点。</p>
-<p>语言会不会改变我们怎么看世界？语言学家为这个问题吵了很多年，至今没吵完。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>你和别人为一个颜色叫什么争过吗？“这明明是绿！”</li>
-<li>你的家乡话里，有没有一个普通话说不清楚的词？</li>
-</ul></div>
-<p class="seed">这张是书外话，书房里还没有专讲颜色的一章。</p>
-</article>
-
-<article class="cd" id="w40" data-t="字与话" data-k="假">
-<header class="cd-h"><span class="th">字与话</span><span class="kd">假</span><span class="no">40</span></header>
-<h3>巴别塔倒过来</h3>
-<p class="hook">假如明天一早，全世界的人都只说同一种语言。会更好吗？</p>
-<div class="body">
-<p>世界上现在大约有七千种语言，差不多四成被认为处境濒危，很多只剩下几位老人会说。每隔一段时间，就有一种语言随着最后一个说话的人消失；到底多久一种，各家估计差别很大。</p>
-<p>有人说：语言少一点，交流方便，这不是坏事。可是每种语言里都装着一套看世界的办法。澳大利亚有一种原住民语言，不说“左右”，只说“东南西北”：“你东边的腿上有只蚂蚁”。说这种话的人，随时都知道自己朝着哪个方向。语言死了，这样的办法也跟着没了。</p>
-<p>也有死而复生的。希伯来语有将近两千年基本只用于宗教和书面。十九世纪末，本-耶胡达坚持在家里只跟孩子说希伯来语，还给新事物造新词。今天，有几百万人把它当母语。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>一种语言更好，还是很多种更好？你站哪边？</li>
-<li>如果你的家乡话只剩你一个人会说，你会做点什么？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../reed/#c15">《苇城书记》第十五章 · 巴别</a>、<a href="../reed/#c16">第十六章 · 开口</a></p>
-</article>
-
-</div>
-</div>
-</section>
-<section class="deck g" id="t5" style="--cc:var(--c-gt)">
-<div class="wide">
-<div class="deck-h"><h2>柜台</h2><span>十张 · 取材于《柜台里外》</span></div>
-<p class="lede">一百不是一百、街坊凑的会、汉堡算出来的汇率、咖啡馆里签名的人，和一个许诺四十五天赚五成的移民。只讲故事和机制，不作投资建议。</p>
-<div class="grid">
-
-<article class="cd" id="w41" data-t="柜台" data-k="猜">
-<header class="cd-h"><span class="th">柜台</span><span class="kd">猜</span><span class="no">41</span></header>
-<h3>一百不是一百</h3>
-<p class="hook">北宋开封，官府收付钱时，“一百文”实际是多少枚铜钱？</p>
-<div class="body">
-<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>七十七枚</b>。而且街上不同的行当，各有各的数。</div></details>
-<p>古代铜钱用绳子串起来，一百枚一串，本该是一百。可从南北朝起就有“短陌”的习惯：一串标作“一百”的钱，实际不够一百枚。到了北宋，开封城里各行各业连“短”多少都不一样。孟元老在《东京梦华录》里记了一份清单：</p>
-<blockquote>都市钱陌，官用七十七，街市通用七十五，鱼肉菜七十二陌，金银七十四，珠珍、雇婢妮、买虫蚁六十八，文字五十六陌。<cite>孟元老《东京梦华录》卷三</cite></blockquote>
-<p>就是说，买鱼肉菜七十二枚当一百，买蛐蛐（虫蚁）六十八枚当一百，请人写字最“便宜”，五十六枚就算一百。为什么会这样，说法不一：有的说是铜钱不够用，大家默认打个折；有的说是串钱的人要扣手工钱。但每一行有每一行的数，大家心知肚明。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>今天有没有“一百不是一百”的东西？满减、缩水的包装、“一斤”的水果……</li>
-<li>为什么偏偏写字最便宜？你猜猜。</li>
-</ul></div>
-<p class="more">想细看 → <a href="../finance/#c2">《柜台里外》第二章 · 碎银子</a></p>
-</article>
-
-<article class="cd" id="w42" data-t="柜台" data-k="假">
-<header class="cd-h"><span class="th">柜台</span><span class="kd">假</span><span class="no">42</span></header>
-<h3>你想第几个拿</h3>
-<p class="hook">假如我们十个人，每月每人出一百块，凑一千块，每月由一个人拿走全部。你想第几个拿？</p>
-<div class="body">
-<p>这是中国民间用了几百年的老办法，叫摇会、标会、合会、轮会，各地名字不同。十个月轮完，每人出了一千，也拿回一千。</p>
-<p>第一个拿的人，等于借了一笔钱，以后慢慢还；最后一个拿的人，等于每月存一百，十个月后一次取出。急用钱的想早拿，不急的可以晚拿。顺序怎么排？有的摇骰子，有的“标”：谁愿意多贴点利息，谁先拿，后拿的人正好吃到这点利息。</p>
-<p>没有银行，没有合同，全凭街坊邻里的信任。这种“轮流储蓄会”全世界都有，印度、非洲、拉美，名字不同，规则几乎一样，风险也一样：最怕有人拿了钱就跑。所以牵头的“会首”，通常是村里最有威望的人。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>你想第几个拿？为什么？</li>
-<li>你身边谁最适合当会首？信任到底是靠什么攒起来的？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../finance/#c3">《柜台里外》第三章 · 一条街</a></p>
-</article>
-
-<article class="cd" id="w43" data-t="柜台" data-k="猜">
-<header class="cd-h"><span class="th">柜台</span><span class="kd">猜</span><span class="no">43</span></header>
-<h3>为什么没有三块钱</h3>
-<p class="hook">钞票有 1、2、5、10、20、50、100，为什么几乎没有 3 块、4 块的？</p>
-<div class="body">
-<details class="guess"><summary>先让对方猜原因</summary><div class="ans">答案：因为 <b>1、2、5</b> 搭配起来最省。用这三种面值，凑出 1 到 9 里任何一个数，最多只要三张。</div></details>
-<p>试试看：9 = 5 + 2 + 2，8 = 5 + 2 + 1，4 = 2 + 2。再往上，10、20、50 是同一套规律乘以十。面值种类少，找零的张数也少，这是一种很实用的折中。</p>
-<p>也有例外。美国有 25 美分的硬币，因为“四分之一”好算；美国的 2 美元钞票一直在发行，却很少有人用，不少人以为它是纪念品，拿到就收起来。人民币以前有 2 角、2 元，后来也慢慢淡出了。</p>
-<p>不过新问题来了：大家都用手机付钱以后，面值还重要吗？</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>你上次摸到现金是什么时候？</li>
-<li>如果让你重新设计一套面值，你会怎么定？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../finance/#c4">《柜台里外》第四章 · 面值</a></p>
-</article>
-
-<article class="cd" id="w44" data-t="柜台" data-k="讲">
-<header class="cd-h"><span class="th">柜台</span><span class="kd">讲</span><span class="no">44</span></header>
-<h3>汉堡算出来的汇率</h3>
-<p class="hook">想知道一个国家的钱是贵还是便宜？有人说，看一个汉堡就够了。</p>
-<div class="body">
-<p>1986 年，《经济学人》杂志半开玩笑地发明了“巨无霸指数”：麦当劳的巨无霸汉堡在全世界几乎一模一样，那么按道理，它在各国的价格换算成美元后应该差不多。要是在某国换算下来特别便宜，就说明这个国家的钱可能被“低估”了；特别贵，就可能被“高估”了。</p>
-<p>背后是一个严肃的经济学想法，叫“购买力平价”：长远看，同样的东西在各地应该卖同样的价钱。当然，汉堡不只是汉堡，里面还有房租、人工、税，这些在穷国和富国差得很远。所以巨无霸指数更像一个有趣的提醒，而不是一把精确的尺子。</p>
-<p>后来各种“指数”层出不穷，有人用咖啡，有人用手机。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>如果给我们学校发明一个指数，你用什么？奶茶？食堂一份红烧肉？</li>
-<li>你觉得哪样东西最能说明一个地方“贵不贵”？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../finance/#c6">《柜台里外》第六章 · 汇率</a></p>
-</article>
-
-<article class="cd" id="w45" data-t="柜台" data-k="讲">
-<header class="cd-h"><span class="th">柜台</span><span class="kd">讲</span><span class="no">45</span></header>
-<h3>飞钱</h3>
-<p class="hook">一千二百年前，唐朝人就能“异地汇款”了，名字很好听，叫“飞钱”。</p>
-<div class="body">
-<p>唐朝中期，南方的茶商到长安卖茶，收了一大堆铜钱。把这些钱运回家，又重又危险。另一头，各地在长安设有办事处（进奏院），要把钱从京城送回地方，或者从地方运到京城，同样麻烦。</p>
-<p>于是有了两全的办法：商人在长安把钱交给某地的进奏院，换一张凭证；带着这张纸回到家乡，到当地官府对上凭证，就能取钱。铜钱一枚也没动，账上一来一回，互相抵消了。钱好像自己“飞”了过去，所以叫“飞钱”，也叫“便换”。</p>
-<p>今天中东和南亚还有一种很像的老办法，叫“哈瓦拉”：你把钱交给本地一个中间人，他打个电话，另一座城市的同伴就把钱交给你的家人，两个中间人日后再算账。钱不走，消息走。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>“钱不走，消息走”，和今天手机转账有什么不一样？</li>
-<li>你最信得过的“中间人”是谁？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../finance/#c7">《柜台里外》第七章 · 飞钱</a></p>
-</article>
-
-<article class="cd" id="w46" data-t="柜台" data-k="讲">
-<header class="cd-h"><span class="th">柜台</span><span class="kd">讲</span><span class="no">46</span></header>
-<h3>签在下面的人</h3>
-<p class="hook">世界上最有名的保险市场之一，起源于伦敦的一家咖啡馆。</p>
-<div class="body">
-<p>十七世纪八十年代，爱德华·劳埃德在伦敦开了一家咖啡馆，离泰晤士河的码头不远。船长、商人、水手常来这里喝咖啡、交换消息：哪条船到了，哪条船沉了，哪里有海盗。劳埃德干脆印起了航运新闻。</p>
-<p>有钱人也来了。船东想给货买保险，就写一张单子，写明船、货、航线和金额；愿意分担一部分风险的人，在单子下方签上名字，写明自己担多少。签在下面，英语叫 under-write，“承保人” underwriter 这个词就是这么来的。</p>
-<p>后来这群人组织起来，就是今天的“劳合社”。很长一段时间里，在单子下面签名的人要拿自己的全部身家作担保，一旦大船沉了，签名的人可能跟着倾家荡产。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>如果可以给生活里的一件事买保险，你给什么上保险？</li>
-<li>你愿意在别人的“风险单”下面签名吗？比如替朋友担保？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../finance/#c10">《柜台里外》第十章 · 借运气</a></p>
-</article>
-
-<article class="cd" id="w47" data-t="柜台" data-k="猜">
-<header class="cd-h"><span class="th">柜台</span><span class="kd">猜</span><span class="no">47</span></header>
-<h3>利息是一只小羊</h3>
-<p class="hook">四千多年前的苏美尔人，用一个什么词来表示“利息”？</p>
-<div class="body">
-<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：一个本义是<b>“小山羊”</b>的词。</div></details>
-<p>道理很直观：你借给我一群羊，过一年羊会下崽，还的时候，多出来的那几只小羊就该归你。古希腊语也一样，表示利息的词本义是“生出来的东西”。在古人眼里，利息是钱“生”的孩子。</p>
-<p>也正因为如此，有人反对。亚里士多德说，钱又不是活物，钱生钱违反自然。中世纪的教会长期禁止放贷收息。可借贷从来没停过，只是换了很多名目。</p>
-<p>巴比伦的《汉谟拉比法典》时代给利息定过上限：借粮食，年息不超过三分之一；借银子，不超过五分之一。四千年前，就有人担心利息太高了。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>借钱给朋友，你会要利息吗？为什么？</li>
-<li>除了钱，还有什么东西会“生利息”？时间、知识、关系？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../finance/#c9">《柜台里外》第九章 · 借时间</a>、<a href="../money/#v1">《点石成金》卷一 · 债</a></p>
-</article>
-
-<article class="cd" id="w48" data-t="柜台" data-k="讲">
-<header class="cd-h"><span class="th">柜台</span><span class="kd">讲</span><span class="no">48</span></header>
-<h3>庞兹的邮票</h3>
-<p class="hook">“庞氏骗局”的庞氏是个真人。他号称做的生意，是倒卖一种邮政兑换券。</p>
-<div class="body">
-<p>1920 年，波士顿的意大利移民查尔斯·庞兹说他发现了一个漏洞：一种“国际回邮券”，在意大利买很便宜，拿到美国能换更多邮票，因为一战后各国汇率变了，券的价格没跟着改。理论上，可以低买高卖。</p>
-<p>他向公众许诺：四十五天回报五成，九十天翻倍。钱潮水一样涌来，最多的时候一天收进几十万美元。可这种券全世界的总量根本不够倒腾这么多钱，他实际上几乎没做这门生意，而是拿后来者的钱付前面人的“收益”。几个月后报纸开始调查，骗局崩塌。</p>
-<p>后来所有“拿新钱还旧钱”的骗局都用他的名字命名。骨架永远一样：一个听起来很专业、外人看不懂的“机会”；高得离谱、又稳得出奇的回报；早期参与者真的拿到了钱，于是成了最卖力的推销员。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>你听过最像“庞氏骗局”的“好事”是什么？</li>
-<li>如果有人每个月都稳赚一成，你觉得最可能的解释是什么？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../finance/#c12">《柜台里外》第十二章 · 骗局的骨架</a></p>
-</article>
-
-<article class="cd" id="w49" data-t="柜台" data-k="猜">
-<header class="cd-h"><span class="th">柜台</span><span class="kd">猜</span><span class="no">49</span></header>
-<h3>一粒米也没有的米市</h3>
-<p class="hook">世界上最早的有组织的期货市场之一，交易的是什么？在哪儿？</p>
-<div class="body">
-<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>大米</b>。日本大阪的堂岛米市，1730 年得到幕府的正式认可。</div></details>
-<p>江户时代的日本，武士的俸禄用米发，大名收税也收米。米要变成钱，就得运到大阪去卖。商人们在堂岛聚集，渐渐出现了一种新交易：不交现米，只买卖“将来某个时候的米”的价格，到期按差价结算。</p>
-<p>河边空地上挤满了人，却一粒米也看不见。这就是期货：先把明天的价钱定下来。农民和米商可以借它锁定价格、躲开风险；投机的人也可以借它赌涨跌。</p>
-<p class="doubt">据通行的说法，堂岛用一根火绳计时，火绳燃尽就收市，还不住手的人会被泼一身水。后来炒股的人看的“蜡烛图”（K 线），传说也起源于米市的商人。这两件事的细节都不太可靠。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>如果能“先定下明天的价钱”，你最想锁定什么东西的价格？</li>
-<li>期货更像保险，还是更像赌博？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../finance/#c11">《柜台里外》第十一章 · 借明天</a></p>
-</article>
-
-<article class="cd" id="w50" data-t="柜台" data-k="辩">
-<header class="cd-h"><span class="th">柜台</span><span class="kd">辩</span><span class="no">50</span></header>
-<h3>谁来养老</h3>
-<p class="hook">现代的养老保险，是一个铁血宰相为了对付政敌发明的。</p>
-<div class="body">
-<p>1880 年代，德国宰相俾斯麦先后推出疾病保险、工伤保险和老年残疾保险（1889 年）。他不是心软，而是精明：工人运动正在壮大，他想让工人觉得国家比革命更靠得住。最早的养老金七十岁才能领，而当时能活到七十岁的工人并不多。</p>
-<p>今天很多国家的养老金是“现收现付”：现在上班的人交的钱，直接发给现在退休的人。有点像一个代代相传的“会”：年轻时养上一代，老了由下一代养。年轻人够多，它就转得很顺；孩子越生越少、人越活越长，交钱的人就不够发了。</p>
-<div class="sides"><div><b>一方</b>养老主要该靠国家。这是社会对每个人的承诺。</div><div><b>另一方</b>该更多靠自己攒。全靠国家，等于把账留给下一代。</div></div>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>你站哪边？还是觉得该靠第三方：家里人？</li>
-<li>如果让你设计一个养老制度，你最怕的是什么？</li>
-</ul></div>
-<p class="more">想细看 → <a href="../finance/#c16">《柜台里外》第十六章 · 福利的账</a></p>
-</article>
-
-</div>
-</div>
-</section>
-<section class="deck g" id="t6" style="--cc:var(--c-sw)">
-<div class="wide">
-<div class="deck-h"><h2>书外</h2><span>十张 · 书房里还没有的书</span></div>
-<p class="lede">时间、零、辣椒、茶、日历、经度、星际空间、洗手、地图、棋。每一张都可能长成以后的一本书。</p>
-<div class="grid">
-
-<article class="cd" id="w51" data-t="书外" data-k="猜">
-<header class="cd-h"><span class="th">书外</span><span class="kd">猜</span><span class="no">51</span></header>
+<article class="cd" id="w10" data-t="脑洞" data-p="随时" data-k="猜">
+<header class="cd-h"><span class="th">脑洞</span><span class="kd">猜</span><span class="no">10</span></header>
 <h3>为什么是六十</h3>
 <p class="hook">一小时六十分，一分钟六十秒。为什么不是一百？</p>
 <div class="body">
@@ -1208,8 +484,8 @@ footer p{margin:0 0 .5em}
 <p class="seed">可能的下一本：时间与历法。</p>
 </article>
 
-<article class="cd" id="w52" data-t="书外" data-k="讲">
-<header class="cd-h"><span class="th">书外</span><span class="kd">讲</span><span class="no">52</span></header>
+<article class="cd" id="w11" data-t="脑洞" data-p="随时" data-k="讲">
+<header class="cd-h"><span class="th">脑洞</span><span class="kd">讲</span><span class="no">11</span></header>
 <h3>被禁止的数字</h3>
 <p class="hook">七百多年前，欧洲有座城市明令禁止商人在账本上写阿拉伯数字。</p>
 <div class="body">
@@ -1224,8 +500,1378 @@ footer p{margin:0 0 .5em}
 <p class="seed">可能的下一本：零与数字。</p>
 </article>
 
-<article class="cd" id="w53" data-t="书外" data-k="猜">
-<header class="cd-h"><span class="th">书外</span><span class="kd">猜</span><span class="no">53</span></header>
+</div>
+</div>
+</section>
+<section class="deck g" id="t2" data-theme="动物">
+<div class="wide">
+<div class="deck-h"><h2>动物</h2><span>十二张 · 动物园里、街边、海里</span></div>
+<p class="lede">去动物园之前挑几张，到了笼子前面再讲。也有几张，路边一只猫、一只乌鸦就够了。</p>
+<div class="grid">
+
+<article class="cd" id="w12" data-t="动物" data-k="猜" data-p="动物园">
+<header class="cd-h"><span class="th">动物</span><span class="kd">猜</span><span class="no">12</span></header>
+<h3>吃素的食肉动物</h3>
+<p class="hook">大熊猫一天要花多少时间吃东西？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>十多个小时</b>。一天要吃十几到几十公斤竹子。</div></details>
+<p>大熊猫在分类上属于食肉目，肠胃也基本是食肉动物的构造：肠子短，没有牛羊那样专门发酵草料的胃。竹子它只能消化掉大约五分之一，剩下的原样排出来。所以只能拼命吃、拼命拉，其余时间尽量躺着省电。</p>
+<p>它的“第六根手指”也很有意思：熊猫抓竹子时像有个大拇指，其实那是一块变大的腕骨，叫“伪拇指”。真正的五根手指一根不少，这块骨头是额外长出来帮忙握竹子的。</p>
+<p>所以下次看见熊猫躺着不动，别觉得它懒。它是在用最省力的方式，过一种本来不适合它的生活。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>如果你只能吃一种食物，而且得吃一整天，你选什么？</li>
+<li>你觉得自己哪方面像熊猫，“构造不适合，但硬是活下来了”？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w13" data-t="动物" data-k="讲" data-p="动物园">
+<header class="cd-h"><span class="th">动物</span><span class="kd">讲</span><span class="no">13</span></header>
+<h3>小熊猫才是原版</h3>
+<p class="hook">“熊猫”这个名字，最早其实是给小熊猫的。</p>
+<div class="body">
+<p>1825 年，法国博物学家居维叶给小熊猫起了学名，西方人跟着叫它“panda”。四十多年后的 1869 年，法国传教士谭卫道在四川见到大熊猫，把标本寄回巴黎；学者觉得它和小熊猫有点像，它才也被叫作“panda”，后来为了区分，前面加了“giant”。</p>
+<p>两者其实不是近亲。小熊猫自成一科，和浣熊、鼬的关系都比和大熊猫近。大熊猫是熊科的。两种动物都爱吃竹子，也都长出了“伪拇指”，属于各自独立演化出的同一个办法。</p>
+<p>还有个冷知识：火狐浏览器的“火狐”，本来是小熊猫的别名。</p>
+<p class="doubt">中文“猫熊”被读反成“熊猫”的故事流传很广，但缺少可靠出处。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>还有哪些名字名不副实？比如蜗牛不是牛、鲸鱼不是鱼。比比谁想得多。</li>
+<li>如果让你给小熊猫重新起个中文名，叫什么？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w14" data-t="动物" data-k="讲" data-p="街上 园林">
+<header class="cd-h"><span class="th">动物</span><span class="kd">讲</span><span class="no">14</span></header>
+<h3>乌鸦记仇</h3>
+<p class="hook">有人做过实验：戴着面具抓过乌鸦，之后好几年，只要戴着这副面具出门，就会被乌鸦围着骂。</p>
+<div class="body">
+<p>2006 年，美国华盛顿大学的马兹拉夫教授戴着一个“原始人”面具，在校园里抓了几只乌鸦，做了标记又放掉。之后，只要有人戴着这副面具走过，乌鸦就会聚过来尖叫、俯冲。戴别的面具，或者不戴面具，什么事都没有。</p>
+<p>更神奇的是：几年后，连当年没被抓过、甚至那时还没出生的乌鸦，也会冲着这张脸骂。它们会把“这张脸是坏人”教给同伴和下一代。</p>
+<p>乌鸦和喜鹊同属鸦科，是鸟类里最聪明的一群：会用工具，会把坚果扔在马路上让车压开，会记住几百个藏食物的地点。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你有没有被某只动物“记住”过？猫、狗，或者一只鹅。</li>
+<li>如果乌鸦能给人打分，你觉得自己能拿几分？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w15" data-t="动物" data-k="猜" data-p="动物园">
+<header class="cd-h"><span class="th">动物</span><span class="kd">猜</span><span class="no">15</span></header>
+<h3>三颗心的逃犯</h3>
+<p class="hook">章鱼有几颗心？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>三颗</b>。两颗给鳃供血，一颗给全身供血。它的血还是蓝色的。</div></details>
+<p>章鱼的血液里输送氧气的是含铜的血蓝蛋白，不是含铁的血红蛋白，所以血是蓝的。它全身约五亿个神经元，三分之二在八条腕足里，每条腕足都有一定的“自主权”，吸盘还能尝味道。</p>
+<p>章鱼也是有名的越狱犯。2016 年，新西兰国家水族馆一只叫“墨墨”的章鱼趁夜溜出水箱没盖严的缝，爬过地板，钻进一根排水管，一路逃回了大海。</p>
+<p>它们还会拧开瓶盖，会认人，据说会朝不喜欢的饲养员喷水。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>如果你的手能自己思考，你希望它替你干什么？</li>
+<li>你觉得什么样的动物才算“聪明”？会用工具？会记仇？还是会逃跑？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w16" data-t="动物" data-k="猜" data-p="动物园 随时">
+<header class="cd-h"><span class="th">动物</span><span class="kd">猜</span><span class="no">16</span></header>
+<h3>方形的便便</h3>
+<p class="hook">世界上有一种动物，拉出来的便便是方块形的。你猜是什么？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：澳大利亚的<b>袋熊</b>。</div></details>
+<p>袋熊每晚能排出八十到一百粒小方块。为什么是方的？2018 年美国佐治亚理工的一个团队研究发现，秘密在肠子最后一段：肠壁有的地方硬、有的地方软，收缩时把便便挤出了棱角。这项研究后来拿了“搞笑诺贝尔奖”的物理学奖。</p>
+<p>方块有什么用？袋熊习惯把便便摆在石头上、木头上，当作给同类的记号。圆的会滚下去，方的就待得住。</p>
+<p>搞笑诺贝尔奖每年都颁，专门奖励“先让人笑、再让人想”的研究，比如为什么啄木鸟不会脑震荡，猫算固体还是液体。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你听过最没用、但最好玩的研究是什么？</li>
+<li>如果你能给一个日常问题申请研究经费，你研究什么？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w17" data-t="动物" data-k="讲" data-p="动物园">
+<header class="cd-h"><span class="th">动物</span><span class="kd">讲</span><span class="no">17</span></header>
+<h3>送石头</h3>
+<p class="hook">南极有些企鹅搭窝用石头。石头不够，就会出现“送石头”和“偷石头”。</p>
+<div class="body">
+<p>阿德利企鹅和巴布亚企鹅在光秃秃的地上筑巢，材料只有小石子。窝垫高了，融雪时蛋才不会泡在水里。石子是稀缺资源，公企鹅会叼着石子放到母企鹅面前，像是送礼。</p>
+<p>但不是每块石头都来得光彩。观察者记录到，有的企鹅趁邻居不注意，从别人窝里叼走石头，一来一回，邻居的窝越来越矮，自己的越来越高。被抓到了，就会挨一顿啄。</p>
+<p>去海洋馆看企鹅的时候，可以留意一下它们嘴里叼着的东西。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你收到过最“不值钱”、但印象最深的东西是什么？</li>
+<li>你小时候收集过什么？石头、卡片、瓶盖？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w18" data-t="动物" data-k="猜" data-p="动物园">
+<header class="cd-h"><span class="th">动物</span><span class="kd">猜</span><span class="no">18</span></header>
+<h3>河马的红汗</h3>
+<p class="hook">河马身上会渗出红色的液体，古人以为它在流血汗。那到底是什么？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：既不是血也不是汗，是河马皮肤分泌的一种<b>天然防晒霜</b>。</div></details>
+<p>这种液体刚分泌出来是无色的，几分钟后变红，再变成褐色。2004 年日本京都药科大学的研究者分析出，里面有一红一橙两种色素，能吸收紫外线，还能抑制细菌。河马整天泡在泥水里，皮肤又常有伤口，这层“红汗”既防晒又消毒。</p>
+<p>河马还有一件反直觉的事：它其实不会游泳。它们比水重，在水里是踩着河底一蹦一蹦地走，憋一口气能待好几分钟。</p>
+<p>还有一件要记住的：河马脾气很差，在非洲，它是伤人最多的大型动物之一。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>自然界里还有哪些“天然防晒”？</li>
+<li>你小时候以为很温和、后来发现很凶的动物是什么？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w19" data-t="动物" data-k="猜" data-p="动物园">
+<header class="cd-h"><span class="th">动物</span><span class="kd">猜</span><span class="no">19</span></header>
+<h3>七节脖子</h3>
+<p class="hook">长颈鹿的脖子有几节颈椎？比人多吗？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>七节，和人一样</b>。几乎所有哺乳动物都是七节，老鼠是，鲸也是。</div></details>
+<p>长颈鹿的每一节颈椎都特别长，一节就有二三十厘米。为了把血送上两米高的脑袋，它的血压是人的两倍多；低头喝水时，脖子里的特殊瓣膜能防止血一下子冲进头里。</p>
+<p>它的舌头是深紫色的，长约半米，能卷住带刺的金合欢树叶。颜色深的一个猜测是：常年伸在外面，需要防晒。</p>
+<p>野外的长颈鹿睡觉很零碎，常常一次只睡几分钟，有时站着睡。躺下再站起来太慢，容易被狮子盯上。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>如果人能把身体的一个部位“加长”，你选哪里？</li>
+<li>你觉得长颈鹿看我们，是什么感觉？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w20" data-t="动物" data-k="讲" data-p="动物园 随时">
+<header class="cd-h"><span class="th">动物</span><span class="kd">讲</span><span class="no">20</span></header>
+<h3>海豚有名字</h3>
+<p class="hook">海豚会给自己起“名字”，还会叫别人的名字。</p>
+<div class="body">
+<p>每只宽吻海豚都有一段独特的哨声，叫“签名哨声”，小时候自己形成，然后一辈子用。科学家录下一只海豚的签名哨声放给它听，它会回应；放别的海豚的，它就不怎么理。</p>
+<p>2013 年的一项研究发现，海豚分开二十年后，还能认出老同伴的哨声。它们找同伴时，也会模仿对方的签名哨声，相当于喊对方的名字。</p>
+<p>人类以外，会用“名字”的动物非常少。近年有研究认为，非洲象可能也会用不同的叫声称呼不同的个体。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你给什么东西起过名字？自行车、电脑、一盆花？</li>
+<li>如果你只能用一段口哨当名字，你的名字是什么调子？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w21" data-t="动物" data-k="讲" data-p="动物园">
+<header class="cd-h"><span class="th">动物</span><span class="kd">讲</span><span class="no">21</span></header>
+<h3>来回踱步的熊</h3>
+<p class="hook">动物园里有些动物会一直沿着同一条路线来回走，这不是在锻炼。</p>
+<div class="body">
+<p>这种重复动作叫“刻板行为”：熊来回踱步，大象左右摇晃，鸟拔自己的羽毛。多数是因为环境太单调、太无聊，或者有压力。野外的北极熊一天能走几十公里，关在一片小场地里，它找不到事做。</p>
+<p>好的动物园会做“丰容”：把肉冻在冰块里，让狮子慢慢啃；把食物藏进带洞的箱子或吊起来的球里，让猴子动脑筋；给老虎闻别的动物留下的气味；定期换场地布置。这些都是在让动物“有事可做”。</p>
+<p>去动物园时，还有个小建议：问一下喂食时间。那时候动物最有精神。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>下次去动物园，比比谁先发现一个“丰容”的小机关。</li>
+<li>你觉得自己被关在一个房间里，最先出现的“刻板行为”会是什么？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w22" data-t="动物" data-k="讲" data-p="动物园">
+<header class="cd-h"><span class="th">动物</span><span class="kd">讲</span><span class="no">22</span></header>
+<h3>大象怕蜜蜂</h3>
+<p class="hook">几吨重的非洲象，怕一群小小的蜜蜂。</p>
+<div class="body">
+<p>大象的皮虽然厚，眼睛周围、鼻子里面、耳朵后面却很嫩，被蜂群蜇了非常难受。英国研究者露西·金在肯尼亚做过实验：给大象播放蜂群的嗡嗡声，大象会摇着头走开，还会发出一种低沉的叫声，像是在提醒同伴“有蜜蜂”。</p>
+<p>于是有了“蜂箱篱笆”：在农田四周每隔一段挂一个蜂箱，用铁丝连起来。大象一碰铁丝，蜂箱一晃，蜜蜂就飞出来。试点的地方，大象闯进农田的次数明显少了，农民还能多收一份蜂蜜。</p>
+<p>大象另一件不会的事：它不能跳。四只脚不能同时离地。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你最怕的小东西是什么？</li>
+<li>还有什么“用小东西解决大问题”的办法？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w23" data-t="动物" data-k="猜" data-p="随时">
+<header class="cd-h"><span class="th">动物</span><span class="kd">猜</span><span class="no">23</span></header>
+<h3>三条动物流言</h3>
+<p class="hook">金鱼只有七秒记忆、鸵鸟遇到危险把头埋进沙子、旅鼠会集体跳崖自杀。哪条是真的？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>三条都是假的</b>。</div></details>
+<p>金鱼：有实验训练金鱼在固定时间、听到固定声音来吃食，几个月后它们还记得。鸵鸟：它会把头低下去翻动沙里的蛋，或者趴下贴地，远看像把头埋进去了，但它不会真把头埋进沙子，危险来了会跑，时速能到六七十公里。</p>
+<p>旅鼠最冤。旅鼠数量确实会周期性暴涨、迁移，路上会有大量死亡，但没有“集体自杀”这回事。这个印象主要来自 1958 年迪士尼的纪录片《白色荒野》：片里旅鼠成群跳崖入海的镜头，后来被揭露是摄制组买来旅鼠，在加拿大拍摄时人为赶下去的。这部片子还拿了奥斯卡最佳纪录片。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你还听过哪些关于动物的说法，现在想想很可疑？</li>
+<li>一部纪录片“为了好看”摆拍，你能接受到什么程度？</li>
+</ul></div>
+</article>
+
+</div>
+</div>
+</section>
+<section class="deck g" id="t3" data-theme="天上">
+<div class="wide">
+<div class="deck-h"><h2>天上</h2><span>十一张 · 抬头就能聊</span></div>
+<p class="lede">晚上走路，最方便的话题就在头顶。城里看不见几颗星，月亮和金星总还看得见。</p>
+<div class="grid">
+
+<article class="cd" id="w24" data-t="天上" data-k="猜" data-p="夜空">
+<header class="cd-h"><span class="th">天上</span><span class="kd">猜</span><span class="no">24</span></header>
+<h3>月亮在逃跑</h3>
+<p class="hook">月亮每年离地球远一点。你猜一年远多少？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>约 3.8 厘米</b>，差不多是指甲长一年的长度。</div></details>
+<p>这是用激光量出来的。阿波罗宇航员在月面上留下了几块反射镜，地面的天文台朝它们发射激光，测光来回的时间，就能算出地月距离，精确到厘米。这些反射镜五十多年后还在用。</p>
+<p>月亮远离，是因为潮汐在“刹车”：海水被月亮拉起的潮汐和地球自转互相拖拽，地球自转越来越慢，月亮则被一点点推远。所以一天也在极慢地变长。有研究根据古贝壳的生长纹推算，七千万年前，恐龙生活的时候，一天约二十三个半小时。</p>
+<p>再过几亿年，月亮看上去会小到挡不住整个太阳，地球上就再也看不到日全食了。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>如果一天多出半小时，你会拿来干什么？</li>
+<li>月亮在慢慢走远，有什么东西在你身边也是这样，一年只变一点，回头一看变了很多？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w25" data-t="天上" data-k="猜" data-p="夜空">
+<header class="cd-h"><span class="th">天上</span><span class="kd">猜</span><span class="no">25</span></header>
+<h3>一天比一年长</h3>
+<p class="hook">太阳系里有一颗行星，在那儿过一天，比过一年还长。是哪颗？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>金星</b>。它自转一圈约 243 个地球日，绕太阳一圈约 225 天。</div></details>
+<p>金星还是倒着转的：在金星上，太阳从西边升起、东边落下。因为自转和公转叠加，从一次日出到下一次日出，大约要 117 个地球日。</p>
+<p>金星是夜空里除月亮以外最亮的星。古人早上在东方看见它，叫“启明”；傍晚在西方看见，叫“长庚”。《诗经》里有一句“东有启明，西有长庚”，其实说的是同一颗星。古希腊人一开始也当成两颗，后来才发现是一颗。</p>
+<p>傍晚太阳落山后，西边低空一颗特别亮、不闪烁的“星”，十有八九就是它。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>如果一天比一年长，生日和年终总结该怎么算？</li>
+<li>你有没有过“以为是两个人，后来发现是同一个人”的经历？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w26" data-t="天上" data-k="辩" data-p="夜空">
+<header class="cd-h"><span class="th">天上</span><span class="kd">辩</span><span class="no">26</span></header>
+<h3>看到的星星死了吗</h3>
+<p class="hook">常听人说：你今晚看到的星星，可能早就死了。这话对吗？</p>
+<div class="body">
+<div class="sides"><div><b>浪漫派</b>星光要走很多年才到地球，我们看到的是它的过去。万一它在这期间爆炸了，我们还不知道。</div><div><b>较真派</b>肉眼能看到的星，绝大多数在一千光年以内，而恒星能活几百万到几十亿年。这期间刚好死掉的机会，极小。</div></div>
+<p>两边都有道理。“看到的是过去”是真的：太阳光到地球要八分多钟，月光一秒多，最近的恒星四年多。但“早就死了”几乎都不成立。</p>
+<p>最有可能“下一个死”的亮星，是猎户座左上角那颗发红的参宿四。它距离我们约五六百光年，是一颗红超巨星，迟早会爆发成超新星，但“迟早”可能是十万年内的任何时候。2019 年底它突然暗了很多，一度引发猜测，后来研究认为是它喷出的一团尘埃挡住了光。</p>
+<p>它真爆发的那天，白天都能看见，亮度可能接近满月，持续几个月。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你站哪边？你更喜欢浪漫的说法，还是较真的说法？</li>
+<li>如果参宿四今晚爆发，你第一个想告诉谁？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w27" data-t="天上" data-k="讲" data-p="夜空">
+<header class="cd-h"><span class="th">天上</span><span class="kd">讲</span><span class="no">27</span></header>
+<h3>牛郎织女隔多远</h3>
+<p class="hook">牛郎星和织女星，实际相隔约十五光年。</p>
+<div class="body">
+<p>牛郎星（河鼓二）离地球约 17 光年，织女星约 25 光年，两颗星之间大约十五光年。真要互相发个消息，一来一回要三十年。</p>
+<p>它们是夏夜最亮的几颗星之一，和天鹅座的天津四组成“夏季大三角”，入秋以后傍晚还挂在西边天上。古诗十九首里有“迢迢牵牛星，皎皎河汉女”，“河汉”就是银河。更早的《诗经·大东》里，织女星和牵牛星还是被埋怨的对象：织女织不出布，牵牛拉不了车，徒有其名。</p>
+<p>一个星座故事，从“埋怨它们不干活”，变成后来的七夕，中间用了好几百年。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>如果你只能每三十年收到一条消息，你希望三十年后收到的那条写着什么？</li>
+<li>你小时候学的星座故事，记得最清楚的是哪一个？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w28" data-t="天上" data-k="玩" data-p="夜空">
+<header class="cd-h"><span class="th">天上</span><span class="kd">玩</span><span class="no">28</span></header>
+<h3>数流星</h3>
+<p class="hook">十二月中旬有一场一年里最稳定的流星雨。</p>
+<div class="body">
+<p>双子座流星雨每年 12 月 13—14 日前后最盛。理想条件下一小时能有一百多颗，在城里光污染严重的地方，能看到一小时十几颗就不错了。它的“母体”很特别：大多数流星雨来自彗星留下的碎屑，双子座的来自一颗小行星“法厄同”。</p>
+<p>看流星不需要望远镜，望远镜反而视野太小。要点只有三个：找暗的地方；躺下或仰着看一大片天，不用盯着双子座；让眼睛适应黑暗二十分钟，期间别看手机，一看就白适应了。</p>
+<p>十一月中旬还有一场狮子座流星雨。1833 年它曾爆发成“流星暴”，一小时数万颗，美国东部的人以为世界末日到了。也是从那一次开始，人们认真研究流星从哪儿来。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>玩法：抬头看，谁先看到三颗流星谁赢。输的人讲一张卡。</li>
+<li>看到流星的时候，你会许愿吗？还是来不及？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w29" data-t="天上" data-k="讲" data-p="夜空">
+<header class="cd-h"><span class="th">天上</span><span class="kd">讲</span><span class="no">29</span></header>
+<h3>彗星药丸</h3>
+<p class="hook">1910 年哈雷彗星回归，有商人卖“彗星药丸”，说吃了能抵挡彗星的毒气。</p>
+<div class="body">
+<p>那年天文学家在彗尾里测到了氰（一种有毒的气体成分），又算出地球会从彗尾里穿过。法国天文学家弗拉马里翁说了一句毒气可能渗入大气，报纸立刻炒作。于是有人卖药丸、卖防毒面具，有人把门窗缝堵死。结果地球穿过彗尾，什么事都没有：彗尾稀薄到几乎是真空。</p>
+<p>美国作家马克·吐温生于 1835 年，正是哈雷彗星上一次回来的时候。他说过自己是跟着彗星来的，也会跟着它走。1910 年 4 月 21 日，哈雷彗星过近日点的第二天，他去世了。</p>
+<p>中国的《春秋》记载鲁文公十四年（公元前 613 年）“有星孛入于北斗”，常被认为是世界上最早的哈雷彗星记录。它下一次回来是 2061 年。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>2061 年你多大？那时候你想在哪儿看它？</li>
+<li>你经历过哪次“大家都很慌、最后什么也没发生”的事？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w30" data-t="天上" data-k="猜" data-p="夜空 随时">
+<header class="cd-h"><span class="th">天上</span><span class="kd">猜</span><span class="no">30</span></header>
+<h3>蓝色的日落</h3>
+<p class="hook">火星上的日落是什么颜色？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>蓝色</b>。白天的火星天空是黄褐色，日落时太阳周围反而泛蓝。</div></details>
+<p>这和地球正好反过来。地球大气里的分子更容易散射蓝光，所以白天天蓝、日落时阳光穿过厚厚的大气，蓝光被散射掉，只剩红橙色。火星大气稀薄、满是细小的尘埃，这些尘埃更容易把蓝光往前送，日落时太阳附近就是一圈冷冷的蓝。</p>
+<p>这是火星车拍到的真实照片，不是艺术想象。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>如果地球的日落是蓝的，古往今来的诗会怎么写？</li>
+<li>你见过最好看的一次日落是在哪儿？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w31" data-t="天上" data-k="猜" data-p="随时">
+<header class="cd-h"><span class="th">天上</span><span class="kd">猜</span><span class="no">31</span></header>
+<h3>太空闻起来像什么</h3>
+<p class="hook">宇航员出舱回来，脱下宇航服，会闻到一股“太空的味道”。你猜像什么？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：很多宇航员说像<b>煎牛排</b>、<b>烧热的金属</b>或者<b>电焊的烟</b>。登月的宇航员则说，月尘闻起来像放完的鞭炮火药。</div></details>
+<p>太空是真空，人在太空里不能直接闻。这股味道是附着在宇航服和工具上的东西，回到舱内碰到空气后散出来的。一种解释是太空里的高能原子氧附在了表面上，和空气反应。</p>
+<p>阿波罗宇航员在月面上走完，月尘粘在宇航服上，带回登月舱，一摘头盔就闻到了。月尘细得像面粉，又尖又粘，钻进每一条缝。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>如果你能带一种味道去太空，你带什么？</li>
+<li>有没有一种味道，一闻就让你想起某个地方或者某段时间？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w32" data-t="天上" data-k="讲" data-p="夜空">
+<header class="cd-h"><span class="th">天上</span><span class="kd">讲</span><span class="no">32</span></header>
+<h3>北极星会换人</h3>
+<p class="hook">北极星不是永远那一颗。五千年前，指北的是另一颗星。</p>
+<div class="body">
+<p>地球自转轴像陀螺一样会慢慢画圈，画一圈约两万六千年，这叫“岁差”。轴指向哪儿，哪颗星就是北极星。古埃及修金字塔的时候，北极附近的是天龙座的右枢；再过一万两千年左右，织女星会成为北极星。</p>
+<p>孔子说“为政以德，譬如北辰，居其所而众星共之”：北辰待在自己的位置上，众星围着它转。可是孔子那时候天北极附近，并没有今天这颗北极星。北极星也是会换的。</p>
+<p>今天找北极星：先找北斗七星，把勺口两颗星连起来，向勺口方向延长约五倍，那颗不算太亮的星就是。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>我们现在就找找：北斗七星在哪儿？</li>
+<li>连北极星都会换，你觉得还有什么是真的不变的？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w33" data-t="天上" data-p="夜空 随时" data-k="讲">
+<header class="cd-h"><span class="th">天上</span><span class="kd">讲</span><span class="no">33</span></header>
+<h3>两万英镑的问题</h3>
+<p class="hook">十八世纪，英国政府悬赏两万英镑，只求一个办法：在大海上知道自己在哪儿。</p>
+<div class="body">
+<p>在海上测纬度不难，看看太阳或北极星有多高就行。难的是经度：你在东西方向上走了多远。地球每小时转 15 度，所以只要同时知道“本地此刻几点”和“出发港此刻几点”，时差就是经度。本地时间看太阳就知道；难的是在颠簸、潮湿、忽冷忽热的船上，带一只几个月都走得准的钟。</p>
+<p>1707 年，一支英国舰队算错了位置，在锡利群岛触礁，一千多人丧生。1714 年，英国议会通过《经度法案》，悬赏最高两万英镑。天文学家们认为答案在星空里。一个木匠出身的钟表匠约翰·哈里森却坚持造钟，一造就是几十年。他的第四台航海钟 H4，像一块大怀表，1761 年随船去牙买加，一路下来只慢了几秒。</p>
+<p>可评审委员会一直不肯痛快给钱。哈里森八十岁时，在国王过问之下，才拿到大部分奖金。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你有没有“大家都说方向错了，你还是坚持”的事？后来呢？</li>
+<li>如果没有手机定位，你能从这里走回家吗？靠什么认路？</li>
+</ul></div>
+<p class="seed">可能的下一本：《向外》，海洋与太空。</p>
+</article>
+
+<article class="cd" id="w34" data-t="天上" data-p="夜空" data-k="讲">
+<header class="cd-h"><span class="th">天上</span><span class="kd">讲</span><span class="no">34</span></header>
+<h3>一光日</h3>
+<p class="hook">差不多就在 2026 年 11 月，人类造的一样东西，第一次飞到离地球一“光日”那么远。</p>
+<div class="body">
+<p>1977 年发射的“旅行者 1 号”，飞过木星和土星之后，就一直往外飞，再也不回来。2012 年，它穿出了太阳风吹出的那个“大泡泡”的边缘，进入星际空间。按照计算，2026 年 11 月前后，它离地球的距离达到一光日：从地球发出去的一条指令，要走整整一天才能到它那里。</p>
+<p>1990 年，在天文学家卡尔·萨根的建议下，它在约六十亿公里外回过头，给地球拍了一张照片。地球只是一粒比一个像素还小的淡蓝色小点。萨根后来写道，我们所有人、所有的历史，都发生在这粒悬浮在阳光里的尘埃上。</p>
+<p>它身上还带着一张镀金唱片，写给可能存在的外星人：五十多种语言的问候、风声雨声心跳声、世界各地的音乐，其中有一首中国古琴曲《流水》。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>如果让你往那张唱片上放一首歌、一句话，你放什么？</li>
+<li>你觉得宇宙里只有我们吗？</li>
+</ul></div>
+<p class="seed">可能的下一本：《向外》，海洋与太空。</p>
+</article>
+
+</div>
+</div>
+</section>
+<section class="deck g" id="t4" data-theme="银幕">
+<div class="wide">
+<div class="deck-h"><h2>银幕背后</h2><span>十张 · 看电影前后聊</span></div>
+<p class="lede">电影里的巧合、意外和替身。看完一部片子走出影院，正好接上一张。</p>
+<div class="grid">
+
+<article class="cd" id="w35" data-t="银幕" data-k="玩" data-p="电影院 随时">
+<header class="cd-h"><span class="th">银幕</span><span class="kd">玩</span><span class="no">35</span></header>
+<h3>七十年的惨叫</h3>
+<p class="hook">有一声惨叫，在四百多部电影里出现过。听过一次，你就会一直听见它。</p>
+<div class="body">
+<p>它来自 1951 年的西部片《遥远的鼓声》，原本是一个士兵被鳄鱼拖下水时的配音，存进了华纳兄弟的音效库。两年后的另一部片子里，一个叫“威廉”的士兵中箭时又用了它，于是被叫作“威廉惨叫”。</p>
+<p>70 年代，《星球大战》的音效师本·伯特从旧素材里翻出这声惨叫，在片子里用了一次：一个帝国冲锋队员掉下深渊时。之后他在《夺宝奇兵》等片子里反复用，别的音效师也开始当彩蛋互相致敬。《指环王》《玩具总动员》里都有。</p>
+<p>配音的人很可能是歌手谢布·伍利，但当年没有署名。他喊这一嗓子时，大概想不到它会活七十多年。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>玩法：下次看动作片，谁先听出“威廉惨叫”谁赢。</li>
+<li>你有没有一句话、一个口头禅，自己都没意识到说了很多年？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w36" data-t="银幕" data-k="猜" data-p="电影院 随时">
+<header class="cd-h"><span class="th">银幕</span><span class="kd">猜</span><span class="no">36</span></header>
+<h3>恐龙怎么叫</h3>
+<p class="hook">《侏罗纪公园》里霸王龙的吼声是怎么做出来的？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>把好几种动物的叫声混在一起</b>：主要是小象、老虎和鳄鱼。</div></details>
+<p>没人听过恐龙叫，音效师加里·里德斯特罗姆只能自己“造”。他到处录动物的声音，把小象的尖叫放慢、加上老虎的低吼和鳄鱼的咕噜声，拼出了那一声。片子里迅猛龙的叫声更出人意料：据他自己说，有一部分是乌龟交配时发出的声音，还混了鹅和海豚。</p>
+<p>古生物学家后来推测，真实的大型恐龙可能更像鳄鱼和鸟，会发出闭着嘴的低沉“咕噜”，而不是张大嘴吼。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>让你给一条龙配音，你会用什么声音去混？</li>
+<li>你觉得电影里哪种“听起来很对、其实是假”的声音最多？比如拳击声、马蹄声。</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w37" data-t="银幕" data-k="猜" data-p="电影院">
+<header class="cd-h"><span class="th">银幕</span><span class="kd">猜</span><span class="no">37</span></header>
+<h3>画画的那双手</h3>
+<p class="hook">《泰坦尼克号》里杰克给露丝画像，特写镜头里那双画画的手是谁的？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>导演詹姆斯·卡梅隆</b>自己的。那幅画也是他画的。</div></details>
+<p>卡梅隆早年学过画画，片子里杰克那本素描簿里的画，很多是他画的。卡梅隆是左撇子，莱昂纳多是右撇子，所以拍出来的画面做了左右翻转。</p>
+<p>拍那场戏时，演员和导演都在一个很紧张的环境里：剧组造了一条近乎原大的船，片子超支严重，当时很多人都以为它会是一场灾难。结果它成了当年全球票房最高的电影。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你觉得一个导演亲自下场画画、配音、客串，是在炫技，还是在较劲？</li>
+<li>你有没有一项“看起来和本职无关”的手艺？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w38" data-t="银幕" data-k="讲" data-p="电影院">
+<header class="cd-h"><span class="th">银幕</span><span class="kd">讲</span><span class="no">38</span></header>
+<h3>铁皮人的妆</h3>
+<p class="hook">1939 年的《绿野仙踪》里，铁皮人原本不是后来那位演员。第一位因为化妆，进了医院。</p>
+<div class="body">
+<p>最初选定的演员叫巴迪·艾布森。化妆师给他脸上扑了一层铝粉，做出金属的光泽。拍了十来天，他吸进太多铝粉，肺出了问题，呼吸困难，住院好几周。剧组换了演员杰克·黑利，把铝粉改成了铝膏。</p>
+<p>这部片子的拍摄条件放到今天都难以想象：灯光极热，演员穿着厚重的戏服；据记载，罂粟花田那场戏里飘落的“雪”，用的是当时常见的石棉制成的人造雪。</p>
+<p>艾布森后来活到了 95 岁，在电视剧里演了很多年主角。</p>
+<p class="doubt">罂粟花田的“雪”是石棉，见于多种电影史记述，具体细节各家说法略有出入。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>为了一个角色或一件事，你愿意吃多大的苦？</li>
+<li>你觉得哪些今天习以为常的做法，五十年后看也会很吓人？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w39" data-t="银幕" data-k="讲" data-p="电影院 随时">
+<header class="cd-h"><span class="th">银幕</span><span class="kd">讲</span><span class="no">39</span></header>
+<h3>踢断的脚趾</h3>
+<p class="hook">《指环王：双塔奇兵》里阿拉贡踢飞一只头盔、跪地痛喊，那一声是真的疼。</p>
+<div class="body">
+<p>那场戏里，阿拉贡以为两个霍比特人死了，悲愤地一脚踢向地上的头盔。演员维果·莫腾森那一脚踢断了脚趾，据他自己说是两根。喊出来的那一声不是演的，导演彼得·杰克逊觉得这条最真，就用在了正片里。</p>
+<p>莫腾森拍这部戏时还在打斗中磕坏过一颗牙，据报道他想让剧组用胶水粘上继续拍，最后被拉去补了牙，下午又回来了。他还常常带着角色的剑回家。</p>
+<p>很多电影里最打动人的瞬间，都不在剧本里：忘词、意外、真的哭了。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你记得哪部电影里有一段“明显不是演的”的瞬间？</li>
+<li>如果拍一部电影，你最想做哪个工种？导演、摄影、配音、道具，还是演一个路人？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w40" data-t="银幕" data-k="猜" data-p="电影院 随时">
+<header class="cd-h"><span class="th">银幕</span><span class="kd">猜</span><span class="no">40</span></header>
+<h3>拍了六周换主角</h3>
+<p class="hook">有部经典电影，主角拍了五六周后被换掉，重拍。你猜是哪部？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>《回到未来》</b>。最初的马蒂是演员埃里克·斯托尔茨。</div></details>
+<p>导演泽米吉斯一直想要的是迈克尔·J·福克斯，但福克斯当时在拍一部电视剧，档期排不开。剧组先用斯托尔茨开拍，拍了几周后，导演觉得他演得太沉重，不够轻快，最后还是决定换人，重拍已经拍好的戏。</p>
+<p>福克斯接下来的几个月里，白天拍电视剧，晚上拍电影，每天只睡几个小时。片子大获成功，“马蒂”成了他一辈子的标签。</p>
+<p>好莱坞有很多“差点就是别人”的角色，比如演过乔布斯、蝙蝠侠的人选，名单都能列一长串。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>有没有哪个角色，你觉得换个演员就完全不是那回事？</li>
+<li>如果你的人生是部电影，哪个演员来演你？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w41" data-t="银幕" data-k="猜" data-p="电影院">
+<header class="cd-h"><span class="th">银幕</span><span class="kd">猜</span><span class="no">41</span></header>
+<h3>巧克力酱</h3>
+<p class="hook">希区柯克《惊魂记》浴室那场戏里，流进下水口的“血”是什么？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>巧克力酱</b>。黑白片里，它的颜色和浓稠度比假血更像血。</div></details>
+<p>那场戏只有三分钟左右，拍了大约一周，用了几十个机位，剪成几十个快速切换的镜头。片子里从头到尾没有拍到刀刺进身体，但观众都觉得看到了。刀子刺入的声音，据说是刀子扎进甜瓜里录的。</p>
+<p>为了保住结局的秘密，希区柯克据说买下了大量原著小说，还要求影院在开场后不许观众进场，这在当时很少见。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你最怕的一个电影镜头是什么？现在还怕吗？</li>
+<li>你觉得“没拍出来，但观众都觉得看到了”，是种什么本事？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w42" data-t="银幕" data-k="辩" data-p="随时">
+<header class="cd-h"><span class="th">银幕</span><span class="kd">辩</span><span class="no">42</span></header>
+<h3>模仿卓别林大赛</h3>
+<p class="hook">传说卓别林偷偷参加过一场“模仿卓别林”比赛，结果没拿第一。</p>
+<div class="body">
+<div class="sides"><div><b>信</b>卓别林红极一时，各地都有模仿大赛。当年确实有报纸登过这件事，说他悄悄参赛，只拿了第三名，甚至没进决赛。</div><div><b>不信</b>这个故事版本太多：有说第三，有说第二十，地点也对不上，没有可靠的一手记录，很可能是报纸编的段子。</div></div>
+<p>不管真假，它流传了一百年，因为它说中了一件事：大家心里的“像”，常常是一套夸张的符号——小胡子、圆顶帽、手杖、外八字。真人反而没那么“像”自己。</p>
+<p>卓别林本人在默片时代几乎是全世界最出名的人，可他一开口说话，很多人反而不习惯。他一直到 1940 年的《大独裁者》，才在片子里真正大段说话。</p>
+<p class="doubt">这个故事没有可靠出处，各版本细节互相矛盾。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你站哪边？</li>
+<li>如果有一场“模仿你”的比赛，你觉得别人会抓住你的哪几个特点？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w43" data-t="银幕" data-k="讲" data-p="随时">
+<header class="cd-h"><span class="th">银幕</span><span class="kd">讲</span><span class="no">43</span></header>
+<h3>先扑街、后封神</h3>
+<p class="hook">《大话西游》1995 年上映时，票房并不好。</p>
+<div class="body">
+<p>当时在香港，它被不少观众看成一部看不懂的无厘头片，票房平平；内地也没什么水花。转折发生在几年后：盗版录像带和 VCD 在大学宿舍里流传，学生们在校园网和论坛上一遍遍讨论、背台词，它才慢慢变成“一代人的电影”。</p>
+<p>很多后来的经典都是这样：上映时没人懂，过了几年，碰上合适的观众，才被重新发现。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>有没有一部电影或一本书，你第一遍没看懂、后来很喜欢？</li>
+<li>你觉得一部片子“扑街”，是片子的问题，还是没碰上对的人、对的时候？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w44" data-t="银幕" data-k="讲" data-p="电影院 随时">
+<header class="cd-h"><span class="th">银幕</span><span class="kd">讲</span><span class="no">44</span></header>
+<h3>停工一年减肥</h3>
+<p class="hook">《荒岛余生》拍到一半，停工了一年，等主演变瘦。</p>
+<div class="body">
+<p>汤姆·汉克斯演一个流落荒岛四年的人。剧组先拍了他胖的时候，然后停工一年，让他减掉二十多公斤、留出满脸胡子，再回来拍荒岛后半段。</p>
+<p>导演泽米吉斯没闲着：他用这一年，带着差不多同一批剧组人员拍了另一部电影《危机四伏》。</p>
+<p>片子里那只被画上脸、陪主角说话的排球“威尔逊”，后来成了明星。生产商真的推出了印着手印的“威尔逊”纪念排球。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>如果你一个人在荒岛上，会给什么东西画上脸、跟它说话？</li>
+<li>一年的时间，你会拿来做一件什么事？</li>
+</ul></div>
+</article>
+
+</div>
+</div>
+</section>
+<section class="deck g" id="t5" data-theme="怪人">
+<div class="wide">
+<div class="deck-h"><h2>名人的怪癖</h2><span>十张 · 天才也有毛病</span></div>
+<p class="lede">史书和传记里，最好看的往往不是成就，是那些怎么也解释不通的小毛病。</p>
+<div class="grid">
+
+<article class="cd" id="w45" data-t="怪人" data-k="讲" data-p="园林 博物馆">
+<header class="cd-h"><span class="th">怪人</span><span class="kd">讲</span><span class="no">45</span></header>
+<h3>拿字换鹅</h3>
+<p class="hook">王羲之爱鹅。为了一群鹅，他给一个道士抄了一整部经。</p>
+<div class="body">
+<p>《晋书·王羲之传》记了这件事：山阴有个道士养了一群好鹅，王羲之去看，越看越喜欢，非要买。道士说不卖，你给我抄一部《道德经》，这群鹅都送你。王羲之高高兴兴地写完，“笼鹅而归”，把鹅装进笼子带回家，乐了好久。</p>
+<p>有人说他爱鹅，是从鹅脖子转动的样子里悟出了运笔的道理。这多半是后人的附会，但很好听。去绍兴兰亭，至今还有一口“鹅池”。</p>
+<p>换鹅的到底是哪部经，也有争议：《晋书》写的是《道德经》，后来李白的诗里写成了《黄庭经》，于是又有了“换鹅帖”的说法。</p>
+<p class="doubt">抄的是《道德经》还是《黄庭经》，各家记载不同。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你愿意拿自己最拿手的东西，去换什么？</li>
+<li>你最喜欢的一种动物是什么？说不出理由的那种喜欢。</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w46" data-t="怪人" data-k="讲" data-p="园林">
+<header class="cd-h"><span class="th">怪人</span><span class="kd">讲</span><span class="no">46</span></header>
+<h3>给石头下拜</h3>
+<p class="hook">北宋书法家米芾见到一块奇丑的石头，穿戴整齐，对着它下拜，喊它“哥哥”。</p>
+<div class="body">
+<p>《宋史·米芾传》记载，无为州的官署里有块巨石，样子奇丑。米芾一见大喜，说“此足以当吾拜！”于是穿上官服拜它，称它为兄。从此人送外号“米颠”。</p>
+<p>《宋史》还说他“好洁成癖”，有洁癖，不和别人共用毛巾器具。他的书法、画、收藏都是一流的，在宋朝人眼里，他就是那个才华横溢又疯疯癫癫的人。</p>
+<p>中国人赏石的标准“瘦、漏、透、皱”，传统上常说是米芾总结的。去苏州的园林，看那些太湖石：细长、有孔、能透光、表面起皱，就是这四个字。</p>
+<p class="doubt">“瘦漏透皱”出自米芾之说，是后人的归纳，早期出处不明。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>下次逛园林，挑一块石头，用这四个字给它打分。</li>
+<li>你有没有一样东西，别人觉得很丑，你却很喜欢？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w47" data-t="怪人" data-k="讲" data-p="饭桌 动物园">
+<header class="cd-h"><span class="th">怪人</span><span class="kd">讲</span><span class="no">47</span></header>
+<h3>吃掉了要找的鸟</h3>
+<p class="hook">达尔文在南美洲找一种稀有的鸟，找了很久。后来发现，他已经在晚饭时把它吃了。</p>
+<div class="body">
+<p>1833 年底，达尔文随“小猎犬号”到了巴塔哥尼亚。他听当地人说，除了常见的美洲鸵，还有一种更小的。一天晚饭，同船的画家打了一只美洲鸵，大家烤着吃了一大半，达尔文才猛然反应过来：这就是他找的那种！他赶紧把剩下的头、脖子、腿、翅膀和一些皮毛收起来，寄回英国。后来这种鸟被命名为“达尔文美洲鸵”。</p>
+<p>达尔文在剑桥读书时，还参加过一个“饕餮俱乐部”，专门吃一般人不吃的动物：鹰、麻鸭都吃过。据他说，棕色猫头鹰的味道“无法形容”。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你吃过最奇怪的东西是什么？</li>
+<li>你有没有“找了半天，东西其实就在手边”的经历？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w48" data-t="怪人" data-k="讲" data-p="随时">
+<header class="cd-h"><span class="th">怪人</span><span class="kd">讲</span><span class="no">48</span></header>
+<h3>拿针戳眼睛</h3>
+<p class="hook">牛顿为了研究光和颜色，把一根粗针插到自己的眼球和眼眶骨之间。</p>
+<div class="body">
+<p>这件事记在他年轻时的笔记本里，还配了图：他把一根粗钝的针插进眼球后面，压一压，看眼前出现的彩色圆圈怎么变化。他还盯着镜子里的太阳看，结果眼睛好几天看什么都有残影，只好待在黑屋子里。</p>
+<p>牛顿后来当了英国皇家铸币厂的总监，负责打击伪造货币。他亲自乔装去酒馆查案，把一个有名的伪币犯送上了绞架。一个研究万有引力的人，晚年在追捕假币贩子。</p>
+<p>千万别学他。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>为了弄明白一件事，你做过最“不要命”的尝试是什么？</li>
+<li>如果你突然换一个完全不相干的工作，你觉得自己会干什么？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w49" data-t="怪人" data-k="猜" data-p="饭桌 随时">
+<header class="cd-h"><span class="th">怪人</span><span class="kd">猜</span><span class="no">49</span></header>
+<h3>六十颗咖啡豆</h3>
+<p class="hook">据说贝多芬每冲一杯咖啡，都要数好咖啡豆。你猜他数多少颗？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>六十颗</b>，一颗不多一颗不少。</div></details>
+<p>这件事来自他晚年的秘书辛德勒的回忆。但辛德勒这个人并不太可靠：贝多芬耳聋后，靠“谈话簿”和人笔谈，辛德勒后来被发现在谈话簿里伪造过不少内容。所以“六十颗”听听就好。</p>
+<p>贝多芬在维也纳一共搬了几十次家，常常是因为和房东、邻居闹翻。他耳聋以后，据说会把木棍一头咬在嘴里、一头抵在钢琴上，靠骨头传导“听”声音。</p>
+<p class="doubt">“六十颗”只有辛德勒一个来源。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你有没有一个固定的小仪式？比如考试前、睡觉前。</li>
+<li>一个人的“怪癖”和“讲究”，界线在哪儿？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w50" data-t="怪人" data-k="辩" data-p="街上 随时">
+<header class="cd-h"><span class="th">怪人</span><span class="kd">辩</span><span class="no">50</span></header>
+<h3>康德的散步</h3>
+<p class="hook">传说哲学家康德每天下午准时出门散步，准到邻居拿他来对表。</p>
+<div class="body">
+<div class="sides"><div><b>信</b>康德一辈子几乎没离开过家乡柯尼斯堡，生活极其规律，几点起床、几点写作、几点吃饭都固定。散步准时，很合理。</div><div><b>不太信</b>“邻居拿他对表”出自后人的转述，越传越神。还有个配套故事：他有一天读卢梭的《爱弥儿》读入了迷，忘了散步——这也只是传说。</div></div>
+<p>不管准不准时，康德确实每天散步，而且有个规矩：散步时只用鼻子呼吸，不和别人说话。他觉得张嘴会吸进冷空气。</p>
+<p>所以，这副卡片里的散步方式，和康德正好相反。</p>
+<p class="doubt">“邻居对表”和“读卢梭忘了散步”都是流传的轶事。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你每天有没有一件“雷打不动”的事？</li>
+<li>你更喜欢一个人散步，还是两个人边走边聊？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w51" data-t="怪人" data-k="讲" data-p="街上">
+<header class="cd-h"><span class="th">怪人</span><span class="kd">讲</span><span class="no">51</span></header>
+<h3>特斯拉的鸽子</h3>
+<p class="hook">发明家特斯拉晚年在纽约的旅馆里，养着一群鸽子。</p>
+<div class="body">
+<p>特斯拉一生发明无数，交流电系统里很多关键东西都和他有关，但他晚年很穷，一个人住在旅馆里。他每天去公园喂鸽子，还把受伤的鸽子带回房间照顾。他说其中一只白鸽是他最爱的，那只鸽子死后，他觉得自己的工作也结束了。</p>
+<p>关于他的怪癖还有很多传说：对数字 3 着迷，进门前要绕楼走三圈；有严重的洁癖，吃饭要用很多张餐巾擦餐具；能在脑子里完整地“看见”机器运转，不用画图。</p>
+<p class="doubt">关于特斯拉的轶事很多来自晚年的采访和传记作者的转述，有的难以核实。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你觉得一个天才的怪癖，和普通人的“毛病”，区别在哪儿？</li>
+<li>你会在路上喂流浪猫、喂鸽子吗？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w52" data-t="怪人" data-k="讲" data-p="街上 随时">
+<header class="cd-h"><span class="th">怪人</span><span class="kd">讲</span><span class="no">52</span></header>
+<h3>到了门口又回去</h3>
+<p class="hook">东晋的王子猷，下雪的夜里想起一个朋友，坐了一夜船去找他。到了门口，没进去，又回来了。</p>
+<div class="body">
+<p>这个故事在《世说新语·任诞》里。王子猷住在山阴，一天夜里下大雪，他醒来开窗喝酒，四下一片白，忽然想起住在剡县的朋友戴安道，当即坐小船出发。走了一整夜才到，到门口却掉头回家。有人问他为什么，他说：“吾本乘兴而行，兴尽而返，何必见戴？”</p>
+<p>王子猷是王羲之的儿子。他还有一句名言：借住别人的空房子，也要先种上竹子，说“何可一日无此君”，一天也不能没有竹子。</p>
+<p>去的路上已经尽兴了，见不见面，倒成了其次。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你有没有过“想做一件事，走到一半就觉得够了”的时候？</li>
+<li>你觉得王子猷这样是潇洒，还是有点不近人情？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w53" data-t="怪人" data-k="讲" data-p="园林 随时">
+<header class="cd-h"><span class="th">怪人</span><span class="kd">讲</span><span class="no">53</span></header>
+<h3>竹林里的怪人</h3>
+<p class="hook">魏晋有一群名士，一个打铁、一个翻白眼、一个在家不穿衣服。</p>
+<div class="body">
+<p>嵇康是大音乐家、大文人，平时爱打铁。权臣钟会带着一群人去拜访他，他自顾自打铁，不理。钟会要走时，他才问：“何所闻而来？何所见而去？”钟会答：“闻所闻而来，见所见而去。”两人从此结怨。这段在《世说新语》里。</p>
+<p>阮籍会“青白眼”：见到喜欢的人，正眼看，露出黑眼珠；见到讨厌的俗人，就翻白眼。今天说“给人白眼”，常拿他当典故。刘伶爱喝酒，在家里常常不穿衣服，有人笑他，他说：我把天地当房子，把屋子当裤子，你们怎么钻到我裤子里来了？</p>
+<p>他们放浪形骸，背后是一个说错话就会掉脑袋的时代。嵇康最后被司马昭杀了，临刑前弹了一曲《广陵散》。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你觉得他们是真的洒脱，还是在用怪来自保？</li>
+<li>你见过的最“不合群”、但让你佩服的人是什么样的？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w54" data-t="怪人" data-k="猜" data-p="随时">
+<header class="cd-h"><span class="th">怪人</span><span class="kd">猜</span><span class="no">54</span></header>
+<h3>不穿袜子</h3>
+<p class="hook">爱因斯坦有个习惯，连正式场合都坚持。你猜是什么？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>不穿袜子</b>。</div></details>
+<p>他在给表姐兼后来的妻子埃尔莎的信里得意地说，自己就连在最庄重的场合，也没穿袜子，用高筒靴挡住，没人发现。他的理由是：大脚趾总会把袜子顶出洞来，干脆不穿。</p>
+<p>他还常年穿差不多的衣服，懒得在穿什么上费脑子；头发也很少打理。1952 年以色列请他当总统，他婉拒了，说自己不擅长和人打交道。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你觉得哪条“规矩”最没必要遵守？</li>
+<li>如果你可以只穿一套衣服过一辈子，你选什么？</li>
+</ul></div>
+</article>
+
+</div>
+</div>
+</section>
+<section class="deck g" id="t6" data-theme="离谱">
+<div class="wide">
+<div class="deck-h"><h2>离谱的大人物</h2><span>十二张 · 皇帝、贵族和委员会</span></div>
+<p class="lede">正史里一本正经记下来的荒唐事。有人作死，有人较真，也有一整群专家认真地讨论一匹马会不会算术。</p>
+<div class="grid">
+
+<article class="cd" id="w55" data-t="离谱" data-k="讲" data-p="随时">
+<header class="cd-h"><span class="th">离谱</span><span class="kd">讲</span><span class="no">55</span></header>
+<h3>被告是老鼠</h3>
+<p class="hook">五百年前，法国有个法院正式起诉了一群老鼠，还给它们请了辩护律师。</p>
+<div class="body">
+<p>16 世纪初，法国欧坦一带的老鼠吃光了大麦，当地教会法庭起诉了它们。被指派给老鼠当律师的，是后来很有名的法学家巴塞洛缪·沙瑟内。老鼠当然没出庭，他先辩称：传票只在一个村子宣读，老鼠分散在各处，没收到通知；第二次又说：路上到处是猫，被告担心生命安全，法庭必须保证它们来回路上的安全，否则有权不出庭。</p>
+<p>这不是孤例。中世纪到近代的欧洲，审判动物的记录有不少：1386 年法国法莱斯有一头母猪咬死了婴儿，被判绞刑，行刑时还给它穿上了人的衣服。被起诉过的还有象鼻虫、蝗虫、毛毛虫。</p>
+<p class="doubt">沙瑟内为老鼠辩护的细节主要来自后人整理的记载，可能有加工。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>如果今天让你替一只偷吃的猫辩护，你会怎么说？</li>
+<li>你觉得人为什么要郑重其事地审判一只动物？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w56" data-t="离谱" data-k="猜" data-p="随时">
+<header class="cd-h"><span class="th">离谱</span><span class="kd">猜</span><span class="no">56</span></header>
+<h3>会算术的马</h3>
+<p class="hook">1904 年的柏林，一群专家组成委员会，认真调查一匹马是不是真的会算术。你猜结论是什么？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：委员会<b>没查出任何作弊</b>。三年后才有人发现真相：马不会算术，它会看人的脸色。</div></details>
+<p>这匹马叫“聪明的汉斯”。主人冯·奥斯滕原本是数学老师，坚信动物能像孩子一样接受教育，教了它好几年。问它“三加二等于几”，它就用蹄子敲五下，还能回答日期、拼单词。专家委员会里有心理学家、动物园园长、马戏团经理、兽医，调查后认为主人没有作弊。</p>
+<p>1907 年，心理学家芬斯特发现：只要提问的人自己也不知道答案，或者汉斯看不见提问的人，它就答不对。原来它一边敲一边盯着人，敲到正确的数时，提问的人会不自觉地放松、微微抬头，它就停下来。主人自己都没意识到。</p>
+<p>这件事后来被叫作“聪明汉斯效应”。今天做实验要“双盲”，就是为了防这个。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你觉得汉斯算不算聪明？</li>
+<li>你有没有被人一眼看穿过，因为你自己都没意识到的小动作？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w57" data-t="离谱" data-k="讲" data-p="街上">
+<header class="cd-h"><span class="th">离谱</span><span class="kd">讲</span><span class="no">57</span></header>
+<h3>皇帝赶驴车</h3>
+<p class="hook">东汉有个皇帝爱在宫里赶驴车，结果洛阳的驴价涨得和马一样贵。</p>
+<div class="body">
+<p>《后汉书·五行志》记载，汉灵帝在宫中西园套上四头白驴，亲自赶车，驰来驰去，觉得是天大的乐事。于是公卿贵戚纷纷效仿，以坐驴车为时髦，驴一下子成了抢手货，“贾与马齐”，价钱和马一样。</p>
+<p>汉灵帝还在宫里让狗戴上官帽、挂上绶带，当笑话看；在西园开店，让宫女扮成商贩，自己扮成客人逛街。更出名的是他公开卖官，什么官什么价，明码标价。没过几年，黄巾起义爆发，东汉就开始崩塌。</p>
+<p>上面的人喜欢什么，下面就跟着贵什么，这件事两千年来一点没变。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你见过的“上面一喜欢、下面就涨价”的事是什么？比如明星同款。</li>
+<li>如果你是皇帝，你会有什么“没人敢拦”的怪爱好？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w58" data-t="离谱" data-k="讲" data-p="随时">
+<header class="cd-h"><span class="th">离谱</span><span class="kd">讲</span><span class="no">58</span></header>
+<h3>皇帝出家四次</h3>
+<p class="hook">南朝梁武帝四次跑去寺庙出家，每次都要大臣花巨款把他赎回来。</p>
+<div class="body">
+<p>梁武帝萧衍在位四十多年，笃信佛教。他先后四次到建康的同泰寺“舍身”，脱下龙袍，在寺里当杂役、讲经。皇帝出家了，国家怎么办？大臣们只好凑钱向寺院“赎”回皇帝。据《资治通鉴》，其中一次群臣捐了“钱一亿万”。</p>
+<p>他吃素、不近女色、一天只吃一顿，生活极其俭朴，是历史上少见的“自律皇帝”。可他晚年轻信降将侯景，侯景叛乱，攻破都城，八十多岁的梁武帝被困在台城，最后饿病而死。</p>
+<p>一个对自己很严格的人，未必是一个好的掌舵人。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>一个人真心相信一件事，和这件事让别人付出的代价，该怎么算？</li>
+<li>你认识的人里，有没有“对自己特别狠、对大局却很糊涂”的？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w59" data-t="离谱" data-k="讲" data-p="园林 随时">
+<header class="cd-h"><span class="th">离谱</span><span class="kd">讲</span><span class="no">59</span></header>
+<h3>给自己封官</h3>
+<p class="hook">明朝有个皇帝不满足于当皇帝，给自己起了个化名，封自己当大将军。</p>
+<div class="body">
+<p>明武宗正德皇帝从小爱玩、爱打仗。他给自己起名“朱寿”，下旨封“朱寿”为“总督军务威武大将军总兵官”，后来又加封“镇国公”。大臣们哭着劝，他照做不误。他还在宫外建了一座“豹房”，养猛兽、玩乐、处理政事都在那儿。</p>
+<p>1519 年宁王造反，王阳明四十多天就把叛乱平了。正德皇帝还是坚持“御驾亲征”。据说他想让人把宁王放回去，好让自己亲手再抓一次。</p>
+<p>1520 年，他在清江浦自己划船钓鱼，船翻落水，受了惊吓和风寒，第二年就去世了，年仅三十岁出头。</p>
+<p class="doubt">“放了宁王再抓一次”是流传很广的说法，细节因史料而异。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>如果你可以给自己封一个官衔，封什么？</li>
+<li>你小时候最想当什么？现在还想吗？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w60" data-t="离谱" data-k="猜" data-p="饭桌 随时">
+<header class="cd-h"><span class="th">离谱</span><span class="kd">猜</span><span class="no">60</span></header>
+<h3>车上的鲍鱼</h3>
+<p class="hook">秦始皇死在出巡路上，丞相下令在他的车上装了一石“鲍鱼”。这个鲍鱼是什么？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>腌臭的咸鱼</b>，不是今天的海鲜鲍鱼。用来掩盖尸体的臭味。</div></details>
+<p>公元前 210 年，秦始皇在沙丘病死。李斯和赵高怕消息传出去天下大乱，秘不发丧，照常把饭菜送进车里。正值盛夏，尸体发臭，《史记》记载：“乃诏从官令车载一石鲍鱼，以乱其臭。”</p>
+<p>古代的“鲍鱼”指盐腌的鱼，气味很冲，“如入鲍鱼之肆，久而不闻其臭”说的就是它。今天说的海鲜鲍鱼，古代叫“鳆鱼”。</p>
+<p>一个一辈子寻找长生不老药的皇帝，最后和一车咸鱼一起回了咸阳。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>还有哪些词，古今意思差了十万八千里？比如“汤”本来是热水，“走”本来是跑。</li>
+<li>如果秘密只能瞒一个月，你觉得李斯赵高这一步，是聪明还是作死？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w61" data-t="离谱" data-k="讲" data-p="随时">
+<header class="cd-h"><span class="th">离谱</span><span class="kd">讲</span><span class="no">61</span></header>
+<h3>输给鸸鹋的军队</h3>
+<p class="hook">1932 年，澳大利亚出动军队和机枪去打鸸鹋，最后打输了。</p>
+<div class="body">
+<p>一战后，澳大利亚西部安置了很多退伍军人去种麦子。那年大约两万只鸸鹋迁徙过来，踩坏、吃掉了大片庄稼。农民求助，政府派了一位少校，带两名士兵和两挺机枪去对付它们。</p>
+<p>结果鸸鹋比想象的难打得多：它们分散成小群，跑得飞快，挨了枪还能跑。少校后来感叹，如果有一支像鸸鹋这样能扛子弹的军队，他能对抗全世界。行动持续了一个多月，耗掉近万发子弹，战果有争议，最终撤兵。媒体管这次行动叫“鸸鹋战争”。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你觉得什么动物最难对付？蚊子、蟑螂，还是别的？</li>
+<li>你有没有过“兴师动众，结果被一件小事打败”的经历？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w62" data-t="离谱" data-k="猜" data-p="街上">
+<header class="cd-h"><span class="th">离谱</span><span class="kd">猜</span><span class="no">62</span></header>
+<h3>胡子税</h3>
+<p class="hook">三百多年前，俄国有个沙皇对留胡子的人收税。交了税，会发一块牌子随身带着。你猜是谁？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>彼得大帝</b>。</div></details>
+<p>1698 年，彼得大帝从西欧考察回来，在接见贵族的宴会上，亲手拿剪刀剪掉了几位大贵族的胡子。他要俄国人像欧洲人一样剃须。可在东正教传统里，胡子是虔诚和体面的象征，很多人宁死不剃。</p>
+<p>于是他干脆收税：想留胡子可以，交钱。交了钱发一枚铜牌，上面的意思大致是“胡子是多余的累赘”，“已收钱”。贵族和商人每年交，农民进城时交。</p>
+<p>一把胡子，背后是一场从上往下的“西化”改革。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>如果今天要对一种发型或穿着收税，你会选哪种？</li>
+<li>你觉得一个人的外表，别人有没有权利管？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w63" data-t="离谱" data-k="讲" data-p="街上">
+<header class="cd-h"><span class="th">离谱</span><span class="kd">讲</span><span class="no">63</span></header>
+<h3>鸽子导弹</h3>
+<p class="hook">二战时，美国一位心理学家想让鸽子坐在导弹里，啄着屏幕给导弹导航。</p>
+<div class="body">
+<p>他是行为主义心理学家斯金纳。当时还没有电子制导，斯金纳想：鸽子能被训练成啄某个图案，那就把鸽子装进弹头，前面放一块小屏幕显示目标，鸽子啄哪儿，导弹就往哪儿偏。他真的训练出了能准确啄目标的鸽子，还拿到了军方的经费。</p>
+<p>军方的人看完演示，觉得太难让人认真对待，项目在 1944 年取消。战后海军又捡起来研究了几年，后来电子制导成熟，再次取消。</p>
+<p>斯金纳后来说，问题不在鸽子，在于没人愿意相信鸽子。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你觉得街上的鸽子，最适合干什么工作？</li>
+<li>有没有一个点子，你觉得行得通，但说出来别人只会笑？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w64" data-t="离谱" data-k="讲" data-p="街上">
+<header class="cd-h"><span class="th">离谱</span><span class="kd">讲</span><span class="no">64</span></header>
+<h3>美国皇帝诺顿一世</h3>
+<p class="hook">1859 年，旧金山一个破产的商人宣布自己是“美利坚合众国皇帝”。全城陪他玩了二十年。</p>
+<div class="body">
+<p>约书亚·诺顿生意失败后，给报纸写信，宣布自己是“美国皇帝诺顿一世”。报纸觉得好玩，登了。之后他穿着旧军装、戴着羽毛帽子在街上巡视，颁布“圣旨”：解散国会、禁止人们把旧金山叫作“弗里斯科”、修一座跨海湾的大桥。</p>
+<p>城里的餐馆让他免费吃饭，他自己印的“国债券”在一些店里能当钱用；有一次警察抓了他，引起公愤，警察局长只好放人并道歉。1880 年他去世，据报道有约三万人参加葬礼。</p>
+<p>几十年后，旧金山真的修起了跨海湾大桥。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>一个城市为什么愿意陪一个“疯子”玩二十年？</li>
+<li>如果你能颁布一道“圣旨”，而且大家都得照做，你颁布什么？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w65" data-t="离谱" data-k="讲" data-p="园林 博物馆">
+<header class="cd-h"><span class="th">离谱</span><span class="kd">讲</span><span class="no">65</span></header>
+<h3>花石纲</h3>
+<p class="hook">苏州园林里的太湖石，和一个宋朝的亡国皇帝有关。</p>
+<div class="body">
+<p>宋徽宗爱奇石，要在汴京修一座皇家园林“艮岳”。他在苏州设了专门的机构，从江南搜罗奇花异石，用船队一批批运往京城，十船为一“纲”，这就是“花石纲”。</p>
+<p>运一块大石头，要拆桥、凿城墙、征民夫，看中谁家的石头，贴上黄封条就成了御用，主人还得小心看护，坏了要治罪。民怨极大，后来方腊起义，一个重要的口号就是反花石纲。</p>
+<p>艮岳建成没几年，金兵南下，汴京陷落，宋徽宗被掳到北方。园子被拆，石头流散。今天苏州、北京有几块名石，传说就是当年的花石纲遗物。</p>
+<p class="doubt">现存哪些石头真是花石纲遗物，多是传说，难以确证。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>下次逛园林，看到特别大的太湖石，可以猜猜它是怎么运进来的。</li>
+<li>一个人的爱好，什么时候会变成别人的灾难？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w66" data-t="离谱" data-p="随时" data-k="猜">
+<header class="cd-h"><span class="th">离谱</span><span class="kd">猜</span><span class="no">66</span></header>
+<h3>消失的十天</h3>
+<p class="hook">1582 年 10 月 4 日的第二天，是几月几号？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>10 月 15 日</b>。中间十天被一笔勾销了。</div></details>
+<p>古罗马传下来的儒略历，一年平均 365.25 天，比真实的太阳年长了十一分钟左右。一年多十一分钟不起眼，一千多年下来，累积差了十天左右：春分越来越早，教会算复活节的日子跟着乱了。</p>
+<p>1582 年，教皇格里高利十三世颁布新历：直接删掉十天，以后每四百年少闰三次（整百年不闰，逢四百年再闰）。这就是今天全世界通用的公历。天主教国家很快照办，新教国家却不愿听教皇的。英国一直拖到 1752 年才改，那时已经差了十一天：9 月 2 日睡下，醒来是 9 月 14 日。俄国更晚，1918 年才改，所以俄国的“十月革命”，按公历其实发生在 11 月。</p>
+<p class="doubt">常听说英国改历时有人上街抗议“还我十一天”，这个说法证据很弱，多半是后来夸大的。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>如果日历要删掉十天，你希望删掉哪十天？还是一天也舍不得？</li>
+<li>2 月 29 日出生的人，平常年份哪天过生日？你会选哪天？</li>
+</ul></div>
+<p class="seed">可能的下一本：时间与历法。</p>
+</article>
+
+</div>
+</div>
+</section>
+<section class="deck g" id="t7" data-theme="没人懂">
+<div class="wide">
+<div class="deck-h"><h2>至今没人懂</h2><span>十一张 · 天天见，说不清</span></div>
+<p class="lede">打哈欠、冰为什么滑、自行车为什么不倒——每天都在发生，科学家到今天也没完全讲清楚。这一组没有标准答案，最适合两个人一起瞎猜。</p>
+<div class="grid">
+
+<article class="cd" id="w67" data-t="没人懂" data-k="玩" data-p="随时">
+<header class="cd-h"><span class="th">没人懂</span><span class="kd">玩</span><span class="no">67</span></header>
+<h3>打哈欠</h3>
+<p class="hook">读到这句话的时候，你可能已经想打哈欠了。</p>
+<div class="body">
+<p>人为什么打哈欠？没有定论。“缺氧”的说法被实验否定过：让人吸高浓度的氧气，哈欠并没有少。现在比较受关注的一种假说是给大脑降温：深吸一口冷空气，拉伸下巴，让血液流动加快。还有人认为是在切换状态，比如从困到醒、从无聊到警觉。</p>
+<p>更怪的是哈欠会传染：看见、听见、甚至读到“哈欠”两个字都会被传染。越亲近的人之间越容易传染，狗也会被主人的哈欠传染。胎儿在妈妈肚子里三个月左右就会打哈欠了，可那时它根本不需要“传染”或者“降温”。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>玩法：从现在开始，谁先打哈欠，谁讲下一张卡。</li>
+<li>你觉得最容易让你犯困的场合是什么？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w68" data-t="没人懂" data-k="讲" data-p="随时">
+<header class="cd-h"><span class="th">没人懂</span><span class="kd">讲</span><span class="no">68</span></header>
+<h3>麻药为什么管用</h3>
+<p class="hook">全身麻醉用了快两百年，可它到底怎么让人失去意识的，至今没完全搞清楚。</p>
+<div class="body">
+<p>1846 年 10 月，美国牙医莫顿在波士顿的麻省总医院公开演示乙醚麻醉，病人在手术中睡着了，醒来说没觉得疼。这一天常被看作现代麻醉的开始。更早的 1804 年，日本医生华冈青洲已经用自己配的草药麻醉剂做过乳腺癌手术。中国传说中华佗的“麻沸散”，方子早已失传。</p>
+<p>至于原理：一百多年前人们发现，越容易溶在油里的气体，麻醉效果越强，于是猜它作用在细胞膜上。后来又发现它会作用在神经细胞的一些蛋白质上。可是这些变化怎样一步步变成“意识关掉了”，还是谜。说到底，这个问题卡在另一个更大的谜上：意识本身是什么。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>全身麻醉时，人既不做梦，也感觉不到时间过去。你觉得那和睡觉一样吗？</li>
+<li>如果意识能“关掉再打开”，关掉前和打开后的，还是同一个人吗？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w69" data-t="没人懂" data-k="辩" data-p="随时">
+<header class="cd-h"><span class="th">没人懂</span><span class="kd">辩</span><span class="no">69</span></header>
+<h3>冰为什么滑</h3>
+<p class="hook">冰为什么滑？课本上常说“压力让冰融化成一层水”。这个解释可能是错的。</p>
+<div class="body">
+<div class="sides"><div><b>压力融化派</b>人站在冰上，压力让冰的熔点降低，表面化出一层薄水，水起润滑作用，所以滑。</div><div><b>不够用派</b>算一算，人的体重只能让熔点降低零点几度。零下二三十度的冰照样滑，压力根本化不了它。</div></div>
+<p>现在的研究大多认为：冰的表面本来就有一层极薄的、不太“冻得住”的分子，像半液体，不需要压力也存在；再加上滑动时摩擦生热，会多化出一点水。2018 年德国一个团队的实验还发现，冰表面的水分子能像小滚珠一样滚动。</p>
+<p>一件人类从小就知道的事，物理学家吵了一百多年，到今天还没完全吵完。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你站哪一派？</li>
+<li>你小时候在冰上摔过最惨的一跤是什么时候？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w70" data-t="没人懂" data-k="玩" data-p="夜空">
+<header class="cd-h"><span class="th">没人懂</span><span class="kd">玩</span><span class="no">70</span></header>
+<h3>月亮怎么变大了</h3>
+<p class="hook">月亮刚升起来贴着地平线的时候，看着特别大；升到头顶，又小了。其实它一点没变。</p>
+<div class="body">
+<p>拍照一量就知道：两个时候的月亮大小几乎一样，地平线上的月亮离你还远了一点点，反而更小。这种“月亮错觉”，亚里士多德讨论过，托勒密讨论过，一千多年前的阿拉伯学者海什木也讨论过，到今天还有好几种解释在争。</p>
+<p>有人说是地平线上有房子、树作参照，月亮显得大；有人说大脑觉得天顶比地平线近，同样大小的东西“在远处”就显得大。可没有一种解释能说服所有人。</p>
+<p>自己就能试：把一张纸卷成筒，只露出月亮看；或者转过身弯腰从两腿之间倒着看，地平线上的月亮会“缩水”。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>下次看到大月亮，我们试一下纸筒。</li>
+<li>你觉得还有什么东西，是“眼睛看到的”和“实际的”差很远的？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w71" data-t="没人懂" data-k="猜" data-p="街上">
+<header class="cd-h"><span class="th">没人懂</span><span class="kd">猜</span><span class="no">71</span></header>
+<h3>自行车为什么不倒</h3>
+<p class="hook">一辆没人骑的自行车，推出去以后能自己稳住、跑一段。为什么？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>到今天还没有简单的答案</b>。常见的两个解释，后来都被证明不是必需的。</div></details>
+<p>过去常说是车轮像陀螺一样转，有“陀螺效应”；或者是前轮的转轴往前倾，车一歪，前轮就自动往同一边转，把车扶正。2011 年，荷兰和美国的研究者在《科学》杂志上发表了一辆特制的自行车：加了反着转的轮子抵消陀螺效应，又改掉了前轮的那种几何结构，可它推出去照样能自己稳住。</p>
+<p>结论是：自行车的自稳来自好几个因素复杂地叠加在一起，质量分布也很关键，没有一个“一句话的原因”。人类骑了一百多年自行车，才发现自己没真懂它。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你是几岁学会骑自行车的？谁教的？</li>
+<li>你还能想到什么东西，“人人都会用，没人说得清原理”？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w72" data-t="没人懂" data-k="玩" data-p="街上 随时">
+<header class="cd-h"><span class="th">没人懂</span><span class="kd">玩</span><span class="no">72</span></header>
+<h3>看太阳打喷嚏</h3>
+<p class="hook">有些人从暗处走到阳光下，或者抬头看太阳，会忍不住打喷嚏。你是吗？</p>
+<div class="body">
+<p>这叫“光喷嚏反射”，大约每五个人里就有一个左右，各项调查从不到两成到三成多不等，而且常常是家族遗传。科学家给它起了个英文缩写叫“ACHOO 综合征”，念出来就是打喷嚏的声音。</p>
+<p>两千多年前，托名亚里士多德的《问题集》里就问过：为什么太阳的热会让人打喷嚏？到今天也没有确切答案。一种猜测是：管视觉的神经和管鼻子感觉的神经挨得很近，强光一刺激，信号“串线”了。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你是吗？你家里有人是吗？</li>
+<li>你身上有没有什么奇怪的小反应，别人都没有？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w73" data-t="没人懂" data-k="讲" data-p="随时">
+<header class="cd-h"><span class="th">没人懂</span><span class="kd">讲</span><span class="no">73</span></header>
+<h3>明说是假药也管用</h3>
+<p class="hook">医生明确告诉病人“这是安慰剂，里面什么都没有”，病人吃了，症状照样减轻。</p>
+<div class="body">
+<p>安慰剂效应是医学里最确定、又最说不清的东西之一：吃下没有药效的糖丸，病人觉得好多了，有些指标也真的变了。2010 年哈佛的一项研究更进一步：给肠易激综合征的病人发药丸，瓶子上直接写着“安慰剂”，医生也明说了，结果这组人的症状改善，仍然比什么都不吃的那组明显。</p>
+<p>还有研究发现，告诉受试者一颗止痛药很贵，他们觉得更管用；说是打折的便宜货，效果就差了。</p>
+<p>人为什么会被自己“骗好”？身体怎样把一个“我在接受治疗”的念头变成真实的变化？还没完全搞清楚。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你有过“吃了药马上就觉得好多了”的经历吗？那么快，可能是药吗？</li>
+<li>你觉得仪式感，比如穿正装、去好一点的地方学习，会不会也是一种安慰剂？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w74" data-t="没人懂" data-k="讲" data-p="随时">
+<header class="cd-h"><span class="th">没人懂</span><span class="kd">讲</span><span class="no">74</span></header>
+<h3>为什么要睡觉</h3>
+<p class="hook">人一辈子大约三分之一的时间在睡觉。可是为什么非睡不可，科学家还没有统一答案。</p>
+<div class="body">
+<p>几乎所有被研究过的动物都会以某种方式睡觉。海豚可以一半大脑睡、一半醒着，继续游泳换气；有些鸟在长途飞行中也会这样打盹。2017 年的研究发现，连没有大脑的倒立水母都有类似睡眠的状态：夜里反应变慢，被吵醒的话，第二天会“补觉”。</p>
+<p>睡眠有什么用？目前的线索很多：巩固白天的记忆；2013 年有研究发现，睡觉时大脑会加快清除代谢废物，像夜里的环卫工；还有调节情绪、修复身体……但哪个才是“最根本的原因”，各派还在争。</p>
+<p>可以确定的一点：熬夜之后第二天学进去的东西，真的会少。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你一般几点睡？你觉得自己睡够了吗？</li>
+<li>你做过最奇怪的一个梦是什么？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w75" data-t="没人懂" data-k="讲" data-p="夜空">
+<header class="cd-h"><span class="th">没人懂</span><span class="kd">讲</span><span class="no">75</span></header>
+<h3>球状闪电</h3>
+<p class="hook">几百年来，一直有人说见过一团会飘的“火球”闪电。直到 2012 年，才有科学家碰巧拍下了它的光谱。</p>
+<div class="body">
+<p>关于球状闪电的目击记录很多：雷雨时出现一团发光的球，网球到篮球大小，会飘、会穿过窗户，几秒后消失或者爆掉。可它出现得太随机，很长时间里科学界甚至怀疑它是不是真的存在。</p>
+<p>2012 年夏天，西北师范大学的研究团队在青海观测普通闪电时，摄像机和光谱仪碰巧录到了一个球状闪电，持续了一秒多。光谱显示里面有硅、铁、钙等土壤里的元素，支持“闪电打到地面、把土壤里的物质蒸发出来燃烧”的假说。但也只是一种假说。</p>
+<p>刘慈欣的小说《球状闪电》，就是从这个谜出发的。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你见过什么解释不了的自然现象吗？</li>
+<li>如果只有你一个人看到了一件怪事，没有照片，你会告诉别人吗？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w76" data-t="没人懂" data-k="猜" data-p="街上 随时">
+<header class="cd-h"><span class="th">没人懂</span><span class="kd">猜</span><span class="no">76</span></header>
+<h3>猫为什么呼噜</h3>
+<p class="hook">猫舒服时会打呼噜。可是它受伤、生病、甚至临死时，也会打呼噜。为什么？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>没人确定</b>。“开心”只能解释一部分。</div></details>
+<p>猫怎么发出呼噜声，也是近几年才有新进展：过去认为必须靠大脑持续发信号，让喉部肌肉快速收缩；2023 年的一项研究发现，猫的声带里有一种特殊的垫状组织，不需要大脑每一下都发指令，喉咙自己就能振动出呼噜那么低的频率。</p>
+<p>为什么要打呼噜？有人说是安抚自己，有人说是向母猫、向人传达“我没有威胁”。还有一种很受欢迎的说法：呼噜的频率在 25 到 150 赫兹之间，可能有助于骨骼愈合。听起来很美，但还没有确切证据。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你更喜欢猫还是狗？为什么？</li>
+<li>你有没有一种“看起来是开心、其实不一定”的表现？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w77" data-t="没人懂" data-k="猜" data-p="随时">
+<header class="cd-h"><span class="th">没人懂</span><span class="kd">猜</span><span class="no">77</span></header>
+<h3>左撇子为什么总是一成</h3>
+<p class="hook">全世界的左撇子大约占人口的多少？这个比例变过吗？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>约一成</b>，而且从考古证据看，几千年甚至更久以来大致都是这个比例。</div></details>
+<p>研究者从古代工具的磨痕、远古洞穴里的手印、古画里人物用哪只手，推断左撇子一直稳定在一成左右。奇怪的是：如果左手有好处，左撇子应该越来越多；如果没好处，应该越来越少。为什么偏偏一直停在一成？</p>
+<p>一个有意思的解释叫“打架假说”：左撇子在一对一的搏斗中有优势，因为对手平时很少和左撇子交手。2005 年有研究发现，在一些传统社会里，暴力冲突越多，左撇子的比例越高。体育比赛里，击剑、乒乓球、拳击的顶尖选手中，左撇子明显偏多。</p>
+<p>但如果人人都是左撇子，这个优势就没了。所以左撇子不能太多，也不会消失。这只是一种假说。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你身边的左撇子多吗？他们有没有抱怨过什么东西难用？</li>
+<li>有没有一种情况，是“少数人才有优势，多了就没了”的？</li>
+</ul></div>
+</article>
+
+</div>
+</div>
+</section>
+<section class="deck g" id="t8" data-theme="保命">
+<div class="wide">
+<div class="deck-h"><h2>保命常识</h2><span>十一张 · 知道了，也许哪天用得上</span></div>
+<p class="lede">不吓人，只讲做法。每张都有一两个“很多人以为是对的、其实是错的”的地方。真遇到紧急情况，先打 120 或 110。</p>
+<div class="grid">
+
+<article class="cd" id="w78" data-t="保命" data-k="讲" data-p="饭桌 随时">
+<header class="cd-h"><span class="th">保命</span><span class="kd">讲</span><span class="no">78</span></header>
+<h3>被噎住了</h3>
+<p class="hook">如果有人吃饭时突然说不出话、双手掐着脖子，他可能是被噎住了。要怎么救？</p>
+<div class="body">
+<p>先分清楚：如果他还能大声咳嗽，说明气道没完全堵住，鼓励他用力咳，别乱拍背。如果他咳不出声、说不出话、脸开始发紫，就要马上用“海姆立克法”，同时让旁边的人打 120。</p>
+<p>做法：站到他身后，双臂环抱他的腰；一只手握拳，拳眼抵在他肚脐上方、肋骨下方的位置，另一只手包住拳头；然后快速地向内、向上冲击，像要把他往上抱起来，一下一下地做，直到东西吐出来。孕妇或者很胖的人，改为在胸骨中间冲击。一岁以下的婴儿做法不同：让他趴在大人前臂上拍背，再翻过来按压胸口。</p>
+<p>自己一个人被噎住时，可以用拳头顶住自己的上腹，或者把上腹对准椅背、桌角，快速往下压。这个方法是美国医生海姆立克在 1974 年发表的。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>我们比划一下：肚脐上面、肋骨下面，大概在哪儿？</li>
+<li>你身边有没有人真的被噎住过？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w79" data-t="保命" data-k="猜" data-p="园林">
+<header class="cd-h"><span class="th">保命</span><span class="kd">猜</span><span class="no">79</span></header>
+<h3>溺水不像溺水</h3>
+<p class="hook">电影里的人溺水，会拼命挥手、大喊救命。现实中真正溺水的人，是什么样的？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>很安静</b>。他们往往喊不出来，也挥不了手。</div></details>
+<p>研究溺水救援的专家弗兰克·皮亚描述过“本能溺水反应”：人身体直立在水里，头往后仰，嘴巴在水面上下起伏，一冒出水面就忙着吸气，根本没力气喊；双手本能地往两边压水，想把身体撑起来，举不起来挥手。这个阶段可能只有二三十秒到一分钟。</p>
+<p>所以，如果有人在水里“看起来在玩、但一直不说话、眼神发直”，大声问他“你没事吧”，不回答，就要当成溺水处理。</p>
+<p>救人最重要的一条：不会水、没受过训练的人，千万别直接跳下去。先大声喊人，再找长竿、绳子、救生圈、空水桶这类能漂的东西递过去或扔过去。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你会游泳吗？谁教你的？</li>
+<li>去公园湖边、河边玩时，你会注意哪里有救生圈吗？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w80" data-t="保命" data-k="讲" data-p="街上">
+<header class="cd-h"><span class="th">保命</span><span class="kd">讲</span><span class="no">80</span></header>
+<h3>别对“大家”喊救命</h3>
+<p class="hook">在人多的地方遇到紧急情况，喊“谁来帮帮我”往往没人动。要指定一个人。</p>
+<div class="body">
+<p>1964 年纽约发生了一起谋杀案，报纸报道说有 38 个邻居听见或看见了，却没有一个人报警。后来查明这个报道严重夸大了，但它引出了心理学上一个被反复验证的现象：在场的人越多，每个人越觉得“会有别人管”，伸手的反而越少，这叫“旁观者效应”。1968 年心理学家达利和拉塔内的实验证实：一个人独处时听到有人发病，大多会去帮；以为还有其他人在场时，帮忙的比例明显下降。</p>
+<p>破解的办法很简单：别对着人群喊，指定具体的人。“穿蓝衣服的大哥，请你打 120！”“戴眼镜的姐姐，帮我去找保安！”被点到名的人，几乎都会去做。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你遇到过需要别人帮忙、但大家都在看的场面吗？</li>
+<li>如果是你在旁边，你会是第一个上去的人吗？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w81" data-t="保命" data-k="猜" data-p="随时">
+<header class="cd-h"><span class="th">保命</span><span class="kd">猜</span><span class="no">81</span></header>
+<h3>两瓶不能混的清洁剂</h3>
+<p class="hook">宿舍和家里最常见的两种清洁剂，混在一起会放出有毒的气体。是哪两种？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>84 消毒液（含次氯酸钠）和洁厕灵（含盐酸）</b>。两者一混，会放出氯气。</div></details>
+<p>有人觉得“两样都能消毒，一起用效果更好”，于是倒在一起刷马桶。氯气有强烈的刺鼻味，会刺激眼睛和呼吸道，浓度高时会损伤肺。卫生间空间小、通风差，更危险。</p>
+<p>另一种危险的组合是含氯的漂白剂和含氨的清洁剂，会产生氯胺，也有毒。</p>
+<p>记住一条就够了：不同的清洁剂别混着用，用完一种冲干净再用下一种。万一闻到刺鼻的气味，马上离开、开窗通风。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你家里或宿舍里有几种清洁剂？你知道它们各是什么成分吗？</li>
+<li>你还听过哪些“厨房和卫生间里的危险组合”？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w82" data-t="保命" data-k="猜" data-p="饭桌">
+<header class="cd-h"><span class="th">保命</span><span class="kd">猜</span><span class="no">82</span></header>
+<h3>油锅着火</h3>
+<p class="hook">炒菜时油锅着火了，第一反应往往是泼水。这样做会怎样？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>火会更大</b>，甚至炸开。水一碰到滚烫的油，瞬间变成水蒸气，把燃烧的油喷得到处都是。</div></details>
+<p>正确的做法：先关火；然后盖上锅盖，或者用湿抹布、湿毛巾把锅盖严，隔绝空气，火自己就灭了；如果手边有切好的大量蔬菜，倒进锅里也能降温灭火。不要端着着火的锅往外跑，油一洒就是一片火。</p>
+<p>厨房里还有一个常见的错误：电器着火时也用水泼，可能触电。应该先断电。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你会做饭吗？你最拿手的一道菜是什么？</li>
+<li>你在厨房里出过什么事故？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w83" data-t="保命" data-k="猜" data-p="街上 园林">
+<header class="cd-h"><span class="th">保命</span><span class="kd">猜</span><span class="no">83</span></header>
+<h3>雷雨天站哪儿</h3>
+<p class="hook">打雷时躲到大树底下避雨，安全吗？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>很危险</b>。孤零零的大树是附近最高的东西，最容易引雷，雷电还会从树干“跳”到旁边的人身上。</div></details>
+<p>几个常见的误区：其一，“雨还没下到这儿，没事”，其实雷电能打到雷暴边缘十几公里以外，听得见雷声，就在雷击范围之内。其二，“汽车的橡胶轮胎能绝缘”，汽车确实相对安全，但原因是金属车壳把电流导走了，跟轮胎关系不大。其三，“雷不会两次打同一个地方”，恰恰相反，高的地方会被反复打，纽约帝国大厦每年要挨二十多次雷。</p>
+<p>在户外遇到雷雨：尽快进建筑物或者金属顶的汽车；找不到，就远离大树、电线杆、水边和开阔地的最高点，双脚并拢蹲下，尽量把身体缩小。最后一声雷响过半小时后，再出来。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你经历过最吓人的一次雷雨是在哪儿？</li>
+<li>美国有个公园管理员一辈子被雷打中七次，都活了下来。你觉得他是幸运还是倒霉？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w84" data-t="保命" data-k="讲" data-p="街上">
+<header class="cd-h"><span class="th">保命</span><span class="kd">讲</span><span class="no">84</span></header>
+<h3>人挤人的时候</h3>
+<p class="hook">人群拥挤时，最大的危险往往不是被踩，而是站着就喘不过气。</p>
+<div class="body">
+<p>当每平方米站了五个人以上，人群就会像液体一样晃动，人被前后的压力挤着走，胸口被压得没法扩张，站着就会窒息。所以最重要的是：别往人特别密的地方去；感觉越来越挤、脚已经开始被带着走时，就要尽早往边上撤。</p>
+<p>如果已经被挤住了：双臂在胸前交叉或者像拳击手那样护在胸前，撑出一点呼吸的空间；顺着人流的方向斜着往边上移动，不要逆着人流硬挤；鞋掉了别弯腰去捡。万一摔倒，尽量侧身蜷起来，双手护住头和脖子，护住胸口和肚子，有机会就赶紧站起来。</p>
+<p>去热门景点、跨年、演唱会，进场前先看一眼出口在哪儿。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你去过最挤的地方是哪儿？</li>
+<li>你会在去人多的地方之前先看出口吗？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w85" data-t="保命" data-k="讲" data-p="随时">
+<header class="cd-h"><span class="th">保命</span><span class="kd">讲</span><span class="no">85</span></header>
+<h3>看不见的煤气</h3>
+<p class="hook">冬天里，一家人在家都头疼、恶心、没精神，一出门就好了。这可能不是感冒。</p>
+<div class="body">
+<p>一氧化碳无色、无味，燃烧不充分时就会产生：门窗紧闭时烧炭取暖、在不通风的浴室里用燃气热水器、燃气灶用久了烧得不好，都可能出问题。中毒的早期症状和感冒、疲劳很像：头疼、头晕、恶心、乏力，所以很容易被忽略。人睡着时更危险，可能在不知不觉中昏迷。</p>
+<p>几个信号：同一个屋子里的人一起不舒服；离开屋子一会儿就好转。这时要马上开窗通风、关掉燃气、离开房间，严重时打 120。</p>
+<p>最好的预防是装一个一氧化碳报警器，几十块钱。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你家里用的是燃气热水器还是电热水器？浴室通风吗？</li>
+<li>你会提醒家里人这些事吗？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w86" data-t="保命" data-k="辩" data-p="随时">
+<header class="cd-h"><span class="th">保命</span><span class="kd">辩</span><span class="no">86</span></header>
+<h3>冻着了才感冒？</h3>
+<p class="hook">家里人总说：“穿这么少，小心冻感冒！”可课本上说感冒是病毒引起的。谁对？</p>
+<div class="body">
+<div class="sides"><div><b>妈妈派</b>天一冷，感冒的人就多，这是每个人都看得见的。受凉以后就打喷嚏流鼻涕，也是很多人的亲身体验。</div><div><b>病毒派</b>没有病毒，冻成冰棍也不会感冒。冬天感冒多，是因为大家都关着门窗挤在室内，病毒更容易传播。</div></div>
+<p>其实两边都对一点。2015 年耶鲁大学的研究发现：鼻病毒（引起普通感冒最常见的病毒）在鼻腔比较凉的温度下复制得更好，鼻子受凉时，局部的免疫反应也会变弱。所以，冷本身不会“造出”感冒，但可能让已经进来的病毒更容易得手。</p>
+<p>结论：多穿点没错，勤洗手、开窗通风也很重要。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你站哪边？你家里有什么“冬天一定要怎样”的规矩？</li>
+<li>你觉得长辈的经验和科学研究不一致的时候，该信谁？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w87" data-t="保命" data-k="猜" data-p="街上 随时">
+<header class="cd-h"><span class="th">保命</span><span class="kd">猜</span><span class="no">87</span></header>
+<h3>电梯会不会掉下去</h3>
+<p class="hook">电梯的钢缆要是全断了，电梯会一路掉到底吗？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>几乎不会</b>。现代电梯有好几根钢缆，每一根都能单独吊住电梯；就算全断了，还有自动卡住导轨的安全钳。</div></details>
+<p>安全钳是美国人奥的斯发明的。1854 年在纽约的世博会上，他站在一个升到高处的平台上，当众让人砍断吊绳，平台只往下掉了一点就卡住了。他对观众说了一句“一切安全”。有了它，人们才敢坐电梯，高楼才盖得起来。</p>
+<p>被困电梯时：按警铃或者打电梯里贴的救援电话，然后等待。不要扒门，也不要试图从顶上爬出去，那才真的危险。“掉下去时在落地前一刻跳起来能保命”是误传：你既不知道哪一刻落地，跳起来也抵消不了下落的速度。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你被困过电梯吗？</li>
+<li>如果被困一个小时，你会干什么？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w88" data-t="保命" data-p="随时" data-k="讲">
+<header class="cd-h"><span class="th">保命</span><span class="kd">讲</span><span class="no">88</span></header>
+<h3>洗手的医生</h3>
+<p class="hook">一个医生发现“洗手能救命”，结果被同行排挤，最后死在了精神病院。</p>
+<div class="body">
+<p>1840 年代，维也纳总医院有两个产科病房：第一病房由医生和医学生接生，第二病房由助产士接生。奇怪的是，第一病房的产妇死于“产褥热”的比例，常常是第二病房的好几倍。孕妇们哭着求别把自己送进第一病房。</p>
+<p>年轻的匈牙利医生塞麦尔维斯想找出原因。1847 年，一位同事解剖时被学生的刀划伤，很快以和产褥热一模一样的症状死去。塞麦尔维斯想到：医生们常常是从解剖室直接过来接生的，手上带着从尸体上来的“东西”。他要求所有人用漂白粉溶液洗手，第一病房的死亡率很快大幅下降。</p>
+<p>可很多医生不愿接受：这等于说，是我们自己的手害死了病人。那时还没有细菌学说，他也说不清那“东西”到底是什么，性子又急，四处写信骂人。1865 年，他被送进精神病院，两周后去世。又过了些年，巴斯德和李斯特的研究让细菌学说被普遍接受，他才被平反。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你遇到过“明明是对的，但说法让人很难接受”的事吗？</li>
+<li>为什么人特别难接受“问题出在自己身上”？</li>
+</ul></div>
+<p class="seed">可能的下一本：疾病与医学。</p>
+</article>
+
+</div>
+</div>
+</section>
+<section class="deck g" id="t9" data-theme="逛">
+<div class="wide">
+<div class="deck-h"><h2>逛</h2><span>十二张 · 博物馆、园林、街上、饭桌</span></div>
+<p class="lede">出门逛之前挑几张。到了青铜器、屋檐、太湖石、红绿灯前面，抬手一指就能讲。</p>
+<div class="grid">
+
+<article class="cd" id="w89" data-t="逛" data-k="猜" data-p="博物馆">
+<header class="cd-h"><span class="th">逛</span><span class="kd">猜</span><span class="no">89</span></header>
+<h3>青铜原来是金色的</h3>
+<p class="hook">博物馆里的青铜器都是绿的。刚铸出来的时候，它是什么颜色？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>金黄色</b>，亮闪闪的，有点像今天的黄铜。</div></details>
+<p>青铜是铜和锡（有时还有铅）的合金，刚铸好、打磨过的青铜器金光灿灿。古人管铸器用的青铜叫“吉金”，好的金属，铭文里常见“择其吉金”。之所以叫“青铜”，是因为它在地下埋了两三千年，表面的铜慢慢生锈，长出一层绿色、蓝色的锈，就是我们看到的样子。</p>
+<p>所以，商周贵族眼里的鼎，和我们在展柜里看到的鼎，完全是两种颜色。有些博物馆会放一件复制的新铸青铜器，对比一下，会吓一跳。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>下次在博物馆，我们试着想象一下：这一排绿色的东西，原来都是金色的。</li>
+<li>你觉得它们是现在好看，还是原来好看？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w90" data-t="逛" data-k="猜" data-p="博物馆">
+<header class="cd-h"><span class="th">逛</span><span class="kd">猜</span><span class="no">90</span></header>
+<h3>兵马俑原本是彩色的</h3>
+<p class="hook">兵马俑刚出土时，有的身上还有鲜艳的颜色。几分钟后，颜色没了。为什么？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：彩绘下面有一层<b>生漆</b>打底。出土后漆层一接触干燥的空气就迅速失水、卷曲、起翘，带着上面的颜料一起脱落。</div></details>
+<p>秦俑原本全身彩绘：红色、绿色、紫色、蓝色的衣服，粉色的脸，黑色的头发。考古学家发现，颜料剥落往往就在出土后的几分钟到几十分钟里。这也是兵马俑坑至今没有全部发掘的原因之一：在没有把握保住颜色之前，宁可让它们继续埋着。</p>
+<p>古希腊和古罗马的白色大理石雕像也一样，原来是涂着颜色的，只是颜料在两千年里褪光了。文艺复兴以后的人看到的是白色，以为“古典就是白色”，还专门去模仿。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>如果你能给兵马俑选一个颜色复原，你最想看到它们什么样？</li>
+<li>还有什么东西，是“我们以为一直这样，其实原来不是”的？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w91" data-t="逛" data-k="讲" data-p="博物馆">
+<header class="cd-h"><span class="th">逛</span><span class="kd">讲</span><span class="no">91</span></header>
+<h3>爱盖章的皇帝</h3>
+<p class="hook">乾隆皇帝喜欢在名画上题诗、盖章，一幅画上能盖几十个章。有一次，他在一幅假画上盖满了章。</p>
+<div class="body">
+<p>乾隆一生写了四万多首诗，数量和整部《全唐诗》差不多。他收藏了大量古代书画，看到喜欢的就题字、盖章，不少名作的留白处都被他的诗和印章填满了。</p>
+<p>最出名的是黄公望的《富春山居图》。1745 年他得到一卷，爱不释手，前前后后在上面题了几十次。第二年，又有一卷送进宫来，乾隆判定这一卷是假的，但还是收下了。后来的研究证明：他题满字的那卷才是仿品，被他判为假的那卷才是真迹。真迹因此躲过一劫，画面干干净净。</p>
+<p>今天《富春山居图》的真迹分成两段，前段《剩山图》在浙江省博物馆，后段《无用师卷》在台北故宫博物院。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>下次在博物馆看古画，我们比比谁先找到乾隆的章。</li>
+<li>你会在自己喜欢的书上写字、做记号吗？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w92" data-t="逛" data-k="猜" data-p="博物馆 街上">
+<header class="cd-h"><span class="th">逛</span><span class="kd">猜</span><span class="no">92</span></header>
+<h3>九九八十一颗门钉</h3>
+<p class="hook">故宫大门上的门钉，一扇门有几颗？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：多数正门是横九排、竖九排，<b>九九八十一颗</b>。九是阳数里最大的，象征皇帝。</div></details>
+<p>清朝对门钉有等级规定：宫殿的门用九九之数，亲王府、郡王府依次递减，普通老百姓家的门不许用门钉。门钉一开始是为了把门板和背后的横木钉牢，后来成了身份的标志。</p>
+<p>但有一个例外：故宫东边的东华门，门钉是横九竖八，七十二颗。为什么少了一排？说法很多：有人说东华门是皇帝灵柩出宫走的门，有人说和方位、阴阳有关，但都没有确切的史料。</p>
+<p class="doubt">东华门门钉少一排的原因，各种说法都缺少可靠依据。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>去故宫的时候，我们去东华门数一数。</li>
+<li>你觉得还有什么东西，一开始是有用的，后来变成了“身份的象征”？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w93" data-t="逛" data-k="玩" data-p="博物馆 园林 街上">
+<header class="cd-h"><span class="th">逛</span><span class="kd">玩</span><span class="no">93</span></header>
+<h3>屋脊上的小兽</h3>
+<p class="hook">古建筑屋檐的斜脊上，常常蹲着一排小兽。数一数有几只，就知道这座房子的级别。</p>
+<div class="body">
+<p>这些小兽叫“脊兽”，排在最前面的是一个骑着凤的仙人，后面跟着一串小兽。数量都是单数，越多级别越高。故宫太和殿是唯一一座有十只的：龙、凤、狮子、天马、海马、狻猊、狎鱼、獬豸、斗牛、行什。排在最后的“行什”长着翅膀、拿着金刚杵，像个猴子，别处都没有。</p>
+<p>皇帝住的乾清宫是九只，其他宫殿七只、五只、三只依次递减。小兽原本也有实际用途：盖住固定瓦片的钉子，防止漏水。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>玩法：逛古建筑时，先猜这座殿有几只脊兽，再数，猜得最准的赢。</li>
+<li>如果你能在自己家屋顶上放一只神兽，你选什么？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w94" data-t="逛" data-k="讲" data-p="园林">
+<header class="cd-h"><span class="th">逛</span><span class="kd">讲</span><span class="no">94</span></header>
+<h3>拙者之为政</h3>
+<p class="hook">苏州的拙政园，名字的意思是“笨人的从政”。这名字是园主自嘲。</p>
+<div class="body">
+<p>拙政园建于明朝正德年间，园主王献臣做过御史，仕途不顺，被贬官后回到苏州造园。园名取自西晋潘岳的《闲居赋》：在家浇浇园子、卖卖菜，养活自己，“此亦拙者之为政也”——这也算是笨人的“为政”吧。</p>
+<p>拙政园里有一处很有名的“借景”：站在中部池塘的东头往西望，远处的北寺塔像是园子的一部分，其实它在园外。中国园林很会这招，用一扇窗、一道门、一段墙，把园外的风景“借”进来。窗户也是：漏窗、花窗、空窗，每一扇都像一个画框。</p>
+<p>还有个传说：王献臣的儿子一夜赌博，把园子输给了别人。</p>
+<p class="doubt">王献臣之子赌输园子的说法见于后人笔记，未必可靠。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>玩法：逛园林时，各自找一个“借景”或者“框景”，拍下来比比谁的好。</li>
+<li>如果你造一个园子，你给它起什么名字？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w95" data-t="逛" data-k="辩" data-p="街上">
+<header class="cd-h"><span class="th">逛</span><span class="kd">辩</span><span class="no">95</span></header>
+<h3>井盖为什么是圆的</h3>
+<p class="hook">这是一道有名的面试题：井盖为什么是圆的？</p>
+<div class="body">
+<div class="sides"><div><b>圆的好</b>圆形无论怎么转，都不会从井口掉下去；方形的盖子斜着放，对角线比边长，可能掉进去。圆盖还能滚着搬运，放回去不用对方向。井口和管道大多也是圆的。</div><div><b>方的也行</b>只要井口有台阶挡着，方盖一样掉不下去。很多地方的电力、通信检修井就是方的。方形更好铺砖、好对齐，做成双层也更容易。</div></div>
+<p>两边都对。“圆的不会掉下去”是最常被说起的理由，但它不是唯一的答案，这道面试题本来也不是要标准答案，而是看人怎么想。</p>
+<p>日本的很多城市把井盖做成艺术品，每个城市一个图案，画的是当地的花、名胜、动画人物。还有专门收集“井盖卡”的爱好者。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你站哪边？</li>
+<li>我们今天走过的路上，你注意到几个井盖？有方的吗？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w96" data-t="逛" data-k="讲" data-p="街上">
+<header class="cd-h"><span class="th">逛</span><span class="kd">讲</span><span class="no">96</span></header>
+<h3>第一盏红绿灯</h3>
+<p class="hook">世界上第一盏交通信号灯装在伦敦，用的是煤气灯，没过多久就爆炸了。</p>
+<div class="body">
+<p>1868 年 12 月，伦敦议会大厦外的路口装起了第一盏信号灯。设计者是一位铁路信号工程师，所以它长得像铁路信号机：白天用伸出来的臂板指挥，晚上点煤气灯，红色表示停，绿色表示小心通行，由警察手动操作。不到一个月，煤气泄漏引发爆炸，操作它的警察被烧伤，这盏灯很快被撤掉了。</p>
+<p>红色表示停，是从铁路沿用来的：红光在雾里也能看得比较远，而且红色本来就让人联想到危险。三色信号灯到 20 世纪 20 年代才在美国出现。</p>
+<p>现在很多地方的信号灯会有倒计时，还有为盲人设计的“嘀嘀”提示声。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你觉得过马路时最危险的情况是什么？</li>
+<li>如果让你重新设计红绿灯，你会改什么？</li>
+</ul></div>
+</article>
+
+<article class="cd" id="w97" data-t="逛" data-p="饭桌" data-k="猜">
+<header class="cd-h"><span class="th">逛</span><span class="kd">猜</span><span class="no">97</span></header>
 <h3>辣椒才来了四百年</h3>
 <p class="hook">辣椒传进中国大约多少年了？</p>
 <div class="body">
@@ -1242,8 +1888,8 @@ footer p{margin:0 0 .5em}
 <p class="seed">可能的下一本：盐、糖、茶、辣椒。</p>
 </article>
 
-<article class="cd" id="w54" data-t="书外" data-k="猜">
-<header class="cd-h"><span class="th">书外</span><span class="kd">猜</span><span class="no">54</span></header>
+<article class="cd" id="w98" data-t="逛" data-p="饭桌" data-k="猜">
+<header class="cd-h"><span class="th">逛</span><span class="kd">猜</span><span class="no">98</span></header>
 <h3>tea 还是 cha</h3>
 <p class="hook">全世界管“茶”叫什么，大致分两派：念起来像 cha 的，和念起来像 te 的。英语、俄语、日语、阿拉伯语，各属哪派？</p>
 <div class="body">
@@ -1259,73 +1905,8 @@ footer p{margin:0 0 .5em}
 <p class="seed">可能的下一本：盐、糖、茶、辣椒。</p>
 </article>
 
-<article class="cd" id="w55" data-t="书外" data-k="猜">
-<header class="cd-h"><span class="th">书外</span><span class="kd">猜</span><span class="no">55</span></header>
-<h3>消失的十天</h3>
-<p class="hook">1582 年 10 月 4 日的第二天，是几月几号？</p>
-<div class="body">
-<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>10 月 15 日</b>。中间十天被一笔勾销了。</div></details>
-<p>古罗马传下来的儒略历，一年平均 365.25 天，比真实的太阳年长了十一分钟左右。一年多十一分钟不起眼，一千多年下来，累积差了十天左右：春分越来越早，教会算复活节的日子跟着乱了。</p>
-<p>1582 年，教皇格里高利十三世颁布新历：直接删掉十天，以后每四百年少闰三次（整百年不闰，逢四百年再闰）。这就是今天全世界通用的公历。天主教国家很快照办，新教国家却不愿听教皇的。英国一直拖到 1752 年才改，那时已经差了十一天：9 月 2 日睡下，醒来是 9 月 14 日。俄国更晚，1918 年才改，所以俄国的“十月革命”，按公历其实发生在 11 月。</p>
-<p class="doubt">常听说英国改历时有人上街抗议“还我十一天”，这个说法证据很弱，多半是后来夸大的。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>如果日历要删掉十天，你希望删掉哪十天？还是一天也舍不得？</li>
-<li>2 月 29 日出生的人，平常年份哪天过生日？你会选哪天？</li>
-</ul></div>
-<p class="seed">可能的下一本：时间与历法。</p>
-</article>
-
-<article class="cd" id="w56" data-t="书外" data-k="讲">
-<header class="cd-h"><span class="th">书外</span><span class="kd">讲</span><span class="no">56</span></header>
-<h3>两万英镑的问题</h3>
-<p class="hook">十八世纪，英国政府悬赏两万英镑，只求一个办法：在大海上知道自己在哪儿。</p>
-<div class="body">
-<p>在海上测纬度不难，看看太阳或北极星有多高就行。难的是经度：你在东西方向上走了多远。地球每小时转 15 度，所以只要同时知道“本地此刻几点”和“出发港此刻几点”，时差就是经度。本地时间看太阳就知道；难的是在颠簸、潮湿、忽冷忽热的船上，带一只几个月都走得准的钟。</p>
-<p>1707 年，一支英国舰队算错了位置，在锡利群岛触礁，一千多人丧生。1714 年，英国议会通过《经度法案》，悬赏最高两万英镑。天文学家们认为答案在星空里。一个木匠出身的钟表匠约翰·哈里森却坚持造钟，一造就是几十年。他的第四台航海钟 H4，像一块大怀表，1761 年随船去牙买加，一路下来只慢了几秒。</p>
-<p>可评审委员会一直不肯痛快给钱。哈里森八十岁时，在国王过问之下，才拿到大部分奖金。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>你有没有“大家都说方向错了，你还是坚持”的事？后来呢？</li>
-<li>如果没有手机定位，你能从这里走回家吗？靠什么认路？</li>
-</ul></div>
-<p class="seed">可能的下一本：《向外》，海洋与太空。</p>
-</article>
-
-<article class="cd" id="w57" data-t="书外" data-k="讲">
-<header class="cd-h"><span class="th">书外</span><span class="kd">讲</span><span class="no">57</span></header>
-<h3>一光日</h3>
-<p class="hook">差不多就在 2026 年 11 月，人类造的一样东西，第一次飞到离地球一“光日”那么远。</p>
-<div class="body">
-<p>1977 年发射的“旅行者 1 号”，飞过木星和土星之后，就一直往外飞，再也不回来。2012 年，它穿出了太阳风吹出的那个“大泡泡”的边缘，进入星际空间。按照计算，2026 年 11 月前后，它离地球的距离达到一光日：从地球发出去的一条指令，要走整整一天才能到它那里。</p>
-<p>1990 年，在天文学家卡尔·萨根的建议下，它在约六十亿公里外回过头，给地球拍了一张照片。地球只是一粒比一个像素还小的淡蓝色小点。萨根后来写道，我们所有人、所有的历史，都发生在这粒悬浮在阳光里的尘埃上。</p>
-<p>它身上还带着一张镀金唱片，写给可能存在的外星人：五十多种语言的问候、风声雨声心跳声、世界各地的音乐，其中有一首中国古琴曲《流水》。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>如果让你往那张唱片上放一首歌、一句话，你放什么？</li>
-<li>你觉得宇宙里只有我们吗？</li>
-</ul></div>
-<p class="seed">可能的下一本：《向外》，海洋与太空。</p>
-</article>
-
-<article class="cd" id="w58" data-t="书外" data-k="讲">
-<header class="cd-h"><span class="th">书外</span><span class="kd">讲</span><span class="no">58</span></header>
-<h3>洗手的医生</h3>
-<p class="hook">一个医生发现“洗手能救命”，结果被同行排挤，最后死在了精神病院。</p>
-<div class="body">
-<p>1840 年代，维也纳总医院有两个产科病房：第一病房由医生和医学生接生，第二病房由助产士接生。奇怪的是，第一病房的产妇死于“产褥热”的比例，常常是第二病房的好几倍。孕妇们哭着求别把自己送进第一病房。</p>
-<p>年轻的匈牙利医生塞麦尔维斯想找出原因。1847 年，一位同事解剖时被学生的刀划伤，很快以和产褥热一模一样的症状死去。塞麦尔维斯想到：医生们常常是从解剖室直接过来接生的，手上带着从尸体上来的“东西”。他要求所有人用漂白粉溶液洗手，第一病房的死亡率很快大幅下降。</p>
-<p>可很多医生不愿接受：这等于说，是我们自己的手害死了病人。那时还没有细菌学说，他也说不清那“东西”到底是什么，性子又急，四处写信骂人。1865 年，他被送进精神病院，两周后去世。又过了些年，巴斯德和李斯特的研究让细菌学说被普遍接受，他才被平反。</p>
-</div>
-<div class="turn"><b>抛给对方</b><ul>
-<li>你遇到过“明明是对的，但说法让人很难接受”的事吗？</li>
-<li>为什么人特别难接受“问题出在自己身上”？</li>
-</ul></div>
-<p class="seed">可能的下一本：疾病与医学。</p>
-</article>
-
-<article class="cd" id="w59" data-t="书外" data-k="猜">
-<header class="cd-h"><span class="th">书外</span><span class="kd">猜</span><span class="no">59</span></header>
+<article class="cd" id="w99" data-t="逛" data-p="博物馆" data-k="猜">
+<header class="cd-h"><span class="th">逛</span><span class="kd">猜</span><span class="no">99</span></header>
 <h3>这里有龙</h3>
 <p class="hook">都说古代地图在没人去过的地方会写上“这里有龙”。真的吗？</p>
 <div class="body">
@@ -1341,8 +1922,8 @@ footer p{margin:0 0 .5em}
 <p class="seed">可能的下一本：地图。</p>
 </article>
 
-<article class="cd" id="w60" data-t="书外" data-k="讲">
-<header class="cd-h"><span class="th">书外</span><span class="kd">讲</span><span class="no">60</span></header>
+<article class="cd" id="w100" data-t="逛" data-p="博物馆" data-k="讲">
+<header class="cd-h"><span class="th">逛</span><span class="kd">讲</span><span class="no">100</span></header>
 <h3>站岗时下的棋</h3>
 <p class="hook">大英博物馆里有一盘四千五百年前的棋。规则失传了，后来却在一块泥板上找到了。</p>
 <div class="body">
@@ -1376,7 +1957,7 @@ footer p{margin:0 0 .5em}
     <li>今天给自己打几分？扣掉的那几分扣在哪儿？</li>
   </ul>
   <div class="diy">
-    <strong>自己出一张卡</strong>：书房里每本书都能拆出几十张。照这个格式写在手机备忘录里就行——
+    <strong>自己出一张卡</strong>：白天看到、听到的好玩的事，都能拆成一张。照这个格式写在手机备忘录里就行——
     <ol>
       <li>一句能直接说出口的“开口”，最好是个问题或者一个反常的事实；</li>
       <li>三五句讲清楚发生了什么，有年份、有人、有一个细节；</li>
@@ -1389,39 +1970,45 @@ footer p{margin:0 0 .5em}
 <section class="g truth" id="truth">
 <div class="col">
   <h2 class="sec"><small>WHAT'S TRUE</small>哪些是真的</h2>
-  <p>六十张卡讲的都是真事，没有虚构的人物。前五十张的材料来自书房里的五本书，每张末尾的“想细看”通向原来那一章，那里有更完整的来龙去脉和出处；最后十张是新写的，出处列在下面。</p>
-  <p>为了好讲，卡上的数字大多取整，写成“约”“左右”“一两百亿”。下面这些地方证据不够硬，讲的时候最好带上“据说”：</p>
+  <p>一百张卡讲的都是真事，没有虚构的人物。为了好讲，数字大多取整，写成“约”“左右”“几十”。古书只引了很短的原文，其余都是转述；电影只讲幕后的事，没有搬台词和剧情。</p>
+  <p>下面这些地方证据不够硬，卡上标了“存疑”，讲的时候最好带一句“据说”：</p>
   <ul>
-    <li><b>01 虫子</b>：飞蛾和日志是真的，“是霍珀亲手找到的”多半不是。</li>
-    <li><b>02 帕斯卡</b>：样机“约五十台”是常见说法，存世台数各家统计略有出入。</li>
-    <li><b>03 雅卡尔肖像</b>：“约两万四千张卡片”是通行说法。</li>
-    <li><b>11 库希姆</b>：可能是人名，也可能是职位名。</li>
-    <li><b>16 郁金香</b>：“没那么疯”主要依据近年历史学家对公证档案的研究（Anne Goldgar, <i>Tulipmania</i>, 2007），学界仍有不同看法。</li>
-    <li><b>18 牛顿</b>：在南海泡沫中亏约两万英镑，来自后人转述；“算不出人的疯狂”那句话出处可疑。</li>
-    <li><b>20 美洲白银</b>：流入中国的比例争议很大，卡上没给数字。</li>
-    <li><b>23 眼镜蛇效应</b>：印度眼镜蛇的故事找不到可靠史料；河内老鼠尾巴见于殖民档案（Michael G. Vann 的研究）。</li>
-    <li><b>30 鹞鹰</b>：出自唐人笔记《隋唐嘉话》，无从查证。</li>
-    <li><b>31 泥球与筹码</b>：施曼特-贝瑟拉的学说影响很大，细节有争议。</li>
-    <li><b>32 商博良晕倒</b>：流传的轶事。</li>
-    <li><b>34 龙骨入药</b>：王懿荣“看药认字”的细节多有附会。</li>
-    <li><b>35 字母起源年代</b>：原始西奈字母的年代各家说法不一。</li>
-    <li><b>37 每天十个词</b>：基于“高中毕业约认识六万词”的粗算，词汇量的估计差别很大。</li>
-    <li><b>38 long time no see</b>：来源没有定论。</li>
-    <li><b>40 语言消失的速度</b>：各家估计差别很大，卡上没给具体数字。</li>
-    <li><b>49 堂岛</b>：火绳收市、K 线起源于米市，细节不可靠。</li>
-    <li><b>55 “还我十一天”</b>：抗议的说法证据很弱。</li>
-    <li><b>57 一光日</b>：“2026 年 11 月前后”是按旅行者 1 号的速度推算的时间点。</li>
+    <!--doubts-->
+    <li><b>04 树上长出来的鹅</b>：教皇禁止吃这种鹅的说法流传很广，原始出处不太清楚。</li>
+    <li><b>05 吃木乃伊</b>：“蜜人”的故事本身是传说。欧洲药用木乃伊的风气有大量文献，具体疗效记载五花八门。</li>
+    <li><b>06 理发店的转灯</b>：转灯颜色的来历是流传最广的说法，未必能考证到底。</li>
+    <li><b>09 有人在念叨你</b>：“Bless you”起源于瘟疫的说法没有可靠证据。</li>
+    <li><b>13 小熊猫才是原版</b>：中文“猫熊”被读反成“熊猫”的故事流传很广，但缺少可靠出处。</li>
+    <li><b>38 铁皮人的妆</b>：罂粟花田的“雪”是石棉，见于多种电影史记述，具体细节各家说法略有出入。</li>
+    <li><b>42 模仿卓别林大赛</b>：这个故事没有可靠出处，各版本细节互相矛盾。</li>
+    <li><b>45 拿字换鹅</b>：抄的是《道德经》还是《黄庭经》，各家记载不同。</li>
+    <li><b>46 给石头下拜</b>：“瘦漏透皱”出自米芾之说，是后人的归纳，早期出处不明。</li>
+    <li><b>49 六十颗咖啡豆</b>：“六十颗”只有辛德勒一个来源。</li>
+    <li><b>50 康德的散步</b>：“邻居对表”和“读卢梭忘了散步”都是流传的轶事。</li>
+    <li><b>51 特斯拉的鸽子</b>：关于特斯拉的轶事很多来自晚年的采访和传记作者的转述，有的难以核实。</li>
+    <li><b>55 被告是老鼠</b>：沙瑟内为老鼠辩护的细节主要来自后人整理的记载，可能有加工。</li>
+    <li><b>59 给自己封官</b>：“放了宁王再抓一次”是流传很广的说法，细节因史料而异。</li>
+    <li><b>65 花石纲</b>：现存哪些石头真是花石纲遗物，多是传说，难以确证。</li>
+    <li><b>66 消失的十天</b>：常听说英国改历时有人上街抗议“还我十一天”，这个说法证据很弱，多半是后来夸大的。</li>
+    <li><b>92 九九八十一颗门钉</b>：东华门门钉少一排的原因，各种说法都缺少可靠依据。</li>
+    <li><b>94 拙者之为政</b>：王献臣之子赌输园子的说法见于后人笔记，未必可靠。</li>
+    <!--/doubts-->
   </ul>
-  <p>书外十张的主要出处：六十进制与法国十进制时间（1793 年颁行，1795 年停止强制使用）；婆罗摩笈多《婆罗摩历算书》（628），斐波那契《算盘书》（1202），佛罗伦萨兑换商行会 1299 年的禁令；高濂《遵生八笺》（1591）；茶的两种读音与传播路线，据语言学通行解释；格里高利历（1582）与英国《历法法案》（1750 年通过，1752 年实施）；《经度法案》（1714）与哈里森 H4（1761—1762 年牙买加航行）；旅行者号任务与“暗淡蓝点”照片（1990）、金唱片，据 NASA 公开资料；塞麦尔维斯（1847 年起推行洗手），据医学史通行记述；Hunt–Lenox 地球仪（约 1510）；乌尔王族局戏与芬克尔对公元前 177 年泥板规则的复原。</p>
-  <p>“字与话”里的颜色一张：Berlin &amp; Kay, <i>Basic Color Terms</i>（1969）；俄语蓝色辨别实验见 Winawer 等（2007）。“机器”里的记忆实验：Loftus &amp; Palmer（1974）。“衙门”里的年底花光：Liebman &amp; Mahoney 对美国联邦采购的研究（2017）；《文学文摘》民调（1936）。</p>
-  <p>引文只用了公版古籍：《史记》《汉书》《明史》《资治通鉴》《东京梦华录》《遵生八笺》。提到的英剧只做了概述。</p>
+  <p>主要出处。古书：《礼记·月令》《大戴礼记·曾子天圆》《孟子·告子上》《诗经》及郑玄笺、《山海经·海外南经》、《梦溪笔谈》、《本草纲目》“木乃伊”条、《史记·秦始皇本纪》、《后汉书》（灵帝纪、五行志）、《晋书》（王羲之、阮籍、嵇康传）、《世说新语》（任诞、简傲）、《资治通鉴》（梁纪）、《宋史·米芾传》、《明史·武宗本纪》、潘岳《闲居赋》、《古诗十九首》。</p>
+  <p>动物：大熊猫与小熊猫的命名史；Marzluff 等人的乌鸦面具实验（2006 年起）；Yang 等人对袋熊粪便的研究（2018，2019 年搞笑诺贝尔物理学奖）；Saikawa 等人对河马“红汗”的分析（<i>Nature</i>, 2004）；Janik &amp; King（2013）与 Bruck（2013）对海豚签名哨声的研究；Lucy King 在肯尼亚的蜂箱篱笆研究；1958 年纪录片《白色荒野》的旅鼠镜头，见 1983 年加拿大广播公司的调查。</p>
+  <p>天上：阿波罗激光测月；双子座流星雨与小行星法厄同；1910 年哈雷彗星回归时的报刊记载；《春秋》文公十四年的彗星记录；火星车拍摄的火星日落；参宿四 2019—2020 年的“大变暗”。</p>
+  <p>银幕：各片的幕后访谈与制作记录，包括音效师本·伯特、加里·里德斯特罗姆的访谈，《绿野仙踪》《惊魂记》《回到未来》《荒岛余生》的制作史。</p>
+  <p>怪人与离谱：达尔文《小猎犬号航海记》；牛顿的剑桥笔记；辛德勒的贝多芬回忆录（可靠性有争议）；E. P. Evans, <i>The Criminal Prosecution and Capital Punishment of Animals</i>（1906）；Oskar Pfungst 关于“聪明的汉斯”的报告（1907）；1932 年澳大利亚“鸸鹋战争”的军方与报刊记录；B. F. Skinner, “Pigeons in a Pelican”（1960）；旧金山的诺顿一世档案。</p>
+  <p>没人懂：Kooijman 等人的自行车研究（<i>Science</i>, 2011）；Kaptchuk 等人的公开安慰剂研究（2010）；Xie 等人关于睡眠时大脑清除代谢废物的研究（<i>Science</i>, 2013）；倒立水母睡眠研究（2017）；Cen 等人记录的球状闪电光谱（<i>Physical Review Letters</i>, 2014）；Herbst 等人的猫呼噜研究（2023）；Faurie &amp; Raymond 的左撇子与“打架假说”研究（2005）。</p>
+  <p>保命：急救做法据红十字会通行的急救培训内容；Frank Pia 对溺水反应的描述；Darley &amp; Latané 的旁观者实验（1968）；Foxman 等人关于鼻病毒与温度的研究（<i>PNAS</i>, 2015）。这些卡只是常识提醒，不能代替正式的急救培训。</p>
+  <p>旧卡（为什么是六十、零、辣椒、茶、消失的十天、经度、一光日、洗手、地图、乌尔棋）的出处：六十进制与法国十进制时间（1793 年颁行，1795 年停止强制使用）；婆罗摩笈多《婆罗摩历算书》（628），斐波那契《算盘书》（1202），佛罗伦萨兑换商行会 1299 年的禁令；高濂《遵生八笺》（1591）；格里高利历（1582）与英国《历法法案》（1750 年通过，1752 年实施）；《经度法案》（1714）与哈里森 H4；旅行者号与“暗淡蓝点”（1990），据 NASA 公开资料；塞麦尔维斯（1847 年起推行洗手）；Hunt–Lenox 地球仪（约 1510）；乌尔王族局戏与芬克尔对公元前 177 年泥板规则的复原。“一光日”是按旅行者 1 号的速度推算的时间点。</p>
 </div>
 </section>
 
 <section class="g" id="shelf">
 <div class="wide">
   <h2 class="sec"><small>THE OTHER BOOKS</small>书房里的另一本书</h2>
-  <p class="lede">卡片只是引子。哪张聊得最起劲，就去读它来自的那本书。</p>
+  <p class="lede">想读长一点的故事，书房里还有这几本。</p>
   <div class="shelf">
     <a href="../computer/" style="--c:#2c6a6e"><b>计算机创世记</b>上卷《一沙一世界》</a>
     <a href="../computer/second.html" style="--c:#cf4e19"><b>第二次创世</b>机器怎样学会“学”</a>
@@ -1456,14 +2043,19 @@ footer p{margin:0 0 .5em}
   var told = {};
   load(KEY, []).forEach(function (id) { if (byId[id]) told[id] = 1; });
 
-  var THEMES = [['全部', ''], ['机器', '--c-jq'], ['钱', '--c-q'], ['衙门', '--c-ym'], ['字与话', '--c-zi'], ['柜台', '--c-gt'], ['书外', '--c-sw']];
+  var THEMES = [['全部', ''], ['脑洞', '--c-nd'], ['动物', '--c-dw'], ['天上', '--c-tk'], ['银幕', '--c-yp'], ['怪人', '--c-gr'], ['离谱', '--c-lp'], ['没人懂', '--c-md'], ['保命', '--c-bm'], ['逛', '--c-gg']];
+  var PLACES = [['全部'], ['路上'], ['博物馆'], ['园林'], ['街上'], ['动物园'], ['夜空'], ['饭桌'], ['电影院']];
   var KINDS = [['全部'], ['讲', '一个故事'], ['猜', '先让对方猜'], ['辩', '各执一词'], ['假', '假如'], ['玩', '小游戏']];
-  var st = { t: '全部', k: '全部', skip: load(KEY + '-skip', true), queue: [], qi: 0 };
+  var st = { t: '全部', k: '全部', p: '全部', skip: load(KEY + '-skip', true), queue: [], qi: 0 };
 
   // 每张卡估一个讲述时长：边讲边停，每分钟约 150 字；聊的时间另算
   cards.forEach(function (c) {
     var b = c.querySelector('.body'), n = b ? b.textContent.replace(/\s+/g, '').length : 300;
     var m = Math.max(1, Math.min(4, Math.round(n / 150)));
+    var ps = (c.dataset.p || '随时').split(' '), w = D.createElement('p');
+    w.className = 'where';
+    w.innerHTML = '适合在：' + ps.map(function (x) { return '<i>' + (x === '随时' ? '哪儿都行' : x) + '</i>'; }).join('');
+    c.querySelector('.hook').insertAdjacentElement('afterend', w);
     var h = c.querySelector('.cd-h .no');
     var s = D.createElement('span'); s.className = 'min'; s.textContent = '讲约 ' + m + ' 分钟';
     h.parentNode.insertBefore(s, h);
@@ -1479,7 +2071,10 @@ footer p{margin:0 0 .5em}
   var skipBox = D.getElementById('skip'), stat = D.getElementById('stat');
   skipBox.checked = !!st.skip;
 
-  function ok(c) { return (st.t === '全部' || c.dataset.t === st.t) && (st.k === '全部' || c.dataset.k === st.k); }
+  // “路上”= 不挑地方的卡，加上看夜空的卡
+  function at(c, v) { var ps = (c.dataset.p || '随时').split(' '); return v === '全部' || ps.indexOf(v) >= 0 || (v === '路上' && (ps.indexOf('随时') >= 0 || ps.indexOf('夜空') >= 0)); }
+  function okBy(c, t, k, p) { return (t === '全部' || c.dataset.t === t) && (k === '全部' || c.dataset.k === k) && at(c, p); }
+  function ok(c) { return okBy(c, st.t, st.k, st.p); }
   function pool() { return cards.filter(function (c) { return ok(c) && !(st.skip && told[c.id]); }); }
   function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
 
@@ -1501,20 +2096,22 @@ footer p{margin:0 0 .5em}
   }
   chips(D.getElementById('fT'), THEMES, 't');
   chips(D.getElementById('fK'), KINDS, 'k');
+  chips(D.getElementById('fP'), PLACES, 'p');
 
   function refresh() {
     var nTold = Object.keys(told).length, p = pool().length;
     var filtered = cards.filter(ok).length;
     stat.textContent = '讲过 ' + nTold + ' / ' + cards.length + ' 张 · 当前可抽 ' + p + ' 张';
     // 每个按钮上的数字：在另一维筛选下还剩几张
-    [].forEach.call(D.querySelectorAll('#fT .chip'), function (b) {
-      var v = b.dataset.v, n = cards.filter(function (c) { return (v === '全部' || c.dataset.t === v) && (st.k === '全部' || c.dataset.k === st.k); }).length;
-      b.querySelector('i').textContent = n;
-    });
-    [].forEach.call(D.querySelectorAll('#fK .chip'), function (b) {
-      var v = b.dataset.v, n = cards.filter(function (c) { return (v === '全部' || c.dataset.k === v) && (st.t === '全部' || c.dataset.t === st.t); }).length;
-      b.querySelector('i').textContent = n;
-    });
+    function count(sel, f) {
+      [].forEach.call(D.querySelectorAll(sel + ' .chip'), function (b) {
+        var v = b.dataset.v;
+        b.querySelector('i').textContent = cards.filter(function (c) { return f(c, v); }).length;
+      });
+    }
+    count('#fT', function (c, v) { return okBy(c, v, st.k, st.p); });
+    count('#fK', function (c, v) { return okBy(c, st.t, v, st.p); });
+    count('#fP', function (c, v) { return okBy(c, st.t, st.k, v); });
     cards.forEach(function (c) {
       c.classList.toggle('told', !!told[c.id]);
       c.style.display = ok(c) ? '' : 'none';

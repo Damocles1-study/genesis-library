@@ -13,14 +13,19 @@
   var told = {};
   load(KEY, []).forEach(function (id) { if (byId[id]) told[id] = 1; });
 
-  var THEMES = [['全部', ''], ['机器', '--c-jq'], ['钱', '--c-q'], ['衙门', '--c-ym'], ['字与话', '--c-zi'], ['柜台', '--c-gt'], ['书外', '--c-sw']];
+  var THEMES = [['全部', ''], ['脑洞', '--c-nd'], ['动物', '--c-dw'], ['天上', '--c-tk'], ['银幕', '--c-yp'], ['怪人', '--c-gr'], ['离谱', '--c-lp'], ['没人懂', '--c-md'], ['保命', '--c-bm'], ['逛', '--c-gg']];
+  var PLACES = [['全部'], ['路上'], ['博物馆'], ['园林'], ['街上'], ['动物园'], ['夜空'], ['饭桌'], ['电影院']];
   var KINDS = [['全部'], ['讲', '一个故事'], ['猜', '先让对方猜'], ['辩', '各执一词'], ['假', '假如'], ['玩', '小游戏']];
-  var st = { t: '全部', k: '全部', skip: load(KEY + '-skip', true), queue: [], qi: 0 };
+  var st = { t: '全部', k: '全部', p: '全部', skip: load(KEY + '-skip', true), queue: [], qi: 0 };
 
   // 每张卡估一个讲述时长：边讲边停，每分钟约 150 字；聊的时间另算
   cards.forEach(function (c) {
     var b = c.querySelector('.body'), n = b ? b.textContent.replace(/\s+/g, '').length : 300;
     var m = Math.max(1, Math.min(4, Math.round(n / 150)));
+    var ps = (c.dataset.p || '随时').split(' '), w = D.createElement('p');
+    w.className = 'where';
+    w.innerHTML = '适合在：' + ps.map(function (x) { return '<i>' + (x === '随时' ? '哪儿都行' : x) + '</i>'; }).join('');
+    c.querySelector('.hook').insertAdjacentElement('afterend', w);
     var h = c.querySelector('.cd-h .no');
     var s = D.createElement('span'); s.className = 'min'; s.textContent = '讲约 ' + m + ' 分钟';
     h.parentNode.insertBefore(s, h);
@@ -36,7 +41,10 @@
   var skipBox = D.getElementById('skip'), stat = D.getElementById('stat');
   skipBox.checked = !!st.skip;
 
-  function ok(c) { return (st.t === '全部' || c.dataset.t === st.t) && (st.k === '全部' || c.dataset.k === st.k); }
+  // “路上”= 不挑地方的卡，加上看夜空的卡
+  function at(c, v) { var ps = (c.dataset.p || '随时').split(' '); return v === '全部' || ps.indexOf(v) >= 0 || (v === '路上' && (ps.indexOf('随时') >= 0 || ps.indexOf('夜空') >= 0)); }
+  function okBy(c, t, k, p) { return (t === '全部' || c.dataset.t === t) && (k === '全部' || c.dataset.k === k) && at(c, p); }
+  function ok(c) { return okBy(c, st.t, st.k, st.p); }
   function pool() { return cards.filter(function (c) { return ok(c) && !(st.skip && told[c.id]); }); }
   function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
 
@@ -58,20 +66,22 @@
   }
   chips(D.getElementById('fT'), THEMES, 't');
   chips(D.getElementById('fK'), KINDS, 'k');
+  chips(D.getElementById('fP'), PLACES, 'p');
 
   function refresh() {
     var nTold = Object.keys(told).length, p = pool().length;
     var filtered = cards.filter(ok).length;
     stat.textContent = '讲过 ' + nTold + ' / ' + cards.length + ' 张 · 当前可抽 ' + p + ' 张';
     // 每个按钮上的数字：在另一维筛选下还剩几张
-    [].forEach.call(D.querySelectorAll('#fT .chip'), function (b) {
-      var v = b.dataset.v, n = cards.filter(function (c) { return (v === '全部' || c.dataset.t === v) && (st.k === '全部' || c.dataset.k === st.k); }).length;
-      b.querySelector('i').textContent = n;
-    });
-    [].forEach.call(D.querySelectorAll('#fK .chip'), function (b) {
-      var v = b.dataset.v, n = cards.filter(function (c) { return (v === '全部' || c.dataset.k === v) && (st.t === '全部' || c.dataset.t === st.t); }).length;
-      b.querySelector('i').textContent = n;
-    });
+    function count(sel, f) {
+      [].forEach.call(D.querySelectorAll(sel + ' .chip'), function (b) {
+        var v = b.dataset.v;
+        b.querySelector('i').textContent = cards.filter(function (c) { return f(c, v); }).length;
+      });
+    }
+    count('#fT', function (c, v) { return okBy(c, v, st.k, st.p); });
+    count('#fK', function (c, v) { return okBy(c, st.t, v, st.p); });
+    count('#fP', function (c, v) { return okBy(c, st.t, st.k, v); });
     cards.forEach(function (c) {
       c.classList.toggle('told', !!told[c.id]);
       c.style.display = ok(c) ? '' : 'none';

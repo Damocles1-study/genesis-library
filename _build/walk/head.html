@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="一副给散步时用的卡片：六十张“路上聊”，每张三五分钟能讲完一个真实的故事或问题，结尾留一个抛给对方的问题。从书房里的五本书取材，外加十张书外的新话题。随机抽一张、抽一条路、按主题筛、标记讲过了。">
+<meta name="description" content="一副给散步时用的卡片：一百张“路上聊”，古人的脑洞、动物、天文、电影幕后、名人怪癖、离谱的大人物、至今没人懂的事、保命常识，还有逛博物馆、园林、街道时能讲的。每张三五分钟，结尾留一个抛给对方的问题。可以按主题、类型、地点筛选。">
 <meta property="og:title" content="回宿舍的路 · 路上聊">
-<meta property="og:description" content="从图书馆走回去的那十几分钟，聊点什么？六十张卡，每张一个真实的故事，和一个留给对方的问题。">
+<meta property="og:description" content="从图书馆走回去的那十几分钟，聊点什么？一百张卡，每张一个真实的故事，和一个留给对方的问题。">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23182030'/%3E%3Cpath d='M12,29 V9 Q12,6 15,6 H19' stroke='%23d9c9a3' stroke-width='2' fill='none'/%3E%3Cpath d='M16,7 h6 l-1.5,3 h-3z' fill='%23e8b450'/%3E%3Cpath d='M17.5,10 L11,27 H28 L20.5,10z' fill='%23e8b450' opacity='.35'/%3E%3C/svg%3E">
 <title>回宿舍的路</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +22,7 @@
   --lamp:#8a5a0c; --glow:#e7b54d; --night:#2b4a6f;
   --btn:#2b4a6f; --btn-fg:#f3ebda;
   --sky1:#d9cfb7; --sky2:#e9dfc8; --bld:#b9ab8d; --win:#e7b54d;
-  --c-jq:#2c6a6e; --c-q:#b0352b; --c-ym:#6a4c93; --c-zi:#7d600f; --c-gt:#6e4526; --c-sw:#2f5584;
+  --c-jq:#2c6a6e; --c-nd:#7d600f; --c-dw:#3d6b2e; --c-tk:#2f5584; --c-yp:#8a3557; --c-gr:#6a4c93; --c-lp:#b0352b; --c-md:#2c6a6e; --c-bm:#9a4416; --c-gg:#6e4526;
   --hl:color-mix(in srgb,var(--glow) 34%,transparent);
   --f-display:"Hui Fix","ZCOOL XiaoWei","Songti SC","STSong","Noto Serif SC",serif;
   --f-body:"Noto Serif SC","Songti SC","Source Han Serif SC","STSong",serif;
@@ -33,12 +33,12 @@
   --paper:#11151d; --paper-2:#181d27; --card:#1b212c; --ink:#e8e2d3; --ink-2:#b5afa0; --ink-3:#8d8a80; --rule:#2e3644;
   --lamp:#e7b54d; --glow:#e7b54d; --night:#8fb0e3; --btn:#6b4f17; --btn-fg:#f6e3b0;
   --sky1:#0d1119; --sky2:#151b27; --bld:#232b3a; --win:#e7b54d;
-  --c-jq:#6fb5b0; --c-q:#e87a6c; --c-ym:#b39ae0; --c-zi:#d4b056; --c-gt:#c99a6e; --c-sw:#8fb0e3; color-scheme:dark}}
+  --c-jq:#6fb5b0; --c-nd:#d4b056; --c-dw:#8fc47a; --c-tk:#8fb0e3; --c-yp:#e28aac; --c-gr:#b39ae0; --c-lp:#e87a6c; --c-md:#6fb5b0; --c-bm:#e89a6a; --c-gg:#c99a6e; color-scheme:dark}}
 :root[data-theme="dark"]{
   --paper:#11151d; --paper-2:#181d27; --card:#1b212c; --ink:#e8e2d3; --ink-2:#b5afa0; --ink-3:#8d8a80; --rule:#2e3644;
   --lamp:#e7b54d; --glow:#e7b54d; --night:#8fb0e3; --btn:#6b4f17; --btn-fg:#f6e3b0;
   --sky1:#0d1119; --sky2:#151b27; --bld:#232b3a; --win:#e7b54d;
-  --c-jq:#6fb5b0; --c-q:#e87a6c; --c-ym:#b39ae0; --c-zi:#d4b056; --c-gt:#c99a6e; --c-sw:#8fb0e3; color-scheme:dark}
+  --c-jq:#6fb5b0; --c-nd:#d4b056; --c-dw:#8fc47a; --c-tk:#8fb0e3; --c-yp:#e28aac; --c-gr:#b39ae0; --c-lp:#e87a6c; --c-md:#6fb5b0; --c-bm:#e89a6a; --c-gg:#c99a6e; color-scheme:dark}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -129,8 +129,10 @@ h2.sec small{display:block;font-family:var(--f-mono);font-size:12px;letter-spaci
 .js .grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,17rem),1fr));gap:10px}
 
 .cd{--cc:var(--ink-2);position:relative;background:var(--card);border:1px solid var(--rule);border-top:5px solid var(--cc);border-radius:10px;padding:14px 16px 14px;scroll-margin-top:70px}
-.cd[data-t="机器"]{--cc:var(--c-jq)} .cd[data-t="钱"]{--cc:var(--c-q)} .cd[data-t="衙门"]{--cc:var(--c-ym)}
-.cd[data-t="字与话"]{--cc:var(--c-zi)} .cd[data-t="柜台"]{--cc:var(--c-gt)} .cd[data-t="书外"]{--cc:var(--c-sw)}
+[data-t="脑洞"],[data-theme="脑洞"]{--cc:var(--c-nd)} [data-t="动物"],[data-theme="动物"]{--cc:var(--c-dw)} [data-t="天上"],[data-theme="天上"]{--cc:var(--c-tk)} [data-t="银幕"],[data-theme="银幕"]{--cc:var(--c-yp)} [data-t="怪人"],[data-theme="怪人"]{--cc:var(--c-gr)} [data-t="离谱"],[data-theme="离谱"]{--cc:var(--c-lp)} [data-t="没人懂"],[data-theme="没人懂"]{--cc:var(--c-md)} [data-t="保命"],[data-theme="保命"]{--cc:var(--c-bm)} [data-t="逛"],[data-theme="逛"]{--cc:var(--c-gg)}
+.where{margin:.2em 0 .7em;font-size:12.5px;color:var(--ink-3);font-family:var(--f-mono);letter-spacing:.06em}
+.where i{font-style:normal;display:inline-block;border:1px solid var(--rule);border-radius:99px;padding:0 .6em;margin:0 .3em .2em 0;background:var(--paper)}
+.js .grid .cd .where{display:none}
 .cd-h{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-3)}
 .cd-h .th{font-family:var(--f-mono);letter-spacing:.1em;color:var(--cc)}
 .cd-h .kd{color:var(--cc);border-color:var(--cc);font-size:13px;min-width:1.85em;height:1.85em}

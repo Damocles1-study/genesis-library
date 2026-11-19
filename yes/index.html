@@ -305,6 +305,19 @@ input[type=range]{width:100%;accent-color:var(--zhu)}
 .pn .sfx{position:absolute;z-index:2;font-family:var(--f-sans);font-weight:700;font-size:clamp(14px,7cqw,30px);color:var(--c-ink);-webkit-text-stroke:0;transform:rotate(-8deg);letter-spacing:.05em;text-shadow:2px 2px 0 var(--c-paper),-2px -2px 0 var(--c-paper),2px -2px 0 var(--c-paper),-2px 2px 0 var(--c-paper)}
 .comic .after{font-family:var(--f-sans);font-size:13px;margin:10px 0 0;opacity:.75}
 
+/* 时间轴 / 卡片 */
+.mapnode{cursor:pointer}
+.mapnode:hover circle,.mapnode.on circle{stroke:var(--zhu);stroke-width:2.5}
+.tlcard p{margin:0 0 .35em;font-size:15px;line-height:1.75}
+.tlcard .k{font-family:var(--f-mono);font-size:12px;color:var(--ink-3)}
+.tlcard h5{font-family:var(--f-display);font-weight:400;font-size:20px;margin:0 0 4px}
+.qcard .opts2{display:grid;gap:8px;margin-top:8px}
+.qcard .opts2 button{text-align:left;border:1px solid var(--rule);border-radius:8px;background:var(--paper);padding:8px 12px;cursor:pointer;line-height:1.6;font-size:15px}
+.qcard .opts2 button:hover{border-color:var(--ink-3)}
+.qcard .opts2 button:disabled{cursor:default;opacity:.55}
+.qcard .opts2 button.pick{opacity:1;border-color:var(--lan);box-shadow:0 0 0 2px color-mix(in srgb,var(--lan) 25%,transparent)}
+.qcard .fb{font-size:14.5px;color:var(--ink-2);line-height:1.75;margin-top:10px;border-left:3px solid var(--kraft);padding-left:10px}
+
 /* 表 */
 table.t{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.6;min-width:520px}
 table.t th,table.t td{border-bottom:1px solid var(--rule);padding:7px 8px;text-align:left;vertical-align:top}
@@ -417,7 +430,7 @@ footer p{text-indent:0!important}
       </tbody>
     </table>
     </div>
-    <p>页边偶尔会有红笔写的“朱批”，那是历代大人的读后感。正文旁边的<em>眉批</em>有五种印章：“轮回”“讽刺”“联系”“存疑”“生活”。每一卷有一两个能动手玩的装置。卷一的第二案是一章黑白漫画。</p>
+    <p>页边偶尔会有红笔写的“朱批”，那是历代大人的读后感。正文旁边的<em>眉批</em>有五种印章：“轮回”“讽刺”“联系”“存疑”“生活”。全书有十四个能动手玩的装置，第二案和第十案各有一章黑白漫画。全书三卷十二案，每卷末尾有一个“识破它”小测验，最后的尾声把所有眉批收拢在一条时间轴上。</p>
 
     <h3>为什么是这三部剧</h3>
     <p>《是，大臣》和续作《是，首相》是 1980 年代的英国政治喜剧，讲一位想干事的政客，和他手下那位学识渊博、彬彬有礼、永远在说“是，大臣”、却总能让事情办不成的常任秘书。剧本后来被整理成日记体的书，有中译本。</p>
@@ -431,10 +444,19 @@ footer p{text-indent:0!important}
       <li><a href="#c3"><span class="n">第三案</span><span class="t">官话辞典<small>“勇敢的决定”、朕安、手诏只有一个人看得懂</small></span><span class="r">装置 · 翻译机</span></a></li>
       <li><a href="#c4"><span class="n">第四案</span><span class="t">问法就是答案<small>两份民调、四十八万封上书、一本杂志的倒闭</small></span><span class="r">装置 · 民调工厂</span></a></li>
       <li><a href="#c5"><span class="n">结案</span><span class="t">识破它<small>八个身边的场景，你能认出哪一招？</small></span><span class="r">小测验</span></a></li>
-      <li class="vh">卷二 · 争 —— 预算、地盘与谈判</li>
-      <li><span class="soon"><span class="n">卷二</span><span class="t">争<small>年底突击花钱、地盘战、谈判桌、“不”的一百种说法</small></span><span class="r">下回</span></span></li>
-      <li class="vh">卷三 · 人 —— 站队、背锅与可敬的勇气</li>
-      <li><span class="soon"><span class="n">卷三</span><span class="t">人<small>揣摩上意、背锅、站队、海瑞抬着棺材上疏</small></span><span class="r">再下回</span></span></li>
+      <li class="vh">卷二 · 争 —— 银子、数字、屋子与“不”</li>
+      <li><a href="#c6"><span class="n">第五案</span><span class="t">年底花光<small>节约运动、年终的账、火耗归公、零基预算</small></span><span class="r">装置 · 省还是花</span></a></li>
+      <li><a href="#c7"><span class="n">第六案</span><span class="t">考什么，得什么<small>八百个职位、考成法、青苗法、河内的老鼠尾巴</small></span><span class="r">装置 · 老鼠尾巴</span></a></li>
+      <li><a href="#c8"><span class="n">第七案</span><span class="t">离大人最近的屋子<small>一把钥匙、秘书变宰相的两千年</small></span><span class="r">装置 · 五次轮回</span></a></li>
+      <li><a href="#c9"><span class="n">第八案</span><span class="t">“不”的说法<small>台阶、嵇康的七不堪、完璧归赵、分橙子</small></span><span class="r">装置 · 拒绝练习</span></a></li>
+      <li><a href="#c10"><span class="n">结案</span><span class="t">争的四种样子<small>八个身边的场景</small></span><span class="r">小测验</span></a></li>
+      <li class="vh">卷三 · 人 —— 揣摩、背锅、站队与勇气</li>
+      <li><a href="#c11"><span class="n">第九案</span><span class="t">揣摩上意<small>所有人都在猜一个人、青词宰相、以人为镜</small></span><span class="r">装置 · 报喜还是报忧</span></a></li>
+      <li><a href="#c12"><span class="n">第十案</span><span class="t">背锅<small>黑白漫画《锅》、滚钉板、晁错穿着朝服被斩</small></span><span class="r">漫画</span></a></li>
+      <li><a href="#c13"><span class="n">第十一案</span><span class="t">站队<small>两边都支持的首相、指鹿为马、牛李党争</small></span><span class="r">装置 · 站队人生</span></a></li>
+      <li><a href="#c14"><span class="n">第十二案</span><span class="t">可敬的勇气<small>酒徒教士、买好了棺材的上疏、强项令</small></span><span class="r">四个人的结局</span></a></li>
+      <li><a href="#c15"><span class="n">结案</span><span class="t">衙门里的人<small>八个身边的场景</small></span><span class="r">小测验</span></a></li>
+      <li><a href="#c16"><span class="n">尾声</span><span class="t">交接<small>押韵的衙门、十二案一览、办事须知</small></span><span class="r">时间轴</span></a></li>
     </ol>
   </div>
 </section>
@@ -516,7 +538,7 @@ footer p{text-indent:0!important}
     <p>两套五步法，用词不同，骨架一样。它们都利用了同一个事实：<em>主官是流水的，常任的人是铁打的，时间站在铁打的那一边。</em>主官要办十件事，每件事只能盯一阵子；常任的人只需要在每一件事上比主官多坚持一会儿。</p>
     <p>还有一个更深的共同点：它们从不说“不”。说“不”要负责任，要给理由，要准备被驳倒。而“等一等”“再议议”“再核核”，每一句都无懈可击。你没法和一个完全赞同你的人吵架。</p>
 
-    <aside class="echo" data-k="轮回" data-title="流水的官，铁打的吏">
+    <aside class="echo" data-k="轮回" data-year="1700" data-title="流水的官，铁打的吏">
       <span class="stamp">轮回</span>
       <div>
         <p class="rh"><span class="ry">明清 · 白厅</span>流水的官，铁打的吏</p>
@@ -540,7 +562,7 @@ footer p{text-indent:0!important}
     <p>奏疏送上去，既不准，也不驳，就放在宫里，不发下来。这叫“留中”。你没法和一道没有回音的奏疏争辩。大臣们吵了一年又一年，有人被罢官，有人被廷杖，有人辞职。这场“国本之争”拖了大约十五年，直到万历二十九年（1601 年），万历才终于立了朱常洛为太子。</p>
     <p>立太子的事告一段落，“不批”的习惯却留了下来。据《明史》等记载，万历后期很少上朝，大量奏疏留中，官员出缺也常常不补，有些衙门缺员到办不了公。黄仁宇在《万历十五年》里有个著名的看法：万历的消极怠工，是一个被文官集团用礼法捆住手脚的皇帝，所能做出的唯一反抗。</p>
 
-    <aside class="echo" data-k="讽刺" data-title="拖了十五年，还是输了">
+    <aside class="echo" data-k="讽刺" data-year="1601" data-title="拖了十五年，还是输了">
       <span class="stamp">讽刺</span>
       <div>
         <p class="rh"><span class="ry">1586—1601</span>拖了十五年，还是输了</p>
@@ -593,7 +615,7 @@ footer p{text-indent:0!important}
       </div>
     </div>
 
-    <aside class="echo" data-k="生活" data-title="第三次说“再等等”">
+    <aside class="echo" data-k="生活" data-year="2026" data-title="第三次说“再等等”">
       <span class="stamp">生活</span>
       <div>
         <p class="rh">第三次说“再等等”</p>
@@ -730,7 +752,7 @@ footer p{text-indent:0!important}
       </div>
     </div>
 
-    <aside class="echo" data-k="联系" data-title="同一个公式，三本书">
+    <aside class="echo" data-k="联系" data-year="1975" data-title="同一个公式，三本书">
       <span class="stamp">联系</span>
       <div>
         <p class="rh"><span class="ry">前 3000 · 1975 · 今天</span>同一个公式，三本书</p>
@@ -744,7 +766,7 @@ footer p{text-indent:0!important}
     <p>几十年下来，官员越来越多，军队越来越大，开支越来越高，后人总结为“三冗”：冗官、冗兵、冗费。庆历三年（1043 年），宋仁宗起用范仲淹推行“庆历新政”，头一条就是整顿官员的考核和升迁，裁汰不称职的人。新政触动了太多人的位置，反对的奏疏雪片一样飞来，不到两年，范仲淹等人相继离开朝廷，新政大多被废止。</p>
     <p>为了防止一个人办坏事而设计的制度，最后让所有人都办不成好事。这是委员会最古老的悖论。</p>
 
-    <aside class="echo" data-k="存疑" data-title="“议论未定，兵已渡河”">
+    <aside class="echo" data-k="存疑" data-year="1127" data-title="“议论未定，兵已渡河”">
       <span class="stamp">存疑</span>
       <div>
         <p class="rh">“宋人议论未定，金兵已渡河”</p>
@@ -843,7 +865,7 @@ footer p{text-indent:0!important}
     <p>普通的奏折，常见的朱批是“知道了”。注意，“知道了”不是“同意”，也不是“不同意”，它只是“我看过了”。要让某个部门去办，就批“该部议奏”或“该部知道”。一套固定的格式，让皇帝每天能批几十上百份奏折，也让每个字的分量都有讲究。</p>
     <p>雍正是个例外。他的朱批出了名的长，有时一份奏折上批的字比原折还多，夸人夸得肉麻，骂人骂得痛快。也正因为他不爱说官话，他的朱批今天读起来特别有意思，像一个人在说话，而不是一台机器在盖章。</p>
 
-    <aside class="echo" data-k="生活" data-title="已读不回，是现代的“留中”">
+    <aside class="echo" data-k="生活" data-year="2020" data-title="已读不回，是现代的“留中”">
       <span class="stamp">生活</span>
       <div>
         <p class="rh">已读不回，是现代的“留中”</p>
@@ -944,7 +966,7 @@ footer p{text-indent:0!important}
     <p>近五十万人，为了同一件事、同一个人上书。这是“民意”吗？在那个识字的人并不多的年代，这个数字还被精确到了个位。同一年前后，王莽接受了象征最高恩宠的“九锡”；又过了几年，他接受了汉朝的禅让，建立了新朝。</p>
     <p>民意可以去测，也可以去造。一份民调、一叠请愿书、一片掌声，最好都先问一句：<em>是谁在问？问的是谁？前面还问了什么？</em></p>
 
-    <aside class="echo" data-k="存疑" data-title="四十八万人是怎么来的">
+    <aside class="echo" data-k="存疑" data-year="5" data-title="四十八万人是怎么来的">
       <span class="stamp">存疑</span>
       <div>
         <p class="rh"><span class="ry">《汉书·王莽传》</span>四十八万人是怎么来的</p>
@@ -970,7 +992,7 @@ footer p{text-indent:0!important}
     <p>对第二组人说：方案丙会让四百人死去；方案丁有三分之一的机会无人死亡，三分之二的机会六百人全部死亡。大多数人选了丁。</p>
     <p>甲和丙是同一个方案，乙和丁也是。仅仅把“救活两百”换成“死去四百”，人们的选择就倒了过来。这叫“框架效应”。</p>
 
-    <aside class="echo" data-k="联系" data-title="你在《点石成金》里做过这道题">
+    <aside class="echo" data-k="联系" data-year="1979" data-title="你在《点石成金》里做过这道题">
       <span class="stamp">联系</span>
       <div>
         <p class="rh">你在《点石成金》里做过这道题</p>
@@ -1041,9 +1063,9 @@ footer p{text-indent:0!important}
     <div class="fig-label">装置 5 / 识破它</div>
     <h4>这是哪一招？</h4>
     <p class="how">读场景，点你认为的招数。答完会有解说。</p>
-    <div class="score" id="qzScore"></div>
-    <div class="qcard" id="qzCard"></div>
-    <div class="btns" style="margin-top:12px"><button class="btn" id="qzPrev">上一题</button><button class="btn pri" id="qzNext">下一题</button></div>
+    <div class="score" data-q="score"></div>
+    <div class="qcard" data-q="card"></div>
+    <div class="btns" style="margin-top:12px"><button class="btn" data-q="prev">上一题</button><button class="btn pri" data-q="next">下一题</button></div>
   </div>
 
   <div class="col">
@@ -1086,20 +1108,1084 @@ footer p{text-indent:0!important}
       <p class="life">认出它，是为了不被它困住；更是为了在自己想说“再等等”“都行”“我们再商量”的时候，停一秒，问问自己：我是不是其实想说“不”，或者其实想说“好”？</p>
     </div>
 
-    <h3>下回预告：卷二 · 争</h3>
+    <h3>卷二预告</h3>
     <p>年底到了。阿鉴算了算，衙门账上还剩三百两银子。他高兴地跑去告诉莫师爷：今年省下钱了！莫师爷脸色大变：<em>必须在腊月三十之前花掉</em>。不然明年的预算，就要被砍掉三百两。</p>
-    <p>卷二讲衙门之间的争：预算、地盘、谈判，以及“不”的一百种说法。《大明王朝1566》开场那场御前会议会是主角。</p>
+    <p>卷二讲衙门之间的争：预算、指标、地盘、谈判与拒绝。</p>
+
+  </div>
+</section>
+
+<!-- ============ 卷二 争 ============ -->
+<section class="volhead" id="v2" data-vol="卷二 · 争">
+  <div class="num">卷二</div>
+  <h2>争</h2>
+  <p class="lede">衙门不只和上面周旋，也和隔壁抢：抢银子、抢功劳、抢离大人最近的那间屋子。这一卷四案：年底花光、考什么得什么、地盘、“不”的说法。</p>
+</section>
+
+<!-- ============ 第五案 年底花光 ============ -->
+<section class="case" id="c6" data-vol="第五案 · 年底花光">
+  <div class="folder">
+    <span class="seal">银</span>
+    <div class="no">第伍案</div>
+    <h2>年底花光</h2>
+    <dl>
+      <dt>案由</dt><dd>为什么在衙门里，省下来的钱是一种罪过</dd>
+      <dt>戏里</dt><dd>《是，大臣》“节约运动” · 《大明王朝1566》开场的年终账</dd>
+      <dt>史上</dt><dd>“去年的数加一点” · 美国财年的最后一周 · 雍正的火耗归公 · 零基预算</dd>
+      <dt>身边</dt><dd>班费、社团经费 · “这个月的额度还没用完”</dd>
+    </dl>
+    <span class="string"></span>
+  </div>
+
+  <div class="col">
+    <h3><span class="part">案由</span>三百两</h3>
+    <div class="scene">
+      <div class="sh"><b>第六场 · 三百两</b><span>签押房 · 腊月初八</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who j">阿鉴</span><p>师爷，好消息！我把今年的账算完了，衙门账上还剩三百两！</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>（放下茶碗）还剩几天过年？</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>二十二天。</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>二十二天之内，花掉。</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>为什么？省下来不好吗？</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>上峰明年给多少银子，看的是我们今年花了多少。今年花七百，明年就给七百。省下三百，等于自己把明年的三百两砍了。</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>那明年真要用钱怎么办？</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>那就要去上峰那里重新申请。上峰会翻出今年的账，问：你们去年不是还剩了三百两吗？可见当初报多了。从此你报什么数，他都打个折。阿鉴，<em>在上峰眼里，省钱的衙门不是节俭，是虚报。</em></p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>……那买什么呢？</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>买什么不要紧。要紧的是腊月三十那天，账上是零。</p></div>
+        <div class="sd">阿鉴想了半天，去采买了一批新木桶。屋顶早就不漏了，木桶至今堆在库房里。</div>
+      </div>
+    </div>
+    <p>这个道理不复杂：<em>如果明年的预算由今年的花销决定，那么每一个省钱的人都在惩罚自己。</em>规则奖励花钱，人就会花钱。没有人是坏人，是规则在说话。</p>
+
+    <h3><span class="part">戏里</span>一场越节约越多人的节约运动</h3>
+    <div class="drama">
+      <div class="dh"><b>《是，大臣》· 节约运动</b><span>BBC · 1980 · 剧情概述</span></div>
+      <p>报纸上一篇文章把哈克骂得狗血淋头：政府口口声声要精简机构，可哈克自己的部门就是人浮于事的典型。哈克大怒，宣布在全部门开展节约运动。</p>
+      <p>结果很快就出来了：要推行节约运动，需要新招一批人来监督它；哈克自己心爱的那个“监察办公室”，又需要另一批新人。节约运动还没开始节约，编制先多了好几百个。到最后，汉弗莱给了哈克一个两全其美的办法：取消节约运动，同时向报界宣布大臣“砍掉了八百个职位”。哈克指出，这八百个职位根本还没招人。汉弗莱说，那就更好了，连裁员补偿都省了。</p>
+      <p>哈克问，那到底怎样才能真正精简机构？汉弗莱想了想说：也许可以辞掉一两个端茶的女工。</p>
+      <p class="src">据中译本《是，大臣》第三章“节约运动”概述，非原文。</p>
+    </div>
+
+    <div class="drama">
+      <div class="dh"><b>《大明王朝1566》· 年终的账</b><span>2007 · 剧情概述</span></div>
+      <p>剧一开场，是一年将尽时朝廷的一场算账会：国库亏空一大截，宫里要修宫观，东南要打倭寇，各地要赈灾，每一个衙门都说自己的那笔钱最要紧、最不能少。谁也不肯让，窟窿就得找个地方填。最后拿出来的办法，是在浙江“改稻为桑”：把稻田改成桑田，多产丝绸卖给西洋商人。</p>
+      <p>这场戏几乎把本案的一切都演了一遍：每个衙门都在保自己的那一块；国库的窟窿最终不会落在任何一个在座的人身上，而是落在千里之外的浙江农民身上。<em>预算会上不在场的人，常常就是付账的人。</em></p>
+      <p class="src">剧情为文学虚构，此处只作概述。</p>
+    </div>
+
+    <h3><span class="part">史上</span>“去年的数，加一点”</h3>
+    <p>古今中外，大多数衙门编预算的办法都差不多：拿去年的数，加一点。美国政治学家威尔达夫斯基 1964 年写《预算过程中的政治》，把这叫作“渐进主义”：决定今年预算的最大因素，是去年的预算。没有人从头问“这件事到底值多少钱”，大家只争论“比去年多几成”。</p>
+    <p>这个办法有它的好处：省事、稳定、少吵架。坏处就是莫师爷说的那条：去年的数一旦变小，就很难再变回来。于是每个衙门都会拼命守住“基数”。</p>
+
+    <h3>最后一周<span class="y">美国联邦政府</span></h3>
+    <p>这不是古人的毛病。美国联邦政府的财年在 9 月底结束，没花完的钱大多要上交。经济学家利布曼和马奥尼统计了多年的政府采购数据，2017 年发表了结果：<em>财年最后一周的花销，接近全年平均每周的五倍</em>。他们还发现，最后一周匆忙上马的信息技术项目，事后的质量评分明显更低。</p>
+    <p>钱花出去了，花得好不好，是另一回事。</p>
+
+    <h3>把潜规则写成明规则<span class="y">1724 · 雍正</span></h3>
+    <p>清朝地方官收税，收上来的碎银子要熔铸成整锭，熔的时候有损耗，叫“火耗”。损耗本来很少，可这成了地方官多收钱的名目：一两正税，加收一钱、两钱，甚至更多。这笔钱不在朝廷账上，用来填补衙门的开销、官员的应酬，也进了不少人的腰包。朝廷明知道，却没法管，因为地方衙门的正式经费确实不够用。</p>
+    <p>雍正二年（1724 年）前后，雍正推行“火耗归公”：把火耗定成固定比例，统一收归省里，再从中拿出一部分发给官员当“养廉银”，剩下的用作地方公费。一笔见不得人的钱，变成了一笔写在账上的钱。</p>
+    <p>这件事的道理是：<em>当一条规则逼得所有人都作假时，与其抓作假的人，不如改规则。</em></p>
+
+    <aside class="echo" data-k="讽刺" data-year="1977" data-title="治“基数”的药，变成了一堆文件">
+      <span class="stamp">讽刺</span>
+      <div>
+        <p class="rh"><span class="ry">1970—1981</span>治“基数”的药，变成了一堆文件</p>
+        <p>1970 年，美国德州仪器公司的皮尔试行了一种新办法，叫“零基预算”：每年每笔钱都从零开始论证，不看去年。卡特当佐治亚州州长时引进了它，1977 年当上总统后又推广到联邦政府。结果每年要论证的文件堆成了山，各部门写报告写到手软。几年后，这套办法在联邦层面基本被放弃了。治“去年的数加一点”的药，变成了第二案里的那种委员会。</p>
+      </div>
+    </aside>
+
+    <div class="wide fig" id="fig-bud">
+      <div class="fig-label">装置 6 / 年底花光</div>
+      <h4>省，还是花？</h4>
+      <p class="how">你管一个衙门的银子。每年实际需要的钱会上下浮动，你可以选择“够用就好”（剩下的上交），或者“年底花光”。上峰按某种规则定明年的预算。先在“按今年花销定预算”的规则下过五年，再换成另一条规则试试。</p>
+      <div class="btns" id="budRule" style="margin-bottom:8px"><button class="btn on" data-r="spend">规则一：明年 = 今年花销 × 1.03</button><button class="btn" data-r="zero">规则二：明年 = 审核过的实际需要，结余可留一半</button></div>
+      <svg viewBox="0 0 600 190" id="budSvg" role="img" aria-label="五年预算柱状图"></svg>
+      <div class="readout" id="budTxt" style="margin:8px 0"></div>
+      <div class="btns"><button class="btn" id="budSave">够用就好</button><button class="btn red" id="budSpend">年底花光</button><button class="btn" id="budReset">重来</button></div>
+    </div>
+
+    <h3><span class="part">识破</span>年底花光的症状</h3>
+    <div class="see">
+      <h5>识破它</h5>
+      <ul>
+        <li><b>年底突然很忙</b>：采购、培训、出差、换设备，集中在最后几周。</li>
+        <li><b>“这笔钱不花就浪费了”</b>。其实不花，钱还在；花了，钱才真没了。</li>
+        <li><b>申请的数永远比需要的多一点</b>，因为大家都知道会被砍。</li>
+        <li><b>没人敢说“今年用不了这么多”</b>。</li>
+      </ul>
+    </div>
+
+    <div class="counter">
+      <h5>应对</h5>
+      <div class="who3">
+        <div><b>你管一笔钱</b>比如班费、社团经费、项目经费。如果你能定规矩，就让省下来的钱能留到明年，或者能用到大家投票决定的事情上。让省钱的人不吃亏，花钱的冲动会小一半。</div>
+        <div><b>你被要求“把钱花完”</b>先问一句：花在什么上最有用？既然非花不可，就花在明年本来也要买的东西上，而不是一批新木桶。</div>
+        <div><b>你自己的“预算”</b>“这个月的流量还没用完”“优惠券快过期了”“会员不看白不看”。这些都是年底花光的个人版本。一张快过期的满减券，最划算的用法，常常是不用。</div>
+      </div>
+    </div>
+
+    <div class="takeaway">
+      <p><b>规则奖励什么，人就做什么。</b>当省下的钱会变成明年的损失，所有人都会在腊月里变得很会花钱。</p>
+      <p class="life">“不用就浪费了”是一句很贵的话。钱、时间、额度，没用完不是浪费，用在不需要的地方才是。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第六案 考什么，得什么 ============ -->
+<section class="case" id="c7" data-vol="第六案 · 考什么，得什么">
+  <div class="folder">
+    <span class="seal">考</span>
+    <div class="no">第陆案</div>
+    <h2>考什么，得什么</h2>
+    <dl>
+      <dt>案由</dt><dd>一个数字一旦成了考核的目标，它就不再说真话</dd>
+      <dt>戏里</dt><dd>《是，大臣》：砍掉八百个本来就没人的职位</dd>
+      <dt>史上</dt><dd>张居正的考成法 · 王安石的青苗法 · 河内的老鼠尾巴 · 古德哈特定律</dd>
+      <dt>身边</dt><dd>打卡、刷题数、步数 · 好评返现</dd>
+    </dl>
+    <span class="string"></span>
+  </div>
+
+  <div class="col">
+    <h3><span class="part">案由</span>抓贼的数目</h3>
+    <div class="scene">
+      <div class="sh"><b>第七场 · 新考法</b><span>签押房 · 开春</span></div>
+      <div class="bd">
+        <div class="sd">上峰来了新公文：今后各衙门按“每月捕获盗贼人数”排名，排名靠后的，主官记过。</div>
+        <div class="ln"><span class="who j">阿鉴</span><p>师爷，这个月咱们抓了四十多个，排第一！可是……城东那伙劫道的，一个都没抓着。</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>那伙人要盯三个月才抓得到，三个月里，这一栏是零。偷菜的、赊账不还的、半夜喝醉骂街的，一天能抓好几个。你说，捕快们会去抓哪个？</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>可上峰要的是城里太平啊。</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>上峰要的是太平，可他看不见太平，只看得见数字。他考数字，衙门就给他数字。</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>那下个月呢？</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>下个月，隔壁县会抓五十个。再下个月，一百个。然后会有聪明人发现，把一个人抓两次，算两个。</p></div>
+      </div>
+    </div>
+    <p>这一案和上一案是一对兄弟。上一案说，规则奖励花钱，人就花钱；这一案说，<em>规则考核什么，人就生产什么</em>，哪怕那个东西已经和本来的目的没什么关系了。</p>
+
+    <h3><span class="part">戏里</span>八百个职位</h3>
+    <div class="drama">
+      <div class="dh"><b>《是，大臣》· 节约运动（续）</b><span>BBC · 1980 · 剧情概述</span></div>
+      <p>上一案说到，节约运动的结局是汉弗莱建议宣布“砍掉八百个职位”。这句话在新闻稿里是真的：确实有八百个职位被取消了。只不过它们是这场节约运动自己刚刚设出来、还没来得及招人的职位。</p>
+      <p>哈克说这是玩弄数字、蒙蔽公众。汉弗莱的回答大意是：这只是政府的新闻稿。</p>
+      <p>这个桥段好笑，是因为它太常见了：<em>考核“裁了多少人”，就会有人去裁不存在的人。</em></p>
+      <p class="src">据中译本《是，大臣》第三章“节约运动”概述，非原文。</p>
+    </div>
+
+    <h3><span class="part">史上</span>三本账<span class="y">1573 · 张居正</span></h3>
+    <p>卷一讲过，万历后期朝廷空转，奏疏留中，事情拖着没人办。其实万历刚登基的头十年，情形完全相反，因为那时候主政的是首辅张居正。</p>
+    <p>万历元年（1573 年），张居正推行“考成法”。办法是记账：每一件交办的事，都登记在册，写明期限；一本留在六部或都察院，一本送六科，一本送内阁。六科按期核查六部，内阁再核查六科。到期没办完的，要追究。这几乎就是卷一里那三个问题：谁、做什么、哪天。据《明史》说，那几年政令传下去，“虽万里外，朝下而夕奉行”。</p>
+    <p>可考成法最看重的一项，是催收钱粮的完成率。地方官为了不被追究，催税催得越来越狠，有的地方严刑逼缴，百姓苦不堪言。张居正推行的清丈田亩，也有地方官为了显示成绩，把田亩丈量得比实际多。万历十年（1582 年）张居正病逝，很快被清算，考成法也随之废弛。</p>
+    <p>它治好了拖延，又生出了另一种病。这两种病，后来的每一个衙门都在两头之间来回摆。</p>
+
+    <h3>不要也得借<span class="y">1069 · 王安石</span></h3>
+    <p>再往前五百年，北宋的王安石推行“青苗法”：青黄不接的时候，官府按较低的利息借钱给农民，秋收后归还，免得农民落进高利贷手里。用意很好。</p>
+    <p>问题出在考核上。放贷的多少成了地方官的政绩，于是有的地方强行摊派，不需要借钱的农户也被摊上一笔，到期还要还本付息，这叫“抑配”。司马光、苏轼等人都上书批评过这一点。一项帮农民的政策，在一些地方变成了压在农民身上的又一笔债。</p>
+
+    <h3>老鼠尾巴<span class="y">1902 · 河内</span></h3>
+    <p>1902 年，法国殖民当局治下的越南河内闹鼠疫，鼠患严重。当局悬赏捕鼠：每交一条老鼠尾巴，赏一点钱。尾巴交上来了，一天几千条。</p>
+    <p>可没多久，街上出现了没有尾巴的活老鼠。有人抓到老鼠，剪下尾巴领赏，再把老鼠放回去，让它继续生小老鼠，生出来的小老鼠又会长出新尾巴。后来还发现城郊有人专门养老鼠。悬赏最终被取消了。研究这段历史的学者范恩把它写进了论文，后来人们常用它来说明：<em>你奖励尾巴，就会得到尾巴，而不是更少的老鼠。</em></p>
+    <p>经济学家古德哈特 1975 年说过一句话，后来被人概括成“古德哈特定律”：<em>一个指标一旦变成目标，它就不再是一个好指标。</em>社会学家坎贝尔差不多同时也说了类似的话：一个量化指标越是被用来做重大决策，它就越容易被扭曲，也越会扭曲它本来要衡量的东西。</p>
+
+    <aside class="echo" data-k="存疑" data-year="1960" data-title="苏联的钉子工厂">
+      <span class="stamp">存疑</span>
+      <div>
+        <p class="rh">苏联的钉子工厂</p>
+        <p>常有人讲一个故事：苏联一家钉子厂，按数量考核时只生产细小的钉子，按重量考核时就只生产一根巨大的钉子。这个故事流传极广，据说还上过苏联的讽刺漫画，但它更像是一个笑话，而不是有据可查的真事。它好记，是因为它把古德哈特定律讲得太清楚了。</p>
+      </div>
+    </aside>
+
+    <div class="wide fig" id="fig-rat">
+      <div class="fig-label">装置 7 / 老鼠尾巴</div>
+      <h4>悬赏越高，老鼠越少吗？</h4>
+      <p class="how">你是河内的官员。拖动滑块定一条尾巴的赏钱，然后一个月一个月地往下推。红线是你的“成绩单”：每月收上来的尾巴；蓝线是真实情况：城里还有多少老鼠。</p>
+      <div class="rng"><span>赏钱</span><input type="range" id="ratB" min="0" max="5" step="1" value="1" aria-label="每条尾巴的赏钱"><output id="ratBo">1 文</output></div>
+      <svg viewBox="0 0 600 200" id="ratSvg" role="img" aria-label="尾巴数与老鼠数折线图"></svg>
+      <div class="readout" id="ratTxt" style="margin:8px 0"></div>
+      <div class="btns"><button class="btn pri" id="ratGo">过一个月</button><button class="btn" id="ratSix">连过六个月</button><button class="btn" id="ratReset">重来</button></div>
+    </div>
+
+    <h3><span class="part">识破</span>指标变形的症状</h3>
+    <div class="see">
+      <h5>识破它</h5>
+      <ul>
+        <li><b>数字很好看，事情没变好</b>。捕获人数年年第一，城东的劫道照样有。</li>
+        <li><b>容易数的东西挤掉了难数的东西</b>。抓小偷容易数，太平不容易数。</li>
+        <li><b>大家开始讨论“怎么算”</b>，而不是“怎么做”。一个人抓两次算不算两个？</li>
+        <li><b>指标一换，行为马上跟着换</b>。说明大家在对付指标，不是在对付问题。</li>
+      </ul>
+    </div>
+
+    <div class="counter">
+      <h5>应对</h5>
+      <div class="who3">
+        <div><b>你在定指标</b>别只用一个数字。抓贼的数目，配上百姓的投诉数；刷题的数量，配上错题的重做率。时不时亲自下去看看，数字之外的东西，要用眼睛看。</div>
+        <div><b>你在被考核</b>做到指标，也守住指标背后的那件事。指标是给别人看的，那件事是你自己的。被考核“步数”的时候，别去摇手机。</div>
+        <div><b>你在考核自己</b>“今天刷了五十道题”“这周读了三本书”“连续打卡一百天”，这些数字很让人安心，也很容易变成老鼠尾巴。偶尔问自己一句：我要的是尾巴，还是更少的老鼠？</div>
+      </div>
+    </div>
+
+    <div class="takeaway">
+      <p><b>你考什么，就得到什么；你只考数字，就只得到数字。</b>张居正、王安石、河内的官员，都在这一点上吃过亏。</p>
+      <p class="life">给自己定目标的时候，定一个数字，也写下这个数字是为了什么。数字完成了，回头看一眼那个“为了什么”。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第七案 离大人最近的那间屋子 ============ -->
+<section class="case" id="c8" data-vol="第七案 · 离大人最近的屋子">
+  <div class="folder">
+    <span class="seal">地</span>
+    <div class="no">第柒案</div>
+    <h2>离大人最近的屋子</h2>
+    <dl>
+      <dt>案由</dt><dd>在衙门里，一间屋子值多少，要看它离大人有几步</dd>
+      <dt>戏里</dt><dd>《是，首相》“钥匙”：一间办公室，一把钥匙</dd>
+      <dt>史上</dt><dd>尚书、中书、翰林、内阁、军机处：两千年的“秘书变宰相”</dd>
+      <dt>身边</dt><dd>群主 · 文档的编辑权 · 谁负责“汇总”</dd>
+    </dl>
+    <span class="string"></span>
+  </div>
+
+  <div class="col">
+    <h3><span class="part">案由</span>搬屋子</h3>
+    <div class="scene">
+      <div class="sh"><b>第八场 · 搬屋子</b><span>后院 · 春分</span></div>
+      <div class="bd">
+        <div class="sd">衙门要重新分配屋子。户房的周书办想要正堂隔壁那间，那是莫师爷的签押房。</div>
+        <div class="ln"><span class="who j">阿鉴</span><p>师爷，周书办说他那边账册多，想跟咱们换屋子。他那间更大，还朝南。换了不是挺好？</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>大，朝南。离正堂几步？</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>穿过回廊，过二门，再拐个弯……一百来步吧。</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>我这间，三步。大人在正堂里想问一句话，探头一喊，第一个进去的是谁？</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>是您。</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>第一个进去的人，说的第一句话，就是大人听到的第一个说法。之后再进去的人，都是在反驳这个说法。阿鉴，<em>衙门里的权力，一半是职位给的，一半是步数给的。</em></p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>那周书办……</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>周书办也知道。不然他要大屋子做什么？他的账册在哪间屋子都一样多。</p></div>
+      </div>
+    </div>
+
+    <h3><span class="part">戏里</span>一把钥匙</h3>
+    <div class="drama">
+      <div class="dh"><b>《是，首相》· 钥匙</b><span>BBC · 1986 · 剧情概述</span></div>
+      <p>哈克当上首相后，他的政治顾问多萝西气冲冲地来找他：她原来那间紧挨着首相的办公室，被改成了大臣们的候见室，她本人被挪到了楼上的阁楼。这是汉弗莱提交的一份“合理利用空间的精简计划”，而哈克当时看都没细看就批了。多萝西说，文官们想把她赶出那间屋子已经好几年了，因为它的位置是整栋楼里最关键的。</p>
+      <p>哈克这才明白过来。他决定反击：内阁办公室和首相府之间有一道相通的门，汉弗莱一直有那扇门的钥匙，想进就进。哈克让私人秘书伯纳德去把钥匙收回来。伯纳德为难地说，汉弗莱职位比他高。可他最后还是照办了。汉弗莱发现钥匙不见了，大发雷霆。平日里怯生生的伯纳德，这回拿“自家钥匙不给丈母娘”打了个比方，把汉弗莱噎得说不出话。</p>
+      <p>一间屋子、一把钥匙，在别人看来是小事。在他们那里，这就是<em>能不能第一个走到首相面前</em>的事。这一集的结局，下一案再讲。</p>
+      <p class="src">据中译本《是，首相》上卷第四章“钥匙”概述，非原文。</p>
+    </div>
+
+    <h3><span class="part">史上</span>秘书变宰相，两千年的轮回</h3>
+    <p>中国历史上有一个反复出现了两千年的故事，几乎是这一案的放大版。情节总是这样：皇帝嫌朝廷里的大官们（宰相、三公）权力太大、办事太慢，于是在身边找几个品级不高、但天天见面的秘书来帮自己处理文书。秘书离皇帝近，渐渐地，奏章先过他们的手，主意也由他们来出。几代之后，秘书变成了新的宰相，有了自己的衙门、属官和规矩，也变得权大、事慢。于是又有一个皇帝，在身边找来一批新的秘书……</p>
+    <p>汉武帝时，为了绕开丞相，重用身边的“中朝”官员，掌管文书的尚书地位越来越重。到东汉，人们说朝廷里“虽置三公，事归台阁”：三公还在，事情都归尚书台办了。魏晋以后，皇帝又倚重身边起草诏书的中书；到隋唐，尚书、中书、门下成了正式的三省。唐朝中后期，皇帝身边的翰林学士替皇帝起草最机密的诏令，被称为“内相”。明太祖废了丞相，设内阁大学士做秘书，起初只是五品小官；一百多年后，内阁首辅成了实际上的宰相。清朝雍正年间，为了西北用兵设立军机处，起初只是隆宗门边上的几间值房，不久就成了全国真正的中枢。</p>
+    <p><em>每一次，都是“离皇帝近”打败了“品级高”。</em></p>
+
+    <aside class="echo" data-k="轮回" data-year="1729" data-title="秘书变宰相">
+      <span class="stamp">轮回</span>
+      <div>
+        <p class="rh"><span class="ry">前 1 世纪—18 世纪</span>秘书变宰相</p>
+        <p>尚书、中书、翰林、内阁、军机处，五次几乎同样的剧情，跨越一千八百多年。明朝还多了一条支线：内阁替皇帝拟意见（票拟），司礼监的太监替皇帝用朱笔批（批红），比内阁离皇帝更近的太监，有时比内阁更有权。白厅里，首相身边的私人秘书和政治顾问，跟内阁秘书之间，演的也是同一出戏。</p>
+      </div>
+    </aside>
+
+    <div class="wide fig" id="fig-sec">
+      <div class="fig-label">装置 8 / 秘书变宰相</div>
+      <h4>五次轮回</h4>
+      <p class="how">点一个朝代，看看那一回的“秘书”是怎样从皇帝身边的小官，变成庞大正式的衙门的。</p>
+      <div class="scroll-x"><svg viewBox="0 0 640 120" id="secSvg" role="img" aria-label="五个秘书机构的时间线" style="min-width:520px"></svg></div>
+      <div class="tlcard" id="secCard" style="min-height:7em;border-top:1px dashed var(--rule);margin-top:8px;padding-top:10px"></div>
+    </div>
+
+    <h3><span class="part">识破</span>抢地盘的症状</h3>
+    <div class="see">
+      <h5>识破它</h5>
+      <ul>
+        <li><b>争的不是做事，是经手</b>。谁都不想干活，但谁都想“由我汇总”“由我转达”。</li>
+        <li><b>信息只走一条路</b>。“这事你别直接找他，跟我说就行。”</li>
+        <li><b>重组、搬家、换流程的时候，每个人先问自己的位置</b>。</li>
+        <li><b>借“效率”“规范”之名，把别人挪远一点</b>。汉弗莱的精简计划就叫“合理利用空间”。</li>
+      </ul>
+    </div>
+
+    <div class="counter">
+      <h5>应对</h5>
+      <div class="who3">
+        <div><b>你是做决定的人</b>别只听第一个走进来的人。重要的事，多找一个离你远一点的人问问。把信息放到大家都看得见的地方，让“谁离你近”变得不那么重要。</div>
+        <div><b>你在一个小团体里</b>比如小组作业，谁管“最终版文档”、谁负责“跟老师对接”，常常就是谁说了算。这不一定是坏事，但最好说清楚，并且让文档人人能看、人人能改。</div>
+        <div><b>你在抢地盘</b>想当群主、想管汇总，问问自己：是为了把事办好，还是为了让别人都得经过我？如果是后者，你迟早会变成周书办。</div>
+      </div>
+    </div>
+
+    <div class="takeaway">
+      <p><b>权力的一半是职位，一半是距离。</b>两千年里，离皇帝近的人一次次赢过官位高的人，然后变成新的官位高的人。</p>
+      <p class="life">你离谁近，谁的说法就容易变成你的说法。所以要常常听听远一点的声音，包括离你最远的那一种。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第八案 “不”的说法 ============ -->
+<section class="case" id="c9" data-vol="第八案 · “不”的说法">
+  <div class="folder">
+    <span class="seal">否</span>
+    <div class="no">第捌案</div>
+    <h2>“不”的说法</h2>
+    <dl>
+      <dt>案由</dt><dd>卷一的四招都是不说“不”的办法；这一案讲，怎样把“不”好好地说出口</dd>
+      <dt>戏里</dt><dd>《是，首相》“钥匙”的结局：给对方一个台阶</dd>
+      <dt>史上</dt><dd>嵇康的“七不堪” · 蔺相如和一块玉 · 两姐妹分橙子</dd>
+      <dt>身边</dt><dd>第三次借钱的同学 · 周五傍晚的“不急”</dd>
+    </dl>
+    <span class="string"></span>
+  </div>
+
+  <div class="col">
+    <h3><span class="part">案由</span>摊派</h3>
+    <p>卷一讲了四种“不说不”的招数，看多了难免让人觉得：衙门里的人都不敢说“不”。其实也有敢的。这一案，莫师爷难得教了阿鉴一回正面的手艺。</p>
+    <div class="scene">
+      <div class="sh"><b>第九场 · 摊派</b><span>正堂 · 夏</span></div>
+      <div class="bd">
+        <div class="sd">上峰来函，要本县百姓每户摊银三钱，修一条通往上峰别院的路。大人看完，把公文推给莫师爷。</div>
+        <div class="ln"><span class="who d">大人</span><p>这钱不能收。今年刚闹过水，百姓拿不出来。可我怎么回？</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>大人有四种回法。第一种，拖：回“正在筹措”，然后不筹。可上峰会再催，催到第三次，就不是催了，是记过。</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>第二种，推：说按例摊派须经府里核准。可府里一核准，大人就没退路了。</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>第三种，顶：直接回“不收”。痛快是痛快，上峰的面子掉在地上，他捡起来的时候，会顺便看一眼大人的考评。</p></div>
+        <div class="ln"><span class="who d">大人</span><p>第四种呢？</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>第四种最难。说清楚“不”，说清楚为什么，再给他一条别的路。比如：本县今年水灾，摊派恐生民变，于上峰的清誉有损；路可以修，请准本县以工代赈，招灾民修路，工钱从赈灾银里出。上峰要的是路，不一定是银子。</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>师爷，您平时不是最会拖吗？</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>拖是用来对付那些不必办的事的。<em>这件事必须拒绝，拒绝就要拒绝得干净</em>，留一条缝，上峰就会顺着缝再塞进来。</p></div>
+      </div>
+    </div>
+    <p>莫师爷的第四种说法，可以拆成三块：<b>明确的“不”</b>（不含糊、不拖），<b>真实的理由</b>（对方能理解的那一种），<b>另一条路</b>（照顾对方真正想要的东西）。三块里少了任何一块，“不”都会变味：少了第一块是拖，少了第二块是顶，少了第三块是把对方逼到墙角。</p>
+
+    <h3><span class="part">戏里</span>钥匙的结局：台阶</h3>
+    <div class="drama">
+      <div class="dh"><b>《是，首相》· 钥匙（结局）</b><span>BBC · 1986 · 剧情概述</span></div>
+      <p>上一案说到，哈克收走了汉弗莱的钥匙。可他的目的不是羞辱汉弗莱，而是让多萝西搬回原来的办公室。最后的谈判里，哈克做了两件事：一是给汉弗莱一个体面的说法，客客气气地请他“思考之后”发表意见，汉弗莱于是顺势表示，多萝西确实需要离首相近一些，钥匙也还给了他；二是在汉弗莱最在乎的另一件事上（由谁来当文官系统的首脑）故意不给准话，让对方明白：这件事，归首相决定。</p>
+      <p>哈克拒绝了汉弗莱的计划，却没有让汉弗莱丢脸。他留着台阶，也留着筹码。</p>
+      <p class="src">据中译本《是，首相》上卷第四章“钥匙”概述，非原文。</p>
+    </div>
+
+    <h3><span class="part">史上</span>七不堪<span class="y">约 261 · 洛阳</span></h3>
+    <p>魏晋之际，“竹林七贤”里的山涛要升官，推荐好友嵇康接替自己原来的职位。嵇康给他回了一封信，就是后来有名的《与山巨源绝交书》。</p>
+    <p>信里，嵇康一条条列出自己当不了官的理由，一共“七不堪”“二不可”。第一条就很好笑：</p>
+    <blockquote><p>卧喜晚起，而当关呼之不置，一不堪也。</p><cite>——嵇康《与山巨源绝交书》</cite></blockquote>
+    <p>我爱睡懒觉，当官了，门口的差役一大早就喊个不停，受不了。后面还有：喜欢抱着琴边走边唱、去郊外打鸟，当官了不能随便出门；坐久了身上长虱子，要挠，可穿着官服得正襟危坐；不喜欢写信，案头的公文堆成山……</p>
+    <p>这封信写得痛快淋漓，但它其实不完全是拒绝山涛。信里的“二不可”，一条是“非汤武而薄周孔”，看不上被当时的掌权者拿来做招牌的圣贤；另一条是性子刚直，看见坏事就忍不住要说。真正被拒绝的，是当时把持朝政的司马氏。几年后，嵇康被司马昭下令处死。</p>
+    <p>故事还有后半段。据《晋书》记载，嵇康临刑前，对年幼的儿子嵇绍说：“巨源在，汝不孤矣。”山涛还在，你就不会无依无靠。后来山涛果然一手提拔了嵇绍。<em>一封“绝交书”，没有绝掉真正的交情。</em>嵇康拒绝的是那个位置，不是那个人；山涛也听懂了。</p>
+
+    <h3>一块玉<span class="y">前 283 · 咸阳</span></h3>
+    <p>谈判桌上最难的“不”，是对比你强大得多的人说的。</p>
+    <p>据《史记·廉颇蔺相如列传》，秦昭王说愿意用十五座城换赵国的和氏璧。赵国不敢不给，又怕给了拿不到城。蔺相如带着玉去了秦国，看秦王把玉传给左右美人把玩，一句不提城的事，就知道对方根本没打算给。</p>
+    <p>他说玉上有个小瑕疵，要指给秦王看，把玉拿回手里，退到柱子边上，说：大王要是逼我，“臣头今与璧俱碎于柱矣”。秦王怕他真把玉砸了，只好让人拿地图来，指了十五座城。蔺相如又说，赵王送玉之前斋戒了五天，大王也应当斋戒五天，设隆重的典礼，我才敢献上。秦王答应了。五天里，蔺相如派随从穿着粗布衣服，抄小路把玉送回了赵国。</p>
+    <p>这场谈判里有三样东西：<b>看清对方真正想要什么</b>（秦王要玉，不想给城）；<b>可信的筹码</b>（我真的会把它砸了）；<b>给对方台阶</b>（不说“你骗人”，只说“请斋戒五天”）。最后蔺相如还当面承认是自己把玉送走的，请秦王处置。秦王杀了他也得不到玉，反倒坏了名声，只好放他回去。</p>
+
+    <h3>两姐妹分橙子<span class="y">1981 · 哈佛</span></h3>
+    <p>哈佛谈判项目的费希尔和尤里，1981 年写了一本《谈判力》，讲了一个后来被引用无数次的小故事：两姐妹争一个橙子，最后一人一半。结果一个把她那一半的果肉吃了、皮扔了；另一个把她那一半的皮剥下来烤蛋糕，果肉扔了。如果她们先问一句“你要它做什么”，每个人本可以得到整整一个。</p>
+    <p>他们管这叫区分“立场”和“利益”。立场是“我要这个橙子”，利益是“我要果汁”或“我要果皮”。在立场上，“不”就是“不”；在利益上，常常能找到另一条路。莫师爷的第四种说法，就是绕过“我要银子”这个立场，去碰“我要一条路”这个利益。</p>
+
+    <aside class="echo" data-k="联系" data-year="1981" data-title="上峰要的是路">
+      <span class="stamp">联系</span>
+      <div>
+        <p class="rh">上峰要的是路，秦王要的是玉，姐妹要的是果汁和果皮</p>
+        <p>三个故事隔了两千多年，讲的是同一件事：想把“不”说好，先弄清楚对方要什么。这也是卷一第四案的反面：好的问题不是用来诱导对方，而是用来了解对方。</p>
+      </div>
+    </aside>
+
+    <div class="wide fig" id="fig-no">
+      <div class="fig-label">装置 9 / 拒绝练习</div>
+      <h4>四个场景，四种说法</h4>
+      <p class="how">每个场景选一种回应，看看它对“关系”和“你自己”分别有什么影响。没有标准答案，只有代价不同的选择。</p>
+      <div class="qcard" id="noCard"></div>
+      <div class="res" style="display:grid;grid-template-columns:4.5em minmax(0,1fr) 3em;gap:8px;align-items:center;font-size:14px;margin:10px 0 4px"><span>关系</span><div class="meter"><i id="noRel" style="width:60%"></i></div><output id="noRelo" style="font-family:var(--f-mono);text-align:right">60</output></div>
+      <div class="res" style="display:grid;grid-template-columns:4.5em minmax(0,1fr) 3em;gap:8px;align-items:center;font-size:14px;margin:4px 0"><span>你自己</span><div class="meter"><i id="noSelf" style="width:60%;background:var(--moss)"></i></div><output id="noSelfo" style="font-family:var(--f-mono);text-align:right">60</output></div>
+      <div class="btns" style="margin-top:10px"><button class="btn pri" id="noNext">下一个场景</button><button class="btn" id="noReset">重来</button></div>
+    </div>
+
+    <h3><span class="part">识破</span>一个“不”说坏了的症状</h3>
+    <div class="see">
+      <h5>识破它</h5>
+      <ul>
+        <li><b>说了“好”，心里是“不”</b>，然后做得很慢、很敷衍。这是卷一的拖字诀，用在了自己身上。</li>
+        <li><b>理由一大堆，就是没有“不”字</b>，对方只好再问一遍。</li>
+        <li><b>一个“不”里带着刺</b>：“你怎么老找我”“这种事也来问”。拒绝的是事，伤的是人。</li>
+        <li><b>第二天又补一句“其实也不是不行”</b>。留了缝，对方会再来。</li>
+      </ul>
+    </div>
+
+    <div class="counter">
+      <h5>应对</h5>
+      <div class="who3">
+        <div><b>你要拒绝</b>早说，别等到最后一刻；先说结论，再说理由；理由说真的，一条就够；能给另一条路就给，给不了也没关系。一句话版本：“这次我不行，因为……，要不……？”</div>
+        <div><b>你被拒绝</b>别把一次“不”当成对你这个人的否定。问一句“那什么情况下可以？”或者“你看谁比较合适？”，常常能问出另一条路。山涛就没有因为那封信生嵇康的气。</div>
+        <div><b>你和亲近的人之间</b>越亲近，越难说“不”，也越需要说。一个从来不会对你说“不”的人，他的“好”也就没那么值钱了。好好说出口的“不”，是对一段关系的信任。</div>
+      </div>
+    </div>
+
+    <div class="takeaway">
+      <p><b>好的“不”有三块：明确的拒绝，真实的理由，另一条路。</b>蔺相如对秦王、莫师爷对上峰、嵇康对山涛，都没有含糊。</p>
+      <p class="life">拒绝的是事，不是人。把这句话想清楚，“不”就没那么难说了。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 卷二结案 ============ -->
+<section class="case" id="c10" data-vol="卷二结案 · 争">
+  <div class="folder">
+    <span class="seal">结</span>
+    <div class="no">卷二 · 结案</div>
+    <h2>争的四种样子</h2>
+    <dl>
+      <dt>案由</dt><dd>银子、数字、屋子、一个“不”字</dd>
+      <dt>考的是</dt><dd>年底花光 · 考什么得什么 · 地盘 · “不”的说法</dd>
+    </dl>
+    <span class="string"></span>
+  </div>
+
+  <div class="col">
+    <p>卷一的招数是对上的：不说“不”，让事情消失。卷二的招数是对旁边的：每个衙门都在保护自己的那一块，银子要守住基数，数字要好看，屋子要离大人近。最后一案换了个方向，讲怎样把“不”好好地说出来。</p>
+    <p>四案底下是同一个道理：<em>人对规则的反应，比人的品德更好预测。</em>与其指望每个人都高尚，不如设计一套让普通人也愿意做对事的规则。雍正的火耗归公、张居正的三本账，都是在改规则；它们的成败，也都在规则上。</p>
+  </div>
+
+  <div class="wide fig quiz" id="fig-quiz2">
+    <div class="fig-label">装置 10 / 识破它 · 卷二</div>
+    <h4>这是哪一种“争”？</h4>
+    <p class="how">读场景，点你认为最主要的那一种。</p>
+    <div class="score" data-q="score"></div>
+    <div class="qcard" data-q="card"></div>
+    <div class="btns" style="margin-top:12px"><button class="btn" data-q="prev">上一题</button><button class="btn pri" data-q="next">下一题</button></div>
+  </div>
+
+  <div class="col">
+    <div class="scroll-x">
+    <table class="t">
+      <thead><tr><th>案</th><th>它在争什么</th><th>一句话识破</th><th>一句话应对</th></tr></thead>
+      <tbody>
+        <tr><td><b>年底花光</b></td><td>明年的基数</td><td>年底突然很忙</td><td>让省钱的人不吃亏</td></tr>
+        <tr><td><b>考什么得什么</b></td><td>好看的数字</td><td>数字好看，事情没变好</td><td>别只考一个数，常下去看</td></tr>
+        <tr><td><b>地盘</b></td><td>离大人的步数</td><td>争经手，不争做事</td><td>把信息放到人人看得见的地方</td></tr>
+        <tr><td><b>“不”的说法</b></td><td>双方的体面</td><td>说了“好”，做得很慢</td><td>明确、真实、另一条路</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="scene">
+      <div class="sh"><b>卷二终场 · 新木桶</b><span>库房 · 又一个腊月</span></div>
+      <div class="bd">
+        <div class="sd">又到年底。阿鉴在库房里清点去年买的那批木桶，一只都没用过。</div>
+        <div class="ln"><span class="who j">阿鉴</span><p>师爷，今年账上又剩了两百两。</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>嗯。</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>我写了个条陈给大人：剩下的银子留到明年开春，给城东修个渡口。上峰要是因此砍明年的预算，就请大人把这份条陈和渡口的图一起递上去，说这是本县省下来办实事的。</p></div>
+        <div class="sd">莫师爷看了看条陈，又看了看那堆木桶。</div>
+        <div class="ln"><span class="who s">莫师爷</span><p>上峰多半还是会砍。</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>那也比再买两百两的木桶强。</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>……你在这衙门里待久了，会变成一个很麻烦的人。</p></div>
+        <div class="sd">他在条陈末尾签了自己的名字。</div>
+      </div>
+    </div>
+
+    <div class="takeaway">
+      <p><b>规则比品德更好预测人。</b>想让人做对的事，先让做对的事不吃亏。</p>
+      <p class="life">当你发现自己总在某件事上“做不到”，先别骂自己，看看是不是你给自己定的规则在奖励相反的东西。</p>
+    </div>
+
+    <h3>卷三预告</h3>
+    <p>前两卷说的都是招数。卷三说人：怎样揣摩上意，锅怎样一层层往下传，为什么要站队、站错了会怎样，以及那个买好了棺材才去上疏的人。</p>
+  </div>
+</section>
+
+<!-- ============ 卷三 人 ============ -->
+<section class="volhead" id="v3" data-vol="卷三 · 人">
+  <div class="num">卷三</div>
+  <h2>人</h2>
+  <p class="lede">招数是死的，用招数的是人。这一卷讲衙门里的人怎样活：揣摩上意、背锅、站队，以及极少数不肯这样活的人。</p>
+</section>
+
+<!-- ============ 第九案 揣摩上意 ============ -->
+<section class="case" id="c11" data-vol="第九案 · 揣摩上意">
+  <div class="folder">
+    <span class="seal">揣</span>
+    <div class="no">第玖案</div>
+    <h2>揣摩上意</h2>
+    <dl>
+      <dt>案由</dt><dd>把“这件事对不对”换成“上面喜不喜欢”，是衙门里最省力、也最危险的一步</dd>
+      <dt>戏里</dt><dd>《大明王朝1566》：所有人都在猜一个人 · 《是，大臣》：伯纳德的两个主子</dd>
+      <dt>史上</dt><dd>青词宰相 · 道士的乩笔 · 唐太宗的镜子</dd>
+      <dt>身边</dt><dd>猜老师的重点 · 猜对方在想什么</dd>
+    </dl>
+    <span class="string"></span>
+  </div>
+
+  <div class="col">
+    <h3><span class="part">案由</span>大人爱听什么</h3>
+    <div class="scene">
+      <div class="sh"><b>第十场 · 报喜</b><span>签押房 · 秋汛前</span></div>
+      <div class="bd">
+        <div class="sd">阿鉴从河堤上回来，裤腿全是泥。</div>
+        <div class="ln"><span class="who j">阿鉴</span><p>师爷，西段河堤有三处渗水，得赶紧报给大人，秋汛前要加固。</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>大人这几天心情如何？</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>很好啊。上峰刚夸了本县的赋税收得齐。</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>那你现在进去说河堤渗水，大人是高兴还是不高兴？</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>……不高兴。</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>所以衙门里的老人，会等大人哪天心情不好了，再顺带提一句；或者说“西段河堤总体稳固，个别地方略有湿润”。这叫会揣摩。</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>那要是秋汛先来了呢？</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>那就是第十案的事了。</p></div>
+        <div class="sd">阿鉴想了想，没等大人心情不好，直接进了正堂。莫师爷看着他的背影，摇了摇头，又像是松了口气。</div>
+      </div>
+    </div>
+    <p>揣摩上意本身不是坏事。了解你要说服的人在意什么、什么时候说他听得进去，是做事的本事。坏事在于偷换：<em>本来要问“这件事对不对”，问着问着就变成了“他喜不喜欢”。</em>一个衙门里，如果每个人都在问后一个问题，那么上面听到的，就只剩下他爱听的。</p>
+
+    <h3><span class="part">戏里</span>所有人都在猜一个人</h3>
+    <div class="drama">
+      <div class="dh"><b>《大明王朝1566》· 猜</b><span>2007 · 剧情概述</span></div>
+      <p>剧里的嘉靖帝几乎不出西苑，却是全剧每一场戏的中心。内阁的阁老、司礼监的太监、浙江的督抚、清流的言官，每个人做每件事之前，都要先猜一遍：皇上是怎么想的？皇上知道了会怎么想？</p>
+      <p>猜得最准的，是天天在皇帝身边伺候的司礼监掌印太监吕芳。他把这门本事一点点教给底下的人：皇上说的话要怎么听，没说的话要怎么听，什么事要先替皇上挡下来，什么事要原原本本报上去。可剧里也让人看到，<em>当一个朝廷的全部智慧都用来猜一个人的心思</em>，就没有人有余力去关心浙江的稻田和河堤了。</p>
+      <p class="src">剧情为文学虚构，此处只作概述。</p>
+    </div>
+    <div class="drama">
+      <div class="dh"><b>《是，大臣》· 伯纳德的两难</b><span>BBC · 1980 · 剧情概述</span></div>
+      <p>私人秘书伯纳德的处境很尴尬：按职责，他应该站在大臣哈克一边；可他的前程掌握在部里，也就是汉弗莱手里。哈克在日记里写道，要两边都不得罪，这差事从定义上看就是不可能完成的，而偏偏只有完成了它的人，才会被一路提拔。整部剧里，伯纳德一直在两个主子之间揣摩，常常靠一句不着边际的语言学纠正，躲开一个必须表态的问题。</p>
+      <p class="src">据中译本《是，大臣》第二章“正式访问”等概述，非原文。</p>
+    </div>
+
+    <h3><span class="part">史上</span>青词宰相<span class="y">1540s—1560s · 嘉靖</span></h3>
+    <p>真实的嘉靖帝修道，常要举行斋醮，向上天献上祈祷的文章。这种文章用朱笔写在青藤纸上，叫“青词”，讲究辞藻华丽、对仗工整。嘉靖很看重青词写得好不好。</p>
+    <p>于是，会写青词成了升官的捷径。严嵩是写青词的高手；后来入阁的袁炜、李春芳、严讷、郭朴等人，也都以青词受到赏识，时人讥讽他们是“青词宰相”。大明朝最高的几个位子上，坐着一群最会给皇帝写祈祷文的人。</p>
+    <p>这一招有一个漂亮的反转。卷一说过，严嵩倒台和他儿子严世蕃不在身边有关；据《明史》记载，另一个契机来自一位道士。嘉靖宠信的方士蓝道行扶乩（一种假托神仙降笔的占卜），借“神仙”之口暗示朝中有奸臣，矛头指向严嵩。有人认为这背后有严嵩的对头徐阶的安排。<em>靠迎合皇帝修道起家的人，最后也栽在皇帝修道这件事上。</em></p>
+
+    <aside class="echo" data-k="讽刺" data-year="1562" data-title="乩笔">
+      <span class="stamp">讽刺</span>
+      <div>
+        <p class="rh"><span class="ry">1562 前后</span>乩笔</p>
+        <p>徐阶在严嵩手下隐忍多年，据说也写青词、也顺着严嵩说话，直到时机成熟才出手。他用来扳倒严嵩的，恰恰是严嵩最熟悉的那条路：揣摩一个修道皇帝的心思。揣摩上意的人，总以为自己在利用上意，其实谁都可以利用。至于扶乩是不是徐阶安排的，史料说法不一，只能存疑。</p>
+      </div>
+    </aside>
+
+    <h3>以人为镜<span class="y">627—643 · 唐太宗</span></h3>
+    <p>揣摩上意的反面，是一个专门说上面不爱听的话的人，以及一个居然愿意听的上面。</p>
+    <p>唐太宗李世民身边的魏征，据说一生进谏二百多次，常常当面顶撞，让太宗下不来台。有一回太宗退朝回宫，气得说要杀了“那个乡巴佬”；长孙皇后问是谁，太宗说是魏征，每次在朝堂上让我难堪。皇后换上朝服向太宗道贺，说君主英明，臣子才敢直言。这个故事见于《资治通鉴》等书。</p>
+    <p>魏征去世时，太宗说了一段话：</p>
+    <blockquote><p>以铜为镜，可以正衣冠；以古为镜，可以知兴替；以人为镜，可以明得失。</p><cite>——《旧唐书·魏征传》</cite></blockquote>
+    <p>可这面镜子也并不总是被珍惜。魏征死后不久，太宗听信别人的话，怀疑魏征生前结党，还亲手推倒了他的墓碑。后来太宗亲征高句丽，劳师无功，回来的路上叹息说，魏征要是还在，不会让我有这一趟。又派人重新立起了那块碑。</p>
+    <p><em>直言要有一个愿意听的人，才算得上勇气；不然，只是冒险。</em>这一点留到第十二案再说。</p>
+
+    <div class="wide fig" id="fig-rep">
+      <div class="fig-label">装置 11 / 报喜，还是报忧</div>
+      <h4>六份要递给大人的报告</h4>
+      <p class="how">你是县衙里管事的人，这半年有六件事要报给大人。每件事你可以照实说，也可以挑好听的说。左边是大人对你的好感，右边是这些事在暗处积下的麻烦。</p>
+      <div class="qcard" id="repCard"></div>
+      <div class="res" style="display:grid;grid-template-columns:5em minmax(0,1fr) 3em;gap:8px;align-items:center;font-size:14px;margin:10px 0 4px"><span>大人的好感</span><div class="meter"><i id="repFav" style="width:50%"></i></div><output id="repFavo" style="font-family:var(--f-mono);text-align:right">50</output></div>
+      <div class="res" style="display:grid;grid-template-columns:5em minmax(0,1fr) 3em;gap:8px;align-items:center;font-size:14px;margin:4px 0"><span>暗处的麻烦</span><div class="meter"><i id="repRisk" style="width:0%;background:var(--zhu)"></i></div><output id="repRisko" style="font-family:var(--f-mono);text-align:right">0</output></div>
+      <div class="btns" style="margin-top:10px"><button class="btn" id="repReset">重来</button></div>
+    </div>
+
+    <h3><span class="part">识破</span>揣摩过头的症状</h3>
+    <div class="see">
+      <h5>识破它</h5>
+      <ul>
+        <li><b>坏消息总是“等合适的时候再说”</b>。合适的时候往往是来不及的时候。</li>
+        <li><b>报告里的形容词越来越软</b>：“渗水”变成“略有湿润”，“失败”变成“未达预期”。</li>
+        <li><b>大家先问“老板怎么看”，再决定自己怎么看</b>。</li>
+        <li><b>上面听到的全是好消息，下面议论的全是坏消息</b>。</li>
+      </ul>
+    </div>
+
+    <div class="counter">
+      <h5>应对</h5>
+      <div class="who3">
+        <div><b>你是上面的人</b>班长、组长、社长都算。主动去问坏消息：“最近最让你担心的事是什么？”第一个给你报坏消息的人，别让他吃亏。不然你很快就只能听到好消息了。</div>
+        <div><b>你是下面的人</b>揣摩“什么时候说、怎么说”，别揣摩“说不说”。坏消息可以挑时机、换个温和的说法，还可以带一个解决办法一起说，但不能不说。</div>
+        <div><b>你和在乎的人之间</b>猜对方在想什么，是体贴；只说对方爱听的，就是讨好了。讨好能换来一时的好感，换不来信任。偶尔说一句真心但不那么好听的话，对方会记得。</div>
+      </div>
+    </div>
+
+    <div class="takeaway">
+      <p><b>揣摩上意，最后会让上意变成一面只照出自己的镜子。</b>青词宰相写出了最美的祈祷文，大明朝却没有人去修河堤。</p>
+      <p class="life">体贴是猜对方需要什么，讨好是猜对方爱听什么。前一种多一点，后一种少一点。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第十案 背锅 ============ -->
+<section class="case" id="c12" data-vol="第十案 · 背锅">
+  <div class="folder">
+    <span class="seal">锅</span>
+    <div class="no">第拾案</div>
+    <h2>背锅</h2>
+    <dl>
+      <dt>案由</dt><dd>出了事，总得有人负责；负责的，常常不是该负责的人</dd>
+      <dt>戏里</dt><dd>《是，大臣》“滚钉板”：一份包装成荣誉的苦差 · 《大明王朝1566》：被推出去的人</dd>
+      <dt>史上</dt><dd>旷野里的山羊 · 晁错穿着朝服被斩 · 曹操借粮官的头</dd>
+      <dt>身边</dt><dd>“谁提交的谁负责” · 群里那句“这个之前是谁弄的？”</dd>
+    </dl>
+    <span class="string"></span>
+  </div>
+
+  <div class="col">
+    <p>上一案结尾，阿鉴没有等大人心情不好，直接把河堤渗水的事报了上去。大人也立刻上报，申请加固的银子。然后……这一案还是先看漫画。</p>
+  </div>
+
+  <div class="comic" id="comic2" role="img" aria-label="黑白漫画《锅》，共六格">
+    <div class="ctitle"><b>锅</b><span>第二章黑白漫画 · 六格 · 原创</span></div>
+    <div class="grid">
+      <div class="pn">
+        <svg preserveAspectRatio="xMidYMid slice" data-panel="g1" viewBox="0 0 300 230" aria-hidden="true"></svg>
+        <div class="cap">秋汛 · 西段河堤还是决了<br>（加固的银子，上峰没批）</div>
+        <div class="bb tr" style="right:4%;top:30%;max-width:44%">总得有人负责。</div>
+      </div>
+      <div class="pn">
+        <svg preserveAspectRatio="xMidYMid slice" data-panel="g2" viewBox="0 0 300 230" aria-hidden="true"></svg>
+        <div class="bb" style="left:4%;top:5%;max-width:56%">你们县的事，你们县给个交代。</div>
+        <div class="sfx" style="right:8%;top:40%">咚！</div>
+      </div>
+      <div class="pn">
+        <svg preserveAspectRatio="xMidYMid slice" data-panel="g3" viewBox="0 0 300 230" aria-hidden="true"></svg>
+        <div class="bb" style="left:4%;top:5%;max-width:40%">师爷，这……</div>
+        <div class="bb tr" style="right:4%;top:18%;max-width:50%">按例，经办人是阿鉴。</div>
+      </div>
+      <div class="pn">
+        <svg preserveAspectRatio="xMidYMid slice" data-panel="g4" viewBox="0 0 300 230" aria-hidden="true"></svg>
+        <div class="bb think nt" style="left:4%;top:6%;max-width:52%">……我下面，没人了。</div>
+        <div class="sfx" style="right:6%;top:12%">左看</div>
+        <div class="sfx" style="right:10%;top:30%;transform:rotate(6deg)">右看</div>
+      </div>
+      <div class="pn w">
+        <svg preserveAspectRatio="xMidYMid slice" data-panel="g5" viewBox="0 0 600 250" aria-hidden="true"></svg>
+        <div class="cap">这就叫“背锅”。</div>
+      </div>
+      <div class="pn w">
+        <svg preserveAspectRatio="xMidYMid slice" data-panel="g6" viewBox="0 0 600 250" aria-hidden="true"></svg>
+        <div class="bb" style="left:4%;top:6%;max-width:38%">报告是他递的，银子是本官没争下来。这口锅，本官背。</div>
+        <div class="bb think nt" style="right:4%;top:8%;max-width:30%">这一任大人，怕是待不长了。</div>
+      </div>
+    </div>
+    <p class="after">漫画为本书原创。锅是真的锅。</p>
+  </div>
+
+  <div class="col">
+    <h3><span class="part">案由</span>锅为什么往下走</h3>
+    <p>漫画里的锅，一路往下走：上峰交给大人，大人转向师爷，师爷指向经办人，经办人下面没人了。阿鉴后来问莫师爷，为什么锅总是往下走？莫师爷说了三条：</p>
+    <div class="scene">
+      <div class="sh"><b>第十一场 · 锅的走法</b><span>签押房 · 汛后</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who s">莫师爷</span><p>一是锅有分量，人人都想往下放；往上放，要胆子，往下放，只要手。</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>二是越往下，名字越具体。上峰叫“上峰”，大人叫“本县”，到了你这儿，就叫“阿鉴”了。锅要找的，就是一个具体的名字。</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>三是经手的痕迹。银子是上峰没批的，可批文上没有他的字；呈文是你递的，上面有你的名字。<em>锅认的是字迹，不是道理。</em></p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>那这次，为什么大人把锅接过去了？</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>因为这一任大人是个怪人。怪人在衙门里，通常待不长。</p></div>
+        <div class="sd">莫师爷顿了顿，从抽屉里取出一份文书，是阿鉴三个月前递的那份河堤呈文的底稿，上面有大人的批语和上峰的回文。</div>
+        <div class="ln"><span class="who s">莫师爷</span><p>不过，怪人也得有人帮。这份底稿，我替你留着呢。</p></div>
+      </div>
+    </div>
+
+    <h3><span class="part">戏里</span>钉板与荣誉</h3>
+    <div class="drama">
+      <div class="dh"><b>《是，大臣》· 滚钉板</b><span>BBC · 1982 · 剧情概述</span></div>
+      <p>首相府想搞一项“综合交通政策”。这是白厅里最烫手的差事：铁路、公路、航空，每一方都有强大的利益集团，干好了没人记得，干砸了人人都记得。真正懂交通的交通国务大臣，碰都不敢碰。</p>
+      <p>内阁秘书和首相的顾问商量来商量去，看中了哈克，理由是他对交通一窍不通。他们在私下的日记里把这份差事叫作钉板、荆棘王冠、陷阱。最妙的是包装：要让这份差事看上去像是一份特殊的荣誉，并且赶在汉弗莱察觉之前，让哈克先答应下来。</p>
+      <p>哈克差一点就接了。最后在汉弗莱的点拨下，他借一场泄密风波巧妙地把球踢了回去，所有人一致同意：交通政策还是交给交通部去办吧。</p>
+      <p class="src">据中译本《是，大臣》第十八章“滚钉板”概述，非原文。</p>
+    </div>
+
+    <div class="drama">
+      <div class="dh"><b>《大明王朝1566》· 被推出去的人</b><span>2007 · 剧情概述</span></div>
+      <p>“改稻为桑”在浙江推行不下去，地方上有人动了最毒的念头：毁堤淹田，逼农民贱卖田地。事情闹大之后，朝廷里没有一个人承认自己下过这样的命令。从紫禁城到浙江，每一层都在说：我只是要“改稻为桑”，没让谁去淹田。最后，具体经手的地方官被推出去顶罪，而把这道政令一路压下来的人，大多安然无恙。</p>
+      <p>这就是剧里最冷的地方：<em>命令永远是含糊的，责任永远是具体的。</em>卷一第三案说过，官话的本事，就是让说话的人不必为自己的话负责；这一案是它的另一半：总有一个人要负责，那个人的名字写在最下面。</p>
+      <p class="src">剧情为文学虚构，此处只作概述。</p>
+    </div>
+
+    <h3><span class="part">史上</span>旷野里的山羊</h3>
+    <p>“替罪羊”这个词，来自《旧约·利未记》。古代以色列人在赎罪日有一个仪式：大祭司把双手按在一只活山羊的头上，承认全民的罪过，象征把这些罪都转到羊身上，然后把羊赶进旷野。罪随羊去了，人就干净了。</p>
+    <p>这个仪式三千年后仍然到处都是，只是羊换成了人。</p>
+
+    <h3>穿着朝服被斩<span class="y">前 154 · 长安</span></h3>
+    <p>汉景帝时，御史大夫晁错力主“削藩”，削减诸侯王的封地。吴王刘濞联合六国起兵，打出的旗号是“诛晁错，清君侧”：我们不是造反，是要除掉皇上身边的坏人。</p>
+    <p>景帝听了袁盎的建议，以为杀了晁错，七国就没了借口，会退兵。据《史记》记载，晁错被召去上朝，半路被押到东市，“错衣朝衣斩东市”，穿着上朝的官服就被处死了。</p>
+    <p>七国没有退兵。后来校尉邓公从前线回来，景帝问他：晁错死了，吴楚退兵了吗？邓公说，吴王蓄谋造反几十年了，杀晁错不过是借口；晁错一死，“内杜忠臣之口，外为诸侯报仇”，以后再没人敢替朝廷出主意了。景帝沉默良久，说：你说得对，我也后悔。</p>
+    <p>削藩的主意，景帝是同意过的。锅，晁错一个人背了。<em>而且这口锅没有换来任何东西。</em>最后平定七国之乱的，是周亚夫的军队。</p>
+
+    <aside class="echo" data-k="存疑" data-year="194" data-title="借你的头一用">
+      <span class="stamp">存疑</span>
+      <div>
+        <p class="rh"><span class="ry">东汉末 · 《曹瞒传》</span>借你的头一用</p>
+        <p>裴松之注《三国志》时引了一本《曹瞒传》，说曹操有一次军粮不够，让管粮的官用小斛发粮，士兵们怨声载道。曹操对管粮官说：“借君死以厌众”，借你的死来平息众怒，然后斩了他，说他克扣军粮。这个故事流传极广，可《曹瞒传》是东吴人写的，对曹操很不友好，真假难考。它之所以被记住，是因为它把“背锅”的机制说得太直白了。</p>
+      </div>
+    </aside>
+
+    <h3><span class="part">识破</span>锅要来了的症状</h3>
+    <div class="see">
+      <h5>识破它</h5>
+      <ul>
+        <li><b>口头交代，不留字</b>。“这事你看着办”“按老规矩来”，出了事，没有人说过这句话。</li>
+        <li><b>苦差被包装成荣誉</b>。“这是组织对你的信任”“只有你能干好”，先问一句：为什么别人不干？</li>
+        <li><b>出事之后第一个问题是“谁弄的”</b>，而不是“怎么补救”。</li>
+        <li><b>你是名单上最下面、最具体的那个名字</b>。</li>
+      </ul>
+    </div>
+
+    <div class="counter">
+      <h5>应对</h5>
+      <div class="who3">
+        <div><b>别背不该背的锅</b>重要的口头交代，事后发一句文字确认：“刚才说的是……我理解得对吗？”分工写清楚，放在大家都看得见的地方。莫师爷留着的那份底稿，就是阿鉴的护身符。</div>
+        <div><b>接下该接的锅</b>自己做错的事，第一时间认，说清楚错在哪、怎么补。主动认错的人，锅通常比被揪出来的人小得多，也更让人信任。漫画里的大人，接的是自己那一份。</div>
+        <div><b>你是分锅的人</b>小组作业出了问题，你是组长，第一句话先说“我们怎么补救”，第二句话说“我这边没盯好”。组长先认一份，组员才敢说出自己那一份。</div>
+      </div>
+    </div>
+
+    <div class="takeaway">
+      <p><b>命令总是含糊的，责任总是具体的。</b>锅从上往下走，一直走到第一个具体的名字。晁错的头没有换来退兵，只换来了以后没人敢说话。</p>
+      <p class="life">该背的锅，早点背，背得干脆；不该背的锅，早点留字，留得清楚。两样都要会。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第十一案 站队 ============ -->
+<section class="case" id="c13" data-vol="第十一案 · 站队">
+  <div class="folder">
+    <span class="seal">队</span>
+    <div class="no">第拾壹案</div>
+    <h2>站队</h2>
+    <dl>
+      <dt>案由</dt><dd>衙门里最难的问题，常常不是“对不对”，而是“你是哪边的”</dd>
+      <dt>戏里</dt><dd>《是，首相》“党派之戏”：两边都支持的人当上了首相 · “民主的胜利”：被“提升”到特拉维夫</dd>
+      <dt>史上</dt><dd>指鹿为马 · 牛李党争 · 严党、清流与四十年的翻烧饼</dd>
+      <dt>身边</dt><dd>宿舍里的小圈子 · 两个朋友吵架了，你帮谁</dd>
+    </dl>
+    <span class="string"></span>
+  </div>
+
+  <div class="col">
+    <h3><span class="part">案由</span>两个书办</h3>
+    <div class="scene">
+      <div class="sh"><b>第十二场 · 你是哪边的</b><span>回廊 · 冬</span></div>
+      <div class="bd">
+        <div class="sd">户房的周书办和刑房的吴书办闹翻了，两人都来找阿鉴喝茶。</div>
+        <div class="ln"><span class="who j">阿鉴</span><p>师爷，周书办说吴书办贪了修桥的银子，吴书办说周书办做假账陷害他。两人都让我站在他那边。我该信谁？</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>你问的是“该信谁”。他们问你的是“站哪边”。这是两个问题。</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>有什么不一样？</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>“信谁”要看账；“站哪边”要看谁会赢。衙门里的人大多只问第二个，因为站错了比看错了代价大得多。</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>那您站哪边？</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>我在这衙门里四十年，送走了十一个周书办、九个吴书办。我站的是这张桌子。</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>……那我去看账。</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>去吧。看完了，不管结果是什么，记住一件事：<em>你是因为账站在那边的，不是因为人。</em>哪天账变了，你也得跟着变。</p></div>
+      </div>
+    </div>
+
+    <h3><span class="part">戏里</span>两边都支持</h3>
+    <div class="drama">
+      <div class="dh"><b>《是，首相》· 党派之戏</b><span>BBC · 1984 · 剧情概述</span></div>
+      <p>首相突然宣布辞职，党内有两位热门人选，都是有主见、有魄力的人。哈克被两人分别拉去谈话，回家跟妻子说，他已经表示支持其中一位；说着说着又觉得另一位也很合适，也许应该支持他。妻子问：所以你两个都支持？哈克很恼火，说这是一个非常困难的选择，万一押错了……</p>
+      <p>与此同时，几位高级文官也在挑人。他们担心两位热门人选都太爱“干预”，于是想找一位妥协人选：好说话、能变通、没有坚定的主见，也没有什么改变一切的雄心，最好还愿意把政事交给专家去办。他们想来想去，只有一个人符合条件：哈克。</p>
+      <p><em>最会站队的人没当上首相，最不会站队的人当上了，恰恰因为他看起来哪一队也不是。</em></p>
+      <p class="src">据中译本《是，首相》上卷第一章“党派之戏”概述，非原文。</p>
+    </div>
+    <div class="drama">
+      <div class="dh"><b>《是，首相》· 民主的胜利</b><span>BBC · 1986 · 剧情概述</span></div>
+      <p>哈克和外交部在一次联合国投票上较劲，外交部一位一直暗中跟首相唱反调的官员卢克，最终站错了边。哈克没有处分他，反而笑眯眯地宣布：给你升官，派你去一个非常重要的使馆当大使，特拉维夫。卢克一向站在阿拉伯国家那边，在以色列，他的前途就算到头了。他拼命推辞，可这是“提升”，没法推。</p>
+      <p>中国人管这个叫“明升暗降”。</p>
+      <p class="src">据中译本《是，首相》上卷第六章“民主的胜利”概述，非原文。</p>
+    </div>
+
+    <h3><span class="part">史上</span>指鹿为马<span class="y">前 207 · 咸阳</span></h3>
+    <p>站队最古老、最赤裸的一幕，在《史记·秦始皇本纪》里：</p>
+    <blockquote><p>赵高欲为乱，恐群臣不听，乃先设验，持鹿献于二世，曰：“马也。”二世笑曰：“丞相误邪？谓鹿为马。”问左右，左右或默，或言马以阿顺赵高，或言鹿者。高因阴中诸言鹿者以法。后群臣皆畏高。</p><cite>——《史记·秦始皇本纪》</cite></blockquote>
+    <p>赵高想篡权，又怕群臣不服，先做了个试验：牵来一头鹿献给秦二世，说这是马。二世笑着说，丞相弄错了吧，怎么把鹿叫成马？问左右大臣，有的不说话，有的说是马来讨好赵高，有的说是鹿。赵高事后暗中用法令陷害了那些说是鹿的人。从此群臣都怕赵高。</p>
+    <p>这个试验精妙在于：<em>它问的根本不是“这是什么动物”</em>。所有人都知道那是鹿。它问的是“你听谁的”。当一个地方开始用一个明显错误的说法来测试忠诚，说真话就变成了站队，而且是站在输的那边。</p>
+    <p>那些沉默的人呢？史书没说他们后来怎样。可一年之内，秦朝就亡了。</p>
+
+    <div class="wide fig" id="fig-deer">
+      <div class="fig-label">装置 12 / 站队人生</div>
+      <h4>从严嵩到张居正，你能平安走完四十年吗？</h4>
+      <p class="how">你是一个刚进京的年轻官员，时间从嘉靖二十九年（1550 年）开始。每到一个关口，你要决定跟谁走。后面发生的事都是真实的历史走向，你的命运按照那个时代常见的规律来结算。</p>
+      <div class="qcard" id="deerCard"></div>
+      <div class="log" id="deerLog" aria-live="polite"></div>
+      <div class="btns" style="margin-top:10px"><button class="btn" id="deerReset">重新进京</button></div>
+    </div>
+
+    <h3>去朝中朋党难<span class="y">约 808—849 · 唐</span></h3>
+    <p>唐朝后期，以牛僧孺、李宗闵为首的一派和以李德裕为首的一派明争暗斗了大约四十年，史称“牛李党争”。一派得势，另一派的人就被成批贬到外地；风向一转，再反过来。朝廷的大部分精力，都用在了这件事上。</p>
+    <p>唐文宗被夹在中间，说过一句后来常被引用的话：</p>
+    <blockquote><p>去河北贼易，去朝中朋党难。</p><cite>——据《资治通鉴》</cite></blockquote>
+    <p>打败河北的割据藩镇容易，除掉朝廷里的朋党难。这话出自一个皇帝之口，可见站队一旦成了风气，连最高的人也拿它没办法。</p>
+
+    <h3>四十年的翻烧饼<span class="y">1542—1584 · 明</span></h3>
+    <p>上面那个小游戏的底子，是明朝中后期真实的四十年。严嵩当了将近二十年首辅，依附他的人飞黄腾达；1562 年严嵩倒台，严党纷纷落马，徐阶成了首辅；不久徐阶和高拱斗，1568 年徐阶告老还乡；1572 年隆庆帝去世，张居正联合太监冯保赶走了高拱；张居正当政十年，权倾一时；1582 年张居正一死，万历皇帝亲自清算，张家被抄。</p>
+    <p>四十年里，烧饼翻了五次。每一次，都有一批人因为“站对了”飞上去，又有一批人因为“站错了”摔下来。而每一次站对的人，往往就是下一次站错的人。</p>
+
+    <aside class="echo" data-k="轮回" data-year="1582" data-title="站对的人，就是下一次站错的人">
+      <span class="stamp">轮回</span>
+      <div>
+        <p class="rh"><span class="ry">唐 · 明 · 白厅</span>站对的人，就是下一次站错的人</p>
+        <p>牛李党争、严党与清流、东林与阉党、白厅里的派系，规律几乎一样：一派得势，就清洗另一派；另一派得势，再清洗回来。真正平安走完一生的，常常不是站得最准的人，而是那些站得不那么紧、做事有口碑、在哪一派眼里都“还算有用”的人。</p>
+      </div>
+    </aside>
+
+    <h3><span class="part">识破</span>被要求站队的症状</h3>
+    <div class="see">
+      <h5>识破它</h5>
+      <ul>
+        <li><b>“你是哪边的”取代了“这件事对不对”</b>。</li>
+        <li><b>拿一个明显的错来测试你</b>。指鹿为马的现代版是：明知方案有问题，看谁敢说。</li>
+        <li><b>沉默也被算作表态</b>。“他没反对，就是支持”，或者“他不说话，就是有意见”。</li>
+        <li><b>好处和惩罚都来得特别快</b>：跟对了马上有甜头，表态慢了马上被冷落。</li>
+      </ul>
+    </div>
+
+    <div class="counter">
+      <h5>应对</h5>
+      <div class="who3">
+        <div><b>你被要求站队</b>把“站哪边”拉回“哪件事”：你可以支持某个人的某个主张，而不是支持这个人的一切。说清楚你是因为什么站在这里的，以后也就有了改变立场的理由。</div>
+        <div><b>两个朋友吵架了</b>宿舍、社团里最常见。最好的位置往往不是“站哪边”，而是“我不传话，有事你们当面说”。两边都可以安慰，但别替任何一边去骂另一边。</div>
+        <div><b>你想拉别人站队</b>如果你发现自己在问“你到底帮谁”，先停一下：你需要的是一个盟友，还是需要把事情说清楚？前者会让圈子越拉越小，后者才可能把事情解决。</div>
+      </div>
+    </div>
+
+    <div class="takeaway">
+      <p><b>站队的问题不是“谁对”，而是“谁赢”；所以站对一次靠眼光，站对五次只能靠运气。</b>指鹿为马问的从来不是动物。</p>
+      <p class="life">站在事情上，别站在人上。站在事情上，事情变了你可以变；站在人上，人倒了你也得跟着倒。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第十二案 可敬的勇气 ============ -->
+<section class="case" id="c14" data-vol="第十二案 · 可敬的勇气">
+  <div class="folder">
+    <span class="seal">直</span>
+    <div class="no">第拾贰案</div>
+    <h2>可敬的勇气</h2>
+    <dl>
+      <dt>案由</dt><dd>卷一说，“勇敢”在衙门里是最可怕的夸奖；这一案讲那些明知可怕，还是勇敢了的人</dd>
+      <dt>戏里</dt><dd>《是，大臣》“酒徒教士” · 《大明王朝1566》：海瑞</dd>
+      <dt>史上</dt><dd>买好棺材的上疏 · 强项令 · 铁肩担道义 · 一个古怪的模范官僚</dd>
+      <dt>身边</dt><dd>群里第一个说“这个方案有问题”的人</dd>
+    </dl>
+    <span class="string"></span>
+  </div>
+
+  <div class="col">
+    <h3><span class="part">案由</span>那份底稿</h3>
+    <div class="scene">
+      <div class="sh"><b>第十三场 · 底稿</b><span>正堂 · 第二年春</span></div>
+      <div class="bd">
+        <div class="sd">上峰派人来查河堤决口一案，问责的公文已经拟好，落款处空着，等着填大人的名字。</div>
+        <div class="ln"><span class="who d">大人</span><p>师爷，这回怕是要丢官了。</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>大人想不想保住？</p></div>
+        <div class="ln"><span class="who d">大人</span><p>想。可我不想把锅再推给阿鉴。</p></div>
+        <div class="sd">莫师爷从袖子里抽出那份河堤呈文的底稿，上面有阿鉴的勘察记录、大人请求加固的批语，还有上峰“缓议”的回文和日期。</div>
+        <div class="ln"><span class="who s">莫师爷</span><p>那就不推给任何人。把这份底稿原样附上，什么都不加，什么都不减。哪天报的险情，哪天请的银子，哪天被驳回的，白纸黑字。</p></div>
+        <div class="ln"><span class="who d">大人</span><p>这样一来，等于当面指出上峰的错。</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>是。下官在衙门四十年，只教人怎样不说“不”。今天想破一次例。</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>师爷，您这么做……非常勇敢。</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>（苦笑）你从哪儿学来这句话的。</p></div>
+      </div>
+    </div>
+    <p>卷一第三案说，在《是，首相》里，“非常勇敢”是一句吓人的话，意思是“这会断送你的前程”。这一案要讲的，正是那些听懂了这句话的意思，还是去做了的人。他们不多，但史书记得他们。</p>
+
+    <h3><span class="part">戏里</span>酒徒教士</h3>
+    <div class="drama">
+      <div class="dh"><b>《是，大臣》· 酒徒教士</b><span>BBC · 1982 · 剧情概述</span></div>
+      <p>一个深夜，一位陆军军官悄悄来到哈克家，告诉他一个秘密：英国制造的武器经过第三国，落到了恐怖分子手里。哈克义愤填膺，决心要管。</p>
+      <p>可他每走一步，都有人好言相劝：这事不归你的部管；捅出去会伤害盟友、伤害出口、伤害政府；你又没有确凿证据……汉弗莱的道理一条比一条周全。最后，哈克喝多了酒，对着录音机絮絮叨叨地讲政治与良心，讲到自己都绕晕了，第二天重放一遍，发现自己也成了一个“道德真空”。</p>
+      <p>他的妻子安妮安慰他：你和他们不一样，你至少还知道什么是错的。她说他像一个“酒徒教士”，这是作家格雷厄姆·格林小说里的那种神父，有很多毛病，但从没忘记自己的信仰。哈克接受了这个称呼。<em>他可能做不到正确，但他没有丢掉分辨对错的能力。</em></p>
+      <p class="src">据中译本《是，大臣》第十九章“酒徒教士”概述，非原文。</p>
+    </div>
+    <p>这一集很诚实：它不假装哈克是英雄。大多数人在大多数时候，能做到的就是酒徒教士那样：做不到，但知道。这已经比“不知道”强得多。而在少数时候，有人既知道，也做到了。</p>
+
+    <h3><span class="part">史上</span>买好了棺材<span class="y">1566 · 北京</span></h3>
+    <p>卷一第一案引过海瑞《治安疏》里的一句：“二十余年不视朝，法纪弛矣。”这道奏疏通篇都是这样的话，最有名的几句是：</p>
+    <blockquote><p>陛下之误多矣，其大端在于斋醮。</p><p>天下人不直陛下久矣。</p><cite>——海瑞《治安疏》</cite></blockquote>
+    <p>陛下错的地方很多，最大的错是一心修道；天下人早就觉得陛下不对了。他还引了一句民间流传的话，说“嘉靖”这个年号，老百姓念作“家家皆净”，家家户户都被搜刮干净了。</p>
+    <p>据《明史·海瑞传》记载，嘉靖读完奏疏，气得把它扔在地上，对左右说：快把他抓起来，别让他跑了！太监黄锦在旁边说：这个人向来有“痴”名，听说他上疏之前，自知冒犯了皇上必死无疑，已经买好了一口棺材，和妻儿诀别，在朝房里等着治罪，家里的仆人都吓跑了。他不会跑的。</p>
+    <p>嘉靖沉默了。过了一会儿，他又把奏疏捡起来读，一天读了好几遍，为之叹息，留在宫中几个月没有发落。他说过一句话：</p>
+    <blockquote><p>此人可方比干，第朕非纣耳。</p><cite>——《明史·海瑞传》</cite></blockquote>
+    <p>这个人可以跟比干相比，只是我不是纣王罢了。</p>
+    <p>海瑞最后还是被关进了诏狱。几个月后嘉靖驾崩，新即位的隆庆帝释放了他。</p>
+
+    <aside class="echo" data-k="轮回" data-year="1566" data-title="又是“留中”">
+      <span class="stamp">轮回</span>
+      <div>
+        <p class="rh"><span class="ry">1566</span>又是“留中”</p>
+        <p>嘉靖对《治安疏》的处置，是卷一讲过的那一招：留中。不准，也不驳，放在宫里几个月。只是这一回，被留中的奏疏没有消失，它被一个皇帝一读再读。拖字诀能拖住一件事，拖不住一句说到人心里去的话。</p>
+      </div>
+    </aside>
+
+    <h3>强项令<span class="y">东汉初 · 洛阳</span></h3>
+    <p>勇气不一定悲壮。东汉初年，湖阳公主（光武帝的姐姐）的家奴白天杀了人，躲在公主府里，官府抓不着。洛阳令董宣等到公主出门、家奴随车护驾的时候，拦下车子，当街把家奴处死。</p>
+    <p>公主向光武帝哭诉。光武帝大怒，召来董宣要打死他。董宣说，陛下以圣德中兴汉室，却放纵家奴杀害良民，将来拿什么治理天下？说完一头撞向柱子，血流满面。光武帝让小太监按着他给公主磕头赔罪，董宣不肯；太监硬按他的头，据《后汉书》记载，他“两手据地，终不肯俯”。</p>
+    <p>光武帝笑了，下令放这个“强项令”（硬脖子县令）出去，还赏了他三十万钱。</p>
+    <p>董宣的勇气碰上了一个笑得出来的皇帝。这很重要。</p>
+
+    <h3>铁肩担道义<span class="y">1553—1555 · 北京</span></h3>
+    <p>也有碰不上的。嘉靖三十二年（1553 年），兵部员外郎杨继盛上疏弹劾严嵩，列了他“十大罪”。他被廷杖、下狱，在狱中受尽酷刑，据说腿上的腐肉是自己用碎瓷片割下来的。两年后，他被处死，年仅四十岁。</p>
+    <p>他留下一副对联，后来被无数人抄写：</p>
+    <blockquote><p>铁肩担道义，辣手著文章。</p><cite>——杨继盛</cite></blockquote>
+    <p>七年后严嵩倒台；又过了几年，隆庆帝即位，为他平反，追谥“忠愍”。他都没能看到。</p>
+
+    <div class="scroll-x">
+    <table class="t">
+      <thead><tr><th>人</th><th>对谁说了什么</th><th>结局</th></tr></thead>
+      <tbody>
+        <tr><td><b>董宣</b></td><td>对光武帝：不能放纵家奴杀人</td><td>赏钱三十万，号“强项令”</td></tr>
+        <tr><td><b>魏征</b></td><td>对唐太宗：二百多次当面进谏</td><td>善终；墓碑被推倒，又被重新立起</td></tr>
+        <tr><td><b>杨继盛</b></td><td>对嘉靖：严嵩有十大罪</td><td>受刑两年后被处死，十二年后平反</td></tr>
+        <tr><td><b>海瑞</b></td><td>对嘉靖：天下人不直陛下久矣</td><td>下狱；嘉靖死后获释</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>四个人说的都是真话，结局却天差地别。区别大多不在他们自己，而在听的人。这就是第九案说的：<em>直言要有一个愿意听的人，才算得上勇气；不然，只是冒险。</em>可正因为不知道对面会不会听，那一刻开口，才叫勇气。</p>
+
+    <h3>一个古怪的模范官僚</h3>
+    <p>最后要替海瑞说一句公道话，也说一句不那么好听的话。</p>
+    <p>海瑞出狱后官运起伏。隆庆三年（1569 年）他出任应天巡抚，雷厉风行地打击豪强、逼大户退还侵占的田地，连已经告老还乡的前首辅徐阶（据说当年海瑞下狱时，徐阶曾设法保全过他），家里也被他逼着退田。不到一年，他就被弹劾去职，在家闲居了十几年。晚年复出，死在南京任上，身后清贫到同僚凑钱才办完丧事。</p>
+    <p>黄仁宇在《万历十五年》里给海瑞的那一章起名叫《海瑞——古怪的模范官僚》。他的意思是：海瑞的操守无可挑剔，可他坚持用最严格的道德标准去处理一切具体事务，不肯妥协，也不太体谅别人的难处，在那个复杂的官场里，几乎什么也推行不下去。</p>
+    <p>这也许是本案最后要带走的东西：<em>勇气是在关键的时刻说出真话，不是在所有的时刻都对所有的人不讲情面。</em>海瑞在 1566 年的那一刻是对的；在其他很多时刻，他可能太硬了。</p>
+
+    <h3><span class="part">识破</span>该开口的时刻</h3>
+    <div class="see">
+      <h5>识破它</h5>
+      <ul>
+        <li><b>你知道一件事，而别人不知道</b>，它关系到别人的安危或利益。</li>
+        <li><b>所有人都看见了，所有人都在等别人先开口</b>。</li>
+        <li><b>你发现自己在找“不说”的理由</b>，而且理由一条比一条周全，像汉弗莱的一样。</li>
+        <li><b>你很确定，十年后的自己会希望你此刻说了</b>。</li>
+      </ul>
+    </div>
+
+    <div class="counter">
+      <h5>应对</h5>
+      <div class="who3">
+        <div><b>你想开口</b>先把事实弄准，像莫师爷那份底稿一样，白纸黑字；对事不对人；能私下说的先私下说，给对方改的机会；想好最坏的结果，自己能不能承受。做到这几条，勇气就不只是冲动。</div>
+        <div><b>小一号的勇气</b>不是每次都要抬棺上疏。在群里第一个说“我觉得这个方案有个问题”；当面承认“这个我不懂”；对朋友说一句他可能不爱听的真话。这些每天都有机会。</div>
+        <div><b>你是听的人</b>当别人鼓起勇气对你说真话时，做光武帝，别做嘉靖。先别急着反驳，说一句“谢谢你告诉我”。你笑得出来，别人下次才敢开口。</div>
+      </div>
+    </div>
+
+    <div class="takeaway">
+      <p><b>衙门里最可怕的夸奖是“勇敢”，史书里最珍贵的也是。</b>海瑞买好了棺材，董宣撞了柱子，杨继盛没能看到平反。他们都知道那句话的意思。</p>
+      <p class="life">大多数时候，做一个“酒徒教士”就好：做不到，但别忘了什么是对的。少数时候，把那句真话说出口。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 卷三结案 ============ -->
+<section class="case" id="c15" data-vol="卷三结案 · 人">
+  <div class="folder">
+    <span class="seal">结</span>
+    <div class="no">卷三 · 结案</div>
+    <h2>衙门里的人</h2>
+    <dl>
+      <dt>案由</dt><dd>揣摩、背锅、站队、直言，四种活法</dd>
+      <dt>考的是</dt><dd>揣摩上意 · 背锅 · 站队 · 勇气</dd>
+    </dl>
+    <span class="string"></span>
+  </div>
+
+  <div class="col">
+    <p>卷三的四案，其实是四种回答，回答同一个问题：<em>在一个有自己利益的制度里，一个普通人怎样活？</em>揣摩的人顺着它，背锅的人被它碾过，站队的人押注它，直言的人顶着它。大多数人四样都做过，只是比例不同。</p>
+  </div>
+
+  <div class="wide fig quiz" id="fig-quiz3">
+    <div class="fig-label">装置 13 / 识破它 · 卷三</div>
+    <h4>这是哪一种活法？</h4>
+    <p class="how">读场景，点你认为最主要的那一种。</p>
+    <div class="score" data-q="score"></div>
+    <div class="qcard" data-q="card"></div>
+    <div class="btns" style="margin-top:12px"><button class="btn" data-q="prev">上一题</button><button class="btn pri" data-q="next">下一题</button></div>
+  </div>
+
+  <div class="col">
+    <div class="scene">
+      <div class="sh"><b>卷三终场 · 回文</b><span>正堂 · 第二年夏</span></div>
+      <div class="bd">
+        <div class="sd">上峰的回文到了。问责的公文撤了回去，河堤加固的银子批了下来，比当初申请的还多两成。回文里一个字也没提那份底稿。</div>
+        <div class="ln"><span class="who j">阿鉴</span><p>师爷，上峰这是认错了吗？</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>上峰从来不认错。上峰只是“进一步完善”了。</p></div>
+        <div class="ln"><span class="who d">大人</span><p>我还以为这回要丢官。</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>大人运气好，碰上一个笑得出来的上峰。下一回，未必。</p></div>
+        <div class="ln"><span class="who d">大人</span><p>下一回，我还这么干。</p></div>
+        <div class="sd">莫师爷没有说话。他低头在那份底稿的封皮上，工工整整地写了四个字：“存档备查”。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 尾声 ============ -->
+<section class="case" id="c16" data-vol="尾声 · 交接">
+  <div class="volhead" style="margin-top:30px">
+    <div class="num">尾声</div>
+    <h2>交接</h2>
+    <p class="lede">三卷十二案讲完了。最后，把全书的眉批收拢在一条时间轴上，再看莫师爷留下的最后一样东西。</p>
+  </div>
+
+  <div class="wide fig tl" id="fig-tl">
+    <div class="fig-label">装置 14 / 押韵的衙门</div>
+    <h4>同一个韵脚，两千年</h4>
+    <p class="how">每个点是一条眉批。点颜色按钮筛选，点圆点看内容，点“跳过去”回到正文。横轴不是等比例的，越近的年代拉得越宽。</p>
+    <div class="btns" id="tlF" style="margin-bottom:10px"></div>
+    <div class="scroll-x"><svg viewBox="0 0 900 190" id="tlSvg" role="img" aria-label="全书眉批时间轴" style="min-width:620px"></svg></div>
+    <div class="tlcard" id="tlCard" style="min-height:6em;border-top:1px dashed var(--rule);margin-top:10px;padding-top:10px"><p class="ni" style="font-size:13px;color:var(--ink-3)">点一个圆点</p></div>
+  </div>
+
+  <div class="col">
+    <h3>十二案一览</h3>
+    <div class="scroll-x">
+    <table class="t">
+      <thead><tr><th>卷</th><th>案</th><th>一句话</th></tr></thead>
+      <tbody>
+        <tr><td rowspan="4"><b>拖</b></td><td>五步拖字诀</td><td>要一个日子，别要一个“尽快”</td></tr>
+        <tr><td>成立一个委员会</td><td>“如果只能一个人决定，该是谁？”</td></tr>
+        <tr><td>官话辞典</td><td>把它翻回“谁、做什么、哪天”</td></tr>
+        <tr><td>问法就是答案</td><td>问“你怎么看”，别问“你也这么看吧”</td></tr>
+        <tr><td rowspan="4"><b>争</b></td><td>年底花光</td><td>让省钱的人不吃亏</td></tr>
+        <tr><td>考什么，得什么</td><td>你要尾巴，还是更少的老鼠？</td></tr>
+        <tr><td>离大人最近的屋子</td><td>多听听远一点的声音</td></tr>
+        <tr><td>“不”的说法</td><td>明确、真实、另一条路</td></tr>
+        <tr><td rowspan="4"><b>人</b></td><td>揣摩上意</td><td>体贴是猜对方需要什么，讨好是猜对方爱听什么</td></tr>
+        <tr><td>背锅</td><td>该背的早背，不该背的早留字</td></tr>
+        <tr><td>站队</td><td>站在事情上，别站在人上</td></tr>
+        <tr><td>可敬的勇气</td><td>做不到，也别忘了什么是对的</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>为什么这三部剧能讲这么多道理</h3>
+    <p>写这本书时，三部剧一直放在手边。看完再回头想，它们好看的地方，都不在“坏人使坏”，而在“好人也这样”。</p>
+    <p>汉弗莱不贪钱，他真心认为自己在保护国家不被一时冲动的政客折腾；莫师爷不害人，他真心相信大多数事拖一拖就会自己消失。《大明王朝1566》里几乎每个人的算计都合情合理，正是这些合情合理的算计叠在一起，淹了浙江的稻田。</p>
+    <p>所以这本书最想说的，不是“衙门里的人都很坏”，而是：<em>制度有自己的利益，每个人都会被它塑造；看懂它，才能在它里面做一个不太坏、偶尔还挺好的人。</em>这既是读历史的办法，也是过日子的办法。你将来会进很多个“衙门”：学校、公司、单位、家庭、朋友圈。它们都有自己的拖字诀、委员会、官话和锅。</p>
+
+    <div class="scene">
+      <div class="sh"><b>终场 · 办事须知</b><span>签押房 · 莫师爷告老那天</span></div>
+      <div class="bd">
+        <div class="sd">莫师爷收拾好了包袱。桌上只剩序幕里那本发黄的《办事须知》。</div>
+        <div class="ln"><span class="who s">莫师爷</span><p>阿鉴，这本册子，现在可以接了。</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>您不是说，新来的人递过来的东西不要接，接了就是自己的事了吗？</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>你已经不是新来的了。</p></div>
+        <div class="sd">阿鉴双手接过，翻开。第一页是空白，第二页是空白，几十页都是空白。一直翻到最后一页，上面只有一行字，墨迹很旧：</div>
+        <div class="ln"><span class="who s">册子</span><p>凡事，写下谁、做什么、哪天。其余的，都是拖。</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>师爷，这……</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>这是我刚进衙门那年，我的师父留给我的。四十年来，我教人的全是前面那些空白页。</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>那您为什么不照最后一页做？</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>（背起包袱，走到门口）因为照它做，很累。而且要负责。</p></div>
+        <div class="sd">他走出衙门。门口的告示栏上，贴着今年的开支榜。</div>
+        <div class="ln"><span class="who s">莫师爷</span><p>（头也没回）阿鉴。</p></div>
+        <div class="ln"><span class="who j">阿鉴</span><p>在。</p></div>
+        <div class="ln"><span class="who s">莫师爷</span><p>别学我。</p></div>
+      </div>
+    </div>
+
+    <div class="takeaway">
+      <p><b>制度有自己的利益，每个人都会被它塑造。</b>两千年的衙门、白厅和你身边的小组作业，用的是同一本《办事须知》，前面全是空白页。</p>
+      <p class="life">看懂那些空白页，是为了照最后一页去做：写下谁、做什么、哪天。很累，而且要负责。但事情会办成。</p>
+    </div>
 
     <h3>附：存疑与出处</h3>
     <ul style="font-size:15px;line-height:1.8;color:var(--ink-2);padding-left:1.2em">
       <li>《是，大臣》《是，首相》的剧情据乔纳森·林恩、安东尼·杰伊所著日记体小说的中译本概述，文中标明章节，均非原文。剧集年份为 BBC 首播年份。</li>
-      <li>《大明王朝1566》（刘和平编剧，2007）为文学虚构，“改稻为桑”“毁堤淹田”等情节非史实；文中只作概述。</li>
-      <li>莫师爷的“拖字诀”五步、四场对白、漫画《屋顶》、官话翻译机的“译文”、民调装置的问题与数字，均为本书原创虚构；数字只为演示，非真实统计。</li>
-      <li>嘉靖“二十余年不视朝”引自海瑞《治安疏》；严世蕃读手诏事据《明史·严嵩传》转述；曹参事据《史记·曹相国世家》；王莽四十八万上书事据《汉书·王莽传》，组织者不详；曹丕受禅往返辞让的过程见《三国志·文帝纪》裴松之注所引材料。</li>
-      <li>万历“国本之争”的起止年份按通行说法（1586—1601）；万历后期官员缺额的规模，各书说法不一，文中不给具体数字。黄仁宇观点见《万历十五年》（1981）。</li>
-      <li>“与胥吏共天下”一般认为出自晚清郭嵩焘，原始出处待查；“宋人议论未定，金兵已渡河”出处不明，见正文眉批。</li>
-      <li>帕金森定律见其 1955 年《经济学人》文章及《帕金森定律》一书；海军部数据为他文中的统计，“自行车棚”是书中的虚构例子。布鲁克斯《人月神话》（1975）；奥威尔《政治与英语》（1946）。</li>
-      <li>1936 年《文学文摘》民调的寄发与回收数为常见的约数；该刊 1938 年停刊的原因不止一个。框架效应实验见特沃斯基与卡尼曼 1981 年发表于《科学》的论文。</li>
+      <li>《大明王朝1566》（刘和平编剧，2007）为文学虚构，“改稻为桑”“毁堤淹田”及剧中人物的言行均非史实；文中只作概述。</li>
+      <li>莫师爷、阿鉴、周书办、吴书办及所有对白场景、两章漫画《屋顶》《锅》、官话翻译机的“译文”、各装置中的问题、规则与数字，均为本书原创虚构，数字只为演示。</li>
+      <li>嘉靖“二十余年不视朝”“天下人不直陛下久矣”等引自海瑞《治安疏》；嘉靖读疏后的反应及“此人可方比干”据《明史·海瑞传》；严世蕃读手诏、蓝道行扶乩事据《明史·严嵩传》转述，扶乩是否出于徐阶安排说法不一；青词宰相诸人据通行说法。</li>
+      <li>曹参事据《史记·曹相国世家》；晁错事与邓公之言据《史记·袁盎晁错列传》；指鹿为马引自《史记·秦始皇本纪》；蔺相如事据《史记·廉颇蔺相如列传》；王莽四十八万上书据《汉书·王莽传》，组织者不详；曹丕受禅往返辞让见《三国志·文帝纪》裴注所引材料；曹操斩粮官事出自裴注所引《曹瞒传》，可信度存疑。</li>
+      <li>董宣事据《后汉书·酷吏列传》；“虽置三公，事归台阁”见《后汉书·仲长统传》；魏征事据《旧唐书·魏征传》与《资治通鉴》；唐文宗语据《资治通鉴》；嵇康信引自《与山巨源绝交书》，“巨源在，汝不孤矣”据《晋书》；杨继盛事据《明史·杨继盛传》，对联为通行文本。</li>
+      <li>万历“国本之争”按通行说法（1586—1601）；考成法与“朝下而夕奉行”据《明史·张居正传》等；万历后期官员缺额与考成法弊端的规模，各书说法不一，文中不给具体数字。黄仁宇观点见《万历十五年》（1981）。</li>
+      <li>“与胥吏共天下”一般认为出自晚清郭嵩焘；“宋人议论未定，金兵已渡河”出处不明；苏联钉子工厂为流传的笑话，非可靠史实。</li>
+      <li>帕金森定律见其 1955 年《经济学人》文章及《帕金森定律》一书；布鲁克斯《人月神话》（1975）；奥威尔《政治与英语》（1946）；威尔达夫斯基《预算过程中的政治》（1964）；利布曼与马奥尼关于美国财年末支出的研究（2017）；古德哈特（1975）与坎贝尔（1976）的说法；范恩关于 1902 年河内捕鼠悬赏的研究；费希尔与尤里《谈判力》（1981）。</li>
+      <li>1936 年《文学文摘》民调的寄发与回收数为常见约数；框架效应实验见特沃斯基与卡尼曼 1981 年发表于《科学》的论文；零基预算的推行与放弃过程据通行记述。</li>
     </ul>
     <p class="ni" style="font-size:15px;color:var(--ink-2)">如发现错漏，欢迎指出。</p>
   </div>
@@ -1108,7 +2194,7 @@ footer p{text-indent:0!important}
 
 <footer class="g">
   <a class="nextbook" href="../money/"><span style="font-size:12px;color:var(--ink-3)">书房里的另一本书</span><br><b>点石成金 · 金钱创世记</b><br><span style="font-size:14px;color:var(--ink-2)">阿鉴的老东家。钱师爷在那边坐了五千年，看着一位位大人缺钱、印钱、出事。</span></a>
-  <p>《是，大人 · 衙门里的处世术》卷一，创世书房藏书之一。正文与漫画由 Claude 协助创作，史实已尽量核对，剧情只做概述。纯静态网页，无框架，只从 Google Fonts 加载字体。</p>
+  <p>《是，大人 · 衙门里的处世术》，三卷十二案，创世书房藏书之一。正文与漫画由 Claude 协助创作，史实已尽量核对，剧情只做概述。纯静态网页，无框架，只从 Google Fonts 加载字体。</p>
   <p><a href="../">回书房</a> · <a href="#top" id="toTop">回到开头</a></p>
 </footer>
 
@@ -1337,6 +2423,58 @@ const PANELS = {
     return h;
   }
 };
+function wok(x, y, s, r){ return '<g transform="translate(' + x + ',' + y + ') rotate(' + (r || 0) + ') scale(' + (s || 1) + ')"><path d="M-40,0 Q-37,31 0,33 Q37,31 40,0 Z" fill="' + I0 + '" stroke="' + I0 + '" stroke-width="2"/><path d="M-26,12 Q-14,24 4,25" fill="none" stroke="' + P0 + '" stroke-width="2.2" stroke-linecap="round" opacity=".75"/><ellipse cx="0" cy="0" rx="40" ry="7"' + FP + '/><ellipse cx="0" cy="1" rx="33" ry="4.4" fill="' + I0 + '" opacity=".22"/><path d="M-40,1 q-11,-3 -13,6 M40,1 q11,-3 13,6"' + SK(3) + '/></g>'; }
+Object.assign(PANELS, {
+  g1: () => {
+    let h = rain(0, 0, 300, 230, 46, 21);
+    h += '<path d="M0,196 Q40,186 80,196 T160,196 T240,196 T320,196 L300,230 L0,230 Z" fill="' + I0 + '" opacity=".18"/>';
+    h += fig('dr', {x: 30, y: 84, s: 1.42, expr: 'n'});
+    h += wok(232, 150, 1.05, -10);
+    return h;
+  },
+  g2: () => {
+    let h = tone('tng2') + '<rect x="0" y="0" width="300" height="230" fill="url(#tng2)" opacity=".3"/>';
+    h += fig('dr', {x: -14, y: 96, s: 1.25, expr: 'n'});
+    h += fig('dr', {x: 168, y: 106, s: 1.2, expr: 'puzzled', flip: 1, nomus: 1, sweat: 1});
+    h += wok(170, 196, .95, 6) + '<path d="M150,150 q10,-12 22,-4 M196,152 q-6,-14 -18,-10"' + SK(1.6) + '/>';
+    return h;
+  },
+  g3: () => {
+    let h = '';
+    h += fig('dr', {x: -6, y: 104, s: 1.12, expr: 'puzzled', nomus: 1});
+    h += wok(78, 200, .85, -4);
+    h += fig('mo', {x: 178, y: 98, s: 1.18, expr: 'sly', flip: 1});
+    h += fan(178, 186, -52, .95);
+    h += '<path d="M150,150 L118,168" ' + SK(1.6) + '/><path d="M118,168 l9,-1 m-9,1 l4,-8"' + SK(1.6) + '/>';
+    return h;
+  },
+  g4: () => {
+    let h = tone('tng4') + '<rect x="0" y="0" width="300" height="230" fill="url(#tng4)" opacity=".35"/>';
+    for (let i = 0; i < 6; i++) h += '<path d="M' + (i % 2 ? 0 : 230) + ',' + (60 + i * 26) + ' l70,0"' + SK(1) + '/>';
+    h += fig('aj', {x: 82, y: 82, s: 1.32, expr: 'worry', sweat: 1});
+    h += wok(150, 198, 1.15, 0);
+    return h;
+  },
+  g5: () => {
+    let h = '';
+    h += '<path d="M0,120 L600,120"' + SK(1.4) + '/><path d="M300,120 L60,250 M300,120 L540,250 M300,120 L200,250 M300,120 L400,250"' + SK(1.2) + '/>';
+    h += '<circle cx="470" cy="92" r="22"' + FP + '/>';
+    for (let i = 0; i < 8; i++) { const a = Math.PI + i * Math.PI / 7; h += '<path d="M' + (470 + Math.cos(a) * 30).toFixed(1) + ',' + (92 + Math.sin(a) * 30).toFixed(1) + ' L' + (470 + Math.cos(a) * 40).toFixed(1) + ',' + (92 + Math.sin(a) * 40).toFixed(1) + '"' + SK(1.4) + '/>'; }
+    h += '<path d="M130,112 L160,96 L186,110 M380,114 L400,104 L420,113"' + SK(1.2) + '/>';
+    h += wok(302, 146, 2.0, 180);
+    h += fig('aj', {x: 250, y: 112, s: 1.04, expr: 'worry', sweat: 1});
+    h += '<path d="M226,236 q-10,4 -20,0 M378,236 q10,4 20,0"' + SK(1.4) + '/>';
+    return h;
+  },
+  g6: () => {
+    let h = '<path d="M0,232 L600,232"' + SK(2.4) + '/>';
+    h += fig('dr', {x: 92, y: 88, s: 1.24, expr: 'n'});
+    h += wok(196, 196, 1.05, -6);
+    h += fig('aj', {x: 250, y: 104, s: 1.12, expr: 'shock'});
+    h += fig('mo', {x: 380, y: 96, s: 1.14, expr: 'n', flip: 1});
+    return h;
+  }
+});
 $$('svg[data-panel]').forEach(s => { const f = PANELS[s.dataset.panel]; if (f) s.innerHTML = f(); });
 
 /* ---------- 序：呈文 ---------- */
@@ -1526,32 +2664,331 @@ $$('svg[data-panel]').forEach(s => { const f = PANELS[s.dataset.panel]; if (f) s
   draw();
 })();
 
-/* ---------- 装置 5：识破它 ---------- */
-(function(){
-  const K = ['拖字诀', '委员会', '官话', '诱导提问'];
-  const Q = [
-    ['小组作业，离截止还有三天。你问负责做 PPT 的队友进展如何，他说：“在弄了在弄了，我先把资料再找全一点。”', 0, '典型的“核”：资料永远找不全。应对：别问“做得怎么样”，问“今晚能先发前三页吗”。'],
-    ['社团要换活动场地。社长说：“这事牵涉面广，我们拉个群，大家都说说意见。”两周后，群里还在讨论海报用什么颜色。', 1, '把一个问题换成一个群，又在最好聊的小事上花掉了所有时间：委员会加自行车棚。应对：“我先按 A 方案定，明晚之前没人反对就这么办。”'],
-    ['实习公司发了封全员邮件：“为进一步提升组织效能，公司将对部分团队结构进行优化。”', 2, '没有主语、名词代替动词、大词套坏事。翻译：要裁员了。'],
-    ['奶茶店店员把平板递过来：“您对今天的服务很满意吧？满意的话点个五星哦！”', 3, '答案已经藏在问题里了（“很满意吧”）。这样收来的五星，和王莽的四十八万封上书，是同一种民意。'],
-    ['你提议宿舍周末来一次大扫除。室友们都说好主意，“不过这周大家都忙，等期中考完再说吧”。期中考完，变成了“等期末考完”。', 0, '“等”和“换”：每次都有理由，结论永远是“下次”。应对：定一个日子，再把第一步缩小到十分钟，“周六上午十点，每人只管自己的桌子”。'],
-    ['班委发问卷：“1. 你希望班级活动更加丰富多彩吗？2. 你愿意为班级建设出一份力吗？3. 你同意每人交五十元班费吗？”', 3, '两个让人点头的铺垫，再问真正想问的。和汉弗莱给伯纳德的那套问题，结构一模一样。'],
-    ['你问老师能不能晚两天交作业。老师回复：“原则上不行。你先把情况写清楚发给我。”', 2, '“原则上”是官话里最会变的词：“原则上同意”多半是不同意，“原则上不行”反倒常常有商量的余地。认真写清楚情况，可能就行了。'],
-    ['学生会讨论今年晚会的两万元总预算，十分钟就通过了；接着为茶歇买哪种饼干争了一个小时。', 1, '帕金森的“自行车棚”：大事没几个人懂，所以很快通过；小事人人都懂，所以吵个没完。应对：开会前就写明这次只决定哪一件事。']
-  ];
-  const card = $('#qzCard'), sc = $('#qzScore'), bP = $('#qzPrev'), bN = $('#qzNext');
+/* ---------- 通用小测验：装置 5 / 10 / 13 ---------- */
+function quiz(root, K, Q, ends){
+  if (!root) return;
+  const card = $('[data-q="card"]', root), sc = $('[data-q="score"]', root), bP = $('[data-q="prev"]', root), bN = $('[data-q="next"]', root);
   const ans = new Array(Q.length).fill(null);
   let k = 0;
   function draw(){
     const q = Q[k], a = ans[k];
     card.innerHTML = '<div class="qn">第 ' + (k + 1) + ' / ' + Q.length + ' 题</div><p class="qt">' + q[0] + '</p><div class="opts">' + K.map((t, i) => '<button data-i="' + i + '" class="' + (a === null ? '' : i === q[1] ? 'ok' : i === a ? 'bad' : '') + '"' + (a === null ? '' : ' disabled') + '>' + t + '</button>').join('') + '</div><p class="ex">' + (a === null ? '' : (a === q[1] ? '<b>对。</b>' : '<b>更像是“' + K[q[1]] + '”。</b>') + q[2]) + '</p>';
     const done = ans.filter(x => x !== null).length, right = ans.filter((x, i) => x === Q[i][1]).length;
-    sc.textContent = '已答 ' + done + ' / ' + Q.length + ' · 答对 ' + right + (done === Q.length ? (right >= 7 ? ' · 莫师爷看了你一眼，有点不安。' : right >= 5 ? ' · 阿鉴说：比我强。' : ' · 没关系，莫师爷说他也是看了几十年才看明白的。') : '');
+    sc.textContent = '已答 ' + done + ' / ' + Q.length + ' · 答对 ' + right + (done === Q.length ? ' · ' + (right >= Q.length - 1 ? ends[0] : right >= Q.length / 2 ? ends[1] : ends[2]) : '');
     bP.disabled = k === 0; bN.disabled = k === Q.length - 1;
   }
   card.addEventListener('click', e => { const b = e.target.closest('[data-i]'); if (!b || ans[k] !== null) return; ans[k] = +b.dataset.i; draw(); });
   bP.addEventListener('click', () => { if (k > 0) { k--; draw(); } });
   bN.addEventListener('click', () => { if (k < Q.length - 1) { k++; draw(); } });
+  draw();
+}
+quiz($('#fig-quiz'), ['拖字诀', '委员会', '官话', '诱导提问'], [
+  ['小组作业，离截止还有三天。你问负责做 PPT 的队友进展如何，他说：“在弄了在弄了，我先把资料再找全一点。”', 0, '典型的“核”：资料永远找不全。应对：别问“做得怎么样”，问“今晚能先发前三页吗”。'],
+  ['社团要换活动场地。社长说：“这事牵涉面广，我们拉个群，大家都说说意见。”两周后，群里还在讨论海报用什么颜色。', 1, '把一个问题换成一个群，又在最好聊的小事上花掉了所有时间：委员会加自行车棚。应对：“我先按 A 方案定，明晚之前没人反对就这么办。”'],
+  ['实习公司发了封全员邮件：“为进一步提升组织效能，公司将对部分团队结构进行优化。”', 2, '没有主语、名词代替动词、大词套坏事。翻译：要裁员了。'],
+  ['奶茶店店员把平板递过来：“您对今天的服务很满意吧？满意的话点个五星哦！”', 3, '答案已经藏在问题里了（“很满意吧”）。这样收来的五星，和王莽的四十八万封上书，是同一种民意。'],
+  ['你提议宿舍周末来一次大扫除。室友们都说好主意，“不过这周大家都忙，等期中考完再说吧”。期中考完，变成了“等期末考完”。', 0, '“等”和“换”：每次都有理由，结论永远是“下次”。应对：定一个日子，再把第一步缩小到十分钟，“周六上午十点，每人只管自己的桌子”。'],
+  ['班委发问卷：“1. 你希望班级活动更加丰富多彩吗？2. 你愿意为班级建设出一份力吗？3. 你同意每人交五十元班费吗？”', 3, '两个让人点头的铺垫，再问真正想问的。和汉弗莱给伯纳德的那套问题，结构一模一样。'],
+  ['你问老师能不能晚两天交作业。老师回复：“原则上不行。你先把情况写清楚发给我。”', 2, '“原则上”是官话里最会变的词：“原则上同意”多半是不同意，“原则上不行”反倒常常有商量的余地。认真写清楚情况，可能就行了。'],
+  ['学生会讨论今年晚会的两万元总预算，十分钟就通过了；接着为茶歇买哪种饼干争了一个小时。', 1, '帕金森的“自行车棚”：大事没几个人懂，所以很快通过；小事人人都懂，所以吵个没完。应对：开会前就写明这次只决定哪一件事。']
+], ['莫师爷看了你一眼，有点不安。', '阿鉴说：比我强。', '没关系，莫师爷说他也是看了几十年才看明白的。']);
+quiz($('#fig-quiz2'), ['年底花光', '考什么得什么', '地盘', '“不”的说法'], [
+  ['十二月中旬，学院突然通知各班：班级活动经费年底清零，还没用的赶紧报销。班委连夜开会，决定给每人买一个保温杯。', 0, '规则奖励花钱，人就花钱。保温杯就是莫师爷的新木桶。'],
+  ['学校规定每门课必须“课堂互动不少于十次”。于是有的老师每节课准时问十个“大家听懂了吗”。', 1, '考核“互动次数”，就得到次数，而不是互动。古德哈特定律的课堂版。'],
+  ['小组里有个同学特别热心地要求“所有材料发给我，我来统一跟老师对接”，但他自己负责的那部分一直没写。', 2, '争的是经手，不是做事。谁跟老师对接，谁的说法就是老师听到的第一个说法。'],
+  ['社团学长周五晚上让你周末帮忙排练。你回：“这周末我要回家，实在来不了；下周二晚上我可以，要不我先把台词对一遍发给你？”', 3, '明确的“不”、真实的理由、另一条路，三块都有。'],
+  ['某健身软件按“连续打卡天数”发奖章。你发现自己有几天只是打开软件点了一下，就算打卡了。', 1, '你在收集老鼠尾巴。打卡数涨了，身体没变。'],
+  ['公司换办公楼层，两个部门经理为了“离总经理办公室近一点”的那片工位争了一个星期。', 2, '第七案：一半是职位，一半是步数。'],
+  ['室友问你借电脑打一晚上游戏，你第二天一早有课要用。你说：“行吧……”然后一晚上没睡好，第二天也没好意思要回来。', 3, '这是没说出口的“不”。说了“好”，心里是“不”，最后两个人都不舒服。下次试试：“今晚不行，我明早要用；周末可以借你。”'],
+  ['部门年底发现预算还剩不少，经理说：“明年的数是按今年花的定的，省下来等于自己砍自己。”于是组织了一次外地考察。', 0, '这几乎是莫师爷的原话。规则不改，这种考察每年都会有。']
+], ['莫师爷说：你可以去户房当差了。', '阿鉴说：我也是答到一半才明白的。', '多看几遍第五到第八案，再回来试试。']);
+quiz($('#fig-quiz3'), ['揣摩上意', '背锅', '站队', '勇气'], [
+  ['期末前，你听说老师喜欢在作业里看到她课上提过的那本书，于是每篇作业都硬塞进几句引用，不管跟题目有没有关系。', 0, '把“写得好不好”换成了“她喜不喜欢”。青词宰相的学生版。'],
+  ['小组展示出了问题，组长在群里第一句话是：“这部分 PPT 是谁做的？”', 1, '出事后先问“谁弄的”而不是“怎么补救”，锅就开始往下走了。'],
+  ['你的两个好朋友吵架了，其中一个对你说：“你要是还跟她玩，就别理我了。”', 2, '被要求站队。最好的位置往往是：两边都可以安慰，但不替任何一边传话、骂人。'],
+  ['开会时大家都对一个明显有漏洞的方案点头。你举手说：“我觉得第三步可能有问题，我把原因发群里了。”', 3, '小一号的勇气：在所有人等别人先开口的时候，开口。而且对事不对人，有理有据。'],
+  ['实习主管交代你一件事时只说了一句“你看着办”。你回去后发了条消息：“刚才的事我理解为……周三前交初稿，对吗？”', 1, '这是防锅：口头交代事后留字。莫师爷那份底稿，就是这个意思。'],
+  ['学生会选主席，有个同学两边候选人的饭局都去，两边都说“我支持你”。', 2, '哈克在《党派之戏》里干过同样的事。两边都押，往往两边都不信你。'],
+  ['你发现组员报告里的数据被人改得更好看了。你没有在群里公开指出，而是先私下找他：“这几个数我核了一下对不上，我们一起看看？”', 3, '勇气不等于不讲情面。先私下说、给对方改的机会，再考虑要不要公开。'],
+  ['公司年会要每个部门出节目，经理说：“这是组织对新人的信任，就交给小王了。”小王是上周刚入职的。', 1, '苦差被包装成荣誉，和“滚钉板”一模一样。先问一句：为什么别人不干？']
+], ['莫师爷把《办事须知》递给了你。', '阿鉴说：卷三最难，你已经很好了。', '没关系，衙门里的事，本来就要看很多年。']);
+
+/* ---------- 装置 6：年底花光 ---------- */
+(function(){
+  const svg = $('#budSvg'), txt = $('#budTxt'), bS = $('#budSave'), bX = $('#budSpend'), R = $('#budRule');
+  let rule = 'spend', S;
+  function reset(){ const r = rng(Math.floor(Math.random() * 1e6)); S = {t: 0, B: 1000, need: Array.from({length: 6}, () => Math.round(800 + r() * 170)), hist: [], carry: 0}; draw(); }
+  function draw(){
+    let h = '<line x1="40" y1="160" x2="590" y2="160" stroke="var(--rule)" stroke-width="1.5"/>';
+    const Y = v => 160 - v / 1300 * 140;
+    [500, 1000].forEach(v => h += '<line x1="40" y1="' + Y(v) + '" x2="590" y2="' + Y(v) + '" stroke="var(--rule)" stroke-dasharray="3 4"/><text x="34" y="' + (Y(v) + 4) + '" text-anchor="end" font-size="11" fill="var(--ink-3)">' + v + '</text>');
+    for (let i = 0; i < 5; i++) {
+      const x = 70 + i * 104, row = S.hist[i];
+      const B = row ? row.B : (i === S.t ? S.B : null);
+      if (B !== null) h += '<rect x="' + x + '" y="' + Y(B) + '" width="54" height="' + (160 - Y(B)) + '" fill="none" stroke="var(--ink-3)" stroke-width="1.5"/>';
+      if (row) {
+        h += '<rect x="' + (x + 4) + '" y="' + Y(row.spend) + '" width="46" height="' + (160 - Y(row.spend)) + '" fill="' + (row.spend > row.need ? 'var(--zhu)' : 'var(--lan)') + '" opacity=".8"/>';
+        h += '<line x1="' + (x - 6) + '" y1="' + Y(row.need) + '" x2="' + (x + 60) + '" y2="' + Y(row.need) + '" stroke="var(--ink)" stroke-width="2"/>';
+      }
+      h += '<text x="' + (x + 27) + '" y="178" text-anchor="middle" font-size="12" fill="var(--ink-2)">第' + (i + 1) + '年</text>';
+    }
+    h += '<rect x="44" y="6" width="12" height="10" fill="none" stroke="var(--ink-3)"/><text x="60" y="15" font-size="11" fill="var(--ink-2)">预算</text><rect x="100" y="6" width="12" height="10" fill="var(--lan)" opacity=".8"/><text x="116" y="15" font-size="11" fill="var(--ink-2)">花销</text><rect x="156" y="6" width="12" height="10" fill="var(--zhu)" opacity=".8"/><text x="172" y="15" font-size="11" fill="var(--ink-2)">花在不需要的地方</text><line x1="290" y1="11" x2="306" y2="11" stroke="var(--ink)" stroke-width="2"/><text x="310" y="15" font-size="11" fill="var(--ink-2)">实际需要</text>';
+    svg.innerHTML = h;
+    const waste = S.hist.reduce((a, r) => a + Math.max(0, r.spend - r.need), 0), short = S.hist.filter(r => r.need > r.B).length;
+    if (S.t < 5) {
+      txt.innerHTML = '第 ' + (S.t + 1) + ' 年：上峰给的预算 <b>' + S.B + '</b> 两。今年实际需要 <b>' + S.need[S.t] + '</b> 两' + (S.need[S.t] > S.B ? '，<b style="color:var(--zhu)">不够用</b>' : '') + '。年底了，你怎么办？';
+      bS.disabled = bX.disabled = false;
+    } else {
+      bS.disabled = bX.disabled = true;
+      txt.innerHTML = '五年过去。花在不需要的东西上：<b>' + waste + '</b> 两；钱不够用的年份：<b>' + short + '</b> 年。' + (rule === 'spend'
+        ? (short > 0 && waste === 0 ? '<br>你一直省着用，结果预算越砍越少，最后真要用钱时不够了。这就是莫师爷说的“省钱等于砍自己”。' : waste > 0 && short === 0 ? '<br>你年年花光，预算稳稳上涨，从没缺过钱，只是每年都买了一批“新木桶”。在这条规则下，这是最“理性”的做法。' : '<br>在这条规则下，你要么浪费，要么挨饿，很难两全。换成规则二试试。')
+        : '<br>在这条规则下，省下来的钱有一半能留着，明年的预算又按实际需要来定，“够用就好”不会吃亏。规则一变，同一个你，做出了不同的选择。');
+    }
+  }
+  function step(spendAll){
+    if (S.t >= 5) return;
+    const need = S.need[S.t], B = S.B;
+    const spend = spendAll ? B : Math.min(need, B);
+    S.hist.push({B, need, spend});
+    if (rule === 'spend') S.B = Math.round(spend * 1.03);
+    else { S.carry = Math.round((B - spend) / 2); S.B = Math.round(S.need[S.t + 1] * 1.02) + S.carry; }
+    S.t++; draw();
+  }
+  bS.addEventListener('click', () => step(false));
+  bX.addEventListener('click', () => step(true));
+  $('#budReset').addEventListener('click', reset);
+  R.addEventListener('click', e => { const b = e.target.closest('[data-r]'); if (!b) return; rule = b.dataset.r; $$('[data-r]', R).forEach(x => x.classList.toggle('on', x === b)); reset(); });
+  reset();
+})();
+
+/* ---------- 装置 7：老鼠尾巴（演示模型） ---------- */
+(function(){
+  const svg = $('#ratSvg'), inp = $('#ratB'), out = $('#ratBo'), txt = $('#ratTxt');
+  let S;
+  function reset(){ S = {m: 0, R: 10000, F: 0, hist: [{t: 0, r: 10000}], paid: 0}; draw(); }
+  function step(){
+    const b = +inp.value;
+    const catchRate = Math.min(0.5, 0.08 * b);
+    const caught = S.R * catchRate;
+    const f = b >= 2 ? Math.min(0.85, 0.2 * (b - 1)) * Math.min(1, S.m / 4) : 0;
+    if (b >= 3 && S.m >= 3) S.F += 300 * (b - 2);
+    const tails = caught + S.F * 0.5;
+    S.R = Math.max(0, S.R * 1.10 - caught * (1 - f) + S.F * 0.15);
+    S.m++; S.paid += tails * b;
+    S.hist.push({t: tails, r: S.R});
+    draw();
+  }
+  function draw(){
+    const b = +inp.value; out.textContent = b + ' 文';
+    const H = S.hist, n = Math.max(12, H.length - 1);
+    const mx = Math.max(12000, ...H.map(p => Math.max(p.t, p.r)));
+    const X = i => 40 + i / n * 545, Y = v => 180 - v / mx * 160;
+    let h = '<line x1="40" y1="180" x2="590" y2="180" stroke="var(--rule)"/><line x1="40" y1="20" x2="40" y2="180" stroke="var(--rule)"/>';
+    h += '<text x="44" y="16" font-size="11" fill="var(--ink-3)">' + Math.round(mx).toLocaleString() + '</text><text x="586" y="196" text-anchor="end" font-size="11" fill="var(--ink-3)">第 ' + n + ' 个月</text>';
+    const line = (k, c) => '<polyline fill="none" stroke="' + c + '" stroke-width="2.4" points="' + H.map((p, i) => X(i).toFixed(1) + ',' + Y(p[k]).toFixed(1)).join(' ') + '"/>';
+    if (H.length > 1) h += line('t', 'var(--zhu)');
+    h += line('r', 'var(--lan)');
+    h += '<line x1="300" y1="12" x2="316" y2="12" stroke="var(--zhu)" stroke-width="2.4"/><text x="320" y="16" font-size="11" fill="var(--ink-2)">每月收上来的尾巴</text><line x1="440" y1="12" x2="456" y2="12" stroke="var(--lan)" stroke-width="2.4"/><text x="460" y="16" font-size="11" fill="var(--ink-2)">城里的老鼠</text>';
+    svg.innerHTML = h;
+    const last = H[H.length - 1], first = H[0];
+    let msg = '第 ' + S.m + ' 个月：城里约 <b>' + Math.round(last.r).toLocaleString() + '</b> 只老鼠' + (S.m ? '，本月收尾巴 <b>' + Math.round(last.t).toLocaleString() + '</b> 条，累计赏钱 <b>' + Math.round(S.paid).toLocaleString() + '</b> 文。' : '。');
+    if (S.m >= 6) {
+      if (b === 0) msg += '<br>不悬赏，老鼠照常繁殖。';
+      else if (last.r > first.r && last.t > 1500) msg += '<br><b>尾巴越收越多，老鼠也越来越多。</b>赏钱高到值得作弊：剪尾放生、专门养鼠。你奖励的是尾巴，得到的也是尾巴。';
+      else if (last.r < first.r * 0.7) msg += '<br>这个赏钱不高不低，抓老鼠划算，养老鼠不划算，老鼠真的少了。指标还没被“玩坏”。';
+      else msg += '<br>赏钱太低，没人上心，老鼠还在慢慢变多。';
+    }
+    txt.innerHTML = msg + '<br><span style="font-size:13px;color:var(--ink-3)">这是一个为演示而简化的模型，数字不是 1902 年的真实统计。</span>';
+  }
+  inp.addEventListener('input', () => { out.textContent = inp.value + ' 文'; });
+  $('#ratGo').addEventListener('click', step);
+  $('#ratSix').addEventListener('click', () => { for (let i = 0; i < 6; i++) step(); });
+  $('#ratReset').addEventListener('click', reset);
+  reset();
+})();
+
+/* ---------- 装置 8：秘书变宰相 ---------- */
+(function(){
+  const N = [
+    ['汉', '尚书', '前 1 世纪起', '起初是少府手下管文书的小官，因为天天在皇帝身边收发奏章，汉武帝以后越来越受倚重。', '东汉时人说“虽置三公，事归台阁”：丞相、三公还在，实际政务都归尚书台。尚书台自己也长成了一个庞大的衙门。'],
+    ['魏晋—唐', '中书', '3—7 世纪', '魏晋的皇帝嫌尚书台太大，转而倚重身边替自己起草诏令的中书。', '到隋唐，中书省与门下省、尚书省并列为三省，成了正式的宰相机构，有了自己的属官和程序。'],
+    ['唐', '翰林学士', '8—9 世纪', '唐玄宗以后，皇帝把最机密的诏令交给身边的翰林学士起草，他们本来只是陪侍皇帝的文学之臣。', '中晚唐的翰林学士参与机要，被称为“内相”。宋以后，翰林成了清贵的正式官职。'],
+    ['明', '内阁', '15—17 世纪', '明太祖废丞相后，皇帝身边设了几个大学士帮忙看奏章、拟意见，起初只是五品小官。', '一百多年后，内阁首辅成了实际上的宰相，严嵩、徐阶、张居正都坐过这个位子。另一条支线是司礼监：替皇帝批红的太监，比内阁离皇帝更近。'],
+    ['清', '军机处', '1729—1911', '雍正为了西北用兵，在隆宗门旁设了几间值房，挑几个亲信大臣随时商量军务，起初只是临时机构。', '不久，军机处成了全国真正的中枢，原来的内阁被晾在一边。它一直存在到 1911 年，才被所谓的“责任内阁”取代。']
+  ];
+  const svg = $('#secSvg'), card = $('#secCard');
+  let cur = 0;
+  function draw(){
+    let h = '<line x1="40" y1="60" x2="600" y2="60" stroke="var(--rule)" stroke-width="2"/>';
+    N.forEach((n, i) => {
+      const x = 60 + i * 130;
+      h += '<g class="mapnode' + (i === cur ? ' on' : '') + '" data-i="' + i + '" tabindex="0" role="button" aria-label="' + n[1] + '"><circle cx="' + x + '" cy="60" r="' + (i === cur ? 15 : 12) + '" fill="' + (i === cur ? 'var(--zhu)' : 'var(--card)') + '" stroke="var(--ink)" stroke-width="2"/><text x="' + x + '" y="34" text-anchor="middle" font-size="15" fill="var(--ink)" style="font-family:var(--f-display)">' + n[1] + '</text><text x="' + x + '" y="98" text-anchor="middle" font-size="12" fill="var(--ink-3)">' + n[0] + '</text></g>';
+      if (i < N.length - 1) h += '<path d="M' + (x + 20) + ',60 L' + (x + 110) + ',60" stroke="var(--zhu)" stroke-width="1.5" marker-end="url(#secArr)" opacity=".6"/>';
+    });
+    svg.innerHTML = '<defs><marker id="secArr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="var(--zhu)"/></marker></defs>' + h;
+    const n = N[cur];
+    card.innerHTML = '<p class="k">' + n[0] + ' · ' + n[2] + '</p><h5>' + n[1] + '</h5><p><b>起初：</b>' + n[3] + '</p><p><b>后来：</b>' + n[4] + '</p>' + (cur < N.length - 1 ? '<p style="color:var(--ink-3);font-size:14px">然后，皇帝又在身边找了一批新的秘书……</p>' : '<p style="color:var(--ink-3);font-size:14px">两千年的轮回，到这里随着帝制一起结束。</p>');
+    $$('.mapnode', svg).forEach(g => { const f = () => { cur = +g.dataset.i; draw(); }; g.addEventListener('click', f); g.addEventListener('keydown', ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); f(); } }); });
+  }
+  draw();
+})();
+
+/* ---------- 装置 9：拒绝练习 ---------- */
+(function(){
+  const SC = [
+    ['社团学长周四找你：周末帮忙做活动海报。可你下周一有一门考试，还没复习完。', [
+      ['“好啊好啊，我看看时间哈。”（然后一直没回）', -15, -6, '学长等到周六才发现你没空，只好临时找人。他记住的不是你没空，而是你没说。这是拖字诀。'],
+      ['“考试周还找我？不行。”', -12, 8, '时间保住了，可那句“还找我”带着刺。拒绝的是事，伤到的是人。'],
+      ['“这周末我要复习考试，实在抽不出来。下周二之后可以帮你改排版，或者我先把去年用的模板发你？”', 4, 10, '明确的“不”、真实的理由、另一条路。学长多半会说“好，模板发我”。'],
+      ['“行，我熬夜弄。”', 8, -22, '学长很高兴，你周一考砸了。答应一件做不到的事，代价最后都是自己付。']]],
+    ['同学第三次找你借五百块，前两次都拖了很久才还。', [
+      ['“我最近手头也有点紧……再说吧。”', -6, -4, '含糊的“再说”，对方过几天还会再问。你还得再找一次借口。'],
+      ['“你上两次都拖那么久，我凭什么再借？”', -18, 6, '说的是实话，可这么说，以后连同学都难做了。'],
+      ['“这次我不借了。前两次还钱拖得有点久，我自己也会紧张。要是急用，我可以帮你问问学校的临时困难补助。”', 0, 12, '不借，理由是“我自己会紧张”，说的是自己的感受，不是指责对方。还给了一条别的路。'],
+      ['“好吧，转你了。”', 5, -18, '又借出去五百块，接下来几个月你会一直惦记着它。']]],
+    ['室友连着一周半夜打游戏开外放，你第二天早八有课。', [
+      ['什么也不说，戴上耳塞忍着。', 0, -15, '关系没变，你的睡眠变差了。忍一周还行，忍一学期会忍出怨气。'],
+      ['在宿舍群里发：“某些人能不能有点公德心？”', -20, 2, '点名不点名，大家都知道是谁。公开指责会让一件小事变成一场冷战。'],
+      ['私下说：“我早八有课，十二点以后能不能戴耳机？你要开黑的话，我也可以给你推荐个便宜的耳机。”', 5, 12, '说清楚“不”（不要外放），说清楚理由（早八），给另一条路（耳机）。多数室友会接受。'],
+      ['自己也开始熬夜，干脆一起打。', 6, -20, '关系是好了，早八也没了。']]],
+    ['实习主管周五下午五点丢来一个活：“不急，下周一早上给我就行。”你周末已经约好了回家。', [
+      ['“好的。”然后周末带着电脑回家，边陪家人边干。', 6, -16, '主管很满意，你的周末没了。下次他会觉得周末交活是正常的。'],
+      ['“现在都五点了，我周末不加班。”', -14, 8, '立场没错，但说法太硬，主管会记住这一句。'],
+      ['“我周末已经有安排了。周一上午十点前我先给您一个框架，下午交完整版，您看行吗？”', 3, 12, '把“不加班”换成了一个具体可行的时间表。主管要的是东西，不一定是周一早上。'],
+      ['“好的”，然后周末一个字没动，周一说“还在弄”。', -16, 4, '这是最糟的一种：嘴上答应，实际拖。主管失去了对你的信任，你周一还得硬着头皮补。']]]
+  ];
+  const card = $('#noCard');
+  let k, rel, self, picked;
+  function bar(){ $('#noRel').style.width = rel + '%'; $('#noRelo').textContent = rel; $('#noSelf').style.width = self + '%'; $('#noSelfo').textContent = self; }
+  function draw(){
+    if (k >= SC.length) {
+      card.innerHTML = '<p class="qt">四个场景结束。关系 <b>' + rel + '</b>，你自己 <b>' + self + '</b>。</p><p class="fb">' + (rel >= 60 && self >= 80 ? '你把“不”说得既干净又体面，莫师爷的第四种说法你学会了。' : self < 50 ? '你答应了太多做不到或不想做的事。别人一时高兴，你自己一直在付账。' : rel < 45 ? '你的“不”很坚决，只是有时太硬了。理由说成自己的感受，再给一条别的路，会好很多。' : '有得有失。可以回头看看每个场景里第三种说法：明确、真实、另一条路。') + '</p>';
+      $('#noNext').disabled = true; bar(); return;
+    }
+    const s = SC[k];
+    card.innerHTML = '<div class="qn">场景 ' + (k + 1) + ' / ' + SC.length + '</div><p class="qt">' + s[0] + '</p><div class="opts2">' + s[1].map((o, i) => '<button data-i="' + i + '"' + (picked !== null ? ' disabled' : '') + ' class="' + (picked === i ? 'pick' : '') + '">' + o[0] + '</button>').join('') + '</div>' + (picked !== null ? '<p class="fb">' + s[1][picked][3] + '</p>' : '');
+    $('#noNext').disabled = picked === null;
+    bar();
+  }
+  card.addEventListener('click', e => { const b = e.target.closest('[data-i]'); if (!b || picked !== null || k >= SC.length) return; picked = +b.dataset.i; const o = SC[k][1][picked]; rel = clampN(rel + o[1]); self = clampN(self + o[2]); draw(); });
+  function clampN(v){ return Math.max(0, Math.min(100, v)); }
+  $('#noNext').addEventListener('click', () => { if (picked === null) return; k++; picked = null; draw(); });
+  function reset(){ k = 0; rel = 60; self = 60; picked = null; $('#noNext').disabled = true; draw(); }
+  $('#noReset').addEventListener('click', reset);
+  reset();
+})();
+
+/* ---------- 装置 11：报喜，还是报忧 ---------- */
+(function(){
+  const EV = [
+    ['西段河堤有三处渗水，秋汛前要加固。', '照实说：“西段河堤三处渗水，请拨银加固。”', '挑好听的：“河堤总体稳固，个别地方略有湿润。”'],
+    ['今年的秋粮，实收比上报的少了一成。', '照实说：“秋粮少收一成，上报的数要改。”', '挑好听的：“秋粮基本收齐，个别乡尚在催缴。”'],
+    ['新开的粥厂，账目对不上二十两。', '照实说：“粥厂账目差二十两，正在查。”', '挑好听的：“粥厂运转良好，灾民交口称赞。”'],
+    ['城东那伙劫道的，上个月又出现了。', '照实说：“城东劫匪复出，需增派捕快。”', '挑好听的：“本县治安平稳，盗案同比下降。”'],
+    ['大人推荐来的那位远房外甥，办事不太靠谱。', '照实说：“令甥于钱谷之事尚欠历练，宜换个差事。”', '挑好听的：“令甥勤勉，假以时日必成大器。”'],
+    ['上峰夸过的那座新桥，桥墩出现了裂缝。', '照实说：“新桥桥墩有裂缝，须封桥检修。”', '挑好听的：“新桥车马往来，一切如常。”']
+  ];
+  const card = $('#repCard');
+  let k, fav, risk, log;
+  function bars(){ $('#repFav').style.width = fav + '%'; $('#repFavo').textContent = fav; $('#repRisk').style.width = Math.min(100, risk) + '%'; $('#repRisko').textContent = risk; }
+  function draw(){
+    if (k >= EV.length) {
+      const bad = risk >= 50;
+      card.innerHTML = '<p class="qt">半年过去，秋汛来了。</p><p class="fb">' + (bad
+        ? '大人这半年过得很舒心，一直觉得你最懂事。直到河堤决口、新桥封闭、劫匪抢了粮车，所有被说成“略有湿润”“一切如常”的事，在同一个月里一起冒了出来。上峰来问责，大人翻出你的那些报告，上面全是你的字。<b>报喜不报忧的人，最后往往是第一个背锅的人。</b>这正是下一案要讲的。'
+        : fav < 35
+        ? '你照实说了每一件坏事，大人这半年脸色不太好看，背后也有人说你“不会来事”。可秋汛平安过去了，新桥修好了，劫匪也抓了。大人后来想明白了：衙门里只有你从不让他意外。这就是魏征的位置。'
+        : '你有时照实说，有时挑好听的。麻烦没有大到决堤，但也攒下了一些。往后哪一件冒出来，都会有人去翻当初的报告。') + '</p>';
+      bars(); return;
+    }
+    const e = EV[k];
+    card.innerHTML = '<div class="qn">第 ' + (k + 1) + ' / ' + EV.length + ' 件</div><p class="qt">' + e[0] + '</p><div class="opts2"><button data-c="1">' + e[1] + '</button><button data-c="0">' + e[2] + '</button></div>' + (log ? '<p class="fb">' + log + '</p>' : '');
+    bars();
+  }
+  card.addEventListener('click', ev => {
+    const b = ev.target.closest('[data-c]'); if (!b || k >= EV.length) return;
+    if (b.dataset.c === '1') { fav = Math.max(0, fav - 9); log = '大人皱了皱眉：“知道了。”然后派人去办了。'; }
+    else { fav = Math.min(100, fav + 8); risk += 17; log = '大人笑了：“好，好。”这件事在暗处又放了半个月。'; }
+    k++; draw();
+  });
+  function reset(){ k = 0; fav = 50; risk = 0; log = ''; draw(); }
+  $('#repReset').addEventListener('click', reset);
+  reset();
+})();
+
+/* ---------- 装置 12：站队人生 ---------- */
+(function(){
+  const card = $('#deerCard'), log = $('#deerLog');
+  const R = [
+    {y: '1550 · 嘉靖二十九年', q: '严嵩当国，如日中天，依附他的人升得飞快。次辅徐阶在内阁里隐忍不发，处处顺着严嵩。你刚进京，同乡来劝你早做打算。', o: [['投靠严党', 'yan'], ['暗中亲近徐阶', 'xu'], ['谁也不靠，好好办差', 'mid']]},
+    {y: '1567 · 隆庆元年', q: '嘉靖已经驾崩，新皇帝即位。徐阶是首辅，可阁臣高拱和他斗得越来越凶；另一位阁臣张居正年轻干练，与宫里的太监冯保交好。你……', o: [['跟高拱走', 'gao'], ['跟张居正走', 'zhang'], ['谁也不靠，好好办差', 'mid']]},
+    {y: '1572 · 万历元年前后', q: '张居正成了首辅，推行考成法、清丈田亩，雷厉风行，权倾朝野。想要升迁，最快的路是紧跟张阁老。你……', o: [['紧跟张居正', 'zhang'], ['保持距离，只办分内事', 'mid']]}
+  ];
+  let st, out, score, path;
+  function L(t){ log.insertAdjacentHTML('beforeend', '<div>' + t + '</div>'); }
+  function settle(i, c){
+    if (i === 0) {
+      if (c === 'yan') { score += 2; L('<span class="me">1550—1562：</span>你跟着严党连升三级，好不风光。'); L('<span class="me">1562：</span>严嵩倒台，严党成批落马。<b>你被罢官回乡。</b>'); out = true; }
+      else if (c === 'xu') { L('<span class="me">1550—1562：</span>严嵩当政的十二年里，你一直坐冷板凳。'); score += 3; L('<span class="me">1562：</span>严嵩倒台，徐阶成了首辅，你被重用，升了两级。'); }
+      else { score += 1; L('<span class="me">1550—1562：</span>你按部就班地熬资历。严嵩倒台时，你两边都不沾，平安无事，还因为办事踏实升了一级。'); }
+    } else if (i === 1) {
+      if (path[0] === 'xu') L('<span class="me">1568：</span>徐阶被高拱一派攻击，告老还乡。你作为“徐阶的人”，在朝中处境尴尬。'), score -= 1;
+      if (c === 'gao') { score += 2; L('<span class="me">1569—1572：</span>高拱复出主政，你跟着得势。'); L('<span class="me">1572：</span>隆庆帝去世，张居正联合冯保把高拱赶出了京城。<b>你被贬到边远地方。</b>'); out = true; }
+      else if (c === 'zhang') { score += 3; L('<span class="me">1572：</span>高拱被逐，张居正成了首辅。你押对了，一路高升。'); }
+      else { score += 1; L('<span class="me">1567—1572：</span>阁老们斗来斗去，你在部里管好自己的一摊事，没人想起你，也没人整你。'); }
+    } else {
+      if (c === 'zhang') { score += 3; L('<span class="me">1572—1582：</span>张居正当国十年，你是他的得力干将，官至侍郎。'); L('<span class="me">1582—1584：</span>张居正病逝，万历亲自清算，张家被抄，依附他的人纷纷被罢黜。<b>你被削去官籍。</b>'); out = true; }
+      else { score += 1; L('<span class="me">1572—1582：</span>你认真执行考成法，但从不登张府的门。'); L('<span class="me">1582—1584：</span>张居正死后被清算，你因为“不是张党”逃过一劫，还被提拔了一级。'); }
+    }
+  }
+  function ending(){
+    const all = path.every(p => p === 'mid');
+    card.innerHTML = '<p class="qt">' + (out ? '你的仕途在 ' + ['1562', '1572', '1584'][path.length - 1] + ' 年前后画上了句号。' : '你平安走完了这四十年。') + '</p><p class="fb">' + (all
+      ? '你一次队也没站。没有大富贵，也没有大灾难，一级一级熬上来，还在每一次大清洗里全身而退。在那四十年里，这几乎是最稳的活法。'
+      : out
+      ? '每一次站对的人，往往就是下一次站错的人：严党的赢家输在 1562，高拱的赢家输在 1572，张居正的赢家输在 1584。站对一次靠眼光，连站对四十年，只能靠运气。'
+      : '你站过队，也躲过了清算，运气不错。可回头看看：你平安，多半不是因为站得准，而是因为在最后一个关口退了一步。') + '</p>';
+  }
+  function draw(){
+    if (out || st >= R.length) { ending(); return; }
+    const r = R[st];
+    card.innerHTML = '<div class="qn">' + r.y + '</div><p class="qt">' + r.q + '</p><div class="opts2">' + r.o.map(o => '<button data-c="' + o[1] + '">' + o[0] + '</button>').join('') + '</div>';
+  }
+  card.addEventListener('click', e => { const b = e.target.closest('[data-c]'); if (!b || out || st >= R.length) return; const c = b.dataset.c; path.push(c); settle(st, c); st++; draw(); });
+  function reset(){ st = 0; out = false; score = 0; path = []; log.innerHTML = '<div class="sys">你中了进士，进京做官。</div>'; draw(); }
+  $('#deerReset').addEventListener('click', reset);
+  reset();
+})();
+
+/* ---------- 装置 14：押韵的衙门 ---------- */
+(function(){
+  const svg = $('#tlSvg'); if (!svg) return;
+  const E = $$('.echo').map((el, k) => { el.id = el.id || 'echo-' + k; const ps = $$('p', el); return {id: el.id, y: +(el.dataset.year || 2026), kind: el.dataset.k, title: el.dataset.title, ry: ($('.ry', el) || {}).textContent || '', text: ps.slice(1).map(p => p.textContent).join(' ')}; }).sort((a, b) => a.y - b.y);
+  const B = [[-300, 40], [0, 150], [600, 270], [1300, 410], [1550, 560], [1800, 690], [1950, 790], [2026, 870]];
+  const X = y => { for (let i = 1; i < B.length; i++) if (y <= B[i][0]) { const [a, xa] = B[i - 1], [b, xb] = B[i]; return xa + (y - a) / (b - a) * (xb - xa); } return 870; };
+  const col = {'轮回': 'var(--zhu)', '讽刺': 'var(--lan)', '存疑': 'var(--ink-3)', '联系': 'var(--moss)', '生活': 'var(--gold)'};
+  const card = $('#tlCard'), F = $('#tlF');
+  let cur = 'all';
+  const kinds = Object.keys(col).filter(k => E.some(e => e.kind === k));
+  F.innerHTML = '<button class="btn on" data-f="all">全部 ' + E.length + '</button>' + kinds.map(k => '<button class="btn" data-f="' + k + '">' + k + ' ' + E.filter(e => e.kind === k).length + '</button>').join('');
+  function draw(){
+    let h = '<line x1="30" y1="150" x2="880" y2="150" stroke="var(--rule)" stroke-width="1.5"/>';
+    B.forEach(([y, x]) => h += '<line x1="' + x + '" y1="146" x2="' + x + '" y2="154" stroke="var(--ink-3)"/><text x="' + x + '" y="172" text-anchor="middle" font-size="11" fill="var(--ink-3)" font-family="IBM Plex Mono,monospace">' + (y < 0 ? '前' + (-y) : y) + '</text>');
+    const used = [];
+    E.forEach((e, k) => {
+      const x = X(e.y); let lv = 0; while (used.some(u => u.lv === lv && Math.abs(u.x - x) < 15)) lv++; used.push({x, lv});
+      const on = cur === 'all' || e.kind === cur, yy = 132 - lv * 17;
+      h += '<g class="mapnode" data-k="' + k + '" tabindex="0" role="button" aria-label="' + e.title + '" opacity="' + (on ? 1 : .12) + '"><line x1="' + x + '" y1="150" x2="' + x + '" y2="' + yy + '" stroke="var(--rule)"/><circle cx="' + x + '" cy="' + yy + '" r="6.5" fill="' + col[e.kind] + '" stroke="var(--card)" stroke-width="1.5"/></g>';
+    });
+    Object.entries(col).forEach(([k, c], i) => h += '<circle cx="' + (40 + i * 70) + '" cy="14" r="5" fill="' + c + '"/><text x="' + (49 + i * 70) + '" y="18" font-size="12" fill="var(--ink-2)">' + k + '</text>');
+    svg.innerHTML = h;
+    $$('.mapnode', svg).forEach(g => { const f = () => pick(+g.dataset.k); g.addEventListener('click', f); g.addEventListener('keydown', ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); f(); } }); });
+  }
+  function pick(k){
+    const e = E[k];
+    card.innerHTML = '<p class="k">' + (e.ry || '') + ' · <span style="color:' + col[e.kind] + '">' + e.kind + '</span></p><p><b>' + e.title + '</b></p><p style="font-size:14.5px;color:var(--ink-2)">' + e.text + '</p><p><a href="#' + e.id + '">跳过去 →</a></p>';
+  }
+  F.addEventListener('click', ev => { const b = ev.target.closest('[data-f]'); if (!b) return; cur = b.dataset.f; $$('[data-f]', F).forEach(x => x.classList.toggle('on', x === b)); draw(); const first = E.findIndex(e => cur === 'all' || e.kind === cur); if (first >= 0) pick(first); });
   draw();
 })();
 

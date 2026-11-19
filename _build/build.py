@@ -11,7 +11,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # 书名: (源目录, 输出文件, 段落列表)
 BOOKS = {
     'money': ('money', 'money/index.html', ['head.html'] + ['s%02d.html' % i for i in range(13)]),
-    'yes': ('yes', 'yes/index.html', ['head.html'] + ['s%02d.html' % i for i in range(6)]),
+    'yes': ('yes', 'yes/index.html', ['head.html'] + ['s%02d.html' % i for i in range(16)]),
 }
 
 

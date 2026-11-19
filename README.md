@@ -9,7 +9,7 @@
 | 计算机创世记 · 上卷《一沙一世界》 | `computer/index.html` |
 | 计算机创世记 · 下卷《第二次创世》 | `computer/second.html` |
 | 点石成金 · 金钱创世记 | `money/index.html` |
-| 是，大人 · 衙门里的处世术（卷一） | `yes/index.html` |
+| 是，大人 · 衙门里的处世术 | `yes/index.html` |
 
 ## 改书
 

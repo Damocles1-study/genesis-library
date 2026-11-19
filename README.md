@@ -12,10 +12,11 @@
 | 是，大人 · 衙门里的处世术 | `yes/index.html` |
 | 苇城书记 · 文字创世记（三卷：落笔、破译、开口） | `reed/index.html` |
 | 柜台里外 · 金融创世记（四卷十六章加尾声） | `finance/index.html` |
+| 回宿舍的路 · 路上聊（六十张卡片） | `walk/index.html` |
 
 ## 改书
 
-《点石成金》《是，大人》《苇城书记》《柜台里外》都是分段源文件拼出来的，别直接改生成页。只改 `_build/money/`、`_build/yes/`、`_build/reed/` 或 `_build/finance/` 下的源文件（`head.html` 样式、`sNN.html` 各段正文、`app.js` 装置脚本），然后运行：
+《点石成金》《是，大人》《苇城书记》《柜台里外》《回宿舍的路》都是分段源文件拼出来的，别直接改生成页。只改 `_build/money/`、`_build/yes/`、`_build/reed/`、`_build/finance/` 或 `_build/walk/` 下的源文件（`head.html` 样式、`sNN.html` 各段正文、`app.js` 装置脚本），然后运行：
 
     python3 _build/build.py          # 全部
     python3 _build/build.py yes      # 只建一本
@@ -27,6 +28,8 @@
 - 对白 `.scene`、戏里戏外 `.drama`、带走一句 `.takeaway`。
 
 《柜台里外》每章开头的虚线框「柜台前」是发生在真实年代的虚构小故事，“有人问”是读者的问题，`.word` 是“柜台词典”，卷末 `.bill` 是“结账”；装置 17 的轮回表自动收集全书眉批。
+
+《回宿舍的路》每张卡是一个 `<article class="cd" data-t="主题" data-k="讲|猜|辩|假|玩">`，`app.js` 负责抽卡、筛选和“讲过了”（存在浏览器本地）；卡末“想细看”链到其他书的章节，构建后可用脚本检查跨书锚点。
 
 浅色模式统一用护眼暖色底（取值范围见项目须知）。
 

@@ -1,0 +1,1622 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="一副给散步时用的卡片：六十张“路上聊”，每张三五分钟能讲完一个真实的故事或问题，结尾留一个抛给对方的问题。从书房里的五本书取材，外加十张书外的新话题。随机抽一张、抽一条路、按主题筛、标记讲过了。">
+<meta property="og:title" content="回宿舍的路 · 路上聊">
+<meta property="og:description" content="从图书馆走回去的那十几分钟，聊点什么？六十张卡，每张一个真实的故事，和一个留给对方的问题。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23182030'/%3E%3Cpath d='M12,29 V9 Q12,6 15,6 H19' stroke='%23d9c9a3' stroke-width='2' fill='none'/%3E%3Cpath d='M16,7 h6 l-1.5,3 h-3z' fill='%23e8b450'/%3E%3Cpath d='M17.5,10 L11,27 H28 L20.5,10z' fill='%23e8b450' opacity='.35'/%3E%3C/svg%3E">
+<title>回宿舍的路</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;600&family=ZCOOL+XiaoWei&display=swap">
+<style>
+/* ZCOOL XiaoWei 把“回”字画成实心方块：这一个字改用系统宋体/黑体，其余字不变 */
+@font-face{font-family:"Hui Fix";unicode-range:U+56DE;src:local("Songti SC"),local("STSongti-SC-Regular"),local("STSong"),local("SimSun"),local("宋体"),local("Noto Serif CJK SC"),local("NotoSerifCJKsc-Regular"),local("Source Han Serif SC"),local("SourceHanSerifSC-Regular"),local("PingFang SC"),local("PingFangSC-Regular"),local("Microsoft YaHei"),local("Noto Sans CJK SC"),local("NotoSansCJKsc-Regular"),local("Droid Sans Fallback")}
+
+/* 版式：夜路。浅色是黄昏前的暖纸，深色是路灯下的夜。卡片像一张张索引卡，顶上一条主题色。 */
+:root{
+  --paper:#ece3cf; --paper-2:#e1d7bf; --card:#f3ebda;
+  --ink:#1f2228; --ink-2:#4b4e55; --ink-3:#5d5f66; --rule:#cfc3a8;
+  --lamp:#8a5a0c; --glow:#e7b54d; --night:#2b4a6f;
+  --btn:#2b4a6f; --btn-fg:#f3ebda;
+  --sky1:#d9cfb7; --sky2:#e9dfc8; --bld:#b9ab8d; --win:#e7b54d;
+  --c-jq:#2c6a6e; --c-q:#b0352b; --c-ym:#6a4c93; --c-zi:#7d600f; --c-gt:#6e4526; --c-sw:#2f5584;
+  --hl:color-mix(in srgb,var(--glow) 34%,transparent);
+  --f-display:"Hui Fix","ZCOOL XiaoWei","Songti SC","STSong","Noto Serif SC",serif;
+  --f-body:"Noto Serif SC","Songti SC","Source Han Serif SC","STSong",serif;
+  --f-kai:"Kaiti SC","STKaiti","KaiTi","Noto Serif SC",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#11151d; --paper-2:#181d27; --card:#1b212c; --ink:#e8e2d3; --ink-2:#b5afa0; --ink-3:#8d8a80; --rule:#2e3644;
+  --lamp:#e7b54d; --glow:#e7b54d; --night:#8fb0e3; --btn:#6b4f17; --btn-fg:#f6e3b0;
+  --sky1:#0d1119; --sky2:#151b27; --bld:#232b3a; --win:#e7b54d;
+  --c-jq:#6fb5b0; --c-q:#e87a6c; --c-ym:#b39ae0; --c-zi:#d4b056; --c-gt:#c99a6e; --c-sw:#8fb0e3; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#11151d; --paper-2:#181d27; --card:#1b212c; --ink:#e8e2d3; --ink-2:#b5afa0; --ink-3:#8d8a80; --rule:#2e3644;
+  --lamp:#e7b54d; --glow:#e7b54d; --night:#8fb0e3; --btn:#6b4f17; --btn-fg:#f6e3b0;
+  --sky1:#0d1119; --sky2:#151b27; --bld:#232b3a; --win:#e7b54d;
+  --c-jq:#6fb5b0; --c-q:#e87a6c; --c-ym:#b39ae0; --c-zi:#d4b056; --c-gt:#c99a6e; --c-sw:#8fb0e3; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.85;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+.g{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit;text-decoration-color:var(--lamp);text-underline-offset:3px}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--lamp);outline-offset:2px}
+svg{max-width:100%;height:auto;display:block}
+em{font-style:normal;background:linear-gradient(transparent 60%,var(--hl) 60%)}
+strong{font-weight:600}
+.col{max-width:40rem;margin-inline:auto}
+.wide{max-width:60rem;margin-inline:auto}
+
+/* 页眉 */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+.bar-in{max-width:60rem;margin:0 auto;display:flex;align-items:center;gap:10px;padding-block:8px}
+.bar .home{text-decoration:none;font-size:13px;color:var(--ink-3);white-space:nowrap;border:1px solid var(--rule);border-radius:999px;padding:1px 9px}
+.bar .name{font-family:var(--f-display);font-size:19px;letter-spacing:.06em;white-space:nowrap}
+.bar nav{margin-left:auto;display:flex;gap:4px;min-width:0}
+.bar nav a{font-size:13px;color:var(--ink-2);text-decoration:none;white-space:nowrap;padding:1px 7px;border-radius:6px}
+.bar nav a:hover{background:var(--paper-2)}
+
+/* 封面 */
+.hero{padding-block:34px 10px}
+.hero .eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;color:var(--ink-3)}
+.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(56px,14vw,118px);line-height:1;margin:.22em 0 .18em;letter-spacing:.1em}
+.hero h1 small{display:block;font-size:.19em;letter-spacing:.32em;color:var(--ink-2);margin-top:.7em}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px;align-items:center}
+.hero-grid p{margin:0 0 1em;font-size:17.5px}
+.scene-svg{border-radius:10px;overflow:hidden;border:1px solid var(--rule)}
+@media (max-width:720px){.hero-grid{grid-template-columns:minmax(0,1fr)}.scene-svg{order:-1}}
+
+/* 怎么用 */
+.how{counter-reset:h;list-style:none;margin:1.2em 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));gap:10px}
+.how li{counter-increment:h;background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:12px 14px 12px 46px;position:relative;font-size:15px;line-height:1.7}
+.how li::before{content:counter(h);position:absolute;left:12px;top:11px;width:24px;height:24px;border-radius:50%;border:1.5px solid var(--lamp);color:var(--lamp);display:grid;place-items:center;font-family:var(--f-mono);font-size:12.5px}
+.how b{display:block;font-weight:600;color:var(--ink)}
+.kinds{display:flex;flex-wrap:wrap;gap:8px 14px;margin:14px 0 0;padding:0;list-style:none;font-size:14px;color:var(--ink-2)}
+.kinds li{display:flex;gap:6px;align-items:baseline}
+.kd{display:inline-grid;place-items:center;min-width:1.9em;height:1.9em;padding:0 .35em;border:1.3px solid currentColor;border-radius:50%;font-family:var(--f-display);font-size:15px;line-height:1;color:var(--ink-2)}
+.kinds .kd{font-size:13.5px}
+
+h2.sec{font-family:var(--f-display);font-weight:400;font-size:clamp(30px,6.4vw,44px);line-height:1.15;letter-spacing:.06em;margin:56px 0 10px}
+h2.sec small{display:block;font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;color:var(--lamp);margin-bottom:6px}
+.lede{color:var(--ink-2);font-size:16px;margin:0 0 1em}
+
+/* 抽卡台 */
+.draw{margin-top:34px;padding:18px 16px 20px;border:1px solid var(--rule);border-radius:14px;background:var(--paper-2);display:none}
+.js .draw{display:block}
+.dr-top{display:flex;flex-wrap:wrap;gap:10px}
+.big{flex:1 1 11rem;border:0;border-radius:10px;padding:12px 16px;background:var(--btn);color:var(--btn-fg);font-family:var(--f-display);font-size:21px;letter-spacing:.08em;cursor:pointer;transition:transform .12s}
+.big:active{transform:scale(.98)}
+.big.alt{background:transparent;color:var(--ink);border:1.5px solid var(--btn)}
+.big small{display:block;font-family:var(--f-body);font-size:12.5px;letter-spacing:.02em;opacity:.85;margin-top:1px}
+.fl{margin-top:14px}
+.fl .lb{font-size:12.5px;color:var(--ink-3);font-family:var(--f-mono);letter-spacing:.08em;margin-bottom:4px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--rule);background:var(--card);border-radius:999px;padding:2px 11px;font-size:14px;cursor:pointer;color:var(--ink-2);line-height:1.7}
+.chip[aria-pressed="true"]{border-color:var(--cc,var(--ink));color:var(--cc,var(--ink));box-shadow:inset 0 0 0 1px var(--cc,var(--ink));font-weight:600}
+.chip i{font-style:normal;font-family:var(--f-mono);font-size:11.5px;opacity:.75;margin-left:3px}
+.opts{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;margin-top:12px;font-size:14px;color:var(--ink-2)}
+.opts label{display:flex;align-items:center;gap:6px;cursor:pointer}
+.opts input{accent-color:var(--night);width:17px;height:17px}
+.linkbtn{border:0;background:none;padding:0;font-size:13.5px;color:var(--ink-3);text-decoration:underline;text-decoration-color:var(--rule);text-underline-offset:3px;cursor:pointer}
+.stat{font-size:13.5px;color:var(--ink-3)}
+.stage{margin-top:16px;min-height:120px}
+@media (max-width:520px){.draw{padding:14px 10px 16px;margin-inline:-4px}.stage .cd{padding:14px 13px}}
+.stage .empty{border:1.5px dashed var(--rule);border-radius:12px;padding:26px 18px;text-align:center;color:var(--ink-3);font-size:15px}
+.stage .empty b{display:block;font-family:var(--f-display);font-weight:400;font-size:22px;color:var(--ink-2);margin-bottom:4px}
+.stage-nav{display:none;align-items:center;gap:8px;margin-top:12px;flex-wrap:wrap}
+.stage-nav.on{display:flex}
+.stage-nav .pos{font-family:var(--f-mono);font-size:12.5px;color:var(--ink-3);margin-right:auto}
+.sbtn{border:1px solid var(--rule);background:var(--card);border-radius:8px;padding:5px 12px;font-size:14.5px;cursor:pointer}
+.sbtn:disabled{opacity:.4;cursor:default}
+.sbtn.told[aria-pressed="true"]{border-color:var(--c-jq);color:var(--c-jq);font-weight:600}
+.sbtn.go{background:var(--btn);color:var(--btn-fg);border-color:var(--btn)}
+
+/* 卡片 */
+.deck{margin-top:10px}
+.deck-h{display:flex;align-items:baseline;gap:12px;margin:46px 0 4px;padding-bottom:6px;border-bottom:2px solid var(--cc)}
+.deck-h h2{font-family:var(--f-display);font-weight:400;font-size:clamp(28px,6vw,38px);margin:0;letter-spacing:.08em;color:var(--cc)}
+.deck-h span{font-size:13.5px;color:var(--ink-3)}
+.deck .lede{margin:8px 0 14px;font-size:15px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+.js .grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,17rem),1fr));gap:10px}
+
+.cd{--cc:var(--ink-2);position:relative;background:var(--card);border:1px solid var(--rule);border-top:5px solid var(--cc);border-radius:10px;padding:14px 16px 14px;scroll-margin-top:70px}
+.cd[data-t="机器"]{--cc:var(--c-jq)} .cd[data-t="钱"]{--cc:var(--c-q)} .cd[data-t="衙门"]{--cc:var(--c-ym)}
+.cd[data-t="字与话"]{--cc:var(--c-zi)} .cd[data-t="柜台"]{--cc:var(--c-gt)} .cd[data-t="书外"]{--cc:var(--c-sw)}
+.cd-h{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-3)}
+.cd-h .th{font-family:var(--f-mono);letter-spacing:.1em;color:var(--cc)}
+.cd-h .kd{color:var(--cc);border-color:var(--cc);font-size:13px;min-width:1.85em;height:1.85em}
+.cd-h .no{margin-left:auto;font-family:var(--f-mono)}
+.cd-h .min{font-family:var(--f-mono)}
+.cd h3{font-family:var(--f-display);font-weight:400;font-size:25px;line-height:1.3;margin:.3em 0 .25em;letter-spacing:.04em;text-wrap:balance}
+.cd .hook{margin:0 0 .6em;font-family:var(--f-kai);font-size:17.5px;line-height:1.7;color:var(--ink);padding-left:12px;border-left:3px solid var(--cc)}
+.cd .hook::before{content:"开口 ";font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;color:var(--cc);vertical-align:2px}
+.cd .body p{margin:0 0 .8em;text-indent:2em;font-size:16px}
+.cd .body p.ni{text-indent:0}
+.cd blockquote{margin:.6em 0 .9em;padding:.1em 0 .1em 1em;border-left:2px solid var(--cc);font-family:var(--f-kai);font-size:16.5px;color:var(--ink-2)}
+.cd blockquote cite{display:block;font-style:normal;font-family:var(--f-body);font-size:13px;color:var(--ink-3)}
+.cd .eg{list-style:none;margin:.2em 0 .9em;padding:0;font-size:15px}
+.cd .eg li{padding:4px 0;border-bottom:1px dashed var(--rule)}
+.cd .eg li b{font-weight:400;font-family:var(--f-kai);color:var(--ink-2)}
+.guess{margin:.4em 0 1em;border:1.5px solid var(--cc);border-radius:9px;background:color-mix(in srgb,var(--cc) 7%,var(--card))}
+.guess summary{cursor:pointer;padding:9px 12px;font-weight:600;font-size:15.5px;list-style:none;display:flex;gap:8px;align-items:baseline}
+.guess summary::-webkit-details-marker{display:none}
+.guess summary::before{content:"猜";flex:none;font-family:var(--f-display);font-weight:400;color:var(--cc)}
+.guess summary::after{content:"翻开答案";margin-left:auto;flex:none;font-weight:400;font-size:12.5px;color:var(--ink-3);font-family:var(--f-mono)}
+.guess[open] summary::after{content:"收起"}
+.guess .ans{padding:0 12px 10px 12px;font-size:15.5px}
+.guess .ans b{color:var(--cc)}
+.sides{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:.3em 0 1em}
+.sides div{border:1px solid var(--rule);border-radius:8px;padding:8px 10px;font-size:14.5px;line-height:1.65;background:var(--paper)}
+.sides b{display:block;font-family:var(--f-display);font-weight:400;font-size:16px;color:var(--cc)}
+@media (max-width:420px){.sides{grid-template-columns:1fr}}
+.doubt{font-size:13.5px!important;text-indent:0!important;color:var(--ink-3);border-top:1px dotted var(--rule);padding-top:6px}
+.doubt::before{content:"存疑";font-family:var(--f-mono);font-size:11px;border:1px solid var(--ink-3);border-radius:3px;padding:0 4px;margin-right:6px;vertical-align:1px}
+.turn{margin:.8em 0 .4em;padding:10px 12px 6px;border-radius:9px;background:var(--paper);border:1px solid var(--rule)}
+.turn b{display:block;font-family:var(--f-display);font-weight:400;font-size:17px;color:var(--cc);margin-bottom:2px}
+.turn ul{margin:0;padding:0;list-style:none}
+.turn li{position:relative;padding-left:1.4em;margin:0 0 .45em;font-size:15.5px;line-height:1.7}
+.turn li::before{content:"↪";position:absolute;left:0;color:var(--cc)}
+.more{margin:.6em 0 0;font-size:13.5px;color:var(--ink-3)}
+.more a{color:var(--ink-2)}
+.seed{margin:.6em 0 0;font-size:13px;color:var(--ink-3);font-style:normal}
+
+/* 有 JS 时：书架上的卡收起来，只露标题和开口 */
+.js .grid .cd{cursor:pointer;transition:transform .15s,box-shadow .15s;padding-bottom:12px}
+.js .grid .cd:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.08)}
+.js .grid .cd .body,.js .grid .cd .turn,.js .grid .cd .more,.js .grid .cd .seed{display:none}
+.js .grid .cd h3{font-size:21px}
+.js .grid .cd .hook{font-size:15px;margin:0;border-left-width:2px}
+.js .grid .cd .hook::before{display:none}
+.cd.told::after{content:"讲过了";position:absolute;right:12px;bottom:12px;font-family:var(--f-display);font-size:14px;color:var(--c-jq);border:1.5px solid var(--c-jq);border-radius:4px;padding:0 6px;transform:rotate(7deg);opacity:.85;background:var(--card)}
+.js .grid .cd.told{opacity:.72}
+
+/* 舞台上的卡 */
+.stage .cd{padding:16px 18px 16px;box-shadow:0 10px 26px rgba(0,0,0,.09);animation:deal .32s ease-out}
+.stage .cd h3{font-size:clamp(26px,6.4vw,32px)}
+.stage .cd.told::after{top:44px;bottom:auto;right:16px;font-size:16px}
+@keyframes deal{from{opacity:0;transform:translateY(10px) rotate(-1.2deg)}to{opacity:1;transform:none}}
+
+/* 到楼下了 */
+.closers{list-style:none;margin:10px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr));gap:8px}
+.closers li{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:10px 12px;font-family:var(--f-kai);font-size:16.5px;line-height:1.6;transition:box-shadow .2s,border-color .2s}
+.closers li.pick{border-color:var(--lamp);box-shadow:0 0 0 2px var(--hl)}
+.diy{margin-top:16px;border:1.5px dashed var(--rule);border-radius:10px;padding:12px 14px;font-size:15px;color:var(--ink-2)}
+.diy ol{margin:.3em 0 0;padding-left:1.4em}
+
+/* 哪些是真的 */
+.truth p{margin:0 0 1em;text-indent:2em;font-size:16px}
+.truth ul{font-size:14.5px;color:var(--ink-2);padding-left:1.3em;line-height:1.75}
+.truth li{margin-bottom:.4em}
+.shelf{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));gap:8px;margin:14px 0 0}
+.shelf a{display:block;text-decoration:none;background:var(--card);border:1px solid var(--rule);border-left:6px solid var(--c);border-radius:6px;padding:9px 12px;font-size:14px;color:var(--ink-2);line-height:1.5}
+.shelf a b{display:block;font-family:var(--f-display);font-weight:400;font-size:19px;color:var(--ink)}
+footer{margin-top:60px;padding-block:22px calc(30px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--rule);font-size:13.5px;color:var(--ink-3)}
+footer p{margin:0 0 .5em}
+</style>
+</head>
+<body>
+<header class="bar g">
+  <div class="bar-in">
+    <a class="home" href="../">书房</a>
+    <span class="name">回宿舍的路</span>
+    <nav><a href="#draw">抽卡</a><a href="#all">全部</a><a href="#closers">到楼下</a></nav>
+  </div>
+</header>
+<main>
+<section class="hero g">
+  <div class="wide">
+    <div class="eyebrow">CHUANGSHI SHUFANG · 第六本 · 路上聊</div>
+    <h1>回宿舍的路<small>六十张卡 · 一张三五分钟</small></h1>
+    <div class="hero-grid">
+      <div>
+        <p>从图书馆走回宿舍，十几分钟。学了一天，脑子里全是题，不想再聊题；可是一路不说话，又有点可惜。</p>
+        <p>这是一副给路上用的卡片。每张卡是一个<em>真实的故事或问题</em>，三五分钟能讲完，结尾留一个<em>抛给对方的问题</em>——讲的人只开个头，后半段是两个人一起聊的。</p>
+        <p>前五十张取材于书房里的五本书：机器、钱、衙门、字与话、柜台；最后十张是书外的新话题，算是以后几本书的种子。</p>
+      </div>
+      <svg class="scene-svg" viewBox="0 0 480 300" role="img" aria-label="夜里，一条小路从远处的图书馆弯到近处的宿舍楼，路边三盏路灯，两个人在路上走">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--sky1)"/><stop offset="1" stop-color="var(--sky2)"/></linearGradient>
+          <radialGradient id="pool"><stop offset="0" stop-color="var(--glow)" stop-opacity=".55"/><stop offset="1" stop-color="var(--glow)" stop-opacity="0"/></radialGradient>
+          <linearGradient id="cone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--glow)" stop-opacity=".45"/><stop offset="1" stop-color="var(--glow)" stop-opacity="0"/></linearGradient>
+        </defs>
+        <rect width="480" height="300" fill="url(#sky)"/>
+        <g fill="var(--ink-3)" opacity=".55"><circle cx="40" cy="30" r="1.2"/><circle cx="96" cy="58" r="1"/><circle cx="160" cy="22" r="1.4"/><circle cx="214" cy="64" r="1"/><circle cx="262" cy="30" r="1.2"/><circle cx="300" cy="78" r="1"/><circle cx="18" cy="84" r="1"/><circle cx="130" cy="96" r="1"/></g>
+        <circle cx="262" cy="46" r="15" fill="var(--glow)" opacity=".55"/>
+        <!-- 图书馆 -->
+        <g fill="var(--bld)">
+          <path d="M34,122 L95,98 L156,122 Z"/>
+          <rect x="38" y="122" width="114" height="8"/>
+          <rect x="44" y="130" width="7" height="36"/><rect x="66" y="130" width="7" height="36"/><rect x="117" y="130" width="7" height="36"/><rect x="139" y="130" width="7" height="36"/>
+          <rect x="34" y="166" width="122" height="8"/>
+        </g>
+        <rect x="86" y="140" width="18" height="26" fill="var(--win)" opacity=".7"/>
+        <!-- 宿舍楼 -->
+        <rect x="336" y="74" width="128" height="166" fill="var(--bld)"/>
+        <g><rect x="346" y="86" width="12" height="11" fill="var(--sky2)" opacity=".6"/><rect x="370" y="86" width="12" height="11" fill="var(--win)" opacity=".85"/><rect x="394" y="86" width="12" height="11" fill="var(--sky2)" opacity=".6"/><rect x="418" y="86" width="12" height="11" fill="var(--sky2)" opacity=".6"/><rect x="442" y="86" width="12" height="11" fill="var(--win)" opacity=".85"/><rect x="346" y="107" width="12" height="11" fill="var(--sky2)" opacity=".6"/><rect x="370" y="107" width="12" height="11" fill="var(--sky2)" opacity=".6"/><rect x="394" y="107" width="12" height="11" fill="var(--win)" opacity=".85"/><rect x="418" y="107" width="12" height="11" fill="var(--sky2)" opacity=".6"/><rect x="442" y="107" width="12" height="11" fill="var(--win)" opacity=".85"/><rect x="346" y="128" width="12" height="11" fill="var(--win)" opacity=".85"/><rect x="370" y="128" width="12" height="11" fill="var(--sky2)" opacity=".6"/><rect x="394" y="128" width="12" height="11" fill="var(--sky2)" opacity=".6"/><rect x="418" y="128" width="12" height="11" fill="var(--win)" opacity=".85"/><rect x="442" y="128" width="12" height="11" fill="var(--sky2)" opacity=".6"/><rect x="346" y="149" width="12" height="11" fill="var(--sky2)" opacity=".6"/><rect x="370" y="149" width="12" height="11" fill="var(--win)" opacity=".85"/><rect x="394" y="149" width="12" height="11" fill="var(--sky2)" opacity=".6"/><rect x="418" y="149" width="12" height="11" fill="var(--sky2)" opacity=".6"/><rect x="442" y="149" width="12" height="11" fill="var(--win)" opacity=".85"/><rect x="346" y="170" width="12" height="11" fill="var(--sky2)" opacity=".6"/><rect x="370" y="170" width="12" height="11" fill="var(--sky2)" opacity=".6"/><rect x="394" y="170" width="12" height="11" fill="var(--win)" opacity=".85"/><rect x="418" y="170" width="12" height="11" fill="var(--sky2)" opacity=".6"/><rect x="442" y="170" width="12" height="11" fill="var(--sky2)" opacity=".6"/><rect x="346" y="191" width="12" height="11" fill="var(--win)" opacity=".85"/><rect x="370" y="191" width="12" height="11" fill="var(--sky2)" opacity=".6"/><rect x="394" y="191" width="12" height="11" fill="var(--sky2)" opacity=".6"/><rect x="418" y="191" width="12" height="11" fill="var(--win)" opacity=".85"/><rect x="442" y="191" width="12" height="11" fill="var(--sky2)" opacity=".6"/><rect x="346" y="212" width="12" height="11" fill="var(--sky2)" opacity=".6"/><rect x="370" y="212" width="12" height="11" fill="var(--win)" opacity=".85"/><rect x="394" y="212" width="12" height="11" fill="var(--sky2)" opacity=".6"/><rect x="418" y="212" width="12" height="11" fill="var(--sky2)" opacity=".6"/><rect x="442" y="212" width="12" height="11" fill="var(--sky2)" opacity=".6"/></g>
+        <!-- 地面与路 -->
+        <rect x="0" y="174" width="480" height="126" fill="var(--bld)" opacity=".35"/>
+        <path d="M89,174 L101,174 C150,206 250,232 352,300 L214,300 C166,256 116,214 89,174 Z" fill="var(--sky2)"/>
+        <path d="M95,176 C140,214 220,250 283,300" stroke="var(--rule)" stroke-width="1.2" stroke-dasharray="5 6" fill="none"/>
+        <!-- 路灯 -->
+        <g>
+          <ellipse cx="136" cy="206" rx="26" ry="7" fill="url(#pool)"/>
+          <path d="M130,176 L120,206 L152,206 L142,176 Z" fill="url(#cone)"/>
+          <line x1="128" y1="206" x2="128" y2="172" stroke="var(--ink-2)" stroke-width="1.6"/><path d="M128,172 h10" stroke="var(--ink-2)" stroke-width="1.6"/><rect x="134" y="172" width="8" height="4" rx="1" fill="var(--glow)"/>
+        </g>
+        <g>
+          <ellipse cx="200" cy="240" rx="40" ry="10" fill="url(#pool)"/>
+          <path d="M192,196 L176,240 L224,240 L208,196 Z" fill="url(#cone)"/>
+          <line x1="188" y1="240" x2="188" y2="190" stroke="var(--ink-2)" stroke-width="2"/><path d="M188,190 h14" stroke="var(--ink-2)" stroke-width="2"/><rect x="196" y="190" width="11" height="6" rx="1.5" fill="var(--glow)"/>
+        </g>
+        <g>
+          <ellipse cx="290" cy="288" rx="62" ry="14" fill="url(#pool)"/>
+          <path d="M280,222 L254,288 L326,288 L300,222 Z" fill="url(#cone)"/>
+          <line x1="272" y1="288" x2="272" y2="214" stroke="var(--ink-2)" stroke-width="2.6"/><path d="M272,214 h20" stroke="var(--ink-2)" stroke-width="2.6"/><rect x="284" y="214" width="16" height="8" rx="2" fill="var(--glow)"/>
+        </g>
+        <!-- 两个人 -->
+        <g fill="var(--ink)" opacity=".82">
+          <circle cx="218" cy="231" r="4.6"/><path d="M211,256 C211,243 213,237 218,237 C223,237 225,243 225,256 Z"/>
+          <circle cx="233" cy="233" r="4.2"/><path d="M227,256 C227,245 229,239 233,239 C237,239 239,245 239,256 Z"/>
+        </g>
+        <text x="95" y="92" text-anchor="middle" font-size="11" fill="var(--ink-3)" font-family="var(--f-body)">图书馆</text>
+        <text x="400" y="66" text-anchor="middle" font-size="11" fill="var(--ink-3)" font-family="var(--f-body)">宿舍</text>
+      </svg>
+    </div>
+
+    <h2 class="sec" id="how"><small>HOW</small>怎么用</h2>
+    <ol class="how">
+      <li><b>先说“开口”那句</b>每张卡顶上有一句可以直接说出口的开场。说完先停一下，看对方有没有兴趣。</li>
+      <li><b>猜和辩，让对方先说</b>标着“猜”的卡，先让对方猜，再翻答案；标着“辩”的卡，先问对方站哪边。</li>
+      <li><b>讲到“抛给对方”就停</b>故事只是引子。问完问题，接下来是听。对方的回答，往往比卡片好听。</li>
+      <li><b>用自己的话讲</b>卡片不是台词，记个大概就行。记不清的地方就说“我记得是……”；标了“存疑”的地方，本来就没有定论。</li>
+      <li><b>路长就抽一条路</b>“抽一条路”一次给三张不同主题的卡，够走十几分钟。讲完的点“讲过了”，下次不会再抽到。</li>
+    </ol>
+    <ul class="kinds" aria-label="卡片的五种类型">
+      <li><span class="kd">讲</span>一个故事</li>
+      <li><span class="kd">猜</span>先让对方猜</li>
+      <li><span class="kd">辩</span>各执一词</li>
+      <li><span class="kd">假</span>假如……</li>
+      <li><span class="kd">玩</span>路上的小游戏</li>
+    </ul>
+
+    <section class="draw" id="draw" aria-label="抽卡">
+      <div class="dr-top">
+        <button class="big" id="btnOne" type="button">抽一张<small>三五分钟</small></button>
+        <button class="big alt" id="btnRoad" type="button">抽一条路<small>三张，主题不重样</small></button>
+      </div>
+      <div class="fl"><div class="lb">主题</div><div class="chips" id="fT"></div></div>
+      <div class="fl"><div class="lb">类型</div><div class="chips" id="fK"></div></div>
+      <div class="opts">
+        <label><input type="checkbox" id="skip" checked> 跳过讲过的</label>
+        <span class="stat" id="stat"></span>
+        <button class="linkbtn" id="reset" type="button">清空“讲过了”</button>
+      </div>
+      <div class="stage" id="stage" aria-live="polite">
+        <div class="empty"><b>今晚聊什么？</b>点上面的按钮抽一张。也可以在下面的书架里直接挑。</div>
+      </div>
+      <div class="stage-nav" id="snav">
+        <span class="pos" id="pos"></span>
+        <button class="sbtn" id="prev" type="button">上一张</button>
+        <button class="sbtn told" id="told" type="button" aria-pressed="false">讲过了</button>
+        <button class="sbtn go" id="next" type="button">再抽一张</button>
+      </div>
+    </section>
+
+    <h2 class="sec" id="all"><small>SIXTY CARDS</small>书架上的六十张</h2>
+    <p class="lede">按主题排好。点任何一张，它会被放到上面的抽卡台上翻开。每张卡末尾的“想细看”通向书房里讲这件事的那一章。</p>
+  </div>
+</section>
+<section class="deck g" id="t1" style="--cc:var(--c-jq)">
+<div class="wide">
+<div class="deck-h"><h2>机器</h2><span>十张 · 取材于《计算机创世记》上下卷</span></div>
+<p class="lede">开关、齿轮、纸卡、显卡，还有会一本正经胡编的大模型。</p>
+<div class="grid">
+
+<article class="cd" id="w01" data-t="机器" data-k="讲">
+<header class="cd-h"><span class="th">机器</span><span class="kd">讲</span><span class="no">01</span></header>
+<h3>一只真正的虫子</h3>
+<p class="hook">程序出错叫“bug”。有一回，工程师真的从机器里抓出了一只虫子。</p>
+<div class="body">
+<p>1947 年 9 月 9 日，哈佛大学的 Mark II 计算机出了故障。工程师一路查下去，在一个继电器的触点之间找到一只飞蛾：它被夹死在那儿，把电路卡住了。他们用胶带把飞蛾贴进当天的工作日志，旁边写了一行字，意思是“第一次真的找到了一只虫子”。这页日志今天还保存在美国国家历史博物馆。</p>
+<p>妙就妙在那个“真的”：说明 bug 这个词当时已经在用了。早在 1870 年代，爱迪生就在信里把机器的小毛病叫作 bug。工程师们只是第一次碰上字面意义上的 bug，觉得好笑，才郑重其事地贴了进去。</p>
+<p>这个故事常被安到计算机先驱格蕾丝·霍珀头上。她是那个团队的人，也特别爱讲这件事，但飞蛾多半不是她亲手找到的。后来，debug（除虫）成了每个写程序的人一辈子的日常。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你生活里遇到过最离谱的“bug”是什么？最后是怎么“debug”的？</li>
+<li>如果要给“考试时明明会、偏偏写错”起个专门的词，你叫它什么？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../computer/#v7">《计算机创世记》上卷 · 语言</a></p>
+</article>
+
+<article class="cd" id="w02" data-t="机器" data-k="假">
+<header class="cd-h"><span class="th">机器</span><span class="kd">假</span><span class="no">02</span></header>
+<h3>十九岁的计算器</h3>
+<p class="hook">最早能用的机械计算器之一，是一个十九岁的少年为了帮他爸算税造的。</p>
+<div class="body">
+<p>1642 年，法国鲁昂。布莱兹·帕斯卡的父亲是税务官，每天要算大量的账，常常算到深夜。十九岁的帕斯卡看不下去，开始造一台能自己做加法的机器：一排齿轮，每个齿轮十个齿，转满一圈，就推着左边的齿轮走一格。这就是“进位”。</p>
+<p>据说他前后试了约五十台样机。造出来的机器卖得并不好：太贵、太娇气，而当时会算账的人工又便宜。今天世界上还留着几台。可是“齿轮转满十格，推下一位一格”这个想法，一直用到了二十世纪的手摇计算器。</p>
+<p>这个少年后来成了大数学家、物理学家。压强的单位“帕”，就是他的名字。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>假如你十九岁时要发明一个东西，专门帮家里某个人省事，你会造什么？</li>
+<li>“为了家里人”和“为了改变世界”，你觉得哪种动机更容易做出好东西？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../computer/#v1">《计算机创世记》上卷 · 数</a></p>
+</article>
+
+<article class="cd" id="w03" data-t="机器" data-k="猜">
+<header class="cd-h"><span class="th">机器</span><span class="kd">猜</span><span class="no">03</span></header>
+<h3>第一叠“程序卡片”</h3>
+<p class="hook">考你一个：世界上第一台用打孔卡片“编程”的机器，是干什么用的？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜，再翻开</summary><div class="ans">答案：<b>织布</b>。确切地说，是织带花纹的绸缎。</div></details>
+<p>1804 年前后，法国里昂的雅卡尔改进出一种提花织机。在那之前，织花纹绸缎要有一个人——常常是个孩子——坐在织机顶上，按花样一根一根提起经线，又累又容易出错。雅卡尔把花样打成一串硬纸卡：有孔的地方，钩子穿过去提起经线；没孔的地方，钩子被挡住。换一叠卡片，就换一种花样。</p>
+<p>后来有人用这种织机织了一幅雅卡尔本人的肖像，据说用了约两万四千张卡片，细得像版画。英国数学家巴贝奇家里就挂着一幅。他设计“分析机”时，明说要借用雅卡尔的卡片。再往后，美国用打孔卡统计人口，IBM 也是从卡片生意起家的。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>“有孔、没孔”就是 1 和 0。生活里还有什么东西，其实也是一串 1 和 0？</li>
+<li>机器替掉了坐在织机顶上的孩子。你觉得这是好事还是坏事？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../computer/#v2">《计算机创世记》上卷 · 织</a></p>
+</article>
+
+<article class="cd" id="w04" data-t="机器" data-k="假">
+<header class="cd-h"><span class="th">机器</span><span class="kd">假</span><span class="no">04</span></header>
+<h3>L，O</h3>
+<p class="hook">网上发出的第一条消息只有两个字母：第三个字母还没打完，对面的系统就崩了。</p>
+<div class="body">
+<p>1969 年 10 月 29 日晚上十点半左右，加州大学洛杉矶分校的一个学生程序员，想通过刚连起来的 ARPANET，登录五百多公里外斯坦福研究所的一台电脑。他要输入的是 LOGIN。两边的人拿着电话，边打边确认：打了 L——收到；打了 O——收到；打 G 的时候，对方的系统崩溃了。</p>
+<p>所以网上的第一条消息是“LO”。后来很多人说，这倒像是天意：英文里 lo 是“瞧啊”，像古书里郑重其事的开场。大约一个小时后，他们修好了，完整地登录成功。</p>
+<p>那时整个网络只有两台主机，到年底也不过四台。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>假如你只能给全世界发两个字（或两个字母），你发哪两个？</li>
+<li>你第一次上网、或者拿到第一部手机，还记得干的第一件事吗？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../computer/#v9">《计算机创世记》上卷 · 网</a></p>
+</article>
+
+<article class="cd" id="w05" data-t="机器" data-k="辩">
+<header class="cd-h"><span class="th">机器</span><span class="kd">辩</span><span class="no">05</span></header>
+<h3>机器赢了以后</h3>
+<p class="hook">1997 年，电脑赢了国际象棋世界冠军；2016 年，又赢了围棋。那人还下棋干什么？</p>
+<div class="body">
+<p>1997 年 5 月，IBM 的“深蓝”在纽约赢了卡斯帕罗夫。卡斯帕罗夫很不服气，怀疑背后有人帮忙。2016 年 3 月，首尔，AlphaGo 对李世石的第二局下出了第 37 手，一步人类棋手几乎不会考虑的棋，解说一度以为是失误，后来大家才看懂它的深意。五局下来 AlphaGo 赢了四局。李世石赢下的那一局，靠的是第 78 手，被棋迷叫作“神之一手”。</p>
+<p>奇怪的事情发生在后面：机器赢了以后，下棋的人反而更多了。国际象棋在网上前所未有地火，职业棋手天天用电脑复盘、学新招，整体棋力变强了。也有人说，棋的神秘感没了：每一步都能被打分，像考试有了标准答案。</p>
+<div class="sides"><div><b>一方</b>机器赢了，棋还是人的游戏。有了汽车，人照样跑马拉松。</div><div><b>另一方</b>有了标准答案的游戏，乐趣少了一大半，就像看提前剧透的电影。</div></div>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你站哪边？</li>
+<li>如果 AI 能把你正在学的东西全部考满分，学它还有什么意义？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../computer/second.html#d3">《第二次创世》· 规则的帝国</a>、<a href="../computer/second.html#d5">2012</a></p>
+</article>
+
+<article class="cd" id="w06" data-t="机器" data-k="讲">
+<header class="cd-h"><span class="th">机器</span><span class="kd">讲</span><span class="no">06</span></header>
+<h3>卧室里的两块显卡</h3>
+<p class="hook">今天的人工智能热，有一个起点：2012 年，一个研究生在父母家卧室里，用两块游戏显卡训练了五六天。</p>
+<div class="body">
+<p>2012 年的 ImageNet 图像识别比赛：一千类、上百万张图，看机器能认对多少。前几年，各队的错误率一年只降一两个点。这一年，多伦多大学的辛顿和他的两个学生克里热夫斯基、苏茨克维，把错误率从 26% 左右一下砸到了 15% 左右。会场里的人一开始以为算错了。</p>
+<p>他们的网络后来叫 AlexNet。训练用的是两块 GTX 580，给打游戏的人买的显卡。据说训练就在克里热夫斯基父母家的卧室里跑。显卡本来是为了把游戏画面算快一点，结果恰好特别擅长神经网络要的那种计算：海量简单的乘法加法，同时做。</p>
+<p>所以有个说法：是一代代游戏玩家掏钱养大了显卡产业，顺手托起了人工智能。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你玩过的游戏里，有没有哪一个“意外地”教会了你点什么？</li>
+<li>你现在做的哪件小事，十年后可能会变得很重要？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../computer/second.html#d5">《第二次创世》· 2012</a></p>
+</article>
+
+<article class="cd" id="w07" data-t="机器" data-k="猜">
+<header class="cd-h"><span class="th">机器</span><span class="kd">猜</span><span class="no">07</span></header>
+<h3>你兜里有多少个开关</h3>
+<p class="hook">猜猜看：你手机那颗主芯片里，有多少个晶体管？</p>
+<div class="body">
+<details class="guess"><summary>先让对方报一个数</summary><div class="ans">答案：<b>一两百亿个</b>左右，是地球人口的两倍还多。平分给全中国人，每人能分到十几个。</div></details>
+<p>1947 年 12 月，贝尔实验室：一块锗，两片挨得极近的金箔，一根弹簧压着，这就是第一个晶体管，比指甲盖还大。它干的事很简单：用一个小电流，控制一个大电流的通和断。一个开关而已。</p>
+<p>计算机说到底就是“开关拨开关”。1971 年英特尔的第一颗微处理器 4004，有两千三百个左右的晶体管。今天一颗手机芯片里有一两百亿个，最细的地方只有几十个原子宽。这五十年里，芯片上的晶体管大约每两年翻一番，这就是“摩尔定律”。如今它慢下来了：再小下去，就要碰到原子本身。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>从“一个开关”到“一部能聊天的手机”，你觉得最难想通的是哪一步？</li>
+<li>如果你身上有一样东西能每两年翻一番，你希望是什么？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../computer/#v6">《计算机创世记》上卷 · 沙</a>、<a href="../computer/#v12">墙</a></p>
+</article>
+
+<article class="cd" id="w08" data-t="机器" data-k="讲">
+<header class="cd-h"><span class="th">机器</span><span class="kd">讲</span><span class="no">08</span></header>
+<h3>诗人的女儿</h3>
+<p class="hook">第一个想到“计算机不只能算数”的人，是诗人拜伦的女儿。</p>
+<div class="body">
+<p>阿达·洛芙莱斯出生才一个多月，父母就分开了，她再也没见过父亲拜伦。母亲怕她像父亲一样“耽于幻想”，从小逼她学数学。1843 年，她把一篇介绍巴贝奇“分析机”的意大利文论文译成英文，又加了一大堆注释，篇幅差不多是原文的三倍。</p>
+<p>注释里有一个用分析机计算伯努利数的完整步骤，常被称为“第一个计算机程序”（这个称号有争议，巴贝奇自己也写过类似的东西）。更了不起的是她的一个想法：这台机器处理的不一定是数字。只要能把东西变成符号，比如音符，它也许能作曲。</p>
+<p>可惜分析机一直没造出来。阿达三十六岁就去世了，和她父亲去世时一样的年纪。一百年后，真正的计算机才出现。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>小时候被逼着学的东西，后来有没有变成你喜欢的？</li>
+<li>“诗人的想象力”和“数学”，你见过同时长在一个人身上的吗？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../computer/#v2">《计算机创世记》上卷 · 织</a></p>
+</article>
+
+<article class="cd" id="w09" data-t="机器" data-k="玩">
+<header class="cd-h"><span class="th">机器</span><span class="kd">玩</span><span class="no">09</span></header>
+<h3>一个词一个词地接</h3>
+<p class="hook">来玩个游戏：我们轮流说一个词，接成一句话，看最后这句话被带到哪儿去。</p>
+<div class="body">
+<p class="ni"><strong>玩法</strong>：一人说一个词，另一人接下一个，轮流往下，每次只能加一个词。只有一条规则：接上去要通顺。接个十来轮，把整句话念一遍。</p>
+<p>玩完再说这个：ChatGPT 这类大模型，干的本质上就是这件事。根据前面所有的字，猜下一个字最可能是什么，接上去，再猜下一个。只不过它是读了几乎整个互联网练出来的接龙高手，每一步心里都有一张概率表：下一个字是“了”的可能三成，是“的”的可能一成多……</p>
+<p>2018 年前后，研究者把这个看起来很傻的任务做大：模型越大、读得越多，接得越好；接得足够好的时候，它好像就会翻译、写诗、做题了。有人说这只是高级的鹦鹉学舌；也有人说，“猜下一个字”猜到极致，本身就需要理解世界。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>刚才接的时候，你是想好了意思再选词，还是顺嘴接下去的？</li>
+<li>“猜下一个词猜得极准”，算不算理解？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../computer/second.html#d8">《第二次创世》· 接龙</a></p>
+</article>
+
+<article class="cd" id="w10" data-t="机器" data-k="辩">
+<header class="cd-h"><span class="th">机器</span><span class="kd">辩</span><span class="no">10</span></header>
+<h3>一本正经地编</h3>
+<p class="hook">大模型会一本正经地胡编。可是，人是不是也一样？</p>
+<div class="body">
+<p>大模型常常编出不存在的书名、论文、人名，说得头头是道，研究者管这叫“幻觉”。原因说起来不复杂：它学的是“什么话听起来像对的”，不是“什么话是对的”。</p>
+<p>人呢？1974 年，心理学家洛夫特斯做过一个实验：给大家看车祸录像，然后问一组人“两车<em>撞碎</em>的时候，车速大概多少？”，问另一组“两车<em>碰到</em>的时候”。前一组估的速度，平均高了将近十英里每小时。一周后，前一组里还有更多人“记得”看到了碎玻璃——录像里根本没有碎玻璃。</p>
+<p>人的记忆不是录像回放，每想起一次，就重新拼一次。拼的时候，也在猜“什么听起来像对的”。</p>
+<div class="sides"><div><b>一方</b>机器编是缺陷，得修。人偶尔记错，但人知道自己可能记错。</div><div><b>另一方</b>人和机器都是“预测机器”，只不过我们对人更宽容。</div></div>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你有没有一段特别确定、后来发现是记错了的记忆？</li>
+<li>你更信从不说“我不确定”的人，还是常说“我记得大概是……”的人？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../computer/second.html#d10">《第二次创世》· 卡在哪</a></p>
+</article>
+
+</div>
+</div>
+</section>
+<section class="deck g" id="t2" style="--cc:var(--c-q)">
+<div class="wide">
+<div class="deck-h"><h2>钱</h2><span>十张 · 取材于《点石成金》</span></div>
+<p class="lede">泥板上的账、海底的石头、四川的铁钱、两千亿马克的面包，和一枚你不敢抛的硬币。</p>
+<div class="grid">
+
+<article class="cd" id="w11" data-t="钱" data-k="猜">
+<header class="cd-h"><span class="th">钱</span><span class="kd">猜</span><span class="no">11</span></header>
+<h3>最早的文字是一张收据</h3>
+<p class="hook">你猜人类最早写下来的东西是什么？诗？神话？法律？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：大多是<b>账</b>。谁交了几袋大麦、谁欠了几只羊、发给工人多少口粮。</div></details>
+<p>约公元前 3300 年，两河流域的乌鲁克城。神庙里的管事要记清楚粮食和牲口的进出。最早刻在泥板上的符号，绝大多数就是这些：一个代表“大麦”的图形，几个代表数目的压痕，再加一个名字。</p>
+<p>有一块很有名的泥板，记着一大笔大麦的账，末尾有一个名字，读作“库希姆”。他可能是个管仓库的官员，也可能这只是个职位的称呼。如果是人名，他就是人类历史上我们知道名字的最早的人之一：不是国王，不是英雄，是个会计。</p>
+<p>诗和神话，要再等好几百年才被写下来。文字最先是为了“别赖账”。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>如果一千年后的人只能看到你的消费记录，他们会觉得你是个什么样的人？</li>
+<li>你最近哪一笔花销最能代表你？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../money/#v1">《点石成金》卷一 · 债</a>、<a href="../reed/#c1">《苇城书记》第一章</a></p>
+</article>
+
+<article class="cd" id="w12" data-t="钱" data-k="讲">
+<header class="cd-h"><span class="th">钱</span><span class="kd">讲</span><span class="no">12</span></header>
+<h3>沉在海底的钱</h3>
+<p class="hook">太平洋上有个岛，钱是几吨重的石头圆盘。有一块沉在了海底，主人照样算有钱。</p>
+<div class="body">
+<p>雅浦岛在西太平洋。岛上的“钱”是中间有孔的石灰岩圆盘，小的像盘子，大的比人还高，重达几吨。这些石头不是本岛产的，要划独木舟到四百多公里外的帕劳去凿，再冒着风浪运回来。</p>
+<p>1910 年，一个美国人类学家记下了一个故事：某户人家的祖上运石头回来时遇上风暴，石头沉进了海里。可同船的人都作证：那块石头又大又好，只是沉了。于是全岛照样承认这户人家拥有一块大石头，可以拿来付账。几代人谁也没见过它。</p>
+<p>大石头平时根本不搬。交易时，大家只要记住“这块石头现在归谁了”就行。这和今天的银行账户有点像：你的钱也不在你手里，只是账本上记着它归你。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>钱到底是一样“东西”，还是大家共同记住的一件“事”？</li>
+<li>如果明天所有人突然都不认钱了，你手里还剩什么值钱的？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../money/#v2">《点石成金》卷二 · 贝</a></p>
+</article>
+
+<article class="cd" id="w13" data-t="钱" data-k="猜">
+<header class="cd-h"><span class="th">钱</span><span class="kd">猜</span><span class="no">13</span></header>
+<h3>一钱有多重</h3>
+<p class="hook">中药方子上写“甘草三钱”，金店里论“几钱”——“钱”怎么变成了重量单位？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：因为唐朝有一种铜钱做得极标准，<b>十枚正好一两</b>。一枚的重量，就被叫作“一钱”。</div></details>
+<p>公元 621 年，唐高祖废掉乱七八糟的旧钱，铸了一种新钱，叫“开元通宝”。它做得很规整：每一枚重“二铢四絫”，十枚刚好一两。</p>
+<p>于是，铜钱成了人人手边最方便的砝码。“一钱”慢慢从一枚钱变成了一个重量单位：十钱为一两。这个单位一直用到今天。</p>
+<p>还有个容易搞混的地方：开元通宝不是年号钱。“开元”是“开辟新纪元”的意思。后来唐玄宗的年号也叫开元，很多人就以为这钱是玄宗铸的，其实早了九十多年。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你还知道哪些东西变成了单位？（一拃、一庹、一马力……）</li>
+<li>如果拿你身边一样东西当新单位，你选什么？“一杯奶茶”？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../money/#v3">《点石成金》卷三 · 铸</a></p>
+</article>
+
+<article class="cd" id="w14" data-t="钱" data-k="讲">
+<header class="cd-h"><span class="th">钱</span><span class="kd">讲</span><span class="no">14</span></header>
+<h3>坏钱赶走好钱</h3>
+<p class="hook">有一条规律，两千多年来反复应验：坏钱会把好钱赶走。生活里好像也是。</p>
+<div class="body">
+<p>假设市面上同时有两种一块钱，一种足银，一种掺了铜，法律规定两种一样值钱。你会怎么花？多半是把掺铜的花出去，把足银的藏起来、熔掉，或者带到国外去。结果市面上只剩下坏钱。</p>
+<p>这条规律后来以十六世纪英国商人格雷欣的名字命名，但发现它的人早得多。公元前 405 年，古希腊剧作家阿里斯托芬就在喜剧里抱怨过雅典人放着好银币不用、偏用劣质铜币。英王亨利八世不断往银币里掺铜，钱上国王头像的鼻子最突出，一磨就露出底下的红铜色，老百姓叫他“铜鼻子老亨利”。</p>
+<p>关键在前提：两种钱被<em>强行规定</em>一样值钱。要是允许好钱按更高的价钱流通，好钱就不会跑。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你见过生活里的“劣币驱逐良币”吗？比如认真的人反而吃亏？</li>
+<li>反过来，有没有“良币驱逐劣币”的地方？是靠什么做到的？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../money/#v4">《点石成金》卷四 · 剪</a></p>
+</article>
+
+<article class="cd" id="w15" data-t="钱" data-k="猜">
+<header class="cd-h"><span class="th">钱</span><span class="kd">猜</span><span class="no">15</span></header>
+<h3>为什么是四川</h3>
+<p class="hook">世界上最早由官府发行的纸币，出现在中国哪里？为什么是那儿？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜地方和原因</summary><div class="ans">答案：北宋的<b>四川</b>（益州，今成都）。因为四川用的是<b>铁钱</b>，又重又不值钱。</div></details>
+<p>北宋时，四川和别处不太一样，主要流通铁钱。铁比铜便宜，一枚铁钱值得少，买点像样的东西就得背上一大堆，出门做生意简直是体力活。</p>
+<p>十世纪末，成都的商人开始用一种纸质凭证代替铁钱：把铁钱存进铺子，领一张票，票可以转手，叫“交子”。后来发交子的铺户多了，也有兑不出钱的，闹出纠纷。1023 年，朝廷收归官办，设“益州交子务”，第二年发行官交子。这是世界上最早由政府发行的纸币之一。</p>
+<p>故事有个熟悉的结尾：朝廷后来打仗缺钱，就多印。交子越印越多，越来越不值钱。这一幕在后来一千年里还会反复上演。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>如果让你设计一种钱，你最怕什么？怎么防？</li>
+<li>你现在一个月摸几次现金？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../money/#v5">《点石成金》卷五 · 纸</a></p>
+</article>
+
+<article class="cd" id="w16" data-t="钱" data-k="辩">
+<header class="cd-h"><span class="th">钱</span><span class="kd">辩</span><span class="no">16</span></header>
+<h3>郁金香到底疯没疯</h3>
+<p class="hook">都说十七世纪的荷兰人为郁金香疯了，一个球根换一栋房子。最近的历史学家说：没那么疯。</p>
+<div class="body">
+<p>流行的版本是这样的：1636 到 1637 年，荷兰人狂炒郁金香球根，尤其是花瓣上带火焰条纹的稀有品种，价格翻了几十倍，有人拿房子、田地去换；1637 年 2 月突然崩盘，无数人倾家荡产。</p>
+<p>这个版本很大程度上来自 1841 年一本畅销书，那本书又引了当年的道德宣传小册子。近年有历史学家翻了当时的公证档案，发现参与炒作的主要是富裕商人和工匠的小圈子；崩盘后很多合同干脆没履行，法院也懒得管；真因为郁金香破产的人，找不出几个。</p>
+<p>那些最贵的火焰条纹，后来才知道是一种病毒让花瓣颜色长得不均匀。最贵的花，其实是病了的花。</p>
+<div class="sides"><div><b>一方</b>规模小也是泡沫。哪怕只有一小撮人，也说明人会疯。</div><div><b>另一方</b>故事被讲夸张了，反而让人以为泡沫一定是“全民疯狂”，看不见安静的那种。</div></div>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你见过什么东西突然被“炒”起来，又一下子凉掉？</li>
+<li>一个故事讲得越夸张，是越能让人记住教训，还是越容易让人误会？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../money/#v8">《点石成金》卷八 · 狂</a></p>
+</article>
+
+<article class="cd" id="w17" data-t="钱" data-k="猜">
+<header class="cd-h"><span class="th">钱</span><span class="kd">猜</span><span class="no">17</span></header>
+<h3>一个面包多少钱</h3>
+<p class="hook">1923 年 11 月，柏林的一个面包要多少马克？报个数。</p>
+<div class="body">
+<details class="guess"><summary>先让对方报价</summary><div class="ans">答案：约<b>两千亿马克</b>。一战刚打完时，一个面包还不到一马克。</div></details>
+<p>一战后德国背着巨额赔款。1923 年，法国和比利时出兵占了鲁尔工业区，德国政府干脆开动印钞机。印到最后，一美元能换四万二千亿马克。</p>
+<p>工人一天领两次工资，拿到钱撒腿就往商店跑，因为下午还要涨；有人拿成捆的钞票生炉子，因为纸币比柴火便宜；孩子拿钞票搭积木。一辈子省吃俭用的中产阶级，存款一夜归零。</p>
+<p>1923 年 11 月，德国推出新货币“地租马克”，一地租马克换一万亿旧马克，再严格控制发行，通胀几乎立刻停了。可那段经历留下的伤很深：直到今天，德国人对通货膨胀都格外警惕。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>如果钱每天下午都会贬值，你明天第一件事干什么？</li>
+<li>你家长辈讲过“钱突然不值钱了”的经历吗？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../money/#v9">《点石成金》卷九 · 金</a></p>
+</article>
+
+<article class="cd" id="w18" data-t="钱" data-k="讲">
+<header class="cd-h"><span class="th">钱</span><span class="kd">讲</span><span class="no">18</span></header>
+<h3>牛顿的两笔账</h3>
+<p class="hook">牛顿管过英国的造币厂。他定的一个价钱，意外让英国走上了金本位；他自己还在股市里亏过一大笔。</p>
+<div class="body">
+<p>牛顿晚年不怎么搞物理了，去管皇家造币厂，而且干得极认真，亲自审问造假币的人。1717 年，他给金币“几尼”定价：一几尼值二十一先令。按当时欧洲的行情，这个价把金子定得稍贵、银子稍贱。结果商人纷纷把银币运到国外去换金子，英国的银币越来越少，市面上实际只剩金子在流通。英国就这么半路“掉”进了金本位。</p>
+<p>另一笔账：1720 年南海公司股票狂涨。据说牛顿先买进，赚了一笔就卖了；看着股价还在涨，又忍不住重新买进，结果在崩盘里亏了约两万英镑，在当时是一大笔钱。</p>
+<p class="doubt">流传很广的那句“我能算出天体的运行，却算不出人的疯狂”，出处很可疑，多半是后人替他编的。亏钱的数目也来自后人的转述。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>聪明人为什么也会在泡沫里亏钱？</li>
+<li>你有过“明明知道，还是忍不住”的时候吗？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../money/#v9">《点石成金》卷九 · 金</a>、<a href="../money/#v8">卷八 · 狂</a></p>
+</article>
+
+<article class="cd" id="w19" data-t="钱" data-k="玩">
+<header class="cd-h"><span class="th">钱</span><span class="kd">玩</span><span class="no">19</span></header>
+<h3>一枚你不敢抛的硬币</h3>
+<p class="hook">抛个硬币：正面你赢一百五，反面你输一百。赌不赌？凭直觉，马上回答。</p>
+<div class="body">
+<p>算一下：一半机会赢 150，一半机会输 100，平均每赌一次能赚 25。按道理该赌。可是大多数人会拒绝。研究里，一般要赢的钱达到输的钱的一倍半到两倍多，人们才愿意赌。</p>
+<p>1979 年，心理学家卡尼曼和特沃斯基提出：同样一百块，输掉的痛苦，大约是赢到的快乐的两倍。这叫“损失厌恶”。卡尼曼后来因此得了诺贝尔经济学奖；特沃斯基那时已经去世，诺奖不颁给去世的人。</p>
+<p>它解释了很多事：股票跌了舍不得卖；“限时优惠，错过就没了”格外管用；免费试用到期，人们多半会续费——因为不续就像“失去”了什么。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>换成赢 300、输 100，你赌吗？赢多少你才肯赌？</li>
+<li>你最近一次因为“怕亏”做的决定是什么？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../money/#v11">《点石成金》卷十一 · 魔</a></p>
+</article>
+
+<article class="cd" id="w20" data-t="钱" data-k="讲">
+<header class="cd-h"><span class="th">钱</span><span class="kd">讲</span><span class="no">20</span></header>
+<h3>全球化的生日</h3>
+<p class="hook">有两位历史学家说，全球化有个生日：1571 年。那年西班牙人在马尼拉建了城。</p>
+<div class="body">
+<p>从那以后，每年都有大帆船从墨西哥的阿卡普尔科出发，横跨太平洋来到马尼拉，船上装的主要是一样东西：白银，南美波托西银山和墨西哥银矿里挖出来的。在马尼拉，福建商人用丝绸和瓷器换走这些白银。</p>
+<p>那时大明正缺银子。一条鞭法推开以后，各种赋税和徭役都折成银子交，全国都要用银。那两三百年里，美洲白银有相当大一部分最终流进了中国，具体是几分之一，学者们争得很厉害。</p>
+<p>于是有了一条绕地球一圈的链子：南美的矿工、太平洋上的水手、马尼拉的商人、福建的织工、江南交税的农民，第一次被拴在了一起。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你身上哪样东西，走了最远的路才到你手里？</li>
+<li>你觉得全球化让世界更近了，还是更脆弱了？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../money/#v6">《点石成金》卷六 · 银</a></p>
+</article>
+
+</div>
+</div>
+</section>
+<section class="deck g" id="t3" style="--cc:var(--c-ym)">
+<div class="wide">
+<div class="deck-h"><h2>衙门</h2><span>十张 · 取材于《是，大人》</span></div>
+<p class="lede">官话、委员会、老鼠尾巴、年底花光，还有买好了棺材才去上疏的人。古代衙门的事，放到今天的班级、社团、小组作业里一样成立。</p>
+<div class="grid">
+
+<article class="cd" id="w21" data-t="衙门" data-k="玩">
+<header class="cd-h"><span class="th">衙门</span><span class="kd">玩</span><span class="no">21</span></header>
+<h3>官话翻译</h3>
+<p class="hook">玩个翻译游戏：我说一句大白话，你把它翻成“官话”。翻得越稳妥越好。</p>
+<div class="body">
+<p class="ni"><strong>玩法</strong>：一人出一句大白话，另一人把它翻成又长又周全、谁也挑不出错的官话，然后互换。热身：</p>
+<ul class="eg">
+<li>“我没做完。”→ <b>“该项工作已取得阶段性进展，部分环节仍需进一步完善。”</b></li>
+<li>“这主意不行。”→ <b>“这个思路很有启发性，建议在充分调研的基础上审慎研究、稳妥推进。”</b></li>
+<li>“我不知道。”→ <b>“这个问题比较复杂，涉及方方面面，需要综合考虑。”</b></li>
+</ul>
+<p>英剧《是，大臣》里的老练文官，把这门手艺练到了化境。比如他称赞部长的决定“很勇敢”，在文官的词典里，这几乎是最可怕的评语，意思是“你要完了”。中国古代也有：清朝皇帝批奏折，最常见的一句是“知道了”。不说同意，也不说反对，事情就这么放着。</p>
+<p>玩完可以想想：为什么所有的机关、公司、学校，都会自己长出一套官话？</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你听过最“官话”的一句话是什么？它真正的意思是？</li>
+<li>官话除了推责任，有没有它的好处？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../yes/#c3">《是，大人》第三案 · 官话辞典</a></p>
+</article>
+
+<article class="cd" id="w22" data-t="衙门" data-k="讲">
+<header class="cd-h"><span class="th">衙门</span><span class="kd">讲</span><span class="no">22</span></header>
+<h3>自行车棚</h3>
+<p class="hook">开会的时候，为什么大家偏偏在小事上吵得最久？有人专门研究过。</p>
+<div class="body">
+<p>1955 年，英国历史学家帕金森在《经济学人》上发了一篇半开玩笑的文章，提出“帕金森定律”：工作会自动膨胀，直到填满你给它的所有时间。给你一周写的作业，多半会写满一周。</p>
+<p>两年后，他在书里又讲了一个“琐碎定律”，编了一个委员会开会的场景：造核反应堆，几百万英镑，几分钟就通过了，因为太复杂，大家都不懂，又不好意思说不懂；接着讨论给职员修一个自行车棚，几百英镑，人人都懂车棚，人人都有意见，吵了很久；最后讨论买茶点的那点钱，吵得更久，还没定下来，留到下次再议。</p>
+<p>后来程序员圈子管这叫“自行车棚效应”：事情越简单，越容易引来没完没了的讨论。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你经历过最长的一次“自行车棚讨论”是什么？</li>
+<li>你有没有“给多少时间，就拖到多少时间”的事？怎么破？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../yes/#c2">《是，大人》第二案 · 成立一个委员会</a></p>
+</article>
+
+<article class="cd" id="w23" data-t="衙门" data-k="讲">
+<header class="cd-h"><span class="th">衙门</span><span class="kd">讲</span><span class="no">23</span></header>
+<h3>老鼠尾巴</h3>
+<p class="hook">1902 年，河内悬赏灭鼠：交一条老鼠尾巴，领一份钱。结果老鼠越来越多。</p>
+<div class="body">
+<p>法国殖民当局在河内修了现代下水道，没想到下水道成了老鼠的高速公路，又赶上鼠疫的威胁。当局先是雇人下去捕鼠，后来干脆向市民悬赏：每交上一条老鼠尾巴，赏一点钱。</p>
+<p>很快，街上出现了没有尾巴的活老鼠。有人抓住老鼠，剪下尾巴去领赏，再把老鼠放走，让它接着生小老鼠，以后还有尾巴可剪。据说城外还有人专门养起了老鼠。</p>
+<p>经济学里有个“古德哈特定律”：一个指标一旦变成考核目标，它就不再是好指标了。人们会想办法让指标好看，而不是让事情变好。</p>
+<p class="doubt">另一个流传很广的版本，说英国统治印度时悬赏眼镜蛇，结果有人养蛇。这个故事找不到可靠的史料，可能是编的。河内的老鼠倒是有档案可查。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>考试、绩点、步数、打卡……你身边有没有“老鼠尾巴”？</li>
+<li>如果让你重新设计河内的灭鼠奖励，怎样才不会被钻空子？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../yes/#c7">《是，大人》第六案 · 考什么，得什么</a></p>
+</article>
+
+<article class="cd" id="w24" data-t="衙门" data-k="辩">
+<header class="cd-h"><span class="th">衙门</span><span class="kd">辩</span><span class="no">24</span></header>
+<h3>年底花光</h3>
+<p class="hook">很多单位一到年底就突击花钱。这真的只是浪费吗？</p>
+<div class="body">
+<p>道理很简单：今年的预算没花完，明年上面就会说“看来你们用不了这么多”，给你砍掉。所以年底剩下的钱，一定要想办法花出去。</p>
+<p>有经济学家真去统计过：美国联邦政府在财政年度最后一周的采购支出，大约是平时一周的近五倍；而且最后一周突击批下来的信息技术项目，事后的质量评分明显更差。</p>
+<p>中国古代也碰到过类似的难题。雍正年间推行“耗羡归公”，把地方官私下多收的“火耗”变成明面上的正式收入，再拿出一部分发给官员当“养廉银”。想法是：与其让潜规则偷偷运转，不如把它写成明规则。</p>
+<div class="sides"><div><b>一方</b>年底花光是制度逼出来的理性选择。该改的是“没花完就砍”的规矩。</div><div><b>另一方</b>不管制度怎样，乱花就是乱花，每个人都该守住自己那一关。</div></div>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你站哪边？如果你是那个单位的头儿，你花不花？</li>
+<li>你自己有没有“年底花光”的习惯？流量、会员积分、假期……</li>
+</ul></div>
+<p class="more">想细看 → <a href="../yes/#c6">《是，大人》第五案 · 年底花光</a></p>
+</article>
+
+<article class="cd" id="w25" data-t="衙门" data-k="猜">
+<header class="cd-h"><span class="th">衙门</span><span class="kd">猜</span><span class="no">25</span></header>
+<h3>分橙子</h3>
+<p class="hook">两姐妹抢一个橙子。怎么分最好？你先想一个办法。</p>
+<div class="body">
+<details class="guess"><summary>等对方说完办法，再翻开</summary><div class="ans">故事里她们切了一半，一人一半。结果姐姐吃了果肉，把皮扔了；妹妹扔了果肉，只要皮——她要做蛋糕。<b>先问一句“你要它干什么”</b>，两个人本来都能拿到整个橙子里自己想要的那部分。</div></details>
+<p>常见的答案是“切成两半”，或者“一个人切，另一个人先挑”，这已经很公平了。可公平和最好不是一回事。</p>
+<p>这个故事因为 1981 年哈佛谈判项目的一本书《谈判力》（Getting to Yes）流传开来。它讲的道理是：别只盯着“立场”（我要橙子），去问“利益”（我为什么要橙子）。吵架的两个人，想要的常常根本不是同一样东西。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你和别人争过一样东西，后来发现其实想要的不一样吗？</li>
+<li>下次吵架之前，你觉得自己能记得先问一句“你要它干什么”吗？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../yes/#c9">《是，大人》第八案 · “不”的说法</a></p>
+</article>
+
+<article class="cd" id="w26" data-t="衙门" data-k="讲">
+<header class="cd-h"><span class="th">衙门</span><span class="kd">讲</span><span class="no">26</span></header>
+<h3>买好了棺材</h3>
+<p class="hook">有个官员给皇帝上疏之前，先给自己买好了一口棺材。</p>
+<div class="body">
+<p>1566 年，户部主事海瑞给嘉靖皇帝上了一道《治安疏》。嘉靖这时已经二十多年不怎么上朝，躲在西苑修道。海瑞在疏里直说天下人对皇帝不满已经很久了，还引了一句民间的挖苦话：“嘉靖者，言家家皆净而无财用也。”</p>
+<p>《明史》记载，嘉靖读完大怒，把奏疏扔在地上，叫左右赶快抓人，别让他跑了。旁边的宦官黄锦说：这个人向来有“痴名”，听说他上疏之前自知必死，买了一口棺材，和妻子诀别，家里的僮仆都吓跑了——</p>
+<blockquote>是不遁也。<cite>《明史·海瑞传》</cite></blockquote>
+<p>嘉靖沉默了。过了一会儿又把奏疏捡起来读，一天读好几遍，感叹说这个人可以和比干相比，只是朕不是商纣。海瑞后来还是下了狱，直到嘉靖去世才放出来。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你见过最敢说真话的人是谁？那个人后来怎么样了？</li>
+<li>说真话，和把真话说得让人听得进去，哪个更难？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../yes/#c14">《是，大人》第十二案 · 可敬的勇气</a></p>
+</article>
+
+<article class="cd" id="w27" data-t="衙门" data-k="假">
+<header class="cd-h"><span class="th">衙门</span><span class="kd">假</span><span class="no">27</span></header>
+<h3>鹿还是马</h3>
+<p class="hook">假如你站在秦二世的朝堂上，赵高牵来一头鹿说“这是马”。你说什么？</p>
+<div class="body">
+<p>公元前 207 年，赵高想知道朝中谁听他的，就做了一次试验。《史记》写得很简洁：</p>
+<blockquote>持鹿献于二世，曰：“马也。”二世笑曰：“丞相误邪？谓鹿为马。”问左右，左右或默，或言马以阿顺赵高，或言鹿。<cite>《史记·秦始皇本纪》</cite></blockquote>
+<p>接下来只有一句：赵高事后暗中用法律罗织罪名，处置了那些说“鹿”的人。从此大臣们都怕他。</p>
+<p>这件事可怕的地方，不在于有人说了假话，而在于它是一次测试。赵高要的不是大家相信那是马，而是看谁愿意<em>当众</em>说那是马。说“马”的人知道那是鹿，赵高也知道他们知道——这才是忠诚的证明。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>先别急着说“我当然说鹿”。如果说“鹿”的代价是丢掉工作，你还说吗？</li>
+<li>“不吭声”是第三条路。你觉得它算什么？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../yes/#c13">《是，大人》第十一案 · 站队</a></p>
+</article>
+
+<article class="cd" id="w28" data-t="衙门" data-k="讲">
+<header class="cd-h"><span class="th">衙门</span><span class="kd">讲</span><span class="no">28</span></header>
+<h3>离皇帝最近的屋子</h3>
+<p class="hook">两千年里，宰相的权力一次又一次被皇帝身边的“秘书”拿走。</p>
+<div class="body">
+<p>汉朝的“尚书”，起初只是宫里管文书的小官，地位很低。可他们每天替皇帝收发文件、起草诏书，离皇帝最近。到东汉，尚书台成了真正的权力中心，名义上的三公反倒被架空了。</p>
+<p>后来皇帝嫌尚书权大，就重用更贴身的“中书”；中书大了，再用“门下”。明朝朱元璋干脆废了丞相，可皇帝一个人批不完奏折，只好让几个翰林在文渊阁帮着出主意，这就是“内阁”。几十年后，内阁首辅权倾朝野。清朝雍正又设了“军机处”，起初只是宫里的几间值房，后来成了全国最核心的机构。</p>
+<p>规律是同一个：权力不在官职表写的位置上，而在离做决定的人最近的那间屋子里。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你待过的地方（班级、社团、实习单位），“离权力最近的屋子”在哪儿？</li>
+<li>当这样的“秘书”，你觉得是好差事吗？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../yes/#c8">《是，大人》第七案 · 离大人最近的屋子</a></p>
+</article>
+
+<article class="cd" id="w29" data-t="衙门" data-k="猜">
+<header class="cd-h"><span class="th">衙门</span><span class="kd">猜</span><span class="no">29</span></header>
+<h3>四十八万封请愿书</h3>
+<p class="hook">西汉末年，有一件事让官员百姓纷纷上书请愿。猜猜前后一共多少人？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜人数</summary><div class="ans">《汉书·王莽传》记载：前后上书的吏民共<b>四十八万七千五百七十二人</b>。请愿的内容是：给王莽加封赏。</div></details>
+<p>王莽当时还是大司马，表面上谦恭得不得了。朝廷要加封他，他一再推辞；越推辞，上书请求封赏他的人越多。这个数字精确到个位，听起来像民意汹涌。可是在一个没有报纸、多数人不识字的时代，四十八万人上书，背后得有多少人在组织？</p>
+<p>民意可以是“问”出来的，也可以是“造”出来的，还可以是“选错了人问”出来的。1936 年美国大选，《文学文摘》杂志寄出约一千万份问卷，收回两百多万份，预测共和党的兰登会大胜。结果罗斯福压倒性胜利。问题出在名单：问卷主要寄给电话用户和汽车车主，在大萧条年代，这些人偏富裕。杂志没过两年就停刊了。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>网上的“大家都说……”，你一般信几分？</li>
+<li>如果要摸清全校同学真实的想法，你会怎么问？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../yes/#c4">《是，大人》第四案 · 问法就是答案</a></p>
+</article>
+
+<article class="cd" id="w30" data-t="衙门" data-k="讲">
+<header class="cd-h"><span class="th">衙门</span><span class="kd">讲</span><span class="no">30</span></header>
+<h3>闷死在怀里的鹞鹰</h3>
+<p class="hook">唐太宗有一面最贵的镜子：一个天天跟他唱反调的大臣。</p>
+<div class="body">
+<p>魏征原本是太子李建成的人，还劝过李建成早点除掉李世民。玄武门之变后，李世民质问他为什么挑拨兄弟。魏征说：太子要是早听我的，就不会有今天的祸。李世民反倒欣赏他的直率，重用了他。</p>
+<p>此后十几年，魏征前后进谏两百多件事。《资治通鉴》说，太宗有一次罢朝回宫，气得说“会须杀此田舍翁”——早晚要杀了这个乡巴佬。唐人笔记里还有个小故事：太宗得了一只漂亮的鹞鹰，正架在胳膊上玩，远远看见魏征来了，赶紧藏进怀里。魏征故意奏事奏了很久，等他走了，鹞鹰已经闷死在怀里。</p>
+<p>魏征死后，太宗说：以铜为镜，可以正衣冠；以古为镜，可以知兴替；以人为镜，可以明得失。如今失去了一面镜子。</p>
+<p class="doubt">鹞鹰的故事出自唐人笔记《隋唐嘉话》，是不是真事无从查证。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你身边有没有一个肯跟你说难听真话的人？你会感谢对方吗？</li>
+<li>你愿意做别人的“镜子”吗？什么时候说、怎么说？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../yes/#c11">《是，大人》第九案 · 揣摩上意</a></p>
+</article>
+
+</div>
+</div>
+</section>
+<section class="deck g" id="t4" style="--cc:var(--c-zi)">
+<div class="wide">
+<div class="deck-h"><h2>字与话</h2><span>十张 · 取材于《苇城书记》</span></div>
+<p class="lede">泥球里的小泥丸、一块刻了三种字的石头、药铺里的龙骨、矿工的字母，和一个一岁小孩每天都在解的难题。</p>
+<div class="grid">
+
+<article class="cd" id="w31" data-t="字与话" data-k="猜">
+<header class="cd-h"><span class="th">字与话</span><span class="kd">猜</span><span class="no">31</span></header>
+<h3>泥球里的秘密</h3>
+<p class="hook">还没有文字的时候，托人送五只羊，怎么保证送到时没少？</p>
+<div class="body">
+<details class="guess"><summary>先让对方想个办法</summary><div class="ans">一种说法是：把五个代表羊的<b>小泥丸</b>封进一个空心泥球，交给送货人。到了地方，打碎泥球一数，对得上，就没少。</div></details>
+<p>考古学家在中东各地挖出了大量小泥块：圆锥、小球、圆片、带刻痕的小饼，大小像弹珠。有学者认为这是记账的“筹码”：一个小圆锥代表一份粮食，一个圆片代表一只羊……</p>
+<p>后来有人想到：封口之前，先把筹码在泥球外面压一下印子，这样不用打碎，看外面就知道里面是什么。再往下想一步：既然外面的印子已经说清楚了，里面的筹码还要干什么？泥球被压扁成了泥板，印子变成了画上去的符号。</p>
+<p>“筹码、泥球、泥板”，是关于文字起源最有名的一种说法。学界对细节还有争论，但很多证据都指向这条路。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>给一个不识字的人留言，告诉他你借走了他三本书，你会画什么？现在就想一个符号。</li>
+<li>“防止赖账”和“表达感情”，哪个更像发明文字的动力？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../reed/#c1">《苇城书记》第一章 · 泥丸</a></p>
+</article>
+
+<article class="cd" id="w32" data-t="字与话" data-k="猜">
+<header class="cd-h"><span class="th">字与话</span><span class="kd">猜</span><span class="no">32</span></header>
+<h3>三种文字，几种语言</h3>
+<p class="hook">罗塞塔石碑上刻了三种文字。那它用了几种语言？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>两种</b>。古埃及语（用圣书字和世俗体两种文字写），加上希腊语。</div></details>
+<p>1799 年，拿破仑远征埃及，法军在尼罗河口的罗塞塔修工事，挖出一块黑色石碑。上面刻着同一份诏书的三个版本：最上面是圣书字，就是那种画着鸟、眼睛、蛇的古埃及文字；中间是世俗体，埃及人日常用的草写体；最下面是希腊文。</p>
+<p>希腊文有人读得懂，这块石碑就像一本对照词典。可是破译还是花了二十多年。最大的障碍是一个成见：大家都以为圣书字是纯粹的“图画表意”。法国人商博良证明了，其中很多符号其实是<em>表音</em>的，突破口就是那些框在椭圆圈里的国王名字，比如“托勒密”。1822 年，他宣布破译成功。据说他冲进哥哥的办公室喊了一声“我找到了！”，然后晕了过去。</p>
+<p>石碑后来被英国人拿走，现在在大英博物馆。埃及一直要求归还。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你觉得这块石碑应该放在哪儿？</li>
+<li>学英语或别的语言时，你有过“突然开窍”的瞬间吗？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../reed/#c7">《苇城书记》第七章 · 双语</a></p>
+</article>
+
+<article class="cd" id="w33" data-t="字与话" data-k="讲">
+<header class="cd-h"><span class="th">字与话</span><span class="kd">讲</span><span class="no">33</span></header>
+<h3>建筑师的业余爱好</h3>
+<p class="hook">一种三千多年前的文字，最后是被一个业余爱好者破译的。他的正职是建筑师。</p>
+<div class="body">
+<p>1900 年，英国考古学家伊文思在克里特岛挖出几千块泥板，上面是一种没人认识的文字，叫“线形文字 B”。伊文思坚信它记的是一种失传的克里特本地语言，绝不是希腊语。他名气太大，大家都跟着这么想。</p>
+<p>十四岁的男孩文特里斯听过伊文思的一次讲座，从此着了迷。他后来当了建筑师，业余一直在琢磨。在他之前，美国学者艾丽丝·科伯已经用手工卡片做了大量统计，把符号排进一张“格子”：哪些可能共用一个辅音，哪些共用一个元音。文特里斯接着往格子里填。1952 年，他试着代入几个克里特的地名，格子一下亮了：这是希腊语，比荷马史诗还早几百年的希腊语。</p>
+<p>破译出来的内容很朴实：几头羊、几辆战车、多少罐油。又是账本。文特里斯 1956 年死于车祸，才三十四岁。科伯没等到格子亮起来，1950 年就去世了。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你有没有一样业余爱好，钻得比专业的人还深？</li>
+<li>一个权威的错误判断能拖慢一件事多久？你见过吗？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../reed/#c8">《苇城书记》第八章 · 格子</a></p>
+</article>
+
+<article class="cd" id="w34" data-t="字与话" data-k="讲">
+<header class="cd-h"><span class="th">字与话</span><span class="kd">讲</span><span class="no">34</span></header>
+<h3>药铺里的龙骨</h3>
+<p class="hook">商朝人占卜用的甲骨，十九世纪末差点全被当成中药磨成粉吃掉。</p>
+<div class="body">
+<p>河南安阳小屯一带的农民，常在地里挖出刻着奇怪纹路的龟甲和兽骨，当作“龙骨”卖给药商。龙骨是一味中药。据说有的药商嫌刻痕影响卖相，还会把字刮掉。</p>
+<p>流行的故事是：1899 年，国子监祭酒王懿荣生病，从药铺抓来的药里有龙骨，他一看上面的字比青铜器上的金文还古老，于是开始高价收购。“看药认字”的细节多有附会，但王懿荣在 1899 年前后认出并收藏甲骨，是可以确定的。第二年八国联军攻入北京，他殉国了。</p>
+<p>后来罗振玉找到了甲骨真正的出土地：商朝晚期的都城“殷墟”。王国维又从卜辞里一个一个找出商王的名字，和司马迁《史记》记的商王世系大体对得上。一千多年前写成的史书，被地下挖出来的骨头证实了。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你还知道哪些“被当成别的东西用掉了”的宝贝？</li>
+<li>如果三千年后有人挖到你的手机，他们最想读懂的会是什么？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../reed/#c9">《苇城书记》第九章 · 烧掉的书</a></p>
+</article>
+
+<article class="cd" id="w35" data-t="字与话" data-k="玩">
+<header class="cd-h"><span class="th">字与话</span><span class="kd">玩</span><span class="no">35</span></header>
+<h3>倒过来的 A</h3>
+<p class="hook">在手心里写一个大写的 A，然后倒过来看。像什么？</p>
+<div class="body">
+<p>先让对方试试。A 倒过来是 ∀：一张脸，两只角——像不像一个牛头？</p>
+<p>这不是巧合。大约三千八百年前（年代有争论），西奈半岛的绿松石矿里，一群说闪米特语的工人，看着埃及人的圣书字，想出了一个聪明办法：借一个图形，只取它名字的第一个音。牛在他们的语言里叫 ʾalp，就用牛头代表开头那个音；房子叫 bayt，就用房子的图形代表 b。几百个符号的复杂系统，一下缩成了二三十个。</p>
+<p>这套字母经过腓尼基商人传到希腊，又传到罗马。牛头转了个方向，变成 A；房子变成了 B。希腊人管它们叫 alpha、beta。英语的“字母表”alphabet，念的其实就是“牛、房子”。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>用同样的办法给汉语造字母：“妈”的 m，你画什么？“水”的 sh 呢？</li>
+<li>汉字好学还是字母好学？各要付出什么代价？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../reed/#c5">《苇城书记》第五章 · 矿工的字母</a></p>
+</article>
+
+<article class="cd" id="w36" data-t="字与话" data-k="讲">
+<header class="cd-h"><span class="th">字与话</span><span class="kd">讲</span><span class="no">36</span></header>
+<h3>最后一个读者</h3>
+<p class="hook">一种文字，可能在某一天，随着最后一个会读它的人一起死去。</p>
+<div class="body">
+<p>湖南江永县的一些村子里，曾经流传着一种只在女人之间使用的文字，叫“女书”。字形细长、微微倾斜，用来记当地土话：写诗、写信、写给结拜姊妹的心里话，写在扇子上、手帕上、布面的小册子里。按当地习俗，主人去世时，女书作品常常随葬或烧掉，所以留下来的老文本很少。</p>
+<p>1980 年代起，女书才被外界广泛知道。被认为最后一位自然传承女书的阳焕宜老人，2004 年去世。今天女书作为非物质文化遗产，由后来的学习者传习。</p>
+<p>文字会死。已知最晚的楔形文字泥板，大约写于公元 75 年；埃及圣书字最后一次被刻上石头，是公元 394 年。在那之后的一千多年里，世界上没有一个人读得懂它们。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>如果你和最好的朋友有一种只有你们俩懂的暗号，你们会用它写什么？</li>
+<li>你家乡话里，有没有你觉得快没人说了的词？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../reed/#c11">《苇城书记》第十一章 · 最后一个读者</a></p>
+</article>
+
+<article class="cd" id="w37" data-t="字与话" data-k="猜">
+<header class="cd-h"><span class="th">字与话</span><span class="kd">猜</span><span class="no">37</span></header>
+<h3>一天学几个词</h3>
+<p class="hook">一个人从出生到十八岁，平均每天学会几个新词？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">按一种常见的粗算，大约<b>十个</b>左右，连睡觉的日子都算上。</div></details>
+<p>这个粗算是这样来的：一个高中毕业生大约认识六万个词（不同研究差别很大），除以十七八年，差不多每天十个。没人专门教你，你就这么学会了。</p>
+<p>更神奇的是怎么学会的。哲学家蒯因出过一道难题：你跟着一个说陌生语言的人走，一只兔子跑过，他指着说“gavagai”。gavagai 是什么意思？兔子？兔子的耳朵？“跑过去了”？“看，晚饭”？逻辑上，你永远没法确定。可一两岁的小孩每天都在做这道题，而且几乎都能猜对。</p>
+<p>心理学家发现，小孩有一些“默认的猜法”：新词多半指整个东西，而不是它的一部分；多半指这一类东西，而不只是这一只。所以很多一岁多的小孩会把所有四条腿的动物都叫“狗狗”。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你记得自己小时候把什么东西叫错过吗？或者家里人讲过你小时候的口误？</li>
+<li>今天你学到了什么新词？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../reed/#c12">《苇城书记》第十二章 · 那是什么</a></p>
+</article>
+
+<article class="cd" id="w38" data-t="字与话" data-k="讲">
+<header class="cd-h"><span class="th">字与话</span><span class="kd">讲</span><span class="no">38</span></header>
+<h3>Long time no see</h3>
+<p class="hook">“好久不见”的英语 long time no see，很可能是从中国人嘴里学去的。</p>
+<div class="body">
+<p>十九世纪，上海有一条小河叫洋泾浜，是英租界和法租界的界河，后来填平成了今天的延安东路。码头上、洋行里，中国人和外国人做生意，谁也说不了对方的话，就凑出一种混合语：英语的词，汉语的语法，再加上比划。上海人叫它“洋泾浜英语”。英语管这种混合语叫 pidgin，一般认为就来自中国人对 business（生意）的念法。</p>
+<p>这种话简单，但管用。“好久不见”按英语语法该说 I haven't seen you for a long time，混合语就一个字一个字直译成 long time no see。还有 lose face（丢脸）、no can do（做不到），后来都进了正式的英语。</p>
+<p>混合语还有一个奇妙的命运：如果说它的人的孩子从小就讲它，它会长出完整的语法，变成一门真正的母语。语言学家叫它“克里奥尔语”。</p>
+<p class="doubt">long time no see 的来历没有定论，也有人认为它来自北美原住民和英语混杂的说法。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你能说一句外国人也听得懂的“中式英语”吗？比如 good good study, day day up。</li>
+<li>你和朋友之间，有没有只有你们才懂的“混合语”？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../reed/#c14">《苇城书记》第十四章 · 通事</a></p>
+</article>
+
+<article class="cd" id="w39" data-t="字与话" data-k="猜">
+<header class="cd-h"><span class="th">字与话</span><span class="kd">猜</span><span class="no">39</span></header>
+<h3>青是什么颜色</h3>
+<p class="hook">青天、青草、青丝、青出于蓝——“青”到底是什么颜色？</p>
+<div class="body">
+<details class="guess"><summary>先让对方说一个颜色</summary><div class="ans">都对，又都不全对：<b>青天是蓝，青草是绿，青丝是黑</b>。古汉语的“青”，横跨了今天的蓝、绿，甚至黑。</div></details>
+<p>“青丝”是乌黑的头发；京剧里的“青衣”，得名于剧中人常穿的黑褶子。“青出于蓝”说的是从蓼蓝草里提炼出的靛青，比草本身更蓝。</p>
+<p>这不是汉语一家的怪事。1969 年，两位美国学者伯林和凯比较了很多语言的颜色词，发现不少语言不分“蓝”和“绿”，一个词管两种颜色。日语里，绿灯叫“青信号”。俄语反过来，把浅蓝和深蓝分成两个不同的基本颜色词，就像我们分“红”和“粉”。有实验发现，说俄语的人分辨浅蓝和深蓝，比说英语的人稍快一点。</p>
+<p>语言会不会改变我们怎么看世界？语言学家为这个问题吵了很多年，至今没吵完。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你和别人为一个颜色叫什么争过吗？“这明明是绿！”</li>
+<li>你的家乡话里，有没有一个普通话说不清楚的词？</li>
+</ul></div>
+<p class="seed">这张是书外话，书房里还没有专讲颜色的一章。</p>
+</article>
+
+<article class="cd" id="w40" data-t="字与话" data-k="假">
+<header class="cd-h"><span class="th">字与话</span><span class="kd">假</span><span class="no">40</span></header>
+<h3>巴别塔倒过来</h3>
+<p class="hook">假如明天一早，全世界的人都只说同一种语言。会更好吗？</p>
+<div class="body">
+<p>世界上现在大约有七千种语言，差不多四成被认为处境濒危，很多只剩下几位老人会说。每隔一段时间，就有一种语言随着最后一个说话的人消失；到底多久一种，各家估计差别很大。</p>
+<p>有人说：语言少一点，交流方便，这不是坏事。可是每种语言里都装着一套看世界的办法。澳大利亚有一种原住民语言，不说“左右”，只说“东南西北”：“你东边的腿上有只蚂蚁”。说这种话的人，随时都知道自己朝着哪个方向。语言死了，这样的办法也跟着没了。</p>
+<p>也有死而复生的。希伯来语有将近两千年基本只用于宗教和书面。十九世纪末，本-耶胡达坚持在家里只跟孩子说希伯来语，还给新事物造新词。今天，有几百万人把它当母语。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>一种语言更好，还是很多种更好？你站哪边？</li>
+<li>如果你的家乡话只剩你一个人会说，你会做点什么？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../reed/#c15">《苇城书记》第十五章 · 巴别</a>、<a href="../reed/#c16">第十六章 · 开口</a></p>
+</article>
+
+</div>
+</div>
+</section>
+<section class="deck g" id="t5" style="--cc:var(--c-gt)">
+<div class="wide">
+<div class="deck-h"><h2>柜台</h2><span>十张 · 取材于《柜台里外》</span></div>
+<p class="lede">一百不是一百、街坊凑的会、汉堡算出来的汇率、咖啡馆里签名的人，和一个许诺四十五天赚五成的移民。只讲故事和机制，不作投资建议。</p>
+<div class="grid">
+
+<article class="cd" id="w41" data-t="柜台" data-k="猜">
+<header class="cd-h"><span class="th">柜台</span><span class="kd">猜</span><span class="no">41</span></header>
+<h3>一百不是一百</h3>
+<p class="hook">北宋开封，官府收付钱时，“一百文”实际是多少枚铜钱？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>七十七枚</b>。而且街上不同的行当，各有各的数。</div></details>
+<p>古代铜钱用绳子串起来，一百枚一串，本该是一百。可从南北朝起就有“短陌”的习惯：一串标作“一百”的钱，实际不够一百枚。到了北宋，开封城里各行各业连“短”多少都不一样。孟元老在《东京梦华录》里记了一份清单：</p>
+<blockquote>都市钱陌，官用七十七，街市通用七十五，鱼肉菜七十二陌，金银七十四，珠珍、雇婢妮、买虫蚁六十八，文字五十六陌。<cite>孟元老《东京梦华录》卷三</cite></blockquote>
+<p>就是说，买鱼肉菜七十二枚当一百，买蛐蛐（虫蚁）六十八枚当一百，请人写字最“便宜”，五十六枚就算一百。为什么会这样，说法不一：有的说是铜钱不够用，大家默认打个折；有的说是串钱的人要扣手工钱。但每一行有每一行的数，大家心知肚明。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>今天有没有“一百不是一百”的东西？满减、缩水的包装、“一斤”的水果……</li>
+<li>为什么偏偏写字最便宜？你猜猜。</li>
+</ul></div>
+<p class="more">想细看 → <a href="../finance/#c2">《柜台里外》第二章 · 碎银子</a></p>
+</article>
+
+<article class="cd" id="w42" data-t="柜台" data-k="假">
+<header class="cd-h"><span class="th">柜台</span><span class="kd">假</span><span class="no">42</span></header>
+<h3>你想第几个拿</h3>
+<p class="hook">假如我们十个人，每月每人出一百块，凑一千块，每月由一个人拿走全部。你想第几个拿？</p>
+<div class="body">
+<p>这是中国民间用了几百年的老办法，叫摇会、标会、合会、轮会，各地名字不同。十个月轮完，每人出了一千，也拿回一千。</p>
+<p>第一个拿的人，等于借了一笔钱，以后慢慢还；最后一个拿的人，等于每月存一百，十个月后一次取出。急用钱的想早拿，不急的可以晚拿。顺序怎么排？有的摇骰子，有的“标”：谁愿意多贴点利息，谁先拿，后拿的人正好吃到这点利息。</p>
+<p>没有银行，没有合同，全凭街坊邻里的信任。这种“轮流储蓄会”全世界都有，印度、非洲、拉美，名字不同，规则几乎一样，风险也一样：最怕有人拿了钱就跑。所以牵头的“会首”，通常是村里最有威望的人。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你想第几个拿？为什么？</li>
+<li>你身边谁最适合当会首？信任到底是靠什么攒起来的？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../finance/#c3">《柜台里外》第三章 · 一条街</a></p>
+</article>
+
+<article class="cd" id="w43" data-t="柜台" data-k="猜">
+<header class="cd-h"><span class="th">柜台</span><span class="kd">猜</span><span class="no">43</span></header>
+<h3>为什么没有三块钱</h3>
+<p class="hook">钞票有 1、2、5、10、20、50、100，为什么几乎没有 3 块、4 块的？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜原因</summary><div class="ans">答案：因为 <b>1、2、5</b> 搭配起来最省。用这三种面值，凑出 1 到 9 里任何一个数，最多只要三张。</div></details>
+<p>试试看：9 = 5 + 2 + 2，8 = 5 + 2 + 1，4 = 2 + 2。再往上，10、20、50 是同一套规律乘以十。面值种类少，找零的张数也少，这是一种很实用的折中。</p>
+<p>也有例外。美国有 25 美分的硬币，因为“四分之一”好算；美国的 2 美元钞票一直在发行，却很少有人用，不少人以为它是纪念品，拿到就收起来。人民币以前有 2 角、2 元，后来也慢慢淡出了。</p>
+<p>不过新问题来了：大家都用手机付钱以后，面值还重要吗？</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你上次摸到现金是什么时候？</li>
+<li>如果让你重新设计一套面值，你会怎么定？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../finance/#c4">《柜台里外》第四章 · 面值</a></p>
+</article>
+
+<article class="cd" id="w44" data-t="柜台" data-k="讲">
+<header class="cd-h"><span class="th">柜台</span><span class="kd">讲</span><span class="no">44</span></header>
+<h3>汉堡算出来的汇率</h3>
+<p class="hook">想知道一个国家的钱是贵还是便宜？有人说，看一个汉堡就够了。</p>
+<div class="body">
+<p>1986 年，《经济学人》杂志半开玩笑地发明了“巨无霸指数”：麦当劳的巨无霸汉堡在全世界几乎一模一样，那么按道理，它在各国的价格换算成美元后应该差不多。要是在某国换算下来特别便宜，就说明这个国家的钱可能被“低估”了；特别贵，就可能被“高估”了。</p>
+<p>背后是一个严肃的经济学想法，叫“购买力平价”：长远看，同样的东西在各地应该卖同样的价钱。当然，汉堡不只是汉堡，里面还有房租、人工、税，这些在穷国和富国差得很远。所以巨无霸指数更像一个有趣的提醒，而不是一把精确的尺子。</p>
+<p>后来各种“指数”层出不穷，有人用咖啡，有人用手机。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>如果给我们学校发明一个指数，你用什么？奶茶？食堂一份红烧肉？</li>
+<li>你觉得哪样东西最能说明一个地方“贵不贵”？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../finance/#c6">《柜台里外》第六章 · 汇率</a></p>
+</article>
+
+<article class="cd" id="w45" data-t="柜台" data-k="讲">
+<header class="cd-h"><span class="th">柜台</span><span class="kd">讲</span><span class="no">45</span></header>
+<h3>飞钱</h3>
+<p class="hook">一千二百年前，唐朝人就能“异地汇款”了，名字很好听，叫“飞钱”。</p>
+<div class="body">
+<p>唐朝中期，南方的茶商到长安卖茶，收了一大堆铜钱。把这些钱运回家，又重又危险。另一头，各地在长安设有办事处（进奏院），要把钱从京城送回地方，或者从地方运到京城，同样麻烦。</p>
+<p>于是有了两全的办法：商人在长安把钱交给某地的进奏院，换一张凭证；带着这张纸回到家乡，到当地官府对上凭证，就能取钱。铜钱一枚也没动，账上一来一回，互相抵消了。钱好像自己“飞”了过去，所以叫“飞钱”，也叫“便换”。</p>
+<p>今天中东和南亚还有一种很像的老办法，叫“哈瓦拉”：你把钱交给本地一个中间人，他打个电话，另一座城市的同伴就把钱交给你的家人，两个中间人日后再算账。钱不走，消息走。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>“钱不走，消息走”，和今天手机转账有什么不一样？</li>
+<li>你最信得过的“中间人”是谁？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../finance/#c7">《柜台里外》第七章 · 飞钱</a></p>
+</article>
+
+<article class="cd" id="w46" data-t="柜台" data-k="讲">
+<header class="cd-h"><span class="th">柜台</span><span class="kd">讲</span><span class="no">46</span></header>
+<h3>签在下面的人</h3>
+<p class="hook">世界上最有名的保险市场之一，起源于伦敦的一家咖啡馆。</p>
+<div class="body">
+<p>十七世纪八十年代，爱德华·劳埃德在伦敦开了一家咖啡馆，离泰晤士河的码头不远。船长、商人、水手常来这里喝咖啡、交换消息：哪条船到了，哪条船沉了，哪里有海盗。劳埃德干脆印起了航运新闻。</p>
+<p>有钱人也来了。船东想给货买保险，就写一张单子，写明船、货、航线和金额；愿意分担一部分风险的人，在单子下方签上名字，写明自己担多少。签在下面，英语叫 under-write，“承保人” underwriter 这个词就是这么来的。</p>
+<p>后来这群人组织起来，就是今天的“劳合社”。很长一段时间里，在单子下面签名的人要拿自己的全部身家作担保，一旦大船沉了，签名的人可能跟着倾家荡产。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>如果可以给生活里的一件事买保险，你给什么上保险？</li>
+<li>你愿意在别人的“风险单”下面签名吗？比如替朋友担保？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../finance/#c10">《柜台里外》第十章 · 借运气</a></p>
+</article>
+
+<article class="cd" id="w47" data-t="柜台" data-k="猜">
+<header class="cd-h"><span class="th">柜台</span><span class="kd">猜</span><span class="no">47</span></header>
+<h3>利息是一只小羊</h3>
+<p class="hook">四千多年前的苏美尔人，用一个什么词来表示“利息”？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：一个本义是<b>“小山羊”</b>的词。</div></details>
+<p>道理很直观：你借给我一群羊，过一年羊会下崽，还的时候，多出来的那几只小羊就该归你。古希腊语也一样，表示利息的词本义是“生出来的东西”。在古人眼里，利息是钱“生”的孩子。</p>
+<p>也正因为如此，有人反对。亚里士多德说，钱又不是活物，钱生钱违反自然。中世纪的教会长期禁止放贷收息。可借贷从来没停过，只是换了很多名目。</p>
+<p>巴比伦的《汉谟拉比法典》时代给利息定过上限：借粮食，年息不超过三分之一；借银子，不超过五分之一。四千年前，就有人担心利息太高了。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>借钱给朋友，你会要利息吗？为什么？</li>
+<li>除了钱，还有什么东西会“生利息”？时间、知识、关系？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../finance/#c9">《柜台里外》第九章 · 借时间</a>、<a href="../money/#v1">《点石成金》卷一 · 债</a></p>
+</article>
+
+<article class="cd" id="w48" data-t="柜台" data-k="讲">
+<header class="cd-h"><span class="th">柜台</span><span class="kd">讲</span><span class="no">48</span></header>
+<h3>庞兹的邮票</h3>
+<p class="hook">“庞氏骗局”的庞氏是个真人。他号称做的生意，是倒卖一种邮政兑换券。</p>
+<div class="body">
+<p>1920 年，波士顿的意大利移民查尔斯·庞兹说他发现了一个漏洞：一种“国际回邮券”，在意大利买很便宜，拿到美国能换更多邮票，因为一战后各国汇率变了，券的价格没跟着改。理论上，可以低买高卖。</p>
+<p>他向公众许诺：四十五天回报五成，九十天翻倍。钱潮水一样涌来，最多的时候一天收进几十万美元。可这种券全世界的总量根本不够倒腾这么多钱，他实际上几乎没做这门生意，而是拿后来者的钱付前面人的“收益”。几个月后报纸开始调查，骗局崩塌。</p>
+<p>后来所有“拿新钱还旧钱”的骗局都用他的名字命名。骨架永远一样：一个听起来很专业、外人看不懂的“机会”；高得离谱、又稳得出奇的回报；早期参与者真的拿到了钱，于是成了最卖力的推销员。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你听过最像“庞氏骗局”的“好事”是什么？</li>
+<li>如果有人每个月都稳赚一成，你觉得最可能的解释是什么？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../finance/#c12">《柜台里外》第十二章 · 骗局的骨架</a></p>
+</article>
+
+<article class="cd" id="w49" data-t="柜台" data-k="猜">
+<header class="cd-h"><span class="th">柜台</span><span class="kd">猜</span><span class="no">49</span></header>
+<h3>一粒米也没有的米市</h3>
+<p class="hook">世界上最早的有组织的期货市场之一，交易的是什么？在哪儿？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>大米</b>。日本大阪的堂岛米市，1730 年得到幕府的正式认可。</div></details>
+<p>江户时代的日本，武士的俸禄用米发，大名收税也收米。米要变成钱，就得运到大阪去卖。商人们在堂岛聚集，渐渐出现了一种新交易：不交现米，只买卖“将来某个时候的米”的价格，到期按差价结算。</p>
+<p>河边空地上挤满了人，却一粒米也看不见。这就是期货：先把明天的价钱定下来。农民和米商可以借它锁定价格、躲开风险；投机的人也可以借它赌涨跌。</p>
+<p class="doubt">据通行的说法，堂岛用一根火绳计时，火绳燃尽就收市，还不住手的人会被泼一身水。后来炒股的人看的“蜡烛图”（K 线），传说也起源于米市的商人。这两件事的细节都不太可靠。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>如果能“先定下明天的价钱”，你最想锁定什么东西的价格？</li>
+<li>期货更像保险，还是更像赌博？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../finance/#c11">《柜台里外》第十一章 · 借明天</a></p>
+</article>
+
+<article class="cd" id="w50" data-t="柜台" data-k="辩">
+<header class="cd-h"><span class="th">柜台</span><span class="kd">辩</span><span class="no">50</span></header>
+<h3>谁来养老</h3>
+<p class="hook">现代的养老保险，是一个铁血宰相为了对付政敌发明的。</p>
+<div class="body">
+<p>1880 年代，德国宰相俾斯麦先后推出疾病保险、工伤保险和老年残疾保险（1889 年）。他不是心软，而是精明：工人运动正在壮大，他想让工人觉得国家比革命更靠得住。最早的养老金七十岁才能领，而当时能活到七十岁的工人并不多。</p>
+<p>今天很多国家的养老金是“现收现付”：现在上班的人交的钱，直接发给现在退休的人。有点像一个代代相传的“会”：年轻时养上一代，老了由下一代养。年轻人够多，它就转得很顺；孩子越生越少、人越活越长，交钱的人就不够发了。</p>
+<div class="sides"><div><b>一方</b>养老主要该靠国家。这是社会对每个人的承诺。</div><div><b>另一方</b>该更多靠自己攒。全靠国家，等于把账留给下一代。</div></div>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你站哪边？还是觉得该靠第三方：家里人？</li>
+<li>如果让你设计一个养老制度，你最怕的是什么？</li>
+</ul></div>
+<p class="more">想细看 → <a href="../finance/#c16">《柜台里外》第十六章 · 福利的账</a></p>
+</article>
+
+</div>
+</div>
+</section>
+<section class="deck g" id="t6" style="--cc:var(--c-sw)">
+<div class="wide">
+<div class="deck-h"><h2>书外</h2><span>十张 · 书房里还没有的书</span></div>
+<p class="lede">时间、零、辣椒、茶、日历、经度、星际空间、洗手、地图、棋。每一张都可能长成以后的一本书。</p>
+<div class="grid">
+
+<article class="cd" id="w51" data-t="书外" data-k="猜">
+<header class="cd-h"><span class="th">书外</span><span class="kd">猜</span><span class="no">51</span></header>
+<h3>为什么是六十</h3>
+<p class="hook">一小时六十分，一分钟六十秒。为什么不是一百？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：因为四千多年前两河流域的人用<b>六十进制</b>数数，后来的天文学家一路沿用了下来。</div></details>
+<p>为什么偏偏是 60？没有定论。常见的解释是：60 能被 1、2、3、4、5、6、10、12、15、20、30 整除，分东西特别方便，三个人分、四个人分、五个人分，都不用切零头。</p>
+<p>巴比伦的天文学家用这套进制算天象，又传给了希腊的天文学家。圆分成 360 度，一度分 60 分，一分分 60 秒，最后时间也照这个办法切。一天 24 小时，则可以追溯到古埃及人把白天和黑夜各分成 12 份。</p>
+<p>法国大革命时，有人想把时间也改成十进制：一天 10 小时，一小时 100 分钟。钟表都造出来了，可没人愿意用，推行了一年多就停了。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>如果一天变成 10 个小时，什么会更方便，什么会更麻烦？</li>
+<li>你还知道什么东西是“12 个一组”的？</li>
+</ul></div>
+<p class="seed">可能的下一本：时间与历法。</p>
+</article>
+
+<article class="cd" id="w52" data-t="书外" data-k="讲">
+<header class="cd-h"><span class="th">书外</span><span class="kd">讲</span><span class="no">52</span></header>
+<h3>被禁止的数字</h3>
+<p class="hook">七百多年前，欧洲有座城市明令禁止商人在账本上写阿拉伯数字。</p>
+<div class="body">
+<p>把“零”当成一个能参与运算的数，最早系统写进书里的是印度数学家婆罗摩笈多，公元 628 年。他给出了零的运算规则：一个数加零还是它自己，一个数减去它自己等于零……他还试着规定“除以零”等于什么，没成功。到今天也没人能。</p>
+<p>这套印度数字经阿拉伯世界传到欧洲，所以叫“阿拉伯数字”。1202 年，意大利人斐波那契写了《算盘书》大力推广。可它刚到欧洲时并不受欢迎：1299 年，佛罗伦萨的货币兑换商行会规定，账本里不许用这种数字。理由之一是：0 太容易被改成 6 或 9，在后面偷偷添个 0，金额就翻了十倍。</p>
+<p>我们今天在合同和发票上写“壹贰叁肆”的大写数字，是同一个道理。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你觉得“零”是被发现的，还是被发明的？</li>
+<li>你写过“壹万贰仟”这种大写数字吗？在什么场合？</li>
+</ul></div>
+<p class="seed">可能的下一本：零与数字。</p>
+</article>
+
+<article class="cd" id="w53" data-t="书外" data-k="猜">
+<header class="cd-h"><span class="th">书外</span><span class="kd">猜</span><span class="no">53</span></header>
+<h3>辣椒才来了四百年</h3>
+<p class="hook">辣椒传进中国大约多少年了？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>四百多年</b>，明朝晚期。最早的可靠记载一般认为是 1591 年。</div></details>
+<p>辣椒原产美洲，哥伦布之后跟着航海者传遍世界。中国最早的记载，一般认为是明朝高濂 1591 年的《遵生八笺》，叫它“番椒”：</p>
+<blockquote>番椒丛生，白花，果俨似秃笔头，味辣色红，甚可观。<cite>高濂《遵生八笺》</cite></blockquote>
+<p>“甚可观”——当时主要是种来看的。那之前中国人吃辣靠什么？花椒、姜、茱萸、芥末。辣椒大规模进入湖南、四川、贵州的厨房，要到清朝中期以后。所以川菜湘菜的“辣”，在历史上相当年轻。</p>
+<p>同一批从美洲来的，还有玉米、红薯、土豆、花生、番茄。名字里带“番”“洋”的，常常暴露了它们是外来的。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>没有辣椒，你最爱吃的菜还剩几道？</li>
+<li>还能想到哪些带“番”“洋”“胡”字的吃的？比比谁说得多。</li>
+</ul></div>
+<p class="seed">可能的下一本：盐、糖、茶、辣椒。</p>
+</article>
+
+<article class="cd" id="w54" data-t="书外" data-k="猜">
+<header class="cd-h"><span class="th">书外</span><span class="kd">猜</span><span class="no">54</span></header>
+<h3>tea 还是 cha</h3>
+<p class="hook">全世界管“茶”叫什么，大致分两派：念起来像 cha 的，和念起来像 te 的。英语、俄语、日语、阿拉伯语，各属哪派？</p>
+<div class="body">
+<details class="guess"><summary>先让对方一个个猜</summary><div class="ans">英语 tea、法语 thé、德语 Tee 是 <b>te 派</b>；俄语 chai、阿拉伯语 shay、日语 cha、印地语 chai 是 <b>cha 派</b>。</div></details>
+<p>秘密在于茶是从哪条路走出去的。走陆路的，经过丝绸之路和北方草原，带走的是北方话里的“cha”，到了波斯变成 chay，再传到俄罗斯、阿拉伯、土耳其、印度。走海路的，多是十七世纪荷兰人从福建厦门一带运出去的，闽南话把茶念作“te”，于是荷兰语 thee、英语 tea、法语 thé 都成了 te 派。</p>
+<p>葡萄牙是个例外：它也走海路，但它的据点在澳门，那里说粤语，粤语念“cha”，所以葡萄牙语叫 chá。</p>
+<p>一个字的读音，就是一张贸易路线图。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你知道哪些词是从外语来的？沙发、咖啡、幽默、逻辑……比比谁说得多。</li>
+<li>你家乡话里“茶”怎么念？</li>
+</ul></div>
+<p class="seed">可能的下一本：盐、糖、茶、辣椒。</p>
+</article>
+
+<article class="cd" id="w55" data-t="书外" data-k="猜">
+<header class="cd-h"><span class="th">书外</span><span class="kd">猜</span><span class="no">55</span></header>
+<h3>消失的十天</h3>
+<p class="hook">1582 年 10 月 4 日的第二天，是几月几号？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜</summary><div class="ans">答案：<b>10 月 15 日</b>。中间十天被一笔勾销了。</div></details>
+<p>古罗马传下来的儒略历，一年平均 365.25 天，比真实的太阳年长了十一分钟左右。一年多十一分钟不起眼，一千多年下来，累积差了十天左右：春分越来越早，教会算复活节的日子跟着乱了。</p>
+<p>1582 年，教皇格里高利十三世颁布新历：直接删掉十天，以后每四百年少闰三次（整百年不闰，逢四百年再闰）。这就是今天全世界通用的公历。天主教国家很快照办，新教国家却不愿听教皇的。英国一直拖到 1752 年才改，那时已经差了十一天：9 月 2 日睡下，醒来是 9 月 14 日。俄国更晚，1918 年才改，所以俄国的“十月革命”，按公历其实发生在 11 月。</p>
+<p class="doubt">常听说英国改历时有人上街抗议“还我十一天”，这个说法证据很弱，多半是后来夸大的。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>如果日历要删掉十天，你希望删掉哪十天？还是一天也舍不得？</li>
+<li>2 月 29 日出生的人，平常年份哪天过生日？你会选哪天？</li>
+</ul></div>
+<p class="seed">可能的下一本：时间与历法。</p>
+</article>
+
+<article class="cd" id="w56" data-t="书外" data-k="讲">
+<header class="cd-h"><span class="th">书外</span><span class="kd">讲</span><span class="no">56</span></header>
+<h3>两万英镑的问题</h3>
+<p class="hook">十八世纪，英国政府悬赏两万英镑，只求一个办法：在大海上知道自己在哪儿。</p>
+<div class="body">
+<p>在海上测纬度不难，看看太阳或北极星有多高就行。难的是经度：你在东西方向上走了多远。地球每小时转 15 度，所以只要同时知道“本地此刻几点”和“出发港此刻几点”，时差就是经度。本地时间看太阳就知道；难的是在颠簸、潮湿、忽冷忽热的船上，带一只几个月都走得准的钟。</p>
+<p>1707 年，一支英国舰队算错了位置，在锡利群岛触礁，一千多人丧生。1714 年，英国议会通过《经度法案》，悬赏最高两万英镑。天文学家们认为答案在星空里。一个木匠出身的钟表匠约翰·哈里森却坚持造钟，一造就是几十年。他的第四台航海钟 H4，像一块大怀表，1761 年随船去牙买加，一路下来只慢了几秒。</p>
+<p>可评审委员会一直不肯痛快给钱。哈里森八十岁时，在国王过问之下，才拿到大部分奖金。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你有没有“大家都说方向错了，你还是坚持”的事？后来呢？</li>
+<li>如果没有手机定位，你能从这里走回家吗？靠什么认路？</li>
+</ul></div>
+<p class="seed">可能的下一本：《向外》，海洋与太空。</p>
+</article>
+
+<article class="cd" id="w57" data-t="书外" data-k="讲">
+<header class="cd-h"><span class="th">书外</span><span class="kd">讲</span><span class="no">57</span></header>
+<h3>一光日</h3>
+<p class="hook">差不多就在 2026 年 11 月，人类造的一样东西，第一次飞到离地球一“光日”那么远。</p>
+<div class="body">
+<p>1977 年发射的“旅行者 1 号”，飞过木星和土星之后，就一直往外飞，再也不回来。2012 年，它穿出了太阳风吹出的那个“大泡泡”的边缘，进入星际空间。按照计算，2026 年 11 月前后，它离地球的距离达到一光日：从地球发出去的一条指令，要走整整一天才能到它那里。</p>
+<p>1990 年，在天文学家卡尔·萨根的建议下，它在约六十亿公里外回过头，给地球拍了一张照片。地球只是一粒比一个像素还小的淡蓝色小点。萨根后来写道，我们所有人、所有的历史，都发生在这粒悬浮在阳光里的尘埃上。</p>
+<p>它身上还带着一张镀金唱片，写给可能存在的外星人：五十多种语言的问候、风声雨声心跳声、世界各地的音乐，其中有一首中国古琴曲《流水》。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>如果让你往那张唱片上放一首歌、一句话，你放什么？</li>
+<li>你觉得宇宙里只有我们吗？</li>
+</ul></div>
+<p class="seed">可能的下一本：《向外》，海洋与太空。</p>
+</article>
+
+<article class="cd" id="w58" data-t="书外" data-k="讲">
+<header class="cd-h"><span class="th">书外</span><span class="kd">讲</span><span class="no">58</span></header>
+<h3>洗手的医生</h3>
+<p class="hook">一个医生发现“洗手能救命”，结果被同行排挤，最后死在了精神病院。</p>
+<div class="body">
+<p>1840 年代，维也纳总医院有两个产科病房：第一病房由医生和医学生接生，第二病房由助产士接生。奇怪的是，第一病房的产妇死于“产褥热”的比例，常常是第二病房的好几倍。孕妇们哭着求别把自己送进第一病房。</p>
+<p>年轻的匈牙利医生塞麦尔维斯想找出原因。1847 年，一位同事解剖时被学生的刀划伤，很快以和产褥热一模一样的症状死去。塞麦尔维斯想到：医生们常常是从解剖室直接过来接生的，手上带着从尸体上来的“东西”。他要求所有人用漂白粉溶液洗手，第一病房的死亡率很快大幅下降。</p>
+<p>可很多医生不愿接受：这等于说，是我们自己的手害死了病人。那时还没有细菌学说，他也说不清那“东西”到底是什么，性子又急，四处写信骂人。1865 年，他被送进精神病院，两周后去世。又过了些年，巴斯德和李斯特的研究让细菌学说被普遍接受，他才被平反。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你遇到过“明明是对的，但说法让人很难接受”的事吗？</li>
+<li>为什么人特别难接受“问题出在自己身上”？</li>
+</ul></div>
+<p class="seed">可能的下一本：疾病与医学。</p>
+</article>
+
+<article class="cd" id="w59" data-t="书外" data-k="猜">
+<header class="cd-h"><span class="th">书外</span><span class="kd">猜</span><span class="no">59</span></header>
+<h3>这里有龙</h3>
+<p class="hook">都说古代地图在没人去过的地方会写上“这里有龙”。真的吗？</p>
+<div class="body">
+<details class="guess"><summary>先让对方猜真假</summary><div class="ans">基本是<b>假的</b>。已知真写了这句拉丁文的，只有极少数，最有名的是约 1510 年的一个铜地球仪，在亚洲东部的海边。</div></details>
+<p>古代地图上确实常画海怪、巨蛇和长相奇怪的民族，空白处也会写些“此处有狮”之类的话。但“这里有龙”这句在真实古地图上极罕见，它流行起来，多半是后来的小说和电影的功劳。</p>
+<p>古人怎么对付“不知道的地方”？办法有好几种：画上想象中的动物；照搬古书里的传说；干脆画一块根本不存在的大陆，比如欧洲地图上画了好几百年的“未知的南方大陆”；也有诚实的制图人，直接留白。</p>
+<p>还有一个有名的错误：十七、十八世纪的很多欧洲地图，把加利福尼亚画成了一个岛，一错就是一百多年。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你心里的地图上，哪一块是“这里有龙”：没去过，有点怕，又有点好奇？</li>
+<li>把不知道的地方画满想象，和诚实地留白，你喜欢哪种？</li>
+</ul></div>
+<p class="seed">可能的下一本：地图。</p>
+</article>
+
+<article class="cd" id="w60" data-t="书外" data-k="讲">
+<header class="cd-h"><span class="th">书外</span><span class="kd">讲</span><span class="no">60</span></header>
+<h3>站岗时下的棋</h3>
+<p class="hook">大英博物馆里有一盘四千五百年前的棋。规则失传了，后来却在一块泥板上找到了。</p>
+<div class="body">
+<p>1920 年代，考古学家伍利在两河流域的乌尔王陵里挖出了几副精美的棋盘：二十个格子，镶着贝壳和青金石。这就是“乌尔王族局戏”，大约公元前 2600 到前 2400 年。可是怎么玩，没人知道。</p>
+<p>1980 年代，大英博物馆的学者芬克尔在馆藏里认出一块公元前 177 年左右的楔形文字泥板，上面写的正是这种游戏的规则，虽然已经是两千多年后的版本。原来它是一种掷骰子赛跑的游戏：用四面体的骰子决定走几步，落在某些格子上可以再掷一次，踩到对方的棋子能把它踢回起点。</p>
+<p>更妙的是，这种棋在印度南部一个犹太社区里一直有人玩到二十世纪。考古学家还在一尊亚述王宫的巨大石雕门神脚边，发现了刻上去的这种棋盘，多半是站岗的卫兵无聊时刻的。四千多年来，人们站岗时、等人时、无聊时，一直在玩。</p>
+</div>
+<div class="turn"><b>抛给对方</b><ul>
+<li>你小时候玩过哪种不用电的游戏？还记得规则吗？</li>
+<li>游戏为什么让人停不下来？是输赢，是运气，还是一起玩的人？</li>
+</ul></div>
+<p class="seed">可能的下一本：《玩》。</p>
+</article>
+
+</div>
+</div>
+</section>
+<section class="g" id="closers">
+<div class="wide">
+  <h2 class="sec"><small>ALMOST THERE</small>到楼下了</h2>
+  <p class="lede">最后一两分钟，不必再开新话题。挑一句轻的收个尾，或者点下面的按钮让它替你挑。</p>
+  <div class="dr-top" style="max-width:24rem"><button class="big alt" id="btnClose" type="button">替我挑一句</button></div>
+  <ul class="closers" id="closeList">
+    <li>今天听到、学到的东西里，最好玩的一个是什么？</li>
+    <li>如果今天是一本书里的一章，标题叫什么？</li>
+    <li>明天最想搞定的一件事是什么？</li>
+    <li>今天有没有一个瞬间，让你觉得“还挺好”？</li>
+    <li>刚才那张卡，你会讲给第三个人听吗？讲给谁？</li>
+    <li>今晚聊的里面，你觉得哪件事最像编的？（都是真的，标了“存疑”的除外。）</li>
+    <li>下回路上想聊什么？出个题目，下次我来讲。</li>
+    <li>今天给自己打几分？扣掉的那几分扣在哪儿？</li>
+  </ul>
+  <div class="diy">
+    <strong>自己出一张卡</strong>：书房里每本书都能拆出几十张。照这个格式写在手机备忘录里就行——
+    <ol>
+      <li>一句能直接说出口的“开口”，最好是个问题或者一个反常的事实；</li>
+      <li>三五句讲清楚发生了什么，有年份、有人、有一个细节；</li>
+      <li>一个答案不唯一、对方能从自己生活里接上的问题。</li>
+    </ol>
+  </div>
+</div>
+</section>
+
+<section class="g truth" id="truth">
+<div class="col">
+  <h2 class="sec"><small>WHAT'S TRUE</small>哪些是真的</h2>
+  <p>六十张卡讲的都是真事，没有虚构的人物。前五十张的材料来自书房里的五本书，每张末尾的“想细看”通向原来那一章，那里有更完整的来龙去脉和出处；最后十张是新写的，出处列在下面。</p>
+  <p>为了好讲，卡上的数字大多取整，写成“约”“左右”“一两百亿”。下面这些地方证据不够硬，讲的时候最好带上“据说”：</p>
+  <ul>
+    <li><b>01 虫子</b>：飞蛾和日志是真的，“是霍珀亲手找到的”多半不是。</li>
+    <li><b>02 帕斯卡</b>：样机“约五十台”是常见说法，存世台数各家统计略有出入。</li>
+    <li><b>03 雅卡尔肖像</b>：“约两万四千张卡片”是通行说法。</li>
+    <li><b>11 库希姆</b>：可能是人名，也可能是职位名。</li>
+    <li><b>16 郁金香</b>：“没那么疯”主要依据近年历史学家对公证档案的研究（Anne Goldgar, <i>Tulipmania</i>, 2007），学界仍有不同看法。</li>
+    <li><b>18 牛顿</b>：在南海泡沫中亏约两万英镑，来自后人转述；“算不出人的疯狂”那句话出处可疑。</li>
+    <li><b>20 美洲白银</b>：流入中国的比例争议很大，卡上没给数字。</li>
+    <li><b>23 眼镜蛇效应</b>：印度眼镜蛇的故事找不到可靠史料；河内老鼠尾巴见于殖民档案（Michael G. Vann 的研究）。</li>
+    <li><b>30 鹞鹰</b>：出自唐人笔记《隋唐嘉话》，无从查证。</li>
+    <li><b>31 泥球与筹码</b>：施曼特-贝瑟拉的学说影响很大，细节有争议。</li>
+    <li><b>32 商博良晕倒</b>：流传的轶事。</li>
+    <li><b>34 龙骨入药</b>：王懿荣“看药认字”的细节多有附会。</li>
+    <li><b>35 字母起源年代</b>：原始西奈字母的年代各家说法不一。</li>
+    <li><b>37 每天十个词</b>：基于“高中毕业约认识六万词”的粗算，词汇量的估计差别很大。</li>
+    <li><b>38 long time no see</b>：来源没有定论。</li>
+    <li><b>40 语言消失的速度</b>：各家估计差别很大，卡上没给具体数字。</li>
+    <li><b>49 堂岛</b>：火绳收市、K 线起源于米市，细节不可靠。</li>
+    <li><b>55 “还我十一天”</b>：抗议的说法证据很弱。</li>
+    <li><b>57 一光日</b>：“2026 年 11 月前后”是按旅行者 1 号的速度推算的时间点。</li>
+  </ul>
+  <p>书外十张的主要出处：六十进制与法国十进制时间（1793 年颁行，1795 年停止强制使用）；婆罗摩笈多《婆罗摩历算书》（628），斐波那契《算盘书》（1202），佛罗伦萨兑换商行会 1299 年的禁令；高濂《遵生八笺》（1591）；茶的两种读音与传播路线，据语言学通行解释；格里高利历（1582）与英国《历法法案》（1750 年通过，1752 年实施）；《经度法案》（1714）与哈里森 H4（1761—1762 年牙买加航行）；旅行者号任务与“暗淡蓝点”照片（1990）、金唱片，据 NASA 公开资料；塞麦尔维斯（1847 年起推行洗手），据医学史通行记述；Hunt–Lenox 地球仪（约 1510）；乌尔王族局戏与芬克尔对公元前 177 年泥板规则的复原。</p>
+  <p>“字与话”里的颜色一张：Berlin &amp; Kay, <i>Basic Color Terms</i>（1969）；俄语蓝色辨别实验见 Winawer 等（2007）。“机器”里的记忆实验：Loftus &amp; Palmer（1974）。“衙门”里的年底花光：Liebman &amp; Mahoney 对美国联邦采购的研究（2017）；《文学文摘》民调（1936）。</p>
+  <p>引文只用了公版古籍：《史记》《汉书》《明史》《资治通鉴》《东京梦华录》《遵生八笺》。提到的英剧只做了概述。</p>
+</div>
+</section>
+
+<section class="g" id="shelf">
+<div class="wide">
+  <h2 class="sec"><small>THE OTHER BOOKS</small>书房里的另一本书</h2>
+  <p class="lede">卡片只是引子。哪张聊得最起劲，就去读它来自的那本书。</p>
+  <div class="shelf">
+    <a href="../computer/" style="--c:#2c6a6e"><b>计算机创世记</b>上卷《一沙一世界》</a>
+    <a href="../computer/second.html" style="--c:#cf4e19"><b>第二次创世</b>机器怎样学会“学”</a>
+    <a href="../money/" style="--c:#b0352b"><b>点石成金</b>金钱创世记</a>
+    <a href="../yes/" style="--c:#bf3a2b"><b>是，大人</b>衙门里的处世术</a>
+    <a href="../reed/" style="--c:#b04a2a"><b>苇城书记</b>文字创世记</a>
+    <a href="../finance/" style="--c:#6e4526"><b>柜台里外</b>金融创世记</a>
+  </div>
+</div>
+</section>
+</main>
+<footer class="g">
+  <div class="wide">
+    <p>回宿舍的路 · 路上聊 · 创世书房第六本。“讲过了”的记号只存在你自己的浏览器里，换手机或清缓存就没了。</p>
+    <p>正文由 Claude 协助写作，史实尽量核对过，存疑之处见上方“哪些是真的”。纯静态网页，无框架，只从 Google Fonts 加载字体。<a href="../">回书房</a></p>
+  </div>
+</footer>
+
+<script>
+/* 回宿舍的路：抽卡、筛选、讲过了。记号存在 localStorage，读写都包 try/catch。 */
+(function () {
+  var D = document;
+  D.documentElement.classList.add('js');
+
+  var KEY = 'genesis-walk-told';
+  function load(k, d) { try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } }
+  function save(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+
+  var cards = [].slice.call(D.querySelectorAll('.grid article.cd'));
+  var byId = {};
+  cards.forEach(function (c) { byId[c.id] = c; });
+  var told = {};
+  load(KEY, []).forEach(function (id) { if (byId[id]) told[id] = 1; });
+
+  var THEMES = [['全部', ''], ['机器', '--c-jq'], ['钱', '--c-q'], ['衙门', '--c-ym'], ['字与话', '--c-zi'], ['柜台', '--c-gt'], ['书外', '--c-sw']];
+  var KINDS = [['全部'], ['讲', '一个故事'], ['猜', '先让对方猜'], ['辩', '各执一词'], ['假', '假如'], ['玩', '小游戏']];
+  var st = { t: '全部', k: '全部', skip: load(KEY + '-skip', true), queue: [], qi: 0 };
+
+  // 每张卡估一个讲述时长：边讲边停，每分钟约 150 字；聊的时间另算
+  cards.forEach(function (c) {
+    var b = c.querySelector('.body'), n = b ? b.textContent.replace(/\s+/g, '').length : 300;
+    var m = Math.max(1, Math.min(4, Math.round(n / 150)));
+    var h = c.querySelector('.cd-h .no');
+    var s = D.createElement('span'); s.className = 'min'; s.textContent = '讲约 ' + m + ' 分钟';
+    h.parentNode.insertBefore(s, h);
+    c.tabIndex = 0;
+    c.setAttribute('role', 'button');
+    c.setAttribute('aria-label', '翻开：' + c.querySelector('h3').textContent);
+    c.addEventListener('click', function (e) { if (e.target.closest('a,summary')) return; openOne(c); });
+    c.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openOne(c); } });
+  });
+
+  var stage = D.getElementById('stage'), snav = D.getElementById('snav'), pos = D.getElementById('pos');
+  var bPrev = D.getElementById('prev'), bNext = D.getElementById('next'), bTold = D.getElementById('told');
+  var skipBox = D.getElementById('skip'), stat = D.getElementById('stat');
+  skipBox.checked = !!st.skip;
+
+  function ok(c) { return (st.t === '全部' || c.dataset.t === st.t) && (st.k === '全部' || c.dataset.k === st.k); }
+  function pool() { return cards.filter(function (c) { return ok(c) && !(st.skip && told[c.id]); }); }
+  function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+
+  // 筛选按钮
+  function chips(box, list, key, label) {
+    list.forEach(function (it) {
+      var b = D.createElement('button');
+      b.type = 'button'; b.className = 'chip'; b.dataset.v = it[0];
+      if (key === 't' && it[1]) b.style.setProperty('--cc', 'var(' + it[1] + ')');
+      b.innerHTML = (key === 'k' && it[1] ? it[1] : it[0]) + '<i></i>';
+      b.setAttribute('aria-pressed', it[0] === st[key] ? 'true' : 'false');
+      b.addEventListener('click', function () {
+        st[key] = it[0];
+        [].forEach.call(box.children, function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+        refresh();
+      });
+      box.appendChild(b);
+    });
+  }
+  chips(D.getElementById('fT'), THEMES, 't');
+  chips(D.getElementById('fK'), KINDS, 'k');
+
+  function refresh() {
+    var nTold = Object.keys(told).length, p = pool().length;
+    var filtered = cards.filter(ok).length;
+    stat.textContent = '讲过 ' + nTold + ' / ' + cards.length + ' 张 · 当前可抽 ' + p + ' 张';
+    // 每个按钮上的数字：在另一维筛选下还剩几张
+    [].forEach.call(D.querySelectorAll('#fT .chip'), function (b) {
+      var v = b.dataset.v, n = cards.filter(function (c) { return (v === '全部' || c.dataset.t === v) && (st.k === '全部' || c.dataset.k === st.k); }).length;
+      b.querySelector('i').textContent = n;
+    });
+    [].forEach.call(D.querySelectorAll('#fK .chip'), function (b) {
+      var v = b.dataset.v, n = cards.filter(function (c) { return (v === '全部' || c.dataset.k === v) && (st.t === '全部' || c.dataset.t === st.t); }).length;
+      b.querySelector('i').textContent = n;
+    });
+    cards.forEach(function (c) {
+      c.classList.toggle('told', !!told[c.id]);
+      c.style.display = ok(c) ? '' : 'none';
+    });
+    [].forEach.call(D.querySelectorAll('.deck'), function (d) {
+      d.style.display = d.querySelector('.grid article.cd:not([style*="none"])') ? '' : 'none';
+    });
+    if (filtered === 0) stat.textContent += '（这个组合没有卡）';
+  }
+
+  function empty(title, msg) {
+    stage.innerHTML = '<div class="empty"><b>' + title + '</b>' + msg + '</div>';
+    snav.classList.remove('on');
+  }
+
+  function render() {
+    var c = st.queue[st.qi];
+    if (!c) return;
+    var k = c.cloneNode(true);
+    k.removeAttribute('id'); k.removeAttribute('tabindex'); k.removeAttribute('role'); k.removeAttribute('aria-label');
+    k.style.display = '';
+    k.classList.toggle('told', !!told[c.id]);
+    stage.innerHTML = '';
+    stage.appendChild(k);
+    snav.classList.add('on');
+    var road = st.queue.length > 1;
+    pos.textContent = road ? '一条路 · 第 ' + (st.qi + 1) + ' / ' + st.queue.length + ' 张' : '第 ' + c.querySelector('.no').textContent + ' 号卡';
+    bPrev.style.display = road ? '' : 'none';
+    bPrev.disabled = st.qi === 0;
+    bNext.textContent = road && st.qi < st.queue.length - 1 ? '下一张' : '再抽一张';
+    bTold.setAttribute('aria-pressed', told[c.id] ? 'true' : 'false');
+    bTold.textContent = told[c.id] ? '✓ 讲过了' : '讲过了';
+    try { history.replaceState(null, '', '#' + c.id); } catch (e) {}
+  }
+
+  function showStage() {
+    var bar = D.querySelector('.bar'), y = stage.getBoundingClientRect().top + window.pageYOffset - (bar ? bar.offsetHeight : 0) - 12;
+    if (Math.abs(window.pageYOffset - y) > 40) window.scrollTo({ top: y, behavior: 'smooth' });
+  }
+
+  function drawOne() {
+    var cur = st.queue[st.qi], p = pool();
+    if (p.length > 1 && cur) p = p.filter(function (c) { return c !== cur; });
+    if (!p.length) return nothing();
+    st.queue = [p[Math.floor(Math.random() * p.length)]]; st.qi = 0;
+    render();
+  }
+
+  function drawRoad() {
+    var p = shuffle(pool());
+    if (!p.length) return nothing();
+    var out = [], seen = {};
+    p.forEach(function (c) { if (out.length < 3 && !seen[c.dataset.t]) { seen[c.dataset.t] = 1; out.push(c); } });
+    p.forEach(function (c) { if (out.length < 3 && out.indexOf(c) < 0) out.push(c); });
+    st.queue = out; st.qi = 0;
+    render();
+  }
+
+  function nothing() {
+    st.queue = [];
+    var any = cards.filter(ok).length;
+    if (any && st.skip) empty('这一类都讲过了', '换个主题或类型，取消“跳过讲过的”，或者清空记号从头再来。');
+    else empty('没有这样的卡', '换一个主题和类型的组合试试。');
+  }
+
+  function openOne(c) { st.queue = [c]; st.qi = 0; render(); showStage(); }
+
+  D.getElementById('btnOne').addEventListener('click', drawOne);
+  D.getElementById('btnRoad').addEventListener('click', drawRoad);
+  bPrev.addEventListener('click', function () { if (st.qi > 0) { st.qi--; render(); } });
+  bNext.addEventListener('click', function () {
+    if (st.queue.length > 1 && st.qi < st.queue.length - 1) { st.qi++; render(); } else drawOne();
+  });
+  bTold.addEventListener('click', function () {
+    var c = st.queue[st.qi]; if (!c) return;
+    if (told[c.id]) delete told[c.id]; else told[c.id] = 1;
+    save(KEY, Object.keys(told));
+    refresh(); render();
+  });
+  skipBox.addEventListener('change', function () { st.skip = skipBox.checked; save(KEY + '-skip', st.skip); refresh(); });
+  D.getElementById('reset').addEventListener('click', function () {
+    var n = Object.keys(told).length;
+    if (!n) return;
+    if (!window.confirm('清空 ' + n + ' 张卡的“讲过了”记号？')) return;
+    told = {}; save(KEY, []); refresh(); if (st.queue.length) render();
+  });
+
+  // 到楼下了：替我挑一句
+  var closeList = [].slice.call(D.querySelectorAll('#closeList li')), lastClose = -1;
+  D.getElementById('btnClose').addEventListener('click', function () {
+    var i; do { i = Math.floor(Math.random() * closeList.length); } while (i === lastClose && closeList.length > 1);
+    lastClose = i;
+    closeList.forEach(function (li, j) { li.classList.toggle('pick', j === i); });
+    closeList[i].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  });
+
+  refresh();
+  // 链接里带了卡号（#w12）就直接翻开那张
+  var h = (location.hash || '').slice(1);
+  if (byId[h]) { st.queue = [byId[h]]; st.qi = 0; render(); setTimeout(showStage, 60); }
+})();
+
+</script>
+</body>
+</html>

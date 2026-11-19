@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="一个会计掉进了还没有文字的平行世界。泥丸、泥球、泥板、借音、芦苇笔、矿工的字母——他亲眼看着文字一步一步被造出来。一部平行世界故事传，配真实历史、七个装置。">
+<meta name="description" content="一个会计掉进了还没有文字的平行世界。泥丸、泥球、泥板、借音、芦苇笔、矿工的字母——他亲眼看着文字一步一步被造出来。一部平行世界故事传，三卷：造字、破译、开口。配真实历史、十六个装置。">
 <meta property="og:title" content="苇城书记 · 文字创世记">
 <meta property="og:description" content="一个会计掉进了还没有文字的世界。文字是怎样被造出来的？">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='3' width='24' height='26' rx='7' fill='%23c08a5b'/%3E%3Cpath d='M10,11 l5,0 M10,11 l0,0 M18,9 l0,6 M10,19 l12,0 M16,16 l0,7' stroke='%232a2119' stroke-width='2.4' stroke-linecap='round'/%3E%3Cpath d='M8,9 l4,2 l-4,2 Z M16,7 l2,4 l2,-4 Z M8,17 l4,2 l-4,2 Z' fill='%232a2119'/%3E%3C/svg%3E">
@@ -143,7 +143,8 @@ section.chap{padding-top:24px}
 
 /* 回到我们的世界 */
 .real{margin:2.2em 0;padding:16px 18px 10px;border-radius:8px;border:1.5px solid var(--lapis);background:color-mix(in srgb,var(--lapis) 6%,var(--paper));position:relative}
-.real::before{content:"回到我们的世界";position:absolute;top:-12px;left:14px;background:var(--paper);padding:0 8px;font-family:var(--f-display);color:var(--lapis);font-size:15px;letter-spacing:.16em}
+.real::before{content:"回到我们的世界";position:absolute;top:-12px;left:14px;background:var(--paper);padding:0 8px;font-family:var(--f-body);font-weight:600;color:var(--lapis);font-size:13.5px;letter-spacing:.16em}
+.fx{font-family:var(--f-body)}  /* ZCOOL XiaoWei 的“回”字渲染成实心方块，换正文字体 */
 .real h5{margin:.2em 0 .5em;font-family:var(--f-display);font-weight:400;font-size:21px;color:var(--lapis);letter-spacing:.04em}
 .real p{text-indent:0!important;margin:0 0 .8em;font-size:16px;line-height:1.85}
 .real ul{margin:0 0 .8em;padding-left:1.2em;font-size:16px;line-height:1.85}
@@ -278,6 +279,61 @@ footer p{text-indent:0!important}
 .nextbook{display:block;margin:20px 0;padding:14px 16px;border:1px solid var(--rule);border-radius:6px;text-decoration:none;background:var(--card)}
 .nextbook b{font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--ink)}
 
+/* 卷二、卷三装置 */
+.quiz .qn,.gav .qn{font-family:var(--f-mono);font-size:12px;color:var(--ink-3)}
+.quiz .opts,.cart .opts,.gav .opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,9em),1fr));gap:8px}
+.quiz .opts button,.cart .opts button,.gav .opts button{border:1px solid var(--rule);border-radius:8px;background:var(--paper);padding:7px 10px;cursor:pointer;font-size:15.5px;line-height:1.5;color:var(--ink)}
+.quiz .opts button.ok,.cart .opts button.ok,.gav .opts button.ok,.lbo button.ok{border-color:var(--reed);background:color-mix(in srgb,var(--reed) 14%,var(--paper))}
+.quiz .opts button.bad,.cart .opts button.bad,.gav .opts button.bad,.lbo button.bad{border-color:var(--terra);background:color-mix(in srgb,var(--terra) 10%,var(--paper))}
+.qpic{display:flex;justify-content:center;margin:8px 0 12px}
+.qpic svg.oracle{width:120px;height:120px;background:var(--clay-2);border-radius:14px;padding:8px}
+.tok{text-align:center}
+.tok b{display:block;font-family:var(--f-mono);font-size:26px;font-weight:500;letter-spacing:.04em}
+.tok span{font-size:13px;color:var(--ink-3)}
+.cart .rname{font-size:13px;color:var(--ink-3);letter-spacing:.06em;margin:10px 0 4px;font-family:var(--f-mono)}
+.cart .ring{display:flex;flex-wrap:wrap;gap:4px;padding:8px 14px;border:2.5px solid var(--ink-2);border-radius:999px;background:var(--clay-2);width:max-content;max-width:100%}
+.cart .gl{display:flex;flex-direction:column;align-items:center;width:42px}
+.cart .gl svg{width:38px;height:38px}
+.cart .gl span{font-family:var(--f-mono);font-size:13px;color:var(--ink-3);line-height:1.2}
+.cart .gl.hi span{color:var(--terra);font-weight:500}
+.lbwords{display:grid;gap:10px}
+.lbw{display:grid;grid-template-columns:2em auto minmax(0,1fr);gap:10px;align-items:center;border-bottom:1px dashed var(--rule);padding-bottom:8px}
+.lbn{font-family:var(--f-display);font-size:20px;color:var(--terra)}
+.lbs{display:flex;gap:2px;background:var(--clay-2);border-radius:8px;padding:2px 6px}
+.lbs svg{width:34px;height:34px}
+.lbo{display:flex;flex-wrap:wrap;gap:6px}
+.lbo button{border:1px solid var(--rule);border-radius:999px;background:var(--paper);padding:2px 10px;cursor:pointer;font-size:13.5px;color:var(--ink)}
+.lbo button.on{border-color:var(--lapis);color:var(--lapis);box-shadow:0 0 0 2px color-mix(in srgb,var(--lapis) 20%,transparent)}
+table.lbgrid{min-width:300px;width:auto}
+table.lbgrid td{text-align:center;min-width:48px;padding:2px 4px}
+table.lbgrid td svg{width:28px;height:28px;margin:0 auto}
+table.lbgrid td span{font-family:var(--f-mono);font-size:11px;color:var(--ink-3)}
+.sx .row{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
+.sx .row button{min-width:2.4em;border:1px solid var(--rule);border-radius:8px;background:var(--paper);padding:2px 8px;cursor:pointer;font-size:20px;line-height:1.5;color:var(--ink)}
+.sx .row button.on{border-color:var(--terra);color:var(--terra)}
+.sx table.t{min-width:460px}
+.life svg{min-width:620px}
+.lifebar{cursor:pointer}
+.lifebar:hover .bar,.lifebar.on .bar{stroke:var(--ink);stroke-width:1.5}
+.gscene{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:center;background:var(--paper);border-radius:8px;padding:10px 12px;margin:6px 0}
+.gscene>span{font-size:54px;line-height:1}
+.gsay{font-family:var(--f-display);font-size:20px;color:var(--gold);margin-top:4px}
+.bk{display:flex;gap:18px;justify-content:center;margin:8px 0}
+.bk button{width:120px;height:120px;border:1px solid var(--rule);border-radius:12px;background:var(--paper);cursor:pointer;padding:8px}
+.bk button:hover{border-color:var(--ink-3)}
+.clkwrap{display:grid;grid-template-columns:220px minmax(0,1fr);gap:20px;align-items:center;margin-top:12px}
+.clkwrap svg{width:100%;max-width:220px}
+.clkwrap .readout div{margin:2px 0}
+.famleg{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--ink-2);margin-bottom:8px}
+.famleg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:0}
+.famcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:8px}
+.fc{text-align:left;border:1px solid var(--rule);border-left:6px solid var(--rule);border-radius:6px;background:var(--paper);padding:6px 10px;cursor:pointer;line-height:1.4;color:var(--ink)}
+.fc b{display:block;font-family:var(--f-mono);font-weight:500;font-size:16px}
+.fc span{font-size:12px;color:var(--ink-3)}
+.fc em{display:block;font-size:11.5px;color:var(--terra);background:none}
+.fc.ok{box-shadow:0 0 0 2px color-mix(in srgb,var(--reed) 45%,transparent)}
+.fc.bad{box-shadow:0 0 0 2px color-mix(in srgb,var(--terra) 45%,transparent)}
+@media (max-width:560px){.cart .ring{gap:0;padding:6px 8px}.cart .gl{width:25px}.cart .gl svg{width:24px;height:24px}.cart .gl span{font-size:11px}.clkwrap{grid-template-columns:minmax(0,1fr)}.clkwrap svg{margin:auto}.lbw{grid-template-columns:2em minmax(0,1fr)}.lbo{grid-column:1 / -1}}
 @media (max-width:700px){
   body{font-size:16.5px}
   .hero-grid,.bulla{grid-template-columns:minmax(0,1fr)}
@@ -326,6 +382,7 @@ footer p{text-indent:0!important}
         <p>从早上睁眼到现在，你大概已经读了几千个字：消息、标签、路牌、价签、这一行。读字对你来说像呼吸一样，不需要想。</p>
         <p>可是人类会说话已经很久很久了，会写字却只有五千来年。在那之前的每一代人，生下来、说话、做买卖、吵架、老去，没有留下一个字。</p>
         <p>这本书讲的是：<em>字是怎么来的</em>。它不是一位圣人某天坐下来发明的，是一群算账的、放羊的、酿酒的和挖矿的人，为了不吵架、为了记住谁欠谁，一步一步凑出来的。我们找一个人替你到现场去看。</p>
+        <p>全书三卷：卷一讲字怎样被造出来，卷二讲读不懂的字怎样被读回来、字怎样被借走和死去，卷三退回到比字更早的地方，讲话是怎么说出来的。</p>
       </div>
       <div class="tabletc">
         <svg id="coverTab" viewBox="0 0 300 230" role="img" aria-label="一块泥板，上面压着数字和一个羊的符号"></svg>
@@ -347,7 +404,7 @@ footer p{text-indent:0!important}
       <li><b>林记手记</b>：页边红色的手写字，是他自己的嘀咕。</li>
       <li><b>眉批</b>：正文旁的小印章。<span style="color:var(--lapis)">押韵</span>是两个世界、两个时代撞了韵；<span style="color:var(--reed)">联系</span>是和书房里别的书有关；<span style="color:var(--ink-3)">存疑</span>是学界还在吵；<span style="color:var(--gold)">生活</span>是这件事和你今天有什么关系。</li>
       <li><b>记一笔</b>：会计的老毛病。每章末尾，林记都给自己开一张凭证，左边“借”记历史，右边“贷”记生活。</li>
-      <li><b>七个装置</b>：封一只泥球、写一张收据、猜画谜、拼汉字、看一个字怎样变成楔子、查你名字里每个字母的祖宗、以及人类到底从头发明过几次文字。</li>
+      <li><b>十六个装置</b>：封泥球、写收据、猜画谜、拼汉字、看字变成楔子、查字母的祖宗、文字家谱、破译王名圈、猜线形文字 B 的地名、认甲骨文、听一个汉字在四国怎么念、文字的寿命、猜海客的话、说话的钟、读洋泾浜、给语言认亲戚。</li>
     </ul>
 
     <h3>人物</h3>
@@ -357,6 +414,21 @@ footer p{text-indent:0!important}
       <div class="c"><b>老秤</b>神庙的仓管，管着全城交给神庙的麦子、羊和油。手边永远放着一罐子小泥丸。最讨厌两样东西：少一只羊，和新花样。</div>
       <div class="x"><b>小芦</b>在神庙粮仓扫地的孤儿，十来岁，瘦得像根芦苇，所以叫小芦。不识字（那时候也没人识字），但总问出最要命的问题。</div>
       <div class="a"><b>阿穆</b>城外的牧羊人，羊多，话少。会数到二十，因为手指加脚趾就二十个。不太信得过神庙里的人。</div>
+      <div class="x"><b>芦花</b>（卷二起）小芦的女儿，泥板屋里写得最快的书吏。跟着老了的林记，去读一摞谁也读不懂的泥板。</div>
+      <div class="m"><b>阿浪</b>（卷三起）从海上漂来的“海客”里的一个姑娘。她说的话，苇城没有一个人听得懂，连林记也不懂。</div>
+    </div>
+    <div class="real" style="margin-top:1.8em">
+      <h5>你可能想问的，在这里</h5>
+      <ul>
+        <li>字是怎么一步步造出来的？→ 卷一，第一到第六章。</li>
+        <li>没人认得的古文字，后来是怎么读出来的？→ 第七到第九章。</li>
+        <li>文字怎样在各地独立发明、又被别人借走改掉（汉字到日本朝鲜越南、字母到半个世界）？→ 第六章、第十章。</li>
+        <li>文字和语言是怎样死掉的（楔形、圣书字、西夏文、契丹文、女书，最后一个说某种话的人）？→ 第十一章、第十六章。</li>
+        <li>人是怎样把一个声音和一个意思对上的？婴儿怎样学会第一个词？→ 第十二章。</li>
+        <li>为什么说先有话、后有字？话本身是从哪儿来的？→ 第十三章。</li>
+        <li>说不同语言的人，第一次见面怎样交流、怎样慢慢懂得对方的话和习俗？→ 第十四章。</li>
+        <li>人类一开始说的是同一种话吗？→ 第十五章。</li>
+      </ul>
     </div>
 
     <h3>目录</h3>
@@ -369,11 +441,19 @@ footer p{text-indent:0!important}
       <li><a href="#c4"><span class="n">第四章</span><span class="t">芦苇笔<small>工具改变了字，字改变了城</small></span><span class="r">约前 2600 起</span></a></li>
       <li><a href="#c5"><span class="n">第五章</span><span class="t">矿工的字母<small>最有学问的人没想到的事，被挖矿的人想到了</small></span><span class="r">约前 1850</span></a></li>
       <li><a href="#c6"><span class="n">第六章</span><span class="t">第四次<small>人类从头发明过几次文字？还有两个后来者</small></span><span class="r">前 3300—1821</span></a></li>
-      <li><a href="#end"><span class="n">卷末</span><span class="t">哪些是真的<small>故事和历史的对照表、出处与存疑</small></span><span class="r">附录</span></a></li>
-      <li class="vh">卷二 · 破译 · 读不懂的字怎样被读回来</li>
-      <li><span class="soon"><span class="n">卷二</span><span class="t">破译<small>罗塞塔石碑、线形文字 B、玛雅、甲骨，和那些至今没人读懂的字</small></span><span class="r">前 1450—今</span></span></li>
+      <li class="vh">卷二 · 破译 · 读不懂的字怎样被读回来，又怎样被借走、死去</li>
+      <li><a href="#c7"><span class="n">第七章</span><span class="t">双语<small>罗塞塔石碑、贝希斯敦崖刻，和一份用两种字写的合同</small></span><span class="r">1799—1857</span></a></li>
+      <li><a href="#c8"><span class="n">第八章</span><span class="t">格子<small>数符号、排格子、猜地名：线形文字 B</small></span><span class="r">1900—1952</span></a></li>
+      <li><a href="#c9"><span class="n">第九章</span><span class="t">烧掉的书<small>玛雅与甲骨：差点永远读不懂的两种字</small></span><span class="r">1562—1973</span></a></li>
+      <li><a href="#c10"><span class="n">第十章</span><span class="t">借字的人<small>汉字去了日本、朝鲜、越南，字母去了半个世界</small></span><span class="r">前 1000—1958</span></a></li>
+      <li><a href="#c11"><span class="n">第十一章</span><span class="t">最后一个读者<small>楔形、圣书字、西夏、契丹、女书：文字怎样死去</small></span><span class="r">75—2004</span></a></li>
       <li class="vh">卷三 · 开口 · 话是怎么说出来的</li>
-      <li><span class="soon"><span class="n">卷三</span><span class="t">开口<small>人为什么会说话、语言怎样分家、怎样死去</small></span><span class="r">？—今</span></span></li>
+      <li><a href="#c12"><span class="n">第十二章</span><span class="t">那是什么<small>一个声音怎样对上一个意思：指物、婴儿、海伦·凯勒</small></span><span class="r">1887 · 1960</span></a></li>
+      <li><a href="#c13"><span class="n">第十三章</span><span class="t">先有嘴<small>先有话，后有字；话又是从哪儿来的</small></span><span class="r">？—今</span></a></li>
+      <li><a href="#c14"><span class="n">第十四章</span><span class="t">通事<small>说不同话的人怎样开始交流：手势、哑市、洋泾浜、翻译</small></span><span class="r">前 450—今</span></a></li>
+      <li><a href="#c15"><span class="n">第十五章</span><span class="t">巴别<small>人类一开始说的是同一种话吗</small></span><span class="r">1786—今</span></a></li>
+      <li><a href="#c16"><span class="n">第十六章</span><span class="t">开口<small>语言怎样死去、怎样复活；林记的最后一笔账</small></span><span class="r">1777—今</span></a></li>
+      <li><a href="#end"><span class="n">书末</span><span class="t">哪些是真的<small>故事和历史的对照表、出处与存疑</small></span><span class="r">附录</span></a></li>
     </ol>
   </div>
 </section>
@@ -1106,7 +1186,7 @@ footer p{text-indent:0!important}
   </div>
 
   <div class="col">
-    <h3>回到苇城</h3>
+    <h3><span class="fx">回</span>到苇城</h3>
     <p>林记把老牛的二十几个符号抄在一块泥板上，带回了苇城。</p>
     <p>他兴冲冲地拿给小芦看。小芦那时已经是泥板屋的先生，三十岁出头，留着胡子，手下有几十个学生。他看了很久，看懂了，然后把泥板推了回来。</p>
     <div class="scene">
@@ -1287,7 +1367,7 @@ footer p{text-indent:0!important}
     <p>他没有回家。也许永远回不去了。那张写着不知是“叁”还是“捌”的送货单，还压在他的枕头底下，三十年，纸已经黄得发脆。那三百块钱，他早就不在乎了。他只是终于想明白了那天晚上那个问题的答案：</p>
     <p><em>人类发明文字，是为了让事情说得清。可是字从来没有真正说清楚过，所以世上才需要会计，需要书吏，需要读的人。</em></p>
     <p class="ni" style="text-align:center;margin-top:2em;font-family:var(--f-display);font-size:20px;letter-spacing:.2em">卷一 · 落笔 · 完</p>
-    <p class="ni" style="text-align:center;color:var(--ink-3);font-size:14.5px">卷二《破译》待续：罗塞塔石碑、线形文字 B、玛雅文字、甲骨文，以及林记手上那一摞泥板。</p>
+    <p class="ni" style="text-align:center;color:var(--ink-3);font-size:14.5px">林记手上那一摞泥板，接着在<a href="#v2">卷二《破译》</a>里读。</p>
 
     <aside class="echo" data-k="存疑">
       <span class="stamp">存疑</span>
@@ -1303,20 +1383,1089 @@ footer p{text-indent:0!important}
         <div><i>借 · 历史</i>从零发明文字，人类大概只做过三四次；其余的文字都是借的、改的，或者只是听说“字可以有”，就自己造了一套。每个民族都说字是神给的，其实是记账的人、酒坊里开玩笑的人、矿上的外乡人，一步一步凑出来的。</div>
         <div><i>贷 · 生活</i>字是为了说清楚而造的，可它永远说不全。所以写下来的东西要有人去读、去对、去问。会计、书吏、读者，都是同一种人：替文字把没说清的那部分补上。</div>
       </div>
-      <div class="lf"><span>本卷结账，余额结转下卷</span><span class="sig">林记</span></div>
+      <div class="lf"><span>本卷结账，余额结转卷二</span><span class="sig">林记</span></div>
     </div>
   </div>
 </section>
 
-<!-- ============ 卷末 ============ -->
-<section class="chap" id="end" data-vol="卷末 · 哪些是真的">
+<!-- ============ 卷二 ============ -->
+<div class="volhead" data-vol="卷二 · 破译" id="v2">
+  <div class="num">VOLUME TWO</div>
+  <h2>破译</h2>
+  <p class="lede">卷二讲反过来的事：字造出来以后，怎样被遗忘，又怎样被一群固执的人读回来；它们怎样被别的民族借走、改掉，最后怎样死去。林记老了，泥板屋来了一个叫芦花的姑娘。</p>
+</div>
+
+<!-- ============ 第七章 双语 ============ -->
+<section class="chap" id="c7" data-vol="第七章 · 双语">
   <div class="slab">
-    <div class="no">卷末</div>
+    <svg class="wedges" viewBox="0 0 80 60" aria-hidden="true"><g fill="none" stroke="var(--clay-d)" stroke-width="2.4" stroke-linecap="round"><rect x="6" y="8" width="30" height="44" rx="4"/><path d="M12,18 h18 M12,26 h14 M12,34 h18 M12,42 h10"/><rect x="44" y="8" width="30" height="44" rx="4"/><circle cx="52" cy="20" r="3"/><path d="M60,17 l4,6 M50,32 h16 M56,40 l6,0 l-3,6 z"/></g></svg>
+    <div class="no">第七章</div>
+    <h2>双语</h2>
+    <dl><dt>苇城</dt><dd>林记到苇城的第三十一年，秋天</dd><dt>我们的世界</dt><dd>1799 年罗塞塔石碑出土，1822 年商博良读通圣书字，1857 年楔形文字“考试”</dd><dt>本章装置</dt><dd>破译王名圈</dd></dl>
+  </div>
+  <div class="col">
+    <p>那一摞泥板，一共两百一十三块。</p>
+    <p>上头把它们堆在神庙后面的一间空屋里，派了一个书吏给林记打下手。来的是个二十出头的姑娘，瘦，手指上全是泥，说话快，写字更快。林记一看她削芦苇的手法，就认出来了。</p>
+    <p>“你爹是小芦。”</p>
+    <p>“我叫芦花。”她说，“我爹说，要不是你，他现在还在粮仓扫地。他让我来还这个人情。”</p>
+    <p>林记笑了。小芦如今是神庙的首席书吏，胡子都白了。林记还记得他第一次把泥球压成泥饼的样子，好像就是去年的事。</p>
+  </div>
+
+  <div class="col">
+    <div class="scene">
+      <div class="sh"><b>神庙后面的空屋</b><span>第三十一年 · 秋天</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who x">芦花</span><p>林老，这些字，你真的一个都不认得？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>一个都不认得。</p></div>
+        <div class="ln"><span class="who x">芦花</span><p>那怎么读？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>在我那边，想读一种死了的字，大概要碰上三样运气里的至少一样。第一，你懂它记的那种话，或者懂它的亲戚话。第二，你找到一块“双语”的东西：同一段话，一边用你认得的字写，一边用你不认得的字写。第三，字要够多，多到你能数、能比。</p></div>
+        <div class="ln"><span class="who x">芦花</span><p>我们有几样？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>东堤人一百多年前就死光了，他们的话没人会说。双语，没见着。字倒是有两百多块。</p></div>
+        <div class="ln"><span class="who x">芦花</span><p>那就是一样。</p></div>
+        <div class="ln"><span class="who l">林记</span><p>半样。两百块，不算多。</p></div>
+      </div>
+    </div>
+    <p>“东堤”是河对岸那座城的名字，苇城人这么叫它，因为它修在河东的一道土堤上。它比苇城小，和苇城做了几百年的买卖，后来在一场仗里被烧光了，剩下的人散了，散着散着就没了。苇城人还记得这个名字，记得那边出好陶器，别的什么也不记得了。</p>
+    <p>林记给芦花讲了他那个世界里的一块石头。</p>
+  </div>
+
+  <div class="col">
+    <div class="real">
+      <h5>罗塞塔石碑</h5>
+      <p>1799 年 7 月，拿破仑远征埃及的法国士兵在尼罗河口的罗塞塔（今拉希德）附近修工事，挖出一块黑色的石碑残块。碑上刻着同一道法令的三种写法：最上面是<em>圣书字</em>，中间是埃及日常用的<em>世俗体</em>，最下面是<em>希腊文</em>。法令是公元前 196 年埃及祭司为国王托勒密五世颁布的。希腊文人人读得懂，于是所有人都明白：这是一把钥匙。1801 年法军战败，石碑归了英国，次年进了大英博物馆，至今还在那里。</p>
+      <p>钥匙在手，门却开了二十多年。当时欧洲人普遍相信圣书字是<em>纯粹的象征符号</em>，每个图形都藏着神秘的哲学含义，跟读音无关。这个错误要追到 5 世纪一位叫荷拉波罗的作者，他写了一本解释圣书字的书，说鹅代表“儿子”、因为鹅最爱子女之类。后来的学者照着这条路猜了一千多年，越猜越玄。</p>
+      <p>英国医生、物理学家托马斯·杨最先取得突破：他注意到碑上有几组符号被一个椭圆圈起来（后来叫“王名圈”），推断圈里是国王的名字；外国国王的名字必须照音写，所以圈里的符号一定有表音的。他据此读出了几个音。法国人商博良走得更远。他从小学了科普特语（古埃及语的最后形态，当时还在埃及的基督教会里用），又拿“托勒密”和另一块方尖碑上的“克利奥帕特拉”两个王名圈对比，排出了一批符号的读音；接着他发现，这些表音的符号<em>不只用来写外国名字，也用来写埃及本地的词</em>。1822 年，他发表了《致达西耶先生的信》，圣书字从此可以读了。</p>
+      <p class="k">据通行埃及学史；托马斯·杨与商博良的功劳分配，当时就有争议。</p>
+    </div>
+
+    <aside class="echo" data-k="存疑">
+      <span class="stamp">存疑</span>
+      <div>
+        <p class="rh">“我搞定了！”然后昏了过去</p>
+        <p>流传最广的商博良故事是：1822 年 9 月的一天，他想通了，冲进哥哥工作的地方，喊了一声“我搞定了！”（Je tiens l'affaire !），随即昏倒，躺了好几天。这个故事出自他哥哥后来的回忆和传记作者的转述，细节未必准确，但他那几年确实身体很差，十年后就去世了，只活了四十一岁。</p>
+      </div>
+    </aside>
+  </div>
+
+  <div class="col">
+    <h3>名字不翻译</h3>
+    <p>芦花听完，没说话，回去接着一块一块地翻泥板。她把它们按大小、按泥色、按字的疏密分成几堆，翻到第九天，她抱着一块泥板跑进了林记住的屋子，连门都没敲。</p>
+    <p>那块泥板中间压了一道竖线。竖线左边是楔子，苇城的楔子，旧式的，一百多年前的写法，芦花得连蒙带猜才念得出来；竖线右边，是东堤的字。</p>
+    <div class="scene">
+      <div class="sh"><b>林记的屋子</b><span>第九天 · 夜里</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who x">芦花</span><p>左边我念出来了，是一份借麦子的契约。苇城一个叫“鱼门”的商人，借给东堤一个商人三十大筐麦子，秋后还，见证人两个。</p></div>
+        <div class="ln"><span class="who l">林记</span><p>右边呢？</p></div>
+        <div class="ln"><span class="who x">芦花</span><p>右边要是同一份契约，那就应该也有“鱼门”这个名字。</p></div>
+        <div class="ln"><span class="who l">林记</span><p>为什么？</p></div>
+        <div class="ln"><span class="who x">芦花</span><p>因为名字是不翻译的。“三十”可以换成东堤人的“三十”，“麦子”可以换成东堤人的“麦子”，可是“鱼门”就是鱼门，到了东堤，还得叫鱼门。他们只能照着音写。</p></div>
+        <div class="sd">林记盯着她看了一会儿。</div>
+        <div class="ln"><span class="who l">林记</span><p>你知道你刚才说的这句话，我那边有一个人想了多少年吗？</p></div>
+        <div class="ln"><span class="who x">芦花</span><p>多少年？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>他叫商博良。从十几岁想到三十二岁。</p></div>
+      </div>
+    </div>
+    <p>他们在右半边找。契约里有四个人名：两个商人，两个见证人。左边四个名字出现的位置，右边大致也该有四组符号。他们找到了四组，每组两三个符号。其中两组里，都有同一个符号，像一只倒扣的碗。</p>
+    <p>左边对应的两个名字，一个是“鱼门”，一个是见证人“门牙”。两个名字里都有一个“门”。</p>
+    <p>芦花在那只倒扣的碗旁边，用芦苇尖轻轻刻了一个小小的苇城符号：门。</p>
+    <p>那是东堤字里，一百多年来第一个重新被人念出声的音。</p>
+    <p class="note">名字是两种语言之间最窄的那座桥：别的都能翻，名字只能照着念。我们那边读通圣书字、读通楔形字，都是先从国王的名字过的桥。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig cart" id="cartFig">
+      <div class="fig-label">装置 8</div>
+      <h4>破译王名圈</h4>
+      <p class="how">这是商博良当年做过的事。两个王名圈，一个是“托勒密”（希腊文里大致念 P-T-O-L-M-I-S），一个是“克利奥帕特拉”（K-L-E-O-P-A-T-R-A）。符号是示意画法，但每个符号对应什么音、哪里对得上、哪里对不上，都照真实的情况安排。一步一步往下点。</p>
+      <div id="cartBox"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="real">
+      <h5>楔形文字是怎样读<span class="fx">回</span>来的</h5>
+      <p>楔形文字的破译比圣书字更曲折，因为它用来写的语言不止一种，而且没有一块像罗塞塔那样“附带希腊文”的碑。</p>
+      <p>突破口在波斯。1802 年，德国一位中学教师格罗特芬德拿波斯波利斯宫殿里的几段铭文打赌：他猜铭文开头是“某某，伟大的王，王中之王，某某之子”这种波斯王常用的套话，又从希腊史书里知道波斯王的名字和父子顺序，据此试出了几个古波斯楔形字母的音。古波斯楔形文字是一种简化过的、近乎字母的楔形字，符号不多，最容易下手。</p>
+      <p>真正的“罗塞塔”是伊朗西部的贝希斯敦崖刻：大流士一世约公元前 520 年让人在离地一百来米高的悬崖上刻下自己的功绩，用了三种语言：古波斯语、埃兰语、巴比伦语（阿卡德语）。英国军官罗林森从 1835 年起，冒着摔死的危险，前后十来年把整段崖刻抄了下来。先读通古波斯文，再借着它去啃巴比伦楔形文字。</p>
+      <p>巴比伦楔形文字难得多：一个符号可以有好几个读音，又可以当整个词用。很多人不信它真被读懂了。1857 年，伦敦的皇家亚洲学会做了一次著名的“考试”：把一段新出土、谁都没见过的亚述铭文，分别密封寄给四位学者，罗林森、爱尔兰牧师欣克斯、摄影术先驱塔尔博特、法国人奥佩尔，让他们各自独立翻译，再拆封对照。四份译文在要点上基本一致。从那天起，亚述学成了一门学问。</p>
+      <p class="k">据通行亚述学史；崖刻高度、抄录年份为约数。</p>
+    </div>
+
+    <aside class="echo" data-k="押韵">
+      <span class="stamp">押韵</span>
+      <div>
+        <p class="rh">借音，又一次</p>
+        <p>卷一里，麦娘借“水、苗”的音写出了阿穆的名字。卷二的破译，靠的也是这件事的反面：<em>因为名字只能借音来写，所以名字成了破解读音的钥匙。</em>商博良的托勒密、格罗特芬德的大流士、芦花的“鱼门”，都是同一把钥匙。你今天学外语，最早认出来的往往也是人名、地名和品牌名。</p>
+      </div>
+    </aside>
+
+    <aside class="echo" data-k="生活">
+      <span class="stamp">生活</span>
+      <div>
+        <p class="rh">找到你的“双语”</p>
+        <p>啃一样完全陌生的东西，最难的是第一步：什么都不认得，不知道从哪里下手。破译者的办法是先找“双语”，找一个一边是你懂的、一边是你不懂的对照物。学一门新课，先找一个你已经会的东西去对照：新公式像哪个旧公式？新概念是哪个旧概念换了个名字？一块罗塞塔，往往比一百页从零开始的苦读更管用。</p>
+      </div>
+    </aside>
+
+    <div class="ledger">
+      <div class="lh"><b>记一笔</b><span>第 07 号凭证 · 双语</span></div>
+      <div class="lb">
+        <div><i>借 · 历史</i>死文字的破译，几乎都从“双语”和“名字”开始：罗塞塔石碑的希腊文、贝希斯敦的古波斯文、王名圈里只能照音写的国王名字。还有一条：先放下“它一定很神秘”的成见。</div>
+        <div><i>贷 · 生活</i>面对一样完全陌生的东西，先找一个你已经懂的东西去对照。</div>
+      </div>
+      <div class="lf"><span>附件：东堤契约一块（双语）</span><span class="sig">林记</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第八章 格子 ============ -->
+<section class="chap" id="c8" data-vol="第八章 · 格子">
+  <div class="slab">
+    <svg class="wedges" viewBox="0 0 80 60" aria-hidden="true"><g fill="none" stroke="var(--clay-d)" stroke-width="2" stroke-linecap="round"><path d="M10,8 h60 v44 h-60 z M10,22 h60 M10,37 h60 M25,8 v44 M40,8 v44 M55,8 v44"/></g><g fill="var(--clay-d)"><circle cx="32" cy="15" r="3"/><circle cx="47" cy="30" r="3"/><circle cx="62" cy="44" r="3"/></g></svg>
+    <div class="no">第八章</div>
+    <h2>格子</h2>
+    <dl><dt>苇城</dt><dd>第三十一年冬天到第三十二年春天</dd><dt>我们的世界</dt><dd>1900 年克里特岛出土线形文字 B，1952 年文特里斯读通；线形文字 A 至今未破</dd><dt>本章装置</dt><dd>猜地名</dd></dl>
+  </div>
+  <div class="col">
+    <p>有了“门”，又有了另外四五个音。可是五个音读不了两百块泥板。</p>
+    <p>林记让芦花先做一件看起来很笨的事：<em>数</em>。把两百一十三块泥板上出现过的所有不同符号，一个一个找出来，压在一块大泥板上，每种只压一次，旁边记下它出现了多少回。</p>
+    <p>芦花数了一个冬天。数完了，一共八十三种。</p>
+    <div class="scene">
+      <div class="sh"><b>空屋</b><span>第三十一年 · 冬天</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who x">芦花</span><p>八十三种。数这个有什么用？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>有大用。要是二三十种，那差不多一个符号管一个音，像老牛的字母。要是好几百上千种，那多半一个符号管一个词，像我们苇城的泥板，或者我老家的字。八十来种，不多不少……</p></div>
+        <div class="ln"><span class="who x">芦花</span><p>那就是一个符号管一个……半个词？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>一个音节。一个辅音带一个元音，“门”就是一个音节。东堤人的话，大概是一拍一拍拼起来的，八十来种拍子，够拼出他们所有的话。</p></div>
+      </div>
+    </div>
+    <p>这一下，事情变成了一道填格子的题。</p>
+  </div>
+
+  <div class="col">
+    <h3>一张格子</h3>
+    <p>林记在一块最大的泥板上划了一张格子：横着一行一行，是辅音，竖着一列一列，是元音。每个东堤符号，应该在这张格子里占一个位置：<em>同一行的符号辅音相同，同一列的符号元音相同</em>。他们还不知道任何一行念什么，可是只要能把符号放进对的行和列，以后只要读出一个，整行整列就都跟着亮了。</p>
+    <p>怎么知道哪两个符号在同一行？芦花发现了门道。泥板上有不少词，开头几个符号一样，只有最后一两个不同，好像一个词换了几种尾巴。她拿苇城话打比方：“羊”“羊的”“给羊”，词根不变，尾巴变。东堤人的尾巴，大概也是在说“的”“给”“们”。尾巴换了，辅音常常没换，只换了元音。那么，在同一个位置上互相替换的那几个符号，多半就在同一行里。</p>
+    <p>她花了两个月，把八十三个符号里的四十多个，排进了格子。格子还是空的，一个音也没有，可是已经有了骨架。</p>
+    <p class="note">芦花做的事，在我那边有一个女人做过。她叫艾丽丝·科伯，在纽约一所大学里教古典学，用手工卡片和香烟盒子，一张一张地排。她排好了骨架，没等到看见格子亮起来就去世了。</p>
+  </div>
+
+  <div class="col">
+    <h3>地名</h3>
+    <p>格子要亮，得有人往里点第一把火。</p>
+    <p>点火的是一类特别的词。芦花注意到，有几个词总是出现在泥板最前面，后面跟着数字和货物，像是“某某地：麦子多少，羊多少”。这些词，没有尾巴变化。</p>
+    <p>“地名。”林记说，“地名和人名一样，不翻译，而且活得长。城没了，名字还留在别人嘴里。”</p>
+    <p>苇城人嘴里还留着河那边一些地方的旧名字：盐沼、三棵树、渡口，当然还有东堤自己，和苇城。芦花把这些名字的音，一个一个往泥板上那几个词里套：哪个词的音节数对得上？哪个词的最后一个符号和另一个词的一样？套上一个，格子里就亮起一行一列；亮起的音再拿去套下一个。</p>
+    <p>第三十二年开春，他们读出了第一整句话：“渡口：大麦二十筐。”</p>
+    <p>然后是第二句，第三句。读着读着，芦花的脸色变了。</p>
+    <div class="scene">
+      <div class="sh"><b>空屋</b><span>第三十二年 · 春天</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who x">芦花</span><p>林老，这不对。</p></div>
+        <div class="ln"><span class="who l">林记</span><p>哪里不对？</p></div>
+        <div class="ln"><span class="who x">芦花</span><p>这些词，我听得懂。“大麦”他们念成“舍”，我们也念“舍”；“给”他们念“巴”，我们也念“巴”。尾巴怪一点，像我奶奶那辈人说话的口气。东堤人说的……就是苇城话。旧的苇城话。</p></div>
+        <div class="sd">林记半天没吭声。</div>
+        <div class="ln"><span class="who l">林记</span><p>我一直以为他们是外人。</p></div>
+        <div class="ln"><span class="who x">芦花</span><p>我们都这么以为。打了那么多年仗，谁会想到是自己人。</p></div>
+      </div>
+    </div>
+    <p>东堤人用的是另一套字，一套照着苇城楔子改出来的、一个符号一个音节的字，可是他们说的话，和苇城话是一家。一百多年前，河两边的人说着差不多的话，用着不一样的字，互相打仗，互相做买卖。</p>
+    <p class="note">我自己也犯了那个错：看见字不一样，就以为话不一样，人不一样。字和话是两回事，这一点我在卷一里就该想明白的。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig lb" id="lbFig">
+      <div class="fig-label">装置 9</div>
+      <h4>猜地名</h4>
+      <p class="how">这是 1952 年文特里斯真实走过的一步。下面是线形文字 B 泥板上反复出现的四个词（符号是示意画法），旁边是克里特岛上四个古老的地名。每个词选一个地名。提示在下面，答完看看格子怎样亮起来。</p>
+      <div id="lbBox"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="real">
+      <h5>线形文字 B：一个建筑师的业余爱好</h5>
+      <p>1900 年起，英国考古学家伊文思在克里特岛的克诺索斯发掘出一座巨大的宫殿，还有几千块烧过的泥板，上面是一种从没见过的线条字。他把它叫作“线形文字 B”（另有一种更早的叫“线形文字 A”）。伊文思坚信克里特的米诺斯文明和希腊人无关，这种字写的一定是一种未知语言。他手里攥着大部分泥板，几十年没有全部发表。</p>
+      <p>美国学者艾丽丝·科伯在 1940 年代做了最关键的基础工作：她发现一些词有固定的“三连式”变化（同一个词根，几种不同的尾巴），证明这种语言有词形变化，并据此推出哪些符号辅音相同、哪些元音相同。她 1950 年因病去世，年仅四十三岁。</p>
+      <p>接着往下走的是英国建筑师迈克尔·文特里斯。他十四岁时听伊文思讲座，从此迷上了这种字，二战时当过轰炸机领航员，战后一边干建筑一边业余破译。他把符号排进一张辅音×元音的格子，然后在 1952 年试着把几个反复出现的词当作克里特的地名套进去：克诺索斯、阿姆尼索斯、图利索斯……套着套着，他吃惊地发现，读出来的东西是<em>希腊语</em>，一种比荷马还早好几百年的古希腊语。他自己原来一直以为会是伊特鲁里亚语。</p>
+      <p>1952 年 7 月，他在英国广播公司的电台里宣布了结果，随后和剑桥语言学家查德威克合写论文。第二年，美国考古学家布利根在希腊大陆的皮洛斯出土了一块新泥板，上面的词按文特里斯的读法念出来是 ti-ri-po-de（三足鼎），旁边正好画着一只三足鼎。怀疑的人大多闭了嘴。1956 年，文特里斯死于车祸，年仅三十四岁。</p>
+      <p>线形文字 B 里大约有九十个音节符号，外加一批表示货物的图形符号。读出来的内容，和乌鲁克泥板一样，几乎全是账：羊毛、橄榄油、战车零件、奴隶、贡品。而比它更早的线形文字 A，符号和它很像，读音大概也能借过去，可读出来的话没人听得懂。它至今没有被破译。</p>
+      <p class="k">据查德威克《线形文字 B 的破译》及通行综述；人数、年份为约数。</p>
+    </div>
+
+    <aside class="echo" data-k="押韵">
+      <span class="stamp">押韵</span>
+      <div>
+        <p class="rh">最先挡路的，是自己的成见</p>
+        <p>荷拉波罗让欧洲人以为圣书字是纯象征，于是一千年读不懂；伊文思认定克里特人不是希腊人，文特里斯也一直以为是伊特鲁里亚语，林记以为东堤人是外人。破译史上，最难翻过去的往往不是字，而是“我早就知道答案是什么”的那份自信。文特里斯的伟大之处在于，结果和他自己的猜想相反时，他相信了结果。</p>
+      </div>
+    </aside>
+
+    <aside class="echo" data-k="生活">
+      <span class="stamp">生活</span>
+      <div>
+        <p class="rh">先数，再猜</p>
+        <p>芦花数了一个冬天的符号，科伯排了几年的卡片。这种活又笨又慢，没有一点“灵光一闪”的光彩，可后来那一闪，全靠它点着。做题、做研究、查一个怎么也找不到的程序错误，都一样：先老老实实地把现象数清楚、列整齐，答案常常自己从格子里冒出来。</p>
+      </div>
+    </aside>
+
+    <div class="ledger">
+      <div class="lh"><b>记一笔</b><span>第 08 号凭证 · 格子</span></div>
+      <div class="lb">
+        <div><i>借 · 历史</i>符号的种类数能告诉你文字的类型；词尾的变化能告诉你符号的关系；地名能点亮第一行。线形文字 B 原来写的是希腊语，字和话不是一回事：字不一样，话可能是一家。</div>
+        <div><i>贷 · 生活</i>笨功夫是灵感的燃料。结果和你的猜想相反时，相信结果。</div>
+      </div>
+      <div class="lf"><span>附件：东堤符号格子一张（四十余格已填）</span><span class="sig">林记</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第九章 烧掉的书 ============ -->
+<section class="chap" id="c9" data-vol="第九章 · 烧掉的书">
+  <div class="slab">
+    <svg class="wedges" viewBox="0 0 80 60" aria-hidden="true"><g fill="none" stroke="var(--clay-d)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14,50 q-8,-14 4,-26 q2,10 8,8 q-4,-14 8,-24 q0,14 10,18 q4,-6 2,-12 q12,12 4,36 Z"/><path d="M52,20 h20 v30 h-20 z M56,28 h12 M56,35 h12 M56,42 h8"/></g></svg>
+    <div class="no">第九章</div>
+    <h2>烧掉的书</h2>
+    <dl><dt>苇城</dt><dd>第三十二年夏天到第三十三年</dd><dt>我们的世界</dt><dd>1562 年兰达焚书，1952 年克诺罗佐夫，1973 年帕伦克；1899 年甲骨文被认出，1917 年王国维</dd><dt>本章装置</dt><dd>认甲骨文</dd></dl>
+  </div>
+  <div class="col">
+    <p>麻烦是从一句话开始的。</p>
+    <p>芦花读出来的东堤泥板里，有一块不是账，是一段祷词，祷的是东堤人自己的神，一位苇城人从没听说过的“河之母”。泥板屋里有人把这件事说了出去，传到了神庙的上头耳朵里。</p>
+    <p>上头换人了。新上头年轻，虔诚，很看重规矩。他把林记和芦花叫去，问那屋子里堆的是什么。林记照实说了。</p>
+    <div class="scene">
+      <div class="sh"><b>神庙高台</b><span>第三十二年 · 夏天</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who">上头</span><p>异城的神，异城的咒，放在神庙后面，你们还天天念它。</p></div>
+        <div class="ln"><span class="who l">林记</span><p>念的是他们的账，偶尔有一两块是祷词。他们的人一百年前就没了，神也没了。</p></div>
+        <div class="ln"><span class="who">上头</span><p>神不会没。只会被忘掉，然后被人念几句，又醒过来。</p></div>
+        <div class="ln"><span class="who x">芦花</span><p>那上面还有他们的话、他们的地名、他们怎么种麦……</p></div>
+        <div class="ln"><span class="who">上头</span><p>苇城自己的麦子还种不过来。砸了，扔进河里。</p></div>
+      </div>
+    </div>
+    <p>第二天，两个帮工抬着木槌进了空屋。林记拦不住，也知道拦不住。两百一十三块泥板，砸了一个上午，碎片装了十几筐，倒进了河里。</p>
+    <p>可是帮工点数的时候，只点出一百七十来块。</p>
+    <p>头一天夜里，芦花把四十块她认为最要紧的泥板，用麦秆包着，一趟一趟背回了家，藏在她爹床底下的地洞里。那块双语契约，那块写满地名的清单，那块祷词，都在里面。</p>
+    <p class="note">我那边也有人干过同一件事，干过不止一次。</p>
+  </div>
+
+  <div class="col">
+    <div class="real">
+      <h5>兰达主教的火</h5>
+      <p>16 世纪中叶，西班牙方济各会修士迪亚哥·德·兰达在墨西哥尤卡坦半岛传教。玛雅人那时还有很多用树皮纸折成的书，写着历法、天文、仪式和历史。1562 年，兰达在马尼镇举行了一场“信仰审判”，把他能找到的书和神像一起烧了。他后来在自己的书里写道（大意）：</p>
+      <blockquote><p>我们找到很多用这种字写的书，因为里面全是迷信和魔鬼的谎言，就都烧了。他们为此极其痛惜，非常难过。</p><cite>兰达《尤卡坦风物志》，约 1566 年（据西班牙文转述）</cite></blockquote>
+      <p>今天公认真实的玛雅古抄本只剩四部，分别藏在德累斯顿、马德里、巴黎和墨西哥城。</p>
+      <p>讽刺的是，烧书的兰达也留下了破译的钥匙。他在同一本书里请一位玛雅贵族帮他写出西班牙字母“A、B、C……”对应的玛雅字。这份“兰达字母表”乱七八糟，后人一直以为它是瞎编的。直到 1952 年，苏联学者尤里·克诺罗佐夫才指出问题出在哪：兰达念的是字母名称（“a、be、ce”），那位玛雅人写下的是<em>这些音节</em>的玛雅符号。也就是说，玛雅文字是一种<em>音节加词符</em>的混合文字，和圣书字、楔形文字是同一类。</p>
+      <p>此前几十年，西方玛雅学的权威、英国学者汤普森坚持玛雅字是表意的、不记读音，还认为碑文只记历法和神，不记人间的历史。克诺罗佐夫的论文受到冷遇，一部分原因是冷战。1960 年，美国学者塔蒂亚娜·普罗斯库里亚科夫从碑上日期的规律证明，碑文记的是<em>真实国王</em>的出生、即位和死亡。1973 年，一群学者在墨西哥帕伦克开会，一个下午排出了帕伦克历代国王的名单。今天大部分玛雅碑文都能读了。</p>
+      <p>破译时还有一个帮手：<em>玛雅人没有消失</em>。今天墨西哥、危地马拉、伯利兹还有数百万人说着约三十种玛雅语。古文字里的许多词，可以拿活人的话去对。</p>
+      <p class="k">兰达引文据西班牙文原文意译；人数、语言数为约数。</p>
+    </div>
+
+    <aside class="echo" data-k="押韵">
+      <span class="stamp">押韵</span>
+      <div>
+        <p class="rh">墙里的书</p>
+        <p>公元前 213 年，秦始皇采纳李斯的建议，下令民间所藏的《诗》《书》、百家之言，都交给官府烧掉。《史记·儒林列传》记了一个人：秦博士伏生，在焚书时把《尚书》藏进墙壁里；战乱过后回来，挖开墙，书丢了几十篇，剩下二十九篇，他就靠这些在齐鲁之间教书。汉文帝时，伏生已经九十多岁，朝廷派晁错去跟他学。我们今天读到的《尚书》，有一部分就是从那堵墙里出来的。芦花床底下的地洞，就是苇城的那堵墙。</p>
+      </div>
+    </aside>
+  </div>
+
+  <div class="col">
+    <h3>老盐的歌</h3>
+    <p>剩下四十块，读得更慢了。字能念出音了，可很多词的意思没人知道：东堤话毕竟是一百多年前的旧话，好些词苇城早就不用了。</p>
+    <p>帮上忙的是一个谁也没想到的人。</p>
+    <p>芦花家隔壁住着一个老太太，九十多了，大家叫她老盐，因为她年轻时在盐沼晒盐。有一天芦花在院子里念东堤泥板上的一段祷词，念得磕磕绊绊，隔壁墙头上忽然有人跟着哼了起来。</p>
+    <p>老盐的奶奶是东堤人，城破的时候逃过河来，嫁在了苇城。奶奶什么都没留下，只留下几首哄孩子睡觉的歌，老盐小时候听过，九十年了还会唱。那些歌词，就是东堤话。</p>
+    <p>芦花每天傍晚去老盐家坐一会儿，听她唱，一句一句问：这个词是什么意思？那个呢？老盐有的记得，有的不记得；有的她以为记得，其实记错了。可是就靠这几首歌，四十块泥板里一大半的词有了着落。“河之母”的那块祷词，原来是一首求雨的歌，和老盐唱的那首，有一半句子是一样的。</p>
+    <p class="note">死文字最好的字典，是一个活人的嘴。可惜这本字典，总是只剩最后一本。</p>
+  </div>
+
+  <div class="col">
+    <div class="real">
+      <h5>龙骨上的字</h5>
+      <p>中国的甲骨文差点也成了一种“读不懂的字”，结果却是世界上破译得最快、最顺的古文字之一。</p>
+      <p>按流行的说法，1899 年，金石学家、国子监祭酒王懿荣生病，从药铺买来一味叫“龙骨”的药，发现骨头上刻着字。这个故事细节多有附会，可以确定的是：19 世纪末，河南安阳小屯一带的农民在地里挖出刻字的龟甲兽骨，当作“龙骨”卖给药商；1899 年前后，王懿荣等人认出这是比金文还古老的文字，开始收购。1900 年八国联军进北京，王懿荣殉国。他的藏品一部分到了刘鹗手里，刘鹗 1903 年出了第一本甲骨文著录《铁云藏龟》。</p>
+      <p>罗振玉找到了甲骨的出土地，是商朝晚期的都城“殷墟”。1917 年，王国维写出《殷卜辞中所见先公先王考》，从甲骨卜辞里一个一个找出商王的名字，和司马迁《史记·殷本纪》里的世系对照，大体吻合。一部被很多人怀疑为传说的商朝史，被地下的骨头证实了。王国维把这种“纸上的材料”和“地下的新材料”互相印证的方法，叫作“二重证据法”。1928 年起，中央研究院历史语言研究所在殷墟正式发掘。</p>
+      <p>为什么甲骨文读得这么顺？因为它<em>从来没有真正断过</em>。甲骨文变成金文，金文变成篆书，篆书变成隶书、楷书，每一步都有过渡，东汉的《说文解字》还保存着小篆和大量古字。破译甲骨文的人，手里一直握着一部三千年没断的“双语”。即便如此，出土的十几万片甲骨上有四千多个不同的字，公认能读的也只有一千多个。剩下的，很多是早已不用的人名、地名、祭名。</p>
+      <p class="k">据通行甲骨学史；“龙骨入药”的故事细节存疑，数字为约数。</p>
+    </div>
+  </div>
+
+  <div class="wide">
+    <div class="fig quiz" id="oraFig">
+      <div class="fig-label">装置 10</div>
+      <h4>认甲骨文</h4>
+      <p class="how">三千年没断，所以你也能认。下面每个都是照甲骨文常见写法简化画的示意图，猜猜它是今天的哪个字。</p>
+      <div id="oraBox"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <aside class="echo" data-k="生活">
+      <span class="stamp">生活</span>
+      <div>
+        <p class="rh">你家的老盐</p>
+        <p>你家里也许有一位老人，说着一种你听得懂一半的方言，记得几首没人再唱的歌，几个只有她知道的老地名、老称呼。这些东西不在任何书里。等哪天想起来去问，可能就没人可问了。下次回家，打开手机录一段吧，不是为了研究，就当是替以后的某个芦花存一本字典。</p>
+      </div>
+    </aside>
+
+    <div class="ledger">
+      <div class="lh"><b>记一笔</b><span>第 09 号凭证 · 烧掉的书</span></div>
+      <div class="lb">
+        <div><i>借 · 历史</i>烧书的人往往也不经意地留下了钥匙；藏书的人往往是无名的。破译最好的帮手是活着的传承：说玛雅语的人、没断过的汉字、一位还会唱歌的老人。</div>
+        <div><i>贷 · 生活</i>你觉得“没用、该扔”的东西，可能是以后唯一的钥匙。趁老人还在，多问几句。</div>
+      </div>
+      <div class="lf"><span>附件：东堤泥板四十块（藏于小芦床下）</span><span class="sig">林记</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第十章 借字的人 ============ -->
+<section class="chap" id="c10" data-vol="第十章 · 借字的人">
+  <div class="slab">
+    <svg class="wedges" viewBox="0 0 80 60" aria-hidden="true"><g fill="none" stroke="var(--clay-d)" stroke-width="2.4" stroke-linecap="round"><circle cx="40" cy="30" r="6"/><path d="M40,24 V8 M40,36 V52 M34,30 H10 M46,30 H70 M36,26 L22,12 M44,34 L58,48 M44,26 L58,12 M36,34 L22,48"/></g></svg>
+    <div class="no">第十章</div>
+    <h2>借字的人</h2>
+    <dl><dt>苇城</dt><dd>第三十三年到第三十四年</dd><dt>我们的世界</dt><dd>汉字去了日本、朝鲜、越南；字母去了半个世界；也有民族照着别人的字，造了自己的字</dd><dt>本章装置</dt><dd>一个字，四国念法</dd></dl>
+  </div>
+  <div class="col">
+    <p>东堤的字读通以后，芦花又发现了一件事：它是从苇城的楔子变来的。</p>
+    <p>很多东堤符号，样子就是苇城某个楔形符号的一角，或者两三笔的简化。东堤人照着苇城的字，挑出一批，只取它们的音，削减笔画，做成了一套八十来个符号的音节字。他们说的是苇城话的一支，却不想用苇城的六百个符号。也许是嫌难，也许是不想跟对岸用一样的字。</p>
+    <p>“借了别人的字，改成自己的。”芦花说，“这样的事多吗？”</p>
+    <p>林记笑了：“多到你想不到。我那边的世界，大多数字都是借来的。”</p>
+  </div>
+
+  <div class="col">
+    <h3>北边来的泥板</h3>
+    <p>那年秋天，一支从北边山里来的商队到了苇城，带来了皮毛、木材，还有一样让林记吃惊的东西：一块北方山民写的泥板，用的也是苇城的楔子。</p>
+    <p>可是芦花一个字也读不出来，不是认不出符号，是认出来了也念不通。商队的头领拿起泥板，指着上面的苇城“羊”字，念了一个很长的、带好几个尾音的词，那是山民话里的“羊”。</p>
+    <div class="scene">
+      <div class="sh"><b>集市边</b><span>第三十三年 · 秋天</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who x">芦花</span><p>这是我们的“羊”字，你怎么念成你们的话？</p></div>
+        <div class="ln"><span class="who">商队头领</span><p>字是你们的，羊是我们的。看见这个字，我们就念我们的羊。</p></div>
+        <div class="ln"><span class="who x">芦花</span><p>那你们话里“羊的”“给羊”，那些尾巴怎么写？</p></div>
+        <div class="ln"><span class="who">商队头领</span><p>（指着“羊”字后面的两个小符号）借你们的字，只取音，拼在后面。</p></div>
+        <div class="ln"><span class="who l">林记</span><p>一半当意思用，按自己的话念；一半当音标用，拼自己的尾巴……</p></div>
+        <div class="ln"><span class="who x">芦花</span><p>林老，你又想起你老家了。</p></div>
+        <div class="ln"><span class="who l">林记</span><p>我想起我老家东边的一个岛。</p></div>
+      </div>
+    </div>
+    <p class="note">苇城话一个词一个音，楔子正合适。山民的话词长、尾巴多，楔子穿在他们身上，像借来的衣服，处处不合身。他们就自己往上打补丁。我们那边的汉字，在日本、朝鲜、越南，也穿了上千年这样的衣服。</p>
+  </div>
+
+  <div class="col">
+    <div class="real">
+      <h5>汉字去了东亚</h5>
+      <p>汉字是东亚最早的文字，也是被借得最广的文字之一。日语、朝鲜语、越南语和汉语都不是一家（日语和朝鲜语的语法跟汉语差别很大），可是在一千多年里，这三个地方的读书人都用汉字写作，用汉文读经史、写公文。</p>
+      <ul>
+        <li><b>日本</b>：5 世纪的铁剑铭文已用汉字记日本人名（如埼玉稻荷山古坟铁剑，铭文纪年一般认为是 471 年）。日本人对汉字发展出两种读法：<em>音读</em>，按汉字传过去时的汉语读音念；<em>训读</em>，看见汉字，用日语里意思相同的固有词念，就像北方山民看见“羊”念自己的羊。为了写日语的词尾和助词，他们借汉字记音（万叶假名），再简化成平假名、片假名。今天的日文，就是汉字和假名混写。</li>
+        <li><b>朝鲜半岛</b>：先用汉文，又发展出“吏读”等借汉字记朝鲜语的办法，1443 年世宗创制训民正音（第六章）。此后几百年汉文和谚文并用。20 世纪中叶以后，朝鲜基本废除汉字，韩国大幅减少使用。</li>
+        <li><b>越南</b>：汉字通行一千多年。大约从 13 世纪起，越南人仿照汉字的造字法，造出记越南语的“字喃”，比如用表意的“天”和表音的“上”合成一个字表示越南语的“天”。17 世纪，欧洲传教士用拉丁字母拼写越南语，1651 年亚历山大·德·罗德出版了越葡拉词典。这套拼音字母后来叫“国语字”，在法国殖民和 20 世纪的扫盲运动中取代了汉字和字喃。</li>
+        <li><b>北方民族的“仿汉字”</b>：契丹人在 920 年前后造了契丹大字，不久又造了契丹小字；党项人的西夏 1036 年前后颁行西夏文，六千多字，笔画比汉字还繁；女真人 1119 年颁行女真大字。它们都照着汉字的样子造，却故意一个字也不和汉字相同。借来造字的办法，造出来的字要显示“我们不是你们”。</li>
+      </ul>
+      <p class="k">据通行东亚文字史；字喃例为常见举例，各字形成年代多有争议。</p>
+    </div>
+  </div>
+
+  <div class="wide">
+    <div class="fig sx" id="sxFig">
+      <div class="fig-label">装置 11</div>
+      <h4>一个字，四国念法</h4>
+      <p class="how">汉字带着当年的汉语读音去了日本、朝鲜、越南，在那边慢慢变成本地口音，又和中国本土的读音各走各的路。点一个字，比一比普通话、粤语、日语音读、韩语、越南语里它怎么念。</p>
+      <div class="row" id="sxChars"></div>
+      <div class="scroll-x"><table class="t" id="sxTab"></table></div>
+      <div class="readout" id="sxNote" style="margin-top:10px"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="real">
+      <h5>字母走过的路</h5>
+      <p>第五章的矿工字母，后来走得比汉字还远。可以粗略画出几条大路：</p>
+      <ul>
+        <li><b>往西</b>：腓尼基字母 → 希腊字母 → 伊特鲁里亚字母 → 拉丁字母。拉丁字母随着罗马帝国、天主教会和后来的殖民扩张，今天写着几百种语言，包括汉语拼音（1958 年公布）和越南国语字。希腊字母的另一支，9—10 世纪变成了斯拉夫人的西里尔字母。</li>
+        <li><b>往东</b>：腓尼基字母 → 阿拉米字母。阿拉米语一度是波斯帝国的通用语，它的字母分出了希伯来方块字、叙利亚字母，经纳巴泰文变成阿拉伯字母；往东经粟特文 → 回鹘文 → 蒙古文 → 满文。</li>
+        <li><b>往南亚</b>：印度的婆罗米文（公元前 3 世纪阿育王石刻已用，是否出自阿拉米字母有争论）分出了天城文、孟加拉文、泰米尔文等，又传到东南亚变成高棉文、泰文、缅甸文等；7 世纪前后，吐蕃也照印度字母创制了藏文；1269 年，元朝的八思巴文又是照藏文造的。</li>
+      </ul>
+      <p>借来的字也常常被换掉，换字的理由多半不在字本身。1928 年，土耳其共和国把奥斯曼土耳其语用了几百年的阿拉伯字母一夜之间换成拉丁字母；蒙古国 1940 年代改用西里尔字母，近年又在恢复传统蒙古文。<em>换一套字，往往是在换一个靠向谁的方向。</em></p>
+      <p>还有一种借法，最早出现在两河流域：阿卡德人借来苏美尔人的楔形字，很多符号照写苏美尔的词，却用阿卡德语去念，后面再用音节符号补上阿卡德语的词尾。商队头领念的“羊”，就是这个办法。日本人的训读，三千多年后又发明了一遍。</p>
+      <p class="k">据通行文字史；传播路线为简化示意，具体环节多有争议。</p>
+    </div>
+
+    <aside class="echo" data-k="押韵">
+      <span class="stamp">押韵</span>
+      <div>
+        <p class="rh">你每天都在训读</p>
+        <p>你看见“kg”，嘴里念“公斤”；看见“%”，念“百分之”；看见“&amp;”，念“和”；看见英文里的“e.g.”，英国人念“for example”，并不念出这两个拉丁字母本来代表的词。这和阿卡德人看见苏美尔的“羊”念阿卡德的“羊”、日本人看见“山”念 yama，是同一回事：<em>字可以跨过语言，读音留在各自的嘴里。</em>这也是为什么一个说粤语的人和一个说普通话的人，嘴上可能聊不通，写下来却能看懂。</p>
+      </div>
+    </aside>
+
+    <aside class="echo" data-k="生活">
+      <span class="stamp">生活</span>
+      <div>
+        <p class="rh">先借，再改</p>
+        <p>几乎没有哪个民族的文字是“原创”的，可每一个借字的民族，最后都改出了自己的样子：假名、谚文、字喃、西里尔、满文。学东西也是这样，先照着别人的样子写，写得不合身了，再一点点改成自己的。抄不丢人，一直不改才可惜。</p>
+      </div>
+    </aside>
+
+    <div class="ledger">
+      <div class="lh"><b>记一笔</b><span>第 10 号凭证 · 借字的人</span></div>
+      <div class="lb">
+        <div><i>借 · 历史</i>独立发明文字只有三四次，借字、改字却发生了几百次。汉字去了日朝越，字母去了半个世界。借的人会用自己的话去念别人的字（训读），会仿造出“看着像、又故意不同”的新字，也会为了换个方向而整套换掉。</div>
+        <div><i>贷 · 生活</i>先借，再改。字跨得过语言，读音留在各自嘴里。</div>
+      </div>
+      <div class="lf"><span>附件：北方山民泥板拓样一块</span><span class="sig">林记</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第十一章 最后一个读者 ============ -->
+<section class="chap" id="c11" data-vol="第十一章 · 最后一个读者">
+  <div class="slab">
+    <svg class="wedges" viewBox="0 0 80 60" aria-hidden="true"><g fill="none" stroke="var(--clay-d)" stroke-width="2.4" stroke-linecap="round"><path d="M8,30 H72"/><path d="M14,30 v-8 M26,30 v-14 M38,30 v-10 M50,30 v-18 M62,30 v-4"/><circle cx="66" cy="44" r="5"/></g></svg>
+    <div class="no">第十一章</div>
+    <h2>最后一个读者</h2>
+    <dl><dt>苇城</dt><dd>第三十四年冬天到第三十六年</dd><dt>我们的世界</dt><dd>最晚的楔形泥板（约 75 年）、最后的圣书字（394 年）、西夏文、契丹文、女书最后的传人（2004 年）</dd><dt>本章装置</dt><dd>文字的寿命</dd></dl>
+  </div>
+  <div class="col">
+    <p>第三十四年冬天，老盐死了。</p>
+    <p>她走得很安静，前一天傍晚还在院子里唱了半首歌，唱到一半忘了词，笑着摆摆手说明天再唱。芦花第二天去，人已经凉了。</p>
+    <p>芦花在老盐的坟前站了很久。回来以后，她对林记说了一句话，林记一直记得。</p>
+    <p>“现在，世上能念东堤字的，就剩我一个了。”</p>
+    <p>林记想说“还有我”，没说出口。他只认得芦花教他的那几十个符号，那些歌，他一首也不会唱。</p>
+    <p>那年冬天，小芦也病倒了。他让人把几块很老的泥板搬到床边，是老秤那个年代的账，五十年前的东西。他叫来泥板屋里最好的几个年轻书吏，让他们念。年轻人念得磕磕绊绊，有几个符号谁也认不出来，是早就不这么写的老写法。</p>
+    <p>“五十年。”小芦躺在床上说，“我亲手写的字，五十年后就有人不认得了。”</p>
+    <p class="note">字比人活得久，这话不全对。字只比会读它的最后一个人多活一天。</p>
+  </div>
+
+  <div class="col">
+    <div class="real">
+      <h5>文字是怎样死的</h5>
+      <p>一种文字的死，很少是一天之内的事，大多是慢慢地“没人需要了”。大致有三种死法，常常同时发生：它记的那种话没人说了；说这种话的人换了一套字；会读写的那一小群人散了。</p>
+      <ul>
+        <li><b>楔形文字</b>：公元前一千纪，阿拉米语和它的字母在西亚越来越通行，写在羊皮、纸草上比压泥板方便得多。楔形文字退到了神庙里，只剩少数祭司和天文学家在用。目前知道的最晚一块楔形泥板，是一份天文记录，约在公元 75 年前后。用了三千多年的字，最后一位会写它的人是谁，没有人知道。</li>
+        <li><b>埃及圣书字</b>：罗马时代的埃及，懂圣书字的只剩神庙祭司。基督教兴起后，埃及人改用以希腊字母为基础的科普特字母写埃及语。4 世纪末，罗马皇帝狄奥多西一世下令禁止异教祭祀。目前所知最后一段圣书字铭文，刻在南方菲莱岛的神庙墙上，日期是公元 394 年 8 月 24 日，刻字的是一个叫埃斯梅特-阿霍姆的人；最后的世俗体刻文在 452 年。6 世纪 30 年代，菲莱神庙被关闭。此后一千四百年，没有人能读懂它，直到商博良。</li>
+        <li><b>西夏文</b>：1227 年西夏被蒙古灭亡，西夏文却没有立刻死去，元朝还用它刻印佛经。目前所知最晚的西夏文是河北保定出土的两座经幢，刻于明弘治十五年（1502 年）。之后它被彻底遗忘。1908—1909 年，俄国探险家科兹洛夫在内蒙古额济纳的黑水城遗址挖出大批西夏文献，其中有一本西夏人骨勒茂才 1190 年编的《番汉合时掌中珠》，西夏文和汉文对照，每个字还注了对方语言的读音。这是西夏文的罗塞塔石碑。今天西夏文大体能读。</li>
+        <li><b>契丹文</b>：1125 年辽亡，金朝起初还用契丹字，1191 年金章宗下诏废止。契丹小字靠着少量和汉文对照的碑刻，学者们几十年来释读了一部分；契丹大字至今大多读不懂。</li>
+        <li><b>女书</b>：湖南江永县一带，有一种只在妇女之间流传的文字，用来记当地土话，写诗、写信、写结拜姊妹之间的心里话，有几百个字，形体细长。按当地习俗，女书作品常常在主人去世时随葬或焚化，所以留下的老文本很少。它的起源年代众说纷纭。1980 年代起它才被外界广泛知道；被视为最后一位自然传承女书的阳焕宜老人，2004 年去世。今天女书作为非物质文化遗产，由后学者传习。</li>
+      </ul>
+      <p>还有一些字，至今不知道死前写的是什么：印度河符号、线形文字 A、复活节岛的朗格朗格、伊朗的原始埃兰文。2022 年，有学者宣布破译了和原始埃兰文相关的“线形埃兰文”，学界还在检验。</p>
+      <p class="k">据通行文字史与相关研究；菲莱铭文日期为铭文自记；女书字数、起源说法不一。</p>
+    </div>
+  </div>
+
+  <div class="wide">
+    <div class="fig life" id="lifeFig">
+      <div class="fig-label">装置 12</div>
+      <h4>文字的寿命</h4>
+      <p class="how">每一条是一种文字从出现到最后一次被使用的大致年代。延伸到右边“今天”的，是还活着的。点一条，看它是怎样出生、怎样死的。年代都是约数，越往左越粗略。</p>
+      <div class="btns" id="lifeF" style="margin-bottom:8px"></div>
+      <div class="scroll-x"><svg id="lifeSvg" viewBox="0 0 760 460" role="img" aria-label="文字寿命图"></svg></div>
+      <div class="tlcard" id="lifeCard"><p class="k">点一条。</p></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <aside class="echo" data-k="押韵">
+      <span class="stamp">押韵</span>
+      <div>
+        <p class="rh">两种火</p>
+        <p>兰达烧玛雅书，是因为他觉得那些书是魔鬼的；江永的妇女把女书随主人焚化，是因为那些字是她自己的，要跟她一起走。一种火想让字消失，一种火想让字陪伴。结果都一样：留下来的很少。<em>文字不只是工具，也是身份、信仰和私心话</em>，所以它的生死，总是和人的爱憎缠在一起。</p>
+      </div>
+    </aside>
+
+    <aside class="echo" data-k="生活">
+      <span class="stamp">生活</span>
+      <div>
+        <p class="rh">你电脑里的死文字</p>
+        <p>你小时候的照片存在哪个网盘？十几年前写的日志在哪个早已关门的网站上？那张光盘、那个软盘、那个某软件专用格式的文件，还打得开吗？数字时代的文字死得比泥板还快：没有了能“读”它的软件，它就是一堆没人认得的符号。要紧的东西，换成最普通的格式，多存几处。</p>
+      </div>
+    </aside>
+  </div>
+
+  <div class="col">
+    <h3>海上来的人</h3>
+    <p>小芦熬过了那个冬天，又熬过了一个夏天，第三十六年春天才走。他走前把泥板屋交给了芦花。苇城的书吏头一回由一个姑娘当家，有人不服，芦花也不争，只是每天比所有人早到、晚走。</p>
+    <p>小芦下葬后的第十天，城南的渔夫跑来报信：海边漂来一条船。</p>
+    <p>船不大，是苇城人从没见过的样子，船头翘得很高，帆是编的草席。船上下来十几个人，男女老少都有，皮肤晒得发黑，头发编成很多细辫子，身上挂着贝壳。他们饿坏了，也累坏了，比画着要水，要吃的。</p>
+    <p>上头让林记去。全苇城都知道，林记从远方来，见多识广，懂得怪话。</p>
+    <p>林记站在那群人面前。一个头发上插着白羽毛的姑娘走上前，对他说了一句话。</p>
+    <p>林记一个字也没听懂。</p>
+    <p>他愣住了。三十六年前，他醒在芦苇地里，麦娘对他说的第一句话，他就听懂了，从那以后苇城人说什么他都懂，他从来没想过为什么。现在这个姑娘说的话，在他耳朵里，就只是一串声音，像风，像水。</p>
+    <p>那份不知从哪来的本事，在这群人面前，失灵了。</p>
+    <p>姑娘又说了一遍，慢慢地，指了指自己的嘴，又指了指海。</p>
+    <p>林记也指了指自己的嘴，摇了摇头。</p>
+    <p class="note">我在苇城活了三十六年，第一次成了一个真正的外人。也是第一次明白，三十六年前的我，被白白送了一件多大的礼物。</p>
+    <p class="ni" style="text-align:center;margin-top:2em;font-family:var(--f-display);font-size:20px;letter-spacing:.2em">卷二 · 破译 · 完</p>
+
+    <div class="ledger">
+      <div class="lh"><b>记一笔</b><span>第 11 号凭证 · 卷二结账</span></div>
+      <div class="lb">
+        <div><i>借 · 历史</i>文字死于三件事：话没人说了，人换了字，会读的人散了。有的死了一千多年又被读回来（圣书字、楔形、西夏），有的至今沉默（印度河、线形 A、契丹大字），有的在我们眼前走完了最后一程（女书）。</div>
+        <div><i>贷 · 生活</i>能读一种字的，永远是活人。字的命，系在读它的人身上。</div>
+      </div>
+      <div class="lf"><span>本卷结账，余额结转卷三</span><span class="sig">林记</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 卷三 ============ -->
+<div class="volhead" data-vol="卷三 · 开口" id="v3">
+  <div class="num">VOLUME THREE</div>
+  <h2>开口</h2>
+  <p class="lede">卷三退回到比字早得多的地方。字是记话的，那话又是怎么来的？一个声音怎样对上一个意思？两群说不同话的人怎样开始互相懂？人类最早说的是不是同一种话？林记丢了他的本事，只好像一个婴儿那样，从头学说话。</p>
+</div>
+
+<!-- ============ 第十二章 那是什么 ============ -->
+<section class="chap" id="c12" data-vol="第十二章 · 那是什么">
+  <div class="slab">
+    <svg class="wedges" viewBox="0 0 80 60" aria-hidden="true"><g fill="none" stroke="var(--clay-d)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8,40 h18 l4,-6 M26,40 q4,-2 2,-8 l-12,0"/><circle cx="58" cy="30" r="10"/><path d="M52,24 l12,12 M64,24 l-12,12" opacity=".5"/><path d="M34,32 h10" stroke-dasharray="2 4"/></g></svg>
+    <div class="no">第十二章</div>
+    <h2>那是什么</h2>
+    <dl><dt>苇城</dt><dd>第三十六年春天到秋天</dd><dt>我们的世界</dt><dd>婴儿怎样学会第一个词；1887 年海伦·凯勒的“水”；1960 年蒯因的“gavagai”</dd><dt>本章装置</dt><dd>猜海客的话</dd></dl>
+  </div>
+  <div class="col">
+    <p>海客在城南的河滩上住了下来。上头让林记管他们，“你是外人，他们也是外人，你们说得上话。”</p>
+    <p>可他们说不上话。</p>
+    <p>头几天，林记和那个插白羽毛的姑娘之间，只有手：指一指嘴是饿，指一指罐子是水，双手合在脸边是睡觉。手能说的东西很少，而且很快就不够用了。林记决定从最笨的办法开始：指着东西，问名字。</p>
+    <p>他指着自己的胸口，说：“林记。”</p>
+    <p>姑娘看着他，迟疑了一下，指着自己的胸口：“阿浪。”</p>
+    <p>第一个词。林记高兴得差点跳起来。他又指着河滩上拴着的一头山羊，做出询问的样子。</p>
+    <p>阿浪看了看羊，说：“提库。”</p>
+    <p>林记在一块泥板上，用苇城楔子记下：提库，山羊。</p>
+    <p>第三天，他知道自己记错了。</p>
+  </div>
+
+  <div class="col">
+    <div class="scene">
+      <div class="sh"><b>河滩</b><span>第三天 · 傍晚</span></div>
+      <div class="bd">
+        <div class="sd">一个苇城牧人赶着一群绵羊从河滩上走过。阿浪指着绵羊，对身边的孩子说：“提库，提库。”孩子们跑过去摸。后来一条狗跟着羊群跑过，阿浪一把拉住要去摸狗的孩子，厉声说了一句别的话。</div>
+        <div class="ln"><span class="who l">林记</span><p>（自言自语）提库不是山羊。绵羊也是提库。那提库是“羊”？还是“毛茸茸的”？还是“能摸的”？还是……“人家养的、拴着的牲口”？</p></div>
+        <div class="ln"><span class="who x">芦花</span><p>（抱着孩子路过）你指着那头山羊的时候，她怎么知道你问的是“这东西叫什么”，不是问“它是什么颜色”“它在干什么”，或者“我能不能吃它”？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>……她不知道。她只是猜。我也只是猜。</p></div>
+        <div class="ln"><span class="who x">芦花</span><p>那你怎么知道你们猜的是同一件事？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>不知道。只能多猜几次，看哪次猜错。</p></div>
+      </div>
+    </div>
+    <p>后来林记还发现，阿浪他们指东西不用手指，用嘴唇：把嘴一撅，下巴往那边一扬。头几天林记以为她在噘嘴生气，其实她一直在给他指路。</p>
+    <p class="note">我以为“指”是全人类都懂的。原来连“指”都要先学。</p>
+  </div>
+
+  <div class="col">
+    <div class="real">
+      <h5>“gavagai”难题</h5>
+      <p>美国哲学家蒯因在 1960 年的《语词和对象》里设想过一个场面：一位语言学家来到一个语言完全陌生的部落，一只兔子跑过，当地人指着说“gavagai”。语言学家记下：gavagai = 兔子。可是凭什么？它也可以是“兔子的一部分”“兔子在跑”“一顿晚饭”“看，那边！”，甚至是“兔性在此显现”。只要所有这些意思在这个场景里都成立，单凭这一次指认，就永远无法确定是哪一个。蒯因把这叫作“翻译的不确定性”。</p>
+      <p>这是个哲学难题，可我们每个人在一两岁时都解开过它，而且几乎没人教。儿童语言学家发现，婴儿手里有几件“工具”：</p>
+      <ul>
+        <li><b>共同注意</b>：大约九个月到一岁起，婴儿会顺着大人的目光和手指去看，也会用手指让大人看自己看的东西。没有这一步，“指物命名”就无从谈起。</li>
+        <li><b>整体优先</b>：听到一个新词，孩子倾向于认为它指的是<em>整个东西</em>，不是它的一部分、颜色或动作。</li>
+        <li><b>互斥假设</b>：如果一个东西已经有名字了（比如“杯子”），那新听到的词，多半指的是旁边那个还没名字的东西。</li>
+        <li><b>快速映射</b>：1978 年的一个经典实验里，研究者只在幼儿面前随口说了一次“把那个 chromium（铬色）的托盘拿来”，不少孩子就大致记住了这个词指一种颜色。</li>
+        <li><b>跨场景统计</b>：一个词在不同场合反复出现，孩子会悄悄比较这些场合里共同的东西，排除不变的意思，就像林记看见“提库”同时用在山羊和绵羊身上。</li>
+      </ul>
+      <p>婴儿通常在一岁前后说出第一个词，一岁半到两岁之间词汇量猛增，到上小学时已经认得几千个词，具体数字各项研究差别很大。新生儿甚至在出生前就已经熟悉了母亲语言的节奏：刚出生几天的婴儿，听母语时的反应就和听外语时不一样。</p>
+      <p class="k">据蒯因原著及发展心理学通行综述；年龄为大致范围，个体差异很大。</p>
+    </div>
+  </div>
+
+  <div class="wide">
+    <div class="fig gav" id="gavFig">
+      <div class="fig-label">装置 13</div>
+      <h4>猜海客的话</h4>
+      <p class="how">你是林记。阿浪会在不同场合说一些话，每看完一个场面，猜一猜某个词的意思。海客的话是本书编的，但你用来猜的办法，就是每个婴儿都用过的那几件工具。</p>
+      <div id="gavBox"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>水</h3>
+    <p>那年秋天，阿浪学会了二十几个苇城词，林记学会了三十几个海客词。他们开始能说“羊，三只，给你”“明天，海，鱼”。离“说话”还差得远，但已经不是两堵墙了。</p>
+    <p>有一天，林记看见芦花在教她一岁多的儿子说话。孩子坐在水罐边，芦花舀起一捧水，浇在他手上，嘴里一遍一遍地念：“阿，阿，水，阿。”孩子先是咯咯笑，忽然停下来，看着自己湿漉漉的手，又看着芦花的嘴，含含糊糊地喊了一声：“阿！”</p>
+    <p>芦花一把抱起他，亲了又亲。</p>
+    <p>林记站在门口，想起了他那个世界里的一个女孩。</p>
+  </div>
+
+  <div class="col">
+    <div class="real">
+      <h5>海伦·凯勒的那一刻</h5>
+      <p>海伦·凯勒一岁半多时因病失去视力和听力，此后几年被困在一个没有词的世界里，脾气暴躁。1887 年 3 月，二十岁的安妮·莎莉文来做她的家庭教师，每天在她手心里拼写手指字母：d-o-l-l（娃娃）、c-a-k-e（蛋糕）。海伦学会了模仿这些手势，却不明白它们是“名字”，在她看来那只是一种游戏。她甚至分不清“杯子”和“水”。</p>
+      <p>同年 4 月 5 日，莎莉文带她到井房，一边让井水流过她的一只手，一边在她另一只手心里拼 w-a-t-e-r。海伦后来在自传《我的生活》（1903）里回忆那一刻：</p>
+      <blockquote><p>那一刻我知道了，w-a-t-e-r 指的就是这奇妙的、凉凉的、从我手上流过去的东西。这个活生生的词唤醒了我的灵魂，给了它光、希望和快乐，让它自由。</p><cite>海伦·凯勒《我的生活》，1903（本书译）</cite></blockquote>
+      <p>她回忆，那天回屋的路上，她摸到什么就想知道它叫什么。莎莉文当时在信里写道，几个小时之内，海伦就多认得了三十个词。</p>
+      <p>她此前不是没“学”过词，她已经会好几个手势了。那天发生的，是她突然明白了<em>一件事</em>：<em>每样东西都有一个名字，名字可以拿来指那样东西。</em>这件事一旦明白，词就不再是一个个孤立的把戏，而是一扇门。正常的婴儿大概也在某个时候迈过了这道门槛，只是没人记得那一刻。</p>
+      <p class="k">日期和细节据凯勒自传及莎莉文当时的书信。</p>
+    </div>
+
+    <aside class="echo" data-k="存疑">
+      <span class="stamp">存疑</span>
+      <div>
+        <p class="rh">声音和意思之间，真的毫无关系吗？</p>
+        <p>瑞士语言学家索绪尔在 1916 年出版的《普通语言学教程》里强调：语言符号是<em>任意的</em>，水叫“水”、叫 water、叫苇城话的“阿”，都只是约定，声音和意思之间没有天然的联系。这是现代语言学的基石之一。但它不是全部。拟声词就不太任意，可也没有那么不任意：中国狗“汪汪”，英国狗 woof，日本狗 wan-wan；公鸡在汉语里“喔喔”，英语里 cock-a-doodle-doo，德语里 kikeriki。还有一个著名的实验：给人看一个圆滚滚的图形和一个尖刺刺的图形，问哪个叫“bouba”、哪个叫“kiki”，不同语言的人绝大多数都会把圆的叫 bouba，尖的叫 kiki（德国心理学家克勒 1929 年最早做类似实验，2001 年拉马钱德兰等人让它出了名，后来的跨语言研究在大多数语言里都重复出了这个效应）。<em>声音和意思之间，大部分是约定，也有一小部分是天性。</em>装置 13 的最后一题，你可以自己试试。</p>
+      </div>
+    </aside>
+
+    <aside class="echo" data-k="生活">
+      <span class="stamp">生活</span>
+      <div>
+        <p class="rh">“我以为你懂了”</p>
+        <p>林记和阿浪的“提库”误会，每天都在你身边发生，只是说的是同一种话，所以更难察觉：老师说“重点”，你以为是“会考的”，他指的是“难的”；你说“随便”，对方以为真的随便；两个人吵了半天，才发现吵的根本不是一回事。同一个词，在两个人脑子里指的东西未必一样。<em>觉得不对劲时，指着那个东西再问一遍：“你说的是这个吗？”</em></p>
+      </div>
+    </aside>
+
+    <div class="ledger">
+      <div class="lh"><b>记一笔</b><span>第 12 号凭证 · 那是什么</span></div>
+      <div class="lb">
+        <div><i>借 · 历史</i>一个声音对上一个意思，靠的是约定，而达成约定靠共同注意、反复试错和一些天生的偏好。指物命名从来不像看上去那么简单（gavagai），可每个婴儿都解开过这道题；海伦·凯勒告诉我们，最关键的一步是明白“东西都有名字”。</div>
+        <div><i>贷 · 生活</i>同一个词，在两个人心里未必是同一个东西。不确定时，指着它再问一遍。</div>
+      </div>
+      <div class="lf"><span>附件：海客词表一块（三十余词，其中“提库”已改三次）</span><span class="sig">林记</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第十三章 先有嘴 ============ -->
+<section class="chap" id="c13" data-vol="第十三章 · 先有嘴">
+  <div class="slab">
+    <svg class="wedges" viewBox="0 0 80 60" aria-hidden="true"><g fill="none" stroke="var(--clay-d)" stroke-width="2.4" stroke-linecap="round"><path d="M10,30 q10,-14 20,0 q-10,14 -20,0 Z"/><path d="M36,22 q6,8 0,16 M44,16 q10,14 0,28 M52,10 q14,20 0,40" opacity=".7"/></g></svg>
+    <div class="no">第十三章</div>
+    <h2>先有嘴</h2>
+    <dl><dt>苇城</dt><dd>第三十六年冬天到第三十八年</dd><dt>我们的世界</dt><dd>人类说话至少几万年、写字五千年；1970—80 年代尼加拉瓜的聋童造出一种新语言</dd><dt>本章装置</dt><dd>说话的钟</dd></dl>
+  </div>
+  <div class="col">
+    <p>海客没有字。</p>
+    <p>林记起初以为，没有字的人，脑子里的东西一定很少。冬天的一个夜里，他在河滩上看见阿浪坐在火堆边，对着一群孩子念一段很长很长的话，念了小半个时辰，一个磕巴也没打。他后来慢慢听懂了：那是她家三十代祖先的名字，一个接一个，每个名字后面跟着他生在哪个岛、娶了谁、死在哪片海。念完了祖先，她又念了一段，是星星：哪颗星升起时往哪个方向划，划几天会看见什么颜色的海水、什么样的鸟。</p>
+    <p>“全在这里。”阿浪指了指自己的头，又指了指孩子们的头，“我死了，就在他们这里。”</p>
+    <p>林记想起苇城泥板屋里那几千块泥板。泥板上记的是麦子、羊、油，几个人名，几句祷词。苇城人说的那些故事、骂的那些人、唱的那些歌、讨价还价时那些拐弯抹角的话，没有一句在泥板上。字只记下了话里很窄的一条缝。</p>
+    <p class="note">卷一我一直在讲字是怎么造出来的，好像字是主角。其实字只是话的影子。人类说了不知道多少万年的话，最后五千年才学会把其中一小部分压在泥上。</p>
+  </div>
+
+  <div class="col">
+    <div class="real">
+      <h5>先有话，后有字</h5>
+      <p>这是理解文字最重要的一句话，卷一的故事其实一直建立在它上面：麦娘能“借音”，是因为大家先有一套共同的话；芦花能破译东堤字，是因为东堤人说的话和苇城话是一家。<em>文字是记录语言的工具，语言不依赖文字而存在。</em></p>
+      <ul>
+        <li><b>每一个人类群体都有语言，却不是每个都有文字</b>。今天世界上大约有七千种语言，其中大多数从来没有形成自己的书面传统。</li>
+        <li><b>说话不用教，写字要教</b>。一个听力正常的孩子，只要身边有人跟他说话，四五岁时就能掌握母语的基本语法，没有人给他上语法课。而读写几乎在所有社会里都要专门学好几年。直到 19 世纪，世界上大多数人都不识字。</li>
+        <li><b>字记不全话</b>：语气、声调高低、停顿、表情、手势，大多留不下来。同一句“你真行”，写下来分不出是夸还是讽。</li>
+        <li><b>字会和话走散</b>：话一直在变，字却容易被固定在某个时代。汉语的书面语“文言”，基本保持着先秦两汉的语法和用词，而人们嘴里的话两千年里早已变了样，读书人写的和说的成了两套东西。晚清诗人黄遵宪写过“我手写我口，古岂能拘牵”；1917 年前后的白话文运动，就是要把字重新拉回到嘴边。拉丁文在欧洲也是一样，说拉丁语的人早就变成了说意大利语、法语、西班牙语的人，书面上却又写了一千年拉丁文。</li>
+      </ul>
+      <p class="k">语言数据据 Ethnologue 等通行统计，为约数。</p>
+    </div>
+  </div>
+
+  <div class="wide">
+    <div class="fig clock" id="clkFig">
+      <div class="fig-label">装置 14</div>
+      <h4>说话的钟</h4>
+      <p class="how">人类从什么时候开始说话，没人知道确切答案，学者的估计从几万年到一百多万年都有。拖动滑杆，选一个你相信的数字，把人类说话的全部历史压成一天二十四小时，看看写字是在几点几分才出现的。</p>
+      <div style="display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;font-size:14px"><span>人类开始说话距今</span><input type="range" id="clkR" min="0" max="100" value="38" aria-label="说话开始的年代"><b id="clkV" style="font-family:var(--f-mono);min-width:5.5em;text-align:right"></b></div>
+      <div class="clkwrap"><svg id="clkSvg" viewBox="0 0 240 240" aria-hidden="true"></svg><div id="clkList" class="readout"></div></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="real">
+      <h5>那话又是从哪儿来的？</h5>
+      <p>这是语言学里最难的问题之一，难到 1866 年巴黎语言学会在章程里干脆规定：不接受讨论语言起源的论文。原因很简单：<em>话不会变成化石</em>。最早的文字只有五千多年，再往前，我们手里只有间接证据：</p>
+      <ul>
+        <li><b>骨头</b>：说话需要下降的喉头和灵活的舌骨。1989 年在以色列凯巴拉洞出土了一块约六万年前的尼安德特人舌骨，和现代人的很像。但骨头只能说明“能发出那些声音”，不能说明“在说话”。</li>
+        <li><b>基因</b>：2001 年，研究者在一个几代人都有严重言语障碍的英国家庭里，找到了 FOXP2 基因的一个突变，媒体一度称之为“语言基因”。后来发现尼安德特人也有和现代人相同的版本。它和说话有关，但远不是“开关”。</li>
+        <li><b>器物</b>：南非布隆伯斯洞出土的、刻着几何花纹的赭石块约有七八万年；更早的装饰品、颜料、精心制作的工具，都暗示着需要复杂交流的头脑和社会。</li>
+      </ul>
+      <p>至于“最早的话是什么样的”，各种假说都有：从模仿自然声音来的，从手势来的（先有比画，后有嘴），从唱歌来的（达尔文就这样猜过），从“闲聊代替互相理毛”来的（灵长类靠理毛维系关系，人群大了理不过来，就改用说话）。这些说法都有一定道理，也都缺乏决定性的证据，<em>只能标“存疑”</em>。比较有把握的只有：现代人在走出非洲、散布全球（约六七万年前起）之前，多半已经有了完整的语言，因为今天所有人群的语言能力都一样。</p>
+      <p class="k">年代均为约数，各项研究的解读存在争议。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>小陶的手</h3>
+    <p>苇城有个陶匠，儿子小陶生下来就听不见。八岁了，不会说话，只会和爹娘比画几十个手势：吃、睡、冷、陶轮、娘。苇城的孩子不和他玩，他就一个人蹲在河滩边捏泥巴。</p>
+    <p>海客的孩子和他玩。</p>
+    <p>道理很简单：海客的孩子听不懂苇城话，小陶也听不懂，大家都一样，谁也不比谁强。他们在河滩上比画，抓鱼时比画，吵架时也比画。小陶的几十个手势被海客孩子学了去，海客孩子又添了自己的手势。一年下来，河滩上那群孩子有了一套谁也没教过的手语，比小陶原来那几十个手势多得多，而且有了规矩：先比“谁”，再比“干什么”；比“昨天”时手往肩后一甩，比“明天”往前一推；两个人吵架，各占左右两边，后面再提到谁，只要往那边一指。</p>
+    <p>林记起初只觉得好玩，后来看得心惊。他看见的，是一种语言在他眼前生出来。</p>
+    <p>更让他吃惊的是第二年。几个更小的孩子跟着这群大孩子学手语，学去以后，他们比得比大孩子更快、更整齐、规矩更严。大孩子比画了半天的东西，小孩子用一个手势就说清了。</p>
+    <p class="note">语言不是谁发明的。把一群需要互相说话的孩子放在一起，它就会自己长出来，而且一代比一代长得更像语言。</p>
+  </div>
+
+  <div class="col">
+    <div class="real">
+      <h5>尼加拉瓜手语：一种语言的诞生</h5>
+      <p>1970 年代以前，尼加拉瓜的聋人大多分散在各自家里，和家人用一些自创的手势交流（语言学上叫“家庭手势”），彼此几乎没有往来。1977 年，首都马那瓜开办了一所特殊教育学校，1980 年又开了一所职业学校，几百个聋童第一次聚到了一起。学校教的是读唇和西班牙语拼写，效果很差。可是孩子们在操场上、校车上，用各自带来的手势互相交流，很快形成了一套共同的手势系统。</p>
+      <p>1986 年起，美国语言学家朱迪·凯格尔等人开始研究这种手语，后来安·森加斯做了长期的跟踪比较。他们发现：<em>后入学的、年纪更小的孩子，把哥哥姐姐们那套比较粗糙的手势系统，变成了语法更规整、更紧凑的语言</em>，比如用空间位置来标记人物、用固定的方式表示动作的方向。这种手语今天叫尼加拉瓜手语，被看作人类第一次在研究者眼前“从无到有”诞生的一种语言。</p>
+      <p>手语不是“比画”，而是完整的语言，有自己的词汇和语法，和当地的口语并不对应：美国手语和英国手语互相不通，中国也有自己的中国手语。这一点直到 1960 年代才被语言学界普遍承认。</p>
+      <p class="k">据凯格尔、森加斯等人的研究综述；年份为通行说法。</p>
+    </div>
+
+    <aside class="echo" data-k="押韵">
+      <span class="stamp">押韵</span>
+      <div>
+        <p class="rh">林记自己的“文言”</p>
+        <p>苇城泥板屋的写法，五十年里也开始和嘴上的话走散了：泥板上还写着老秤年代的套话，年轻人嘴里早就不那么说了（第十一章小芦床边那几个没人认得的老写法，就是开头）。字天生保守，因为写下来就是为了不变；话天生爱变，因为每一代人都在用它。两者之间的距离拉大到一定程度，就会有人站出来喊“我手写我口”。</p>
+      </div>
+    </aside>
+
+    <aside class="echo" data-k="生活">
+      <span class="stamp">生活</span>
+      <div>
+        <p class="rh">文字丢掉的那一半</p>
+        <p>你和人在手机上聊天，打出来的字丢掉了语气、表情和停顿，所以才有了表情包、“哈哈哈”和一长串感叹号，它们都是在努力把嘴上的东西补回字里。可补不全。一句“好的”可能是真心，也可能是生气。要紧的事、容易误会的事、想让对方听见你语气的事，别只打字，<em>开口</em>说。</p>
+      </div>
+    </aside>
+
+    <div class="ledger">
+      <div class="lh"><b>记一笔</b><span>第 13 号凭证 · 先有嘴</span></div>
+      <div class="lb">
+        <div><i>借 · 历史</i>人类说话至少有几万年，写字只有五千多年；每个人群都有语言，大多数语言从来没有文字。语言的起源没有化石可查，各种假说都只能存疑。但我们亲眼见过一种语言诞生：尼加拉瓜的聋童。</div>
+        <div><i>贷 · 生活</i>字是话的影子，丢掉了语气。要紧的话，当面说。</div>
+      </div>
+      <div class="lf"><span>附件：河滩手语手势记录若干（画在泥板上，画不全）</span><span class="sig">林记</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第十四章 通事 ============ -->
+<section class="chap" id="c14" data-vol="第十四章 · 通事">
+  <div class="slab">
+    <svg class="wedges" viewBox="0 0 80 60" aria-hidden="true"><g fill="none" stroke="var(--clay-d)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6,22 h18 q6,0 6,6 v4 q0,6 -6,6 h-8 l-6,6 v-6 h-4 z"/><path d="M74,16 h-18 q-6,0 -6,6 v4 q0,6 6,6 h8 l6,6 v-6 h4 z"/><path d="M34,44 h12" stroke-dasharray="3 3"/></g></svg>
+    <div class="no">第十四章</div>
+    <h2>通事</h2>
+    <dl><dt>苇城</dt><dd>第三十七年到第四十二年</dd><dt>我们的世界</dt><dd>希罗多德记的“哑市”、洋泾浜和克里奥尔语、象胥与通事、佛经翻译、利玛窦</dd><dt>本章装置</dt><dd>读洋泾浜</dd></dl>
+  </div>
+  <div class="col">
+    <p>海客要留下来，就得过日子；过日子，就得和苇城人换东西。</p>
+    <p>头一年，两边几乎说不上话，买卖是这样做的：海客把一串串贝壳、晒干的鱼、几颗珍珠摆在城南河滩边一块大石头上，然后退开，远远地坐着。苇城人过来看，在旁边放下几筐麦子，也退开。海客回来看，觉得麦子少了，就不拿，坐回去；苇城人再添一筐。直到海客把麦子拿走，苇城人才把贝壳拿走。从头到尾，没有人说一句话。</p>
+    <p class="note">这种买卖，我那边两千多年前就有人记下来了。</p>
+  </div>
+
+  <div class="col">
+    <div class="real">
+      <h5>哑市</h5>
+      <p>古希腊历史学家希罗多德在《历史》（约公元前 5 世纪）里转述了迦太基人的说法：他们航行到“赫拉克勒斯之柱”（直布罗陀）以外的非洲海岸，和当地人做买卖。迦太基人把货物摆在岸上，回到船上点起烟；当地人看见烟，来到岸边，放下黄金，退开；迦太基人上岸看，觉得金子够了就拿走，不够就回船上等，当地人再添。据说双方都很守信：金子不够，迦太基人不碰；货物没拿走，当地人也不碰。</p>
+      <p>这种不见面、不说话的交易，人类学上叫“哑市”或“无声贸易”，在非洲、东南亚、西伯利亚等地都有记载，有些记载真假难辨。它说明了一件事：<em>在没有一句共同语言的时候，人类最先建立的不是词汇，而是规矩和信任。</em></p>
+      <p class="k">据希罗多德《历史》卷四，正文为概述；各地“哑市”记载可信度不一。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>码头话</h3>
+    <p>哑市做不了几个月。东西一多，讨价还价就离不开嘴了。</p>
+    <p>码头上慢慢冒出来一种怪话。苇城的搬运工和海客的渔夫，谁也学不会对方的话，可是能凑：苇城的数，海客的鱼名，苇城的“给”，海客的“好”，再加上一大堆手势。没有尾巴，没有“的”“了”，词和词硬碰硬地摆在一起：“鱼，三，给。麦，你，好？”说得多了，这种话自己有了规矩，苇城人和海客都说，却又谁的话都不是。</p>
+    <p>芦花管它叫“码头话”。她很看不上：“话都说不全，像小孩子。”</p>
+    <p>林记说：“你等着看他们的孩子。”</p>
+  </div>
+
+  <div class="col">
+    <div class="real">
+      <h5>洋泾浜和克里奥尔</h5>
+      <p>两群说不同语言的人长期打交道、又没有一方愿意（或来得及）完整学会对方的话时，往往会凑出一种简化的接触语言，语言学上叫<em>皮钦语</em>（pidgin）。它词汇少，大多来自其中一方（通常是强势的一方），语法极简，没有人以它为母语。</p>
+      <ul>
+        <li><b>洋泾浜英语</b>：18—19 世纪广州、上海的中外商人之间用的英语，“pidgin”一词据说就是中国人念“business”的口音。上海话把这种话叫“洋泾浜”，得名于租界边上的一条河浜。“chop-chop”（快点）、“look-see”（看看）等说法据说就是从这里进入英语的。</li>
+        <li><b>托克皮辛语</b>：巴布亚新几内亚的皮钦语，词汇多来自英语，今天是这个国家的官方语言之一，许多人以它为母语。</li>
+      </ul>
+      <p>当一种皮钦语成为下一代人的<em>母语</em>，孩子们会把它补全：添上时态、语气、复杂的句子结构，让它变成一种完整的语言，这就是<em>克里奥尔语</em>。海地克里奥尔语、毛里求斯克里奥尔语都是这样来的。有学者（如比克顿）认为，孩子把皮钦语变成克里奥尔语的过程，暴露了人类大脑里天生的语法倾向；这个说法很有名，也有很多反对意见，标“存疑”。</p>
+      <p class="k">“pidgin 来自 business”是通行说法；比克顿的“生物程序”假说存疑。</p>
+    </div>
+  </div>
+
+  <div class="wide">
+    <div class="fig quiz" id="tokFig">
+      <div class="fig-label">装置 15</div>
+      <h4>读洋泾浜</h4>
+      <p class="how">下面是巴布亚新几内亚托克皮辛语里的真实说法，词大多来自英语，可组合方式完全是自己的。猜猜它们是什么意思。</p>
+      <div id="tokBox"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>没有“欠”这个字</h3>
+    <p>第三十九年，上头让林记当了正式的“通事”，专门替神庙和海客传话。林记这才知道，翻译最难的不是词，是词后面的东西。</p>
+    <p>头一个麻烦是点头。林记跟阿浪谈好了一笔买卖，问她行不行，阿浪摇了摇头。林记以为谈崩了，叹口气要走，阿浪一把拉住他，急得直摇头。后来才弄明白：在海客那里，<em>摇头是“行”，点头是“不行”</em>。林记和他们打了两年交道，不知道误会了多少回。</p>
+    <p>第二个麻烦是人数。神庙要给海客登记户口，好按人头分口粮。林记拿着泥板去点人，海客全都躲了起来。阿浪告诉他：在他们那里，数人是不吉利的，被数过的人会被海带走。最后林记让每家自己往罐子里扔贝壳，一人一颗，他只数贝壳，不数人。</p>
+    <p class="note">卷一里，泥丸代替羊被数；到了这里，贝壳代替人被数。转了一大圈，又回到了老秤的罐子。</p>
+    <p>第三个麻烦最大。神庙借给海客一批种子，要他们秋后还，林记得把这件事翻译过去。他翻来覆去地讲，阿浪始终没听懂。最后他明白了：<em>海客的话里没有“欠”这个词</em>。他们那里，谁家有，就拿给没有的人，拿了就拿了，下回别人缺，你再拿出来。东西在大家之间转，没有人在泥板上记“谁欠谁”。</p>
+    <div class="scene">
+      <div class="sh"><b>河滩</b><span>第三十九年 · 春天</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who l">林记</span><p>神庙给你们种子。秋天，你们还给神庙种子，还要多一筐。</p></div>
+        <div class="ln"><span class="who m">阿浪</span><p>神庙给我们，我们高兴。秋天神庙没有，我们给神庙。为什么要“多一筐”？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>因为……神庙的种子是神庙的。你们用了它，就……</p></div>
+        <div class="ln"><span class="who m">阿浪</span><p>神庙的种子，在地里长，地是大家的，雨是天的。神庙记这个“多一筐”，记在泥上，泥板就是神庙的手，伸到我们的秋天里来。</p></div>
+        <div class="sd">林记没有接话。他想起了很多年前，阿穆站在那面泥板墙前的样子。</div>
+      </div>
+    </div>
+    <p>那笔种子最后还是借出去了。林记在泥板上用苇城字记了“借”，口头上跟海客说的却是“神庙给你们，秋天你们记得神庙”。秋天，海客送来的种子比借的多了两筐，还有一篮珍珠。他们不是在还债，是在还人情。</p>
+  </div>
+
+  <div class="col">
+    <div class="real">
+      <h5>象胥、通事和译经人</h5>
+      <p>中国很早就有专职翻译。《礼记·王制》说：</p>
+      <blockquote><p>五方之民，言语不通，嗜欲不同。达其志，通其欲：东方曰寄，南方曰象，西方曰狄鞮，北方曰译。</p><cite>《礼记·王制》</cite></blockquote>
+      <p>四个方向的翻译各有名字，后来“译”成了总称；《周礼》里有“象胥”一职，掌管接待四方使者、传译言语。历代朝廷设通事、译官，宋元以后又有“四夷馆”“会同馆”专门培养翻译。<em>“言语不通，嗜欲不同”</em>，两千多年前的人已经看得很清楚：翻译要通的不只是话，还有欲望和习惯。</p>
+      <p>翻译最大的一场工程，是佛经汉译，从东汉一直持续到宋代，前后近千年。后秦时的鸠摩罗什译经几百卷，文字流畅，影响极大，可他自己对翻译很不满意，《高僧传》记他说，把梵文改成汉文，失去了原文的文采，“有似嚼饭与人，非徒失味，乃令呕哕也”。唐代玄奘被认为提出过“五种不翻”：有些词宁可音译、不意译，比如“般若”不译成“智慧”，因为“智慧”太轻，装不下原词的分量；中国没有的东西（如某些印度树名）也只好音译。这和卷二芦花那句“名字不翻译”是一个道理，只是推得更远：<em>装不进本地词的意思，就把原来的声音整个搬过来。</em></p>
+      <p>明朝万历年间，意大利耶稣会士利玛窦 1582 年到澳门，此后在中国住了近三十年，学会了说汉语、读写文言，穿上儒服，和士大夫交朋友。他用汉文写了《交友论》，和徐光启合译了欧几里得《几何原本》前六卷（1607），绘制了《坤舆万国全图》（1602）。他翻译“上帝”“天主”时反复斟酌，努力把基督教讲成中国读书人能接受的样子，这种做法后来在教会内部引起了长期争论。</p>
+      <p>另一个著名的通事出现在 1519 年的墨西哥。西班牙人科尔特斯登陆时，身边有一个在玛雅地区当过多年俘虏、会说玛雅语的西班牙人；他又得到一位会说玛雅语和纳瓦特尔语（阿兹特克人的语言）的原住民女子，后人称她“马林切”。一句话要先从西班牙语译成玛雅语，再从玛雅语译成纳瓦特尔语。马林切在后来的征服中起了很大作用，她在墨西哥历史上的形象至今充满争议：有人视她为叛徒，有人视她为一个身不由己、靠语言活下来的女人。</p>
+      <p class="k">《礼记》原文；鸠摩罗什语据《高僧传》；“五种不翻”见南宋周敦义为《翻译名义集》所作序，归于玄奘；利玛窦事迹据通行传记。</p>
+    </div>
+
+    <aside class="echo" data-k="联系">
+      <span class="stamp">联系</span>
+      <div>
+        <p class="rh">“欠”是被发明出来的</p>
+        <p>书房里的《点石成金》讲过：人类学家找了两百年，没找到一个日常靠物物交换过活的社会。在小社会里，东西在亲友之间流转，靠的多是人情和记忆；把“谁欠谁多少”精确地记下来、还要加利息，是和神庙、王宫的账本一起长大的。海客没有“欠”这个词，正是那本书里说的那种社会；林记翻不过去的，不是一个词，而是一整套从泥丸、泥板一路长出来的东西。</p>
+      </div>
+    </aside>
+
+    <aside class="echo" data-k="生活">
+      <span class="stamp">生活</span>
+      <div>
+        <p class="rh">你身边的“摇头是行”</p>
+        <p>摇头点头的意思在不同地方真的不一样：在保加利亚等地，传统上点头表示“不”、摇头表示“是”，外国人常常因此闹笑话。你不用出国也会遇到“海客”：来自另一个省、另一种家庭、另一个圈子的人，同一个动作、同一句客气话，意思可能正好相反。有的地方说“下次一起吃饭”只是客气，有的地方却是真的在约饭。<em>学一种话，其实是在学一群人怎样过日子。</em>和不熟悉的人打交道，先别急着下结论，多问一句“你们那边是怎样的”。</p>
+      </div>
+    </aside>
+
+    <div class="ledger">
+      <div class="lh"><b>记一笔</b><span>第 14 号凭证 · 通事</span></div>
+      <div class="lb">
+        <div><i>借 · 历史</i>说不同话的人，先靠规矩和信任（哑市），再凑出一种简化的接触语言（皮钦语），下一代人把它补成完整的母语（克里奥尔语）；与此同时，总有一小群人去认真学对方的话，成了通事、译经人、传教士。翻译最难的是词后面的东西：习俗、信仰，以及“欠”这样的概念。</div>
+        <div><i>贷 · 生活</i>学一种话，就是学一群人怎样过日子。动作和客气话，最容易被误会。</div>
+      </div>
+      <div class="lf"><span>附件：码头话词表；借种泥板一块（海客多还了两筐，不入账）</span><span class="sig">林记</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第十五章 巴别 ============ -->
+<section class="chap" id="c15" data-vol="第十五章 · 巴别">
+  <div class="slab">
+    <svg class="wedges" viewBox="0 0 80 60" aria-hidden="true"><g fill="none" stroke="var(--clay-d)" stroke-width="2.2" stroke-linejoin="round"><path d="M16,54 h48 l-6,-10 h-36 z M22,44 l4,-10 h28 l4,10 M26,34 l4,-10 h20 l4,10 M30,24 l4,-10 h12 l4,10"/></g></svg>
+    <div class="no">第十五章</div>
+    <h2>巴别</h2>
+    <dl><dt>苇城</dt><dd>第四十二年到第四十五年</dd><dt>我们的世界</dt><dd>巴别塔与“禁语实验”；1786 年琼斯发现语言的亲戚；原始语言能重构到多远</dd><dt>本章装置</dt><dd>给语言认亲戚</dd></dl>
+  </div>
+  <div class="col">
+    <p>有一天，阿浪给苇城的孩子们讲了一个海客的故事。</p>
+    <p>很久以前，所有的人住在一个岛上，说一样的话。他们想造一条大船，大到能开到天边去，看看太阳睡在哪里。海神不高兴了，一夜之间搅乱了他们的舌头：早上醒来，造船的人谁也听不懂谁，船造不成了。他们只好各自坐着小船，散到大海上的各个岛去。从此，每个岛说一种话。</p>
+    <p>孩子们听得入神。林记却愣住了：苇城也有一个差不多的故事，泥板屋里抄过，说很久以前天下的人都用一种话赞美众神，后来一位神改变了人们的舌头。他自己的世界里，更有一个家喻户晓的版本。</p>
+  </div>
+
+  <div class="col">
+    <div class="real">
+      <h5>巴别塔，和想听见“第一种话”的国王</h5>
+      <p>《旧约·创世记》第十一章：</p>
+      <blockquote><p>那时，天下人的口音、言语都是一样。</p><cite>《创世记》11:1，和合本</cite></blockquote>
+      <p>人们要在示拿地造一座通天的塔，上帝变乱了他们的口音，使他们言语彼此不通，人们就散到全地上去了。那城因此叫“巴别”（和希伯来语“变乱”音近）。苏美尔史诗《恩美卡与阿拉塔之王》里也有一段，说从前万邦都用一种语言赞美恩利尔神，后来智慧之神恩基改变了人们口中的言语。世界各地还有许多类似的故事。<em>“人类本来说同一种话”，是一个非常古老、非常普遍的想象。</em></p>
+      <p>有人想用实验去找这“第一种话”。希罗多德记载，埃及国王普萨美提克把两个新生婴儿交给一个牧人，严令谁也不许在他们面前说话，看他们第一句会说什么。两年后，孩子们伸着手喊“bekos”，国王查出这是弗里吉亚语的“面包”，于是承认弗里吉亚人比埃及人更古老。13 世纪的编年史作者萨林贝内记载，神圣罗马皇帝腓特烈二世也做过类似的实验，想知道孩子会说希伯来语、希腊语还是拉丁语，结果孩子们全都死了。这些故事真假难辨，但现代确实有过少数在极端隔绝中长大的儿童，他们被发现后都没有自己“冒出”什么原始语言，过了一定年龄也很难再完整掌握语法。</p>
+      <p class="k">《创世记》引和合本；希罗多德《历史》卷二与萨林贝内编年史，正文为概述，可信度存疑。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>上头的实验</h3>
+    <p>阿浪的故事传到了神庙。上头已经不年轻了，他听说林记懂得很多远方的事，把林记叫去，说了一个打算：城里有两个刚出生的孤儿，送到城外一个哑巴牧人那里去养，谁也不许跟他们说话，看他们长大了开口说的是什么。那，就是众神最初教给人的话。</p>
+    <div class="scene">
+      <div class="sh"><b>神庙高台</b><span>第四十二年 · 冬天</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who l">林记</span><p>我那边有国王干过这件事，不止一个。</p></div>
+        <div class="ln"><span class="who">上头</span><p>他们听见了什么？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>一个说听见了“面包”，那多半是孩子学了羊叫，或者牧人偷偷说了话。另一个，孩子全死了。</p></div>
+        <div class="ln"><span class="who">上头</span><p>死了？没人打他们，也没饿着他们。</p></div>
+        <div class="ln"><span class="who l">林记</span><p>没人跟他们说话。孩子要靠人跟他说话才长得大，就跟要靠奶一样。你不会听见“第一种话”的，上头。没人说话的孩子不会说出众神的话，只会什么都说不出来。</p></div>
+        <div class="ln"><span class="who">上头</span><p>那你说，第一种话到底在哪？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>不在孩子嘴里。要找，得去找老人嘴里的话，一种一种地比。</p></div>
+      </div>
+    </div>
+    <p>两个孤儿被送到了海客的河滩上，阿浪的族人收养了他们。他们后来既会说苇城话，也会说海客话，还会码头话和河滩手语。</p>
+  </div>
+
+  <div class="col">
+    <h3>一种一种地比</h3>
+    <p>林记和芦花干起了一件新活：比词。</p>
+    <p>他们手里有好几种话：苇城话，东堤泥板上的旧苇城话，北方山民的话，老牛那些矿工的话（林记还记得一点），海客的话。他们挑出最不容易被借来借去的那些词：一、二、三，手、眼、水、火、母亲、死。每种话里各记一份，摆在一起比。</p>
+    <p>比的不是像不像，而是<em>有没有规律</em>。芦花很快发现，苇城话和东堤话里，凡是苇城人念“舍”的地方，东堤人念的都是“舍”；凡是苇城念“g”开头的词，东堤一律念成“k”。不是一两个词碰巧像，而是一整批词都按同一条规矩对应。“这不是借的，”她说，“借来的词不会这么整齐。是一个娘生的，分开以后各自长歪了。”</p>
+    <p>北方山民的话，和苇城话完全对不上。海客的话也对不上。可是海客的“三”“眼”“水”，和老牛那些矿工的话，有几个词好像……</p>
+    <p>林记摇摇头：“太少了，几个词像，可能是碰巧。要证明是一家，得有一整批词按规矩对上。”</p>
+    <p>“那苇城话、北方话、海客话，最早是不是一种话？”</p>
+    <p>林记想了很久，说：“不知道。这把尺子量不了那么远。”</p>
+  </div>
+
+  <div class="col">
+    <div class="real">
+      <h5>语言的家谱</h5>
+      <p>1786 年，在印度加尔各答当法官的英国人威廉·琼斯发表了一篇著名的演讲：梵语和希腊语、拉丁语在动词词根和语法形式上相似得太多，不可能是巧合，它们一定出自某个“也许已经不存在了”的共同源头。这个源头后来叫<em>原始印欧语</em>。</p>
+      <p>19 世纪，学者们发现这种亲缘关系可以用<em>规则的语音对应</em>来证明，不是凭“看着像”。最有名的是“格林定律”：拉丁语、希腊语里的 p，在日耳曼语（包括英语）里有规律地变成 f：pater 对 father，piscis 对 fish，pēs 对 foot；t 变成 th：trēs 对 three。像芦花发现的那样，一整批词跟着同一条规矩走，才能说明是一家。用这种“比较法”，学者们排出了印欧、汉藏、南岛、班图、乌拉尔、闪米特等一个个语系，还能一步步“重构”出它们的祖先语言大致长什么样。比如“五”，在汉藏语系里，藏文写作 lnga，缅甸语念 nga，上古汉语据重构大约也是以 ŋ 开头的音。</p>
+      <p>可是比较法有一个射程：<em>大约六千到一万年</em>。原始印欧语一般估计在距今约六千年前后（另一派认为更早，约八九千年前，起源地也有草原说和安纳托利亚说之争）。再往前，词变得太多、借得太多，规律淹没在偶然里，就推不动了。今天世界上大约七千种语言，归属于几百个彼此看不出亲缘的语系和“孤立语言”（比如西班牙、法国边境的巴斯克语，和谁都不是一家）。</p>
+      <p class="k">琼斯演讲见其 1786 年在亚洲学会的周年演讲；语系数目据 Glottolog 等统计，口径不一。</p>
+    </div>
+  </div>
+
+  <div class="wide">
+    <div class="fig fam" id="famFig">
+      <div class="fig-label">装置 16</div>
+      <h4>给语言认亲戚</h4>
+      <p class="how">下面是同一个数在不同语言里的说法。点卡片给它们分家（每点一下换一个语系），分好了点“核对”。小心：看着像的不一定是亲戚，看着不像的也可能是。</p>
+      <div class="btns" id="famRound" style="margin-bottom:8px"></div>
+      <div class="famleg" id="famLeg"></div>
+      <div class="famcards" id="famCards"></div>
+      <div class="btns" style="margin-top:10px"><button class="btn pri" id="famCheck">核对</button><button class="btn" id="famReset">重来</button></div>
+      <div class="readout" id="famOut" style="margin-top:10px"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="real">
+      <h5>那么，人类一开始说的是同一种话吗？</h5>
+      <p>诚实的回答是：<em>不知道，而且很可能永远无法用语言学的方法证明。</em>可以分几层说：</p>
+      <ul>
+        <li><b>支持“同一个源头”的理由</b>：今天所有人类都属于同一个物种，祖先可以追到非洲的一个人群；所有人群的语言能力完全一样，任何一个婴儿放到任何一种语言环境里都能学会。如果语言能力在现代人散布到各大洲之前就已经成熟，那么最早的人群说的话，有可能出自一个共同源头。</li>
+        <li><b>证明不了的理由</b>：比较法只能推到一万年左右，而人类说话至少有几万年。有学者（如鲁伦等）试图找出全世界语言共有的“原始世界语”词根，比如一个表示“一、手指”的 tik；另一些学者提出把印欧、乌拉尔、阿尔泰等合成更大的“诺斯特拉超语系”。这些说法<em>主流语言学界大多不接受</em>，认为找到的相似可能只是巧合，标“存疑”。</li>
+        <li><b>“多次起源”也不是不可能</b>：尼加拉瓜手语（第十三章）告诉我们，只要有一群需要交流的孩子，一种新语言可以从零长出来。手语在世界各地就是一次次独立产生的。所以，即便最早只有一个源头，后来也可能有新的语言另起炉灶。</li>
+      </ul>
+      <p>巴别塔的故事说，人类先说一种话，后来被打散。语言学能确定的只是后半句：<em>话总在分家</em>。一群人分开几百年，口音就不一样了；分开一两千年，就互相听不懂了；分开几千年，连亲戚关系都很难认出来。</p>
+    </div>
+
+    <aside class="echo" data-k="押韵">
+      <span class="stamp">押韵</span>
+      <div>
+        <p class="rh">你也会比较法</p>
+        <p>第十章那个装置里，“学”在粤语里念 hok，日语念 gaku，韩语念 hak，越南语念 học，都带着一个收尾的 k，普通话的 xué 却没有。再查几个：“国”“六”“木”，都是一样。这不是碰巧，是一整批字跟着同一条规律走：中古汉语有一批以 -k、-t、-p 收尾的“入声字”，普通话把这些尾巴丢了，其他几处留着。这就是格林定律的汉语版。卷一第三章装置里“江”和“工”为什么同一个声旁，也是同样的道理：读音几千年里各自变了，规律还藏在字里。</p>
+      </div>
+    </aside>
+
+    <aside class="echo" data-k="生活">
+      <span class="stamp">生活</span>
+      <div>
+        <p class="rh">分开太久，就听不懂了</p>
+        <p>语言的分家，和人的走散很像：一起长大的两个人，各自去了不同的城市、不同的圈子，几年后见面，用的词、在意的事、开的玩笑都不一样了，说着同一种话，却好像隔了点什么。语言学家说这是自然规律，没有谁对谁错。想不走散，办法和语言一样：常说话。</p>
+      </div>
+    </aside>
+
+    <div class="ledger">
+      <div class="lh"><b>记一笔</b><span>第 15 号凭证 · 巴别</span></div>
+      <div class="lb">
+        <div><i>借 · 历史</i>“人类本来说一种话”是世界各地共有的古老想象，用禁语实验去找它只会害了孩子。比较法能凭规则的语音对应认出语系，推到六千到一万年前；再往前，同源还是多源，都只能存疑。确定的只有一件事：话总在分家。</div>
+        <div><i>贷 · 生活</i>看着像不一定是亲戚，看着不像也可能是：认亲要看规律，不看长相。想不走散，常说话。</div>
+      </div>
+      <div class="lf"><span>附件：五种话词表对照一块；孤儿两名（已由海客收养）</span><span class="sig">林记</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第十六章 开口 ============ -->
+<section class="chap" id="c16" data-vol="第十六章 · 开口">
+  <div class="slab">
+    <svg class="wedges" viewBox="0 0 80 60" aria-hidden="true"><g fill="none" stroke="var(--clay-d)" stroke-width="2.4" stroke-linecap="round"><path d="M12,30 q14,-16 28,0 q-14,16 -28,0 Z"/><path d="M48,30 h24 M62,22 l10,8 l-10,8"/></g></svg>
+    <div class="no">第十六章</div>
+    <h2>开口</h2>
+    <dl><dt>苇城</dt><dd>第四十五年到第五十年</dd><dt>我们的世界</dt><dd>今天约七千种语言，四成濒危；最后的说话人；死而复生的希伯来语和马恩岛语</dd><dt>本章</dt><dd>全书最后一章，含尾声</dd></dl>
+  </div>
+  <div class="col">
+    <p>第四十五年，阿浪做了祖母。</p>
+    <p>她的孙女在河滩上长大，和苇城的孩子一起捏泥巴、抓鱼、比手语。孩子会说苇城话，会说码头话，可那码头话已经不是她祖父那一辈人在码头上凑出来的那种硬邦邦的东西了：它有了“昨天”和“明天”的说法，有了“如果”，有了骂人的花样和哄小孩的歌。河滩上的孩子们都说它，生下来就说，说得比哪种话都顺。芦花再也不说它“像小孩子”了。</p>
+    <p>可是阿浪用海客话跟孙女说话，孙女听得懂，却用码头话回答。</p>
+    <div class="scene">
+      <div class="sh"><b>河滩</b><span>第四十七年 · 夏夜</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who m">阿浪</span><p>（用苇城话）她听得懂我。可她不说。她说，海客话是老人的话，说了别人笑。</p></div>
+        <div class="ln"><span class="who l">林记</span><p>你那三十代祖先的名字，那些星星的路……</p></div>
+        <div class="ln"><span class="who m">阿浪</span><p>我教了。她记得一半。她的孩子，就记得一个名字了。</p></div>
+        <div class="sd">她看着火，过了很久。</div>
+        <div class="ln"><span class="who m">阿浪</span><p>林记，你会把话压在泥上。把我的话压在泥上吧。</p></div>
+      </div>
+    </div>
+    <p>林记去找芦花。芦花那时快四十岁了，泥板屋的总管，鬓角已经有了几根白发。她听完，从柜子最底下取出一块东西，是那四十块东堤泥板里的一块。</p>
+    <p>“苇城的楔子是给苇城话造的，写海客话不合身。”她说，“东堤的字一个符号一个音，八十几个，什么话都拼得出来。现在除了我，世上没人用它。正好。”</p>
+    <p>就这样，一种死了一百多年的字，被拿来记一种快要死的话。那年冬天，芦花每天傍晚去河滩，阿浪念，她写，林记在旁边问意思。三十代祖先的名字，一个一个压进了泥里；星星的路，海水的颜色，鸟的样子，一块一块码在泥板屋的架子上。一共一百零七块。</p>
+    <p class="note">泥板不会说话。它只能等，等一个将来的芦花，拿着它去找还会唱歌的老盐。如果那时还有。</p>
+  </div>
+
+  <div class="col">
+    <div class="real">
+      <h5>最后一个说话的人</h5>
+      <p>今天世界上大约有七千种语言，按各种统计，<em>约四成处于濒危状态</em>，很多只剩老人在说。常听到的说法是“每两周就有一种语言消失”，这个数字的估算方法有争议，但趋势是确定的：语言多样性正在快速减少。</p>
+      <p>语言很少是因为说话的人全死了而消失的（虽然这种事在殖民和战争中发生过），更常见的是阿浪家那样：<em>父母还会说，孩子却不说了</em>。因为另一种话更有用、更体面、在学校和城市里更吃得开。语言学上叫“语言转用”。往往只要两三代人。</p>
+      <ul>
+        <li>1911 年，美国加州一个名叫伊希的男人从山里走出来，他是雅希人最后的幸存者，此后在旧金山的一所博物馆里生活，给人类学家讲雅希语，1916 年去世。</li>
+        <li>1974 年，马恩岛（英国和爱尔兰之间的小岛）上最后一位以马恩语为母语长大的老人内德·马德雷尔去世。</li>
+        <li>1992 年，土耳其一位叫特夫菲克·埃森奇的老人去世，他被认为是高加索尤比克语最后的流利使用者。尤比克语以辅音极多闻名，有八十个左右。他生前和语言学家合作，留下了大量录音。</li>
+        <li>在中国，满语的母语使用者已经极少，黑龙江三家子村等地只剩少数老人；而满语的近亲锡伯语，在新疆察布查尔还有数万人在说，用的是稍加改动的满文。</li>
+      </ul>
+      <p>也有死而复生的。<em>希伯来语</em>在两千年里主要是宗教和书面语言，日常没人用它当母语。19 世纪末，埃利泽·本-耶胡达在耶路撒冷坚持只用希伯来语和家人说话，编词典、造新词，他的儿子成了现代第一个以希伯来语为母语的孩子。今天它有几百万母语者。<em>马恩语</em>在最后一位母语者去世后，靠录音、教材和热心人重新教起来，2001 年起有了用马恩语教学的小学，又有孩子从小说它了。康沃尔语的“最后一位使用者”通常被说成是 1777 年去世的多莉·彭特里斯（这个说法存疑），如今它也在复兴中。</p>
+      <p>复兴靠的东西，正是阿浪和芦花做的事：<em>趁还有人会说的时候，把它记下来</em>。词典、语法、录音、故事。字救不活一种话，但能替它保存一颗种子，等着有人愿意重新开口。</p>
+      <p class="k">濒危比例据联合国教科文组织、Ethnologue 等统计，为约数；人物事迹据通行记述。</p>
+    </div>
+
+    <aside class="echo" data-k="生活">
+      <span class="stamp">生活</span>
+      <div>
+        <p class="rh">你的方言</p>
+        <p>你小时候是不是也被说过“在学校要说普通话”？你会不会听得懂爷爷奶奶的方言，却只用普通话回答？这就是阿浪孙女的选择，没有对错，普通话让更多的人能互相听懂，这是了不起的事。只是值得知道：每一种方言都是一座小小的图书馆，装着几百年的说法、笑话和骂人话，图书馆关门的时候没有声音。会说的，偶尔说一说；不会说的，录下一段长辈的话。</p>
+      </div>
+    </aside>
+
+    <div class="ledger">
+      <div class="lh"><b>记一笔</b><span>第 16 号凭证 · 开口</span></div>
+      <div class="lb">
+        <div><i>借 · 历史</i>语言大多不是被消灭的，是在两三代人里被悄悄放下的。也有语言死后复生：希伯来语、马恩语。复兴的种子，是有人趁着还能听见的时候把它记了下来。字救不活话，但能替话留种。</div>
+        <div><i>贷 · 生活</i>长辈的话，趁还听得见，多听，多录，多说几句。</div>
+      </div>
+      <div class="lf"><span>附件：海客话泥板一百零七块（东堤字书写）</span><span class="sig">林记</span></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>尾声 · 月末</h3>
+    <p>第五十年的春天，林记七十九岁了。</p>
+    <p>他很少出门了，每天坐在泥板屋门口晒太阳，看芦花的学生们进进出出。麦娘早就不在了，阿穆也不在了，他的名字还在一块老泥板上，两道水，一根苗。阿浪还在，每天傍晚拄着拐杖来坐一会儿，两个老人用码头话聊天，聊天气，聊鱼，聊年轻人不听话。</p>
+    <p>那天下午，芦花拿来一块新泥板，请他在角上压个记号。是一份很普通的账：神庙收麦子三十筐，经手人芦花。林记接过芦苇，在角上压了一个小小的符号，是他五十年前给自己定的：一个“林”字，写成了两棵楔形的小树。</p>
+    <p>然后他靠在墙上，眯着眼睛，看着太阳。手里还握着那根芦苇。</p>
+    <p class="sep">· · ·</p>
+    <p>他是被手机闹钟吵醒的。</p>
+    <p>脸贴着一沓送货单，压出了一道道印子。窗外天刚亮，办公室的灯还开着一盏，电脑屏幕早就黑了。墙上的日历停在月末最后一天。</p>
+    <p>他坐起来，盯着手边那张单子。数量那一栏，那个字还在：说它是“叁”也行，说它是“捌”也行。</p>
+    <p>以前，他会对着这个字看很久，看到它把自己看穿。</p>
+    <p>这一次，他只看了一眼，就拿起了手机。仓管老周的电话，昨晚没打通，现在是早上七点，响了三声，通了。</p>
+    <div class="scene">
+      <div class="sh"><b>电话</b><span>月末 · 早上七点</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who l">林记</span><p>周师傅，早。上礼拜三那车瓷砖，入库单上那个数，是三箱还是八箱？</p></div>
+        <div class="ln"><span class="who">老周</span><p>八箱啊。我写的大写，捌。怎么，看着像叁？哈哈，我那字，我自己都认不出来。</p></div>
+        <div class="ln"><span class="who l">林记</span><p>行，捌。谢谢周师傅。</p></div>
+        <div class="ln"><span class="who">老周</span><p>这么早你就在公司？你这是一宿没回去？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>……回了一趟老家。挺远的。</p></div>
+      </div>
+    </div>
+    <p>三百块对上了。前后不到一分钟。</p>
+    <p>他在单子旁边写了一行小字：“经电话核实，数量为捌，仓管周某确认。”写完，在后面签上自己的名字。签到“林”字的时候，他的手顿了一下。</p>
+    <p>指甲缝里，有一点干了的、泥色的东西。</p>
+    <p>他看了它很久，没有擦掉。</p>
+    <p>然后他站起来，关上灯，走出办公室。走廊里，保洁阿姨正在拖地，他跟她打了个招呼，说早。阿姨愣了一下，笑着说，早啊，小林，今天怎么这么高兴。</p>
+    <p>他也不知道。他只是忽然觉得，能开口跟人说一句话，是一件很了不起的事。</p>
+    <p>人类先学会了开口，过了不知道多少万年，才学会落笔。字是为了把话说清楚而造的，可它从来没有真正说清楚过。字说不清的时候，就回到最早的那个办法上去：</p>
+    <p><em>开口问。</em></p>
+    <p class="ni" style="text-align:center;margin-top:2.4em;font-family:var(--f-display);font-size:22px;letter-spacing:.24em">全书完</p>
+
+    <div class="ledger">
+      <div class="lh"><b>记一笔</b><span>第 17 号凭证 · 全书结账</span></div>
+      <div class="lb">
+        <div><i>借 · 历史</i>先有话，后有字。字从账里长出来，被借走、被改掉、被遗忘、又被读回来；话从更深的地方长出来，一路分家、相遇、混合、死去、复生。三卷书，一笔账：人类所有的字，都是为了让说过的话留下来；人类所有的话，都是为了让另一个人懂。</div>
+        <div><i>贷 · 生活</i>对不上的时候，别只盯着那个字。开口问。</div>
+      </div>
+      <div class="lf"><span>本书结账，余额为零</span><span class="sig">林记</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 书末 ============ -->
+<section class="chap" id="end" data-vol="书末 · 哪些是真的">
+  <div class="slab">
+    <div class="no">书末</div>
     <h2>哪些是真的</h2>
     <dl><dt>内容</dt><dd>故事与历史对照表 · 出处 · 存疑</dd></dl>
   </div>
   <div class="col">
-    <p>苇城是虚构的，林记、麦娘、老秤、小芦、阿穆、老牛和书里所有的对白，都是虚构的。苇城的年份也是故事里的年份，它把我们世界里几千年的事压进了几十年。下面这张表把故事里的每一步，和我们世界里对应的真事对一对。</p>
+    <p>苇城是虚构的，林记、麦娘、老秤、小芦、阿穆、老牛、芦花、老盐、阿浪、小陶，东堤、西国、北方山民、海客，以及书里所有的对白，都是虚构的。东堤字、海客话、码头话都是本书编的。苇城的年份也是故事里的年份，它把我们世界里几千年的事压进了五十年。下面这张表把故事里的每一步，和我们世界里对应的真事对一对。</p>
     <div class="scroll-x">
     <table class="t">
       <thead><tr><th>苇城的故事</th><th>我们的世界</th><th>可靠程度</th></tr></thead>
@@ -1335,6 +2484,26 @@ footer p{text-indent:0!important}
         <tr><td>老牛和矿上的字母，“给女主人”</td><td>塞拉比特·卡迪姆的原始西奈字母；加德纳 1916 年读出 l-b-ʿ-l-t</td><td>真实；年代有早晚两说</td></tr>
         <tr><td>苇城没有接受字母</td><td>楔形文字和字母并存了一千多年，最后才被阿拉米字母等取代</td><td>大势真实；苇城的细节虚构</td></tr>
         <tr><td>林记“知道有字、自己造一套”</td><td>塞阔雅的切罗基音节文字；“刺激传播”</td><td>真实</td></tr>
+        <tr><td colspan="3" style="color:var(--ink-3);font-size:13px;letter-spacing:.1em">卷二 · 破译</td></tr>
+        <tr><td>双语契约，靠人名读出第一个音</td><td>罗塞塔石碑与王名圈（托马斯·杨、商博良 1822）；贝希斯敦崖刻与 1857 年的四人考试</td><td>真实；契约虚构</td></tr>
+        <tr><td>数符号定类型、排辅音元音格子、套地名</td><td>科伯的“三连式”、文特里斯的格子与克里特地名（1952）；线形文字 B 原来是希腊语</td><td>真实</td></tr>
+        <tr><td>东堤人说的原来是旧苇城话</td><td>线形文字 B 写的是希腊语，出乎包括文特里斯在内许多人的意料</td><td>原理真实；东堤虚构</td></tr>
+        <tr><td>上头下令砸碎泥板，芦花藏起四十块</td><td>兰达 1562 年焚烧玛雅书；秦焚书与伏生壁藏《尚书》</td><td>真实；苇城事虚构</td></tr>
+        <tr><td>老盐的歌帮助释读</td><td>今天仍在说的玛雅语帮助破译玛雅文；没断过的汉字帮助释读甲骨文</td><td>原理真实</td></tr>
+        <tr><td>东堤字借自苇城楔子；北方山民用自己的话念苇城字</td><td>假名出自汉字；训读；阿卡德人用阿卡德语念苏美尔词符；契丹、西夏、女真仿汉字造字</td><td>真实；苇城事虚构</td></tr>
+        <tr><td>老盐死后，芦花成了最后一个读者</td><td>圣书字最后的铭文（394 年）、西夏文最晚的经幢（1502 年）、女书最后的自然传人（2004 年）</td><td>真实</td></tr>
+        <tr><td colspan="3" style="color:var(--ink-3);font-size:13px;letter-spacing:.1em">卷三 · 开口</td></tr>
+        <tr><td>“提库”到底是什么意思</td><td>蒯因的 gavagai（1960）；婴儿的共同注意、互斥假设、快速映射、跨场景统计</td><td>真实；海客话虚构</td></tr>
+        <tr><td>芦花的儿子学会“阿”（水）</td><td>海伦·凯勒 1887 年 4 月 5 日在井房学会 water</td><td>真实</td></tr>
+        <tr><td>阿浪背诵三十代祖先与星路</td><td>许多无文字社会的口传家谱和航海知识</td><td>现象真实；具体内容虚构</td></tr>
+        <tr><td>河滩上的孩子们造出手语，下一批孩子让它更规整</td><td>尼加拉瓜手语（1977 年起）</td><td>真实</td></tr>
+        <tr><td>石头上的哑市</td><td>希罗多德记迦太基人与非洲海岸居民的无声贸易</td><td>记载真实，细节存疑</td></tr>
+        <tr><td>码头话 → 孩子们的母语</td><td>皮钦语与克里奥尔语（洋泾浜英语、托克皮辛语、海地克里奥尔语）</td><td>真实</td></tr>
+        <tr><td>摇头是“行”；数人不吉利；没有“欠”这个词</td><td>保加利亚等地的点头摇头；多地有忌讳点数人口的习俗；小型社会里的人情流转</td><td>现象真实；海客习俗为虚构组合</td></tr>
+        <tr><td>海神打乱舌头的故事；上头想做的禁语实验</td><td>巴别塔、《恩美卡与阿拉塔之王》；普萨美提克与腓特烈二世的传说</td><td>文本真实，实验记载存疑</td></tr>
+        <tr><td>芦花用规则的对应认出苇城话和东堤话是一家</td><td>琼斯（1786）、格林定律与比较法</td><td>真实</td></tr>
+        <tr><td>阿浪的孙女听得懂、却不说海客话</td><td>语言转用；伊希、马德雷尔、埃森奇；希伯来语与马恩语的复兴</td><td>真实</td></tr>
+        <tr><td>林记醒在办公桌上</td><td>无</td><td>只有指甲缝里那点泥，本书不负责解释</td></tr>
       </tbody>
     </table>
     </div>
@@ -1356,7 +2525,23 @@ footer p{text-indent:0!important}
       <li><b>塞阔雅</b>：开始造字的年份、符号数 86/85、1821 年还是 1825 年被正式采用、普及速度，各书记述不一。“刺激传播”是人类学家克罗伯（A. L. Kroeber）1940 年提出的概念。</li>
       <li><b>训民正音</b>：1443 年创制、1446 年颁布；序文据《训民正音》，郑麟趾后序语为概述；崔万理上疏见《朝鲜王朝实录·世宗实录》（1444）；1894 年成为官方文字，据通行说法。</li>
       <li><b>大写数字</b>：“朱元璋因郭桓案推行大写数字”为流行说法，唐代文书中已有类似用法，正文已标存疑。</li>
-      <li><b>装置</b>：泥球、收据、字形演变中的符号均为示意，不是具体泥板的摹本；装置 2 的数字记号按原始楔形文字六十进制体系简化；装置 6 的字母原形据通行字母史推测绘制；装置 7 的年代均为约数。</li>
+      <li><b>卷一装置</b>：泥球、收据、字形演变中的符号均为示意，不是具体泥板的摹本；装置 2 的数字记号按原始楔形文字六十进制体系简化；装置 6 的字母原形据通行字母史推测绘制；装置 7 的年代均为约数。</li>
+      <li><b>卷二 · 罗塞塔与王名圈</b>：石碑出土与归属、托马斯·杨与商博良的工作，据通行埃及学史（如 Andrew Robinson, <i>Cracking the Egyptian Code</i>, 2012）；荷拉波罗《圣书字》为 5 世纪作品；“我搞定了”后昏倒的故事细节存疑。装置 8 的符号为示意，托勒密王名中“M”的符号未作具体辨认。</li>
+      <li><b>楔形文字破译</b>：格罗特芬德（1802）、罗林森与贝希斯敦崖刻、1857 年皇家亚洲学会的四人试译，据通行亚述学史；崖刻高度为约数。</li>
+      <li><b>线形文字 B</b>：John Chadwick, <i>The Decipherment of Linear B</i>（1958）；Margalit Fox, <i>The Riddle of the Labyrinth</i>（2013，关于科伯）。装置 9 的符号为示意，读音据通行转写 ko-no-so、a-mi-ni-so、tu-ri-so、pa-i-to。</li>
+      <li><b>玛雅</b>：兰达引文据其西班牙文著作意译；克诺罗佐夫（1952）、普罗斯库里亚科夫（1960）、帕伦克圆桌会议（1973），据 Michael D. Coe, <i>Breaking the Maya Code</i>；四部古抄本含 2016 年确认真实的墨西哥抄本；玛雅语人数为约数。</li>
+      <li><b>甲骨文</b>：王懿荣“龙骨入药”的故事细节存疑；刘鹗《铁云藏龟》（1903）；王国维《殷卜辞中所见先公先王考》（1917）与“二重证据法”；甲骨片数、单字数与释读数为约数。装置 10 的字形为简化示意。<b>伏生</b>：《史记·儒林列传》。</li>
+      <li><b>汉字文化圈</b>：稻荷山铁剑纪年 471 年为通行看法；字喃起源年代有争议；德·罗德词典 1651 年；契丹大字约 920 年、西夏文约 1036 年、女真大字 1119 年，据通行说法。装置 11 的读音：粤语用粤拼，日语为常用音读，韩语、越南语为现代标准读音，个别字有多种读法时取最常见的一种。</li>
+      <li><b>字母传播</b>：路线为简化示意；土耳其 1928 年改字；蒙古国文字政策据通行报道。</li>
+      <li><b>文字之死</b>：最晚楔形泥板约公元 75 年；菲莱圣书字铭文 394 年 8 月 24 日、世俗体 452 年；保定西夏文经幢 1502 年；《番汉合时掌中珠》1190 年；金章宗 1191 年废契丹字；阳焕宜 2004 年去世；线形埃兰文破译（2022）尚待检验。装置 12 各文字的起止年代均为约数，其中“女书”的起点、“朗格朗格”的起止尤其不确定。</li>
+      <li><b>卷三 · 指物与学词</b>：W. V. O. Quine, <i>Word and Object</i>（1960）；Carey &amp; Bartlett（1978）的“chromium”实验；共同注意、互斥假设据发展心理学通行综述（如 Tomasello、Markman 的工作）。<b>海伦·凯勒</b>：《我的生活》（1903，公有领域），引文为本书自译；“三十个词”据莎莉文书信。<b>索绪尔</b>：《普通语言学教程》（1916）。<b>bouba/kiki</b>：Köhler（1929）、Ramachandran &amp; Hubbard（2001）及后续跨语言研究。</li>
+      <li><b>语言起源</b>：巴黎语言学会 1866 年章程；凯巴拉舌骨（1989 年发表）；FOXP2（2001）；布隆伯斯赭石年代为约数；各种起源假说均存疑。装置 14 的“说话开始年代”由读者自选，写字取约 5300 年前、字母约 3850 年前、印刷取毕昇活字约 1040 年代、互联网取 1990 年代。</li>
+      <li><b>尼加拉瓜手语</b>：Judy Kegl、Ann Senghas 等人的研究；学校开办年份据通行说法。<b>手语是完整语言</b>：William Stokoe（1960）对美国手语的研究。</li>
+      <li><b>哑市</b>：希罗多德《历史》卷四。<b>皮钦与克里奥尔</b>：“pidgin”源于 business 为通行说法；Derek Bickerton 的“语言生物程序”假说存疑。装置 15 的托克皮辛语词义据通行词典。</li>
+      <li><b>翻译史</b>：《礼记·王制》原文；鸠摩罗什语据《高僧传》；“五种不翻”见周敦义《翻译名义集》序；利玛窦据通行传记；马林切据通行记述，其历史评价有争议。</li>
+      <li><b>巴别与禁语实验</b>：《创世记》11 章引和合本；《恩美卡与阿拉塔之王》中“恩基改变人们语言”一段为概述；普萨美提克见希罗多德《历史》卷二；腓特烈二世见萨林贝内编年史；均真伪难辨。</li>
+      <li><b>比较语言学</b>：琼斯 1786 年演讲；格林定律；原始印欧语年代与起源地存在草原说与安纳托利亚说之争；“原始世界语”（Ruhlen 等）与诺斯特拉超语系为少数派观点。装置 16 的词形为通行转写，梵语、藏文等取简化拉丁转写。</li>
+      <li><b>濒危语言</b>：比例据联合国教科文组织与 Ethnologue，为约数；“每两周消失一种”为流行估算，方法有争议；伊希、马德雷尔、埃森奇、本-耶胡达据通行记述；多莉·彭特里斯为“最后的康沃尔语使用者”之说存疑；满语与锡伯语使用者人数为约数。</li>
     </ul>
     <p class="ni" style="font-size:15px;color:var(--ink-2)">如发现错漏，欢迎指出。</p>
   </div>
@@ -1366,7 +2551,7 @@ footer p{text-indent:0!important}
 <footer class="g">
   <a class="nextbook" href="../money/"><span style="font-size:12px;color:var(--ink-3)">书房里的另一本书</span><br><b>点石成金 · 金钱创世记</b><br><span style="font-size:14px;color:var(--ink-2)">老秤那罐子泥丸，在另一本书里长成了钱。从一笔债讲到一条消息，五千年。</span></a>
   <a class="nextbook" href="../yes/"><span style="font-size:12px;color:var(--ink-3)">书房里的另一本书</span><br><b>是，大人 · 衙门里的处世术</b><br><span style="font-size:14px;color:var(--ink-2)">泥板屋里那第一批只写字、不种地的孩子，后来坐进了衙门。</span></a>
-  <p>《苇城书记 · 文字创世记》卷一《落笔》，创世书房藏书之一。故事为原创虚构，蓝框内的历史已尽量核对，争议之处列在卷末。正文由 Claude 协助创作。纯静态网页，无框架，只从 Google Fonts 加载字体。</p>
+  <p>《苇城书记 · 文字创世记》，三卷：落笔、破译、开口，创世书房藏书之一。故事为原创虚构，蓝框内的历史已尽量核对，争议之处列在书末。正文由 Claude 协助创作。纯静态网页，无框架，只从 Google Fonts 加载字体。</p>
   <p><a href="../">回书房</a> · <a href="#top" id="toTop">回到开头</a></p>
 </footer>
 
@@ -1872,6 +3057,327 @@ function tabletBg(w, h){ return '<rect x="4" y="4" width="' + (w - 8) + '" heigh
   svg.addEventListener('keydown', e => { const g = e.target.closest('.tlnode'); if (g && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); pick(+g.dataset.k); } });
   F.addEventListener('click', e => { const b = e.target.closest('[data-f]'); if (!b) return; cur = b.dataset.f; $$('[data-f]', F).forEach(x => x.classList.toggle('on', x === b)); draw(); });
   draw();
+})();
+
+/* ---------- 通用小测验（装置 10 / 15） ---------- */
+function quiz(box, Q, picFn){
+  let i = 0, score = 0, answered = false;
+  function show(){
+    const q = Q[i]; answered = false;
+    box.innerHTML = '<div class="qn">第 ' + (i + 1) + ' / ' + Q.length + ' 题 · 答对 ' + score + '</div><div class="qpic">' + picFn(q) + '</div><div class="opts">' + q.o.map((o, k) => '<button data-k="' + k + '">' + o + '</button>').join('') + '</div><div class="readout qex" style="margin-top:10px"></div>';
+  }
+  box.addEventListener('click', e => {
+    const b = e.target.closest('[data-k]'), nx = e.target.closest('[data-next]');
+    if (nx) { i = (i + 1) % Q.length; if (i === 0) score = 0; show(); return; }
+    if (!b || answered) return;
+    answered = true; const q = Q[i], k = +b.dataset.k;
+    if (k === q.a) score++;
+    $$('[data-k]', box).forEach(x => { const kk = +x.dataset.k; if (kk === q.a) x.classList.add('ok'); else if (kk === k) x.classList.add('bad'); x.disabled = true; });
+    $('.qex', box).innerHTML = (k === q.a ? '<b>对。</b>' : '<b>是“' + q.o[q.a] + '”。</b>') + q.x + '<div class="btns" style="margin-top:8px"><button class="btn pri" data-next>' + (i === Q.length - 1 ? '答对 ' + score + ' / ' + Q.length + '，再来一遍' : '下一题') + '</button></div>';
+  });
+  show();
+}
+const LW = ' fill="none" stroke="var(--ink)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"';
+
+/* ---------- 装置 8：破译王名圈 ---------- */
+(function(){
+  const box = $('#cartBox'); if (!box) return;
+  const G = {
+    stool: '<path d="M11,12 H29 V30 H11 Z"' + LW + '/>',
+    loaf: '<path d="M8,30 A12,12 0 0 1 32,30 Z"' + LW + '/>',
+    lasso: '<path d="M20,34 V24 M20,24 C10,24 10,8 20,8 C30,8 30,24 20,24"' + LW + '/>',
+    lion: '<path d="M6,30 H34 M8,30 Q8,20 16,20 H26 Q30,14 34,18 Q35,24 30,24 M12,30 V26 M28,30 V24 M6,30 Q2,26 6,22"' + LW + '/>',
+    msign: '<path d="M8,28 Q14,12 20,22 Q26,12 32,28 M8,28 H32"' + LW + '/>',
+    reeds: '<path d="M15,34 V12 Q15,6 19,8 Q17,14 15,18 M25,34 V12 Q25,6 29,8 Q27,14 25,18"' + LW + '/>',
+    reed: '<path d="M20,34 V12 Q20,6 24,8 Q22,14 20,18"' + LW + '/>',
+    cloth: '<path d="M16,34 V8 Q26,10 22,18 Q18,20 16,18"' + LW + '/>',
+    hill: '<path d="M8,30 L20,10 L32,30 Z"' + LW + '/>',
+    vulture: '<path d="M10,32 Q12,18 22,16 Q26,10 30,12 Q32,16 28,18 Q30,26 26,32 M18,32 V36 M24,32 V36"' + LW + '/>',
+    hand: '<path d="M6,26 H26 Q32,26 33,22 Q30,20 26,22 M26,22 Q30,16 34,18 M6,26 Q6,30 10,30 H24"' + LW + '/>',
+    mouth: '<path d="M6,20 Q20,10 34,20 Q20,30 6,20 Z"' + LW + '/>',
+    egg: '<ellipse cx="20" cy="22" rx="6" ry="9"' + LW + '/>'
+  };
+  const P = [['stool', 'P'], ['loaf', 'T'], ['lasso', 'O'], ['lion', 'L'], ['msign', 'M'], ['reeds', 'I'], ['cloth', 'S']];
+  const C = [['hill', 'K'], ['lion', 'L'], ['reed', 'E'], ['lasso', 'O'], ['stool', 'P'], ['vulture', 'A'], ['hand', 'T'], ['mouth', 'R'], ['vulture', 'A'], ['loaf', 'T*'], ['egg', '·']];
+  let st = 0, ans = null;
+  const inP = new Set(P.map(p => p[0]));
+  function ring(arr, mode){
+    return '<div class="ring">' + arr.map(([g, s]) => { let lab = '';
+      if (mode === 'all') lab = s; else if (mode === 'known' && inP.has(g)) lab = P.find(p => p[0] === g)[1];
+      const hi = mode === 'known' && inP.has(g);
+      return '<div class="gl' + (hi ? ' hi' : '') + '"><svg viewBox="0 0 40 40" aria-hidden="true">' + G[g] + '</svg><span>' + (lab || '?') + '</span></div>'; }).join('') + '</div>';
+  }
+  function draw(){
+    let h = '<div class="rname">托勒密 · P T O L M I S</div>' + ring(P, st >= 1 ? 'all' : 'none');
+    h += '<div class="rname">克利奥帕特拉 · K L E O P A T R A</div>' + ring(C, st >= 3 ? 'all' : st >= 2 ? 'known' : 'none');
+    const T = [
+      '托勒密的名字有七个音，他的王名圈里正好七个符号。假设一个符号一个音，按顺序标上去。',
+      '托勒密标好了。现在，把这几个符号的读音，带到克利奥帕特拉的王名圈里去：同一个符号，应该念同一个音。',
+      '读出来是：<b>? L ? O P ? ? ? ? T ?</b>。对照希腊文 K-L-E-O-P-A-T-R-A：L 在第 2 位，O 在第 4 位，P 在第 5 位，全对上了！这不可能是巧合。',
+      '用希腊文补全。注意两只秃鹫都念 A，同一个符号念同一个音，又对上了。可是有一个地方很怪：第 7 位的 T，在这里画的是一只<b>手</b>，而在托勒密那里，T 是一块<b>面包</b>。为什么？'
+    ];
+    h += '<div class="say"><b>商博良的笔记</b>' + T[Math.min(st, 3)] + '</div>';
+    if (st < 3) h += '<div class="btns"><button class="btn pri" data-n>' + ['按顺序标上音', '带到另一个王名圈', '用希腊文补全'][st] + '</button></div>';
+    else {
+      const O = ['刻字的人刻错了', '两个不同的符号可以代表同一个音', '这个 T 其实不念'];
+      h += '<div class="opts">' + O.map((o, k) => '<button data-o="' + k + '"' + (ans !== null ? ' disabled class="' + (k === 1 ? 'ok' : k === ans ? 'bad' : '') + '"' : '') + '>' + o + '</button>').join('') + '</div>';
+      if (ans !== null) h += '<p class="readout" style="margin-top:10px">' + (ans === 1 ? '<b>对。</b>' : '<b>是第二个。</b>') + '圣书字里，同一个音常常有好几种写法，就像汉字里“工、公、弓、功”都念 gōng。至于末尾那块面包（标 T*）和那颗蛋（标 ·）：面包是埃及语里女性名字的词尾 t，蛋是一个<b>不念出声</b>的符号，提醒读者“这是个女人的名字”。还记得卷一小芦在人名前加的小人、神名前加的星星吗？埃及人也这么干。</p><div class="btns"><button class="btn" data-r>从头再来</button></div>';
+    }
+    box.innerHTML = h;
+  }
+  box.addEventListener('click', e => {
+    if (e.target.closest('[data-n]')) { st++; draw(); }
+    else if (e.target.closest('[data-o]') && ans === null) { ans = +e.target.closest('[data-o]').dataset.o; draw(); }
+    else if (e.target.closest('[data-r]')) { st = 0; ans = null; draw(); }
+  });
+  draw();
+})();
+
+/* ---------- 装置 9：猜地名（线形文字 B） ---------- */
+(function(){
+  const box = $('#lbBox'); if (!box) return;
+  const S = { // 示意字形
+    ko: '<path d="M12,34 V10 M28,34 V10 M12,10 Q20,2 28,10 M12,22 H28"' + LW + '/>',
+    no: '<path d="M20,6 V34 M10,14 L20,20 L30,14 M12,30 H28"' + LW + '/>',
+    so: '<path d="M10,8 V32 M30,8 V32 M10,20 H30 M20,8 V20"' + LW + '/>',
+    a: '<path d="M20,6 V34 M10,18 H30 M12,10 L20,18 L28,10"' + LW + '/>',
+    mi: '<path d="M10,10 L30,30 M30,10 L10,30 M10,20 H16"' + LW + '/>',
+    ni: '<path d="M14,34 V8 L28,16 L14,22 M14,22 L28,30"' + LW + '/>',
+    tu: '<path d="M20,6 V34 M10,12 H30 M12,24 Q20,32 28,24"' + LW + '/>',
+    ri: '<path d="M10,30 Q20,4 30,30 M14,20 H26"' + LW + '/>',
+    pa: '<path d="M20,34 V12 M8,12 H32 M14,12 V22 M26,12 V22"' + LW + '/>',
+    i: '<path d="M12,10 H28 M12,10 V30 M28,10 V30 M20,10 V34"' + LW + '/>',
+    to: '<path d="M8,20 H32 M20,8 V32 M14,8 L26,8"' + LW + '/>'
+  };
+  const W = [{n: '甲', s: ['ko', 'no', 'so'], a: 0}, {n: '乙', s: ['tu', 'ri', 'so'], a: 2}, {n: '丙', s: ['pa', 'i', 'to'], a: 3}, {n: '丁', s: ['a', 'mi', 'ni', 'so'], a: 1}];
+  const PL = ['克诺索斯 Knossos', '阿姆尼索斯 Amnisos', '图利索斯 Tylissos', '法伊斯托斯 Phaistos'];
+  const H = ['三个词以同一个符号结尾；而四个地名里，有三个以 -sos 结尾。', '只有一个地名念起来有四拍（a-mi-ni-so）。', '格子显示：甲的第二个符号和丁的第三个符号在同一行，也就是辅音相同。'];
+  let pick = [null, null, null, null], hints = 0, done = false;
+  function draw(){
+    let h = '<div class="lbwords">' + W.map((w, k) => '<div class="lbw"><div class="lbn">' + w.n + '</div><div class="lbs">' + w.s.map(x => '<svg viewBox="0 0 40 40" aria-hidden="true">' + S[x] + '</svg>').join('') + '</div><div class="lbo">' + PL.map((p, j) => '<button data-w="' + k + '" data-p="' + j + '" class="' + (pick[k] === j ? 'on' : '') + (done ? (j === w.a ? ' ok' : pick[k] === j ? ' bad' : '') : '') + '"' + (done ? ' disabled' : '') + '>' + p.split(' ')[0] + '</button>').join('') + '</div></div>').join('') + '</div>';
+    h += '<div class="readout">' + H.slice(0, hints).map((x, k) => '提示 ' + (k + 1) + '：' + x).join('<br>') + '</div>';
+    h += '<div class="btns" style="margin-top:8px">' + (done ? '<button class="btn" data-r>重来</button>' : (hints < 3 ? '<button class="btn" data-h>给个提示</button>' : '') + '<button class="btn pri" data-c>核对</button>') + '</div>';
+    if (done) {
+      const ok = pick.every((p, k) => p === W[k].a);
+      const rows = [['', 'a', 'i', 'o', 'u'], ['（元音）', 'a', 'i', '', ''], ['k', '', '', 'ko', ''], ['m', '', 'mi', '', ''], ['n', '', 'ni', 'no', ''], ['p', 'pa', '', '', ''], ['r', '', 'ri', '', ''], ['s', '', '', 'so', ''], ['t', '', '', 'to', 'tu']];
+      h += '<p class="readout" style="margin-top:10px">' + (ok ? '<b>全对。</b>' : '<b>有几个不对，正确答案已标绿。</b>') + '甲 ko-no-so 克诺索斯，乙 tu-ri-so 图利索斯，丙 pa-i-to 法伊斯托斯，丁 a-mi-ni-so 阿姆尼索斯。四个地名一套进去，格子里就亮起了 11 个格：</p>';
+      h += '<div class="scroll-x"><table class="t lbgrid"><tbody>' + rows.map((r, i) => '<tr>' + r.map((c, j) => (i === 0 || j === 0) ? '<th>' + c + '</th>' : '<td>' + (c ? '<svg viewBox="0 0 40 40">' + S[c] + '</svg><span>' + c + '</span>' : '') + '</td>').join('') + '</tr>').join('') + '</tbody></table></div>';
+      h += '<p class="readout">有了这 11 个音，文特里斯接着去读别的词，读出来的竟是希腊语：比如 ko-wo（男孩）、ko-wa（女孩），和古希腊语 kouros、kourē 对得上。</p>';
+    }
+    box.innerHTML = h;
+  }
+  box.addEventListener('click', e => {
+    const b = e.target.closest('[data-w]');
+    if (b && !done) { pick[+b.dataset.w] = +b.dataset.p; draw(); return; }
+    if (e.target.closest('[data-h]')) { hints++; draw(); }
+    else if (e.target.closest('[data-c]')) { if (pick.some(p => p === null)) { $('.readout', box).innerHTML += '<br><b>四个词都选一个地名再核对。</b>'; return; } done = true; draw(); }
+    else if (e.target.closest('[data-r]')) { pick = [null, null, null, null]; hints = 0; done = false; draw(); }
+  });
+  draw();
+})();
+
+/* ---------- 装置 10：认甲骨文 ---------- */
+(function(){
+  const box = $('#oraBox'); if (!box) return;
+  const OW = ' fill="none" stroke="var(--ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"';
+  const Q = [
+    {g: '<circle cx="30" cy="30" r="18"' + OW + '/><path d="M24,30 H36"' + OW + '/>', o: ['口', '日', '目', '田'], a: 1, x: '一个圆圈，中间一短横或一点：太阳。甲骨上刻圆不方便，有时刻成方的，后来就成了“日”。'},
+    {g: '<path d="M38,8 Q14,30 38,52 Q26,30 38,8 Z"' + OW + '/><path d="M30,26 V34"' + OW + '/>', o: ['夕/月', '水', '刀', '弓'], a: 0, x: '一弯月牙。甲骨文里“月”和“夕”（傍晚）常常写成一个样子，靠中间有没有一点来区分，而且两个字有时还互换。'},
+    {g: '<path d="M34,8 Q32,28 22,52 M31,24 L18,36"' + OW + '/>', o: ['人', '大', '刀', '力'], a: 0, x: '一个侧身站着、手臂下垂的人。“大”是正面张开双臂双腿的人。'},
+    {g: '<path d="M8,48 H52 M8,48 V30 M30,48 V12 M52,48 V30"' + OW + '/>', o: ['火', '山', '川', '册'], a: 1, x: '三座山峰。“火”的写法和它很像，只是峰顶更尖、底下更圆，甲骨学者有时也要靠上下文来分。'},
+    {g: '<path d="M30,6 V54 M30,22 L18,10 M30,22 L42,10 M30,40 L16,52 M30,40 L44,52"' + OW + '/>', o: ['禾', '木', '米', '生'], a: 1, x: '上有树枝，下有树根：木。'},
+    {g: '<path d="M30,6 Q36,16 30,26 Q24,36 30,46 Q34,52 30,56"' + OW + '/><circle cx="18" cy="16" r="2" fill="var(--ink)"/><circle cx="16" cy="32" r="2" fill="var(--ink)"/><circle cx="42" cy="22" r="2" fill="var(--ink)"/><circle cx="44" cy="40" r="2" fill="var(--ink)"/>', o: ['水', '雨', '川', '丝'], a: 0, x: '中间一道流水，两边是水滴：水。今天的“氵”就是它的后代。'},
+    {g: '<path d="M8,10 H52 M30,10 V18 M12,18 H48"' + OW + '/><path d="M18,24 V34 M30,24 V36 M42,24 V34 M24,38 V48 M36,38 V48"' + OW + '/>', o: ['雨', '水', '电', '雪'], a: 0, x: '上面一横是天，下面是一串串落下来的雨点：雨。'},
+    {g: '<path d="M30,6 Q44,18 30,40 Q16,18 30,6 Z M30,40 L20,54 M30,40 L40,54 M22,18 L38,18 M22,26 L38,26"' + OW + '/>', o: ['鸟', '鱼', '虫', '贝'], a: 1, x: '一条头朝上、尾巴朝下的鱼，身上还有鳞。甲骨上的字常常竖着写，动物也就跟着站了起来。'},
+    {g: '<path d="M16,8 Q8,20 22,22 M44,8 Q52,20 38,22 M22,22 H38 M30,22 V52 M20,34 H40 L30,44 Z"' + OW + '/>', o: ['牛', '羊', '鹿', '马'], a: 1, x: '两只向下弯的角，下面是羊脸：羊。“牛”的角是向上翘的。'},
+    {g: '<path d="M6,30 Q30,8 54,30 Q30,52 6,30 Z"' + OW + '/><circle cx="30" cy="30" r="7"' + OW + '/>', o: ['日', '目', '口', '回'], a: 1, x: '一只横着的眼睛，中间是眼珠。后来“目”竖了起来，成了今天的样子；“臣”字也是一只竖起来的眼睛。'}
+  ];
+  quiz(box, Q, q => '<svg viewBox="0 0 60 60" class="oracle" aria-label="甲骨文字形示意">' + q.g + '</svg>');
+})();
+
+/* ---------- 装置 11：一个字，四国念法 ---------- */
+(function(){
+  const row = $('#sxChars'); if (!row) return;
+  const D = {
+    '一': ['yī', 'jat1', 'ichi', '일 il', 'nhất', '收尾的 -t：粤语 jat、越南语 nhất 还留着，日语 ichi 是把 t 后面加了个元音，韩语把 t 变成了 l。普通话 yī 丢了尾巴。'],
+    '二': ['èr', 'ji6', 'ni', '이 i', 'nhị', '日语 ni 留着古代的 n- 声母，普通话的 èr 是后来变出来的。'],
+    '三': ['sān', 'saam1', 'san', '삼 sam', 'tam', '收尾的 -m：粤语 saam、韩语 sam、越南语 tam 都留着，普通话和日语都变成了 -n。'],
+    '六': ['liù', 'luk6', 'roku', '육 yuk', 'lục', '收尾的 -k：粤语 luk、日语 roku、韩语 yuk、越南语 lục 全都有，只有普通话丢了。'],
+    '十': ['shí', 'sap6', 'jū', '십 sip', 'thập', '收尾的 -p：粤语、韩语、越南语还留着。日语古时也念 jifu，后来 p 脱落成了 jū。'],
+    '学': ['xué', 'hok6', 'gaku', '학 hak', 'học', '又是 -k。第十五章的“比较法”就从这里开始：一整批字，跟着同一条规律走。'],
+    '国': ['guó', 'gwok3', 'koku', '국 guk', 'quốc', '-k 尾巴，以及开头的 k/g 声母，四处都对得上。'],
+    '人': ['rén', 'jan4', 'jin / nin', '인 in', 'nhân', '日语有两种音读：nin 是较早从中国江南一带传去的“吴音”，jin 是后来从唐朝长安传去的“汉音”。一个字，两次借，两种念法。'],
+    '日': ['rì', 'jat6', 'nichi / jitsu', '일 il', 'nhật', '同样有吴音 nichi 和汉音 jitsu 两种。“日本”念 nihon，用的是前一种的变体。'],
+    '文': ['wén', 'man4', 'bun / mon', '문 mun', 'văn', '普通话的 w-，古代是 m-。粤语 man、韩语 mun 都还是 m；日语 mon（吴音）也是 m，bun（汉音）则反映了唐代长安话里 m 变 b 的倾向。'],
+    '天': ['tiān', 'tin1', 'ten', '천 cheon', 'thiên', '韩语把 t 念成了 ch，这是朝鲜语自己的音变。'],
+    '金': ['jīn', 'gam1', 'kin', '금 geum', 'kim', '粤语 gam、韩语 geum、越南语 kim 都留着 -m 和 k/g 声母；普通话的 j- 是 g- 在 i 前面变来的，日语把 -m 变成了 -n。'],
+    '心': ['xīn', 'sam1', 'shin', '심 sim', 'tâm', '-m 尾巴的又一个例子。'],
+    '山': ['shān', 'saan1', 'san', '산 san', 'sơn', '这个字四处都很像，因为它的声母韵母都比较“稳”。']
+  };
+  const H = ['普通话', '粤语', '日语音读', '韩语', '越南语'];
+  row.innerHTML = Object.keys(D).map(k => '<button data-c="' + k + '">' + k + '</button>').join('');
+  function show(k){
+    $$('[data-c]', row).forEach(b => b.classList.toggle('on', b.dataset.c === k));
+    const d = D[k];
+    $('#sxTab').innerHTML = '<thead><tr><th>汉字</th>' + H.map(x => '<th>' + x + '</th>').join('') + '</tr></thead><tbody><tr><td style="font-size:26px">' + k + '</td>' + d.slice(0, 5).map(x => '<td style="font-family:var(--f-mono);font-size:15px">' + x + '</td>').join('') + '</tr></tbody>';
+    $('#sxNote').innerHTML = d[5];
+  }
+  row.addEventListener('click', e => { const b = e.target.closest('[data-c]'); if (b) show(b.dataset.c); });
+  show('学');
+})();
+
+/* ---------- 装置 12：文字的寿命 ---------- */
+(function(){
+  const svg = $('#lifeSvg'); if (!svg) return;
+  const NOW = 2026;
+  const B = [[-3500, 150], [-1500, 380], [0, 540], [1000, 625], [NOW, 740]];
+  const X = y => { for (let i = 1; i < B.length; i++) if (y <= B[i][0]) { const [a, xa] = B[i - 1], [b, xb] = B[i]; return xa + (y - a) / (b - a) * (xb - xa); } return 740; };
+  // [名, 起, 止(null=今), 类: d死 l活 u未破译, 说明, 起点存疑]
+  const L = [
+    ['楔形文字', -3300, 75, 'd', '约前 3300 年乌鲁克出现，被十几种语言借用。阿拉米字母通行后退回神庙，最晚的泥板约在公元 75 年。19 世纪被读回来。'],
+    ['埃及圣书字', -3200, 394, 'd', '用了三千五百多年。基督教兴起后，埃及人改用科普特字母。最后的铭文刻于 394 年的菲莱岛。1822 年商博良读通。'],
+    ['世俗体', -650, 452, 'd', '圣书字的日常草写体，罗塞塔石碑中间那段就是它。最后的刻文在 452 年。'],
+    ['印度河符号', -2600, -1900, 'u', '刻在几千枚小印章上，每段很短。印度河文明衰落后消失，至今未破译。'],
+    ['线形文字 A', -1800, -1450, 'u', '克里特岛米诺斯文明的文字。符号能大致念出音，读出来的话没人懂，至今未破译。'],
+    ['线形文字 B', -1450, -1200, 'd', '迈锡尼希腊人借线形文字 A 改来记希腊语。迈锡尼宫殿毁灭后消失，希腊进入几百年没有文字的“黑暗时代”。1952 年文特里斯破译。'],
+    ['汉字', -1250, null, 'l', '甲骨文以来三千多年没断，今天仍有十几亿人使用，也曾被日本、朝鲜半岛、越南借用。'],
+    ['腓尼基字母', -1050, 200, 'd', '22 个辅音字母，后代遍布世界。它自己随腓尼基语、布匿语（迦太基人的语言）的衰落而消失，终止年代很粗略。'],
+    ['希腊字母', -800, null, 'l', '第一套辅音元音都写的字母，今天仍是希腊文，也是数学和科学符号。'],
+    ['拉丁字母', -600, null, 'l', '今天使用最广的文字，写着几百种语言，包括汉语拼音。'],
+    ['玛雅文字', -300, 1700, 'd', '中美洲最成熟的文字。西班牙征服后被压制、焚毁，17 世纪末以后不再有人会写。20 世纪后半叶大体破译。起点有争议。'],
+    ['契丹文', 920, 1191, 'u', '辽朝仿汉字创制，大字约 920 年、小字稍晚。金章宗 1191 年下诏废止。小字部分释读，大字大多未破。'],
+    ['西夏文', 1036, 1502, 'd', '西夏仿汉字创制，六千多字。西夏亡于 1227 年，文字用到明代，最晚的经幢刻于 1502 年。靠《番汉合时掌中珠》读回来。'],
+    ['女真文', 1119, 1500, 'd', '金朝创制。金亡后在东北又用了一段时间，大约 15 世纪以后失传，终止年代粗略。部分可读。'],
+    ['训民正音', 1443, null, 'l', '1443 年朝鲜世宗创制。今天的韩文。'],
+    ['切罗基文', 1821, null, 'l', '塞阔雅约 1821 年创制。切罗基语本身已经濒危，文字仍在学校和出版物中使用。'],
+    ['女书', 1800, 2004, 'd', '湖南江永妇女之间流传的文字，起源年代众说纷纭（这里的起点只是示意）。2004 年最后一位自然传人阳焕宜去世，今天作为非遗传习。', 1]
+  ];
+  const TY = {d: ['已死', 'var(--terra)'], l: ['活着', 'var(--reed)'], u: ['未破译或大多未破', 'var(--ink-3)']};
+  const F = $('#lifeF'), card = $('#lifeCard');
+  let cur = 'all', sel = -1;
+  F.innerHTML = '<button class="btn on" data-f="all">全部</button>' + Object.entries(TY).map(([k, v]) => '<button class="btn" data-f="' + k + '">' + v[0] + '</button>').join('');
+  function draw(){
+    let h = '';
+    [-3000, -2000, -1000, 0, 1000, 2000].forEach(y => { const x = X(y); h += '<line x1="' + x + '" y1="10" x2="' + x + '" y2="426" stroke="var(--rule)" stroke-dasharray="2 4"/><text x="' + x + '" y="446" text-anchor="middle" font-size="11" fill="var(--ink-3)" font-family="IBM Plex Mono,monospace">' + (y < 0 ? '前' + (-y) : y) + '</text>'; });
+    h += '<line x1="' + X(NOW) + '" y1="6" x2="' + X(NOW) + '" y2="426" stroke="var(--ink-3)"/><text x="' + X(NOW) + '" y="458" text-anchor="end" font-size="11" fill="var(--ink-3)">今天</text>';
+    L.forEach((l, k) => {
+      const y = 14 + k * 24, x1 = X(l[1]), x2 = X(l[2] === null ? NOW : l[2]), t = TY[l[3]], on = cur === 'all' || cur === l[3];
+      h += '<g class="lifebar' + (sel === k ? ' on' : '') + '" data-k="' + k + '" tabindex="0" role="button" aria-label="' + l[0] + '" opacity="' + (on ? 1 : .2) + '"><rect x="0" y="' + (y - 2) + '" width="760" height="22" fill="transparent"/><text x="140" y="' + (y + 13) + '" text-anchor="end" font-size="12.5" fill="var(--ink)">' + l[0] + '</text><rect class="bar" x="' + x1 + '" y="' + (y + 3) + '" width="' + Math.max(3, x2 - x1) + '" height="12" rx="3" fill="' + t[1] + '"' + (l[5] ? ' opacity=".55"' : '') + '/>' + (l[2] === null ? '<path d="M' + (x2 - 1) + ',' + (y + 3) + ' l8,6 l-8,6 Z" fill="' + t[1] + '"/>' : '') + '</g>';
+    });
+    svg.innerHTML = h;
+  }
+  function pick(k){
+    sel = k; const l = L[k], t = TY[l[3]];
+    const span = (l[2] === null ? NOW : l[2]) - l[1];
+    card.innerHTML = '<p class="k">' + (l[1] < 0 ? '约前 ' + (-l[1]) : '约 ' + l[1]) + ' — ' + (l[2] === null ? '今天' : l[2] < 0 ? '约前 ' + (-l[2]) : '约 ' + l[2]) + ' · 约 ' + span + ' 年 · <span style="color:' + t[1] + '">' + t[0] + '</span></p><h5>' + l[0] + '</h5><p>' + l[4] + '</p>';
+    draw();
+  }
+  svg.addEventListener('click', e => { const g = e.target.closest('.lifebar'); if (g) pick(+g.dataset.k); });
+  svg.addEventListener('keydown', e => { const g = e.target.closest('.lifebar'); if (g && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); pick(+g.dataset.k); } });
+  F.addEventListener('click', e => { const b = e.target.closest('[data-f]'); if (!b) return; cur = b.dataset.f; $$('[data-f]', F).forEach(x => x.classList.toggle('on', x === b)); draw(); });
+  draw();
+})();
+
+/* ---------- 装置 13：猜海客的话 ---------- */
+(function(){
+  const box = $('#gavBox'); if (!box) return;
+  const ST = [
+    {p: '🐐', c: '河滩上，一头山羊在吃草。', u: '提库 莫拉。', q: '“提库”最可能是什么意思？', o: ['山羊', '吃', '草', '白色'], a: 0, x: '其实这四个都有可能，单凭一次根本分不出来（这就是 gavagai 难题）。但你和婴儿一样，第一反应是猜“整个东西”，这叫整体优先。先这样记下，等下一次来检验。'},
+    {p: '🐑', c: '一群绵羊走过，也在吃草。', u: '提库 莫拉。', q: '现在，“莫拉”最可能是？', o: ['羊', '吃草', '早上', '好看'], a: 1, x: '两个场面里不变的是“在吃草”，而“提库”已经被你分给了那头牲口（互斥假设：已经有名字的东西，新词多半指别的）。'},
+    {p: '🐂', c: '一头牛挣脱了绳子，在河滩上跑。', u: '提库 帕拉！', q: '山羊、绵羊、牛都叫“提库”。“提库”到底是？', o: ['山羊', '羊', '人家养的牲口', '毛茸茸的'], a: 2, x: '你第一次猜的“山羊”太窄了。跨场景比较：三个场面里共同的东西，是“人家养的牲口”。这正是林记在河滩上经历的修正。'},
+    {p: '🐕', c: '一条野狗从芦苇里窜出来，跑过去。阿浪一把拉住孩子。', u: '瓦萨 帕拉！', q: '“帕拉”是？', o: ['狗', '跑', '危险', '快躲开'], a: 1, x: '牛在跑、狗在跑，两次都有“帕拉”，所以多半是“跑”。不过阿浪的语气很急，“危险”也不能完全排除，要再多看几次。真正学一种话，就是这样不停地猜、不停地改。'},
+    {p: '🐕', c: '第二天，一条被拴在木桩上的狗，在打瞌睡。', u: '提库。', q: '咦？狗也叫“提库”了。这说明什么？', o: ['阿浪说错了', '“提库”看的不是哪种动物，而是“被人拴着养的”', '“提库”就是“狗”', '“提库”是“睡觉”'], a: 1, x: '野狗是“瓦萨”，拴着的狗是“提库”。原来海客分东西的办法和苇城人不一样：他们不按“羊、牛、狗”分，而按“家里的”和“野的”分。<b>学词，也是在学另一群人怎样把世界切成块。</b>'}
+  ];
+  let i = 0, ans = null, kk = null;
+  const blob = '<svg viewBox="0 0 100 100"><path d="M50,12 C72,10 90,28 86,50 C92,74 70,90 50,86 C28,92 10,74 14,50 C8,28 28,14 50,12 Z" fill="var(--clay-2)" stroke="var(--ink)" stroke-width="3"/></svg>';
+  const spike = '<svg viewBox="0 0 100 100"><path d="M50,6 L60,36 L94,30 L68,52 L88,86 L54,68 L36,94 L34,62 L6,64 L28,44 L12,16 L42,30 Z" fill="var(--clay-2)" stroke="var(--ink)" stroke-width="3" stroke-linejoin="round"/></svg>';
+  function draw(){
+    let h;
+    if (i < ST.length) {
+      const s = ST[i];
+      h = '<div class="qn">场面 ' + (i + 1) + ' / ' + ST.length + '</div><div class="gscene"><span>' + s.p + '</span><div><p class="readout">' + s.c + '</p><div class="gsay">阿浪：“' + s.u + '”</div></div></div><p style="margin:.6em 0 .4em;font-size:15.5px">' + s.q + '</p><div class="opts">' + s.o.map((o, k) => '<button data-k="' + k + '"' + (ans !== null ? ' disabled class="' + (k === s.a ? 'ok' : k === ans ? 'bad' : '') + '"' : '') + '>' + o + '</button>').join('') + '</div>';
+      if (ans !== null) h += '<p class="readout" style="margin-top:10px">' + s.x + '</p><div class="btns"><button class="btn pri" data-n>' + (i === ST.length - 1 ? '最后一题' : '下一个场面') + '</button></div>';
+    } else {
+      h = '<div class="qn">最后一题 · 声音和形状</div><p style="font-size:15.5px;margin:.4em 0">这两个图形，一个叫 <b>bouba</b>，一个叫 <b>kiki</b>。凭直觉选：哪个是 kiki？</p><div class="bk"><button data-b="0">' + blob + '</button><button data-b="1">' + spike + '</button></div>';
+      if (kk !== null) h += '<p class="readout" style="margin-top:10px">' + (kk === 1 ? '你选了尖的。' : '你选了圆的，你是少数派。') + '在许多语言的实验里，绝大多数人都会把尖刺的叫 kiki、圆滚的叫 bouba，不管他们说什么话。声音和意思之间，大部分是约定（第十二章），也有一点点天性：尖利的音配尖利的形。</p><div class="btns"><button class="btn" data-r>从头再来</button></div>';
+    }
+    box.innerHTML = h;
+  }
+  box.addEventListener('click', e => {
+    const b = e.target.closest('[data-k]');
+    if (b && ans === null) { ans = +b.dataset.k; draw(); return; }
+    if (e.target.closest('[data-n]')) { i++; ans = null; draw(); return; }
+    const bb = e.target.closest('[data-b]'); if (bb && kk === null) { kk = +bb.dataset.b; draw(); return; }
+    if (e.target.closest('[data-r]')) { i = 0; ans = null; kk = null; draw(); }
+  });
+  draw();
+})();
+
+/* ---------- 装置 14：说话的钟 ---------- */
+(function(){
+  const r = $('#clkR'); if (!r) return;
+  const EV = [['写字（乌鲁克泥板）', 5300], ['字母（矿工）', 3850], ['活字印刷（毕昇）', 985], ['商博良读通圣书字', 204], ['互联网普及', 30]];
+  const fmt = s => { s = Math.max(0, Math.min(86399.999, s)); const h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), ss = Math.floor(s % 60); return String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0') + ':' + String(ss).padStart(2, '0'); };
+  function run(){
+    const N = Math.round(50000 * Math.pow(40, r.value / 100) / 1000) * 1000;
+    $('#clkV').textContent = N >= 1e6 ? (N / 1e6).toFixed(1).replace('.0', '') + ' 百万年' : (N / 1e4) + ' 万年';
+    const ang = a => (a / 86400) * 2 * Math.PI - Math.PI / 2;
+    const tw = 86400 * (1 - 5300 / N), a0 = ang(tw), a1 = ang(86400);
+    let h = '<circle cx="120" cy="120" r="104" fill="var(--paper)" stroke="var(--ink-2)" stroke-width="2"/>';
+    for (let i = 0; i < 24; i++) { const a = ang(i * 3600); h += '<line x1="' + (120 + Math.cos(a) * 94) + '" y1="' + (120 + Math.sin(a) * 94) + '" x2="' + (120 + Math.cos(a) * (i % 6 ? 100 : 86)) + '" y2="' + (120 + Math.sin(a) * (i % 6 ? 100 : 86)) + '" stroke="var(--ink-3)" stroke-width="' + (i % 6 ? 1 : 2) + '"/>'; }
+    [0, 6, 12, 18].forEach(i => { const a = ang(i * 3600); h += '<text x="' + (120 + Math.cos(a) * 72) + '" y="' + (124 + Math.sin(a) * 72) + '" text-anchor="middle" font-size="12" fill="var(--ink-3)" font-family="IBM Plex Mono,monospace">' + (i || 24) + '</text>'; });
+    const large = (a1 - a0) > Math.PI ? 1 : 0;
+    h += '<path d="M120,120 L' + (120 + Math.cos(a0) * 104) + ',' + (120 + Math.sin(a0) * 104) + ' A104,104 0 ' + large + ' 1 ' + (120 + Math.cos(a1) * 104).toFixed(2) + ',' + (120 + Math.sin(a1) * 104).toFixed(2) + ' Z" fill="var(--terra)" opacity=".85"/>';
+    h += '<line x1="120" y1="120" x2="' + (120 + Math.cos(a0) * 104) + '" y2="' + (120 + Math.sin(a0) * 104) + '" stroke="var(--terra)" stroke-width="2"/><circle cx="120" cy="120" r="4" fill="var(--ink)"/>';
+    $('#clkSvg').innerHTML = h;
+    $('#clkList').innerHTML = '<p style="margin:0 0 .4em">0 点：人类开始说话（' + $('#clkV').textContent + '前）。<br>红色那一小片，是有文字的全部历史。</p>' + EV.map(([n, y]) => '<div><b style="font-family:var(--f-mono)">' + fmt(86400 * (1 - y / N)) + '</b>　' + n + '</div>').join('') + '<div><b style="font-family:var(--f-mono)">24:00:00</b>　现在</div>';
+  }
+  r.addEventListener('input', run);
+  run();
+})();
+
+/* ---------- 装置 15：读洋泾浜 ---------- */
+(function(){
+  const box = $('#tokBox'); if (!box) return;
+  const Q = [
+    {w: 'haus sik', e: 'house + sick', o: ['医院', '病人的家', '厨房', '监狱'], a: 0, x: '“生病的房子”：医院。托克皮辛语词汇少，靠组合造新词。'},
+    {w: 'gras bilong het', e: 'grass + belong + head', o: ['帽子', '头发', '草帽', '胡子'], a: 1, x: '“属于头的草”：头发。bilong（来自 belong）相当于“的”，胡子则是 gras bilong fes（脸上的草）。'},
+    {w: 'pikinini', e: '来自葡萄牙语 pequenino（很小的）', o: ['小孩', '一点点', '小鸟', '花'], a: 0, x: '小孩。这个词经葡萄牙水手传遍了好几个大洋的皮钦语，说明接触语言的词可以来自好几种语言。'},
+    {w: 'mi no save', e: 'me + no + 来自葡萄牙语 saber（知道）', o: ['我不救', '我不知道', '我不存钱', '我不要'], a: 1, x: '“我不知道”。save 和英语的“保存”没关系，来自葡萄牙语的“知道”。'},
+    {w: 'balus', e: '本地语言里原指“鸽子”', o: ['气球', '飞机', '风', '船'], a: 1, x: '飞机。新东西来了，就拿一个旧词去指它，和林记把“提库”从山羊扩大到所有家养牲口，是同一个道理。'},
+    {w: 'wantok', e: 'one + talk', o: ['一句话', '自己人、同乡', '翻译', '只说一遍'], a: 1, x: '“说同一种话的人”：同乡、自己人。在一个有几百种语言的国家里，能和你说同一种话的人，就是你的人。'},
+    {w: 'meri', e: '一般认为来自英文名 Mary', o: ['快乐', '女人', '结婚', '妈妈'], a: 1, x: '女人。皮钦语常把一个具体的名字变成一类人的统称。'}
+  ];
+  quiz(box, Q, q => '<div class="tok"><b>' + q.w + '</b><span>' + q.e + '</span></div>');
+})();
+
+/* ---------- 装置 16：给语言认亲戚 ---------- */
+(function(){
+  const cards = $('#famCards'); if (!cards) return;
+  const FAM = [['ie', '印欧语系', 'var(--lapis)'], ['st', '汉藏语系', 'var(--terra)'], ['ur', '乌拉尔语系', 'var(--reed)'], ['ot', '别的家', 'var(--gold)']];
+  const R = {
+    '三': {w: [['英语', 'three', 'ie'], ['德语', 'drei', 'ie'], ['拉丁语', 'trēs', 'ie'], ['俄语', 'tri', 'ie'], ['梵语', 'trayaḥ', 'ie'], ['波斯语', 'se', 'ie'], ['普通话', 'sān', 'st'], ['藏语', 'gsum', 'st'], ['缅甸语', 'thòun', 'st'], ['芬兰语', 'kolme', 'ur'], ['匈牙利语', 'három', 'ur'], ['土耳其语', 'üç', 'ot'], ['斯瓦希里语', 'tatu', 'ot'], ['日语（固有词）', 'mittsu', 'ot']],
+      x: '波斯语 se 看着和 three 一点不像，却是印欧语的亲戚；芬兰语 kolme 和匈牙利语 három 看着也不像，却出自同一个原始乌拉尔语词。斯瓦希里语 tatu 和 three 都以 t 开头，却毫无关系，这是碰巧。日语还有一个 san（三），那是从汉语借的，不是遗传的，所以这里用它的固有词 mittsu。'},
+    '五': {w: [['英语', 'five', 'ie'], ['德语', 'fünf', 'ie'], ['拉丁语', 'quīnque', 'ie'], ['希腊语', 'pénte', 'ie'], ['梵语', 'pañca', 'ie'], ['俄语', 'pyat\'', 'ie'], ['普通话', 'wǔ', 'st'], ['藏语', 'lnga', 'st'], ['缅甸语', 'ngà', 'st'], ['芬兰语', 'viisi', 'ur'], ['匈牙利语', 'öt', 'ur'], ['土耳其语', 'beş', 'ot'], ['日语（固有词）', 'itsutsu', 'ot']],
+      x: '英语 five、拉丁语 quīnque、希腊语 pénte、梵语 pañca 都出自原始印欧语的 *penkʷe，英语的 f 对应拉丁、希腊的 p，正是格林定律。藏语 lnga、缅甸语 ngà 和上古汉语的“五”（据重构以 ŋ 开头）是亲戚，普通话的 wǔ 把 ng 丢了。芬兰语 viisi 和匈牙利语 öt 也是一家。'}
+  };
+  let round = '三', pick = {};
+  const rb = $('#famRound');
+  rb.innerHTML = Object.keys(R).map(k => '<button class="btn" data-r="' + k + '">数字“' + k + '”</button>').join('');
+  $('#famLeg').innerHTML = FAM.map(f => '<span><i style="background:' + f[2] + '"></i>' + f[1] + '</span>').join('') + '<span><i style="background:var(--rule)"></i>还没分</span>';
+  function draw(check){
+    $$('[data-r]', rb).forEach(b => b.classList.toggle('on', b.dataset.r === round));
+    const W = R[round].w;
+    cards.innerHTML = W.map((w, k) => { const p = pick[k], f = FAM.find(x => x[0] === p); const cls = check ? (p === w[2] ? ' ok' : ' bad') : '';
+      return '<button class="fc' + cls + '" data-k="' + k + '" style="border-left-color:' + (f ? f[2] : 'var(--rule)') + '"><b>' + w[1] + '</b><span>' + w[0] + (f ? ' · ' + f[1].replace('语系', '') : '') + '</span>' + (check && p !== w[2] ? '<em>应为' + FAM.find(x => x[0] === w[2])[1] + '</em>' : '') + '</button>'; }).join('');
+    if (check) { const n = W.filter((w, k) => pick[k] === w[2]).length; $('#famOut').innerHTML = '<b>分对 ' + n + ' / ' + W.length + '。</b>' + R[round].x; }
+    else $('#famOut').innerHTML = '';
+  }
+  cards.addEventListener('click', e => { const b = e.target.closest('[data-k]'); if (!b) return; const k = +b.dataset.k; const i = FAM.findIndex(f => f[0] === pick[k]); pick[k] = FAM[(i + 1) % FAM.length][0]; draw(false); });
+  rb.addEventListener('click', e => { const b = e.target.closest('[data-r]'); if (!b) return; round = b.dataset.r; pick = {}; draw(false); });
+  $('#famCheck').addEventListener('click', () => draw(true));
+  $('#famReset').addEventListener('click', () => { pick = {}; draw(false); });
+  draw(false);
 })();
 
 })();

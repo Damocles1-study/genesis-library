@@ -10,7 +10,7 @@
 | 计算机创世记 · 下卷《第二次创世》 | `computer/second.html` |
 | 点石成金 · 金钱创世记 | `money/index.html` |
 | 是，大人 · 衙门里的处世术 | `yes/index.html` |
-| 苇城书记 · 文字创世记（卷一《落笔》） | `reed/index.html` |
+| 苇城书记 · 文字创世记（三卷：落笔、破译、开口） | `reed/index.html` |
 
 ## 改书
 

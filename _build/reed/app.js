@@ -501,4 +501,325 @@ function tabletBg(w, h){ return '<rect x="4" y="4" width="' + (w - 8) + '" heigh
   draw();
 })();
 
+/* ---------- 通用小测验（装置 10 / 15） ---------- */
+function quiz(box, Q, picFn){
+  let i = 0, score = 0, answered = false;
+  function show(){
+    const q = Q[i]; answered = false;
+    box.innerHTML = '<div class="qn">第 ' + (i + 1) + ' / ' + Q.length + ' 题 · 答对 ' + score + '</div><div class="qpic">' + picFn(q) + '</div><div class="opts">' + q.o.map((o, k) => '<button data-k="' + k + '">' + o + '</button>').join('') + '</div><div class="readout qex" style="margin-top:10px"></div>';
+  }
+  box.addEventListener('click', e => {
+    const b = e.target.closest('[data-k]'), nx = e.target.closest('[data-next]');
+    if (nx) { i = (i + 1) % Q.length; if (i === 0) score = 0; show(); return; }
+    if (!b || answered) return;
+    answered = true; const q = Q[i], k = +b.dataset.k;
+    if (k === q.a) score++;
+    $$('[data-k]', box).forEach(x => { const kk = +x.dataset.k; if (kk === q.a) x.classList.add('ok'); else if (kk === k) x.classList.add('bad'); x.disabled = true; });
+    $('.qex', box).innerHTML = (k === q.a ? '<b>对。</b>' : '<b>是“' + q.o[q.a] + '”。</b>') + q.x + '<div class="btns" style="margin-top:8px"><button class="btn pri" data-next>' + (i === Q.length - 1 ? '答对 ' + score + ' / ' + Q.length + '，再来一遍' : '下一题') + '</button></div>';
+  });
+  show();
+}
+const LW = ' fill="none" stroke="var(--ink)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"';
+
+/* ---------- 装置 8：破译王名圈 ---------- */
+(function(){
+  const box = $('#cartBox'); if (!box) return;
+  const G = {
+    stool: '<path d="M11,12 H29 V30 H11 Z"' + LW + '/>',
+    loaf: '<path d="M8,30 A12,12 0 0 1 32,30 Z"' + LW + '/>',
+    lasso: '<path d="M20,34 V24 M20,24 C10,24 10,8 20,8 C30,8 30,24 20,24"' + LW + '/>',
+    lion: '<path d="M6,30 H34 M8,30 Q8,20 16,20 H26 Q30,14 34,18 Q35,24 30,24 M12,30 V26 M28,30 V24 M6,30 Q2,26 6,22"' + LW + '/>',
+    msign: '<path d="M8,28 Q14,12 20,22 Q26,12 32,28 M8,28 H32"' + LW + '/>',
+    reeds: '<path d="M15,34 V12 Q15,6 19,8 Q17,14 15,18 M25,34 V12 Q25,6 29,8 Q27,14 25,18"' + LW + '/>',
+    reed: '<path d="M20,34 V12 Q20,6 24,8 Q22,14 20,18"' + LW + '/>',
+    cloth: '<path d="M16,34 V8 Q26,10 22,18 Q18,20 16,18"' + LW + '/>',
+    hill: '<path d="M8,30 L20,10 L32,30 Z"' + LW + '/>',
+    vulture: '<path d="M10,32 Q12,18 22,16 Q26,10 30,12 Q32,16 28,18 Q30,26 26,32 M18,32 V36 M24,32 V36"' + LW + '/>',
+    hand: '<path d="M6,26 H26 Q32,26 33,22 Q30,20 26,22 M26,22 Q30,16 34,18 M6,26 Q6,30 10,30 H24"' + LW + '/>',
+    mouth: '<path d="M6,20 Q20,10 34,20 Q20,30 6,20 Z"' + LW + '/>',
+    egg: '<ellipse cx="20" cy="22" rx="6" ry="9"' + LW + '/>'
+  };
+  const P = [['stool', 'P'], ['loaf', 'T'], ['lasso', 'O'], ['lion', 'L'], ['msign', 'M'], ['reeds', 'I'], ['cloth', 'S']];
+  const C = [['hill', 'K'], ['lion', 'L'], ['reed', 'E'], ['lasso', 'O'], ['stool', 'P'], ['vulture', 'A'], ['hand', 'T'], ['mouth', 'R'], ['vulture', 'A'], ['loaf', 'T*'], ['egg', '·']];
+  let st = 0, ans = null;
+  const inP = new Set(P.map(p => p[0]));
+  function ring(arr, mode){
+    return '<div class="ring">' + arr.map(([g, s]) => { let lab = '';
+      if (mode === 'all') lab = s; else if (mode === 'known' && inP.has(g)) lab = P.find(p => p[0] === g)[1];
+      const hi = mode === 'known' && inP.has(g);
+      return '<div class="gl' + (hi ? ' hi' : '') + '"><svg viewBox="0 0 40 40" aria-hidden="true">' + G[g] + '</svg><span>' + (lab || '?') + '</span></div>'; }).join('') + '</div>';
+  }
+  function draw(){
+    let h = '<div class="rname">托勒密 · P T O L M I S</div>' + ring(P, st >= 1 ? 'all' : 'none');
+    h += '<div class="rname">克利奥帕特拉 · K L E O P A T R A</div>' + ring(C, st >= 3 ? 'all' : st >= 2 ? 'known' : 'none');
+    const T = [
+      '托勒密的名字有七个音，他的王名圈里正好七个符号。假设一个符号一个音，按顺序标上去。',
+      '托勒密标好了。现在，把这几个符号的读音，带到克利奥帕特拉的王名圈里去：同一个符号，应该念同一个音。',
+      '读出来是：<b>? L ? O P ? ? ? ? T ?</b>。对照希腊文 K-L-E-O-P-A-T-R-A：L 在第 2 位，O 在第 4 位，P 在第 5 位，全对上了！这不可能是巧合。',
+      '用希腊文补全。注意两只秃鹫都念 A，同一个符号念同一个音，又对上了。可是有一个地方很怪：第 7 位的 T，在这里画的是一只<b>手</b>，而在托勒密那里，T 是一块<b>面包</b>。为什么？'
+    ];
+    h += '<div class="say"><b>商博良的笔记</b>' + T[Math.min(st, 3)] + '</div>';
+    if (st < 3) h += '<div class="btns"><button class="btn pri" data-n>' + ['按顺序标上音', '带到另一个王名圈', '用希腊文补全'][st] + '</button></div>';
+    else {
+      const O = ['刻字的人刻错了', '两个不同的符号可以代表同一个音', '这个 T 其实不念'];
+      h += '<div class="opts">' + O.map((o, k) => '<button data-o="' + k + '"' + (ans !== null ? ' disabled class="' + (k === 1 ? 'ok' : k === ans ? 'bad' : '') + '"' : '') + '>' + o + '</button>').join('') + '</div>';
+      if (ans !== null) h += '<p class="readout" style="margin-top:10px">' + (ans === 1 ? '<b>对。</b>' : '<b>是第二个。</b>') + '圣书字里，同一个音常常有好几种写法，就像汉字里“工、公、弓、功”都念 gōng。至于末尾那块面包（标 T*）和那颗蛋（标 ·）：面包是埃及语里女性名字的词尾 t，蛋是一个<b>不念出声</b>的符号，提醒读者“这是个女人的名字”。还记得卷一小芦在人名前加的小人、神名前加的星星吗？埃及人也这么干。</p><div class="btns"><button class="btn" data-r>从头再来</button></div>';
+    }
+    box.innerHTML = h;
+  }
+  box.addEventListener('click', e => {
+    if (e.target.closest('[data-n]')) { st++; draw(); }
+    else if (e.target.closest('[data-o]') && ans === null) { ans = +e.target.closest('[data-o]').dataset.o; draw(); }
+    else if (e.target.closest('[data-r]')) { st = 0; ans = null; draw(); }
+  });
+  draw();
+})();
+
+/* ---------- 装置 9：猜地名（线形文字 B） ---------- */
+(function(){
+  const box = $('#lbBox'); if (!box) return;
+  const S = { // 示意字形
+    ko: '<path d="M12,34 V10 M28,34 V10 M12,10 Q20,2 28,10 M12,22 H28"' + LW + '/>',
+    no: '<path d="M20,6 V34 M10,14 L20,20 L30,14 M12,30 H28"' + LW + '/>',
+    so: '<path d="M10,8 V32 M30,8 V32 M10,20 H30 M20,8 V20"' + LW + '/>',
+    a: '<path d="M20,6 V34 M10,18 H30 M12,10 L20,18 L28,10"' + LW + '/>',
+    mi: '<path d="M10,10 L30,30 M30,10 L10,30 M10,20 H16"' + LW + '/>',
+    ni: '<path d="M14,34 V8 L28,16 L14,22 M14,22 L28,30"' + LW + '/>',
+    tu: '<path d="M20,6 V34 M10,12 H30 M12,24 Q20,32 28,24"' + LW + '/>',
+    ri: '<path d="M10,30 Q20,4 30,30 M14,20 H26"' + LW + '/>',
+    pa: '<path d="M20,34 V12 M8,12 H32 M14,12 V22 M26,12 V22"' + LW + '/>',
+    i: '<path d="M12,10 H28 M12,10 V30 M28,10 V30 M20,10 V34"' + LW + '/>',
+    to: '<path d="M8,20 H32 M20,8 V32 M14,8 L26,8"' + LW + '/>'
+  };
+  const W = [{n: '甲', s: ['ko', 'no', 'so'], a: 0}, {n: '乙', s: ['tu', 'ri', 'so'], a: 2}, {n: '丙', s: ['pa', 'i', 'to'], a: 3}, {n: '丁', s: ['a', 'mi', 'ni', 'so'], a: 1}];
+  const PL = ['克诺索斯 Knossos', '阿姆尼索斯 Amnisos', '图利索斯 Tylissos', '法伊斯托斯 Phaistos'];
+  const H = ['三个词以同一个符号结尾；而四个地名里，有三个以 -sos 结尾。', '只有一个地名念起来有四拍（a-mi-ni-so）。', '格子显示：甲的第二个符号和丁的第三个符号在同一行，也就是辅音相同。'];
+  let pick = [null, null, null, null], hints = 0, done = false;
+  function draw(){
+    let h = '<div class="lbwords">' + W.map((w, k) => '<div class="lbw"><div class="lbn">' + w.n + '</div><div class="lbs">' + w.s.map(x => '<svg viewBox="0 0 40 40" aria-hidden="true">' + S[x] + '</svg>').join('') + '</div><div class="lbo">' + PL.map((p, j) => '<button data-w="' + k + '" data-p="' + j + '" class="' + (pick[k] === j ? 'on' : '') + (done ? (j === w.a ? ' ok' : pick[k] === j ? ' bad' : '') : '') + '"' + (done ? ' disabled' : '') + '>' + p.split(' ')[0] + '</button>').join('') + '</div></div>').join('') + '</div>';
+    h += '<div class="readout">' + H.slice(0, hints).map((x, k) => '提示 ' + (k + 1) + '：' + x).join('<br>') + '</div>';
+    h += '<div class="btns" style="margin-top:8px">' + (done ? '<button class="btn" data-r>重来</button>' : (hints < 3 ? '<button class="btn" data-h>给个提示</button>' : '') + '<button class="btn pri" data-c>核对</button>') + '</div>';
+    if (done) {
+      const ok = pick.every((p, k) => p === W[k].a);
+      const rows = [['', 'a', 'i', 'o', 'u'], ['（元音）', 'a', 'i', '', ''], ['k', '', '', 'ko', ''], ['m', '', 'mi', '', ''], ['n', '', 'ni', 'no', ''], ['p', 'pa', '', '', ''], ['r', '', 'ri', '', ''], ['s', '', '', 'so', ''], ['t', '', '', 'to', 'tu']];
+      h += '<p class="readout" style="margin-top:10px">' + (ok ? '<b>全对。</b>' : '<b>有几个不对，正确答案已标绿。</b>') + '甲 ko-no-so 克诺索斯，乙 tu-ri-so 图利索斯，丙 pa-i-to 法伊斯托斯，丁 a-mi-ni-so 阿姆尼索斯。四个地名一套进去，格子里就亮起了 11 个格：</p>';
+      h += '<div class="scroll-x"><table class="t lbgrid"><tbody>' + rows.map((r, i) => '<tr>' + r.map((c, j) => (i === 0 || j === 0) ? '<th>' + c + '</th>' : '<td>' + (c ? '<svg viewBox="0 0 40 40">' + S[c] + '</svg><span>' + c + '</span>' : '') + '</td>').join('') + '</tr>').join('') + '</tbody></table></div>';
+      h += '<p class="readout">有了这 11 个音，文特里斯接着去读别的词，读出来的竟是希腊语：比如 ko-wo（男孩）、ko-wa（女孩），和古希腊语 kouros、kourē 对得上。</p>';
+    }
+    box.innerHTML = h;
+  }
+  box.addEventListener('click', e => {
+    const b = e.target.closest('[data-w]');
+    if (b && !done) { pick[+b.dataset.w] = +b.dataset.p; draw(); return; }
+    if (e.target.closest('[data-h]')) { hints++; draw(); }
+    else if (e.target.closest('[data-c]')) { if (pick.some(p => p === null)) { $('.readout', box).innerHTML += '<br><b>四个词都选一个地名再核对。</b>'; return; } done = true; draw(); }
+    else if (e.target.closest('[data-r]')) { pick = [null, null, null, null]; hints = 0; done = false; draw(); }
+  });
+  draw();
+})();
+
+/* ---------- 装置 10：认甲骨文 ---------- */
+(function(){
+  const box = $('#oraBox'); if (!box) return;
+  const OW = ' fill="none" stroke="var(--ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"';
+  const Q = [
+    {g: '<circle cx="30" cy="30" r="18"' + OW + '/><path d="M24,30 H36"' + OW + '/>', o: ['口', '日', '目', '田'], a: 1, x: '一个圆圈，中间一短横或一点：太阳。甲骨上刻圆不方便，有时刻成方的，后来就成了“日”。'},
+    {g: '<path d="M38,8 Q14,30 38,52 Q26,30 38,8 Z"' + OW + '/><path d="M30,26 V34"' + OW + '/>', o: ['夕/月', '水', '刀', '弓'], a: 0, x: '一弯月牙。甲骨文里“月”和“夕”（傍晚）常常写成一个样子，靠中间有没有一点来区分，而且两个字有时还互换。'},
+    {g: '<path d="M34,8 Q32,28 22,52 M31,24 L18,36"' + OW + '/>', o: ['人', '大', '刀', '力'], a: 0, x: '一个侧身站着、手臂下垂的人。“大”是正面张开双臂双腿的人。'},
+    {g: '<path d="M8,48 H52 M8,48 V30 M30,48 V12 M52,48 V30"' + OW + '/>', o: ['火', '山', '川', '册'], a: 1, x: '三座山峰。“火”的写法和它很像，只是峰顶更尖、底下更圆，甲骨学者有时也要靠上下文来分。'},
+    {g: '<path d="M30,6 V54 M30,22 L18,10 M30,22 L42,10 M30,40 L16,52 M30,40 L44,52"' + OW + '/>', o: ['禾', '木', '米', '生'], a: 1, x: '上有树枝，下有树根：木。'},
+    {g: '<path d="M30,6 Q36,16 30,26 Q24,36 30,46 Q34,52 30,56"' + OW + '/><circle cx="18" cy="16" r="2" fill="var(--ink)"/><circle cx="16" cy="32" r="2" fill="var(--ink)"/><circle cx="42" cy="22" r="2" fill="var(--ink)"/><circle cx="44" cy="40" r="2" fill="var(--ink)"/>', o: ['水', '雨', '川', '丝'], a: 0, x: '中间一道流水，两边是水滴：水。今天的“氵”就是它的后代。'},
+    {g: '<path d="M8,10 H52 M30,10 V18 M12,18 H48"' + OW + '/><path d="M18,24 V34 M30,24 V36 M42,24 V34 M24,38 V48 M36,38 V48"' + OW + '/>', o: ['雨', '水', '电', '雪'], a: 0, x: '上面一横是天，下面是一串串落下来的雨点：雨。'},
+    {g: '<path d="M30,6 Q44,18 30,40 Q16,18 30,6 Z M30,40 L20,54 M30,40 L40,54 M22,18 L38,18 M22,26 L38,26"' + OW + '/>', o: ['鸟', '鱼', '虫', '贝'], a: 1, x: '一条头朝上、尾巴朝下的鱼，身上还有鳞。甲骨上的字常常竖着写，动物也就跟着站了起来。'},
+    {g: '<path d="M16,8 Q8,20 22,22 M44,8 Q52,20 38,22 M22,22 H38 M30,22 V52 M20,34 H40 L30,44 Z"' + OW + '/>', o: ['牛', '羊', '鹿', '马'], a: 1, x: '两只向下弯的角，下面是羊脸：羊。“牛”的角是向上翘的。'},
+    {g: '<path d="M6,30 Q30,8 54,30 Q30,52 6,30 Z"' + OW + '/><circle cx="30" cy="30" r="7"' + OW + '/>', o: ['日', '目', '口', '回'], a: 1, x: '一只横着的眼睛，中间是眼珠。后来“目”竖了起来，成了今天的样子；“臣”字也是一只竖起来的眼睛。'}
+  ];
+  quiz(box, Q, q => '<svg viewBox="0 0 60 60" class="oracle" aria-label="甲骨文字形示意">' + q.g + '</svg>');
+})();
+
+/* ---------- 装置 11：一个字，四国念法 ---------- */
+(function(){
+  const row = $('#sxChars'); if (!row) return;
+  const D = {
+    '一': ['yī', 'jat1', 'ichi', '일 il', 'nhất', '收尾的 -t：粤语 jat、越南语 nhất 还留着，日语 ichi 是把 t 后面加了个元音，韩语把 t 变成了 l。普通话 yī 丢了尾巴。'],
+    '二': ['èr', 'ji6', 'ni', '이 i', 'nhị', '日语 ni 留着古代的 n- 声母，普通话的 èr 是后来变出来的。'],
+    '三': ['sān', 'saam1', 'san', '삼 sam', 'tam', '收尾的 -m：粤语 saam、韩语 sam、越南语 tam 都留着，普通话和日语都变成了 -n。'],
+    '六': ['liù', 'luk6', 'roku', '육 yuk', 'lục', '收尾的 -k：粤语 luk、日语 roku、韩语 yuk、越南语 lục 全都有，只有普通话丢了。'],
+    '十': ['shí', 'sap6', 'jū', '십 sip', 'thập', '收尾的 -p：粤语、韩语、越南语还留着。日语古时也念 jifu，后来 p 脱落成了 jū。'],
+    '学': ['xué', 'hok6', 'gaku', '학 hak', 'học', '又是 -k。第十五章的“比较法”就从这里开始：一整批字，跟着同一条规律走。'],
+    '国': ['guó', 'gwok3', 'koku', '국 guk', 'quốc', '-k 尾巴，以及开头的 k/g 声母，四处都对得上。'],
+    '人': ['rén', 'jan4', 'jin / nin', '인 in', 'nhân', '日语有两种音读：nin 是较早从中国江南一带传去的“吴音”，jin 是后来从唐朝长安传去的“汉音”。一个字，两次借，两种念法。'],
+    '日': ['rì', 'jat6', 'nichi / jitsu', '일 il', 'nhật', '同样有吴音 nichi 和汉音 jitsu 两种。“日本”念 nihon，用的是前一种的变体。'],
+    '文': ['wén', 'man4', 'bun / mon', '문 mun', 'văn', '普通话的 w-，古代是 m-。粤语 man、韩语 mun 都还是 m；日语 mon（吴音）也是 m，bun（汉音）则反映了唐代长安话里 m 变 b 的倾向。'],
+    '天': ['tiān', 'tin1', 'ten', '천 cheon', 'thiên', '韩语把 t 念成了 ch，这是朝鲜语自己的音变。'],
+    '金': ['jīn', 'gam1', 'kin', '금 geum', 'kim', '粤语 gam、韩语 geum、越南语 kim 都留着 -m 和 k/g 声母；普通话的 j- 是 g- 在 i 前面变来的，日语把 -m 变成了 -n。'],
+    '心': ['xīn', 'sam1', 'shin', '심 sim', 'tâm', '-m 尾巴的又一个例子。'],
+    '山': ['shān', 'saan1', 'san', '산 san', 'sơn', '这个字四处都很像，因为它的声母韵母都比较“稳”。']
+  };
+  const H = ['普通话', '粤语', '日语音读', '韩语', '越南语'];
+  row.innerHTML = Object.keys(D).map(k => '<button data-c="' + k + '">' + k + '</button>').join('');
+  function show(k){
+    $$('[data-c]', row).forEach(b => b.classList.toggle('on', b.dataset.c === k));
+    const d = D[k];
+    $('#sxTab').innerHTML = '<thead><tr><th>汉字</th>' + H.map(x => '<th>' + x + '</th>').join('') + '</tr></thead><tbody><tr><td style="font-size:26px">' + k + '</td>' + d.slice(0, 5).map(x => '<td style="font-family:var(--f-mono);font-size:15px">' + x + '</td>').join('') + '</tr></tbody>';
+    $('#sxNote').innerHTML = d[5];
+  }
+  row.addEventListener('click', e => { const b = e.target.closest('[data-c]'); if (b) show(b.dataset.c); });
+  show('学');
+})();
+
+/* ---------- 装置 12：文字的寿命 ---------- */
+(function(){
+  const svg = $('#lifeSvg'); if (!svg) return;
+  const NOW = 2026;
+  const B = [[-3500, 150], [-1500, 380], [0, 540], [1000, 625], [NOW, 740]];
+  const X = y => { for (let i = 1; i < B.length; i++) if (y <= B[i][0]) { const [a, xa] = B[i - 1], [b, xb] = B[i]; return xa + (y - a) / (b - a) * (xb - xa); } return 740; };
+  // [名, 起, 止(null=今), 类: d死 l活 u未破译, 说明, 起点存疑]
+  const L = [
+    ['楔形文字', -3300, 75, 'd', '约前 3300 年乌鲁克出现，被十几种语言借用。阿拉米字母通行后退回神庙，最晚的泥板约在公元 75 年。19 世纪被读回来。'],
+    ['埃及圣书字', -3200, 394, 'd', '用了三千五百多年。基督教兴起后，埃及人改用科普特字母。最后的铭文刻于 394 年的菲莱岛。1822 年商博良读通。'],
+    ['世俗体', -650, 452, 'd', '圣书字的日常草写体，罗塞塔石碑中间那段就是它。最后的刻文在 452 年。'],
+    ['印度河符号', -2600, -1900, 'u', '刻在几千枚小印章上，每段很短。印度河文明衰落后消失，至今未破译。'],
+    ['线形文字 A', -1800, -1450, 'u', '克里特岛米诺斯文明的文字。符号能大致念出音，读出来的话没人懂，至今未破译。'],
+    ['线形文字 B', -1450, -1200, 'd', '迈锡尼希腊人借线形文字 A 改来记希腊语。迈锡尼宫殿毁灭后消失，希腊进入几百年没有文字的“黑暗时代”。1952 年文特里斯破译。'],
+    ['汉字', -1250, null, 'l', '甲骨文以来三千多年没断，今天仍有十几亿人使用，也曾被日本、朝鲜半岛、越南借用。'],
+    ['腓尼基字母', -1050, 200, 'd', '22 个辅音字母，后代遍布世界。它自己随腓尼基语、布匿语（迦太基人的语言）的衰落而消失，终止年代很粗略。'],
+    ['希腊字母', -800, null, 'l', '第一套辅音元音都写的字母，今天仍是希腊文，也是数学和科学符号。'],
+    ['拉丁字母', -600, null, 'l', '今天使用最广的文字，写着几百种语言，包括汉语拼音。'],
+    ['玛雅文字', -300, 1700, 'd', '中美洲最成熟的文字。西班牙征服后被压制、焚毁，17 世纪末以后不再有人会写。20 世纪后半叶大体破译。起点有争议。'],
+    ['契丹文', 920, 1191, 'u', '辽朝仿汉字创制，大字约 920 年、小字稍晚。金章宗 1191 年下诏废止。小字部分释读，大字大多未破。'],
+    ['西夏文', 1036, 1502, 'd', '西夏仿汉字创制，六千多字。西夏亡于 1227 年，文字用到明代，最晚的经幢刻于 1502 年。靠《番汉合时掌中珠》读回来。'],
+    ['女真文', 1119, 1500, 'd', '金朝创制。金亡后在东北又用了一段时间，大约 15 世纪以后失传，终止年代粗略。部分可读。'],
+    ['训民正音', 1443, null, 'l', '1443 年朝鲜世宗创制。今天的韩文。'],
+    ['切罗基文', 1821, null, 'l', '塞阔雅约 1821 年创制。切罗基语本身已经濒危，文字仍在学校和出版物中使用。'],
+    ['女书', 1800, 2004, 'd', '湖南江永妇女之间流传的文字，起源年代众说纷纭（这里的起点只是示意）。2004 年最后一位自然传人阳焕宜去世，今天作为非遗传习。', 1]
+  ];
+  const TY = {d: ['已死', 'var(--terra)'], l: ['活着', 'var(--reed)'], u: ['未破译或大多未破', 'var(--ink-3)']};
+  const F = $('#lifeF'), card = $('#lifeCard');
+  let cur = 'all', sel = -1;
+  F.innerHTML = '<button class="btn on" data-f="all">全部</button>' + Object.entries(TY).map(([k, v]) => '<button class="btn" data-f="' + k + '">' + v[0] + '</button>').join('');
+  function draw(){
+    let h = '';
+    [-3000, -2000, -1000, 0, 1000, 2000].forEach(y => { const x = X(y); h += '<line x1="' + x + '" y1="10" x2="' + x + '" y2="426" stroke="var(--rule)" stroke-dasharray="2 4"/><text x="' + x + '" y="446" text-anchor="middle" font-size="11" fill="var(--ink-3)" font-family="IBM Plex Mono,monospace">' + (y < 0 ? '前' + (-y) : y) + '</text>'; });
+    h += '<line x1="' + X(NOW) + '" y1="6" x2="' + X(NOW) + '" y2="426" stroke="var(--ink-3)"/><text x="' + X(NOW) + '" y="458" text-anchor="end" font-size="11" fill="var(--ink-3)">今天</text>';
+    L.forEach((l, k) => {
+      const y = 14 + k * 24, x1 = X(l[1]), x2 = X(l[2] === null ? NOW : l[2]), t = TY[l[3]], on = cur === 'all' || cur === l[3];
+      h += '<g class="lifebar' + (sel === k ? ' on' : '') + '" data-k="' + k + '" tabindex="0" role="button" aria-label="' + l[0] + '" opacity="' + (on ? 1 : .2) + '"><rect x="0" y="' + (y - 2) + '" width="760" height="22" fill="transparent"/><text x="140" y="' + (y + 13) + '" text-anchor="end" font-size="12.5" fill="var(--ink)">' + l[0] + '</text><rect class="bar" x="' + x1 + '" y="' + (y + 3) + '" width="' + Math.max(3, x2 - x1) + '" height="12" rx="3" fill="' + t[1] + '"' + (l[5] ? ' opacity=".55"' : '') + '/>' + (l[2] === null ? '<path d="M' + (x2 - 1) + ',' + (y + 3) + ' l8,6 l-8,6 Z" fill="' + t[1] + '"/>' : '') + '</g>';
+    });
+    svg.innerHTML = h;
+  }
+  function pick(k){
+    sel = k; const l = L[k], t = TY[l[3]];
+    const span = (l[2] === null ? NOW : l[2]) - l[1];
+    card.innerHTML = '<p class="k">' + (l[1] < 0 ? '约前 ' + (-l[1]) : '约 ' + l[1]) + ' — ' + (l[2] === null ? '今天' : l[2] < 0 ? '约前 ' + (-l[2]) : '约 ' + l[2]) + ' · 约 ' + span + ' 年 · <span style="color:' + t[1] + '">' + t[0] + '</span></p><h5>' + l[0] + '</h5><p>' + l[4] + '</p>';
+    draw();
+  }
+  svg.addEventListener('click', e => { const g = e.target.closest('.lifebar'); if (g) pick(+g.dataset.k); });
+  svg.addEventListener('keydown', e => { const g = e.target.closest('.lifebar'); if (g && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); pick(+g.dataset.k); } });
+  F.addEventListener('click', e => { const b = e.target.closest('[data-f]'); if (!b) return; cur = b.dataset.f; $$('[data-f]', F).forEach(x => x.classList.toggle('on', x === b)); draw(); });
+  draw();
+})();
+
+/* ---------- 装置 13：猜海客的话 ---------- */
+(function(){
+  const box = $('#gavBox'); if (!box) return;
+  const ST = [
+    {p: '🐐', c: '河滩上，一头山羊在吃草。', u: '提库 莫拉。', q: '“提库”最可能是什么意思？', o: ['山羊', '吃', '草', '白色'], a: 0, x: '其实这四个都有可能，单凭一次根本分不出来（这就是 gavagai 难题）。但你和婴儿一样，第一反应是猜“整个东西”，这叫整体优先。先这样记下，等下一次来检验。'},
+    {p: '🐑', c: '一群绵羊走过，也在吃草。', u: '提库 莫拉。', q: '现在，“莫拉”最可能是？', o: ['羊', '吃草', '早上', '好看'], a: 1, x: '两个场面里不变的是“在吃草”，而“提库”已经被你分给了那头牲口（互斥假设：已经有名字的东西，新词多半指别的）。'},
+    {p: '🐂', c: '一头牛挣脱了绳子，在河滩上跑。', u: '提库 帕拉！', q: '山羊、绵羊、牛都叫“提库”。“提库”到底是？', o: ['山羊', '羊', '人家养的牲口', '毛茸茸的'], a: 2, x: '你第一次猜的“山羊”太窄了。跨场景比较：三个场面里共同的东西，是“人家养的牲口”。这正是林记在河滩上经历的修正。'},
+    {p: '🐕', c: '一条野狗从芦苇里窜出来，跑过去。阿浪一把拉住孩子。', u: '瓦萨 帕拉！', q: '“帕拉”是？', o: ['狗', '跑', '危险', '快躲开'], a: 1, x: '牛在跑、狗在跑，两次都有“帕拉”，所以多半是“跑”。不过阿浪的语气很急，“危险”也不能完全排除，要再多看几次。真正学一种话，就是这样不停地猜、不停地改。'},
+    {p: '🐕', c: '第二天，一条被拴在木桩上的狗，在打瞌睡。', u: '提库。', q: '咦？狗也叫“提库”了。这说明什么？', o: ['阿浪说错了', '“提库”看的不是哪种动物，而是“被人拴着养的”', '“提库”就是“狗”', '“提库”是“睡觉”'], a: 1, x: '野狗是“瓦萨”，拴着的狗是“提库”。原来海客分东西的办法和苇城人不一样：他们不按“羊、牛、狗”分，而按“家里的”和“野的”分。<b>学词，也是在学另一群人怎样把世界切成块。</b>'}
+  ];
+  let i = 0, ans = null, kk = null;
+  const blob = '<svg viewBox="0 0 100 100"><path d="M50,12 C72,10 90,28 86,50 C92,74 70,90 50,86 C28,92 10,74 14,50 C8,28 28,14 50,12 Z" fill="var(--clay-2)" stroke="var(--ink)" stroke-width="3"/></svg>';
+  const spike = '<svg viewBox="0 0 100 100"><path d="M50,6 L60,36 L94,30 L68,52 L88,86 L54,68 L36,94 L34,62 L6,64 L28,44 L12,16 L42,30 Z" fill="var(--clay-2)" stroke="var(--ink)" stroke-width="3" stroke-linejoin="round"/></svg>';
+  function draw(){
+    let h;
+    if (i < ST.length) {
+      const s = ST[i];
+      h = '<div class="qn">场面 ' + (i + 1) + ' / ' + ST.length + '</div><div class="gscene"><span>' + s.p + '</span><div><p class="readout">' + s.c + '</p><div class="gsay">阿浪：“' + s.u + '”</div></div></div><p style="margin:.6em 0 .4em;font-size:15.5px">' + s.q + '</p><div class="opts">' + s.o.map((o, k) => '<button data-k="' + k + '"' + (ans !== null ? ' disabled class="' + (k === s.a ? 'ok' : k === ans ? 'bad' : '') + '"' : '') + '>' + o + '</button>').join('') + '</div>';
+      if (ans !== null) h += '<p class="readout" style="margin-top:10px">' + s.x + '</p><div class="btns"><button class="btn pri" data-n>' + (i === ST.length - 1 ? '最后一题' : '下一个场面') + '</button></div>';
+    } else {
+      h = '<div class="qn">最后一题 · 声音和形状</div><p style="font-size:15.5px;margin:.4em 0">这两个图形，一个叫 <b>bouba</b>，一个叫 <b>kiki</b>。凭直觉选：哪个是 kiki？</p><div class="bk"><button data-b="0">' + blob + '</button><button data-b="1">' + spike + '</button></div>';
+      if (kk !== null) h += '<p class="readout" style="margin-top:10px">' + (kk === 1 ? '你选了尖的。' : '你选了圆的，你是少数派。') + '在许多语言的实验里，绝大多数人都会把尖刺的叫 kiki、圆滚的叫 bouba，不管他们说什么话。声音和意思之间，大部分是约定（第十二章），也有一点点天性：尖利的音配尖利的形。</p><div class="btns"><button class="btn" data-r>从头再来</button></div>';
+    }
+    box.innerHTML = h;
+  }
+  box.addEventListener('click', e => {
+    const b = e.target.closest('[data-k]');
+    if (b && ans === null) { ans = +b.dataset.k; draw(); return; }
+    if (e.target.closest('[data-n]')) { i++; ans = null; draw(); return; }
+    const bb = e.target.closest('[data-b]'); if (bb && kk === null) { kk = +bb.dataset.b; draw(); return; }
+    if (e.target.closest('[data-r]')) { i = 0; ans = null; kk = null; draw(); }
+  });
+  draw();
+})();
+
+/* ---------- 装置 14：说话的钟 ---------- */
+(function(){
+  const r = $('#clkR'); if (!r) return;
+  const EV = [['写字（乌鲁克泥板）', 5300], ['字母（矿工）', 3850], ['活字印刷（毕昇）', 985], ['商博良读通圣书字', 204], ['互联网普及', 30]];
+  const fmt = s => { s = Math.max(0, Math.min(86399.999, s)); const h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), ss = Math.floor(s % 60); return String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0') + ':' + String(ss).padStart(2, '0'); };
+  function run(){
+    const N = Math.round(50000 * Math.pow(40, r.value / 100) / 1000) * 1000;
+    $('#clkV').textContent = N >= 1e6 ? (N / 1e6).toFixed(1).replace('.0', '') + ' 百万年' : (N / 1e4) + ' 万年';
+    const ang = a => (a / 86400) * 2 * Math.PI - Math.PI / 2;
+    const tw = 86400 * (1 - 5300 / N), a0 = ang(tw), a1 = ang(86400);
+    let h = '<circle cx="120" cy="120" r="104" fill="var(--paper)" stroke="var(--ink-2)" stroke-width="2"/>';
+    for (let i = 0; i < 24; i++) { const a = ang(i * 3600); h += '<line x1="' + (120 + Math.cos(a) * 94) + '" y1="' + (120 + Math.sin(a) * 94) + '" x2="' + (120 + Math.cos(a) * (i % 6 ? 100 : 86)) + '" y2="' + (120 + Math.sin(a) * (i % 6 ? 100 : 86)) + '" stroke="var(--ink-3)" stroke-width="' + (i % 6 ? 1 : 2) + '"/>'; }
+    [0, 6, 12, 18].forEach(i => { const a = ang(i * 3600); h += '<text x="' + (120 + Math.cos(a) * 72) + '" y="' + (124 + Math.sin(a) * 72) + '" text-anchor="middle" font-size="12" fill="var(--ink-3)" font-family="IBM Plex Mono,monospace">' + (i || 24) + '</text>'; });
+    const large = (a1 - a0) > Math.PI ? 1 : 0;
+    h += '<path d="M120,120 L' + (120 + Math.cos(a0) * 104) + ',' + (120 + Math.sin(a0) * 104) + ' A104,104 0 ' + large + ' 1 ' + (120 + Math.cos(a1) * 104).toFixed(2) + ',' + (120 + Math.sin(a1) * 104).toFixed(2) + ' Z" fill="var(--terra)" opacity=".85"/>';
+    h += '<line x1="120" y1="120" x2="' + (120 + Math.cos(a0) * 104) + '" y2="' + (120 + Math.sin(a0) * 104) + '" stroke="var(--terra)" stroke-width="2"/><circle cx="120" cy="120" r="4" fill="var(--ink)"/>';
+    $('#clkSvg').innerHTML = h;
+    $('#clkList').innerHTML = '<p style="margin:0 0 .4em">0 点：人类开始说话（' + $('#clkV').textContent + '前）。<br>红色那一小片，是有文字的全部历史。</p>' + EV.map(([n, y]) => '<div><b style="font-family:var(--f-mono)">' + fmt(86400 * (1 - y / N)) + '</b>　' + n + '</div>').join('') + '<div><b style="font-family:var(--f-mono)">24:00:00</b>　现在</div>';
+  }
+  r.addEventListener('input', run);
+  run();
+})();
+
+/* ---------- 装置 15：读洋泾浜 ---------- */
+(function(){
+  const box = $('#tokBox'); if (!box) return;
+  const Q = [
+    {w: 'haus sik', e: 'house + sick', o: ['医院', '病人的家', '厨房', '监狱'], a: 0, x: '“生病的房子”：医院。托克皮辛语词汇少，靠组合造新词。'},
+    {w: 'gras bilong het', e: 'grass + belong + head', o: ['帽子', '头发', '草帽', '胡子'], a: 1, x: '“属于头的草”：头发。bilong（来自 belong）相当于“的”，胡子则是 gras bilong fes（脸上的草）。'},
+    {w: 'pikinini', e: '来自葡萄牙语 pequenino（很小的）', o: ['小孩', '一点点', '小鸟', '花'], a: 0, x: '小孩。这个词经葡萄牙水手传遍了好几个大洋的皮钦语，说明接触语言的词可以来自好几种语言。'},
+    {w: 'mi no save', e: 'me + no + 来自葡萄牙语 saber（知道）', o: ['我不救', '我不知道', '我不存钱', '我不要'], a: 1, x: '“我不知道”。save 和英语的“保存”没关系，来自葡萄牙语的“知道”。'},
+    {w: 'balus', e: '本地语言里原指“鸽子”', o: ['气球', '飞机', '风', '船'], a: 1, x: '飞机。新东西来了，就拿一个旧词去指它，和林记把“提库”从山羊扩大到所有家养牲口，是同一个道理。'},
+    {w: 'wantok', e: 'one + talk', o: ['一句话', '自己人、同乡', '翻译', '只说一遍'], a: 1, x: '“说同一种话的人”：同乡、自己人。在一个有几百种语言的国家里，能和你说同一种话的人，就是你的人。'},
+    {w: 'meri', e: '一般认为来自英文名 Mary', o: ['快乐', '女人', '结婚', '妈妈'], a: 1, x: '女人。皮钦语常把一个具体的名字变成一类人的统称。'}
+  ];
+  quiz(box, Q, q => '<div class="tok"><b>' + q.w + '</b><span>' + q.e + '</span></div>');
+})();
+
+/* ---------- 装置 16：给语言认亲戚 ---------- */
+(function(){
+  const cards = $('#famCards'); if (!cards) return;
+  const FAM = [['ie', '印欧语系', 'var(--lapis)'], ['st', '汉藏语系', 'var(--terra)'], ['ur', '乌拉尔语系', 'var(--reed)'], ['ot', '别的家', 'var(--gold)']];
+  const R = {
+    '三': {w: [['英语', 'three', 'ie'], ['德语', 'drei', 'ie'], ['拉丁语', 'trēs', 'ie'], ['俄语', 'tri', 'ie'], ['梵语', 'trayaḥ', 'ie'], ['波斯语', 'se', 'ie'], ['普通话', 'sān', 'st'], ['藏语', 'gsum', 'st'], ['缅甸语', 'thòun', 'st'], ['芬兰语', 'kolme', 'ur'], ['匈牙利语', 'három', 'ur'], ['土耳其语', 'üç', 'ot'], ['斯瓦希里语', 'tatu', 'ot'], ['日语（固有词）', 'mittsu', 'ot']],
+      x: '波斯语 se 看着和 three 一点不像，却是印欧语的亲戚；芬兰语 kolme 和匈牙利语 három 看着也不像，却出自同一个原始乌拉尔语词。斯瓦希里语 tatu 和 three 都以 t 开头，却毫无关系，这是碰巧。日语还有一个 san（三），那是从汉语借的，不是遗传的，所以这里用它的固有词 mittsu。'},
+    '五': {w: [['英语', 'five', 'ie'], ['德语', 'fünf', 'ie'], ['拉丁语', 'quīnque', 'ie'], ['希腊语', 'pénte', 'ie'], ['梵语', 'pañca', 'ie'], ['俄语', 'pyat\'', 'ie'], ['普通话', 'wǔ', 'st'], ['藏语', 'lnga', 'st'], ['缅甸语', 'ngà', 'st'], ['芬兰语', 'viisi', 'ur'], ['匈牙利语', 'öt', 'ur'], ['土耳其语', 'beş', 'ot'], ['日语（固有词）', 'itsutsu', 'ot']],
+      x: '英语 five、拉丁语 quīnque、希腊语 pénte、梵语 pañca 都出自原始印欧语的 *penkʷe，英语的 f 对应拉丁、希腊的 p，正是格林定律。藏语 lnga、缅甸语 ngà 和上古汉语的“五”（据重构以 ŋ 开头）是亲戚，普通话的 wǔ 把 ng 丢了。芬兰语 viisi 和匈牙利语 öt 也是一家。'}
+  };
+  let round = '三', pick = {};
+  const rb = $('#famRound');
+  rb.innerHTML = Object.keys(R).map(k => '<button class="btn" data-r="' + k + '">数字“' + k + '”</button>').join('');
+  $('#famLeg').innerHTML = FAM.map(f => '<span><i style="background:' + f[2] + '"></i>' + f[1] + '</span>').join('') + '<span><i style="background:var(--rule)"></i>还没分</span>';
+  function draw(check){
+    $$('[data-r]', rb).forEach(b => b.classList.toggle('on', b.dataset.r === round));
+    const W = R[round].w;
+    cards.innerHTML = W.map((w, k) => { const p = pick[k], f = FAM.find(x => x[0] === p); const cls = check ? (p === w[2] ? ' ok' : ' bad') : '';
+      return '<button class="fc' + cls + '" data-k="' + k + '" style="border-left-color:' + (f ? f[2] : 'var(--rule)') + '"><b>' + w[1] + '</b><span>' + w[0] + (f ? ' · ' + f[1].replace('语系', '') : '') + '</span>' + (check && p !== w[2] ? '<em>应为' + FAM.find(x => x[0] === w[2])[1] + '</em>' : '') + '</button>'; }).join('');
+    if (check) { const n = W.filter((w, k) => pick[k] === w[2]).length; $('#famOut').innerHTML = '<b>分对 ' + n + ' / ' + W.length + '。</b>' + R[round].x; }
+    else $('#famOut').innerHTML = '';
+  }
+  cards.addEventListener('click', e => { const b = e.target.closest('[data-k]'); if (!b) return; const k = +b.dataset.k; const i = FAM.findIndex(f => f[0] === pick[k]); pick[k] = FAM[(i + 1) % FAM.length][0]; draw(false); });
+  rb.addEventListener('click', e => { const b = e.target.closest('[data-r]'); if (!b) return; round = b.dataset.r; pick = {}; draw(false); });
+  $('#famCheck').addEventListener('click', () => draw(true));
+  $('#famReset').addEventListener('click', () => { pick = {}; draw(false); });
+  draw(false);
+})();
+
 })();

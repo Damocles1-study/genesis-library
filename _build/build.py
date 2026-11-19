@@ -12,6 +12,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BOOKS = {
     'money': ('money', 'money/index.html', ['head.html'] + ['s%02d.html' % i for i in range(13)]),
     'yes': ('yes', 'yes/index.html', ['head.html'] + ['s%02d.html' % i for i in range(16)]),
+    'reed': ('reed', 'reed/index.html', ['head.html'] + ['s%02d.html' % i for i in range(8)]),
 }
 
 

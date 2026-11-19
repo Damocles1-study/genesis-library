@@ -1,0 +1,1881 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="一个会计掉进了还没有文字的平行世界。泥丸、泥球、泥板、借音、芦苇笔、矿工的字母——他亲眼看着文字一步一步被造出来。一部平行世界故事传，配真实历史、七个装置。">
+<meta property="og:title" content="苇城书记 · 文字创世记">
+<meta property="og:description" content="一个会计掉进了还没有文字的世界。文字是怎样被造出来的？">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='3' width='24' height='26' rx='7' fill='%23c08a5b'/%3E%3Cpath d='M10,11 l5,0 M10,11 l0,0 M18,9 l0,6 M10,19 l12,0 M16,16 l0,7' stroke='%232a2119' stroke-width='2.4' stroke-linecap='round'/%3E%3Cpath d='M8,9 l4,2 l-4,2 Z M16,7 l2,4 l2,-4 Z M8,17 l4,2 l-4,2 Z' fill='%232a2119'/%3E%3C/svg%3E">
+<title>苇城书记</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@500;700&family=Noto+Serif+SC:wght@400;600;700&family=ZCOOL+XiaoWei&display=swap">
+<style>
+/* 版式：一块块泥板。故事写在泥色纸上；“回到我们的世界”是青金石色的框；每章末尾是一张会计凭证。 */
+:root{
+  --paper:#f1e8d6; --paper-2:#e8dcc3; --card:#f9f3e7;
+  --clay:#c08a5b; --clay-2:#e6cfae; --clay-d:#8f5f38;
+  --ink:#2a2119; --ink-2:#5a4d40; --ink-3:#8b7e6e; --rule:#d8c9ad;
+  --terra:#b04a2a;   /* 林记 / 主色 */
+  --lapis:#2d4f8a;   /* 我们的世界 */
+  --reed:#5b7a34;    /* 小芦 */
+  --gold:#9c7a22;    /* 麦娘 */
+  --hl:color-mix(in srgb,var(--clay) 32%,transparent);
+  --f-display:"ZCOOL XiaoWei","Songti SC","STSong","Noto Serif SC",serif;
+  --f-body:"Noto Serif SC","Songti SC","Source Han Serif SC","STSong",serif;
+  --f-hand:"Ma Shan Zheng","Kaiti SC","STKaiti","KaiTi",cursive;
+  --f-sans:"Noto Sans SC","PingFang SC","Hiragino Sans GB",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#16120e; --paper-2:#1e1914; --card:#211b15; --clay:#a8774d; --clay-2:#3a2c1f; --clay-d:#d3a274;
+  --ink:#ece2d0; --ink-2:#b9ab96; --ink-3:#857868; --rule:#3a3026;
+  --terra:#e57a55; --lapis:#8eaee6; --reed:#a3c27a; --gold:#d9b45a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#16120e; --paper-2:#1e1914; --card:#211b15; --clay:#a8774d; --clay-2:#3a2c1f; --clay-d:#d3a274;
+  --ink:#ece2d0; --ink-2:#b9ab96; --ink-3:#857868; --rule:#3a3026;
+  --terra:#e57a55; --lapis:#8eaee6; --reed:#a3c27a; --gold:#d9b45a; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+.g{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit;text-decoration-color:var(--terra);text-underline-offset:3px}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--terra);outline-offset:2px}
+svg{max-width:100%;height:auto;display:block}
+
+/* 页眉 */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+.bar-in{max-width:56rem;margin:0 auto;display:flex;align-items:center;gap:12px;padding-block:8px}
+.bar .home{text-decoration:none;font-size:13px;color:var(--ink-3);white-space:nowrap;border:1px solid var(--rule);border-radius:999px;padding:1px 9px}
+.bar .name{font-family:var(--f-display);font-size:19px;letter-spacing:.05em;white-space:nowrap}
+.bar .vol{margin-left:auto;font-size:13px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.bar .tocbtn{border:1px solid var(--rule);background:transparent;border-radius:6px;padding:0 8px;font-size:13px;cursor:pointer;color:var(--ink-2);white-space:nowrap}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;background:var(--terra);width:0}
+.drawer{position:fixed;inset:0;z-index:40;display:none}
+.drawer.on{display:block}
+.drawer .mask{position:absolute;inset:0;background:rgba(0,0,0,.35)}
+.drawer .panel{position:absolute;right:0;top:0;bottom:0;width:min(360px,88vw);background:var(--paper);border-left:1px solid var(--rule);overflow:auto;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px))}
+.drawer h5{font-family:var(--f-display);font-weight:400;font-size:20px;margin:0 0 10px}
+.drawer ol{list-style:none;margin:0;padding:0}
+.drawer li a{display:flex;gap:10px;padding:7px 0;border-bottom:1px dashed var(--rule);text-decoration:none;font-size:15px;line-height:1.5}
+.drawer li a .n{font-family:var(--f-mono);font-size:12px;color:var(--terra);min-width:3.2em;padding-top:2px}
+.drawer li a small{display:block;color:var(--ink-3);font-size:12px}
+.drawer .x{position:absolute;right:12px;top:10px;border:0;background:transparent;font-size:22px;cursor:pointer;color:var(--ink-2)}
+
+main{display:block}
+.col{max-width:38rem;margin-inline:auto}
+.wide{max-width:54rem;margin-inline:auto}
+.col p{margin:0 0 1.05em;text-indent:2em}
+.col p.ni,.col .ni{text-indent:0}
+h2,h3,h4{text-wrap:balance}
+h3{font-family:var(--f-display);font-weight:400;font-size:24px;line-height:1.4;margin:2.2em 0 .7em;letter-spacing:.03em}
+h3 .y{font-family:var(--f-mono);font-size:13px;color:var(--ink-3);margin-left:10px;letter-spacing:0;white-space:nowrap}
+em{font-style:normal;background:linear-gradient(transparent 62%,var(--hl) 62%)}
+strong{font-weight:600}
+blockquote{margin:1.4em 0;padding:.2em 0 .2em 1.2em;border-left:2px solid var(--terra);color:var(--ink-2)}
+blockquote p{text-indent:0!important;margin:0 0 .4em}
+blockquote cite{font-style:normal;font-size:14px;color:var(--ink-3)}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.figcap{font-size:14px;color:var(--ink-2);line-height:1.7;margin-top:8px}
+.sep{text-align:center;color:var(--clay);letter-spacing:1.2em;margin:2em 0;text-indent:1.2em!important;font-size:14px}
+
+/* 封面 */
+.hero{padding-block:40px 20px}
+.hero .eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;color:var(--ink-3)}
+.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(58px,13vw,122px);line-height:1;margin:.25em 0 .2em;letter-spacing:.08em}
+.hero h1 .sm{display:block;font-size:.2em;letter-spacing:.32em;color:var(--ink-2);margin-top:.6em}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:34px;align-items:center}
+.hero-grid p{margin:0 0 1em;font-size:18px}
+.tabletc{position:relative;max-width:380px;margin:auto}
+.tabletc svg{width:100%}
+.tabletc .cap{font-size:13px;color:var(--ink-3);text-align:center;margin-top:6px;line-height:1.6}
+
+/* 目录 */
+.toc{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--rule)}
+.toc li a,.toc li .soon{display:grid;grid-template-columns:3.8em minmax(0,1fr) auto;gap:10px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--rule);text-decoration:none}
+.toc .n{font-family:var(--f-mono);font-size:12px;color:var(--terra)}
+.toc .t{font-family:var(--f-display);font-size:21px;line-height:1.3}
+.toc .t small{display:block;font-family:var(--f-body);font-size:13px;color:var(--ink-3);margin-top:2px}
+.toc .r{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);text-align:right;white-space:nowrap}
+.toc li a:hover .t{color:var(--terra)}
+.toc .vh{padding:16px 0 4px;font-family:var(--f-mono);font-size:12px;letter-spacing:.16em;color:var(--ink-3);border-bottom:1px solid var(--rule)}
+.toc li .soon{opacity:.5}
+.toc li .soon .r::before{content:"待续 · "}
+
+/* 人物 */
+.cast{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15em),1fr));gap:12px;margin:1.4em 0}
+.cast div{border:1px solid var(--rule);border-radius:6px;padding:12px 14px;background:var(--card);font-size:14.5px;line-height:1.7}
+.cast b{display:block;font-family:var(--f-display);font-weight:400;font-size:19px;margin-bottom:2px}
+.cast .l b{color:var(--terra)}.cast .m b{color:var(--gold)}.cast .x b{color:var(--reed)}.cast .a b{color:var(--lapis)}.cast .c b{color:var(--clay-d)}
+
+/* 卷首 */
+.volhead{position:relative;max-width:54rem;margin:56px auto 20px;padding:30px 22px 24px;border-top:3px double var(--ink);border-bottom:3px double var(--ink)}
+.volhead .num{font-family:var(--f-mono);font-size:12px;letter-spacing:.24em;color:var(--terra)}
+.volhead h2{font-family:var(--f-display);font-weight:400;font-size:clamp(64px,15vw,120px);line-height:1;margin:.1em 0 .12em;letter-spacing:.1em}
+.volhead .lede{max-width:32em;margin:6px 0 0;font-size:16px;color:var(--ink-2);line-height:1.8}
+
+/* 章首：一块泥板 */
+section.chap{padding-top:24px}
+.slab{position:relative;max-width:54rem;margin:46px auto 28px;padding:26px 24px 22px;background:var(--clay-2);border-radius:22px 22px 26px 26px / 20px 20px 30px 30px;box-shadow:inset 0 -6px 0 color-mix(in srgb,var(--clay) 40%,transparent),inset 0 2px 0 color-mix(in srgb,#fff 25%,transparent)}
+.slab .no{font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;color:var(--terra)}
+.slab h2{font-family:var(--f-display);font-weight:400;font-size:clamp(40px,9vw,64px);line-height:1.1;margin:.12em 0 .2em;letter-spacing:.08em}
+.slab dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 14px;margin:6px 0 0;font-size:14.5px;line-height:1.7}
+.slab dt{color:var(--ink-3);white-space:nowrap}
+.slab dd{margin:0;color:var(--ink-2)}
+.slab .wedges{position:absolute;right:20px;top:20px;width:74px;opacity:.75}
+
+/* 对白 */
+.scene{margin:2em 0;border:1px solid var(--rule);border-radius:6px;background:var(--card);overflow:hidden}
+.scene .sh{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;padding:10px 16px;border-bottom:1px solid var(--rule);background:var(--paper-2)}
+.scene .sh b{font-family:var(--f-display);font-weight:400;font-size:18px;letter-spacing:.06em}
+.scene .sh span{font-size:13px;color:var(--ink-3)}
+.scene .bd{padding:12px 16px 14px}
+.scene .ln{display:grid;grid-template-columns:4.2em minmax(0,1fr);gap:10px;margin:0 0 .55em;line-height:1.8}
+.scene .ln .who{font-size:13px;text-align:right;padding-top:3px;white-space:nowrap;color:var(--ink-2);font-weight:600}
+.scene .ln .who.l{color:var(--terra)}.scene .ln .who.m{color:var(--gold)}.scene .ln .who.x{color:var(--reed)}.scene .ln .who.a{color:var(--lapis)}.scene .ln .who.c{color:var(--clay-d)}
+.scene .ln p{margin:0;text-indent:0!important}
+.scene .sd{color:var(--ink-3);font-size:14px;margin:.2em 0 .7em 5.2em;line-height:1.7}
+.scene .sd::before{content:"（"}.scene .sd::after{content:"）"}
+
+/* 回到我们的世界 */
+.real{margin:2.2em 0;padding:16px 18px 10px;border-radius:8px;border:1.5px solid var(--lapis);background:color-mix(in srgb,var(--lapis) 6%,var(--paper));position:relative}
+.real::before{content:"回到我们的世界";position:absolute;top:-12px;left:14px;background:var(--paper);padding:0 8px;font-family:var(--f-display);color:var(--lapis);font-size:15px;letter-spacing:.16em}
+.real h5{margin:.2em 0 .5em;font-family:var(--f-display);font-weight:400;font-size:21px;color:var(--lapis);letter-spacing:.04em}
+.real p{text-indent:0!important;margin:0 0 .8em;font-size:16px;line-height:1.85}
+.real ul{margin:0 0 .8em;padding-left:1.2em;font-size:16px;line-height:1.85}
+.real li{margin:0 0 .3em}
+.real .k{font-family:var(--f-mono);font-size:12px;color:var(--lapis);letter-spacing:.06em}
+
+/* 眉批 */
+.echo{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;margin:1.6em 0;padding:14px 14px 10px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.echo .stamp{writing-mode:vertical-rl;font-family:var(--f-display);font-size:15px;color:var(--terra);border:1.5px solid var(--terra);border-radius:3px;padding:6px 2px;letter-spacing:.2em;align-self:start}
+.echo[data-k="存疑"] .stamp{color:var(--ink-3);border-color:var(--ink-3)}
+.echo[data-k="联系"] .stamp{color:var(--reed);border-color:var(--reed)}
+.echo[data-k="生活"] .stamp{color:var(--gold);border-color:var(--gold)}
+.echo[data-k="押韵"] .stamp{color:var(--lapis);border-color:var(--lapis)}
+.echo p{text-indent:0!important;margin:0 0 .5em;font-size:15.5px;line-height:1.8}
+.echo .rh{font-family:var(--f-display);font-size:18px;margin-bottom:.2em}
+
+/* 林记的手记：页边的红笔 */
+.note{font-family:var(--f-hand);color:var(--terra);font-size:22px;line-height:1.45;margin:-.2em 0 1.1em;text-indent:0!important;transform:rotate(-1.2deg);transform-origin:left}
+.note::before{content:"林记手记：";font-size:.6em;font-family:var(--f-body);vertical-align:2px;opacity:.8}
+
+/* 记一笔：章末凭证 */
+.ledger{margin:2.6em 0 1em;border:1.5px solid var(--ink);border-radius:4px;background:var(--card);font-size:15px;line-height:1.75}
+.ledger .lh{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 12px;padding:8px 14px;border-bottom:1.5px solid var(--ink);font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;color:var(--ink-2)}
+.ledger .lh b{font-family:var(--f-display);font-weight:400;font-size:18px;letter-spacing:.2em;color:var(--ink)}
+.ledger .lb{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.ledger .lb>div{padding:10px 14px 12px}
+.ledger .lb>div+div{border-left:1px solid var(--ink)}
+.ledger .lb i{display:block;font-style:normal;font-family:var(--f-display);font-size:15px;color:var(--terra);letter-spacing:.2em;margin-bottom:2px}
+.ledger .lb>div+div i{color:var(--lapis)}
+.ledger .lf{padding:6px 14px;border-top:1px dashed var(--rule);font-size:12.5px;color:var(--ink-3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px}
+.ledger .lf .sig{font-family:var(--f-hand);font-size:18px;color:var(--terra)}
+
+/* 装置 */
+.fig{margin:2.2em auto;padding:20px 18px;background:var(--card);border:1px solid var(--rule);border-radius:6px}
+.fig-label{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.12em;color:var(--terra)}
+.fig h4{font-family:var(--f-display);font-weight:400;font-size:22px;margin:.25em 0 .35em}
+.fig .how{font-size:14.5px;color:var(--ink-2);margin:0 0 14px;line-height:1.75}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btn{border:1px solid var(--ink-3);background:transparent;border-radius:999px;padding:4px 14px;font-size:14px;cursor:pointer;line-height:1.6;color:var(--ink)}
+.btn:hover{border-color:var(--ink)}
+.btn.pri{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.btn.red{background:var(--terra);color:#fff;border-color:var(--terra)}
+.btn.on{background:var(--lapis);border-color:var(--lapis);color:#fff}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.readout{font-size:14.5px;color:var(--ink-2);line-height:1.75;min-height:1.5em}
+.readout b{color:var(--ink)}
+.say{background:var(--paper);border-left:3px solid var(--clay);padding:8px 12px;margin:10px 0;font-size:15px;line-height:1.75;min-height:3.2em}
+.say>b:first-child{display:block;font-size:12.5px;font-weight:600;color:var(--clay-d)}
+.say.ok{border-left-color:var(--reed)}.say.bad{border-left-color:var(--terra)}
+input[type=range]{width:100%;accent-color:var(--terra)}
+.chip{display:inline-block;font-size:12px;border:1px solid var(--rule);border-radius:4px;padding:0 6px;color:var(--ink-3);margin:0 4px 4px 0}
+
+/* 装置 1：泥球 */
+.bulla{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:18px;align-items:center}
+.bulla svg{max-width:320px;margin:auto;width:100%}
+.tokbar{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.tokbar button{display:flex;align-items:center;gap:6px;border:1px solid var(--rule);border-radius:8px;background:var(--paper);padding:4px 10px 4px 6px;cursor:pointer;font-size:14px;line-height:1.4}
+.tokbar button svg{width:26px;height:26px}
+.tokbar button:hover{border-color:var(--ink-3)}
+.steps{display:flex;flex-wrap:wrap;gap:4px;margin:0 0 10px}
+.steps span{font-size:12px;border:1px solid var(--rule);border-radius:4px;padding:0 6px;color:var(--ink-3)}
+.steps span.on{border-color:var(--terra);color:var(--terra)}
+.steps span.done{text-decoration:line-through}
+
+/* 装置 2：收据 */
+.rcpt .order{font-size:15.5px;line-height:1.7;border:1px dashed var(--clay);border-radius:6px;padding:8px 12px;background:var(--paper);margin-bottom:10px}
+.rcpt .order b{color:var(--terra)}
+.rcpt .pad{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:6px;margin:8px 0}
+.rcpt .pad button{border:1px solid var(--rule);border-radius:8px;background:var(--paper);padding:4px 2px 2px;cursor:pointer;font-size:11.5px;line-height:1.3;color:var(--ink-2);display:flex;flex-direction:column;align-items:center}
+.rcpt .pad button svg{width:38px;height:38px}
+.rcpt .pad button:hover{border-color:var(--ink-3)}
+.rcpt .grp{font-size:12px;color:var(--ink-3);letter-spacing:.1em;margin-top:8px}
+.rcpt .tab{background:var(--clay-2);border-radius:18px;padding:12px;min-height:96px;display:flex;flex-wrap:wrap;gap:2px;align-content:flex-start;box-shadow:inset 0 -4px 0 color-mix(in srgb,var(--clay) 40%,transparent)}
+.rcpt .tab svg{width:40px;height:40px}
+.rcpt .stat{font-family:var(--f-mono);font-size:12.5px;color:var(--ink-3);margin-top:6px}
+
+/* 装置 3：谐音画谜 */
+.rebus .pic{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin:6px 0 10px}
+.rebus .pic div{text-align:center;font-size:13px;color:var(--ink-3);line-height:1.3}
+.rebus .pic span{display:block;font-size:46px;line-height:1.2}
+.rebus .opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,9em),1fr));gap:8px}
+.rebus .opts button{border:1px solid var(--rule);border-radius:8px;background:var(--paper);padding:7px 10px;cursor:pointer;font-size:16px;line-height:1.5}
+.rebus .opts button.ok{border-color:var(--reed);background:color-mix(in srgb,var(--reed) 14%,var(--paper))}
+.rebus .opts button.bad{border-color:var(--terra);background:color-mix(in srgb,var(--terra) 10%,var(--paper))}
+.rebus .qn{font-family:var(--f-mono);font-size:12px;color:var(--ink-3)}
+
+/* 装置 4：形声拼字 */
+.xs .row{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
+.xs .row button{min-width:2.4em;border:1px solid var(--rule);border-radius:8px;background:var(--paper);padding:2px 8px;cursor:pointer;font-size:20px;line-height:1.5}
+.xs .row button.on{border-color:var(--terra);color:var(--terra);box-shadow:0 0 0 2px color-mix(in srgb,var(--terra) 22%,transparent)}
+.xs .row button.hit{border-color:var(--reed)}
+.xs .lab{font-size:12.5px;color:var(--ink-3);letter-spacing:.1em}
+.xs .out{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:center;border-top:1px dashed var(--rule);padding-top:12px;margin-top:4px}
+.xs .big{font-size:64px;line-height:1;min-width:1.1em;text-align:center;font-family:var(--f-body)}
+.xs .big.none{color:var(--ink-3);font-size:40px}
+.xs .found{font-family:var(--f-mono);font-size:12.5px;color:var(--ink-3);margin-top:8px}
+
+/* 装置 5：字形演变 */
+.evo .signs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:8px 0}
+.evo .signs div{background:var(--clay-2);border-radius:14px;padding:6px 6px 4px;text-align:center;font-size:13px;color:var(--ink-2)}
+.evo .signs svg{width:100%;aspect-ratio:1}
+.evo .marks{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);margin-top:-4px}
+
+/* 装置 6：名字的祖先 */
+.anc input[type=text]{width:100%;font-size:18px;padding:6px 12px;border:1px solid var(--ink-3);border-radius:8px;background:var(--paper);letter-spacing:.08em;font-family:var(--f-mono)}
+.anc .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px;margin-top:12px}
+.anc .cd{border:1px solid var(--rule);border-radius:8px;background:var(--paper);padding:6px 6px 8px;text-align:center;font-size:12px;line-height:1.45;color:var(--ink-2)}
+.anc .cd svg{width:52px;height:52px;margin:0 auto}
+.anc .cd .L{font-family:var(--f-mono);font-size:22px;color:var(--ink);line-height:1.1}
+.anc .cd .nm{font-family:var(--f-mono);font-size:11px;color:var(--terra)}
+.anc .cd.q{opacity:.75;border-style:dashed}
+.anc .chain{font-family:var(--f-mono);font-size:12.5px;color:var(--ink-3);margin-top:10px;line-height:1.7}
+
+/* 装置 7：发明谱 */
+.tl svg{min-width:640px}
+.tlnode{cursor:pointer}
+.tlnode:hover rect:first-child,.tlnode.on rect:first-child{stroke:var(--terra);stroke-width:2.5}
+.tlcard{border-top:1px dashed var(--rule);margin-top:10px;padding-top:10px;min-height:7em}
+.tlcard h5{font-family:var(--f-display);font-weight:400;font-size:20px;margin:0 0 4px}
+.tlcard p{margin:0 0 .4em;font-size:15px;line-height:1.75}
+.tlcard .k{font-family:var(--f-mono);font-size:12px;color:var(--ink-3)}
+
+/* 表 */
+table.t{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.6;min-width:520px}
+table.t th,table.t td{border-bottom:1px solid var(--rule);padding:7px 8px;text-align:left;vertical-align:top}
+table.t th{font-weight:400;color:var(--ink-3);font-size:13px}
+.src{font-size:14.5px;line-height:1.8;color:var(--ink-2)}
+.src li{margin:0 0 .5em}
+
+footer{max-width:38rem;margin:60px auto 0;padding:24px 0 calc(40px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--rule);font-size:14px;color:var(--ink-3);line-height:1.8}
+footer p{text-indent:0!important}
+.nextbook{display:block;margin:20px 0;padding:14px 16px;border:1px solid var(--rule);border-radius:6px;text-decoration:none;background:var(--card)}
+.nextbook b{font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--ink)}
+
+@media (max-width:700px){
+  body{font-size:16.5px}
+  .hero-grid,.bulla{grid-template-columns:minmax(0,1fr)}
+  .toc li a,.toc li .soon{grid-template-columns:3.2em minmax(0,1fr)}
+  .toc .r{grid-column:2;text-align:left}
+  .scene .ln{grid-template-columns:minmax(0,1fr);gap:0}
+  .scene .ln .who{text-align:left;padding-top:0}
+  .scene .sd{margin-left:0}
+  .bar .vol{display:none}
+  .slab .wedges{display:none}
+  .evo .signs{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:480px){
+  .ledger .lb{grid-template-columns:minmax(0,1fr)}
+  .ledger .lb>div+div{border-left:0;border-top:1px solid var(--ink)}
+}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="bar-in g">
+    <a class="home" href="../" title="回创世书房">书房</a>
+    <span class="name">苇城书记</span>
+    <span class="vol" id="barVol">序</span>
+    <button class="tocbtn" id="tocBtn" aria-label="打开目录">目录</button>
+  </div>
+  <div class="progress" id="prog"></div>
+</header>
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="mask" data-close></div>
+  <nav class="panel" aria-label="目录">
+    <button class="x" data-close aria-label="关闭">×</button>
+    <h5>目录</h5>
+    <ol id="drawerList"></ol>
+  </nav>
+</div>
+<main class="g">
+<!-- ============ 序 ============ -->
+<section class="hero" data-vol="序" id="top">
+  <div class="wide">
+    <div class="eyebrow">THE SCRIBE OF REED CITY · 一部平行世界故事传 · 文字创世记</div>
+    <h1>苇城书记<span class="sm">文字创世记</span></h1>
+    <div class="hero-grid">
+      <div>
+        <p>从早上睁眼到现在，你大概已经读了几千个字：消息、标签、路牌、价签、这一行。读字对你来说像呼吸一样，不需要想。</p>
+        <p>可是人类会说话已经很久很久了，会写字却只有五千来年。在那之前的每一代人，生下来、说话、做买卖、吵架、老去，没有留下一个字。</p>
+        <p>这本书讲的是：<em>字是怎么来的</em>。它不是一位圣人某天坐下来发明的，是一群算账的、放羊的、酿酒的和挖矿的人，为了不吵架、为了记住谁欠谁，一步一步凑出来的。我们找一个人替你到现场去看。</p>
+      </div>
+      <div class="tabletc">
+        <svg id="coverTab" viewBox="0 0 300 230" role="img" aria-label="一块泥板，上面压着数字和一个羊的符号"></svg>
+        <div class="cap">一块虚构的苇城泥板：<br>“羊，十五只。阿穆交。”</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>这本书怎么读</h3>
+    <p>这是一部<em>故事传</em>。主人公林记是个现代的会计，掉进了一个平行世界：那里有一座叫“苇城”的城，在两条大河之间，城里的人会种麦、放羊、酿酒、盖神庙，就是还不会写字。林记在那里住了很多年，亲眼看着文字一步一步长出来。</p>
+    <p>苇城是虚构的，林记和他遇到的人都是虚构的。但苇城走的每一步，我们这个世界都真的走过：在美索不达米亚，在埃及，在中国，在中美洲，在西奈半岛的矿山里。所以故事每走一段，就会停下来，插进一个蓝框：</p>
+    <div class="real" style="margin-top:1.6em">
+      <h5>蓝框里的都是真的</h5>
+      <p>考古发现、年代、人名、地名，尽量核对过；没定论的地方会写“存疑”，书末统一列出出处。蓝框外的故事，是为了让你看清那一步是怎么迈出去的而编的。</p>
+    </div>
+    <p>此外还有几样东西：</p>
+    <ul style="font-size:16px;line-height:1.9;padding-left:1.4em">
+      <li><b>林记手记</b>：页边红色的手写字，是他自己的嘀咕。</li>
+      <li><b>眉批</b>：正文旁的小印章。<span style="color:var(--lapis)">押韵</span>是两个世界、两个时代撞了韵；<span style="color:var(--reed)">联系</span>是和书房里别的书有关；<span style="color:var(--ink-3)">存疑</span>是学界还在吵；<span style="color:var(--gold)">生活</span>是这件事和你今天有什么关系。</li>
+      <li><b>记一笔</b>：会计的老毛病。每章末尾，林记都给自己开一张凭证，左边“借”记历史，右边“贷”记生活。</li>
+      <li><b>七个装置</b>：封一只泥球、写一张收据、猜画谜、拼汉字、看一个字怎样变成楔子、查你名字里每个字母的祖宗、以及人类到底从头发明过几次文字。</li>
+    </ul>
+
+    <h3>人物</h3>
+    <div class="cast">
+      <div class="l"><b>林记</b>现代人，二十九岁，小公司会计。脾气好，记性一般，靠记账活着。掉进苇城的时候，兜里只有一支圆珠笔和一张对不上数的送货单。</div>
+      <div class="m"><b>麦娘</b>苇城酒坊的女主人，酿麦酒。嘴快，心细，全城谁欠她几碗酒她都记得，但记不了太久。第一个发现林记的人。</div>
+      <div class="c"><b>老秤</b>神庙的仓管，管着全城交给神庙的麦子、羊和油。手边永远放着一罐子小泥丸。最讨厌两样东西：少一只羊，和新花样。</div>
+      <div class="x"><b>小芦</b>在神庙粮仓扫地的孤儿，十来岁，瘦得像根芦苇，所以叫小芦。不识字（那时候也没人识字），但总问出最要命的问题。</div>
+      <div class="a"><b>阿穆</b>城外的牧羊人，羊多，话少。会数到二十，因为手指加脚趾就二十个。不太信得过神庙里的人。</div>
+    </div>
+
+    <h3>目录</h3>
+    <ol class="toc" id="toc">
+      <li class="vh">卷一 · 落笔 · 文字怎样被造出来</li>
+      <li><a href="#c0"><span class="n">序幕</span><span class="t">月末<small>一个对不上账的会计，醒在一片芦苇里</small></span><span class="r">今天</span></a></li>
+      <li><a href="#c1"><span class="n">第一章</span><span class="t">泥丸<small>数羊、封泥球，和一个扫地孩子的问题</small></span><span class="r">约前 8000—前 3500</span></a></li>
+      <li><a href="#c2"><span class="n">第二章</span><span class="t">五和羊<small>把“几个”和“什么”拆开，是人类最难的一步</small></span><span class="r">约前 3300</span></a></li>
+      <li><a href="#c3"><span class="n">第三章</span><span class="t">借音<small>名字画不出来怎么办？借一个同音的东西</small></span><span class="r">约前 3000 起</span></a></li>
+      <li><a href="#c4"><span class="n">第四章</span><span class="t">芦苇笔<small>工具改变了字，字改变了城</small></span><span class="r">约前 2600 起</span></a></li>
+      <li><a href="#c5"><span class="n">第五章</span><span class="t">矿工的字母<small>最有学问的人没想到的事，被挖矿的人想到了</small></span><span class="r">约前 1850</span></a></li>
+      <li><a href="#c6"><span class="n">第六章</span><span class="t">第四次<small>人类从头发明过几次文字？还有两个后来者</small></span><span class="r">前 3300—1821</span></a></li>
+      <li><a href="#end"><span class="n">卷末</span><span class="t">哪些是真的<small>故事和历史的对照表、出处与存疑</small></span><span class="r">附录</span></a></li>
+      <li class="vh">卷二 · 破译 · 读不懂的字怎样被读回来</li>
+      <li><span class="soon"><span class="n">卷二</span><span class="t">破译<small>罗塞塔石碑、线形文字 B、玛雅、甲骨，和那些至今没人读懂的字</small></span><span class="r">前 1450—今</span></span></li>
+      <li class="vh">卷三 · 开口 · 话是怎么说出来的</li>
+      <li><span class="soon"><span class="n">卷三</span><span class="t">开口<small>人为什么会说话、语言怎样分家、怎样死去</small></span><span class="r">？—今</span></span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ 卷一 ============ -->
+<div class="volhead" data-vol="卷一 · 落笔" id="v1">
+  <div class="num">VOLUME ONE</div>
+  <h2>落笔</h2>
+  <p class="lede">卷一讲文字怎样从无到有：从泥丸到泥球，从泥球到泥板，从画一只羊到写一个名字，再到二十二个字母。林记的苇城走了几十年，我们的世界走了几千年。</p>
+</div>
+
+<section class="chap" id="c0" data-vol="序幕 · 月末">
+  <div class="slab">
+    <div class="no">序幕</div>
+    <h2>月末</h2>
+    <dl><dt>地点</dt><dd>城郊一家建材批发公司 → 一片芦苇地</dd><dt>时间</dt><dd>某年某月的最后一天，夜里</dd></dl>
+  </div>
+  <div class="col">
+    <p>林记是个会计。</p>
+    <p>二十九岁，在城郊一家做建材批发的小公司管账。公司不大，账却不少：水泥、钢筋、瓷砖，一车一车进，一车一车出。每一车都要一张单子，每张单子都要有人签字，每个签字都要有人核对。月底最后一天，他照例是全公司最后一个走的。</p>
+    <p>那天晚上差了三百块。</p>
+    <p>他把一沓送货单翻了三遍，终于找到了：一张手写的单子，数量那一栏的字，你说它是“叁”也行，说它是“捌”也行。送货的司机早下班了，签字的仓管电话打不通。林记对着那个字看了很久，那个字也看着他。</p>
+    <p>“人类到底为什么要发明文字，”他把脸埋进那沓单子里，“就为了让我加班吗？”</p>
+    <p>这个问题，他后来花了很多年才想明白。</p>
+    <p class="sep">· · ·</p>
+    <p>他是被酸味呛醒的。</p>
+    <p>有人往他脸上泼了什么，黏糊糊的，一股发酵的麦子味。他睁开眼，看见一片比人还高的芦苇，头顶是一块白得发烫的天。一个女人蹲在他跟前，手里端着一只陶碗，碗里还剩半碗浑黄的汤。</p>
+  </div>
+
+  <div class="col">
+    <div class="scene">
+      <div class="sh"><b>芦苇地</b><span>苇城外 · 正午</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who m">女人</span><p>醒了？醒了就别躺在我的麦地边上。</p></div>
+        <div class="ln"><span class="who l">林记</span><p>这……这是哪儿？你泼的是什么？</p></div>
+        <div class="ln"><span class="who m">女人</span><p>酒。我酿的。全苇城最好的酒，泼你脸上可惜了。</p></div>
+        <div class="sd">林记舔了舔嘴角。像放坏了的啤酒，里面还漂着麦壳。</div>
+        <div class="ln"><span class="who l">林记</span><p>苇城？</p></div>
+        <div class="ln"><span class="who m">女人</span><p>那边。看见那个高台子了吗？台子上是神庙，台子下面就是城。你从哪来的？衣裳怎么这么怪？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>我……从很远的地方来。</p></div>
+        <div class="ln"><span class="who m">女人</span><p>远方来的人我见过，都带着货。你带了什么？</p></div>
+      </div>
+    </div>
+
+    <p>林记摸了摸口袋。一支圆珠笔，公司发的，笔杆上印着公司的名字；一部没电的手机；还有那张皱巴巴的送货单，上面那个不知道是“叁”还是“捌”的字。</p>
+    <p>女人叫麦娘。她把送货单拿过去，翻来覆去地看，看了很久。</p>
+    <p>“这上面爬的是什么小虫子？”</p>
+    <p>“字。”林记说。</p>
+    <p>麦娘歪着头，好像没听懂。林记换了几种说法，她都摇头。后来他才确定：<em>苇城话里，根本没有“字”这个词。</em>最接近的一个词，是“印”，就是图章在泥上滚过留下的那种花纹。</p>
+    <p class="note">我听得懂他们的话，这件事我到今天也解释不了。他们的话很怪：一个词一个音，短，很多词听起来一模一样，全靠前后猜。</p>
+    <p>这件事，后来变得非常重要。</p>
+    <p>麦娘把他领进了城。城是泥砖垒的，房子挨着房子，中间是运河，河上漂着装满麦子的芦苇船。市场上有人拿麦子换鱼，拿羊毛换陶罐，拿一罐酒换一把铜刀，吆喝声此起彼伏。没有招牌，没有价签，没有门牌号，没有一张写了字的纸，<em>也没有一枚钱</em>。</p>
+    <p>有几个穿得体面的人，脖子上用绳子挂着一截小石柱，有手指那么粗。林记看见其中一个人把石柱往一团湿泥上一滚，泥上就留下一圈小人小兽的花纹。</p>
+    <p class="note">这不就是公章吗。</p>
+
+    <div class="scene">
+      <div class="sh"><b>进城的路上</b><span>苇城 · 午后</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who m">麦娘</span><p>说说，你会干什么？会放羊？会捏陶？会打铜？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>都不会。我会记账。</p></div>
+        <div class="ln"><span class="who m">麦娘</span><p>记账是什么？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>就是……谁给了谁什么东西，谁欠谁多少，都记下来，到时候对得上。</p></div>
+        <div class="ln"><span class="who m">麦娘</span><p>（笑出了声）那是老秤的活儿。神庙的人。他有一罐子泥丸子，什么都记得。</p></div>
+        <div class="ln"><span class="who l">林记</span><p>泥丸子？</p></div>
+        <div class="ln"><span class="who m">麦娘</span><p>你连泥丸子都没见过？你到底从哪儿来的？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>很远。远到……</p></div>
+        <div class="sd">他想说“远到五千年以后”，没说出口。</div>
+      </div>
+    </div>
+
+    <p>就这样，一个对不上账的会计，掉进了一个还没有文字的世界。</p>
+    <p>他起初以为，这里缺的是一套字，他教给他们就行了，横竖他认识好几千个。他花了很多年才弄明白自己错在哪：<em>这里不缺字，缺的是一个非把事情写下来不可的理由。</em>而那个理由，他们马上就要有了。</p>
+
+    <aside class="echo" data-k="押韵">
+      <span class="stamp">押韵</span>
+      <div>
+        <p class="rh">先有账，后有字</p>
+        <p>在我们这个世界，目前知道最早的成体系的文字，出自美索不达米亚南部的乌鲁克城，大约公元前 3300 年前后。那几千块泥板上，绝大多数写的是账：多少麦子、多少羊、多少啤酒、谁经手。最早的“书面语”，就是会计的语言。林记那句“发明文字就为了让我加班吗”，答案很可能是：差不多，是的。</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ 第一章 泥丸 ============ -->
+<section class="chap" id="c1" data-vol="第一章 · 泥丸">
+  <div class="slab">
+    <svg class="wedges" viewBox="0 0 80 60" aria-hidden="true"><circle cx="16" cy="18" r="9" fill="none" stroke="var(--clay-d)" stroke-width="2.5"/><path d="M16,10 v16 M8,18 h16" stroke="var(--clay-d)" stroke-width="2.5"/><path d="M40,30 l8,-18 l8,18 Z" fill="var(--clay-d)" opacity=".8"/><circle cx="66" cy="20" r="8" fill="var(--clay-d)" opacity=".8"/><ellipse cx="30" cy="46" rx="11" ry="7" fill="none" stroke="var(--clay-d)" stroke-width="2.5"/><path d="M24,46 h12" stroke="var(--clay-d)" stroke-width="2"/></svg>
+    <div class="no">第一章</div>
+    <h2>泥丸</h2>
+    <dl><dt>苇城</dt><dd>林记到苇城的第一个月</dd><dt>我们的世界</dt><dd>约公元前 8000 年—前 3500 年，西亚</dd><dt>本章装置</dt><dd>封一只泥球</dd></dl>
+  </div>
+  <div class="col">
+    <p>神庙的粮仓在高台子底下，是一排又矮又长的泥砖房，里面堆满了麦子，空气里全是麦糠，呛得人想打喷嚏。老秤坐在门口一张矮凳上，五十来岁，瘦，眼睛很亮，身边一溜摆着几十只陶罐，每只罐口都封着一块泥，泥上滚着不同的图章花纹。</p>
+    <p>麦娘把林记往前一推：“老秤，这人说他也会‘记’。”</p>
+    <p>老秤上下打量了林记一眼，没说话，从脚边一只罐子里抓出一把东西，摊在手心里给他看。</p>
+    <p>是一把小泥块，烧过的，每块指甲盖大小，形状各不一样：有小圆锥，有小圆球，有扁扁的圆片，圆片上刻着一个十字，还有卵形的，腰上刻着一道线。</p>
+  </div>
+
+  <div class="col">
+    <div class="scene">
+      <div class="sh"><b>粮仓门口</b><span>苇城神庙 · 上午</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who c">老秤</span><p>认得吗？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>……小孩的玩具？</p></div>
+        <div class="sd">麦娘捂着嘴笑。老秤的脸沉了下来。</div>
+        <div class="ln"><span class="who c">老秤</span><p>尖的这个，是一小筐麦。圆的，一大筐麦。扁的带十字，一只羊。这个腰上有道线的，一罐油。</p></div>
+        <div class="ln"><span class="who l">林记</span><p>那这一罐子……</p></div>
+        <div class="ln"><span class="who c">老秤</span><p>阿穆家的。罐口是他的印。他今年交了多少，还欠多少，都在里面。交一只羊，我扔进去一个扁的；欠一筐麦，我扔一个尖的进那边那个“欠”的罐子。到了年底，倒出来数。</p></div>
+        <div class="ln"><span class="who l">林记</span><p>一个泥丸，就是一样东西。</p></div>
+        <div class="ln"><span class="who c">老秤</span><p>不然呢？</p></div>
+      </div>
+    </div>
+
+    <p>林记盯着那几十只罐子，过了好一会儿，才反应过来自己在看什么。</p>
+    <p>每一只罐子，是一个户头。每一个泥丸，是一笔账。罐口的印，是户主的签章。倒出来数，就是对账。他在大学里学了四年的会计，到这里，被一个从没听说过“会计”两个字的老头，用一罐子泥巴，从头到尾演示了一遍。</p>
+    <p class="note">没有字，但是有账。原来账比字老。</p>
+    <p>他在粮仓里帮了几天忙，学会了认泥丸。尖的、圆的、扁的、卵形的，还有几十种更少见的：代表一捆羊毛的，代表一块布的，代表一个干活的人一天口粮的。每一种形状都是全城人心里有数的约定，就像后来的人都知道红灯停、绿灯行。</p>
+    <p>然后，阿穆的羊出事了。</p>
+  </div>
+
+  <div class="col">
+    <h3>少了一只羊</h3>
+    <p>阿穆的羊在城外很远的草场上，赶到神庙要走三天。阿穆自己走不开，就让一个伙计赶羊进城。可是阿穆信不过伙计，神庙也信不过伙计：谁知道路上会不会少一只，被他卖了、吃了，或者说是被狼叼了？</p>
+    <p>苇城人早就有办法了。出发前，阿穆当着伙计的面，捏一个空心的泥球，有拳头那么大；交几只羊，就往里放几个扁圆片；然后把口封死，在外面滚上自己的印，晾干。伙计揣着泥球、赶着羊上路。到了神庙，老秤敲开泥球，数里面的泥丸，再数羊。对得上，收下；对不上，找人。</p>
+    <p>这一回，老秤从泥球里倒出八个扁圆片。羊圈里只有七只羊。</p>
+  </div>
+
+  <div class="col">
+    <div class="scene">
+      <div class="sh"><b>羊圈旁</b><span>苇城神庙 · 傍晚</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who c">老秤</span><p>八个片，七只羊。说吧。</p></div>
+        <div class="ln"><span class="who">伙计</span><p>阿穆就给了我七只！是他自己放错了，多放了一个片！</p></div>
+        <div class="sd">第二天，阿穆进城了。</div>
+        <div class="ln"><span class="who a">阿穆</span><p>我放了八个片，赶了八只羊。我数了两遍。</p></div>
+        <div class="ln"><span class="who">伙计</span><p>你会数到几？</p></div>
+        <div class="ln"><span class="who a">阿穆</span><p>（举起手，又指了指脚）二十。</p></div>
+        <div class="ln"><span class="who c">老秤</span><p>泥球我已经敲开了。片在这儿，八个。</p></div>
+        <div class="ln"><span class="who">伙计</span><p>那谁知道是不是你们神庙的人敲开以后又塞进去一个？</p></div>
+        <div class="sd">没人说话了。泥球碎成了一地，谁也没法证明它碎之前装着几个片。</div>
+      </div>
+    </div>
+
+    <p>这件事闹到了神庙的“上头”。上头也没有办法，最后各打五十大板：伙计赔半只羊，阿穆认半只羊。阿穆走的时候，看神庙的眼神比来的时候更冷了。</p>
+    <p>林记那天晚上睡不着。他想的是自己公司的仓库：送货单一式三联，司机一联，仓库一联，财务一联，谁也别想改。</p>
+    <p>泥球的毛病，他看得很清楚：<em>要看里面装了什么，就得把它敲碎；敲碎了，证据也就没了。</em>这就好像一张只能看一次的收据，看完就自燃。</p>
+    <p>第二天一早，他去找老秤。</p>
+  </div>
+
+  <div class="col">
+    <div class="scene">
+      <div class="sh"><b>粮仓门口</b><span>第二天 · 清早</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who l">林记</span><p>封口之前，把每个泥丸在泥球外面按一下。按出一个印，再放进去。</p></div>
+        <div class="ln"><span class="who c">老秤</span><p>按一下？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>里面放八个片，外面就有八个片的印子。到了神庙，你先看外面，数印子。对得上，泥球不用敲；对不上，当着大家的面敲开，看里面和外面一样不一样。敲之前人人都看得见外面的印，谁也塞不进去。</p></div>
+        <div class="ln"><span class="who c">老秤</span><p>（拿起一个片，在掌心的湿泥上按了一下，看了看那个十字印）……多一道手。</p></div>
+        <div class="ln"><span class="who l">林记</span><p>多一道手，少一场架。</p></div>
+      </div>
+    </div>
+
+    <p>下一个月，阿穆的伙计揣着一只外面按满了印的泥球进城。老秤数了数外面，又数了数羊，没敲开就收了。泥球被放进库房的架子上，存着。</p>
+    <p>这种事，林记在公司里见多了，算不得什么发明。真正让他睡不着的，是那天下午小芦问的一句话。</p>
+
+    <div class="scene">
+      <div class="sh"><b>库房</b><span>同一个下午</span></div>
+      <div class="bd">
+        <div class="sd">小芦抱着扫帚，盯着架子上一排按满印的泥球看了很久。</div>
+        <div class="ln"><span class="who x">小芦</span><p>老秤，外面都按上了，里面那些泥丸子还有什么用？</p></div>
+        <div class="ln"><span class="who c">老秤</span><p>里面那是真的。外面那只是个影子。</p></div>
+        <div class="ln"><span class="who x">小芦</span><p>可是你们每回看的都是影子啊。</p></div>
+        <div class="sd">老秤张了张嘴，没说出话来。</div>
+        <div class="ln"><span class="who x">小芦</span><p>那还捏个球干嘛？捏块饼不就行了。</p></div>
+      </div>
+    </div>
+
+    <p>小芦抓起一团湿泥，在手心里拍成一块扁扁的饼，拿起八个扁圆片，一个一个按上去，按完了，把片扔回罐子里。</p>
+    <p>饼上留下八个十字印。没有球，没有里面，只有一块泥饼，和泥饼上的八个印子。</p>
+    <p>林记看着那块泥饼，后背一阵发凉。他知道这是什么。</p>
+    <p class="note">那孩子刚刚做了一块泥板。他不知道自己做了什么。我知道，而我没想到。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig" id="bullaFig">
+      <div class="fig-label">装置 1</div>
+      <h4>封一只泥球</h4>
+      <p class="how">你是阿穆。你要把羊和油交给神庙，伙计替你赶三天的路。往泥球里放泥丸、封口，然后看看三天后会发生什么。试两次：一次直接封，一次先在外面按印再封。</p>
+      <div class="steps" id="bullaSteps"></div>
+      <div class="bulla">
+        <svg id="bullaSvg" viewBox="0 0 320 300" role="img" aria-label="泥球示意图"></svg>
+        <div id="bullaCtl"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="real">
+      <h5>泥丸、泥球、泥板</h5>
+      <p>苇城的泥丸是照着真东西写的。考古学家在西亚各地挖出过成千上万个这样的小泥块，形状有圆锥、球、扁圆片、圆柱、卵形、四面体，有的上面还刻着线和点。最早的出现在约公元前 8000 年前后，大体和这一带的人开始种地、养牲口同时。</p>
+      <p>它们是做什么用的？美国考古学家丹妮丝·施曼特-贝瑟拉（Denise Schmandt-Besserat）从 1970 年代起花了二十多年研究这些小东西，1992 年出了两卷本的《文字之前》。她认为：<em>这些泥块是计数的筹码</em>，一种形状代表一种东西，一个代表一份。</p>
+      <p>到了约公元前 3500 年，在今天伊朗的苏萨、伊拉克的乌鲁克等地，出现了空心的泥球（考古上叫 bulla，复数 bullae），里面封着筹码，外面滚着圆筒印章的花纹。一部分泥球的外面，还压着和里面筹码形状一样的印子。随后不久，出现了实心的、扁平的泥板，上面只有压出来的印子，里面什么也没有。故事里小芦那一下，在我们的世界，大概发生在公元前 3500 年到前 3300 年之间，用了多少年、经过多少人，没人知道。</p>
+      <p class="k">本节年代据施曼特-贝瑟拉的著作与通行考古综述，均为约数。</p>
+    </div>
+
+    <aside class="echo" data-k="存疑">
+      <span class="stamp">存疑</span>
+      <div>
+        <p class="rh">筹码一路变成了字？</p>
+        <p>“泥球外面的印子 → 泥板上的数字记号”这一段，学界大体接受。施曼特-贝瑟拉更进一步的说法，“几乎所有早期文字符号都是从某种筹码的形状变来的”，争议就大了。批评者指出：很多筹码的含义是她推测的；不少筹码出土的位置和用途并不清楚；早期泥板上的大量图形符号，在筹码里找不到对应。比较稳妥的说法是：<em>筹码和泥球为“数字”这一部分铺了路，“写东西”的那一部分另有来源。</em></p>
+      </div>
+    </aside>
+
+    <aside class="echo" data-k="联系">
+      <span class="stamp">联系</span>
+      <div>
+        <p class="rh">书房里讲过这件事</p>
+        <p>书房里的《点石成金》第一卷就是从这些泥块讲起的：先有欠账，后有钱。那本书讲的是“欠”怎么变成了钱，这本书讲的是“欠”怎么变成了字。同一堆泥巴，长出了两棵树。</p>
+      </div>
+    </aside>
+
+    <aside class="echo" data-k="生活">
+      <span class="stamp">生活</span>
+      <div>
+        <p class="rh">泥球就是截图</p>
+        <p>你和人约定了什么事，对方嘴上答应了，你说“那你在群里发一下”。你转了账，截个图。你收了快递，签个字。这些动作和阿穆捏泥球是一回事：<em>人和人之间信不过的时候，最好的办法往往不是“再多信一点”，而是留一个双方都改不了的印子。</em>这不是冷漠，反而是对彼此的保护。苇城那场架，吵坏的是阿穆对神庙的信任；外面按一遍印，省下的也正是这份信任。</p>
+      </div>
+    </aside>
+
+    <div class="ledger">
+      <div class="lh"><b>记一笔</b><span>第 01 号凭证 · 泥丸</span></div>
+      <div class="lb">
+        <div><i>借 · 历史</i>文字最早要解决的不是“怎么表达”，是“怎么不吵架”。账比字老：在没有一个字的时候，人类已经用泥巴记了几千年的账。</div>
+        <div><i>贷 · 生活</i>一样东西想“看一眼就毁掉”，就得想办法让它“看了还在”。重要的约定，给它留个印子。</div>
+      </div>
+      <div class="lf"><span>附件：泥球一只（已敲碎）</span><span class="sig">林记</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第二章 五和羊 ============ -->
+<section class="chap" id="c2" data-vol="第二章 · 五和羊">
+  <div class="slab">
+    <svg class="wedges" viewBox="0 0 80 60" aria-hidden="true"><path d="M8,14 q5,-6 10,0 v8 q-5,6 -10,0 Z M22,14 q5,-6 10,0 v8 q-5,6 -10,0 Z" fill="var(--clay-d)" opacity=".8"/><circle cx="46" cy="18" r="6" fill="var(--clay-d)" opacity=".8"/><circle cx="62" cy="40" r="12" fill="none" stroke="var(--clay-d)" stroke-width="2.5"/><path d="M62,28 v24 M50,40 h24" stroke="var(--clay-d)" stroke-width="2.5"/></svg>
+    <div class="no">第二章</div>
+    <h2>五和羊</h2>
+    <dl><dt>苇城</dt><dd>林记到苇城的第一年</dd><dt>我们的世界</dt><dd>约公元前 3300 年—前 3000 年，乌鲁克</dd><dt>本章装置</dt><dd>写一张收据</dd></dl>
+  </div>
+  <div class="col">
+    <p>泥饼在苇城流行起来，只用了一个夏天。</p>
+    <p>老秤最喜欢它的一点，是能摞。泥球是圆的，放在架子上会滚，泥饼是扁的，一块压一块，一面墙能码几百块。他给泥饼起了个名字，苇城话里的意思大概是“压过的泥”。林记在心里管它叫泥板。</p>
+    <p>小芦成了专门往泥板上按印子的人，因为他手稳，也因为这主意是他出的。交来一只羊，他按一个十字；交来一罐油，他按一个带线的卵形。他一边按一边哼歌，像在玩。</p>
+    <p>直到新年祭那天。</p>
+    <p>新年祭是苇城一年里最大的日子，城外所有的牧人都要给神庙送羊。那一天，光阿穆一个人就送来了一百八十只。</p>
+    <p>小芦按到第六十个十字的时候，泥板满了，换一块。按到第一百个，大拇指磨出了水泡。按到第一百八十个，天黑了，他的手抖得像风里的芦苇。可这才是一个牧人，后面还有十几个在排队。</p>
+  </div>
+
+  <div class="col">
+    <div class="scene">
+      <div class="sh"><b>新年祭的夜里</b><span>粮仓 · 油灯下</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who x">小芦</span><p>林记，你们那儿的人，也一只羊按一下吗？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>不。我们写“一百八十”，再写一个“羊”。</p></div>
+        <div class="ln"><span class="who x">小芦</span><p>“一百八十”是什么？长什么样？</p></div>
+        <div class="sd">林记掏出那支圆珠笔，在一块湿泥板上写“180”。笔尖一扎进泥里就糊住了，划了两道，再也划不出水来。他甩了甩，又在手背上试了试，什么也没有。</div>
+        <div class="ln"><span class="who l">林记</span><p>……它死了。</p></div>
+        <div class="ln"><span class="who x">小芦</span><p>什么死了？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>我从那边带来的最后一样能写字的东西。</p></div>
+      </div>
+    </div>
+
+    <p>林记折了一根芦苇，用指甲把一头削尖，在泥板上重新划。他画了一只羊，一个圆圈套一个十字，跟小芦按的印子一模一样。然后在羊旁边，用芦苇的圆头压了一些印子。</p>
+    <p>“这个圆的，算十。这个小的竖的，算一。”他说，“十八个圆的就是一百八十。不对，太多了。那再定一个大的，算六十。三个大的，就是一百八十。”</p>
+    <p>三个大印子，一只羊。四个记号，顶小芦按一百八十下。</p>
+    <p>小芦看了半天，没说话，拿过芦苇，自己压了两个大的、一个圆的、三个小的，又画了一只羊。“一百三十六只羊。”他说。</p>
+    <p>对了。</p>
+    <p class="note">我教了他一个“数”。不是“一百八十只羊”，是“一百八十”。这东西我们五岁就会，可它根本不是天生的。</p>
+  </div>
+
+  <div class="col">
+    <h3>五是什么五？</h3>
+    <p>林记以为最难的一关过了。没想到第二天，老秤翻了脸。</p>
+    <div class="scene">
+      <div class="sh"><b>粮仓门口</b><span>新年祭第二天</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who c">老秤</span><p>你这个“五”，五什么？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>五就是五。五只羊，五罐油，五个人，都是五。</p></div>
+        <div class="ln"><span class="who c">老秤</span><p>胡说。羊是一只一只数的，能一样吗？麦子是一筐一筐量的。量麦有小筐、中筐、大筐，五小筐是一中筐，六中筐是一大筐。你写个五，我怎么知道是五小筐还是五大筐？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>那就在旁边画个小筐……</p></div>
+        <div class="ln"><span class="who c">老秤</span><p>还有地。量地又是另一套。还有口粮，干活的人一天两份，一个月按三十天……</p></div>
+        <div class="ln"><span class="who l">林记</span><p>可是数就是数啊！</p></div>
+        <div class="ln"><span class="who c">老秤</span><p>（把一把尖泥丸和一把扁泥丸分别拍在桌上）你见过一个光秃秃的“五”吗？你见过的都是五个什么。</p></div>
+      </div>
+    </div>
+    <p>林记被问住了。</p>
+    <p>他想了一晚上，承认老秤说得有道理。他一辈子没见过一个不附在任何东西上的“五”。他见过五根手指、五个苹果、五块钱，“五”本身，是他从小被教会的一个看不见的东西。在苇城人的脑子里，羊有羊的数法，麦有麦的数法。要让他们接受一个什么都能数的“五”，比教他们画一只羊难多了。</p>
+    <p>最后两人各退一步：数的记号单独压，东西单独画，这是林记的；但每样东西照旧用自己那一套数法，麦归麦，羊归羊，地归地，这是老秤的。</p>
+    <p class="note">我以为我带来的是“数”。其实我带来的是“抽象”。老秤一眼就看出来了，所以他才害怕。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig rcpt" id="rcptFig">
+      <div class="fig-label">装置 2</div>
+      <h4>写一张收据</h4>
+      <p class="how">你是小芦。下面是今天要记的一笔账。用芦苇在泥板上写：先压数字，再画东西，最后写上是谁。这里用的是数羊的那一套：小竖印 = 1，小圆印 = 10，大竖印 = 60。写好了交给老秤念。</p>
+      <div class="order" id="rcptOrder"></div>
+      <div class="tab" id="rcptTab" aria-label="泥板"></div>
+      <div class="stat" id="rcptStat"></div>
+      <div class="grp">数</div><div class="pad" id="rcptNum"></div>
+      <div class="grp">东西</div><div class="pad" id="rcptThing"></div>
+      <div class="grp">谁</div><div class="pad" id="rcptWho"></div>
+      <div class="btns" style="margin-top:10px"><button class="btn" id="rcptUndo">擦掉一个</button><button class="btn" id="rcptOld">老办法：一只一只按</button><button class="btn pri" id="rcptRead">交给老秤念</button><button class="btn" id="rcptNext">下一笔</button></div>
+      <div class="say" id="rcptSay"><b>老秤</b>写好了拿来。</div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>麦娘的酒账</h3>
+    <p>泥板出了神庙，第一个用上它的是麦娘。</p>
+    <p>苇城人喝酒，十回有八回赊账。麦娘记性好，谁欠几罐她心里有数，可人多了，日子久了，难免有对不上的时候。对不上就吵，吵了就不来了，不来了酒就卖不出去。她找到林记，要他照着神庙的样子，给酒坊也做一套泥板。</p>
+    <p>“酒，三罐。”这好写：三个小竖印，一只尖底酒罐。可谁欠的？神庙的泥板是一户一罐、一户一摞，罐口有户主的印。麦娘的客人五花八门，有的有印，大多数没有。</p>
+    <p>林记让每个赊账的人在泥板上按个手印。麦娘看了一眼那一堆手印，说：“我分得出谁是谁的手印吗？”</p>
+    <p>名字的事，只好先放一放。可另一件事，林记坚持要定下来：每块泥板的角上，经手的人要压一个自己的记号。</p>
+    <div class="scene">
+      <div class="sh"><b>酒坊</b><span>傍晚</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who m">麦娘</span><p>为什么非得压你的记号？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>出了错，知道找谁。</p></div>
+        <div class="ln"><span class="who m">麦娘</span><p>那出了错，不就找你了？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>对。所以我会小心。</p></div>
+        <div class="ln"><span class="who x">小芦</span><p>我也要压！我也要压我的记号！</p></div>
+      </div>
+    </div>
+    <p>小芦给自己选的记号，是一根芦苇。从那天起，苇城的泥板角上，多了一根小小的芦苇。</p>
+  </div>
+
+  <div class="col">
+    <div class="real">
+      <h5>乌鲁克的账房</h5>
+      <p>在我们的世界，最早一批成体系的文字泥板，大多出土于今天伊拉克南部的乌鲁克古城，集中在一处叫埃安娜（Eanna）的神庙区，年代约在公元前 3300 年到前 3000 年之间。连同周边遗址，这一时期的泥板和残片总共大约五六千块。学者把这种文字叫作<em>原始楔形文字</em>，虽然那时它还没有“楔形”。</p>
+      <p>这些泥板的写法，正是故事里小芦学会的那样：<em>数字用芦苇杆的圆头压出来，东西用尖头刻出来。</em>内容绝大多数是账：麦子、啤酒、面包、羊、牛、鱼、油、布、干活的人和他们的口粮；少数是“词表”，也就是把符号按类别列成清单，用来教人认字。没有诗，没有故事，没有王的功绩。</p>
+      <p>老秤那套“羊有羊的数法，麦有麦的数法”也是真的。研究这批泥板的学者（尼森、达默罗、英格伦等）整理出十几套不同的计数体系：数人、数牲口、数罐子用六十进制；麦子按容量另有一套；口粮、土地、时间又各有一套。<em>同一个记号放在不同的体系里，代表的数可以不一样。</em>读懂一块泥板，得先猜出它在数什么。</p>
+      <p class="k">泥板总数、计数体系的套数，各家统计口径不同，此处取约数。</p>
+    </div>
+
+    <aside class="echo" data-k="存疑">
+      <span class="stamp">存疑</span>
+      <div>
+        <p class="rh">历史上第一个名字？</p>
+        <p>有一块乌鲁克时期的泥板（约公元前 3300—前 3000 年），记的是三十七个月里收到的一大笔大麦，按常见读法约 29,086 个计量单位（也有学者按符号重算，认为是 28,086），末尾是一个读作“库希姆”（Kushim）的符号组合。赫拉利在《人类简史》里把它说成“历史上第一个有记录的人名”，于是这块泥板出了名。但“库希姆”究竟是一个人的名字，还是一个官职、一个机构的名称，学界并无定论。同一个名字在别的泥板上也出现过十几次。如果它真是个人名，那么人类留下的第一个名字，就是一位会计签的经手人。</p>
+      </div>
+    </aside>
+
+    <aside class="echo" data-k="押韵">
+      <span class="stamp">押韵</span>
+      <div>
+        <p class="rh">你的手表还在用苇城的数法</p>
+        <p>一小时六十分钟，一分钟六十秒，一个圆三百六十度。这些“六十”可以一路追到美索不达米亚的六十进制：先是苏美尔人的账房，后来经巴比伦的天文学家，传给了希腊人，又传到今天。你每看一次表，都在用五千年前数羊的办法。</p>
+      </div>
+    </aside>
+
+    <aside class="echo" data-k="押韵">
+      <span class="stamp">押韵</span>
+      <div>
+        <p class="rh">汉语里的老秤</p>
+        <p>老秤坚持“你见过的都是五个什么”，汉语至今替他留着这个习惯：我们不说“五羊”“五布”，要说五<b>只</b>羊、五<b>匹</b>布、五<b>斗</b>米、五<b>头</b>牛。量词就是贴在数字后面的那张“这是在数什么”的标签。汉语量词和原始楔形文字的多套计数体系当然不是一回事，没有传承关系，但它们回答的是同一个问题：数，总要数个什么。</p>
+      </div>
+    </aside>
+
+    <aside class="echo" data-k="生活">
+      <span class="stamp">生活</span>
+      <div>
+        <p class="rh">把“几个”和“什么”拆开</p>
+        <p>“一百八十只羊”到“一百八十”加“羊”，这一刀切下去，人类才有了算术、价格、统计和后来的一切。你学数学时觉得最抽象、最没用的那些东西，大多就是这样一刀一刀切出来的：先把具体的东西拿掉，只留下关系。觉得抽象难的时候，可以想想老秤：他不笨，他只是还没被切过这一刀。</p>
+      </div>
+    </aside>
+
+    <div class="ledger">
+      <div class="lh"><b>记一笔</b><span>第 02 号凭证 · 五和羊</span></div>
+      <div class="lb">
+        <div><i>借 · 历史</i>写字的第一个大飞跃，是把数从东西身上剥下来。最早的泥板几乎全是账，签在账末的，可能是人类留下的第一个名字。</div>
+        <div><i>贷 · 生活</i>别人觉得你的新办法“没必要”，先别急着说他笨。老秤反对的不是数字，是“一个看不见的五”，他问的问题，比你想的深。</div>
+      </div>
+      <div class="lf"><span>附件：圆珠笔一支（已报废）</span><span class="sig">林记</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第三章 借音 ============ -->
+<section class="chap" id="c3" data-vol="第三章 · 借音">
+  <div class="slab">
+    <svg class="wedges" viewBox="0 0 80 60" aria-hidden="true"><path d="M6,20 q6,-6 12,0 t12,0 M6,30 q6,-6 12,0 t12,0" fill="none" stroke="var(--clay-d)" stroke-width="2.5" stroke-linecap="round"/><path d="M58,50 v-26 M58,34 q-10,-4 -12,-14 M58,30 q10,-4 12,-14" fill="none" stroke="var(--clay-d)" stroke-width="2.5" stroke-linecap="round"/></svg>
+    <div class="no">第三章</div>
+    <h2>借音</h2>
+    <dl><dt>苇城</dt><dd>林记到苇城的第二年</dd><dt>我们的世界</dt><dd>约公元前 3000 年起，两河、埃及；约前 1250 年起，中国</dd><dt>本章装置</dt><dd>谐音画谜 · 形声拼字</dd></dl>
+  </div>
+  <div class="col">
+    <p>名字的事，放了大半年，还是没有办法。</p>
+    <p>林记试过最直接的一招：教他们汉字。他在泥板上一笔一画刻下“阿穆”两个字，拿给阿穆看。阿穆看了很久，问：“这是羊吗？”</p>
+    <p>林记这才想明白一件事。“羊”可以画，画出来的羊，苇城人认得，五千年后的人也认得，因为羊长得就是那个样子。可是“阿穆”不是一样东西，它是一串声音。汉字“阿穆”在他的世界里念“ā mù”，那是因为他的世界里有几亿人约好了这么念。在苇城，这两个方块和那串声音之间，没有任何关系。</p>
+    <p class="note">画能画东西，画不了声音。名字是声音，“欠”“还”“给”“明天”也都是声音。要写这些，字就得和嘴连上。</p>
+    <p>连上它的，是麦娘的一张嘴。</p>
+  </div>
+
+  <div class="col">
+    <div class="scene">
+      <div class="sh"><b>酒坊</b><span>一个下雨天</span></div>
+      <div class="bd">
+        <div class="sd">阿穆来还酒账。麦娘一边舀酒一边逗他。</div>
+        <div class="ln"><span class="who m">麦娘</span><p>阿穆阿穆，“阿”里长“穆”，越喝越粗。</p></div>
+        <div class="sd">苇城话里，“阿”是水，“穆”是刚冒头的苗。阿穆黑着脸，喝酒的人哄堂大笑。只有林记没笑。</div>
+        <div class="ln"><span class="who l">林记</span><p>麦娘，你刚才说什么？</p></div>
+        <div class="ln"><span class="who m">麦娘</span><p>水里长苗，越喝越粗。怎么，你也想挨他一拳？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>水能画吗？</p></div>
+        <div class="ln"><span class="who m">麦娘</span><p>两道弯弯的线呗。</p></div>
+        <div class="ln"><span class="who l">林记</span><p>苗能画吗？</p></div>
+        <div class="ln"><span class="who m">麦娘</span><p>一根杆，两片叶……（她停住了，看看林记，又看看阿穆）……哎。</p></div>
+      </div>
+    </div>
+
+    <p>林记在泥板上画了两道弯弯的线，又画了一根冒出两片叶子的苗。他把泥板举起来，问满屋子的酒客：这念什么？</p>
+    <p>“水、苗。”有人说。</p>
+    <p>“连起来念。”</p>
+    <p>“阿、穆……阿穆！”</p>
+    <p>阿穆愣住了。他盯着那块泥板，盯了很久，然后伸出一根粗手指，摸了摸那两道水，又摸了摸那根苗。</p>
+    <p>“这是我。”他说。</p>
+    <p>那天晚上，酒坊里的人都在拿自己的名字试。有人的名字正好是两样能画的东西，高兴得又多喝了一罐；有人的名字拆不出来，急得满屋子找同音的东西：鸟、门、手、鱼、星星。麦娘在柜台后面算了一晚上，最后宣布：只要能念出来的，她都能找到一样东西去“借”它的音。</p>
+    <p class="note">苇城话一个词一个音，同音的词多得要命。我刚来时觉得这是毛病，现在才知道这是福气：同音词越多，越好借。</p>
+  </div>
+
+  <div class="col">
+    <h3>水和苗，还是阿穆？</h3>
+    <p>第二天，麻烦就来了。</p>
+    <p>神庙的库房里，一个新来的帮工拿着一块泥板来找老秤，泥板上画着三个小竖印、两道水、一根苗。“三份水、一棵苗？”帮工挠头，“神庙要苗干什么？”</p>
+    <p>那块泥板写的其实是：<em>阿穆，三只。</em>（羊在另一块上。）</p>
+    <p>画一样东西，可以是那样东西本身，也可以只是借它的音。看的人怎么知道是哪一种？</p>
+    <p>又是小芦想出了办法。他在“水、苗”前面加了一个小小的记号：一个站着的小人。“前面有这个小人的，后面就是人的名字，别当东西读。”过了几天，他又给神的名字前面加了一颗星星。到了月底，他已经有了一小套这样的记号：小人管人名，星星管神名，一块方形管地名，一截木头管木头做的东西。这些记号自己不念出声，只是站在前面，给读的人提个醒。</p>
+    <p>林记看着那颗星星，想起了一件事。在他的世界里，有一种文字也是这么干的，而且干得更彻底。</p>
+  </div>
+
+  <div class="col">
+    <div class="scene">
+      <div class="sh"><b>粮仓门口</b><span>月底</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who l">林记</span><p>在我们那儿，有个字，本来画的是一种带芒的麦子。</p></div>
+        <div class="ln"><span class="who x">小芦</span><p>后来呢？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>后来“来去”的“来”和它同音，人们就借它来写“来”。借着借着，它就只当“来”用了，麦子本身反倒得另造一个字。</p></div>
+        <div class="ln"><span class="who x">小芦</span><p>那不是把人家的房子占了吗？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>占了。这种事多得很。有个字本来画的是太阳落进草丛里，意思是傍晚；后来被借去当“不要”“没有”的意思用了，傍晚只好在下面再加一个太阳，另起一个字。</p></div>
+        <div class="ln"><span class="who x">小芦</span><p>加一个太阳？跟我加星星一样？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>一样。我们那儿后来大部分的字都是这么来的：一半管声音，一半管意思。管意思的那一半，就是你的星星和小人。</p></div>
+      </div>
+    </div>
+    <p>小芦想了一会儿，说：“那你们的人都很聪明。”</p>
+    <p>林记说：“不是聪明。是借来借去，借乱了，只好这么办。”</p>
+  </div>
+
+  <div class="col">
+    <div class="real">
+      <h5>借音，全世界都走过这一步</h5>
+      <p>麦娘那一下，语言学上叫<em>画谜原则</em>（rebus principle）：借一个能画的东西的读音，去写一个画不出来的词。它是文字从“画东西”变成“写语言”的关键一步，在我们的世界里，几个独立发明文字的地方都走过：</p>
+      <ul>
+        <li><b>两河流域</b>：苏美尔语里“箭”和“生命”都念 ti，于是箭的符号也被用来写“生命”。苏美尔语单音节词多、同音词多，借音特别方便，和苇城话很像。</li>
+        <li><b>埃及</b>：圣书字里大量符号既可以表示东西本身，也可以只借它的辅音。埃及人还发展出一套只代表单个辅音的符号，二十几个，这件事第五章还要提。</li>
+        <li><b>中国</b>：甲骨文里已经有大量“假借”。“来”本是麦子，借作来去的来；“其”本是簸箕，借作代词；“自”本是鼻子，借作自己；“莫”本是日落草中，借作否定词，傍晚只好另造“暮”。东汉许慎在《说文解字》里给这种现象下的定义是：“本无其字，依声托事。”</li>
+      </ul>
+      <p>借音带来的混乱，各地的补救办法也惊人地相似：<em>加一个不念出声的“类别记号”</em>。苏美尔和阿卡德的泥板上，神名前面加一颗星（读作 dingir），木器前面加“木”；埃及圣书字在词尾加“限定符”；汉字则把类别记号和声音记号合成一个字，这就是<em>形声字</em>：“暮”是莫加日，“箕”是其加竹。到《说文解字》时，形声字已占九千多个字里的大多数。</p>
+      <p class="k">“生命/箭”同为 ti、dingir 限定符等，见通行亚述学概论；汉字假借诸例据通行古文字学说法。</p>
+    </div>
+  </div>
+
+  <div class="wide">
+    <div class="fig rebus" id="rebusFig">
+      <div class="fig-label">装置 3</div>
+      <h4>谐音画谜</h4>
+      <p class="how">中国人其实一直在用麦娘的办法：年画、窗花、瓷器上的吉祥图案，几乎全是画谜。看图，猜它借音说的是哪句吉祥话。</p>
+      <div id="rebusBox"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <p>麦娘的画谜和小芦的星星，两样东西合在一起，就是汉字里最大的一个家族。一个字，半边借音，半边提醒类别。下面这个装置里，左边一排是借音的“声旁”，右边一排是提醒类别的“形旁”。拼一拼，看哪些能拼出真的字。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig xs" id="xsFig">
+      <div class="fig-label">装置 4</div>
+      <h4>形声拼字</h4>
+      <p class="how">先点一个声旁，再点一个形旁。能拼成字的形旁会亮起绿边。注意读音：同一个声旁的字，读音大多相近，但不全一样，因为汉语的读音几千年里一直在变。</p>
+      <div class="lab">声旁 · 借它的音</div><div class="row" id="xsSnd"></div>
+      <div class="lab">形旁 · 提醒是哪一类</div><div class="row" id="xsShp"></div>
+      <div class="out"><div class="big none" id="xsBig">？</div><div class="readout" id="xsInfo">先点一个声旁。</div></div>
+      <div class="found" id="xsFound"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <aside class="echo" data-k="存疑">
+      <span class="stamp">存疑</span>
+      <div>
+        <p class="rh">形声字到底占几成？</p>
+        <p>常见的说法是《说文解字》里形声字约占八成，现代常用字里也在七八成以上。但具体比例取决于怎样划分（有些字到底算形声还是会意，各家意见不同），甲骨文里的比例则低得多，通常估计只有两三成。可以确定的趋势是：<em>汉字越往后，形声字越多</em>，因为“半边借音、半边分类”是造新字最省事的办法。</p>
+      </div>
+    </aside>
+
+    <aside class="echo" data-k="押韵">
+      <span class="stamp">押韵</span>
+      <div>
+        <p class="rh">汉字被借去当音标</p>
+        <p>麦娘的办法后来在东亚又演了一遍，只不过被借的是汉字本身。古代日本人用汉字写日语，有一种用法只取汉字的音、不管它的意思，这批字后来叫“万叶假名”。写得多了、写得快了，字形越简越省，最后变成了平假名和片假名：“あ”来自“安”的草书，“イ”是“伊”的半边。今天的“咖啡”“沙发”“巧克力”，也是同一招：只借音，别管字的意思。</p>
+      </div>
+    </aside>
+
+    <aside class="echo" data-k="生活">
+      <span class="stamp">生活</span>
+      <div>
+        <p class="rh">谐音梗是人类的老手艺</p>
+        <p>你身边总有一个张口就是谐音梗的人，大家一边嫌弃一边笑。请对他好一点。“同音的东西可以互相借”，这个看起来最不正经的念头，正是文字迈出最大一步的那根拐杖。在苇城，第一个写下名字的不是神庙里最有学问的人，而是酒坊里最爱开玩笑的那张嘴。</p>
+      </div>
+    </aside>
+
+    <div class="ledger">
+      <div class="lh"><b>记一笔</b><span>第 03 号凭证 · 借音</span></div>
+      <div class="lb">
+        <div><i>借 · 历史</i>画只能画东西，借音才能写语言。几个独立发明文字的文明都走过这一步，又都用“不出声的类别记号”收拾借音的乱子。汉字的大多数，就是“借音 + 分类”拼出来的。</div>
+        <div><i>贷 · 生活</i>最要紧的突破，常常来自最不正经的地方：一句玩笑，一个双关。另外，借来的东西用久了，会占了原主的房子，借之前想清楚。</div>
+      </div>
+      <div class="lf"><span>附件：阿穆的名字（水、苗）</span><span class="sig">林记</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第四章 芦苇笔 ============ -->
+<section class="chap" id="c4" data-vol="第四章 · 芦苇笔">
+  <div class="slab">
+    <svg class="wedges" viewBox="0 0 80 60" aria-hidden="true"><g fill="var(--clay-d)" opacity=".85"><path d="M6,16 l10,-5 l0,10 Z"/><rect x="15" y="15" width="22" height="2.4"/><path d="M42,8 l5,10 l-10,0 Z"/><rect x="41" y="17" width="2.4" height="22"/><path d="M50,36 l10,-5 l0,10 Z"/><rect x="59" y="35" width="16" height="2.4"/><path d="M12,40 l8,-4 l-2,9 Z"/></g></svg>
+    <div class="no">第四章</div>
+    <h2>芦苇笔</h2>
+    <dl><dt>苇城</dt><dd>林记到苇城的第三年到第十年</dd><dt>我们的世界</dt><dd>约公元前 2600 年起，两河流域；楔形文字用了三千多年</dd><dt>本章装置</dt><dd>一个字怎样变成楔子</dd></dl>
+  </div>
+  <div class="col">
+    <p>第三年，林记发现自己不认识小芦写的羊了。</p>
+    <p>不是小芦写错了，是羊变了。最早那只羊，是一个圆圈套一个十字，圆圈画得圆圆的，十字画得直直的。可泥是湿的、黏的，芦苇尖在泥里拖着走，划一道弧线，泥就翻起来、糊上去，画一个圆要描好几遍。小芦每天要写几十块泥板，没那个工夫。</p>
+    <p>他换了一个办法：不划，<em>按</em>。</p>
+    <p>他把芦苇斜着削出一个三角形的切口，往泥上一按、一提，泥上就留下一个钉子形的印：一头是三角，一头是细尾巴。按得快，按得齐，泥不翻。圆圈画不出来，就用四五个这样的“钉子”围一圈；弯线画不出来，就用两三个短“钉子”接起来。</p>
+    <p>写得越来越快，羊也越来越不像羊。到第五年，羊已经变成了一小撮横横竖竖的钉子。新来学写字的孩子，根本不知道它曾经是一只羊。他们也不需要知道。</p>
+    <p class="note">我们那儿的汉字也一样。甲骨上的“马”有鬃毛有尾巴，到了楷书，四个点就是四条腿。字为了写得快，会自己把画忘掉。</p>
+    <p>还有一件怪事。不知从哪一年起，写字的人把泥板侧过来拿，所有的符号都跟着躺倒了：原来站着的羊，现在侧身躺着，头朝左。老秤问为什么，没人说得清，大概是这样拿着顺手，写着不蹭花前面的字。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig evo" id="evoFig">
+      <div class="fig-label">装置 5</div>
+      <h4>一个字怎样变成楔子</h4>
+      <p class="how">拖动滑杆，看八个符号从“画”变成“楔子”：先是用尖头刻的图画，然后整体转了九十度、线条变直，最后每一笔都变成按出来的楔形印。这是示意，不是哪块泥板的精确摹本，但几个步骤是真实发生过的。</p>
+      <input type="range" id="evoR" min="0" max="100" value="0" aria-label="时间">
+      <div class="marks"><span>约前 3200 · 画</span><span>躺倒 · 变直</span><span>约前 700 · 楔子</span></div>
+      <div class="signs" id="evoSigns"></div>
+      <div class="readout" id="evoTxt"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>泥板屋</h3>
+    <p>符号越来越多，记不住了。</p>
+    <p>到第六年，苇城的泥板上用的符号已经有好几百个：东西的、数的、借音的、提醒类别的。光靠在粮仓里帮忙、跟着看，学不会了。老秤在神庙边上辟了一间屋子，专门教孩子写字。苇城人管它叫“泥板屋”。</p>
+    <p>泥板屋里的日子很苦。天一亮就到，先把昨天的泥板抹平，再照着先生写的一块范本抄，抄符号表：一行一个符号，从“人”抄到“羊”，从“羊”抄到“神”。抄错了挨打，迟到了挨打，说话了挨打。小芦成了老秤的助手，后来自己当了先生。</p>
+    <div class="scene">
+      <div class="sh"><b>泥板屋外</b><span>傍晚 · 放学</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who">学童</span><p>林记林记，你们那儿的小孩也要抄符号表吗？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>抄。我们那儿要抄好几千个。</p></div>
+        <div class="ln"><span class="who">学童</span><p>（脸都白了）好几千个？那要抄到几岁？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>抄完了还有考试。考完一个，还有下一个。</p></div>
+        <div class="ln"><span class="who">学童</span><p>那你们的先生也打人吗？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>……现在不让打了。</p></div>
+        <div class="ln"><span class="who">学童</span><p>（若有所思）那我想去你们那儿。</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>“泥板上写着”</h3>
+    <p>泥板屋开了几年，苇城多了一种人：会写字的人。他们不种地、不放羊、不酿酒，每天坐在神庙里写泥板，吃神庙的口粮。他们人不多，说话却越来越有分量。</p>
+    <p>林记最先注意到的，是苇城人吵架的方式变了。</p>
+    <p>以前，阿穆说“我交了”，老秤说“你没交”，两个人吵到上头那里，上头看谁的证人多。现在，老秤只要往墙上一指：“泥板上写着。”这句话一出口，吵架就结束了。没人敢跟泥板吵，因为泥板不会忘、不会撒谎，大家都这么觉得。</p>
+    <p>可是泥板是谁写的？</p>
+    <div class="scene">
+      <div class="sh"><b>粮仓门口</b><span>第八年 · 秋天</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who c">老秤</span><p>阿穆，前年你还欠神庙三只羊。泥板上写着。</p></div>
+        <div class="ln"><span class="who a">阿穆</span><p>我还了。那年冬天我亲手赶来的。</p></div>
+        <div class="ln"><span class="who c">老秤</span><p>泥板上没写你还了。</p></div>
+        <div class="ln"><span class="who a">阿穆</span><p>那是你们没写。</p></div>
+        <div class="ln"><span class="who c">老秤</span><p>没写，就是没还。</p></div>
+        <div class="sd">阿穆看着那面墙。墙上码着几千块泥板，每一块上面的钉子他都不认得。他站了很久，最后什么也没说，转身走了。第二天，他赶来了三只羊。</div>
+      </div>
+    </div>
+    <p>那天晚上，林记在酒坊里喝了很多酒。</p>
+    <p>他在自己的世界里，从来没把会计想成一种权力。他只是个对账的。可在这里，他亲手帮着造出来的东西，让一个会数到二十的牧羊人，站在一面他读不懂的墙前面，连吵架的资格都没有了。</p>
+    <p>麦娘听完，往他碗里又倒了一勺酒。</p>
+    <p>“那你教他认啊。”她说，“我就认得二十几个符号，数、酒、麦、羊，加上我那些熟客的名字。够了。上个月神庙记我欠两罐，我一看，那是隔壁陶匠的名字，他们写串了。我当场就指出来了。”</p>
+    <p>林记抬起头看她。</p>
+    <p>“认得几个字的人，泥板就是他的。”麦娘说，“一个字也不认得的人，泥板就是别人的。”</p>
+    <p>后来，林记做了两件事。一件是在城门口的墙上，砌进了一块很大的泥板，上面写着每户人家每年该给神庙交多少。数和东西都写得很大，谁路过都能看见。老秤反对了很久，说规矩写在墙上，人人都会拿来跟神庙较真。林记说，对，就是要这样。</p>
+    <p>另一件是，每隔十天，他在酒坊里教阿穆认几个符号。阿穆学得很慢，一年下来，认得了数、羊、毛、草场，还有他自己的名字：两道水，一根苗。</p>
+  </div>
+
+  <div class="col">
+    <div class="real">
+      <h5>楔形文字：一套用了三千年的“字体”</h5>
+      <p>小芦的三角形芦苇笔在我们的世界真实存在。两河流域的书吏用削过的芦苇在湿泥上按出楔形的印，图画逐渐变成楔子的组合，这就是<em>楔形文字</em>（cuneiform，来自拉丁语 cuneus，“楔子”）。原始楔形文字里有近千个符号，后来常用的大约六百个。</p>
+      <p>符号“躺倒”也是真的：早期竖着的图形，后来整体向左转了九十度。这件事具体发生在什么时候、为什么发生，学界说法不一，有说是公元前三千纪中期，也有说更晚；刻在石头上的正式铭文，很长时间里还保留着旧的朝向。</p>
+      <p>楔形文字最了不起的地方，是它<em>脱离了发明它的语言</em>。苏美尔语后来没人说了，但这套写法被借去写阿卡德语（巴比伦人和亚述人的语言）、赫梯语、埃兰语、胡里语、乌拉尔图语等十几种语言，有点像后来汉字被借去写日语、朝鲜语、越南语。它从公元前 3300 年前后一直用到公元一世纪，目前知道的最晚的楔形文字泥板是一块天文记录，约在公元 75 年前后。</p>
+      <p>两河流域的学校，苏美尔语叫 é-dub-ba-a，意思就是“泥板屋”。出土的校园文献里有学生抄写的符号表、词表、算术题，也有写学校生活的作品：一个学生一天里因为各种过错一次次挨打，后来他父亲请先生到家里吃饭、送礼，先生这才开始夸他。早期那些按类别排列的词表，被一代代学生照抄了好几百年。</p>
+      <p class="k">楔形文字的起止年代、使用语言、学校文献内容，据通行亚述学概论；校园作品只作概述。</p>
+    </div>
+
+    <aside class="echo" data-k="存疑">
+      <span class="stamp">存疑</span>
+      <div>
+        <p class="rh">文字是用来管人的吗？</p>
+        <p>法国人类学家列维-斯特劳斯在《忧郁的热带》（1955）里有一章叫“文字课”。他在巴西考察时看到，一个部落首领模仿他写字，在纸上画波浪线，假装能读，以此在族人面前抬高自己。他由此提出一个很刺耳的看法：文字在早期的主要作用，与其说是传播知识，不如说是方便少数人统治和役使多数人。这个说法影响很大，也受到很多批评：早期文字确实大多出自神庙和王宫的账房，但文字也很快被商人、普通家庭、写信的人拿去用了。林记在这一章里的不安，和麦娘的反驳，就是这场争论的两边。</p>
+      </div>
+    </aside>
+
+    <aside class="echo" data-k="押韵">
+      <span class="stamp">押韵</span>
+      <div>
+        <p class="rh">墙上那块大泥板</p>
+        <p>林记砌在城门口的那块泥板，在我们的世界有两个著名的回声。一个是巴比伦的《汉谟拉比法典》石碑（约公元前 1754 年），两米多高，刻着两百多条法律，立在公开场合。另一个在中国：公元前 536 年，郑国的子产把刑法铸在鼎上公之于众。晋国的叔向写信反对，《左传》记下了他的话：</p>
+        <blockquote><p>民知有辟，则不忌于上，并有争心，以征于书。</p><cite>《左传·昭公六年》</cite></blockquote>
+        <p>意思是：老百姓知道了法律条文，就不再敬畏上面的人，都会拿条文来争。老秤的担心，叔向两千五百年前就写在信里了。他担心的事后来果然发生了：规矩一旦写在墙上，解释权就不再只属于守着规矩的人。</p>
+      </div>
+    </aside>
+
+    <aside class="echo" data-k="联系">
+      <span class="stamp">联系</span>
+      <div>
+        <p class="rh">泥板屋和衙门</p>
+        <p>书房里的《是，大人》讲了很多“握着文书的人怎样握着权力”：书吏、师爷、胥吏，大人换了一茬又一茬，管档案的人一直坐在那里。他们的祖师爷，大概就是苇城泥板屋里那第一批不种地、只写字的孩子。</p>
+      </div>
+    </aside>
+
+    <aside class="echo" data-k="生活">
+      <span class="stamp">生活</span>
+      <div>
+        <p class="rh">认得二十几个字就够了</p>
+        <p>麦娘不是学者，她只认得和自己有关的那二十几个符号，但这就足够让她在神庙面前不吃亏。今天也一样：租房合同、劳动合同、贷款条款、手机里那份长长的用户协议，你不必成为律师，但要认得和自己有关的那几行。<em>一份你看不懂的文件，就是写给别人的。</em></p>
+      </div>
+    </aside>
+
+    <div class="ledger">
+      <div class="lh"><b>记一笔</b><span>第 04 号凭证 · 芦苇笔</span></div>
+      <div class="lb">
+        <div><i>借 · 历史</i>工具会改造文字：湿泥加芦苇，把画变成了楔子。文字也会改造社会：它造出了一批专门写字的人，也造出了“写在上面的就算数”。把规矩公开写出来，是把解释权从少数人手里拿出来。</div>
+        <div><i>贷 · 生活</i>认得和自己有关的那几行字。看不懂的条款，问到看懂为止。</div>
+      </div>
+      <div class="lf"><span>附件：城门口的泥板一块（太大，未附）</span><span class="sig">林记</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第五章 矿工的字母 ============ -->
+<section class="chap" id="c5" data-vol="第五章 · 矿工的字母">
+  <div class="slab">
+    <svg class="wedges" viewBox="0 0 80 60" aria-hidden="true"><g fill="none" stroke="var(--clay-d)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8,14 q-2,10 6,14 l8,0 q8,-4 6,-14 M12,16 l0,0 M14,28 l2,10 l4,0 l2,-10"/><path d="M40,12 h16 v16 h-16 z M48,28 v-8"/><path d="M60,44 q4,-6 8,0 t8,0"/></g></svg>
+    <div class="no">第五章</div>
+    <h2>矿工的字母</h2>
+    <dl><dt>苇城</dt><dd>林记到苇城的第十二年，西边沙漠里的绿松石矿</dd><dt>我们的世界</dt><dd>约公元前 1850 年起，埃及与西奈；字母的子孙遍布今天</dd><dt>本章装置</dt><dd>你名字的祖先</dd></dl>
+  </div>
+  <div class="col">
+    <p>第十二年，神庙派林记跟着一支商队往西走。</p>
+    <p>苇城的西边，隔着一大片沙漠，有一个比苇城大得多、也老得多的国家，苇城人就叫它“西国”。西国有自己的文字，不刻在泥上，刻在石头上、画在墙上，一个个符号像小画儿：鸟、眼睛、手、蛇、坐着的人，好几百个，描得精细，涂着颜色，美得像首饰。西国人管它叫“神的字”，只有祭司和书吏才会写。</p>
+    <p>神庙要林记去做两件事：买一批绿松石，学几个西国的神字回来。</p>
+    <p>绿松石出在沙漠深处的一座山里。山是西国的，矿也是西国的，可是在矿里干活的，大多不是西国人，而是从东边山地雇来的一伙人。他们说的话，西国人听不懂，苇城人也听不懂。林记靠着比画，和他们的工头混熟了。</p>
+    <p>工头是个黑瘦的汉子，大家叫他老牛，因为他在什么东西上做记号，都只画一个牛头。</p>
+  </div>
+
+  <div class="col">
+    <div class="scene">
+      <div class="sh"><b>矿坑口</b><span>沙漠里的绿松石山 · 黄昏</span></div>
+      <div class="bd">
+        <div class="sd">老牛蹲在一块石头前，用一块尖石头在上面刻。林记凑过去看：一个牛头，一间方方的房子，一道弯弯的水。</div>
+        <div class="ln"><span class="who l">林记</span><p>这是西国的神字？</p></div>
+        <div class="ln"><span class="who">老牛</span><p>（摇头）那种字，几百个，一辈子也学不会。这是我们自己的。</p></div>
+        <div class="ln"><span class="who l">林记</span><p>牛、房子、水，什么意思？</p></div>
+        <div class="ln"><span class="who">老牛</span><p>不是牛、房子、水。是它们的头一个音。</p></div>
+        <div class="sd">他指着牛头，发出一个短短的、像是嗓子眼里一顿的音，那是他们话里“牛”的第一个音；指着房子，念“b”；指着水，念“m”。</div>
+        <div class="ln"><span class="who">老牛</span><p>我们话里，所有的词，开头都是那么二十来个音。一个音找一样东西，画出来，就够了。想写什么，一个音一个音拼。</p></div>
+        <div class="ln"><span class="who l">林记</span><p>就……二十来个？</p></div>
+        <div class="ln"><span class="who">老牛</span><p>多了记不住。我们是挖矿的。</p></div>
+      </div>
+    </div>
+
+    <p>林记在那块石头前站了很久，天黑了都没走。</p>
+    <p>他认识二十六个拉丁字母，从小学的汉语拼音开始，用了二十多年。他在苇城住了十二年，帮着造出了六百个符号的泥板文字，<em>从来没有想过</em>可以只要二十几个。他被困在了自己帮着造的东西里面：泥板文字是一个音节、一个词地借，他就一直顺着往下借，借得越来越多。</p>
+    <p>老牛他们没有这个包袱。西国的神字他们学不会，苇城的泥板他们没见过。他们手里什么都没有，所以只能做减法：<em>每个符号只管一个音，而且只管开头那一个。</em></p>
+    <p class="note">学问最大的人，被学问困住了。挖矿的人什么都不会，所以他们发明了字母。</p>
+  </div>
+
+  <div class="col">
+    <h3>给女主人</h3>
+    <p>矿上有一座小神庙，是西国人修的，供着西国的一位女神，管矿、管远方、管绿松石。矿工们不认得西国的神，但他们觉得那就是他们自己家乡的女神，他们叫她“女主人”。</p>
+    <p>有一天，老牛在一尊巴掌大的石像上刻了一行他们的符号。石像身上已经刻着西国的神字，是西国书吏写的献辞。老牛的那一行，刻在旁边，歪歪扭扭的。</p>
+    <div class="scene">
+      <div class="sh"><b>矿上的小神庙</b><span>某个休息日</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who l">林记</span><p>你刻的是什么？</p></div>
+        <div class="ln"><span class="who">老牛</span><p>“给女主人。”我们话里，就五个音。</p></div>
+        <div class="ln"><span class="who l">林记</span><p>五个音，五个符号？那中间的“啊”“咦”呢？</p></div>
+        <div class="ln"><span class="who">老牛</span><p>那些不写。看的人自己会补上。我们说话，那些软的音都是跟着硬的音走的。</p></div>
+        <div class="sd">一个西国书吏路过，看了一眼石像上那行歪字，鼻子里哼了一声。</div>
+        <div class="ln"><span class="who">西国书吏</span><p>粗人的鬼画符。过两年就没人记得了。</p></div>
+      </div>
+    </div>
+    <p>林记没说话。他知道那个书吏错了，错得有多离谱。</p>
+    <p>他知道，他自己世界里的大多数文字，拉丁字母、希腊字母、西里尔字母、阿拉伯字母、希伯来字母，还有印度、东南亚的许多文字，追到源头，很可能都是从这样一行“鬼画符”来的。他甚至知道，老牛的牛头，倒过来就是“A”。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig anc" id="ancFig">
+      <div class="fig-label">装置 6</div>
+      <h4>你名字的祖先</h4>
+      <p class="how">输入你名字的拼音（或任何拉丁字母），看每个字母三千多年前长什么样、叫什么、是什么意思。图形是按学界通行的推测画的示意，带虚线框的字母来历不太确定。</p>
+      <input type="text" id="ancIn" value="LIN JI" maxlength="32" aria-label="输入拼音" autocomplete="off" spellcheck="false">
+      <div class="btns" style="margin-top:8px"><button class="btn" data-w="ALPHABET">ALPHABET</button><button class="btn" data-w="MAMA">MAMA</button><button class="btn" data-w="NI HAO">NI HAO</button><button class="btn" data-w="ABCDEFGHIJKLMNOPQRSTUVWXYZ">全部 26 个</button></div>
+      <div class="cards" id="ancCards"></div>
+      <div class="chain" id="ancChain"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>回到苇城</h3>
+    <p>林记把老牛的二十几个符号抄在一块泥板上，带回了苇城。</p>
+    <p>他兴冲冲地拿给小芦看。小芦那时已经是泥板屋的先生，三十岁出头，留着胡子，手下有几十个学生。他看了很久，看懂了，然后把泥板推了回来。</p>
+    <div class="scene">
+      <div class="sh"><b>泥板屋</b><span>第十三年 · 春天</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who x">小芦</span><p>我学那六百个符号，学了十五年。</p></div>
+        <div class="ln"><span class="who l">林记</span><p>我知道。可你的学生不用再学十五年了。</p></div>
+        <div class="ln"><span class="who x">小芦</span><p>那我这十五年算什么？神庙的泥板，几千块，谁来读？还有，你那些符号是照着老牛他们的话造的，我们的话里有的音，他们没有。</p></div>
+        <div class="ln"><span class="who l">林记</span><p>可以改。</p></div>
+        <div class="ln"><span class="who x">小芦</span><p>林记，你还记得那年你教我“一百八十”吗？你说这是好东西，我就学了。可这一回……（他停了停）……这一回，学会它的人越多，我们这屋子里的人就越不值钱。</p></div>
+      </div>
+    </div>
+    <p>林记无话可说。小芦说的是实话。</p>
+    <p>老牛的字母，最后在苇城只有几个跑西边的年轻商人学会了，用来给货物做记号、给远方的同伴捎几句话。神庙照旧用六百个符号的泥板，泥板屋照旧一抄就是十几年。林记活着的时候，没有看到字母赢。</p>
+    <p class="note">新东西不是靠好赢的。它要等到用旧东西的人老去，或者等到一群根本没学过旧东西的人。</p>
+  </div>
+
+  <div class="col">
+    <div class="real">
+      <h5>绿松石矿里的字母</h5>
+      <p>西奈半岛西南部的塞拉比特·卡迪姆（Serabit el-Khadim），是古埃及开采绿松石的矿区，山顶有一座供奉女神哈托尔的神庙。1904—1905 年，英国考古学家皮特里在这里发现了一批奇怪的刻字，看起来像埃及圣书字，却又不是。1916 年，埃及学家加德纳注意到，其中一尊小狮身人面像上，一面刻着埃及圣书字“哈托尔所爱”，另一面刻着一串符号；他假设每个符号取的是它所画东西的闪米特语名称的头一个音，读出了 <b>l-b-ʿ-l-t</b>，即“给巴阿拉特”（Baʿalat，意为“女主人”，闪米特人对女神的称呼）。这尊小像今天在大英博物馆。</p>
+      <p>这就是“原始西奈字母”。刻字的人很可能是在埃及矿上干活的、说闪米特语的人。年代有早晚两说：早的约公元前 1850 年，晚的约前 1550 年。1990 年代，约翰和德博拉·达内尔夫妇又在埃及中部的瓦迪·霍尔（Wadi el-Hol）发现了两处类似的刻字，一般定在约前 1900—前 1800 年，让“字母起源于埃及境内的闪米特人”这一说法更有分量。</p>
+      <p>老牛说的“只写硬的音”也是真的：早期字母<em>只记辅音</em>，元音靠读者自己补（今天的阿拉伯文、希伯来文日常书写仍基本如此）。约公元前 1050 年，腓尼基人用的字母已经定型为 22 个。约公元前 800 年前后，希腊人借去腓尼基字母，把几个希腊语用不上的辅音字母改成了元音：牛头 ʾaleph 变成 alpha，眼睛 ʿayin 变成 omicron。从希腊字母又分出拉丁字母和西里尔字母；腓尼基字母的另一支传给阿拉米人，再分出希伯来方块字、阿拉伯字母等许多支。</p>
+      <p>还有一件很有意味的事：埃及圣书字里本来就有二十几个只代表单个辅音的符号，埃及书吏用了两千多年，却从来没有想过只用它们来写字。</p>
+      <p class="k">加德纳的释读、年代早晚两说、腓尼基与希腊字母的年代，据通行文字史著作，均为约数。</p>
+    </div>
+
+    <aside class="echo" data-k="押韵">
+      <span class="stamp">押韵</span>
+      <div>
+        <p class="rh">故宫匾额上的远亲</p>
+        <p>去故宫看看乾清门、乾清宫这些内廷宫殿的门额，不少是满文和汉文并排写的（外朝三大殿的满文匾额在民国初年被换掉了）。满文是 16 世纪末照着蒙古文造的，蒙古文借自回鹘文，回鹘文出自粟特文，粟特文是阿拉米字母的后代，而阿拉米字母又出自腓尼基字母。也就是说，紫禁城门楣上那一行竖写的满文，往上数三千年，祖宗很可能就是沙漠矿坑里那几个挖矿人的“鬼画符”。你手机键盘上的拼音字母，祖宗也在那里。</p>
+      </div>
+    </aside>
+
+    <aside class="echo" data-k="存疑">
+      <span class="stamp">存疑</span>
+      <div>
+        <p class="rh">每个字母原来画的是什么？</p>
+        <p>A 是牛头、B 是房子、M 是水、O 是眼睛、R 是人头，这几个大致公认。但不少字母的原形和名字含义还在争：E 的原形是一个举着双手的人，还是一扇窗？Q 画的是猴子、绳结，还是后脑勺？S 是牙齿还是弓？X 是从哪个字母来的？装置里虚线框的字母就是这些。另外，“所有字母都出自原始西奈字母”是主流看法，具体的传承链条中间有不少缺环。印度婆罗米文是不是出自阿拉米字母，也还有争论。</p>
+      </div>
+    </aside>
+
+    <aside class="echo" data-k="生活">
+      <span class="stamp">生活</span>
+      <div>
+        <p class="rh">做减法的人</p>
+        <p>一个系统里待得越久、投入越多的人，越难想到“推倒重来”，因为他自己就是这个系统的一部分。小芦不笨，他只是付出了十五年。下次你身处一个规矩很多、谁都说“一直是这样”的地方，可以问问自己：如果我是个刚到这里、什么都不会的外人，我会怎么做？反过来，当新人提出一个看起来很天真的想法时，先别急着笑他。</p>
+      </div>
+    </aside>
+
+    <div class="ledger">
+      <div class="lh"><b>记一笔</b><span>第 05 号凭证 · 矿工的字母</span></div>
+      <div class="lb">
+        <div><i>借 · 历史</i>字母不是哪个大帝国的学者发明的，而是在埃及打工的外乡人，从几百个神字里抽出二十几个，只取头一个音。它在商人和平民手里传开，最后传遍了大半个世界。</div>
+        <div><i>贷 · 生活</i>做减法，往往要靠没有包袱的人。好东西也不会自己赢，它常常要等一代人。</div>
+      </div>
+      <div class="lf"><span>附件：老牛的二十几个符号（抄本）</span><span class="sig">林记</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第六章 第四次 ============ -->
+<section class="chap" id="c6" data-vol="第六章 · 第四次">
+  <div class="slab">
+    <svg class="wedges" viewBox="0 0 80 60" aria-hidden="true"><g fill="none" stroke="var(--clay-d)" stroke-width="2.5" stroke-linecap="round"><circle cx="14" cy="16" r="6"/><circle cx="40" cy="12" r="6"/><circle cx="64" cy="18" r="6"/><circle cx="30" cy="44" r="6"/><path d="M60,40 l10,10 M70,40 l-10,10"/></g></svg>
+    <div class="no">第六章</div>
+    <h2>第四次</h2>
+    <dl><dt>苇城</dt><dd>林记到苇城的第三十年</dd><dt>我们的世界</dt><dd>公元前 3300 年—公元 1821 年，四大洲</dd><dt>本章装置</dt><dd>人类发明文字的家谱</dd></dl>
+  </div>
+  <div class="col">
+    <p>林记老了。</p>
+    <p>第三十年，他快六十岁了，头发白了一大半，眼睛也花了，读泥板要举得远远的。老秤早就不在了，下葬的时候，小芦在他的墓里放了一块泥板，上面写着他管了一辈子的那几样东西：麦、羊、油，还有一个小竖印。麦娘的酒坊交给了女儿，她自己每天坐在门口晒太阳，看见林记路过，还是要喊一声：“会计，今天又对上账了？”</p>
+    <p>这些年，林记常常在想一个问题：如果他没有来，苇城会不会自己造出文字？</p>
+    <p>他想来想去，觉得会。泥丸是苇城自己的，泥球是苇城自己的，压扁泥球的是小芦，借音的是麦娘，三角形的芦苇笔是小芦自己削的。他做的，不过是在几个路口推了一把，让他们少走几十年弯路。字迟早会来，因为账迟早会多到记不住。</p>
+    <p>那么在他自己的世界里呢？人类从一无所有开始、没有任何人教，自己造出文字，一共有过几次？</p>
+  </div>
+
+  <div class="col">
+    <div class="real">
+      <h5>从零开始，大概只有三四次</h5>
+      <p>人类历史上文字很多，但绝大多数是<em>借来的、改来的、受启发造的</em>。从零开始、看不出受过任何外来文字影响的“原创发明”，学界公认的大致只有这几处：</p>
+      <ul>
+        <li><b>两河流域</b>，约公元前 3300 年，苏美尔人的原始楔形文字。从账目出发，前三章讲的就是它。</li>
+        <li><b>埃及</b>，约公元前 3200 年前后，圣书字。阿拜多斯一座早期王墓（U-j 墓）里出土的小骨牌、象牙牌上已有符号，年代可能和两河差不多，甚至更早。埃及文字是独立发明，还是受了两河“有文字”这件事的启发，至今争论不休。</li>
+        <li><b>中国</b>，商代晚期的甲骨文，约公元前 1250 年起，武丁时代已经相当成熟，出土单字四千多个，公认释读的约三分之一。比它早的陶器刻符（如贾湖、大汶口）算不算文字，争议很大。甲骨文已经那么成熟，前面一定有一段更早的历史，只是还没有找到。</li>
+        <li><b>中美洲</b>，奥尔梅克、萨波特克、玛雅等文明，最早的可信材料约在公元前一千纪中期，玛雅文字一直用到 16 世纪西班牙人到来。最早的年代和归属同样有争议。</li>
+      </ul>
+      <p>此外，印度河流域的印章符号（约前 2600—前 1900 年）至今没有破译，连它是不是完整的文字都还在争；复活节岛的朗格朗格木板也是一个谜。这些，卷二再讲。</p>
+      <p class="k">年代均为约数；“几次”取决于怎样定义“独立”，多数学者说三到四次。</p>
+    </div>
+  </div>
+
+  <div class="wide">
+    <div class="fig tl" id="tlFig">
+      <div class="fig-label">装置 7</div>
+      <h4>人类发明文字的家谱</h4>
+      <p class="how">实心方块是从零发明的，空心方块是借来、改来或受启发造的。点一个方块看它的来历。上方的按钮可以只看某一类。</p>
+      <div class="btns" id="tlF" style="margin-bottom:8px"></div>
+      <div class="scroll-x"><svg id="tlSvg" viewBox="0 0 900 360" role="img" aria-label="文字发明时间表"></svg></div>
+      <div class="tlcard" id="tlCard"><p class="k">点一个方块。</p></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>每个民族都说，字是神给的</h3>
+    <p>有意思的是，几乎每个有文字的民族，都不记得文字是一群会计凑出来的。他们讲的是另一种故事。</p>
+    <p>中国人说，字是黄帝的史官仓颉造的。他有四只眼睛，看见鸟兽的足迹，悟出了造字的道理。字造出来的那天，天地都变了色：</p>
+    <blockquote><p>昔者仓颉作书，而天雨粟，鬼夜哭。</p><cite>《淮南子·本经训》</cite></blockquote>
+    <p>天上下起了谷子，鬼在夜里哭。为什么哭？汉代以来的注家说法不一，有一种解释是：从此人会用字来记事、来算计，再也骗不了了，也再也不淳朴了。</p>
+    <p>苏美尔人有一首长诗，讲乌鲁克的国王恩美卡和远方一位城主斗智。恩美卡派信使来回传话，话越来越长，信使记不住了，于是恩美卡把话压在了一块泥上。诗里说，在那以前，从来没有人把话放在泥上。这大概是世界上最早的“文字起源故事”，而它把发明的功劳记在了一位国王名下，至于国王手下记账的人，一个也没提。</p>
+    <p>埃及人说，字是智慧之神托特给的。柏拉图在对话录《斐德若篇》里借苏格拉底之口转述过一个故事：托特把文字献给埃及国王，说这东西能让人更有智慧、记性更好。国王回答：恰恰相反，有了文字，人们就不再用心记了，他们会依赖外面的记号，而不是自己脑子里的东西；他们读了很多，看上去什么都知道，其实什么都不懂。</p>
+
+    <aside class="echo" data-k="押韵">
+      <span class="stamp">押韵</span>
+      <div>
+        <p class="rh">“这东西会让人变笨”</p>
+        <p>两千四百年前埃及国王对文字的担心，你一定在别处听过：印刷术让人不再背书，计算器让人不会算数，搜索引擎让人什么都记不住，手机让人没法专心。每一种新的“外部记忆”出现时，都有人说它会掏空人的脑子。这些担心并不都是错的，柏拉图说的“读了很多却不懂”今天依然常见，但人类也确实没有因此变笨，只是把记忆的活儿交出去，空出手来干别的。有意思的是，柏拉图这番批评文字的话，我们之所以今天还能读到，正是因为他把它写了下来。</p>
+      </div>
+    </aside>
+  </div>
+
+  <div class="col">
+    <h3>两个后来者</h3>
+    <p>林记想得最多的，是自己到底算什么。</p>
+    <p>他不是从零发明文字的人，因为他知道文字存在，他脑子里装着好几千个汉字和二十六个字母。可他也不是把一套现成的字搬过来的人，因为苇城的字和他会的字一点也不像。他是第三种人：<em>知道“字”这个东西可以有，然后照着自己人的话，从头造一套。</em></p>
+    <p>在我们的世界，这种人有几位，其中两位的故事特别动人。</p>
+
+    <div class="real">
+      <h5>塞阔雅：一个不识字的人，给自己的民族造了字</h5>
+      <p>塞阔雅（Sequoyah，约 1770—1843）是北美切罗基人，银匠，不会读写英文。他看到白人的“会说话的叶子”，也就是写了字的纸，深信切罗基人也该有自己的。他从 1809 年前后开始琢磨，起初想一个词造一个符号，造到几千个，发现根本记不住，就推倒了。后来他意识到，切罗基语的词都是由数量有限的音节组成的，于是改成<em>一个音节一个符号</em>。</p>
+      <p>大约在 1821 年，他完成了一套 86 个符号的音节文字（后来减为 85 个），并和年幼的女儿当众表演：一个人写，另一个人在别处读，读出来的正是写下的话。切罗基人震动了。据各种记述，几年之内，成千上万的切罗基人学会了读写，1828 年还出了切罗基文报纸《切罗基凤凰报》。</p>
+      <p>塞阔雅的字母里，有些符号的样子是从英文书上借来的，但读音毫无关系：形如 D 的“Ꭰ”念 a，形如 R 的“Ꭱ”念 e，形如 T 的“Ꭲ”念 i。他借的只是“字长什么样”，不是“字怎么念”，因为他根本不认识英文。学者把这种现象叫作<em>刺激传播</em>：传过去的不是一套文字，而只是“文字是可能的”这个念头。</p>
+      <p class="k">年代、符号数目、普及速度各书记述不一，此处取通行说法；“几年之内普及”的程度有夸大之嫌。</p>
+    </div>
+
+    <div class="real">
+      <h5>世宗：一位国王，为不识字的人造了字</h5>
+      <p>15 世纪的朝鲜，正式书面语是汉文，只有读得起书的人才学得会。1443 年，朝鲜国王世宗主持创制了一套新的文字，1446 年以《训民正音》之名颁布。他在序里写明了理由：</p>
+      <blockquote><p>国之语音，异乎中国，与文字不相流通。故愚民有所欲言，而终不得伸其情者多矣。予为此悯然，新制二十八字，欲使人人易习，便于日用耳。</p><cite>《训民正音》序</cite></blockquote>
+      <p>这是人类历史上少有的、<em>有明确作者、明确日期、明确设计思路</em>的文字。按《训民正音解例》的说明，辅音字母的形状是照着发音器官画的：ㄱ 像舌根抵住喉咙，ㄴ 像舌尖抵住上齿龈，ㅁ 像嘴，ㅅ 像牙齿，ㅇ 像喉咙。元音则以“天、地、人”三个基本笔画组合而成。几个字母再拼成一个方块，排起来和汉字一样整齐。参与编写的大臣郑麟趾在后序里夸它：聪明人一个早上就能学会，笨一点的人十天也能学会。</p>
+      <p>可它也遭到了反对。1444 年，集贤殿副提学崔万理等人联名上疏，认为放着汉字不用、另造新字，是自外于中华文明，也会让人不再用心读圣贤书。此后几百年里，这套字一直被士大夫看不起，叫作“谚文”，主要在妇女、僧人和平民中流传，直到 1894 年的改革才成为官方文字。今天它叫“韩文”（Hangul）。</p>
+      <p class="k">据《训民正音》序、郑麟趾后序、《朝鲜王朝实录》所载崔万理上疏，以及通行韩国语言史著作。</p>
+    </div>
+
+    <aside class="echo" data-k="押韵">
+      <span class="stamp">押韵</span>
+      <div>
+        <p class="rh">小芦和崔万理</p>
+        <p>崔万理的上疏和小芦那句“那我这十五年算什么”，隔着几千年和一个平行世界，说的是同一件事：一套难学的文字，本身就是一道门槛，门里的人未必愿意把门拆掉。苏美尔的书吏、古埃及的书吏、朝鲜的士大夫，都是门里的人。字母和谚文这样的“简单文字”，最早都是在门外传开的。</p>
+      </div>
+    </aside>
+  </div>
+
+  <div class="col">
+    <h3>尾声 · 读不懂的泥板</h3>
+    <p>第三十一年的夏天，神庙要在高台子东边盖一座新殿。挖地基的工人挖出了一样东西，送到了林记这里。</p>
+    <p>是一只泥球。拳头大小，外面滚着一个模糊的图章，图章边上是一圈压出来的印子：十字，十字，十字……八个。</p>
+    <p>林记捧着它，手有点抖。他不知道这是不是三十年前阿穆那一只，大概不是，那一只早敲碎了。可它就是那个样子。</p>
+    <p>送泥球来的是个年轻书吏，泥板屋里出来的，写得一手好楔子。他把泥球翻来覆去地看。</p>
+    <div class="scene">
+      <div class="sh"><b>神庙的书房</b><span>第三十一年 · 夏天</span></div>
+      <div class="bd">
+        <div class="ln"><span class="who">书吏</span><p>林老，这上面的花纹是什么？我们一个也不认得。</p></div>
+        <div class="ln"><span class="who l">林记</span><p>八只羊。</p></div>
+        <div class="ln"><span class="who">书吏</span><p>羊？羊不是这么写的。（他用芦苇在泥板上按了一小撮楔子）羊是这样。</p></div>
+        <div class="ln"><span class="who l">林记</span><p>那是现在的羊。这是三十年前的羊。</p></div>
+        <div class="ln"><span class="who">书吏</span><p>三十年前的字，就没人认得了？</p></div>
+        <div class="ln"><span class="who l">林记</span><p>三十年前的字，本来就没几个人认得。</p></div>
+      </div>
+    </div>
+    <p>年轻书吏走了，又回来了，这次抱着一摞别的泥板。</p>
+    <p>“还有这些，”他说，“是东边商队从河对岸带回来的。河对岸原先有座城，一百多年前打仗打没了，现在只剩下土堆。土堆里挖出来的。上头说，林老见多识广，让你看看。”</p>
+    <p>林记接过最上面一块。泥板上密密麻麻全是记号，不是楔子，不是苇城的任何一种写法，也不是老牛的字母。他认识几千个汉字、二十六个拉丁字母、六百个苇城符号，这块泥板上的东西，他一个也不认得。</p>
+    <p>他把泥板举到窗口，对着光，看了很久。</p>
+    <p>在他的世界里，有一群人，前前后后花了两百多年，专门干这件事：拿着一块没人认得的石头、一片没人认得的泥板，一个符号一个符号地猜，猜错了重来，有人猜了一辈子，有人为此发了疯，也有人在某个早上突然跑出门大喊：“我读出来了！”</p>
+    <p>林记把泥板放在桌上，找出一块干净的湿泥，削了一根新芦苇。</p>
+    <p>他没有回家。也许永远回不去了。那张写着不知是“叁”还是“捌”的送货单，还压在他的枕头底下，三十年，纸已经黄得发脆。那三百块钱，他早就不在乎了。他只是终于想明白了那天晚上那个问题的答案：</p>
+    <p><em>人类发明文字，是为了让事情说得清。可是字从来没有真正说清楚过，所以世上才需要会计，需要书吏，需要读的人。</em></p>
+    <p class="ni" style="text-align:center;margin-top:2em;font-family:var(--f-display);font-size:20px;letter-spacing:.2em">卷一 · 落笔 · 完</p>
+    <p class="ni" style="text-align:center;color:var(--ink-3);font-size:14.5px">卷二《破译》待续：罗塞塔石碑、线形文字 B、玛雅文字、甲骨文，以及林记手上那一摞泥板。</p>
+
+    <aside class="echo" data-k="存疑">
+      <span class="stamp">存疑</span>
+      <div>
+        <p class="rh">“叁”和“捌”</p>
+        <p>林记那张送货单上的“叁”“捌”，属于汉字里专门用来写数目的“大写数字”：壹贰叁肆伍陆柒捌玖拾。它们的用途就是防篡改，“一”添一笔就成了“二”，“壹”却很难改成“贰”。常见的说法是明初朱元璋因郭桓贪污案而推行大写数字，但唐代乃至更早的文书里已经能见到类似用法，“朱元璋发明”的说法并不准确。字迹潦草的时候，防篡改的字也一样可能看错，所以会计这一行一直都有。</p>
+      </div>
+    </aside>
+
+    <div class="ledger">
+      <div class="lh"><b>记一笔</b><span>第 06 号凭证 · 卷一结账</span></div>
+      <div class="lb">
+        <div><i>借 · 历史</i>从零发明文字，人类大概只做过三四次；其余的文字都是借的、改的，或者只是听说“字可以有”，就自己造了一套。每个民族都说字是神给的，其实是记账的人、酒坊里开玩笑的人、矿上的外乡人，一步一步凑出来的。</div>
+        <div><i>贷 · 生活</i>字是为了说清楚而造的，可它永远说不全。所以写下来的东西要有人去读、去对、去问。会计、书吏、读者，都是同一种人：替文字把没说清的那部分补上。</div>
+      </div>
+      <div class="lf"><span>本卷结账，余额结转下卷</span><span class="sig">林记</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 卷末 ============ -->
+<section class="chap" id="end" data-vol="卷末 · 哪些是真的">
+  <div class="slab">
+    <div class="no">卷末</div>
+    <h2>哪些是真的</h2>
+    <dl><dt>内容</dt><dd>故事与历史对照表 · 出处 · 存疑</dd></dl>
+  </div>
+  <div class="col">
+    <p>苇城是虚构的，林记、麦娘、老秤、小芦、阿穆、老牛和书里所有的对白，都是虚构的。苇城的年份也是故事里的年份，它把我们世界里几千年的事压进了几十年。下面这张表把故事里的每一步，和我们世界里对应的真事对一对。</p>
+    <div class="scroll-x">
+    <table class="t">
+      <thead><tr><th>苇城的故事</th><th>我们的世界</th><th>可靠程度</th></tr></thead>
+      <tbody>
+        <tr><td>老秤用泥丸记账，一种形状一样东西</td><td>西亚各地出土大量小泥块，最早约前 8000 年；“计数筹码”说出自施曼特-贝瑟拉</td><td>泥块真实；用途解读大体被接受，细节存疑</td></tr>
+        <tr><td>阿穆的泥球，外面滚印章，后来外面按泥丸印</td><td>约前 3500 年苏萨、乌鲁克等地的空心泥球（bullae），部分外面有筹码印</td><td>真实</td></tr>
+        <tr><td>小芦把泥球压成泥饼</td><td>泥球之后出现只有压印数字的“数字泥板”</td><td>先后顺序大体公认；是不是“一步变过来”的，不清楚</td></tr>
+        <tr><td>林记教“一百八十”，老秤坚持“羊有羊的数法”</td><td>原始楔形文字数字与物品分开书写；同时并存十几套计数体系</td><td>真实</td></tr>
+        <tr><td>经手人在泥板角上压记号</td><td>乌鲁克泥板上常见官员或机构名；“库希姆”泥板</td><td>泥板真实；“库希姆”是人名还是官职存疑</td></tr>
+        <tr><td>麦娘用“水、苗”拼出阿穆的名字</td><td>画谜原则：苏美尔语“箭/生命”同音 ti；汉字假借；埃及圣书字借音</td><td>原理真实；“阿穆 = 水 + 苗”是虚构的苇城话</td></tr>
+        <tr><td>小芦在名字前加小人、神名前加星星</td><td>楔形文字的限定符（神名前的 dingir 星形符号等）；埃及限定符；汉字形旁</td><td>真实</td></tr>
+        <tr><td>三角形芦苇笔，羊变成一撮钉子，符号躺倒</td><td>楔形文字的形成；符号整体左转九十度</td><td>真实；转向的时间与原因存疑</td></tr>
+        <tr><td>泥板屋，学生抄符号表、挨打</td><td>两河流域的 é-dub-ba-a（泥板屋）；词表与校园文献</td><td>真实</td></tr>
+        <tr><td>城门口的大泥板</td><td>《汉谟拉比法典》石碑（约前 1754 年）；子产铸刑书（前 536 年）</td><td>真实；苇城那块是虚构</td></tr>
+        <tr><td>西国的神字</td><td>埃及圣书字</td><td>对应关系是故事的设定</td></tr>
+        <tr><td>老牛和矿上的字母，“给女主人”</td><td>塞拉比特·卡迪姆的原始西奈字母；加德纳 1916 年读出 l-b-ʿ-l-t</td><td>真实；年代有早晚两说</td></tr>
+        <tr><td>苇城没有接受字母</td><td>楔形文字和字母并存了一千多年，最后才被阿拉米字母等取代</td><td>大势真实；苇城的细节虚构</td></tr>
+        <tr><td>林记“知道有字、自己造一套”</td><td>塞阔雅的切罗基音节文字；“刺激传播”</td><td>真实</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>出处与存疑</h3>
+    <ul class="src">
+      <li><b>筹码与泥球</b>：Denise Schmandt-Besserat, <i>Before Writing</i>（两卷，1992）及其简本 <i>How Writing Came About</i>（1996）。对其“筹码演变为文字符号”一说的批评，见 Paul Zimansky 等人的书评。正文对此已标存疑。</li>
+      <li><b>乌鲁克泥板与计数体系</b>：Hans J. Nissen, Peter Damerow, Robert K. Englund, <i>Archaic Bookkeeping</i>（1993）；Englund 关于原始楔形文字的综述文章（1998、2004）。泥板总数约五六千块、符号数近千个、计数体系十几套，均为约数，各家口径不同。</li>
+      <li><b>库希姆泥板</b>：数字有 29,086 与 28,086 两种读法；“库希姆”是人名、官职还是机构不能确定。赫拉利的说法见《人类简史》。</li>
+      <li><b>画谜原则与限定符</b>：通行文字学与亚述学著作，如 Andrew Robinson, <i>The Story of Writing</i>；I. J. Gelb, <i>A Study of Writing</i>（1952）。汉字假借诸例（来、其、自、莫）据通行古文字学说法；“本无其字，依声托事”出自许慎《说文解字·叙》。</li>
+      <li><b>形声字比例</b>：《说文》约八成、甲骨文约两三成，为常见估计，统计方法不同结果不同。</li>
+      <li><b>楔形文字</b>：转向九十度的年代、最晚泥板（约公元 75 年前后）均据通行说法；校园文献只作概述，未引译文。</li>
+      <li><b>列维-斯特劳斯</b>：《忧郁的热带》（1955）“文字课”一章，正文为概述，并标明这是一家之言。</li>
+      <li><b>汉谟拉比法典</b>：年代按中年代学，约前 1754 年。<b>子产铸刑书、叔向语</b>：《左传·昭公六年》。</li>
+      <li><b>原始西奈字母</b>：Alan Gardiner 1916 年的论文；瓦迪·霍尔刻字见 Darnell 等 2005 年的正式报告。年代“早说约前 1850、晚说约前 1550”据通行综述。各字母原形含义有争议者，装置中以虚线框标出。</li>
+      <li><b>腓尼基与希腊字母</b>：约前 1050 年、约前 800 年均为约数；希腊字母的具体借入时间学界有不同估计。<b>满文源流</b>：满文 1599 年依蒙古文创制，蒙古文出自回鹘文，回鹘文出自粟特文，粟特文属阿拉米字母系统，为通行说法；婆罗米文是否出自阿拉米字母有争论。外朝三大殿匾额的满文于民国初年撤去，为通行说法。</li>
+      <li><b>独立发明的次数</b>：两河、中国、中美洲为独立发明，基本公认；埃及是否独立有争论。甲骨文单字数与已释读数为约数。</li>
+      <li><b>仓颉</b>：“天雨粟，鬼夜哭”出自《淮南子·本经训》，鬼为何哭有多种解释，正文只取其一。<b>恩美卡</b>：苏美尔史诗《恩美卡与阿拉塔之王》，正文为概述。<b>托特与国王</b>：柏拉图《斐德若篇》，正文为概述。</li>
+      <li><b>塞阔雅</b>：开始造字的年份、符号数 86/85、1821 年还是 1825 年被正式采用、普及速度，各书记述不一。“刺激传播”是人类学家克罗伯（A. L. Kroeber）1940 年提出的概念。</li>
+      <li><b>训民正音</b>：1443 年创制、1446 年颁布；序文据《训民正音》，郑麟趾后序语为概述；崔万理上疏见《朝鲜王朝实录·世宗实录》（1444）；1894 年成为官方文字，据通行说法。</li>
+      <li><b>大写数字</b>：“朱元璋因郭桓案推行大写数字”为流行说法，唐代文书中已有类似用法，正文已标存疑。</li>
+      <li><b>装置</b>：泥球、收据、字形演变中的符号均为示意，不是具体泥板的摹本；装置 2 的数字记号按原始楔形文字六十进制体系简化；装置 6 的字母原形据通行字母史推测绘制；装置 7 的年代均为约数。</li>
+    </ul>
+    <p class="ni" style="font-size:15px;color:var(--ink-2)">如发现错漏，欢迎指出。</p>
+  </div>
+</section>
+</main>
+
+<footer class="g">
+  <a class="nextbook" href="../money/"><span style="font-size:12px;color:var(--ink-3)">书房里的另一本书</span><br><b>点石成金 · 金钱创世记</b><br><span style="font-size:14px;color:var(--ink-2)">老秤那罐子泥丸，在另一本书里长成了钱。从一笔债讲到一条消息，五千年。</span></a>
+  <a class="nextbook" href="../yes/"><span style="font-size:12px;color:var(--ink-3)">书房里的另一本书</span><br><b>是，大人 · 衙门里的处世术</b><br><span style="font-size:14px;color:var(--ink-2)">泥板屋里那第一批只写字、不种地的孩子，后来坐进了衙门。</span></a>
+  <p>《苇城书记 · 文字创世记》卷一《落笔》，创世书房藏书之一。故事为原创虚构，蓝框内的历史已尽量核对，争议之处列在卷末。正文由 Claude 协助创作。纯静态网页，无框架，只从 Google Fonts 加载字体。</p>
+  <p><a href="../">回书房</a> · <a href="#top" id="toTop">回到开头</a></p>
+</footer>
+
+<script>
+(function(){
+'use strict';
+const $ = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => [...(r || document).querySelectorAll(s)];
+const shuffle = a => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
+const ri = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+const CN = n => { // 阿拉伯数字转中文读法（< 1000）
+  const d = '零一二三四五六七八九';
+  if (n < 10) return d[n];
+  if (n < 20) return '十' + (n % 10 ? d[n % 10] : '');
+  if (n < 100) return d[Math.floor(n / 10)] + '十' + (n % 10 ? d[n % 10] : '');
+  const h = Math.floor(n / 100), r = n % 100;
+  return d[h] + '百' + (r === 0 ? '' : r < 10 ? '零' + d[r] : (r < 20 ? '一' : '') + CN(r));
+};
+
+/* ---------- 页眉：卷名、进度、目录 ---------- */
+const barVol = $('#barVol'), prog = $('#prog');
+const vols = $$('[data-vol]');
+let tick = false;
+function onScroll(){
+  tick = false;
+  const lim = innerHeight * 0.35; let cur = null;
+  for (const e of vols) { if (e.getBoundingClientRect().top < lim) cur = e; else break; }
+  barVol.textContent = cur ? cur.dataset.vol : '序';
+  const H = document.documentElement.scrollHeight - innerHeight;
+  prog.style.width = (H > 0 ? scrollY / H * 100 : 0) + '%';
+}
+window.addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(onScroll); } }, {passive: true});
+onScroll();
+const drawer = $('#drawer');
+$('#drawerList').innerHTML = $$('#toc a').map(a => '<li><a href="' + a.getAttribute('href') + '"><span class="n">' + $('.n', a).textContent + '</span><span>' + $('.t', a).innerHTML + '</span></a></li>').join('');
+function openD(on){ drawer.classList.toggle('on', on); drawer.setAttribute('aria-hidden', on ? 'false' : 'true'); }
+$('#tocBtn').addEventListener('click', () => openD(true));
+drawer.addEventListener('click', e => { if (e.target.closest('[data-close]') || e.target.closest('a')) openD(false); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') openD(false); });
+const toTop = $('#toTop'); if (toTop) toTop.addEventListener('click', e => { e.preventDefault(); scrollTo({top: 0, behavior: 'smooth'}); });
+
+/* ---------- 苇城符号：每个画在 40×40 的格子里 ----------
+   压出来的（数字、印章）用深泥色填充；刻出来的（图形）用墨线。 */
+const IMP = ' fill="var(--clay-d)" opacity=".88"';
+const INC = (w) => ' fill="none" stroke="var(--ink-2)" stroke-width="' + (w || 2.4) + '" stroke-linecap="round" stroke-linejoin="round"';
+const SIG = {
+  n1: '<path d="M20,9 q4.5,0 4.5,6 v10 q0,6 -4.5,6 q-4.5,0 -4.5,-6 v-10 q0,-6 4.5,-6 Z"' + IMP + '/>',
+  n10: '<circle cx="20" cy="20" r="7"' + IMP + '/>',
+  n60: '<path d="M20,4 q8,0 8,9 v14 q0,9 -8,9 q-8,0 -8,-9 v-14 q0,-9 8,-9 Z"' + IMP + '/><path d="M20,9 q3,0 3,5 v12 q0,5 -3,5" fill="none" stroke="var(--paper)" stroke-width="1.2" opacity=".35"/>',
+  sheep: '<circle cx="20" cy="20" r="12"' + INC() + '/><path d="M20,8 V32 M8,20 H32"' + INC() + '/>',
+  barley: '<path d="M20,35 V6 M20,11 l-6,-4 M20,11 l6,-4 M20,18 l-7,-4 M20,18 l7,-4 M20,25 l-7,-4 M20,25 l7,-4"' + INC() + '/>',
+  beer: '<path d="M13,7 H27 L25,12 Q31,20 25,29 L20,35 L15,29 Q9,20 15,12 Z"' + INC() + '/><path d="M14,17 H26 M13.5,22 H26.5"' + INC(1.6) + '/>',
+  oil: '<path d="M16,6 H24 V11 Q32,15 30,24 Q28,33 20,33 Q12,33 10,24 Q8,15 16,11 Z"' + INC() + '/><path d="M12,21 H28"' + INC(1.6) + '/>',
+  bread: '<path d="M7,13 H33 L27,30 H13 Z"' + INC() + '/><path d="M9,17 H31"' + INC(1.4) + '/>',
+  cloth: '<path d="M9,9 H31 V27 H9 Z"' + INC() + '/><path d="M12,27 v6 M17,27 v6 M22,27 v6 M27,27 v6 M9,15 H31 M9,21 H31"' + INC(1.5) + '/>',
+  person: '<circle cx="20" cy="9" r="4"' + INC(2) + '/><path d="M20,13 V25 M13,18 H27 M20,25 L14,34 M20,25 L26,34"' + INC(2) + '/>',
+  water: '<path d="M6,15 q3.5,-5 7,0 t7,0 t7,0 t7,0 M6,25 q3.5,-5 7,0 t7,0 t7,0 t7,0"' + INC() + '/>',
+  sprout: '<path d="M20,35 V14 M20,22 Q10,20 9,10 Q18,11 20,20 M20,18 Q29,15 31,6 Q22,7 20,16"' + INC(2.1) + '/>',
+  star: '<path d="M20,6 V34 M6,20 H34 M10,10 L30,30 M30,10 L10,30"' + INC(2.2) + '/>'
+};
+// 印章：滚出来的一条带子
+function seal(motif){ return '<rect x="3" y="9" width="34" height="22" rx="2" fill="var(--clay)" opacity=".35"/><path d="M3,11 H37 M3,29 H37"' + INC(1.2) + '/><g transform="translate(6,13) scale(.35)">' + SIG[motif] + '</g><g transform="translate(20,13) scale(.35)">' + SIG[motif] + '</g>'; }
+SIG.sAmu = seal('sheep'); SIG.sMai = seal('beer'); SIG.sTemple = seal('star');
+const sv = (k, cls) => '<svg viewBox="0 0 40 40" aria-hidden="true"' + (cls ? ' class="' + cls + '"' : '') + '>' + SIG[k] + '</svg>';
+const tile = (k, x, y, s) => '<g transform="translate(' + x + ',' + y + ') scale(' + (s || 1) + ')">' + SIG[k] + '</g>';
+function tabletBg(w, h){ return '<rect x="4" y="4" width="' + (w - 8) + '" height="' + (h - 8) + '" rx="34" fill="var(--clay-2)" stroke="var(--clay)" stroke-width="2"/><rect x="10" y="' + (h - 18) + '" width="' + (w - 20) + '" height="8" rx="4" fill="var(--clay)" opacity=".18"/>'; }
+
+/* ---------- 封面泥板 ---------- */
+(function(){
+  const s = $('#coverTab'); if (!s) return;
+  let h = tabletBg(300, 230);
+  h += '<path d="M60,30 H240 M60,104 H240 M60,160 H240" stroke="var(--clay)" stroke-width="1.2" opacity=".6"/>';
+  h += tile('n10', 64, 50, 1.3); for (let i = 0; i < 5; i++) h += tile('n1', 112 + i * 26, 50, 1.3);
+  h += tile('sheep', 120, 106, 1.3);
+  h += tile('person', 84, 164, 1.2) + tile('water', 128, 164, 1.2) + tile('sprout', 172, 164, 1.2);
+  h += '<path d="M248,40 l10,22 l-6,10 M40,150 l14,8" stroke="var(--clay)" stroke-width="1.4" fill="none" opacity=".7"/>';
+  s.innerHTML = h;
+})();
+
+/* ---------- 装置 1：封一只泥球 ---------- */
+(function(){
+  const svg = $('#bullaSvg'); if (!svg) return;
+  const ctl = $('#bullaCtl'), stepsEl = $('#bullaSteps');
+  const TOK = {
+    sheep: {n: '羊（扁圆片带十字）', g: (x, y, imp) => imp ? '<circle cx="' + x + '" cy="' + y + '" r="9" fill="var(--clay-d)" opacity=".8"/><path d="M' + x + ',' + (y - 7) + ' v14 M' + (x - 7) + ',' + y + ' h14" stroke="var(--clay-2)" stroke-width="2"/>' : '<circle cx="' + x + '" cy="' + y + '" r="9" fill="var(--card)" stroke="var(--ink-2)" stroke-width="2"/><path d="M' + x + ',' + (y - 7) + ' v14 M' + (x - 7) + ',' + y + ' h14" stroke="var(--ink-2)" stroke-width="1.8"/>'},
+    oil: {n: '油（卵形带刻线）', g: (x, y, imp) => imp ? '<ellipse cx="' + x + '" cy="' + y + '" rx="6.5" ry="9.5" fill="var(--clay-d)" opacity=".8"/><path d="M' + (x - 6) + ',' + y + ' h12" stroke="var(--clay-2)" stroke-width="2"/>' : '<ellipse cx="' + x + '" cy="' + y + '" rx="6.5" ry="9.5" fill="var(--card)" stroke="var(--ink-2)" stroke-width="2"/><path d="M' + (x - 6) + ',' + y + ' h12" stroke="var(--ink-2)" stroke-width="1.8"/>'},
+    cone: {n: '一小筐麦（圆锥）', g: (x, y, imp) => '<path d="M' + x + ',' + (y - 10) + ' l8,18 h-16 Z" fill="' + (imp ? 'var(--clay-d)' : 'var(--card)') + '" ' + (imp ? 'opacity=".8"' : 'stroke="var(--ink-2)" stroke-width="2" stroke-linejoin="round"') + '/>'},
+    ball: {n: '一大筐麦（圆球）', g: (x, y, imp) => '<circle cx="' + x + '" cy="' + y + '" r="8" fill="' + (imp ? 'var(--clay-d)' : 'var(--card)') + '" ' + (imp ? 'opacity=".8"' : 'stroke="var(--ink-2)" stroke-width="2"') + '/>' + (imp ? '' : '<circle cx="' + (x - 3) + '" cy="' + (y - 3) + '" r="2" fill="var(--ink-3)" opacity=".4"/>')}
+  };
+  const STEPS = ['放泥丸', '封口', '上路', '到神庙', '压扁'];
+  let st;
+  function reset(){ st = {sheep: ri(5, 9), oil: ri(1, 3), inside: [], stage: 0, marked: false, broken: false, flat: false, tries: (st ? st.tries : 0)}; draw(); }
+  function cnt(k){ return st.inside.filter(t => t === k).length; }
+  function steps(){ stepsEl.innerHTML = STEPS.map((s, i) => '<span class="' + (i < st.stage ? 'done' : i === st.stage ? 'on' : '') + '">' + s + '</span>').join(''); }
+  function drawSvg(){
+    const cx = 160, cy = 150, R = 110;
+    let h = '';
+    const pos = st.inside.map((t, i) => { const a = i * 2.4, r = 18 + 10 * Math.sqrt(i); return [cx + Math.cos(a) * r * 1.15, cy + Math.sin(a) * r]; });
+    if (st.flat) {
+      h += '<rect x="30" y="70" width="260" height="160" rx="40" fill="var(--clay-2)" stroke="var(--clay)" stroke-width="2"/>';
+      st.inside.forEach((t, i) => { const x = 66 + (i % 8) * 27, y = 110 + Math.floor(i / 8) * 34; h += TOK[t].g(x, y, true); });
+      h += '<text x="160" y="258" text-anchor="middle" font-size="13" fill="var(--ink-3)">没有球，没有里面，只有印子：一块泥板</text>';
+    } else if (st.broken) {
+      const zz = ' L' + (cx + 8) + ',' + (cy + 66) + ' L' + (cx - 7) + ',' + (cy + 22) + ' L' + (cx + 9) + ',' + (cy - 18) + ' L' + (cx - 6) + ',' + (cy - 62) + ' Z';
+      h += '<path d="M' + cx + ',' + (cy - R) + ' A' + R + ',' + R + ' 0 0 0 ' + cx + ',' + (cy + R) + zz + '" fill="var(--clay-2)" stroke="var(--clay)" stroke-width="2" transform="translate(-20,-14) rotate(-6 ' + cx + ' ' + cy + ')"/>';
+      h += '<path d="M' + cx + ',' + (cy - R) + ' A' + R + ',' + R + ' 0 0 1 ' + cx + ',' + (cy + R) + zz + '" fill="var(--clay-2)" stroke="var(--clay)" stroke-width="2" transform="translate(20,-14) rotate(6 ' + cx + ' ' + cy + ')"/>';
+      st.inside.forEach((t, i) => h += TOK[t].g(70 + (i % 9) * 22, 272 - Math.floor(i / 9) * 22, false));
+    } else {
+      const sealed = st.stage >= 1;
+      h += '<circle cx="' + cx + '" cy="' + cy + '" r="' + R + '" fill="' + (sealed ? 'var(--clay-2)' : 'var(--paper-2)') + '" stroke="var(--clay)" stroke-width="' + (sealed ? 3 : 2) + '"' + (sealed ? '' : ' stroke-dasharray="8 6"') + '/>';
+      if (!sealed) {
+        st.inside.forEach((t, i) => h += TOK[t].g(pos[i][0], pos[i][1], false));
+        if (!st.inside.length) h += '<text x="' + cx + '" y="' + (cy + 5) + '" text-anchor="middle" font-size="14" fill="var(--ink-3)">空心泥球（还没封口）</text>';
+      } else {
+        // 滚印的带子
+        h += '<path d="M' + (cx - R + 8) + ',' + (cy - 20) + ' Q' + cx + ',' + (cy - 34) + ' ' + (cx + R - 8) + ',' + (cy - 20) + ' M' + (cx - R + 8) + ',' + (cy + 4) + ' Q' + cx + ',' + (cy - 10) + ' ' + (cx + R - 8) + ',' + (cy + 4) + '" fill="none" stroke="var(--clay)" stroke-width="1.5"/>';
+        for (let i = 0; i < 7; i++) { const x = cx - 78 + i * 26; h += '<path d="M' + x + ',' + (cy - 4) + ' l5,-14 l5,14 M' + (x + 14) + ',' + (cy - 14) + ' a3,3 0 1 0 0.1,0" fill="none" stroke="var(--clay-d)" stroke-width="1.6" opacity=".7"/>'; }
+        h += '<text x="' + cx + '" y="' + (cy - 42) + '" text-anchor="middle" font-size="12" fill="var(--ink-3)">阿穆的印</text>';
+        if (st.marked) {
+          const cap = [7, 6, 4], rows = []; let rest = st.inside.slice();
+          cap.forEach(c => { if (rest.length) { rows.push(rest.slice(0, c)); rest = rest.slice(c); } });
+          rows.forEach((row, r) => row.forEach((t, i) => h += TOK[t].g(cx + (i - (row.length - 1) / 2) * 24, cy + 36 + r * 25, true)));
+        }
+        else h += '<text x="' + cx + '" y="' + (cy + 56) + '" text-anchor="middle" font-size="13" fill="var(--ink-3)">外面什么也看不出来</text>';
+      }
+    }
+    svg.innerHTML = h;
+  }
+  function say(who, txt, cls){ return '<div class="say' + (cls ? ' ' + cls : '') + '"><b>' + who + '</b>' + txt + '</div>'; }
+  function draw(){
+    steps(); drawSvg();
+    let h = '';
+    if (st.stage === 0) {
+      h += '<p class="readout">这回要交：<b>羊 ' + st.sheep + ' 只、油 ' + st.oil + ' 罐</b>。每样东西放一个对应的泥丸。</p>';
+      h += '<div class="tokbar">' + Object.keys(TOK).map(k => '<button data-t="' + k + '"><svg viewBox="0 0 30 30">' + TOK[k].g(15, 15, false) + '</svg>' + TOK[k].n.split('（')[0] + '</button>').join('') + '</div>';
+      h += '<p class="readout">球里：羊 <b>' + cnt('sheep') + '</b> · 油 <b>' + cnt('oil') + '</b>' + (cnt('cone') + cnt('ball') ? ' · 麦 <b>' + (cnt('cone') + cnt('ball')) + '</b>' : '') + '</p>';
+      h += '<div class="btns"><button class="btn" data-a="undo">拿出一个</button><button class="btn pri" data-a="seal0">直接封口</button><button class="btn red" data-a="seal1">先在外面按印，再封口</button></div>';
+      h += '<div id="bMsg"></div>';
+    } else if (st.stage === 1) {
+      h += say('阿穆', st.marked ? '外面按了' + st.inside.length + '个印，里面封了' + st.inside.length + '个泥丸。滚上我的印，晾干了。' : '封好了，滚上我的印，晾干了。里面装了什么，现在谁也看不见了。');
+      h += '<div class="btns"><button class="btn pri" data-a="go">交给伙计，上路</button></div>';
+    } else if (st.stage === 2) {
+      h += say('旁白', '三天的路。伙计赶着' + st.sheep + '只羊、背着' + st.oil + '罐油，揣着泥球。路过一个村子时，他在一户人家门口停了很久。');
+      h += '<div class="btns"><button class="btn pri" data-a="arrive">三天后，神庙</button></div>';
+    } else if (st.stage === 3 && !st.broken && !st.looked) {
+      h += say('老秤', '羊圈里数了，' + (st.sheep - 1) + '只羊，' + st.oil + '罐油。泥球呢？', 'bad');
+      h += '<div class="btns">' + (st.marked ? '<button class="btn pri" data-a="look">先看外面的印</button>' : '') + '<button class="btn' + (st.marked ? '' : ' pri') + '" data-a="break">敲开泥球</button></div>';
+    } else if (st.stage === 3) {
+      if (st.looked && !st.broken) {
+        h += say('老秤', '外面印着' + cnt('sheep') + '只羊、' + cnt('oil') + '罐油，人人都看见了。羊少一只。', 'ok');
+        h += say('伙计', '……我赔。');
+        h += '<p class="readout">泥球不用敲，原封不动放进库房，当凭证存着。以后谁有疑问，再当众敲开对一对。</p>';
+        h += '<div class="btns"><button class="btn red" data-a="flatq">这时，小芦开口了……</button></div>';
+      } else if (st.broken && !st.marked) {
+        h += say('老秤', '里面' + cnt('sheep') + '个羊片，' + cnt('oil') + '个油丸。羊少了一只。', 'bad');
+        h += say('伙计', '谁知道是不是你们神庙的人敲开以后又塞进去一个？');
+        h += '<p class="readout">泥球已经碎了，谁也证明不了它碎之前装着几个片。这就是苇城那场架。<b>再试一次，这回封口之前先在外面按印。</b></p>';
+        h += '<div class="btns"><button class="btn pri" data-a="reset">再封一只</button></div>';
+      } else {
+        h += say('老秤', '外面' + cnt('sheep') + '个印，里面' + cnt('sheep') + '个片，一模一样。羊少一只，伙计赔。', 'ok');
+        h += '<p class="readout">对得上。不过，其实外面的印已经够说明问题了，这一敲，凭证也没了。</p>';
+        h += '<div class="btns"><button class="btn red" data-a="flatq">这时，小芦开口了……</button></div>';
+      }
+    } else if (st.stage === 4 && !st.flat) {
+      h += say('小芦', '外面都按上了，里面那些泥丸子还有什么用？你们每回看的都是外面的印啊。那还捏个球干嘛？捏块饼不就行了。');
+      h += '<div class="btns"><button class="btn red" data-a="flat">把泥球压扁</button></div>';
+    } else {
+      h += say('林记', '那孩子刚刚做了一块泥板。', 'ok');
+      h += '<p class="readout">在我们的世界，这一步大约发生在公元前 3500 到前 3300 年之间：先是外面按了印的空心泥球，然后是只有压印、没有里面的扁平泥板。</p>';
+      h += '<div class="btns"><button class="btn" data-a="reset">从头再来</button></div>';
+    }
+    ctl.innerHTML = h;
+  }
+  ctl.addEventListener('click', e => {
+    const t = e.target.closest('[data-t]'), a = e.target.closest('[data-a]');
+    if (t && st.stage === 0) { if (st.inside.length < 16) st.inside.push(t.dataset.t); draw(); return; }
+    if (!a) return;
+    const k = a.dataset.a;
+    if (k === 'undo') { st.inside.pop(); draw(); }
+    else if (k === 'seal0' || k === 'seal1') {
+      if (cnt('sheep') !== st.sheep || cnt('oil') !== st.oil || cnt('cone') + cnt('ball')) {
+        $('#bMsg').innerHTML = say('阿穆', (cnt('cone') + cnt('ball') ? '这回不交麦，把麦丸拿出来。' : '不对。我要交' + st.sheep + '只羊、' + st.oil + '罐油，你放了' + cnt('sheep') + '个羊片、' + cnt('oil') + '个油丸。'), 'bad');
+        return;
+      }
+      st.marked = k === 'seal1'; st.stage = 1; draw();
+    }
+    else if (k === 'go') { st.stage = 2; draw(); }
+    else if (k === 'arrive') { st.stage = 3; draw(); }
+    else if (k === 'look') { st.looked = true; draw(); }
+    else if (k === 'break') { st.broken = true; draw(); }
+    else if (k === 'flatq') { st.stage = 4; st.broken = false; draw(); }
+    else if (k === 'flat') { st.flat = true; draw(); }
+    else if (k === 'reset') reset();
+  });
+  reset();
+})();
+
+/* ---------- 装置 2：写一张收据 ---------- */
+(function(){
+  const tab = $('#rcptTab'); if (!tab) return;
+  const THING = {sheep: ['羊', '只'], barley: ['麦', '筐'], beer: ['酒', '罐'], oil: ['油', '罐'], bread: ['口粮', '份'], cloth: ['布', '匹']};
+  const WHO = {sAmu: '阿穆', sMai: '麦娘', sTemple: '神庙'};
+  const ORD = [['sAmu', 'sheep', 20, 179, '交来'], ['sMai', 'beer', 4, 48, '交来'], ['sTemple', 'bread', 30, 200, '发出'], ['sAmu', 'cloth', 3, 25, '交来'], ['sMai', 'barley', 10, 90, '交来'], ['sTemple', 'oil', 5, 70, '发出'], ['sAmu', 'sheep', 60, 179, '交来']];
+  let ord, on = [], oi = -1, done = false;
+  const pads = {rcptNum: ['n1', 'n10', 'n60'], rcptThing: Object.keys(THING), rcptWho: Object.keys(WHO)};
+  const label = {n1: '1', n10: '10', n60: '60', sAmu: '阿穆的印', sMai: '麦娘的印', sTemple: '神庙的印'};
+  Object.entries(pads).forEach(([id, ks]) => { $('#' + id).innerHTML = ks.map(k => '<button data-k="' + k + '" aria-label="' + (label[k] || THING[k][0]) + '">' + sv(k) + '<span>' + (label[k] || THING[k][0]) + '</span></button>').join(''); });
+  function next(){
+    oi = (oi + 1) % ORD.length; const o = ORD[oi];
+    ord = {who: o[0], thing: o[1], n: ri(o[2], o[3]), verb: o[4]}; on = []; done = false;
+    $('#rcptOrder').innerHTML = '今天的账：<b>' + WHO[ord.who] + '</b>' + ord.verb + '<b>' + THING[ord.thing][0] + ' ' + ord.n + ' ' + THING[ord.thing][1] + '</b>。';
+    $('#rcptSay').innerHTML = '<b>老秤</b>写好了拿来。'; $('#rcptSay').className = 'say';
+    draw();
+  }
+  function draw(){
+    tab.innerHTML = on.length ? on.map(k => sv(k)).join('') : '<span style="color:var(--ink-3);font-size:14px;padding:8px">一块湿泥板。点下面的符号往上写。</span>';
+    $('#rcptStat').textContent = '已写 ' + on.length + ' 个符号';
+  }
+  function minN(n){ return Math.floor(n / 60) + Math.floor(n % 60 / 10) + n % 10; }
+  function read(){
+    const n = on.reduce((s, k) => s + (k === 'n1' ? 1 : k === 'n10' ? 10 : k === 'n60' ? 60 : 0), 0);
+    const th = [...new Set(on.filter(k => THING[k]))], wh = [...new Set(on.filter(k => WHO[k]))];
+    const S = $('#rcptSay'); let t, ok = false;
+    if (!on.length) t = '空的。你让我念什么？';
+    else if (th.length > 1) t = '这是' + th.map(k => THING[k][0]).join('还是') + '？一块泥板，记一笔账。';
+    else if (!th.length) t = n ? CN(n % 1000) + '……什么？你见过一个光秃秃的“' + CN(n % 1000) + '”吗？' : '只有一个印，没写东西也没写数。';
+    else if (!n) t = '你画了' + THING[th[0]][0] + '，可没写几' + THING[th[0]][1] + '。一' + THING[th[0]][1] + '？';
+    else if (!wh.length) t = THING[th[0]][0] + '，' + CN(n) + THING[th[0]][1] + '。谁的？没写谁，到年底谁也不认。';
+    else if (wh.length > 1) t = '到底是' + wh.map(k => WHO[k]).join('还是') + '？一笔账只能有一个户头。';
+    else {
+      const rd = '我念：<b>' + THING[th[0]][0] + '，' + CN(n) + THING[th[0]][1] + '，' + WHO[wh[0]] + '</b>。';
+      if (n !== ord.n || th[0] !== ord.thing || wh[0] !== ord.who) t = rd + '跟账对不上。';
+      else {
+        ok = true;
+        const m = minN(n), used = on.filter(k => k[0] === 'n').length;
+        t = rd + '对上了。' + (used > m ? '不过你压了' + used + '个数字印，其实' + m + '个就够：十个小竖印换一个小圆印，六个小圆印换一个大竖印。' : '');
+        if (ord.thing === 'barley') t += '（麦子按理该用量麦的那一套数法，今天先饶了你。）';
+        t += '<br><span style="font-size:13.5px;color:var(--ink-3)">你用了 ' + on.length + ' 个符号。老办法一' + THING[ord.thing][1] + '按一个印，要按 ' + ord.n + ' 下。</span>';
+      }
+    }
+    S.innerHTML = '<b>老秤</b>' + t; S.className = 'say ' + (ok ? 'ok' : 'bad'); done = ok;
+  }
+  $('#rcptFig').addEventListener('click', e => {
+    const b = e.target.closest('.pad button');
+    if (b) { if (done) { on = []; done = false; } if (on.length < 36) on.push(b.dataset.k); draw(); }
+  });
+  $('#rcptUndo').addEventListener('click', () => { on.pop(); draw(); });
+  $('#rcptRead').addEventListener('click', read);
+  $('#rcptNext').addEventListener('click', next);
+  $('#rcptOld').addEventListener('click', () => {
+    const k = ord.thing, show = Math.min(ord.n, 36);
+    tab.innerHTML = Array(show).fill(sv(k)).join('') + (ord.n > show ? '<span style="align-self:center;font-size:14px;color:var(--ink-2);padding:0 6px">……还差 ' + (ord.n - show) + ' 个，泥板满了</span>' : '');
+    $('#rcptStat').textContent = '老办法：' + ord.n + ' 个印，还没写是谁的';
+    const S = $('#rcptSay'); S.className = 'say bad'; S.innerHTML = '<b>小芦</b>这就是我新年祭那天干的事。大拇指磨出了泡。';
+    on = []; done = true;
+  });
+  next();
+})();
+
+/* ---------- 装置 3：谐音画谜 ---------- */
+(function(){
+  const box = $('#rebusBox'); if (!box) return;
+  const Q = [
+    {p: [['🦇', '蝙蝠'], ['🦌', '鹿'], ['🍑', '寿桃']], o: ['福禄寿', '飞来横财', '长命百岁', '金玉满堂'], a: 0, x: '蝠＝福，鹿＝禄，都是借音。寿桃不是谐音，是“长寿”的象征，画谜里常常借音和象征混着用。'},
+    {p: [['🪷', '莲花'], ['🐟', '鱼']], o: ['如鱼得水', '连年有余', '出淤泥而不染', '鱼跃龙门'], a: 1, x: '莲＝连，鱼＝余：连年有余。年画里抱着鲤鱼和莲花的胖娃娃，说的就是这一句。'},
+    {p: [['🐒', '猴子'], ['🐎', '骑在马上']], o: ['马到成功', '心猿意马', '马上封侯', '千里马'], a: 2, x: '猴＝侯，骑在马上＝马上：马上封侯，祝人很快升官。'},
+    {p: [['🐦', '喜鹊'], ['🌸', '站在梅花枝梢']], o: ['鹊桥相会', '喜上眉梢', '花好月圆', '梅开二度'], a: 1, x: '喜鹊＝喜，梅＝眉，枝梢＝梢：喜上眉梢。'},
+    {p: [['🌾', '稻穗'], ['🏺', '花瓶'], ['🐦', '鹌鹑']], o: ['五谷丰登', '平步青云', '安居乐业', '岁岁平安'], a: 3, x: '穗＝岁，瓶＝平，鹌＝安：岁岁平安。三样东西，借了三个音。'},
+    {p: [['🐓', '公鸡'], ['🌺', '鸡冠花']], o: ['闻鸡起舞', '官上加官', '金鸡报晓', '一鸣惊人'], a: 1, x: '公鸡头上有冠，旁边再画一丛鸡冠花：冠上加冠＝官上加官。'},
+    {p: [['🐘', '大象'], ['🏺', '背上驮着宝瓶']], o: ['万象更新', '盲人摸象', '太平有象', '象牙之塔'], a: 2, x: '瓶＝平，象＝象（景象）：太平有象，清代宫廷里很常见的摆件。'}
+  ];
+  let i = 0, score = 0, answered = false;
+  function show(){
+    const q = Q[i]; answered = false;
+    box.innerHTML = '<div class="qn">第 ' + (i + 1) + ' / ' + Q.length + ' 幅 · 答对 ' + score + '</div><div class="pic">' + q.p.map(p => '<div><span>' + p[0] + '</span>' + p[1] + '</div>').join('<div style="align-self:center;font-size:24px;color:var(--ink-3)">＋</div>') + '</div><div class="opts">' + q.o.map((o, k) => '<button data-k="' + k + '">' + o + '</button>').join('') + '</div><div class="readout" id="rbEx" style="margin-top:10px"></div>';
+  }
+  box.addEventListener('click', e => {
+    const b = e.target.closest('[data-k]'), nx = e.target.closest('[data-next]');
+    if (nx) { i = (i + 1) % Q.length; if (i === 0) score = 0; show(); return; }
+    if (!b || answered) return;
+    answered = true; const q = Q[i], k = +b.dataset.k;
+    if (k === q.a) score++;
+    $$('[data-k]', box).forEach(x => { const kk = +x.dataset.k; if (kk === q.a) x.classList.add('ok'); else if (kk === k) x.classList.add('bad'); x.disabled = true; });
+    $('#rbEx').innerHTML = (k === q.a ? '<b>对。</b>' : '<b>是“' + q.o[q.a] + '”。</b>') + q.x + '<div class="btns" style="margin-top:8px"><button class="btn pri" data-next>' + (i === Q.length - 1 ? '答对 ' + score + ' / ' + Q.length + '，再来一遍' : '下一幅') + '</button></div>';
+  });
+  show();
+})();
+
+/* ---------- 装置 4：形声拼字 ---------- */
+(function(){
+  const sEl = $('#xsSnd'); if (!sEl) return;
+  const D = {
+    '青': ['qīng', {'氵': ['清', 'qīng', '水清，干净'], '日': ['晴', 'qíng', '天晴，没有云'], '目': ['睛', 'jīng', '眼珠'], '讠': ['请', 'qǐng', '开口请求'], '忄': ['情', 'qíng', '心里的感情'], '虫': ['蜻', 'qīng', '蜻蜓'], '米': ['精', 'jīng', '挑出来的好米，引申为精华'], '亻': ['倩', 'qiàn', '美好，多用于人']}],
+    '包': ['bāo', {'饣': ['饱', 'bǎo', '吃饱'], '扌': ['抱', 'bào', '用手臂围住'], '足': ['跑', 'pǎo', '用脚跑'], '火': ['炮', 'pào', '最早指用火烧烤，后来指火器'], '衤': ['袍', 'páo', '长衣'], '氵': ['泡', 'pào', '水泡'], '月': ['胞', 'bāo', '胎衣，同胞（这个“月”其实是“肉”）'], '艹': ['苞', 'bāo', '花苞'], '口': ['咆', 'páo', '咆哮']}],
+    '马': ['mǎ', {'女': ['妈', 'mā', '母亲'], '口': ['吗', 'ma', '问话的语气'], '石': ['码', 'mǎ', '砝码、号码'], '虫': ['蚂', 'mǎ', '蚂蚁'], '王': ['玛', 'mǎ', '玛瑙（这个“王”其实是“玉”）']}],
+    '方': ['fāng', {'讠': ['访', 'fǎng', '拜访，打听'], '纟': ['纺', 'fǎng', '纺线'], '艹': ['芳', 'fāng', '花草的香气'], '亻': ['仿', 'fǎng', '仿照'], '女': ['妨', 'fáng', '妨碍'], '土': ['坊', 'fāng', '街坊、作坊'], '月': ['肪', 'fáng', '脂肪（这个“月”其实是“肉”）']}],
+    '皮': ['pí', {'衤': ['被', 'bèi', '被子'], '氵': ['波', 'bō', '水波'], '扌': ['披', 'pī', '披在身上'], '土': ['坡', 'pō', '山坡'], '石': ['破', 'pò', '石头碎裂'], '足': ['跛', 'bǒ', '瘸腿'], '王': ['玻', 'bō', '玻璃']}],
+    '工': ['gōng', {'氵': ['江', 'jiāng', '大江。今天念 jiāng，和“工”差得远，但上古音两者很近'], '纟': ['红', 'hóng', '红色的丝帛'], '虫': ['虹', 'hóng', '彩虹（古人以为虹是一种虫）'], '木': ['杠', 'gàng', '木杠'], '扌': ['扛', 'káng', '用肩扛'], '讠': ['讧', 'hòng', '内讧，争吵']}],
+    '巴': ['bā', {'口': ['吧', 'ba', '语气词'], '扌': ['把', 'bǎ', '握住'], '艹': ['芭', 'bā', '芭蕉'], '米': ['粑', 'bā', '糍粑、粑粑'], '疒': ['疤', 'bā', '伤疤']}]
+  };
+  const SHP = ['氵', '日', '目', '讠', '忄', '虫', '饣', '扌', '足', '火', '衤', '女', '口', '石', '王', '艹', '纟', '亻', '土', '月', '木', '米', '疒'];
+  const NAME = {'氵': '水', '日': '太阳', '目': '眼睛', '讠': '说话', '忄': '心', '虫': '虫', '饣': '吃', '扌': '手', '足': '脚', '火': '火', '衤': '衣服', '女': '女人', '口': '嘴', '石': '石头', '王': '玉', '艹': '草', '纟': '丝', '亻': '人', '土': '土', '月': '肉', '木': '木头', '米': '米', '疒': '病'};
+  const total = Object.values(D).reduce((s, v) => s + Object.keys(v[1]).length, 0);
+  const found = new Set();
+  let cs = null;
+  sEl.innerHTML = Object.keys(D).map(k => '<button data-s="' + k + '" aria-label="声旁 ' + k + '">' + k + '</button>').join('');
+  $('#xsShp').innerHTML = SHP.map(k => '<button data-h="' + k + '" title="' + NAME[k] + '" aria-label="形旁 ' + k + '，' + NAME[k] + '">' + k + '</button>').join('');
+  const big = $('#xsBig'), info = $('#xsInfo');
+  function mark(){
+    $$('[data-s]', sEl).forEach(b => b.classList.toggle('on', b.dataset.s === cs));
+    $$('[data-h]').forEach(b => { b.classList.remove('on'); b.classList.toggle('hit', !!(cs && D[cs][1][b.dataset.h])); });
+    $('#xsFound').textContent = '已拼出 ' + found.size + ' / ' + total + ' 个字' + (found.size === total ? '。全部找到了！' : '');
+  }
+  sEl.addEventListener('click', e => { const b = e.target.closest('[data-s]'); if (!b) return; cs = b.dataset.s; big.textContent = cs; big.className = 'big'; info.innerHTML = '声旁“' + cs + '”，念 <b>' + D[cs][0] + '</b>。绿边的形旁能和它拼成字，点一个试试；也可以点别的，看拼不拼得出来。'; mark(); });
+  $('#xsShp').addEventListener('click', e => {
+    const b = e.target.closest('[data-h]'); if (!b) return;
+    if (!cs) { info.textContent = '先在上面点一个声旁。'; return; }
+    const h = b.dataset.h, r = D[cs][1][h];
+    mark(); b.classList.add('on');
+    if (r) {
+      found.add(r[0]); big.textContent = r[0]; big.className = 'big';
+      info.innerHTML = '<b style="font-size:17px">' + r[0] + '</b> ' + r[1] + '：' + r[2] + '<br><span style="font-size:13.5px;color:var(--ink-3)">“' + h + '”提醒它和' + NAME[h] + '有关，“' + cs + '”（' + D[cs][0] + '）提示读音。</span>';
+      mark(); b.classList.add('on');
+    } else { big.textContent = '×'; big.className = 'big none'; info.innerHTML = '“' + h + '” 加 “' + cs + '”拼不出常用字。<span style="font-size:13.5px;color:var(--ink-3)">（字典里也许有这么个生僻字。）</span>'; }
+  });
+  mark();
+})();
+
+/* ---------- 装置 5：一个字怎样变成楔子 ----------
+   每个符号是若干笔，每笔是一串点（在 100×100 的框里，直立的图画）。
+   变化分三步：笔画拉直 → 整体左转 90° → 每笔变成一个楔形印（头朝左或朝上）。 */
+(function(){
+  const box = $('#evoSigns'); if (!box) return;
+  const arc = (cx, cy, r, a0, a1, n) => { const p = []; for (let i = 0; i <= n; i++) { const a = (a0 + (a1 - a0) * i / n) * Math.PI / 180; p.push([cx + r * Math.cos(a), cy + r * Math.sin(a)]); } return p; };
+  const wave = (x0, x1, y, amp, n) => { const p = []; for (let i = 0; i <= n; i++) { const x = x0 + (x1 - x0) * i / n; p.push([x, y + amp * Math.sin(i / n * Math.PI * 4)]); } return p; };
+  const S = [
+    {n: '羊 · udu', s: [arc(50, 50, 28, -135, -45, 6), arc(50, 50, 28, -45, 45, 6), arc(50, 50, 28, 45, 135, 6), arc(50, 50, 28, 135, 225, 6), [[50, 22], [50, 78]], [[22, 50], [78, 50]]]},
+    {n: '牛 · gu₄', s: [[[28, 30], [18, 22], [16, 12], [24, 8]], [[72, 30], [82, 22], [84, 12], [76, 8]], [[28, 30], [34, 60], [44, 86]], [[72, 30], [66, 60], [56, 86]], [[28, 30], [72, 30]], [[44, 86], [56, 86]]]},
+    {n: '大麦 · še', s: [[[50, 92], [50, 50], [50, 10]], [[50, 22], [40, 14], [34, 12]], [[50, 22], [60, 14], [66, 12]], [[50, 40], [38, 32], [32, 30]], [[50, 40], [62, 32], [68, 30]], [[50, 58], [38, 50], [32, 48]], [[50, 58], [62, 50], [68, 48]]]},
+    {n: '鱼 · ku₆', s: [[[14, 50], [24, 38], [38, 32]], [[38, 32], [58, 34], [74, 50]], [[14, 50], [24, 62], [38, 68]], [[38, 68], [58, 66], [74, 50]], [[74, 50], [88, 36]], [[74, 50], [88, 64]], [[88, 36], [88, 64]]]},
+    {n: '神、天 · dingir', s: [[[50, 12], [50, 88]], [[12, 50], [88, 50]], [[23, 23], [77, 77]], [[77, 23], [23, 77]]]},
+    {n: '水 · a', s: [wave(14, 86, 38, 7, 16), wave(14, 86, 62, 7, 16)]},
+    {n: '山、外邦 · kur', s: [[[10, 78], [18, 60], [26, 42]], [[26, 42], [34, 60], [42, 78]], [[34, 60], [42, 42], [50, 24]], [[50, 24], [58, 42], [66, 60]], [[58, 78], [66, 60], [74, 42]], [[74, 42], [82, 60], [90, 78]]]},
+    {n: '头 · sag', s: [[[36, 14], [56, 10], [70, 18]], [[70, 18], [74, 34], [82, 44]], [[82, 44], [74, 52], [72, 64]], [[72, 64], [62, 74], [48, 76]], [[36, 14], [26, 30], [24, 50], [30, 70], [48, 76]], [[60, 34], [64, 36]]]}
+  ];
+  box.innerHTML = S.map((s, i) => '<div><svg viewBox="0 0 100 100" id="evo' + i + '" aria-hidden="true"></svg>' + s.n + '</div>').join('');
+  const L = (a, b, t) => a + (b - a) * t;
+  function render(t){
+    const s1 = clamp(t / .35, 0, 1);              // 拉直
+    const s2 = clamp((t - .3) / .3, 0, 1);        // 转向
+    const s3 = clamp((t - .62) / .3, 0, 1);       // 楔子
+    const ang = -90 * s2 * Math.PI / 180, ca = Math.cos(ang), sa = Math.sin(ang);
+    const rot = ([x, y]) => [50 + (x - 50) * ca - (y - 50) * sa, 50 + (x - 50) * sa + (y - 50) * ca];
+    S.forEach((sg, i) => {
+      let h = '';
+      sg.s.forEach(st => {
+        const a = st[0], b = st[st.length - 1], n = st.length - 1;
+        const pts = st.map((p, k) => rot([L(p[0], L(a[0], b[0], k / n), s1), L(p[1], L(a[1], b[1], k / n), s1)]));
+        if (s3 < 1) h += '<path d="M' + pts.map(p => p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' L') + '" fill="none" stroke="var(--ink-2)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" opacity="' + (1 - s3).toFixed(2) + '"/>';
+        if (s3 > 0) {
+          let p = rot(a), q = rot(b);
+          // 楔子的头朝左（横）或朝上（竖）
+          if (Math.abs(q[0] - p[0]) >= Math.abs(q[1] - p[1]) ? q[0] < p[0] : q[1] < p[1]) [p, q] = [q, p];
+          let dx = q[0] - p[0], dy = q[1] - p[1]; const len = Math.hypot(dx, dy) || 1;
+          // 方向向 45° 的倍数靠拢
+          const a0 = Math.atan2(dy, dx), snap = Math.round(a0 / (Math.PI / 4)) * Math.PI / 4, aa = L(a0, snap, s3);
+          dx = Math.cos(aa); dy = Math.sin(aa);
+          const ll = Math.max(len, 16), hw = 6.5, hl = 12;
+          const ex = p[0] + dx * ll, ey = p[1] + dy * ll, nx = -dy, ny = dx, f = v => v.toFixed(1);
+          h += '<g opacity="' + s3.toFixed(2) + '"><path d="M' + f(p[0] + nx * hw) + ',' + f(p[1] + ny * hw) + ' L' + f(p[0] - nx * hw) + ',' + f(p[1] - ny * hw) + ' L' + f(p[0] + dx * hl) + ',' + f(p[1] + dy * hl) + ' Z" fill="var(--clay-d)"/><path d="M' + f(p[0] + dx * hl * .5) + ',' + f(p[1] + dy * hl * .5) + ' L' + f(ex) + ',' + f(ey) + '" stroke="var(--clay-d)" stroke-width="2.4" stroke-linecap="round"/></g>';
+        }
+      });
+      $('#evo' + i).innerHTML = h;
+    });
+    $('#evoTxt').innerHTML = t < .3 ? '<b>画。</b>约公元前 3200 年前后，用削尖的芦苇在湿泥上刻图形，圆就是圆，弯就是弯。' : t < .62 ? '<b>拉直、躺倒。</b>泥里画弧线太慢，线条越来越直；后来整个符号向左转了九十度（何时转、为什么转，学界说法不一）。' : '<b>楔子。</b>每一笔都改成用三角形芦苇笔“按”出来：头大尾细，头朝左或朝上。到公元前一千纪的亚述、巴比伦，大多数符号已看不出原来的画了。';
+  }
+  const r = $('#evoR');
+  r.addEventListener('input', () => render(r.value / 100));
+  render(0);
+})();
+
+/* ---------- 装置 6：你名字的祖先 ---------- */
+(function(){
+  const inp = $('#ancIn'); if (!inp) return;
+  const W = ' fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"';
+  const P = {
+    ox: '<path d="M12,14 Q5,10 7,3 M28,14 Q35,10 33,3 M12,13 H28 L24,32 Q20,35 16,32 Z"' + W + '/><circle cx="16" cy="19" r="1.4" fill="var(--ink)"/><circle cx="24" cy="19" r="1.4" fill="var(--ink)"/>',
+    house: '<path d="M8,8 H32 V32 H23 V24 H17 V32 H8 Z"' + W + '/>',
+    stick: '<path d="M9,33 L19,7 L32,15"' + W + '/>',
+    door: '<path d="M10,6 H30 V34 H10 Z M15,11 H25 V29 H15 Z"' + W + '/><circle cx="23" cy="20" r="1.3" fill="var(--ink)"/>',
+    man: '<circle cx="20" cy="9" r="4"' + W + '/><path d="M20,13 V25 M20,25 L14,35 M20,25 L26,35 M20,17 L11,9 M20,17 L29,9"' + W + '/>',
+    hook: '<path d="M20,36 V14 M20,14 Q20,5 27,6 Q33,8 30,14"' + W + '/>',
+    weapon: '<path d="M20,5 V35 M12,7 H28 M12,33 H28"' + W + '/>',
+    fence: '<path d="M10,5 V35 M30,5 V35 M10,13 H30 M10,21 H30 M10,29 H30"' + W + '/>',
+    arm: '<path d="M6,30 L20,26 L26,14 M26,14 L22,8 M26,14 L30,8 M26,14 L34,12"' + W + '/>',
+    palm: '<path d="M14,34 V20 M26,34 V20 M14,20 L8,8 M17,19 L16,5 M20,19 L22,5 M23,19 L28,7 M26,20 L33,13 M14,34 H26"' + W + '/>',
+    goad: '<path d="M16,35 V14 Q16,5 24,6 Q31,8 28,15"' + W + '/>',
+    water: '<path d="M4,16 L10,10 L16,16 L22,10 L28,16 L34,10 M4,28 L10,22 L16,28 L22,22 L28,28 L34,22"' + W + '/>',
+    snake: '<path d="M8,32 Q14,24 20,30 Q27,36 30,26 Q33,16 24,14 Q16,12 20,6 L26,5"' + W + '/><circle cx="25" cy="5.5" r="1.5" fill="var(--ink)"/>',
+    eye: '<path d="M4,20 Q20,6 36,20 Q20,34 4,20 Z"' + W + '/><circle cx="20" cy="20" r="5" fill="var(--ink)"/>',
+    mouth: '<path d="M6,16 Q20,8 34,16 Q20,34 6,16 Z M8,17 Q20,22 32,17"' + W + '/>',
+    knot: '<circle cx="20" cy="15" r="8"' + W + '/><path d="M20,23 V36 M20,7 V23"' + W + '/>',
+    head: '<path d="M14,8 Q26,4 30,12 L33,18 L29,20 L30,26 Q26,32 18,30 L18,36 M14,8 Q8,16 12,26 Q14,30 18,30"' + W + '/><circle cx="25" cy="15" r="1.4" fill="var(--ink)"/>',
+    tooth: '<path d="M5,12 Q8,30 13,30 Q17,30 20,18 Q23,30 27,30 Q32,30 35,12"' + W + '/>',
+    mark: '<path d="M8,8 L32,32 M32,8 L8,32"' + W + '/>',
+    unk: '<text x="20" y="28" text-anchor="middle" font-size="24" fill="var(--ink-3)" font-family="serif">?</text>'
+  };
+  const A = {
+    A: ['ox', 'ʾalp', '牛', '希腊 Alpha。牛头倒过来、躺倒，就是 A'],
+    B: ['house', 'bayt', '房子', '希腊 Beta'],
+    C: ['stick', 'gaml', '投掷棒（一说骆驼）', '希腊 Gamma；拉丁语里 C 起初兼管 g、k 两个音'],
+    D: ['door', 'dalt', '门', '希腊 Delta'],
+    E: ['man', 'hē', '欢呼的人？', '希腊 Epsilon，由辅音改成了元音。原形含义有争议', 1],
+    F: ['hook', 'waw', '钩子、木钉', '希腊早期的 Digamma，后来希腊语不用了，拉丁语留下了 F'],
+    G: ['stick', 'gaml', '投掷棒', '罗马人约在公元前 3 世纪给 C 加了一笔，造出 G'],
+    H: ['fence', 'ḥēt', '篱笆、院子？', '希腊 Eta。原形含义有争议', 1],
+    I: ['arm', 'yad', '手臂', '希腊 Iota，由辅音改成了元音'],
+    J: ['arm', 'yad', '手臂', '中世纪以后才从 I 分出来'],
+    K: ['palm', 'kap', '手掌', '希腊 Kappa'],
+    L: ['goad', 'lamd', '赶牛的棍子', '希腊 Lambda'],
+    M: ['water', 'maym', '水', '希腊 Mu。波浪变成了 M'],
+    N: ['snake', 'naḥš', '蛇', '希腊 Nu。后来腓尼基人管这个字母叫 nun，意思是鱼'],
+    O: ['eye', 'ʿayn', '眼睛', '希腊 Omicron。眼睛的辅音被希腊人改成了元音 o'],
+    P: ['mouth', 'pē', '嘴', '希腊 Pi'],
+    Q: ['knot', 'qōp', '猴子？绳结？', '希腊早期的 Qoppa。原形是什么一直有争议', 1],
+    R: ['head', 'raʾš', '人头', '希腊 Rho'],
+    S: ['tooth', 'šin', '牙齿？', '希腊 Sigma。也有人认为原形是弓', 1],
+    T: ['mark', 'taw', '记号', '希腊 Tau。原来就是一个十字记号'],
+    U: ['hook', 'waw', '钩子', '希腊 Upsilon；U 和 V 到中世纪才分成两个字母'],
+    V: ['hook', 'waw', '钩子', '希腊 Upsilon；拉丁语里 V 兼管 u 和 v'],
+    W: ['hook', 'waw', '钩子', '中世纪把两个 V（或 U）连起来写，所以英语叫它 double-u'],
+    X: ['unk', '？', '来历不明', '来自希腊字母 Chi 或 Xi，再往上追不清楚', 1],
+    Y: ['hook', 'waw', '钩子', '罗马人为了写希腊借词，又借了一次 Upsilon'],
+    Z: ['weapon', 'zayn', '武器？', '希腊 Zeta。原形含义有争议', 1]
+  };
+  const cards = $('#ancCards'), chain = $('#ancChain');
+  function run(){
+    const s = inp.value.toUpperCase().replace(/[^A-Z ]/g, '').slice(0, 32);
+    const ls = s.replace(/ /g, '').split('');
+    cards.innerHTML = ls.map(c => { const a = A[c]; return '<div class="cd' + (a[4] ? ' q' : '') + '" title="' + a[3] + '"><svg viewBox="0 0 40 40" aria-hidden="true">' + P[a[0]] + '</svg><div class="L">' + c + '</div><div class="nm">' + a[1] + '</div>' + a[2] + '</div>'; }).join('') || '<p class="readout">输入几个拉丁字母试试。</p>';
+    chain.innerHTML = s.trim() ? s.trim().split(/ +/).map(w => '<b style="color:var(--ink)">' + w + '</b> ← ' + w.split('').map(c => A[c][2].replace(/[？（].*$/, '')).join(' · ')).join('<br>') + '<br><span style="font-size:12px">把鼠标放在卡片上（或长按）可以看到这个字母在希腊、罗马的经历。</span>' : '';
+  }
+  inp.addEventListener('input', run);
+  $('#ancFig').addEventListener('click', e => { const b = e.target.closest('[data-w]'); if (!b) return; inp.value = b.dataset.w; run(); });
+  cards.addEventListener('click', e => { const c = e.target.closest('.cd'); if (c) chain.innerHTML = '<b style="color:var(--ink)">' + $('.L', c).textContent + '</b>：' + c.title; });
+  run();
+})();
+
+/* ---------- 装置 7：人类发明文字的家谱 ---------- */
+(function(){
+  const svg = $('#tlSvg'); if (!svg) return;
+  const B = [[-3500, 60], [-1500, 340], [-500, 480], [500, 610], [1500, 770], [2000, 870]];
+  const X = y => { for (let i = 1; i < B.length; i++) if (y <= B[i][0]) { const [a, xa] = B[i - 1], [b, xb] = B[i]; return xa + (y - a) / (b - a) * (xb - xa); } return 870; };
+  const ROWS = ['西亚', '埃及 · 地中海 · 欧洲', '南亚', '东亚', '美洲 · 太平洋'];
+  const RY = r => 46 + r * 62;
+  const TY = {o: ['从零发明', 'var(--terra)'], d: ['借来改来', 'var(--lapis)'], s: ['受启发自造', 'var(--gold)'], u: ['至今未破译', 'var(--ink-3)']};
+  // [id, 名, 年, 行, 类, 标签位置, 说明]
+  const N = [
+    ['cun', '原始楔形文字', -3300, 0, 'o', 'r', '约公元前 3300 年，乌鲁克。从账目开始，后来演变成楔形文字，被十几种语言借用，一直用到公元一世纪。本书第一到第四章。'],
+    ['egy', '埃及圣书字', -3200, 1, 'o', 'r', '约公元前 3200 年前后，阿拜多斯 U-j 墓的骨牌、象牙牌上已有符号。它是独立发明，还是听说了两河“有文字”而受到启发，至今有争论。'],
+    ['ind', '印度河符号', -2600, 2, 'u', 'r', '约公元前 2600—前 1900 年，出现在几千枚小印章上，每段很短。至今没有破译，连它是不是记录语言的完整文字都有争论。卷二再讲。'],
+    ['sin', '原始西奈字母', -1850, 0, 'd', 'a', '约公元前 1850 年（一说更晚），埃及矿上说闪米特语的人，从圣书字里借了图形，只取头一个音。几乎所有字母文字的祖先。本书第五章。'],
+    ['lin', '线形文字 A', -1800, 1, 'u', 'b', '约公元前 1800—前 1450 年，克里特岛的米诺斯文明。它的后代线形文字 B 在 1952 年被破译，它自己至今读不懂。卷二再讲。'],
+    ['ora', '甲骨文', -1250, 3, 'o', 'r', '约公元前 1250 年起，商王武丁时代已很成熟。出土单字四千多个，释读约三分之一。汉字是今天仍在使用的、最古老的文字系统之一。'],
+    ['phn', '腓尼基字母', -1050, 0, 'd', 'r', '约公元前 1050 年定型，22 个字母，只记辅音。随着腓尼基商船传遍地中海。阿拉米字母等都从它分出。'],
+    ['grk', '希腊字母', -800, 1, 'd', 'a', '约公元前 800 年前后借自腓尼基字母，把几个用不上的辅音字母改成元音，第一次做到辅音元音都写。'],
+    ['lat', '拉丁字母', -600, 1, 'd', 'b', '约公元前 7—前 6 世纪，经伊特鲁里亚人从希腊字母改来。今天汉语拼音、英文、越南文都用它。'],
+    ['mes', '中美洲文字', -500, 4, 'o', 'r', '奥尔梅克、萨波特克、玛雅等。最早的可信材料约在公元前一千纪中期，具体年代和归属有争议。玛雅文字在 20 世纪后半叶被大体破译。'],
+    ['bra', '婆罗米文', -250, 2, 'd', 'r', '公元前 3 世纪阿育王的石刻已用它。今天印度、东南亚、中国藏文等许多文字都出自它。它是否出自阿拉米字母有争论。'],
+    ['arb', '阿拉伯字母', 400, 0, 'd', 'r', '约公元 4—5 世纪，从阿拉米字母经纳巴泰文演变而来。'],
+    ['kan', '日本假名', 900, 3, 'd', 'a', '9 世纪前后，由借汉字记音的“万叶假名”简化而来。第三章讲过。'],
+    ['cyr', '西里尔字母', 900, 1, 'd', 'r', '9—10 世纪，以希腊字母为基础，为斯拉夫语创制。今天俄文等使用。'],
+    ['hgl', '训民正音', 1443, 3, 's', 'a', '1443 年朝鲜世宗创制，1446 年颁布。字母形状照着发音器官画，是少有的有明确作者和设计思路的文字。设计时参考过哪些已有文字，学界有不同看法。'],
+    ['mnc', '满文', 1599, 3, 'd', 'b', '1599 年照蒙古文创制，往上可以追到回鹘文、粟特文、阿拉米字母，最终是腓尼基字母。'],
+    ['rng', '朗格朗格', 1700, 4, 'u', 'a', '复活节岛的木板刻符，没人能读。它是本地独立发明，还是 1770 年西班牙人来过之后受启发产生的，有争论。'],
+    ['chk', '切罗基音节文字', 1821, 4, 's', 'b', '约 1821 年，不识英文的塞阔雅为切罗基语创制，86 个符号（后为 85）。“刺激传播”的经典例子。']
+  ];
+  const E = [['egy', 'sin'], ['sin', 'phn'], ['phn', 'grk'], ['grk', 'lat'], ['grk', 'cyr'], ['phn', 'arb'], ['phn', 'bra', 1], ['phn', 'mnc', 1], ['ora', 'kan'], ['ora', 'hgl', 1], ['lat', 'chk', 1]];
+  const F = $('#tlF'), card = $('#tlCard');
+  let cur = 'all', sel = null;
+  F.innerHTML = '<button class="btn on" data-f="all">全部</button>' + Object.entries(TY).map(([k, v]) => '<button class="btn" data-f="' + k + '">' + v[0] + '</button>').join('');
+  const P = {}; N.forEach(n => P[n[0]] = [X(n[2]), RY(n[3])]);
+  function draw(){
+    let h = '';
+    ROWS.forEach((r, i) => h += '<line x1="20" y1="' + RY(i) + '" x2="890" y2="' + RY(i) + '" stroke="var(--rule)" stroke-dasharray="2 5"/><text x="20" y="' + (RY(i) - 18) + '" font-size="11" fill="var(--ink-3)">' + r + '</text>');
+    h += '<line x1="20" y1="340" x2="890" y2="340" stroke="var(--ink-3)"/>';
+    [-3000, -2000, -1000, 0, 1000, 2000].forEach(y => { const x = X(y); h += '<line x1="' + x + '" y1="336" x2="' + x + '" y2="344" stroke="var(--ink-3)"/><text x="' + x + '" y="356" text-anchor="middle" font-size="11" fill="var(--ink-3)" font-family="IBM Plex Mono,monospace">' + (y < 0 ? '前' + (-y) : y) + '</text>'; });
+    E.forEach(([a, b, dash]) => { const [x1, y1] = P[a], [x2, y2] = P[b]; const vis = cur === 'all'; h += '<path d="M' + x1 + ',' + y1 + ' C' + ((x1 + x2) / 2) + ',' + y1 + ' ' + ((x1 + x2) / 2) + ',' + y2 + ' ' + x2 + ',' + y2 + '" fill="none" stroke="var(--ink-3)" stroke-width="1.2"' + (dash ? ' stroke-dasharray="4 4"' : '') + ' opacity="' + (vis ? .55 : .12) + '"/>'; });
+    N.forEach((n, k) => {
+      const [x, y] = P[n[0]], t = TY[n[4]], on = cur === 'all' || cur === n[4];
+      const lx = n[5] === 'r' ? x + 11 : x, ly = n[5] === 'r' ? y + 4 : n[5] === 'a' ? y - 12 : y + 21, an = n[5] === 'r' ? 'start' : 'middle';
+      h += '<g class="tlnode' + (sel === k ? ' on' : '') + '" data-k="' + k + '" tabindex="0" role="button" aria-label="' + n[1] + '" opacity="' + (on ? 1 : .18) + '"><rect x="' + (x - 6) + '" y="' + (y - 6) + '" width="12" height="12" rx="2" fill="' + (n[4] === 'o' ? t[1] : 'var(--card)') + '" stroke="' + t[1] + '" stroke-width="2"' + (n[4] === 'u' ? ' stroke-dasharray="3 2"' : '') + '/><text x="' + lx + '" y="' + ly + '" text-anchor="' + an + '" font-size="12" fill="var(--ink)">' + n[1] + '</text><rect x="' + (x - 14) + '" y="' + (y - 14) + '" width="28" height="28" fill="transparent"/></g>';
+    });
+    svg.innerHTML = h;
+  }
+  function pick(k){
+    sel = k; const n = N[k], t = TY[n[4]];
+    card.innerHTML = '<p class="k">' + (n[2] < 0 ? '约公元前 ' + (-n[2]) : '约公元 ' + n[2]) + ' 年 · ' + ROWS[n[3]] + ' · <span style="color:' + t[1] + '">' + t[0] + '</span></p><h5>' + n[1] + '</h5><p>' + n[6] + '</p>';
+    draw();
+  }
+  svg.addEventListener('click', e => { const g = e.target.closest('.tlnode'); if (g) pick(+g.dataset.k); });
+  svg.addEventListener('keydown', e => { const g = e.target.closest('.tlnode'); if (g && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); pick(+g.dataset.k); } });
+  F.addEventListener('click', e => { const b = e.target.closest('[data-f]'); if (!b) return; cur = b.dataset.f; $$('[data-f]', F).forEach(x => x.classList.toggle('on', x === b)); draw(); });
+  draw();
+})();
+
+})();
+
+</script>
+</body>
+</html>

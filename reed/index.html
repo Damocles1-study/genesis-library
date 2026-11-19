@@ -12,6 +12,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@500;700&family=Noto+Serif+SC:wght@400;600;700&family=ZCOOL+XiaoWei&display=swap">
 <style>
+/* ZCOOL XiaoWei 把“回”字画成实心方块：这一个字改用系统宋体/黑体，其余字不变 */
+@font-face{font-family:"Hui Fix";unicode-range:U+56DE;src:local("Songti SC"),local("STSongti-SC-Regular"),local("STSong"),local("SimSun"),local("宋体"),local("Noto Serif CJK SC"),local("NotoSerifCJKsc-Regular"),local("Source Han Serif SC"),local("SourceHanSerifSC-Regular"),local("PingFang SC"),local("PingFangSC-Regular"),local("Microsoft YaHei"),local("Noto Sans CJK SC"),local("NotoSansCJKsc-Regular"),local("Droid Sans Fallback")}
+
 /* 版式：一块块泥板。故事写在泥色纸上；“回到我们的世界”是青金石色的框；每章末尾是一张会计凭证。 */
 :root{
   --paper:#f1e8d6; --paper-2:#e8dcc3; --card:#f9f3e7;
@@ -22,7 +25,7 @@
   --reed:#5b7a34;    /* 小芦 */
   --gold:#9c7a22;    /* 麦娘 */
   --hl:color-mix(in srgb,var(--clay) 32%,transparent);
-  --f-display:"ZCOOL XiaoWei","Songti SC","STSong","Noto Serif SC",serif;
+  --f-display:"Hui Fix","ZCOOL XiaoWei","Songti SC","STSong","Noto Serif SC",serif;
   --f-body:"Noto Serif SC","Songti SC","Source Han Serif SC","STSong",serif;
   --f-hand:"Ma Shan Zheng","Kaiti SC","STKaiti","KaiTi",cursive;
   --f-sans:"Noto Sans SC","PingFang SC","Hiragino Sans GB",sans-serif;

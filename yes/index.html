@@ -12,6 +12,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@500;700&family=Noto+Serif+SC:wght@400;600;700&family=ZCOOL+XiaoWei&display=swap">
 <style>
+/* ZCOOL XiaoWei 把“回”字画成实心方块：这一个字改用系统宋体/黑体，其余字不变 */
+@font-face{font-family:"Hui Fix";unicode-range:U+56DE;src:local("Songti SC"),local("STSongti-SC-Regular"),local("STSong"),local("SimSun"),local("宋体"),local("Noto Serif CJK SC"),local("NotoSerifCJKsc-Regular"),local("Source Han Serif SC"),local("SourceHanSerifSC-Regular"),local("PingFang SC"),local("PingFangSC-Regular"),local("Microsoft YaHei"),local("Noto Sans CJK SC"),local("NotoSansCJKsc-Regular"),local("Droid Sans Fallback")}
+
 /* 版式：一摞案卷。正文是卷宗纸，每一案的开头是牛皮纸卷宗封面，朱笔是批语，蓝笔是师爷的签条。 */
 :root{
   --paper:#f2ede2;      /* 卷宗纸 */
@@ -29,7 +32,7 @@
   --moss:#4d6b3a;
   --hl:color-mix(in srgb,var(--kraft) 34%,transparent);
   --c-paper:#fffdf8; --c-ink:#141414; --c-tone:#141414; /* 漫画纸与墨 */
-  --f-display:"ZCOOL XiaoWei","Songti SC","STSong","Noto Serif SC",serif;
+  --f-display:"Hui Fix","ZCOOL XiaoWei","Songti SC","STSong","Noto Serif SC",serif;
   --f-body:"Noto Serif SC","Songti SC","Source Han Serif SC","STSong",serif;
   --f-hand:"Ma Shan Zheng","Kaiti SC","STKaiti","KaiTi",cursive;
   --f-sans:"Noto Sans SC","PingFang SC","Hiragino Sans GB",sans-serif;

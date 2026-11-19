@@ -12,6 +12,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;600;700&family=ZCOOL+XiaoWei&display=swap">
 <style>
+/* ZCOOL XiaoWei 把“回”字画成实心方块：这一个字改用系统宋体/黑体，其余字不变 */
+@font-face{font-family:"Hui Fix";unicode-range:U+56DE;src:local("Songti SC"),local("STSongti-SC-Regular"),local("STSong"),local("SimSun"),local("宋体"),local("Noto Serif CJK SC"),local("NotoSerifCJKsc-Regular"),local("Source Han Serif SC"),local("SourceHanSerifSC-Regular"),local("PingFang SC"),local("PingFangSC-Regular"),local("Microsoft YaHei"),local("Noto Sans CJK SC"),local("NotoSansCJKsc-Regular"),local("Droid Sans Fallback")}
+
 /* 版式：一本夹着钞票的旧账簿。正文是账页，装置是夹进去的票据；卷首做成钞票的票面。 */
 :root{
   --paper:#f1ead8;      /* 账簿纸 */
@@ -30,7 +33,7 @@
   --copper:#b06a3b;
   --sea:#4f7c93;
   --hl:color-mix(in srgb,var(--gold) 26%,transparent);
-  --f-display:"ZCOOL XiaoWei","Songti SC","STSong","Noto Serif SC",serif;
+  --f-display:"Hui Fix","ZCOOL XiaoWei","Songti SC","STSong","Noto Serif SC",serif;
   --f-body:"Noto Serif SC","Songti SC","Source Han Serif SC","STSong",serif;
   --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
 }

@@ -17,21 +17,21 @@
 
 /* 版式：一摞案卷。正文是卷宗纸，每一案的开头是牛皮纸卷宗封面，朱笔是批语，蓝笔是师爷的签条。 */
 :root{
-  --paper:#f2ede2;      /* 卷宗纸 */
-  --paper-2:#e9e2d2;
-  --card:#faf7f0;
+  --paper:#eee5d2;      /* 卷宗纸 */
+  --paper-2:#e5dbc6;
+  --card:#f4ecdc;
   --kraft:#c49a5a;      /* 牛皮纸 */
   --kraft-2:#e3cfa8;
   --ink:#1c1b1a;
   --ink-2:#4c4944;
-  --ink-3:#827c72;
-  --rule:#d3c9b4;
+  --ink-3:#6a645a;
+  --rule:#d0c4ab;
   --zhu:#bf3a2b;        /* 朱批 */
   --lan:#2e5283;        /* 师爷的蓝笔 */
   --gold:#a07a26;
   --moss:#4d6b3a;
   --hl:color-mix(in srgb,var(--kraft) 34%,transparent);
-  --c-paper:#fffdf8; --c-ink:#141414; --c-tone:#141414; /* 漫画纸与墨 */
+  --c-paper:#f5eddc; --c-ink:#141414; --c-tone:#141414; /* 漫画纸与墨 */
   --f-display:"Hui Fix","ZCOOL XiaoWei","Songti SC","STSong","Noto Serif SC",serif;
   --f-body:"Noto Serif SC","Songti SC","Source Han Serif SC","STSong",serif;
   --f-hand:"Ma Shan Zheng","Kaiti SC","STKaiti","KaiTi",cursive;
@@ -169,6 +169,9 @@ section.case{padding-top:24px}
 
 /* 戏里戏外：剧情概述 */
 .drama{margin:2em 0;padding:16px 18px;border-radius:6px;background:var(--ink);color:var(--paper)}
+/* 深色模式下不反白成大块亮底 */
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .drama{background:color-mix(in srgb,var(--zhu) 9%,var(--paper-2));color:var(--ink);border-left:3px solid var(--zhu)}}
+:root[data-theme="dark"] .drama{background:color-mix(in srgb,var(--zhu) 9%,var(--paper-2));color:var(--ink);border-left:3px solid var(--zhu)}
 .drama .dh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}
 .drama .dh b{font-family:var(--f-display);font-weight:400;font-size:19px;letter-spacing:.06em}
 .drama .dh span{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.14em;opacity:.65}

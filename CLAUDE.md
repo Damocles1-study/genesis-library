@@ -54,6 +54,7 @@
 - 纯静态 HTML，无框架、无构建依赖；字体只从 Google Fonts 加载，其余全内联。
 - 每本书一个子目录；大书用「`_build/<书>/` 分段源文件 + `_build/build.py` 拼接」的方式写，避免单次写入过大。
 - 颜色用 CSS 变量，同时做浅色/深色；375px 宽不许横向滚动（宽图表套 `.scroll-x`）。
+- **护眼暖色（用户 2026-11-19 要求，全站已改）**：浅色模式不许有接近 #fff 的大面积底色。推荐取值（HSL）：页面底色 `--paper` 色相 38–46°、饱和度 30–50%、亮度 85–88%（如 `#ece3cf`）；卡片/装置框 `--card` 亮度 ≤ 91%（如 `#f3ebda`）；次底色 `--paper-2` 亮度 81–84%；漫画纸之类同卡片。文字：正文 `--ink` 对比度 ≥ 11，`--ink-2` ≥ 5.5，最浅的 `--ink-3` 也要 ≥ 4.5（WCAG AA）。深色模式别用 `background:var(--ink)` 反白出大块亮底（《点石成金》《是，大人》的 `.drama` 已在深色下改成暗底 + 左边色条）。新书照抄这套取值，改完用浏览器扫一遍大块元素的亮度。
 - 新书上架：在根目录 `index.html` 书架加一张卡片，书内页眉放「书房」回链（`href="../"`），书末放「书房里的另一本书」。
 - 本机**没有 node**，JS 语法和交互靠浏览器实测。
 - 预览：沙盒里的 python 读不到 `~/Downloads`，`.claude/launch.json` 里的「书房」配置会启动失败。做法：`rsync -a --exclude _build --exclude _refs --exclude .git --exclude CLAUDE.local.md ./ <scratchpad>/site/`，把 `serve.py` 也拷到 scratchpad，临时往 launch.json 加一条指向 scratchpad 的配置再 `preview_start`，**提交前把 launch.json 改回去**。8432 端口常被占。

@@ -17,13 +17,13 @@
 
 /* 版式：一本夹着钞票的旧账簿。正文是账页，装置是夹进去的票据；卷首做成钞票的票面。 */
 :root{
-  --paper:#f1ead8;      /* 账簿纸 */
-  --paper-2:#e8dfc8;
-  --card:#f8f3e6;
+  --paper:#ede3cd;      /* 账簿纸 */
+  --paper-2:#e4d9c0;
+  --card:#f3eada;
   --ink:#1c2621;        /* 墨绿黑 */
   --ink-2:#4b5650;
-  --ink-3:#7d857f;
-  --rule:#cfc4a8;
+  --ink-3:#5e655f;
+  --rule:#cbbf9f;
   --seal:#b0352b;       /* 朱砂 */
   --seal-2:#d9564a;
   --intag:#2c6652;      /* 凹版绿 */
@@ -203,6 +203,9 @@ input[type=range]{width:100%;accent-color:var(--seal)}
 
 /* 戏里戏外 */
 .drama{margin:2em 0;padding:16px 18px;border-radius:6px;background:var(--ink);color:var(--paper)}
+/* 深色模式下不反白成大块亮底 */
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .drama{background:color-mix(in srgb,var(--seal) 9%,var(--paper-2));color:var(--ink);border-left:3px solid var(--seal)}}
+:root[data-theme="dark"] .drama{background:color-mix(in srgb,var(--seal) 9%,var(--paper-2));color:var(--ink);border-left:3px solid var(--seal)}
 .drama .dh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}
 .drama .dh b{font-family:var(--f-display);font-weight:400;font-size:19px;letter-spacing:.06em}
 .drama .dh span{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.14em;opacity:.65}

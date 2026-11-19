@@ -1,0 +1,81 @@
+<!-- ============ 序 ============ -->
+<section class="hero" data-vol="序" id="top">
+  <div class="wide">
+    <div class="eyebrow">WHAT TIME IS IT · 一天十二个时辰 · 时间创世记</div>
+    <h1>几点了<span class="sm">时间创世记</span></h1>
+    <div class="hero-grid">
+      <div>
+        <p>“几点了？”大概是你一天里问得最多、又最不当回事的一句话。手机右上角永远有答案，精确到分钟，全国十几亿人看到的是同一个数。</p>
+        <p>可是太阳从来没告诉过谁“现在八点零五分”。太阳只给了人两样东西：<em>白天和黑夜</em>，外加一个慢慢变圆又变瘦的月亮。</p>
+        <p>小时、分钟、秒，星期、闰月、闰年，零点、时区、北京时间——这些全是人自己一样一样造出来的。造的人里有观星的祭司、打更的老头、修道院敲钟的修士、算历法差点掉脑袋的钦天监、造钟的木匠、赶火车的铁路公司，还有一群写操作系统的程序员。</p>
+        <p>这本书按一天的钟点来排：从<b>子时</b>（夜里十一点）讲到<b>亥时</b>（夜里十一点），十二个时辰，每个时辰讲一样“时间”是怎么来的。</p>
+      </div>
+      <div class="dialbox" id="dial0Fig">
+        <svg id="dial0" viewBox="0 0 300 300" role="img" aria-label="十二时辰钟面，指针指着现在的时间"></svg>
+        <div class="now-t" id="dial0T">--:--</div>
+        <div class="readout" id="dial0R">钟面会显示你现在所在的时辰。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>这本书怎么读</h3>
+    <p>可以从头读到尾，也可以<em>看钟读</em>：现在是什么时辰，就翻到那一章。上面那块钟面就是入口，点一下任何一个时辰，它会带你过去。</p>
+    <p>每一章大致是这样的：</p>
+    <ul class="plain">
+      <li><b>钟面</b>：章首那块小钟，标出这一章占的两个钟头。</li>
+      <li><b>此刻 · 你的一天</b>（虚线框）：这个钟点，你大概在干什么。</li>
+      <li><b>那一刻</b>（朱红边）：历史上，正好在这个钟点前后发生过的一件真事。为了好读，场面写得像小说，但框底下会写明“真的部分”是什么，人物没说过的话一句都不编。</li>
+      <li><b>蓝框</b>：插一段相关的知识。</li>
+      <li><b>眉批</b>：正文旁的小印章。<span style="color:var(--night)">押韵</span>是隔着几千年撞了韵；<span style="color:var(--brass)">联系</span>是和书房里别的书有关；<span style="color:var(--ink-3)">存疑</span>是学界还在吵、或者流传很广但靠不住；<span style="color:var(--jade)">生活</span>是这件事和你今天有什么关系。</li>
+      <li><b>装置</b>：每章一个能动手的小东西，一共十三个（算上这块钟面）。</li>
+      <li><b>滴答</b>：章末一张卡，“滴”记一句历史，“答”记一句生活。</li>
+    </ul>
+
+    <div class="box" style="margin-top:1.8em">
+      <h5>你可能想问的，在这里</h5>
+      <ul class="qmap">
+        <li><a href="#c1">一天为什么从半夜零点开始，而不是天亮？</a><b>子</b></li>
+        <li><a href="#c1">麦哲伦的船队是怎么“丢”了一天的？</a><b>子</b></li>
+        <li><a href="#c2">古人半夜怎么知道几点？“三更半夜”是几点？</a><b>丑</b></li>
+        <li><a href="#c2">古人真的一晚上睡两觉吗？</a><b>丑</b></li>
+        <li><a href="#c3">为什么一天是二十四小时，一小时是六十分钟？</a><b>寅</b></li>
+        <li><a href="#c4">“点卯”“一刻钟”“小时”这些词是怎么来的？</a><b>卯</b></li>
+        <li><a href="#c4">古罗马的一小时为什么夏天长、冬天短？</a><b>卯</b></li>
+        <li><a href="#c5">第一台机械钟是谁造的？苏颂的水运仪象台算不算？</a><b>辰</b></li>
+        <li><a href="#c6">“时间就是金钱”是谁说的？八小时工作制怎么来的？</a><b>巳</b></li>
+        <li><a href="#c7">日晷和手表为什么对不上？</a><b>午</b></li>
+        <li><a href="#c8">时区是谁发明的？中国为什么只用一个北京时间？</a><b>未</b></li>
+        <li><a href="#c9">在大海上怎么知道自己在哪儿？</a><b>申</b></li>
+        <li><a href="#c9">“一秒”到底有多长，谁说了算？</a><b>申</b></li>
+        <li><a href="#c10">农历为什么要有闰月？春节为什么每年日子不一样？</a><b>酉</b></li>
+        <li><a href="#c11">历史上真有十天凭空消失过吗？</a><b>戌</b></li>
+        <li><a href="#c11">一星期为什么是七天？</a><b>戌</b></li>
+        <li><a href="#c12">电脑里的时间为什么从 1970 年算起？2038 年会出什么事？</a><b>亥</b></li>
+        <li><a href="#c12">闰秒是什么，为什么要取消它？</a><b>亥</b></li>
+      </ul>
+    </div>
+
+    <h3>目录</h3>
+    <ol class="toc" id="toc">
+      <li class="vh">卷一 · 夜</li>
+      <li><a href="#c1"><span class="n">子</span><span class="t">接缝<small>一天从哪儿开始</small></span><span class="r">23–01 点</span></a></li>
+      <li><a href="#c2"><span class="n">丑</span><span class="t">更漏<small>守夜的人和滴水的壶</small></span><span class="r">01–03 点</span></a></li>
+      <li><a href="#c3"><span class="n">寅</span><span class="t">星钟<small>二十四和六十从哪儿来</small></span><span class="r">03–05 点</span></a></li>
+      <li class="vh">卷二 · 晨</li>
+      <li><a href="#c4"><span class="n">卯</span><span class="t">点卯<small>会伸缩的小时</small></span><span class="r">05–07 点</span></a></li>
+      <li><a href="#c5"><span class="n">辰</span><span class="t">钟声<small>机器开始数时间</small></span><span class="r">07–09 点</span></a></li>
+      <li><a href="#c6"><span class="n">巳</span><span class="t">打卡<small>时间变成了钱</small></span><span class="r">09–11 点</span></a></li>
+      <li class="vh">卷三 · 昼</li>
+      <li><a href="#c7"><span class="n">午</span><span class="t">日影<small>太阳并不准时</small></span><span class="r">11–13 点</span></a></li>
+      <li><a href="#c8"><span class="n">未</span><span class="t">铁轨<small>两个正午的那一天</small></span><span class="r">13–15 点</span></a></li>
+      <li><a href="#c9"><span class="n">申</span><span class="t">经度<small>一块表找到大洋</small></span><span class="r">15–17 点</span></a></li>
+      <li class="vh">卷四 · 暮</li>
+      <li><a href="#c10"><span class="n">酉</span><span class="t">闰月<small>月亮不肯整除</small></span><span class="r">17–19 点</span></a></li>
+      <li><a href="#c11"><span class="n">戌</span><span class="t">十天<small>历法改革和一星期</small></span><span class="r">19–21 点</span></a></li>
+      <li><a href="#c12"><span class="n">亥</span><span class="t">纪元<small>1970 年 1 月 1 日零点</small></span><span class="r">21–23 点</span></a></li>
+      <li class="vh">书末</li>
+      <li><a href="#c13"><span class="n">子</span><span class="t">又到子时<small>尾声 · 哪些是真的 · 出处</small></span><span class="r">23 点</span></a></li>
+    </ol>
+  </div>
+</section>

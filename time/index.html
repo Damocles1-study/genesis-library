@@ -1,0 +1,2427 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="一天十二个时辰，每个时辰讲一样“时间”是怎样被人造出来的：一天从哪儿开始、更漏、星钟、会伸缩的小时、钟声、打卡、日影、时区、经度、闰月、丢掉的十天、1970 年 1 月 1 日。四卷十二章，十三个装置。">
+<meta property="og:title" content="几点了 · 时间创世记">
+<meta property="og:description" content="太阳只给了人白天和黑夜。小时、分钟、星期、时区、闰年，全是人自己造的。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%23233a66'/%3E%3Cpath d='M16,16 L16,6 M16,16 L23,19' stroke='%23e8c66a' stroke-width='2.6' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='16' r='2' fill='%23e8c66a'/%3E%3C/svg%3E">
+<title>几点了</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@500;700&family=Noto+Serif+SC:wght@400;600;700&family=ZCOOL+XiaoWei&display=swap">
+<style>
+/* ZCOOL XiaoWei 把“回”字画成实心方块：这一个字改用系统宋体/黑体，其余字不变 */
+@font-face{font-family:"Hui Fix";unicode-range:U+56DE;src:local("Songti SC"),local("STSongti-SC-Regular"),local("STSong"),local("SimSun"),local("宋体"),local("Noto Serif CJK SC"),local("NotoSerifCJKsc-Regular"),local("Source Han Serif SC"),local("SourceHanSerifSC-Regular"),local("PingFang SC"),local("PingFangSC-Regular"),local("Microsoft YaHei"),local("Noto Sans CJK SC"),local("NotoSansCJKsc-Regular"),local("Droid Sans Fallback")}
+
+/* 版式：一座钟鼓楼。每章开头是一块钟面，标出这一章占的那个时辰；“此刻”是你的一天（虚线框），“那一刻”是历史上同一个钟点发生的真事（朱红边）；章末一张“滴答”卡。浅色用护眼暖米色。 */
+:root{
+  --paper:#ece3cf; --paper-2:#e1d6bf; --card:#f2e9d7;
+  --ink:#211f1b; --ink-2:#4f4940; --ink-3:#625a4e; --rule:#cdbfa3;
+  --night:#2a4373;   /* 夜、星、主色 */
+  --brass:#755610;   /* 铜、钟、日 */
+  --vermil:#983a24;  /* 那一刻、强调 */
+  --jade:#3c6a4c;    /* 生活 */
+  --sky:#d8cdb4;
+  --hl:color-mix(in srgb,#c9a44a 34%,transparent);
+  --f-display:"Hui Fix","ZCOOL XiaoWei","Songti SC","STSong","Noto Serif SC",serif;
+  --f-body:"Noto Serif SC","Songti SC","Source Han Serif SC","STSong",serif;
+  --f-hand:"Ma Shan Zheng","Kaiti SC","STKaiti","KaiTi",cursive;
+  --f-sans:"Noto Sans SC","PingFang SC","Hiragino Sans GB",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#14130f; --paper-2:#1c1a15; --card:#201d17; --ink:#ebe3d2; --ink-2:#b8ad99; --ink-3:#978b79; --rule:#37312a;
+  --night:#9bb6ea; --brass:#d9b65e; --vermil:#e57b5e; --jade:#8fc2a0; --sky:#2a271f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#14130f; --paper-2:#1c1a15; --card:#201d17; --ink:#ebe3d2; --ink-2:#b8ad99; --ink-3:#978b79; --rule:#37312a;
+  --night:#9bb6ea; --brass:#d9b65e; --vermil:#e57b5e; --jade:#8fc2a0; --sky:#2a271f; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+.g{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit;text-decoration-color:var(--vermil);text-underline-offset:3px}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--vermil);outline-offset:2px}
+svg{max-width:100%;height:auto;display:block}
+
+/* 页眉 */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+.bar-in{max-width:56rem;margin:0 auto;display:flex;align-items:center;gap:12px;padding-block:8px}
+.bar .home{text-decoration:none;font-size:13px;color:var(--ink-3);white-space:nowrap;border:1px solid var(--rule);border-radius:999px;padding:1px 9px}
+.bar .name{font-family:var(--f-display);font-size:19px;letter-spacing:.05em;white-space:nowrap}
+.bar .vol{margin-left:auto;font-size:13px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.bar .tocbtn{border:1px solid var(--rule);background:transparent;border-radius:6px;padding:0 8px;font-size:13px;cursor:pointer;color:var(--ink-2);white-space:nowrap}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;background:var(--brass);width:0}
+.drawer{position:fixed;inset:0;z-index:40;display:none}
+.drawer.on{display:block}
+.drawer .mask{position:absolute;inset:0;background:rgba(0,0,0,.35)}
+.drawer .panel{position:absolute;right:0;top:0;bottom:0;width:min(360px,88vw);background:var(--paper);border-left:1px solid var(--rule);overflow:auto;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px))}
+.drawer h5{font-family:var(--f-display);font-weight:400;font-size:20px;margin:0 0 10px}
+.drawer ol{list-style:none;margin:0;padding:0}
+.drawer li a{display:flex;gap:10px;padding:7px 0;border-bottom:1px dashed var(--rule);text-decoration:none;font-size:15px;line-height:1.5}
+.drawer li a .n{font-family:var(--f-display);font-size:18px;color:var(--vermil);min-width:1.6em;text-align:center}
+.drawer li a small{display:block;color:var(--ink-3);font-size:12px}
+.drawer .x{position:absolute;right:12px;top:10px;border:0;background:transparent;font-size:22px;cursor:pointer;color:var(--ink-2)}
+
+main{display:block}
+.col{max-width:38rem;margin-inline:auto}
+.wide{max-width:54rem;margin-inline:auto}
+.col p{margin:0 0 1.05em;text-indent:2em}
+.col p.ni,.col .ni{text-indent:0}
+h2,h3,h4{text-wrap:balance}
+h3{font-family:var(--f-display);font-weight:400;font-size:24px;line-height:1.4;margin:2.2em 0 .7em;letter-spacing:.03em}
+h3 .y{font-family:var(--f-mono);font-size:13px;color:var(--ink-3);margin-left:10px;letter-spacing:0;white-space:nowrap}
+em{font-style:normal;background:linear-gradient(transparent 62%,var(--hl) 62%)}
+strong{font-weight:600}
+blockquote{margin:1.4em 0;padding:.2em 0 .2em 1.2em;border-left:2px solid var(--brass);color:var(--ink-2)}
+blockquote p{text-indent:0!important;margin:0 0 .4em}
+blockquote cite{font-style:normal;font-size:14px;color:var(--ink-3)}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.figcap{font-size:14px;color:var(--ink-2);line-height:1.7;margin-top:8px}
+.sep{text-align:center;color:var(--brass);letter-spacing:1.2em;margin:2em 0;text-indent:1.2em!important;font-size:14px}
+ul.plain{font-size:16px;line-height:1.9;padding-left:1.4em}
+
+/* 封面 */
+.hero{padding-block:40px 20px}
+.hero .eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;color:var(--ink-3)}
+.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(64px,15vw,132px);line-height:1;margin:.25em 0 .2em;letter-spacing:.1em}
+.hero h1 .sm{display:block;font-size:.19em;letter-spacing:.32em;color:var(--ink-2);margin-top:.6em}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:34px;align-items:center}
+.hero-grid p{margin:0 0 1em;font-size:18px}
+.dialbox{max-width:380px;margin:auto;text-align:center}
+.dialbox svg{width:100%;cursor:pointer}
+.dialbox .readout{margin-top:8px;text-align:left}
+.dialbox .now-t{font-family:var(--f-mono);font-size:30px;letter-spacing:.06em;color:var(--ink)}
+
+/* 目录 */
+.toc{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--rule)}
+.toc li a{display:grid;grid-template-columns:2.6em minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--rule);text-decoration:none}
+.toc .n{font-family:var(--f-display);font-size:28px;line-height:1;color:var(--vermil);text-align:center}
+.toc .t{font-family:var(--f-display);font-size:21px;line-height:1.3}
+.toc .t small{display:block;font-family:var(--f-body);font-size:13px;color:var(--ink-3);margin-top:2px}
+.toc .r{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);text-align:right;white-space:nowrap}
+.toc li a:hover .t{color:var(--vermil)}
+.toc .vh{padding:16px 0 4px;font-family:var(--f-mono);font-size:12px;letter-spacing:.16em;color:var(--ink-3);border-bottom:1px solid var(--rule)}
+.qmap{list-style:none;margin:0;padding:0;columns:2 17em;column-gap:28px}
+.qmap li{break-inside:avoid;margin:0 0 .5em;font-size:15.5px;line-height:1.65}
+.qmap a{text-decoration:none;border-bottom:1px dashed var(--ink-3)}
+.qmap a:hover{color:var(--vermil)}
+.qmap b{font-family:var(--f-display);font-weight:400;color:var(--vermil);margin-left:4px}
+
+/* 卷首 */
+.volhead{position:relative;max-width:54rem;margin:64px auto 20px;padding:30px 22px 24px;border-top:3px double var(--ink);border-bottom:3px double var(--ink);overflow:hidden}
+.volhead .num{font-family:var(--f-mono);font-size:12px;letter-spacing:.24em;color:var(--vermil)}
+.volhead h2{font-family:var(--f-display);font-weight:400;font-size:clamp(72px,17vw,132px);line-height:1;margin:.1em 0 .12em;letter-spacing:.1em}
+.volhead h2 small{font-size:.24em;letter-spacing:.2em;color:var(--ink-2);margin-left:.4em}
+.volhead .lede{max-width:32em;margin:6px 0 0;font-size:16px;color:var(--ink-2);line-height:1.8}
+.volhead .arc{position:absolute;right:-30px;top:14px;width:200px;opacity:.9;pointer-events:none}
+
+/* 章首：钟面 */
+section.chap{padding-top:24px}
+.hour{position:relative;max-width:54rem;margin:46px auto 28px;padding:22px 22px 20px;display:grid;grid-template-columns:118px minmax(0,1fr);gap:22px;align-items:center;background:var(--paper-2);border-radius:10px;border:1px solid var(--rule)}
+.hour svg.dial{width:118px;height:118px}
+.hour .no{font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;color:var(--vermil)}
+.hour h2{font-family:var(--f-display);font-weight:400;font-size:clamp(36px,8vw,58px);line-height:1.1;margin:.08em 0 .2em;letter-spacing:.08em}
+.hour h2 .zh{color:var(--vermil);margin-right:.25em}
+.hour dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 14px;margin:6px 0 0;font-size:14.5px;line-height:1.7}
+.hour dt{color:var(--ink-3);white-space:nowrap}
+.hour dd{margin:0;color:var(--ink-2)}
+
+/* 此刻：你的一天 */
+.now{margin:1.6em 0 2em;padding:16px 18px 6px;border:1.5px dashed var(--ink-3);border-radius:8px;position:relative}
+.now::before{content:"此刻 · 你的一天";position:absolute;top:-12px;left:14px;background:var(--paper);padding:0 8px;font-size:13px;letter-spacing:.14em;color:var(--ink-2);font-weight:600}
+.now .clk{float:right;font-family:var(--f-mono);font-size:22px;color:var(--night);margin:-4px 0 4px 12px;line-height:1.2}
+.now p{text-indent:0!important;font-size:16px;line-height:1.85}
+
+/* 那一刻：真事 */
+.then{margin:2em 0;padding:16px 18px 8px;background:color-mix(in srgb,var(--vermil) 5%,var(--card));border-left:4px solid var(--vermil);border-radius:0 8px 8px 0;position:relative}
+.then .tg{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;margin-bottom:8px}
+.then .tg b{font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--vermil);letter-spacing:.04em}
+.then .tg span{font-family:var(--f-mono);font-size:12px;color:var(--ink-3);letter-spacing:.06em}
+.then p{text-indent:0!important;font-size:16px;line-height:1.85;margin:0 0 .8em}
+.then .fact{font-size:13px;color:var(--ink-3);border-top:1px dashed var(--rule);padding-top:6px;margin-top:4px;line-height:1.7}
+.then .fact::before{content:"真的部分：";font-weight:600}
+
+/* 蓝框：插一段 */
+.box{margin:2em 0;padding:16px 18px 8px;border-radius:8px;border:1.5px solid var(--night);background:color-mix(in srgb,var(--night) 6%,var(--paper))}
+.box h5{margin:.1em 0 .5em;font-family:var(--f-display);font-weight:400;font-size:21px;color:var(--night);letter-spacing:.04em}
+.box p{text-indent:0!important;margin:0 0 .8em;font-size:16px;line-height:1.85}
+.box ul{margin:0 0 .8em;padding-left:1.2em;font-size:16px;line-height:1.85}
+.box li{margin:0 0 .3em}
+
+/* 眉批 */
+.echo{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;margin:1.6em 0;padding:14px 14px 10px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.echo .stamp{writing-mode:vertical-rl;font-family:var(--f-display);font-size:15px;color:var(--vermil);border:1.5px solid var(--vermil);border-radius:3px;padding:6px 2px;letter-spacing:.2em;align-self:start}
+.echo[data-k="存疑"] .stamp{color:var(--ink-3);border-color:var(--ink-3)}
+.echo[data-k="联系"] .stamp{color:var(--brass);border-color:var(--brass)}
+.echo[data-k="生活"] .stamp{color:var(--jade);border-color:var(--jade)}
+.echo[data-k="押韵"] .stamp{color:var(--night);border-color:var(--night)}
+.echo p{text-indent:0!important;margin:0 0 .5em;font-size:15.5px;line-height:1.8}
+.echo .rh{font-family:var(--f-display);font-size:18px;margin-bottom:.2em}
+
+/* 滴答：章末卡 */
+.tick{margin:2.6em 0 1em;border:1.5px solid var(--ink);border-radius:6px;background:var(--card);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);overflow:hidden}
+.tick>div{padding:12px 16px 14px;font-size:15.5px;line-height:1.75}
+.tick>div+div{border-left:1.5px solid var(--ink)}
+.tick i{display:block;font-style:normal;font-family:var(--f-display);font-size:22px;letter-spacing:.2em;margin-bottom:2px;color:var(--night)}
+.tick>div+div i{color:var(--jade)}
+.tick i small{font-family:var(--f-body);font-size:12px;letter-spacing:.1em;color:var(--ink-3);margin-left:6px}
+
+/* 装置 */
+.fig{margin:2.2em auto;padding:20px 18px;background:var(--card);border:1px solid var(--rule);border-radius:6px}
+.fig-label{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.12em;color:var(--vermil)}
+.fig h4{font-family:var(--f-display);font-weight:400;font-size:22px;margin:.25em 0 .35em}
+.fig .how{font-size:14.5px;color:var(--ink-2);margin:0 0 14px;line-height:1.75}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.btn{border:1px solid var(--ink-3);background:transparent;border-radius:999px;padding:4px 14px;font-size:14px;cursor:pointer;line-height:1.6;color:var(--ink)}
+.btn:hover{border-color:var(--ink)}
+.btn.pri{background:var(--night);color:var(--paper);border-color:var(--night)}
+.btn.on{background:var(--night);border-color:var(--night);color:var(--paper)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.readout{font-size:14.5px;color:var(--ink-2);line-height:1.75;min-height:1.5em}
+.readout b{color:var(--ink)}
+.say{background:var(--paper);border-left:3px solid var(--brass);padding:8px 12px;margin:10px 0;font-size:15px;line-height:1.75;min-height:3.2em}
+.say.ok{border-left-color:var(--jade)}.say.bad{border-left-color:var(--vermil)}
+input[type=range]{width:100%;accent-color:var(--vermil)}
+.ctl{display:grid;grid-template-columns:6.5em minmax(0,1fr) 6.5em;gap:10px;align-items:center;font-size:14px;color:var(--ink-2);margin:4px 0}
+.ctl output{font-family:var(--f-mono);font-size:13px;color:var(--ink);text-align:right;white-space:nowrap}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5em,1fr));gap:8px;margin:10px 0}
+.kv div{background:var(--paper);border-radius:6px;padding:6px 10px;font-size:12.5px;color:var(--ink-3);line-height:1.5}
+.kv b{display:block;font-family:var(--f-mono);font-weight:500;font-size:18px;color:var(--ink)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:center}
+.lab{font-size:12.5px;color:var(--ink-3);letter-spacing:.08em;margin:8px 0 4px}
+.chip{display:inline-block;font-size:12px;border:1px solid var(--rule);border-radius:4px;padding:0 6px;color:var(--ink-3);margin:0 4px 4px 0}
+.fig text{font-family:var(--f-sans)}
+.fig .mono{font-family:var(--f-mono)}
+select{border:1px solid var(--ink-3);border-radius:6px;background:var(--paper);padding:2px 6px;font-size:14px}
+input[type=datetime-local],input[type=number]{border:1px solid var(--ink-3);border-radius:6px;background:var(--paper);padding:2px 8px;font-size:14px;font-family:var(--f-mono);max-width:100%}
+
+/* 装置 1：日界 */
+.dayrows{display:grid;gap:6px;margin-top:10px}
+.dayrow{display:grid;grid-template-columns:8.5em minmax(0,1fr) 4.5em;gap:10px;align-items:center;font-size:13.5px}
+.dayrow .nm{color:var(--ink-2);line-height:1.35}
+.dayrow .nm small{display:block;font-size:11.5px;color:var(--ink-3)}
+.dayrow .st{position:relative;height:24px;border-radius:4px;overflow:hidden;background:var(--paper)}
+.dayrow .st i{position:absolute;top:0;bottom:0;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:11.5px;color:var(--ink-2);border-right:1.5px solid var(--ink-3);white-space:nowrap;overflow:hidden}
+.dayrow .st i.cur{background:color-mix(in srgb,var(--brass) 26%,transparent);color:var(--ink)}
+.dayrow .st .hand{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--vermil)}
+.dayrow .d{font-family:var(--f-display);font-size:16px;color:var(--vermil);text-align:right}
+.dayaxis{display:grid;grid-template-columns:8.5em minmax(0,1fr) 4.5em;gap:10px;font-family:var(--f-mono);font-size:11px;color:var(--ink-3)}
+.dayaxis div:nth-child(2){display:flex;justify-content:space-between}
+
+/* 装置 6：二十四小时 */
+.ring{display:grid;grid-template-columns:240px minmax(0,1fr);gap:20px;align-items:center}
+.ring svg{width:100%;max-width:240px;margin:auto}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--ink-2);margin:6px 0}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:0}
+
+/* 装置 8：城市 */
+.cities{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:10px}
+.city{background:var(--paper);border-radius:8px;padding:8px 10px;text-align:center;font-size:13px;line-height:1.45;color:var(--ink-2)}
+.city svg{width:76px;height:76px;margin:2px auto}
+.city b{display:block;font-family:var(--f-display);font-weight:400;font-size:18px;color:var(--ink)}
+.city .t2{font-family:var(--f-mono);font-size:13px;color:var(--ink)}
+.city .df{font-family:var(--f-mono);font-size:12px;color:var(--vermil)}
+
+/* 装置 10：置闰 */
+.years{display:grid;grid-template-columns:repeat(19,minmax(0,1fr));gap:3px;margin:10px 0}
+.years button{border:1px solid var(--rule);border-radius:4px;background:var(--paper);font-family:var(--f-mono);font-size:11px;padding:4px 0;cursor:pointer;color:var(--ink-2);line-height:1.2}
+.years button.leap{background:var(--night);color:var(--paper);border-color:var(--night)}
+.years button.now{outline:2px solid var(--vermil)}
+
+/* 装置 11：日历 */
+.cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;max-width:320px;font-family:var(--f-mono);font-size:13px;text-align:center}
+.cal span{padding:3px 0;border-radius:3px;background:var(--paper)}
+.cal span.h{background:transparent;color:var(--ink-3);font-size:11px}
+.cal span.e{background:transparent}
+.cal span.x{background:var(--vermil);color:#fff}
+.cal span.gone{background:transparent;color:var(--ink-3);text-decoration:line-through;opacity:.6}
+.monthbar{position:relative;height:34px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));border:1px solid var(--rule);border-radius:4px;overflow:hidden;font-size:11px;color:var(--ink-3)}
+.monthbar span{border-right:1px solid var(--rule);display:flex;align-items:flex-end;justify-content:center;padding-bottom:1px}
+.monthbar .mk{position:absolute;top:0;bottom:0;width:3px;background:var(--vermil);border:0;padding:0}
+.monthbar .mk2{position:absolute;top:0;height:14px;width:3px;background:var(--night);border:0;padding:0}
+
+/* 装置 12：时间戳 */
+.bits{display:grid;grid-template-columns:repeat(32,minmax(0,1fr));gap:2px;margin:10px 0}
+.bits span{aspect-ratio:1/2;border-radius:2px;background:var(--paper);border:1px solid var(--rule)}
+.bits span.on{background:var(--night);border-color:var(--night)}
+.bits span.sg{border-color:var(--vermil)}
+.bits span.sg.on{background:var(--vermil)}
+.bignum{font-family:var(--f-mono);font-size:clamp(26px,7vw,40px);letter-spacing:.04em;color:var(--ink);line-height:1.2;word-break:break-all}
+
+/* 表 */
+table.t{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.6;min-width:520px}
+table.t th,table.t td{border-bottom:1px solid var(--rule);padding:7px 8px;text-align:left;vertical-align:top}
+table.t th{font-weight:400;color:var(--ink-3);font-size:13px}
+.src{font-size:14.5px;line-height:1.8;color:var(--ink-2)}
+.src li{margin:0 0 .5em}
+
+footer{max-width:38rem;margin:60px auto 0;padding:24px 0 calc(40px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--rule);font-size:14px;color:var(--ink-3);line-height:1.8}
+footer p{text-indent:0!important}
+.nextbook{display:block;margin:20px 0;padding:14px 16px;border:1px solid var(--rule);border-radius:6px;text-decoration:none;background:var(--card)}
+.nextbook b{font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--ink)}
+
+@media (max-width:700px){
+  body{font-size:16.5px}
+  .hero-grid,.two,.ring{grid-template-columns:minmax(0,1fr)}
+  .toc li a{grid-template-columns:2.2em minmax(0,1fr)}
+  .toc .r{grid-column:2;text-align:left}
+  .bar .vol{display:none}
+  .hour{grid-template-columns:76px minmax(0,1fr);gap:14px;padding:16px 14px}
+  .hour svg.dial{width:76px;height:76px}
+  .volhead .arc{width:130px;right:-24px;opacity:.5}
+  .ctl{grid-template-columns:5em minmax(0,1fr);}
+  .ctl output{grid-column:1 / -1;text-align:left;margin-top:-6px}
+  .dayrow,.dayaxis{grid-template-columns:5.6em minmax(0,1fr) 3.2em;gap:6px}
+  .years{grid-template-columns:repeat(10,minmax(0,1fr))}
+}
+@media (max-width:480px){
+  .tick{grid-template-columns:minmax(0,1fr)}
+  .tick>div+div{border-left:0;border-top:1.5px solid var(--ink)}
+  .bits{gap:1px}
+}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="bar-in g">
+    <a class="home" href="../" title="回创世书房">书房</a>
+    <span class="name">几点了</span>
+    <span class="vol" id="barVol">序</span>
+    <button class="tocbtn" id="tocBtn" aria-label="打开目录">目录</button>
+  </div>
+  <div class="progress" id="prog"></div>
+</header>
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="mask" data-close></div>
+  <nav class="panel" aria-label="目录">
+    <button class="x" data-close aria-label="关闭">×</button>
+    <h5>目录</h5>
+    <ol id="drawerList"></ol>
+  </nav>
+</div>
+<main class="g">
+<!-- ============ 序 ============ -->
+<section class="hero" data-vol="序" id="top">
+  <div class="wide">
+    <div class="eyebrow">WHAT TIME IS IT · 一天十二个时辰 · 时间创世记</div>
+    <h1>几点了<span class="sm">时间创世记</span></h1>
+    <div class="hero-grid">
+      <div>
+        <p>“几点了？”大概是你一天里问得最多、又最不当回事的一句话。手机右上角永远有答案，精确到分钟，全国十几亿人看到的是同一个数。</p>
+        <p>可是太阳从来没告诉过谁“现在八点零五分”。太阳只给了人两样东西：<em>白天和黑夜</em>，外加一个慢慢变圆又变瘦的月亮。</p>
+        <p>小时、分钟、秒，星期、闰月、闰年，零点、时区、北京时间——这些全是人自己一样一样造出来的。造的人里有观星的祭司、打更的老头、修道院敲钟的修士、算历法差点掉脑袋的钦天监、造钟的木匠、赶火车的铁路公司，还有一群写操作系统的程序员。</p>
+        <p>这本书按一天的钟点来排：从<b>子时</b>（夜里十一点）讲到<b>亥时</b>（夜里十一点），十二个时辰，每个时辰讲一样“时间”是怎么来的。</p>
+      </div>
+      <div class="dialbox" id="dial0Fig">
+        <svg id="dial0" viewBox="0 0 300 300" role="img" aria-label="十二时辰钟面，指针指着现在的时间"></svg>
+        <div class="now-t" id="dial0T">--:--</div>
+        <div class="readout" id="dial0R">钟面会显示你现在所在的时辰。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>这本书怎么读</h3>
+    <p>可以从头读到尾，也可以<em>看钟读</em>：现在是什么时辰，就翻到那一章。上面那块钟面就是入口，点一下任何一个时辰，它会带你过去。</p>
+    <p>每一章大致是这样的：</p>
+    <ul class="plain">
+      <li><b>钟面</b>：章首那块小钟，标出这一章占的两个钟头。</li>
+      <li><b>此刻 · 你的一天</b>（虚线框）：这个钟点，你大概在干什么。</li>
+      <li><b>那一刻</b>（朱红边）：历史上，正好在这个钟点前后发生过的一件真事。为了好读，场面写得像小说，但框底下会写明“真的部分”是什么，人物没说过的话一句都不编。</li>
+      <li><b>蓝框</b>：插一段相关的知识。</li>
+      <li><b>眉批</b>：正文旁的小印章。<span style="color:var(--night)">押韵</span>是隔着几千年撞了韵；<span style="color:var(--brass)">联系</span>是和书房里别的书有关；<span style="color:var(--ink-3)">存疑</span>是学界还在吵、或者流传很广但靠不住；<span style="color:var(--jade)">生活</span>是这件事和你今天有什么关系。</li>
+      <li><b>装置</b>：每章一个能动手的小东西，一共十三个（算上这块钟面）。</li>
+      <li><b>滴答</b>：章末一张卡，“滴”记一句历史，“答”记一句生活。</li>
+    </ul>
+
+    <div class="box" style="margin-top:1.8em">
+      <h5>你可能想问的，在这里</h5>
+      <ul class="qmap">
+        <li><a href="#c1">一天为什么从半夜零点开始，而不是天亮？</a><b>子</b></li>
+        <li><a href="#c1">麦哲伦的船队是怎么“丢”了一天的？</a><b>子</b></li>
+        <li><a href="#c2">古人半夜怎么知道几点？“三更半夜”是几点？</a><b>丑</b></li>
+        <li><a href="#c2">古人真的一晚上睡两觉吗？</a><b>丑</b></li>
+        <li><a href="#c3">为什么一天是二十四小时，一小时是六十分钟？</a><b>寅</b></li>
+        <li><a href="#c4">“点卯”“一刻钟”“小时”这些词是怎么来的？</a><b>卯</b></li>
+        <li><a href="#c4">古罗马的一小时为什么夏天长、冬天短？</a><b>卯</b></li>
+        <li><a href="#c5">第一台机械钟是谁造的？苏颂的水运仪象台算不算？</a><b>辰</b></li>
+        <li><a href="#c6">“时间就是金钱”是谁说的？八小时工作制怎么来的？</a><b>巳</b></li>
+        <li><a href="#c7">日晷和手表为什么对不上？</a><b>午</b></li>
+        <li><a href="#c8">时区是谁发明的？中国为什么只用一个北京时间？</a><b>未</b></li>
+        <li><a href="#c9">在大海上怎么知道自己在哪儿？</a><b>申</b></li>
+        <li><a href="#c9">“一秒”到底有多长，谁说了算？</a><b>申</b></li>
+        <li><a href="#c10">农历为什么要有闰月？春节为什么每年日子不一样？</a><b>酉</b></li>
+        <li><a href="#c11">历史上真有十天凭空消失过吗？</a><b>戌</b></li>
+        <li><a href="#c11">一星期为什么是七天？</a><b>戌</b></li>
+        <li><a href="#c12">电脑里的时间为什么从 1970 年算起？2038 年会出什么事？</a><b>亥</b></li>
+        <li><a href="#c12">闰秒是什么，为什么要取消它？</a><b>亥</b></li>
+      </ul>
+    </div>
+
+    <h3>目录</h3>
+    <ol class="toc" id="toc">
+      <li class="vh">卷一 · 夜</li>
+      <li><a href="#c1"><span class="n">子</span><span class="t">接缝<small>一天从哪儿开始</small></span><span class="r">23–01 点</span></a></li>
+      <li><a href="#c2"><span class="n">丑</span><span class="t">更漏<small>守夜的人和滴水的壶</small></span><span class="r">01–03 点</span></a></li>
+      <li><a href="#c3"><span class="n">寅</span><span class="t">星钟<small>二十四和六十从哪儿来</small></span><span class="r">03–05 点</span></a></li>
+      <li class="vh">卷二 · 晨</li>
+      <li><a href="#c4"><span class="n">卯</span><span class="t">点卯<small>会伸缩的小时</small></span><span class="r">05–07 点</span></a></li>
+      <li><a href="#c5"><span class="n">辰</span><span class="t">钟声<small>机器开始数时间</small></span><span class="r">07–09 点</span></a></li>
+      <li><a href="#c6"><span class="n">巳</span><span class="t">打卡<small>时间变成了钱</small></span><span class="r">09–11 点</span></a></li>
+      <li class="vh">卷三 · 昼</li>
+      <li><a href="#c7"><span class="n">午</span><span class="t">日影<small>太阳并不准时</small></span><span class="r">11–13 点</span></a></li>
+      <li><a href="#c8"><span class="n">未</span><span class="t">铁轨<small>两个正午的那一天</small></span><span class="r">13–15 点</span></a></li>
+      <li><a href="#c9"><span class="n">申</span><span class="t">经度<small>一块表找到大洋</small></span><span class="r">15–17 点</span></a></li>
+      <li class="vh">卷四 · 暮</li>
+      <li><a href="#c10"><span class="n">酉</span><span class="t">闰月<small>月亮不肯整除</small></span><span class="r">17–19 点</span></a></li>
+      <li><a href="#c11"><span class="n">戌</span><span class="t">十天<small>历法改革和一星期</small></span><span class="r">19–21 点</span></a></li>
+      <li><a href="#c12"><span class="n">亥</span><span class="t">纪元<small>1970 年 1 月 1 日零点</small></span><span class="r">21–23 点</span></a></li>
+      <li class="vh">书末</li>
+      <li><a href="#c13"><span class="n">子</span><span class="t">又到子时<small>尾声 · 哪些是真的 · 出处</small></span><span class="r">23 点</span></a></li>
+    </ol>
+  </div>
+</section>
+<!-- ============ 卷一 夜 ============ -->
+<div class="volhead" id="v1">
+  <svg class="arc" data-v="0" viewBox="0 0 200 120" aria-hidden="true"></svg>
+  <div class="num">卷一 · 子 丑 寅 · 夜里十一点到清早五点</div>
+  <h2>夜<small>天黑以后</small></h2>
+  <p class="lede">白天有太阳可看，夜里只剩星星、水滴和守夜人的梆子。人类最早的“钟表”，几乎都是为了熬过黑夜而造的：要知道夜还有多长，要知道什么时候换班，要知道祭祀的时刻到了没有。这一卷从午夜讲到天亮前。</p>
+</div>
+
+<!-- ============ 子 接缝 ============ -->
+<section class="chap" id="c1" data-vol="子 · 接缝">
+  <div class="hour">
+    <svg class="dial" data-h="0" viewBox="0 0 120 120" aria-hidden="true"></svg>
+    <div>
+      <div class="no">第一章 · 子时 · 23:00—01:00</div>
+      <h2><span class="zh">子</span>接缝</h2>
+      <dl><dt>讲什么</dt><dd>一天从哪儿开始；日期变更线；丢掉和捡到的一天</dd><dt>本章装置</dt><dd>今天是星期几？</dd></dl>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="now">
+      <span class="clk">23:59</span>
+      <p>你还没睡。手机屏幕顶上，日期再过一分钟就要跳了。</p>
+      <p>跳过去以后，你会说“今天”，指的却还是刚才那一天：今天去了图书馆，今天吃了什么。对你来说，“今天”要到你睡着才算结束，跟手机怎么想没关系。</p>
+      <p>那么到底谁说了算：手机，还是你的眼皮？</p>
+    </div>
+
+    <div class="then">
+      <div class="tg"><b>船上是星期三，岸上是星期四</b><span>1522 年 7 月 · 佛得角</span></div>
+      <p>维多利亚号已经在海上漂了快三年。出发时五条船、两百多人，现在只剩这一条船、几十个饿得皮包骨的人。船长麦哲伦一年多以前死在了菲律宾的一座小岛上，带船回家的是他的部下埃尔卡诺。</p>
+      <p>船停在大西洋上葡萄牙人的佛得角群岛外，派一条小艇上岸买米。船上有个意大利人叫皮加费塔，一路都在记日记，一天也没断过。他让上岸的人顺便问一句：今天星期几？</p>
+      <p>小艇回来了，岸上的人说：<em>星期四</em>。</p>
+      <p>皮加费塔翻自己的日记，船上明明是星期三。他非常吃惊，因为他确信自己每天都记了，一天都没有落下。</p>
+      <p class="fact">日期、地点、“船上星期三、岸上星期四”，以及皮加费塔说自己每天都记了的大意，出自他本人的航海记。具体对话为概述。</p>
+    </div>
+
+    <p>皮加费塔没有记错。少掉的那一天，是被太阳偷走的。</p>
+    <p>船队一路向西走，追着太阳跑。每往西走十五个经度，太阳就晚一个钟头落山，船上的“一天”也就比岸上长一个钟头。绕地球一整圈，三百六十度，正好多出二十四个钟头。船上的人过了的日落比岸上的人少一次，日历自然就少翻了一页。</p>
+    <p>今天我们知道这件事的道理，也给它画了一条线：<em>国际日期变更线</em>。可是这条线背后有一个更根本的问题：既然地球是一个转着的球，太阳永远在某个地方升起、在另一个地方落下，那“一天”到底应该从哪里切开？</p>
+  </div>
+
+  <div class="col">
+    <h3>太阳只给了一个圈</h3>
+    <p>太阳给人的，是一个不停转的圈：天亮、正午、天黑、半夜、又天亮。这个圈没有头也没有尾，就像手镯一样。要把它变成一天一天，得有人拿刀在某个地方切一下。</p>
+    <p>两千年前的罗马作家老普林尼，在他的《博物志》里专门记过一笔，说各地的人在不同地方下刀：巴比伦人从日出算到下一个日出，雅典人从日落算到下一个日落，意大利中部的翁布里亚人从正午算到正午，老百姓从天亮算到天黑；罗马的祭司和定官方日子的人，还有埃及人，从半夜算到半夜。</p>
+    <p>每一刀都有它的道理。</p>
+    <ul class="plain">
+      <li><b>日出</b>：最直观。人一睁眼，新的一天就开始了。</li>
+      <li><b>日落</b>：对看月亮的人最方便。新月细细一弯，只在日落后的西边天上露一下脸，所以靠月亮定日子的民族，往往让一天从傍晚开始。犹太人的《创世记》里说上帝造世界的头一天，是“有晚上，有早晨，这是头一日”，先说晚上，后说早晨。直到今天，犹太人的安息日从星期五日落开始，穆斯林斋月的一天也在日落时开斋。</li>
+      <li><b>正午</b>：对天文学家最方便。一整夜的观测都落在同一个日期里，不用半夜改日子。</li>
+      <li><b>半夜</b>：谁都看不见，也没人在干活。在这里下刀，几乎不会把任何一件正在做的事切成两半。</li>
+    </ul>
+    <p>中国古人也选了半夜。十二时辰的头一个是子时，从夜里十一点到一点，“夜半”就是一天的开头。麻烦在于，子时本身横跨在两天之间：夜里十一点到十二点，算昨天还是今天？后来的算命先生为此专门分出“早子时”和“晚子时”，吵了好几百年。</p>
+  </div>
+
+  <aside class="echo" data-k="存疑">
+    <span class="stamp">存疑</span>
+    <div>
+      <div class="rh">交子与饺子</div>
+      <p>常听人说，年三十晚上吃饺子，是因为子时是新旧两年交接的时刻，叫“交子”，饺子就是“交子”的谐音。这个说法很好听，但只是民间流传的一种解释，饺子的来历和名字另有很多说法，没法坐实。</p>
+    </div>
+  </aside>
+
+  <div class="wide">
+    <div class="fig" id="dayFig">
+      <div class="fig-label">装置 1</div>
+      <h4>今天是星期几？</h4>
+      <p class="how">拖动滑块，把时间从星期一凌晨拨到星期三凌晨（为了简单，假设早上六点日出、傍晚六点日落）。看看同一个时刻，在五种“切法”里各属于哪一天。</p>
+      <div class="ctl"><span>时刻</span><input type="range" id="dayT" min="0" max="2880" step="15" value="1410"><output id="dayO"></output></div>
+      <div class="dayaxis"><div></div><div><span>周一 0点</span><span>12</span><span>周二 0点</span><span>12</span><span>周三 0点</span></div><div></div></div>
+      <div class="dayrows" id="dayRows"></div>
+      <div class="say" id="daySay"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>天文学家的正午，一直用到 1925 年</h3>
+    <p>半夜这一刀，并不是一开始就全世界通用的。很长一段时间里，欧洲的天文学家坚持用“正午开始的一天”，因为他们的活儿全在夜里。1583 年，法国学者斯卡利杰发明了一种给日子编号的办法，叫“儒略日”，一天一个号，从公元前 4713 年起一直往下数，就规定每一号从正午开始。直到今天，天文学家还在用它。</p>
+    <p>英国的《航海天文历》用天文日一直用到 1924 年底。1925 年 1 月 1 日起，天文学家才和老百姓统一，也从半夜开始算一天。为了这次统一，1924 年 12 月 31 日那一天，在天文历里只有十二个钟头。</p>
+  </div>
+
+  <aside class="echo" data-k="押韵">
+    <span class="stamp">押韵</span>
+    <div>
+      <div class="rh">夜班的人永远在“昨天”</div>
+      <p>天文学家不愿在半夜改日子，和今天医院、工厂、便利店的夜班一模一样。很多店的“营业日”在凌晨某个钟点才结账换日，夜班表上写的往往是“周一晚班”，哪怕这个班的大半截其实在周二。凡是夜里干活的人，都会给自己造一个不在半夜断开的“一天”。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>那条线</h3>
+    <p>回到麦哲伦的问题。只要你绕着地球走一圈，往西走就会丢一天，往东走就会捡一天。1872 年，法国作家凡尔纳写了一本《八十天环游地球》，主人公福格先生和人打赌，八十天内绕地球一圈，往东走。他一路紧赶慢赶，回到伦敦时以为自己晚了一天、输了赌注，垂头丧气；结果第二天才发现，因为往东走，他白捡了一天，其实还来得及。这本小说的高潮，就靠这一天。</p>
+    <p>要让这件事不乱套，全世界得约好：在地球上某个地方，日历必须跳一下。这条线最好画在没什么人住的地方，于是选在了太平洋中间，大致沿着东经、西经 180 度，从格林尼治隔着半个地球的地方穿过去。往西越过这条线，日历加一天；往东越过，减一天。</p>
+    <p>这条线不是直的，它弯弯曲曲，绕开岛屿和国家，因为没有哪个国家愿意让自己的首都和最大的岛不在同一天。而且，它会被挪动：</p>
+    <ul class="plain">
+      <li><b>1844 年</b>，西班牙统治下的菲律宾把 12 月 31 日整个跳过去了。在此之前，菲律宾跟着从美洲来的西班牙航线用“美洲的日期”，和隔壁的亚洲邻居差一天，做生意很不方便。</li>
+      <li><b>2011 年</b>，太平洋上的萨摩亚又跳了一次：12 月 29 日过完，直接是 12 月 31 日，30 日那天在萨摩亚根本不存在。原因也一样，萨摩亚最大的贸易伙伴已经从美国换成了澳大利亚和新西兰，跟它们差一天，等于一周只有四天能和对方一起上班。</li>
+    </ul>
+    <p>你看，连“今天是几号”这件事，都是可以为了做生意改的。</p>
+  </div>
+
+  <aside class="echo" data-k="生活">
+    <span class="stamp">生活</span>
+    <div>
+      <div class="rh">截止时间写 23:59 的人是对的</div>
+      <p>“周五 24:00 截止”到底是周五晚上，还是周六凌晨？很多人在这里吃过亏。所以很多正规通知干脆写“23:59”，或者写“周六 0:00 前”。这和日期变更线的道理一样：<em>接缝处最容易出错，所以要在接缝处说清楚</em>。约人、交东西、报名，凡是卡在半夜的时间，多问一句“是哪天的半夜”。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <p>皮加费塔回到西班牙后，据说专门为那丢掉的一天去请教过人，因为那意味着船上的人整整三年里，把每一个斋戒日和节日都过错了一天。宗教上的日子都错了，这在当时是不得了的事。</p>
+    <p>他其实没做错什么。他只是第一批亲身撞上这道接缝的人。地球上任何一个地方的“今天”，都只是这个圈上被约定好切开的一段。切口在哪儿，是人定的，也是可以改的。</p>
+    <div class="tick">
+      <div><i>滴<small>历史</small></i>太阳只给了一个没有头尾的圈，“一天从哪儿开始”是人拿刀切的：巴比伦人切在日出，犹太人切在日落，天文学家切在正午，我们切在半夜。</div>
+      <div><i>答<small>生活</small></i>凡是卡在接缝上的时间（半夜、跨年、跨时区），都要多说一句。大部分误会，不是谁错了，而是两个人用了两把刀。</div>
+    </div>
+  </div>
+</section>
+<!-- ============ 丑 更漏 ============ -->
+<section class="chap" id="c2" data-vol="丑 · 更漏">
+  <div class="hour">
+    <svg class="dial" data-h="1" viewBox="0 0 120 120" aria-hidden="true"></svg>
+    <div>
+      <div class="no">第二章 · 丑时 · 01:00—03:00</div>
+      <h2><span class="zh">丑</span>更漏</h2>
+      <dl><dt>讲什么</dt><dd>五更、打更、半夜钟；水钟为什么越走越慢；古人睡不睡“两觉”</dd><dt>本章装置</dt><dd>守一夜漏壶</dd></dl>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="now">
+      <span class="clk">01:37</span>
+      <p>你半夜醒了，不知道为什么。屋里很黑，你摸到手机，按亮：一点三十七分。还能睡五个多钟头，你松了口气，又翻身睡了。</p>
+      <p>要是没有这块发光的屏幕呢？窗外没有路灯，月亮也不在。你怎么知道离天亮还有多久？</p>
+    </div>
+
+    <div class="then">
+      <div class="tg"><b>“三更不是打钟时”</b><span>约 8 世纪中 · 苏州城外 ／ 11 世纪 · 开封</span></div>
+      <p>一个叫张继的唐朝读书人，坐船停在苏州城外的枫桥边，睡不着，写了一首后来几乎人人会背的诗。最后两句是：“姑苏城外寒山寺，夜半钟声到客船。”</p>
+      <p>三百来年以后，北宋的欧阳修读到这首诗，在他的《六一诗话》里挑了个刺：句子是好句子，可是三更半夜，哪有寺庙敲钟的？</p>
+      <p>欧阳修是大文豪，可这一回他说错了。后来好几位宋朝人都出来作证，说唐朝的寺庙确实有半夜敲的钟，还有人在别人的唐诗里翻出了更多“半夜钟”的句子；连宋朝当时，有的寺院也还敲。</p>
+      <p class="fact">张继《枫桥夜泊》诗句、欧阳修《六一诗话》的质疑、宋人反驳有“半夜钟”的大意，都见于宋人笔记与诗话。张继写诗的确切年份不详。</p>
+    </div>
+
+    <p>一千年前两个大文人隔空争的，其实是一个很实际的问题：半夜里，人靠什么知道时间？</p>
+    <p>答案是：靠<em>听</em>。夜里眼睛没用，耳朵还醒着。寺庙的钟、城楼的鼓、街上打更人的梆子和锣，是一座城在夜里的钟表。</p>
+  </div>
+
+  <div class="col">
+    <h3>五更</h3>
+    <p>古代中国把一夜分成五段，叫“五更”，每一更又分五“点”。粗略地说，一更是晚上七点到九点，二更九到十一点，三更十一点到一点，四更一到三点，五更三到五点。所以“三更半夜”就是子时前后，正是夜最深的时候；“五更天”就是天快亮了。</p>
+    <p>但这只是粗略的说法。后来很长时间里，一更有多长是跟着季节变的：从黄昏到天亮这一整段黑夜，平均切成五份。冬天夜长，一更就长；夏天夜短，一更就短。打更的人不是看钟，而是从天黑那一刻起，看着漏壶数。</p>
+    <p>城里有专门的更夫，一边走一边敲梆子、打锣，几更就敲几下，顺便喊两嗓子防火防贼。鼓楼上也击鼓报更。唐朝的长安城还更严，天黑以后街鼓一响，各坊的坊门关上，街上不许走人，叫“宵禁”；违反的叫“犯夜”，要挨打。夜里的时间，同时也是一张管人的网。</p>
+  </div>
+
+  <aside class="echo" data-k="押韵">
+    <span class="stamp">押韵</span>
+    <div>
+      <div class="rh">罗马的四更天</div>
+      <p>罗马军队也把夜分成几段站岗，叫“守夜”（vigilia），一夜四班。《圣经》里有一句说耶稣“夜里四更天”在海面上走，原文说的是罗马人的“第四班守夜”，也就是后半夜三点到天亮之间。翻译成中文时，译者直接借用了中国的“更”字。两个毫不相干的文明，都把夜按站岗换班来切。原因很简单：<em>夜要有人守，守夜的人要换班，换班就得有个时间</em>。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>会说话的水</h3>
+    <p>那么，更夫和城楼上的人，又是怎么知道该换更了的呢？靠水。</p>
+    <p>道理再简单不过：在一个壶的底上开个小孔，让水一滴一滴地漏出来；漏掉的水有多少，就过了多少时间。中国叫它“漏”，或“漏刻”；希腊人叫它“偷水者”（klepsydra）。</p>
+    <p>目前知道最早的一件实物，是古埃及卡纳克神庙里出土的一只石头水钟，约公元前 14 世纪，是法老阿蒙霍特普三世时代的东西。它有一个奇怪的地方：壶壁不是直的，是斜的，上口大、下底小。</p>
+    <p>为什么要做成斜的？因为造它的人发现了一件很烦人的事：<em>水不是匀速漏的</em>。壶里水满的时候，水压大，漏得快；水快漏完的时候，水压小，漏得慢。如果壶壁是直的，刻度就得上密下疏，夜里前半段和后半段的“一个钟头”不一样长。把壶壁做斜，上面宽一点，水位降得慢一点，就能把这个毛病抵消掉一部分。</p>
+    <p>中国人想的办法更巧妙：<em>一个壶不够，就多摆几个</em>。最上面一只壶往下漏，漏进第二只，第二只再漏进第三只……最下面那只接水的壶里，浮着一支刻着刻度的木箭，水涨箭升，看箭上的刻度读时间。中间那几只壶互相“缓冲”，最后一只的水位就稳得多。唐朝有一种四级漏壶，层层叠叠像一座小塔。</p>
+    <p>到了北宋，1030 年前后，一位叫燕肃的官员造了“莲花漏”，用了一个更聪明的办法：在供水的壶上开一个溢流口，多出来的水从溢流口流走。这样，这只壶的水位永远停在溢流口那里，不高也不低，往下漏的水也就永远一样快。这个办法今天的工程师叫它“恒定水头”。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig" id="clepFig">
+      <div class="fig-label">装置 2</div>
+      <h4>守一夜漏壶</h4>
+      <p class="how">你是司天台的漏刻生，今夜当班，要守十二个钟头。选一种漏壶，按“开始守夜”，看接水壶里那支箭怎样一点点升起来。虚线是“理想的”匀速上升，实线是真的箭。到天亮时，看你的漏差了多少分钟。“多级”和“莲花漏”需要有人定时往最上面那只壶里添水，你可以试试勤快和偷懒的区别。</p>
+      <div class="btns" id="clepMode"></div>
+      <div class="ctl" id="clepRefill"><span>添水间隔</span><input type="range" id="clepR" min="1" max="12" step="1" value="2"><output id="clepRO"></output></div>
+      <div class="two">
+        <svg id="clepSvg" viewBox="0 0 300 240" role="img" aria-label="漏壶示意"></svg>
+        <svg id="clepPlot" viewBox="0 0 300 200" role="img" aria-label="箭的高度随时间变化"></svg>
+      </div>
+      <div class="btns"><button class="btn pri" id="clepGo">开始守夜</button><button class="btn" id="clepFast">直接跳到天亮</button></div>
+      <div class="say" id="clepSay">选好漏壶，开始守夜。</div>
+    </div>
+  </div>
+
+  <div class="col">
+    <p>水钟还有一个死敌：冬天。北方的冬夜，水会结冰。古人想过不少办法，在漏壶边上生火保温，或者往水里掺东西。明朝初年，有人造了一种“五轮沙漏”，用沙子推动齿轮，不怕冻。欧洲的沙漏差不多也在 14 世纪出现，后来船上量航速、教堂里限制布道时长都用它。</p>
+    <p>漏壶还留下了一个词：“刻”。中国古代把一昼夜分成一百刻，漏箭上一格就是一刻，相当于今天的十四分二十四秒。一百刻和十二时辰对不齐（一百除不尽十二），历代改过好几次，有过九十六刻、一百零八刻、一百二十刻的方案。到了清朝初年，定成九十六刻，一刻正好十五分钟。你今天说的“一刻钟”，就是从这支漏箭上来的。</p>
+  </div>
+
+  <aside class="echo" data-k="押韵">
+    <span class="stamp">押韵</span>
+    <div>
+      <div class="rh">“水快漏完了”</div>
+      <p>古希腊雅典的法庭上，原告和被告发言时，旁边放一只水钟，水漏完就得闭嘴。演说家讲到关键处，要引用证词时，会对管水钟的人喊一声“把水停下”，好让引证的时间不算在自己头上。中国人说“钟鸣漏尽”，意思是夜到头了，后来引申为人老了。<em>两边的人都把一生和一场发言，比成一壶漏得越来越慢的水。</em></p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>一夜睡两觉？</h3>
+    <p>说到半夜醒来，有一个这些年很流行的说法：在电灯普及以前，欧洲人一夜要睡两觉。天黑后不久睡“第一觉”，半夜醒来一两个钟头，祈祷、聊天、做家务、去邻居家串门，然后再睡“第二觉”到天亮。</p>
+    <p>这个说法来自美国历史学家埃克奇（A. Roger Ekirch）。他从大量旧日记、法庭证词、祈祷书和文学作品里，找到了数以百计的“第一觉”“第二觉”的说法，2001 年发表论文，2005 年出了书。</p>
+  </div>
+
+  <aside class="echo" data-k="存疑">
+    <span class="stamp">存疑</span>
+    <div>
+      <div class="rh">两觉是不是“人的天性”</div>
+      <p>旧文献里确实常见“第一觉”“第二觉”这样的说法，这一点很扎实。有争议的是：它是不是人类“天生”的睡法，被电灯给弄没了？一些研究发现，今天仍然没有电灯的几个狩猎采集部落，大多是一觉睡到天亮，并不常见半夜长时间醒着。所以更稳妥的说法是：<em>在某些时代、某些地方，人们确实习惯分两段睡</em>；至于这是不是人的天性，还在争论。</p>
+    </div>
+  </aside>
+
+  <aside class="echo" data-k="生活">
+    <span class="stamp">生活</span>
+    <div>
+      <div class="rh">半夜醒了，别看钟</div>
+      <p>不管两觉之说对不对，有一点几百年前的人和今天的睡眠医生意见一致：半夜醒一会儿是很常见的事，不必慌。慌的往往不是醒，而是一看手机“才三点”，开始算“还能睡几个小时”，越算越精神。古人只知道“四更了”，没有精确到分钟的焦虑。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <p>寒山寺的钟后来一直敲。据说到了今天，每年除夕夜，寒山寺还会敲一百零八下钟，引得很多人专门跑去听。张继那一夜听到的到底是什么钟、在几点，已经没法知道了。可他让后来的每一个读者都明白了一件事：<em>在没有钟表的夜里，时间是用耳朵听的</em>。</p>
+    <div class="tick">
+      <div><i>滴<small>历史</small></i>最早的钟表是为了熬夜而造的：更夫的梆子、寺庙的钟、一壶越漏越慢的水。为了让水漏得匀，人们发明了斜壁、多级、溢流，一千年前就懂得了“恒定水头”。</div>
+      <div><i>答<small>生活</small></i>夜里醒来不必算钟点。古人只知道“四更了”，也照样睡回去。</div>
+    </div>
+  </div>
+</section>
+<!-- ============ 寅 星钟 ============ -->
+<section class="chap" id="c3" data-vol="寅 · 星钟">
+  <div class="hour">
+    <svg class="dial" data-h="2" viewBox="0 0 120 120" aria-hidden="true"></svg>
+    <div>
+      <div class="no">第三章 · 寅时 · 03:00—05:00</div>
+      <h2><span class="zh">寅</span>星钟</h2>
+      <dl><dt>讲什么</dt><dd>为什么一天二十四小时、一小时六十分钟；星星为什么每晚早到四分钟；天狼星和尼罗河</dd><dt>本章装置</dt><dd>数一夜的时辰星</dd></dl>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="now">
+      <span class="clk">04:20</span>
+      <p>你睡得正沉。这是一夜里最黑、最冷的时候，城里的灯也灭得差不多了。</p>
+      <p>如果这时候有人爬上楼顶往东边看，会看到星星一颗接一颗从地平线上冒出来。它们升起的样子很准时，准到几千年前有人拿它们当钟用。</p>
+    </div>
+
+    <div class="then">
+      <div class="tg"><b>神庙屋顶上数星星的人</b><span>约公元前 2000 年前后 · 古埃及</span></div>
+      <p>神庙的屋顶是平的。一个祭司坐在上面，面朝东方，整夜不睡。他手里没有钟，只有一张表，表上画着三十几颗星星（有的是一颗亮星，有的是一小簇）的名字和次序。</p>
+      <p>每过一阵子，表上的下一颗星就从东边的地平线上露出来。他每看到一颗，就知道夜里的又一个“时辰”到了。神庙里的仪式，要在夜里特定的时辰举行，全靠他报。古埃及人管这种人叫“守时辰的人”。</p>
+      <p>这张表，今天的考古学家在一些古埃及的木棺棺盖内侧找到过：一格一格的星名排成表，像一张课程表，学者叫它“对角星钟”，因为表上同一颗星的名字，每隔十天就往上挪一格，斜着排成一条对角线。</p>
+      <p class="fact">古埃及有专门在夜里观星报时的祭司；中王国时期（约前 2100—前 1700 年）的一批木棺棺盖上画有“对角星钟”。屋顶上的具体场面为想象。</p>
+    </div>
+
+    <p>这张表，就是你手表上“24”这个数字的祖宗。</p>
+  </div>
+
+  <div class="col">
+    <h3>夜里的十二颗星</h3>
+    <p>古埃及人挑出了三十六颗（簇）星，今天叫它们“旬星”（decan）。它们沿着天上一条带子均匀排开，每一颗在某个季节的黎明前从东方升起，过十天，就轮到下一颗。三十六颗乘十天，正好三百六十天，再加上年底的五天节日，就是古埃及人的一年。</p>
+    <p>到了夜里，旬星一颗接一颗地升起，大约每隔四十分钟升起一颗。古埃及人数了数：一夜里能看见升起的旬星，是十二颗。于是他们把夜分成了十二个时辰。</p>
+    <p>白天呢？白天看不见星星，他们用日影来分，也慢慢凑成了十二段（有一种说法是十段，加上黎明、黄昏各一段）。夜十二，昼十二，<em>一天二十四</em>。</p>
+    <p>可是，为什么一夜正好是十二颗？夏天夜短，冬天夜长，能看见的星星数应该不一样才对。这正是学者们觉得最有意思的地方，你可以用下面这个装置自己数一数。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig" id="decFig">
+      <div class="fig-label">装置 3</div>
+      <h4>数一夜的时辰星</h4>
+      <p class="how">站在古埃及底比斯（北纬约 25.7 度）的神庙屋顶上。拖动日期，看这一夜从天完全黑透、到天开始发白，东方地平线上一共会升起几颗旬星。天没黑透和天已经发白的时候（浅色部分），星星太暗看不见，不算。</p>
+      <div class="ctl"><span>日期</span><input type="range" id="decD" min="0" max="364" step="1" value="190"><output id="decO"></output></div>
+      <div class="scroll-x"><svg id="decSvg" viewBox="0 0 640 150" style="min-width:520px" role="img" aria-label="一夜的时间带，标出旬星升起的时刻"></svg></div>
+      <div class="kv" id="decKv"></div>
+      <div class="say" id="decSay"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <p>算出来了：只有在<em>盛夏</em>，黑透的夜才短到只能数出十二颗左右。冬天能数出十六七颗。</p>
+    <p>为什么偏偏照夏天来定？学者给出的解释和一颗星有关：天狼星。古埃及人叫它“索普代特”，是全天最亮的恒星。每年它在太阳的光芒里消失大约七十天，然后在某个夏日的黎明前，重新从东方地平线上闪出来。差不多就在这个时候，尼罗河开始涨水，带来肥沃的淤泥，新的一年开始了。天狼星重新出现的那段日子，是古埃及人一年里最要紧的时刻，他们的星钟，很可能就是按这个季节的夜来定的。</p>
+    <p>这样定出来的“时辰”，长短会随季节伸缩，夏夜的一个时辰比冬夜的短。这个毛病要到卯时那一章再说。</p>
+  </div>
+
+  <div class="box">
+    <h5>星星每晚早到四分钟</h5>
+    <p>为什么旬星每十天换一颗？因为同一颗星，每天晚上升起的时间都比前一天早大约四分钟。</p>
+    <p>地球除了自转，还在绕着太阳公转。转一整圈对着同一颗星，只要 23 小时 56 分 4 秒，天文学上叫“恒星日”；可要转到再一次对着太阳，还得多转一点点，所以“太阳日”是 24 小时。每天差约四分钟，一年攒下来，正好差一整天。</p>
+    <p>所以星空是会“走”的：同一个钟点，冬天的晚上能看见猎户座，夏天就换成了天蝎座。古埃及人的星钟表格，每隔十天就要把同一颗星的名字往上挪一格，挪的就是这每天四分钟。</p>
+  </div>
+
+  <div class="col">
+    <h3>六十：从两河来的</h3>
+    <p>二十四有了，六十呢？一小时六十分钟、一分钟六十秒，这不是埃及人的主意，是两河流域的。</p>
+    <p>苏美尔人和后来的巴比伦人用六十进位数数，大约从公元前三千年起就这么干了。六十是个好数：它能被 1、2、3、4、5、6、10、12、15、20、30 整除，分东西特别方便。巴比伦的天文学家用六十进制记录天象，把一个圆分成三百六十度，再往下六十分、六十秒地切。</p>
+    <p>希腊的天文学家继承了巴比伦人的算法，公元 2 世纪的托勒密在他的天文学巨著里，把一度分成六十个“第一次细分”，再分六十个“第二次细分”。这两个说法翻成拉丁文，一个缩成了 minute（分），一个缩成了 second（秒，原意就是“第二”）。</p>
+    <p>所以你手表上的数字，是两个文明合伙的结果：<em>埃及人给了二十四，巴比伦人给了六十</em>。而且很长时间里，“分”和“秒”只是天文学家纸上算账用的，普通钟表上根本没有分针。要等到 17 世纪后半叶，钟表准到值得看分钟了，分针才普遍装上表盘。</p>
+  </div>
+
+  <aside class="echo" data-k="联系">
+    <span class="stamp">联系</span>
+    <div>
+      <div class="rh">苇城的六十</div>
+      <p>书房里的《苇城书记》写过，两河流域最早的泥板上，数字就是按六十进位压出来的：一个小楔子是一，一个小圆坑是十，一个大楔子是六十。你今天看表时数的分秒，是那些泥板上的数字活下来的后代。</p>
+    </div>
+  </aside>
+
+  <aside class="echo" data-k="押韵">
+    <span class="stamp">押韵</span>
+    <div>
+      <div class="rh">十进制时间，活了不到两年</div>
+      <p>法国大革命时，革命者觉得什么都该改成十进制：长度用米，重量用克，时间也不例外。1793 年底，法国颁布法令：一天十小时，一小时一百分钟，一分钟一百秒，还真造了一批十小时表盘的钟。可是老百姓不买账，家里的钟换不起，也算不过来。1795 年，十进制时间被暂停，后来就没了下文。米和克留了下来，六十却赢了。<em>四千年的习惯，比一场革命还硬。</em></p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>中国的十二</h3>
+    <p>中国人也把一天分成十二份，叫十二时辰，用子丑寅卯十二地支来命名。十二这个数在中国很早就有了：一年大约十二个月，木星大约十二年绕天一圈，地支也是十二个。和埃及人分别切白天、黑夜不同，中国的十二时辰是把一整个昼夜平均切成十二份，每份一样长，冬夏都不变。</p>
+    <p>同时，中国还有漏壶上的“百刻”，两套系统并行了两千年。到了宋朝前后，每个时辰被切成前后两半，叫“初”和“正”，比如子初、子正。半个时辰，正好是今天的一个钟头。通行的说法是，“小时”这个词就是这么来的，意思是“小的时辰”；也有人认为这个词要到明清和西洋钟表一起才流行开来。</p>
+  </div>
+
+  <aside class="echo" data-k="生活">
+    <span class="stamp">生活</span>
+    <div>
+      <div class="rh">六十为什么好用</div>
+      <p>约人“过二十分钟见”“一刻钟后出发”，这些数都能把一小时整整齐齐分开。要是一小时一百分钟，三分之一小时就是 33.33 分钟。下次排复习计划时可以留意：把一个钟头切成三段二十分钟、四段十五分钟，都是巴比伦人四千年前替你算好的。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <p>古埃及的那张星表后来被人遗忘了，神庙屋顶上的祭司也早已不在。可每次你看表，表盘上那十二格、二十四小时，都还在替那些不睡觉的人报时。</p>
+    <div class="tick">
+      <div><i>滴<small>历史</small></i>二十四来自古埃及：夜里数出十二颗旬星，白天也凑成十二段。六十来自两河：巴比伦人的六十进位，经希腊人的手，变成了分和秒。</div>
+      <div><i>答<small>生活</small></i>好用的规矩会活得比造它的文明还久。改不掉的东西，往往是因为它真的好用，而不只是因为习惯。</div>
+    </div>
+  </div>
+</section>
+<!-- ============ 卷二 晨 ============ -->
+<div class="volhead" id="v2">
+  <svg class="arc" data-v="1" viewBox="0 0 200 120" aria-hidden="true"></svg>
+  <div class="num">卷二 · 卯 辰 巳 · 清早五点到上午十一点</div>
+  <h2>晨<small>天亮以后</small></h2>
+  <p class="lede">天亮了，人要起床、上朝、上工。时间开始从“看天”变成“听命令”：衙门的点卯、修道院的钟、城楼的鼓、工厂的汽笛和打卡机。这一卷讲时间怎样从天上被搬下来，装进机器，又变成了钱。</p>
+</div>
+
+<!-- ============ 卯 点卯 ============ -->
+<section class="chap" id="c4" data-vol="卯 · 点卯">
+  <div class="hour">
+    <svg class="dial" data-h="3" viewBox="0 0 120 120" aria-hidden="true"></svg>
+    <div>
+      <div class="no">第四章 · 卯时 · 05:00—07:00</div>
+      <h2><span class="zh">卯</span>点卯</h2>
+      <dl><dt>讲什么</dt><dd>五更上朝和点卯；夏天长、冬天短的“小时”；江户的钟</dd><dt>本章装置</dt><dd>罗马人的一小时有多长</dd></dl>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="now">
+      <span class="clk">06:30</span>
+      <p>闹钟响了。你伸手按掉，又躺了五分钟，看了一眼窗外：冬天这个钟点，天还黑着；要是在夏天，太阳早就晒进来了。</p>
+      <p>闹钟不管这些。它只认 6:30，一年三百六十五天都一样。可是你有没有想过：要是钟点也跟着太阳走，冬天的“六点半”晚一些、夏天的早一些，会怎么样？</p>
+      <p>这不是假设。人类大部分历史上，钟点就是这么走的。</p>
+    </div>
+
+    <div class="then">
+      <div class="tg"><b>待漏院里的宰相</b><span>北宋 · 开封 · 五更</span></div>
+      <p>天还没亮，皇宫的大门还关着。门外有一排屋子，叫“待漏院”，意思是“等着漏壶报时的院子”。宰相们和大臣们半夜就起床，摸黑坐着轿子赶来，在这里喝口热茶，等宫门打开去上早朝。</p>
+      <p>北宋初年，一个叫王禹偁的官员写过一篇《待漏院记》。他想象宰相坐在这间屋子里、等着天亮的那一会儿，心里在想些什么：好宰相想的是哪里闹了灾、哪里该罢免坏官、怎么让百姓过得好一点；坏宰相想的是谁得罪了我、怎么报复、怎么捞好处。然后宫门一开，两种人都整整衣冠，进去见皇帝。</p>
+      <p>他把这篇文章刻在了待漏院的墙上，给每天清早坐在那里的人看。</p>
+      <p class="fact">北宋设有宰臣待漏院；王禹偁作《待漏院记》，内容为两种宰相的对比，文末说要把文章写在院壁上。场面为概述。</p>
+    </div>
+
+    <p>上早朝的时间，各朝各代不一样，但大都在天亮前后。地方衙门也一样：官吏每天卯时到衙门报到，长官按名册点名，叫“点卯”；到了的人在名字下画个记号，叫“画卯”；应声答到，叫“应卯”。今天说一个人上班只是“点个卯”，意思是人到了、心没到，就是从这里来的。</p>
+    <p>卯时是早上五点到七点。可是古代没有闹钟，大家怎么约好“卯时”是哪一刻？衙门和城里靠的是鼓楼和漏壶，乡下人靠的是太阳和公鸡。在乡下，时间从来不是一个数字，而是一件事：<em>日出而作，日入而息</em>。</p>
+  </div>
+
+  <div class="col">
+    <h3>会伸缩的小时</h3>
+    <p>上一章说，古埃及人把白天和黑夜各分成十二份。古罗马人也照这个办法：从日出到日落，不管多长，平均切成十二个“时”（hora）。日出那一刻是第一时的开始，正午是第六时的结束，日落是第十二时的结束。</p>
+    <p>这样一来，罗马人的“一小时”是会变的。夏天白天长，一小时就长；冬天白天短，一小时就短。在罗马城，夏至那天白天的一小时大约有七十五分钟，冬至那天只有四十五分钟左右。夜里的小时正好反过来。</p>
+    <p>这在今天听来很乱，但对当时的人非常自然：他们要的不是“几点几分”，而是“白天过了几成”。第六时就是正午，第三时就是上午过了一半。说“第九时见”，大家都知道是下午过了一半，不管冬夏。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig" id="romFig">
+      <div class="fig-label">装置 4</div>
+      <h4>罗马人的一小时有多长</h4>
+      <p class="how">选一个地方、拖动日期。上面一条是白天的十二个“时”，下面是夜里的十二个；每一格的宽度就是那一“时”的长短，格子里标着它相当于现在的几点开始。越往北走，冬夏的差别越大。</p>
+      <div class="btns" id="romCity"></div>
+      <div class="ctl"><span>日期</span><input type="range" id="romD" min="0" max="364" step="1" value="172"><output id="romO"></output></div>
+      <div class="scroll-x"><svg id="romSvg" viewBox="0 0 640 150" style="min-width:520px" role="img" aria-label="白天和黑夜各十二个时的长短"></svg></div>
+      <div class="kv" id="romKv"></div>
+      <div class="say" id="romSay"></div>
+    </div>
+  </div>
+
+  <aside class="echo" data-k="押韵">
+    <span class="stamp">押韵</span>
+    <div>
+      <div class="rh">午睡和“正午”都是罗马钟点的遗物</div>
+      <p>罗马的第六时（sexta hora）是正午前后最热的一段，人们在这时休息。西班牙语的“午睡”siesta，据说就是从 sexta 来的。英语的“正午”noon 更绕：它本来是第九时（nona hora），下午三点左右，是修道院里的一次祈祷和吃饭时间；后来修士们大概饿得等不及，把这顿饭一点点往前挪，挪到了中午，noon 这个词也就跟着搬到了中午。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>江户的钟</h3>
+    <p>会伸缩的小时，在日本一直用到了 19 世纪。</p>
+    <p>16 世纪，西洋的机械钟传进日本。它的指针一圈一圈地匀速走，每个小时一样长。可日本人用的是“不定时法”：和罗马人一样，把白天和夜里各分成六等份，随季节伸缩。洋钟和日本的钟点对不上。</p>
+    <p>日本的钟表匠没有改钟点，而是改了钟。他们造出一种“和时计”：有的有两套摆，白天一套快的、夜里一套慢的，日出日落时自动切换；有的表盘上的时辰刻度可以手动挪动，每隔半个月拨一次；还有的干脆在摆杆上挂个可移动的砝码，按季节调快调慢。这些钟极其精巧，是世界钟表史上独一份的东西。</p>
+    <p>1873 年 1 月 1 日，明治政府改用西洋历法，同时改用每小时一样长的“定时法”。一夜之间，那些精巧的和时计全成了古董。</p>
+  </div>
+
+  <aside class="echo" data-k="押韵">
+    <span class="stamp">押韵</span>
+    <div>
+      <div class="rh">中国人早就用匀速的时辰了</div>
+      <p>有意思的是，中国的十二时辰从很早起就是匀速的：把一整个昼夜平均切十二份，冬夏一样长。会伸缩的反倒是夜里的“更”（见丑时那一章）。所以在中国，白天按“匀速时辰”、夜里按“伸缩更点”，两种办法同时用了一千多年。哪种好，取决于你要干什么：<em>算天文、排历法，要匀速的；守夜换班、过日子，伸缩的更顺手</em>。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>是谁让小时不再伸缩</h3>
+    <p>其实希腊的天文学家早就会用“匀速的小时”了，他们叫它“分点时”，就是春分秋分那天白天的一小时，一年到头都按这个长度算。但这只是天文学家纸上的东西，老百姓照样过伸缩的小时。</p>
+    <p>真正让小时在欧洲老百姓那里固定下来的，是一台机器：14 世纪起在城市钟楼上出现的机械钟。机器的齿轮一圈一圈匀速转，它不知道今天是冬至还是夏至，也不想知道。它敲出来的每一个钟点，都一样长。</p>
+    <p>从此，时间不再跟着太阳伸缩，而是跟着机器走。人不再看天起床，而是听钟起床。这件事，留到下一章。</p>
+  </div>
+
+  <aside class="echo" data-k="生活">
+    <span class="stamp">生活</span>
+    <div>
+      <div class="rh">冬天起床难，不全怪你</div>
+      <p>人的身体里有一个大约二十四小时的“生物钟”，它最听的不是闹钟，而是光。冬天早上天黑，身体还以为是夜里，所以同样六点半起床，冬天比夏天难受得多。有些人天生偏早睡早起，有些人天生偏晚，这种差别（“时型”）有一部分是先天的。古罗马人的伸缩小时，等于让钟点去迁就太阳；我们今天是让身体去迁就闹钟。早上起来先开灯、拉开窗帘晒晒光，是给身体报时最简单的办法。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <p>王禹偁的《待漏院记》后来被选进了《古文观止》。一千年后的人读它，很少注意到文章的题目本身就是一个时间装置：一间专门用来“等漏”的屋子。在钟表还没有走进每家每户的年代，等待时间本身，就需要一座房子。</p>
+    <div class="tick">
+      <div><i>滴<small>历史</small></i>大部分历史上，“一小时”是会伸缩的：古罗马、古埃及、江户日本都把白天平分十二份或六份。是匀速转动的机械钟，让小时定了下来。</div>
+      <div><i>答<small>生活</small></i>身体认的是太阳，闹钟认的是数字。冬天早起难，先给自己一点光。</div>
+    </div>
+  </div>
+</section>
+<!-- ============ 辰 钟声 ============ -->
+<section class="chap" id="c5" data-vol="辰 · 钟声">
+  <div class="hour">
+    <svg class="dial" data-h="4" viewBox="0 0 120 120" aria-hidden="true"></svg>
+    <div>
+      <div class="no">第五章 · 辰时 · 07:00—09:00</div>
+      <h2><span class="zh">辰</span>钟声</h2>
+      <dl><dt>讲什么</dt><dd>晨钟暮鼓；苏颂的水运仪象台；修道院的钟和第一批机械钟；擒纵和钟摆</dd><dt>本章装置</dt><dd>调一台中世纪的钟</dd></dl>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="now">
+      <span class="clk">07:58</span>
+      <p>早八。你踩着铃声冲进教室，找个后排坐下。</p>
+      <p>铃声是这栋楼的“钟”。它一响，几百个人同时开始或者结束一件事。你从小到大听过几万次铃声，早就习惯了被它指挥。</p>
+      <p>让一大群人在同一刻做同一件事，这是“钟”最早的工作。它先是一口真的钟，后来才变成表盘和指针。</p>
+    </div>
+
+    <div class="then">
+      <div class="tg"><b>一座会自己报时的楼</b><span>1088 年 · 北宋开封</span></div>
+      <p>开封城里，一座三层楼高的木头塔造好了。顶上一层是观测星星的浑仪，中间一层是一个自己会转的天球，底下一层藏着一个巨大的水轮。水一斗一斗地灌进水轮的小斗里，每装满一斗，一套杠杆就“放行”一次，水轮转过一格。</p>
+      <p>水轮带着整座塔里的齿轮和木头小人转起来。每个时辰开始时，红衣木人出来摇铃，时辰过半时另一个木人出来扣钟；每到一刻，绿衣木人出来敲鼓；夜里，还有木人敲钲报更。塔的正面有一层层小门，每到一个时刻，就有小木人捧着写着时辰的牌子出来。</p>
+      <p>主持造这座塔的是宰相苏颂。他还写了一本书叫《新仪象法要》，把它的每一个零件都画了图。</p>
+      <p class="fact">水运仪象台由苏颂、韩公廉等人主持制成，元祐年间（约 1088—1092 年）建成，有木人按时摇铃、击鼓、敲钲、出牌；《新仪象法要》附有详细图样。</p>
+    </div>
+
+    <p>水运仪象台最关键的部件，是那套让水轮“一格一格”转的杠杆，苏颂叫它“天衡”。英国科学史家李约瑟认为，这就是钟表最核心的发明“擒纵机构”的一种早期形式：<em>不让动力一口气泄光，而是一小份一小份地放出来</em>。</p>
+    <p>这座塔只活了不到四十年。1127 年，金兵攻破开封，把它拆了运往北方，没人会修，很快就坏了。后来南宋朝廷想再造一座，找不到会造的人，连苏颂的儿子也造不出来。它留下来的，只有那本书。</p>
+  </div>
+
+  <aside class="echo" data-k="存疑">
+    <span class="stamp">存疑</span>
+    <div>
+      <div class="rh">“第一台钟”是谁的</div>
+      <p>苏颂的天衡算不算擒纵机构，学界有不同看法。它确实是“一份一份放出动力”，但它靠的是水斗装满的重量，和欧洲机械钟靠一根摆动的横杆来回卡齿轮的原理不同。李约瑟还把源头往前推到唐朝一行和梁令瓒在 725 年造的水运浑天仪。比较稳妥的说法是：<em>中国人很早就造出了能自动报时的水力天文钟，但它和后来欧洲的机械钟之间有没有传承关系，没有证据</em>。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>晨钟暮鼓</h3>
+    <p>苏颂的塔是给皇帝看天象的，老百姓看不到。老百姓听得到的，是城里的钟和鼓。</p>
+    <p>唐朝初年，长安城每天早晚开关城门、坊门，原先是靠士兵沿街大声吆喝传话。后来大臣马周建议，在街上设鼓，用鼓声代替喊声。老百姓管这种鼓叫“冬冬鼓”，大家都觉得方便。</p>
+    <p>后来的许多城里都有了钟楼和鼓楼，早上敲钟、晚上击鼓，叫“晨钟暮鼓”。北京的钟鼓楼在元朝就有了，明朝重建，一直给全城报时，据说到 1924 年才停下。</p>
+  </div>
+
+  <div class="col">
+    <h3>修道院的钟</h3>
+    <p>在欧洲，第一批被钟声管起来的人，是修士。</p>
+    <p>6 世纪，意大利的圣本笃给修士们定了一套规矩，一天要按固定的钟点祈祷好几次：天亮前、日出、上午、正午、下午、日落、睡前……每一次祈祷都有名字，叫“时辰祈祷”。到点了，就要有人敲钟，把全修道院的人叫起来。为了不误点，修道院里很早就有人专门管水钟、看星星、守夜敲钟。</p>
+    <p>英语的“钟”clock，和德语的“钟”Glocke 一样，都来自中世纪拉丁语里的 clocca，意思就是<em>敲的那口钟</em>。最早的钟表，首先不是一个“看”的东西，而是一个“听”的东西。</p>
+    <p>大约在 13 世纪末，欧洲出现了真正的机械钟：靠一个重锤往下坠提供动力，靠一套叫“机轴擒纵”的装置一下一下地卡住齿轮。到底是谁发明的，没有留下名字。14 世纪起，意大利和欧洲各地的城市纷纷在钟楼上装起会自己敲钟点的大钟，一天敲二十四次，每次敲几下就是几点。</p>
+  </div>
+
+  <div class="box">
+    <h5>擒纵：钟表的心脏</h5>
+    <p>拿一个重锤绑在绳子上，绕在一根轴上，放手，轴会越转越快，几秒钟就转完了。要让它慢慢地、匀速地转一整天，就得在中间加一个“关卡”，每次只放它转一点点。</p>
+    <p>中世纪的办法是：轴上装一个冠状的齿轮，旁边竖一根杆子（机轴），杆子上有两片小挡板，顶上横着一根挂着两个小重块的横杆（摆杆）。齿轮推动一片挡板，横杆被推得转过去；转到头，另一片挡板又卡住齿轮的另一边，把横杆推回来。横杆就这样来回摆，每摆一次，齿轮走一个齿。</p>
+    <p>摆杆上那两个小重块往外挪，摆得慢，钟就走慢；往里挪，钟就走快。管钟的人每天对着日晷调它们。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig" id="vergeFig">
+      <div class="fig-label">装置 5</div>
+      <h4>调一台中世纪的钟</h4>
+      <p class="how">你是 14 世纪一座城市的管钟人。挪动摆杆上的小重块，按“走一天”，第二天中午对着日晷看看钟快了还是慢了，再调。七天之内，把误差尽量调小。调完以后，换成 1656 年的钟摆再试一次。</p>
+      <div class="two">
+        <svg id="vergeSvg" viewBox="0 0 260 240" role="img" aria-label="机轴擒纵示意"></svg>
+        <div>
+          <div class="btns" id="vergeMode"></div>
+          <div class="ctl"><span id="vergeLab">重块位置</span><input type="range" id="vergeP" min="0" max="100" step="1" value="50"><output id="vergePO"></output></div>
+          <div class="btns"><button class="btn pri" id="vergeGo">走一天</button><button class="btn" id="vergeReset">重来</button></div>
+          <div class="kv" id="vergeKv"></div>
+        </div>
+      </div>
+      <div class="say" id="vergeSay">挪好重块，按“走一天”。</div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>摆</h3>
+    <p>中世纪的机械钟一天常常要差上一刻钟，管钟人每天都得对着太阳拨它。它能敲钟点，却不配有分针，有了也是白看。</p>
+    <p>转机来自一个摆来摆去的东西。据说伽利略年轻时在比萨大教堂里，看着吊灯晃来晃去，用自己的脉搏计时，发现不管晃得大还是小，来回一次的时间都差不多。这个故事真假难说，但伽利略确实研究过摆，晚年还设想过用摆来造钟。</p>
+    <p>真正把摆装进钟里的，是荷兰科学家惠更斯，1656 年。摆钟一出来，误差一下子从一天十几分钟缩到了一天几十秒、后来十几秒。钟表从此值得装分针了。1675 年前后，惠更斯（和英国的胡克，两人为此吵了一架）又把一根细细的游丝装进了怀表，表也开始准起来，可以揣进兜里走了。</p>
+  </div>
+
+  <aside class="echo" data-k="存疑">
+    <span class="stamp">存疑</span>
+    <div>
+      <div class="rh">钟表为什么没在中国流行起来</div>
+      <p>明朝万历年间，利玛窦带着“自鸣钟”进了北京，宫里很喜欢。到清朝，宫里收藏了大量精美的西洋钟表，今天故宫还有一座钟表馆。但钟表在很长时间里主要是皇帝和贵族的玩物，没有像在欧洲那样走进城市、工厂和普通人的生活。为什么？有学者认为和中国已经有一套运转良好的报时制度（漏刻、更鼓、钟鼓楼）有关，也有人归因于社会和经济结构。这类“为什么没有”的问题，很难有定论。</p>
+    </div>
+  </aside>
+
+  <aside class="echo" data-k="生活">
+    <span class="stamp">生活</span>
+    <div>
+      <div class="rh">铃声的另一面</div>
+      <p>修道院的钟让修士们准点祈祷，也让他们再也不能“睡到自然醒”。钟声一边帮人协调，一边也在管人。你今天的课表、闹钟、日历提醒也一样，是很好的工具，但别让它把每一分钟都占满。有些学习计划排得太死，一旦一个环节晚了，后面全部崩掉；留几个空格子，像管钟人每天对一次日晷那样，随时校正。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <p>苏颂的塔毁了以后，中国再没造出过一座。可是八百多年后，人们照着《新仪象法要》的图，在台湾、在大陆好几座城市、在日本，造出了一座座复原品。有的至今还在转，每一刻，绿衣木人照旧出来敲一下鼓。</p>
+    <div class="tick">
+      <div><i>滴<small>历史</small></i>钟最早是“听”的：修道院和钟鼓楼用声音让一群人同时行动。擒纵把动力一份一份放出来，摆让这些份变得一样大，钟表这才有了分针。</div>
+      <div><i>答<small>生活</small></i>再好的钟也要每天对一次太阳。再好的计划也要留出校正的空档。</div>
+    </div>
+  </div>
+</section>
+<!-- ============ 巳 打卡 ============ -->
+<section class="chap" id="c6" data-vol="巳 · 打卡">
+  <div class="hour">
+    <svg class="dial" data-h="5" viewBox="0 0 120 120" aria-hidden="true"></svg>
+    <div>
+      <div class="no">第六章 · 巳时 · 09:00—11:00</div>
+      <h2><span class="zh">巳</span>打卡</h2>
+      <dl><dt>讲什么</dt><dd>工厂的钟和汽笛；“时间就是金钱”；打卡机；八小时工作制和双休日</dd><dt>本章装置</dt><dd>你的二十四小时归谁</dd></dl>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="now">
+      <span class="clk">09:00</span>
+      <p>上班的人在这一刻打卡，手指按在一台小机器上，“嘀”一声，晚一分钟就算迟到。上学的人在这一刻进了图书馆，占好座，开始一天的计划表：九点到十一点做什么，十一点到十二点做什么。</p>
+      <p>你把一天切成一格一格，每一格都标好了用途。这种感觉今天再平常不过。可是对三百年前的大多数人来说，这非常奇怪。</p>
+    </div>
+
+    <div class="then">
+      <div class="tg"><b>“时间就是金钱”</b><span>1748 年 · 费城</span></div>
+      <p>一个四十出头的印刷商，生意做得很好，已经可以退休了。他给一位“年轻的手艺人”写了一封劝告信，第一句话就是：</p>
+      <blockquote><p>记住，时间就是金钱。</p><cite>——本杰明·富兰克林，《给一位年轻手艺人的忠告》（1748），本书自译</cite></blockquote>
+      <p>他接着算了一笔账：一个人一天能挣十个先令，却出去闲逛或者躺了半天，就算他只花了六便士，他其实还白白扔掉了另外五个先令。</p>
+      <p>这个印刷商后来成了美国的开国元勋之一，名字印在百元美钞上。</p>
+      <p class="fact">信的标题、年份、开头一句“时间就是金钱”和“十先令”的算法，均出自富兰克林原文，正文为概述。</p>
+    </div>
+
+    <p>富兰克林这句话之所以有名，是因为他说出了一个刚刚成形的新想法：<em>时间可以按钟点卖</em>。</p>
+  </div>
+
+  <div class="col">
+    <h3>按活计算，还是按钟点算</h3>
+    <p>在工厂出现以前，大多数人是按“活儿”来过日子的。农民的时间跟着庄稼走：农忙时天不亮就下地、天黑才回家，农闲时整天晒太阳。手艺人的时间跟着订单走：赶工时熬夜，没活时去喝酒。一年里忙的时候忙死，闲的时候闲死，没人觉得哪里不对。</p>
+    <p>英国历史学家汤普森（E. P. Thompson）1967 年写过一篇很有名的论文，就讲这个转变。他说，老式的“按活计时”，在工厂主看来就是懒散、浪费；工厂要的是另一种时间：<em>所有人在同一刻进门，在同一刻离开，中间每一个钟头都属于老板</em>。</p>
+    <p>18 世纪后期，英国的纺织厂里，机器一开就不能停，几百个工人必须同时到岗。工厂主在厂房顶上装了大钟，早上拉汽笛或者敲钟叫人上工，迟到要罚钱。据说有的工厂主还偷偷把钟拨慢，让工人多干一会儿；工人们后来发现自己的怀表比厂里的钟准，就开始带表上班。在那个年代，一块怀表，是工人跟老板讲价的工具。</p>
+  </div>
+
+  <aside class="echo" data-k="存疑">
+    <span class="stamp">存疑</span>
+    <div>
+      <div class="rh">拨慢的厂钟</div>
+      <p>“工厂主拨慢厂钟”的故事，在汤普森的论文里引用过一些工人的回忆，流传很广。但它在多大程度上普遍，很难统计，可能只是部分工厂的做法，也可能经过了口耳相传的放大。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>嘀的一声</h3>
+    <p>1888 年，美国纽约州一个叫邦迪（Willard Bundy）的珠宝商申请了一项专利：一台钟，每个工人有一把自己的钥匙，插进去一拧，机器就在纸带上印出他的号码和此刻的时间。这就是打卡机的祖先。后来他和兄弟开了公司，这家公司几经合并，成了今天的 IBM 的前身之一。</p>
+    <p>从此，“几点到”不再靠工头的眼睛，而靠一台机器的记录。迟到一分钟，纸上就有一分钟。</p>
+    <p>再往后，美国工程师泰勒拿着秒表站在工人旁边，把搬一块生铁、铲一锹煤的每一个动作都掐表计时，算出“最高效”的做法，叫“科学管理”。时间被切成了秒。</p>
+  </div>
+
+  <aside class="echo" data-k="联系">
+    <span class="stamp">联系</span>
+    <div>
+      <div class="rh">打卡机和计算机</div>
+      <p>做打卡机的公司，后来和做穿孔卡片制表机的公司合在一起，成了 IBM。书房里《计算机创世记》讲的穿孔卡片和制表机，和这台记录工人上下班的机器，是同一家公司的两条腿：<em>一条管数据，一条管时间</em>。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>八小时</h3>
+    <p>机器不累，人会累。工厂刚兴起时，一天干十二到十四个小时并不稀奇，连小孩也一样。英国 1833 年的《工厂法》第一次给纺织厂定了规矩：九岁以下的孩子不许雇；九到十三岁的，一天最多九个小时；十三到十八岁的，一天最多十二个小时。今天看来残忍得吓人，在当时已经算是进步。</p>
+    <p>早在 1817 年，英国的工厂主兼改革家欧文就提出过一个口号：八小时劳动，八小时休息，八小时自己支配。这个口号后来被全世界的工人运动喊了几十年。1886 年 5 月 1 日，美国芝加哥等地几十万工人罢工，要求八小时工作制，几天后发生了流血冲突（干草市场事件）。后来的“五一劳动节”，就是纪念这件事的。</p>
+    <p>1919 年，刚成立的国际劳工组织通过的第一个公约，就是工业企业每天工作不超过八小时、每周不超过四十八小时。1926 年，美国的福特汽车公司把工人的工作周定为五天、四十小时，双休日开始流行。中国的双休日来得晚一些：1994 年起实行每周四十四小时，1995 年 5 月 1 日起，每周四十小时，周六周日都休息。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig" id="ringFig">
+      <div class="fig-label">装置 6</div>
+      <h4>你的二十四小时归谁</h4>
+      <p class="how">看看不同年代的人，一天二十四小时是怎么分的；最后一项是你自己，拖动滑块排一排你的一天（学习也算“干活”）。圆环里浅色的那一块，是“自己支配”的时间。前几项是按当时的法规或要求取的大致数字。</p>
+      <div class="btns" id="ringPre"></div>
+      <div class="ring">
+        <svg id="ringSvg" viewBox="0 0 240 240" role="img" aria-label="二十四小时圆环"></svg>
+        <div>
+          <div class="legend" id="ringLeg"></div>
+          <div id="ringCtl"></div>
+          <div class="say" id="ringSay"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <aside class="echo" data-k="押韵">
+    <span class="stamp">押韵</span>
+    <div>
+      <div class="rh">修道院的钟，工厂的汽笛，手机的提醒</div>
+      <p>修道院的钟让修士按点祈祷，工厂的汽笛让工人按点上工，今天手机上的提醒让你按点开会、交作业、签到。每一次，都是一个组织在用一种声音把很多人的时间对齐。区别是：修士和工人知道钟是别人敲的，而你手机上的提醒，常常是你自己设的。</p>
+    </div>
+  </aside>
+
+  <aside class="echo" data-k="生活">
+    <span class="stamp">生活</span>
+    <div>
+      <div class="rh">“磨洋工”和“按活计时”</div>
+      <p>复习和打工不一样：坐满十个小时不等于学了十个小时。工厂时间看的是“人在不在”，按活计时看的是“活干完没有”。给自己定计划时，可以少写“九点到十一点：复习”，多写“做完第三章习题”。前一种是打卡，后一种才是干活。干完了就去走走，用不着拿坐着的时长来安慰自己。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <p>富兰克林写那封信的时候，大概没想到，他的这句话两百多年后会被印在无数办公室的墙上。他本人其实并不是一个“打卡”的人：他四十二岁就把印刷生意交给合伙人，去做科学实验、放风筝、搞政治了。他算得很清楚，时间是钱；但他更清楚，钱攒够了以后，时间该拿去干什么。</p>
+    <div class="tick">
+      <div><i>滴<small>历史</small></i>工厂把时间从“按活计”变成了“按钟点卖”：汽笛、厂钟、打卡机、秒表。然后工人们花了一百年，一点一点把“八小时自己支配”争了回来。</div>
+      <div><i>答<small>生活</small></i>别用坐了多久来衡量自己。按活计时，干完就去生活。</div>
+    </div>
+  </div>
+</section>
+<!-- ============ 卷三 昼 ============ -->
+<div class="volhead" id="v3">
+  <svg class="arc" data-v="2" viewBox="0 0 200 120" aria-hidden="true"></svg>
+  <div class="num">卷三 · 午 未 申 · 上午十一点到下午五点</div>
+  <h2>昼<small>太阳最高的时候</small></h2>
+  <p class="lede">人们原以为太阳是最准的钟，后来发现它并不准时；又以为每座城都该有自己的正午，后来火车让全国只剩一个正午；再后来，人们为了在大海上找到自己，造出了比太阳还准的表。这一卷讲人怎样一步一步地，从相信太阳，变成相信钟。</p>
+</div>
+
+<!-- ============ 午 日影 ============ -->
+<section class="chap" id="c7" data-vol="午 · 日影">
+  <div class="hour">
+    <svg class="dial" data-h="6" viewBox="0 0 120 120" aria-hidden="true"></svg>
+    <div>
+      <div class="no">第七章 · 午时 · 11:00—13:00</div>
+      <h2><span class="zh">午</span>日影</h2>
+      <dl><dt>讲什么</dt><dd>圭表和郭守敬；罗马城那座不准的日晷；太阳为什么有时快有时慢</dd><dt>本章装置</dt><dd>日晷和手表差几分</dd></dl>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="now">
+      <span class="clk">12:00</span>
+      <p>中午十二点，食堂的队排到了门口。你以为这是一天正中间的那一刻，太阳在头顶最高的地方。</p>
+      <p>其实未必。如果你在北京，太阳爬到最高的时刻，一年里在十一点五十八分到十二点半之间来回挪；如果你在乌鲁木齐，要等到下午两点左右。你手表上的“正午”，和太阳的正午，是两回事。</p>
+    </div>
+
+    <div class="then">
+      <div class="tg"><b>四十尺高的表</b><span>元 · 约 1279 年冬至前后 · 河南登封</span></div>
+      <p>登封告成镇，一座砖石砌的高台，像一座去掉了顶的金字塔，中间有一道直上直下的凹槽。台下，沿着正北方向，平铺着一条长长的石头“尺子”，叫“量天尺”，一百多尺长。</p>
+      <p>这一整座台子是一根巨大的“表”：太阳照在台顶的横梁上，横梁的影子落在地上的石尺上。每天正午，量一量影子有多长。冬至那天，太阳最低，影子最长；夏至那天，影子最短。从一个冬至量到下一个冬至，就知道一年到底有多少天。</p>
+      <p>主持这件事的，是元朝的天文学家郭守敬。传统的表只有八尺高，影子的边缘模模糊糊，量不准。郭守敬把表加高到四十尺，影子拉长到原来的五倍；又造了一个带小孔的铜片，叫“景符”，像照相机的小孔一样，把横梁的影子在石尺上聚成一道清清楚楚的细线。</p>
+      <p class="fact">登封观星台为元代郭守敬主持建造的测影台，今存；郭守敬创“高表”与“景符”，事见《元史》。具体测量的日子为示意。</p>
+    </div>
+
+    <p>郭守敬和同事们量了好几年，1281 年颁行了新历法《授时历》，算出一年是 <em>365.2425 天</em>。三百年后，罗马教皇颁布了今天全世界用的格里高利历，一年的平均长度也是 365.2425 天。</p>
+  </div>
+
+  <aside class="echo" data-k="押韵">
+    <span class="stamp">押韵</span>
+    <div>
+      <div class="rh">同一个数，隔了三百年</div>
+      <p>授时历和格里高利历，一个在大都，一个在罗马，彼此毫无来往，却得出了同一个年长。这不是谁抄了谁，而是两边都用心量了太阳。<em>大自然只有一个答案，量得够准的人，最后都会走到同一个数上。</em>格里高利历的故事，在戌时那一章。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>罗马城那座不准的日晷</h3>
+    <p>用影子看时间，是人类最古老的办法之一。古埃及人用一根杆子和地上的刻度看影子；中国人立一根“表”，平放一条“圭”，合起来叫“圭表”。后来有了带斜面、带刻度盘的日晷，故宫太和殿前就立着一座。</p>
+    <p>日晷有个毛病：它只在造它的那个地方准。</p>
+    <p>老普林尼记过一件事：罗马城的第一座公共日晷，是公元前 263 年从西西里岛的卡塔尼亚当战利品搬回来的，立在广场上。可它是照着西西里的纬度做的，罗马在北边好几百公里，影子的角度不一样，读出来的钟点是错的。罗马人照着这座错的日晷过了九十九年，才有人造了一座按罗马纬度校准的新日晷。</p>
+    <p>不过罗马人并不全都喜欢日晷。一位古罗马喜剧家的剧本里，有个饿肚子的角色大骂：天杀的，是谁发明了把一天切成钟点的玩意儿！从前肚子饿了就是吃饭的时候，现在得等那根影子说了算。这句牢骚两千年后听起来仍然很熟悉。</p>
+  </div>
+
+  <div class="col">
+    <h3>太阳并不准时</h3>
+    <p>到了 17 世纪，钟摆让钟变得很准。钟准了以后，人们发现了一件怪事：<em>钟和太阳对不上，而且一年里差得忽多忽少</em>。如果你每天中午十二点在同一个地方看太阳的位置，它会一会儿偏早，一会儿偏晚。二月中旬，太阳比钟慢上十四分钟左右；十一月初，又比钟快上十六分钟左右。</p>
+    <p>不是钟错了，是太阳“走得不匀”。原因有两个：</p>
+    <ul class="plain">
+      <li><b>地球绕太阳的轨道是个椭圆。</b>一月初地球离太阳最近，跑得最快；七月初最远，跑得最慢。跑得快的时候，地球要多转一点才能再次对准太阳，一天就略长一点。</li>
+      <li><b>地轴是斜的。</b>太阳在天上走的路线，和地球自转的“赤道”斜着交叉，投影到赤道上，一年里有的时候走得快、有的时候走得慢。</li>
+    </ul>
+    <p>两个原因叠在一起，就成了天文学上说的“时差”（均时差）：真太阳和一个想象中“每天匀速走”的平均太阳之间的差。我们的钟表跟的，就是这个想象出来的平均太阳。</p>
+    <p>钟表匠们一度要随表附上一张“时差表”，告诉主人：今天日晷十二点的时候，你的表应该指几点。可是随着钟表越来越准，人们越来越相信钟，而不是太阳。18 世纪末到 19 世纪初，日内瓦、伦敦、柏林、巴黎这些城市陆续改用“平太阳时”，公共的钟不再跟着日晷每天调了。从那以后，正午是钟说了算。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig" id="eotFig">
+      <div class="fig-label">装置 7</div>
+      <h4>日晷和手表差几分</h4>
+      <p class="how">选一座城市，拖动日期。右边的“8”字形，是一年里每天北京时间同一时刻太阳在天上的位置连起来的样子（天文学上叫“日行迹”）：上下是太阳的高低，左右是它比平均太阳快还是慢。红点是你选的那一天。左边告诉你，那一天太阳在这座城市最高的时刻，是北京时间几点几分。</p>
+      <div class="btns" id="eotCity"></div>
+      <div class="ctl"><span>日期</span><input type="range" id="eotD" min="0" max="364" step="1" value="44"><output id="eotO"></output></div>
+      <div class="two">
+        <div><div class="kv" id="eotKv"></div><div class="say" id="eotSay"></div></div>
+        <svg id="eotSvg" viewBox="0 0 260 260" role="img" aria-label="日行迹八字形"></svg>
+      </div>
+    </div>
+  </div>
+
+  <aside class="echo" data-k="存疑">
+    <span class="stamp">存疑</span>
+    <div>
+      <div class="rh">午时三刻</div>
+      <p>小说和戏里常说犯人“午时三刻开斩”，还说这时候阳气最盛，能压住鬼魂。这主要是小说戏曲里的说法；明清实际行刑的时间有各种规定，未必都在这个时刻。而且按清代一刻十五分钟算，午时三刻是十一点四十五分，并不是正午。</p>
+    </div>
+  </aside>
+
+  <aside class="echo" data-k="生活">
+    <span class="stamp">生活</span>
+    <div>
+      <div class="rh">用影子找北，要等太阳的正午</div>
+      <p>在北回归线以北，太阳正午时影子指向正北。这是野外迷路时找方向的老办法。但要记住，这里说的是<em>太阳的正午</em>，不是手表上的十二点。在东部沿海差别不大，在新疆、西藏，太阳正午要到北京时间下午一两点。用上面的装置看看你家乡的太阳正午是几点，记在心里，比记一个口诀有用。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <p>登封的观星台今天还在，石头的量天尺还躺在台下，2010 年和周围的古建筑一起列入了世界文化遗产。晴天的中午去，还能看到台顶的影子落在石尺上，一点一点挪动。七百多年前，郭守敬就是从这道影子里，读出了一年的长度。</p>
+    <div class="tick">
+      <div><i>滴<small>历史</small></i>影子是最古老的钟。郭守敬用四十尺的高表量出一年 365.2425 天；钟表准了以后，人们才发现太阳本身走得不匀，于是改跟一个想象中的“平均太阳”。</div>
+      <div><i>答<small>生活</small></i>表上的十二点只是约定，太阳的正午因地而异。约定很好用，但别忘了它是约定。</div>
+    </div>
+  </div>
+</section>
+<!-- ============ 未 铁轨 ============ -->
+<section class="chap" id="c8" data-vol="未 · 铁轨">
+  <div class="hour">
+    <svg class="dial" data-h="7" viewBox="0 0 120 120" aria-hidden="true"></svg>
+    <div>
+      <div class="no">第八章 · 未时 · 13:00—15:00</div>
+      <h2><span class="zh">未</span>铁轨</h2>
+      <dl><dt>讲什么</dt><dd>每座城的钟都不一样；铁路时间；“两个正午”；格林尼治；北京时间和新疆时间；夏令时</dd><dt>本章装置</dt><dd>拨一拨各地的钟</dd></dl>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="now">
+      <span class="clk">14:05</span>
+      <p>你买了一张火车票，下午两点零五分开。票上没写“北京时间”，但你知道就是北京时间，全国的车站、全国的手机，都是同一个钟点。</p>
+      <p>就算这趟车开往新疆，终点站的时刻表上，写的还是北京时间。可是在那里，太阳要到下午两点才爬到头顶。</p>
+    </div>
+
+    <div class="then">
+      <div class="tg"><b>两个正午的那一天</b><span>1883 年 11 月 18 日 · 星期日 · 北美</span></div>
+      <p>这是一个星期天。美国和加拿大很多城市的人，聚在珠宝店、钟表店的橱窗前，或者守在电报局门口，等着看一件新鲜事。</p>
+      <p>在这之前，每座城都有自己的钟点，按本地太阳的正午来定。铁路公司为了排时刻表，又各有一套“铁路时间”，全国加起来有好几十种。同一个车站里，挂着好几只指着不同钟点的钟。</p>
+      <p>这天中午，各地的钟统一拨到了几个“标准时区”上。拨的办法是：等到本地的正午，把钟停下来或往回拨几分钟，对上标准时。比如芝加哥，本地时间比标准时快了九分多钟，那天正午一到，钟被往回拨了九分多钟，过一会儿，又敲了一次十二点。报纸后来管这一天叫“两个正午的日子”。</p>
+      <p>这件事不是政府下的令，是铁路公司们自己商量好的。美国国会直到 1918 年才通过法律，正式承认时区。</p>
+      <p class="fact">1883 年 11 月 18 日北美铁路统一改用标准时；之前铁路时间多达数十种；“两个正午”是当时报纸的说法；美国 1918 年《标准时间法》。芝加哥的拨钟分钟数为按经度推算的约数。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>每座城都有自己的正午</h3>
+    <p>在火车出现之前，每个地方用自己的“地方时”，是天经地义的事。太阳在本地最高的时候，就是本地的十二点。往东走一个经度，太阳早到四分钟；往西走一个经度，晚到四分钟。北京和上海差了五度，北京的钟就该比上海慢二十分钟左右。</p>
+    <p>这在走路、骑马、坐帆船的年代毫无问题。你从上海走到北京要走一个月，谁在乎钟差了二十分钟？</p>
+    <p>可是火车改变了一切。一列火车一小时跑几十公里，几个钟头就跨过好几个“地方时”。时刻表到底按哪里的钟写？乘客按自己家的钟赶车，到了车站发现车已经开了；两列车在一条单线上对开，各按各的钟，就可能撞在一起。</p>
+  </div>
+
+  <div class="col">
+    <h3>伦敦时间</h3>
+    <p>英国人先碰上了这个麻烦。1840 年，大西部铁路公司开始在所有车站用伦敦的时间。之后几年，英国的铁路公司纷纷跟进，用伦敦格林尼治天文台的时间，叫“铁路时间”。天文台每天通过电报把准确的时间发到各地车站。</p>
+    <p>可是不少城镇不乐意：凭什么我们的钟要听伦敦的？西南部的布里斯托尔比伦敦晚了十分钟左右，它的谷物交易所门口有一座钟，至今还装着<em>两根分针</em>：一根指伦敦时间，一根指布里斯托尔本地时间。直到 1880 年，英国才通过法律，把格林尼治时间定为全国的法定时间。</p>
+  </div>
+
+  <aside class="echo" data-k="押韵">
+    <span class="stamp">押韵</span>
+    <div>
+      <div class="rh">罗马的日晷，布里斯托尔的分针</div>
+      <p>上一章说，罗马城照着一座西西里的日晷过了九十九年。两千年后，布里斯托尔人宁可在钟上装两根分针，也不愿意放弃自己的正午。<em>地方的时间，是地方的身份</em>。被迫改用别人的钟点，在很多地方都被当成一种屈服。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>本初子午线</h3>
+    <p>北美统一时区后的第二年，1884 年 10 月，二十五个国家的代表在华盛顿开会，讨论全世界该用哪一条经线当作“零度”。会议投票选中了穿过伦敦格林尼治天文台的那一条，理由很实际：当时全世界大部分船只用的海图，本来就是以格林尼治为零度画的。</p>
+    <p>法国投了弃权票。法国人一直用穿过巴黎天文台的经线当零度，不想让英国人占这个便宜。直到 1911 年，法国才改用格林尼治时间，但法律条文里写的是“巴黎平时减去九分二十一秒”，硬是没提格林尼治这个名字。</p>
+    <p>此后几十年，世界各国陆续按经度每十五度一个钟头，划出了时区。但时区的边界从来不是笔直的经线，而是弯弯曲曲地跟着国界、省界、铁路线走。时区不只是天文问题，更是政治问题。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig" id="tzFig">
+      <div class="fig-label">装置 8</div>
+      <h4>拨一拨各地的钟</h4>
+      <p class="how">选一组城市，再在“各用各的地方时”和“统一用标准时”之间切换。每只钟下面写着：当标准时间是正午十二点时，这座城的钟指几点，以及它的太阳正午和标准时差了多少。</p>
+      <div class="btns" id="tzSet"></div>
+      <div class="btns" id="tzMode"></div>
+      <div class="cities" id="tzCities"></div>
+      <div class="say" id="tzSay"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>北京时间</h3>
+    <p>中国在清末民初也开始面对这个问题。上海的徐家汇天文台从 19 世纪末起，通过外滩的信号塔每天降下报时球，给黄浦江上的船对表。1912 年，北京的中央观象台提出把全国分成五个时区：中原、陇蜀、新藏、昆仑、长白。不过那个年代战乱频仍，这五个时区并没有真正在全国通行。</p>
+    <p>1949 年以后，全国统一使用“北京时间”。它其实不是北京本地的时间，而是东经 120 度的标准时，比格林尼治早八小时；北京在东经 116 度多，本地的太阳正午比“北京时间”的正午晚十四分钟左右。而且，北京时间也不是在北京产生的：今天负责它的国家授时中心，在陕西西安附近的临潼，发播台在陕西蒲城。</p>
+    <p>中国从东到西跨了五个时区那么宽。用同一个钟点，全国的铁路、广播、航班、电视节目都很方便。代价是西部的太阳和钟对不上。在新疆，冬天早上九点天还黑着，所以当地的单位和学校普遍晚两个钟头上班上课；民间也常用比北京时间晚两小时的“新疆时间”。一个人在乌鲁木齐约人吃饭，常要多问一句：“北京时间还是新疆时间？”</p>
+  </div>
+
+  <aside class="echo" data-k="生活">
+    <span class="stamp">生活</span>
+    <div>
+      <div class="rh">跟另一个时区的人约时间</div>
+      <p>今天跨时区开会、追直播、和在外地的朋友视频，都会碰到这个问题。一个好习惯是：<em>约时间时把时区写出来</em>，比如“北京时间 20:00”，或者干脆用对方的时间说一遍。去新疆旅游，看清楚景区写的营业时间是哪个时间；出国后头几天犯困，是身体还在用老家的“地方时”。</p>
+    </div>
+  </aside>
+
+  <div class="box">
+    <h5>夏令时：把钟往前拨一小时</h5>
+    <p>还有一种更大胆的拨钟：夏令时。夏天天亮得早，把钟往前拨一小时，让大家早起早睡，晚上少开一小时灯。</p>
+    <p>常有人说是富兰克林发明了夏令时。其实他 1784 年在巴黎写过一篇开玩笑的文章，说巴黎人睡到中午，浪费了大量阳光，建议早上鸣炮把大家叫醒、给窗户上税。那是讽刺，不是提案。认真提出夏令时的，是英国建筑商威利特，1907 年。第一个真正实行的是第一次世界大战中的德国，1916 年，为了省煤。</p>
+    <p>中国也用过夏令时：1986 年到 1991 年，每年四月中旬把钟拨快一小时，九月中旬再拨回来。很多人记得那几年总有人上班迟到或早到一个钟头。1992 年起就停了。</p>
+  </div>
+
+  <aside class="echo" data-k="存疑">
+    <span class="stamp">存疑</span>
+    <div>
+      <div class="rh">西班牙的晚饭为什么那么晚</div>
+      <p>西班牙大部分国土在格林尼治以西，按经度应该和英国同一个时区，可它用的是比英国快一小时的中欧时间。常见的说法是，1940 年佛朗哥为了和纳粹德国保持一致改了时区，战后一直没改回来，所以西班牙人的钟点比太阳早，吃午饭、晚饭都显得特别晚。改时区的年份和背景大致不错，但西班牙人吃饭晚的习惯是不是“都怪时区”，还有不少争议。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <p>1883 年 11 月 18 日那天，据说有一份报纸发了一句牢骚：人们以后得照着铁路公司的钟去结婚、去死了。这句话今天听起来有点夸张，可它说对了一件事：从那天起，时间不再是太阳和每座城自己的事，而是一整个国家、后来是一整个世界的约定。你手机上的那个钟点，就是这份约定。</p>
+    <div class="tick">
+      <div><i>滴<small>历史</small></i>火车把几百个“地方时”压成了几个时区：英国 1840 年代用伦敦时间，北美 1883 年“两个正午”，1884 年选定格林尼治。中国 1949 年后全国统一用北京时间。</div>
+      <div><i>答<small>生活</small></i>跟远方的人约时间，把时区写出来。“我这儿的几点”不等于“你那儿的几点”。</div>
+    </div>
+  </div>
+</section>
+<!-- ============ 申 经度 ============ -->
+<section class="chap" id="c9" data-vol="申 · 经度">
+  <div class="hour">
+    <svg class="dial" data-h="8" viewBox="0 0 120 120" aria-hidden="true"></svg>
+    <div>
+      <div class="no">第九章 · 申时 · 15:00—17:00</div>
+      <h2><span class="zh">申</span>经度</h2>
+      <dl><dt>讲什么</dt><dd>大海上为什么找不到自己；经度奖和木匠哈里森；石英、原子和“一秒”的新定义；手机定位为什么靠钟</dd><dt>本章装置</dt><dd>带一块表出海</dd></dl>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="now">
+      <span class="clk">15:40</span>
+      <p>你打开手机地图找一家店。屏幕上那个蓝色的小圆点，准确地停在你站着的地方，误差也就几米。</p>
+      <p>你大概以为这是一道“看”的题：卫星从天上看见了你。其实不是。卫星根本看不见你。那个蓝点，是一道<em>算时间</em>的题。而这道题，三百年前让整个欧洲的航海家头疼得要命。</p>
+    </div>
+
+    <div class="then">
+      <div class="tg"><b>一块怀表，八十一天</b><span>1761 年 11 月—1762 年 1 月 · 大西洋</span></div>
+      <p>英国军舰“德特福德号”从朴次茅斯出发，开往加勒比海的牙买加。船上有个年轻人叫威廉·哈里森，他随身带着一只盒子，盒子里是一块直径十几厘米、看起来就像一块大号怀表的钟，是他父亲约翰·哈里森造的，后来叫“H4”。</p>
+      <p>他的任务，是证明这块表能在海上走两个多月而不乱。只要表走得准，船上的人就能算出船在哪里。</p>
+      <p>据说船行到半路，水手们按照老办法推算船的位置，和威廉用表算出来的对不上。威廉坚持说：明天早上就能看到马德拉岛。第二天早上，马德拉岛果然出现在海平线上。</p>
+      <p>船到牙买加，把表和岸上用天文观测定出的当地时间一对：走了八十一天，这块表只慢了五秒左右。</p>
+      <p class="fact">1761 年 H4 随德特福德号赴牙买加试航，航程约八十一天，到达时误差约五秒（经修正后的常见说法）。“预言看到马德拉岛”的情节来自后来的传记，细节存疑。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>为什么大海上找不到自己</h3>
+    <p>在大海上，船的位置要用两个数来说：纬度（南北）和经度（东西）。</p>
+    <p>纬度好办。中午看太阳有多高，夜里看北极星有多高，查一下表就知道了。从古代起，航海家就会测纬度。</p>
+    <p>经度难得多。地球自西向东转，一小时转十五度。所以<em>两个地方的经度差，就是它们的时间差</em>：如果你知道此刻家乡是中午十二点，而你头顶的太阳显示这里是下午三点，那你就在家乡以东四十五度。</p>
+    <p>船上看太阳就能知道“这里几点”，难的是知道“家乡此刻几点”。要知道，就得带一只钟从家乡出发，一路走得准准的。可当时最好的钟是摆钟，船一摇晃，摆就乱了；海上又冷又热又潮，钟油会凝固，金属会热胀冷缩。在陆地上一天只差几秒的摆钟，到了船上一天能差好几分钟。</p>
+    <p>钟差四分钟，经度就差一度，在赤道附近就是一百多公里。在没有灯塔、没有卫星的大海上，一百公里的误差足以让一条船撞上礁石。</p>
+  </div>
+
+  <div class="col">
+    <h3>两万英镑</h3>
+    <p>1707 年的一个秋夜，英国的一支舰队从地中海回国，在浓雾里误判了自己的位置，撞上了英格兰西南角外的锡利群岛，四艘军舰沉没，一千多名水兵丧生，舰队司令也死了。</p>
+    <p>这场灾难不全是经度的错（纬度和海流也有问题），但它让英国人下了决心。1714 年，英国议会通过了《经度法案》，悬赏两万英镑（相当于今天的几百万英镑），奖给能在海上把经度测准到半度以内的办法；测到三分之二度、一度以内的，也有一万五千和一万英镑。还成立了一个“经度委员会”来评奖。</p>
+    <p>当时的大科学家大都认为，答案在天上：月亮在星空里走得很快，就像一根钟的指针，只要编好一本月亮位置表，在海上测月亮和某颗星的距离，查表就能知道家乡此刻是几点。这叫“月距法”。牛顿本人就倾向这种办法，他对钟表能在船上走准不抱希望。</p>
+    <p>可是有一个人不信。他叫约翰·哈里森，英格兰北部林肯郡的一个木匠，没上过大学，自学修钟、造钟。他造过全木头的落地钟，木头齿轮不用上油，几十年不坏。他认为：<em>只要钟造得够好，就能在海上走准</em>。</p>
+  </div>
+
+  <div class="col">
+    <p>哈里森从 1730 年代起，花了三十多年，造了四台钟。H1 是一台三十多公斤重的大家伙，像一座黄铜雕塑，两根摆杆互相抵消船的摇晃。H2 更大更复杂。H3 他一造就是十九年，发明了今天轴承还在用的“滚珠保持架”，和能自动抵消热胀冷缩的“双金属片”。然后，他突然换了一个方向：把钟做小，做成了怀表大小的 H4。</p>
+    <p>H4 两次出海试航都表现极好。可是经度委员会迟迟不肯把奖金全额发给他。委员会里坐着支持月距法的天文学家，他们一会儿要求哈里森交出图纸，一会儿要求再造两台复制品，一会儿又说他的成功可能只是运气。哈里森这时已经七十多岁了。</p>
+    <p>最后，哈里森的儿子写信求到了国王乔治三世那里。国王亲自试了试表，据说说了一句：“老天在上，哈里森，我会替你讨回公道。”1773 年，议会另外拨给哈里森八千七百五十英镑。三年后，他去世了，至死没拿到经度委员会那份正式的大奖。</p>
+  </div>
+
+  <aside class="echo" data-k="联系">
+    <span class="stamp">联系</span>
+    <div>
+      <div class="rh">委员会</div>
+      <p>书房里的《是，大人》讲过委员会的拖字诀：要求补材料、要求再论证、要求再试一次。经度委员会对哈里森的那十几年，几乎是教科书式的示范。不过也要替委员会说一句公道话：月距法后来确实也成功了，1767 年起出版的《航海天文历》让普通船长也能用；而早期的航海钟贵得吓人，很多船买不起，两种办法在海上并用了很多年。</p>
+    </div>
+  </aside>
+
+  <div class="wide">
+    <div class="fig" id="lonFig">
+      <div class="fig-label">装置 9</div>
+      <h4>带一块表出海</h4>
+      <p class="how">你要从英国开往加勒比海。选一块表、选航程有多少天，按“出海”。到了以后，看看你用这块表算出来的位置和真实位置差了多远，能不能拿到经度奖。每块表每天的误差是有快有慢、随机的。</p>
+      <div class="btns" id="lonClock"></div>
+      <div class="ctl"><span>航程</span><input type="range" id="lonDays" min="5" max="150" step="1" value="81"><output id="lonDO"></output></div>
+      <div class="btns"><button class="btn pri" id="lonGo">出海</button></div>
+      <div class="scroll-x"><svg id="lonSvg" viewBox="0 0 640 130" style="min-width:520px" role="img" aria-label="真实位置与推算位置"></svg></div>
+      <div class="kv" id="lonKv"></div>
+      <div class="say" id="lonSay">选一块表，按“出海”。</div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>比太阳还准</h3>
+    <p>哈里森之后，航海钟越造越便宜，到 19 世纪成了远洋船的标准装备。再后来，无线电出现了，20 世纪初起，天文台可以直接用电波把准确的时间发给大海上的船。</p>
+    <p>钟本身也在变。1927 年，美国贝尔实验室的马里森和霍顿造出了第一台石英钟：一小片石英晶体通上电，会以极其稳定的频率振动，比任何摆都稳。今天几十块钱的电子表里，都有这样一片石英，一个月只差几秒。</p>
+    <p>石英钟准到一定程度，人们发现了一件比“太阳不准时”更惊人的事：<em>地球本身也不准</em>。地球的自转在一年里有快有慢，而且在潮汐摩擦下总体越转越慢。用地球自转来定义“一秒”（一天的八万六千四百分之一），已经不够用了。</p>
+    <p>1955 年，英国国家物理实验室的埃森造出了第一台实用的铯原子钟。1967 年，国际计量大会重新定义了“秒”：<em>铯-133 原子在某种特定状态之间跃迁时，辐射振荡 9,192,631,770 次所用的时间</em>，就是一秒。从这一天起，时间的标准从天上搬进了原子里。</p>
+  </div>
+
+  <div class="box">
+    <h5>你手机上的蓝点</h5>
+    <p>导航卫星（美国的 GPS、中国的北斗等）每一颗都带着原子钟，不停地广播“我是谁、我在哪儿、现在几点”。你的手机同时收到好几颗卫星的信号，比一比每个信号路上走了多长时间（电波一纳秒走三十厘米），就能算出你离每颗卫星有多远，从而算出你在哪里。</p>
+    <p>所以卫星定位本质上是哈里森那道题的现代版：<em>知道准确的时间，就知道自己在哪儿</em>。卫星上的钟差一微秒，地上的位置就差三百米。卫星的钟甚至要修正爱因斯坦相对论的效应，不修正的话，每天会累积出好几公里的误差。</p>
+  </div>
+
+  <aside class="echo" data-k="生活">
+    <span class="stamp">生活</span>
+    <div>
+      <div class="rh">航位推算和对表</div>
+      <p>没有好钟的时候，船长们靠“航位推算”：按航速、航向、时间一天天往前推，误差也一天天越积越大。所以每当能看到陆地、能测到星星时，他们一定会抓住机会重新定位。长期做一件事也是这样：只靠“我感觉进度还行”往前推，偏差会越积越大；隔一段时间找个客观的参照（一次测验、一份真题、一个旁观者的意见），对一次表。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <p>哈里森的四台钟今天都保存在格林尼治的皇家天文台，就在那条本初子午线旁边。H1、H2、H3 还在走，H4 为了保护，大部分时间静静躺在柜子里。旁边的院子里，游客排着队，一只脚踩在东半球、一只脚踩在西半球拍照。很少有人意识到，脚下这条线之所以有意义，是因为身后那几台钟。</p>
+    <div class="tick">
+      <div><i>滴<small>历史</small></i>经度差就是时间差。木匠哈里森用三十多年造出能在海上走准的钟，帮船找到了自己；后来石英和原子钟比地球还准，“一秒”被重新定义在原子里。</div>
+      <div><i>答<small>生活</small></i>长期的事，不能只靠推算往前走，要定期对表。</div>
+    </div>
+  </div>
+</section>
+<!-- ============ 卷四 暮 ============ -->
+<div class="volhead" id="v4">
+  <svg class="arc" data-v="3" viewBox="0 0 200 120" aria-hidden="true"></svg>
+  <div class="num">卷四 · 酉 戌 亥 · 傍晚五点到夜里十一点</div>
+  <h2>暮<small>月亮出来以后</small></h2>
+  <p class="lede">天黑了，月亮出来了。前三卷讲的是一天之内的时间，这一卷讲比一天更长的东西：月、年、星期，还有电脑里那个从 1970 年开始数的秒。它们有一个共同的麻烦：<em>天上的几个周期，谁也不肯被谁整除</em>。</p>
+</div>
+
+<!-- ============ 酉 闰月 ============ -->
+<section class="chap" id="c10" data-vol="酉 · 闰月">
+  <div class="hour">
+    <svg class="dial" data-h="9" viewBox="0 0 120 120" aria-hidden="true"></svg>
+    <div>
+      <div class="no">第十章 · 酉时 · 17:00—19:00</div>
+      <h2><span class="zh">酉</span>闰月</h2>
+      <dl><dt>讲什么</dt><dd>月亮和太阳为什么对不上；闰月和十九年七闰；二十四节气；只看月亮的历法</dd><dt>本章装置</dt><dd>你来置闰</dd></dl>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="now">
+      <span class="clk">18:10</span>
+      <p>你从图书馆出来吃晚饭，天边挂着一弯细细的月亮。你看了一眼手机上的日历：农历初三。</p>
+      <p>你突然想起来，去年的春节在一月，今年的在二月；有一年的中秋节，和国庆节挤在了同一天。农历的日子在公历上跳来跳去，好像一点规律都没有。</p>
+    </div>
+
+    <div class="then">
+      <div class="tg"><b>看新月的人</b><span>每个伊斯兰历月末的傍晚 · 从古至今</span></div>
+      <p>太阳刚落下去，西边的天空还亮着。一群人站在高处，眯着眼睛盯着太阳落下的地方。他们在找一弯极细极细的新月，细得像一根头发，只在日落后露面十几分钟，就跟着太阳沉下去了。</p>
+      <p>只要有可靠的人看见了它，新的一个月就从这个傍晚开始。如果这是斋月前的那个月，那么明天天亮前，全城的人就要开始斋戒；如果是斋月的最后一天，明天就是开斋节。要是云太厚、看不见，就等一天，让这个月凑满三十天。</p>
+      <p>这样的傍晚，一千四百年来，每个月都在重复。</p>
+      <p class="fact">伊斯兰历是纯阴历，传统上以傍晚目视新月来定月首，至今许多地方仍沿用或参考目视观测；一个月二十九或三十天。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>三个不肯整除的数</h3>
+    <p>天上给了人三个周期：</p>
+    <ul class="plain">
+      <li><b>日</b>：太阳升起一次。</li>
+      <li><b>月</b>：月亮从新月到下一次新月，平均约 29.53 天。</li>
+      <li><b>年</b>：太阳从一个冬至回到下一个冬至，约 365.2422 天。</li>
+    </ul>
+    <p>麻烦就在于，这三个数谁也不能被谁整除。一个月不是整数天，一年不是整数个月：十二个月只有约 354 天，比一年短了 11 天左右；十三个月又太长了。</p>
+    <p>于是，世界上的历法大致分成三派：</p>
+    <ul class="plain">
+      <li><b>只管月亮</b>：一年十二个月，每月跟着月亮走，不管季节。伊斯兰历就是这样。</li>
+      <li><b>只管太阳</b>：一年跟着季节走，“月”只是把一年切成十二份，和月亮没关系了。古埃及历和今天的公历都是这样。</li>
+      <li><b>两个都要</b>：月份跟着月亮，年份又要跟着季节。这就得时不时多插一个月，叫“闰月”。中国的农历、犹太历、古巴比伦历都是这样，叫“阴阳合历”。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>十九年七闰</h3>
+    <p>阴阳合历最要紧的问题是：多久插一个闰月？</p>
+    <p>每年短 11 天，差不多三年就差出一个月。可是三年一闰不够准，几十年后又会差出来。古人慢慢发现了一个神奇的巧合：<em>19 个太阳年，几乎正好等于 235 个月</em>，前后只差两个多小时。19 年里，每年 12 个月共 228 个月，再加上 7 个闰月，正好 235 个。所以：十九年里插七个闰月，月亮和太阳就基本对齐了。</p>
+    <p>古希腊人把这个周期叫“默冬周期”，以公元前 432 年在雅典提出它的天文学家默冬命名；巴比伦人用得可能更早。中国古代把它叫做“章”，“十九年七闰”大概在春秋战国时期就已经在用。三个地方，各自算出了同一个数。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig" id="leapFig">
+      <div class="fig-label">装置 10</div>
+      <h4>你来置闰</h4>
+      <p class="how">你是钦天监的官员，要排十九年的历书。每一年按十二个月排，月亮年比太阳年短大约十一天，正月初一就会一年年往前跑。点下面的年份格子，就在那一年插一个闰月（再点一次取消）。目标：十九年里，让正月初一一直落在“冬至后第一个月”这个范围内（图里的浅色带），不要跑出去。</p>
+      <div class="years" id="leapYears"></div>
+      <div class="scroll-x"><svg id="leapSvg" viewBox="0 0 640 210" style="min-width:520px" role="img" aria-label="正月初一相对冬至的漂移"></svg></div>
+      <div class="btns"><button class="btn" id="leapMeton">看看古人的答案</button><button class="btn" id="leapClear">清空</button></div>
+      <div class="say" id="leapSay"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>二十四节气：农历里的太阳</h3>
+    <p>很多人以为农历只看月亮，其实不对。农历里藏着一套纯粹跟着太阳走的东西：<em>二十四节气</em>。</p>
+    <p>立春、雨水、惊蛰、春分……把太阳在一年里走的路平分成二十四段，每一段的起点就是一个节气。它们在公历上的日子几乎不变：清明总在四月五日前后，冬至总在十二月二十二日前后。种地的人看节气，比看农历日子靠谱得多，因为庄稼只听太阳的，不听月亮的。</p>
+    <p>节气还管着闰月插在哪里。二十四个节气里，有十二个叫“中气”（雨水、春分、谷雨……）。通常每个月里都有一个中气；偶尔碰到一个月里一个中气都没有，这个月就定为闰月，跟着前一个月的名字叫，比如“闰四月”。这条规矩叫“无中置闰”。2016 年，二十四节气被列入联合国教科文组织的人类非物质文化遗产名录。</p>
+  </div>
+
+  <aside class="echo" data-k="押韵">
+    <span class="stamp">押韵</span>
+    <div>
+      <div class="rh">斋月在四季里旅行</div>
+      <p>伊斯兰历不插闰月，一年只有三百五十四五天，每年比公历早大约十一天。所以斋月会在四季里慢慢“旅行”：这几年在春天，过些年就到了冬天，再过些年又到夏天。大约三十三年，斋月走完一整圈四季。夏天的斋月白天长，斋戒尤其辛苦；冬天的白天短，就轻松一些。一个人一生里，会在每个季节都过好几次斋月。</p>
+    </div>
+  </aside>
+
+  <aside class="echo" data-k="生活">
+    <span class="stamp">生活</span>
+    <div>
+      <div class="rh">为什么有时候“一年过两个生日”</div>
+      <p>如果你过农历生日，碰到闰年（闰月那年有十三个月，三百八十多天），生日就会离上一次很远；碰到平年，又会比公历早十来天。所以按农历算，有的人某一年公历里会碰不到自己的生日，也有的人一年能碰上两次。查一查你的农历生日这些年都落在公历哪天，会是一张很好玩的锯齿图。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <p>今天的手机早就替你算好了农历，没人再需要站在山头上看新月、在钦天监里排闰月。可每年春节的日子跳来跳去，每年中秋的月亮总是圆的，都还在提醒你：<em>你的日历里，同时住着太阳和月亮，它们谁也不肯让着谁</em>。</p>
+    <div class="tick">
+      <div><i>滴<small>历史</small></i>日、月、年三个数谁也不整除谁。只管月亮的历法让节日在四季里旅行；两头都管的，就得插闰月。十九年七闰，希腊、巴比伦、中国各自算了出来。</div>
+      <div><i>答<small>生活</small></i>两件对不齐的事，不必硬掰成整数，定期插一点“闰”来对齐就好。</div>
+    </div>
+  </div>
+</section>
+<!-- ============ 戌 十天 ============ -->
+<section class="chap" id="c11" data-vol="戌 · 十天">
+  <div class="hour">
+    <svg class="dial" data-h="10" viewBox="0 0 120 120" aria-hidden="true"></svg>
+    <div>
+      <div class="no">第十一章 · 戌时 · 19:00—21:00</div>
+      <h2><span class="zh">戌</span>十天</h2>
+      <dl><dt>讲什么</dt><dd>恺撒的“混乱之年”；消失的十天；英国的十一天和俄国的十月革命；清初的历狱；一星期为什么七天</dd><dt>本章装置</dt><dd>让历法跑一千年</dd></dl>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="now">
+      <span class="clk">20:00</span>
+      <p>你打开手机日历，看看这周还剩几天、下周有什么安排。周一、周二……周日，七天一轮，每月二十八到三十一天，每四年一个二月二十九日。</p>
+      <p>你从来没怀疑过这张表。可它是一张打过很多次补丁的表，有一次补丁打得太狠，直接剪掉了十天。</p>
+    </div>
+
+    <div class="then">
+      <div class="tg"><b>她死在 10 月 4 日夜里，第二天是 10 月 15 日</b><span>1582 年 10 月 · 西班牙阿尔瓦</span></div>
+      <p>西班牙中部的小城阿尔瓦，一座修道院里，一位六十七岁的修女病得很重。她叫特蕾莎，是加尔默罗会的改革者，一生建了十几座修道院，写了好几本书，后来被天主教会封为圣人，就是阿维拉的圣特蕾莎。</p>
+      <p>1582 年 10 月 4 日，星期四，夜里，她去世了。</p>
+      <p>第二天，修女们为她下葬。这一天的日期是：<em>10 月 15 日，星期五</em>。</p>
+      <p>中间的十天不是被谁忘记了，而是被罗马教皇的一道命令删掉了。从 10 月 5 日到 14 日，在西班牙、葡萄牙、意大利、波兰，这十天根本不存在。所以至今，天主教会纪念圣特蕾莎的日子是 10 月 15 日。</p>
+      <p class="fact">阿维拉的圣特蕾莎于 1582 年 10 月 4 日夜在阿尔瓦去世，次日即 10 月 15 日（格里高利历当天生效）；她的纪念日为 10 月 15 日。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>恺撒的混乱之年</h3>
+    <p>要说这十天，得从一千六百多年前说起。</p>
+    <p>古罗马原来的历法是一笔糊涂账：一年 355 天，靠祭司们看情况插闰月。祭司们常常为了政治插得乱七八糟：想让盟友的任期长一点，就多插；想让对头早点下台，就不插。到了恺撒的时候，历法上的月份已经和季节差了两三个月，“春天”的节日在冬天过。</p>
+    <p>公元前 46 年，恺撒请来亚历山大城的天文学家索西琴尼，彻底改革。为了一次性把差出去的日子补回来，那一年被拉长到了 445 天，罗马人叫它“混乱之年”。从下一年起，一年 365 天，每四年加一天。这就是“儒略历”（恺撒的名字叫尤利乌斯·恺撒）。</p>
+    <p>每四年一闰，平均一年是 365.25 天。可真实的一年是 365.2422 天，每年多算了约十一分钟。十一分钟看起来不算什么，可是一百二十八年就多出一整天，一千多年下来就多出了十来天。</p>
+  </div>
+
+  <aside class="echo" data-k="押韵">
+    <span class="stamp">押韵</span>
+    <div>
+      <div class="rh">四年一闰，埃及人早就想过</div>
+      <p>古埃及的历法一年固定 365 天，每四年就比天狼星的升起早一天，一千四百多年才转回原位。公元前 238 年，托勒密三世下过一道诏令，要每四年加一天，可埃及的祭司们不买账，没推行下去。两百年后，恺撒请的正是一位亚历山大城的天文学家。<em>一个好主意，在埃及被拒绝了，在罗马被执行了</em>。决定一项改革成败的，常常不是主意本身，而是推它的人有多大的权力。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>教皇的剪刀</h3>
+    <p>到了 16 世纪，儒略历上的春分已经从 3 月 21 日前后漂到了 3 月 11 日前后。这对天主教会是个大问题，因为复活节要按春分来算。复活节越算越偏，整个教会的节日都跟着乱。</p>
+    <p>1582 年 2 月，教皇格里高利十三世颁布诏书，宣布两件事：</p>
+    <ul class="plain">
+      <li><b>剪掉十天</b>：1582 年 10 月 4 日之后，直接是 10 月 15 日，把春分拉回 3 月 21 日。</li>
+      <li><b>改闰年规则</b>：还是四年一闰，但逢百的年份不闰，除非能被 400 整除。所以 1700、1800、1900 年不是闰年，2000 年是。这样，四百年里少闰三次，平均一年是 365.2425 天。</li>
+    </ul>
+    <p>这就是今天全世界通用的“格里高利历”，也就是我们说的公历。它的平均年长，和三百年前郭守敬在《授时历》里算出的那个数一样（见午时那一章）。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig" id="calFig">
+      <div class="fig-label">装置 11</div>
+      <h4>让历法跑一千年</h4>
+      <p class="how">选一种历法规则，拖动年份，看春分那天会落在日历上的哪一天（红线）。从恺撒改历那年出发，一直跑到 3000 年。最下面是 1582 年 10 月的日历。</p>
+      <div class="btns" id="calRule"></div>
+      <div class="ctl"><span>年份</span><input type="range" id="calY" min="-45" max="3000" step="1" value="1582"><output id="calYO"></output></div>
+      <div class="monthbar" id="calBar"></div>
+      <div class="say" id="calSay"></div>
+      <div class="two" style="align-items:start;margin-top:12px">
+        <div><div class="lab">1582 年 10 月（格里高利历生效的那个月）</div><div class="cal" id="cal1582"></div></div>
+        <div class="readout" id="calNote"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>英国的十一天，俄国的十月革命</h3>
+    <p>教皇的命令，信天主教的国家马上照办。可是信新教的、信东正教的国家，凭什么听罗马教皇的？于是欧洲有了将近两百年的“双历”时代：从天主教的法国走到新教的德意志邦国，日期能差出十天。</p>
+    <p>英国一直拖到 1752 年才改。这时候已经差了十一天，英国人把 9 月 2 日之后直接跳到 9 月 14 日。坊间一直流传，当时老百姓上街游行，喊着“还我们的十一天”，以为自己的命被政府偷走了十一天。这个故事流传很广，不过历史学家查过，没有找到可靠的证据证明真有这样的骚乱，它多半来自当时一幅讽刺选举的油画里的一条标语。</p>
+    <p>俄国改得更晚，十月革命以后的 1918 年才改，跳过了十三天。所以那场“十月革命”，按公历其实发生在 11 月 7 日。苏联每年在 11 月纪念“十月革命”，正是这个原因。欧洲最后一个改用公历的国家是希腊，1923 年。</p>
+  </div>
+
+  <div class="col">
+    <h3>中国：差点为历法掉了脑袋</h3>
+    <p>中国的历法改革，比欧洲的还惊险。</p>
+    <p>明朝末年，钦天监用的大统历（基本就是元朝授时历的翻版）越算越不准，日食月食常常预报错。传教士带来了欧洲的天文学，徐光启主持编了《崇祯历书》。还没等颁行，明朝就亡了。清朝入关后，德国传教士汤若望把它改编成《时宪历》，1645 年颁行，汤若望也当上了钦天监的头儿。</p>
+    <p>1664 年，一个叫杨光先的人上书告状，说汤若望的历法荒谬、图谋不轨，还说清朝的历书只排了两百年，是诅咒大清国运短。这场官司叫“康熙历狱”。汤若望被判了死刑，几个中国籍的钦天监官员真的被处死了。据说判决后京城发生了地震，汤若望被赦免，但第二年就病死了。杨光先当上了钦天监监正，可他自己承认不懂历法。</p>
+    <p>几年后，十几岁的康熙皇帝亲政，决定当场比一比：让杨光先一方和比利时传教士南怀仁一方，分别预测某一天正午日影的长度。结果南怀仁算得准，杨光先输了。康熙从此对天文和数学产生了浓厚兴趣，还亲自跟着传教士学几何。</p>
+    <p>不过，中国真正改用公历，要等到 1912 年中华民国成立。民国政府后来还一度想废除农历，禁止过春节，结果老百姓照样过年，禁不下去。1949 年，新中国采用公元纪年，公历和农历并行，一直到今天。</p>
+  </div>
+
+  <aside class="echo" data-k="存疑">
+    <span class="stamp">存疑</span>
+    <div>
+      <div class="rh">“还我们的十一天”</div>
+      <p>英国 1752 年改历时的“十一天骚乱”，在很多书和网站上都当真事讲。但英国历史学家考证后认为，同时代的报纸和记录里找不到这样的骚乱。它的来源很可能是画家霍加斯 1755 年一幅讽刺选举的画，画里有人举着写着“还我们的十一天”的标语，那是在嘲讽反对派拿改历来煽动人心。本书把它当作一个流传很广、但大概不是真的故事。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>一星期为什么七天</h3>
+    <p>日、月、年都来自天上，只有“星期”不是。天上没有任何东西每七天转一圈。</p>
+    <p>七天一周的来历有好几条线：古巴比伦人把月相大致分成四段，每段七天左右；犹太人的传统里，上帝六天造世界、第七天休息，所以每七天有一个安息日；古代地中海的人认识七颗会动的“星”（日、月、火、水、木、金、土），用它们轮流命名每一天。这几条线后来汇到了一起，随着基督教和伊斯兰教传遍世界。中文“星期”这个词，就和这七颗星有关；日语至今还把周一到周日叫月曜日、火曜日、水曜日、木曜日、金曜日、土曜日、日曜日。</p>
+    <p>七天一周是人造的，所以也被人改过。法国大革命时，革命者造了一套新历法，一个月三十天，分三个“旬”，每旬十天，第十天休息。工人们很快发现，以前每七天能休息一天，现在要十天才能休息一天，不干了。这套历法用了十二年，1805 年被拿破仑废除。苏联在 1929 年也试过“连续工作周”，五天一轮，每个人在不同的日子休息，工厂就能一天都不停工。结果一家人很难凑到同一天休息，两年后改成六天一轮，1940 年又改回了七天。</p>
+  </div>
+
+  <aside class="echo" data-k="生活">
+    <span class="stamp">生活</span>
+    <div>
+      <div class="rh">七天一周，赢在“大家同一天休息”</div>
+      <p>法国的十天旬和苏联的五天周，都输给了七天一周。输的原因很相似：休息不只是一个人的事，而是要和家人、朋友<em>在同一天</em>休息。时间的价值，有一半来自和谁一起过。你的周末、你和朋友约好的那一个晚上，值钱就值在这里。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <p>圣特蕾莎下葬的那个 10 月 15 日，阿尔瓦城里的人们大概也有点恍惚：昨天晚上还是 4 日，今天怎么就 15 日了？十天的利息怎么算，十天的工钱怎么算，十天里的生日怎么过？可这一剪刀下去，从此以后的四百多年，春分再也没有跑远过。</p>
+    <div class="tick">
+      <div><i>滴<small>历史</small></i>儒略历每年多算十一分钟，一千六百年攒出十天；1582 年教皇剪掉十天、改了闰年规则。英国 1752 年、俄国 1918 年、中国 1912 年才跟上。七天一周是唯一不来自天上的时间单位。</div>
+      <div><i>答<small>生活</small></i>每天十一分钟的小偏差，攒久了要剪掉十天才能补回来。小偏差要早校正。</div>
+    </div>
+  </div>
+</section>
+<!-- ============ 亥 纪元 ============ -->
+<section class="chap" id="c12" data-vol="亥 · 纪元">
+  <div class="hour">
+    <svg class="dial" data-h="11" viewBox="0 0 120 120" aria-hidden="true"></svg>
+    <div>
+      <div class="no">第十二章 · 亥时 · 21:00—23:00</div>
+      <h2><span class="zh">亥</span>纪元</h2>
+      <dl><dt>讲什么</dt><dd>电脑里的时间从哪天开始数；千年虫；2038 年问题；闰秒和它的取消</dd><dt>本章装置</dt><dd>1970 年以来的秒</dd></dl>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="now">
+      <span class="clk">22:30</span>
+      <p>你躺在床上回消息。对话框里，每条消息旁边都有一个小小的时间：“22:17”“昨天”“刚刚”。</p>
+      <p>你看到的是“刚刚”，手机心里记的却是一个十位数，比如 1795000000 这样的数。它不认识年月日，不知道今天星期几，它只知道一件事：<em>从某一个时刻起，已经过去了多少秒</em>。</p>
+      <p>那个时刻，是 1970 年 1 月 1 日零点。</p>
+    </div>
+
+    <div class="then">
+      <div class="tg"><b>19100 年 1 月 1 日</b><span>1999 年 12 月 31 日 → 2000 年 1 月 1 日 · 全世界</span></div>
+      <p>跨年夜，全世界有成千上万的程序员和工程师没去狂欢，而是守在机房里、电脑前，盯着屏幕右下角的时间一秒一秒走向零点。</p>
+      <p>他们在等一个叫“千年虫”的东西。几十年来，很多程序为了省内存，年份只存后两位：1999 存成 99。到了 2000 年，就变成 00，程序可能以为是 1900 年，算利息、算年龄、算到期日都会出错。为了这一刻，各国政府和企业花了几年时间、据估计合计几千亿美元，把老程序一行一行地翻出来修。</p>
+      <p>零点过去了。电网没停，飞机没掉，银行没乱。出了一些小毛病：有的网站把日期显示成了“19100 年 1 月 1 日”，因为程序把“1900 + 年份”算成了“19”后面接上“100”，美国海军天文台的网站上就出过这样的显示。</p>
+      <p>第二天，很多人说：你看，根本没事，白花钱了。修了几年程序的人苦笑：没事，正是因为修过了。</p>
+      <p class="fact">千年虫的成因、全球花费为数千亿美元量级的估计、2000 年 1 月 1 日部分网站显示“19100 年”（包括美国海军天文台网站）均为当时的记录与报道；花费数字各家估计不同。</p>
+    </div>
+  </div>
+
+  <aside class="echo" data-k="生活">
+    <span class="stamp">生活</span>
+    <div>
+      <div class="rh">防住了的灾难没人记得</div>
+      <p>千年虫是一个经典的“预防悖论”：做得越好，看起来越像是白忙活。生活里也一样，按时复习、提前检查、出门前看一眼天气，做到了就什么也不会发生，没人表扬你。被表扬的往往是救火的人，而不是防火的人。学着给“什么都没发生”记一功，尤其是给你自己。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>纪元</h3>
+    <p>1969 年前后，美国贝尔实验室的汤普森和里奇，在一台没人要的旧电脑上写出了一个操作系统，叫 Unix。今天的安卓手机、苹果电脑、绝大多数服务器，都是它的子孙或亲戚。</p>
+    <p>操作系统要知道时间。最省事的办法，不是存“几年几月几日几点几分几秒”这一长串，而是只存一个数：从某个起点开始，已经过了多少秒。要显示给人看的时候，再换算成年月日。</p>
+    <p>起点选在哪儿？Unix 早期的版本换过几次，最后定在了 <em>1970 年 1 月 1 日 0 点 0 分 0 秒（格林尼治时间）</em>。这个日子没有任何天文意义，也没有纪念任何事件，只是因为它离写程序的时候很近，又是个整数年的开头，好记。程序员管它叫“纪元”（epoch）。</p>
+    <p>于是，在这个世界上，又多了一种“一天从哪儿开始”的切法。它和恺撒、教皇、钦天监的切法都不一样：它不管太阳，不管月亮，不管星期，只是一个从 0 开始、每秒加 1 的计数器。</p>
+  </div>
+
+  <aside class="echo" data-k="押韵">
+    <span class="stamp">押韵</span>
+    <div>
+      <div class="rh">儒略日和 Unix 时间</div>
+      <p>子时那一章说过，1583 年斯卡利杰发明了“儒略日”，给每一天编一个号，从公元前 4713 年一路数下来，天文学家至今还在用。四百年后，程序员做了一模一样的事，只是把“天”换成了“秒”，把起点挪到了 1970 年。<em>想让时间好算，就把它拉直成一根数轴</em>，天文学家和程序员想到了一块。</p>
+    </div>
+  </aside>
+
+  <div class="wide">
+    <div class="fig" id="unixFig">
+      <div class="fig-label">装置 12</div>
+      <h4>1970 年以来的秒</h4>
+      <p class="how">上面的大数字，是从 1970 年 1 月 1 日零点（格林尼治时间）到此刻的秒数，下面是它在一台 32 位电脑里的样子：最左边那一格是“正负号”，其余三十一格是二进制的数。你也可以输入一个日期，看它对应的秒数；或者直接快进到 2038 年，看看会发生什么。</p>
+      <div class="bignum" id="unixN">0</div>
+      <div class="readout" id="unixD"></div>
+      <div class="bits" id="unixBits"></div>
+      <div class="kv" id="unixKv"></div>
+      <div class="btns"><button class="btn" id="unixNow">回到此刻</button><button class="btn pri" id="unixJump">快进到 2038 年 1 月 19 日</button></div>
+      <div class="lab">输入一个时间（北京时间）</div>
+      <div class="btns"><input type="datetime-local" id="unixIn" step="1"><button class="btn" id="unixCalc">换算</button></div>
+      <div class="say" id="unixSay"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>2038 年 1 月 19 日</h3>
+    <p>早期的电脑用 32 个二进制位来存这个秒数，其中一位用来表示正负，剩下 31 位能存的最大数是 2,147,483,647。从 1970 年开始数，数到这个数的那一刻，是<em>格林尼治时间 2038 年 1 月 19 日 3 点 14 分 7 秒</em>，也就是北京时间当天上午 11 点 14 分 7 秒。</p>
+    <p>再过一秒，这个数就会“溢出”：就像老式汽车的里程表从 99999 跳回 00000，只不过这里跳到的是一个最大的负数，电脑会以为现在是 1901 年 12 月 13 日。这就是“2038 年问题”，有人叫它 Unix 的千年虫。</p>
+    <p>好消息是，今天大多数系统已经改用 64 位来存时间了。64 位能数到大约两千九百亿年以后，比宇宙现在的年龄还长二十来倍。坏消息是，世界上还有大量藏在角落里的老设备、嵌入式芯片、老数据库，没人知道它们里面用的是几位。离 2038 年还有十几年，程序员们又要开始翻箱倒柜了。</p>
+  </div>
+
+  <aside class="echo" data-k="联系">
+    <span class="stamp">联系</span>
+    <div>
+      <div class="rh">二进制与溢出</div>
+      <p>书房里《计算机创世记》讲过，计算机的一切都是开关和二进制。2038 年问题就是二进制最朴素的一面：<em>位数是有限的，数到头就得出事</em>。有限的位数，和恺撒算不尽的四分之一天，是同一类麻烦。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>闰秒：给地球打的补丁</h3>
+    <p>申时那一章说，1967 年起，“一秒”由原子说了算。原子钟非常准，可地球的自转并不准，还在慢慢变慢。如果完全按原子钟走，几百年后，钟上的正午就会离太阳的正午越来越远。</p>
+    <p>为了让原子钟和地球不至于分家，1972 年起，国际上定了一个办法：当两者差得快到一秒时，就在原子时间上加一秒，叫“闰秒”。加的那一刻，钟会显示一个平时不存在的时间：<em>23 点 59 分 60 秒</em>。从 1972 年到 2016 年底，一共加了二十七次。</p>
+    <p>对人来说，多一秒毫无感觉。可是对电脑来说，“一分钟有六十一秒”是一个它们从没想到过的情况。2012 年 6 月 30 日那次闰秒，一些网站和服务器因为系统处理不了这一秒而宕机，一家航空订票系统也出了故障，好几百个航班的值机被耽误。后来，一些大公司干脆发明了“闰秒抹平”：不在某一秒突然加一秒，而是把这一秒摊到前后十几个小时里，让每一秒都悄悄变长一点点。</p>
+    <p>2022 年 11 月，国际计量大会决定：最晚到 2035 年，停止使用闰秒（具体怎么停、以后原子时和地球自转差了怎么办，还在商量）。人类第一次正式承认：<em>钟不必再迁就太阳了</em>。至少在接下来的一百年里，差个几十秒，谁也不会发现。</p>
+  </div>
+
+  <aside class="echo" data-k="押韵">
+    <span class="stamp">押韵</span>
+    <div>
+      <div class="rh">闰秒、闰日、闰月</div>
+      <p>闰秒和恺撒的闰日、钦天监的闰月，是同一个动作：两个对不齐的周期，隔一段时间插一点东西，把它们重新对齐。只不过这一回，对不齐的不是月亮和太阳，而是原子和地球。而这一回人类的选择是：<em>不插了</em>。几千年来，人造的时间一直在追着天上的时间跑；到 2035 年，它第一次决定不追了。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <p>你的手机里那个十位数，每秒加一。它不在乎今天是星期几、农历初几、是不是你的生日。可当它被换算成“22:30”显示在屏幕上的时候，背后其实站着这本书里所有的人：给你二十四的埃及祭司、给你六十的巴比伦人、给你“零点”的罗马人、给你时区的铁路公司、给你“北京时间”的授时中心、给你公历的教皇和给你农历的钦天监。</p>
+    <p>还有 1970 年那几个写程序的年轻人。他们大概没想到，自己随手选的一个日子，后来成了几十亿台机器共同的“创世之日”。</p>
+    <div class="tick">
+      <div><i>滴<small>历史</small></i>电脑把时间存成从 1970 年 1 月 1 日起数的秒。年份只存两位，就有了千年虫；位数只有 32 位，就有了 2038 年问题。闰秒让原子钟迁就地球，2035 年前将被取消。</div>
+      <div><i>答<small>生活</small></i>做到了“什么都没发生”，也值得记一功。</div>
+    </div>
+  </div>
+</section>
+<!-- ============ 尾声 又到子时 ============ -->
+<section class="chap" id="c13" data-vol="尾声 · 又到子时">
+  <div class="hour">
+    <svg class="dial" data-h="0" data-full="1" viewBox="0 0 120 120" aria-hidden="true"></svg>
+    <div>
+      <div class="no">尾声 · 23:00</div>
+      <h2><span class="zh">子</span>又到子时</h2>
+      <dl><dt>本节</dt><dd>一张总表；哪些是真的；出处与争议</dd></dl>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="now">
+      <span class="clk">23:00</span>
+      <p>一天又快过完了。从昨夜的子时到今夜的子时，钟面上的指针转了一整圈，回到原处。</p>
+      <p>明天的太阳还会照常升起。它不知道今天是几号，也不知道这里是东八区。给它起名字、编号码、切成二十四份的，一直是我们。</p>
+    </div>
+
+    <p>这本书从一个问题开始：“几点了？”走完十二个时辰，答案其实很简单：<em>现在几点，是全人类商量好的</em>。</p>
+    <p>太阳只给了白天和黑夜，月亮给了一个大约二十九天半的圈，季节给了一个大约三百六十五天又四分之一的圈。其余的一切，小时、分钟、秒，星期、闰月、闰年，零点、时区、北京时间、1970 年 1 月 1 日，全是人一样一样造出来的，又一次一次地修改：埃及人改夜，罗马人改年，教皇改日子，铁路改正午，原子改秒，程序员改起点。</p>
+    <p>每一次修改，背后都有一群具体的人：熬夜数星星的祭司，在宫门外等漏的宰相，被汽笛叫醒的工人，带着一块表漂了八十一天的年轻人，在半夜机房里守着千年虫的程序员。时间看起来是天上的东西，其实一直是人和人之间的约定。</p>
+    <p>而一天，是人类最古老的轮回。不管历法怎么改、钟点怎么拨，子时过完总是丑时，亥时过完又是子时。<em>历史常常押韵，大概是因为它就住在一个转圈的钟面上</em>。</p>
+  </div>
+
+  <div class="wide">
+    <h3 style="max-width:38rem;margin-inline:auto">一张总表：你用的时间单位，各自从哪儿来</h3>
+    <div class="scroll-x">
+      <table class="t">
+        <thead><tr><th>单位</th><th>来自</th><th>谁、大约何时</th><th>见</th></tr></thead>
+        <tbody>
+          <tr><td>日</td><td>地球自转（天上）</td><td>从一开始就有；“从哪儿切开”各地不同</td><td><a href="#c1">子</a></td></tr>
+          <tr><td>更、点</td><td>守夜换班</td><td>中国古代；罗马的“守夜”</td><td><a href="#c2">丑</a></td></tr>
+          <tr><td>刻</td><td>漏箭上的刻度</td><td>中国，百刻制；清初定为九十六刻，一刻十五分钟</td><td><a href="#c2">丑</a></td></tr>
+          <tr><td>二十四小时</td><td>夜里十二颗旬星 + 白天十二段</td><td>古埃及，约前 2000 年前后</td><td><a href="#c3">寅</a></td></tr>
+          <tr><td>分、秒</td><td>六十进位</td><td>两河流域；经希腊天文学家（托勒密）传下</td><td><a href="#c3">寅</a></td></tr>
+          <tr><td>时辰、小时</td><td>一昼夜十二等分；半个时辰</td><td>中国；“小时”一词来历有不同说法</td><td><a href="#c3">寅</a> <a href="#c4">卯</a></td></tr>
+          <tr><td>匀速的小时</td><td>机械钟</td><td>欧洲，13 世纪末—14 世纪</td><td><a href="#c4">卯</a> <a href="#c5">辰</a></td></tr>
+          <tr><td>分针</td><td>钟摆让钟准到值得看分钟</td><td>惠更斯 1656 年以后</td><td><a href="#c5">辰</a></td></tr>
+          <tr><td>八小时工作日、双休</td><td>工人运动、法规</td><td>1817 年口号；1919 年国际公约；中国 1995 年双休</td><td><a href="#c6">巳</a></td></tr>
+          <tr><td>平太阳时</td><td>想象中匀速走的太阳</td><td>欧洲城市，18 世纪末—19 世纪初</td><td><a href="#c7">午</a></td></tr>
+          <tr><td>时区</td><td>铁路</td><td>英国 1840 年代；北美 1883 年；格林尼治 1884 年</td><td><a href="#c8">未</a></td></tr>
+          <tr><td>北京时间</td><td>东经 120 度标准时</td><td>1949 年后全国统一</td><td><a href="#c8">未</a></td></tr>
+          <tr><td>秒（新定义）</td><td>铯原子</td><td>1967 年</td><td><a href="#c9">申</a></td></tr>
+          <tr><td>月、闰月</td><td>月相；十九年七闰</td><td>巴比伦、默冬（前 432 年）、中国“章法”</td><td><a href="#c10">酉</a></td></tr>
+          <tr><td>闰年规则</td><td>儒略历、格里高利历</td><td>前 46 年恺撒；1582 年教皇格里高利十三世</td><td><a href="#c11">戌</a></td></tr>
+          <tr><td>星期</td><td>月相四分、安息日、七曜</td><td>巴比伦、犹太、地中海世界</td><td><a href="#c11">戌</a></td></tr>
+          <tr><td>Unix 时间</td><td>从纪元起数秒</td><td>1970 年 1 月 1 日 0 时（格林尼治）</td><td><a href="#c12">亥</a></td></tr>
+          <tr><td>闰秒</td><td>原子钟迁就地球</td><td>1972 年起；2035 年前停止</td><td><a href="#c12">亥</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>哪些是真的</h3>
+    <p>这本书不是故事传，大部分内容都是真实的历史。需要说明的是三种框：</p>
+    <ul class="plain">
+      <li><b>“此刻 · 你的一天”</b>：虚构的，是一个普通人一天里可能的场景，只为把读者带进这一章。</li>
+      <li><b>“那一刻”</b>：真事。为了好读，场面写得像小说，比如“神庙屋顶上的祭司”“待漏院里的宰相”的具体画面是想象的；但人物、年代、事件都是真的，框底的“真的部分”写明了哪些有记载。真实人物说的话，只引原文（如富兰克林的信）或用“据说”标出的流传说法，没有编造。</li>
+      <li><b>装置</b>：都是简化的模型。漏壶的水流按“流量和水深的平方根成正比”来算；旬星按每四十分钟升起一颗来算；中世纪钟和航海钟的误差是按史书里常见的量级随机生成的；置闰按月亮年比太阳年短约 10.88 天来算；均时差用常见的近似公式。它们能说明道理，但不是精确的天文计算。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3 id="src">出处与争议</h3>
+    <ul class="src">
+      <li><b>一天从哪儿开始</b>：老普林尼《博物志》卷二，正文为概述。皮加费塔《麦哲伦环球航行记》（1522 年 7 月佛得角一段）。斯卡利杰 1583 年创儒略日；天文日 1925 年 1 月 1 日起改从午夜开始。《创世记》1 章引和合本。菲律宾 1844 年、萨摩亚 2011 年跳过日期，据通行记述。凡尔纳《八十天环游地球》（1872），正文为概述。“交子/饺子”的谐音说为民间说法。</li>
+      <li><b>更漏</b>：张继《枫桥夜泊》；欧阳修《六一诗话》；宋人对“半夜钟”的辩驳见多种宋代诗话笔记。五更与时辰的对应为通行简化说法，历代更点制度有变化。卡纳克水钟约前 14 世纪；雅典法庭用水钟限时，见德摩斯梯尼等人的演说词。吕才四级漏壶、燕肃莲花漏（约 1030 年）、明初五轮沙漏，据中国天文学史通行著作。百刻制与清初改九十六刻，据通行说法。“两觉”见 A. Roger Ekirch, <i>At Day's Close</i>（2005），其普遍性有争议（如 Yetish 等 2015 年对狩猎采集部落睡眠的研究）。寒山寺除夕敲钟为现代习俗。</li>
+      <li><b>星钟</b>：古埃及旬星与“对角星钟”，据 O. Neugebauer &amp; R. Parker, <i>Egyptian Astronomical Texts</i> 及通行综述；“夏夜可见十二颗旬星”的解释为学界常见看法。天狼星偕日升与尼罗河泛滥的对应为通行说法。六十进位与托勒密的“分”“秒”词源，据通行科学史。分针普及的年代为约数。法国十进制时间（1793 年颁令、1795 年暂停）。</li>
+      <li><b>点卯</b>：王禹偁《待漏院记》（收入《古文观止》）。罗马不定时小时的长度为按纬度推算的约数。siesta、noon 的词源为通行说法。江户时代“和时计”与 1873 年改历，据日本钟表史通行记述。</li>
+      <li><b>钟声</b>：苏颂《新仪象法要》；水运仪象台元祐年间建成、1127 年被金人运走，见《宋史》等；李约瑟关于擒纵机构的观点见其《中国科学技术史》，学界有不同意见。马周建议设街鼓，见《新唐书·马周传》。北京钟鼓楼 1924 年停止报时为通行说法。圣本笃会规；clock 词源。欧洲机械钟起源年代、中世纪钟与摆钟的误差量级均为约数。伽利略吊灯故事存疑。惠更斯摆钟 1656 年；游丝之争。</li>
+      <li><b>打卡</b>：富兰克林《给一位年轻手艺人的忠告》（1748），引句为本书自译。E. P. Thompson, “Time, Work-Discipline, and Industrial Capitalism”, <i>Past &amp; Present</i>（1967）。邦迪 1888 年专利与 IBM 的渊源，据 IBM 公司史。英国 1833 年《工厂法》；欧文 1817 年口号；1886 年芝加哥罢工与干草市场事件；国际劳工组织 1919 年第 1 号公约；福特 1926 年五天工作周；中国 1994 年、1995 年工时规定。装置 6 的各项时长为按当时法规或要求取的示意值，不代表所有人的实际作息。</li>
+      <li><b>日影</b>：《元史·天文志》《元史·郭守敬传》；登封观星台 2010 年列入世界遗产“天地之中”历史建筑群。授时历 365.2425 日。罗马第一座日晷见老普林尼《博物志》卷七；古罗马剧作家抱怨日晷的台词见奥卢斯·格利乌斯《阿提卡之夜》所引普劳图斯（剧本归属有争议），正文为意译概述。各城市改用平太阳时的年代为约数。“午时三刻”存疑。</li>
+      <li><b>铁轨</b>：英国大西部铁路 1840 年、1880 年《时间定义法》；布里斯托尔谷物交易所双分针钟；1883 年 11 月 18 日北美标准时间；1884 年国际子午线会议（法国、巴西弃权，圣多明各反对）；法国 1911 年法令措辞；美国 1918 年《标准时间法》。1883 年报纸“照铁路时间结婚”的牢骚，据通行引述，原文出处存疑。民国五时区（1912 年中央观象台）；国家授时中心位于陕西临潼、发播台在蒲城；中国 1986—1991 年夏令时。富兰克林 1784 年讽刺文、威利特 1907 年、德国 1916 年。西班牙 1940 年改时区，饮食习惯成因存疑。</li>
+      <li><b>经度</b>：Dava Sobel, <i>Longitude</i>（1995）及格林尼治皇家博物馆资料；1707 年锡利群岛海难死亡人数为约数；1714 年《经度法案》奖金分级；H4 首次试航误差“约五秒”为常见说法，原始数据经过修正；“马德拉岛”情节与乔治三世的话出自后来的传记，存疑。1773 年议会拨款 8,750 英镑。1927 年石英钟（Marrison, Horton）；1955 年铯钟（Essen, Parry）；1967 年第十三届国际计量大会秒的定义。卫星定位与相对论修正为通行科普说法。</li>
+      <li><b>闰月</b>：朔望月 29.53 日、回归年 365.2422 日；默冬周期（前 432 年）；中国古代“章法”十九年七闰的起始年代有不同看法；无中置闰；二十四节气 2016 年列入人类非物质文化遗产代表作名录。伊斯兰历以目视新月定月首为传统做法，现代各国做法不一。装置 10 的“古人的答案”采用十九年周期中第 3、6、8、11、14、17、19 年置闰的排法（与犹太历相同），中国古历的具体闰年位置历代不同。</li>
+      <li><b>十天</b>：圣特蕾莎逝世与下葬日期，据通行传记与天主教会纪念日。恺撒改历与“混乱之年”445 天，据马克罗比乌斯等古代记载及通行综述。托勒密三世卡诺普斯诏令（前 238 年）。格里高利十三世诏书《在最重要的事务中》（1582 年 2 月）。英国 1750 年《历法法案》、1752 年 9 月改历；“十一天骚乱”存疑，霍加斯《选举宴会》（1755）。俄国 1918 年、希腊 1923 年改历。《崇祯历书》、汤若望《时宪历》1645 年颁行、康熙历狱（1664—1665）、1668 年测影比试，据《清史稿》及通行清史。民国废除旧历运动。法国共和历（1793—1805）；苏联连续工作周（1929 年起）。</li>
+      <li><b>纪元</b>：千年虫全球花费为数千亿美元量级的各家估计；美国海军天文台网站“19100 年”显示见当时报道。Unix 早期时间格式与 1970 纪元的选定，据 Unix 早期手册与开发者回忆。2038 年问题；64 位时间的可用年限为约数。闰秒自 1972 年起共加 27 次（截至 2016 年底）；2012 年闰秒故障见当时报道；2022 年第二十七届国际计量大会第 4 号决议。</li>
+      <li><b>装置 1、4、7、8</b>：日出日落、白昼长度、均时差按常见近似公式计算，未考虑大气折射与地形；城市经纬度取约数；1883 年北美各城市所属时区为简化示意。</li>
+    </ul>
+    <p class="ni" style="font-size:15px;color:var(--ink-2)">如发现错漏，欢迎指出。</p>
+  </div>
+</section>
+</main>
+
+<footer class="g">
+  <a class="nextbook" href="../reed/"><span style="font-size:12px;color:var(--ink-3)">书房里的另一本书</span><br><b>苇城书记 · 文字创世记</b><br><span style="font-size:14px;color:var(--ink-2)">你表上的六十，最早压在两河流域的泥板上。一个会计掉进还没有文字的世界，亲眼看着数字和文字长出来。</span></a>
+  <a class="nextbook" href="../computer/"><span style="font-size:12px;color:var(--ink-3)">书房里的另一本书</span><br><b>计算机创世记 · 一沙一世界</b><br><span style="font-size:14px;color:var(--ink-2)">那个从 1970 年开始数秒的机器，是怎样从织布机、开关和导线里一步一步造出来的。</span></a>
+  <p>《几点了 · 时间创世记》，四卷十二章加尾声，创世书房藏书之一。“此刻”为虚构，“那一刻”与正文的历史已尽量核对，争议之处列在书末。正文由 Claude 协助创作。纯静态网页，无框架，只从 Google Fonts 加载字体。</p>
+  <p><a href="../">回书房</a> · <a href="#top" id="toTop">回到开头</a></p>
+</footer>
+
+<script>
+(function(){
+'use strict';
+const $ = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => [...(r || document).querySelectorAll(s)];
+const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+const rad = d => d * Math.PI / 180, deg = r => r * 180 / Math.PI;
+const pad = n => String(n).padStart(2, '0');
+const gauss = () => { let u = 0, v = 0; while (!u) u = Math.random(); while (!v) v = Math.random(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); };
+const ZHI = '子丑寅卯辰巳午未申酉戌亥';
+const CHAP = ['接缝', '更漏', '星钟', '点卯', '钟声', '打卡', '日影', '铁轨', '经度', '闰月', '十天', '纪元'];
+const NS = 'http://www.w3.org/2000/svg';
+const btnRow = (box, items, cur, cb) => {
+  box.innerHTML = items.map((t, i) => '<button class="btn' + (i === cur ? ' on' : '') + '" data-i="' + i + '">' + t + '</button>').join('');
+  box.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; $$('button', box).forEach(x => x.classList.toggle('on', x === b)); cb(+b.dataset.i); });
+};
+// 只在看得见时跑动画
+function onVisible(el, start, stop){
+  if (!('IntersectionObserver' in window)) { start(); return; }
+  new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? start() : stop()), {rootMargin: '80px'}).observe(el);
+}
+// 天文近似
+const decl = N => 23.44 * Math.sin(2 * Math.PI * (284 + N) / 365);              // 太阳赤纬（度），N = 1..365
+function hourAngle(lat, N, alt){                                                    // 太阳到达某高度时的时角（度）
+  const p = rad(lat), d = rad(decl(N));
+  const c = (Math.sin(rad(alt)) - Math.sin(p) * Math.sin(d)) / (Math.cos(p) * Math.cos(d));
+  return deg(Math.acos(clamp(c, -1, 1)));
+}
+const dayLen = (lat, N) => 2 * hourAngle(lat, N, -0.833) / 15;                        // 白昼长（小时）
+const eot = N => { const B = 2 * Math.PI * (N - 81) / 364; return 9.87 * Math.sin(2 * B) - 7.53 * Math.cos(B) - 1.5 * Math.sin(B); }; // 均时差（分），正 = 太阳比钟快
+const dateLabel = N => { const d = new Date(2025, 0, N); return (d.getMonth() + 1) + ' 月 ' + d.getDate() + ' 日'; };
+const hm = h => { h = ((h % 24) + 24) % 24; let H = Math.floor(h), M = Math.round((h - H) * 60); if (M === 60) { H = (H + 1) % 24; M = 0; } return pad(H) + ':' + pad(M); };
+const pol = (cx, cy, r, a) => [cx + r * Math.sin(rad(a)), cy - r * Math.cos(rad(a))];
+function sector(cx, cy, r0, r1, a0, a1){
+  const [x0, y0] = pol(cx, cy, r1, a0), [x1, y1] = pol(cx, cy, r1, a1), [x2, y2] = pol(cx, cy, r0, a1), [x3, y3] = pol(cx, cy, r0, a0);
+  const lg = (a1 - a0) > 180 ? 1 : 0;
+  return 'M' + x0.toFixed(2) + ',' + y0.toFixed(2) + ' A' + r1 + ',' + r1 + ' 0 ' + lg + ' 1 ' + x1.toFixed(2) + ',' + y1.toFixed(2) + ' L' + x2.toFixed(2) + ',' + y2.toFixed(2) + ' A' + r0 + ',' + r0 + ' 0 ' + lg + ' 0 ' + x3.toFixed(2) + ',' + y3.toFixed(2) + ' Z';
+}
+
+/* ---------- 页眉：卷名、进度、目录 ---------- */
+const barVol = $('#barVol'), prog = $('#prog');
+const vols = $$('[data-vol]');
+let tick = false;
+function onScroll(){
+  tick = false;
+  const lim = innerHeight * 0.35; let cur = null;
+  for (const e of vols) { if (e.getBoundingClientRect().top < lim) cur = e; else break; }
+  barVol.textContent = cur ? cur.dataset.vol : '序';
+  const H = document.documentElement.scrollHeight - innerHeight;
+  prog.style.width = (H > 0 ? scrollY / H * 100 : 0) + '%';
+}
+window.addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(onScroll); } }, {passive: true});
+onScroll();
+const drawer = $('#drawer');
+$('#drawerList').innerHTML = $$('#toc a').map(a => '<li><a href="' + a.getAttribute('href') + '"><span class="n">' + $('.n', a).textContent + '</span><span>' + $('.t', a).innerHTML + '</span></a></li>').join('');
+function openD(on){ drawer.classList.toggle('on', on); drawer.setAttribute('aria-hidden', on ? 'false' : 'true'); }
+$('#tocBtn').addEventListener('click', () => openD(true));
+drawer.addEventListener('click', e => { if (e.target.closest('[data-close]') || e.target.closest('a')) openD(false); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') openD(false); });
+const toTop = $('#toTop'); if (toTop) toTop.addEventListener('click', e => { e.preventDefault(); scrollTo({top: 0, behavior: 'smooth'}); });
+
+/* ---------- 钟面 ---------- */
+function dialMarkup(S, h, opt){
+  opt = opt || {};
+  const c = S / 2, r1 = S * 0.46, r0 = S * (opt.big ? 0.27 : 0.25);
+  let s = '<circle cx="' + c + '" cy="' + c + '" r="' + (r1 + S * 0.02) + '" fill="var(--card)" stroke="var(--ink-3)" stroke-width="' + (S / 120) + '"/>';
+  for (let i = 0; i < 12; i++) {
+    const on = opt.all || i === h;
+    s += '<path class="sec" data-h="' + i + '" d="' + sector(c, c, r0, r1, i * 30 - 15, i * 30 + 15) + '" fill="' + (on ? 'var(--vermil)' : 'transparent') + '" fill-opacity="' + (opt.all ? 0.12 : on ? 0.85 : 0) + '" stroke="var(--rule)" stroke-width="' + (S / 200) + '"' + (opt.big ? ' style="cursor:pointer"' : '') + '><title>' + ZHI[i] + '时 · ' + CHAP[i] + '</title></path>';
+    const [x, y] = pol(c, c, (r0 + r1) / 2, i * 30);
+    s += '<text x="' + x.toFixed(1) + '" y="' + (y + S * 0.035).toFixed(1) + '" text-anchor="middle" font-size="' + (S * (opt.big ? 0.085 : 0.1)) + '" fill="' + (i === h && !opt.all ? 'var(--paper)' : 'var(--ink)') + '" style="font-family:var(--f-display);pointer-events:none">' + ZHI[i] + '</text>';
+  }
+  if (opt.big) {
+    for (let i = 0; i < 24; i++) {
+      const [x0, y0] = pol(c, c, r0 - S * 0.015, i * 15), [x1, y1] = pol(c, c, r0 - S * (i % 6 ? 0.035 : 0.06), i * 15);
+      s += '<line x1="' + x0.toFixed(1) + '" y1="' + y0.toFixed(1) + '" x2="' + x1.toFixed(1) + '" y2="' + y1.toFixed(1) + '" stroke="var(--ink-3)" stroke-width="1.2"/>';
+      if (i % 3 === 0) { const [x, y] = pol(c, c, r0 - S * 0.1, i * 15); s += '<text x="' + x.toFixed(1) + '" y="' + (y + 4).toFixed(1) + '" text-anchor="middle" font-size="11" fill="var(--ink-3)" class="mono" style="font-family:var(--f-mono)">' + i + '</text>'; }
+    }
+  }
+  if (opt.hand != null) {
+    const [x, y] = pol(c, c, r1 - S * 0.02, opt.hand * 15);
+    s += '<line x1="' + c + '" y1="' + c + '" x2="' + x.toFixed(1) + '" y2="' + y.toFixed(1) + '" stroke="var(--night)" stroke-width="' + (S / 60) + '" stroke-linecap="round"/><circle cx="' + c + '" cy="' + c + '" r="' + (S / 40) + '" fill="var(--night)"/>';
+  }
+  return s;
+}
+$$('svg.dial').forEach(svg => {
+  const h = +svg.dataset.h, full = !!svg.dataset.full;
+  svg.innerHTML = dialMarkup(120, h, full ? {all: true, hand: 23} : {hand: (23 + h * 2 + 1) % 24});
+});
+
+// 装置 0：封面的钟
+(function(){
+  const svg = $('#dial0'); if (!svg) return;
+  const T = $('#dial0T'), R = $('#dial0R');
+  const KE = ['初刻', '一刻', '二刻', '三刻'];
+  const GENG = {19: '一更', 20: '一更', 21: '二更', 22: '二更', 23: '三更', 0: '三更', 1: '四更', 2: '四更', 3: '五更', 4: '五更'};
+  function draw(){
+    const d = new Date(), H = d.getHours(), M = d.getMinutes();
+    const h = Math.floor(((H + 1) % 24) / 2);
+    svg.innerHTML = dialMarkup(300, h, {big: true, hand: H + M / 60});
+    T.textContent = pad(H) + ':' + pad(M);
+    const bk = Math.floor((H * 60 + M) / 14.4) + 1;
+    R.innerHTML = '现在是<b>' + ZHI[h] + (H % 2 ? '初' : '正') + KE[Math.floor(M / 15)] + '</b>' + (GENG[H] ? '，' + GENG[H] : '') + '；按汉代的百刻制，是一天里的第 ' + bk + ' 刻。<br>正好读第 ' + (h + 1) + ' 章 <a href="#c' + (h + 1) + '">' + ZHI[h] + ' · ' + CHAP[h] + '</a>。点钟面上任何一个时辰，也能跳过去。';
+  }
+  draw(); setInterval(draw, 20000);
+  svg.addEventListener('click', e => { const p = e.target.closest('.sec'); if (p) location.hash = '#c' + (+p.dataset.h + 1); });
+})();
+
+// 卷首小画
+$$('svg.arc').forEach(svg => {
+  const v = +svg.dataset.v;
+  let s = '<path d="M10,100 H190" stroke="var(--ink-3)" stroke-width="1.5"/>';
+  const star = (x, y, r) => '<path d="M' + x + ',' + (y - r) + ' L' + (x + r * .3) + ',' + (y - r * .3) + ' L' + (x + r) + ',' + y + ' L' + (x + r * .3) + ',' + (y + r * .3) + ' L' + x + ',' + (y + r) + ' L' + (x - r * .3) + ',' + (y + r * .3) + ' L' + (x - r) + ',' + y + ' L' + (x - r * .3) + ',' + (y - r * .3) + ' Z" fill="var(--brass)"/>';
+  if (v === 0) s += '<path d="M120,22 a24,24 0 1,0 22,34 a19,19 0 1,1 -22,-34 Z" fill="var(--night)" opacity=".85"/>' + star(40, 30, 5) + star(70, 60, 3.5) + star(160, 40, 4) + star(178, 78, 3) + star(30, 76, 3);
+  if (v === 1) { s += '<path d="M60,100 a40,40 0 0,1 80,0 Z" fill="var(--brass)" opacity=".75"/>'; for (let i = 0; i < 7; i++) { const a = -90 + i * 30, [x0, y0] = [100 + 48 * Math.cos(rad(a)), 100 + 48 * Math.sin(rad(a))], [x1, y1] = [100 + 62 * Math.cos(rad(a)), 100 + 62 * Math.sin(rad(a))]; if (y1 < 100) s += '<line x1="' + x0 + '" y1="' + y0 + '" x2="' + x1 + '" y2="' + y1 + '" stroke="var(--brass)" stroke-width="3" stroke-linecap="round"/>'; } }
+  if (v === 2) s += '<circle cx="100" cy="28" r="18" fill="var(--brass)" opacity=".8"/><path d="M70,100 V64" stroke="var(--ink-2)" stroke-width="4"/><path d="M70,100 H82" stroke="var(--ink-2)" stroke-width="6" opacity=".4"/>';
+  if (v === 3) s += '<path d="M128,100 a26,26 0 0,1 52,0 Z" fill="var(--vermil)" opacity=".7"/><path d="M52,26 a20,20 0 1,0 18,28 a16,16 0 1,1 -18,-28 Z" fill="var(--night)" opacity=".8"/>' + star(100, 40, 3.5);
+  svg.innerHTML = s;
+});
+
+/* ---------- 装置 1：今天是星期几 ---------- */
+(function(){
+  const rng = $('#dayT'); if (!rng) return;
+  const NAMES = ['周六', '周日', '周一', '周二', '周三', '周四'];
+  const C = [
+    {n: '半夜', s: '罗马官方 · 今天', b: 0, k: 0},
+    {n: '日出', s: '巴比伦', b: 6, k: 0},
+    {n: '日落', s: '雅典 · 犹太 · 伊斯兰', b: 18, k: 1},
+    {n: '正午', s: '1925 年前的天文学家', b: 12, k: 0},
+    {n: '子初', s: '中国古代（子时为一日之始）', b: 23, k: 1}
+  ];
+  const nm = i => NAMES[i + 2];
+  $('#dayRows').innerHTML = C.map((c, j) => {
+    let seg = '';
+    for (let q = -1; q <= 2; q++) {
+      const a = c.b + 24 * q, z = a + 24, x0 = clamp(a, 0, 48), x1 = clamp(z, 0, 48);
+      if (x1 <= x0) continue;
+      seg += '<i data-q="' + q + '" style="left:' + (x0 / 48 * 100) + '%;width:' + ((x1 - x0) / 48 * 100) + '%">' + nm(q + c.k) + '</i>';
+    }
+    return '<div class="dayrow"><div class="nm">' + c.n + '<small>' + c.s + '</small></div><div class="st">' + seg + '<span class="hand"></span></div><div class="d" id="dayD' + j + '"></div></div>';
+  }).join('');
+  function upd(){
+    const t = +rng.value / 60, d = Math.floor(t / 24), hh = t - 24 * d;
+    $('#dayO').textContent = nm(Math.min(d, 2)) + ' ' + hm(hh);
+    const res = C.map((c, j) => {
+      const q = Math.floor((t - c.b) / 24), name = nm(q + c.k);
+      const row = $$('.dayrow')[j];
+      $$('.st i', row).forEach(i => i.classList.toggle('cur', +i.dataset.q === q));
+      $('.hand', row).style.left = 'calc(' + (t / 48 * 100) + '% - 1px)';
+      $('#dayD' + j).textContent = name;
+      return name;
+    });
+    const civil = res[0], diff = C.filter((c, j) => res[j] !== civil).map((c, j) => c);
+    const others = C.map((c, j) => res[j] !== civil ? c.n + '派说是' + res[j] : '').filter(Boolean);
+    $('#daySay').innerHTML = others.length ? '手机上是<b>' + civil + '</b>，可是' + others.join('，') + '。同一个时刻，五把刀切出了 ' + new Set(res).size + ' 个不同的“今天”。' : '此刻五种切法难得意见一致：都是<b>' + civil + '</b>。再拖一拖试试傍晚和深夜。';
+  }
+  rng.addEventListener('input', upd); upd();
+})();
+
+/* ---------- 装置 2：漏壶 ---------- */
+(function(){
+  const fig = $('#clepFig'); if (!fig) return;
+  const MODES = ['单壶', '斜壁壶（古埃及）', '三级漏壶', '莲花漏（溢流）'];
+  let mode = 0, R = 2, res = null, anim = 0, raf = 0;
+  const svg = $('#clepSvg'), plot = $('#clepPlot'), say = $('#clepSay'), rf = $('#clepRefill');
+  btnRow($('#clepMode'), MODES, 0, i => { mode = i; rf.style.display = i >= 2 ? '' : 'none'; sim(); show(0); });
+  rf.style.display = 'none';
+  $('#clepR').addEventListener('input', e => { R = +e.target.value; $('#clepRO').textContent = '每 ' + R + ' 小时'; sim(); show(0); });
+  $('#clepRO').textContent = '每 2 小时';
+  // 模拟：dt = 0.01 小时，返回 120 个时间点的读数与水位
+  function sim(){
+    const dt = 0.01, N = 1200; const out = {t: [], read: [], lv: []};
+    let h = [1, 1, 1], top = 1, sup = 1, F = 0, rate0 = null, nextRefill = R;
+    for (let s = 0; s <= N; s++) {
+      const t = s * dt;
+      if (s % 10 === 0) out.lv.push(mode === 3 ? [top, sup, F] : mode === 2 ? [h[0], h[1], h[2], F] : [h[0], F]);
+      let dF = 0;
+      if (mode === 0) { const k = 0.114, q = k * Math.sqrt(Math.max(h[0], 0)); h[0] -= q * dt; dF = q * dt; }
+      else if (mode === 1) { const k = 0.083, A = 0.4 + 0.8 * Math.max(h[0], 0), q = k * Math.sqrt(Math.max(h[0], 0)); const dh = q / A * dt; h[0] -= dh; dF = dh; }
+      else if (mode === 2) {
+        const k = 0.25, q1 = k * Math.sqrt(Math.max(h[0], 0)), q2 = k * Math.sqrt(Math.max(h[1], 0)), q3 = k * Math.sqrt(Math.max(h[2], 0));
+        h[0] -= q1 * dt; h[1] += (q1 - q2) * dt; h[2] += (q2 - q3) * dt; dF = q3 * dt;
+        if (t >= nextRefill - 1e-9) { h[0] = 1; nextRefill += R; }
+      } else {
+        const kin = 0.5, k = 0.25, qin = kin * Math.sqrt(Math.max(top, 0)), q = k * Math.sqrt(Math.max(sup, 0));
+        top -= qin * dt; sup = Math.min(1, sup + (qin - q) * dt); dF = q * dt;
+        if (t >= nextRefill - 1e-9) { top = 1; nextRefill += R; }
+      }
+      if (s === 0) rate0 = dF / dt;
+      F += dF;
+      if (s % 10 === 0) { out.t.push(t); out.read.push(F / rate0); }
+    }
+    res = out;
+  }
+  function vessel(x, y, w, hgt, lv, opt){
+    opt = opt || {};
+    let s = '';
+    const wl = clamp(lv, 0, 1) * hgt;
+    if (opt.slope) {
+      const b = w * 0.45; // 底窄口宽
+      const wAt = yy => b + (w - b) * (yy / hgt);
+      const ww = wAt(wl);
+      s += '<path d="M' + (x + (w - ww) / 2) + ',' + (y + hgt - wl) + ' L' + (x + (w + ww) / 2) + ',' + (y + hgt - wl) + ' L' + (x + (w + b) / 2) + ',' + (y + hgt) + ' L' + (x + (w - b) / 2) + ',' + (y + hgt) + ' Z" fill="var(--night)" opacity=".35"/>';
+      s += '<path d="M' + x + ',' + y + ' L' + (x + (w - b) / 2) + ',' + (y + hgt) + ' L' + (x + (w + b) / 2) + ',' + (y + hgt) + ' L' + (x + w) + ',' + y + '" fill="none" stroke="var(--ink-2)" stroke-width="2"/>';
+      for (let i = 1; i < 12; i++) { const yy = y + hgt * i / 12, ww2 = wAt(hgt - hgt * i / 12); s += '<line x1="' + (x + (w - ww2) / 2 + 2) + '" y1="' + yy + '" x2="' + (x + (w - ww2) / 2 + 8) + '" y2="' + yy + '" stroke="var(--brass)" stroke-width="1"/>'; }
+    } else {
+      s += '<rect x="' + x + '" y="' + (y + hgt - wl) + '" width="' + w + '" height="' + wl + '" fill="var(--night)" opacity=".35"/>';
+      s += '<path d="M' + x + ',' + y + ' V' + (y + hgt) + ' H' + (x + w) + ' V' + y + '" fill="none" stroke="var(--ink-2)" stroke-width="2"/>';
+    }
+    if (opt.label) s += '<text x="' + (x + w / 2) + '" y="' + (y - 5) + '" text-anchor="middle" font-size="10" fill="var(--ink-3)">' + opt.label + '</text>';
+    return s;
+  }
+  const drip = (x, y1, y2) => '<line x1="' + x + '" y1="' + y1 + '" x2="' + x + '" y2="' + y2 + '" stroke="var(--night)" stroke-width="1.6" stroke-dasharray="2 4" opacity=".8"/>';
+  function receiver(x, y, w, hgt, frac){
+    const wl = clamp(frac, 0, 1) * hgt;
+    let s = '<rect x="' + x + '" y="' + (y + hgt - wl) + '" width="' + w + '" height="' + wl + '" fill="var(--night)" opacity=".35"/>';
+    s += '<path d="M' + x + ',' + y + ' V' + (y + hgt) + ' H' + (x + w) + ' V' + y + '" fill="none" stroke="var(--ink-2)" stroke-width="2"/>';
+    const top = y + hgt - wl - 6; // 浮舟 + 箭
+    s += '<rect x="' + (x + 6) + '" y="' + top + '" width="' + (w - 12) + '" height="6" rx="2" fill="var(--brass)"/>';
+    s += '<line x1="' + (x + w / 2) + '" y1="' + top + '" x2="' + (x + w / 2) + '" y2="' + (top - 70) + '" stroke="var(--brass)" stroke-width="3"/>';
+    for (let i = 0; i <= 7; i++) s += '<line x1="' + (x + w / 2 - 4) + '" y1="' + (top - 10 * i) + '" x2="' + (x + w / 2 + 4) + '" y2="' + (top - 10 * i) + '" stroke="var(--vermil)" stroke-width="1"/>';
+    s += '<text x="' + (x + w / 2) + '" y="' + (y + hgt + 14) + '" text-anchor="middle" font-size="10" fill="var(--ink-3)">接水壶 · 箭</text>';
+    return s;
+  }
+  function drawV(i){
+    const lv = res.lv[i], fr = lv[lv.length - 1] / (res.lv[res.lv.length - 1][lv.length - 1] || 1);
+    let s = '';
+    if (mode === 0) s = vessel(30, 40, 90, 110, lv[0], {label: '漏壶'}) + drip(75, 150, 200) + receiver(160, 120, 70, 100, fr * 0.9);
+    else if (mode === 1) s = vessel(80, 40, 140, 150, lv[0], {slope: 1, label: '斜壁壶：看壶内水位'}) + drip(150, 190, 225);
+    else if (mode === 2) s = vessel(10, 20, 60, 60, lv[0], {label: '第一级'}) + drip(40, 80, 95) + vessel(60, 95, 60, 50, lv[1] * 0.85, {label: '第二级'}) + drip(90, 145, 160) + vessel(110, 160, 60, 40, lv[2] * 0.8, {label: '第三级'}) + drip(140, 200, 215) + receiver(200, 110, 70, 100, fr * 0.9);
+    else s = vessel(10, 20, 70, 60, lv[0], {label: '储水壶'}) + drip(45, 80, 105) + vessel(70, 105, 70, 50, lv[1] * 0.8, {label: '供水壶'}) + '<path d="M140,115 h18 v80" fill="none" stroke="var(--ink-2)" stroke-width="2"/><text x="160" y="110" font-size="10" fill="var(--ink-3)">溢流口</text>' + drip(105, 155, 210) + receiver(200, 110, 70, 100, fr * 0.9);
+    svg.innerHTML = s;
+  }
+  function drawP(n){
+    const X = t => 30 + t / 12 * 255, Y = h => 180 - clamp(h, 0, 14) / 14 * 165;
+    let s = '<rect x="30" y="15" width="255" height="165" fill="none" stroke="var(--rule)"/>';
+    for (let h = 0; h <= 12; h += 3) s += '<text x="' + X(h) + '" y="194" text-anchor="middle" font-size="10" fill="var(--ink-3)">' + h + 'h</text><text x="24" y="' + (Y(h) + 3) + '" text-anchor="end" font-size="10" fill="var(--ink-3)">' + h + '</text>';
+    s += '<text x="158" y="12" text-anchor="middle" font-size="10" fill="var(--ink-3)">横轴：真实过了几小时　纵轴：漏上读出几小时</text>';
+    s += '<line x1="' + X(0) + '" y1="' + Y(0) + '" x2="' + X(12) + '" y2="' + Y(12) + '" stroke="var(--ink-3)" stroke-dasharray="4 4"/>';
+    let d = '';
+    for (let i = 0; i <= n; i++) d += (i ? 'L' : 'M') + X(res.t[i]).toFixed(1) + ',' + Y(res.read[i]).toFixed(1);
+    s += '<path d="' + d + '" fill="none" stroke="var(--vermil)" stroke-width="2.2"/>';
+    plot.innerHTML = s;
+  }
+  function show(n){
+    cancelAnimationFrame(raf);
+    drawV(n); drawP(n);
+    if (n >= 120) {
+      const err = (res.read[120] - 12) * 60;
+      let mx = 0; for (let i = 0; i <= 120; i++) mx = Math.max(mx, Math.abs(res.read[i] - res.t[i]) * 60);
+      const late = err < 0;
+      const good = mx < (mode === 2 ? 25 : 15);
+      say.className = 'say ' + (good || mode === 1 ? 'ok' : 'bad');
+      say.innerHTML = '天亮了（真实过了 12 小时），漏上读出的是 <b>' + res.read[120].toFixed(1) + ' 小时</b>，' + (Math.abs(err) < 3 ? '几乎分毫不差' : (late ? '慢了 ' : '快了 ') + '<b>' + Math.abs(err).toFixed(0) + ' 分钟</b>') + '；这一夜最大偏差 ' + mx.toFixed(0) + ' 分钟。' + [
+        '水越少漏得越慢，后半夜的“一个时辰”被拉得很长。这正是古人头疼的毛病。',
+        '斜壁让上面的水降得慢、下面的水降得快，抵消了大半水压的变化。',
+        good ? '中间几级壶互相缓冲，加上勤快地往顶上添水，最下一级的水位稳多了。' : '添水间隔太长，顶上的壶漏空了，整串壶都跟着慢下来。试试把添水间隔调短。',
+        good ? '供水壶的水位被溢流口卡死，漏得始终一样快：这就是“恒定水头”。' : '储水壶漏空以后，溢流就失效了，供水壶的水位开始下降。添水要勤。'
+      ][mode];
+    } else { say.className = 'say'; say.innerHTML = '守夜中……真实时间 <b>' + res.t[n].toFixed(1) + '</b> 小时，漏上读出 <b>' + res.read[n].toFixed(1) + '</b> 小时。'; }
+  }
+  $('#clepGo').addEventListener('click', () => { let i = 0; cancelAnimationFrame(raf); const step = () => { show(i); if (i < 120) { i++; raf = requestAnimationFrame(() => setTimeout(step, 30)); } }; step(); });
+  $('#clepFast').addEventListener('click', () => show(120));
+  sim(); show(0);
+})();
+
+/* ---------- 装置 3：旬星 ---------- */
+(function(){
+  const rng = $('#decD'); if (!rng) return;
+  const LAT = 25.7, svg = $('#decSvg');
+  function upd(){
+    const N = +rng.value + 1;
+    const H0 = hourAngle(LAT, N, -0.833) / 15, H18 = hourAngle(LAT, N, -18) / 15;
+    const set = 12 + H0, rise = 36 - H0, dk0 = 12 + H18, dk1 = 36 - H18;
+    const X = t => 20 + (t - set) / (rise - set) * 600;
+    let s = '<rect x="20" y="40" width="600" height="56" fill="var(--sky)"/><rect x="' + X(dk0) + '" y="40" width="' + (X(dk1) - X(dk0)) + '" height="56" fill="var(--night)" opacity=".85"/>';
+    const phase = (N * 3.94) % 40 / 60; let cnt = 0, k = 0;
+    for (let t = set + phase; t < rise; t += 40 / 60) {
+      const dark = t > dk0 && t < dk1; if (dark) cnt++;
+      const x = X(t);
+      s += '<path d="M' + x + ',' + 58 + ' l2.5,6 l6,2.5 l-6,2.5 l-2.5,6 l-2.5,-6 l-6,-2.5 l6,-2.5 Z" fill="' + (dark ? 'var(--brass)' : 'var(--ink-3)') + '" opacity="' + (dark ? 1 : 0.35) + '"/>';
+      if (dark) s += '<text x="' + x + '" y="88" text-anchor="middle" font-size="10" fill="var(--paper)" style="font-family:var(--f-mono)">' + cnt + '</text>';
+      k++;
+    }
+    for (let h = Math.ceil(set); h <= Math.floor(rise); h++) s += '<line x1="' + X(h) + '" y1="96" x2="' + X(h) + '" y2="102" stroke="var(--ink-3)"/><text x="' + X(h) + '" y="114" text-anchor="middle" font-size="10" fill="var(--ink-3)" style="font-family:var(--f-mono)">' + (h % 24) + '</text>';
+    s += '<text x="20" y="30" font-size="11" fill="var(--ink-2)">日落 ' + hm(set) + '</text><text x="620" y="30" text-anchor="end" font-size="11" fill="var(--ink-2)">日出 ' + hm(rise) + '</text>';
+    s += '<text x="' + ((X(dk0) + X(dk1)) / 2) + '" y="30" text-anchor="middle" font-size="11" fill="var(--night)">天完全黑透：' + hm(dk0) + '—' + hm(dk1) + '</text>';
+    s += '<text x="320" y="138" text-anchor="middle" font-size="11" fill="var(--ink-3)">每一颗星是一颗旬星从东方升起的时刻（约每 40 分钟一颗；当地太阳时）</text>';
+    svg.innerHTML = s;
+    $('#decO').textContent = dateLabel(N);
+    $('#decKv').innerHTML = '<div><b>' + (rise - set).toFixed(1) + ' 时</b>从日落到日出</div><div><b>' + (dk1 - dk0).toFixed(1) + ' 时</b>完全黑透</div><div><b>' + cnt + ' 颗</b>能看见升起的旬星</div>';
+    const summer = N > 165 && N < 225;
+    $('#decSay').innerHTML = cnt <= 12 ? '这一夜只能数出 <b>' + cnt + '</b> 颗。' + (summer ? '这正是天狼星在黎明前重新出现、尼罗河开始涨水的季节。照这样的夜来分，一夜就是十二个时辰。' : '') : '这一夜能数出 <b>' + cnt + '</b> 颗，比十二颗多。冬夜长，看得见的旬星也多。拖到七月前后试试。';
+  }
+  rng.addEventListener('input', upd); upd();
+})();
+
+/* ---------- 装置 4：会伸缩的小时 ---------- */
+(function(){
+  const rng = $('#romD'); if (!rng) return;
+  const CITY = [['罗马', 41.9], ['亚历山大', 31.2], ['北京', 39.9], ['江户', 35.7], ['伦敦', 51.5], ['斯德哥尔摩', 59.3]];
+  let ci = 0;
+  btnRow($('#romCity'), CITY.map(c => c[0]), 0, i => { ci = i; upd(); });
+  const RN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
+  function upd(){
+    const N = +rng.value + 1, D = dayLen(CITY[ci][1], N), sr = 12 - D / 2, ss = 12 + D / 2, nh = (24 - D) / 12;
+    const X = t => 20 + t / 24 * 600;
+    let s = '';
+    // 夜：日落到午夜（第 1—6 夜时），午夜到日出（第 7—12 夜时）
+    for (let i = 0; i < 12; i++) {
+      let a = ss + i * nh, b = a + nh; if (a >= 24) { a -= 24; b -= 24; }
+      const parts = b > 24 ? [[a, 24], [0, b - 24]] : [[a, b]];
+      parts.forEach(p => { s += '<rect x="' + X(p[0]) + '" y="78" width="' + (X(p[1]) - X(p[0])) + '" height="30" fill="var(--night)" opacity="' + (i % 2 ? 0.55 : 0.75) + '" stroke="var(--card)" stroke-width="1"/>'; });
+      const mid = ((a + nh / 2) % 24); s += '<text x="' + X(mid) + '" y="97" text-anchor="middle" font-size="9.5" fill="var(--paper)">' + RN[i] + '</text>';
+    }
+    for (let i = 0; i < 12; i++) {
+      const a = sr + i * D / 12;
+      s += '<rect x="' + X(a) + '" y="30" width="' + (X(a + D / 12) - X(a)) + '" height="38" fill="var(--brass)" opacity="' + (i % 2 ? 0.45 : 0.7) + '" stroke="var(--card)" stroke-width="1"/>';
+      s += '<text x="' + X(a + D / 24) + '" y="47" text-anchor="middle" font-size="10" fill="var(--ink)">' + RN[i] + '</text><text x="' + X(a + D / 24) + '" y="61" text-anchor="middle" font-size="8.5" fill="var(--ink-2)" style="font-family:var(--f-mono)">' + hm(a) + '</text>';
+    }
+    for (let h = 0; h <= 24; h += 3) s += '<line x1="' + X(h) + '" y1="110" x2="' + X(h) + '" y2="116" stroke="var(--ink-3)"/><text x="' + X(h) + '" y="128" text-anchor="middle" font-size="10" fill="var(--ink-3)" style="font-family:var(--f-mono)">' + h + ':00</text>';
+    s += '<text x="20" y="22" font-size="11" fill="var(--ink-2)">白天的十二个“时”（格子里是开始的钟点，按当地太阳时）</text><text x="20" y="145" font-size="11" fill="var(--ink-2)">下面深色是夜里的十二个“时”</text>';
+    $('#romSvg').innerHTML = s;
+    $('#romO').textContent = dateLabel(N);
+    $('#romKv').innerHTML = '<div><b>' + D.toFixed(1) + ' 小时</b>白天长</div><div><b>' + (D * 5).toFixed(0) + ' 分钟</b>白天的一“时”</div><div><b>' + (nh * 60).toFixed(0) + ' 分钟</b>夜里的一“时”</div><div><b>' + hm(sr) + '</b>第一时开始（日出）</div>';
+    const dm = D * 5;
+    $('#romSay').innerHTML = '在' + CITY[ci][0] + '，这一天白天的一“时”是 <b>' + dm.toFixed(0) + ' 分钟</b>，' + (Math.abs(dm - 60) < 3 ? '差不多正好一个钟头：这是春分秋分前后，昼夜等长。' : dm > 60 ? '比我们的一小时长 ' + (dm - 60).toFixed(0) + ' 分钟。约人“第三时见”，得早早出门。' : '比我们的一小时短 ' + (60 - dm).toFixed(0) + ' 分钟。冬天的白天，一“时”一晃就过去了。') + (ci === 5 ? ' 越往北，冬夏差得越离谱。' : '');
+  }
+  rng.addEventListener('input', upd); upd();
+})();
+
+/* ---------- 装置 5：调钟 ---------- */
+(function(){
+  const fig = $('#vergeFig'); if (!fig) return;
+  const svg = $('#vergeSvg'), P = $('#vergeP'), say = $('#vergeSay');
+  let mode = 0, p0, day, errs, th = 0, wheel = 0, last = 0, raf = 0, dir = 1;
+  const MODES = ['机轴摆杆（14 世纪）', '钟摆（1656）'];
+  btnRow($('#vergeMode'), MODES, 0, i => { mode = i; $('#vergeLab').textContent = i ? '摆锤高低' : '重块位置'; reset(); });
+  function reset(){ p0 = 30 + Math.random() * 40; day = 0; errs = []; P.value = 50; out(); kv(); say.className = 'say'; say.textContent = mode ? '钟摆来了。挪一挪摆锤，按“走一天”。' : '挪好重块，按“走一天”。'; }
+  function out(){ const v = +P.value; $('#vergePO').textContent = mode ? (v < 50 ? '偏高 ' : v > 50 ? '偏低 ' : '居中 ') + Math.abs(v - 50) : (v < 50 ? '偏里 ' : v > 50 ? '偏外 ' : '居中 ') + Math.abs(v - 50); }
+  P.addEventListener('input', out);
+  const fmt = m => { const s = Math.abs(m) * 60; return s < 90 ? s.toFixed(0) + ' 秒' : (Math.abs(m)).toFixed(1) + ' 分钟'; };
+  function kv(){
+    const avg = errs.length ? errs.reduce((a, b) => a + Math.abs(b), 0) / errs.length : 0;
+    $('#vergeKv').innerHTML = '<div><b>' + day + ' / 7</b>第几天</div><div><b>' + (errs.length ? (errs[errs.length - 1] > 0 ? '快 ' : '慢 ') + fmt(errs[errs.length - 1]) : '—') + '</b>今天比日晷</div><div><b>' + (errs.length ? fmt(avg) : '—') + '</b>平均每天差</div>';
+  }
+  $('#vergeGo').addEventListener('click', () => {
+    if (day >= 7) { reset(); return; }
+    const v = +P.value, k = mode ? 0.02 : 0.5, sd = mode ? 0.2 : 9;
+    const e = -(v - p0) * k + gauss() * sd; // 正 = 快
+    errs.push(e); day++; kv();
+    const hint = mode ? (v > p0 + 4 ? '（摆锤偏低，摆得慢）' : v < p0 - 4 ? '（摆锤偏高，摆得快）' : '') : '';
+    if (day < 7) { say.className = 'say'; say.innerHTML = '第 ' + day + ' 天中午，对着日晷一看：钟<b>' + (e > 0 ? '快了' : '慢了') + fmt(e) + '</b>。' + (e > 0 ? '往外挪一点，让它慢些。' : '往里挪一点，让它快些。') + hint + (mode ? '' : ' 不过别太当真：天冷油稠、绳子松紧，每天都会乱跳。'); }
+    else {
+      const avg = errs.reduce((a, b) => a + Math.abs(b), 0) / 7;
+      say.className = 'say ' + (avg < 2 ? 'ok' : 'bad');
+      say.innerHTML = '七天过去，平均每天差 <b>' + fmt(avg) + '</b>。' + (mode ? '同样的手艺，换上钟摆，误差从“分钟”降到了“秒”。这就是惠更斯 1656 年那一下的分量，钟从此值得装分针了。' : '调得再用心，中世纪的钟一天也常要差上好几分钟、甚至一刻钟，因为摆杆没有自己固定的节奏。换成钟摆再试一次。') + ' 再按一次“走一天”重来。';
+    }
+  });
+  $('#vergeReset').addEventListener('click', reset);
+  function frame(ts){
+    const dt = Math.min(0.05, (ts - (last || ts)) / 1000); last = ts;
+    const v = +P.value, period = mode ? 1.6 + (v - 50) / 120 : 1.0 + (v - 50) / 80;
+    th += dt * 2 * Math.PI / period;
+    const a = Math.sin(th);
+    if (Math.sign(Math.cos(th)) !== dir) { dir = Math.sign(Math.cos(th)); wheel += 360 / 15 / 2; }
+    let s = '';
+    const cx = 130;
+    // 冠状轮（侧视，一圈齿）
+    const wy = 175, wr = 46;
+    s += '<circle cx="' + cx + '" cy="' + wy + '" r="' + wr + '" fill="none" stroke="var(--brass)" stroke-width="3"/>';
+    for (let i = 0; i < 15; i++) { const ang = wheel + i * 24; const [x0, y0] = pol(cx, wy, wr, ang), [x1, y1] = pol(cx, wy, wr + 10, ang + 8), [x2, y2] = pol(cx, wy, wr, ang + 16); s += '<path d="M' + x0.toFixed(1) + ',' + y0.toFixed(1) + ' L' + x1.toFixed(1) + ',' + y1.toFixed(1) + ' L' + x2.toFixed(1) + ',' + y2.toFixed(1) + '" fill="var(--brass)" opacity=".8"/>'; }
+    s += '<circle cx="' + cx + '" cy="' + wy + '" r="5" fill="var(--ink-2)"/>';
+    s += '<path d="M' + (cx + 50) + ',' + (wy + 6) + ' v40" stroke="var(--ink-3)" stroke-width="1.5"/><rect x="' + (cx + 42) + '" y="' + (wy + 44) + '" width="16" height="14" fill="var(--ink-3)"/><text x="' + (cx + 64) + '" y="' + (wy + 56) + '" font-size="10" fill="var(--ink-3)">重锤</text>';
+    if (!mode) {
+      // 机轴 + 摆杆（从正面看，转动表现为两端伸缩）
+      s += '<line x1="' + cx + '" y1="40" x2="' + cx + '" y2="' + (wy - wr - 8) + '" stroke="var(--ink-2)" stroke-width="4"/>';
+      const L = 100 * Math.cos(a * 0.9), off = 25 + (v / 100) * 70, wo = off * Math.cos(a * 0.9), depth = Math.sin(a * 0.9);
+      s += '<line x1="' + (cx - L) + '" y1="40" x2="' + (cx + L) + '" y2="40" stroke="var(--ink)" stroke-width="5" stroke-linecap="round"/>';
+      s += '<circle cx="' + (cx - wo) + '" cy="40" r="' + (9 - depth * 2) + '" fill="var(--vermil)"/><circle cx="' + (cx + wo) + '" cy="40" r="' + (9 + depth * 2) + '" fill="var(--vermil)"/>';
+      s += '<rect x="' + (cx - 10) + '" y="' + (wy - wr - 22 + (a > 0 ? -3 : 3)) + '" width="8" height="10" fill="var(--ink-2)" transform="rotate(' + (a * 25) + ' ' + cx + ' ' + (wy - wr - 16) + ')"/>';
+      s += '<text x="' + cx + '" y="22" text-anchor="middle" font-size="10" fill="var(--ink-3)">摆杆来回转，红色小重块越靠外摆得越慢</text>';
+    } else {
+      const L = 120 + (v - 50) * 0.6, ang = a * 14;
+      const [bx, by] = pol(cx, 20, L, 180 - ang);
+      s += '<line x1="' + cx + '" y1="20" x2="' + bx.toFixed(1) + '" y2="' + by.toFixed(1) + '" stroke="var(--ink-2)" stroke-width="3"/><circle cx="' + bx.toFixed(1) + '" cy="' + by.toFixed(1) + '" r="13" fill="var(--vermil)"/>';
+      s += '<path d="M' + (cx - 22) + ',' + (wy - wr - 2) + ' L' + cx + ',' + (wy - wr - 20) + ' L' + (cx + 22) + ',' + (wy - wr - 2) + '" fill="none" stroke="var(--ink)" stroke-width="3" transform="rotate(' + (a * 8) + ' ' + cx + ' ' + (wy - wr - 20) + ')"/>';
+      s += '<text x="' + (cx + 70) + '" y="40" font-size="10" fill="var(--ink-3)">摆长决定节奏</text>';
+    }
+    svg.innerHTML = s;
+    raf = requestAnimationFrame(frame);
+  }
+  onVisible(fig, () => { cancelAnimationFrame(raf); last = 0; raf = requestAnimationFrame(frame); }, () => cancelAnimationFrame(raf));
+  reset();
+})();
+
+/* ---------- 装置 6：二十四小时 ---------- */
+(function(){
+  const fig = $('#ringFig'); if (!fig) return;
+  const CAT = [['干活 / 学习', 'var(--night)'], ['睡觉', 'var(--ink-3)'], ['吃饭', 'var(--brass)'], ['路上', 'var(--vermil)'], ['杂事', 'var(--rule)'], ['自己支配', 'var(--jade)']];
+  const PRE = [
+    {n: '1833 年英国纺织厂（13—18 岁）', v: [12, 7, 1.5, 1.5, 1], say: '1833 年的《工厂法》规定，十三到十八岁的孩子一天最多干十二个小时，这在当时已经算是“保护”。剩下的时间，除了睡觉和走路，所剩无几。'},
+    {n: '1817 年欧文的口号', v: [8, 8, 0, 0, 0], say: '“八小时劳动，八小时休息，八小时自己支配。”这个口号整整喊了一百年，才在很多国家变成法律。'},
+    {n: '今天的一个上班日', v: [8, 7.5, 2, 1.5, 2], say: '法定八小时，可加上通勤、吃饭和家务，真正“自己支配”的往往只剩两三个小时。八小时工作制争来的时间，又被路上和杂事分走了一大块。'},
+    {n: '你自己', v: [10, 7.5, 2, 1, 1.5], say: ''}
+  ];
+  let pi = 0, mine = PRE[3].v.slice();
+  btnRow($('#ringPre'), PRE.map(p => p.n), 0, i => { pi = i; draw(); });
+  $('#ringLeg').innerHTML = CAT.map(c => '<span><i style="background:' + c[1] + '"></i>' + c[0] + '</span>').join('');
+  const ctl = $('#ringCtl');
+  ctl.innerHTML = CAT.slice(0, 5).map((c, i) => '<div class="ctl"><span>' + c[0] + '</span><input type="range" min="0" max="16" step="0.5" value="' + mine[i] + '" data-i="' + i + '"><output></output></div>').join('');
+  ctl.addEventListener('input', e => { const i = +e.target.dataset.i; if (isNaN(i)) return; mine[i] = +e.target.value; draw(); });
+  function draw(){
+    const v = (pi === 3 ? mine : PRE[pi].v).slice();
+    const used = v.reduce((a, b) => a + b, 0), own = Math.max(0, 24 - used);
+    const all = v.concat([own]);
+    let s = '', a = 0;
+    const tot = Math.max(24, used);
+    all.forEach((h, i) => { if (h <= 0) return; const a1 = a + h / tot * 360; s += '<path d="' + sector(120, 120, 62, 108, a, a1 - 0.01 + (a1 - a >= 359.9 ? -0.1 : 0)) + '" fill="' + CAT[i][1] + '" opacity="' + (i === 5 ? 0.55 : 0.85) + '"/>'; a = a1; });
+    s += '<text x="120" y="114" text-anchor="middle" font-size="13" fill="var(--ink-2)">自己支配</text><text x="120" y="140" text-anchor="middle" font-size="24" fill="var(--jade)" style="font-family:var(--f-mono)">' + own.toFixed(1) + 'h</text>';
+    $('#ringSvg').innerHTML = s;
+    ctl.style.display = pi === 3 ? '' : 'none';
+    $$('.ctl', ctl).forEach((d, i) => { $('output', d).textContent = mine[i] + ' 小时'; });
+    const say = $('#ringSay');
+    if (pi < 3) { say.className = 'say'; say.textContent = PRE[pi].say; }
+    else if (used > 24) { say.className = 'say bad'; say.innerHTML = '你排了 <b>' + used + '</b> 个小时，一天只有二十四个。总得有一样要让，通常最先被偷走的是睡觉。'; }
+    else { say.className = 'say ' + (own >= 2 ? 'ok' : ''); say.innerHTML = '你一天有 <b>' + own.toFixed(1) + ' 小时</b>归自己。' + (own < 1 ? '几乎为零。干活的时间再长，也不一定等于干得多，试着把“坐着的时长”换成“干完的活”。' : own < 3 ? '和今天一个普通上班族差不多。这点时间值得好好挑：用来做一件真正想做的事，或者见一个想见的人。' : '比欧文时代的工人宽裕多了。别忘了，这是一百多年的工人运动替你争来的。'); }
+  }
+  draw();
+})();
+
+/* ---------- 装置 7：日晷与手表 ---------- */
+(function(){
+  const rng = $('#eotD'); if (!rng) return;
+  const CITY = [['北京', 116.4, 39.9], ['上海', 121.5, 31.2], ['哈尔滨', 126.6, 45.8], ['拉萨', 91.1, 29.7], ['乌鲁木齐', 87.6, 43.8], ['喀什', 76.0, 39.5]];
+  let ci = 0;
+  btnRow($('#eotCity'), CITY.map(c => c[0]), 0, i => { ci = i; upd(); });
+  const X = e => 130 + e * 6, Y = d => 130 - d * 4.6;
+  let base = '<line x1="130" y1="14" x2="130" y2="246" stroke="var(--rule)"/><line x1="20" y1="130" x2="240" y2="130" stroke="var(--rule)"/>';
+  let d = '';
+  for (let N = 1; N <= 365; N++) d += (N > 1 ? 'L' : 'M') + X(eot(N)).toFixed(1) + ',' + Y(decl(N)).toFixed(1);
+  base += '<path d="' + d + 'Z" fill="none" stroke="var(--brass)" stroke-width="2"/>';
+  base += '<text x="236" y="146" text-anchor="end" font-size="10" fill="var(--ink-3)">太阳比钟快 →</text><text x="24" y="146" font-size="10" fill="var(--ink-3)">← 比钟慢</text><text x="136" y="22" font-size="10" fill="var(--ink-3)">夏至（高）</text><text x="136" y="244" font-size="10" fill="var(--ink-3)">冬至（低）</text>';
+  [[1, '1月'], [105, '4月'], [196, '7月'], [288, '10月']].forEach(m => { base += '<text x="' + (X(eot(m[0])) + (eot(m[0]) > 0 ? 8 : -8)) + '" y="' + (Y(decl(m[0])) + 4) + '" font-size="9.5" fill="var(--ink-3)" text-anchor="' + (eot(m[0]) > 0 ? 'start' : 'end') + '">' + m[1] + '</text>'; });
+  function upd(){
+    const N = +rng.value + 1, E = eot(N), c = CITY[ci];
+    const lonMin = (120 - c[1]) * 4, noon = 12 + (lonMin - E) / 60;
+    $('#eotSvg').innerHTML = base + '<circle cx="' + X(E).toFixed(1) + '" cy="' + Y(decl(N)).toFixed(1) + '" r="6" fill="var(--vermil)"/>';
+    $('#eotO').textContent = dateLabel(N);
+    $('#eotKv').innerHTML = '<div><b>' + hm(noon) + '</b>太阳最高（北京时间）</div><div><b>' + (lonMin >= 0 ? '+' : '') + lonMin.toFixed(0) + ' 分</b>经度造成的</div><div><b>' + (E >= 0 ? '快 ' : '慢 ') + Math.abs(E).toFixed(1) + ' 分</b>今天太阳比平均</div><div><b>' + (90 - Math.abs(c[2] - decl(N))).toFixed(0) + '°</b>正午太阳高度</div>';
+    $('#eotSay').innerHTML = '这一天在' + c[0] + '，日晷指十二点的时候，手表是 <b>' + hm(noon) + '</b>。其中 ' + Math.abs(lonMin).toFixed(0) + ' 分钟是因为' + c[0] + (lonMin >= 0 ? '在东经 120 度以西' : '在东经 120 度以东') + '，另外 ' + Math.abs(E).toFixed(0) + ' 分钟是太阳今天自己' + (E >= 0 ? '跑快了' : '跑慢了') + '。';
+  }
+  rng.addEventListener('input', upd); upd();
+})();
+
+/* ---------- 装置 8：各地的钟 ---------- */
+(function(){
+  const fig = $('#tzFig'); if (!fig) return;
+  const SETS = [
+    {n: '英国 · 1840 年代', z: c => 0, std: '伦敦（格林尼治）时间', c: [['伦敦', -0.13], ['牛津', -1.26], ['布里斯托尔', -2.59], ['普利茅斯', -4.14], ['爱丁堡', -3.19]]},
+    {n: '北美 · 1883 年', z: lon => -Math.round(-lon / 15) * 15, std: '标准时区', c: [['波士顿', -71.06], ['纽约', -74.0], ['华盛顿', -77.04], ['芝加哥', -87.63], ['圣路易斯', -90.2], ['丹佛', -104.99], ['旧金山', -122.42]]},
+    {n: '中国 · 今天', z: lon => 120, std: '北京时间', c: [['哈尔滨', 126.6], ['上海', 121.5], ['北京', 116.4], ['重庆', 106.5], ['拉萨', 91.1], ['乌鲁木齐', 87.6], ['喀什', 76.0]]}
+  ];
+  let si = 0, md = 0;
+  btnRow($('#tzSet'), SETS.map(s => s.n), 0, i => { si = i; draw(); });
+  btnRow($('#tzMode'), ['各用各的地方时', '统一用标准时'], 0, i => { md = i; draw(); });
+  function face(h){
+    let s = '<circle cx="40" cy="40" r="36" fill="var(--card)" stroke="var(--ink-2)" stroke-width="2"/>';
+    for (let i = 0; i < 12; i++) { const [x0, y0] = pol(40, 40, 32, i * 30), [x1, y1] = pol(40, 40, i % 3 ? 29 : 26, i * 30); s += '<line x1="' + x0.toFixed(1) + '" y1="' + y0.toFixed(1) + '" x2="' + x1.toFixed(1) + '" y2="' + y1.toFixed(1) + '" stroke="var(--ink-3)" stroke-width="1.5"/>'; }
+    const hh = ((h % 12) + 12) % 12, mm = (h - Math.floor(h)) * 60;
+    const [hx, hy] = pol(40, 40, 18, hh * 30), [mx, my] = pol(40, 40, 28, mm * 6);
+    s += '<line x1="40" y1="40" x2="' + hx.toFixed(1) + '" y2="' + hy.toFixed(1) + '" stroke="var(--ink)" stroke-width="3.5" stroke-linecap="round"/><line x1="40" y1="40" x2="' + mx.toFixed(1) + '" y2="' + my.toFixed(1) + '" stroke="var(--vermil)" stroke-width="2" stroke-linecap="round"/><circle cx="40" cy="40" r="2.5" fill="var(--ink)"/>';
+    return '<svg viewBox="0 0 80 80" aria-hidden="true">' + s + '</svg>';
+  }
+  function draw(){
+    const S = SETS[si], z0 = S.z(S.c[0][1]);
+    const U = 12 - z0 / 15; // 世界时：第一座城的标准时 = 12:00
+    $('#tzCities').innerHTML = S.c.map(c => {
+      const z = S.z(c[1]), lmt = U + c[1] / 15, zt = U + z / 15, t = md ? zt : lmt;
+      const df = (c[1] - z) * 4;
+      return '<div class="city"><b>' + c[0] + '</b>' + face(t) + '<div class="t2">' + hm(t) + '</div><div class="df">' + (md ? '太阳正午' + (df >= 0 ? '早 ' : '晚 ') + Math.abs(df).toFixed(0) + ' 分' : '比' + S.std.replace('时间', '') + (df >= 0 ? '快 ' : '慢 ') + Math.abs(df).toFixed(0) + ' 分') + '</div>' + (md && si === 1 ? '<div style="font-size:11px;color:var(--ink-3)">' + ({'-75': '东部时区', '-90': '中部时区', '-105': '山地时区', '-120': '太平洋时区'})[z] + '</div>' : '') + '</div>';
+    }).join('');
+    const say = $('#tzSay');
+    if (!md) say.innerHTML = si === 0 ? '各用各的太阳：伦敦正午的时候，布里斯托尔的钟才十一点四十九分左右。一趟火车从伦敦开到普利茅斯，要“倒退”十几分钟。' : si === 1 ? '1883 年以前，美国大大小小的城市都用自己的时间，铁路公司又各有一套，加起来几十种。' : '要是中国各地用各自的地方时，喀什和哈尔滨之间要差三个多小时。';
+    else say.innerHTML = si === 0 ? '全国统一用格林尼治时间后，火车时刻表好排了，代价是西边的城镇，钟点和太阳差了十几分钟。' : si === 1 ? '1883 年 11 月 18 日以后：几十种时间被压成了四个时区，每个时区之间正好差一个整小时。' : '北京时间：全国同一个钟点。东北的太阳比钟早到半个小时，喀什的太阳要晚将近三个小时。所以新疆的作息普遍比内地晚两个钟头。';
+  }
+  draw();
+})();
+
+/* ---------- 装置 9：经度 ---------- */
+(function(){
+  const fig = $('#lonFig'); if (!fig) return;
+  const CL = [
+    {n: '船上的摆钟（17 世纪）', b: 120, s: 200},
+    {n: 'H4（1761）', b: 0, s: 0.5},
+    {n: '19 世纪航海钟', b: 1, s: 1.5},
+    {n: '今天的石英表', b: 0.5, s: 0.1},
+    {n: '原子钟', b: 0, s: 0.000001}
+  ];
+  let ci = 1;
+  btnRow($('#lonClock'), CL.map(c => c.n), 1, i => { ci = i; });
+  const D = $('#lonDays'); const dO = () => { $('#lonDO').textContent = D.value + ' 天'; }; D.addEventListener('input', dO); dO();
+  const svg = $('#lonSvg');
+  function draw(km, show){
+    const span = Math.max(60, Math.abs(km) * 1.3), X = k => 320 + k / span * 280;
+    let s = '<rect x="20" y="20" width="600" height="80" fill="var(--sky)" opacity=".6" rx="6"/>';
+    s += '<path d="M300,64 q10,-14 22,-6 q12,-6 18,4 q-4,10 -18,9 q-14,4 -22,-7 Z" fill="var(--jade)" opacity=".8"/><text x="320" y="92" text-anchor="middle" font-size="11" fill="var(--ink-2)">牙买加（真实位置）</text>';
+    if (show) {
+      const x = X(km);
+      s += '<line x1="320" y1="44" x2="' + x.toFixed(1) + '" y2="44" stroke="var(--vermil)" stroke-dasharray="4 3"/>';
+      s += '<path d="M' + (x - 10) + ',40 h20 l-4,7 h-12 Z M' + x + ',40 v-14 l9,10 h-9" fill="var(--vermil)"/><text x="' + x.toFixed(1) + '" y="18" text-anchor="middle" font-size="11" fill="var(--vermil)">你以为船在这里</text>';
+    }
+    const bar = span > 300 ? 100 : span > 120 ? 50 : 20;
+    s += '<line x1="30" y1="114" x2="' + (30 + bar / span * 280) + '" y2="114" stroke="var(--ink-2)" stroke-width="2"/><text x="' + (36 + bar / span * 280) + '" y="118" font-size="10" fill="var(--ink-3)">' + bar + ' 公里</text>';
+    s += '<text x="610" y="118" text-anchor="end" font-size="10" fill="var(--ink-3)">← 西　东 →</text>';
+    svg.innerHTML = s;
+  }
+  $('#lonGo').addEventListener('click', () => {
+    const c = CL[ci], days = +D.value, bias = c.b * gauss();
+    let e = 0; for (let i = 0; i < days; i++) e += bias + c.s * gauss();
+    const degE = e / 240, km = degE * 111.32 * Math.cos(rad(18));
+    draw(-km, true);
+    const ad = Math.abs(degE);
+    const prize = ad <= 0.5 ? '两万英镑大奖' : ad <= 2 / 3 ? '一万五千英镑' : ad <= 1 ? '一万英镑' : null;
+    const es = Math.abs(e) < 120 ? Math.abs(e).toFixed(Math.abs(e) < 1 ? 3 : 1) + ' 秒' : (Math.abs(e) / 60).toFixed(1) + ' 分钟';
+    $('#lonKv').innerHTML = '<div><b>' + (e >= 0 ? '快 ' : '慢 ') + es + '</b>表的累计误差</div><div><b>' + ad.toFixed(ad < 0.01 ? 5 : 2) + '°</b>经度误差</div><div><b>' + Math.abs(km).toFixed(Math.abs(km) < 1 ? 3 : 0) + ' 公里</b>位置误差</div>';
+    const say = $('#lonSay');
+    say.className = 'say ' + (prize ? 'ok' : 'bad');
+    say.innerHTML = prize ? '按 1714 年的《经度法案》，这个精度够拿 <b>' + prize + '</b>。' + (ci === 1 ? '这就是哈里森那块表做到的事；至于委员会肯不肯给钱，是另一回事。' : ci >= 3 ? '今天这样的精度已经稀松平常，三百年前却能换一大笔钱。' : '') : '差了 ' + Math.abs(km).toFixed(0) + ' 公里，一分奖金也拿不到。' + (ci === 0 ? '船一摇，摆就乱了，摆钟在海上几乎没用。这就是牛顿不看好钟表的原因。' : '航程越长，误差越积越多。');
+  });
+  draw(0, false);
+})();
+
+/* ---------- 装置 10：置闰 ---------- */
+(function(){
+  const box = $('#leapYears'); if (!box) return;
+  const SHORT = 365.2422 - 12 * 29.5306, MON = 29.5306, START = 57, LO = 29.5, HI = 60;
+  const META = [3, 6, 8, 11, 14, 17, 19];
+  let leap = new Set();
+  box.innerHTML = Array.from({length: 19}, (_, i) => '<button data-y="' + (i + 1) + '">' + (i + 1) + '</button>').join('');
+  box.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; const y = +b.dataset.y; leap.has(y) ? leap.delete(y) : leap.add(y); draw(); });
+  $('#leapMeton').addEventListener('click', () => { leap = new Set(META); draw(true); });
+  $('#leapClear').addEventListener('click', () => { leap = new Set(); draw(); });
+  const dlab = d => { const dt = new Date(2024, 11, 22 + Math.round(d)); return (dt.getMonth() + 1) + '/' + dt.getDate(); };
+  function draw(meton){
+    const pts = [START];
+    for (let y = 1; y <= 19; y++) pts.push(pts[y - 1] - SHORT + (leap.has(y) ? MON : 0));
+    const X = i => 50 + i * 30, Y = d => 20 + (100 - clamp(d, -160, 100)) / 260 * 165;
+    let s = '<rect x="50" y="' + Y(HI) + '" width="570" height="' + (Y(LO) - Y(HI)) + '" fill="var(--brass)" opacity=".18"/>';
+    [-150, -90, -30, 0, 30, 60, 90].forEach(d => { s += '<line x1="50" y1="' + Y(d) + '" x2="620" y2="' + Y(d) + '" stroke="var(--rule)"/><text x="44" y="' + (Y(d) + 4) + '" text-anchor="end" font-size="10" fill="var(--ink-3)" style="font-family:var(--f-mono)">' + dlab(d) + '</text>'; });
+    s += '<text x="56" y="' + (Y(HI) + 12) + '" font-size="10" fill="var(--brass)">正月初一应该落在这条带子里（约公历 1 月下旬到 2 月下旬）</text>';
+    let out = 0, d = '';
+    pts.forEach((p, i) => { d += (i ? 'L' : 'M') + X(i) + ',' + Y(p).toFixed(1); });
+    s += '<path d="' + d + '" fill="none" stroke="var(--night)" stroke-width="2"/>';
+    pts.forEach((p, i) => { const bad = p < LO || p > HI; if (bad && i > 0) out++; s += '<circle cx="' + X(i) + '" cy="' + Y(p).toFixed(1) + '" r="4.5" fill="' + (bad ? 'var(--vermil)' : 'var(--night)') + '"/>'; if (i < 19 && leap.has(i + 1)) s += '<text x="' + (X(i) + 15) + '" y="' + (Y(Math.max(p, pts[i + 1])) - 8).toFixed(1) + '" text-anchor="middle" font-size="10" fill="var(--night)">闰</text>'; });
+    for (let i = 0; i <= 19; i++) s += '<text x="' + X(i) + '" y="200" text-anchor="middle" font-size="9.5" fill="var(--ink-3)" style="font-family:var(--f-mono)">' + (i + 1) + '</text>';
+    s += '<text x="620" y="12" text-anchor="end" font-size="10" fill="var(--ink-3)">横轴：第几年的正月初一　纵轴：公历日期</text>';
+    $('#leapSvg').innerHTML = s;
+    $$('button', box).forEach(b => b.classList.toggle('leap', leap.has(+b.dataset.y)));
+    const say = $('#leapSay'), n = leap.size;
+    if (meton) { say.className = 'say ok'; say.innerHTML = '第 3、6、8、11、14、17、19 年各插一个闰月：<b>十九年七闰</b>。十九年后，正月初一回到了出发时的位置附近，前后只差两个多小时。'; }
+    else if (!n) { say.className = 'say'; say.innerHTML = '一个闰月都不插，正月初一每年往前跑十一天左右，不到三年就跑出了冬天的尾巴，十九年后跑到了前一年的盛夏。点年份格子插闰月。'; }
+    else { say.className = 'say ' + (out ? 'bad' : 'ok'); say.innerHTML = '你插了 <b>' + n + '</b> 个闰月，' + (out ? '有 ' + out + ' 年的正月初一跑出了带子（红点）。' : '十九年里正月初一一直待在带子里！') + (n === 7 && !out ? '而且正好是七个，和古人的答案一样。' : n > 7 ? '闰月插多了，日子会往后挤。' : n < 7 ? '十九年至少要七个闰月才够。' : ''); }
+  }
+  draw();
+})();
+
+/* ---------- 装置 11：历法漂移 ---------- */
+(function(){
+  const rng = $('#calY'); if (!rng) return;
+  const RULES = ['只有 365 天（不闰）', '儒略历（四年一闰）', '格里高利历（1582 年起）', '伊斯兰历（只看月亮）'];
+  let ri = 2;
+  btnRow($('#calRule'), RULES, 2, i => { ri = i; upd(); });
+  const MD = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  const bar = $('#calBar');
+  bar.innerHTML = MD.map((_, i) => '<span>' + (i + 1) + '月</span>').join('') + '<i class="mk2" style="left:calc(' + ((59 + 20) / 365 * 100) + '% - 1px)" title="3 月 21 日"></i><i class="mk" id="calMk"></i>';
+  const doy2 = d => { d = ((d % 365) + 365) % 365; let m = 0; while (m < 11 && d >= MD[m]) { d -= MD[m]; m++; } return (m + 1) + ' 月 ' + (Math.floor(d) + 1) + ' 日'; };
+  const yl = y => y <= 0 ? '公元前 ' + (1 - y) + ' 年' : y + ' 年';
+  function upd(){
+    const y = +rng.value, mk = $('#calMk'), say = $('#calSay');
+    $('#calYO').textContent = yl(y);
+    let d, txt;
+    const jul = 59 + 22.4 - (y + 45) * (365.25 - 365.2422);
+    if (ri === 0) { d = 59 + 22.4 + (y + 45) * (365.2422 - 365); txt = '春分落在 <b>' + doy2(d) + '</b>。一年少算四分之一天，春分每四年往后挪一天，大约一千五百年绕日历一整圈。古埃及的历法就是这样，节日会在四季里慢慢走。'; }
+    else if (ri === 1) { d = jul; const off = 59 + 20 - d; txt = '春分落在 <b>' + doy2(d) + '</b>。' + (y < 400 ? '恺撒改历之后，春分大致在 3 月下旬。' : '每年多算十一分钟，春分一点点往前爬，已经比 3 月 21 日早了约 <b>' + off.toFixed(0) + '</b> 天。') + (y > 1582 ? '（信东正教的地方一直用到 20 世纪，今天东正教会的教历仍然用它。）' : ''); }
+    else if (ri === 2) { d = y < 1582 ? jul : 59 + 20.2 - (y - 1582) * (365.2425 - 365.2422); txt = y < 1582 ? '1582 年以前，这里用的还是儒略历：春分落在 <b>' + doy2(d) + '</b>。拖过 1582 年看看。' : '剪掉十天、改了闰年规则以后，春分落在 <b>' + doy2(d) + '</b> 前后。' + (y > 2500 ? '再跑上千年，也只多出不到一天，大约三千多年才差一天。' : '四百年来它几乎一动不动。'); }
+    else { if (y < 622) { mk.style.display = 'none'; say.innerHTML = '伊斯兰历从公元 622 年（穆罕默德从麦加迁往麦地那那一年）算起。拖到 622 年以后看看。'; return; } d = 48 - (y - 2026) * (365.2422 - 354.367); txt = '这一年的斋月大约从 <b>' + doy2(d) + '</b> 开始（红线）。它每年往前挪十一天左右，三十三年走完一整圈四季。'; }
+    mk.style.display = ''; mk.style.left = 'calc(' + ((((d % 365) + 365) % 365) / 365 * 100) + '% - 1px)';
+    say.innerHTML = txt;
+  }
+  rng.addEventListener('input', upd); upd();
+  // 1582 年 10 月（10 月 1 日是星期一）
+  let c = '一二三四五六日'.split('').map(x => '<span class="h">' + x + '</span>').join('');
+  for (let d = 1; d <= 31; d++) { if (d >= 5 && d <= 14) continue; c += '<span class="' + (d === 4 || d === 15 ? 'x' : '') + '">' + d + '</span>'; }
+  $('#cal1582').innerHTML = c;
+  $('#calNote').innerHTML = '星期四是 <b>4 日</b>，第二天星期五就是 <b>15 日</b>：星期照常往下排，只有日期跳了十天。5 日到 14 日在西班牙、葡萄牙、意大利、波兰根本不存在。<br>圣特蕾莎在 4 日夜里去世，15 日下葬。';
+})();
+
+/* ---------- 装置 12：Unix 时间 ---------- */
+(function(){
+  const fig = $('#unixFig'); if (!fig) return;
+  const MAX = 2147483647;
+  let offset = 0, timer = 0;
+  const bj = s => { const d = new Date(s * 1000 + 8 * 3600e3); return d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate()) + ' ' + pad(d.getUTCHours()) + ':' + pad(d.getUTCMinutes()) + ':' + pad(d.getUTCSeconds()); };
+  const grp = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  const to32 = n => { const m = ((n + 2147483648) % 4294967296 + 4294967296) % 4294967296; return m - 2147483648; };
+  const bitsBox = $('#unixBits');
+  bitsBox.innerHTML = Array.from({length: 32}, (_, i) => '<span' + (i ? '' : ' class="sg"') + '></span>').join('');
+  function render(n){
+    const w = to32(n), u = (w >>> 0);
+    $('#unixN').textContent = grp(n);
+    $$('span', bitsBox).forEach((b, i) => b.classList.toggle('on', !!((u >>> (31 - i)) & 1)));
+    const over = w !== n;
+    $('#unixD').innerHTML = '北京时间 <b>' + bj(n) + '</b>' + (over ? '　<span style="color:var(--vermil)">32 位电脑以为是 ' + bj(w) + '</span>' : '');
+    const left = MAX - n;
+    $('#unixKv').innerHTML = '<div><b>' + (left > 0 ? grp(Math.floor(left / 86400)) + ' 天' : '已溢出') + '</b>离 32 位溢出还有</div><div><b>' + grp(MAX) + '</b>32 位能存的最大秒数</div><div><b>约 2920 亿年</b>64 位能用到</div>';
+    const say = $('#unixSay');
+    if (over) { say.className = 'say bad'; say.innerHTML = '溢出了！数字的最高位（红格）被进位顶成了 1，32 位电脑把它读成一个负数：<b>' + grp(w) + '</b>，以为现在是 1901 年 12 月 13 日。这就是“2038 年问题”。'; }
+    else if (left < 30) { say.className = 'say'; say.innerHTML = '只剩 <b>' + left + '</b> 秒。看最左边那个红格。'; }
+  }
+  function run(){ clearInterval(timer); const t0 = Date.now(); const s0 = offset; timer = setInterval(() => { render(Math.floor(Date.now() / 1000) + s0); }, 250); render(Math.floor(Date.now() / 1000) + s0); }
+  $('#unixNow').addEventListener('click', () => { offset = 0; $('#unixSay').className = 'say'; $('#unixSay').textContent = '回到此刻。'; run(); });
+  $('#unixJump').addEventListener('click', () => { offset = (MAX - 12) - Math.floor(Date.now() / 1000); $('#unixSay').className = 'say'; $('#unixSay').textContent = '快进到 2038 年 1 月 19 日 11:13:55（北京时间）……'; run(); });
+  $('#unixCalc').addEventListener('click', () => {
+    const v = $('#unixIn').value, say = $('#unixSay');
+    const m = /^(\d{4,})-(\d\d)-(\d\d)T(\d\d):(\d\d)(?::(\d\d))?/.exec(v);
+    if (!m) { say.className = 'say bad'; say.textContent = '先选一个日期和时间。'; return; }
+    const ms = Date.UTC(+m[1], +m[2] - 1, +m[3], +m[4], +m[5], +(m[6] || 0)) - 8 * 3600e3, s = Math.floor(ms / 1000);
+    const fits = s >= -2147483648 && s <= MAX;
+    say.className = 'say ' + (fits ? 'ok' : 'bad');
+    say.innerHTML = '北京时间 ' + bj(s) + ' 是 Unix 时间 <b>' + grp(s) + '</b>。' + (s < 0 ? '负数：它在 1970 年以前。' : '') + (fits ? '32 位存得下。' : '32 位存不下，必须用 64 位。');
+  });
+  onVisible(fig, run, () => clearInterval(timer));
+  $('#unixSay').textContent = '这个数每秒加一。';
+})();
+
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="一天十二个时辰，每个时辰讲一样“时间”是怎样被人造出来的：一天从哪儿开始、更漏、星钟、会伸缩的小时、钟声、打卡、日影、时区、经度、闰月、丢掉的十天、1970 年 1 月 1 日。四卷十二章，十三个装置。">
+<meta property="og:title" content="几点了 · 时间创世记">
+<meta property="og:description" content="太阳只给了人白天和黑夜。小时、分钟、星期、时区、闰年，全是人自己造的。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%23233a66'/%3E%3Cpath d='M16,16 L16,6 M16,16 L23,19' stroke='%23e8c66a' stroke-width='2.6' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='16' r='2' fill='%23e8c66a'/%3E%3C/svg%3E">
+<title>几点了</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@500;700&family=Noto+Serif+SC:wght@400;600;700&family=ZCOOL+XiaoWei&display=swap">
+<style>
+/* ZCOOL XiaoWei 把“回”字画成实心方块：这一个字改用系统宋体/黑体，其余字不变 */
+@font-face{font-family:"Hui Fix";unicode-range:U+56DE;src:local("Songti SC"),local("STSongti-SC-Regular"),local("STSong"),local("SimSun"),local("宋体"),local("Noto Serif CJK SC"),local("NotoSerifCJKsc-Regular"),local("Source Han Serif SC"),local("SourceHanSerifSC-Regular"),local("PingFang SC"),local("PingFangSC-Regular"),local("Microsoft YaHei"),local("Noto Sans CJK SC"),local("NotoSansCJKsc-Regular"),local("Droid Sans Fallback")}
+
+/* 版式：一座钟鼓楼。每章开头是一块钟面，标出这一章占的那个时辰；“此刻”是你的一天（虚线框），“那一刻”是历史上同一个钟点发生的真事（朱红边）；章末一张“滴答”卡。浅色用护眼暖米色。 */
+:root{
+  --paper:#ece3cf; --paper-2:#e1d6bf; --card:#f2e9d7;
+  --ink:#211f1b; --ink-2:#4f4940; --ink-3:#625a4e; --rule:#cdbfa3;
+  --night:#2a4373;   /* 夜、星、主色 */
+  --brass:#755610;   /* 铜、钟、日 */
+  --vermil:#983a24;  /* 那一刻、强调 */
+  --jade:#3c6a4c;    /* 生活 */
+  --sky:#d8cdb4;
+  --hl:color-mix(in srgb,#c9a44a 34%,transparent);
+  --f-display:"Hui Fix","ZCOOL XiaoWei","Songti SC","STSong","Noto Serif SC",serif;
+  --f-body:"Noto Serif SC","Songti SC","Source Han Serif SC","STSong",serif;
+  --f-hand:"Ma Shan Zheng","Kaiti SC","STKaiti","KaiTi",cursive;
+  --f-sans:"Noto Sans SC","PingFang SC","Hiragino Sans GB",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#14130f; --paper-2:#1c1a15; --card:#201d17; --ink:#ebe3d2; --ink-2:#b8ad99; --ink-3:#978b79; --rule:#37312a;
+  --night:#9bb6ea; --brass:#d9b65e; --vermil:#e57b5e; --jade:#8fc2a0; --sky:#2a271f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#14130f; --paper-2:#1c1a15; --card:#201d17; --ink:#ebe3d2; --ink-2:#b8ad99; --ink-3:#978b79; --rule:#37312a;
+  --night:#9bb6ea; --brass:#d9b65e; --vermil:#e57b5e; --jade:#8fc2a0; --sky:#2a271f; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+.g{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit;text-decoration-color:var(--vermil);text-underline-offset:3px}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--vermil);outline-offset:2px}
+svg{max-width:100%;height:auto;display:block}
+
+/* 页眉 */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+.bar-in{max-width:56rem;margin:0 auto;display:flex;align-items:center;gap:12px;padding-block:8px}
+.bar .home{text-decoration:none;font-size:13px;color:var(--ink-3);white-space:nowrap;border:1px solid var(--rule);border-radius:999px;padding:1px 9px}
+.bar .name{font-family:var(--f-display);font-size:19px;letter-spacing:.05em;white-space:nowrap}
+.bar .vol{margin-left:auto;font-size:13px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.bar .tocbtn{border:1px solid var(--rule);background:transparent;border-radius:6px;padding:0 8px;font-size:13px;cursor:pointer;color:var(--ink-2);white-space:nowrap}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;background:var(--brass);width:0}
+.drawer{position:fixed;inset:0;z-index:40;display:none}
+.drawer.on{display:block}
+.drawer .mask{position:absolute;inset:0;background:rgba(0,0,0,.35)}
+.drawer .panel{position:absolute;right:0;top:0;bottom:0;width:min(360px,88vw);background:var(--paper);border-left:1px solid var(--rule);overflow:auto;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px))}
+.drawer h5{font-family:var(--f-display);font-weight:400;font-size:20px;margin:0 0 10px}
+.drawer ol{list-style:none;margin:0;padding:0}
+.drawer li a{display:flex;gap:10px;padding:7px 0;border-bottom:1px dashed var(--rule);text-decoration:none;font-size:15px;line-height:1.5}
+.drawer li a .n{font-family:var(--f-display);font-size:18px;color:var(--vermil);min-width:1.6em;text-align:center}
+.drawer li a small{display:block;color:var(--ink-3);font-size:12px}
+.drawer .x{position:absolute;right:12px;top:10px;border:0;background:transparent;font-size:22px;cursor:pointer;color:var(--ink-2)}
+
+main{display:block}
+.col{max-width:38rem;margin-inline:auto}
+.wide{max-width:54rem;margin-inline:auto}
+.col p{margin:0 0 1.05em;text-indent:2em}
+.col p.ni,.col .ni{text-indent:0}
+h2,h3,h4{text-wrap:balance}
+h3{font-family:var(--f-display);font-weight:400;font-size:24px;line-height:1.4;margin:2.2em 0 .7em;letter-spacing:.03em}
+h3 .y{font-family:var(--f-mono);font-size:13px;color:var(--ink-3);margin-left:10px;letter-spacing:0;white-space:nowrap}
+em{font-style:normal;background:linear-gradient(transparent 62%,var(--hl) 62%)}
+strong{font-weight:600}
+blockquote{margin:1.4em 0;padding:.2em 0 .2em 1.2em;border-left:2px solid var(--brass);color:var(--ink-2)}
+blockquote p{text-indent:0!important;margin:0 0 .4em}
+blockquote cite{font-style:normal;font-size:14px;color:var(--ink-3)}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.figcap{font-size:14px;color:var(--ink-2);line-height:1.7;margin-top:8px}
+.sep{text-align:center;color:var(--brass);letter-spacing:1.2em;margin:2em 0;text-indent:1.2em!important;font-size:14px}
+ul.plain{font-size:16px;line-height:1.9;padding-left:1.4em}
+
+/* 封面 */
+.hero{padding-block:40px 20px}
+.hero .eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;color:var(--ink-3)}
+.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(64px,15vw,132px);line-height:1;margin:.25em 0 .2em;letter-spacing:.1em}
+.hero h1 .sm{display:block;font-size:.19em;letter-spacing:.32em;color:var(--ink-2);margin-top:.6em}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:34px;align-items:center}
+.hero-grid p{margin:0 0 1em;font-size:18px}
+.dialbox{max-width:380px;margin:auto;text-align:center}
+.dialbox svg{width:100%;cursor:pointer}
+.dialbox .readout{margin-top:8px;text-align:left}
+.dialbox .now-t{font-family:var(--f-mono);font-size:30px;letter-spacing:.06em;color:var(--ink)}
+
+/* 目录 */
+.toc{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--rule)}
+.toc li a{display:grid;grid-template-columns:2.6em minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--rule);text-decoration:none}
+.toc .n{font-family:var(--f-display);font-size:28px;line-height:1;color:var(--vermil);text-align:center}
+.toc .t{font-family:var(--f-display);font-size:21px;line-height:1.3}
+.toc .t small{display:block;font-family:var(--f-body);font-size:13px;color:var(--ink-3);margin-top:2px}
+.toc .r{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);text-align:right;white-space:nowrap}
+.toc li a:hover .t{color:var(--vermil)}
+.toc .vh{padding:16px 0 4px;font-family:var(--f-mono);font-size:12px;letter-spacing:.16em;color:var(--ink-3);border-bottom:1px solid var(--rule)}
+.qmap{list-style:none;margin:0;padding:0;columns:2 17em;column-gap:28px}
+.qmap li{break-inside:avoid;margin:0 0 .5em;font-size:15.5px;line-height:1.65}
+.qmap a{text-decoration:none;border-bottom:1px dashed var(--ink-3)}
+.qmap a:hover{color:var(--vermil)}
+.qmap b{font-family:var(--f-display);font-weight:400;color:var(--vermil);margin-left:4px}
+
+/* 卷首 */
+.volhead{position:relative;max-width:54rem;margin:64px auto 20px;padding:30px 22px 24px;border-top:3px double var(--ink);border-bottom:3px double var(--ink);overflow:hidden}
+.volhead .num{font-family:var(--f-mono);font-size:12px;letter-spacing:.24em;color:var(--vermil)}
+.volhead h2{font-family:var(--f-display);font-weight:400;font-size:clamp(72px,17vw,132px);line-height:1;margin:.1em 0 .12em;letter-spacing:.1em}
+.volhead h2 small{font-size:.24em;letter-spacing:.2em;color:var(--ink-2);margin-left:.4em}
+.volhead .lede{max-width:32em;margin:6px 0 0;font-size:16px;color:var(--ink-2);line-height:1.8}
+.volhead .arc{position:absolute;right:-30px;top:14px;width:200px;opacity:.9;pointer-events:none}
+
+/* 章首：钟面 */
+section.chap{padding-top:24px}
+.hour{position:relative;max-width:54rem;margin:46px auto 28px;padding:22px 22px 20px;display:grid;grid-template-columns:118px minmax(0,1fr);gap:22px;align-items:center;background:var(--paper-2);border-radius:10px;border:1px solid var(--rule)}
+.hour svg.dial{width:118px;height:118px}
+.hour .no{font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;color:var(--vermil)}
+.hour h2{font-family:var(--f-display);font-weight:400;font-size:clamp(36px,8vw,58px);line-height:1.1;margin:.08em 0 .2em;letter-spacing:.08em}
+.hour h2 .zh{color:var(--vermil);margin-right:.25em}
+.hour dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 14px;margin:6px 0 0;font-size:14.5px;line-height:1.7}
+.hour dt{color:var(--ink-3);white-space:nowrap}
+.hour dd{margin:0;color:var(--ink-2)}
+
+/* 此刻：你的一天 */
+.now{margin:1.6em 0 2em;padding:16px 18px 6px;border:1.5px dashed var(--ink-3);border-radius:8px;position:relative}
+.now::before{content:"此刻 · 你的一天";position:absolute;top:-12px;left:14px;background:var(--paper);padding:0 8px;font-size:13px;letter-spacing:.14em;color:var(--ink-2);font-weight:600}
+.now .clk{float:right;font-family:var(--f-mono);font-size:22px;color:var(--night);margin:-4px 0 4px 12px;line-height:1.2}
+.now p{text-indent:0!important;font-size:16px;line-height:1.85}
+
+/* 那一刻：真事 */
+.then{margin:2em 0;padding:16px 18px 8px;background:color-mix(in srgb,var(--vermil) 5%,var(--card));border-left:4px solid var(--vermil);border-radius:0 8px 8px 0;position:relative}
+.then .tg{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;margin-bottom:8px}
+.then .tg b{font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--vermil);letter-spacing:.04em}
+.then .tg span{font-family:var(--f-mono);font-size:12px;color:var(--ink-3);letter-spacing:.06em}
+.then p{text-indent:0!important;font-size:16px;line-height:1.85;margin:0 0 .8em}
+.then .fact{font-size:13px;color:var(--ink-3);border-top:1px dashed var(--rule);padding-top:6px;margin-top:4px;line-height:1.7}
+.then .fact::before{content:"真的部分：";font-weight:600}
+
+/* 蓝框：插一段 */
+.box{margin:2em 0;padding:16px 18px 8px;border-radius:8px;border:1.5px solid var(--night);background:color-mix(in srgb,var(--night) 6%,var(--paper))}
+.box h5{margin:.1em 0 .5em;font-family:var(--f-display);font-weight:400;font-size:21px;color:var(--night);letter-spacing:.04em}
+.box p{text-indent:0!important;margin:0 0 .8em;font-size:16px;line-height:1.85}
+.box ul{margin:0 0 .8em;padding-left:1.2em;font-size:16px;line-height:1.85}
+.box li{margin:0 0 .3em}
+
+/* 眉批 */
+.echo{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;margin:1.6em 0;padding:14px 14px 10px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.echo .stamp{writing-mode:vertical-rl;font-family:var(--f-display);font-size:15px;color:var(--vermil);border:1.5px solid var(--vermil);border-radius:3px;padding:6px 2px;letter-spacing:.2em;align-self:start}
+.echo[data-k="存疑"] .stamp{color:var(--ink-3);border-color:var(--ink-3)}
+.echo[data-k="联系"] .stamp{color:var(--brass);border-color:var(--brass)}
+.echo[data-k="生活"] .stamp{color:var(--jade);border-color:var(--jade)}
+.echo[data-k="押韵"] .stamp{color:var(--night);border-color:var(--night)}
+.echo p{text-indent:0!important;margin:0 0 .5em;font-size:15.5px;line-height:1.8}
+.echo .rh{font-family:var(--f-display);font-size:18px;margin-bottom:.2em}
+
+/* 滴答：章末卡 */
+.tick{margin:2.6em 0 1em;border:1.5px solid var(--ink);border-radius:6px;background:var(--card);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);overflow:hidden}
+.tick>div{padding:12px 16px 14px;font-size:15.5px;line-height:1.75}
+.tick>div+div{border-left:1.5px solid var(--ink)}
+.tick i{display:block;font-style:normal;font-family:var(--f-display);font-size:22px;letter-spacing:.2em;margin-bottom:2px;color:var(--night)}
+.tick>div+div i{color:var(--jade)}
+.tick i small{font-family:var(--f-body);font-size:12px;letter-spacing:.1em;color:var(--ink-3);margin-left:6px}
+
+/* 装置 */
+.fig{margin:2.2em auto;padding:20px 18px;background:var(--card);border:1px solid var(--rule);border-radius:6px}
+.fig-label{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.12em;color:var(--vermil)}
+.fig h4{font-family:var(--f-display);font-weight:400;font-size:22px;margin:.25em 0 .35em}
+.fig .how{font-size:14.5px;color:var(--ink-2);margin:0 0 14px;line-height:1.75}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.btn{border:1px solid var(--ink-3);background:transparent;border-radius:999px;padding:4px 14px;font-size:14px;cursor:pointer;line-height:1.6;color:var(--ink)}
+.btn:hover{border-color:var(--ink)}
+.btn.pri{background:var(--night);color:var(--paper);border-color:var(--night)}
+.btn.on{background:var(--night);border-color:var(--night);color:var(--paper)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.readout{font-size:14.5px;color:var(--ink-2);line-height:1.75;min-height:1.5em}
+.readout b{color:var(--ink)}
+.say{background:var(--paper);border-left:3px solid var(--brass);padding:8px 12px;margin:10px 0;font-size:15px;line-height:1.75;min-height:3.2em}
+.say.ok{border-left-color:var(--jade)}.say.bad{border-left-color:var(--vermil)}
+input[type=range]{width:100%;accent-color:var(--vermil)}
+.ctl{display:grid;grid-template-columns:6.5em minmax(0,1fr) 6.5em;gap:10px;align-items:center;font-size:14px;color:var(--ink-2);margin:4px 0}
+.ctl output{font-family:var(--f-mono);font-size:13px;color:var(--ink);text-align:right;white-space:nowrap}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5em,1fr));gap:8px;margin:10px 0}
+.kv div{background:var(--paper);border-radius:6px;padding:6px 10px;font-size:12.5px;color:var(--ink-3);line-height:1.5}
+.kv b{display:block;font-family:var(--f-mono);font-weight:500;font-size:18px;color:var(--ink)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:center}
+.lab{font-size:12.5px;color:var(--ink-3);letter-spacing:.08em;margin:8px 0 4px}
+.chip{display:inline-block;font-size:12px;border:1px solid var(--rule);border-radius:4px;padding:0 6px;color:var(--ink-3);margin:0 4px 4px 0}
+.fig text{font-family:var(--f-sans)}
+.fig .mono{font-family:var(--f-mono)}
+select{border:1px solid var(--ink-3);border-radius:6px;background:var(--paper);padding:2px 6px;font-size:14px}
+input[type=datetime-local],input[type=number]{border:1px solid var(--ink-3);border-radius:6px;background:var(--paper);padding:2px 8px;font-size:14px;font-family:var(--f-mono);max-width:100%}
+
+/* 装置 1：日界 */
+.dayrows{display:grid;gap:6px;margin-top:10px}
+.dayrow{display:grid;grid-template-columns:8.5em minmax(0,1fr) 4.5em;gap:10px;align-items:center;font-size:13.5px}
+.dayrow .nm{color:var(--ink-2);line-height:1.35}
+.dayrow .nm small{display:block;font-size:11.5px;color:var(--ink-3)}
+.dayrow .st{position:relative;height:24px;border-radius:4px;overflow:hidden;background:var(--paper)}
+.dayrow .st i{position:absolute;top:0;bottom:0;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:11.5px;color:var(--ink-2);border-right:1.5px solid var(--ink-3);white-space:nowrap;overflow:hidden}
+.dayrow .st i.cur{background:color-mix(in srgb,var(--brass) 26%,transparent);color:var(--ink)}
+.dayrow .st .hand{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--vermil)}
+.dayrow .d{font-family:var(--f-display);font-size:16px;color:var(--vermil);text-align:right}
+.dayaxis{display:grid;grid-template-columns:8.5em minmax(0,1fr) 4.5em;gap:10px;font-family:var(--f-mono);font-size:11px;color:var(--ink-3)}
+.dayaxis div:nth-child(2){display:flex;justify-content:space-between}
+
+/* 装置 6：二十四小时 */
+.ring{display:grid;grid-template-columns:240px minmax(0,1fr);gap:20px;align-items:center}
+.ring svg{width:100%;max-width:240px;margin:auto}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--ink-2);margin:6px 0}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:0}
+
+/* 装置 8：城市 */
+.cities{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:10px}
+.city{background:var(--paper);border-radius:8px;padding:8px 10px;text-align:center;font-size:13px;line-height:1.45;color:var(--ink-2)}
+.city svg{width:76px;height:76px;margin:2px auto}
+.city b{display:block;font-family:var(--f-display);font-weight:400;font-size:18px;color:var(--ink)}
+.city .t2{font-family:var(--f-mono);font-size:13px;color:var(--ink)}
+.city .df{font-family:var(--f-mono);font-size:12px;color:var(--vermil)}
+
+/* 装置 10：置闰 */
+.years{display:grid;grid-template-columns:repeat(19,minmax(0,1fr));gap:3px;margin:10px 0}
+.years button{border:1px solid var(--rule);border-radius:4px;background:var(--paper);font-family:var(--f-mono);font-size:11px;padding:4px 0;cursor:pointer;color:var(--ink-2);line-height:1.2}
+.years button.leap{background:var(--night);color:var(--paper);border-color:var(--night)}
+.years button.now{outline:2px solid var(--vermil)}
+
+/* 装置 11：日历 */
+.cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;max-width:320px;font-family:var(--f-mono);font-size:13px;text-align:center}
+.cal span{padding:3px 0;border-radius:3px;background:var(--paper)}
+.cal span.h{background:transparent;color:var(--ink-3);font-size:11px}
+.cal span.e{background:transparent}
+.cal span.x{background:var(--vermil);color:#fff}
+.cal span.gone{background:transparent;color:var(--ink-3);text-decoration:line-through;opacity:.6}
+.monthbar{position:relative;height:34px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));border:1px solid var(--rule);border-radius:4px;overflow:hidden;font-size:11px;color:var(--ink-3)}
+.monthbar span{border-right:1px solid var(--rule);display:flex;align-items:flex-end;justify-content:center;padding-bottom:1px}
+.monthbar .mk{position:absolute;top:0;bottom:0;width:3px;background:var(--vermil);border:0;padding:0}
+.monthbar .mk2{position:absolute;top:0;height:14px;width:3px;background:var(--night);border:0;padding:0}
+
+/* 装置 12：时间戳 */
+.bits{display:grid;grid-template-columns:repeat(32,minmax(0,1fr));gap:2px;margin:10px 0}
+.bits span{aspect-ratio:1/2;border-radius:2px;background:var(--paper);border:1px solid var(--rule)}
+.bits span.on{background:var(--night);border-color:var(--night)}
+.bits span.sg{border-color:var(--vermil)}
+.bits span.sg.on{background:var(--vermil)}
+.bignum{font-family:var(--f-mono);font-size:clamp(26px,7vw,40px);letter-spacing:.04em;color:var(--ink);line-height:1.2;word-break:break-all}
+
+/* 表 */
+table.t{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.6;min-width:520px}
+table.t th,table.t td{border-bottom:1px solid var(--rule);padding:7px 8px;text-align:left;vertical-align:top}
+table.t th{font-weight:400;color:var(--ink-3);font-size:13px}
+.src{font-size:14.5px;line-height:1.8;color:var(--ink-2)}
+.src li{margin:0 0 .5em}
+
+footer{max-width:38rem;margin:60px auto 0;padding:24px 0 calc(40px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--rule);font-size:14px;color:var(--ink-3);line-height:1.8}
+footer p{text-indent:0!important}
+.nextbook{display:block;margin:20px 0;padding:14px 16px;border:1px solid var(--rule);border-radius:6px;text-decoration:none;background:var(--card)}
+.nextbook b{font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--ink)}
+
+@media (max-width:700px){
+  body{font-size:16.5px}
+  .hero-grid,.two,.ring{grid-template-columns:minmax(0,1fr)}
+  .toc li a{grid-template-columns:2.2em minmax(0,1fr)}
+  .toc .r{grid-column:2;text-align:left}
+  .bar .vol{display:none}
+  .hour{grid-template-columns:76px minmax(0,1fr);gap:14px;padding:16px 14px}
+  .hour svg.dial{width:76px;height:76px}
+  .volhead .arc{width:130px;right:-24px;opacity:.5}
+  .ctl{grid-template-columns:5em minmax(0,1fr);}
+  .ctl output{grid-column:1 / -1;text-align:left;margin-top:-6px}
+  .dayrow,.dayaxis{grid-template-columns:5.6em minmax(0,1fr) 3.2em;gap:6px}
+  .years{grid-template-columns:repeat(10,minmax(0,1fr))}
+}
+@media (max-width:480px){
+  .tick{grid-template-columns:minmax(0,1fr)}
+  .tick>div+div{border-left:0;border-top:1.5px solid var(--ink)}
+  .bits{gap:1px}
+}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="bar-in g">
+    <a class="home" href="../" title="回创世书房">书房</a>
+    <span class="name">几点了</span>
+    <span class="vol" id="barVol">序</span>
+    <button class="tocbtn" id="tocBtn" aria-label="打开目录">目录</button>
+  </div>
+  <div class="progress" id="prog"></div>
+</header>
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="mask" data-close></div>
+  <nav class="panel" aria-label="目录">
+    <button class="x" data-close aria-label="关闭">×</button>
+    <h5>目录</h5>
+    <ol id="drawerList"></ol>
+  </nav>
+</div>
+<main class="g">

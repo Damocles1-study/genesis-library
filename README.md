@@ -13,10 +13,11 @@
 | 苇城书记 · 文字创世记（三卷：落笔、破译、开口） | `reed/index.html` |
 | 柜台里外 · 金融创世记（四卷十六章加尾声） | `finance/index.html` |
 | 回宿舍的路 · 路上聊（一百张卡片） | `walk/index.html` |
+| 几点了 · 时间创世记（四卷十二章加尾声） | `time/index.html` |
 
 ## 改书
 
-《点石成金》《是，大人》《苇城书记》《柜台里外》《回宿舍的路》都是分段源文件拼出来的，别直接改生成页。只改 `_build/money/`、`_build/yes/`、`_build/reed/`、`_build/finance/` 或 `_build/walk/` 下的源文件（`head.html` 样式、`sNN.html` 各段正文、`app.js` 装置脚本），然后运行：
+《点石成金》《是，大人》《苇城书记》《柜台里外》《回宿舍的路》《几点了》都是分段源文件拼出来的，别直接改生成页。只改 `_build/money/`、`_build/yes/`、`_build/reed/`、`_build/finance/`、`_build/walk/` 或 `_build/time/` 下的源文件（`head.html` 样式、`sNN.html` 各段正文、`app.js` 装置脚本），然后运行：
 
     python3 _build/build.py          # 全部
     python3 _build/build.py yes      # 只建一本
@@ -30,6 +31,8 @@
 《柜台里外》每章开头的虚线框「柜台前」是发生在真实年代的虚构小故事，“有人问”是读者的问题，`.word` 是“柜台词典”，卷末 `.bill` 是“结账”；装置 17 的轮回表自动收集全书眉批。
 
 《回宿舍的路》的卡片写在 `_build/walk/src/t1.txt`…`t9.txt`（一种很简单的逐行格式，说明在 `gen.py` 开头），先跑 `python3 _build/walk/gen.py` 生成 `s01`–`s09.html`，再跑 `python3 _build/build.py walk`。每张卡是一个 `<article class="cd" data-t="主题" data-k="讲|猜|辩|假|玩" data-p="场景">`，`app.js` 负责抽卡、按主题/类型/地点筛选和“讲过了”（存在浏览器本地）；各卡的“存疑”会被自动汇总到书末“哪些是真的”。
+
+《几点了》按十二时辰分章（`c1`–`c12` 对应子—亥，`c13` 尾声），每章：章首钟面 `.hour`（`svg.dial[data-h]` 由脚本画）→ 虚线框 `.now`“此刻 · 你的一天”（虚构）→ 朱红边 `.then`“那一刻”（真事，框底 `.fact` 写明真的部分）→ 正文、蓝框 `.box`、眉批 `.echo`、装置 → 章末 `.tick`“滴答”卡。
 
 浅色模式统一用护眼暖色底（取值范围见项目须知）。
 

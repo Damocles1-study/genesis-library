@@ -15,6 +15,7 @@ BOOKS = {
     'reed': ('reed', 'reed/index.html', ['head.html'] + ['s%02d.html' % i for i in range(18)]),
     'finance': ('finance', 'finance/index.html', ['head.html'] + ['s%02d.html' % i for i in range(19)]),
     'walk': ('walk', 'walk/index.html', ['head.html'] + ['s%02d.html' % i for i in range(11)]),
+    'time': ('time', 'time/index.html', ['head.html'] + ['s%02d.html' % i for i in range(14)]),
 }
 DRAFT = '--draft' in sys.argv  # 写到一半时跳过缺失段落和锚点检查
 

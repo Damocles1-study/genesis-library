@@ -1,3 +1,6 @@
 _cg_src/
 .DS_Store
 __pycache__/
+CLAUDE.local.md
+_refs/
+.claude/settings.local.json

@@ -24,7 +24,7 @@ function txt(x, y, t, o){ o = o || {}; return '<text x="' + x + '" y="' + y + '"
 
 /* ---------- 全书目录（四个网页共用） ---------- */
 const PAGE = /four\.html/.test(location.pathname) ? 4 : /three\.html/.test(location.pathname) ? 3 : /two\.html/.test(location.pathname) ? 2 : 1;
-const READY = 1; // 已经写好的部数；后面的章节在目录里显示“写作中”
+const READY = 2; // 已经写好的部数；后面的章节在目录里显示“写作中”
 const PURL = {1: './', 2: 'two.html', 3: 'three.html', 4: 'four.html'};
 const TOC = [
   {p: 1, t: '第一部 · 希腊 —— 一群吵架的城'},

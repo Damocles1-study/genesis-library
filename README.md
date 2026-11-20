@@ -15,7 +15,7 @@
 | 回宿舍的路 · 路上聊（一百张卡片） | `walk/index.html` |
 | 几点了 · 时间创世记（四卷十二章加尾声） | `time/index.html` |
 | 谁说了算 · 人间秩序创世记（三部八卷，三个网页） | `power/index.html`、`power/two.html`、`power/three.html` |
-| 城里城外 · 城市创世记（三部八卷，写作中：第一部《立城》已上架） | `city/index.html` |
+| 城里城外 · 城市创世记（三部八卷，写作中：第一部《立城》、第二部《城里》已上架） | `city/index.html`、`city/two.html` |
 
 ## 改书
 
@@ -40,7 +40,7 @@
 
 《谁说了算》分三部，每部一个网页，共用 `_build/power/css.html`（样式）、`bar.html`（页眉）和 `app.js`（装置与漫画）。第一部的段落是 `a00`–`a11.html`，第二部 `b..`，第三部 `c..`；构建用 `python3 _build/build.py power1 power2 power3`。章 id 是全书统一编号 `c0`–`c32`，跨页链接写 `two.html#c14` 这样。每章：章首 `.chead`（`.where[data-r]` 由脚本点亮地区）→“有人问”`.ask` → 河湾 `.river`（虚构）或漫画 `.comic` → 正文 → 别处 `.globe` → 告示/白话 `.spin` → 那时的一天 `.life` → 装置 → 章末 `.seal`“史/世”。漫画人物是 `app.js` 里的 `who(种类, {era, e})`：六种人物 × 六个时代的装束；道具和布景在 `PR` 里。往 `app.js` 加装置可以用 `_build/power/add.py 片段.js`（插到 `/* @@DEVICES */` 前面）。
 
-《城里城外》也分三部，源文件在 `_build/city/`：`top1.html`、`css.html`、`bar.html` 和 `a00`–`a10.html`；脚本拆在 `_build/city/js/*.js`，按文件名顺序拼接（`00core.js` 开头、`99end.js` 收尾，中间每章一个）。构建用 `python3 _build/build.py city1`。每章：章首 `.chead`（`.force[data-f]` 点亮“天 外 内 时”四种力）→“有人问”`.ask` → 柳渡地图 `svg[data-town=N]`（`town(stage)` 一层层画）和虚线框 `.liudu`（虚构）→ 正文 → 别处 `.globe` → 原文/白话 `.spin` → 两把椅子 `.seats`（图纸上 / 楼下）→ 装置 → 章末 `.yours`“你楼下”。`00core.js` 里的 `READY` 是已上架的部数，没写好的章节在目录里显示“写作中”。
+《城里城外》也分三部，源文件在 `_build/city/`：`top1.html`/`top2.html`、`css.html`、`bar.html`，第一部 `a00`–`a10.html`，第二部 `b00`–`b12.html`；脚本拆在 `_build/city/js/*.js`，按文件名顺序拼接（`00core.js` 开头、`99end.js` 收尾，中间每章一个）。构建用 `python3 _build/build.py city1 city2`。每章：章首 `.chead`（`.force[data-f]` 点亮“天 外 内 时”四种力）→“有人问”`.ask` → 柳渡地图 `svg[data-town=N]`（`town(stage)` 一层层画）和虚线框 `.liudu`（虚构）→ 正文 → 别处 `.globe` → 原文/白话 `.spin` → 两把椅子 `.seats`（图纸上 / 楼下）→ 装置 → 章末 `.yours`“你楼下”。`00core.js` 里的 `READY` 是已上架的部数，没写好的章节在目录里显示“写作中”。
 
 计算机创世记迁自原仓库 computer-genesis，只加了回书房的链接。
 

@@ -24,6 +24,7 @@ BOOKS = {
     'power3': ('power', 'power/three.html', ['top3.html', 'css.html', 'bar.html'] + ['c%02d.html' % i for i in range(14)]),
     # 《城里城外》也分三部，脚本拆在 _build/city/js/*.js，按文件名顺序拼接
     'city1': ('city', 'city/index.html', ['top1.html', 'css.html', 'bar.html'] + ['a%02d.html' % i for i in range(11)]),
+    'city2': ('city', 'city/two.html', ['top2.html', 'css.html', 'bar.html'] + ['b%02d.html' % i for i in range(13)]),
 }
 DRAFT = '--draft' in sys.argv  # 写到一半时跳过缺失段落和锚点检查
 

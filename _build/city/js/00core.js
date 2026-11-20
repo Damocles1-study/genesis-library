@@ -25,7 +25,7 @@ function svgPt(svg, e){
 
 /* ---------- 全书目录（三个网页共用） ---------- */
 const PAGE = /three\.html/.test(location.pathname) ? 3 : /two\.html/.test(location.pathname) ? 2 : 1;
-const READY = 1; // 已经写好的部数；后面的章节在目录里显示“写作中”
+const READY = 2; // 已经写好的部数；后面的章节在目录里显示“写作中”
 const PURL = {1: './', 2: 'two.html', 3: 'three.html'};
 const TOC = [
   {p: 1, t: '第一部 · 立城 —— 城为什么在这儿，长成什么样'},
@@ -182,8 +182,8 @@ function town(stage, o){
     const R = rng(23);
     for (let i = 0; i < 26; i++) { const x = 226 + R() * 100, y = 120 + R() * 100; if (Math.hypot(x - SONG.x, y - SONG.y) > 14 && x < 326 && y < 0.55 * x + 92) g += '<rect x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" width="8" height="6" fill="var(--card)" stroke="' + INK + '" stroke-width=".9" transform="rotate(' + (R() * 40 - 20).toFixed(0) + ' ' + x.toFixed(0) + ' ' + y.toFixed(0) + ')"/>'; }
   }
-  // 外郭（6 起）
-  if (s >= 6) {
+  // 外郭（6 起；19 起拆墙变环路）
+  if (s >= 6 && s < 19) {
     const d = 'M200,140 L232,104 L330,22 L512,22 L512,206 L420,236 L300,232 L236,212 Z';
     g += '<path d="' + d + '" fill="none" stroke="var(--wat)" stroke-width="9" stroke-linejoin="round" opacity=".9"/>';
     g += '<path d="' + d + '" fill="none" stroke="var(--brk)" stroke-width="4" stroke-linejoin="round"/>';
@@ -201,6 +201,48 @@ function town(stage, o){
     g += '<rect x="383" y="40" width="64" height="30" fill="var(--card)" stroke="var(--main)" stroke-width="2.4"/>' + lab(415, 61, '宫', {s: 15, c: 'var(--main)', w: 1});
     g += '<rect x="352" y="84" width="22" height="16" fill="none" stroke="var(--main)" stroke-width="1.5"/><rect x="456" y="84" width="22" height="16" fill="none" stroke="var(--main)" stroke-width="1.5"/>';
     g += lab(363, 113, '祖', {s: 12, c: 'var(--main)'}) + lab(467, 113, '社', {s: 12, c: 'var(--main)'});
+  }
+
+  // ===== 第二部的层 =====
+  // 9 沟：下水道排进下游
+  if (s >= 9) {
+    g += '<g fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-dasharray="2 3" opacity=".8"><path d="M415,194 L415,250"/><path d="M512,114 L545,114 L560,236"/><path d="M250,186 L262,226"/></g>';
+    g += '<path d="M556,228 l4,10 l4,-10" fill="none" stroke="var(--ink)" stroke-width="1.6"/>' + (s < 16 ? lab(552, 170, '下水', {s: 12}) : '');
+  }
+  // 10 医：城外东边的医院
+  if (s >= 10) g += '<rect x="535" y="42" width="28" height="22" fill="var(--card)" stroke="var(--red)" stroke-width="2"/><path d="M549,46 v14 M542,53 h14" stroke="var(--red)" stroke-width="3"/>' + lab(549, 80, '医', {s: 13, c: 'var(--red)'});
+  // 11 火：望火楼和防火巷
+  if (s >= 11) {
+    g += '<path d="M236,150 L330,150" stroke="var(--paper)" stroke-width="9"/><path d="M236,145.5 L330,145.5 M236,154.5 L330,154.5" stroke="var(--brk)" stroke-width="1" stroke-dasharray="4 2"/>';
+    g += '<rect x="296" y="122" width="8" height="18" fill="var(--card)" stroke="var(--ink)" stroke-width="1.3"/><path d="M304,122 l10,4 l-10,4" fill="var(--red)"/>' + lab(300, 118, '火', {s: 12, c: 'var(--red)'});
+  }
+  // 12 巡：派出所和城外的监狱
+  if (s >= 12) {
+    [[372, 156], [470, 72], [266, 204]].forEach(p => g += '<path d="M' + (p[0] - 6) + ',' + (p[1] - 6) + ' h12 v6 c0,5 -6,8 -6,8 c0,0 -6,-3 -6,-8 Z" fill="var(--blu)" stroke="var(--card)" stroke-width="1"/>');
+    g += '<rect x="22" y="140" width="34" height="26" fill="var(--card)" stroke="var(--ink)" stroke-width="2"/>' + [0, 1, 2, 3].map(i => '<line x1="' + (28 + i * 7) + '" x2="' + (28 + i * 7) + '" y1="142" y2="164" stroke="var(--ink)" stroke-width="1.2"/>').join('') + lab(39, 182, '狱', {s: 13});
+  }
+  // 13 学：学校和学区线
+  if (s >= 13) g += '<circle cx="470" cy="170" r="46" fill="none" stroke="var(--grn)" stroke-width="1.4" stroke-dasharray="5 3"/><rect x="460" y="164" width="20" height="13" fill="var(--card)" stroke="var(--grn)" stroke-width="1.8"/><path d="M470,164 v-10 l9,3 l-9,3" fill="var(--grn)" stroke="var(--grn)" stroke-width="1"/>' + lab(470, 192, '学', {s: 12, c: 'var(--grn)'});
+  // 14 卡：渡口修了桥，桥头收钱
+  if (s >= 14) g += '<path d="M214,188 L246,236" stroke="var(--ink)" stroke-width="7"/><path d="M214,188 L246,236" stroke="var(--card)" stroke-width="4"/><rect x="205" y="176" width="14" height="10" fill="var(--och)" stroke="var(--ink)" stroke-width="1"/>' + lab(196, 172, '卡', {s: 12, c: 'var(--och)'});
+  // 15 墓：北山坡上的墓地
+  if (s >= 15) { for (let i = 0; i < 12; i++) { const x = 28 + (i % 6) * 11, y = 14 + Math.floor(i / 6) * 12; g += '<path d="M' + x + ',' + (y + 6) + ' v-6 a3,3 0 0 1 6,0 v6 Z" fill="var(--card)" stroke="var(--ink)" stroke-width=".9"/>'; } g += lab(60, 50, '墓', {s: 12}); }
+  // 16 园：城东的公园和河边绿地
+  if (s >= 16) g += '<ellipse cx="562" cy="146" rx="26" ry="40" fill="var(--grn)" fill-opacity=".28" stroke="var(--grn)" stroke-width="1.5"/>' + lab(562, 150, '园', {s: 13, c: 'var(--grn)'}) + '<path d="M300,236 C340,246 380,250 420,246" fill="none" stroke="var(--grn)" stroke-width="5" opacity=".45"/>';
+  // 17 路：一条笔直的新马路穿过弯巷，两边路灯
+  if (s >= 17) { g += '<path d="M236,206 L330,116" stroke="var(--ink)" stroke-width="8"/><path d="M236,206 L330,116" stroke="var(--card)" stroke-width="5.5"/>'; for (let i = 1; i < 6; i++) g += '<circle cx="' + (236 + i * 15.7 + 5) + '" cy="' + (206 - i * 15 + 5) + '" r="1.8" fill="var(--och)"/>'; }
+  // 18 轨：南岸的铁路和车站，城里的电车
+  if (s >= 18) {
+    g += '<path d="M0,300 L600,300" stroke="var(--ink)" stroke-width="2.5"/>'; for (let x = 4; x < 600; x += 9) g += '<line x1="' + x + '" x2="' + x + '" y1="296" y2="304" stroke="var(--ink)" stroke-width="1"/>';
+    g += '<rect x="282" y="284" width="40" height="14" fill="var(--card)" stroke="var(--ink)" stroke-width="1.8"/>' + lab(302, 280, '站', {s: 13, w: 1});
+    g += '<path d="M330,114 L512,114" stroke="var(--main)" stroke-width="2" stroke-dasharray="7 3"/>';
+  }
+  // 19 车：城墙拆成环路，河边架起高架
+  if (s >= 19) {
+    const d = 'M200,140 L232,104 L330,22 L512,22 L512,206 L420,236 L300,232 L236,212 Z';
+    g += '<path d="' + d + '" fill="none" stroke="var(--ink-3)" stroke-width="9" stroke-linejoin="round"/><path d="' + d + '" fill="none" stroke="var(--card)" stroke-width="1.2" stroke-dasharray="6 5"/>' + lab(258, 60, '环路', {s: 13, c: 'var(--ink-3)'});
+    const h = 'M140,150 C190,186 232,210 300,226 S430,244 600,214';
+    g += '<path d="' + h + '" fill="none" stroke="var(--ink-3)" stroke-width="6" opacity=".85"/>' + lab(560, 205, '高架', {s: 12, c: 'var(--ink-3)'});
   }
   // 宋家的地
   g += '<rect x="' + (SONG.x - 9) + '" y="' + (SONG.y - 7) + '" width="18" height="14" fill="var(--red)" fill-opacity=".22" stroke="var(--red)" stroke-width="2"/>' + lab(SONG.x, SONG.y - 12, '宋', {s: 14, c: 'var(--red)', w: 1});

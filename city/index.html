@@ -501,7 +501,7 @@ footer p{text-indent:0!important}
     <div class="partnav">
       <a href="./" class="on"><span class="k">第一部</span><b>立城</b><small>序幕 + 卷一 地 + 卷二 骨 · 九章</small></a>
       <a href="two.html"><span class="k">第二部</span><b>城里</b><small>卷三 脏 + 卷四 公家的房子 + 卷五 走 · 十一章</small></a>
-      <a><span class="k">第三部 · 写作中</span><b>城外</b><small>卷六 搬家 + 卷七 大手笔 + 卷八 地与时 + 尾声 · 十章</small></a>
+      <a href="three.html"><span class="k">第三部</span><b>城外</b><small>卷六 搬家 + 卷七 大手笔 + 卷八 地与时 + 尾声 · 十章</small></a>
     </div>
 
     <div class="box" style="margin-top:1.8em">
@@ -527,15 +527,15 @@ footer p{text-indent:0!important}
         <li><a href="two.html#c17">路为什么这么宽？人行道和路灯是什么时候有的？</a><b>路</b></li>
         <li><a href="two.html#c18">火车站为什么总在老城边上？地铁怎样带出了郊区？</a><b>轨</b></li>
         <li><a href="two.html#c19">为什么路越修越堵？</a><b>车</b></li>
-        <li class="soon">工厂、屠宰场、批发市场为什么一次次往外搬？<b>风</b></li>
-        <li class="soon">老厂房为什么都变成了咖啡馆和创意园？<b>厂</b></li>
-        <li class="soon">城中村和棚户区是怎么出现的？<b>住</b></li>
-        <li class="soon">巴黎的大马路是怎么“开膛”开出来的？<b>拆</b></li>
-        <li class="soon">规划师心中的理想城，住起来怎么样？<b>梦</b></li>
-        <li class="soon">该由谁来画图：专家，还是街坊？<b>街</b></li>
-        <li class="soon">钉子户、拆迁补偿、垃圾站选址，为什么总是吵？<b>地</b></li>
-        <li class="soon">为什么当年画对的图，现在成了麻烦？<b>时</b></li>
-        <li class="soon">城和乡、城和城、城和国家是什么关系？<b>外</b></li>
+        <li><a href="three.html#c20">工厂、屠宰场、批发市场为什么一次次往外搬？</a><b>风</b></li>
+        <li><a href="three.html#c21">老厂房为什么都变成了咖啡馆和创意园？</a><b>厂</b></li>
+        <li><a href="three.html#c22">城中村和棚户区是怎么出现的？</a><b>住</b></li>
+        <li><a href="three.html#c23">巴黎的大马路是怎么“开膛”开出来的？</a><b>拆</b></li>
+        <li><a href="three.html#c24">规划师心中的理想城，住起来怎么样？</a><b>梦</b></li>
+        <li><a href="three.html#c25">该由谁来画图：专家，还是街坊？</a><b>街</b></li>
+        <li><a href="three.html#c26">钉子户、拆迁补偿、垃圾站选址，为什么总是吵？</a><b>地</b></li>
+        <li><a href="three.html#c27">为什么当年画对的图，现在成了麻烦？</a><b>时</b></li>
+        <li><a href="three.html#c28">城和乡、城和城、城和国家是什么关系？</a><b>外</b></li>
       </ul>
     </div>
 
@@ -1734,7 +1734,7 @@ footer p{text-indent:0!important}
 </div>
 
 <footer>
-  <p>《城里城外 · 城市创世记》第一部。柳渡、墨和宋家是虚构的；正文中的史实尽量核对过，有争议的地方标了“存疑”，全书的出处与“哪些是真的”会汇总在第三部末尾。</p>
+  <p>《城里城外 · 城市创世记》第一部。柳渡、墨和宋家是虚构的；正文中的史实尽量核对过，有争议的地方标了“存疑”，全书的出处与“哪些是真的”汇总在<a href="three.html#truth">第三部末尾</a>。</p>
   <p>书里引用的原文只限公版古籍（管子、孟子、周礼·考工记、周易、吴越春秋、析津志等）；现代学者的观点均为转述。装置里的数字是简化模型，只看数量级和趋势。</p>
   <a class="nextbook" href="../power/"><small>书房里的另一本书</small><br><b>谁说了算 · 人间秩序创世记</b><br><small>第一批城为什么让人走不掉，城墙、粮仓和神庙怎样把一群人变成了一个国家。</small></a>
   <p><a href="#top" class="toTop">回到封面 ↑</a>　·　<a href="../">回书房</a></p>
@@ -1769,7 +1769,7 @@ function svgPt(svg, e){
 
 /* ---------- 全书目录（三个网页共用） ---------- */
 const PAGE = /three\.html/.test(location.pathname) ? 3 : /two\.html/.test(location.pathname) ? 2 : 1;
-const READY = 2; // 已经写好的部数；后面的章节在目录里显示“写作中”
+const READY = 3; // 已经写好的部数；后面的章节在目录里显示“写作中”
 const PURL = {1: './', 2: 'two.html', 3: 'three.html'};
 const TOC = [
   {p: 1, t: '第一部 · 立城 —— 城为什么在这儿，长成什么样'},
@@ -1988,6 +1988,28 @@ function town(stage, o){
     const h = 'M140,150 C190,186 232,210 300,226 S430,244 600,214';
     g += '<path d="' + h + '" fill="none" stroke="var(--ink-3)" stroke-width="6" opacity=".85"/>' + lab(560, 205, '高架', {s: 12, c: 'var(--ink-3)'});
   }
+
+  // ===== 第三部的层 =====
+  // 20 风：下风处、河下游南岸的工业区
+  if (s >= 20) { for (let i = 0; i < 5; i++) { const x = 446 + i * 26, y = 272; g += '<path d="M' + x + ',' + (y + 16) + ' v-10 l7,-5 v5 l7,-5 v5 l7,-5 v15 Z" fill="var(--card)" stroke="var(--ink)" stroke-width="1.2"/><rect x="' + (x + 2) + '" y="' + (y - 8) + '" width="3" height="10" fill="var(--ink)"/>'; } g += lab(510, 266, '厂区', {s: 12}); }
+  // 21 厂：南岸的旧码头改成了文创园
+  if (s >= 21) g += '<rect x="150" y="238" width="42" height="18" fill="var(--hl)" stroke="var(--och)" stroke-width="1.6"/><path d="M158,238 v-14 h18 M176,224 v6" fill="none" stroke="var(--ink)" stroke-width="1.5"/>' + lab(171, 272, '文创园', {s: 11, c: 'var(--och)'});
+  // 22 住：城中村和新的塔楼
+  if (s >= 22) { const R = rng(5); for (let i = 0; i < 30; i++) g += '<rect x="' + (88 + (i % 6) * 10 + R() * 2).toFixed(1) + '" y="' + (176 + Math.floor(i / 6) * 8 + R() * 2).toFixed(1) + '" width="8" height="6" fill="var(--card)" stroke="var(--ink)" stroke-width=".8"/>'; g += lab(118, 226, '城中村', {s: 11}); }
+  // 23 拆：一条斜穿方格城的大道
+  if (s >= 23) g += '<path d="M498,38 L344,190" stroke="var(--ink)" stroke-width="9"/><path d="M498,38 L344,190" stroke="var(--card)" stroke-width="6"/>';
+  // 24 梦：南岸西边的新区，大街区、宽马路、中轴
+  if (s >= 24) { g += '<rect x="22" y="262" width="118" height="70" fill="none" stroke="var(--main)" stroke-width="1.6"/>'; for (let i = 1; i < 3; i++) g += '<line x1="' + (22 + i * 39.3) + '" x2="' + (22 + i * 39.3) + '" y1="262" y2="332" stroke="var(--main)" stroke-width="3"/>'; g += '<line x1="22" x2="140" y1="297" y2="297" stroke="var(--main)" stroke-width="3"/><rect x="72" y="270" width="18" height="12" fill="var(--main)" opacity=".6"/>' + lab(81, 326, '新区', {s: 11, c: 'var(--main)'}); }
+  // 25 街：弯巷划成历史街区
+  if (s >= 25) g += '<path d="M222,120 L300,112 L328,128 L328,214 L282,222 L234,206 Z" fill="none" stroke="var(--grn)" stroke-width="2" stroke-dasharray="6 3"/>' + lab(282, 108, '历史街区', {s: 11, c: 'var(--grn)'});
+  // 26 地：宋家四周成了工地（29 起盖成了楼）
+  if (s >= 26 && s < 29) { g += '<path d="M226,158 h40 v36 h-40 Z" fill="none" stroke="var(--och)" stroke-width="1.5" stroke-dasharray="3 2"/>'; for (let k = 0; k < 8; k++) g += '<line x1="' + (226 + k * 5) + '" y1="158" x2="' + (226 + k * 5 - 6) + '" y2="194" stroke="var(--och)" stroke-width=".7" opacity=".7"/>'; g += lab(246, 206, '工地', {s: 10, c: 'var(--och)'}); }
+  // 27 时：规划了三十年的地铁终于通了
+  if (s >= 27) { g += '<path d="M302,290 C310,250 360,200 415,114" fill="none" stroke="var(--red)" stroke-width="2.5"/>'; [[302, 290], [326, 236], [372, 172], [415, 114]].forEach(p => g += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="4" fill="var(--card)" stroke="var(--red)" stroke-width="2"/>'); g += lab(352, 210, '地铁', {s: 11, c: 'var(--red)'}); }
+  // 28 外：通往别的城的高铁和高速
+  if (s >= 28) g += '<path d="M590,300 l-14,-6 v12 Z" fill="var(--ink)"/>' + lab(560, 322, '去省城 · 港口', {s: 10}) + '<path d="M10,300 l14,-6 v12 Z" fill="var(--ink)"/>' + lab(36, 254, '去邻市', {s: 10});
+  // 29 今：宋家四周盖起了楼，宋家的老房子还在
+  if (s >= 29) [[224, 160, 14, 30], [264, 158, 12, 34], [230, 192, 30, 10]].forEach(r => g += '<rect x="' + r[0] + '" y="' + r[1] + '" width="' + r[2] + '" height="' + r[3] + '" fill="var(--main)" fill-opacity=".25" stroke="var(--main)" stroke-width="1.2"/>');
   // 宋家的地
   g += '<rect x="' + (SONG.x - 9) + '" y="' + (SONG.y - 7) + '" width="18" height="14" fill="var(--red)" fill-opacity=".22" stroke="var(--red)" stroke-width="2"/>' + lab(SONG.x, SONG.y - 12, '宋', {s: 14, c: 'var(--red)', w: 1});
   // 指南针
@@ -2042,6 +2064,27 @@ dev('#eraFig2', fig => {
   function show(i){ $('#era2O').textContent = E[i][0]; drawTown($('#era2Town'), i); $('#era2Say').innerHTML = '<b>柳渡（虚构）</b>　' + E[i][1]; }
   R.addEventListener('input', () => show(+R.value));
   show(8);
+});
+
+/* ---------- 第三部封面：柳渡，最后十层 ---------- */
+dev('#eraFig3', fig => {
+  const E = {
+    19: ['约 1990 · 车', '第二部结束时的柳渡：城墙变环路，河边架起高架。'],
+    20: ['约 1995 · 风', '城里的老厂一个个关门，搬到下游南岸、下风处的新厂区。'],
+    21: ['约 2000 · 厂', '南岸的旧码头和仓库没人用了，几个画画的人租了下来，后来成了文创园。'],
+    22: ['约 2003 · 住', '城西南的一个村子被城包围了，村民在宅基地上往高里盖，租给外来打工的人。'],
+    23: ['约 2005 · 拆', '一条斜穿方格城的大道拆出来了，两边的老房子成片消失。'],
+    24: ['约 2008 · 梦', '南岸西边规划了一座新区：宽马路、大街区、中轴线，市政府带头搬了过去。'],
+    25: ['约 2012 · 街', '西门外的弯巷差点也被拆掉，街坊和学者吵了两年，最后划成了历史街区。'],
+    26: ['约 2015 · 地', '开发商看中了宋家那一片，四周都签了，只剩宋家没签。'],
+    27: ['约 2018 · 时', '二十多年前规划的地铁终于通了，可沿线的样子和当年画的已经完全不同。'],
+    28: ['约 2021 · 外', '高铁和城际铁路把柳渡和省城、港口连成了一片“城市群”。'],
+    29: ['今天', '宋家四周盖起了楼，宋家的老房子还在。下一章讲它是怎么留下来的。']
+  };
+  const R = $('#era3R');
+  function show(i){ $('#era3O').textContent = E[i][0]; drawTown($('#era3Town'), i); $('#era3Say').innerHTML = '<b>柳渡（虚构）</b>　' + E[i][1]; }
+  R.addEventListener('input', () => show(+R.value));
+  show(19);
 });
 
 /* ---------- 装置 1：选址 ---------- */
@@ -3112,6 +3155,419 @@ dev('#braFig', fig => {
     else { S.className = 'say ok'; S.innerHTML = '车少的时候（或者特别多的时候），新路确实帮了忙或者没影响。布雷斯悖论只在“中间那一段”出现：路网不太空、也不太满的时候，新增一条路反而让所有人变慢。真实的城市里，没人能事先保证新路落在哪一段。'; }
   }
   go();
+});
+
+/* ---------- 装置 21：工厂放哪儿 ---------- */
+dev('#windFig', fig => {
+  const svg = $('#windSvg'), C = 20, NX = 30, NY = 17;
+  const DIRS = [['西北风', [1, 1]], ['东南风', [-1, -1]], ['西风', [1, 0]]]; // 风往哪个方向吹
+  let di = 0, fac = null;
+  btnRow($('#windDir'), DIRS.map(d => d[0]), 0, i => { di = i; draw(); });
+  const ry = x => 210 + 60 * Math.sin(x / 160) + x * 0.12;  // 河（从西往东流）
+  const R = rng(20), POP = [];
+  for (let j = 0; j < NY; j++) for (let i = 0; i < NX; i++) {
+    const x = i * C + C / 2, y = j * C + C / 2;
+    const water = Math.abs(y - ry(x)) < 12;
+    const d = Math.hypot(x - 260, y - 140);
+    POP.push(water ? 0 : Math.round(Math.max(0, 9 * Math.exp(-d * d / (2 * 95 * 95)) + (R() < .08 ? 2 : 0))));
+  }
+  const homes = () => POP.reduce((a, b) => a + b, 0);
+  function smoke(fx, fy, x, y){
+    const w = DIRS[di][1], n = Math.hypot(w[0], w[1]), wx = w[0] / n, wy = w[1] / n;
+    const dx = x - fx, dy = y - fy, along = dx * wx + dy * wy, cross = Math.abs(dx * wy - dy * wx);
+    if (along < -10) return Math.exp(-Math.hypot(dx, dy) / 25) * .3;
+    return Math.exp(-along / 220) * Math.exp(-cross * cross / (2 * Math.pow(18 + along * .35, 2)));
+  }
+  function score(f){
+    let hit = 0, exp = 0, walk = 0;
+    POP.forEach((p, k) => { if (!p) return; const x = (k % NX) * C + C / 2, y = Math.floor(k / NX) * C + C / 2, s = smoke(f.x, f.y, x, y); exp += s * p; if (s > .25) hit += p; walk += p * Math.hypot(x - f.x, y - f.y); });
+    return {hit, exp, walk: walk / homes() * 15}; // 1 像素 ≈ 15 米
+  }
+  function draw(){
+    let s = '<rect width="600" height="340" fill="var(--paper)"/>';
+    if (fac) for (let j = 0; j < NY; j++) for (let i = 0; i < NX; i++) { const v = smoke(fac.x, fac.y, i * C + C / 2, j * C + C / 2); if (v > .06) s += '<rect x="' + i * C + '" y="' + j * C + '" width="' + C + '" height="' + C + '" fill="var(--ink)" opacity="' + Math.min(.45, v * .5).toFixed(2) + '"/>'; }
+    let d = 'M0,' + ry(0).toFixed(1); for (let x = 10; x <= 600; x += 10) d += ' L' + x + ',' + ry(x).toFixed(1);
+    s += '<path d="' + d + '" stroke="var(--wat)" stroke-width="18" fill="none"/>';
+    POP.forEach((p, k) => { if (!p) return; const x = (k % NX) * C + C / 2, y = Math.floor(k / NX) * C + C / 2; for (let q = 0; q < Math.min(p, 4); q++) s += '<rect x="' + (x - 6 + (q % 2) * 7) + '" y="' + (y - 6 + Math.floor(q / 2) * 7) + '" width="5" height="5" fill="' + (fac && smoke(fac.x, fac.y, x, y) > .25 ? 'var(--red)' : 'var(--och)') + '" opacity=".75"/>'; });
+    // 风向箭头
+    const w = DIRS[di][1], n = Math.hypot(w[0], w[1]);
+    s += '<g transform="translate(560,40) rotate(' + (Math.atan2(w[1], w[0]) * 180 / Math.PI) + ')"><line x1="-22" x2="16" y1="0" y2="0" stroke="var(--ink)" stroke-width="3"/><path d="M18,0 l-10,-7 v14 Z" fill="var(--ink)"/></g><text x="560" y="78" font-size="11" text-anchor="middle" fill="var(--ink)" paint-order="stroke" stroke="var(--paper)" stroke-width="3">' + DIRS[di][0] + '</text>';
+    s += '<text x="500" y="' + (ry(500) + 28).toFixed(0) + '" font-size="11" fill="var(--ink-3)">下游 →</text>';
+    if (fac) s += '<g transform="translate(' + fac.x + ',' + fac.y + ')"><path d="M-12,10 v-10 l8,-6 v6 l8,-6 v6 l8,-6 v16 Z" fill="var(--card)" stroke="var(--ink)" stroke-width="1.6"/><rect x="-10" y="-14" width="4" height="14" fill="var(--ink)"/></g>';
+    svg.innerHTML = s;
+    if (!fac) { kv($('#windKV'), [['住户', homes() + ' 户'], ['被熏到的', '—'], ['工人平均上班路', '—']]); return; }
+    const r = score(fac);
+    kv($('#windKV'), [['住户', homes() + ' 户'], ['被熏到的', r.hit + ' 户'], ['工人平均上班路', f1(r.walk / 1000) + ' 公里']]);
+    const S = $('#windSay');
+    S.className = 'say' + (r.hit > homes() * .2 ? ' bad' : r.hit < homes() * .03 ? ' ok' : '');
+    S.innerHTML = r.hit > homes() * .2 ? '烟正好顺着风灌进了城里，几百户人家天天闻着味道。工人上班倒是近。' : r.hit < homes() * .03 ? '几乎没有人被熏到：工厂在城的下风处。代价是工人上班要走 ' + f1(r.walk / 1000) + ' 公里。这就是“职住分离”的起点。' : '有一部分人家在烟的下风处。往城的下风方向、再远一点挪挪试试。';
+  }
+  svg.addEventListener('click', e => { const p = svgPt(svg, e); fac = {x: clamp(p.x, 12, 588), y: clamp(p.y, 12, 328)}; if (Math.abs(fac.y - ry(fac.x)) < 14) fac.y += 20; draw(); });
+  $('#windBest').addEventListener('click', () => {
+    let best = null, bv = 1e18;
+    for (let x = 20; x < 600; x += 20) for (let y = 20; y < 330; y += 20) { if (Math.abs(y - ry(x)) < 16) continue; const r = score({x, y}); const v = r.exp * 6 + r.walk * .02; if (v < bv) { bv = v; best = {x, y}; } }
+    fac = best; draw();
+    $('#windSay').innerHTML += '<br>墨的算法：被熏到的人越少越好，工人上班路越短越好，两者折中。他把工厂放在了<b>城的下风处、不太远的地方</b>。换个风向，再让他算一次。';
+  });
+  draw();
+});
+
+/* ---------- 装置 22：一片老厂区的三十年 ---------- */
+dev('#gentFig', fig => {
+  const T = $('#gentT'), P = $('#gentP');
+  [T, P].forEach(e => e.addEventListener('input', go)); P.addEventListener('change', go);
+  const sig = x => 1 / (1 + Math.exp(-x));
+  function mix(t, prot){
+    const art = (prot ? .3 : .35) * sig((t - 6) / 1.5) * (1 - (prot ? .45 : .85) * sig((t - 18) / 2.5));
+    const white = (prot ? .38 : .7) * sig((t - 15) / 2.5);
+    const old = Math.max(0, 1 - art - white);
+    const rent = .6 + (prot ? 1.3 : 2.6) * sig((t - 14) / 3);
+    return {old, art, white, rent};
+  }
+  function go(){
+    const t = +T.value, prot = P.checked;
+    $('#gentTO').textContent = '第 ' + t + ' 年';
+    const X = y => 40 + y / 30 * 510, Y = v => 200 - v * 175, Yr = r => 200 - r / 3.4 * 175;
+    let s = '<line x1="40" x2="550" y1="200" y2="200" stroke="var(--ink)"/><line x1="40" x2="40" y1="25" y2="200" stroke="var(--ink)"/><line x1="550" x2="550" y1="25" y2="200" stroke="var(--red)" opacity=".6"/>';
+    for (let y = 0; y <= 30; y += 5) s += '<text x="' + X(y) + '" y="216" font-size="11" text-anchor="middle" fill="var(--ink-3)">' + y + '</text>';
+    s += '<text x="36" y="30" font-size="10" text-anchor="end" fill="var(--ink-3)">100%</text><text x="554" y="30" font-size="10" fill="var(--red)">房租</text>';
+    // 堆叠面积
+    const layer = (lo, hi, col) => { let d = ''; for (let y = 0; y <= 30; y += .5) { const m = mix(y, prot); d += (d ? ' L' : 'M') + X(y).toFixed(1) + ',' + Y(hi(m)).toFixed(1); } for (let y = 30; y >= 0; y -= .5) { const m = mix(y, prot); d += ' L' + X(y).toFixed(1) + ',' + Y(lo(m)).toFixed(1); } return '<path d="' + d + ' Z" fill="' + col + '" opacity=".55"/>'; };
+    s += layer(m => 0, m => m.old, 'var(--och)') + layer(m => m.old, m => m.old + m.art, 'var(--grn)') + layer(m => m.old + m.art, m => 1, 'var(--main)');
+    let rd = ''; for (let y = 0; y <= 30; y += .5) rd += (rd ? ' L' : 'M') + X(y).toFixed(1) + ',' + Yr(mix(y, prot).rent).toFixed(1);
+    s += '<path d="' + rd + '" fill="none" stroke="var(--red)" stroke-width="2.5"/>';
+    s += '<line x1="' + X(t) + '" x2="' + X(t) + '" y1="25" y2="200" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="4 3"/>';
+    $('#gentSvg').innerHTML = s;
+    const m = mix(t, prot);
+    const stage = t < 4 ? '工厂刚关门，工人下岗或随厂搬走，街区空了一半，房租跌到谷底。留下来的是老住户和老人。'
+      : t < 10 ? '画家、乐手、小剧团发现了这里：又大又便宜的厂房。他们搬进来，开工作室，办展览。'
+      : t < 16 ? '咖啡馆、画廊、设计公司跟着来了，周末有人专门来逛。媒体开始报道“城市新地标”，房租往上走。'
+      : t < 22 ? '开发商和大公司来了，老厂房改成写字楼、公寓和商场。房租涨得飞快，最早的那批艺术家开始搬走。'
+      : '这里成了一个整洁、昂贵的“创意街区”。住在这里的大多是新来的白领，老住户和艺术家只剩少数。';
+    $('#gentSay').innerHTML = '<b>第 ' + t + ' 年</b>　' + stage + '<br>老住户 ' + Math.round(m.old * 100) + '%　艺术家和小店主 ' + Math.round(m.art * 100) + '%　新住户 ' + Math.round(m.white * 100) + '%　房租是工厂关门前的 ' + m.rent.toFixed(1) + ' 倍' + (prot && t > 15 ? '<br>留出来的保障房和低租金工作室，让一部分老住户和艺术家留了下来，街区的房租也涨得慢一些。代价是开发商少赚一些，政府要多出一些。' : '');
+  }
+  go();
+});
+
+/* ---------- 装置 23：一公顷地怎么盖 ---------- */
+dev('#denFig', fig => {
+  // 名字、层数、建筑覆盖率、栋数（剖面上画几栋）、说明
+  const F = [
+    ['四合院', 1, .6, 5, '一层，院子围在中间。容积率很低，一公顷只住得下几十户；空地全在各家院子里，是私人的。'],
+    ['里弄 · 联排', 3, .6, 6, '三层，一排排挨着。不高，但挤得很满，容积率接近二，一公顷能住两百来户。'],
+    ['巴黎街坊', 6, .65, 3, '六七层，沿街围成一圈，中间是内院。楼不高，容积率却接近四，比很多高层小区还密。巴黎市区是欧洲人口密度最高的城市之一。'],
+    ['板楼小区', 11, .22, 3, '十一层左右的板楼，楼间距按日照拉开（第二章）。容积率二点几，空地很多，但大多是楼与楼之间的绿化和停车。'],
+    ['塔楼小区', 30, .12, 2, '三十层的塔楼，占地很小，四周留出大片空地。容积率三点几，和巴黎街坊差不多，楼却高了好几倍。'],
+    ['九龙城寨', 13, .95, 6, '十几层的楼挤满了整块地，几乎没有空地，也没有阳光。容积率超过十，一公顷能住上千户、几千人。']
+  ];
+  let k = 2;
+  btnRow($('#denPre'), F.map(f => f[0]), k, i => { k = i; go(); });
+  function go(){
+    const [n, fl, cov, cnt, note] = F[k];
+    const far = fl * cov, hh = Math.round(far * 10000 / 90), ppl = hh * 3;
+    // 剖面：100 米宽画成 560 像素，每层 3 米；最高 30 层
+    const sc = 560 / 100, G = 200, fh = Math.min(5.6, 170 / (fl * 3)) ;
+    let s = '<line x1="20" x2="580" y1="' + G + '" y2="' + G + '" stroke="var(--ink)" stroke-width="1.5"/>';
+    const w = 100 * cov / cnt, gap = (100 - 100 * cov) / cnt;
+    for (let i = 0; i < cnt; i++) {
+      const x = 20 + (gap / 2 + i * (w + gap)) * sc, h = fl * 3 * fh;
+      s += '<rect x="' + x.toFixed(1) + '" y="' + (G - h).toFixed(1) + '" width="' + (w * sc).toFixed(1) + '" height="' + h.toFixed(1) + '" fill="var(--main)" fill-opacity=".18" stroke="var(--main)" stroke-width="1.4"/>';
+      if (fl > 1 && h / fl > 3) for (let f = 1; f < fl; f++) s += '<line x1="' + x.toFixed(1) + '" x2="' + (x + w * sc).toFixed(1) + '" y1="' + (G - f * 3 * fh).toFixed(1) + '" y2="' + (G - f * 3 * fh).toFixed(1) + '" stroke="var(--main)" stroke-width=".4" opacity=".6"/>';
+    }
+    s += '<text x="300" y="215" font-size="11" text-anchor="middle" fill="var(--ink-3)">一百米（剖面示意，高度按比例缩放）</text>';
+    $('#denSvg').innerHTML = s;
+    kv($('#denKV'), [['层数', fl + ' 层'], ['建筑覆盖率', Math.round(cov * 100) + '%'], ['容积率', far.toFixed(1)], ['约住多少户', hh + ' 户 · ' + ppl + ' 人'], ['空地', Math.round((1 - cov) * 100) + '%']]);
+    $('#denSay').innerHTML = '<b>' + n + '</b>　' + note;
+  }
+  go();
+});
+
+/* ---------- 装置 24：开一条大道 ---------- */
+dev('#cutFig', fig => {
+  const svg = $('#cutSvg'), PX = 5; // 1 像素 = 5 米
+  const A = [20, 160], B = [580, 120];
+  // 老街：弯弯曲曲
+  const OLD = [A, [80, 150], [120, 190], [170, 200], [210, 160], [250, 130], [300, 150], [340, 190], [390, 180], [430, 140], [470, 100], [520, 110], B];
+  const R = rng(1853), H = [];
+  for (let i = 0; i < 1400 && H.length < 520; i++) { const x = 30 + R() * 540, y = 30 + R() * 245; const d = segDist(OLD, x, y); if (d > 9) H.push([x, y, R() * 40 - 20]); }
+  function segDist(P, x, y){ let m = 1e9; for (let i = 0; i < P.length - 1; i++) { const [ax, ay] = P[i], [bx, by] = P[i + 1], dx = bx - ax, dy = by - ay, t = clamp(((x - ax) * dx + (y - ay) * dy) / (dx * dx + dy * dy), 0, 1); m = Math.min(m, Math.hypot(x - ax - t * dx, y - ay - t * dy)); } return m; }
+  const len = P => P.reduce((s, p, i) => i ? s + Math.hypot(p[0] - P[i - 1][0], p[1] - P[i - 1][1]) : 0, 0);
+  const W = $('#cutW'), S = $('#cutS');
+  [W, S].forEach(e => e.addEventListener('input', go));
+  function go(){
+    const w = +W.value, st = +S.value / 100;
+    $('#cutWO').textContent = w + ' 米'; $('#cutSO').textContent = st < .05 ? '沿老街' : st > .95 ? '直线' : Math.round(st * 100) + '%';
+    const L0 = len(OLD);
+    const NEW = OLD.map((p, i) => { const t = (p[0] - A[0]) / (B[0] - A[0]); const q = [A[0] + (B[0] - A[0]) * t, A[1] + (B[1] - A[1]) * t]; return [lerp(p[0], q[0], st), lerp(p[1], q[1], st)]; });
+    const half = w / PX / 2;
+    let gone = 0, s = '<rect width="600" height="300" fill="var(--paper)"/>';
+    s += '<polyline points="' + OLD.map(p => p.join(',')).join(' ') + '" fill="none" stroke="var(--ink-3)" stroke-width="3" stroke-dasharray="4 3" opacity=".6"/>';
+    s += '<polyline points="' + NEW.map(p => p.map(v => v.toFixed(1)).join(',')).join(' ') + '" fill="none" stroke="var(--och)" stroke-width="' + (half * 2).toFixed(1) + '" stroke-linejoin="round" opacity=".35"/>';
+    H.forEach(h => { const cut = segDist(NEW, h[0], h[1]) < half + 3; if (cut) gone++; s += '<rect x="' + (h[0] - 4) + '" y="' + (h[1] - 3) + '" width="8" height="6" transform="rotate(' + h[2].toFixed(0) + ' ' + h[0].toFixed(0) + ' ' + h[1].toFixed(0) + ')" fill="' + (cut ? 'var(--red)' : 'var(--card)') + '" stroke="var(--ink)" stroke-width=".7" opacity="' + (cut ? .85 : 1) + '"/>'; });
+    s += '<rect x="6" y="150" width="16" height="20" fill="var(--brk)"/><text x="14" y="186" font-size="11" text-anchor="middle" fill="var(--ink)">城门</text><rect x="574" y="110" width="20" height="20" fill="var(--ink)" opacity=".7"/><text x="584" y="146" font-size="11" text-anchor="middle" fill="var(--ink)">车站</text>';
+    svg.innerHTML = s;
+    const L1 = len(NEW);
+    kv($('#cutKV'), [['要拆的房子', gone + ' 栋'], ['要搬走的人（约）', fmt(gone * 12) + ' 人'], ['城门到车站', f1(L1 * PX / 1000) + ' 公里（原来 ' + f1(L0 * PX / 1000) + '）'], ['开车省下', Math.max(0, Math.round(L0 * PX / 1000 / 15 * 60 - L1 * PX / 1000 / (15 + (w - 10) / 70 * 25) * 60)) + ' 分钟']]);
+    const Sy = $('#cutSay');
+    Sy.innerHTML = st < .2 ? '沿着老街拓宽：路还是弯的，可拆的房子少，老街两边的店铺和邻里大多保得住。' + (w > 50 ? '只是这么宽的路硬塞进老街，两边的房子还是要拆掉一大片。' : '')
+      : st > .8 ? '一刀直线切过去：路程最短、最气派，可直线不管原来那里是什么，切到哪家拆哪家。奥斯曼的大道大多是这么开的。'
+      : '折中的路线：比老街直，比直线拆得少。真实的规划常常在这两者之间吵上好几年。';
+    if (w >= 60) Sy.innerHTML += '<br>六十米以上的大道，过一次马路要走一分钟。第十七章讲过，宽马路对车是好事，对人是一道坎。';
+  }
+  go();
+});
+
+/* ---------- 装置 25：分开住，还是混着住 ---------- */
+dev('#zoneFig', fig => {
+  const NX = 8, NY = 5, C = 40;
+  const COL = {H: 'var(--grn)', O: 'var(--main)', S: 'var(--och)', M: 'var(--red)'};
+  const NAME = {H: '住宅', O: '办公', S: '商业', M: '混合'};
+  const WAYS = [
+    ['雅典宪章式分区', ['HHHOOSHH', 'HHHOOSHH', 'HHHOOSHH', 'HHHOOSHH', 'HHHOOSHH']],
+    ['卧城 + 商务区', ['HHHHHHHH', 'HHHHHHHH', 'HHHOOHHH', 'HHHSSHHH', 'HHHHHHHH']],
+    ['老城式混合', ['MMHMMHMM', 'MSMMMMSM', 'HMMOOMMH', 'MMSMMSMM', 'MMHMMHMM']]
+  ];
+  // 一天 24 小时里各种用途的人气（0~1）
+  const DAY = {
+    H: h => (h < 7 || h >= 19) ? .9 : (h < 9 || h >= 17) ? .5 : .18,
+    O: h => (h >= 9 && h < 18) ? .95 : (h >= 8 && h < 20) ? .4 : .03,
+    S: h => (h >= 10 && h < 22) ? .75 : .05,
+    M: h => .45 + .3 * ((h >= 10 && h < 22) ? 1 : 0) + (h < 7 ? -.15 : 0)
+  };
+  let w = 0, pick = null;
+  btnRow($('#zoneWay'), WAYS.map(x => x[0]), 0, i => { w = i; pick = null; go(); });
+  const grid = () => WAYS[w][1].map(r => r.split(''));
+  $('#zoneMap').addEventListener('click', e => { const p = svgPt($('#zoneMap'), e); const i = Math.floor(p.x / C), j = Math.floor(p.y / C); if (i >= 0 && i < NX && j >= 0 && j < NY) { pick = [i, j]; go(); } });
+  function go(){
+    const G = grid();
+    // 上班距离：住在 H 或 M 的人，到最近的 O 或 M 的格子（曼哈顿距离，公里）
+    const jobs = [], homes = [];
+    G.forEach((r, j) => r.forEach((t, i) => { if (t === 'O' || t === 'M') jobs.push([i, j, t === 'O' ? 3 : 1]); if (t === 'H' || t === 'M') homes.push([i, j, t === 'H' ? 3 : 1]); }));
+    // 按工作岗位数量分配：每个人随机去一个岗位，越近的越可能（简化：按岗位加权平均距离）
+    let tot = 0, wsum = 0;
+    homes.forEach(h => { let s = 0, ws = 0; jobs.forEach(o => { const d = Math.abs(h[0] - o[0]) + Math.abs(h[1] - o[1]) + .5; const k = o[2] / Math.pow(d, 1.2); s += k * d; ws += k; }); tot += h[2] * s / ws; wsum += h[2]; });
+    const commute = tot / wsum;
+    // 冷清时段
+    let empty = 0, cells = 0;
+    let m = '';
+    G.forEach((r, j) => r.forEach((t, i) => {
+      let e = 0; for (let h = 0; h < 24; h++) if (DAY[t](h) < .25) e++;
+      empty += e; cells++;
+      m += '<rect x="' + (i * C + 1) + '" y="' + (j * C + 1) + '" width="' + (C - 2) + '" height="' + (C - 2) + '" fill="' + COL[t] + '" fill-opacity=".45" stroke="' + (pick && pick[0] === i && pick[1] === j ? 'var(--ink)' : 'var(--card)') + '" stroke-width="' + (pick && pick[0] === i && pick[1] === j ? 3 : 1) + '" style="cursor:pointer"/><text x="' + (i * C + C / 2) + '" y="' + (j * C + C / 2 + 4) + '" font-size="11" text-anchor="middle" fill="var(--ink)">' + NAME[t][0] + '</text>';
+    }));
+    $('#zoneMap').innerHTML = m;
+    // 右图：选中格子（默认画住宅和办公两条）
+    const X = h => 30 + h / 24 * 260, Y = v => 175 - v * 150;
+    let d = '<line x1="30" x2="290" y1="175" y2="175" stroke="var(--ink)"/><line x1="30" x2="30" y1="20" y2="175" stroke="var(--ink)"/>';
+    [0, 6, 12, 18, 24].forEach(h => d += '<text x="' + X(h) + '" y="190" font-size="10" text-anchor="middle" fill="var(--ink-3)">' + h + '时</text>');
+    d += '<line x1="30" x2="290" y1="' + Y(.25) + '" y2="' + Y(.25) + '" stroke="var(--ink-3)" stroke-dasharray="3 3"/><text x="288" y="' + (Y(.25) - 4) + '" font-size="9" text-anchor="end" fill="var(--ink-3)">冷清线</text>';
+    const types = pick ? [G[pick[1]][pick[0]]] : [...new Set(G.flat())];
+    types.forEach(t => { let p = ''; for (let h = 0; h <= 24; h += .25) p += (p ? ' L' : 'M') + X(h).toFixed(1) + ',' + Y(DAY[t](Math.floor(h) % 24)).toFixed(1); d += '<path d="' + p + '" fill="none" stroke="' + COL[t] + '" stroke-width="2.5"/>'; });
+    d += '<text x="34" y="16" font-size="10" fill="var(--ink-3)">' + (pick ? '这一格：' + NAME[G[pick[1]][pick[0]]] : '各种用途一天的人气') + '</text>';
+    $('#zoneDay').innerHTML = d;
+    kv($('#zoneKV'), [['平均上班距离', f1(commute) + ' 公里'], ['每个格子一天冷清多少小时', f1(empty / cells) + ' 小时']]);
+    $('#zoneSay').innerHTML = [
+      '功能分区：住宅一片、办公一片、商业一条。上班的人每天早晚穿过整座城；白天住宅区空着，晚上办公区黑着，每个地方一天里有大半时间是冷清的。',
+      '卧城加商务区：大片住宅围着一小块商务区。早高峰所有人往中间挤，晚高峰所有人往外跑；中间那块晚上和周末几乎没人。很多“新区”和“卧城”就是这样。',
+      '混合：楼下是店、楼上是家、隔壁是办公室。上班近得多，每个格子白天晚上都有人。代价是吵一点、乱一点，也更难规划和管理。下一章的主角管这叫“街道的眼睛”。'
+    ][w];
+  }
+  go();
+});
+
+/* ---------- 装置 26：街上的眼睛 ---------- */
+dev('#eyesFig', fig => {
+  const USE = [
+    {n: '住家', c: 'var(--grn)', f: h => (h < 7 || h >= 18) ? (h >= 23 || h < 6 ? .25 : .8) : .35},
+    {n: '小店', c: 'var(--och)', f: h => (h >= 7 && h < 22) ? .9 : .05},
+    {n: '餐馆', c: 'var(--red)', f: h => (h >= 11 && h < 14) || (h >= 17 && h < 23) ? 1 : (h >= 6 && h < 9 ? .5 : .1)},
+    {n: '办公楼', c: 'var(--main)', f: h => (h >= 9 && h < 18) ? .7 : .02},
+    {n: '酒吧', c: 'var(--blu)', f: h => (h >= 20 || h < 2) ? 1 : .03},
+    {n: '空墙', c: 'var(--ink-3)', f: h => 0}
+  ];
+  const PRE = [['郊区办公园', [3, 5, 3, 5, 3, 5, 3, 5]], ['只有住家', [0, 0, 0, 0, 0, 0, 0, 0]], ['雅各布斯的街', [1, 0, 2, 0, 0, 1, 4, 3]]];
+  let slot = PRE[2][1].slice();
+  btnRow($('#eyesPre'), PRE.map(p => p[0]), 2, i => { slot = PRE[i][1].slice(); go(); });
+  $('#eyesSt').addEventListener('click', e => { const t = e.target.closest('[data-s]'); if (!t) return; const k = +t.dataset.s; slot[k] = (slot[k] + 1) % USE.length; go(); });
+  function go(){
+    let s = '<rect x="0" y="70" width="600" height="30" fill="var(--ink)" fill-opacity=".1"/><line x1="0" x2="600" y1="85" y2="85" stroke="var(--card)" stroke-dasharray="10 8"/>';
+    slot.forEach((u, k) => {
+      const top = k < 4, x = 20 + (k % 4) * 145, y = top ? 6 : 104, U = USE[u];
+      s += '<g data-s="' + k + '" style="cursor:pointer"><rect x="' + x + '" y="' + y + '" width="130" height="60" fill="' + U.c + '" fill-opacity="' + (u === 5 ? .15 : .3) + '" stroke="' + U.c + '" stroke-width="2"/>';
+      if (u !== 5) for (let w = 0; w < 3; w++) s += '<rect x="' + (x + 14 + w * 38) + '" y="' + (y + (top ? 10 : 14)) + '" width="24" height="16" fill="var(--card)" stroke="' + U.c + '"/>';
+      s += '<text x="' + (x + 65) + '" y="' + (y + 50) + '" font-size="13" text-anchor="middle" fill="var(--ink)">' + U.n + '</text></g>';
+    });
+    $('#eyesSt').innerHTML = s;
+    const eyes = h => slot.reduce((a, u) => a + USE[u].f(h), 0) + 0.15 * slot.filter(u => u === 1 || u === 2).length * ((h >= 8 && h < 22) ? 1 : 0); // 有店就有行人
+    const X = h => 30 + h / 24 * 550, Y = v => 140 - v / 9 * 125;
+    let d = '<line x1="30" x2="580" y1="140" y2="140" stroke="var(--ink)"/><line x1="30" x2="30" y1="10" y2="140" stroke="var(--ink)"/>';
+    [0, 3, 6, 9, 12, 15, 18, 21, 24].forEach(h => d += '<text x="' + X(h) + '" y="154" font-size="10" text-anchor="middle" fill="var(--ink-3)">' + h + '</text>');
+    let p = '', mn = 1e9, mh = 0;
+    for (let h = 0; h < 24; h++) { const v = eyes(h); if (v < mn) { mn = v; mh = h; } p += (p ? ' L' : 'M') + X(h).toFixed(1) + ',' + Y(v).toFixed(1) + ' L' + X(h + 1).toFixed(1) + ',' + Y(v).toFixed(1); }
+    d += '<path d="' + p + ' L' + X(24) + ',140 L' + X(0) + ',140 Z" fill="var(--grn)" opacity=".25"/><path d="' + p + '" fill="none" stroke="var(--grn)" stroke-width="2"/>';
+    d += '<rect x="' + X(mh) + '" y="10" width="' + (X(1) - X(0)) + '" height="130" fill="var(--red)" opacity=".15"/><text x="' + (X(mh) + 4) + '" y="22" font-size="10" fill="var(--red)">最冷清</text>';
+    d += '<text x="34" y="10" font-size="10" fill="var(--ink-3)">看着街的眼睛</text>';
+    $('#eyesDay').innerHTML = d;
+    const S = $('#eyesSay');
+    const kinds = new Set(slot).size;
+    S.className = 'say' + (mn < 1 ? ' bad' : mn > 2 ? ' ok' : '');
+    S.innerHTML = '最冷清的时刻在 <b>' + mh + ' 点</b>，那时大约只有 ' + f1(mn) + ' 双眼睛。' + (mn < 1 ? '这条街在一天里有好几个小时几乎没人看着：办公园晚上、住宅街白天、空墙全天。' : mn > 2 ? '一天到晚都有人：早上有开店的，中午有吃饭的，晚上有回家的和喝酒的，半夜还有住家的灯。这就是雅各布斯说的“混合用途”。' : '还不错，但有一段时间比较冷清。') + (kinds <= 2 ? '<br>只有一两种用途的街，人气总会在某些时段塌下去。' : '');
+  }
+  go();
+});
+
+/* ---------- 装置 27：焚烧厂建在哪儿 ---------- */
+dev('#nimFig', fig => {
+  // 名字、离城公里、附近户数、地价（相对）、居民声音（0~1）
+  const SITE = [
+    ['城东高档小区旁', 4, 3000, 9, .95],
+    ['老工业区边上', 7, 1500, 4, .45],
+    ['城中村旁边', 6, 4000, 3, .15],
+    ['远郊的村子', 25, 400, 1, .3],
+    ['新区规划绿地', 12, 300, 5, .7],
+    ['邻县的山谷', 40, 300, 1, .1]
+  ];
+  let si = 0;
+  const C = $('#nimC');
+  btnRow($('#nimSite'), SITE.map(s => s[0]), 0, i => { si = i; go(); });
+  C.addEventListener('input', go);
+  function calc(i, comp){
+    const [n, km, hh, land, voice] = SITE[i];
+    const truck = km * 2 * 20 * 1.2;        // 二十年的运费
+    const landC = land * 25;
+    const compC = hh * comp / 1000;
+    const cross = i === 5 ? 60 : 0;          // 跨县协调、给邻县的补偿
+    const total = truck + landC + compC + cross;
+    const anger = clamp(Math.pow(hh / 3000, .7) * voice * (1.15 - comp / (comp + 25)) * 1.4, 0, 1);
+    return {total, truck, landC, compC, cross, anger, hh, voice};
+  }
+  function go(){
+    const comp = +C.value; $('#nimCO').textContent = comp + ' 万元/户';
+    const r = calc(si, comp);
+    const max = Math.max(...SITE.map((_, i) => calc(i, comp).total));
+    const row = (nm, v, m, col, txt) => '<div class="row"><span class="nm">' + nm + '</span><span class="tr"><i style="width:' + (v / m * 100).toFixed(0) + '%;background:' + col + '"></i></span><span class="v">' + txt + '</span></div>';
+    $('#nimBars').innerHTML = row('二十年运费', r.truck, max, 'var(--och)', Math.round(r.truck)) + row('买地', r.landC, max, 'var(--brk)', Math.round(r.landC)) + row('补偿', r.compC, max, 'var(--grn)', Math.round(r.compC)) + (r.cross ? row('跨县协调', r.cross, max, 'var(--ink-3)', r.cross) : '') + row('<b>总花费</b>', r.total, max, 'var(--main)', '<b>' + Math.round(r.total) + '</b>') + row('反对有多激烈', r.anger, 1, 'var(--red)', Math.round(r.anger * 100) + '%');
+    const S = $('#nimSay');
+    const t = {
+      0: '离城近，运费省；可旁边是几千户有钱、有组织、认识人的居民。不给足补偿，抗议会非常激烈，项目很可能搁浅。',
+      1: '老工业区旁边，居民习惯了烟囱，声音不大，地也便宜。这是很多城市最常见的选择。',
+      2: '城中村旁边：人很多，可他们大多是租户和外来人口，没有房产、没有户口、没有组织，声音最小。账面上很划算。',
+      3: '远郊的村子：人少、地便宜，可垃圾车每天要跑几十公里，二十年下来运费很可观。村民的意见常常没人问。',
+      4: '新区的规划绿地：现在没什么人，可十年后旁边会住上几千户新业主，到时候吵的就是他们。',
+      5: '邻县的山谷：本城没人反对，可要跟另一个县谈判、给钱，运费也最贵。第二十八章讲城和城外的关系，就是这种账。'
+    }[si];
+    S.className = 'say' + (r.anger > .6 ? ' bad' : r.anger < .2 ? ' ok' : '');
+    S.innerHTML = t;
+  }
+  $('#nimCheap').addEventListener('click', () => {
+    const comp = +C.value;
+    // 墨只看账面：总花费最低，并且反对不太激烈
+    let best = 0, bv = 1e18; SITE.forEach((_, i) => { const r = calc(i, comp); const v = r.total + r.anger * 120; if (v < bv) { bv = v; best = i; } });
+    si = best; $$('#nimSite button').forEach((b, i) => b.classList.toggle('on', i === best)); go();
+    $('#nimSay').innerHTML += '<br><b>只算钱和“会不会闹”，最后常常落在声音最小的人家旁边。</b>这就是环境正义研究者说的：邻避设施不是随机分布的。补偿定得越高，这个偏差就越小。';
+  });
+  go();
+});
+
+/* ---------- 装置 28：按多少人修 ---------- */
+dev('#planFig', fig => {
+  const WAY = ['一次修到位', '分期修', '先按眼下修'];
+  const REAL = ['照预测长', '长得更快', '长到一半停了', '先长后缩'];
+  let w = 0, r = 0;
+  btnRow($('#planWay'), WAY, 0, i => { w = i; go(); });
+  btnRow($('#planReal'), REAL, 0, i => { r = i; go(); });
+  const Y = 40;
+  const demand = (t, k) => k === 0 ? 1 + t / Y : k === 1 ? 1 + 2 * t / Y : k === 2 ? 1 + .45 * Math.min(t, 15) / 15 : (t < 18 ? 1 + .5 * t / 18 : 1.5 - .6 * (t - 18) / 22);
+  function run(way, k){
+    let cap, cost, short = 0, idle = 0;
+    const build = (c, prem) => Math.pow(c, .75) * 100 * (prem || 1);
+    if (way === 0) { cap = 2; cost = build(2); }
+    else if (way === 1) { cap = 1.3; cost = build(1.3); }
+    else { cap = 1.05; cost = build(1.05); }
+    const caps = [];
+    for (let t = 0; t <= Y; t++) {
+      const d = demand(t, k);
+      if (way === 0 && d > cap) { cap += .5; cost += build(.5, 1.5); }
+      if (way === 1 && d > cap * .9) { cap += .35; cost += build(.35, 1.2); }
+      if (way === 2 && d > cap) { cap += .25; cost += build(.25, 1.7); short += 1; }
+      if (d > cap) short++;
+      idle += Math.max(0, cap - d);
+      cost += cap * 2; // 每年的维护费，修得越多越贵
+      caps.push(cap);
+    }
+    return {cost, short, idle, caps};
+  }
+  function go(){
+    const res = run(w, r);
+    const X = t => 40 + t / Y * 540, Yv = v => 200 - v / 3.2 * 180;
+    let s = '<line x1="40" x2="580" y1="200" y2="200" stroke="var(--ink)"/><line x1="40" x2="40" y1="15" y2="200" stroke="var(--ink)"/>';
+    for (let t = 0; t <= Y; t += 10) s += '<text x="' + X(t) + '" y="214" font-size="10" text-anchor="middle" fill="var(--ink-3)">第 ' + t + ' 年</text>';
+    // 预测线
+    let pf = ''; for (let t = 0; t <= Y; t++) pf += (pf ? ' L' : 'M') + X(t) + ',' + Yv(demand(t, 0)).toFixed(1);
+    s += '<path d="' + pf + '" fill="none" stroke="var(--ink-3)" stroke-dasharray="4 3"/><text x="' + X(Y) + '" y="' + (Yv(2) - 6) + '" font-size="10" text-anchor="end" fill="var(--ink-3)">规划的预测</text>';
+    // 容量阶梯
+    let pc = ''; res.caps.forEach((c, t) => { pc += (pc ? ' L' : 'M') + X(t).toFixed(1) + ',' + Yv(c).toFixed(1) + ' L' + X(Math.min(Y, t + 1)).toFixed(1) + ',' + Yv(c).toFixed(1); });
+    s += '<path d="' + pc + '" fill="none" stroke="var(--main)" stroke-width="2.5"/>';
+    // 真实需求
+    let pd = ''; for (let t = 0; t <= Y; t++) pd += (pd ? ' L' : 'M') + X(t) + ',' + Yv(demand(t, r)).toFixed(1);
+    s += '<path d="' + pd + '" fill="none" stroke="var(--red)" stroke-width="2.5"/>';
+    s += '<text x="46" y="24" font-size="10" fill="var(--main)">蓝：修了多少</text><text x="130" y="24" font-size="10" fill="var(--red)">红：真实需要</text>';
+    $('#planSvg').innerHTML = s;
+    kv($('#planKV'), [['总花费', Math.round(res.cost)], ['不够用的年数', res.short + ' 年'], ['闲置（容量 × 年）', f1(res.idle)]]);
+    const all = WAY.map((_, i) => run(i, r));
+    const cheapest = all.map(a => a.cost).indexOf(Math.min(...all.map(a => a.cost)));
+    $('#planSay').innerHTML = '这种未来下，三种做法的花费分别是：' + WAY.map((n, i) => n + ' ' + Math.round(all[i].cost) + (all[i].short ? '（' + all[i].short + ' 年不够用）' : '')).join('；') + '。最省钱的是<b>' + WAY[cheapest] + '</b>。<br>' +
+      ['照预测长的时候，一次修到位最划算：规模大、单价低。可惜现实很少照预测长。', '长得比预测快：一次修到位的也不够了，先按眼下修的那种，年年在紧急扩建、年年挤。', '长到一半停了：一次修到位的那一半，几十年都闲着，还要年年花钱维护。分期修的损失最小。', '先长后缩：修得越多，后来闲置得越多，还要花钱维护。这就是收缩城市的处境。'][r] +
+      '<br>换几种未来试试：分期修很少是最省钱的，却几乎从来不是最惨的。这就是“留余地”的价值。';
+  }
+  go();
+});
+
+/* ---------- 装置 29：高铁通了以后（哈夫模型） ---------- */
+dev('#huffFig', fig => {
+  const T = $('#huffT'), OWN = $('#huffOwn');
+  [T, OWN].forEach(e => e.addEventListener('input', go)); OWN.addEventListener('change', go);
+  function go(){
+    const t = +T.value, own = OWN.checked;
+    $('#huffTO').textContent = t + ' 分钟';
+    const AB = 60, AS = own ? 14 : 6, tS = 15, lam = 2;
+    const uB = AB / Math.pow(t, lam), uS = AS / Math.pow(tS, lam);
+    const pB = uB / (uB + uS);
+    // 溢出：省城上班的人里，愿意住到柳渡的比例（通勤一小时以内才可能），房价差越大越多
+    const spill = t > 75 ? 0 : (own ? .12 : .05) * (1 - t / 75) * 100;
+    const local = (1 - pB) * 100;
+    // 画
+    const gap = 60 + (t - 20) / 180 * 380;
+    const xs = 300 - gap / 2, xb = 300 + gap / 2;
+    let s = '<line x1="' + xs + '" x2="' + xb + '" y1="75" y2="75" stroke="var(--ink-3)" stroke-width="3"' + (t <= 60 ? '' : ' stroke-dasharray="6 5"') + '/>';
+    s += '<text x="300" y="66" font-size="11" text-anchor="middle" fill="var(--ink-3)">' + (t <= 60 ? '高铁 ' : '路上 ') + t + ' 分钟</text>';
+    s += '<circle cx="' + xs + '" cy="75" r="24" fill="var(--och)" fill-opacity=".3" stroke="var(--och)" stroke-width="2"/><text x="' + xs + '" y="80" font-size="13" text-anchor="middle" fill="var(--ink)">柳渡</text>';
+    s += '<circle cx="' + xb + '" cy="75" r="46" fill="var(--main)" fill-opacity=".2" stroke="var(--main)" stroke-width="2"/><text x="' + xb + '" y="80" font-size="14" text-anchor="middle" fill="var(--ink)">省城</text>';
+    // 箭头：消费流向省城，人口溢出流向柳渡
+    const w1 = 1 + pB * 10, w2 = 1 + spill * .8;
+    s += '<path d="M' + (xs + 26) + ',58 Q300,' + (40 - pB * 20) + ' ' + (xb - 48) + ',58" fill="none" stroke="var(--red)" stroke-width="' + w1.toFixed(1) + '" opacity=".7"/><text x="300" y="' + (30 - pB * 20 + 6) + '" font-size="10" text-anchor="middle" fill="var(--red)">消费、看病被吸走</text>';
+    if (spill > 0) s += '<path d="M' + (xb - 48) + ',94 Q300,' + (115 + spill) + ' ' + (xs + 26) + ',94" fill="none" stroke="var(--grn)" stroke-width="' + w2.toFixed(1) + '" opacity=".75"/><text x="300" y="' + Math.min(146, 128 + spill) + '" font-size="10" text-anchor="middle" fill="var(--grn)">搬来柳渡住</text>';
+    $('#huffSvg').innerHTML = s;
+    kv($('#huffKV'), [['柳渡人的大件消费在本地', Math.round(local) + '%'], ['被省城吸走', Math.round(pB * 100) + '%'], ['省城上班族搬来柳渡住', spill > 0 ? f1(spill) + '%' : '几乎没有']]);
+    $('#huffSay').innerHTML = t > 120 ? '路远的时候，柳渡人去一趟省城要大半天，大部分东西就在本地买、病就在本地看。柳渡的商场和医院过得不错，只是选择少。'
+      : t > 60 ? '路程缩短，越来越多的柳渡人周末去省城。本地的大商场开始冷清。'
+      : '一小时以内：' + (pB > .6 ? '柳渡人的大件消费大半被省城吸走了，这就是“虹吸”。' : '') + '同时，开始有省城上班的人搬来柳渡住，这是“溢出”。' + (own ? '柳渡有了自己的长处，留住了更多的消费，吸引来更多的人。吸管和水管，方向取决于两头的压力。' : '勾上“柳渡有自己的长处”，看看会不会不一样。');
+  }
+  go();
+});
+
+/* ---------- 装置 30：一万年，三十层 ---------- */
+dev('#allFig', fig => {
+  const R = $('#allR');
+  const YEARS = ['约前 7000', '约前 3200', '约前 2000', '约前 500', '约 100', '约 800', '约 1100', '约 1500', '约 1700', '约 1860', '约 1870', '约 1880', '约 1900', '约 1910', '约 1920', '约 1930', '约 1930', '约 1950', '约 1960', '约 1990', '约 1995', '约 2000', '约 2003', '约 2005', '约 2008', '约 2012', '约 2015', '约 2018', '约 2021', '今天'];
+  function show(i){
+    const ch = TOC.find(x => x.id === 'c' + i);
+    $('#allO').textContent = YEARS[i];
+    drawTown($('#allTown'), i);
+    $('#allSay').innerHTML = '<b>第 ' + (i + 1) + ' 层 · ' + ch.n + ' · ' + ch.t + '</b>　' + ch.s + '<br><a href="' + href(ch.id) + '">回到这一章 →</a>';
+  }
+  R.addEventListener('input', () => show(+R.value));
+  show(29);
 });
 
 })();

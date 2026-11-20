@@ -25,7 +25,7 @@ function svgPt(svg, e){
 
 /* ---------- 全书目录（三个网页共用） ---------- */
 const PAGE = /three\.html/.test(location.pathname) ? 3 : /two\.html/.test(location.pathname) ? 2 : 1;
-const READY = 2; // 已经写好的部数；后面的章节在目录里显示“写作中”
+const READY = 3; // 已经写好的部数；后面的章节在目录里显示“写作中”
 const PURL = {1: './', 2: 'two.html', 3: 'three.html'};
 const TOC = [
   {p: 1, t: '第一部 · 立城 —— 城为什么在这儿，长成什么样'},
@@ -244,6 +244,28 @@ function town(stage, o){
     const h = 'M140,150 C190,186 232,210 300,226 S430,244 600,214';
     g += '<path d="' + h + '" fill="none" stroke="var(--ink-3)" stroke-width="6" opacity=".85"/>' + lab(560, 205, '高架', {s: 12, c: 'var(--ink-3)'});
   }
+
+  // ===== 第三部的层 =====
+  // 20 风：下风处、河下游南岸的工业区
+  if (s >= 20) { for (let i = 0; i < 5; i++) { const x = 446 + i * 26, y = 272; g += '<path d="M' + x + ',' + (y + 16) + ' v-10 l7,-5 v5 l7,-5 v5 l7,-5 v15 Z" fill="var(--card)" stroke="var(--ink)" stroke-width="1.2"/><rect x="' + (x + 2) + '" y="' + (y - 8) + '" width="3" height="10" fill="var(--ink)"/>'; } g += lab(510, 266, '厂区', {s: 12}); }
+  // 21 厂：南岸的旧码头改成了文创园
+  if (s >= 21) g += '<rect x="150" y="238" width="42" height="18" fill="var(--hl)" stroke="var(--och)" stroke-width="1.6"/><path d="M158,238 v-14 h18 M176,224 v6" fill="none" stroke="var(--ink)" stroke-width="1.5"/>' + lab(171, 272, '文创园', {s: 11, c: 'var(--och)'});
+  // 22 住：城中村和新的塔楼
+  if (s >= 22) { const R = rng(5); for (let i = 0; i < 30; i++) g += '<rect x="' + (88 + (i % 6) * 10 + R() * 2).toFixed(1) + '" y="' + (176 + Math.floor(i / 6) * 8 + R() * 2).toFixed(1) + '" width="8" height="6" fill="var(--card)" stroke="var(--ink)" stroke-width=".8"/>'; g += lab(118, 226, '城中村', {s: 11}); }
+  // 23 拆：一条斜穿方格城的大道
+  if (s >= 23) g += '<path d="M498,38 L344,190" stroke="var(--ink)" stroke-width="9"/><path d="M498,38 L344,190" stroke="var(--card)" stroke-width="6"/>';
+  // 24 梦：南岸西边的新区，大街区、宽马路、中轴
+  if (s >= 24) { g += '<rect x="22" y="262" width="118" height="70" fill="none" stroke="var(--main)" stroke-width="1.6"/>'; for (let i = 1; i < 3; i++) g += '<line x1="' + (22 + i * 39.3) + '" x2="' + (22 + i * 39.3) + '" y1="262" y2="332" stroke="var(--main)" stroke-width="3"/>'; g += '<line x1="22" x2="140" y1="297" y2="297" stroke="var(--main)" stroke-width="3"/><rect x="72" y="270" width="18" height="12" fill="var(--main)" opacity=".6"/>' + lab(81, 326, '新区', {s: 11, c: 'var(--main)'}); }
+  // 25 街：弯巷划成历史街区
+  if (s >= 25) g += '<path d="M222,120 L300,112 L328,128 L328,214 L282,222 L234,206 Z" fill="none" stroke="var(--grn)" stroke-width="2" stroke-dasharray="6 3"/>' + lab(282, 108, '历史街区', {s: 11, c: 'var(--grn)'});
+  // 26 地：宋家四周成了工地（29 起盖成了楼）
+  if (s >= 26 && s < 29) { g += '<path d="M226,158 h40 v36 h-40 Z" fill="none" stroke="var(--och)" stroke-width="1.5" stroke-dasharray="3 2"/>'; for (let k = 0; k < 8; k++) g += '<line x1="' + (226 + k * 5) + '" y1="158" x2="' + (226 + k * 5 - 6) + '" y2="194" stroke="var(--och)" stroke-width=".7" opacity=".7"/>'; g += lab(246, 206, '工地', {s: 10, c: 'var(--och)'}); }
+  // 27 时：规划了三十年的地铁终于通了
+  if (s >= 27) { g += '<path d="M302,290 C310,250 360,200 415,114" fill="none" stroke="var(--red)" stroke-width="2.5"/>'; [[302, 290], [326, 236], [372, 172], [415, 114]].forEach(p => g += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="4" fill="var(--card)" stroke="var(--red)" stroke-width="2"/>'); g += lab(352, 210, '地铁', {s: 11, c: 'var(--red)'}); }
+  // 28 外：通往别的城的高铁和高速
+  if (s >= 28) g += '<path d="M590,300 l-14,-6 v12 Z" fill="var(--ink)"/>' + lab(560, 322, '去省城 · 港口', {s: 10}) + '<path d="M10,300 l14,-6 v12 Z" fill="var(--ink)"/>' + lab(36, 254, '去邻市', {s: 10});
+  // 29 今：宋家四周盖起了楼，宋家的老房子还在
+  if (s >= 29) [[224, 160, 14, 30], [264, 158, 12, 34], [230, 192, 30, 10]].forEach(r => g += '<rect x="' + r[0] + '" y="' + r[1] + '" width="' + r[2] + '" height="' + r[3] + '" fill="var(--main)" fill-opacity=".25" stroke="var(--main)" stroke-width="1.2"/>');
   // 宋家的地
   g += '<rect x="' + (SONG.x - 9) + '" y="' + (SONG.y - 7) + '" width="18" height="14" fill="var(--red)" fill-opacity=".22" stroke="var(--red)" stroke-width="2"/>' + lab(SONG.x, SONG.y - 12, '宋', {s: 14, c: 'var(--red)', w: 1});
   // 指南针

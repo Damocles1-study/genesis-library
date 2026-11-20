@@ -4,6 +4,7 @@
     python3 _build/build.py          # 全部重建
     python3 _build/build.py yes      # 只建一本
     python3 _build/build.py power1 power2 power3   # 《谁说了算》三部
+    python3 _build/build.py city1                  # 《城里城外》第一部
 """
 import os, re, sys
 
@@ -21,6 +22,8 @@ BOOKS = {
     'power1': ('power', 'power/index.html', ['top1.html', 'css.html', 'bar.html'] + ['a%02d.html' % i for i in range(12)]),
     'power2': ('power', 'power/two.html', ['top2.html', 'css.html', 'bar.html'] + ['b%02d.html' % i for i in range(14)]),
     'power3': ('power', 'power/three.html', ['top3.html', 'css.html', 'bar.html'] + ['c%02d.html' % i for i in range(14)]),
+    # 《城里城外》也分三部，脚本拆在 _build/city/js/*.js，按文件名顺序拼接
+    'city1': ('city', 'city/index.html', ['top1.html', 'css.html', 'bar.html'] + ['a%02d.html' % i for i in range(11)]),
 }
 DRAFT = '--draft' in sys.argv  # 写到一半时跳过缺失段落和锚点检查
 
@@ -31,7 +34,11 @@ def build(key):
     if DRAFT:
         parts = [p for p in parts if os.path.exists(os.path.join(src, p))]
     html = ''.join(open(os.path.join(src, p), encoding='utf-8').read() for p in parts)
-    js = open(os.path.join(src, 'app.js'), encoding='utf-8').read()
+    jsdir = os.path.join(src, 'js')
+    if os.path.isdir(jsdir):
+        js = '\n'.join(open(os.path.join(jsdir, f), encoding='utf-8').read() for f in sorted(os.listdir(jsdir)) if f.endswith('.js'))
+    else:
+        js = open(os.path.join(src, 'app.js'), encoding='utf-8').read()
     html += '\n<script>\n' + js + '\n</script>\n</body>\n</html>\n'
 
     # 简单自检：id 不重复、锚点都存在

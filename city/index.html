@@ -1,0 +1,2516 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="城市创世记第一部：城为什么偏偏建在这儿，河、气候、地形和粮食怎样定下一座城的命，方格和弯巷各是怎么来的，城墙、市场、中轴线怎样把城分成里和外。">
+<meta property="og:title" content="城里城外 · 第一部《立城》">
+<meta property="og:description" content="一个渡口怎样长成一座城：选址、水、天、粮、方格、弯巷、城墙、市场、中轴。一万年，整个地球。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='4' fill='%231f5a6b'/%3E%3Cpath d='M6 26V14h5v12M13 26V8h6v18M21 26V12h5v14' fill='none' stroke='%23ece3cf' stroke-width='2'/%3E%3C/svg%3E">
+<title>城里城外 · 第一部</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@500;700&family=Noto+Serif+SC:wght@400;600;700&family=ZCOOL+XiaoWei&display=swap">
+<style>
+/* ZCOOL XiaoWei 把“回”字画成实心方块：这一个字改用系统宋体/黑体，其余字不变 */
+@font-face{font-family:"Hui Fix";unicode-range:U+56DE;src:local("Songti SC"),local("STSongti-SC-Regular"),local("STSong"),local("SimSun"),local("宋体"),local("Noto Serif CJK SC"),local("NotoSerifCJKsc-Regular"),local("Source Han Serif SC"),local("SourceHanSerifSC-Regular"),local("PingFang SC"),local("PingFangSC-Regular"),local("Microsoft YaHei"),local("Noto Sans CJK SC"),local("NotoSansCJKsc-Regular"),local("Droid Sans Fallback")}
+
+/* 版式：一张越画越密的规划图。主色是“蓝图青”——晒图纸的颜色；砖红是城墙，水色是河。
+   每章：章首（四种力）→ 柳渡（虚构，一座渡口小镇一层层长成城）→ 正文 → 别处 → 两把椅子 → 装置 → 你楼下。 */
+:root{
+  --paper:#ece3cf; --paper-2:#e1d6bf; --card:#f3ebda;
+  --ink:#211d1a; --ink-2:#4d463e; --ink-3:#5f574d; --rule:#cdbfa3;
+  --main:#1f5a6b;   /* 蓝图、主色 */
+  --brk:#8e3f22;    /* 砖、墙 */
+  --wat:#a8c2c4;    /* 河水（地图填色） */
+  --fld:#d6cba6;    /* 田（地图填色） */
+  --och:#7a5510;    /* 土、粮、钱 */
+  --red:#983a24;    /* 刀、血、强调 */
+  --blu:#2a4a73;    /* 知识框、思想 */
+  --grn:#3c6a4c;    /* 生活、百姓 */
+  --hl:color-mix(in srgb,#c9a44a 34%,transparent);
+  --c-paper:#f3ebda; --c-ink:#191614; --c-tone:#191614;
+  --f-display:"Hui Fix","ZCOOL XiaoWei","Songti SC","STSong","Noto Serif SC",serif;
+  --f-body:"Noto Serif SC","Songti SC","Source Han Serif SC","STSong",serif;
+  --f-hand:"Ma Shan Zheng","Kaiti SC","STKaiti","KaiTi",cursive;
+  --f-sans:"Noto Sans SC","PingFang SC","Hiragino Sans GB",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#15130f; --paper-2:#1d1a15; --card:#211d17; --ink:#ece3d2; --ink-2:#b9ae9a; --ink-3:#988c79; --rule:#38322a;
+  --main:#8cc5d2; --brk:#e08a68; --wat:#2b4a52; --fld:#3a3426; --och:#d9b45e; --red:#e57b5e; --blu:#9bb6ea; --grn:#8fc2a0;
+  --c-paper:#1d1b18; --c-ink:#ece6da; --c-tone:#ece6da; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#15130f; --paper-2:#1d1a15; --card:#211d17; --ink:#ece3d2; --ink-2:#b9ae9a; --ink-3:#988c79; --rule:#38322a;
+  --main:#8cc5d2; --brk:#e08a68; --wat:#2b4a52; --fld:#3a3426; --och:#d9b45e; --red:#e57b5e; --blu:#9bb6ea; --grn:#8fc2a0;
+  --c-paper:#1d1b18; --c-ink:#ece6da; --c-tone:#ece6da; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+.g{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit;text-decoration-color:var(--main);text-underline-offset:3px}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--main);outline-offset:2px}
+svg{max-width:100%;height:auto;display:block}
+
+/* 页眉 */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+.bar-in{max-width:56rem;margin:0 auto;display:flex;align-items:center;gap:10px;padding-block:8px}
+.bar .home{text-decoration:none;font-size:13px;color:var(--ink-3);white-space:nowrap;border:1px solid var(--rule);border-radius:999px;padding:1px 9px}
+.bar .name{font-family:var(--f-display);font-size:19px;letter-spacing:.05em;white-space:nowrap;text-decoration:none}
+.bar .parts{display:flex;gap:2px}
+.bar .parts a{font-size:12.5px;text-decoration:none;color:var(--ink-3);padding:0 6px;border-radius:4px;white-space:nowrap}
+.bar .parts a.on{background:var(--main);color:var(--paper)}
+.bar .vol{margin-left:auto;font-size:13px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.bar .tocbtn{border:1px solid var(--rule);background:transparent;border-radius:6px;padding:0 8px;font-size:13px;cursor:pointer;color:var(--ink-2);white-space:nowrap}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;background:var(--main);width:0}
+.drawer{position:fixed;inset:0;z-index:40;display:none}
+.drawer.on{display:block}
+.drawer .mask{position:absolute;inset:0;background:rgba(0,0,0,.35)}
+.drawer .panel{position:absolute;right:0;top:0;bottom:0;width:min(370px,90vw);background:var(--paper);border-left:1px solid var(--rule);overflow:auto;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px))}
+.drawer h5{font-family:var(--f-display);font-weight:400;font-size:20px;margin:0 0 10px}
+.drawer ol{list-style:none;margin:0;padding:0}
+.drawer li.ph{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.16em;color:var(--main);padding:14px 0 2px}
+.drawer li.vh{font-size:12px;color:var(--ink-3);padding:8px 0 0;letter-spacing:.1em}
+.drawer li a{display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--rule);text-decoration:none;font-size:15px;line-height:1.5}
+.drawer li a .n{font-family:var(--f-display);font-size:18px;color:var(--main);min-width:1.6em;text-align:center}
+.drawer li a small{display:block;color:var(--ink-3);font-size:12px}
+.drawer li a.here .n{background:var(--main);color:var(--paper);border-radius:4px}
+.drawer .x{position:absolute;right:12px;top:10px;border:0;background:transparent;font-size:22px;cursor:pointer;color:var(--ink-2)}
+
+main{display:block}
+.col{max-width:38rem;margin-inline:auto}
+.wide{max-width:54rem;margin-inline:auto}
+.col p{margin:0 0 1.05em;text-indent:2em}
+.col p.ni,.col .ni{text-indent:0}
+h2,h3,h4{text-wrap:balance}
+h3{font-family:var(--f-display);font-weight:400;font-size:24px;line-height:1.4;margin:2.2em 0 .7em;letter-spacing:.03em}
+h3 .y{font-family:var(--f-mono);font-size:13px;color:var(--ink-3);margin-left:10px;letter-spacing:0;white-space:nowrap}
+em{font-style:normal;background:linear-gradient(transparent 62%,var(--hl) 62%)}
+strong{font-weight:600}
+blockquote{margin:1.4em 0;padding:.2em 0 .2em 1.2em;border-left:2px solid var(--och);color:var(--ink-2)}
+blockquote p{text-indent:0!important;margin:0 0 .4em}
+blockquote cite{font-style:normal;font-size:14px;color:var(--ink-3)}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.figcap{font-size:14px;color:var(--ink-2);line-height:1.7;margin-top:8px}
+.sep{text-align:center;color:var(--och);letter-spacing:1.2em;margin:2em 0;text-indent:1.2em!important;font-size:14px}
+ul.plain{font-size:16px;line-height:1.9;padding-left:1.4em}
+ul.plain li{margin:0 0 .35em}
+
+/* 封面 */
+.hero{padding-block:36px 20px}
+.hero .eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;color:var(--ink-3)}
+.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(60px,14vw,124px);line-height:1;margin:.25em 0 .2em;letter-spacing:.1em}
+.hero h1 .sm{display:block;font-size:.19em;letter-spacing:.3em;color:var(--ink-2);margin-top:.6em}
+.hero .part{display:inline-block;font-family:var(--f-display);font-size:22px;color:var(--main);border:1.5px solid var(--main);border-radius:4px;padding:0 10px;margin-bottom:6px;letter-spacing:.1em}
+.hero p.lead{font-size:18px;max-width:36em;margin:0 0 1em}
+.partnav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:24px 0}
+.partnav a{display:block;text-decoration:none;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;background:var(--card);line-height:1.5}
+.partnav a b{display:block;font-family:var(--f-display);font-weight:400;font-size:20px}
+.partnav a small{font-size:12.5px;color:var(--ink-3)}
+.partnav a.on{border-color:var(--main);box-shadow:inset 0 0 0 1px var(--main)}
+.partnav a .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;color:var(--main)}
+
+/* 六张脸 */
+.cast{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin:14px 0}
+.cast figure{margin:0;text-align:center;background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:6px 4px 8px}
+.cast svg{width:100%;max-width:120px;margin:auto;color:var(--c-ink)}
+.cast b{display:block;font-family:var(--f-display);font-weight:400;font-size:19px;line-height:1.2}
+.cast small{display:block;font-size:12px;color:var(--ink-3);line-height:1.4}
+.eras{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 2px}
+
+/* 目录 */
+.toc{list-style:none;margin:20px 0 0;padding:0;border-top:1px solid var(--rule)}
+.toc li a{display:grid;grid-template-columns:2.6em minmax(0,1fr) auto;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--rule);text-decoration:none}
+.toc .n{font-family:var(--f-display);font-size:28px;line-height:1;color:var(--main);text-align:center}
+.toc .t{font-family:var(--f-display);font-size:21px;line-height:1.3}
+.toc .t small{display:block;font-family:var(--f-body);font-size:13px;color:var(--ink-3);margin-top:2px}
+.toc .r{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);text-align:right;white-space:nowrap}
+.toc li a:hover .t{color:var(--main)}
+.toc .vh{padding:16px 0 4px;font-family:var(--f-mono);font-size:12px;letter-spacing:.16em;color:var(--ink-3);border-bottom:1px solid var(--rule)}
+.toc li.away a{opacity:.82}
+.toc li.away .r::after{content:" ↗";color:var(--main)}
+.qmap{list-style:none;margin:0;padding:0;columns:2 17em;column-gap:28px}
+.qmap li{break-inside:avoid;margin:0 0 .5em;font-size:15.5px;line-height:1.65}
+.qmap a{text-decoration:none;border-bottom:1px dashed var(--ink-3)}
+.qmap a:hover{color:var(--main)}
+.qmap b{font-family:var(--f-display);font-weight:400;color:var(--main);margin-left:4px}
+
+/* 卷首 */
+.volhead{position:relative;max-width:54rem;margin:64px auto 20px;padding:30px 22px 24px;border-top:3px double var(--ink);border-bottom:3px double var(--ink);overflow:hidden}
+.volhead .num{font-family:var(--f-mono);font-size:12px;letter-spacing:.24em;color:var(--main)}
+.volhead h2{font-family:var(--f-display);font-weight:400;font-size:clamp(64px,16vw,124px);line-height:1;margin:.1em 0 .12em;letter-spacing:.1em}
+.volhead h2 small{font-size:.24em;letter-spacing:.2em;color:var(--ink-2);margin-left:.4em}
+.volhead .lede{max-width:32em;margin:6px 0 0;font-size:16px;color:var(--ink-2);line-height:1.8}
+.volhead .pyr{position:absolute;right:-10px;bottom:-4px;width:190px;opacity:.9;pointer-events:none}
+
+/* 章首 */
+section.chap{padding-top:24px}
+.chead{position:relative;max-width:54rem;margin:46px auto 26px;padding:20px 22px 18px;display:grid;grid-template-columns:96px minmax(0,1fr);gap:20px;align-items:start;background:var(--paper-2);border-radius:10px;border:1px solid var(--rule)}
+.chead .big{font-family:var(--f-display);font-size:84px;line-height:1;color:var(--main);text-align:center;border:2px solid var(--main);border-radius:8px;padding:4px 0 8px;background:var(--card)}
+.chead .no{font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;color:var(--main)}
+.chead h2{font-family:var(--f-display);font-weight:400;font-size:clamp(32px,7vw,50px);line-height:1.15;margin:.08em 0 .2em;letter-spacing:.06em}
+.chead dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 14px;margin:6px 0 0;font-size:14.5px;line-height:1.7}
+.chead dt{color:var(--ink-3);white-space:nowrap}
+.chead dd{margin:0;color:var(--ink-2)}
+.where{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.where span{font-size:12px;line-height:1.6;border:1px solid var(--rule);border-radius:4px;padding:0 6px;color:var(--ink-3);background:var(--paper)}
+.where span.on{border-color:var(--main);color:var(--main);background:color-mix(in srgb,var(--main) 8%,var(--paper));font-weight:600}
+
+/* 你问的 */
+.ask{margin:1.6em 0;padding:12px 16px 4px;border-radius:8px;background:var(--card);border:1px solid var(--rule)}
+.ask .q{font-family:var(--f-display);font-size:19px;line-height:1.5;margin:0 0 .4em;text-indent:0!important}
+.ask .q::before{content:"有人问";font-family:var(--f-sans);font-size:11.5px;letter-spacing:.14em;color:var(--paper);background:var(--main);border-radius:3px;padding:1px 6px;margin-right:8px;vertical-align:3px}
+.ask p{text-indent:0!important;font-size:15.5px;line-height:1.8;margin:0 0 .7em;color:var(--ink-2)}
+
+/* 河湾：虚构的小地方 */
+.river{margin:1.8em 0 2em;padding:16px 18px 6px;border:1.5px dashed var(--och);border-radius:10px;position:relative;background:color-mix(in srgb,var(--och) 4%,var(--paper))}
+.river::before{content:attr(data-t);position:absolute;top:-12px;left:14px;background:var(--paper);padding:0 8px;font-size:13px;letter-spacing:.12em;color:var(--och);font-weight:600}
+.river::after{content:"虚构";position:absolute;top:-10px;right:14px;background:var(--paper);padding:0 6px;font-size:11px;letter-spacing:.2em;color:var(--ink-3);border:1px solid var(--rule);border-radius:3px;line-height:1.5}
+.river p{text-indent:0!important;font-size:16px;line-height:1.85}
+.river .nm{font-weight:600;color:var(--och)}
+
+/* 别处：同一件事在地球的不同地方 */
+.globe{margin:2em auto;max-width:54rem}
+.globe .gh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;border-bottom:1.5px solid var(--ink);padding-bottom:4px;margin-bottom:10px}
+.globe .gh b{font-family:var(--f-display);font-weight:400;font-size:22px;letter-spacing:.06em}
+.globe .gh span{font-size:13px;color:var(--ink-3)}
+.globe .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(15.5em,1fr));gap:10px}
+.rg{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:10px 13px 8px;font-size:15px;line-height:1.75}
+.rg h6{margin:0 0 4px;font-family:var(--f-display);font-weight:400;font-size:18px;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.rg h6 small{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);white-space:nowrap}
+.rg p{margin:0 0 .5em;text-indent:0!important}
+
+/* 告示 · 白话：讽刺栏 */
+.spin{margin:2em 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:1.5px solid var(--ink);border-radius:6px;overflow:hidden;background:var(--card)}
+.spin>div{padding:12px 16px 10px;font-size:15.5px;line-height:1.8}
+.spin>div p{text-indent:0!important;margin:0 0 .5em}
+.spin .off{font-family:var(--f-display);font-size:17px;letter-spacing:.04em;background:color-mix(in srgb,var(--main) 6%,var(--card))}
+.spin .plain{border-left:1.5px solid var(--ink)}
+.spin i{display:block;font-style:normal;font-family:var(--f-sans);font-size:11.5px;letter-spacing:.2em;color:var(--main);margin-bottom:4px}
+.spin .plain i{color:var(--grn)}
+.spin .src{grid-column:1 / -1;border-top:1px dashed var(--rule);font-size:12.5px;color:var(--ink-3);padding:4px 16px 6px}
+
+/* 那时的一天 */
+.life{margin:2em 0;padding:14px 16px 6px;border-radius:8px;border-left:4px solid var(--grn);background:color-mix(in srgb,var(--grn) 6%,var(--card))}
+.life h5{margin:0 0 .3em;font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--grn)}
+.life h5 small{font-family:var(--f-mono);font-size:12px;color:var(--ink-3);margin-left:8px}
+.life p{text-indent:0!important;font-size:15.5px;line-height:1.8;margin:0 0 .7em}
+
+/* 蓝框 */
+.box{margin:2em 0;padding:16px 18px 8px;border-radius:8px;border:1.5px solid var(--blu);background:color-mix(in srgb,var(--blu) 6%,var(--paper))}
+.box h5{margin:.1em 0 .5em;font-family:var(--f-display);font-weight:400;font-size:21px;color:var(--blu);letter-spacing:.04em}
+.box p{text-indent:0!important;margin:0 0 .8em;font-size:16px;line-height:1.85}
+.box ul,.box ol{margin:0 0 .8em;padding-left:1.2em;font-size:16px;line-height:1.85}
+.box li{margin:0 0 .3em}
+
+/* 眉批 */
+.echo{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;margin:1.6em 0;padding:14px 14px 10px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.echo .stamp{writing-mode:vertical-rl;font-family:var(--f-display);font-size:15px;color:var(--red);border:1.5px solid var(--red);border-radius:3px;padding:6px 2px;letter-spacing:.2em;align-self:start}
+.echo[data-k="存疑"] .stamp{color:var(--ink-3);border-color:var(--ink-3)}
+.echo[data-k="联系"] .stamp{color:var(--och);border-color:var(--och)}
+.echo[data-k="生活"] .stamp{color:var(--grn);border-color:var(--grn)}
+.echo[data-k="押韵"] .stamp{color:var(--blu);border-color:var(--blu)}
+.echo[data-k="讽刺"] .stamp{color:var(--main);border-color:var(--main)}
+.echo p{text-indent:0!important;margin:0 0 .5em;font-size:15.5px;line-height:1.8}
+.echo .rh{font-family:var(--f-display);font-size:18px;margin-bottom:.2em}
+
+/* 章末：史 / 世 */
+.seal{margin:2.6em 0 1em;border:1.5px solid var(--ink);border-radius:6px;background:var(--card);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);overflow:hidden}
+.seal>div{padding:12px 16px 14px;font-size:15.5px;line-height:1.75}
+.seal>div+div{border-left:1.5px solid var(--ink)}
+.seal i{display:block;font-style:normal;font-family:var(--f-display);font-size:22px;letter-spacing:.2em;margin-bottom:2px;color:var(--main)}
+.seal>div+div i{color:var(--grn)}
+.seal i small{font-family:var(--f-body);font-size:12px;letter-spacing:.1em;color:var(--ink-3);margin-left:6px}
+
+/* 装置 */
+.fig{margin:2.2em auto;padding:20px 18px;background:var(--card);border:1px solid var(--rule);border-radius:6px}
+.fig-label{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.12em;color:var(--main)}
+.fig h4{font-family:var(--f-display);font-weight:400;font-size:22px;margin:.25em 0 .35em}
+.fig .how{font-size:14.5px;color:var(--ink-2);margin:0 0 14px;line-height:1.75}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.btn{border:1px solid var(--ink-3);background:transparent;border-radius:999px;padding:4px 14px;font-size:14px;cursor:pointer;line-height:1.6;color:var(--ink)}
+.btn:hover{border-color:var(--ink)}
+.btn.pri{background:var(--main);color:var(--paper);border-color:var(--main)}
+.btn.on{background:var(--main);border-color:var(--main);color:var(--paper)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.readout{font-size:14.5px;color:var(--ink-2);line-height:1.75;min-height:1.5em}
+.readout b{color:var(--ink)}
+.say{background:var(--paper);border-left:3px solid var(--och);padding:8px 12px;margin:10px 0;font-size:15px;line-height:1.75;min-height:3.2em}
+.say.ok{border-left-color:var(--grn)}.say.bad{border-left-color:var(--red)}
+input[type=range]{width:100%;accent-color:var(--main)}
+.ctl{display:grid;grid-template-columns:7em minmax(0,1fr) 6.5em;gap:10px;align-items:center;font-size:14px;color:var(--ink-2);margin:4px 0}
+.ctl output{font-family:var(--f-mono);font-size:13px;color:var(--ink);text-align:right;white-space:nowrap}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(9em,1fr));gap:8px;margin:10px 0}
+.kv div{background:var(--paper);border-radius:6px;padding:6px 10px;font-size:12.5px;color:var(--ink-3);line-height:1.5}
+.kv b{display:block;font-family:var(--f-mono);font-weight:500;font-size:18px;color:var(--ink)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:center}
+.lab{font-size:12.5px;color:var(--ink-3);letter-spacing:.08em;margin:8px 0 4px}
+.chip{display:inline-block;font-size:12px;border:1px solid var(--rule);border-radius:4px;padding:0 6px;color:var(--ink-3);margin:0 4px 4px 0}
+.fig text{font-family:var(--f-sans)}
+.fig .mono{font-family:var(--f-mono)}
+select{border:1px solid var(--ink-3);border-radius:6px;background:var(--paper);padding:2px 6px;font-size:14px}
+label.ck{display:inline-flex;gap:6px;align-items:center;font-size:14px;color:var(--ink-2);margin:2px 12px 2px 0;cursor:pointer}
+label.ck input{accent-color:var(--main)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--ink-2);margin:6px 0}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:0}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(14em,1fr));gap:8px;margin:10px 0}
+.cards .cd{background:var(--paper);border-radius:6px;padding:8px 11px;font-size:14px;line-height:1.65;border:1px solid transparent}
+.cards .cd b{display:block;font-family:var(--f-display);font-weight:400;font-size:17px}
+.cards .cd small{color:var(--ink-3)}
+.cards .cd.on{border-color:var(--main)}
+
+/* 漫画 */
+.comic{max-width:54rem;margin:2em auto;padding:14px;background:var(--c-paper);border:2px solid var(--c-ink);color:var(--c-ink)}
+.comic .ctitle{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px 12px;border-bottom:2px solid var(--c-ink);padding-bottom:6px;margin-bottom:12px}
+.comic .ctitle b{font-family:var(--f-display);font-weight:400;font-size:26px;letter-spacing:.12em}
+.comic .ctitle span{font-family:var(--f-sans);font-size:12px;letter-spacing:.1em}
+.comic .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.pn{position:relative;border:2.5px solid var(--c-ink);background:var(--c-paper);overflow:hidden;container-type:inline-size;aspect-ratio:300/230}
+.pn.w{grid-column:span 2;aspect-ratio:600/250}
+.pn svg{position:absolute;inset:0;width:100%;height:100%;max-width:none;color:var(--c-ink)}
+.pn .cap{position:absolute;left:0;top:0;max-width:62%;background:var(--c-paper);border-right:2px solid var(--c-ink);border-bottom:2px solid var(--c-ink);font-family:var(--f-sans);font-weight:500;font-size:clamp(10.5px,4.1cqw,15px);line-height:1.45;padding:4px 8px;z-index:2}
+.pn .cap.br{left:auto;top:auto;right:0;bottom:0;border:0;border-left:2px solid var(--c-ink);border-top:2px solid var(--c-ink)}
+.pn .bb{position:absolute;z-index:3;background:var(--c-paper);border:2px solid var(--c-ink);border-radius:50%/42%;padding:.5em .85em;font-family:var(--f-sans);font-weight:500;font-size:clamp(10.5px,4.2cqw,16px);line-height:1.45;text-align:center;color:var(--c-ink)}
+.pn.w .bb{font-size:clamp(10.5px,2.5cqw,16px)}
+.pn.w .cap{font-size:clamp(10.5px,2.4cqw,15px)}
+.pn .bb::after{content:"";position:absolute;width:14px;height:14px;background:var(--c-paper);border-right:2px solid var(--c-ink);border-bottom:2px solid var(--c-ink);bottom:-8px;left:30%;transform:skewX(30deg) rotate(45deg)}
+.pn .bb.tr::after{left:auto;right:28%;transform:skewX(-30deg) rotate(45deg)}
+.pn .bb.nt::after{display:none}
+.pn .bb.shout{border-radius:6px;border-width:2.5px;font-weight:700}
+.pn .bb.think{border-style:dashed}
+.pn .sfx{position:absolute;z-index:2;font-family:var(--f-sans);font-weight:700;font-size:clamp(14px,7cqw,30px);color:var(--c-ink);transform:rotate(-8deg);letter-spacing:.05em;text-shadow:2px 2px 0 var(--c-paper),-2px -2px 0 var(--c-paper),2px -2px 0 var(--c-paper),-2px 2px 0 var(--c-paper)}
+.comic .after{font-family:var(--f-sans);font-size:13px;margin:10px 0 0;opacity:.8;line-height:1.7}
+
+/* 表 */
+table.t{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.6;min-width:520px}
+table.t th,table.t td{border-bottom:1px solid var(--rule);padding:7px 8px;text-align:left;vertical-align:top}
+table.t th{font-weight:400;color:var(--ink-3);font-size:13px}
+.src{font-size:14.5px;line-height:1.8;color:var(--ink-2)}
+.src li{margin:0 0 .5em}
+
+/* 本部完 */
+.partend{max-width:38rem;margin:70px auto 0;text-align:center}
+.partend .k{font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;color:var(--main)}
+.partend h3{margin:.3em 0 .6em}
+.partend a.go{display:inline-block;margin-top:8px;padding:8px 18px;border:1.5px solid var(--main);border-radius:999px;text-decoration:none;color:var(--main);font-family:var(--f-display);font-size:19px}
+footer{max-width:38rem;margin:60px auto 0;padding:24px 0 calc(40px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--rule);font-size:14px;color:var(--ink-3);line-height:1.8}
+footer p{text-indent:0!important}
+.nextbook{display:block;margin:20px 0;padding:14px 16px;border:1px solid var(--rule);border-radius:6px;text-decoration:none;background:var(--card)}
+.nextbook b{font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--ink)}
+
+/* ===== 装置专用 ===== */
+.pixels{display:grid;gap:3px;margin:10px 0}
+.pixels span{aspect-ratio:1;border-radius:3px;background:var(--paper);border:1px solid var(--rule)}
+.bars{display:grid;gap:5px;margin:10px 0}
+.bars .row{display:grid;grid-template-columns:7.5em minmax(0,1fr) 4.2em;gap:8px;align-items:center;font-size:13.5px}
+.bars .row .nm{color:var(--ink-2);line-height:1.3}
+.bars .row .nm small{display:block;font-size:11px;color:var(--ink-3)}
+.bars .tr{position:relative;height:18px;background:var(--paper);border-radius:3px;overflow:hidden}
+.bars .tr i{position:absolute;left:0;top:0;bottom:0;background:var(--main);border-radius:3px;transition:width .4s}
+.bars .row .v{font-family:var(--f-mono);font-size:12px;color:var(--ink);text-align:right;white-space:nowrap}
+.tl{position:relative}
+.tl .track{display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:8px;align-items:center;font-size:13px;margin:3px 0}
+.tl .track .nm{color:var(--ink-2);line-height:1.25}
+.tl .lane{position:relative;height:22px;background:var(--paper);border-radius:3px}
+.tl .lane i{position:absolute;top:3px;width:14px;height:14px;margin-left:-7px;border-radius:50%;border:2px solid var(--card)}
+.tl .lane i.f{background:var(--grn)}.tl .lane i.c{background:var(--och)}.tl .lane i.s{background:var(--main)}.tl .lane i.w{background:var(--blu);border-radius:2px}
+.tl .axis{display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:8px;font-family:var(--f-mono);font-size:10.5px;color:var(--ink-3)}
+.tl .axis div:nth-child(2){position:relative;height:16px}
+.tl .axis span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+
+
+/* ===== 《城里城外》专用 ===== */
+/* 四种力：天（自然）外（外来需求）内（内部需求）时（时间差） */
+.force{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+.force span{font-size:12px;line-height:1.6;border:1px solid var(--rule);border-radius:4px;padding:0 7px;color:var(--ink-3);background:var(--paper)}
+.force span b{font-family:var(--f-display);font-weight:400;font-size:14px;margin-right:3px}
+.force span.on{border-color:var(--main);color:var(--main);background:color-mix(in srgb,var(--main) 9%,var(--paper));font-weight:600}
+.fourf{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:12px 0}
+.fourf div{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:8px 10px;font-size:14px;line-height:1.6}
+.fourf b{display:block;font-family:var(--f-display);font-weight:400;font-size:30px;line-height:1.1;color:var(--main)}
+.fourf small{color:var(--ink-3);font-size:12.5px}
+
+/* 柳渡：虚构的渡口小镇 */
+.liudu{margin:1.8em 0 2em;padding:16px 18px 6px;border:1.5px dashed var(--och);border-radius:10px;position:relative;background:color-mix(in srgb,var(--och) 4%,var(--paper))}
+.liudu::before{content:attr(data-t);position:absolute;top:-12px;left:14px;background:var(--paper);padding:0 8px;font-size:13px;letter-spacing:.12em;color:var(--och);font-weight:600}
+.liudu::after{content:"虚构";position:absolute;top:-10px;right:14px;background:var(--paper);padding:0 6px;font-size:11px;letter-spacing:.2em;color:var(--ink-3);border:1px solid var(--rule);border-radius:3px;line-height:1.5}
+.liudu p{text-indent:0!important;font-size:16px;line-height:1.85}
+.liudu .nm{font-weight:600;color:var(--och)}
+.liudu .mo{font-weight:600;color:var(--main)}
+.town{margin:1.4em auto;max-width:54rem;background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:10px 10px 6px}
+.town svg{width:100%;color:var(--ink)}
+.town .tcap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:2px 12px;font-size:13px;color:var(--ink-3);padding:4px 4px 0;line-height:1.6}
+.town .tcap b{font-family:var(--f-display);font-weight:400;font-size:17px;color:var(--ink)}
+.town text{font-family:var(--f-sans)}
+
+/* 两把椅子：图纸上 / 楼下 */
+.seats{margin:2em 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:1.5px solid var(--ink);border-radius:6px;overflow:hidden;background:var(--card)}
+.seats>div{padding:12px 16px 8px;font-size:15.5px;line-height:1.8}
+.seats>div p{text-indent:0!important;margin:0 0 .6em}
+.seats .up{background:color-mix(in srgb,var(--main) 6%,var(--card))}
+.seats .dn{border-left:1.5px solid var(--ink);background:color-mix(in srgb,var(--grn) 5%,var(--card))}
+.seats i{display:flex;align-items:center;gap:6px;font-style:normal;font-family:var(--f-sans);font-size:12px;letter-spacing:.18em;color:var(--main);margin-bottom:6px}
+.seats .dn i{color:var(--grn)}
+.seats i svg{width:18px;height:18px;display:inline-block}
+.seats .both{grid-column:1 / -1;border-top:1px dashed var(--rule);font-size:14.5px;color:var(--ink-2);padding:8px 16px 6px}
+
+/* 章末：你楼下 */
+.yours{margin:2.6em 0 1em;border:1.5px solid var(--ink);border-radius:6px;background:var(--card);padding:12px 16px 6px;position:relative}
+.yours>i{display:inline-block;font-style:normal;font-family:var(--f-display);font-size:21px;letter-spacing:.2em;color:var(--grn);margin-bottom:2px}
+.yours>i small{font-family:var(--f-body);font-size:12px;letter-spacing:.1em;color:var(--ink-3);margin-left:8px}
+.yours .q{font-family:var(--f-display);font-size:18.5px;line-height:1.5;margin:.2em 0 .4em;text-indent:0!important}
+.yours p{text-indent:0!important;font-size:15.5px;line-height:1.8;margin:0 0 .7em;color:var(--ink-2)}
+.yours .lk{font-size:13.5px;color:var(--ink-3)}
+
+/* 卷首天际线 */
+.volhead .sky{position:absolute;right:-6px;bottom:-2px;width:230px;opacity:.85;pointer-events:none;color:var(--main)}
+.toc li.soon .t,.toc li.soon .n{opacity:.55}
+.toc li.soon>div{display:grid;grid-template-columns:2.6em minmax(0,1fr) auto;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--rule)}
+.toc li.soon .r::after{content:" · 写作中";color:var(--main)}
+.qmap li.soon{color:var(--ink-3)}
+.qmap li.soon::after{content:" · 写作中";font-size:12px}
+.map-pick{cursor:crosshair;touch-action:manipulation}
+.stack{display:grid;gap:2px;margin:8px 0}
+.dig .lay{display:flex;justify-content:space-between;gap:8px;font-size:13px;padding:3px 8px;border-radius:3px}
+
+@media (max-width:700px){
+  .seats{grid-template-columns:minmax(0,1fr)}
+  .seats .dn{border-left:0;border-top:1.5px solid var(--ink)}
+  .fourf{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .volhead .sky{width:140px;opacity:.4}
+  .toc li.soon>div{grid-template-columns:2.2em minmax(0,1fr)}
+  .toc li.soon .r{grid-column:2;text-align:left}
+  body{font-size:16.5px}
+  .two,.spin{grid-template-columns:minmax(0,1fr)}
+  .spin .plain{border-left:0;border-top:1.5px solid var(--ink)}
+  .toc li a{grid-template-columns:2.2em minmax(0,1fr)}
+  .toc .r{grid-column:2;text-align:left}
+  .bar .vol{display:none}
+  .bar .parts a{padding:0 4px}
+  .chead{grid-template-columns:58px minmax(0,1fr);gap:14px;padding:16px 14px}
+  .chead .big{font-size:46px;padding:2px 0 6px}
+  .volhead .pyr{width:120px;opacity:.45}
+  .ctl{grid-template-columns:5.5em minmax(0,1fr)}
+  .ctl output{grid-column:1 / -1;text-align:left;margin-top:-6px}
+  .cast{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .partnav{grid-template-columns:minmax(0,1fr)}
+  .comic{padding:10px}
+  .comic .grid{grid-template-columns:minmax(0,1fr)}
+  .pn.w{grid-column:auto;aspect-ratio:600/330}
+  .pn.w .bb{font-size:clamp(10.5px,3.6cqw,15px)}
+  .pn.w .cap{font-size:clamp(10.5px,3.5cqw,14px)}
+  .bars .row{grid-template-columns:5.6em minmax(0,1fr) 3.6em;gap:6px}
+  .tl .track,.tl .axis{grid-template-columns:4em minmax(0,1fr)}
+}
+@media (max-width:480px){
+  .seal{grid-template-columns:minmax(0,1fr)}
+  .seal>div+div{border-left:0;border-top:1.5px solid var(--ink)}
+  .bar .name{font-size:17px}
+}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="bar-in g">
+    <a class="home" href="../" title="回创世书房">书房</a>
+    <a class="name" href="./">城里城外</a>
+    <nav class="parts" aria-label="三部">
+      <a href="./" data-p="1">一</a><a href="two.html" data-p="2">二</a><a href="three.html" data-p="3">三</a>
+    </nav>
+    <span class="vol" id="barVol">序</span>
+    <button class="tocbtn" id="tocBtn" aria-label="打开目录">目录</button>
+  </div>
+  <div class="progress" id="prog"></div>
+</header>
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="mask" data-close></div>
+  <nav class="panel" aria-label="目录">
+    <button class="x" data-close aria-label="关闭">×</button>
+    <h5>全书目录</h5>
+    <ol id="drawerList"></ol>
+  </nav>
+</div>
+<main class="g">
+<!-- ============ 封面 · 第一部 ============ -->
+<section class="hero" data-vol="序" id="top">
+  <div class="wide">
+    <div class="eyebrow">INSIDE &amp; OUTSIDE · 一万年 · 整个地球 · 城市创世记</div>
+    <h1>城里城外<span class="sm">城市创世记</span></h1>
+    <span class="part">第一部 · 立城</span>
+    <p class="lead">你每天走过的那条路，为什么偏偏是这个宽度、往这个方向拐？地铁站为什么在那儿，不在你家门口？医院、派出所、垃圾站、火葬场、收费站，各自凭什么占了那块地？为什么老城区的巷子七拐八绕，新区的马路横平竖直？</p>
+    <p class="lead">一座城的样子，是很多股力气扯出来的。老天给的地形和河流；外面要它干的事，打仗、运粮、做买卖；城里的人要的东西，喝水、上学、看病、睡个安稳觉；还有时间，<em>一百年前画对的图，一百年后可能刚好画错</em>。</p>
+    <p class="lead">这本书想从第一个渡口讲起，一直讲到你楼下：城是怎样被选址、被画出骨架、被塞进五脏六腑、被一次次拆了重画的；画图的人在想什么，住在图上的人又在想什么。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig" id="eraFig">
+      <div class="fig-label">封面装置</div>
+      <h4>柳渡，一层一层</h4>
+      <p class="how">拖动滑块。下面这张图是虚构的小城<b>柳渡</b>，每往右拖一格，就往后跳几百上千年，多画一层。红框是宋家那块地，一万年没挪过窝。右边是同一时期地球上真实的大城。第一部讲到“中轴”这一层，后两部还会接着往上画。</p>
+      <div class="ctl"><span>年代</span><input type="range" id="eraR" min="0" max="8" value="0" step="1"><output id="eraO"></output></div>
+      <div class="town" style="margin:8px 0;padding:6px"><svg id="eraTown" aria-label="柳渡地图"></svg></div>
+      <div class="kv" id="eraKV"></div>
+      <div class="say" id="eraSay"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>四种力</h3>
+    <p>这本书拿四个字给城里的每一样东西“把脉”。每章开头会亮起其中几个，告诉你这一章主要是哪几股力气在扯：</p>
+  </div>
+  <div class="wide">
+    <div class="fourf">
+      <div><b>天</b>自然<br><small>河往哪流、地有多高、冬天多冷、会不会地震。老天先给了一张底图。</small></div>
+      <div><b>外</b>外来需求<br><small>城外的人要这座城干什么：守边、收粮、过路、做买卖、当首都。</small></div>
+      <div><b>内</b>内部需求<br><small>城里的人要什么：水、厕所、看病、上学、安全、离上班近一点。</small></div>
+      <div><b>时</b>时间差<br><small>城是慢的，需求是快的。按马车画的路，迟早要跑汽车。</small></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>两把椅子</h3>
+    <p>城市规划里永远有两拨人。一拨坐在<b style="color:var(--main)">图纸</b>前，看的是整座城：路网通不通、水够不够、三十年后人往哪儿长。另一拨住在<b style="color:var(--grn)">楼下</b>，看的是自家门口：拆不拆我的房，垃圾站离我多远，孩子上哪个学校。</p>
+    <p>很容易觉得画图的人站得高看得远，住楼下的人只顾自己的一亩三分地。这本书想反过来多问一句：<em>每个人只顾自己那块地，在他的位置上往往是算得过来的</em>；麻烦在于每个人都算对了，加起来却可能是一团乱麻。而画图的人也常常栽大跟头，图纸漂亮，住进去才发现不对。</p>
+    <p>所以每一章都有一个“两把椅子”的框：左边坐在图纸前，右边搬个小板凳坐到楼下。在柳渡，画图的人不管哪个朝代都被叫作<b style="color:var(--main)">墨</b>（木匠弹墨线的墨）；住楼下的是<b style="color:var(--grn)">宋家</b>，祖祖辈辈守着渡口北岸那块一亩三分地。墨和宋都不是同一个人活了一万年，而是两个位置，每个时代都有人坐上去。</p>
+
+    <h3>这本书怎么读</h3>
+    <p>全书分三部，三个网页，页眉上的“一 二 三”可以来回跳，右上角的“目录”是全书的。</p>
+    <ul class="plain">
+      <li><b>第一部 · 立城</b>：城为什么建在这儿；水、气候、地形、粮食怎样定下它的命；方格、弯巷、城墙、市场、中轴，城的骨架怎么来的。</li>
+      <li><b>第二部 · 城里</b>：下水道、医院、消防、警察、学校、收费站、墓地、公园，一样样“公家的房子”怎样诞生、放在哪儿；路、铁轨和汽车怎样改写城。</li>
+      <li><b>第三部 · 城外</b>：臭的、吵的、穷的怎样被一次次搬走；规划师的大手笔和它们的反面；一亩三分地、时间差、城和城外的关系；最后回到柳渡和你楼下。</li>
+    </ul>
+    <p>每一章大致由这些东西拼成：</p>
+    <ul class="plain">
+      <li><b>章首</b>：一个大字，加“四种力”，亮起来的是这一章的主角。</li>
+      <li><b>有人问</b>：这一章要回答的问题，先给一句短答。</li>
+      <li><b>柳渡</b>（土黄虚线框，<span style="color:var(--och)">虚构</span>）：那个时代的柳渡长成了什么样，墨和宋家各自遇上了什么事。配一张地图。</li>
+      <li><b>正文</b>：地球上真实发生过的事。史实尽量核对，拿不准的写“约”“据说”，有争议的标“存疑”。</li>
+      <li><b>别处</b>：同一件事，在世界不同地方怎样各走各路。</li>
+      <li><b>两把椅子</b>：图纸上怎么想，楼下怎么想。</li>
+      <li><b>眉批</b>：<span style="color:var(--blu)">押韵</span>是隔着千年撞了韵；<span style="color:var(--main)">讽刺</span>是忍不住的一句；<span style="color:var(--och)">联系</span>是和书房别的书有关；<span style="color:var(--ink-3)">存疑</span>是学界还在吵；<span style="color:var(--grn)">生活</span>是和你今天有什么关系。</li>
+      <li><b>装置</b>：每章至少一个能动手的东西：选址、挖城、量楼距、画方格、赶集……</li>
+      <li><b>你楼下</b>：章末一张卡，把这一章的道理落到你每天看得见的地方。</li>
+    </ul>
+    <p>这本书不替哪一种规划流派说话。方格不一定比弯巷好，拆不一定比留错，“以人为本”四个字谁都会说。它只想让你下次走在街上时，能多看出一层：这条路为什么在这儿，当初是谁、为了什么、在什么约束下这么画的，现在又为什么不合适了。</p>
+
+    <div class="partnav">
+      <a href="./" class="on"><span class="k">第一部</span><b>立城</b><small>序幕 + 卷一 地 + 卷二 骨 · 九章</small></a>
+      <a><span class="k">第二部 · 写作中</span><b>城里</b><small>卷三 脏 + 卷四 公家的房子 + 卷五 走 · 十一章</small></a>
+      <a><span class="k">第三部 · 写作中</span><b>城外</b><small>卷六 搬家 + 卷七 大手笔 + 卷八 地与时 + 尾声 · 十章</small></a>
+    </div>
+
+    <div class="box" style="margin-top:1.8em">
+      <h5>你可能想问的，在这里</h5>
+      <ul class="qmap">
+        <li><a href="#c0">城为什么偏偏建在这儿，不建在那儿？</a><b>渡</b></li>
+        <li><a href="#c1">人为什么非要住在会发大水的河边？</a><b>水</b></li>
+        <li><a href="#c2">北方小区楼距那么大、南方挨那么近，是谁定的？</a><b>天</b></li>
+        <li><a href="#c3">一座城要多大的乡下才养得活？</a><b>粮</b></li>
+        <li><a href="#c4">横平竖直的方格路是谁发明的？好在哪？</a><b>格</b></li>
+        <li><a href="#c5">老城区的巷子为什么七拐八绕？小区为什么爱围起来？</a><b>巷</b></li>
+        <li><a href="#c6">城墙后来去哪儿了？为什么环路一圈一圈的？</a><b>墙</b></li>
+        <li><a href="#c7">市场和商业街是怎么来的？古人几天赶一次集？</a><b>市</b></li>
+        <li><a href="#c8">为什么那么多都城都有一条中轴线？</a><b>轴</b></li>
+        <li class="soon">下水道和厕所是怎么一步步进城的？<b>沟</b></li>
+        <li class="soon">医院最早是什么样，为什么放在那儿？<b>疫</b></li>
+        <li class="soon">消防队和防火巷是哪场大火逼出来的？<b>火</b></li>
+        <li class="soon">警察局、派出所是怎么来的？监狱为什么在郊外？<b>巡</b></li>
+        <li class="soon">学校怎样从私塾变成公立，学区是怎么划出来的？<b>学</b></li>
+        <li class="soon">收费站、城门税、拥堵费是一回事吗？<b>卡</b></li>
+        <li class="soon">墓地和火葬场为什么总在城边上？<b>墓</b></li>
+        <li class="soon">公园是怎么从皇家园林变成大家的？<b>园</b></li>
+        <li class="soon">路为什么这么宽？人行道和路灯是什么时候有的？<b>路</b></li>
+        <li class="soon">火车站为什么总在老城边上？地铁怎样带出了郊区？<b>轨</b></li>
+        <li class="soon">为什么路越修越堵？<b>车</b></li>
+        <li class="soon">工厂、屠宰场、批发市场为什么一次次往外搬？<b>风</b></li>
+        <li class="soon">老厂房为什么都变成了咖啡馆和创意园？<b>厂</b></li>
+        <li class="soon">城中村和棚户区是怎么出现的？<b>住</b></li>
+        <li class="soon">巴黎的大马路是怎么“开膛”开出来的？<b>拆</b></li>
+        <li class="soon">规划师心中的理想城，住起来怎么样？<b>梦</b></li>
+        <li class="soon">该由谁来画图：专家，还是街坊？<b>街</b></li>
+        <li class="soon">钉子户、拆迁补偿、垃圾站选址，为什么总是吵？<b>地</b></li>
+        <li class="soon">为什么当年画对的图，现在成了麻烦？<b>时</b></li>
+        <li class="soon">城和乡、城和城、城和国家是什么关系？<b>外</b></li>
+      </ul>
+    </div>
+
+    <h3>目录</h3>
+  </div>
+  <div class="col"><ol class="toc" id="toc"></ol></div>
+</section>
+<!-- ============ 序幕 · 渡 ============ -->
+<section class="chap" id="c0" data-vol="序幕 · 渡">
+  <div class="chead">
+    <div class="big">渡</div>
+    <div>
+      <div class="no">序幕 · 约前 8000 年至今</div>
+      <h2>过河的地方</h2>
+      <dl><dt>讲什么</dt><dd>城为什么偏偏在这儿：脚下的地，和四周的路</dd><dt>本章装置</dt><dd>选址</dd></dl>
+      <div class="force" data-f="天 外"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">城为什么偏偏建在这儿，不建在那儿？</p>
+      <p>算两笔账。第一笔是<b>脚下这块地</b>：有没有水，会不会淹，好不好守，四周能不能种粮。第二笔是<b>它在四周的路上站在哪儿</b>：是不是渡口、岔路、两条河交汇的地方、翻山的山口。前一笔决定它能不能活下来，后一笔决定它能长多大。地理学家管前者叫“地点”（site），后者叫“位置”（situation）。这本书管它们叫<em>城里</em>和<em>城外</em>。</p>
+    </div>
+  </div>
+
+  <div class="town">
+    <svg data-town="0" aria-label="柳渡地图：约前 7000 年的渡口"></svg>
+    <div class="tcap"><b>柳渡 · 约前 7000 年</b><span>北山、大河、渡口，几间窝棚。红框是宋家的地。</span></div>
+  </div>
+
+  <div class="col">
+    <div class="liudu" data-t="柳渡 · 约前 7000 年">
+      <p>一群人顺着北山的山脚往南走，走到大河边，停住了。河在这里拐了一个大弯，弯里的水流慢，河床宽而浅，夏天水落下去，人牵着羊能蹚过去。往北是山，山上有柴；往南是一大片低地，草长得比人还高。</p>
+      <p>领头的是一个上了年纪的女人，后来柳渡人把她这样的人叫作<span class="mo">墨</span>：看地、画线、定规矩的人。她不急着让大家放下东西，先沿着河岸走了一整天，看岸边的树干上有没有泥印，看哪些地方的草是倒伏的，哪些地方长着只有不怕淹才能长的芦苇。最后她指着离河两百来步、比河岸高出一截的一片台地：“住这儿。水来了淹不到，渴了走得到。”</p>
+      <p>可是有一户人家不肯往台地上搬。当家的叫<span class="nm">宋</span>，他把窝棚搭在离渡口最近的那块坡地上，紧挨着人们蹚水上岸的地方。“过河的人上了岸，又冷又累，第一眼看见的就是我家的火。”他说，“他们要歇脚，要烤衣服，要拿东西换吃的。住台地上的人，谁能看见？”</p>
+      <p>墨说他会被淹。宋说他会发财。两个人都说对了一半。这块坡地后来就一直姓宋，一亩三分，往后一万年，柳渡的城墙、方格、市场、铁路、地铁站，都是绕着它，或者冲着它，一层层长出来的。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>牛过河的地方<span class="y">地名里的城</span></h3>
+    <p>很多城的身世，就写在它的名字里。</p>
+    <p>英国的牛津，Oxford，拆开就是 ox（牛）加 ford（浅滩）：赶牛过河的地方。十世纪的文献里它叫 Oxenaforda。附近的剑桥 Cambridge，是康河上的一座桥。德国的法兰克福 Frankfurt，意思是“法兰克人的渡口”。奥地利的因斯布鲁克 Innsbruck，是“因河上的桥”。</p>
+    <p>中文地名也一样。<em>天津</em>的“津”就是渡口，据说明成祖朱棣起兵南下时从这里渡河，后来赐名“天津”，意思是天子渡河的地方。名字里带“渡”“津”“口”“浦”“桥”“关”的城，几乎都在讲同一件事：这里是人非经过不可的地方。</p>
+    <p>还有一个字更古老：“州”。东汉许慎的《说文解字》说，<em>“水中可居曰州”</em>，就是河中间能住人的高地，后来加了三点水写成“洲”。古人把天下分成九州，最早的意思是大水里一块块能落脚的高地。人类最早挑地方住，挑的就是这个：水边，但水淹不着的地方。</p>
+  </div>
+
+  <div class="col">
+    <h3>两笔账：地点和位置</h3>
+    <p>如果只看脚下这块地，威尼斯是全世界最糟的地方之一：一片泡在咸水潟湖里的烂泥滩，没有淡水，没有石头，没有能种粮的地。威尼斯人得从陆上运木桩，几百万根，一根根打进泥里，才在上面盖得起房子。</p>
+    <p>可它的位置好得出奇。潟湖挡住了陆上的骑兵，水浅，外来的大船开不进来；往东是亚得里亚海，一路通到君士坦丁堡和地中海东岸。中世纪很长一段时间里，它是欧洲和东方做买卖的大门。一块很差的地，因为站在一个很好的位置上，养出了一个富甲一方的共和国。</p>
+    <p>反过来，有无数块好地，有水有田、不淹不旱，可是不在任何人的路上，几千年都只是一个村子。<em>地点决定一座城能不能活，位置决定它能长多大。</em>前者是城里的事，后者是城外的事。这本书的书名就是从这里来的。</p>
+  </div>
+
+  <div class="col">
+    <div class="spin">
+      <div class="off"><i>原文</i><p>凡立国都，非于大山之下，必于广川之上。高毋近旱而水用足，下毋近水而沟防省。因天材，就地利，故城郭不必中规矩，道路不必中准绳。</p></div>
+      <div class="plain"><i>白话</i><p>建都城，不是靠着大山脚下，就是挨着大河边上。地势要高，但别高到缺水；要低，但别低到天天修堤挖沟。顺着天然的条件、地形的便利来，所以城墙不一定非得画成正方形，路也不一定非得笔直。</p></div>
+      <div class="src">《管子·乘马》。托名春秋时的管仲，实际大约成书于战国到汉初。注意最后一句：两千多年前就有人说，别为了方正硬跟地形较劲。第四章你会看到另一派人偏偏要较这个劲。</div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>换车换船的地方</h3>
+    <p>“位置”里最值钱的一种，地理学家叫<b>转运点</b>：货物在这里不得不换一种走法。从河运换成陆运，从小船换成大船，从骆驼换成马车。货一停下来，就要卸、要搬、要存、要验、要交税、要找人押运，于是码头、仓库、客栈、钱庄、衙门一样样长出来。</p>
+    <p>两条河交汇的地方，几乎都是这样的城。汉水在这里流进长江，于是有了汉口，后来和武昌、汉阳合成武汉；嘉陵江在这里汇入长江，于是有了重庆；罗讷河和索恩河在这里相遇，于是有了法国的里昂；美国的匹兹堡，三条河在城下汇成一条。芝加哥的起点是一段几公里长的“搬运道”：印第安人和法国毛皮商在这里把独木舟扛上岸，从五大湖水系抬到密西西比水系。</p>
+    <p>沙漠和草原上的转运点是绿洲。撒马尔罕、敦煌，都是商队走了好多天、终于能喝上水、换骆驼、做交易的地方。一座绿洲城的命，系在两样东西上：水还在不在，路还走不走。哪一样断了，城就会被沙子慢慢吞掉。</p>
+  </div>
+
+  <div class="globe">
+    <div class="gh"><b>别处</b><span>同一个问题，“为什么在这儿”，各地不同的答案</span></div>
+    <div class="grid">
+      <div class="rg"><h6>渡口与桥<small>牛津 · 法兰克福 · 天津</small></h6><p>人和牲口非要在这里过河。过河之前要等，过河之后要歇，等和歇就是生意。</p></div>
+      <div class="rg"><h6>两河交汇<small>武汉 · 重庆 · 里昂 · 匹兹堡</small></h6><p>货要在这里换船、换方向。转运点上，码头、仓库、钱庄一样样长出来。</p></div>
+      <div class="rg"><h6>绿洲<small>撒马尔罕 · 敦煌</small></h6><p>沙漠里唯一能喝上水的地方。商路一改，或者河道一移，城就空了。</p></div>
+      <div class="rg"><h6>矿<small>约翰内斯堡 · 1886</small></h6><p>一块露出地表的金矿脉，几年之内把一片草原变成了几万人的城。南非今天最大的城就是这样来的。</p></div>
+      <div class="rg"><h6>铁路<small>石家庄 · 哈尔滨</small></h6><p>石家庄原是个小村，二十世纪初两条铁路在这里交会，人称“火车拉来的城市”。哈尔滨则跟着中东铁路一起长了起来。</p></div>
+      <div class="rg"><h6>妥协<small>华盛顿 · 堪培拉</small></h6><p>选首都时谁也不服谁，干脆在两家中间找块地。美国的南方和北方，澳大利亚的悉尼和墨尔本，都是这么“折中”出一座城。</p></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>选错了地方</h3>
+    <p>选址也会选错。十六世纪，印度莫卧儿帝国的阿克巴大帝在阿格拉附近新建了一座都城，叫法塔赫布尔西格里：红砂岩的宫殿、清真寺、广场，至今完好，漂亮极了。可它只当了十几年首都，就被丢下了。最常听到的解释是<em>缺水</em>：这里靠一个人工湖供水，湖水撑不住一座大城。</p>
+    <p>新疆的楼兰也被沙子吞了。它曾是汉代西域的要道，后来塔里木河下游改了道，罗布泊一带越来越干，商路也渐渐绕开了它，大约四世纪以后就很少再出现在记载里。</p>
+  </div>
+
+  <aside class="echo" data-k="存疑">
+    <span class="stamp">存疑</span>
+    <div>
+      <div class="rh">被丢下的城，都是“缺水”吗？</div>
+      <p>法塔赫布尔西格里被放弃的原因，学界一直在争。缺水是最流行的说法，但也有人认为主要是政治和军事上的：阿克巴要去西北打仗，把朝廷搬到了拉合尔，后来再也没搬回来。楼兰的衰落也有河道改变、气候变干、商路转移、战乱几种说法，大概是几样一起压上来的。一座城的死，很少只有一个原因。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>有的城，全是“城外”定的</h3>
+    <p>还有一类城，脚下这块地好不好几乎无所谓，它在那儿，只是因为城外有人需要它在那儿。</p>
+    <p>明朝在长城沿线设了九个边镇，大同、宣府、延绥……驻军最多的时候几十万人。这些地方大多冬天苦寒、土地贫瘠，粮食要从内地千里迢迢运来。它们存在的理由只有一个：<em>挡住北边</em>。</p>
+    <p>首都也常常这样来。1790 年，美国国会为了让南方和北方都没话说，决定在两边之间的波托马克河畔划一块地建新首都，就是后来的华盛顿。二十世纪初，澳大利亚的悉尼和墨尔本争当首都争得不可开交，最后在两城之间的山谷里另起炉灶，就是堪培拉。这样的城，是政治在地图上画的一个点。</p>
+  </div>
+
+  <div class="col">
+    <div class="seats">
+      <div class="up"><i>图纸上 · 墨</i><p>我先看三样东西：洪水的痕迹在哪，干季最近的水在哪，敌人从哪个方向来。一座城选错了地方，后面花一千年都补不回来。台地高出河面一截，北面有山挡风，是最稳当的。</p></div>
+      <div class="dn"><i>楼下 · 宋家</i><p>稳当能当饭吃吗？人从河那边过来，第一脚踩上的是我家门口。歇脚的、换东西的、打听路的，都在这儿。淹就淹吧，一年淹一回，十年发一回财，这笔账我算得过来。</p></div>
+      <div class="both">两个人算的是同一座城的两笔账：墨算“地点”，能不能活；宋算“位置”，能挣多少。往后一万年，柳渡的每一次规划之争，几乎都能还原成这两笔账。</div>
+    </div>
+  </div>
+
+  <div class="wide">
+    <div class="fig" id="siteFig">
+      <div class="fig-label">装置 1</div>
+      <h4>选址</h4>
+      <p class="how">这是一片虚构的河谷：西北是山，一条大河自西向东流，中间有一处能蹚过去的浅滩（渡），东边一条支流汇进来（汇）。<b>点地图上任意一格</b>，看看在那里建城，五笔账各得几分。再点“发一次大水”，看看你选的地方还在不在。</p>
+      <svg id="siteMap" class="map-pick" viewBox="0 0 600 350" aria-label="选址地图，可点击"></svg>
+      <div class="btns"><button class="btn" id="siteFlood">发一次大水</button><button class="btn" id="siteBest">古人会选哪儿</button></div>
+      <div class="bars" id="siteBars"></div>
+      <div class="say" id="siteSay">先点地图上一格。</div>
+    </div>
+  </div>
+
+  <aside class="echo" data-k="押韵">
+    <span class="stamp">押韵</span>
+    <div>
+      <div class="rh">高铁站和新城</div>
+      <p>二十一世纪中国修高铁，很多城市的新车站选在离老城十几公里外的空地上：线路要直，拆迁要少，地要便宜。车站一落地，周围就规划出一片“高铁新城”。有的长成了热闹的新区，有的多年冷冷清清。这和一百多年前的石家庄是同一个故事：先有过路的需求，后有城。区别只在于，石家庄是火车自己拉来的，高铁新城是图纸先画好、等着人来的。</p>
+    </div>
+  </aside>
+
+  <aside class="echo" data-k="联系">
+    <span class="stamp">联系</span>
+    <div>
+      <p>书房里的《谁说了算》第四章“城”讲的是另一面：城为什么让人<em>走不掉</em>，权力怎样借着城把人圈住。《苇城书记》里的苇城，就建在两河流域的芦苇荡边上，城里的书吏最早是为了给神庙记粮账才发明了文字。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <div class="yours">
+      <i>你楼下<small>第一张卡</small></i>
+      <p class="q">你住的那座城，为什么在那儿？</p>
+      <p>先看名字：有没有津、渡、口、浦、桥、关、州？再在地图上找它的老城区，看三样东西：离最近的大河或海有多远，比四周高还是低，老城门朝着哪几条古道。大多数中国城市的老城，都在一条河边略高的地方，或者两条路、两条河交汇的地方。</p>
+      <p>然后看看新区往哪个方向长：往往是朝着新的“位置”去的，朝着高铁站、机场、港口、高速路口。老城是“地点”留下的，新区是“位置”拉出来的。</p>
+    </div>
+  </div>
+</section>
+<!-- ============ 卷一 · 地 ============ -->
+<div class="volhead" data-vol="卷一 · 地">
+  <div class="num">VOLUME ONE · 第一部 · 立城</div>
+  <h2>地<small>卷一</small></h2>
+  <p class="lede">先看老天给了什么。河往哪流，地有多高，太阳从哪边照进来，冬天的风从哪边刮过来，四周的土能养活多少张嘴。城是人画的，可底图是老天给的。三章：水、天、粮。</p>
+  <svg class="sky" data-n="1" aria-hidden="true"></svg>
+</div>
+
+<!-- ============ 第一章 · 水 ============ -->
+<section class="chap" id="c1" data-vol="卷一 · 地 · 水">
+  <div class="chead">
+    <div class="big">水</div>
+    <div>
+      <div class="no">第一章 · 前 7000 年至今</div>
+      <h2>靠水，怕水</h2>
+      <dl><dt>讲什么</dt><dd>井、渠、堤；悬在头顶的黄河，摞起来的开封；运河怎样造城又抛弃城</dd><dt>本章装置</dt><dd>悬河</dd></dl>
+      <div class="force" data-f="天 外 时"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">人为什么非要住在会发大水的河边？</p>
+      <p>因为水带来的好处是天天的，坏处是几年一回的。河给你喝的水、浇田的水、运货的路，泛滥过后还留下一层最肥的泥；代价是隔几年泡一回，隔几十年可能整座城没了。古人一代代地算这笔账，结论大多是：<em>留下，然后修堤</em>。可堤越修越高，河也跟着越抬越高，账就越欠越大。</p>
+    </div>
+  </div>
+
+  <div class="town">
+    <svg data-town="1" data-levee="1" aria-label="柳渡地图：堤、井、渠"></svg>
+    <div class="tcap"><b>柳渡 · 约前 3200 年</b><span>北岸筑起了堤（砖红线），台地上打了井，一条渠把河水引到北边的田里。</span></div>
+  </div>
+
+  <div class="col">
+    <div class="liudu" data-t="柳渡 · 约前 3200 年">
+      <p>柳渡已经住了两三千人。这一代的<span class="mo">墨</span>带着全镇的男人，在北岸沿着河弯堆起一道土堤，一人多高，从北山脚一直堆到下游的芦苇荡。堤后面挖了一条渠，开春时扒开一个口子，河水顺着渠流进北边的麦田；汛期一到，再把口子堵上。</p>
+      <p>堤修好的头一年，全镇的人都很高兴。第二年夏天，上游来了一场大水，被堤挡住，水没处去，全涌到了下游。下游的芦苇村整整泡了一个月。芦苇村的人扛着锄头找上门来：“你们把水赶到我们这儿来了。”</p>
+      <p><span class="nm">宋家</span>的坡地在堤外头，紧挨着渡口，修堤时没圈进去，因为圈进去就得把堤往外推几十步，多费几千筐土。这一年水来了，宋家的屋子泡了半截。宋家的当家人蹲在门口看水退下去，地上留下一层黑油油的泥。他抓了一把闻闻，说：“明年这块地，麦子能长到腰。”</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>第一口井<span class="y">前 7000—前 2000</span></h3>
+    <p>人类最早的定居点几乎都贴着水：河、湖、泉。打井这门手艺出现以后，人才能离开岸边一点，住到高一些、安全一些的地方。目前知道的一些最古老的井在地中海东部的塞浦路斯，有一万年上下。</p>
+    <p>到了约前 2500 年，印度河流域的摩亨佐-达罗已经把井打成了一套系统。考古学家在这座城里发现了几百口砖砌的井，估计有七百口左右，平均每三户人家就有一口；很多房子里有专门的洗澡间，脏水顺着砖砌的排水沟流到街边的大沟里，大沟上还盖着砖。四千五百年前的这套东西，比很多十九世纪的欧洲城市还讲究。</p>
+    <p>水决定了城能住多少人。罗马最盛时靠十一条输水道，从几十公里外的山里把泉水引进城，一路靠着极其精确的坡度往下淌，有的段落一公里只降几十厘米。有了这些水，罗马才撑得起可能上百万的人口和上千个大大小小的浴场、喷泉。罗马衰落后，输水道年久失修、被战争切断，城里人口跌到只剩几万，剩下的人挤回台伯河边，又喝起了河水。</p>
+  </div>
+
+  <aside class="echo" data-k="押韵">
+    <span class="stamp">押韵</span>
+    <div>
+      <div class="rh">人口跟着水管走</div>
+      <p>罗马输水道断了，城缩回河边；一千多年后，十九世纪的伦敦、纽约、巴黎修起自来水厂和水库，城才敢往几百万人上长。今天很多北方城市靠跨流域调水撑着，南水北调中线从丹江口水库一路引水到北京、天津。<em>一座城最大能长多大，很多时候是水管说了算。</em></p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>以邻为壑</h3>
+    <p>只要有人修堤，就会有人吃亏。堤把水挡在你家门外，水不会消失，它会去别人家门外。</p>
+  </div>
+
+  <div class="col">
+    <div class="spin">
+      <div class="off"><i>原文</i><p>白圭曰：“丹之治水也愈于禹。”孟子曰：“子过矣。禹之治水，水之道也，是故禹以四海为壑。今吾子以邻国为壑。”</p></div>
+      <div class="plain"><i>白话</i><p>白圭吹牛：“我治水比大禹还厉害。”孟子说：“你错了。大禹治水是顺着水的路子走，把水导进大海。你呢？你是把水往邻国赶。”</p></div>
+      <div class="src">《孟子·告子下》。战国时各国沿黄河修堤，常常故意把堤修得让水冲向对岸的邻国。“以邻为壑”这个成语就是从这儿来的。</div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>悬在头顶的河<span class="y">黄河 · 开封</span></h3>
+    <p>黄河是世界上含沙量最大的大河之一。它从黄土高原上带下来的泥沙，到了下游平原，水流一慢就沉在河底。河底一年年变高，人就把堤一年年加高；堤加高了，河底接着变高。几百上千年下来，河床比两岸的地面还高，成了一条在堤里架着走的“地上河”，老百姓叫它<em>悬河</em>。今天黄河在开封一带的河床，比城里的地面高出十米上下。</p>
+    <p>悬河平时看不出危险，一旦决口，水是从高处往下灌的，整片平原都在它脚下。历史上黄河下游决口的记录数以千计，大改道也有好几次：一次大改道，入海口能挪几百公里，从山东北边跑到江苏南边，再跑回来。</p>
+    <p>开封就坐在这条河的脚下。它是战国时魏国的都城大梁，后来是五代和北宋的都城东京，最繁华的时候可能有上百万人。一千多年里，黄河一次次决口，把它一次次埋进泥沙里，人们又在泥沙上面重建一座新城。今天考古学家在开封地下大约三到十几米的深度，找到了<em>上下叠压的六座城</em>：魏大梁、唐汴州、北宋东京、金汴京、明开封、清开封，老百姓管这叫“城摞城”。有些地方，连城墙、城门和中轴路都几乎在同一个位置，一层压一层。</p>
+    <p>最惨的一次在 1642 年。明朝末年，李自成的军队围攻开封，城外的黄河大堤被掘开，洪水灌城。到底是谁掘的，明朝官军还是起义军，史书说法不一。城里原有几十万人，水退之后据说只剩下几万。开封后来又在泥上重建了一次，那座明代的开封城，今天埋在清代开封城底下。</p>
+  </div>
+
+  <aside class="echo" data-k="存疑">
+    <span class="stamp">存疑</span>
+    <div>
+      <div class="rh">那些数字</div>
+      <p>“河床高出地面十米”“六座城叠压在三到十几米深”“1642 年城中几十万人只剩几万”，这些数字在不同资料里出入不小：河床高度随河段和年份变化；各层城址的埋深各处不同；明末开封的人口和死亡数，史料本身就互相矛盾。这里只取常见的说法和数量级。</p>
+    </div>
+  </aside>
+
+  <div class="wide">
+    <div class="fig" id="xuanFig">
+      <div class="fig-label">装置 2</div>
+      <h4>悬河</h4>
+      <p class="how">一条多泥沙的河，一座河边的城。每按一次“过五十年”，河底就淤高一截。你可以选择<b>加高堤</b>，也可以不管它。按“决口”试试看：河底越高，水灌下来越猛；退水以后，城被埋进泥里，人们在泥上再盖一座。看看几百年后，地底下摞了几层城。</p>
+      <svg id="xuanSvg" viewBox="0 0 600 300" aria-label="悬河剖面"></svg>
+      <div class="btns"><button class="btn pri" id="xuanStep">过五十年</button><label class="ck"><input type="checkbox" id="xuanRaise" checked>每次都加高堤</label><button class="btn" id="xuanBreak">决口</button><button class="btn" id="xuanReset">从头来</button></div>
+      <div class="kv" id="xuanKV"></div>
+      <div class="say" id="xuanSay">起点：河底和城一样高，堤只有一人多高。</div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>运河造城，也抛弃城</h3>
+    <p>水还是一条路。古代陆路运粮，牲口自己就要吃掉一大半；水路运粮便宜得多。所以只要能挖，人就挖运河，而运河边上一定长出城来。</p>
+    <p>隋炀帝开通的大运河，把黄河、淮河、长江连了起来。<em>扬州</em>坐在运河和长江的交口上，唐朝时富到有“扬一益二”的说法：天下最繁华的是扬州，第二是成都。明清时它靠漕运和盐商又富了几百年。运河北段的临清，因为在运河和卫河交汇处，明朝时是北方最大的商业城市之一，钞关收的税常常排在全国前列。</p>
+    <p>然后，路变了。1855 年黄河在河南铜瓦厢决口，掉头向北，从山东入海，把山东境内的运河拦腰冲断。清朝本来就在试着改走海运，此后漕粮越来越多地走海路，再后来有了铁路。临清、淮安这些运河城一下子失去了存在的理由，慢慢冷清下去。扬州也从“天下第一”变成了一座安静的中等城市。</p>
+    <p>城是不会动的。它一旦在一个地方生了根，就只能指望养它的那条路一直在。路一改，城就只剩下城墙、码头和一肚子往事。这是这本书反复会遇到的“时间差”：<em>城是慢的，路是快的</em>。</p>
+  </div>
+
+  <div class="globe">
+    <div class="gh"><b>别处</b><span>人和水讨价还价的几种办法</span></div>
+    <div class="grid">
+      <div class="rg"><h6>埃及<small>尼罗河</small></h6><p>每年夏天按时泛滥，留下一层黑泥。埃及人不修大堤，而是用水尺量水位、估收成、定税，村子建在泛滥区边缘的高地上。</p></div>
+      <div class="rg"><h6>荷兰<small>圩田</small></h6><p>四分之一左右的国土在海平面以下。围堤、用风车把水抽出去，造出“圩田”。管堤的“水务委员会”是荷兰最古老的民主机构之一，有的有七八百年历史。</p></div>
+      <div class="rg"><h6>江南<small>水城</small></h6><p>河道就是街，家家前门临街、后门临河。水既是路，也是下水道，也是防火带。</p></div>
+      <div class="rg"><h6>吴哥<small>柬埔寨</small></h6><p>巨大的人工水库和水渠网。有学者认为，后期水利系统失修、加上几十年的干旱和暴雨交替，是这座大城衰落的原因之一（存疑）。</p></div>
+      <div class="rg"><h6>新奥尔良<small>美国</small></h6><p>大片城区低于海平面，全靠堤和泵。2005 年卡特里娜飓风冲垮了防洪堤，八成城区被淹。</p></div>
+      <div class="rg"><h6>海绵城市<small>中国 · 2015 起</small></h6><p>与其用水泥把雨水赶快排走，不如让城市像海绵一样先吸住：透水路面、下凹绿地、雨水花园。从三十个试点城市开始推广。</p></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="seats">
+      <div class="up"><i>图纸上 · 墨</i><p>堤是全城的事。堤要一口气修到底，从山脚到芦苇荡，中间不能有缺口，一处不修，全线白修。所以每家都得出人出土，堤线也只能按最省土的走法画，画到谁家算谁家。</p></div>
+      <div class="dn"><i>楼下 · 宋家</i><p>堤线画到我家门口就拐了，把我家留在外头。我不怪墨，圈我进去要多费几千筐土。可每次出工修堤，也有我家一份。我出了力，堤护的是别人。</p></div>
+      <div class="both">一道堤，有人在里面，就有人在外面；有人上游，就有人下游。“治水”从第一天起就不只是技术，还是分配：<em>谁被保护，谁来承担被挡走的水</em>。</div>
+    </div>
+  </div>
+
+  <aside class="echo" data-k="生活">
+    <span class="stamp">生活</span>
+    <div>
+      <p>今天城市里每逢暴雨就有几段路必淹，常常是老河道、老水塘被填平后盖起来的地方，地势本来就低。买房看房时查一查这片地几十年前的老地图，比听售楼处讲“地势高”靠谱得多。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <div class="yours">
+      <i>你楼下<small>第二张卡</small></i>
+      <p class="q">你那座城的水，是从哪儿来的？</p>
+      <p>拧开水龙头的那一刻，水可能来自几十公里外的水库、一条大河的取水口，或者几百米深的地下。查一查你那座城的主要水源，再查一查老城区原来的河道和水塘都去哪儿了：很多填成了马路，有的还在路面下面，变成了一条盖着盖子的暗河。</p>
+      <p class="lk">下水道和雨水怎样被“请出”城，在第二部第九章“沟”。</p>
+    </div>
+  </div>
+</section>
+<!-- ============ 第二章 · 天 ============ -->
+<section class="chap" id="c2" data-vol="卷一 · 地 · 天">
+  <div class="chead">
+    <div class="big">天</div>
+    <div>
+      <div class="no">第二章 · 前 3000 年至今</div>
+      <h2>朝南开门</h2>
+      <dl><dt>讲什么</dt><dd>气候、地形、建材、地震怎样定下房子和街的样子；楼间距是太阳定的</dd><dt>本章装置</dt><dd>楼间距</dd></dl>
+      <div class="force" data-f="天 内"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">北方小区楼距那么大、南方挨那么近，是谁定的？</p>
+      <p>说到底是<b>太阳</b>定的。北京冬至正午，太阳只有二十几度高，一栋楼的影子能拖到楼高的两倍；广州的太阳高得多，影子短得多。国家标准要求住宅冬天必须晒得到几个小时太阳，楼距就只能跟着纬度变。房子朝哪开门、墙多厚、屋顶多陡、巷子多窄，背后都是同一件事：<em>人在跟这片地方的老天讨价还价</em>。</p>
+    </div>
+  </div>
+
+  <div class="town">
+    <svg data-town="2" aria-label="柳渡地图：朝南的房子"></svg>
+    <div class="tcap"><b>柳渡 · 约前 2000 年</b><span>台地上的房子一排排，门全朝南。</span></div>
+  </div>
+
+  <div class="col">
+    <div class="liudu" data-t="柳渡 · 约前 2000 年">
+      <p>柳渡的冬天，风从北山上灌下来，又干又冷。这一代的<span class="mo">墨</span>定了一条规矩：新盖的房子一律门朝南、背朝北，北墙不开窗，或者只开一条缝；南墙开大门、开窗，屋檐伸出去一截。夏天太阳高，屋檐把太阳挡在外面；冬天太阳低，阳光从屋檐底下一直照到屋子最里面的炕上。</p>
+      <p>规矩定得很细：前后两排房子之间，要空出“冬至那天正午一个人影子那么长”的距离，前排的房子不许比后排高。墨拿一根竿子立在地上，量了冬至正午的影子，在每一排房子前面打下木桩。</p>
+      <p><span class="nm">宋家</span>这一代人丁兴旺，五个儿子要分家，一亩三分地不够盖。当家的想把房子往上加一层。后排的邻居找到墨：“他家加了一层，我家冬天就晒不着太阳了。”墨去量了量，宋家加层以后，影子正好压在邻居家的南窗上。</p>
+      <p>宋家的房子最后没加成。当家的气了好几年：“地是我家的，天上也是我家的，凭什么不让盖？”邻居说：“地是你家的，可太阳不是。”</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>房子是穿在身上的气候</h3>
+    <p>在没有空调和暖气的几千年里，房子本身就是一台“空调”。各地的房子长得不一样，第一个原因不是审美，是天。</p>
+    <p>黄土高原上冬天冷、夏天热、木头少，可黄土又厚又直立，挖下去不会塌。于是人往土里挖：<em>窑洞</em>。几米厚的黄土把外面的冷热隔开，冬暖夏凉。直到二十世纪末，据估计还有几千万人住在窑洞里。</p>
+    <p>北京的冬天冷而干，<em>四合院</em>坐北朝南，正房在北边，门窗朝南开，院子把阳光收进来，高墙把北风和外面的尘土挡在外头。徽州的老房子是另一种办法：外墙高而封闭，屋里围着一个小小的天井，屋顶向内倾，下雨时四面的雨水都流进天井，叫“四水归堂”，讨的口彩是“肥水不流外人田”；天井还像一根烟囱，把屋里的热气往上抽。</p>
+    <p>伊朗沙漠城市亚兹德，屋顶上立着一座座方塔，叫“风塔”：塔的开口迎着风，把高处凉一点的风引到屋里，有的还让风先从地下的水渠上方经过，再吹进房间。地中海沿岸的小城墙刷成白色、巷子窄得两个人要侧身，是为了把阳光反射回去，把阴影留在街上。</p>
+    <p>岭南和南洋的<em>骑楼</em>，楼上住人，楼下沿街退进去一段，形成连成一片的廊道：太阳晒不着，暴雨淋不着，店铺可以把货摆到廊下。新加坡开埠初年，殖民当局就规定沿街房屋要留出一条有顶的走廊，福建话叫“五脚基”（据说来自英文“五英尺宽的走道”）。民国初年广州的建筑章程也把骑楼写进了规定，骑楼从此成了岭南城镇的标志。</p>
+  </div>
+
+  <aside class="echo" data-k="讽刺">
+    <span class="stamp">讽刺</span>
+    <div>
+      <p>二十世纪下半叶，玻璃幕墙的写字楼从纽约一路盖到迪拜、盖到海南。四面玻璃，冬天漏热夏天进热，全靠空调硬扛。人类花了几千年琢磨出来的“房子即空调”，被一台中央空调一键清零，然后在电费单上一笔笔还回去。今天建筑师又开始讲“被动式设计”：朝向、遮阳、通风、厚墙，几乎就是在复习窑洞和风塔。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>有啥用啥</h3>
+    <p>城是用本地的东西盖的，运不起远处的。两河流域没有石头也少木头，只有泥，于是城是泥砖城；神庙用烧过的砖贴面，民房就是晒干的土坯。中国和日本木头多，城是木头城，好盖、抗震，但怕火，一把火能烧掉半座城，这要等第二部的“火”一章细说。欧洲很多地方石头多，石头城能站一千年，可城里的街也因此一千年改不动。</p>
+    <p>建材还定下了城市的高度。泥砖和木头盖不了几层；石头和砖能盖到五六层，再往上，最底下的墙就要厚得没法住人。直到十九世纪末有了钢框架和电梯，楼才“长高”，那是第二部的故事。</p>
+  </div>
+
+  <div class="col">
+    <h3>山城：把街竖起来</h3>
+    <p>地形也在画城。平原上的城可以摊开、画方格；山城只能把街竖起来。重庆坐在长江和嘉陵江夹着的山脊上，没有一块大平地。很多楼的“一楼”在不同的街上：从这条街进去是一楼，从后面那条街进去是十几楼。轨道交通 2 号线从一栋居民楼的中间穿过去，李子坝站就设在楼里，成了游客排队拍照的地方。</p>
+    <p>南美的里约热内卢正好反过来：平地和海滩被富人占了，穷人的房子一层层爬上陡坡，形成了著名的山坡贫民窟。同样是山，重庆把它变成了城市的立体骨架，里约把它变成了一条看得见的贫富线。</p>
+  </div>
+
+  <div class="col">
+    <h3>地动之后</h3>
+    <p>1755 年 11 月 1 日上午，葡萄牙首都里斯本连遭地震、海啸和大火，城市大半被毁，死者估计几万人。主持重建的首相庞巴尔侯爵做了几件在当时很新的事：把下城的烂泥巷子全部推平，改成笔直宽阔的方格街道；规定新楼的高度和样式；还推广了一种藏在墙里的木框架，像个笼子，地震时能吸收晃动，后人叫它“庞巴尔笼”。据说他让士兵围着模型齐步走，来测试抗震效果。很多人认为，这是人类第一次系统地按“抗震”来规划和建造一座城。</p>
+    <p>1923 年日本关东大地震，东京和横滨大片被毁，大火烧了好几天。负责重建的后藤新平提出了一份气魄极大的规划，要拓宽道路、建公园、整理土地，可预算被议会一砍再砍，最后只做成了其中一部分。1976 年唐山大地震，二十多万人遇难，此后中国一次次修订抗震设计规范，唐山也在废墟上按新标准整座重建。</p>
+    <p>一场地震常常像一块橡皮擦，把旧城擦掉一大块。这时候画图的人会突然拥有平时梦寐以求的东西：一张白纸。至于能在白纸上画成什么，要看钱、看时间，也要看原来住在那儿的人等不等得起。</p>
+  </div>
+
+  <div class="globe">
+    <div class="gh"><b>别处</b><span>同一个天，不同的房子</span></div>
+    <div class="grid">
+      <div class="rg"><h6>黄土高原<small>窑洞</small></h6><p>往土里挖，几米厚的黄土就是保温层。</p></div>
+      <div class="rg"><h6>北京<small>四合院</small></h6><p>坐北朝南，高墙挡风，院子收太阳。</p></div>
+      <div class="rg"><h6>徽州<small>天井</small></h6><p>四水归堂，天井既收雨水，也当拔风的烟囱。</p></div>
+      <div class="rg"><h6>亚兹德<small>伊朗 · 风塔</small></h6><p>屋顶上的方塔把高处的风抓下来，吹进屋里。</p></div>
+      <div class="rg"><h6>岭南 · 南洋<small>骑楼</small></h6><p>沿街退出一条廊，遮阳挡雨，一连几条街不用打伞。</p></div>
+      <div class="rg"><h6>北极圈<small>因纽特雪屋</small></h6><p>入口挖得比室内地面低，冷空气沉在入口，热空气留在里面。</p></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>谁有权晒太阳</h3>
+    <p>回到楼间距。现代中国的国家标准规定，住宅必须保证冬天（大寒日或冬至日）有一定时长的满窗日照，几小时看气候区和城市大小。北方纬度高、冬天太阳低，同样高的楼就要隔得更远。这条规定决定了北方住宅小区的典型样子：一排排“板楼”整齐地朝南，楼与楼之间空出一大片。</p>
+    <p>日本人把这叫“日照权”。六七十年代东京的高楼越来越多，被挡住阳光的居民打了一连串官司，1976 年日本修改建筑法规，加入了“日影规制”：新楼在冬至日投到邻地上的影子，不能超过规定的小时数。一百多年前的纽约也吵过类似的架，1915 年一栋叫公平大厦的高楼拔地而起，把周围几条街罩在阴影里，第二年纽约出台了美国第一部全市性的分区法规，要求高楼往上逐层后退，好让阳光照到街面上，于是有了帝国大厦那种层层收进的“婚礼蛋糕”轮廓。这件事第三部还会再讲。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig" id="sunFig">
+      <div class="fig-label">装置 3</div>
+      <h4>楼间距</h4>
+      <p class="how">选一座城，拖动楼层数，看看冬天的太阳能把楼的影子拖多长，后排楼的一楼窗户要晒到太阳，两栋楼得隔多远。下面再算一笔开发商最关心的账：一块进深 120 米的地，能排下几排楼。（简化模型：楼正南北朝向，只算太阳几何，不算周围地形和其他楼。）</p>
+      <div class="btns" id="sunCity"></div>
+      <div class="ctl"><span>楼层</span><input type="range" id="sunF" min="1" max="33" value="6"><output id="sunFO"></output></div>
+      <div class="btns" id="sunHr"></div>
+      <svg id="sunSvg" viewBox="0 0 600 240" aria-label="日照剖面"></svg>
+      <div class="kv" id="sunKV"></div>
+      <div class="say" id="sunSay"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="seats">
+      <div class="up"><i>图纸上 · 墨</i><p>楼距是全片人的事。前排楼多盖一层，挣钱的是前排，晒不着太阳的是后排。我不定规矩，每家都会往高里盖，最后谁都晒不着。</p></div>
+      <div class="dn"><i>楼下 · 宋家</i><p>地是我家祖上传下来的，五个儿子挤一间屋。你让我留着空地给邻居晒太阳，那我儿子去哪住？再说了，后排那家当年盖房时，不也挡了别人？</p></div>
+      <div class="both">太阳是一种奇怪的东西：谁也不拥有它，可谁都能挡住它。经济学家管这种“我的行为落到你头上”的东西叫<em>外部性</em>。城市规划里一大半的规矩，管的都是外部性：你家的影子、你家的烟、你家的噪音、你家门口停的车。</div>
+    </div>
+  </div>
+
+  <aside class="echo" data-k="存疑">
+    <span class="stamp">存疑</span>
+    <div>
+      <div class="rh">风水</div>
+      <p>说到中国古代的选址和朝向，绕不开风水。“背山面水”“藏风聚气”里有不少能用今天的话讲通的部分：北面靠山挡冬季风，南面临水取水又向阳，地势不高不低免得旱涝。但风水里还有大量关于吉凶祸福的说法，没有证据支持。这本书只讲其中能找到实际道理的部分，其余的不评判。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <div class="yours">
+      <i>你楼下<small>第三张卡</small></i>
+      <p class="q">为什么人人都要“南北通透”？</p>
+      <p>在北半球的中国，南面朝着冬天的太阳，北面对着冬天的风。朝南的房间冬天晒得到太阳、省暖气，夏天太阳高、屋檐和阳台能挡住大半；南北都开窗，夏天的东南风能穿堂而过。这套偏好写在四合院里，写在国家标准里，也写在二手房的价格里：同一个小区，朝南的房子常常比朝北的贵一截。</p>
+      <p>下次在北方城市看到小区里空出那么大的楼间距，可以想一想：那块空地是冬至那天的太阳“划”出来的。</p>
+    </div>
+  </div>
+</section>
+<!-- ============ 第三章 · 粮 ============ -->
+<section class="chap" id="c3" data-vol="卷一 · 地 · 粮">
+  <div class="chead">
+    <div class="big">粮</div>
+    <div>
+      <div class="no">第三章 · 前 3000 年至今</div>
+      <h2>城得有人喂</h2>
+      <dl><dt>讲什么</dt><dd>腹地与漕运；罗马的面包、北京的四百万石；屠能的圈；城里的粪去了哪儿</dd><dt>本章装置</dt><dd>屠能圈</dd></dl>
+      <div class="force" data-f="天 外 内"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">一座城要多大的乡下才养得活？</p>
+      <p>城里人不种粮，吃的每一口都得从外面运进来。工业时代以前，大约要八九个种地的人，才养得起一个不种地的城里人；运粮又贵又慢，所以一座城能长多大，常常取决于它能从多远的地方、用多便宜的办法把粮食运进来。<em>城的大小，是它的“饭碗”有多大。</em>罗马靠的是地中海上的运粮船，北京靠的是一条一千多公里的运河。</p>
+    </div>
+  </div>
+
+  <div class="town">
+    <svg data-town="3" aria-label="柳渡地图：四周的田"></svg>
+    <div class="tcap"><b>柳渡 · 约前 500 年</b><span>虚线圈从里到外：菜园、柴林、麦田、草场。</span></div>
+  </div>
+
+  <div class="col">
+    <div class="liudu" data-t="柳渡 · 约前 500 年">
+      <p>柳渡有一万来人了。这一代的<span class="mo">墨</span>是个管粮的小吏，他的活儿是算账：一个城里人一年要吃多少粮、烧多少柴，这些粮和柴从哪来，走多远的路。他发现柳渡四周的地，自己就分成了一圈一圈。</p>
+      <p>紧挨着城的是菜园和奶羊圈：菜和奶放不住，一天就坏，必须近。再往外，出乎他意料，是一圈<em>柴林</em>。柴是城里每家每天都要烧的，又重又占地方，一车柴卖不了几个钱，运远了连车钱都挣不回来，只能种在近处。柴林外面才是麦田：麦子经放、值钱，走远一点也划得来。最外面是草场，牛羊能自己走着进城。</p>
+      <p><span class="nm">宋家</span>那块地离城门不到半里，种麦子太可惜，这一代的宋家改种菜。菜要肥，宋家的当家人每天天不亮就推着车进城，挨家挨户收各家的粪，拉回来沤肥。城里人觉得他脏，可没有他，城里的粪就堆在巷子里。宋家的菜又在城里卖了好价钱。后来，宋家把收粪的路线也当成家产传了下去：东边三条巷子归老大，西边两条归老二，谁都不许越界。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>八九个人种地，一个人进城</h3>
+    <p>城市的前提，是地里长出的粮食比种地的人自己吃的多。多出来的那一部分，叫<b>剩余</b>，养活了城里的祭司、工匠、商人、士兵和官吏。可是在没有化肥、拖拉机和良种的年代，这个剩余很薄。历史学家估计，前工业时代的社会里，住在城里的人一般不超过一成，多的地方也就一两成。剩下八九成的人，都在地里忙。</p>
+    <p>运输又让剩余打了折扣。在只有牛车、驴驮的地方，粮食走不了太远：牲口一路要吃，车夫一路要吃，走上几百里，一车粮可能被吃掉一大半。所以古代大城几乎都长在<em>水边</em>，水运比陆运便宜得多，有学者估计差出几倍到几十倍。一座内陆的城，要想长大，就得挖运河。</p>
+  </div>
+
+  <div class="col">
+    <h3>罗马的面包<span class="y">前 120—400</span></h3>
+    <p>罗马城最盛时可能有上百万人，意大利本地的粮食远远不够。粮食从西西里、北非、埃及装船，穿过地中海，运到罗马城外台伯河口的奥斯提亚港，再用驳船逆流运进城。埃及的运粮船队在当时是一件国家大事，船队晚到几天，罗马城里就要人心惶惶。</p>
+    <p>罗马还有一项奇特的制度：从共和国晚期开始，国家给城里的公民发低价粮，后来干脆免费发。到奥古斯都时代，领救济粮的成年男性公民大约有二十万人。皇帝专门设了一个管粮的长官，粮食供应成了皇帝能不能坐稳的头等大事。诗人尤维纳利斯后来讽刺罗马人只关心两样东西：面包和竞技场。</p>
+    <p>罗马人为此造了当时最大的港口。原来的奥斯提亚港口太浅，克劳狄乌斯和图拉真两位皇帝先后在旁边挖出一个新港，图拉真的港池是一个巨大的六边形，至今从空中还看得见。一座城的饭碗，大到要用帝国的力气去端。</p>
+  </div>
+
+  <div class="col">
+    <h3>四百万石<span class="y">明清 · 漕运</span></h3>
+    <p>北京的处境更别扭。它离华北平原的北缘很近，往北翻过燕山就是草原。明朝永乐皇帝把都城从南京搬到这里，一个重要的原因是守边：天子守国门，蒙古骑兵来了，皇帝就在前线。可这样一来，政治中心和粮食中心就隔开了一千多公里：粮食最多的地方在江南，皇帝和几十万驻军、官员、工匠却在北边。</p>
+    <p>解决办法是<em>漕运</em>。重新疏通的京杭大运河，从杭州一路北上到通州，全长一千七八百公里。明朝中期以后，每年从南方运到北京的“漕粮”定额大约是四百万石，有专门的漕军十几万人押运，沿线设闸、设仓、设官，漕运总督驻在淮安。北京城东的通州是运河的终点，城里有一排排大粮仓，今天北京还有“禄米仓”“海运仓”“南新仓”这样的地名。</p>
+    <p>这是“城外”定城的极端例子：北京之所以是北京，是因为边防需要它在北边；北京之所以活得下去，是因为一条运河把南方的粮食源源不断地喂进来。两股“外”的力气一拉一扯，扯出了一座几十万到上百万人的都城，和一个延续几百年的庞大运输官僚系统。</p>
+  </div>
+
+  <aside class="echo" data-k="押韵">
+    <span class="stamp">押韵</span>
+    <div>
+      <div class="rh">饭碗和权力</div>
+      <p>罗马皇帝最怕运粮船晚到，明清皇帝最怕运河断流。到了今天，城市的“饭碗”换成了电网、天然气管道和高速公路上的冷链车，但道理没变：一座大城离开外面的供给活不过几天。所以历朝历代管首都，第一件事都是<em>管住它的饭碗</em>。中国从 1988 年开始搞“菜篮子工程”，后来又有“米袋子省长负责、菜篮子市长负责”的说法，是同一个思路的现代版。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>屠能的圈<span class="y">1826</span></h3>
+    <p>1826 年，德国北部一位叫约翰·海因里希·冯·屠能的庄园主，出版了一本书，书名很长，后人简称《孤立国》。他在自己的庄园里记了几十年的账，然后做了一个思想实验：假设平原上只有一座城，四周的土地一样肥，农民只能用马车把东西运进城卖，那么不同的作物会种在离城多远的地方？</p>
+    <p>他算出来的答案就是柳渡那几圈。离城最近的是蔬菜和牛奶，然后是<b>林地</b>，再往外是谷物，最外面是畜牧，再往外就是没人种的荒地。林地在第二圈让很多人吃惊，屠能的解释很简单：在煤还没普及的时候，城里每家每天都要烧柴，柴又重又便宜，运费一下就超过了柴本身的价钱，只能种在近处。</p>
+    <p>屠能这套推理的核心是一句话：<em>离城越远，运费越高，同一块地能交给地主的租子就越低</em>。每种作物都有自己的“租子随距离下降”的曲线，在每一段距离上，谁出的租子最高，地就归谁种。这个“竞租”的道理，后来被经济学家原样搬进了城里：为什么市中心是写字楼，再往外是公寓，再往外是别墅和工厂，第三部还会再见到它。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig" id="thunFig">
+      <div class="fig-label">装置 4</div>
+      <h4>屠能圈</h4>
+      <p class="how">左边是四种用地的“竞租”线：离城越远，每亩地能挣出的租子越少，哪条线最高，那一段就种什么。右边是由此长出的圈。试试三种年代：<b>马车</b>、<b>铁路</b>、<b>冷链卡车</b>；也可以拖动滑块，改变运费和城的大小（城越大，菜和粮在城里卖得越贵）。</p>
+      <div class="btns" id="thunEra"></div>
+      <div class="ctl"><span>运费</span><input type="range" id="thunT" min="10" max="150" value="100"><output id="thunTO"></output></div>
+      <div class="ctl"><span>城的大小</span><input type="range" id="thunP" min="70" max="160" value="100"><output id="thunPO"></output></div>
+      <div class="two">
+        <svg id="thunChart" viewBox="0 0 320 220" aria-label="竞租线"></svg>
+        <svg id="thunMap" viewBox="0 0 240 240" aria-label="屠能圈"></svg>
+      </div>
+      <div class="legend" id="thunLeg"></div>
+      <div class="say" id="thunSay"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>城里的粪，城外的菜</h3>
+    <p>屠能的圈还有一条看不见的回路：城把粮食和菜吸进来，也把粪排出去。在没有化肥的年代，城里人的粪便是近郊菜地最好的肥料。中国的城市很早就有专门收粪的人，挑着桶、推着车穿街走巷，粪运到城外卖给菜农。清末民国的北京，收粪的路线甚至成了一种可以继承、买卖的“产业”，叫<em>粪道</em>，粪道主之间为了地盘常常打官司。</p>
+    <p>欧洲很多城市就没这么讲究，粪便倒进街上的沟里、河里，一下雨冲得满街都是。等城市大到几十万、上百万人，这件事就从“脏”变成了“要命”：霍乱来了。这是第二部的故事。</p>
+  </div>
+
+  <div class="globe">
+    <div class="gh"><b>别处</b><span>大城的饭碗</span></div>
+    <div class="grid">
+      <div class="rg"><h6>罗马<small>地中海</small></h6><p>西西里、北非、埃及的粮船，台伯河口的大港，二十万人领的救济粮。</p></div>
+      <div class="rg"><h6>君士坦丁堡<small>拜占庭</small></h6><p>起初也靠埃及的粮，七世纪埃及丢了以后，改从色雷斯和黑海沿岸运。</p></div>
+      <div class="rg"><h6>北京<small>明清</small></h6><p>一千七八百公里的运河，每年四百万石漕粮，十几万漕军。</p></div>
+      <div class="rg"><h6>江户 · 大阪<small>日本</small></h6><p>各地大名把米运到大阪换钱，大阪被称为“天下的厨房”；百万人口的江户，靠海运从大阪等地调米。</p></div>
+      <div class="rg"><h6>特诺奇蒂特兰<small>阿兹特克</small></h6><p>建在湖中的岛上，四周是一块块用淤泥堆起来的“浮园”，种玉米和蔬菜，菜园就在城边的水里。</p></div>
+      <div class="rg"><h6>伦敦<small>十八世纪</small></h6><p>粮从英格兰东部、肉从苏格兰和威尔士赶来，取暖的煤从东北的纽卡斯尔用船运来，“往纽卡斯尔运煤”成了英语里多此一举的俗语。</p></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="seats">
+      <div class="up"><i>图纸上 · 墨</i><p>城边的好地一块都不能再盖房了。菜园没了，菜就得从更远的地方运，又贵又不新鲜；麦田没了，一遇荒年城里就要断粮。城得有个边。</p></div>
+      <div class="dn"><i>楼下 · 宋家</i><p>城里有人出三倍的价钱，要买我的菜地盖客栈。种一辈子菜也挣不到这个数。你说城得有个边，那为什么偏偏边划在我家？离城远的那些人家，怎么就没人管？</p></div>
+      <div class="both">离城越近的地越值钱，值钱到种什么都不如盖房子。这股力量推着城一圈圈往外摊，而另一股力量想把它拦住。今天中国的“耕地红线”、伦敦外围的“绿带”，都是在城和田之间画一条线。线画在哪儿，线两边的人命运就差了一大截。</div>
+    </div>
+  </div>
+
+  <aside class="echo" data-k="联系">
+    <span class="stamp">联系</span>
+    <div>
+      <p>《谁说了算》第十章“籍”讲国家为什么偏爱谷子：谷子同时成熟、好量、好存、好收税。漕粮就是这套偏爱的终点站：田赋收上来的谷子，一船船运去喂首都。《点石成金》里也讲过，最早的“钱”之一就是大麦。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <div class="yours">
+      <i>你楼下<small>第四张卡</small></i>
+      <p class="q">你家附近的菜市场，菜是从多远来的？</p>
+      <p>三十多年前，大多数中国城市吃的菜，主要来自城郊的“菜地”，几十公里以内，跟屠能的第一圈一模一样。今天走进菜市场问一问：土豆可能来自内蒙古，西红柿来自山东，香蕉来自云南或者东南亚。冷链和高速公路把屠能的圈撑大了几十倍，原来城郊的菜地，很多已经盖成了小区。</p>
+      <p>可圈还在。离城越近的地越贵，这条规律一点没变，只是现在城边的地上种的不是菜，是房子。</p>
+    </div>
+  </div>
+</section>
+<!-- ============ 卷二 · 骨 ============ -->
+<div class="volhead" data-vol="卷二 · 骨">
+  <div class="num">VOLUME TWO · 第一部 · 立城</div>
+  <h2>骨<small>卷二</small></h2>
+  <p class="lede">城的形状。有人拿尺子在白纸上画方格，有人让房子跟着脚步一间间长出来；有人修墙把城围起来，有人在墙里划出做买卖的地方，有人在正中间画一条线，让整座城朝着一个方向站好。五章：格、巷、墙、市、轴。</p>
+  <svg class="sky" data-n="2" aria-hidden="true"></svg>
+</div>
+
+<!-- ============ 第四章 · 格 ============ -->
+<section class="chap" id="c4" data-vol="卷二 · 骨 · 格">
+  <div class="chead">
+    <div class="big">格</div>
+    <div>
+      <div class="no">第四章 · 前 2500 年—1900 年</div>
+      <h2>画方格的人</h2>
+      <dl><dt>讲什么</dt><dd>《考工记》、希波丹姆、罗马营寨、长安的坊、西班牙的广场、纽约 1811；方格好在哪，坏在哪</dd><dt>本章装置</dt><dd>切方格</dd></dl>
+      <div class="force" data-f="外 内"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">横平竖直的方格路是谁发明的？好在哪？</p>
+      <p>没有哪一个人发明它。印度河、中国、希腊、罗马、美洲的人各自想到了它，因为方格有几样别的形状比不了的好处：好丈量、好分地、好卖地、好管理、好找路、好往外扩。它几乎总是<em>“外来”</em>的人画的：新建一座城的国王，驻军的将领，殖民者，土地公司。坏处也很明显：它不管地形，不管原来住着谁，一刀切下去，横平竖直。</p>
+    </div>
+  </div>
+
+  <div class="town">
+    <svg data-town="4" aria-label="柳渡地图：方格新城"></svg>
+    <div class="tcap"><b>柳渡 · 约公元 100 年</b><span>渡口东边，远方的王派人画了一座方方正正的新城。</span></div>
+  </div>
+
+  <div class="col">
+    <div class="liudu" data-t="柳渡 · 约公元 100 年">
+      <p>柳渡被一个强大的王国吞并了。王从京城派来一位新的<span class="mo">墨</span>，带着绳子、木桩和一卷画好的图。这位墨不是柳渡人，不认识这里的任何一户人家，也不打算认识。他在渡口东边那片平地上，用绳子拉出一个大方框，每边一千步，再横竖各拉三道，切成十六块。每块叫一个“坊”，坊里再切成一样大的宅基地，按户分配。四面各开一座门，正中两条大路十字交叉。</p>
+      <p>他的图上没有柳渡原来的样子：那条斜着通向渡口的老路、北山脚下的祖坟、几户人家的菜园，统统被直线切过。老路被截断了，拐个直角才能走到渡口。祖坟所在的那一格划给了驻军，坟只好迁。</p>
+      <p><span class="nm">宋家</span>那块地在方框外头，刚好在西门外两百来步，图上没画到。宋家的当家人站在自家门口，看着新城的墙一天天砌起来，心里不知道该高兴还是该担心。墨倒是来过一次，看了看宋家的位置，说了一句：“这里迟早也要画进来。”</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>匠人营国</h3>
+    <p>中国最早描述理想都城的文字，是《周礼·考工记》里的一段。《考工记》大约成书于战国，托名周制，到底有多少是周朝真实的样子，学者一直有争论。但它画的那张图，影响了此后两千多年的中国都城。</p>
+  </div>
+
+  <div class="col">
+    <div class="spin">
+      <div class="off"><i>原文</i><p>匠人营国，方九里，旁三门。国中九经九纬，经涂九轨。左祖右社，面朝后市，市朝一夫。</p></div>
+      <div class="plain"><i>白话</i><p>工匠建造都城：每边九里的正方形，每面开三座门。城里南北向九条大道，东西向九条大道，每条大道宽得能并排走九辆车。宫殿左边是祖庙，右边是社稷坛；前面是朝堂，后面是市场；市场和朝堂各占一百步见方的地。</p></div>
+      <div class="src">《周礼·考工记·匠人》。“左祖右社，面朝后市”这一句，要到第八章“轴”再细讲。</div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>希波丹姆和罗马营寨<span class="y">前 2500—前 100</span></h3>
+    <p>方格比文字记载的还早。约前 2500 年，印度河流域的摩亨佐-达罗、哈拉帕，主要街道大致是南北、东西走向的，排得相当整齐。古埃及为修金字塔的工匠建的工人村，也是一排排整齐的小屋。</p>
+    <p>在希腊，方格城市和一个名字连在一起：米利都的<b>希波丹姆</b>，前五世纪的人。亚里士多德在《政治学》里说他“发明了城市的划分”，后人干脆叫他“城市规划之父”。其实方格在他之前就有，他更像是把方格变成了一套理论：按公共用地、神庙用地、私人用地来分区，街道按一定的宽度分级。他的家乡米利都在被波斯人毁掉之后重建，用的就是方格；他还为雅典的港口比雷埃夫斯画过图。</p>
+    <p>罗马人把方格变成了军队的标准动作。罗马军团每晚扎营，营寨都按同一个模样布置：一个长方形，两条主路十字交叉，南北向的叫 cardo，东西向的叫 decumanus，交叉点是指挥部。士兵走到哪个营寨，闭着眼都知道自己的帐篷在哪。很多营寨后来变成了城：英国的约克、切斯特，德国的科隆，意大利的都灵。今天在都灵老城的地图上，还能看见罗马营寨那一格一格的轮廓。北非的提姆加德是图拉真为退伍老兵建的城，整整齐齐的方格，几乎完整地留在了沙漠里。</p>
+  </div>
+
+  <div class="col">
+    <h3>一百零八个坊<span class="y">582—904 · 长安</span></h3>
+    <p>中国的方格城到隋唐长安达到了顶峰。582 年，隋文帝嫌汉长安旧城狭小破败、水质咸苦，命宇文恺在旧城东南另建新都，叫大兴城，唐朝改称长安。这座城东西约九点七公里，南北约八点六公里，面积八十多平方公里，是当时世界上最大的城市之一。</p>
+    <p>城里被横平竖直的大街切成一百多个方块，叫<em>坊</em>，通常说一百零八坊。每个坊四周有夯土的坊墙，开几座坊门，坊里住人。商业集中在东市和西市两个大坊里。宫城和皇城在北边正中，从皇城南门往南一直到外郭城的明德门，是宽约一百五十米的朱雀大街。</p>
+    <p>这张方格图不只是为了好看，它是一台<em>管理机器</em>。每个坊有坊正，管门、管人；日落时街鼓一响，坊门关闭，大街上不许再有人走动，这叫宵禁；第二天清晨鼓声再响，坊门才开。犯夜的人要挨打。一座百万人的城，被切成一百多个可以一个个关起来的盒子。</p>
+    <p>长安的图纸被整个搬到了日本。八世纪的平城京（奈良）、平安京（京都），都是缩小版的长安方格。京都今天的街道仍然横平竖直，人们报地址时还会说“往上走”（往北）“往下走”（往南）、“往东进”“往西进”。</p>
+  </div>
+
+  <aside class="echo" data-k="押韵">
+    <span class="stamp">押韵</span>
+    <div>
+      <div class="rh">一个个关起来的盒子</div>
+      <p>唐长安的坊墙、坊门、坊正、宵禁，一千多年后在很多中国城市里换了个样子回来：封闭小区、门禁、物业、保安，夜里大门一锁，外人进不来。区别是唐朝的坊门是朝廷替你关的，今天的小区门是业主花钱请人关的。第五章还会回到这件事。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>白纸上的新大陆<span class="y">1573 · 1785 · 1811</span></h3>
+    <p>方格最大的一次扩张，是在新大陆。1573 年，西班牙国王腓力二世颁布了一套殖民地建城法令，后来被收进《印度群岛法》：新城要先定一个长方形的中央广场，四面是教堂和官府，街道从广场的四角和四边出发，横平竖直地往外延伸，城要能按同样的格子不断扩大。从墨西哥到秘鲁、从古巴到菲律宾，几百座西班牙殖民城市都长着几乎一模一样的骨架。</p>
+    <p>美国更进一步，把整个国土都画成了方格。1785 年的《土地法令》规定，西部的土地先测量、后出售，测量的单位是六英里见方的“镇区”，每个镇区再切成三十六块一平方英里的“地段”。今天坐飞机飞过美国中西部，看到的大地就是一张巨大的棋盘：田地、乡间公路、城镇的街道，都顺着两百多年前测量员拉出的经纬线走。<em>方格让土地变成了可以按块编号、远程买卖的商品</em>，一个在纽约的投机商可以买下一千英里外一块他从没见过的地。</p>
+    <p>1811 年，纽约州委员会公布了曼哈顿岛的规划：从当时城区北边一直到岛的北端，统统画成方格，十二条南北向的大道，一百五十五条东西向的街，当时这些地方大多还是农田、山丘和沼泽。委员会在说明里很直白：方正的、直角的房子，<em>造起来最便宜</em>，住起来最方便。他们也知道这张图会被人骂单调，可单调本身就是优点：好卖、好建、好记。曼哈顿那些平行的街区，就是这样从一张图纸开始的。原规划里几乎没有大公园，四十多年后纽约才不得不在方格中间挖出一大块，就是中央公园。</p>
+  </div>
+
+  <div class="globe">
+    <div class="gh"><b>别处</b><span>各地的方格，以及一个街区有多大</span></div>
+    <div class="grid">
+      <div class="rg"><h6>摩亨佐-达罗<small>约前 2500</small></h6><p>主干道大致南北、东西走向，路边有带盖的排水沟。</p></div>
+      <div class="rg"><h6>唐长安<small>582</small></h6><p>一个坊常常有五六百米到一公里见方，四周有墙。街宽得惊人，朱雀大街约一百五十米。</p></div>
+      <div class="rg"><h6>提姆加德<small>北非 · 100</small></h6><p>罗马为退伍兵建的城，每个街区只有二十来米见方。</p></div>
+      <div class="rg"><h6>曼哈顿<small>1811</small></h6><p>东西长、南北窄的长条街区，约六十米乘两三百米。</p></div>
+      <div class="rg"><h6>巴塞罗那<small>1859</small></h6><p>塞尔达规划的扩展区，一百一十多米见方，四角切掉，路口变成小八角广场，方便马车转弯、看得见来车。</p></div>
+      <div class="rg"><h6>波特兰<small>美国 · 1845</small></h6><p>六十多米见方的小街区，路口密，街角多，被认为是最适合步行的方格之一。</p></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>方格的账</h3>
+    <p>同样是方格，大小不同，城就完全不同。街区切得小，路口多、拐角多、临街的门面多，人走起来近，可是路要占掉更多的地。街区切得大，路少、地整，好盖大楼、好修宽马路，可人要绕很远。中国很多新城的“大街区、宽马路”，一个街区四五百米见方，四周是几十米宽的大马路，开车很顺，走路却常常要过一个漫长的路口，再走五百米才找到一个入口。</p>
+    <p>方格还有一个老毛病：它不看地形。旧金山的方格是在平面图上画的，画到山上也照画不误，于是有了那些陡得吓人的街，有一段坡度超过百分之三十。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig" id="gridFig">
+      <div class="fig-label">装置 5</div>
+      <h4>切方格</h4>
+      <p class="how">下面是同一块五百米见方的地。选一种历史上的方格，或者自己拖动街区的长、宽和路宽，看看这块地被切成什么样，路占了多少地，路口有多密，临街的门面有多长。图按比例画。</p>
+      <div class="btns" id="gridPre"></div>
+      <div class="ctl"><span>街区东西</span><input type="range" id="gridBx" min="20" max="1000" value="113"><output id="gridBxO"></output></div>
+      <div class="ctl"><span>街区南北</span><input type="range" id="gridBy" min="20" max="1000" value="113"><output id="gridByO"></output></div>
+      <div class="ctl"><span>路宽</span><input type="range" id="gridW" min="4" max="150" value="20"><output id="gridWO"></output></div>
+      <div class="two">
+        <svg id="gridSvg" viewBox="0 0 250 250" aria-label="五百米见方的方格"></svg>
+        <div><div class="kv" id="gridKV"></div><div class="readout" id="gridT"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="seats">
+      <div class="up"><i>图纸上 · 墨</i><p>我从京城来，不认识这里的人，也不该认识。方格的好处就在这儿：每块地一样大，每户分得一样多，谁也不能说我偏心。十年后再来一个墨，拿着我的图，闭着眼也能接着往外画。</p></div>
+      <div class="dn"><i>楼下 · 宋家</i><p>他的图上没有那条斜路。那条路我们走了几百年，因为它最近。现在得先往东走，再拐直角往南。图纸上省了事，脚底下多走了路。</p></div>
+      <div class="both">方格最大的优点和最大的缺点是同一件事：<em>它不需要知道这里原来是什么样</em>。所以外来的人最爱画它，征服者、殖民者、新城开发商；也所以，原来住在这里的人，常常觉得自己被一把直尺划过。</div>
+    </div>
+  </div>
+
+  <aside class="echo" data-k="讽刺">
+    <span class="stamp">讽刺</span>
+    <div>
+      <p>1811 年的纽约委员会说，方格的好处是“便宜”；两百年后，曼哈顿成了地球上地价最贵的地方之一。最便宜的图纸，画出了最贵的地。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <div class="yours">
+      <i>你楼下<small>第五张卡</small></i>
+      <p class="q">你家附近的街区有多大？</p>
+      <p>打开地图，量一量你家所在那个街区的四条边：从一个路口走到下一个路口要几分钟？如果是一两分钟（一百米左右），你住在一个“小街区”里，走路很方便，街角的小店也多；如果要走五六分钟以上（四五百米），你住在一个“大街区”里，多半是新区。</p>
+      <p>老城区和新区的差别，很多时候就是这把尺子的差别：老城是人走出来的尺子，新区是车开出来的尺子。</p>
+    </div>
+  </div>
+</section>
+<!-- ============ 第五章 · 巷 ============ -->
+<section class="chap" id="c5" data-vol="卷二 · 骨 · 巷">
+  <div class="chead">
+    <div class="big">巷</div>
+    <div>
+      <div class="no">第五章 · 800 年至今</div>
+      <h2>自己长出来的城</h2>
+      <dl><dt>讲什么</dt><dd>中世纪的弯巷；伊斯兰城市的死胡同和邻里官司；规划过的胡同怎样长歪；窄门面；封闭小区</dd><dt>本章装置</dt><dd>谁从你门口过</dd></dl>
+      <div class="force" data-f="内 时"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">老城区的巷子为什么七拐八绕？小区为什么爱围起来？</p>
+      <p>弯巷不是没规矩，是另一种规矩：没有一张总图，只有一条条邻里之间的规矩，比如别挡我家门、别开窗看我家院子、路要留够驴车过。每一户都按这些规矩盖自己的房，几百年加起来，就长成了弯巷。弯巷和死胡同还有一个方格给不了的好处：<em>清静</em>。外人不会从你门口路过。封闭小区想要的，也是这个。</p>
+    </div>
+  </div>
+
+  <div class="town">
+    <svg data-town="5" aria-label="柳渡地图：城门外的弯巷"></svg>
+    <div class="tcap"><b>柳渡 · 约 800 年</b><span>方格城装不下的人，在西门外自己盖房。巷子跟着脚走。</span></div>
+  </div>
+
+  <div class="col">
+    <div class="liudu" data-t="柳渡 · 约 800 年">
+      <p>方格新城盖好七百年了，城里的坊早就住满。外地来的商人、逃荒的农民、卖力气的脚夫，进不了城，就在西门外、往渡口去的那片坡上自己找地方盖房。没有人给他们画图。每个人只做一件事：把房子盖在离路近一点、离邻居远一点的地方，门朝路开。</p>
+      <p>头几户人家之间，踩出了几条通向城门和渡口的小路。后来的人只能挨着这些小路盖，小路就被两边的墙夹成了巷子。巷子跟着最早那些人的脚走，哪里有棵大树、有块石头、有户不肯让地的人家，就在哪里拐个弯。</p>
+      <p><span class="nm">宋家</span>就是那户不肯让地的人家。一条从城门斜着通向渡口的巷子，本来最顺的走法是穿过宋家的院子。宋家的当家人在院子两头砌了墙。巷子只好绕着宋家拐了两个直角，从此叫“宋家拐”。巷子尽头另有几户人家，他们干脆把巷口用一道门堵了，变成一条只有自家人进出的死胡同，晚上一关，比城里的坊还安全。</p>
+      <p>这一代的<span class="mo">墨</span>是管这片城外地方的小官。他来看过好几次，想把几条主巷拉直，每次都被一屋子人围住：你拉直了，我家门口就成了大路，天天有赶车的、挑担的、生人从我门口过；你拉直了，我那半间房就得拆。墨最后什么都没拉直。他在簿子上写：“城外诸巷，曲折如肠，不可治。”</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>没有总图，但有规矩<span class="y">中世纪欧洲</span></h3>
+    <p>欧洲中世纪的很多城镇，看上去像一团乱麻：街道弯弯曲曲，宽窄不一，常常莫名其妙地拐个弯，或者在一座教堂前突然散开成一个不规则的小广场。这些城镇大多不是谁一笔画出来的，而是从一个村子、一座城堡、一座修道院或者一个渡口边，几百年一户一户长起来的。</p>
+    <p>长起来也有它的逻辑。街常常沿着原来的田埂、小路和溪流走，因为地就是这样一块块卖出去、分出去的。沿街的宅基地往往又窄又长：临街的那一面最值钱，可以开店，所以每家都想要一点临街的门面，地就被切成一条条窄长的“布条”，门面窄，进深长，前面开店，中间住人，后面是作坊、菜园和猪圈。英格兰很多老镇的主街，今天还能看出这种长条地块的痕迹。</p>
+    <p>也不是所有中世纪城镇都弯。十三世纪法国西南部的国王和领主们，为了招揽人口、开垦荒地，建了几百座叫“巴斯蒂德”的新镇，几乎都是方格：中间一个方形的市场广场，四周一圈带拱廊的房子。弯和直，取决于这座城是“长出来的”，还是“画出来的”。</p>
+  </div>
+
+  <div class="col">
+    <h3>邻居的官司<span class="y">十四世纪 · 突尼斯</span></h3>
+    <p>北非和西亚的老城，巷子更弯，死胡同更多。摩洛哥的非斯老城至今几乎没有汽车能开进去，里面是一张由几千条小巷组成的迷宫，外人进去常常要雇个向导。</p>
+    <p>这种迷宫背后有一套非常细的邻里规矩。十四世纪，突尼斯有一位叫伊本·拉米的泥瓦匠师傅，常被法官请去处理建房纠纷，他把一辈子见过的案子写成了一本书。书里的问题都很具体：新开的窗户能不能看见邻居家的院子？加盖一层挡住了邻居的风和光怎么办？巷子尽头的几户人家能不能在巷口装门？排水沟能不能从邻居家墙根下过？判案的原则常常回到一句古老的法谚：<em>不可伤害，也不可以伤害回报伤害</em>。</p>
+    <p>在这些规矩里，一条死胡同不是公共道路，而是尽头那几户人家共有的“半私人”空间。外人没事不进来，女人可以在胡同里走动、坐在门口聊天，孩子在里面玩。窗户开得高、开得小，门不正对着别人家的门。研究伊斯兰城市的建筑学者贝西姆·哈基姆认为，这些城市的样子，很大程度上就是这样一条条邻里规矩、一桩桩纠纷判决，几百年累积出来的。</p>
+  </div>
+
+  <div class="col">
+    <h3>规划过的胡同，后来长歪了<span class="y">元大都 · 北京</span></h3>
+    <p>北京的胡同常被当成“老百姓自己长出来的城”，其实它最早是画出来的。1267 年开始修建的元大都，是按照一张严整的规划图建起来的方格城。元代的《析津志》记了一组数字：</p>
+  </div>
+
+  <div class="col">
+    <div class="spin">
+      <div class="off"><i>原文</i><p>大街二十四步阔，小街十二步阔。三百八十四火巷，二十九衖通。</p></div>
+      <div class="plain"><i>白话</i><p>大街宽二十四步，小街宽十二步。全城有三百八十四条“火巷”，二十九条“衖通”（即后来的“胡同”）。</p></div>
+      <div class="src">元·熊梦祥《析津志》，原书已佚，这段见于后人辑本。“火巷”大概是兼作防火隔离的小巷。关于“胡同”一词的来历，有说来自蒙古语“水井”的，也有别的说法，至今没有定论。</div>
+    </div>
+  </div>
+
+  <div class="col">
+    <p>元大都的胡同大多是东西向的，两条胡同之间的距离大致一样，中间排着坐北朝南的院子，非常整齐。可是七百多年过去，明清两代和后来的人在里面拆了盖、盖了拆，分家、典卖、加建、侵占，很多胡同变窄了、拐弯了、断掉了，又冒出许多新的小胡同。有些胡同从一开始就是斜的：<em>烟袋斜街</em>沿着积水潭的旧岸线，弯成一根烟袋杆的形状。规划给了胡同一副骨架，几百年的日子在骨架上长满了皱纹。</p>
+  </div>
+
+  <aside class="echo" data-k="存疑">
+    <span class="stamp">存疑</span>
+    <div>
+      <div class="rh">窄门面是税逼出来的吗？</div>
+      <p>越南河内老城的“管状房”，门面只有两三米宽、进深却有几十米；荷兰阿姆斯特丹运河边的老房子也窄得出奇。一个流传很广的说法是：当年的房产税按门面宽度收，于是人人都把门面做窄。这个说法在两地都有人讲，但证据并不扎实。更稳妥的解释是：临街、临河的那一边最值钱、最抢手，每家都只买得起一小截，于是地块自然就切窄了。税有可能起过作用，但未必是主因。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>人走出来的路</h3>
+    <p>规划师有一个词，叫“欲望路线”：草坪上被人踩出来的那条斜线，就是人真正想走的路。很多公园和校园里，铺好的路横平竖直，草坪上却有一条条被踩秃的小道，抄的是对角线。据说有些大学建新校园时干脆先不铺路，等一两年，看学生在草地上踩出哪些路，再把这些路铺成正式的路。</p>
+    <p>弯巷就是一座城的欲望路线，只不过是用几百年、几代人的脚踩出来的，然后被房子固定住了。它弯，是因为它记得人们当年真正要去的地方：渡口、水井、市场、庙门。</p>
+  </div>
+
+  <div class="globe">
+    <div class="gh"><b>别处</b><span>长出来的城</span></div>
+    <div class="grid">
+      <div class="rg"><h6>非斯<small>摩洛哥</small></h6><p>上千年的老城，几千条小巷，大部分开不进汽车，驴和手推车至今还在运货。</p></div>
+      <div class="rg"><h6>威尼斯<small>意大利</small></h6><p>一百多个小岛被运河和小桥缝在一起，巷子窄到伸手能碰两边的墙。</p></div>
+      <div class="rg"><h6>河内三十六行街<small>越南</small></h6><p>每条街原来专卖一种东西：丝街、糖街、锡街。管状房一间挨一间。</p></div>
+      <div class="rg"><h6>北京胡同<small>元大都起</small></h6><p>规划的骨架，几百年长出来的皱纹。</p></div>
+      <div class="rg"><h6>上海里弄<small>十九世纪末起</small></h6><p>开发商成片盖的联排房子，弄堂口一个过街楼，里面是一个小社会。规划过，但很快住出了自己的样子。</p></div>
+      <div class="rg"><h6>城中村<small>深圳、广州</small></h6><p>原来的村子被城市包围，村民在自家宅基地上往高里盖，楼与楼近得能“握手”。第三部再讲。</p></div>
+    </div>
+  </div>
+
+  <div class="wide">
+    <div class="fig" id="laneFig">
+      <div class="fig-label">装置 6</div>
+      <h4>谁从你门口过</h4>
+      <p class="how">一块地，同样多的人家，三种路网：<b>方格</b>、<b>一条主街加两边的死胡同</b>、<b>自己长出来的弯巷</b>。每户人家每天都要出一趟门，去底下的城门口。点任意一户，看看它走到城门要多远，每天有多少别人家的人从它门口经过。颜色越红，门口的过路人越多。</p>
+      <div class="btns" id="laneNet"></div>
+      <div class="two">
+        <svg id="laneSvg" viewBox="0 0 260 286" aria-label="三种路网"></svg>
+        <div><div class="kv" id="laneKV"></div><div class="say" id="laneSay">点一户人家。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="seats">
+      <div class="up"><i>图纸上 · 墨</i><p>路要通。死胡同一多，失了火救火的进不去，打了更也没人听得见；病了要抬出去，得绕半个城。一条路断在你家门口，全城的人都要替你绕路。</p></div>
+      <div class="dn"><i>楼下 · 宋家</i><p>路要是通了，我家门口就成了大路，赶车的、挑担的、生人、贼，日夜从我家门前过。我宁可自己多绕两步，也不想天天有人在我窗底下走。</p></div>
+      <div class="both">“通”和“静”是一对冤家。2016 年，中国中央文件提出新建住宅要推广街区制，原则上不再建封闭小区，已建成的小区和单位大院要逐步打开。消息一出，很多业主坐不住了：我花钱买的是围墙里的清静，凭什么要打开？这场争论到今天也没吵完，因为两边都有道理。</div>
+    </div>
+  </div>
+
+  <aside class="echo" data-k="生活">
+    <span class="stamp">生活</span>
+    <div>
+      <p>挑房子时，“临街”和“在小区最里面”是两种完全不同的生活：前者方便、热闹、吵；后者清静、安全、离大门远。装置里那条死胡同尽头的人家，就是“小区最里面”的那一户。没有哪一种绝对更好，看你更怕吵，还是更怕远。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <div class="yours">
+      <i>你楼下<small>第六张卡</small></i>
+      <p class="q">你家小区有几个门？</p>
+      <p>数一数你家小区开了几个门，平时开几个、晚上开几个。再看看小区里的路：是能穿过去的，还是绕一圈又回到原地的？很多小区的路是故意设计成“尽端路”和环路的，不让外面的车把小区当近道。小区外面的城市道路因此变得又宽又少，所有的车都挤在几条大马路上。这就是“通”和“静”在你家门口的一次具体交易。</p>
+    </div>
+  </div>
+</section>
+<!-- ============ 第六章 · 墙 ============ -->
+<section class="chap" id="c6" data-vol="卷二 · 骨 · 墙">
+  <div class="chead">
+    <div class="big">墙</div>
+    <div>
+      <div class="no">第六章 · 前 8000 年至今</div>
+      <h2>城里和城外</h2>
+      <dl><dt>讲什么</dt><dd>第一道墙；城与郭；城门、关厢和“城里人”；火药与棱堡；墙拆了以后变成环路</dd><dt>本章装置</dt><dd>城墙算账</dd></dl>
+      <div class="force" data-f="外 内 时"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">城墙后来去哪儿了？为什么环路一圈一圈的？</p>
+      <p>城墙挡的是城外的敌人，也把人分成了“城里人”和“城外人”。可城会长大，墙不会。城长出墙外，就再修一圈；大炮来了，就把墙改矮改厚改成星形；等到墙再也挡不住什么，它就被拆掉。<em>拆掉的墙基又宽又长、正好绕城一圈</em>，最适合修路、修地铁。所以你今天在很多城市看到的一环二环、环城大道，常常就是当年城墙和护城河的位置。</p>
+    </div>
+  </div>
+
+  <div class="town">
+    <svg data-town="6" aria-label="柳渡地图：外郭"></svg>
+    <div class="tcap"><b>柳渡 · 约 1100 年</b><span>一圈新的外郭，把西门外的弯巷也圈了进来。</span></div>
+  </div>
+
+  <div class="col">
+    <div class="liudu" data-t="柳渡 · 约 1100 年">
+      <p>北边的骑兵南下的消息一年比一年近。朝廷下令：柳渡要修外郭。这一代的<span class="mo">墨</span>拿着图在城外走了半个月，最难定的不是墙多高多厚，而是<em>墙从哪儿走</em>。</p>
+      <p>墙要是贴着老方格城修，最短、最省钱，可西门外那一大片弯巷、几千户人家就留在了墙外，打起仗来，他们要么逃进城里挤着，要么被敌人一把火烧掉。墙要是往外推，把弯巷都包进来，墙就要长出一倍，多花的钱从哪儿来？墨最后的办法是：墙往外推，城里新圈进来的人家，每户按门面宽窄出钱出工。</p>
+      <p>墙修好那天，<span class="nm">宋家</span>的当家人在新城墙上走了一圈。他家祖祖辈辈是“城外人”，现在成了“城里人”：夜里城门一关，骑兵进不来；他家那块地的价钱，一夜之间翻了一番。可是墙外两百步，还有十几户人家，墙没推到那儿。那些人家的孩子以前和宋家的孩子一起在渡口边玩，现在每天傍晚，城门一关，他们就被关在了外面。</p>
+      <p>墙外很快又长出了一片新的房子，挤在城门口两边，卖草料的、开车马店的、杀猪的、收破烂的，城里不让干、嫌臭嫌吵的营生都挪到了这里。柳渡人管这片地方叫“关厢”。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>第一道墙<span class="y">约前 8000 · 耶利哥</span></h3>
+    <p>约旦河谷的耶利哥，是世界上最古老的、一直有人住的地方之一。考古学家在这里挖出了一道约前 8000 年的石墙和一座八米多高的石塔，比金字塔还早五千年。这道墙是干什么用的，争论了几十年：防敌人？防洪水？还是一个村子用来显示自己有多能干的“纪念碑”？没有定论。</p>
+    <p>五千年后，两河流域的乌鲁克围起了一道据说长约九公里的城墙。苏美尔的史诗把它归功于传说中的国王吉尔伽美什。从那以后，“城”和“墙”在很多语言里几乎是同一个意思：中文的“城”本来就是城墙，“城市”是“城”加“市”，有墙，有买卖。</p>
+  </div>
+
+  <aside class="echo" data-k="存疑">
+    <span class="stamp">存疑</span>
+    <div>
+      <p>耶利哥那道墙和那座塔的年代、用途，学界看法不一。有人认为它主要是为了挡住山洪和泥石流，有人认为是防御工事，也有人认为是社会组织能力的象征，修它本身就是目的。“最古老的城墙”这个头衔，也有人觉得应该打个问号：那时的耶利哥更像一个大村子，而不是城。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>城与郭</h3>
+    <p>中国古代的大城常常不止一道墙。里面一道叫“城”，外面一道叫“郭”，所以有“城郭”这个词。</p>
+  </div>
+
+  <div class="col">
+    <div class="spin">
+      <div class="off"><i>原文</i><p>鲧筑城以卫君，造郭以守民，此城郭之始也。</p></div>
+      <div class="plain"><i>白话</i><p>鲧修了内城来保卫国君，又修了外郭来守护百姓，这就是城和郭的开始。</p></div>
+      <div class="src">东汉·赵晔《吴越春秋》（一说是后人引用的佚文）。鲧是传说中大禹的父亲，“鲧作城”是传说，不是信史。但这句话把两道墙的分工说得很清楚：<em>里面那道护的是君，外面那道护的是民</em>。</div>
+    </div>
+  </div>
+
+  <div class="col">
+    <p>北京城今天还留着这种层次的影子。明朝的北京，最里面是紫禁城，外面是皇城，再外面是内城。1553 年，嘉靖皇帝为了防蒙古骑兵，下令在内城外再修一圈外城，把整个北京包起来。可工程刚开始，钱就不够了，最后只修了南边的一段，把南郊的居民区和天坛、先农坛围了进去，就草草收尾。于是北京城的轮廓成了一个“凸”字：上面窄的是内城，下面宽的是半截外城。<em>一个预算缺口，在地图上留了四百多年。</em></p>
+  </div>
+
+  <div class="col">
+    <h3>城门、关厢和“城里人”</h3>
+    <p>墙有门，门有时辰。古代城市的城门日出而开、日落而闭，晚了就进不去城，只能在城门外的客店住一夜。城门口有兵丁盘查，进城的货物要交税（第二部“卡”一章细讲）。城门一关，城里和城外就成了两个世界。</p>
+    <p>城外紧挨着城门的地方，总会长出一片房子，中国叫关厢，欧洲叫“郊区”。英文 suburb 来自拉丁文 suburbium，字面意思是“城下面”：墙脚底下、城外头。住在那里的，是进不起城、或者城里不让干的营生：车马店、屠户、皮匠、染坊、穷人。<em>今天“郊区”在不少国家是有钱人住的地方，最初却是城墙外面的边角料</em>。</p>
+    <p>墙也定义了身份。中世纪欧洲有句话叫“城市的空气使人自由”：在不少城市的特许状里，一个从庄园逃出来的农奴，如果在城里住满一年零一天，没有被领主抓回去，就成了自由人。这句话本身是十九世纪德国学者的概括，但“一年零一天”的规矩在中世纪的许多城市里确实存在。城墙之内，是另一套法律。</p>
+  </div>
+
+  <aside class="echo" data-k="押韵">
+    <span class="stamp">押韵</span>
+    <div>
+      <div class="rh">看不见的城墙</div>
+      <p>城墙拆了，“城里人”和“城外人”的分别没有消失，只是换了一种墙。二十世纪的中国用户口把人分成城镇户口和农村户口，“农转非”曾是一件改变命运的大事；今天很多大城市的积分落户、居住证，管的也是“谁算城里人”。这是第三部“外”一章的话题。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>大炮来了<span class="y">1453—1700</span></h3>
+    <p>1453 年，奥斯曼苏丹穆罕默德二世用巨炮轰开了君士坦丁堡的城墙。这道陆墙守了一千年，挡住过匈人、阿拉伯人、保加尔人。高而薄的石墙，在大炮面前突然变得不堪一击。</p>
+    <p>欧洲的工程师们很快想出了对策：把墙修得<em>矮</em>，用土堆得<em>厚</em>，让炮弹打进去像打进棉花；再把墙的转角改成向外突出的尖角，叫“棱堡”，从棱堡侧面可以用火炮扫射贴近城墙的敌人，不留射击死角。从空中看，这样的城像一颗星星。这套办法起源于意大利，人称“意大利式要塞”，很快传遍欧洲。法国路易十四的军事工程师沃邦一生主持修建、改建了上百座要塞，把这门手艺推到了顶峰。威尼斯人在 1593 年建的帕尔马诺瓦，整座城就是一颗九角星，至今完好。</p>
+    <p>棱堡防住了大炮，却困住了城。这种城墙又厚又宽，外面还有层层叠叠的壕沟和斜坡，修一圈极贵，往外扩建一次更贵。很多欧洲城市因此几百年被“勒”在一圈要塞里，人口越来越多，地方不够，只好往高里盖、往窄里挤，街越来越暗，楼越来越密。<em>挡住敌人的墙，也挡住了城自己。</em></p>
+  </div>
+
+  <div class="wide">
+    <div class="fig" id="wallFig">
+      <div class="fig-label">装置 7</div>
+      <h4>城墙算账</h4>
+      <p class="how">墙越长，围住的地越大，可是“地”是按平方长的，“墙”只是按长度长的。拖动滑块改变城的大小，或者选一道真实的城墙。守城的人数用的是十世纪英格兰一份叫《城堡税册》的文件里的算法：<b>每一杆（约 5 米）城墙，配 4 个守城的人</b>。人口按每平方公里一万五千人算（前工业时代城里常见的密度）。</p>
+      <div class="btns" id="wallPre"></div>
+      <div class="ctl"><span>城墙长度</span><input type="range" id="wallL" min="1" max="40" step="0.1" value="9"><output id="wallLO"></output></div>
+      <div class="btns" id="wallShape"></div>
+      <div class="two">
+        <svg id="wallSvg" viewBox="0 0 240 240" aria-label="城墙示意"></svg>
+        <div><div class="kv" id="wallKV"></div><div class="readout" id="wallT"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>墙拆了，路来了<span class="y">1857 · 1919 · 1950 年代</span></h3>
+    <p>到了十九世纪，城墙在欧洲大多已经没什么用了：大炮越来越强，打仗靠的是野战军；城墙反倒成了城市发展的绊脚石。1857 年，奥地利皇帝弗朗茨·约瑟夫下令拆除维也纳的城墙。城墙、壕沟和城外那片为了让炮兵看得见敌人而禁止盖房的空地，加起来是一条宽几百米、绕老城一圈的环带。维也纳在这条环带上修了一条气派的环城大道，两边盖起歌剧院、议会大厦、市政厅、大学和博物馆，几乎是把一座新城沿着旧墙基画了一圈。</p>
+    <p>巴黎的最后一道城墙“梯也尔城墙”修于 1840 年代，长三十多公里，第一次世界大战后被拆除。墙外那片禁建带早就被穷人的棚屋占满，叫“地带”。拆墙之后，在差不多的位置修起了一条环城快速路，1973 年全线通车。今天这条路依然是巴黎市区和郊区之间一道看得见的线：路里面是“巴黎”，路外面是“郊区”。</p>
+    <p>莫斯科的林荫道环、花园环，分别是在旧白城城墙和土城垒的位置上修起来的。广州在二十世纪一十年代末、二十年代拆城墙修马路。北京的城墙大部分在 1950 年代到 1960 年代被拆除，建筑学家梁思成曾经提出把城墙顶改成环城公园，没有被采纳；内城城墙的位置，后来修成了地铁 2 号线和二环路。西安、南京的城墙则大段保存了下来，今天成了城市的名片。</p>
+  </div>
+
+  <div class="globe">
+    <div class="gh"><b>别处</b><span>墙去哪儿了</span></div>
+    <div class="grid">
+      <div class="rg"><h6>维也纳<small>1857</small></h6><p>墙基和禁建带变成环城大道，两边是一圈公共建筑。</p></div>
+      <div class="rg"><h6>巴黎<small>1919—1973</small></h6><p>梯也尔城墙拆了，附近修起环城快速路，成了“城里”和“郊区”的分界。</p></div>
+      <div class="rg"><h6>莫斯科<small>十九世纪起</small></h6><p>一圈圈旧城墙和土垒，变成一圈圈环路。</p></div>
+      <div class="rg"><h6>北京<small>1950—1960 年代</small></h6><p>内城墙变成二环路和地铁 2 号线，只剩几座城门和一小段墙。</p></div>
+      <div class="rg"><h6>西安 · 南京<small>保留</small></h6><p>城墙大段保存，墙顶可以骑车、跑马拉松。</p></div>
+      <div class="rg"><h6>帕尔马诺瓦<small>意大利</small></h6><p>九角星形要塞城，几百年没扩出去，至今是一颗完整的星星。</p></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="seats">
+      <div class="up"><i>图纸上 · 墨</i><p>墙每往外推一步，要多修的不只是那一步墙，还有一整圈。可墙要是不推，城外那几千户人家打起仗来怎么办？我只能让新圈进来的人出钱：墙护着谁，谁就出钱。</p></div>
+      <div class="dn"><i>楼下 · 宋家</i><p>我出了钱，进了城，地价翻了一番，这笔账划得来。可墙外两百步那十几户呢？他们一样是柳渡人，一样怕骑兵，只是钱不够、离得远了一点，就被关在了外头。</p></div>
+      <div class="both">一道墙画在哪儿，决定了谁是“里面的人”。里面的人有安全、有地价、有身份；外面的人有自由，也有风险。今天城市的“规划区”“开发边界”“学区线”“地铁站周边八百米”，都是看不见的墙。</div>
+    </div>
+  </div>
+
+  <aside class="echo" data-k="联系">
+    <span class="stamp">联系</span>
+    <div>
+      <p>书房里的《谁说了算》第四章讲过，城墙既能挡住外敌，也能把城里的人圈住、方便收税和征兵。《几点了》第六章讲到，中世纪城市的钟声一响，城门开关、市场开张，墙和钟一起管着城里人的一天。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <div class="yours">
+      <i>你楼下<small>第七张卡</small></i>
+      <p class="q">你那座城的“一环”在哪儿？</p>
+      <p>如果你所在的城市有环路，查一查最里面那一圈环路，或者老城区边上那条特别宽、特别圆的路，当年是不是城墙或者护城河。很多城市的“环城路”“城河路”“城墙根”“某某门”这些地名，就是城墙留下的指纹：墙没了，名字还在。</p>
+      <p>再看看那一圈路的里外：里面多半是老城、胡同、小街，外面是大马路、新小区。一道拆了几十年的墙，到今天还在把城分成里和外。</p>
+    </div>
+  </div>
+</section>
+<!-- ============ 第七章 · 市 ============ -->
+<section class="chap" id="c7" data-vol="卷二 · 骨 · 市">
+  <div class="chead">
+    <div class="big">市</div>
+    <div>
+      <div class="no">第七章 · 前 600 年至今</div>
+      <h2>做买卖的地方</h2>
+      <dl><dt>讲什么</dt><dd>广场；唐朝的坊市和宵禁；宋朝的街；集市为什么隔这么远、为什么三天一集；商业街和购物中心</dd><dt>本章装置</dt><dd>赶集</dd></dl>
+      <div class="force" data-f="外 内 时"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">市场和商业街是怎么来的？古人几天赶一次集？</p>
+      <p>城里的市场最早是被“关”起来的：划一块地，四面围墙，定时开门关门，官府派人盯着。后来管不住了，店铺就沿着街一间间开出来，有了商业街和夜市。乡下的集市则遵守另一套几何：集与集之间的距离，大约是一个农民一天能走一个来回的路；集期往往错开，一四七、二五八、三六九，<em>好让走村串乡的货郎每天都有集可赶</em>。</p>
+    </div>
+  </div>
+
+  <div class="town">
+    <svg data-town="7" aria-label="柳渡地图：市"></svg>
+    <div class="tcap"><b>柳渡 · 约 1500 年</b><span>城里有了固定的市（黄框），从渡口到城门的路边开满了铺面。</span></div>
+  </div>
+
+  <div class="col">
+    <div class="liudu" data-t="柳渡 · 约 1500 年">
+      <p>柳渡的市原来在方格城正中偏东的一个坊里，四面有墙，只开两座门。每天正午，市楼上的鼓一敲，市门大开；太阳落山前，钲一响，所有人都得收摊出门。市里每一行一排：卖米的一排，卖布的一排，卖铁器的一排，叫“行”。市令坐在市楼上，管秤、管价、管吵架、管收税。</p>
+      <p>可是城外的人越来越多，进一趟城门、再挤进市门，一来一回半天就没了。渡口那边来来往往的客商，也不愿意把货扛进城里再扛出来。于是，从渡口到西门的那条路边，先是有人摆摊，后来有人干脆把自家临街的墙打掉，改成铺面。</p>
+      <p><span class="nm">宋家</span>的房子正好在这条路边。这一代的宋家当家人把临街的两间屋拆了窗，装上可以一块块卸下来的门板，早上卸下来是铺子，晚上装回去是家。他卖的是渡口来往的人最需要的东西：草鞋、干粮、雨伞、烧酒。生意好的时候，铺子一直开到半夜。</p>
+      <p>这一代的<span class="mo">墨</span>是管市的官，他来过几次，说宋家这是“侵街”：铺子往外占了三尺，挡了车马。宋家把铺子缩回去三尺，过了半年，又悄悄伸了出来。墨后来不来了。城里的市越来越冷清，路边的铺子越来越多，柳渡人慢慢不说“去市里”，改说“去街上”。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>广场<span class="y">前 600 起 · 希腊 · 罗马</span></h3>
+    <p>希腊城邦的中心是 agora，一块敞开的空地：白天是市场，人们在这里买鱼、买橄榄油、换钱；也是公民聚会、争论、听演说的地方。苏格拉底就整天泡在雅典的广场上拉住人问问题。罗马的 forum 也是这样，神庙、法庭、元老院、商铺围着一块广场。在这些城市里，<em>做买卖的地方和讨论公事的地方是同一块地</em>。</p>
+    <p>欧洲中世纪的城镇大多以一个市场广场为中心，周围是教堂、市政厅和行会大楼。一座城镇能不能开集市，往往要国王或领主颁发特许状，有了特许状才能收摊位费、过路费。十三世纪英格兰的法学家布拉克顿还写下了一条有趣的规矩：新开的集市，离已有的集市不应近于六又三分之二英里。他的算法是：一个人一天能走二十英里，三分之一的时间去，三分之一的时间做买卖，三分之一的时间回来。</p>
+  </div>
+
+  <div class="col">
+    <h3>午时击鼓<span class="y">唐 · 坊市制</span></h3>
+    <p>唐长安的商业被关在两个大坊里：东市和西市，各占两坊之地。市四面有墙，墙内按行业分成一排排的“行”，有市署管理。按规定，<em>正午击鼓数百下开市，日落前击钲数百下散市</em>，夜里不许做买卖。住在一百多个坊里的人，要买东西就得走到东市或西市去。东市附近住的多是达官贵人，卖的多是上等货；西市靠近丝绸之路的起点，胡商云集，更热闹。</p>
+    <p>这套制度的用意很清楚：商人集中起来，便于管理、收税、平抑物价，也便于防盗、防火、防乱。代价是不方便，而且越来越不方便：城里人口越来越多，商业越来越活跃，一天只开半天的两个市，渐渐装不下了。唐朝后期，已经有人在坊里开店、在夜里营业，朝廷三令五申也禁不住。</p>
+  </div>
+
+  <div class="col">
+    <h3>坊墙倒了<span class="y">北宋 · 开封</span></h3>
+    <p>到了北宋的开封，坊墙基本名存实亡。房子和店铺直接面对大街开门，沿街一字排开，有的还往街上加盖棚子，叫“侵街”。朝廷一度想管，在街边立木头做标记，越过标记的就拆，可是拆了又盖，到后来也就默许了。</p>
+    <p>夜禁松了，夜市就来了。宋代笔记里写开封的夜市，有的一直开到三更，五更又开张，几乎通宵达旦。张择端的《清明上河图》画的就是这样一座城：虹桥上挤满了摊贩，城门内外是酒楼、茶坊、药铺、香铺、修车铺，街上走着挑担的、骑驴的、坐轿的、算命的。没有一道坊墙。</p>
+    <p>从“市”到“街”，是中国城市史上的一次大变化。唐朝的城是一个个封闭的盒子，商业关在其中两个盒子里；宋朝的城，商业顺着街道流进了每一个角落。规划还是那张方格图，<em>城里人的日子先变了，图后来只好跟着变</em>。</p>
+  </div>
+
+  <aside class="echo" data-k="押韵">
+    <span class="stamp">押韵</span>
+    <div>
+      <div class="rh">侵街和城管</div>
+      <p>宋朝的“侵街”和今天的“占道经营”是同一件事；宋朝官府立木桩、拆棚子、过两年又默许，今天城市里清理地摊、过两年又提倡“地摊经济”，也押着同一个韵。管的一方要的是路通、整齐、好收税；摆摊的一方要的是一口饭；买东西的人要的是方便和便宜。三方拉锯了一千年。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>一四七，二五八，三六九<span class="y">乡下的集</span></h3>
+    <p>城外的乡下，买卖靠的是集市。中国北方叫赶集，南方叫趁墟、赶场。集市不是天天有，而是隔几天一次：常见的是按农历每旬（十天）开三次，比如逢一、四、七，或二、五、八，或三、六、九。</p>
+    <p>美国人类学家施坚雅二十世纪四十年代末在四川成都附近做田野调查，后来写了一本研究中国农村市场的书，提出了一套很有名的理论。他发现，最基层的集市和周围的村子组成一个个大致呈六边形的“基层市场区”，一个集通常服务十几到二十来个村子，集与集之间的距离，大约是农民挑着担子一天能走个来回的路。相邻几个集的集期往往错开，于是走村串乡的货郎、小贩、工匠，今天赶这个集，明天赶那个集，一旬里几乎天天都有生意。</p>
+    <p>施坚雅还认为，对一个普通农民来说，他的“社会”不是他的村子，而是他赶集的那个市场区：他在集上卖粮、买盐、找媒人、打听消息、喝茶，娶的媳妇多半也来自同一个市场区里的村子。<em>集市画出了一张看不见的地图</em>，比官府的县界更贴近人们真实的生活。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig" id="mktFig">
+      <div class="fig-label">装置 8</div>
+      <h4>赶集</h4>
+      <p class="how">左边：一片平原上散落着村子。拖动滑块，设定农民一天赶集愿意走多远（单程），看看集市会排成什么样的六边形网，一个集管多少个村。右边：三个相邻的集，集期可以“错开”，也可以“都一样”，看看一个货郎一旬（十天）能赶几次集。</p>
+      <div class="ctl"><span>单程最远</span><input type="range" id="mktR" min="2" max="12" step="0.5" value="5"><output id="mktRO"></output></div>
+      <div class="btns" id="mktPre"></div>
+      <div class="two">
+        <svg id="mktSvg" viewBox="0 0 300 260" aria-label="集市六边形"></svg>
+        <div>
+          <div class="kv" id="mktKV"></div>
+          <div class="btns" id="mktDay"></div>
+          <div id="mktCal"></div>
+        </div>
+      </div>
+      <div class="say" id="mktSay"></div>
+    </div>
+  </div>
+
+  <div class="globe">
+    <div class="gh"><b>别处</b><span>做买卖的地方</span></div>
+    <div class="grid">
+      <div class="rg"><h6>雅典<small>agora</small></h6><p>买卖、聊天、议事、审案，都在同一块广场上。</p></div>
+      <div class="rg"><h6>长安<small>东市 · 西市</small></h6><p>商业关在两个大坊里，定时开关。</p></div>
+      <div class="rg"><h6>伊斯法罕<small>巴扎</small></h6><p>有顶的商业街连成一座“城中城”，一条巷子一个行业，主街长约两公里。</p></div>
+      <div class="rg"><h6>开封<small>北宋</small></h6><p>坊墙倒了，店铺沿街开，夜市开到三更。</p></div>
+      <div class="rg"><h6>中世纪欧洲<small>集市特许状</small></h6><p>开集要特许状，集与集之间要隔开一段距离。</p></div>
+      <div class="rg"><h6>美国郊区<small>1950 年代起</small></h6><p>购物中心建在高速路口，四周是大停车场。“市”从城中心搬到了开车才能到的地方。</p></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="seats">
+      <div class="up"><i>图纸上 · 墨</i><p>商人散在全城，我就管不住秤，收不齐税，防不住火。铺子占了路，车马过不去，出了事谁负责？市就该在市里。</p></div>
+      <div class="dn"><i>楼下 · 宋家</i><p>市在城中间，渡口的客人不会为了一双草鞋走进城去。我开在路边，是因为人在路边。你把我赶回市里，客人就去别人家的路边买了。</p></div>
+      <div class="both">“市”放在哪儿，图纸上是一个管理问题，楼下是一个<em>人流</em>问题。规划可以画一块地叫“商业用地”，但生意只长在人多的地方。规划得好的时候，两者重合；规划得不好，就会出现空荡荡的“商业街”，和挤满了地摊的“居住区”。</div>
+    </div>
+  </div>
+
+  <aside class="echo" data-k="联系">
+    <span class="stamp">联系</span>
+    <div>
+      <p>《柜台里外》第三章“一条街”讲的就是这个故事的另一面：同一行的店为什么喜欢扎堆开在一条街上，钱庄、当铺、米行怎样沿着街排开。《点石成金》里，市场上的秤和斗，是最早的度量衡。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <div class="yours">
+      <i>你楼下<small>第八张卡</small></i>
+      <p class="q">你家附近的“市”在哪儿？</p>
+      <p>数一数你家步行十分钟内有几个买菜的地方：菜市场、超市、便利店、生鲜店、社区团购的取货点。再想想它们是怎么分布的：菜市场往往在老街区里，超市在路口，便利店散在每个人流多的拐角，购物中心在地铁站或者大马路边。</p>
+      <p>有些城市在推广“十五分钟生活圈”：买菜、看病、上学、健身，步行十五分钟内都能办到。这其实是把施坚雅的“一天走一个来回”缩小到了城市里：一个人愿意为一棵菜走多远，决定了菜市场该隔多远开一个。</p>
+    </div>
+  </div>
+</section>
+<!-- ============ 第八章 · 轴 ============ -->
+<section class="chap" id="c8" data-vol="卷二 · 骨 · 轴">
+  <div class="chead">
+    <div class="big">轴</div>
+    <div>
+      <div class="no">第八章 · 前 1700 年至今</div>
+      <h2>中间那条线</h2>
+      <dl><dt>讲什么</dt><dd>王者南面；左祖右社、面朝后市；北京中轴线；别处的轴线；象征和交通的冲突</dd><dt>本章装置</dt><dd>走一遍中轴</dd></dl>
+      <div class="force" data-f="外 时"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">为什么那么多都城都有一条中轴线？</p>
+      <p>因为都城不只是给人住的，还是给人<em>看</em>的。一条从城门笔直通向宫殿的轴线，两边对称地排开庙宇和衙门，人从南门一路往北走，一道门比一道门高，一座殿比一座殿大，走到尽头，就明白了谁是这座城、这个国家的中心。轴线是把权力和秩序“画”进城市的一种办法。它好看、庄严，但不一定好走：一条不许穿越的中轴，会把城切成东西两半。</p>
+    </div>
+  </div>
+
+  <div class="town">
+    <svg data-town="8" aria-label="柳渡地图：中轴"></svg>
+    <div class="tcap"><b>柳渡 · 约 1700 年</b><span>一条中轴线从北边的宫一直划到南门，左边祖庙，右边社坛。</span></div>
+  </div>
+
+  <div class="col">
+    <div class="liudu" data-t="柳渡 · 约 1700 年">
+      <p>新朝定鼎，柳渡升了府城，要盖一座王府。新来的<span class="mo">墨</span>是礼部派来的，他第一件事不是看水、看地、看路，而是翻书。他翻的是一本两千年前的书，书上说：王宫要居中，坐北朝南，左边是祖庙，右边是社稷坛，前面是朝堂，后面是市场。</p>
+      <p>他在方格城的北边正中画了王府，从王府大门往南，画一条笔直的线，一直划到南城门。线上不许盖民房，不许摆摊，不许出殡，平时只有官员和仪仗走。原来那座正对着渡口路的西门，从此成了“偏门”；南门改建得又高又大，成了“正门”。从渡口来的客商，要么绕到南门进城，要么从西门挤进去。</p>
+      <p><span class="nm">宋家</span>的铺子一下子冷清了一半。官员、举子、有体面的客人，都从南门进出，没人再从宋家门前过。当家的跑去找墨：“祖宗规矩是‘面朝后市’，市在后头，怎么倒把我们这些做买卖的挤到了偏门？”墨说：“书上写的是王城。你家在城外，不在书上。”</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>王者南面</h3>
+    <p>中国古代宫殿坐北朝南，有现实的原因，第二章讲过：在北半球，朝南晒得到太阳，背北挡得住寒风。但“朝南”很早就被赋予了另一层意思。</p>
+  </div>
+
+  <div class="col">
+    <div class="spin">
+      <div class="off"><i>原文</i><p>离也者，明也，万物皆相见，南方之卦也。圣人南面而听天下，向明而治。</p></div>
+      <div class="plain"><i>白话</i><p>离卦代表光明，万物在光明里彼此看得见，它对应南方。所以圣人面朝南方来治理天下，朝着光明的方向理政。</p></div>
+      <div class="src">《周易·说卦》。“南面”从此成了“当皇帝”的代称，“北面”是做臣子。一个朝向问题，变成了一个身份问题。</div>
+    </div>
+  </div>
+
+  <div class="col">
+    <p>考古学家认为，早在约前 1700 年的河南二里头遗址，宫殿建筑群就已经有了大致对称的布局。到了《考工记》，这套想法被写成了一张标准图：宫在正中，“左祖右社，面朝后市”。注意，这里的左右是站在宫殿里、面朝南方说的：左手是东，右手是西。祖庙在东，供奉祖先，代表血缘；社稷坛在西，祭祀土地和五谷，代表疆土。前面是处理政务的朝堂，后面是做买卖的市场。</p>
+    <p>真正把这张图一丝不苟地画到地上的，反而是一个不太“中原”的王朝。1267 年，忽必烈命刘秉忠主持修建大都，就是今天北京的前身。大都的设计几乎照着《考工记》来：方形的城，宫城在中轴线上，太庙在东，社稷坛在西，而城里最热闹的商业区，正好在宫城北边的积水潭和钟鼓楼一带：南来的漕船顺着运河一直开到积水潭，货物就在这里上岸。“面朝后市”，在七百多年前的北京是字面意义上的事实。</p>
+  </div>
+
+  <div class="col">
+    <h3>七点八公里<span class="y">北京中轴线</span></h3>
+    <p>明清两代在元大都的基础上改建北京，把中轴线往南延长了很多。到了清代，这条线南起外城的永定门，北到钟鼓楼，全长约七点八公里。从南往北走：永定门，两边对称的天坛和先农坛，正阳门，天安门，端门，午门，然后是紫禁城里一座接一座的大殿，神武门，景山，地安门，万宁桥，最后是鼓楼和钟楼。</p>
+    <p>这条线上的建筑一座比一座重要，空间一段比一段收紧，又一段比一段开阔。人沿着它走，就像在读一篇结构严谨的文章：起、承、转、合。2024 年，“北京中轴线”被列入世界文化遗产名录。</p>
+    <p>但它也带来一个很实际的问题。故宫、景山、北海、中南海连成一片，几公里长，在老城中心形成一块很难横穿的区域。旧北京城里东西向的交通，长期只能挤在少数几条街上，长安街就是其中最重要的一条。今天在北京二环里开车或骑车往东西方向走，常常要绕。<em>一条为仪式画的线，变成了一道交通上的墙</em>。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig" id="axisFig">
+      <div class="fig-label">装置 9</div>
+      <h4>走一遍中轴</h4>
+      <p class="how">左边是《考工记》里的理想王城（示意），右边是北京中轴线上的主要建筑（示意，不按比例）。点右边任何一个点，看看它是什么、什么时候建的、和那张两千年前的理想图对不对得上。</p>
+      <div class="two" style="align-items:start">
+        <svg id="axisIdeal" viewBox="0 0 240 240" aria-label="考工记王城示意"></svg>
+        <svg id="axisBJ" viewBox="0 0 300 520" aria-label="北京中轴线示意，可点击"></svg>
+      </div>
+      <div class="say" id="axisSay">点右边中轴线上的一个点。</div>
+    </div>
+  </div>
+
+  <div class="globe">
+    <div class="gh"><b>别处</b><span>别人的轴线</span></div>
+    <div class="grid">
+      <div class="rg"><h6>特奥蒂瓦坎<small>墨西哥 · 约 100—550</small></h6><p>一条两公里多长的“亡者大道”，北端是月亮金字塔，东边是太阳金字塔。名字是几百年后阿兹特克人起的。</p></div>
+      <div class="rg"><h6>吴哥<small>柬埔寨</small></h6><p>城和寺庙都被看作宇宙的缩影，中心的高塔象征须弥山，四周的护城河象征大海。</p></div>
+      <div class="rg"><h6>巴黎<small>历史轴线</small></h6><p>从卢浮宫经协和广场、香榭丽舍大街到凯旋门，再一路延伸到拉德芳斯新区的“大拱门”，跨越了三百多年。</p></div>
+      <div class="rg"><h6>华盛顿<small>1791</small></h6><p>法国工程师朗方的规划：国会山、华盛顿纪念碑、林肯纪念堂排在一条线上，中间是长长的草坪广场。</p></div>
+      <div class="rg"><h6>新德里<small>1911—1931</small></h6><p>英国人为殖民首都画的大道，从总督府直通印度门。2022 年改名为“责任之路”。</p></div>
+      <div class="rg"><h6>柳渡<small>虚构</small></h6><p>王府、祖庙、社坛，一条线划到南门，渡口那条老路成了偏门。</p></div>
+    </div>
+  </div>
+
+  <aside class="echo" data-k="押韵">
+    <span class="stamp">押韵</span>
+    <div>
+      <div class="rh">新区的中轴</div>
+      <p>二十一世纪中国很多城市建新区，第一笔往往是画一条中轴线：一头是新的行政中心大楼，一头是大广场或者湖，中间是宽阔的景观大道，两边对称地摆上博物馆、大剧院、图书馆。王府换成了政府大楼，祖庙和社坛换成了博物馆和大剧院，书还是那本书。区别是古代的中轴走的是仪仗，今天的中轴走的常常是……没有多少人，因为大道太宽、楼离得太远，晒太阳都没地方躲。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <div class="seats">
+      <div class="up"><i>图纸上 · 墨</i><p>城不只是住人的地方，它还是一套规矩的模样。人从南门走进来，一路看到的应该是秩序：谁在中间，谁在两边，谁在前，谁在后。没有这条线，府城就只是一堆房子。</p></div>
+      <div class="dn"><i>楼下 · 宋家</i><p>你的线把城门挪了，人流就跟着挪了。我家几代人守着的那条渡口路，一夜之间成了后门。规矩是给人看的，饭是要吃的。</p></div>
+      <div class="both">轴线是城市里最纯粹的“外来需求”：它不是为城里人的方便画的，而是为一种更大的秩序，王朝、国家、信仰，画给所有人看的。它常常也最经得住时间：交通会变，商业会变，可一条被当成“国家脸面”的线，几百年都没人敢动。</div>
+    </div>
+  </div>
+
+  <aside class="echo" data-k="联系">
+    <span class="stamp">联系</span>
+    <div>
+      <p>《谁说了算》第五章“祭”讲神庙怎样成为城市的中心、王权怎样借神的名义坐稳；第九章“碑”讲法律为什么要刻在人人看得见的地方。中轴线把这两件事都画进了城：让人看见神，看见王，也看见规矩。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <div class="yours">
+      <i>你楼下<small>第九张卡</small></i>
+      <p class="q">你那座城有没有一条“中轴”？</p>
+      <p>看看你所在城市的老城区和新区：有没有一条路，一头是政府大楼或者某个纪念性建筑，另一头是广场、湖或者山，两边的建筑左右对称？如果有，它多半是这座城的“脸面”，路很宽，节日会挂灯笼，平时车多人少。</p>
+      <p>再看看真正热闹的地方在哪儿：往往不在中轴上，而在离它不远的几条斜街、老街、地铁站附近。<em>城的“脸”和城的“胃”，很少长在同一个地方。</em></p>
+    </div>
+  </div>
+</section>
+<!-- ============ 第一部完 ============ -->
+<div class="partend" data-vol="第一部完">
+  <div class="k">第一部 · 立城 · 完</div>
+  <h3>从一个渡口，到一条中轴</h3>
+  <div class="town" style="margin:1em 0">
+    <svg data-town="8" aria-label="柳渡地图：第一部结束时的样子"></svg>
+    <div class="tcap"><b>柳渡 · 约 1700 年</b><span>九层叠在一起。红框还在原地。</span></div>
+  </div>
+  <p class="ni" style="font-size:16px;line-height:1.9;text-align:left">到这里，柳渡已经有了堤、井和渠，有了朝南开门的房子和四周的田，有了一座方格新城和城门外长出来的弯巷，有了两道城墙、一个市和一条中轴线。宋家那块地，从城外到城里，从渡口边的窝棚到路边的铺子，一直没挪窝。</p>
+  <p class="ni" style="font-size:16px;line-height:1.9;text-align:left">可是，一座城有了骨架，还不能住人。几十万人的粪往哪儿冲？病了去哪儿？着了火谁来救？夜里谁在街上巡逻？孩子在哪儿上学？过路的要不要交钱？死了的人埋在哪儿？还有，马车、火车、汽车，一样样开进城来，把骨架又改了一遍。第二部讲这些：一座城的五脏六腑。</p>
+  <p class="ni" style="font-size:15px;color:var(--ink-3);text-align:left">第二部写作中。</p>
+</div>
+
+<footer>
+  <p>《城里城外 · 城市创世记》第一部。柳渡、墨和宋家是虚构的；正文中的史实尽量核对过，有争议的地方标了“存疑”，全书的出处与“哪些是真的”会汇总在第三部末尾。</p>
+  <p>书里引用的原文只限公版古籍（管子、孟子、周礼·考工记、周易、吴越春秋、析津志等）；现代学者的观点均为转述。装置里的数字是简化模型，只看数量级和趋势。</p>
+  <a class="nextbook" href="../power/"><small>书房里的另一本书</small><br><b>谁说了算 · 人间秩序创世记</b><br><small>第一批城为什么让人走不掉，城墙、粮仓和神庙怎样把一群人变成了一个国家。</small></a>
+  <p><a href="#top" class="toTop">回到封面 ↑</a>　·　<a href="../">回书房</a></p>
+</footer>
+</main>
+
+<script>
+(function(){
+'use strict';
+const $ = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => [...(r || document).querySelectorAll(s)];
+const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+const lerp = (a, b, t) => a + (b - a) * t;
+function rng(seed){ let a = seed >>> 0; return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const fmt = n => n >= 1e8 ? (n / 1e8).toFixed(n >= 1e9 ? 0 : 1) + ' 亿' : n >= 1e4 ? Math.round(n / 1e4).toLocaleString() + ' 万' : Math.round(n).toLocaleString();
+const f1 = x => (Math.round(x * 10) / 10).toLocaleString();
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+const btnRow = (box, items, cur, cb) => {
+  box.innerHTML = items.map((t, i) => '<button class="btn' + (i === cur ? ' on' : '') + '" data-i="' + i + '">' + t + '</button>').join('');
+  box.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; $$('button', box).forEach(x => x.classList.toggle('on', x === b)); cb(+b.dataset.i); });
+};
+const dev = (sel, fn) => { const el = $(sel); if (el) { try { fn(el); } catch (err) { console.error(sel, err); } } };
+const kv = (box, rows) => { box.innerHTML = rows.map(r => '<div>' + r[0] + '<b>' + r[1] + '</b></div>').join(''); };
+/* 把 SVG 里的点击坐标换成 viewBox 坐标 */
+function svgPt(svg, e){
+  const r = svg.getBoundingClientRect(), vb = svg.viewBox.baseVal;
+  const sx = vb.width / r.width, sy = vb.height / r.height, s = Math.max(sx, sy);
+  // preserveAspectRatio 默认 xMidYMid meet：按较大的比例缩放并居中
+  const ox = (r.width * s - vb.width) / 2, oy = (r.height * s - vb.height) / 2;
+  return {x: (e.clientX - r.left) * s - ox + vb.x, y: (e.clientY - r.top) * s - oy + vb.y};
+}
+
+/* ---------- 全书目录（三个网页共用） ---------- */
+const PAGE = /three\.html/.test(location.pathname) ? 3 : /two\.html/.test(location.pathname) ? 2 : 1;
+const READY = 1; // 已经写好的部数；后面的章节在目录里显示“写作中”
+const PURL = {1: './', 2: 'two.html', 3: 'three.html'};
+const TOC = [
+  {p: 1, t: '第一部 · 立城 —— 城为什么在这儿，长成什么样'},
+  {v: '序幕'},
+  {id: 'c0', n: '渡', t: '过河的地方', s: '选址：脚下的地，和四周的路', r: '约前 8000—今'},
+  {v: '卷一 · 地 —— 先看老天给了什么'},
+  {id: 'c1', n: '水', t: '靠水，怕水', s: '井、渠、堤；悬在头顶的河，摞起来的城', r: '前 7000—今'},
+  {id: 'c2', n: '天', t: '朝南开门', s: '气候、地形、建材、地震；楼间距是太阳定的', r: '前 3000—今'},
+  {id: 'c3', n: '粮', t: '城得有人喂', s: '腹地、漕运、罗马的面包、屠能的圈', r: '前 3000—今'},
+  {v: '卷二 · 骨 —— 城的形状'},
+  {id: 'c4', n: '格', t: '画方格的人', s: '匠人营国、希波丹姆、罗马营寨、长安里坊、纽约 1811', r: '前 2500—1900'},
+  {id: 'c5', n: '巷', t: '自己长出来的城', s: '中世纪的弯巷、死胡同与邻里官司、窄门面', r: '800—今'},
+  {id: 'c6', n: '墙', t: '城里和城外', s: '城与郭、城门、棱堡；墙拆了变成环路', r: '前 8000—今'},
+  {id: 'c7', n: '市', t: '做买卖的地方', s: '广场、坊市与宵禁、宋代的街、赶集的间距', r: '前 600—今'},
+  {id: 'c8', n: '轴', t: '中间那条线', s: '左祖右社、面朝后市；宫殿、神庙与城的中心', r: '前 1500—今'},
+  {p: 2, t: '第二部 · 城里 —— 一座城的五脏六腑'},
+  {v: '卷三 · 脏 —— 水、病、火'},
+  {id: 'c9', n: '沟', t: '往哪儿冲', s: '罗马大下水道、伦敦大恶臭、北京的明沟、马粪危机', r: '前 600—今'},
+  {id: 'c10', n: '疫', t: '病从哪口井来', s: '隔离、霍乱地图、医院的诞生和它该放在哪', r: '前 400—今'},
+  {id: 'c11', n: '火', t: '一把火改了城', s: '罗马、伦敦、江户、芝加哥；消防队与防火巷', r: '64—今'},
+  {v: '卷四 · 公家的房子 —— 一样样功能是怎么来的'},
+  {id: 'c12', n: '巡', t: '谁在夜里走街', s: '更夫、坊正、伦敦警察、派出所、监狱放哪儿', r: '前 500—今'},
+  {id: 'c13', n: '学', t: '上学的路', s: '学堂、图书馆、公立学校、学区', r: '前 2000—今'},
+  {id: 'c14', n: '卡', t: '过路要交钱', s: '城门税、关卡、收费公路、拥堵费', r: '前 500—今'},
+  {id: 'c15', n: '墓', t: '死人住哪儿', s: '城外的坟、迁坟、公墓与火葬场', r: '前 450—今'},
+  {id: 'c16', n: '园', t: '城市的肺', s: '皇家园林开放、公园、广场、绿带', r: '1600—今'},
+  {v: '卷五 · 走 —— 路、轨、车'},
+  {id: 'c17', n: '路', t: '路为什么这么宽', s: '车辙、石板、人行道、路灯', r: '前 300—今'},
+  {id: 'c18', n: '轨', t: '跟着铁轨长', s: '火车站、电车、地铁与郊区', r: '1830—今'},
+  {id: 'c19', n: '车', t: '越修越堵', s: '汽车、高速穿城、停车、诱导需求', r: '1900—今'},
+  {p: 3, t: '第三部 · 城外 —— 搬家、大手笔、地与时间'},
+  {v: '卷六 · 搬家 —— 功能区的迁徙'},
+  {id: 'c20', n: '风', t: '臭的往下风', s: '屠宰场、皮坊、工厂被赶出城；分区法', r: '1300—今'},
+  {id: 'c21', n: '厂', t: '烟囱与码头', s: '工业城、港口、码头搬走、老厂房变咖啡馆', r: '1780—今'},
+  {id: 'c22', n: '住', t: '挤在一起', s: '大杂院、廉租公寓、棚户、城中村、塔楼', r: '100—今'},
+  {v: '卷七 · 大手笔 —— 规划师和它的反面'},
+  {id: 'c23', n: '拆', t: '给城开膛', s: '奥斯曼的巴黎和它的模仿者', r: '1853—今'},
+  {id: 'c24', n: '梦', t: '理想城', s: '田园城市、光辉城市、巴西利亚、堪培拉', r: '1898—今'},
+  {id: 'c25', n: '街', t: '街道的眼睛', s: '雅各布斯和摩西；谁有资格画图', r: '1930—今'},
+  {v: '卷八 · 地与时 —— 一亩三分地和时间差'},
+  {id: 'c26', n: '地', t: '一亩三分地', s: '产权、钉子户、补偿、土地财政、邻避', r: '古今'},
+  {id: 'c27', n: '时', t: '规划赶不上变化', s: '路径依赖、预测落空、鬼城、收缩城市、任期', r: '古今'},
+  {id: 'c28', n: '外', t: '城与城外', s: '城乡、卫星城、城市群、迁都、特区', r: '古今'},
+  {v: '尾声'},
+  {id: 'c29', n: '今', t: '回到柳渡', s: '一张一万年的规划图，和你楼下', r: '今'}
+];
+const chapPage = {}; { let p = 1; TOC.forEach(x => { if (x.p) p = x.p; if (x.id) chapPage[x.id] = p; }); }
+const href = id => (chapPage[id] === PAGE ? '' : PURL[chapPage[id]]) + '#' + id;
+$$('.bar .parts a').forEach(a => { const p = +a.dataset.p; a.classList.toggle('on', p === PAGE); if (p > READY) { a.removeAttribute('href'); a.style.opacity = .4; a.title = '写作中'; } });
+$('#drawerList').innerHTML = TOC.map(x => x.p ? '<li class="ph">' + x.t + '</li>' : x.v ? '<li class="vh">' + x.v + '</li>' :
+  chapPage[x.id] > READY ? '<li><a style="opacity:.5;pointer-events:none"><span class="n">' + x.n + '</span><span>' + x.t + '<small>写作中</small></span></a></li>' :
+  '<li><a href="' + href(x.id) + '"' + (chapPage[x.id] === PAGE ? ' class="here"' : '') + '><span class="n">' + x.n + '</span><span>' + x.t + '<small>' + x.s + '</small></span></a></li>').join('');
+dev('#toc', ul => {
+  ul.innerHTML = TOC.map(x => x.p ? '<li class="vh" style="color:var(--main)">' + x.t + '</li>' : x.v ? '<li class="vh">' + x.v + '</li>' :
+    chapPage[x.id] > READY ? '<li class="soon"><div><span class="n">' + x.n + '</span><span class="t">' + x.t + '<small>' + x.s + '</small></span><span class="r">' + x.r + '</span></div></li>' :
+    '<li' + (chapPage[x.id] === PAGE ? '' : ' class="away"') + '><a href="' + href(x.id) + '"><span class="n">' + x.n + '</span><span class="t">' + x.t + '<small>' + x.s + '</small></span><span class="r">' + x.r + '</span></a></li>').join('');
+});
+
+/* ---------- 页眉：卷名、进度、目录抽屉 ---------- */
+const barVol = $('#barVol'), prog = $('#prog');
+const vols = $$('[data-vol]');
+let ticking = false;
+function onScroll(){
+  ticking = false;
+  const lim = innerHeight * 0.35; let cur = null;
+  for (const e of vols) { if (e.getBoundingClientRect().top < lim) cur = e; else break; }
+  barVol.textContent = cur ? cur.dataset.vol : '序';
+  const H = document.documentElement.scrollHeight - innerHeight;
+  prog.style.width = (H > 0 ? scrollY / H * 100 : 0) + '%';
+}
+window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, {passive: true});
+onScroll();
+const drawer = $('#drawer');
+function openD(on){ drawer.classList.toggle('on', on); drawer.setAttribute('aria-hidden', on ? 'false' : 'true'); }
+$('#tocBtn').addEventListener('click', () => openD(true));
+drawer.addEventListener('click', e => { if (e.target.closest('[data-close]') || e.target.closest('a')) openD(false); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') openD(false); });
+$$('.toTop').forEach(a => a.addEventListener('click', e => { e.preventDefault(); scrollTo({top: 0, behavior: 'smooth'}); }));
+
+/* 章首“四种力”：天 外 内 时 */
+const FORCES = [['天', '自然'], ['外', '外来需求'], ['内', '内部需求'], ['时', '时间差']];
+$$('.force').forEach(w => { const on = (w.dataset.f || '').split(/\s+/); w.innerHTML = FORCES.map(f => '<span' + (on.includes(f[0]) ? ' class="on"' : '') + '><b>' + f[0] + '</b>' + f[1] + '</span>').join(''); });
+
+/* 卷首天际线：卷数越大，楼越高越密 */
+$$('svg.sky').forEach(s => {
+  const n = +s.dataset.n || 1, R = rng(n * 97 + 3); let g = '', x = 4;
+  while (x < 236) {
+    const w = 8 + R() * (n > 4 ? 14 : 22), h = 10 + R() * (8 + n * 9), y = 120 - h;
+    g += '<rect x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + w.toFixed(1) + '" height="' + h.toFixed(1) + '" fill="currentColor" fill-opacity="' + (.08 + R() * .14).toFixed(2) + '" stroke="currentColor" stroke-width="1"/>';
+    if (n >= 3 && h > 30) for (let yy = y + 5; yy < 116; yy += 7) g += '<line x1="' + (x + 2).toFixed(1) + '" x2="' + (x + w - 2).toFixed(1) + '" y1="' + yy.toFixed(1) + '" y2="' + yy.toFixed(1) + '" stroke="currentColor" stroke-width=".5" stroke-dasharray="1.5 2.5" opacity=".7"/>';
+    x += w + 1 + R() * 4;
+  }
+  s.setAttribute('viewBox', '0 0 240 124'); s.innerHTML = g + '<line x1="0" x2="240" y1="120.5" y2="120.5" stroke="currentColor" stroke-width="1.4"/>';
+});
+
+/* ================= 柳渡：一座虚构小城的地图 =================
+   town(stage) 一层层往上画：0 渡口 → 1 堤与井 → 2 朝南的房子 → 3 四周的田 → 4 方格新城
+   → 5 城门外的弯巷 → 6 外郭 → 7 市 → 8 中轴。第二、三部会接着往上加。
+   宋家那块“一亩三分地”永远在渡口北岸同一个位置。 */
+const TW = 600, TH = 340;
+const INK = 'currentColor';
+const RIVER = 'M-10,118 C70,118 150,150 205,196 S320,268 420,262 S560,232 612,250';
+const SONG = {x: 246, y: 176};
+function lab(x, y, t, o){ o = o || {}; return '<text x="' + x + '" y="' + y + '" font-size="' + (o.s || 15) + '" fill="' + (o.c || INK) + '" text-anchor="' + (o.a || 'middle') + '"' + (o.w ? ' font-weight="700"' : '') + ' paint-order="stroke" stroke="var(--card)" stroke-width="4" stroke-linejoin="round">' + t + '</text>'; }
+function hut(x, y){ return '<circle cx="' + x + '" cy="' + y + '" r="5" fill="var(--card)" stroke="' + INK + '" stroke-width="1.6"/><path d="M' + (x - 6) + ',' + (y - 2) + ' L' + x + ',' + (y - 9) + ' L' + (x + 6) + ',' + (y - 2) + '" fill="none" stroke="' + INK + '" stroke-width="1.4"/>'; }
+function house(x, y, w, h){ w = w || 12; h = h || 8; return '<rect x="' + (x - w / 2) + '" y="' + (y - h / 2) + '" width="' + w + '" height="' + h + '" fill="var(--card)" stroke="' + INK + '" stroke-width="1.3"/><line x1="' + (x - 2) + '" x2="' + (x + 2) + '" y1="' + (y + h / 2) + '" y2="' + (y + h / 2) + '" stroke="var(--card)" stroke-width="2"/>'; }
+function town(stage, o){
+  o = o || {};
+  const s = stage; let g = '';
+  // 底：北山、低洼地
+  g += '<g opacity=".55">' + [62, 46, 30, 15].map((r, i) => '<ellipse cx="110" cy="58" rx="' + (r * 1.6) + '" ry="' + r + '" fill="none" stroke="' + INK + '" stroke-width=".9"/>').join('') + '</g>' + lab(110, 63, '北山', {s: 14});
+  g += '<g opacity=".5" stroke="' + INK + '" stroke-width="1">' + [[360, 312], [392, 300], [430, 318], [470, 306], [330, 326]].map(p => '<path d="M' + (p[0] - 8) + ',' + p[1] + ' h16 M' + (p[0] - 4) + ',' + (p[1] - 5) + ' v5 M' + (p[0] + 3) + ',' + (p[1] - 6) + ' v6"/>').join('') + '</g>' + lab(400, 334, '低洼地', {s: 13});
+  // 田（1 起）
+  if (s >= 1) {
+    g += '<g fill="var(--fld)" stroke="' + INK + '" stroke-width=".7" opacity=".9">';
+    [[120, 250, 70, 40], [195, 268, 60, 36], [470, 200, 70, 34], [520, 150, 60, 40], [60, 190, 60, 36]].forEach(r => { if (s >= 4 && r[0] > 400 && r[1] < 220) return; g += '<rect x="' + r[0] + '" y="' + r[1] + '" width="' + r[2] + '" height="' + r[3] + '"/>'; });
+    g += '</g>';
+  }
+  // 屠能圈（只在 3 出现）
+  if (s === 3) {
+    const C = [300, 160];
+    [[60, '菜'], [105, '柴'], [165, '粮'], [235, '牧']].forEach((r, i) => { g += '<circle cx="' + C[0] + '" cy="' + C[1] + '" r="' + r[0] + '" fill="none" stroke="var(--och)" stroke-width="1.5" stroke-dasharray="5 4"/>' + lab(C[0] + r[0] * .72, C[1] - r[0] * .7 + 6, r[1], {c: 'var(--och)', s: 15, w: 1}); });
+  }
+  // 河
+  g += '<path d="' + RIVER + '" fill="none" stroke="' + INK + '" stroke-width="30" stroke-linecap="round" opacity=".55"/>';
+  g += '<path d="' + RIVER + '" fill="none" stroke="var(--wat)" stroke-width="27" stroke-linecap="round"/>';
+  g += lab(560, 222, '大河', {s: 14});
+  // 堤（1 起）
+  if (s >= 1) g += '<path d="M150,140 C185,160 210,184 240,206 S330,250 420,244 S530,220 590,228" fill="none" stroke="var(--brk)" stroke-width="3" stroke-dasharray="1 0"/>' + (o.levee ? lab(470, 230, '堤', {c: 'var(--brk)', s: 14}) : '');
+  // 渠（1 起）
+  if (s >= 1) g += '<path d="M300,252 C305,220 318,190 330,150 S340,110 350,92" fill="none" stroke="var(--wat)" stroke-width="5"/><path d="M300,252 C305,220 318,190 330,150 S340,110 350,92" fill="none" stroke="' + INK + '" stroke-width=".6" stroke-dasharray="3 3"/>';
+  // 路：从北山下来，过渡口往南
+  g += '<path d="M150,10 C170,70 205,130 222,190 L238,236 C250,270 260,300 270,340" fill="none" stroke="' + INK + '" stroke-width="1.5" stroke-dasharray="6 4"/>';
+  g += '<path d="M214,188 L246,236" stroke="' + INK + '" stroke-width="2" stroke-dasharray="2 3"/>' + lab(196, 230, '渡', {s: 16, w: 1});
+  // 窝棚（0）/ 朝南的房子（2 起）
+  if (s < 2) [[226, 160], [268, 150], [284, 190], [210, 140], [300, 168]].forEach(p => g += hut(p[0], p[1]));
+  if (s >= 1) g += '<circle cx="292" cy="196" r="5" fill="var(--wat)" stroke="' + INK + '" stroke-width="1.4"/><path d="M288,196 h8 M292,192 v8" stroke="' + INK + '" stroke-width="1"/>' + (s < 4 ? lab(292, 216, '井', {s: 12}) : '');
+  if (s >= 2) { const R = rng(7); for (let i = 0; i < 16; i++) { const x = 255 + (i % 4) * 20 + R() * 6, y = 128 + Math.floor(i / 4) * 17 + R() * 4; if (Math.hypot(x - SONG.x, y - SONG.y) > 16 && !(s >= 4 && x > 322)) g += house(x, y); } }
+  // 方格新城（4 起）
+  if (s >= 4) {
+    const X = 330, Y = 34, W = 170, H = 160;
+    g += '<rect x="' + X + '" y="' + Y + '" width="' + W + '" height="' + H + '" fill="var(--card)" stroke="var(--brk)" stroke-width="3.2"/>';
+    for (let i = 1; i < 4; i++) g += '<line x1="' + (X + W * i / 4) + '" x2="' + (X + W * i / 4) + '" y1="' + Y + '" y2="' + (Y + H) + '" stroke="' + INK + '" stroke-width="' + (i === 2 ? 2.4 : 1.1) + '"/><line y1="' + (Y + H * i / 4) + '" y2="' + (Y + H * i / 4) + '" x1="' + X + '" x2="' + (X + W) + '" stroke="' + INK + '" stroke-width="' + (i === 2 ? 2.4 : 1.1) + '"/>';
+    // 坊里的房子
+    const R = rng(11);
+    for (let bx = 0; bx < 4; bx++) for (let by = 0; by < 4; by++) for (let k = 0; k < 3; k++) { const x = X + W * bx / 4 + 9 + (k % 2) * 18 + R() * 3, y = Y + H * by / 4 + 10 + Math.floor(k / 2) * 15 + R() * 3; if (s >= 7 && bx === 2 && by === 2) continue; if (s >= 8 && (bx === 1 || bx === 2) && by === 0) continue; g += '<rect x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" width="10" height="7" fill="none" stroke="' + INK + '" stroke-width=".8" opacity=".7"/>'; }
+    [[X, Y + H / 2], [X + W / 2, Y + H], [X + W, Y + H / 2], [X + W / 2, Y]].forEach(p => g += '<rect x="' + (p[0] - 6) + '" y="' + (p[1] - 6) + '" width="12" height="12" fill="var(--card)" stroke="var(--brk)" stroke-width="2"/>');
+    if (s < 6) g += lab(X + W / 2, Y - 8 > 12 ? Y - 8 : Y + 14, '新城', {s: 14, w: 1});
+  }
+  // 城门外的弯巷（5 起）
+  if (s >= 5) {
+    const lanes = ['M330,114 C305,118 292,132 280,150 S258,170 240,186', 'M280,150 C270,140 258,132 246,126', 'M292,170 C300,186 312,200 322,214', 'M262,165 C250,160 236,154 226,146', 'M300,135 C310,150 316,162 330,170', 'M250,180 C258,196 270,206 284,214'];
+    lanes.forEach((d, i) => g += '<path d="' + d + '" fill="none" stroke="' + INK + '" stroke-width="' + (i ? 1.2 : 2) + '"/>');
+    const R = rng(23);
+    for (let i = 0; i < 26; i++) { const x = 226 + R() * 100, y = 120 + R() * 100; if (Math.hypot(x - SONG.x, y - SONG.y) > 14 && x < 326 && y < 0.55 * x + 92) g += '<rect x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" width="8" height="6" fill="var(--card)" stroke="' + INK + '" stroke-width=".9" transform="rotate(' + (R() * 40 - 20).toFixed(0) + ' ' + x.toFixed(0) + ' ' + y.toFixed(0) + ')"/>'; }
+  }
+  // 外郭（6 起）
+  if (s >= 6) {
+    const d = 'M200,140 L232,104 L330,22 L512,22 L512,206 L420,236 L300,232 L236,212 Z';
+    g += '<path d="' + d + '" fill="none" stroke="var(--wat)" stroke-width="9" stroke-linejoin="round" opacity=".9"/>';
+    g += '<path d="' + d + '" fill="none" stroke="var(--brk)" stroke-width="4" stroke-linejoin="round"/>';
+    [[216, 122], [222, 196], [512, 120], [410, 22]].forEach(p => g += '<rect x="' + (p[0] - 7) + '" y="' + (p[1] - 7) + '" width="14" height="14" fill="var(--brk)" stroke="var(--card)" stroke-width="1.5"/>');
+    g += lab(258, 60, '郭', {s: 16, c: 'var(--brk)', w: 1}) + lab(415, 72, '城', {s: 16, c: 'var(--brk)', w: 1});
+  }
+  // 市（7 起）
+  if (s >= 7) {
+    g += '<rect x="417" y="116" width="40" height="36" fill="var(--hl)" stroke="var(--och)" stroke-width="2.2"/>' + lab(437, 140, '市', {s: 16, c: 'var(--och)', w: 1});
+    for (let i = 0; i < 7; i++) g += '<rect x="' + (262 + i * 9) + '" y="' + (196 - i * 1) + '" width="7" height="6" fill="var(--och)" opacity=".75"/>';
+  }
+  // 中轴（8 起）
+  if (s >= 8) {
+    g += '<line x1="415" x2="415" y1="22" y2="242" stroke="var(--main)" stroke-width="2" stroke-dasharray="8 4"/>';
+    g += '<rect x="383" y="40" width="64" height="30" fill="var(--card)" stroke="var(--main)" stroke-width="2.4"/>' + lab(415, 61, '宫', {s: 15, c: 'var(--main)', w: 1});
+    g += '<rect x="352" y="84" width="22" height="16" fill="none" stroke="var(--main)" stroke-width="1.5"/><rect x="456" y="84" width="22" height="16" fill="none" stroke="var(--main)" stroke-width="1.5"/>';
+    g += lab(363, 113, '祖', {s: 12, c: 'var(--main)'}) + lab(467, 113, '社', {s: 12, c: 'var(--main)'});
+  }
+  // 宋家的地
+  g += '<rect x="' + (SONG.x - 9) + '" y="' + (SONG.y - 7) + '" width="18" height="14" fill="var(--red)" fill-opacity=".22" stroke="var(--red)" stroke-width="2"/>' + lab(SONG.x, SONG.y - 12, '宋', {s: 14, c: 'var(--red)', w: 1});
+  // 指南针
+  g += '<g transform="translate(572,34)"><circle r="15" fill="none" stroke="' + INK + '" stroke-width="1"/><path d="M0,-12 L4,2 L0,0 L-4,2 Z" fill="' + INK + '"/>' + lab(0, 12, '北', {s: 10}) + '</g>';
+  return g;
+}
+function drawTown(svg, stage, o){ svg.setAttribute('viewBox', '0 0 ' + TW + ' ' + TH); svg.innerHTML = town(stage, o); }
+$$('svg[data-town]').forEach(s => drawTown(s, +s.dataset.town, {levee: s.dataset.levee}));
+
+/* ---------- 封面装置：柳渡，一层一层 ---------- */
+dev('#eraFig', fig => {
+  const ERA = [
+    {y: '约前 7000', t: '渡口', big: '加泰土丘（今土耳其）', pop: '几千人', note: '最早的大聚落之一。房子一间挨一间，没有街，人从屋顶上的洞进出。', liu: '一群人在河弯的渡口边搭了几间窝棚。宋家的祖先占了离渡口最近的那块高地。'},
+    {y: '约前 3200', t: '堤与井', big: '乌鲁克（今伊拉克）', pop: '估计几万人', note: '常被叫作“第一座城”。城墙据说长约九公里，城里有神庙、仓库和成群的书吏。', liu: '柳渡人学会了筑堤、打井、挖渠。河水从此是一半朋友、一半仇人。'},
+    {y: '约前 2000', t: '朝南的房子', big: '乌尔、摩亨佐-达罗等', pop: '各几万人', note: '印度河边的摩亨佐-达罗有横平竖直的街、砖砌的排水沟和几百口井。', liu: '房子越盖越多，门都朝南开：冬天的太阳从南边来，北风从北山上下来。'},
+    {y: '约前 500', t: '四周的田', big: '巴比伦', pop: '可能十几二十万', note: '一座城得靠四周很大一片乡下喂。离城越近的地，种的东西越金贵。', liu: '一圈菜园、一圈柴林、一圈麦田、一圈草场，围着柳渡一层层摊开。'},
+    {y: '约 100', t: '方格新城', big: '罗马', pop: '估计几十万到一百万', note: '人类第一次有一座城可能摸到百万人。罗马人走到哪儿，就把方格营寨画到哪儿。', liu: '远方的王派来一个墨，在渡口东边画了一座方方正正的新城，横平竖直，四面开门。'},
+    {y: '约 800', t: '城门外的弯巷', big: '长安、巴格达', pop: '各约数十万到百万（存疑）', note: '长安城里一百多个方方正正的坊，夜里坊门一关，谁也不许在街上走。', liu: '方格城装不下的人，在西门外自己盖房，巷子跟着脚走，七拐八绕。宋家被巷子围住了。'},
+    {y: '约 1100', t: '外郭', big: '开封（北宋东京）', pop: '估计五十万到一百多万', note: '坊墙倒了，店铺开到街上，夜市一直开到三更。', liu: '新修的外郭把西门外的巷子也圈了进来。宋家从“城外人”变成了“城里人”。'},
+    {y: '约 1500', t: '市', big: '北京、开罗、毗奢耶那伽罗', pop: '各几十万', note: '世界上最大的几座城分布在亚洲、北非和印度。欧洲最大的城还不到它们一半。', liu: '城里有了固定的市场，从渡口到城门的路边，一间间铺面开了出来。'},
+    {y: '约 1700', t: '中轴', big: '北京、伊斯坦布尔、江户', pop: '各在七八十万到一百万上下', note: '工业时代以前最大的城差不多就这么大。再往上，得等铁路、自来水和下水道。', liu: '一条中轴线从宫门一直划到南门。左边祖庙，右边社坛，规矩写在两千年前的书里。'}
+  ];
+  const R = $('#eraR'), O = $('#eraO'), svg = $('#eraTown'), K = $('#eraKV'), S = $('#eraSay');
+  function show(i){
+    const e = ERA[i];
+    O.textContent = e.y;
+    drawTown(svg, i);
+    kv(K, [['柳渡这一层', e.t], ['同时期地球上很大的城', e.big], ['人口（估计）', e.pop]]);
+    S.innerHTML = '<b>柳渡（虚构）</b>　' + e.liu + '<br><b>真实世界</b>　' + e.note;
+  }
+  R.addEventListener('input', () => show(+R.value));
+  show(0);
+});
+
+/* ---------- 装置 1：选址 ---------- */
+dev('#siteFig', fig => {
+  const svg = $('#siteMap'), C = 25, NX = 24, NY = 14;
+  const ry = x => 120 + 140 * (x / 600) + 35 * Math.sin(x / 95);             // 大河中线
+  const CONF = {x: 400, y: ry(400)}, FORD = {x: 210, y: ry(210)};
+  // 支流：从 (430,0) 流到汇口
+  const tribD = (x, y) => { const ax = 430, ay = 0, bx = CONF.x, by = CONF.y, dx = bx - ax, dy = by - ay, t = clamp(((x - ax) * dx + (y - ay) * dy) / (dx * dx + dy * dy), 0, 1); return Math.hypot(x - ax - t * dx, y - ay - t * dy); };
+  const riverD = (x, y) => { let m = 1e9; for (let xx = -20; xx <= 620; xx += 6) m = Math.min(m, Math.hypot(x - xx, y - ry(xx))); return m; };
+  const elev = (x, y) => {
+    const d = riverD(x, y);
+    let e = 10 + Math.min(d, 160) * 0.055 + 34 * Math.exp(-((x - 110) ** 2 + (y - 60) ** 2) / (2 * 75 * 75)) - 5 * Math.exp(-((x - 430) ** 2 + (y - 310) ** 2) / (2 * 70 * 70));
+    if (y > ry(x)) e -= 2.2;                     // 南岸偏低
+    e += 1.2 * Math.sin(x / 37) * Math.cos(y / 41); // 一点起伏
+    return e;
+  };
+  const FLOOD = 12.6;
+  const cells = [];
+  for (let j = 0; j < NY; j++) for (let i = 0; i < NX; i++) { const x = i * C + C / 2, y = j * C + C / 2; cells.push({i, j, x, y, e: elev(x, y), rd: riverD(x, y), td: tribD(x, y)}); }
+  const at = (i, j) => cells[j * NX + i];
+  cells.forEach(c => { c.water = c.rd < 14 || c.td < 8; });
+  function score(c){
+    const d = Math.min(c.rd, c.td);
+    const W = c.water ? 0 : d < 75 ? 100 : Math.max(0, 100 - (d - 75) * 0.7);
+    const F = c.water ? 0 : clamp((c.e - FLOOD) * 30, 0, 100);
+    let sum = 0, n = 0, farm = 0, m = 0;
+    cells.forEach(o => { const r = Math.hypot(o.x - c.x, o.y - c.y); if (r < 55 && !o.water) { sum += o.e; n++; } if (r < 110 && !o.water) { m++; if (o.e > 10.4 && o.e < 17.5) farm++; } });
+    const D = c.water ? 0 : clamp(45 + (c.e - sum / n) * 22 + (c.rd < 60 && c.td < 60 ? 25 : 0), 0, 100);
+    const A = c.water ? 0 : clamp(farm / m * 150, 0, 100);
+    const T = c.water ? 0 : clamp(Math.max(100 - Math.hypot(c.x - FORD.x, c.y - FORD.y) * 0.75, 100 - Math.hypot(c.x - CONF.x, c.y - CONF.y) * 0.75, 0), 0, 100);
+    const tot = c.water ? 0 : (W * .2 + F * .25 + D * .15 + A * .2 + T * .2) * (F < 5 ? .55 : 1);
+    return {W, F, D, A, T, tot};
+  }
+  cells.forEach(c => c.s = score(c));
+  const best = cells.filter(c => !c.water).sort((a, b) => b.s.tot - a.s.tot).slice(0, 3);
+  let pick = null, flood = false, showBest = false;
+  function draw(){
+    let g = '';
+    cells.forEach(c => {
+      const t = clamp((c.e - 10) / 30, 0, 1);
+      g += '<rect x="' + c.i * C + '" y="' + c.j * C + '" width="' + C + '" height="' + C + '" fill="var(--och)" fill-opacity="' + (0.04 + t * 0.42).toFixed(3) + '"/>';
+    });
+    // 等高线示意：每 4 米一圈的格子边
+    cells.forEach(c => { if (c.i < NX - 1 && Math.floor(c.e / 4) !== Math.floor(at(c.i + 1, c.j).e / 4)) g += '<line x1="' + (c.i + 1) * C + '" x2="' + (c.i + 1) * C + '" y1="' + c.j * C + '" y2="' + (c.j + 1) * C + '" stroke="var(--och)" stroke-width=".8" opacity=".6"/>'; if (c.j < NY - 1 && Math.floor(c.e / 4) !== Math.floor(at(c.i, c.j + 1).e / 4)) g += '<line x1="' + c.i * C + '" x2="' + (c.i + 1) * C + '" y1="' + (c.j + 1) * C + '" y2="' + (c.j + 1) * C + '" stroke="var(--och)" stroke-width=".8" opacity=".6"/>'; });
+    if (flood) cells.forEach(c => { if (c.e < FLOOD) g += '<rect x="' + c.i * C + '" y="' + c.j * C + '" width="' + C + '" height="' + C + '" fill="var(--wat)" opacity=".85"/>'; });
+    let d = 'M-20,' + ry(-20).toFixed(1); for (let x = -14; x <= 620; x += 6) d += ' L' + x + ',' + ry(x).toFixed(1);
+    g += '<path d="' + d + '" fill="none" stroke="var(--wat)" stroke-width="22" stroke-linecap="round"/><path d="' + d + '" fill="none" stroke="var(--ink)" stroke-width=".8" opacity=".5"/>';
+    g += '<path d="M430,0 L' + CONF.x + ',' + CONF.y.toFixed(1) + '" stroke="var(--wat)" stroke-width="11" stroke-linecap="round"/>';
+    g += '<path d="M' + (FORD.x - 10) + ',' + (FORD.y - 16) + ' L' + (FORD.x + 10) + ',' + (FORD.y + 16) + '" stroke="var(--ink)" stroke-width="2.4" stroke-dasharray="2 3"/>';
+    const L = (x, y, t, s) => '<text x="' + x + '" y="' + y + '" font-size="' + (s || 15) + '" text-anchor="middle" fill="var(--ink)" paint-order="stroke" stroke="var(--card)" stroke-width="4">' + t + '</text>';
+    g += L(FORD.x - 22, FORD.y + 30, '渡') + L(CONF.x + 26, CONF.y - 8, '汇') + L(110, 64, '山') + L(450, 330, '洼地', 13) + L(560, 252, '大河', 13);
+    if (showBest) best.forEach((c, k) => g += '<circle cx="' + c.x + '" cy="' + c.y + '" r="11" fill="none" stroke="var(--grn)" stroke-width="2.4"/>' + L(c.x, c.y + 5, k + 1, 13));
+    if (pick) g += '<rect x="' + (pick.i * C + 2) + '" y="' + (pick.j * C + 2) + '" width="' + (C - 4) + '" height="' + (C - 4) + '" fill="none" stroke="var(--red)" stroke-width="3"/>' + (flood && pick.e < FLOOD ? L(pick.x, pick.y - 16, '淹了', 14) : '');
+    svg.innerHTML = g;
+  }
+  function report(){
+    if (!pick) return;
+    const s = pick.s, rows = [['水', '离水近', s.W], ['不淹', '洪水够不着', s.F], ['好守', '比四周高、有水护着', s.D], ['能种', '附近有平地好田', s.A], ['过路', '靠近渡口或河口', s.T]];
+    $('#siteBars').innerHTML = rows.map(r => '<div class="row"><span class="nm">' + r[0] + '<small>' + r[1] + '</small></span><span class="tr"><i style="width:' + r[2].toFixed(0) + '%;background:' + (r[2] < 30 ? 'var(--red)' : r[2] < 65 ? 'var(--och)' : 'var(--grn)') + '"></i></span><span class="v">' + r[2].toFixed(0) + '</span></div>').join('') +
+      '<div class="row"><span class="nm"><b>总分</b></span><span class="tr"><i style="width:' + s.tot.toFixed(0) + '%"></i></span><span class="v"><b>' + s.tot.toFixed(0) + '</b></span></div>';
+    const say = $('#siteSay');
+    if (pick.water) { say.className = 'say bad'; say.textContent = '这一格在水里。除非你是威尼斯人，打算往泥里砸几百万根木桩。'; return; }
+    const low = rows.slice().sort((a, b) => a[2] - b[2])[0];
+    const tips = {
+      '水': '离水太远。古代城市的命根子是水，打井打不到、挑水要走半天的地方，长不大。',
+      '不淹': '洪水够得着这里。河边低地土最肥、离渡口最近，但每隔几年就要泡一回——宋家选的就是这种地方。',
+      '好守': '这里四面平平，没有高处可守，也没有河水护着。太平年月无所谓，乱世就要多花钱修墙。',
+      '能种': '周围好田太少。一座城得靠四周的乡下喂饭，第三章会细算这笔账。',
+      '过路': '离渡口和河口都远。这块地能住人，但没有人非经过这里不可，大概会一直是个村子。'
+    };
+    say.className = 'say' + (s.tot >= 70 ? ' ok' : s.tot < 45 ? ' bad' : '');
+    say.innerHTML = (s.tot >= 70 ? '<b>好地方。</b>' : s.tot >= 55 ? '<b>还行。</b>' : '<b>不太理想。</b>') + '最弱的一项是“' + low[0] + '”：' + tips[low[0]] + (flood ? (pick.e < FLOOD ? '<br>刚才那场大水，这里泡在了水里。' : '<br>刚才那场大水，这里没事。') : '');
+  }
+  svg.addEventListener('click', e => {
+    const p = svgPt(svg, e), i = clamp(Math.floor(p.x / C), 0, NX - 1), j = clamp(Math.floor(p.y / C), 0, NY - 1);
+    pick = at(i, j); draw(); report();
+  });
+  $('#siteFlood').addEventListener('click', e => { flood = !flood; e.target.classList.toggle('on', flood); e.target.textContent = flood ? '水退了' : '发一次大水'; draw(); report(); });
+  $('#siteBest').addEventListener('click', e => {
+    showBest = !showBest; e.target.classList.toggle('on', showBest); draw();
+    if (showBest) { const say = $('#siteSay'); say.className = 'say ok'; say.innerHTML = '绿圈是按这五笔账算出来的前三名。它们大多挤在<b>渡口或河口旁边、又比洪水线高一截</b>的地方：既算了“地点”的账，也算了“位置”的账。真实世界里最老的城区，常常就在这样的地方。'; }
+  });
+  draw();
+});
+
+/* ---------- 装置 2：悬河 ---------- */
+dev('#xuanFig', fig => {
+  const svg = $('#xuanSvg'), K = $('#xuanKV'), S = $('#xuanSay');
+  const Y0 = 262, M = 9; // 原始地面的 y；每米多少像素
+  let st;
+  const yy = h => Y0 - (h - Math.max(0, st.L - 22)) * M; // 堤太高时整体往下挪
+  const reset = () => { st = {t: 0, b: 0, L: 2.2, g: 0, lay: [], breaks: 0, R: rng(5)}; };
+  reset();
+  function draw(flash){
+    const {b, L, g} = st;
+    let s = '';
+    // 天空与原始地面参照
+    s += '<line x1="0" x2="600" y1="' + Y0 + '" y2="' + Y0 + '" stroke="var(--ink-3)" stroke-dasharray="3 4" stroke-width="1"/>';
+    s += '<text x="596" y="' + (Y0 + 14) + '" font-size="11" text-anchor="end" fill="var(--ink-3)">最初的地面</text>';
+    // 城这一侧的地层
+    s += '<rect x="0" y="' + yy(g) + '" width="600" height="' + (300 - yy(g)) + '" fill="var(--och)" fill-opacity=".16"/>';
+    st.lay.forEach((l, i) => {
+      s += '<line x1="0" x2="340" y1="' + yy(l.h) + '" y2="' + yy(l.h) + '" stroke="var(--brk)" stroke-width="1.6" stroke-dasharray="6 3"/>';
+      for (let k = 0; k < 6; k++) s += '<rect x="' + (30 + k * 46) + '" y="' + (yy(l.h) - 7) + '" width="' + (16 + (k * 7) % 9) + '" height="7" fill="var(--brk)" fill-opacity=".35"/>';
+      s += '<text x="8" y="' + (yy(l.h) + 13) + '" font-size="11.5" fill="var(--brk)">第 ' + (i + 1) + ' 座城 · 第 ' + l.t + ' 年埋</text>';
+    });
+    // 地面上的城
+    for (let k = 0; k < 7; k++) { const x = 24 + k * 42, h = 14 + (k * 13) % 12; s += '<rect x="' + x + '" y="' + (yy(g) - h) + '" width="28" height="' + h + '" fill="var(--card)" stroke="var(--ink)" stroke-width="1.3"/><path d="M' + (x - 3) + ',' + (yy(g) - h) + ' L' + (x + 14) + ',' + (yy(g) - h - 9) + ' L' + (x + 31) + ',' + (yy(g) - h) + '" fill="var(--card)" stroke="var(--ink)" stroke-width="1.3"/>'; }
+    s += '<text x="170" y="' + (yy(g) - 34) + '" font-size="13" text-anchor="middle" fill="var(--ink)">城</text>';
+    // 河这一侧：两岸的地也按 g 算，河槽里淤沙
+    s += '<rect x="560" y="' + yy(g) + '" width="40" height="' + (300 - yy(g)) + '" fill="var(--och)" fill-opacity=".16"/>';
+    s += '<rect x="380" y="' + yy(b) + '" width="140" height="' + (300 - yy(b)) + '" fill="var(--och)" fill-opacity=".38"/>';
+    for (let k = 0; k < 14; k++) s += '<circle cx="' + (388 + (k * 37) % 128) + '" cy="' + (yy(b) + 6 + (k * 23) % Math.max(6, (yy(Math.min(b, g)) + 30 - yy(b)))) + '" r="1.2" fill="var(--och)"/>';
+    // 水
+    const wl = b + 1.6;
+    s += '<rect x="380" y="' + yy(wl) + '" width="140" height="' + (yy(b) - yy(wl)) + '" fill="var(--wat)"/>';
+    // 堤（梯形）
+    const lev = (x1, x2) => '<path d="M' + (x1 - 26) + ',' + yy(g) + ' L' + x1 + ',' + yy(L) + ' L' + x2 + ',' + yy(L) + ' L' + (x2 + 26) + ',' + yy(g) + ' Z" fill="var(--brk)" fill-opacity=".28" stroke="var(--brk)" stroke-width="1.6"/>';
+    s += lev(352, 380) + lev(520, 548);
+    s += '<text x="450" y="' + (yy(wl) - 8) + '" font-size="13" text-anchor="middle" fill="var(--ink)">河</text>';
+    // 标尺：河底比城里地面高多少
+    if (b - g > 0.5) s += '<line x1="330" x2="330" y1="' + yy(g) + '" y2="' + yy(b) + '" stroke="var(--red)" stroke-width="1.5"/><text x="326" y="' + ((yy(g) + yy(b)) / 2 + 4) + '" font-size="12" text-anchor="end" fill="var(--red)">河底高 ' + f1(b - g) + ' 米</text>';
+    if (flash) s += '<rect x="0" y="0" width="600" height="300" fill="var(--wat)" opacity=".45"/><text x="170" y="120" font-size="22" text-anchor="middle" fill="var(--ink)" font-weight="700">决口！</text>';
+    svg.innerHTML = s;
+    kv(K, [['过了', st.t + ' 年'], ['河底比城里地面高', f1(Math.max(0, b - g)) + ' 米'], ['堤顶比城里地面高', f1(L - g) + ' 米'], ['地下摞着的城', st.lay.length + ' 座']]);
+  }
+  function breach(auto){
+    const drop = Math.max(0, st.b + 1.6 - st.g);
+    const silt = 1.2 + drop * 0.38;
+    st.lay.push({h: st.g, t: st.t});
+    st.g += silt; st.b = Math.max(st.g - 0.2, st.b - 0.6); st.L = st.b + 2.6; st.breaks++;
+    draw(true); setTimeout(() => draw(), 650);
+    S.className = 'say bad';
+    S.innerHTML = (auto ? '<b>堤没撑住，自己决口了。</b>' : '<b>决口。</b>') + '水从高出地面 ' + f1(drop) + ' 米的河槽里灌下来' + (drop > 6 ? '，像一堵墙压向城里' : drop > 3 ? '，城里转眼成了泽国' : '，城里水深没膝') + '。水退以后，城被埋在约 ' + f1(silt) + ' 米厚的泥沙下面。人们回来，在泥上盖起第 ' + (st.lay.length + 1) + ' 座城。' + (st.lay.length >= 3 ? '<br>地下已经摞了 ' + st.lay.length + ' 层，这就是开封“城摞城”的道理。' : '');
+  }
+  $('#xuanStep').addEventListener('click', () => {
+    st.t += 50; st.b += 1.15 + st.R() * 0.3;
+    const raise = $('#xuanRaise').checked;
+    if (raise) st.L = Math.max(st.L, st.b + 2.8);
+    const free = st.L - (st.b + 1.6), hang = st.b - st.g;
+    const p = free < 0 ? 1 : clamp(0.04 + hang * 0.035 + (free < 1 ? 0.35 : 0), 0, 0.85);
+    if (st.R() < p) { breach(true); return; }
+    draw();
+    S.className = 'say' + (hang > 6 ? ' bad' : '');
+    S.innerHTML = raise ? '堤又加高了。河底比城里高出 <b>' + f1(Math.max(0, hang)) + ' 米</b>，这一回平安。可是堤越高，下次决口时水头就越猛。' + (hang > 5 ? '<br>你脚下的城，已经在河底下面了。' : '')
+      : '这五十年没加高堤，河底又淤高了。堤顶只比水面高 <b>' + f1(free) + ' 米</b>，' + (free < 1 ? '再一场大水就要漫过去。' : '暂时还挡得住。');
+  });
+  $('#xuanBreak').addEventListener('click', () => breach(false));
+  $('#xuanReset').addEventListener('click', () => { reset(); draw(); S.className = 'say'; S.textContent = '起点：河底和城一样高，堤只有一人多高。'; });
+  draw();
+});
+
+/* ---------- 装置 3：楼间距 ---------- */
+dev('#sunFig', fig => {
+  const CITY = [['新加坡', 1.3], ['广州', 23.1], ['上海', 31.2], ['北京', 39.9], ['哈尔滨', 45.8], ['伦敦', 51.5]];
+  const HR = [['只要正午晒到', 0], ['冬至晒满 1 小时', 1], ['冬至晒满 2 小时', 2], ['冬至晒满 3 小时', 3]];
+  let ci = 3, hi = 2;
+  const D2R = Math.PI / 180, DEC = -23.44;
+  btnRow($('#sunCity'), CITY.map(c => c[0]), ci, i => { ci = i; go(); });
+  btnRow($('#sunHr'), HR.map(h => h[0]), hi, i => { hi = i; go(); });
+  const F = $('#sunF');
+  F.addEventListener('input', go);
+  // 太阳在时角 h（度）时的高度角和方位角（从正南起算）
+  function sun(lat, h){
+    const p = lat * D2R, d = DEC * D2R, H = h * D2R;
+    const sa = Math.sin(p) * Math.sin(d) + Math.cos(p) * Math.cos(d) * Math.cos(H);
+    const alt = Math.asin(sa);
+    const cosA = (Math.sin(alt) * Math.sin(p) - Math.sin(d)) / (Math.cos(alt) * Math.cos(p));
+    return {alt, az: Math.acos(clamp(cosA, -1, 1))};
+  }
+  // 要让后排楼一楼窗台（离地 0.9 米）在正午前后共 n 小时都晒到，需要的南北间距
+  function need(lat, H, n){
+    const h = n * 15 / 2; // 正午前后各 n/2 小时
+    const s = sun(lat, h);
+    if (s.alt <= 0.01) return Infinity;
+    return (H - 0.9) / Math.tan(s.alt) * Math.cos(s.az);
+  }
+  function go(){
+    const lat = CITY[ci][1], fl = +F.value, H = fl * 3;
+    $('#sunFO').textContent = fl + ' 层 · ' + H + ' 米';
+    const noon = sun(lat, 0), altDeg = noon.alt / D2R;
+    const sp = need(lat, H, HR[hi][1]);
+    const coef = sp / H;
+    // 画剖面：南在左，北在右
+    const W = 600, G = 210, sc = Math.min(150 / H, 520 / (sp + 24));
+    const x1 = 30, bw = 14 * sc + 8, x2 = x1 + bw + sp * sc;
+    let s = '<line x1="0" x2="600" y1="' + G + '" y2="' + G + '" stroke="var(--ink)" stroke-width="1.5"/>';
+    s += '<text x="8" y="' + (G + 22) + '" font-size="12" fill="var(--ink-3)">南</text><text x="592" y="' + (G + 22) + '" font-size="12" text-anchor="end" fill="var(--ink-3)">北</text>';
+    const bld = (x, lab) => { let g = '<rect x="' + x + '" y="' + (G - H * sc) + '" width="' + bw + '" height="' + H * sc + '" fill="var(--card)" stroke="var(--ink)" stroke-width="1.5"/>'; for (let k = 1; k < fl && fl <= 33; k++) if (H * sc / fl > 3) g += '<line x1="' + x + '" x2="' + (x + bw) + '" y1="' + (G - k * 3 * sc) + '" y2="' + (G - k * 3 * sc) + '" stroke="var(--ink)" stroke-width=".4" opacity=".5"/>'; return g + '<text x="' + (x + bw / 2) + '" y="' + (G + 16) + '" font-size="12" text-anchor="middle" fill="var(--ink)">' + lab + '</text>'; };
+    s += bld(x1, '前排') + (isFinite(sp) && x2 < W - 10 ? bld(x2, '后排') : '');
+    // 阳光：从前排楼顶擦过，落到后排一楼窗台
+    if (isFinite(sp) && x2 < W - 10) {
+      s += '<line x1="' + (x1 + bw) + '" y1="' + (G - H * sc) + '" x2="' + x2 + '" y2="' + (G - 0.9 * sc) + '" stroke="var(--och)" stroke-width="2" stroke-dasharray="6 3"/>';
+      s += '<path d="M' + (x1 + bw) + ',' + G + ' L' + (x1 + bw) + ',' + (G - H * sc) + ' L' + x2 + ',' + (G - 0.9 * sc) + ' L' + x2 + ',' + G + ' Z" fill="var(--ink)" opacity=".07"/>';
+      s += '<line x1="' + (x1 + bw) + '" x2="' + x2 + '" y1="' + (G + 30) + '" y2="' + (G + 30) + '" stroke="var(--red)" stroke-width="1.2"/><text x="' + ((x1 + bw + x2) / 2) + '" y="' + (G + 26) + '" font-size="12.5" text-anchor="middle" fill="var(--red)">楼间距 ' + Math.round(sp) + ' 米</text>';
+    }
+    // 太阳
+    const sx = 40 + 40 * Math.cos(noon.alt), sy = G - 160 * Math.sin(noon.alt) - 10;
+    s += '<circle cx="' + Math.max(18, x1 - 6) + '" cy="' + Math.max(16, sy) + '" r="9" fill="var(--och)" opacity=".85"/>';
+    $('#sunSvg').innerHTML = s;
+    const rows = isFinite(sp) ? Math.max(1, Math.floor((120 + sp) / (sp + 14))) : 1;
+    kv($('#sunKV'), [['冬至正午太阳高度', altDeg.toFixed(1) + '°'], ['需要的楼间距', isFinite(sp) ? Math.round(sp) + ' 米' : '晒不到'], ['间距 ÷ 楼高', isFinite(sp) ? coef.toFixed(2) : '—'], ['120 米进深能排几排', rows + ' 排 · ' + rows * fl + ' 层楼']]);
+    const say = $('#sunSay');
+    let t = '';
+    if (lat < 10) t = '赤道附近，冬至的太阳也高高挂着，楼距几乎不受日照限制，反倒要想办法<b>遮阳</b>。新加坡的组屋可以盖得又高又密。';
+    else if (coef < 1.1) t = '太阳够高，楼与楼之间留出一个楼高左右就够了。南方城市的小区常常显得“挤”，原因之一就在这里。';
+    else if (coef < 1.9) t = '太阳不算高，要留出一倍半上下的楼高。这大致是中国中部、北部城市小区的样子。';
+    else t = '冬天的太阳很低，楼距要留出将近两倍甚至更多的楼高。楼盖得越高，空地就得越大，<b>多盖几层并不能多赚多少</b>。这就是北方城市板楼成排、空地成片的原因。';
+    if (lat > 50) t += '伦敦纬度比哈尔滨还高，冬至正午太阳只有十几度。英国的规划不按这么严的冬季日照来算，否则市中心几乎什么都盖不了。';
+    say.innerHTML = t;
+  }
+  go();
+});
+
+/* ---------- 装置 4：屠能圈 ---------- */
+dev('#thunFig', fig => {
+  // 每平方公里产量 Y、城里售价 p、生产成本 c、每单位每公里运费 f
+  const CROP = [
+    {n: '菜 · 奶', Y: 10, p: 10, c: 4, f: 1.0, col: 'var(--grn)'},
+    {n: '柴林', Y: 10, p: 5.5, c: 1.5, f: 0.45, col: 'var(--och)'},
+    {n: '麦田', Y: 4, p: 6, c: 2.5, f: 0.25, col: '#c9a44a'},
+    {n: '草场', Y: 1.2, p: 8, c: 3, f: 0.3, col: 'var(--main)'}
+  ];
+  const ERA = [['1826 年 · 马车', 100, 100], ['1870 年 · 铁路', 40, 115], ['今天 · 冷链卡车', 12, 150]];
+  const T = $('#thunT'), P = $('#thunP'), DMAX = 30;
+  btnRow($('#thunEra'), ERA.map(e => e[0]), 0, i => { T.value = ERA[i][1]; P.value = ERA[i][2]; go(); });
+  T.addEventListener('input', go); P.addEventListener('input', go);
+  $('#thunLeg').innerHTML = CROP.map(c => '<span><i style="background:' + c.col + '"></i>' + c.n + '</span>').join('') + '<span><i style="background:var(--paper);border:1px solid var(--rule)"></i>荒地</span>';
+  const rent = (c, d, t, pm) => c.Y * (c.p * pm - c.c) - c.Y * c.f * t * d;
+  function go(){
+    const t = +T.value / 100, pm = +P.value / 100;
+    $('#thunTO').textContent = '× ' + t.toFixed(2);
+    $('#thunPO').textContent = '× ' + pm.toFixed(2);
+    // 沿距离扫描，找每一段的赢家
+    const step = 0.05, segs = [];
+    let cur = -2, start = 0;
+    for (let d = 0; d <= DMAX + 1e-9; d += step) {
+      let best = -1, bv = 0;
+      CROP.forEach((c, i) => { const v = rent(c, d, t, pm); if (v > bv) { bv = v; best = i; } });
+      if (best !== cur) { if (cur !== -2) segs.push({i: cur, a: start, b: d}); cur = best; start = d; }
+    }
+    segs.push({i: cur, a: start, b: DMAX});
+    // 左图：竞租线
+    const X = d => 34 + d / DMAX * 276, R0 = Math.max(...CROP.map(c => rent(c, 0, t, pm))), Yv = v => 196 - v / R0 * 176;
+    let s = '<line x1="34" x2="310" y1="196" y2="196" stroke="var(--ink)" stroke-width="1"/><line x1="34" x2="34" y1="16" y2="196" stroke="var(--ink)" stroke-width="1"/>';
+    for (let d = 0; d <= DMAX; d += 5) s += '<text x="' + X(d) + '" y="210" font-size="10" text-anchor="middle" fill="var(--ink-3)">' + d + '</text>';
+    s += '<text x="310" y="190" font-size="10" text-anchor="end" fill="var(--ink-3)">离城（公里）</text><text x="38" y="14" font-size="10" fill="var(--ink-3)">每亩租子</text>';
+    segs.forEach(g => { if (g.i >= 0) s += '<rect x="' + X(g.a) + '" y="196" width="' + Math.max(0, X(g.b) - X(g.a)) + '" height="6" fill="' + CROP[g.i].col + '"/>'; });
+    CROP.forEach(c => {
+      const d0 = Math.min(DMAX, (c.p * pm - c.c) / (c.f * t));
+      s += '<line x1="' + X(0) + '" y1="' + Yv(rent(c, 0, t, pm)) + '" x2="' + X(d0) + '" y2="' + Yv(Math.max(0, rent(c, d0, t, pm))) + '" stroke="' + c.col + '" stroke-width="2.4"/>';
+    });
+    $('#thunChart').innerHTML = s;
+    // 右图：圈
+    const C = 120, Rm = 112, r = d => d / DMAX * Rm;
+    let m = '<circle cx="' + C + '" cy="' + C + '" r="' + Rm + '" fill="var(--paper)" stroke="var(--rule)"/>';
+    segs.slice().reverse().forEach(g => { if (g.i >= 0) m += '<circle cx="' + C + '" cy="' + C + '" r="' + r(g.b) + '" fill="' + CROP[g.i].col + '" fill-opacity=".55" stroke="var(--card)" stroke-width="1"/>'; });
+    // 内圈要盖住外圈：重新从外往里画已经做到；再画一个外沿（荒地）
+    const last = segs.filter(g => g.i >= 0).pop();
+    m += '<circle cx="' + C + '" cy="' + C + '" r="5" fill="var(--ink)"/><text x="' + C + '" y="' + (C - 9) + '" font-size="11" text-anchor="middle" fill="var(--ink)" paint-order="stroke" stroke="var(--card)" stroke-width="3">城</text>';
+    m += '<text x="' + C + '" y="236" font-size="10" text-anchor="middle" fill="var(--ink-3)">半径 ' + DMAX + ' 公里</text>';
+    $('#thunMap').innerHTML = m;
+    const w = segs.filter(g => g.i >= 0).map(g => CROP[g.i].n + ' ' + f1(g.a) + '–' + (g.b >= DMAX ? DMAX + '+' : f1(g.b)) + ' 公里');
+    const say = $('#thunSay');
+    const reach = last ? last.b : 0;
+    say.innerHTML = '从里到外：' + w.join('；') + '。' + (reach >= DMAX ? '<br><b>圈已经撑出了地图。</b>运费便宜到这个地步，城可以从几百上千公里外吃饭，屠能的圈不再是“城边”，而是整个国家甚至全世界。' : t > 0.8 ? '<br>马车时代，城的饭碗半径只有十几二十公里。注意柴林挤在菜园外面：柴太重，运不远。' : '<br>运费一降，每一圈都往外推，原来离城太远、不值得种的荒地也被卷进来。铁路让城能养活多得多的人。');
+  }
+  go();
+});
+
+/* ---------- 装置 5：切方格 ---------- */
+dev('#gridFig', fig => {
+  const PRE = [
+    ['提姆加德', 22, 22, 6, '罗马为退伍兵建的小城，街区只有二十来米见方，像一块切得极碎的豆腐。'],
+    ['波特兰', 61, 61, 20, '六十一米见方的小街区：路口密、街角多，走两步就是一个十字路口。'],
+    ['巴塞罗那', 113, 113, 20, '塞尔达的扩展区：一百一十多米见方，四角切掉（图上没画），街区中间原本打算留成花园。'],
+    ['曼哈顿', 240, 61, 20, '东西长、南北窄：南北向走很快，东西向要绕长长的一条街区。'],
+    ['新城大街区', 420, 420, 50, '四五百米见方、五十米宽的马路。车开起来顺，人走起来远：从一个街区中间走到对面街区，可能要绕上一公里。'],
+    ['唐长安的坊', 1000, 560, 45, '一个坊比很多现代小区还大，四周围着坊墙，只开几座门。坊里头另有自己的小巷，图上看不见。']
+  ];
+  const Bx = $('#gridBx'), By = $('#gridBy'), Wd = $('#gridW');
+  let note = PRE[2][4];
+  btnRow($('#gridPre'), PRE.map(p => p[0]), 2, i => { Bx.value = PRE[i][1]; By.value = PRE[i][2]; Wd.value = PRE[i][3]; note = PRE[i][4]; go(); });
+  [Bx, By, Wd].forEach(el => el.addEventListener('input', () => { note = ''; go(); }));
+  function go(){
+    const bx = +Bx.value, by = +By.value, w = +Wd.value, S = 500, k = 250 / S;
+    $('#gridBxO').textContent = bx + ' 米'; $('#gridByO').textContent = by + ' 米'; $('#gridWO').textContent = w + ' 米';
+    // 画图：从左上角一条路开始
+    let s = '<rect x="0" y="0" width="250" height="250" fill="var(--ink)" fill-opacity=".14"/>';
+    for (let x = w / 2; x < S; x += bx + w) for (let y = w / 2; y < S; y += by + w) {
+      const ww = Math.min(bx, S - x), hh = Math.min(by, S - y);
+      if (ww > 0 && hh > 0) s += '<rect x="' + (x * k).toFixed(2) + '" y="' + (y * k).toFixed(2) + '" width="' + (ww * k).toFixed(2) + '" height="' + (hh * k).toFixed(2) + '" fill="var(--card)" stroke="var(--ink)" stroke-width=".5"/>';
+    }
+    // 比例尺
+    s += '<line x1="8" x2="' + (8 + 100 * k) + '" y1="242" y2="242" stroke="var(--red)" stroke-width="2"/><text x="' + (10 + 100 * k) + '" y="245" font-size="9" fill="var(--red)" paint-order="stroke" stroke="var(--card)" stroke-width="3">100 米</text>';
+    $('#gridSvg').innerHTML = s;
+    const cell = (bx + w) * (by + w);
+    const road = 1 - bx * by / cell;
+    const inter = 1e6 / cell;                 // 每平方公里路口数
+    const front = 2 * (bx + by) / cell * 1e4;  // 每公顷土地上的临街长度（米）
+    const walk = (bx + by) / 4;               // 从街区边上随便一点走到最近路口的平均距离（粗算）
+    kv($('#gridKV'), [['路占地', (road * 100).toFixed(0) + '%'], ['每平方公里路口', inter >= 10 ? Math.round(inter) : f1(inter)], ['每公顷临街门面', Math.round(front) + ' 米'], ['走到最近路口，平均', Math.round(walk) + ' 米']]);
+    let t = note ? '<b>' + note + '</b><br>' : '';
+    if (road > 0.4) t += '路占了四成以上的地，能盖房的地太少。小街区好走，但切得太碎就是浪费。';
+    else if (inter > 80) t += '路口很密，人可以随时拐弯、抄近路，街角的小店会很多。';
+    else if (inter < 6) t += '路口稀少。车开起来很顺，红绿灯也少；人要走很远才能到一个路口，过马路就更远了。';
+    else t += '路、路口和门面都在中间。大多数让人觉得“好逛”的老城区，街区边长在六十到两百米之间。';
+    $('#gridT').innerHTML = t;
+  }
+  go();
+});
+
+/* ---------- 装置 6：谁从你门口过 ---------- */
+dev('#laneFig', fig => {
+  const N = 13, C = 20, GX = 6, GY = 12; // 13×13 格；偶数坐标是路口，城门在底边正中
+  const NETS = ['方格', '主街 + 死胡同', '自己长出来的弯巷'];
+  const svg = $('#laneSvg');
+  let net = 0, street, houses, dist, cnt, pick = null;
+  const key = (x, y) => y * N + x;
+  function build(){
+    street = new Uint8Array(N * N);
+    const node = (x, y) => street[key(x, y)] = 1;
+    const edge = (x1, y1, x2, y2) => { node(x1, y1); node(x2, y2); street[key((x1 + x2) / 2, (y1 + y2) / 2)] = 1; };
+    if (net === 0) { for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) if (x % 2 === 0 || y % 2 === 0) street[key(x, y)] = 1; }
+    else if (net === 1) {
+      for (let y = 0; y < N - 2; y += 2) edge(GX, y, GX, y + 2);          // 一条南北主街
+      [2, 6, 10].forEach(y => { for (let x = 0; x < N - 2; x += 2) edge(x, y, x + 2, y); }); // 两边伸出去的死胡同
+    } else {
+      const R = rng(41), seen = new Set(), stack = [[GX, GY]]; seen.add(key(GX, GY)); node(GX, GY);
+      while (stack.length) {
+        const [x, y] = stack[stack.length - 1];
+        const nb = [[2, 0], [-2, 0], [0, 2], [0, -2]].map(d => [x + d[0], y + d[1]]).filter(p => p[0] >= 0 && p[1] >= 0 && p[0] < N && p[1] < N && !seen.has(key(p[0], p[1])));
+        if (!nb.length) { stack.pop(); continue; }
+        const p = nb[Math.floor(R() * nb.length)]; seen.add(key(p[0], p[1])); edge(x, y, p[0], p[1]); stack.push(p);
+      }
+      for (let k = 0; k < 4; k++) { const x = 2 * Math.floor(R() * 6), y = 2 * Math.floor(R() * 6); edge(x, y, x + 2, y); }
+    }
+    // 从城门做广度优先搜索
+    dist = new Int16Array(N * N).fill(-1); const par = new Int16Array(N * N).fill(-1);
+    const q = [key(GX, GY)]; dist[q[0]] = 0;
+    for (let h = 0; h < q.length; h++) { const c = q[h], x = c % N, y = (c / N) | 0; [[1, 0], [-1, 0], [0, 1], [0, -1]].forEach(d => { const nx = x + d[0], ny = y + d[1]; if (nx < 0 || ny < 0 || nx >= N || ny >= N) return; const k = key(nx, ny); if (street[k] && dist[k] < 0) { dist[k] = dist[c] + 1; par[k] = c; q.push(k); } }); }
+    // 人家：奇数坐标的格子；门开在离城门最近的那条路上
+    houses = []; cnt = new Int16Array(N * N);
+    for (let y = 1; y < N; y += 2) for (let x = 1; x < N; x += 2) {
+      let best = -1;
+      [[0, 1], [0, -1], [1, 0], [-1, 0]].forEach(d => { const nx = x + d[0], ny = y + d[1]; if (nx < 0 || ny < 0 || nx >= N || ny >= N) return; const k = key(nx, ny); if (street[k] && dist[k] >= 0 && (best < 0 || dist[k] < dist[best])) best = k; });
+      if (best >= 0) houses.push({x, y, door: best});
+    }
+    houses.forEach(h => { let c = h.door; while (c >= 0) { cnt[c]++; c = par[c]; } });
+    houses.forEach(h => { h.pass = cnt[h.door] - houses.filter(o => o.door === h.door).length; h.d = dist[h.door] + 1; });
+  }
+  function draw(){
+    const maxc = Math.max(...cnt);
+    let s = '';
+    for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
+      const k = key(x, y);
+      if (street[k]) s += '<rect x="' + x * C + '" y="' + y * C + '" width="' + C + '" height="' + C + '" fill="var(--och)" fill-opacity="' + (0.08 + 0.55 * cnt[k] / maxc).toFixed(2) + '"/>';
+    }
+    const mp = Math.max(1, ...houses.map(h => h.pass));
+    houses.forEach(h => {
+      const t = h.pass / mp;
+      s += '<rect data-h="' + h.x + ',' + h.y + '" x="' + (h.x * C + 2) + '" y="' + (h.y * C + 2) + '" width="' + (C - 4) + '" height="' + (C - 4) + '" rx="2" fill="var(--red)" fill-opacity="' + (0.06 + t * 0.7).toFixed(2) + '" stroke="var(--ink)" stroke-width="' + (pick === h ? 2.6 : 1) + '" style="cursor:pointer"/>';
+      const dx = (h.door % N) - h.x, dy = ((h.door / N) | 0) - h.y;
+      s += '<line x1="' + (h.x * C + C / 2 + dx * 7) + '" y1="' + (h.y * C + C / 2 + dy * 7) + '" x2="' + (h.x * C + C / 2 + dx * 9.5) + '" y2="' + (h.y * C + C / 2 + dy * 9.5) + '" stroke="var(--ink)" stroke-width="3"/>';
+    });
+    if (pick) { let c = pick.door; const pts = []; while (c >= 0) { pts.push([(c % N) * C + C / 2, ((c / N) | 0) * C + C / 2]); const x = c % N, y = (c / N) | 0; let nxt = -1; [[1, 0], [-1, 0], [0, 1], [0, -1]].forEach(d => { const nx = x + d[0], ny = y + d[1]; if (nx < 0 || ny < 0 || nx >= N || ny >= N) return; const k = key(nx, ny); if (street[k] && dist[k] === dist[c] - 1 && nxt < 0) nxt = k; }); c = dist[c] === 0 ? -1 : nxt; } s += '<polyline points="' + pts.map(p => p.join(',')).join(' ') + ' ' + (GX * C + C / 2) + ',' + (N * C + 10) + '" fill="none" stroke="var(--main)" stroke-width="2.5" stroke-dasharray="4 3"/>'; }
+    s += '<rect x="' + (GX * C) + '" y="' + (N * C) + '" width="' + C + '" height="14" fill="var(--brk)"/><text x="' + (GX * C + C / 2) + '" y="' + (N * C + 24) + '" font-size="11" text-anchor="middle" fill="var(--ink)">城门</text>';
+    svg.innerHTML = s;
+  }
+  function stats(){
+    const avgD = houses.reduce((a, h) => a + h.d, 0) / houses.length;
+    const avgP = houses.reduce((a, h) => a + h.pass, 0) / houses.length;
+    const quiet = houses.filter(h => h.pass <= 2).length;
+    kv($('#laneKV'), [['到城门平均', f1(avgD) + ' 步'], ['最远一户', Math.max(...houses.map(h => h.d)) + ' 步'], ['门口平均过路', f1(avgP) + ' 人/天'], ['门前清静的户数', quiet + ' / ' + houses.length]]);
+  }
+  const NOTE = [
+    '方格：哪儿都通，路最短，可几乎每户门口都有人过，越靠近城门的街越挤。',
+    '主街加死胡同：死胡同里的人家非常清静，可人人都得先走到主街上，再一起挤向城门；胡同尽头那几户离城门最远。',
+    '自己长出来的弯巷：有的人家藏在很深的弯里，几乎没人经过；有的人家正好在几条巷子汇合的地方，门口天天像赶集。要绕的路也最多。'
+  ];
+  btnRow($('#laneNet'), NETS, 0, i => { net = i; pick = null; build(); draw(); stats(); $('#laneSay').innerHTML = NOTE[i] + '<br>点一户人家看看。'; });
+  svg.addEventListener('click', e => {
+    const t = e.target.closest('[data-h]'); if (!t) return;
+    const [x, y] = t.dataset.h.split(',').map(Number); pick = houses.find(h => h.x === x && h.y === y); draw();
+    const S = $('#laneSay');
+    S.className = 'say' + (pick.pass > 15 ? ' bad' : pick.pass <= 2 ? ' ok' : '');
+    S.innerHTML = '这户人家走到城门要 <b>' + pick.d + ' 步</b>，每天有 <b>' + pick.pass + '</b> 户别人家的人从它门口经过。' + (pick.pass > 15 ? '门口是一条大路：开店不错，住着嫌吵。' : pick.pass <= 2 ? '几乎没有外人经过，清静，但' + (pick.d > 14 ? '出门要绕很远。' : '出门也不算远，挺划算。') : '不算吵，也不算静。');
+  });
+  build(); draw(); stats(); $('#laneSay').innerHTML = NOTE[0] + '<br>点一户人家看看。';
+});
+
+/* ---------- 装置 7：城墙算账 ---------- */
+dev('#wallFig', fig => {
+  const PRE = [['乌鲁克', 9], ['西安明城墙', 13.7], ['北京内城', 23.5], ['巴黎梯也尔城墙', 33], ['南京明京城', 35.3]];
+  const SH = ['圆', '方', '星形棱堡'];
+  let sh = 0;
+  const L = $('#wallL');
+  btnRow($('#wallPre'), PRE.map(p => p[0]), -1, i => { L.value = PRE[i][1]; go(); });
+  btnRow($('#wallShape'), SH, 0, i => { sh = i; go(); });
+  L.addEventListener('input', go);
+  // 单位周长的形状：返回顶点（以中心为原点）
+  function shape(k){
+    if (k === 0) return [...Array(72)].map((_, i) => [Math.cos(i / 72 * 2 * Math.PI), Math.sin(i / 72 * 2 * Math.PI)]);
+    if (k === 1) return [[-1, -1], [1, -1], [1, 1], [-1, 1]];
+    const pts = []; for (let i = 0; i < 18; i++) { const a = i / 18 * 2 * Math.PI - Math.PI / 2, r = i % 2 ? 0.74 : 1; pts.push([r * Math.cos(a), r * Math.sin(a)]); } return pts;
+  }
+  const perim = p => p.reduce((s, q, i) => s + Math.hypot(q[0] - p[(i + 1) % p.length][0], q[1] - p[(i + 1) % p.length][1]), 0);
+  const area = p => Math.abs(p.reduce((s, q, i) => s + q[0] * p[(i + 1) % p.length][1] - p[(i + 1) % p.length][0] * q[1], 0)) / 2;
+  function go(){
+    const len = +L.value; $('#wallLO').textContent = f1(len) + ' 公里';
+    const p = shape(sh), k = len / perim(p);               // 缩放到真实周长（公里）
+    const A = area(p) * k * k;                             // 平方公里
+    const pop = A * 15000, guard = 4 * len * 1000 / 5.03;
+    // 画：最大 40 公里的圆当参照
+    const maxR = 40 / (2 * Math.PI), sc = 108 / maxR;
+    let s = '<circle cx="120" cy="120" r="108" fill="none" stroke="var(--rule)" stroke-dasharray="3 4"/>';
+    s += '<polygon points="' + p.map(q => (120 + q[0] * k * sc).toFixed(1) + ',' + (120 + q[1] * k * sc).toFixed(1)).join(' ') + '" fill="var(--och)" fill-opacity=".14" stroke="var(--brk)" stroke-width="3" stroke-linejoin="round"/>';
+    s += '<text x="120" y="236" font-size="10" text-anchor="middle" fill="var(--ink-3)">虚线圈：周长 40 公里的圆</text>';
+    $('#wallSvg').innerHTML = s;
+    kv($('#wallKV'), [['围住的地', f1(A) + ' 平方公里'], ['能住的人（粗算）', fmt(pop)], ['守城要多少人', fmt(guard)], ['守城的人占全城', (guard / pop * 100).toFixed(1) + '%']]);
+    const share = guard / pop;
+    let t = share > 0.3 ? '城太小了：守城的人要占全城人口的三成以上，几乎人人上墙。小城修墙，是一笔压得人喘不过气的账。'
+      : share > 0.1 ? '守城的人要占一成以上。真打起仗来，城里的青壮年差不多都得上墙。'
+      : '城大了，墙的账就划算了：墙长一倍，地大四倍，守城的人占比越来越小。这是大城比小城更“安全”的一个原因，也是古代都城越修越大的原因之一。';
+    if (sh === 2) t += '<br>星形棱堡同样长的墙，围住的地比圆小一截：尖角是为了消灭射击死角，代价是“浪费”了墙。';
+    if (sh === 1) t += '<br>方形比圆形少围一些地，但好丈量、好画方格、好对齐城门和大路，所以中国的城大多是方的。';
+    $('#wallT').innerHTML = t + '<br><small style="color:var(--ink-3)">真实的城不是标准的圆和方，人口密度也差得很远，这里只看数量级。</small>';
+  }
+  go();
+});
+
+/* ---------- 装置 8：赶集 ---------- */
+dev('#mktFig', fig => {
+  const W = 300, H = 260, PX = 5; // 每公里 5 像素：画面约 60 × 52 公里
+  const R0 = rng(77), VIL = [];
+  for (let i = 0; i < 390; i++) VIL.push([R0() * W, R0() * H]);
+  const PRE = [['十五分钟生活圈', 1], ['施坚雅的四川（约）', 4.5], ['布拉克顿规则', 6.2]];
+  const R = $('#mktR');
+  btnRow($('#mktPre'), PRE.map(p => p[0]), -1, i => { R.value = PRE[i][1]; go(); });
+  R.addEventListener('input', go);
+  let same = false;
+  btnRow($('#mktDay'), ['集期错开', '集期都一样'], 0, i => { same = i === 1; cal(); });
+  function hex(cx, cy, r){ return [...Array(6)].map((_, k) => { const a = Math.PI / 6 + k * Math.PI / 3; return (cx + r * Math.cos(a)).toFixed(1) + ',' + (cy + r * Math.sin(a)).toFixed(1); }).join(' '); }
+  function go(){
+    const rk = +R.value, r = rk * PX, D = Math.sqrt(3) * r, V = 1.5 * r;
+    $('#mktRO').textContent = rk + ' 公里';
+    let s = '';
+    VIL.forEach(v => s += '<circle cx="' + v[0].toFixed(1) + '" cy="' + v[1].toFixed(1) + '" r="1.4" fill="var(--ink-3)"/>');
+    let n = 0;
+    for (let j = -1; j * V < H + V; j++) for (let i = -1; i * D < W + D; i++) {
+      const cx = i * D + (j % 2 ? D / 2 : 0), cy = j * V;
+      s += '<polygon points="' + hex(cx, cy, r) + '" fill="none" stroke="var(--och)" stroke-width="' + (r > 10 ? 1.3 : .6) + '"/>';
+      if (cx > -2 && cx < W + 2 && cy > -2 && cy < H + 2) { n++; s += '<circle cx="' + cx.toFixed(1) + '" cy="' + cy.toFixed(1) + '" r="' + (r > 10 ? 4 : 1.8) + '" fill="var(--red)"/>'; }
+    }
+    s += '<line x1="8" x2="' + (8 + 10 * PX) + '" y1="252" y2="252" stroke="var(--ink)" stroke-width="2"/><text x="' + (12 + 10 * PX) + '" y="255" font-size="9" fill="var(--ink)" paint-order="stroke" stroke="var(--card)" stroke-width="3">10 公里</text>';
+    $('#mktSvg').innerHTML = s;
+    const area = 1.5 * Math.sqrt(3) * rk * rk, vil = area / 8;
+    kv($('#mktKV'), [['单程步行约', Math.round(rk / 4.5 * 60) + ' 分钟'], ['集与集相隔', f1(Math.sqrt(3) * rk) + ' 公里'], ['一个集管', (area >= 10 ? Math.round(area) : f1(area)) + ' 平方公里'], ['约多少个村', vil >= 1 ? Math.round(vil) : '不到 1'], ['这片地上的集', n + ' 个']]);
+    const S = $('#mktSay');
+    S.innerHTML = rk <= 1.5 ? '一公里以内：这已经不是乡下的集，而是城里的菜市场和便利店的间距了。人越密、越不愿意走，“市”就开得越密。'
+      : rk >= 8 ? '走这么远赶一次集，来回要大半天。集开得稀，一个集管的村子很多，集也会很大很热闹；可农民赶一次集的成本很高，买卖就少了。'
+      : '集与集隔着一天能走个来回的路，一个集管十几到二十来个村子。这差不多就是施坚雅在四川看到的样子。农民去集上卖粮、买盐、喝茶、说媒，这片六边形就是他的“社会”。';
+    cal();
+  }
+  function cal(){
+    const M = [['东集', same ? [1, 4, 7] : [1, 4, 7]], ['西集', same ? [1, 4, 7] : [2, 5, 8]], ['南集', same ? [1, 4, 7] : [3, 6, 9]]];
+    let h = '<table class="t" style="min-width:0;font-size:12.5px;margin-top:8px"><tr><th></th>' + [...Array(10)].map((_, i) => '<th style="padding:3px 2px;text-align:center">' + ['初一', '初二', '初三', '初四', '初五', '初六', '初七', '初八', '初九', '初十'][i] + '</th>').join('') + '</tr>';
+    M.forEach(m => { h += '<tr><td style="padding:3px 4px;white-space:nowrap">' + m[0] + '</td>' + [...Array(10)].map((_, i) => '<td style="padding:3px 2px;text-align:center">' + (m[1].includes(i + 1) ? '<span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--och)"></span>' : '') + '</td>').join('') + '</tr>'; });
+    const days = new Set(); M.forEach(m => m[1].forEach(d => days.add(d)));
+    h += '<tr><td style="padding:3px 4px;white-space:nowrap">货郎</td>' + [...Array(10)].map((_, i) => '<td style="padding:3px 2px;text-align:center">' + (days.has(i + 1) ? '✓' : '—') + '</td>').join('') + '</tr></table>';
+    h += '<p class="readout" style="margin:6px 0 0">' + (same ? '三个集同一天开，货郎一旬只能赶 <b>3</b> 次集，其余七天闲着；农民也没法今天这个集卖不掉、明天去那个集。' : '集期错开，货郎今天东集、明天西集、后天南集，一旬能赶 <b>9</b> 次集，只歇初十一天。这就是一四七、二五八、三六九的用处。') + '</p>';
+    $('#mktCal').innerHTML = '<div class="scroll-x">' + h + '</div>';
+  }
+  go();
+});
+
+/* ---------- 装置 9：走一遍中轴 ---------- */
+dev('#axisFig', fig => {
+  // 左：《考工记》王城示意（方九里，旁三门，九经九纬，左祖右社，面朝后市）
+  (function(){
+    let s = '<rect x="20" y="20" width="200" height="200" fill="var(--paper)" stroke="var(--brk)" stroke-width="3"/>';
+    for (let i = 1; i < 10; i++) { const p = 20 + i * 20; s += '<line x1="' + p + '" x2="' + p + '" y1="20" y2="220" stroke="var(--ink)" stroke-width="' + (i === 5 ? 1.6 : .45) + '" opacity=".6"/><line y1="' + p + '" y2="' + p + '" x1="20" x2="220" stroke="var(--ink)" stroke-width="' + (i === 5 ? 1.6 : .45) + '" opacity=".6"/>'; }
+    [70, 120, 170].forEach(p => { s += '<rect x="' + (p - 5) + '" y="15" width="10" height="10" fill="var(--brk)"/><rect x="' + (p - 5) + '" y="215" width="10" height="10" fill="var(--brk)"/><rect x="15" y="' + (p - 5) + '" width="10" height="10" fill="var(--brk)"/><rect x="215" y="' + (p - 5) + '" width="10" height="10" fill="var(--brk)"/>'; });
+    const B = (x, y, w, h, t, c) => '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="var(--card)" stroke="' + c + '" stroke-width="2"/><text x="' + (x + w / 2) + '" y="' + (y + h / 2 + 4) + '" font-size="11" text-anchor="middle" fill="' + c + '">' + t + '</text>';
+    s += B(98, 98, 44, 44, '宫', 'var(--main)') + B(98, 60, 44, 28, '市', 'var(--och)') + B(98, 152, 44, 28, '朝', 'var(--main)') + B(150, 104, 32, 32, '祖', 'var(--main)') + B(58, 104, 32, 32, '社', 'var(--main)');
+    s += '<text x="120" y="12" font-size="10" text-anchor="middle" fill="var(--ink-3)">北</text><text x="120" y="238" font-size="10" text-anchor="middle" fill="var(--ink-3)">南 · 《考工记》示意</text>';
+    s += '<text x="166" y="98" font-size="9" text-anchor="middle" fill="var(--ink-3)">东（左）</text><text x="74" y="98" font-size="9" text-anchor="middle" fill="var(--ink-3)">西（右）</text>';
+    $('#axisIdeal').innerHTML = s;
+  })();
+  // 右：北京中轴（从北往南，示意）
+  const P = [
+    {y: 30, n: '钟楼 · 鼓楼', t: '中轴线北端。元代就在这一带设钟鼓楼，报时、管城门开关和宵禁。今天的建筑是明清重建的。', k: '“后市”：元大都最热闹的商业区就在钟鼓楼和积水潭一带。'},
+    {y: 70, n: '万宁桥', t: '元代的石桥，至今还在用。桥下原是通惠河，南来的漕船经过这里驶进积水潭。', k: '“面朝后市”在元大都是真的：粮船和货船停在宫城北边。'},
+    {y: 110, n: '景山', t: '明朝用挖护城河的土堆成的山，是老北京城的最高点。山顶的万春亭正好压在中轴线上。', k: '《考工记》没写山。这是风水上的“靠山”：宫殿背后要有山。'},
+    {y: 170, n: '故宫（紫禁城）', t: '1420 年建成，明清两代二十四位皇帝住在这里。从午门到神武门，主要大殿全部排在中轴线上：前面是举行大典的三大殿，后面是皇帝和后妃居住的后三宫。', k: '“宫居中”“前朝后寝”：照着理想图来。'},
+    {y: 235, n: '端门 · 天安门', t: '天安门原是皇城的正门，明代叫承天门。门前一道金水河，五座桥，中间那座只有皇帝能走。', k: '一道门比一道门威严，人走到这里还没进宫，就已经被“教育”过了。'},
+    {y: 262, n: '太庙 · 社稷坛', l: 1, t: '天安门东边是太庙（今劳动人民文化宫），西边是社稷坛（今中山公园）。', k: '“左祖右社”：站在宫里朝南看，左手是东，太庙；右手是西，社稷坛。一丝不差。'},
+    {y: 310, n: '天安门广场', t: '明清时这里是一条狭长的“T”形宫廷广场，两边是千步廊和中央衙署。二十世纪五十年代末扩建成今天的样子，面积四十多公顷，两侧是人民大会堂和国家博物馆，中间是人民英雄纪念碑，后来又建了毛主席纪念堂。', k: '“朝”在宫前：古代的衙署排在这里；今天的国家机构也在这里。轴线的意思变了，位置没变。'},
+    {y: 360, n: '正阳门（前门）', t: '内城的正南门，城楼和箭楼至今都在。门外的前门大街、大栅栏是明清北京最热闹的商业区之一。', k: '《考工记》说“面朝后市”，可北京最旺的市后来长在了前门外：住不进内城的商人、会馆、戏园都挤在这里。理想图拗不过人流。'},
+    {y: 425, n: '天坛 · 先农坛', l: 1, t: '外城南部，东边是天坛，皇帝祭天、祈谷；西边是先农坛，皇帝亲自扶犁耕一小块地，做给天下农民看。', k: '又一对左右对称。1553 年修外城，就是为了把它们圈进城里。'},
+    {y: 490, n: '永定门', t: '外城的正南门，中轴线的南端。1950 年代城楼被拆，2004 年在原址重建。', k: '从这里往北走到钟鼓楼，约七点八公里。'}
+  ];
+  const svg = $('#axisBJ');
+  function draw(cur){
+    let s = '<rect x="60" y="150" width="180" height="60" fill="none" stroke="var(--brk)" stroke-width="1" stroke-dasharray="3 3"/><text x="64" y="146" font-size="9" fill="var(--ink-3)">紫禁城</text>';
+    s += '<line x1="150" x2="150" y1="20" y2="505" stroke="var(--main)" stroke-width="3"/>';
+    P.forEach((p, i) => {
+      const on = i === cur;
+      if (p.l) {
+        s += '<circle cx="90" cy="' + p.y + '" r="' + (on ? 9 : 7) + '" fill="' + (on ? 'var(--main)' : 'var(--card)') + '" stroke="var(--main)" stroke-width="2" data-i="' + i + '" style="cursor:pointer"/><circle cx="210" cy="' + p.y + '" r="' + (on ? 9 : 7) + '" fill="' + (on ? 'var(--main)' : 'var(--card)') + '" stroke="var(--main)" stroke-width="2" data-i="' + i + '" style="cursor:pointer"/>';
+        s += '<line x1="98" x2="202" y1="' + p.y + '" y2="' + p.y + '" stroke="var(--main)" stroke-width="1" stroke-dasharray="3 3"/>';
+        const two = p.n.split(' · ');
+        s += '<text x="210" y="' + (p.y + 22) + '" font-size="12" text-anchor="middle" fill="var(--ink)" data-i="' + i + '" style="cursor:pointer">' + (i === 5 ? two[0] : two[0]) + '</text><text x="90" y="' + (p.y + 22) + '" font-size="12" text-anchor="middle" fill="var(--ink)" data-i="' + i + '" style="cursor:pointer">' + two[1] + '</text>';
+      } else {
+        s += '<rect x="' + (150 - (on ? 11 : 9)) + '" y="' + (p.y - (on ? 11 : 9)) + '" width="' + (on ? 22 : 18) + '" height="' + (on ? 22 : 18) + '" fill="' + (on ? 'var(--main)' : 'var(--card)') + '" stroke="var(--main)" stroke-width="2" data-i="' + i + '" style="cursor:pointer"/>';
+        s += '<text x="170" y="' + (p.y + 4) + '" font-size="12.5" fill="var(--ink)" data-i="' + i + '" style="cursor:pointer">' + p.n + '</text>';
+      }
+    });
+    s += '<text x="150" y="12" font-size="10" text-anchor="middle" fill="var(--ink-3)">北</text><text x="150" y="518" font-size="10" text-anchor="middle" fill="var(--ink-3)">南</text>';
+    s += '<text x="290" y="262" font-size="9" text-anchor="end" fill="var(--ink-3)">东</text><text x="10" y="262" font-size="9" fill="var(--ink-3)">西</text>';
+    svg.innerHTML = s;
+  }
+  svg.addEventListener('click', e => {
+    const t = e.target.closest('[data-i]'); if (!t) return;
+    const i = +t.dataset.i, p = P[i]; draw(i);
+    $('#axisSay').innerHTML = '<b>' + p.n + '</b>　' + p.t + '<br><span style="color:var(--main)">对照理想图：</span>' + p.k;
+  });
+  draw(-1);
+});
+
+})();
+
+</script>
+</body>
+</html>

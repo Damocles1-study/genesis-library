@@ -20,7 +20,7 @@ BOOKS = {
     # 《谁说了算》分三部三个网页，共用 css.html / bar.html / app.js
     'power1': ('power', 'power/index.html', ['top1.html', 'css.html', 'bar.html'] + ['a%02d.html' % i for i in range(12)]),
     'power2': ('power', 'power/two.html', ['top2.html', 'css.html', 'bar.html'] + ['b%02d.html' % i for i in range(14)]),
-    'power3': ('power', 'power/three.html', ['top3.html', 'css.html', 'bar.html'] + ['c%02d.html' % i for i in range(15)]),
+    'power3': ('power', 'power/three.html', ['top3.html', 'css.html', 'bar.html'] + ['c%02d.html' % i for i in range(14)]),
 }
 DRAFT = '--draft' in sys.argv  # 写到一半时跳过缺失段落和锚点检查
 

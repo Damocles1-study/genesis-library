@@ -1,0 +1,108 @@
+<!-- ============ 封面 · 第一部 ============ -->
+<section class="hero" data-vol="序" id="top">
+  <div class="wide">
+    <div class="eyebrow">WHO'S IN CHARGE · 一万二千年 · 整个地球 · 人间秩序创世记</div>
+    <h1>谁说了算<span class="sm">人间秩序创世记</span></h1>
+    <span class="part">第一部 · 篝火到王座</span>
+    <p class="lead">一万两千年前，地球上大约只有几百万人，差不多全都过着同一种日子：三五十人一群，跟着季节走，打猎、采果子，晚上围着火堆分肉。那时候没有国王，没有警察，没有地主，也没有穷人。</p>
+    <p class="lead">今天，八十多亿人住在两百来个国家里，有总统、法院、军队、银行、学校、户口本和社保卡。有人住在城堡一样的房子里，有人睡在桥洞下。</p>
+    <p class="lead">中间这一万两千年发生了什么？<em>谁、凭什么、怎样一步一步成了“说了算”的人</em>，其余的人又为什么肯听——或者不肯听？这本书想把这件事从头讲一遍，而且不只讲一个地方：两河、尼罗河、印度河、黄河长江、安第斯山、墨西哥谷地、非洲草原、太平洋上的小岛，还有一望无际的草原。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig" id="eraFig">
+      <div class="fig-label">封面装置</div>
+      <h4>一万二千年</h4>
+      <p class="how">拖动滑块，从前一万年走到今天。看看世界人口、最大的城、最大的国各有多大，以及那时最典型的社会，金字塔大概有几层。数字都是学者的估计，越早越粗，只看数量级。</p>
+      <div class="ctl"><span>年代</span><input type="range" id="eraR" min="0" max="16" value="0" step="1"><output id="eraO"></output></div>
+      <div class="two">
+        <div>
+          <div class="kv" id="eraKV"></div>
+          <div class="readout" id="eraT"></div>
+        </div>
+        <svg id="eraPyr" viewBox="0 0 240 190" aria-label="社会层级示意金字塔"></svg>
+      </div>
+      <div class="say" id="eraRiver"></div>
+    </div>
+  </div>
+
+  <div class="wide">
+    <h3>六张老面孔</h3>
+    <p class="ni" style="font-size:16px">这本书有一个虚构的小地方，叫<b>河湾</b>：一条河拐了个弯，弯里有一片平地。故事从一万两千年前的三十个人开始，每一章往后跳几百上千年。河湾不是任何一个真实的地方，它是很多地方拼起来的，用来把每一章的道理演一遍。</p>
+    <p class="ni" style="font-size:16px">河湾里有六张面孔，会在每一章换一身衣服回来。他们不是同一个人活了一万年，而是同一种<em>位置</em>，总有人坐上去：</p>
+    <div class="cast" id="cast"></div>
+    <div class="eras" id="castEra"></div>
+    <p class="figcap">点上面的按钮给他们换衣服：石器、古国、帝国、中世、近代、现代。阿巫和阿禾是女人：最早的神职里有很多女祭司，种地的人里一半是女人。</p>
+  </div>
+
+  <div class="col">
+    <h3>这本书怎么读</h3>
+    <p>全书分三部，三个网页，页眉上的“一 二 三”可以来回跳，右上角的“目录”是全书的。</p>
+    <ul class="plain">
+      <li><b>第一部 · 篝火到王座</b>：人怎样从平等的一群，分出高低；神庙、思想、军队、法律怎样出现；统治者怎样攥住刀把子。</li>
+      <li><b>第二部 · 管住天下</b>：户口、驿站、学堂、考场、赛场这些“国家的零件”；远处的地盘怎样管住；权力怎样分开又合拢；老百姓到底信不信；权贵为什么不合伙分红。</li>
+      <li><b>第三部 · 人间与世界</b>：各个时代各个阶层吃什么、穿什么、住哪里、一天怎么过；地区与地区之间的硬仗、软仗、交融和灭绝；压迫与福利怎样此消彼长；最后回到今天的河湾。</li>
+    </ul>
+    <p>每一章大致由这些东西拼成：</p>
+    <ul class="plain">
+      <li><b>章首</b>：一个大字，加一排地名，亮起来的是这一章会去的地方。</li>
+      <li><b>有人问</b>：这一章要回答的问题，先给一句短答。</li>
+      <li><b>河湾</b>（土黄虚线框，<span style="color:var(--och)">虚构</span>）：六张老面孔演一遍这一章的道理。有的章是漫画。</li>
+      <li><b>正文</b>：地球上真实发生过的事，史实尽量核对，拿不准的写“约”“据说”。</li>
+      <li><b>别处</b>：同一件事，在世界不同地方是怎样各走各路的。</li>
+      <li><b>告示 · 白话</b>：左边是当权者的原话或官样口吻，右边是翻成大白话。左边如果是原文，会注明出处；没注明的，是仿写的口吻。</li>
+      <li><b>那时的一天</b>（绿边）：某个时代某个普通人的日子。</li>
+      <li><b>眉批</b>：<span style="color:var(--blu)">押韵</span>是隔着千年撞了韵；<span style="color:var(--pur)">讽刺</span>是忍不住的一句；<span style="color:var(--och)">联系</span>是和书房别的书有关；<span style="color:var(--ink-3)">存疑</span>是学界还在吵；<span style="color:var(--grn)">生活</span>是和你今天有什么关系。</li>
+      <li><b>装置</b>：每章至少一个能动手的东西，模拟、小游戏、图表、地图。</li>
+      <li><b>史 · 世</b>：章末一张卡，左边一句关于历史，右边一句关于处世。</li>
+    </ul>
+    <p>立场上，这本书尽量站在<em>旁边</em>：不替哪个朝代、哪种制度、哪个民族说好话，也不替它们说坏话。讽刺是对着“权力”这件事本身去的，古今中外一视同仁。讲到宗教，只讲它在历史上做了什么，不评判任何一种在世信仰的真假。</p>
+
+    <div class="partnav">
+      <a href="./" class="on"><span class="k">第一部</span><b>篝火到王座</b><small>序幕 + 卷一 分 + 卷二 神与刀 · 十章</small></a>
+      <a href="two.html"><span class="k">第二部</span><b>管住天下</b><small>卷三 机关 + 卷四 天高皇帝远 + 卷五 法与信 · 十二章</small></a>
+      <a href="three.html"><span class="k">第三部</span><b>人间与世界</b><small>卷六 一天 + 卷七 相遇 + 卷八 压与养 + 尾声 · 十一章</small></a>
+    </div>
+
+    <div class="box" style="margin-top:1.8em">
+      <h5>你可能想问的，在这里</h5>
+      <ul class="qmap">
+        <li><a href="#c0">最早的人类群体是平等的吗？为什么？</a><b>序</b></li>
+        <li><a href="#c1">一群普通人，怎样慢慢分出了穷人和富人？</a><b>仓</b></li>
+        <li><a href="#c2">头领是怎么冒出来的？靠打架还是靠请客？</a><b>宴</b></li>
+        <li><a href="#c3">男人压过女人、老人管着年轻人，是从什么时候开始的？</a><b>家</b></li>
+        <li><a href="#c4">不同地方为什么走了不同的路？有没有不要国王的城？</a><b>城</b></li>
+        <li><a href="#c5">祭司和神庙是怎么来的？一批人怎样让大众听他们的？</a><b>祭</b></li>
+        <li><a href="#c6">各种思想是怎么产生的？一小撮人怎样变成一个大教团？</a><b>道</b></li>
+        <li><a href="#c7">军队是怎么出现的？当兵的人为什么能换来权利？</a><b>兵</b></li>
+        <li><a href="#c8">统治者怎样确保军权真在自己手上？</a><b>符</b></li>
+        <li><a href="#c9">法律最早是写给谁看的？</a><b>碑</b></li>
+        <li><a href="two.html#c10">国家怎样数清人头、收上税来？</a><b>籍</b></li>
+        <li><a href="two.html#c11">驿站和道路是怎样顺势出现的？</a><b>驿</b></li>
+        <li><a href="two.html#c12">学校和考试是怎么来的？</a><b>榜</b></li>
+        <li><a href="two.html#c13">比赛、竞技场和看戏为什么跟政治有关？</a><b>场</b></li>
+        <li><a href="two.html#c14">扩张来的地方怎样才算真正管住了？</a><b>封</b></li>
+        <li><a href="two.html#c15">怎样防止派出去的人在背后悄悄掌国？</a><b>眼</b></li>
+        <li><a href="two.html#c16">为什么最危险的往往是身边的人？</a><b>宫</b></li>
+        <li><a href="two.html#c17">朝代为什么总是兴了又亡？</a><b>朝</b></li>
+        <li><a href="two.html#c18">权力是怎样分开、又怎样集中的？</a><b>衡</b></li>
+        <li><a href="two.html#c19">法律是怎样被维护，又怎样被破坏的？</a><b>律</b></li>
+        <li><a href="two.html#c20">老百姓真的相信那些法律、思想、制度和国家吗？</a><b>信</b></li>
+        <li><a href="two.html#c21">为什么各地权贵不联手分红，偏要把对手往死里逼？</a><b>局</b></li>
+        <li><a href="three.html#c22">各个时代、各个阶层的人平时吃什么？</a><b>食</b></li>
+        <li><a href="three.html#c23">穿什么、住哪里，谁规定的？</a><b>衣</b></li>
+        <li><a href="three.html#c24">古人怎样出门、怎样玩、一年歇几天？</a><b>行</b></li>
+        <li><a href="three.html#c25">一个奴隶、一个农民、一个贵族的一天，各是什么样？</a><b>日</b></li>
+        <li><a href="three.html#c26">硬战争是怎样打的？为什么草原上的人总能南下？</a><b>战</b></li>
+        <li><a href="three.html#c27">什么是“软战争”？和亲、朝贡、贸易、传教算不算？</a><b>和</b></li>
+        <li><a href="three.html#c28">不同地区的人是怎样交融的？</a><b>融</b></li>
+        <li><a href="three.html#c29">一个民族是怎样灭绝或消失的？</a><b>亡</b></li>
+        <li><a href="three.html#c30">奴隶制、农奴制、种姓制是怎样来、又怎样走的？</a><b>役</b></li>
+        <li><a href="three.html#c31">福利制度是怎样从压迫里长出来的？</a><b>赈</b></li>
+      </ul>
+    </div>
+
+    <h3>目录</h3>
+  </div>
+  <div class="col"><ol class="toc" id="toc"></ol></div>
+</section>

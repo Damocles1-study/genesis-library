@@ -1,0 +1,2769 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="文官创世记第一部《刀笔》：书吏、秦汉的刀笔吏、察举与九品中正、科举、胥吏与师爷、苏丹的奴隶官、卖官与包税、教士文书与财政署的符木。">
+<meta property="og:title" content="铁打的营盘 · 第一部">
+<meta property="og:description" content="古今中外的职业官僚：他们怎样被选出来，怎样运转，怎样想事情。第一部：从书吏到师爷。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='4' fill='%232c5552'/%3E%3Cpath d='M8 7h16v19H8zM11 11h10M11 15h10M11 19h6' fill='none' stroke='%23ece3cf' stroke-width='1.8'/%3E%3Ccircle cx='22' cy='22' r='4' fill='%23c4553a'/%3E%3C/svg%3E">
+<title>铁打的营盘 · 第一部</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@500;700&family=Noto+Serif+SC:wght@400;600;700&family=ZCOOL+XiaoWei&display=swap">
+<style>
+/* ZCOOL XiaoWei 把“回”字画成实心方块：这一个字改用系统宋体/黑体，其余字不变 */
+@font-face{font-family:"Hui Fix";unicode-range:U+56DE;src:local("Songti SC"),local("STSongti-SC-Regular"),local("STSong"),local("SimSun"),local("宋体"),local("Noto Serif CJK SC"),local("NotoSerifCJKsc-Regular"),local("Source Han Serif SC"),local("SourceHanSerifSC-Regular"),local("PingFang SC"),local("PingFangSC-Regular"),local("Microsoft YaHei"),local("Noto Sans CJK SC"),local("NotoSansCJKsc-Regular"),local("Droid Sans Fallback")}
+
+/* 版式：一间档案室。主色是墨青（公文的墨），朱色是批红和印章，牛皮纸色是档案袋。
+   每章：章首（入仕的门）→ 有人问 → 库房（虚构）→ 履历（老温拼的）→ 正文 → 小传 → 黑账 → 公文·白话 → 眉批 → 装置 → 两本账。 */
+:root{
+  --paper:#ebe2cc; --paper-2:#e0d5bc; --card:#f2e9d6;
+  --ink:#1f211d; --ink-2:#4a4b42; --ink-3:#5c5c52; --rule:#ccbfa2;
+  --main:#2c5552;   /* 墨青 */
+  --ter:#a33a22;    /* 朱批 */
+  --zhu:#a33a22;
+  --kraft:#8a6230;  /* 牛皮纸档案袋 */
+  --pur:#5d2f63;
+  --sea:#a9bfc9; --land:#ddd1b4;
+  --och:#7a5510;
+  --red:#983a24;
+  --blu:#2a4f78;
+  --grn:#3c6a4c;
+  --hl:color-mix(in srgb,#c9a44a 34%,transparent);
+  --c-paper:#f2e9d6; --c-ink:#191614;
+  --f-display:"Hui Fix","ZCOOL XiaoWei","Songti SC","STSong","Noto Serif SC",serif;
+  --f-body:"Noto Serif SC","Songti SC","Source Han Serif SC","STSong",serif;
+  --f-hand:"Ma Shan Zheng","Kaiti SC","STKaiti","KaiTi",cursive;
+  --f-sans:"Noto Sans SC","PingFang SC","Hiragino Sans GB",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#131513; --paper-2:#1b1e1b; --card:#1f221e; --ink:#e9e3d2; --ink-2:#b5af9c; --ink-3:#958f7d; --rule:#363a33;
+  --main:#8fc4bc; --ter:#e8876a; --zhu:#e8876a; --kraft:#d1a66a; --pur:#c9a0cf; --sea:#22394a; --land:#332d22; --och:#d9b45e; --red:#e57b5e; --blu:#9cc0e6; --grn:#8fc2a0;
+  --c-paper:#1d1b18; --c-ink:#ece6da; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#131513; --paper-2:#1b1e1b; --card:#1f221e; --ink:#e9e3d2; --ink-2:#b5af9c; --ink-3:#958f7d; --rule:#363a33;
+  --main:#8fc4bc; --ter:#e8876a; --zhu:#e8876a; --kraft:#d1a66a; --pur:#c9a0cf; --sea:#22394a; --land:#332d22; --och:#d9b45e; --red:#e57b5e; --blu:#9cc0e6; --grn:#8fc2a0;
+  --c-paper:#1d1b18; --c-ink:#ece6da; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+.g{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit;text-decoration-color:var(--main);text-underline-offset:3px}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--main);outline-offset:2px}
+svg{max-width:100%;height:auto;display:block}
+
+/* 页眉 */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+.bar-in{max-width:56rem;margin:0 auto;display:flex;align-items:center;gap:10px;padding-block:8px}
+.bar .home{text-decoration:none;font-size:13px;color:var(--ink-3);white-space:nowrap;border:1px solid var(--rule);border-radius:999px;padding:1px 9px}
+.bar .name{font-family:var(--f-display);font-size:19px;letter-spacing:.05em;white-space:nowrap;text-decoration:none}
+.bar .parts{display:flex;gap:2px}
+.bar .parts a{font-size:12.5px;text-decoration:none;color:var(--ink-3);padding:0 6px;border-radius:4px;white-space:nowrap}
+.bar .parts a.on{background:var(--main);color:var(--paper)}
+.bar .vol{margin-left:auto;font-size:13px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.bar .tocbtn{border:1px solid var(--rule);background:transparent;border-radius:6px;padding:0 8px;font-size:13px;cursor:pointer;color:var(--ink-2);white-space:nowrap}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;background:var(--main);width:0}
+.drawer{position:fixed;inset:0;z-index:40;display:none}
+.drawer.on{display:block}
+.drawer .mask{position:absolute;inset:0;background:rgba(0,0,0,.35)}
+.drawer .panel{position:absolute;right:0;top:0;bottom:0;width:min(370px,90vw);background:var(--paper);border-left:1px solid var(--rule);overflow:auto;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px))}
+.drawer h5{font-family:var(--f-display);font-weight:400;font-size:20px;margin:0 0 10px}
+.drawer ol{list-style:none;margin:0;padding:0}
+.drawer li.ph{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.16em;color:var(--main);padding:14px 0 2px}
+.drawer li.vh{font-size:12px;color:var(--ink-3);padding:8px 0 0;letter-spacing:.1em}
+.drawer li a{display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--rule);text-decoration:none;font-size:15px;line-height:1.5}
+.drawer li a .n{font-family:var(--f-display);font-size:18px;color:var(--main);min-width:1.6em;text-align:center}
+.drawer li a small{display:block;color:var(--ink-3);font-size:12px}
+.drawer li a.here .n{background:var(--main);color:var(--paper);border-radius:4px}
+.drawer .x{position:absolute;right:12px;top:10px;border:0;background:transparent;font-size:22px;cursor:pointer;color:var(--ink-2)}
+
+main{display:block}
+.col{max-width:38rem;margin-inline:auto}
+.wide{max-width:54rem;margin-inline:auto}
+.col p{margin:0 0 1.05em;text-indent:2em}
+.col p.ni,.col .ni{text-indent:0}
+h2,h3,h4{text-wrap:balance}
+h3{font-family:var(--f-display);font-weight:400;font-size:24px;line-height:1.4;margin:2.2em 0 .7em;letter-spacing:.03em}
+h3 .y{font-family:var(--f-mono);font-size:13px;color:var(--ink-3);margin-left:10px;letter-spacing:0;white-space:nowrap}
+em{font-style:normal;background:linear-gradient(transparent 62%,var(--hl) 62%)}
+strong{font-weight:600}
+blockquote{margin:1.4em 0;padding:.2em 0 .2em 1.2em;border-left:2px solid var(--och);color:var(--ink-2)}
+blockquote p{text-indent:0!important;margin:0 0 .4em}
+blockquote cite{font-style:normal;font-size:14px;color:var(--ink-3)}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.figcap{font-size:14px;color:var(--ink-2);line-height:1.7;margin-top:8px}
+.sep{text-align:center;color:var(--och);letter-spacing:1.2em;margin:2em 0;text-indent:1.2em!important;font-size:14px}
+ul.plain{font-size:16px;line-height:1.9;padding-left:1.4em}
+ul.plain li{margin:0 0 .35em}
+
+/* 封面 */
+.hero{padding-block:36px 20px}
+.hero .eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;color:var(--ink-3)}
+.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(60px,14vw,124px);line-height:1;margin:.25em 0 .2em;letter-spacing:.1em}
+.hero h1 .sm{display:block;font-size:.19em;letter-spacing:.3em;color:var(--ink-2);margin-top:.6em}
+.hero .part{display:inline-block;font-family:var(--f-display);font-size:22px;color:var(--main);border:1.5px solid var(--main);border-radius:4px;padding:0 10px;margin-bottom:6px;letter-spacing:.1em}
+.hero p.lead{font-size:18px;max-width:36em;margin:0 0 1em}
+.partnav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:24px 0}
+.partnav a{display:block;text-decoration:none;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;background:var(--card);line-height:1.5}
+.partnav a b{display:block;font-family:var(--f-display);font-weight:400;font-size:20px}
+.partnav a small{font-size:12.5px;color:var(--ink-3)}
+.partnav a.on{border-color:var(--main);box-shadow:inset 0 0 0 1px var(--main)}
+.partnav a .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;color:var(--main)}
+
+/* 六张脸 */
+.cast{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin:14px 0}
+.cast figure{margin:0;text-align:center;background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:6px 4px 8px}
+.cast svg{width:100%;max-width:120px;margin:auto;color:var(--c-ink)}
+.cast b{display:block;font-family:var(--f-display);font-weight:400;font-size:19px;line-height:1.2}
+.cast small{display:block;font-size:12px;color:var(--ink-3);line-height:1.4}
+.eras{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 2px}
+
+/* 目录 */
+.toc{list-style:none;margin:20px 0 0;padding:0;border-top:1px solid var(--rule)}
+.toc li a{display:grid;grid-template-columns:2.6em minmax(0,1fr) auto;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--rule);text-decoration:none}
+.toc .n{font-family:var(--f-display);font-size:28px;line-height:1;color:var(--main);text-align:center}
+.toc .t{font-family:var(--f-display);font-size:21px;line-height:1.3}
+.toc .t small{display:block;font-family:var(--f-body);font-size:13px;color:var(--ink-3);margin-top:2px}
+.toc .r{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);text-align:right;white-space:nowrap}
+.toc li a:hover .t{color:var(--main)}
+.toc .vh{padding:16px 0 4px;font-family:var(--f-mono);font-size:12px;letter-spacing:.16em;color:var(--ink-3);border-bottom:1px solid var(--rule)}
+.toc li.away a{opacity:.82}
+.toc li.away .r::after{content:" ↗";color:var(--main)}
+.qmap{list-style:none;margin:0;padding:0;columns:2 17em;column-gap:28px}
+.qmap li{break-inside:avoid;margin:0 0 .5em;font-size:15.5px;line-height:1.65}
+.qmap a{text-decoration:none;border-bottom:1px dashed var(--ink-3)}
+.qmap a:hover{color:var(--main)}
+.qmap b{font-family:var(--f-display);font-weight:400;color:var(--main);margin-left:4px}
+
+/* 卷首 */
+.volhead{position:relative;max-width:54rem;margin:64px auto 20px;padding:30px 22px 24px;border-top:3px double var(--ink);border-bottom:3px double var(--ink);overflow:hidden}
+.volhead .num{font-family:var(--f-mono);font-size:12px;letter-spacing:.24em;color:var(--main)}
+.volhead h2{font-family:var(--f-display);font-weight:400;font-size:clamp(64px,16vw,124px);line-height:1;margin:.1em 0 .12em;letter-spacing:.1em}
+.volhead h2 small{font-size:.24em;letter-spacing:.2em;color:var(--ink-2);margin-left:.4em}
+.volhead .lede{max-width:32em;margin:6px 0 0;font-size:16px;color:var(--ink-2);line-height:1.8}
+.volhead .pyr{position:absolute;right:-10px;bottom:-4px;width:190px;opacity:.9;pointer-events:none}
+
+/* 章首 */
+section.chap{padding-top:24px}
+.chead{position:relative;max-width:54rem;margin:46px auto 26px;padding:20px 22px 18px;display:grid;grid-template-columns:96px minmax(0,1fr);gap:20px;align-items:start;background:var(--paper-2);border-radius:10px;border:1px solid var(--rule)}
+.chead .big{font-family:var(--f-display);font-size:84px;line-height:1;color:var(--main);text-align:center;border:2px solid var(--main);border-radius:8px;padding:4px 0 8px;background:var(--card)}
+.chead .no{font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;color:var(--main)}
+.chead h2{font-family:var(--f-display);font-weight:400;font-size:clamp(32px,7vw,50px);line-height:1.15;margin:.08em 0 .2em;letter-spacing:.06em}
+.chead dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 14px;margin:6px 0 0;font-size:14.5px;line-height:1.7}
+.chead dt{color:var(--ink-3);white-space:nowrap}
+.chead dd{margin:0;color:var(--ink-2)}
+.where{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.where span{font-size:12px;line-height:1.6;border:1px solid var(--rule);border-radius:4px;padding:0 6px;color:var(--ink-3);background:var(--paper)}
+.where span.on{border-color:var(--main);color:var(--main);background:color-mix(in srgb,var(--main) 8%,var(--paper));font-weight:600}
+
+/* 你问的 */
+.ask{margin:1.6em 0;padding:12px 16px 4px;border-radius:8px;background:var(--card);border:1px solid var(--rule)}
+.ask .q{font-family:var(--f-display);font-size:19px;line-height:1.5;margin:0 0 .4em;text-indent:0!important}
+.ask .q::before{content:"有人问";font-family:var(--f-sans);font-size:11.5px;letter-spacing:.14em;color:var(--paper);background:var(--main);border-radius:3px;padding:1px 6px;margin-right:8px;vertical-align:3px}
+.ask p{text-indent:0!important;font-size:15.5px;line-height:1.8;margin:0 0 .7em;color:var(--ink-2)}
+
+/* 河湾：虚构的小地方 */
+.river{margin:1.8em 0 2em;padding:16px 18px 6px;border:1.5px dashed var(--och);border-radius:10px;position:relative;background:color-mix(in srgb,var(--och) 4%,var(--paper))}
+.river::before{content:attr(data-t);position:absolute;top:-12px;left:14px;background:var(--paper);padding:0 8px;font-size:13px;letter-spacing:.12em;color:var(--och);font-weight:600}
+.river::after{content:"虚构";position:absolute;top:-10px;right:14px;background:var(--paper);padding:0 6px;font-size:11px;letter-spacing:.2em;color:var(--ink-3);border:1px solid var(--rule);border-radius:3px;line-height:1.5}
+.river p{text-indent:0!important;font-size:16px;line-height:1.85}
+.river .nm{font-weight:600;color:var(--och)}
+
+/* 别处：同一件事在地球的不同地方 */
+.globe{margin:2em auto;max-width:54rem}
+.globe .gh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;border-bottom:1.5px solid var(--ink);padding-bottom:4px;margin-bottom:10px}
+.globe .gh b{font-family:var(--f-display);font-weight:400;font-size:22px;letter-spacing:.06em}
+.globe .gh span{font-size:13px;color:var(--ink-3)}
+.globe .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(15.5em,1fr));gap:10px}
+.rg{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:10px 13px 8px;font-size:15px;line-height:1.75}
+.rg h6{margin:0 0 4px;font-family:var(--f-display);font-weight:400;font-size:18px;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.rg h6 small{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);white-space:nowrap}
+.rg p{margin:0 0 .5em;text-indent:0!important}
+
+/* 告示 · 白话：讽刺栏 */
+.spin{margin:2em 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:1.5px solid var(--ink);border-radius:6px;overflow:hidden;background:var(--card)}
+.spin>div{padding:12px 16px 10px;font-size:15.5px;line-height:1.8}
+.spin>div p{text-indent:0!important;margin:0 0 .5em}
+.spin .off{font-family:var(--f-display);font-size:17px;letter-spacing:.04em;background:color-mix(in srgb,var(--main) 6%,var(--card))}
+.spin .plain{border-left:1.5px solid var(--ink)}
+.spin i{display:block;font-style:normal;font-family:var(--f-sans);font-size:11.5px;letter-spacing:.2em;color:var(--main);margin-bottom:4px}
+.spin .plain i{color:var(--grn)}
+.spin .src{grid-column:1 / -1;border-top:1px dashed var(--rule);font-size:12.5px;color:var(--ink-3);padding:4px 16px 6px}
+
+/* 那时的一天 */
+.life{margin:2em 0;padding:14px 16px 6px;border-radius:8px;border-left:4px solid var(--grn);background:color-mix(in srgb,var(--grn) 6%,var(--card))}
+.life h5{margin:0 0 .3em;font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--grn)}
+.life h5 small{font-family:var(--f-mono);font-size:12px;color:var(--ink-3);margin-left:8px}
+.life p{text-indent:0!important;font-size:15.5px;line-height:1.8;margin:0 0 .7em}
+
+/* 蓝框 */
+.box{margin:2em 0;padding:16px 18px 8px;border-radius:8px;border:1.5px solid var(--blu);background:color-mix(in srgb,var(--blu) 6%,var(--paper))}
+.box h5{margin:.1em 0 .5em;font-family:var(--f-display);font-weight:400;font-size:21px;color:var(--blu);letter-spacing:.04em}
+.box p{text-indent:0!important;margin:0 0 .8em;font-size:16px;line-height:1.85}
+.box ul,.box ol{margin:0 0 .8em;padding-left:1.2em;font-size:16px;line-height:1.85}
+.box li{margin:0 0 .3em}
+
+/* 眉批 */
+.echo{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;margin:1.6em 0;padding:14px 14px 10px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.echo .stamp{writing-mode:vertical-rl;font-family:var(--f-display);font-size:15px;color:var(--red);border:1.5px solid var(--red);border-radius:3px;padding:6px 2px;letter-spacing:.2em;align-self:start}
+.echo[data-k="存疑"] .stamp{color:var(--ink-3);border-color:var(--ink-3)}
+.echo[data-k="联系"] .stamp{color:var(--och);border-color:var(--och)}
+.echo[data-k="生活"] .stamp{color:var(--grn);border-color:var(--grn)}
+.echo[data-k="押韵"] .stamp{color:var(--blu);border-color:var(--blu)}
+.echo[data-k="讽刺"] .stamp{color:var(--main);border-color:var(--main)}
+.echo p{text-indent:0!important;margin:0 0 .5em;font-size:15.5px;line-height:1.8}
+.echo .rh{font-family:var(--f-display);font-size:18px;margin-bottom:.2em}
+
+/* 章末：史 / 世 */
+.seal{margin:2.6em 0 1em;border:1.5px solid var(--ink);border-radius:6px;background:var(--card);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);overflow:hidden}
+.seal>div{padding:12px 16px 14px;font-size:15.5px;line-height:1.75}
+.seal>div+div{border-left:1.5px solid var(--ink)}
+.seal i{display:block;font-style:normal;font-family:var(--f-display);font-size:22px;letter-spacing:.2em;margin-bottom:2px;color:var(--main)}
+.seal>div+div i{color:var(--grn)}
+.seal i small{font-family:var(--f-body);font-size:12px;letter-spacing:.1em;color:var(--ink-3);margin-left:6px}
+
+/* 装置 */
+.fig{margin:2.2em auto;padding:20px 18px;background:var(--card);border:1px solid var(--rule);border-radius:6px}
+.fig-label{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.12em;color:var(--main)}
+.fig h4{font-family:var(--f-display);font-weight:400;font-size:22px;margin:.25em 0 .35em}
+.fig .how{font-size:14.5px;color:var(--ink-2);margin:0 0 14px;line-height:1.75}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.btn{border:1px solid var(--ink-3);background:transparent;border-radius:999px;padding:4px 14px;font-size:14px;cursor:pointer;line-height:1.6;color:var(--ink)}
+.btn:hover{border-color:var(--ink)}
+.btn.pri{background:var(--main);color:var(--paper);border-color:var(--main)}
+.btn.on{background:var(--main);border-color:var(--main);color:var(--paper)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.readout{font-size:14.5px;color:var(--ink-2);line-height:1.75;min-height:1.5em}
+.readout b{color:var(--ink)}
+.say{background:var(--paper);border-left:3px solid var(--och);padding:8px 12px;margin:10px 0;font-size:15px;line-height:1.75;min-height:3.2em}
+.say.ok{border-left-color:var(--grn)}.say.bad{border-left-color:var(--red)}
+input[type=range]{width:100%;accent-color:var(--main)}
+.ctl{display:grid;grid-template-columns:7em minmax(0,1fr) 6.5em;gap:10px;align-items:center;font-size:14px;color:var(--ink-2);margin:4px 0}
+.ctl output{font-family:var(--f-mono);font-size:13px;color:var(--ink);text-align:right;white-space:nowrap}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(9em,1fr));gap:8px;margin:10px 0}
+.kv div{background:var(--paper);border-radius:6px;padding:6px 10px;font-size:12.5px;color:var(--ink-3);line-height:1.5}
+.kv b{display:block;font-family:var(--f-mono);font-weight:500;font-size:18px;color:var(--ink)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:center}
+.lab{font-size:12.5px;color:var(--ink-3);letter-spacing:.08em;margin:8px 0 4px}
+.chip{display:inline-block;font-size:12px;border:1px solid var(--rule);border-radius:4px;padding:0 6px;color:var(--ink-3);margin:0 4px 4px 0}
+.fig text{font-family:var(--f-sans)}
+.fig .mono{font-family:var(--f-mono)}
+select{border:1px solid var(--ink-3);border-radius:6px;background:var(--paper);padding:2px 6px;font-size:14px}
+label.ck{display:inline-flex;gap:6px;align-items:center;font-size:14px;color:var(--ink-2);margin:2px 12px 2px 0;cursor:pointer}
+label.ck input{accent-color:var(--main)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--ink-2);margin:6px 0}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:0}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(14em,1fr));gap:8px;margin:10px 0}
+.cards .cd{background:var(--paper);border-radius:6px;padding:8px 11px;font-size:14px;line-height:1.65;border:1px solid transparent}
+.cards .cd b{display:block;font-family:var(--f-display);font-weight:400;font-size:17px}
+.cards .cd small{color:var(--ink-3)}
+.cards .cd.on{border-color:var(--main)}
+
+/* 漫画 */
+.comic{max-width:54rem;margin:2em auto;padding:14px;background:var(--c-paper);border:2px solid var(--c-ink);color:var(--c-ink)}
+.comic .ctitle{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px 12px;border-bottom:2px solid var(--c-ink);padding-bottom:6px;margin-bottom:12px}
+.comic .ctitle b{font-family:var(--f-display);font-weight:400;font-size:26px;letter-spacing:.12em}
+.comic .ctitle span{font-family:var(--f-sans);font-size:12px;letter-spacing:.1em}
+.comic .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.pn{position:relative;border:2.5px solid var(--c-ink);background:var(--c-paper);overflow:hidden;container-type:inline-size;aspect-ratio:300/230}
+.pn.w{grid-column:span 2;aspect-ratio:600/250}
+.pn svg{position:absolute;inset:0;width:100%;height:100%;max-width:none;color:var(--c-ink)}
+.pn .cap{position:absolute;left:0;top:0;max-width:62%;background:var(--c-paper);border-right:2px solid var(--c-ink);border-bottom:2px solid var(--c-ink);font-family:var(--f-sans);font-weight:500;font-size:clamp(10.5px,4.1cqw,15px);line-height:1.45;padding:4px 8px;z-index:2}
+.pn .cap.br{left:auto;top:auto;right:0;bottom:0;border:0;border-left:2px solid var(--c-ink);border-top:2px solid var(--c-ink)}
+.pn .bb{position:absolute;z-index:3;background:var(--c-paper);border:2px solid var(--c-ink);border-radius:50%/42%;padding:.5em .85em;font-family:var(--f-sans);font-weight:500;font-size:clamp(10.5px,4.2cqw,16px);line-height:1.45;text-align:center;color:var(--c-ink)}
+.pn.w .bb{font-size:clamp(10.5px,2.5cqw,16px)}
+.pn.w .cap{font-size:clamp(10.5px,2.4cqw,15px)}
+.pn .bb::after{content:"";position:absolute;width:14px;height:14px;background:var(--c-paper);border-right:2px solid var(--c-ink);border-bottom:2px solid var(--c-ink);bottom:-8px;left:30%;transform:skewX(30deg) rotate(45deg)}
+.pn .bb.tr::after{left:auto;right:28%;transform:skewX(-30deg) rotate(45deg)}
+.pn .bb.nt::after{display:none}
+.pn .bb.shout{border-radius:6px;border-width:2.5px;font-weight:700}
+.pn .bb.think{border-style:dashed}
+.pn .sfx{position:absolute;z-index:2;font-family:var(--f-sans);font-weight:700;font-size:clamp(14px,7cqw,30px);color:var(--c-ink);transform:rotate(-8deg);letter-spacing:.05em;text-shadow:2px 2px 0 var(--c-paper),-2px -2px 0 var(--c-paper),2px -2px 0 var(--c-paper),-2px 2px 0 var(--c-paper)}
+.comic .after{font-family:var(--f-sans);font-size:13px;margin:10px 0 0;opacity:.8;line-height:1.7}
+
+/* 表 */
+table.t{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.6;min-width:520px}
+table.t th,table.t td{border-bottom:1px solid var(--rule);padding:7px 8px;text-align:left;vertical-align:top}
+table.t th{font-weight:400;color:var(--ink-3);font-size:13px}
+.src{font-size:14.5px;line-height:1.8;color:var(--ink-2)}
+.src li{margin:0 0 .5em}
+
+/* 本部完 */
+.partend{max-width:38rem;margin:70px auto 0;text-align:center}
+.partend .k{font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;color:var(--main)}
+.partend h3{margin:.3em 0 .6em}
+.partend a.go{display:inline-block;margin-top:8px;padding:8px 18px;border:1.5px solid var(--main);border-radius:999px;text-decoration:none;color:var(--main);font-family:var(--f-display);font-size:19px}
+footer{max-width:38rem;margin:60px auto 0;padding:24px 0 calc(40px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--rule);font-size:14px;color:var(--ink-3);line-height:1.8}
+footer p{text-indent:0!important}
+.nextbook{display:block;margin:20px 0;padding:14px 16px;border:1px solid var(--rule);border-radius:6px;text-decoration:none;background:var(--card)}
+.nextbook b{font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--ink)}
+
+/* ===== 装置专用 ===== */
+.pixels{display:grid;gap:3px;margin:10px 0}
+.pixels span{aspect-ratio:1;border-radius:3px;background:var(--paper);border:1px solid var(--rule)}
+.bars{display:grid;gap:5px;margin:10px 0}
+.bars .row{display:grid;grid-template-columns:7.5em minmax(0,1fr) 4.2em;gap:8px;align-items:center;font-size:13.5px}
+.bars .row .nm{color:var(--ink-2);line-height:1.3}
+.bars .row .nm small{display:block;font-size:11px;color:var(--ink-3)}
+.bars .tr{position:relative;height:18px;background:var(--paper);border-radius:3px;overflow:hidden}
+.bars .tr i{position:absolute;left:0;top:0;bottom:0;background:var(--main);border-radius:3px;transition:width .4s}
+.bars .row .v{font-family:var(--f-mono);font-size:12px;color:var(--ink);text-align:right;white-space:nowrap}
+.tl{position:relative}
+.tl .track{display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:8px;align-items:center;font-size:13px;margin:3px 0}
+.tl .track .nm{color:var(--ink-2);line-height:1.25}
+.tl .lane{position:relative;height:22px;background:var(--paper);border-radius:3px}
+.tl .lane i{position:absolute;top:3px;width:14px;height:14px;margin-left:-7px;border-radius:50%;border:2px solid var(--card)}
+.tl .lane i.f{background:var(--grn)}.tl .lane i.c{background:var(--och)}.tl .lane i.s{background:var(--main)}.tl .lane i.w{background:var(--blu);border-radius:2px}
+.tl .axis{display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:8px;font-family:var(--f-mono);font-size:10.5px;color:var(--ink-3)}
+.tl .axis div:nth-child(2){position:relative;height:16px}
+.tl .axis span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+
+
+/* ===== 《铁打的营盘》专用 ===== */
+/* 章首：入仕的六扇门 */
+.gate{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+.gate span{font-size:12px;line-height:1.6;border:1px solid var(--rule);border-radius:4px;padding:0 7px;color:var(--ink-3);background:var(--paper)}
+.gate span b{font-family:var(--f-display);font-weight:400;font-size:14px;margin-right:3px}
+.gate span.on{border-color:var(--zhu);color:var(--zhu);background:color-mix(in srgb,var(--zhu) 9%,var(--paper));font-weight:600}
+.sixg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0}
+.sixg div{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:8px 10px;font-size:14px;line-height:1.6}
+.sixg b{display:block;font-family:var(--f-display);font-weight:400;font-size:30px;line-height:1.1;color:var(--zhu)}
+.sixg small{color:var(--ink-3);font-size:12.5px}
+/* 年代条：前 3200 到 2030 */
+.when{position:relative;height:16px;margin-top:10px;border-radius:3px;background:var(--paper);overflow:hidden;border:1px solid var(--rule)}
+.when i{position:absolute;top:0;bottom:0;background:var(--main);opacity:.8;min-width:3px}
+.when span{position:absolute;top:0;font-family:var(--f-mono);font-size:9.5px;line-height:15px;color:var(--ink-3);transform:translateX(-50%)}
+
+/* 库房：虚构的一场戏 */
+.desk{margin:1.8em 0 2em;padding:16px 18px 6px;border:1.5px dashed var(--kraft);border-radius:10px;position:relative;background:color-mix(in srgb,var(--kraft) 5%,var(--paper))}
+.desk::before{content:attr(data-t);position:absolute;top:-12px;left:14px;background:var(--paper);padding:0 8px;font-size:13px;letter-spacing:.12em;color:var(--kraft);font-weight:600}
+.desk::after{content:"虚构";position:absolute;top:-10px;right:14px;background:var(--paper);padding:0 6px;font-size:11px;letter-spacing:.2em;color:var(--ink-3);border:1px solid var(--rule);border-radius:3px;line-height:1.5}
+.desk p{text-indent:0!important;font-size:16px;line-height:1.85}
+.desk .nm{font-weight:600;color:var(--kraft)}
+.desk .x{font-weight:600;color:var(--main)}
+.desk .note{font-family:var(--f-hand);font-size:19px;line-height:1.6;color:var(--ink-2);background:var(--card);border:1px solid var(--rule);border-radius:4px;padding:6px 12px;margin:.4em 0 1em;transform:rotate(-.4deg)}
+
+/* 履历：老温拼的典型文官 */
+.dossier{margin:2em 0;border:1.5px solid var(--kraft);border-radius:4px;background:color-mix(in srgb,var(--kraft) 7%,var(--card));position:relative;font-size:15px;line-height:1.7}
+.dossier .dh{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap;padding:8px 14px 6px;border-bottom:1.5px solid var(--kraft)}
+.dossier .dh b{font-family:var(--f-display);font-weight:400;font-size:22px;letter-spacing:.12em;color:var(--kraft)}
+.dossier .dh small{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);letter-spacing:.06em}
+.dossier table{width:100%;border-collapse:collapse}
+.dossier th{width:5.6em;text-align:left;vertical-align:top;font-weight:400;color:var(--kraft);font-family:var(--f-display);font-size:16px;padding:6px 8px 6px 14px;border-bottom:1px dashed color-mix(in srgb,var(--kraft) 45%,var(--rule));white-space:nowrap}
+.dossier td{padding:6px 14px 6px 4px;border-bottom:1px dashed color-mix(in srgb,var(--kraft) 45%,var(--rule))}
+.dossier .real{padding:6px 14px 8px;font-size:12.5px;color:var(--ink-3);line-height:1.65}
+.dossier .stampx{position:absolute;right:12px;top:58px;width:62px;height:62px;border:2px solid var(--zhu);border-radius:50%;color:var(--zhu);font-family:var(--f-display);font-size:14px;line-height:1.1;display:grid;place-items:center;text-align:center;transform:rotate(-12deg);opacity:.6;pointer-events:none}
+
+/* 小传 */
+.bio{margin:2em 0;border:1.5px solid var(--main);border-radius:8px;background:var(--card);overflow:hidden}
+.bio .hd{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 12px;padding:10px 16px 8px;background:color-mix(in srgb,var(--main) 10%,var(--card));border-bottom:1px solid color-mix(in srgb,var(--main) 40%,var(--rule))}
+.bio .hd b{font-family:var(--f-display);font-weight:400;font-size:24px;letter-spacing:.05em}
+.bio .hd small{font-family:var(--f-mono);font-size:12px;color:var(--ink-3)}
+.bio .hd em{margin-left:auto;font-size:13px;color:var(--main);background:none;font-weight:600}
+.bio .bd{padding:10px 16px 6px}
+.bio p{text-indent:0!important;margin:0 0 .7em;font-size:15.5px;line-height:1.85}
+.bio dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;margin:0 0 .8em;font-size:15px;line-height:1.7}
+.bio dt{color:var(--main);font-family:var(--f-display);font-size:16px;white-space:nowrap}
+.bio dd{margin:0}
+
+/* 黑账 */
+.black{margin:2em 0;padding:14px 16px 6px;border-radius:8px;background:color-mix(in srgb,var(--red) 7%,var(--card));border-left:5px solid var(--red);position:relative}
+.black h5{margin:0 0 .4em;font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--red);letter-spacing:.06em}
+.black h5::before{content:"黑账";font-family:var(--f-sans);font-size:11px;letter-spacing:.18em;color:var(--paper);background:var(--red);border-radius:3px;padding:1px 6px;margin-right:8px;vertical-align:3px}
+.black p{text-indent:0!important;margin:0 0 .7em;font-size:15.5px;line-height:1.85}
+
+/* 两本账：营盘的 / 你的 */
+.seal i{color:var(--main)}
+
+/* 卷首的印 */
+.volhead .yin{position:absolute;right:10px;bottom:8px;width:96px;height:96px;opacity:.8;pointer-events:none;color:var(--zhu)}
+/* 时间线卡片（封面装置） */
+.gates{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;margin:10px 0}
+.gates button{border:1px solid var(--rule);background:var(--paper);border-radius:6px;padding:6px 2px;cursor:pointer;line-height:1.3;font-size:12px;color:var(--ink-3)}
+.gates button b{display:block;font-family:var(--f-display);font-weight:400;font-size:24px;color:var(--zhu)}
+.gates button.on{border-color:var(--zhu);box-shadow:inset 0 0 0 1px var(--zhu);color:var(--ink)}
+.sim{display:block;touch-action:manipulation}
+.qa{display:grid;gap:8px;margin:10px 0}
+.qa button{text-align:left;border:1px solid var(--rule);background:var(--paper);border-radius:6px;padding:8px 12px;cursor:pointer;font-size:15px;line-height:1.6}
+.qa button:hover{border-color:var(--main)}
+.qa button.right{border-color:var(--grn);background:color-mix(in srgb,var(--grn) 10%,var(--paper))}
+.qa button.wrong{border-color:var(--red);background:color-mix(in srgb,var(--red) 8%,var(--paper))}
+.logbox{font-family:var(--f-mono);font-size:12.5px;line-height:1.7;background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:6px 10px;max-height:13em;overflow:auto;color:var(--ink-2);white-space:pre-wrap}
+
+@media (max-width:700px){
+  .sixg{grid-template-columns:repeat(2,minmax(0,1fr))}.gates{grid-template-columns:repeat(3,minmax(0,1fr))}.dossier .stampx{width:48px;height:48px;font-size:11px;top:84px}
+  .volhead .yin{width:64px;height:64px;opacity:.45}
+  .bio .hd em{margin-left:0;width:100%}
+  body{font-size:16.5px}
+  .two,.spin{grid-template-columns:minmax(0,1fr)}
+  .spin .plain{border-left:0;border-top:1.5px solid var(--ink)}
+  .toc li a,.toc li.soon>div{grid-template-columns:2.2em minmax(0,1fr)}
+  .toc .r{grid-column:2;text-align:left}
+  .bar .vol{display:none}
+  .bar .parts a{padding:0 4px}
+  .chead{grid-template-columns:58px minmax(0,1fr);gap:14px;padding:16px 14px}
+  .chead .big{font-size:46px;padding:2px 0 6px}
+  .ctl{grid-template-columns:5.5em minmax(0,1fr)}
+  .ctl output{grid-column:1 / -1;text-align:left;margin-top:-6px}
+  .partnav{grid-template-columns:minmax(0,1fr)}
+  .bars .row{grid-template-columns:5.6em minmax(0,1fr) 3.6em;gap:6px}
+  .tl .track,.tl .axis{grid-template-columns:4em minmax(0,1fr)}
+  .bio dl{grid-template-columns:minmax(0,1fr)}
+  .bio dt{margin-top:4px}
+}
+@media (max-width:480px){
+  .seal{grid-template-columns:minmax(0,1fr)}
+  .seal>div+div{border-left:0;border-top:1.5px solid var(--ink)}
+  .bar .name{font-size:17px}
+}
+.toc li.soon .t,.toc li.soon .n{opacity:.55}
+.toc li.soon>div{display:grid;grid-template-columns:2.6em minmax(0,1fr) auto;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--rule)}
+.toc li.soon .r::after{content:" · 写作中";color:var(--main)}
+.qmap li.soon{color:var(--ink-3)}
+.qmap li.soon::after{content:" · 写作中";font-size:12px}
+.partnav{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:700px){.partnav{grid-template-columns:minmax(0,1fr)}.toc li.soon>div{grid-template-columns:2.2em minmax(0,1fr)}}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="bar-in g">
+    <a class="home" href="../" title="回创世书房">书房</a>
+    <a class="name" href="./">铁打的营盘</a>
+    <nav class="parts" aria-label="三部">
+      <a href="./" data-p="1">刀笔</a><a href="two.html" data-p="2">机器</a><a href="three.html" data-p="3">心法</a>
+    </nav>
+    <span class="vol" id="barVol">序</span>
+    <button class="tocbtn" id="tocBtn" aria-label="打开目录">目录</button>
+  </div>
+  <div class="progress" id="prog"></div>
+</header>
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="mask" data-close></div>
+  <nav class="panel" aria-label="目录">
+    <button class="x" data-close aria-label="关闭">×</button>
+    <h5>全书目录</h5>
+    <ol id="drawerList"></ol>
+  </nav>
+</div>
+<main class="g">
+
+<!-- ============ 封面 · 第一部 ============ -->
+<section class="hero" data-vol="序" id="top">
+  <div class="wide">
+    <div class="eyebrow">THE PERMANENT DESK · 书吏 · 刀笔吏 · 胥吏 · 师爷 · 白厅 · 编制 · 五千年 · 文官创世记</div>
+    <h1>铁打的营盘<span class="sm">文官创世记</span></h1>
+    <span class="part">第一部 · 刀笔</span>
+    <p class="lead">翻开一本历史书，标题上写的多半是皇帝、将军、首相、总统：谁登基了，谁打赢了，谁上台了，谁下台了。可只要往下多翻几页，你就会发现一群没有名字的人：替皇帝起草诏书的，替将军算军粮的，替首相写讲稿的，替总统统计失业率的。<em>上面的人走马灯一样换，这群人一直坐在原处。</em></p>
+    <p class="lead">中国有句老话：铁打的营盘，流水的兵。放到衙门里，意思正好倒过来：<b>流水的是坐在最上面的那几位，铁打的是下面那一整套人和规矩</b>。这群人古代叫书吏、刀笔吏、胥吏、幕友、文书，后来叫文官、公务员、常任秘书、“体制内”。不管一个国家是一个党说了算还是几个党轮流坐庄，是国王还是总统，只要它还在正常运转，就离不开他们。</p>
+    <p class="lead">这本书讲他们：第一批坐办公室的人是怎么出现的；国家用过哪些办法挑人：看出身、靠推荐、考试、卖官、用宦官和奴隶、按党派分配；现代的文官制度在普鲁士、英国、美国、法国、日本、苏联、新加坡和今天的中国，分别是怎样搭起来的；首相和总统们怎样想管住他们，又常常管不住。最后，也是最有意思的一部分：<em>这群人是怎样想事情的</em>：为什么稳、为什么慢、为什么很少直接说“不”，他们怎样看房子、车子、养老和时机，他们付出了什么，外面的人又能从他们身上学到什么。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig" id="gateFig">
+      <div class="fig-label">封面装置</div>
+      <h4>五千年，这张桌子是怎么坐上去的</h4>
+      <p class="how">上面六个字是“入仕的六扇门”，点一扇门，看看历史上哪些地方主要靠这扇门挑人。拖动滑块选一个年份，读数会告诉你：那一年，世界上的几个大国各自是怎样选文官的。</p>
+      <div class="gates" id="gateBtns"></div>
+      <div class="scroll-x"><svg class="sim" id="gateSvg" style="min-width:560px"></svg></div>
+      <div class="ctl"><span>年份</span><input type="range" id="gateR" min="-2500" max="2025" value="1100" step="5"><output id="gateRO"></output></div>
+      <div class="say" id="gateSay"></div>
+      <p class="figcap">每一条只画“主要靠这扇门”的大致年代，起止年份多为约数；同一个国家常常几扇门同时开着（比如清朝既考试又卖官，美国既考试又有几千个政治任命），图里分开画。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>入仕的六扇门</h3>
+    <p>每一章开头会亮起几个字，告诉你那个时代的人主要是从哪扇门走进衙门的：</p>
+  </div>
+  <div class="wide">
+    <div class="sixg">
+      <div><b>生</b>出身<br><small>看你爹是谁。世卿世禄、门阀、贵族、武士。</small></div>
+      <div><b>荐</b>推荐<br><small>看谁替你说话。察举孝廉、中正评品、英国大人物的举荐信。</small></div>
+      <div><b>考</b>考试<br><small>看你的卷子。科举、普鲁士的国家考试、英国的公开竞争、今天的公务员考试。</small></div>
+      <div><b>买</b>花钱<br><small>看你出多少。西园卖官、法国的官职买卖、清朝的捐纳。</small></div>
+      <div><b>宠</b>君主的私人<br><small>看主子信不信你。宦官、奴隶出身的官、皇帝的家仆。</small></div>
+      <div><b>任</b>政治任命<br><small>看你站哪边。美国的分赃制、苏联的干部名单、各国换届时跟着进来的人。</small></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>一间档案室，两个人</h3>
+    <p>这本书在真实的历史之外，放了一间虚构的档案室。</p>
+    <div class="desk" data-t="河口市水务局 · 2025 年 8 月">
+      <p>报到那天，<span class="x">许多</span>以为自己会被分去写材料。人事科的人把她领到办公楼地下一层，推开一扇绿漆铁门：“综合科的档案室。老温下个月退休，你先跟着他。”</p>
+      <p>屋里一股旧纸味。一排排铁皮柜，最里面一张掉了漆的木桌，桌后坐着个头发全白的人，正拿着放大镜看一张发黄的表格。他抬头，摘下老花镜：“我叫温，1984 年分配来的，那时候这儿还叫水利局。你是考进来的吧？考了几次？”</p>
+      <p>“两次。”</p>
+      <p>“不多。”<span class="nm">老温</span>站起来，拉开桌子左手边最下面一个抽屉，里面是厚厚一沓卡片，每张都是一份手写的履历表，抬头写着各种奇怪的年代：“前二十一世纪”“秦始皇三十年”“乾隆五十年”“1854 年，伦敦”……</p>
+      <p>“退休前没事干，我拼着玩的。”老温说，“史书上找材料，每个年代拼一个典型的小官出来：怎么进的衙门，一年拿多少，一天干什么，最怕什么，最后怎么样。四十年下来我发现，<b>这张桌子五千年没怎么变过</b>。你先从第一张看起吧。”</p>
+    </div>
+    <p>老温的抽屉里，每个时代一张<b style="color:var(--kraft)">履历</b>（牛皮纸色的卡片）。卡片上的人是拼出来的，不是真人；但卡片上的制度、俸禄、规矩，都尽量照真实的史料写，每张卡片下面会注明哪些是真的。第三部讲“心法”的时候，这间档案室自己的故事会走到前台来：从 1956 年进局的老范，到 1984 年的老温，到 2006 年考进来的何姐，再到许多，同一张桌子，四代人。</p>
+
+    <h3>这本书怎么读</h3>
+    <p>全书分三部，三个网页，页眉上的“刀笔 机器 心法”可以来回跳，右上角的“目录”是全书的。</p>
+    <ul class="plain">
+      <li><b>第一部 · 刀笔</b>（古代）：美索不达米亚和埃及的书吏；秦朝的文书和“以吏为师”；汉朝的察举；魏晋的九品中正和门阀；科举一千三百年；真正管着衙门的胥吏和师爷；还有别处的“替身”：苏丹的奴隶官、宦官、买来的官、包税人、当文书的教士。</li>
+      <li><b>第二部 · 机器</b>（近现代）：普鲁士的考试官僚和韦伯的理论；英国 1854 年的那份报告和白厅；首相们怎样想管住文官；美国从分赃制到彭德尔顿法；法国的名校和大团；日本的大藏省和“天降”；苏联的干部名单；新加坡的高薪；今天中国的公务员考试和编制。</li>
+      <li><b>第三部 · 心法</b>：营盘里的人怎样想事情：稳、慢、听话听音、不说不；怎样看房子、车子、养老和年龄；代价是什么；外面的人能学走什么。</li>
+    </ul>
+    <p>每一章大致由这些东西拼成：</p>
+    <ul class="plain">
+      <li><b>章首</b>：一个大字，加“入仕的六扇门”和一条年代条（这一章在五千年里的哪一段）。</li>
+      <li><b>有人问</b>：这一章要回答的问题，先给一句短答。</li>
+      <li><b>库房</b>（牛皮纸色虚线框，<span style="color:var(--kraft)">虚构</span>）：许多和老温的一段对话。</li>
+      <li><b>履历</b>（牛皮纸色卡片，<span style="color:var(--kraft)">虚构拼合</span>）：那个时代一个典型小官的一生。</li>
+      <li><b>正文</b>：真实发生过的事。史实尽量核对，拿不准的写“约”“据说”，有争议的标“存疑”。</li>
+      <li><b>小传</b>（墨青色框）：那个时代绕不开的人。</li>
+      <li><b>黑账</b>（红边框）：这台机器坏掉、伤人的时候。</li>
+      <li><b>公文 · 白话</b>：左边是公文的说法，右边是大白话。左栏会注明是<b>原文</b>、<b>原文大意</b>还是<b>仿写</b>。</li>
+      <li><b>眉批</b>：<span style="color:var(--blu)">押韵</span>是隔着千年撞了韵；<span style="color:var(--main)">讽刺</span>是忍不住的一句；<span style="color:var(--och)">联系</span>是和书房别的书有关；<span style="color:var(--ink-3)">存疑</span>是学界还在吵；<span style="color:var(--grn)">生活</span>是和你今天有什么关系。</li>
+      <li><b>装置</b>：每章至少一个能动手的东西：替书吏平账、收发秦朝的公文、算科举的胜率、给知县记账、买一个法国的官、劈一根国库的木棍……</li>
+      <li><b>两本账</b>：章末一张卡，左边一句营盘的账（制度的道理），右边一句你的账（落到一个普通人身上的道理）。</li>
+    </ul>
+    <p>这本书不打算歌颂谁，也不打算骂谁。官僚这个词在很多语言里都带着一点贬义，可没有他们，粮食收不上来，河堤修不起来，信送不到，退休金发不出去。它只想把这张桌子的来龙去脉摊开：它为什么在那儿，它怎样保护自己，它什么时候好用、什么时候坏掉，坐在桌子后面的人心里在算什么账。</p>
+    <p>书房里另有两本书和这本挨着：《是，大人》讲一个虚构衙门里的处世术，《轮到谁了》讲西方四个霸主，里面已经提过几次这张桌子。这本书不重复它们，只在接得上的地方指一指路。</p>
+
+    <div class="partnav">
+      <a href="./" class="on"><span class="k">第一部</span><b>刀笔</b><small>序幕 + 卷一 吏 + 卷二 考 + 卷三 替身 · 十章</small></a>
+      <a href="two.html"><span class="k">第二部</span><b>机器</b><small>卷四 图纸 + 卷五 各家 · 十章</small></a>
+      <a href="three.html"><span class="k">第三部</span><b>心法</b><small>卷六 性子 + 卷七 算盘 + 卷八 代价与带走 · 十章</small></a>
+    </div>
+
+    <div class="box" style="margin-top:1.8em">
+      <h5>你可能想问的，在这里</h5>
+      <ul class="qmap">
+        <li><a href="#c0">第一批“坐办公室的人”是谁？他们为什么愿意干这个？</a><b>泥</b></li>
+        <li><a href="#c1">秦朝人真的“以吏为师”吗？秦朝的小官一天干什么？</a><b>简</b></li>
+        <li><a href="#c2">没有考试的时候，汉朝怎样挑官？“孝廉”是怎么举的？</a><b>举</b></li>
+        <li><a href="#c3">“上品无寒门”是怎么来的？门阀为什么能垄断几百年？</a><b>品</b></li>
+        <li><a href="#c4">科举的胜率到底有多低？考上了又怎样？</a><b>考</b></li>
+        <li><a href="#c5">县官三年一换，衙门里真正管事的是谁？</a><b>胥</b></li>
+        <li><a href="#c6">知县一年俸禄四十五两银子，怎么养得起一衙门的人？</a><b>幕</b></li>
+        <li><a href="#c7">为什么有的皇帝宁可用宦官和奴隶当官？</a><b>奴</b></li>
+        <li><a href="#c8">官职可以买卖吗？买官的人图什么？</a><b>买</b></li>
+        <li><a href="#c9">英文的“文员”为什么和“教士”是一个词？一根木棍怎么烧了议会？</a><b>符</b></li>
+        <li><a data-c="c12" href="two.html#c12">英国的文官考试是怎么来的？</a><b>白</b></li>
+        <li><a data-c="c13" href="two.html#c13">英国首相们怎样想管住文官？管住了吗？</a><b>相</b></li>
+        <li><a data-c="c14" href="two.html#c14">美国总统换届时为什么要换掉几千人？</a><b>赃</b></li>
+        <li><a data-c="c16" href="two.html#c16">日本官员退休后为什么都去了企业？</a><b>降</b></li>
+        <li><a data-c="c18" href="two.html#c18">给官员发高薪，真的能防腐败吗？</a><b>薪</b></li>
+        <li><a data-c="c19" href="two.html#c19">“编制”到底是什么？考公为什么越来越热？</a><b>编</b></li>
+        <li><a data-c="c20" href="three.html#c20">体制内的人为什么那么“稳”？</a><b>稳</b></li>
+        <li><a data-c="c22" href="three.html#c22">他们为什么总能提前读出政策的风向？</a><b>听</b></li>
+        <li><a data-c="c23" href="three.html#c23">他们为什么很少直接说“不”？</a><b>婉</b></li>
+        <li><a data-c="c24" href="three.html#c24">他们怎样看房子、车子和养老？</a><b>房</b></li>
+        <li><a data-c="c28" href="three.html#c28">这份工作的代价是什么？</a><b>价</b></li>
+        <li><a data-c="c29" href="three.html#c29">外面的人能从营盘里学走什么？</a><b>带</b></li>
+      </ul>
+    </div>
+
+    <h3>全书目录</h3>
+  </div>
+  <div class="wide"><ol class="toc" id="toc"></ol></div>
+</section>
+
+<!-- ============ 序幕 · 泥 ============ -->
+<section class="chap" id="c0" data-vol="序幕 · 泥">
+  <div class="chead">
+    <div class="big">泥</div>
+    <div>
+      <div class="no">序幕 · 约前 3200 年至前 1000 年</div>
+      <h2>泥板上的欠账</h2>
+      <dl><dt>讲什么</dt><dd>记账的人怎样变成第一批文官；苏美尔的泥板屋；乌尔第三王朝的工日账；埃及父亲劝儿子“去当书吏吧”</dd><dt>本章装置</dt><dd>平一本工日账</dd></dl>
+      <div class="gate" data-g="生"></div>
+      <div class="when" data-a="-3200" data-b="-1000"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">第一批“坐办公室的人”是谁？他们为什么愿意干这个？</p>
+      <p>是五千年前两河流域和埃及的<b>书吏</b>。文字一开始主要是拿来记账的，会记账的人就成了第一批文官：他们替神庙和国王数羊、分粮、派工、收税。愿意干，是因为这份差事<em>不用下地、不用服劳役、按月领口粮，还握着一样别人没有的本事</em>：写。</p>
+    </div>
+
+    <div class="desk" data-t="档案室 · 第一张卡片">
+      <p>第一张卡片的抬头写着：“约前 2040 年，温马。”</p>
+      <p><span class="x">许多</span>念出声来：“温马……是哪儿？”</p>
+      <p>“今天伊拉克南部，两条大河中间。”<span class="nm">老温</span>指指卡片，“你看最后一栏，‘最怕什么’。我拼到这儿的时候笑了半天：四千年前这个人，最怕的是年底对账。”</p>
+      <p>许多往下看。“欠工日？”</p>
+      <p>“欠国家的活儿。他手底下管着一队人，国家按人头给他派活，到年底一算，派了多少、干了多少，差的部分记在他头上，明年接着还。”老温把卡片翻过来，背面用铅笔画了一个表格，“我第一年进局，干的就是这个：给施工队算工日。”</p>
+    </div>
+
+    <div class="dossier">
+      <div class="dh"><b>履历</b><small>No. 01 · 约前 2040 年 · 苏美尔，温马行省</small></div>
+      <table>
+        <tr><th>姓名</th><td>卢-沙拉（拼的）</td></tr>
+        <tr><th>出身</th><td>书吏之子。父亲在行省总督府管粮仓账。</td></tr>
+        <tr><th>入行</th><td>七八岁进“泥板屋”（书吏学校），学了十年左右：先描楔形符号，再抄几百个词的词表、合同样本、算术题。挨过很多次打。</td></tr>
+        <tr><th>差事</th><td>行省的工头兼书吏，管一队二十来个雇工：挖渠、割芦苇、搬粮。每天记出工，每月领口粮，每年和总督府对一次账。</td></tr>
+        <tr><th>口粮</th><td>每月大麦若干“希拉”（一希拉约合一升），比手下的雇工多几倍；逢节日另有油、羊毛。</td></tr>
+        <tr><th>一天</th><td>天亮点名，在泥板上按人头划记；中午去工地看进度；傍晚把当天的工日抄进月账。</td></tr>
+        <tr><th>最怕</th><td>年终结账：上面按人头派下来的工日没干满，差额记在自己名下，明年接着欠。</td></tr>
+        <tr><th>结局</th><td>欠账一直没还清。死后，欠的工日按规矩从家里的财产里扣。</td></tr>
+      </table>
+      <div class="real">真的部分：泥板屋、词表和体罚；乌尔第三王朝工头的年度工日账，“应完成”和“已完成”两栏，差额结转到下一年，工头要负责。口粮数额和“死后从家产扣”是按研究者的概括写的，细节因地因时而异。卢-沙拉是拼出来的人。</div>
+    </div>
+
+    <h3>记账的人先来了<span class="y">约前 3400—前 3000</span></h3>
+    <p>人类最早的文字，出土在今天伊拉克南部的乌鲁克。考古学家在那里的神庙区挖出了几千块约前三千二百年前后的泥板，读懂以后发现，<em>其中绝大多数是账</em>：多少只羊、多少罐啤酒、多少块地、分给多少个人多少口粮。诗歌、法律、神话、信件，都是好几百年以后才写上泥板的。</p>
+    <p>这件事书房里的《苇城书记》和《点石成金》都讲过：文字的祖先是记账用的小泥块，后来变成泥球上的印记，再变成泥板上的符号。这一章接着往下讲另一半：<b>账总要有人记</b>。一座神庙管着几千头羊、几百块田、上千个干活的人，就得有一群人每天专门数、专门写、专门对。他们不种地，不放羊，不打仗，靠神庙和王宫发口粮过日子。他们就是第一批文官。</p>
+    <p>最早的一批泥板里有一类很特别的东西，叫“词表”：把同一类东西的名字按顺序排成一长串，比如各种职业、各种器皿、各种树木。其中一份“职业表”在不同的遗址出土了很多份抄本，抄了好几百年几乎一字不改。学者推测它是教材：<em>书吏的学徒拿它练字，也拿它记住这个社会里有哪些位置</em>。这份表上排在最前面的，是各种“头儿”和管事的人。</p>
+  </div>
+
+  <aside class="echo" data-k="联系">
+    <span class="stamp">联系</span>
+    <div>
+      <div class="rh">先有账，后有字</div>
+      <p>《苇城书记》卷一，会计林记在没有文字的苇城一步步造字：泥丸、泥球、泥板、借音。那本书里的故事是虚构的，这里的乌鲁克泥板是真的。两本书合起来看，就是一句话：<em>文字和文官差不多是同一天出生的</em>，接生婆是账本。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>泥板屋<span class="y">约前 2500—前 1600</span></h3>
+    <p>苏美尔人管书吏学校叫“泥板屋”。学生一早带着午饭去，老师叫“泥板屋之父”，帮老师管学生的高年级学长叫“大哥”。课程大致分几步：先在湿泥上练压楔子，再抄符号表，再抄词表、谚语、合同样本和书信范本，再做算术：分粮、量地、算砖头。学满出来，要能写一份像样的买卖契约，能算一块梯形田地的面积，能给一支工程队算口粮。</p>
+    <p>泥板屋的日子不好过。有一篇苏美尔语的文章，学者叫它《学生时代》，讲一个学生一天之内因为各种事挨了好几顿打：迟到、说话、没经允许站起来、字写得难看。回家后他求父亲请老师吃饭、送老师礼物，老师收了礼，马上改口夸他前途无量。这篇文章后来在泥板屋里被一抄再抄，<em>大概因为每一个学生都觉得写的是自己</em>。</p>
+    <p>书吏这行基本是家传的。学者整理过泥板上书吏落款时写的父亲职业，多数是书吏、神庙管事、行省官员，偶尔有祭司和富商，几乎看不到农夫和渔夫。读书要脱产十来年，还要给老师送礼，普通人家供不起。<b>入仕的第一扇门，从一开始就是“出身”</b>。</p>
+
+    <h3>世界上第一个“大政府”<span class="y">约前 2112—前 2004</span></h3>
+    <p>到了约前二十一世纪，两河南部出现了一个叫“乌尔第三王朝”的国家。它存在的时间只有一百来年，留下的泥板却多得惊人：已经发表的就有十万块上下，大部分是行政文书。有学者半开玩笑地说，这是人类历史上第一个、也可能是档案密度最高的官僚国家。</p>
+    <p>它的第二个国王舒尔吉在位四十多年，干了一连串今天看来非常“现代”的事：统一度量衡，统一历法，把国土分成若干行省，每个行省设一个文职的总督和一个军职的将领，互相牵制；行省按规定轮流给中央送牲口和粮食；在首都附近建了一个专门收牲口的大院，每天进进出出几百只羊、牛、驴，每一只都要记账，经手人、日期、去向，一样不落。</p>
+    <p>最有意思的是“工日账”。王朝雇了大批干活的人：男工挖渠、搬运、割芦苇，女工磨面、织布。他们按“工日”算账：一个人干一天活，就是一个工日。每个工头每年要和上面对一次账，账分两栏：</p>
+    <ul class="plain">
+      <li><b>应完成</b>：手下有多少人，乘以一年的天数，减去规定的休息日，再按各种活计的定额折算，得出上面“借给”他多少个工日。</li>
+      <li><b>已完成</b>：这一年实际干了多少活：挖了多少方土、割了多少捆芦苇、磨了多少面，按定额折回工日；病了、死了、跑了的人，也按规矩扣除。</li>
+    </ul>
+    <p>两栏一减，多了记“结余”，少了记“亏欠”，转到下一年的账上，接着算。研究这批账的学者发现，<em>大多数工头年年都欠</em>，而且越欠越多，因为定额是按理想状态定的：不下雨，不生病，没人跑。账面上，这些工头一辈子都在给国家打欠条。有研究者认为，工头死了以后，他欠的账会从他家里追。</p>
+  </div>
+
+  <div class="fig" id="udFig">
+    <div class="fig-label">装置 1</div>
+    <h4>平一本工日账</h4>
+    <p class="how">你是温马行省的工头，手下一队雇工。每点一次“过一年”，总督府按人头给你派工日，你选这一年是<b>按常规干</b>还是<b>逼紧一点</b>。逼紧，当年干得多，但第二年病的跑的也多。看看五年下来，你的账上是结余还是亏欠。</p>
+    <div class="ctl"><span>手下人数</span><input type="range" id="udN" min="10" max="40" value="20"><output id="udNO"></output></div>
+    <div class="btns"><button class="btn pri" id="udA">按常规，过一年</button><button class="btn" id="udB">逼紧一点，过一年</button><button class="btn" id="udR">重来</button></div>
+    <div class="kv" id="udKv"></div>
+    <div class="scroll-x"><table class="t" id="udT" style="min-width:480px"></table></div>
+    <div class="say" id="udSay"></div>
+    <p class="figcap">示意模型。定额、休息日、生病和逃跑的概率都是假设的；真实的乌尔第三王朝账目里，定额按活计细分（挖土按体积、割芦苇按捆、磨面按升），女工和男工的口粮不同，但“应完成—已完成—结转”的结构是真的。</p>
+  </div>
+
+  <div class="col">
+    <h3>埃及：去当书吏吧<span class="y">约前 2000—前 1100</span></h3>
+    <p>尼罗河边，另一群书吏也在干同样的事。埃及的书吏用芦苇笔在纸莎草和陶片上写字，量地、收粮、登记人口、给修金字塔和神庙的工人发口粮。今天卢浮宫里有一尊很有名的彩绘石像，叫《书吏坐像》：一个人盘腿坐着，膝上摊着纸莎草卷，抬头看着前方，像在等上司口授。这尊像大约是四千五百年前雕的，那时候能请人给自己雕像的，都是有身份的人。</p>
+    <p>埃及留下来一篇很出名的教训文，学者叫它《职业讽刺》，大约写于前二千年前后。一位父亲送儿子去首都的书吏学校，一路上把各种手艺挨个数落了一遍：铁匠的手指像鳄鱼皮，一身臭鱼味；造船的累断了腰；种地的永远在交税，交不上就挨打；洗衣服的在河边跟鳄鱼作伴……数落完，父亲的结论只有一个：</p>
+  </div>
+
+  <div class="spin">
+    <div class="off"><i>公文 · 原文大意</i><p>我见过挨打的人，你要把心思放在书本上。我看过被拉去服劳役的人，没有什么比书本更好。书吏的差事不用干重活，它让你免于劳役。没有哪一行没有上司管着，只有书吏，他自己就是上司。</p></div>
+    <div class="plain"><i>白话</i><p>儿子，考个坐办公室的吧。别的活又脏又累还要挨打，坐办公室的不用下地、不用被拉去修工程，而且是管人的那一个。</p></div>
+    <div class="src">左栏据埃及中王国《职业讽刺》（又称《杜阿-凯提的教训》）与新王国《兰辛纸草》中劝学段落的大意拼合转述。</div>
+  </div>
+
+  <div class="col">
+    <p>三千年后，考生们在网上互相转发的段子，和这位父亲说的话几乎一模一样。这篇文章在埃及的书吏学校里被当作习字的范本，抄了好几百年，今天留下来的抄本大多是学生的作业，错字连篇。</p>
+    <p>埃及还留下了一份罕见的“基层档案”。在帝王谷附近有一个叫代尔麦地那的工匠村，住着替法老凿陵墓的工人和他们的书吏。书吏的活之一是记考勤。有一块约前一千二百五十年前后的石灰石片，上面是一整年的缺勤记录，写着每个工人哪天没来、为什么：生病了，眼睛疼，被蝎子蜇了，给神上供，帮工头干私活，妻子或女儿“来月经”，还有几次写的是“酿啤酒”。</p>
+    <p>还是这个村子，在拉美西斯三世在位的第二十九年（约前 1157 年），因为口粮迟发了快两个月，工人们放下工具，坐到神庙后面不走了。这件事被一位书吏写在纸莎草上，今天藏在意大利都灵，常被称为<em>人类有记载的第一次罢工</em>。记下这件事的，正是那个负责发口粮的部门里的人。</p>
+  </div>
+
+  <aside class="echo" data-k="押韵">
+    <span class="stamp">押韵</span>
+    <div>
+      <div class="rh">请假条</div>
+      <p>代尔麦地那的缺勤理由，放到今天任何一个单位的考勤表上都不违和：病假、事假、家里有事、“领导让我去帮个忙”。<em>考勤这件事，三千多年没换过格式</em>。</p>
+    </div>
+  </aside>
+
+  <div class="bio">
+    <div class="hd"><b>舒尔吉</b><small>约前 2094—前 2047 在位</small><em>一个自夸写字好的国王</em></div>
+    <div class="bd">
+      <p>乌尔第三王朝第二个国王。苏美尔人给他写了很多颂歌，有的颂歌干脆用他自己的口吻说话。其中一首里，舒尔吉吹嘘自己小时候在泥板屋里是最好的学生：楔子压得最工整，算术最快，没有哪个同学比得过他。</p>
+      <dl>
+        <dt>功</dt><dd>统一度量衡和历法；分设行省，文武分治；建起庞大的档案和账目系统；修路，路边设驿站，传说他一天之内从尼普尔跑到乌尔再跑回来，来回三百多公里（颂歌里的话，存疑）。</dd>
+        <dt>过</dt><dd>账目越细，压在工头和雇工身上的定额越重；他死后半个多世纪，王朝在饥荒、外敌和行省离心中垮掉。</dd>
+        <dt>结局</dt><dd>死后被尊为神，有了自己的庙和祭祀。他建起来的那套记账办法，被后来两河流域的王国一再借用。</dd>
+      </dl>
+      <p>把“会写字”当成国王的美德来吹，在人类历史上很少见。舒尔吉大概明白：<em>谁掌握了账本，谁就掌握了国家</em>。</p>
+    </div>
+  </div>
+
+  <div class="black">
+    <h5>账本的另一面</h5>
+    <p>书吏的字，落在另一头就是别人的苦。乌尔第三王朝的女工一个月领的口粮大约只有男工的一半，很多人是战俘或者被卖身的穷人，她们的孩子也登记在账上，按年龄领更少的口粮。埃及的《兰辛纸草》里有一段，本意是劝人当书吏，顺带描写了收税的书吏下乡：农夫交不出粮，被按在地上打，捆起来扔进水渠，老婆孩子也被绑走。</p>
+    <p>写这段的人并没有同情农夫的意思，他只是想说：<em>你看，坐在船上收税的那个人多好，别当挨打的那个</em>。</p>
+  </div>
+
+  <div class="col">
+    <h3>为什么当书吏</h3>
+    <p>把这一章的材料放在一起，第一批文官的“好处”其实很清楚，而且五千年没变多少：</p>
+    <ul class="plain">
+      <li><b>稳</b>：按月领口粮，旱涝保收。种地的看天，打鱼的看水，书吏看的是国库。</li>
+      <li><b>免</b>：不用服劳役，不用上战场，有的地方还免一部分税。</li>
+      <li><b>近</b>：离权力近。量地的说你家有几亩就是几亩，记账的说你欠多少就是多少。</li>
+      <li><b>少</b>：会写字的人极少。学者估计古埃及识字的人可能只占人口的百分之一左右（存疑，估计方法差别很大），物以稀为贵。</li>
+    </ul>
+    <p>代价也很清楚：十年寒窗，学费昂贵，上面有人压着定额，下面有人恨着你的笔，账永远平不了。这些好处和代价，后面每一章都会换个样子再出现一次。</p>
+  </div>
+
+  <div class="seal">
+    <div><i>营盘的账<small>制度</small></i>国家一旦大到靠人记不住，就得有人专门记账。第一批文官不是选出来的，是被账本“需要”出来的。</div>
+    <div><i>你的账<small>生活</small></i>定额常常是按理想情况定的。接一份活之前，先算算“不下雨、不生病、没人跑”这三个假设有几个靠得住。</div>
+  </div>
+</section>
+
+<!-- ============ 卷一 · 吏 ============ -->
+<div class="volhead" data-vol="卷一 · 吏">
+  <div class="num">VOLUME ONE · 第一部 · 刀笔</div>
+  <h2>吏<small>卷一</small></h2>
+  <p class="lede">一个国家第一次把“管人”写成成千上万条规矩，交给成千上万个拿刀笔的小吏去执行。然后它要回答一个问题：这些人从哪儿来？秦朝说，从会办事的人里来；汉朝说，从地方推荐的好人里来；魏晋说，从好人家里来。三章：简、举、品。</p>
+  <svg class="yin" data-t="以吏为师" aria-hidden="true"></svg>
+</div>
+
+<!-- ============ 第一章 · 简 ============ -->
+<section class="chap" id="c1" data-vol="卷一 · 吏 · 简">
+  <div class="chead">
+    <div class="big">简</div>
+    <div>
+      <div class="no">第一章 · 前 359 年至前 207 年</div>
+      <h2>以吏为师</h2>
+      <dl><dt>讲什么</dt><dd>商鞅的县和户籍；“有事必以书”；睡虎地的喜和他的竹简；里耶古井里的一个县政府；刀笔吏这个词怎么来的</dd><dt>本章装置</dt><dd>秦朝的收发室</dd></dl>
+      <div class="gate" data-g="荐 生"></div>
+      <div class="when" data-a="-359" data-b="-207"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">秦朝人真的“以吏为师”吗？秦朝的小官一天干什么？</p>
+      <p>“以吏为师”是李斯在前 213 年建议焚书时说的：老百姓想学法令，就去跟官吏学。这话有它的背景，但秦朝确实是<em>第一个把整个国家交给一套成文规矩和一群专职小吏去运转的大国</em>。出土的秦简告诉我们，秦朝的小吏每天在收发文书、核对账目、丈量田地、登记户口、审案子，干得慢了、算错了，要按律罚甲、罚盾。</p>
+    </div>
+
+    <div class="desk" data-t="档案室 · 第二张卡片">
+      <p>第二张卡片的抬头字迹格外工整：“前 262 年—约前 217 年，南郡安陆。”</p>
+      <p>“这张不是拼的。”<span class="nm">老温</span>说，“是真人。他叫喜，就一个字。他的墓 1975 年在湖北云梦睡虎地挖出来，棺材里塞满了竹简，一千多枚，有法律，有办案的格式，有当官的守则，还有一份他自己写的大事记，从他出生那天写起。”</p>
+      <p><span class="x">许多</span>看着卡片上一行字：“生于秦昭王四十五年十二月甲午，鸡鸣时。”她愣了一下：“连几点出生都记了？”</p>
+      <p>“干这行的人，什么都记。”老温说，“你以后也会的。”</p>
+    </div>
+
+    <div class="dossier">
+      <div class="dh"><b>履历</b><small>No. 02 · 前 262—约前 217 年 · 秦，南郡</small></div>
+      <table>
+        <tr><th>姓名</th><td>喜（真人，姓氏不详）</td></tr>
+        <tr><th>出生</th><td>秦昭王四十五年（前 262 年）十二月甲午日，鸡鸣时。</td></tr>
+        <tr><th>入行</th><td>秦王政元年（前 246 年）登记服役，三年（前 244 年）八月被任为“史”，就是文书小吏。</td></tr>
+        <tr><th>升迁</th><td>先后在安陆当史、安陆令史、鄢县令史；十二年（前 235 年）起在鄢县“治狱”，管刑狱案件。其间几次从军。</td></tr>
+        <tr><th>差事</th><td>抄写和收发文书，核对仓库账目，按律审理案件，记录勘验现场。</td></tr>
+        <tr><th>家当</th><td>一辈子抄的法律和公文，大部分带进了坟墓：秦律十八种、法律问答、勘验文书的格式、为官守则、占卜吉凶的日书。</td></tr>
+        <tr><th>最怕</th><td>（老温加的）文书误了期，账目差了数，案子判错了：秦律对这三样都有罚。</td></tr>
+        <tr><th>结局</th><td>大事记写到秦始皇三十年（前 217 年）为止，学者推测他就在那一年前后去世，四十多岁。四年后，李斯建议“以吏为师”；十年后，秦亡。</td></tr>
+      </table>
+      <div class="stampx">真人</div>
+      <div class="real">真的部分：除“最怕”一栏外，都据云梦睡虎地十一号秦墓出土的《编年记》和随葬竹简（1975 年出土）。生卒、官职名称以整理者释读为准，个别字残缺。</div>
+    </div>
+
+    <h3>县、户籍和二十级爵<span class="y">前 359—前 338</span></h3>
+    <p>秦朝的那台机器，图纸是商鞅画的。前四世纪中叶，商鞅在秦孝公支持下两次变法，几件事对后来两千年的衙门影响最大：</p>
+    <ul class="plain">
+      <li><b>县</b>：把乡、邑、聚这些大大小小的居民点合并成几十个县，每个县由国君派去的县令、县丞管，不是世袭的贵族。县令干得不好可以撤，死了不传给儿子。</li>
+      <li><b>户籍</b>：每家每户登记入册，五家为伍、十家为什，互相监督，一家犯法，邻居不告发要连坐。人口、田地、牲口都要上账。</li>
+      <li><b>军功爵</b>：二十级爵位，按战场上斩获的首级授予，有爵位就有田宅、有身份，可以当官。贵族不立军功，就不再算贵族。</li>
+    </ul>
+    <p>这三样合起来，等于宣布：<b>管人的位子不再按血统分，而按国家定的规矩分</b>。规矩一多，就需要大量专门执行规矩的人，这就是“吏”。</p>
+
+    <h3>有事必以书<span class="y">文书行政</span></h3>
+    <p>睡虎地出土的秦律里，有一条规定请示工作的写法，只有十几个字，却把秦朝衙门的脾气说透了：</p>
+  </div>
+
+  <div class="spin">
+    <div class="off"><i>公文 · 原文</i><p>有事请也，必以书，毋口请，毋羁请。</p></div>
+    <div class="plain"><i>白话</i><p>有事请示，一律打书面报告。不许当面口头说，不许托人捎话。</p></div>
+    <div class="src">左栏据睡虎地秦简《秦律十八种·内史杂》，释文从通行整理本。</div>
+  </div>
+
+  <div class="col">
+    <p>口头说的话没有凭据，出了事说不清是谁的责任；书面的东西可以存档、可以复核、可以追责。秦朝的衙门几乎所有事都要落在简牍上：上级的命令、下级的报告、户口的变动、仓库的出入、案子的审讯记录、犯人的口供，甚至检查一具尸体的结果，都有固定的格式。睡虎地出土的《封诊式》，就是一本“案件勘验文书范本”，教小吏怎样写一份现场勘察报告：尸体在哪儿，什么姿势，伤口多长，地上有什么痕迹。</p>
+    <p>文书一多，就得有传递的规矩。秦律《行书律》规定：标明“急”的文书和国君的命令，到了马上就发；不急的，当天发完，不许留到第二天；留了，依法论处。文书上要写明发出和收到的时间，精确到一天中的某个时辰、某一刻，好在出事时查清是在哪个环节耽误的。</p>
+  </div>
+
+  <div class="fig" id="qinFig">
+    <div class="fig-label">装置 2</div>
+    <h4>秦朝的收发室</h4>
+    <p class="how">你是迁陵县的令史，管全县的文书收发。每天会送来一批文书，红色是“急”，必须当天发；灰色是“不急”，当天发不完可以压到第二天，但<b>压过一天就算“留”</b>。可你每天只有几个邮人。点击文书把它派出去，派满了点“下一天”。熬过十天，看你被记了几次“留”。</p>
+    <div class="kv" id="qinKv"></div>
+    <div id="qinBox" style="display:flex;flex-wrap:wrap;gap:6px;min-height:84px;margin:8px 0"></div>
+    <div class="btns"><button class="btn pri" id="qinNext">下一天</button><button class="btn" id="qinReset">重来</button></div>
+    <div class="say" id="qinSay"></div>
+    <div class="logbox" id="qinLog"></div>
+    <p class="figcap">简化的玩法。“急书当日发、不急的不得过日”据秦律《行书律》；罚则据秦律的常见罚法“赀一盾”“赀一甲”简化。文书数量、邮人数量是假设的；迁陵县是里耶秦简所在的真实的县。</p>
+  </div>
+
+  <div class="col">
+    <h3>古井里的县政府<span class="y">2002 年出土</span></h3>
+    <p>2002 年，湖南龙山县里耶镇的考古队在一座古城里清理一口井，井里塞满了竹木简牍，三万多枚，是秦朝洞庭郡迁陵县县政府的档案。秦亡的时候，大概有人把整个档案室倒进了井里。</p>
+    <p>这批档案让人第一次看清一个秦朝县政府每天是怎么过的。迁陵是个偏远小县，户数不多，可文书往来一点不少：上级的命令一道接一道，要求统计这个、核查那个；县里给各乡、各官署发指示；追查逃亡的人；登记新迁来的户口；造仓库的账；为一件很小的事来回打好几轮公文。每份文书都写着某月某日、某个时刻、由谁送来，谁拆开的。</p>
+    <p>里面还有一份《迁陵吏志》，是这个县的“编制表”：规定全县有一百零三个吏员的名额，实际在岗的人却少得多，有的位子空着，有的人被派去外地出差、服役。按整理者的释读，在岗的大约只有一半上下（数字存疑）。偏远小县招不到人，这个问题在两千两百年前就有了。</p>
+    <p>还有一块木牍，被整理者称为“更名方”，列着秦统一以后一批词语的新说法：哪些旧称不能再用、要改成什么。比如“王”的命令改称“制”“诏”，老百姓统一叫“黔首”，等等。这是一份发给基层小吏的<em>规范用语对照表</em>。</p>
+  </div>
+
+  <aside class="echo" data-k="押韵">
+    <span class="stamp">押韵</span>
+    <div>
+      <div class="rh">规范用语</div>
+      <p>今天每个单位的综合科大概都有一份类似的东西：哪些说法过时了，哪些名称改了，新文件里一律怎么写。秦朝的更名方，是这个家族里已知最早的一份。<em>改朝换代先改词，词改了，人就知道风向变了</em>。第三部《听话听音》会细说。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>算错了，罚一盾<span class="y">秦律里的吏</span></h3>
+    <p>秦律对吏的要求非常细，而且处处有罚。睡虎地出土的《效律》规定官府的秤和量器要定期校准：秤差了多少两以上，管事的“官啬夫”罚一副甲；差得少一点，罚一面盾。仓库清点出来的粮食和账面对不上，差多少罚多少。罚的单位是“甲”和“盾”，后来大概折成钱交。</p>
+    <p>还有一种责任是“连坐”到上级的：下属出了错，主管官员也要受罚，罚得轻一点。这样一来，每个人都有动力盯着别人。法家的想法很简单：<b>不指望人好，只指望规矩严、账目清、责任到人</b>。</p>
+    <p>但秦律也不全是吓人的一面。同一批竹简里有一篇《为吏之道》，是给小吏的修身守则，读起来像一份职业道德手册：</p>
+  </div>
+
+  <div class="spin">
+    <div class="off"><i>公文 · 原文大意</i><p>当吏有五善：忠信敬上，清廉不惹人议论，办事审慎得当，乐于做好事，恭敬谦让。<br>当吏有五失：浮夸泄密，自高自大，擅自做主，冒犯上级而不知利害，看轻人才而看重财货。</p></div>
+    <div class="plain"><i>白话</i><p>好吏：靠得住、手干净、办事稳、心眼好、会做人。<br>坏吏：嘴不严、架子大、不请示、乱顶撞、爱钱。</p></div>
+    <div class="src">左栏据睡虎地秦简《为吏之道》“五善”“五失”的大意转述，个别字词学界释读不一。</div>
+  </div>
+
+  <div class="col">
+    <p>这五善五失，放到两千多年后的任何一个机关里，几乎可以原样贴在墙上。值得注意的是“擅自做主”被列为过失：<em>一个好吏不是最有主意的吏，而是最守规矩、最会请示的吏</em>。这条脾气，后面会一直跟着这张桌子。</p>
+
+    <h3>刀笔吏</h3>
+    <p>秦汉的吏写字用毛笔，写在竹简木牍上；写错了，用一把小刀把字刮掉重写。所以吏随身带两样东西：笔和削刀，合称“刀笔”。后来“刀笔吏”成了文书小吏的代称，常带着一点轻蔑：只会照着条文抠字眼的人。</p>
+    <p>司马迁写飞将军李广，晚年因为行军迷路误了期，大将军卫青派人拿着文书来问责，李广不愿意面对审讯，说了一句：“广年六十余矣，终不能复对刀笔之吏。”说完拔刀自刎。一个打了一辈子仗的老将，<em>不怕匈奴，怕刀笔吏的那一套问话</em>。</p>
+    <p>可汉朝的开国功臣里，一大半恰恰是秦朝的刀笔吏。萧何是沛县的主吏掾（管县里吏员考核的书吏），曹参是沛县的狱掾（管监狱的书吏），刘邦本人是泗水亭长（最基层的治安小吏）。秦朝倒了，它培养出来的这批会办事的人，转身就去给新王朝搭台子。</p>
+  </div>
+
+  <div class="bio">
+    <div class="hd"><b>萧何</b><small>？—前 193</small><em>抢档案的人</em></div>
+    <div class="bd">
+      <p>沛县人，秦朝时在县里当主吏掾，“以文无害”著称：文书上挑不出毛病。刘邦起兵，他一直管后勤。</p>
+      <dl>
+        <dt>功</dt><dd>前 206 年刘邦先入咸阳，诸将都去抢府库里的金银财宝，萧何“独先入收秦丞相御史律令图书藏之”。靠着这批档案，刘邦集团对天下的关隘险要、户口多少、哪里强哪里弱一清二楚。楚汉相争四年，萧何坐镇关中，不断给前线补兵补粮。汉朝建立，他参照秦律制定汉律，史称“九章律”。</dd>
+        <dt>过</dt><dd>晚年为了让刘邦放心，故意贱价强买百姓田宅，自污名声，被告到刘邦那里，还下过一次狱。帮吕后诱杀韩信，也有他一份（“成也萧何，败也萧何”是后人的话）。</dd>
+        <dt>结局</dt><dd>做了汉朝第一任相国，死于任上。临终推荐曹参接班，曹参上任后对萧何定下的规矩一概不改，史称“萧规曹随”。</dd>
+      </dl>
+      <p>别人进城抢金子，他进城抢档案。<em>他知道真正值钱的是那些记着户口和地形的竹简</em>：金子会花完，账本能让你一直收下去。</p>
+    </div>
+  </div>
+
+  <div class="black">
+    <h5>严到什么程度</h5>
+    <p>秦律的严，最著名的例子是陈胜、吴广：前 209 年，他们被征发去渔阳戍边，路上遇大雨误了期，按《史记》的说法“失期，法皆斩”，横竖是死，干脆造反。</p>
+    <p>可睡虎地出土的秦律《徭律》里，误了征发期限的处罚是：误三到五天，训斥；六到十天，罚一盾；超过十天，罚一副甲；如果是因为下雨，还可以免除这次征发。这和“失期当斩”差得很远。于是有学者认为《史记》的说法是陈胜为了煽动大家故意夸大的，也有学者说戍边属于军事征发，用的是更严的军法。<b>存疑</b>。能肯定的是：一套严到让人觉得“横竖是死”的制度，哪怕只是让人<em>以为</em>它这么严，也足够让它倒台了。</p>
+  </div>
+
+  <aside class="echo" data-k="存疑">
+    <span class="stamp">存疑</span>
+    <div>
+      <div class="rh">以吏为师，到底是什么意思</div>
+      <p>李斯这句话的全文大意是：除了医药、占卜、种树的书，其余私人藏的诗书百家语一律烧掉；想学法令的，以吏为师。很多人把它理解为“只许跟官学，不许读书”，是秦朝愚民的铁证。也有学者指出，在秦朝，懂法令的确实主要是吏，这句话在当时可能更像“法律问题去问基层法官”。两种读法都有道理，但焚书本身是真的。</p>
+    </div>
+  </aside>
+
+  <div class="seal">
+    <div><i>营盘的账<small>制度</small></i>口说无凭，落笔为据。文书不只是传话，它把责任钉在了某个时间、某个人身上，这是官僚制最古老的发明。</div>
+    <div><i>你的账<small>生活</small></i>重要的事，事后补一条消息或邮件确认一下：“刚才说的是这样，对吗？”这不是不信任，是给双方都留个凭据。</div>
+  </div>
+</section>
+
+<!-- ============ 第二章 · 举 ============ -->
+<section class="chap" id="c2" data-vol="卷一 · 吏 · 举">
+  <div class="chead">
+    <div class="big">举</div>
+    <div>
+      <div class="no">第二章 · 前 206 年至 220 年</div>
+      <h2>举孝廉</h2>
+      <dl><dt>讲什么</dt><dd>汉朝的几条入仕路：察举、辟召、任子、花钱；名额怎样按人口分；一个郡的两千个吏；左雄给推荐加了一场考试；门生故吏</dd><dt>本章装置</dt><dd>孝廉名额与大姓</dd></dl>
+      <div class="gate" data-g="荐 生 买"></div>
+      <div class="when" data-a="-206" data-b="220"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">没有考试的时候，汉朝怎样挑官？</p>
+      <p>主要靠<b>推荐</b>：从汉武帝起，每个郡国每年向朝廷推荐“孝廉”，名额后来按人口算，二十万人一个。被推荐的人进京当郎官，再分派出去当县令县长。另外还有几条路：大官的府里自己招人（辟召）、高官的儿子直接当郎（任子）、家里钱多也能当郎（赀选）。这套办法<em>选出过很多能吏，也慢慢把官位送进了少数大家族的手里</em>。</p>
+    </div>
+
+    <div class="desk" data-t="档案室 · 第三张卡片">
+      <p>“这张我拼得最费劲。”<span class="nm">老温</span>说，“汉朝的小吏留下来的东西不少，可要拼出一个人从小吏走到县长的完整一辈子，得东一块西一块地凑。”</p>
+      <p><span class="x">许多</span>看到卡片右下角有一行小字：“举主卒，弃官奔丧，服三年。”</p>
+      <p>“推荐他的那个太守死了，他把官辞了，去给太守守孝三年。”老温说，“不是亲爹，是推荐人。那时候，推荐你当官的人，就是你半个爹。”</p>
+      <p>许多想了想：“那要是推荐人犯事了呢？”</p>
+      <p>“那就麻烦了。”老温笑了，“推荐错了人，推荐人也要受罚。所以这是一根绳上的两只蚂蚱。”</p>
+    </div>
+
+    <div class="dossier">
+      <div class="dh"><b>履历</b><small>No. 03 · 约 90—150 年 · 东汉，某内郡</small></div>
+      <table>
+        <tr><th>姓名</th><td>郑平（拼的）</td></tr>
+        <tr><th>出身</th><td>郡里的中等人家，有几百亩地，祖父做过县里的小吏。</td></tr>
+        <tr><th>入行</th><td>十七岁进县衙当“佐史”，最低一级的书吏，月俸几斛粮。抄文书、跑腿、算账，一干十年。</td></tr>
+        <tr><th>升迁</th><td>调进郡府当书佐，再升到功曹，管全郡吏员的考核。三十出头，太守把他举为孝廉。</td></tr>
+        <tr><th>进京</th><td>入京当郎官，在宫里值班站岗，等着分派。两年后外放，当一个小县的县长，秩三百石。</td></tr>
+        <tr><th>一天</th><td>升堂处理诉讼，听户曹报户口、仓曹报粮食，接待过境的官员和使者，给郡里写报告。</td></tr>
+        <tr><th>最怕</th><td>推荐他的太守出事。被推荐的人犯了错，推荐人受牵连；推荐人倒了台，被推荐的人也会被当成同党。</td></tr>
+        <tr><th>结局</th><td>举主去世，弃官奔丧，服丧三年。回来以后没有再被起用，在家乡做了个有名望的乡绅。</td></tr>
+      </table>
+      <div class="real">真的部分：佐史、书佐、功曹、孝廉、郎官、县长三百石这一串职位和次序；“举非其人”举主要受罚；东汉故吏为举主、府主弃官服丧的风气。郑平是拼出来的人。</div>
+    </div>
+
+    <h3>汉初：秦朝的吏，汉朝的功臣<span class="y">前 206—前 141</span></h3>
+    <p>刘邦打下天下，最高的位子先分给了一起打仗的功臣，丞相差不多都从有爵位的列侯里挑；下面那一大层吏，则基本照搬秦朝的人和秦朝的规矩。萧何定的律令、秦朝的郡县、秦朝的文书格式，一样不少地接了过来。</p>
+    <p>可功臣会老会死，他们的儿子不一定能干。汉朝前六十年，朝廷慢慢摸索出几条新的挑人办法：</p>
+    <ul class="plain">
+      <li><b>任子</b>：二千石以上的高官做满三年，可以保举一个儿子或兄弟当郎官。这是赤裸裸的“看出身”。</li>
+      <li><b>赀选</b>：家产够一定数目的，可以当郎官。最早要十万钱，汉景帝嫌门槛太高、廉士进不来，降到四万。这是“看钱”。</li>
+      <li><b>辟召</b>：三公、郡守这些大官可以自己招收属吏，叫“掾属”。被大官看上，就是一条快路。</li>
+      <li><b>特举</b>：皇帝下诏，让大臣推荐“贤良方正”“直言极谏”之类的人才，到朝廷来回答皇帝的问题（对策）。</li>
+    </ul>
+
+    <h3>前 134 年：郡国每年举孝廉<span class="y">元光元年</span></h3>
+    <p>汉武帝元光元年（前 134 年），朝廷下令：<em>每个郡国每年推荐孝、廉各一人</em>。“孝”是孝顺父母，“廉”是为官清廉，后来合起来叫“孝廉”。被举的人进京做郎官，在宫里当几年侍卫兼候补，再分派出去当县令、县长或者朝廷里的小官。</p>
+    <p>这条路很快成了汉朝当官的正途。一个郡一年只有一两个名额，被举为孝廉是天大的荣耀，相当于后来的中进士。名额怎么分，是个大问题：大郡几百万人，小郡几万人，都是每年两个，显然不公平。东汉和帝时，大臣丁鸿、刘方上奏，改成按人口算：</p>
+  </div>
+
+  <div class="spin">
+    <div class="off"><i>公文 · 原文大意</i><p>郡国每二十万人口，每年举孝廉一人；四十万举二人，六十万三人，八十万四人，百万五人，一百二十万六人。不满二十万的，两年举一人；不满十万的，三年举一人。</p></div>
+    <div class="plain"><i>白话</i><p>名额按人口切蛋糕。人多的郡多给几个，人少的郡隔一年、隔两年才轮到一次。</p></div>
+    <div class="src">左栏据《后汉书·丁鸿传》的大意转述；不久后又专门给边郡放宽，十万口就可以每年举一人。</div>
+  </div>
+
+  <div class="fig" id="xlFig">
+    <div class="fig-label">装置 3</div>
+    <h4>孝廉名额与大姓</h4>
+    <p class="how">先拖第一个滑块：选一个郡的人口，看它按东汉的规矩每年能举几个孝廉。再拖第二个滑块：太守挑人的时候，<b>有多看重“关系”</b>（家里有没有人已经当官、跟太守有没有交情），然后点“过五十年”，看看全郡的官位最后落在谁家手里。</p>
+    <div class="ctl"><span>郡的人口</span><input type="range" id="xlP" min="3" max="250" value="60"><output id="xlPO"></output></div>
+    <label class="ck"><input type="checkbox" id="xlB">边郡（享受放宽）</label>
+    <div class="say" id="xlQ"></div>
+    <div class="ctl"><span>看关系</span><input type="range" id="xlW" min="0" max="90" value="25"><output id="xlWO"></output></div>
+    <div class="btns"><button class="btn pri" id="xlGo">过五十年</button></div>
+    <div class="bars" id="xlBars"></div>
+    <div class="say" id="xlSay"></div>
+    <p class="figcap">名额规则据《后汉书》丁鸿传和和帝永元十三年诏。后半部分是示意模型：全郡一百户读书人家，其中十户起初就是大姓；每年被举的人按“才能”和“关系”加权打分挑出，关系分 = 这家人已经当上官的人数。</p>
+  </div>
+
+  <div class="col">
+    <h3>一个郡的两千个吏<span class="y">尹湾汉简</span></h3>
+    <p>1993 年，江苏连云港东海县尹湾村的一座西汉晚期墓里，出土了一批简牍。墓主叫师饶，生前是东海郡的功曹史，就是郑平当过的那个位子。他把郡里的一批档案带进了坟墓，其中一份叫《集簿》，是东海郡上报朝廷的年度统计：全郡有多少县、邑、侯国，多少户、多少口，多少田，多少吏员。</p>
+    <p>按整理者的释读，东海郡当时有三十八个县邑侯国，人口约一百四十万，<em>吏员二千二百零三人</em>，平均六百多个老百姓养一个吏。另一份《东海郡吏员簿》把这两千多人分到了每个县：一个大县有县令一人、县丞一人、县尉两人，下面是一长串的令史、狱史、官啬夫、乡啬夫、游徼、亭长、佐、邮佐……拿俸禄的“长吏”只占一小截，绝大多数是百石以下的“少吏”。</p>
+    <p>师饶还留下了一份日记，记的是他一年里大部分日子在哪儿过夜：今天在某县的传舍，明天在某个亭，后天回郡府，几乎没有几天在家。<b>一个功曹史，一年到头都在出差</b>。这大概是人类最早的一份差旅记录。</p>
+
+    <h3>从二千石到斗食</h3>
+    <p>汉朝官员的级别用“石”来表示，名义上是一年能领多少石粮食，实际发的是钱和粮的组合，数目和名字并不对应。大致是这样一座金字塔：</p>
+  </div>
+  <div class="wide">
+    <div class="scroll-x">
+      <table class="t">
+        <tr><th>秩</th><th>典型职位</th><th>大概多少人</th><th>谁来坐</th></tr>
+        <tr><td>万石</td><td>三公（丞相、太尉、御史大夫，东汉为太尉、司徒、司空）</td><td>三人</td><td>功臣、外戚、名儒、大族</td></tr>
+        <tr><td>中二千石、二千石</td><td>九卿、郡太守、诸侯国相</td><td>一两百人</td><td>孝廉出身的老吏，大族子弟</td></tr>
+        <tr><td>千石—三百石</td><td>县令（大县）、县长（小县）、朝廷各署的长官</td><td>一两千人</td><td>孝廉、郎官外放，辟召出身</td></tr>
+        <tr><td>二百石—百石</td><td>县丞、县尉、令史、郡府诸曹</td><td>上万人</td><td>本地人，从小吏一级级升</td></tr>
+        <tr><td>斗食、佐史</td><td>乡啬夫、亭长、佐、书佐</td><td>十几万人</td><td>本地人，很多一辈子在这一层</td></tr>
+      </table>
+    </div>
+    <p class="figcap">人数是数量级的约数，据《汉书·百官公卿表》所说西汉末“吏员自佐史至丞相，十二万二百八十五人”及各家估计。“长吏”一般指二百石（一说四百石）以上，由朝廷任命；以下的“少吏”多由长官在本地自行招用。</p>
+  </div>
+
+  <div class="col">
+    <p>这里有一条分界线，后来两千年都没消失：上面一层是<b>朝廷派来的、会走的</b>“官”，下面一大层是<b>本地招的、不走的</b>“吏”。县令可能是千里之外来的人，三五年就调走；令史、狱史、乡啬夫是本地人，可能在这个衙门里干一辈子。汉朝的时候，吏还能升成官，郑平就是例子；到了后来，这道坎越来越难跨，第五章会讲到。</p>
+
+    <h3>左雄的考试<span class="y">132 年</span></h3>
+    <p>推荐制的毛病很快就露出来了。孝廉孝不孝、廉不廉，全凭太守一句话。太守要还人情、要讨好上司、要照顾大族，被举的人越来越多是关系户。东汉后期流行过一首童谣，被葛洪抄进了《抱朴子》：</p>
+    <blockquote><p>举秀才，不知书；察孝廉，父别居。寒素清白浊如泥，高第良将怯如鸡。</p><cite>—— 葛洪《抱朴子·审举》引桓帝、灵帝时童谣</cite></blockquote>
+    <p>被举为“秀才”的不识字，被举为“孝廉”的跟父亲分家另过，号称清白的浑得像泥，号称良将的胆小如鸡。顺帝阳嘉元年（132 年），尚书令左雄提出一套改革：孝廉要年满四十岁才能举；被举上来以后还要考试，读儒经的考对经义的理解，当过吏的考写公文；考不过的，推荐人要受罚。</p>
+    <p>这是中国历史上第一次<em>在推荐后面加了一道全国统一的考试</em>。它离科举还差得很远：不能自己报名，还得先有人推荐。但“荐”和“考”从此挂上了钩。</p>
+  </div>
+
+  <div class="bio">
+    <div class="hd"><b>左雄</b><small>？—138</small><em>给推荐加了一道考试的人</em></div>
+    <div class="bd">
+      <p>南郡涅阳人，安帝时被举为孝廉，后来做到尚书令，管全国的文书中枢。他自己就是推荐制的受益者，却最清楚推荐制的漏洞。</p>
+      <dl>
+        <dt>功</dt><dd>阳嘉改制：孝廉限年四十，到朝廷要考经学或文书；推荐人对被推荐人负责。他还上书批评地方官更换太频繁，一个人刚熟悉情况就被调走，主张让好官久任、多给俸禄。</dd>
+        <dt>过</dt><dd>年龄一刀切挡住了不少年轻的能人，当时就有人反对；他推荐的人里也有出了问题的，他因此被弹劾过。</dd>
+        <dt>结局</dt><dd>阳嘉改制推行后，据说十几年间被举的孝廉质量明显好转。左雄死后不久，外戚和宦官轮流专权，考试成了走过场。</dd>
+      </dl>
+      <p>“地方官换得太勤，刚熟悉就走了”，这句话左雄说过，后来很多朝代的大臣也说过。<em>流水的官和铁打的吏之间的那道缝，从这时候起就有人看见了</em>。</p>
+    </div>
+  </div>
+
+  <div class="black">
+    <h5>墓道里的孝子</h5>
+    <p>推荐的标准是“孝”，于是就有人表演孝。东汉有个叫赵宣的人，父母死后，他把墓道留着不封，自己住进墓道里守孝，一守二十多年，乡里人都说他是大孝子，州郡几次礼请他出来做官。新来的太守陈蕃去拜访他，一问家里情况，发现他守孝期间生了五个孩子。按礼，守孝期间是不能同房的。陈蕃大怒，治了他的罪。</p>
+    <p>这件事被《后汉书》当成笑话记下来。可它说明的道理一点也不好笑：<b>一旦某种品德变成当官的门票，就会有人去造这种品德</b>。</p>
+  </div>
+
+  <aside class="echo" data-k="押韵">
+    <span class="stamp">押韵</span>
+    <div>
+      <div class="rh">指标一旦变成目标</div>
+      <p>二十世纪有个经济学家叫古德哈特，总结出一条规律：一个指标一旦被拿来当考核的目标，它就不再是一个好指标了。东汉人没有这个词，可他们见过墓道里的孝子、不识字的秀才。<em>考核什么，就会得到什么样的表演</em>：孝顺、发表论文的篇数、到岗的打卡记录，都一样。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>门生故吏遍天下</h3>
+    <p>推荐制还有一个更深的后果：它把官场织成了一张人情网。被太守推荐的人，一辈子称太守为“举主”；被大官辟召的属吏，一辈子是这位大官的“故吏”；跟着名儒读书的学生，是老师的“门生”。门生故吏要给恩主送礼、守孝、出力，恩主要提携门生故吏。</p>
+    <p>几代人下来，有些家族的门生故吏布满了朝廷和州郡。汝南袁氏从袁安起四代人里出了五个三公，号称“四世三公”；弘农杨氏也是四代人做到太尉。东汉末年天下大乱，袁绍一起兵，各地的门生故吏纷纷响应，靠的就是这张网。<b>推荐制本来是为了从天下找人才，最后找来找去，人才都姓了同几个姓</b>。下一章，这几个姓会把这扇门彻底关上。</p>
+  </div>
+
+  <div class="seal">
+    <div><i>营盘的账<small>制度</small></i>推荐的好处是“看得见人”，坏处是“看得见关系”。只靠推荐，几代之后，位子就会往推荐人的熟人圈里流。</div>
+    <div><i>你的账<small>生活</small></i>别人推荐你，是把他自己的信用押在了你身上。接受推荐的时候记住：你搞砸了，丢脸的是两个人。</div>
+  </div>
+</section>
+
+<!-- ============ 第三章 · 品 ============ -->
+<section class="chap" id="c3" data-vol="卷一 · 吏 · 品">
+  <div class="chead">
+    <div class="big">品</div>
+    <div>
+      <div class="no">第三章 · 220 年至 589 年</div>
+      <h2>上品无寒门</h2>
+      <dl><dt>讲什么</dt><dd>陈群的九品官人法；中正官怎样从评人变成评家世；王与马共天下；清官和浊官；士族的床不让寒人坐；真正管事的“寒人”舍人</dd><dt>本章装置</dt><dd>中正评品</dd></dl>
+      <div class="gate" data-g="生 荐"></div>
+      <div class="when" data-a="220" data-b="589"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">“上品无寒门”是怎么来的？门阀为什么能垄断几百年？</p>
+      <p>220 年，曹魏设立“九品官人法”：每个州郡派一个本地出身的“中正”，把本地的读书人评成九个品级，朝廷按品授官。本意是在战乱里重新找人才，可中正本人多出自大族，评着评着就只看家世了。西晋大臣刘毅一句话总结：<em>上品无寒门，下品无势族</em>。家世决定品级，品级决定起点，起点决定一生，这个循环转了三百多年。</p>
+    </div>
+
+    <div class="desk" data-t="档案室 · 第四张卡片">
+      <p><span class="x">许多</span>翻到第四张，抬头是“南齐永明年间，建康”。她念了一遍官职：“中书通事舍人……这是多大的官？”</p>
+      <p>“品级不高，权力大得吓人。”<span class="nm">老温</span>说，“皇帝的诏书都要从他手里过。那时候的大官都是王家谢家的子弟，位子清贵，可不太管事；真正替皇帝干活的，是一批出身低的‘寒人’。皇帝放心用他们，因为他们除了皇帝谁也靠不上。”</p>
+      <p>“那他们过得好吗？”</p>
+      <p>“钱多，权大，就是没面子。”老温指着卡片最后一栏，“你看这儿。他去大族家里拜访，主人让仆人把自己坐的床搬开，不跟他坐一张床。”</p>
+    </div>
+
+    <div class="dossier">
+      <div class="dh"><b>履历</b><small>No. 04 · 约 440—500 年 · 南朝宋、齐，建康</small></div>
+      <table>
+        <tr><th>姓名</th><td>纪平之（拼的）</td></tr>
+        <tr><th>出身</th><td>寒门，祖上没人做过像样的官。中正给他评的是下品。</td></tr>
+        <tr><th>入行</th><td>年近三十才进宗室王府当小吏，抄写文书、管杂务，字写得好，脑子快。</td></tr>
+        <tr><th>机会</th><td>伺候的王爷当了皇帝，把他带进宫，任中书通事舍人：替皇帝收发奏章、起草诏令、传达旨意。</td></tr>
+        <tr><th>权力</th><td>大臣的奏章先到他手里，皇帝问话先问他。来送礼求官的人在家门口排队。</td></tr>
+        <tr><th>品级</th><td>不高。朝会时站在一群王谢子弟后面。</td></tr>
+        <tr><th>最怕</th><td>皇帝死。他的一切都系在一个人身上；新皇帝身边会有新的寒人。</td></tr>
+        <tr><th>心病</th><td>想“做士大夫”。求皇帝开恩，皇帝说：这事我做不了主，你自己去找某某（一位大族名士）。他去了，刚坐下，主人吩咐仆人：“把我的床移开，让给客人。”</td></tr>
+      </table>
+      <div class="real">真的部分：中正评品；寒人以中书通事舍人掌机要，是南朝宋、齐的普遍现象；“移床让客”的故事出自《南史·江斅传》，主角是齐武帝的宠臣纪僧真。纪平之是以纪僧真、茹法亮等人为原型拼出来的人。</div>
+    </div>
+
+    <h3>乱世里怎样找人<span class="y">220 年</span></h3>
+    <p>东汉末年打了三十年仗，户口散了，乡里散了，原来那套靠郡守推荐孝廉的办法没法用了：太守都换了好几茬，本地人逃得七零八落，谁知道谁是孝子廉吏？220 年，曹丕刚接替父亲当上魏王，吏部尚书陈群提出一个新办法：</p>
+    <ul class="plain">
+      <li>每个郡设一个“中正”，州设“大中正”，由在朝廷做官、出身本地、有名望的人兼任。</li>
+      <li>中正负责把本地的士人登记在册，写一句评语（“状”），再定一个品级，从上上到下下，共九品。</li>
+      <li>吏部授官，参考中正定的品：品高的做清贵的官，品低的做卑下的官，品太低的不能做官。品级每三年调整一次，表现好可以升，有劣迹可以降。</li>
+    </ul>
+    <p>这个设计当时看是合理的：<em>人散了，就找一个熟悉本地人的人来替朝廷看人</em>。问题出在“熟悉本地人的人”是谁。</p>
+
+    <h3>评着评着，就只看家世了</h3>
+    <p>能当上中正的，几乎都是本地的大族子弟。他们评人，最熟的是同类，最信的是门第：祖父做过什么官，父亲做过什么官，跟哪几家通婚。“状”里的德行和才干没法量，家世却清清楚楚写在族谱上。几十年下来，品级和家世几乎合成了一件事。</p>
+    <p>西晋初年，尚书左仆射刘毅给晋武帝上了一道长疏，列举九品中正的“八损”，其中两句流传至今：</p>
+  </div>
+
+  <div class="spin">
+    <div class="off"><i>公文 · 原文</i><p>是以上品无寒门，下品无势族。</p></div>
+    <div class="plain"><i>白话</i><p>结果就是：评上上等的没有一个穷人家的，评下等的没有一个有权有势人家的。</p></div>
+    <div class="src">左栏出自《晋书·刘毅传》所载刘毅论九品八损疏。晋武帝看了，称赞写得好，但没有改。</div>
+  </div>
+
+  <div class="fig" id="zzFig">
+    <div class="fig-label">装置 4</div>
+    <h4>中正评品</h4>
+    <p class="how">下面是一个郡的六十个年轻读书人。<b>圆点越大，人越有才</b>；颜色是家世：<span style="color:var(--kraft)">■ 士族</span>、<span style="color:var(--main)">■ 次门</span>、<span style="color:var(--ink-3)">■ 寒门</span>。你是中正，拖动滑块决定评品时<b>看家世的分量</b>，看看九品里的人怎样重新排队。</p>
+    <div class="ctl"><span>看家世</span><input type="range" id="zzW" min="0" max="100" value="70"><output id="zzWO"></output></div>
+    <div class="btns"><button class="btn" id="zzNew">换一批人</button></div>
+    <div class="scroll-x"><svg class="sim" id="zzSvg" style="min-width:520px"></svg></div>
+    <div class="kv" id="zzKv"></div>
+    <div class="say" id="zzSay"></div>
+    <p class="figcap">示意模型。士族约占一成五，次门三成五，寒门一半；才能与家世无关，随机分布。每人得分 = 看家世的分量 × 家世分 + (1 − 分量) × 才能分 + 一点运气，按分数从高到低填进九品，上品名额少、下品名额多。</p>
+  </div>
+
+  <div class="col">
+    <h3>王与马，共天下<span class="y">317—420</span></h3>
+    <p>西晋亡于内乱和北方各族的进攻，司马睿在江南重建晋朝，史称东晋。这个朝廷从一开始就靠几家北方南渡的大族撑着，最大的是琅邪王氏：王导在朝中主政，堂兄王敦在长江上游握着重兵。当时人说“王与马，共天下”：王家和司马家一起坐天下。后来王家衰了一点，谢家、庾家、桓家轮流上来，皇帝始终不太说了算。</p>
+    <p>门阀最盛的时候，官职分成“清”和“浊”。清官是那些地位高、事情少、文雅体面的位子，比如秘书郎、著作郎、黄门侍郎；浊官是要跟钱粮刑狱打交道、要真干活的位子。士族子弟起家就做清官，一路清上去；寒门子弟只能从浊官做起，做得再好也很难转清。梁武帝天监年间的一道诏书说得很直白：甲族子弟二十岁就能出来做官，寒门子弟要过了三十岁才能“试吏”。</p>
+    <p>颜之推在《颜氏家训》里记过梁朝的一句俗语：“上车不落则著作，体中何如则秘书。”意思是：上车时不摔下来，就能当著作郎；写信会问一句“身体怎么样”，就能当秘书郎。<em>这两个位子本来是国家修史、管图书的要职，到这时只剩下给贵公子起家镀金用了</em>。</p>
+  </div>
+
+  <aside class="echo" data-k="讽刺">
+    <span class="stamp">讽刺</span>
+    <div>
+      <div class="rh">清官</div>
+      <p>今天“清官”是说一个官廉洁。在魏晋南北朝，“清官”说的是一个位子清闲、体面、不沾钱粮俗务。<em>那时候最被看不起的，恰恰是真管事的官</em>。一个社会把“不干活”当成高贵，干活的位子自然就会落到别人手里。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>寒人掌机要<span class="y">420—557</span></h3>
+    <p>士族占着清贵的位子，却不太愿意干活；皇帝想集权，也不信任这些盘根错节的大族。于是从刘宋开始，皇帝们大量起用出身寒微的人，放在中书通事舍人、典签这类品级不高的位子上：舍人替皇帝收发奏章、起草诏令；典签被派到出镇各地的宗室王爷身边，名义上管文书，实际上替皇帝看着王爷，权力大到王爷想喝水都得先问典签。</p>
+    <p>这批寒人往往能干、听话、敛财也狠。齐武帝的宠臣茹法亮当中书通事舍人，据《南史》，他家的宅子修得快赶上宫里的殿，他自己跟人说：“何须求外禄？此一户中，年办百万。”意思是我不用外放当地方官捞钱，守着这扇门一年就有一百万。</p>
+    <p>可无论多有钱有权，这些人在士族面前始终抬不起头。纪僧真深得齐武帝宠信，有一天他求皇帝：“臣出身本县武吏，别无所求，只想陛下让我做个士大夫。”齐武帝说：“这事由江斅、谢瀹他们说了算，我插不上手，你自己去找他们吧。”纪僧真到了江斅家，刚登榻坐下，江斅就转头对左右说：“移吾床让客。”纪僧真灰溜溜地回去，对皇帝说：<em>士大夫原来不是天子能任命的</em>。</p>
+  </div>
+
+  <div class="bio">
+    <div class="hd"><b>刘毅</b><small>？—285</small><em>说出“上品无寒门”的人</em></div>
+    <div class="bd">
+      <p>东莱掖县人，西晋初年的大臣，以刚直敢言出名。晋武帝有一次问他：“我可以和汉朝哪个皇帝相比？”刘毅说：“桓帝、灵帝。”武帝问为什么，他说：“桓灵卖官，钱入官库；陛下卖官，钱入私门。以此言之，殆不如也。”武帝大笑，说桓灵的时候可听不到这种话。</p>
+      <dl>
+        <dt>功</dt><dd>上疏痛陈九品中正“八损”：中正徇私、只看门第、评语空洞、品级一定终身难改、让人不务实学而去攀附权门……“上品无寒门，下品无势族”出自此疏。</dd>
+        <dt>过</dt><dd>说得痛快，没能改掉任何东西。他自己也是大族出身，后来同样当过中正。</dd>
+        <dt>结局</dt><dd>官至尚书左仆射，以清正善终。九品中正制在他死后又延续了三百年。</dd>
+      </dl>
+      <p>一个制度最清醒的批评者，往往就坐在这个制度里面。<em>看清楚和改得动，是两回事</em>。</p>
+    </div>
+  </div>
+
+  <div class="black">
+    <h5>王谢门高非偶</h5>
+    <p>门第的傲慢，最后是要付账的。东魏降将侯景投奔梁朝，向梁武帝请求和王家或谢家联姻。梁武帝回答：“王、谢门高非偶，可于朱、张以下访之。”意思是王谢门第太高，配不上，你去朱家、张家以下的人家里找吧。侯景恨得咬牙。</p>
+    <p>548 年侯景起兵反梁，攻破建康。《颜氏家训》描写过那时士族子弟的样子：从小熏衣剃面、敷粉施朱，出门坐车，进门扶人，肤脆骨柔，连路都走不动；一位建康令看见马在嘶鸣，吓得以为是老虎。战乱中，他们成批死在饥饿和屠杀里。几百年的高门，在这场乱子里元气大伤。</p>
+  </div>
+
+  <aside class="echo" data-k="存疑">
+    <span class="stamp">存疑</span>
+    <div>
+      <div class="rh">门阀是不是一无是处</div>
+      <p>也有学者提醒，门阀并非只会熏衣敷粉：王导、谢安都是一流的政治家，淝水之战靠的是谢家；大族在乱世中保存了经学、礼法、书法和文学，王羲之、谢灵运都出自高门。门阀政治的长处和短处，史学界争论很多，比如陈寅恪、田余庆、唐长孺几家的看法就各有侧重。这一章只讲它作为选官办法的一面。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>门关上了，又被撬开<span class="y">495—589</span></h3>
+    <p>北方的情形不太一样。北魏孝文帝在 495 年前后“定姓族”，把鲜卑贵族和汉人大族按门第排成等级，等于把门阀制度正式写进了法律。可北方连年打仗，军功出身的武人一直有自己的上升通道，门第的墙没有南方那么高。</p>
+    <p>隋文帝统一天下以后，干脆废掉了九品中正，把选官的权力收回朝廷吏部，地方上的属吏也不再由长官自己招，改由朝廷任命。几年之后，隋朝开始分科考试取人。<b>一扇靠出身的门关了，一扇靠卷子的门开了</b>。这扇新门开了一千三百年，下一卷从它讲起。</p>
+  </div>
+
+  <div class="seal">
+    <div><i>营盘的账<small>制度</small></i>评价一个人，越是用“说不清”的标准（德行、名望、印象），越容易滑向“说得清”的东西（家世、关系）。没有硬尺子的地方，软尺子会被最有势力的人拿走。</div>
+    <div><i>你的账<small>生活</small></i>如果一个圈子只看出身，别在门口耗太久。那时候真正握着权力的，往往是被看不起的那一批干活的人。</div>
+  </div>
+</section>
+
+<!-- ============ 卷二 · 考 ============ -->
+<div class="volhead" data-vol="卷二 · 考">
+  <div class="num">VOLUME TWO · 第一部 · 刀笔</div>
+  <h2>考<small>卷二</small></h2>
+  <p class="lede">一张卷子，把选官的权力从大族手里收回了朝廷，也把成千上万读书人的一生拴在了号舍里。可考上的是“官”，而官三年一换；真正一辈子坐在衙门里的，是一群没考上、也不必考的人：胥吏，和县太爷自掏腰包请来的师爷。三章：考、胥、幕。</p>
+  <svg class="yin" data-t="金榜" aria-hidden="true"></svg>
+</div>
+
+<!-- ============ 第四章 · 考 ============ -->
+<section class="chap" id="c4" data-vol="卷二 · 考 · 考">
+  <div class="chead">
+    <div class="big">考</div>
+    <div>
+      <div class="no">第四章 · 587 年至 1905 年</div>
+      <h2>一张考卷</h2>
+      <dl><dt>讲什么</dt><dd>隋唐的开头和“自己报名”；宋朝的糊名、誊录、锁院和殿试；明清的三级考试、八股和号舍；考上以后去哪儿；1905 年停考</dd><dt>本章装置</dt><dd>一个读书人的一生</dd></dl>
+      <div class="gate" data-g="考 生 买"></div>
+      <div class="when" data-a="587" data-b="1905"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">科举的胜率到底有多低？考上了又怎样？</p>
+      <p>以清朝为例，大致是三道筛子：考秀才，每次几十人取一人；考举人，每次几十到一百人取一人；考进士，每次二三十人取一人。一个十几岁开始考的读书人，<em>大多数人一辈子停在秀才以下，考中进士的不到百分之一</em>，中进士时的平均年龄三十多岁。考上进士，才算真正拿到当官的资格；就算这样，好位子还得排队。</p>
+    </div>
+
+    <div class="desk" data-t="档案室 · 第五张卡片">
+      <p>第五张卡片很长，背面也写满了。<span class="x">许多</span>数了数“考”字：二十一个。</p>
+      <p>“清朝人。”<span class="nm">老温</span>说，“我照着几本清代举人的年谱拼的，挑的是最普通的那种：不是天才，也不是笨蛋，一辈子都在考。”</p>
+      <p>许多看到最后一栏，“五十一岁，以知县用”，松了口气：“总算当上了。”</p>
+      <p>“当上了。”老温说，“然后在省城候补了六年，才轮到一个缺。你考了两次就上岸，跟他比，算祖坟冒青烟了。”</p>
+    </div>
+
+    <div class="dossier">
+      <div class="dh"><b>履历</b><small>No. 05 · 约 1790—1860 年 · 清，江南某县</small></div>
+      <table>
+        <tr><th>姓名</th><td>沈思谦（拼的）</td></tr>
+        <tr><th>出身</th><td>小地主兼开米店的人家，父亲是个没考上秀才的“童生”。</td></tr>
+        <tr><th>童试</th><td>十四岁起考县试、府试、院试，考了五次，二十二岁中秀才（生员），进县学。</td></tr>
+        <tr><th>乡试</th><td>三年一次，到江宁贡院考，每次在号舍里关三场、九天。考了八次，四十五岁中举。</td></tr>
+        <tr><th>会试</th><td>进京考了三次，没中。</td></tr>
+        <tr><th>出路</th><td>举人会试三次不中，可以参加“大挑”。他被挑为一等，“以知县用”。</td></tr>
+        <tr><th>候补</th><td>分发到外省候补，等了六年才署理一个小县的知县。那年他五十一岁。</td></tr>
+        <tr><th>花费</th><td>几十年的束脩、路费、应酬，大致花掉了家里一半的地。</td></tr>
+        <tr><th>最怕</th><td>落第后回乡见人。中举那天，乡亲们来道喜的比过去三十年来的加起来都多。</td></tr>
+      </table>
+      <div class="real">真的部分：县试、府试、院试、乡试、会试的次序和周期；江南乡试在江宁（南京）贡院；举人会试三科不中可参加大挑，一等以知县用、二等以教职用；分发候补、署理。各级考试的次数和年龄按研究者统计的常见情况拼合；沈思谦是拼出来的人。</div>
+    </div>
+
+    <h3>自己报名<span class="y">587—907</span></h3>
+    <p>科举从哪一年开始，学界一直有争论：有人从隋文帝开皇七年（587 年）令各州每年选送三人算起，有人从隋炀帝设进士科算起，具体年份又有 605、606、607 年几种说法（<b>存疑</b>）。能肯定的是，到了唐朝，这套办法已经有了一个和以往所有制度都不同的地方：<em>读书人可以自己去报名</em>。</p>
+    <p>唐朝叫“投牒自进”：向本州县递一份材料，通过州县的初选，就能被送到京城参加礼部的考试。不必等太守推荐，不必等中正评品。当然也有门槛：商人、工匠、罪人的后代不许考，各地选送也有名额。</p>
+    <p>唐朝的常科主要有两科：“明经”考背诵和理解儒家经典，相对容易，每次取一两百人；“进士”考诗赋和时务策论，难得多，每次只取二三十人。当时有句话：“三十老明经，五十少进士。”三十岁考中明经算老的，五十岁考中进士还算年轻。进士及第的人在长安曲江边设宴，到大雁塔下题名，风光无限。</p>
+    <p>但唐朝的科举还带着很浓的“推荐”尾巴。考卷不糊名，考官知道是谁写的；考生在考前要把自己的诗文送给京城的名人和考官过目，叫“行卷”，名人肯替你说一句话，名次就靠前。礼部考中了，也只是有了做官的资格，还要再过吏部一道“释褐试”，看相貌、口才、书法、判词（身、言、书、判）。韩愈考中进士以后，吏部的考试考了三次都没过，只好去节度使的幕府里当幕僚。<b>唐朝大部分官员仍然出自门荫和别的途径，进士只是其中最体面的一小股</b>。</p>
+
+    <h3>糊上名字<span class="y">960—1279</span></h3>
+    <p>到了宋朝，科举才真正变成了今天人们印象里的样子。宋朝做了几件事，几乎都是为了一个目的：<em>让考官不知道卷子是谁的</em>。</p>
+    <ul class="plain">
+      <li><b>殿试</b>：宋太祖开始由皇帝亲自主持最后一场考试，名次由皇帝定。考中的人是“天子门生”，不再是考官的门生。</li>
+      <li><b>锁院</b>：考官一经任命，立刻住进考场，与外界隔绝，直到放榜。</li>
+      <li><b>糊名</b>：考卷上的姓名、籍贯用纸糊住，编号代替，先在殿试实行，后来推广到省试和各州的考试。</li>
+      <li><b>誊录</b>：光糊名还不够，考官可能认得笔迹，于是专设誊录院，派书吏把每份卷子重抄一遍，考官看到的只是抄本。</li>
+      <li><b>别头试</b>：考官的亲戚子弟另设考场、另派考官，避嫌。</li>
+    </ul>
+    <p>宋朝的取士规模也比唐朝大得多。宋太宗即位后第一次开科，进士、诸科合计一次就取了五百多人；整个宋朝考中进士的约有四万人上下（各家统计不一）。宋朝的宰相、大臣，绝大多数是进士出身，这在中国历史上是第一次。神宗朝讨论变法时，老臣文彦博对皇帝说了一句很有名的话：“为与士大夫治天下，非与百姓治天下也。”这话的立场可以争论，但它说明了一个事实：<b>宋朝的天下，确实交给了一个通过考试产生的读书人阶层</b>。</p>
+  </div>
+
+  <aside class="echo" data-k="押韵">
+    <span class="stamp">押韵</span>
+    <div>
+      <div class="rh">糊名、誊录、双评</div>
+      <p>今天大型考试的流水线：试卷密封、条形码代替姓名、扫描后在电脑上分块阅卷、两位老师独立评分、分差太大再请第三位。<em>一千年前的宋朝人已经把这个思路想全了</em>，只是那时候“扫描”要靠几百个书吏一笔一笔地抄。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>三道筛子<span class="y">1368—1905</span></h3>
+    <p>明清两朝把科举固定成了三级：</p>
+    <ul class="plain">
+      <li><b>童试</b>：县试、府试、院试，考中的叫“生员”，俗称秀才，进府州县学。秀才可以免徭役，见知县不用下跪，犯了法要先革去功名才能用刑。没考中的，不管多大年纪，都叫“童生”。</li>
+      <li><b>乡试</b>：三年一次，在各省省城考，考中的叫“举人”。举人已经可以做官，只是多半是小官。</li>
+      <li><b>会试、殿试</b>：乡试第二年春天在京城考会试，中了再考殿试，排出三甲名次，统称“进士”。一甲三人：状元、榜眼、探花。</li>
+    </ul>
+    <p>考什么也越来越固定。明朝中期以后，乡试、会试的头一场是“八股文”：从“四书”里出一句话做题目，考生要用规定的结构（破题、承题、起讲、入题，再加四组对仗的“股”）阐发这句话的意思，观点要以朱熹的注解为准，不能自由发挥。这种文体后来被骂得很惨，但它的用意也很清楚：<em>几十万人同时考，必须有一种统一的格式，才能比较</em>。</p>
+    <p>乡试的考场叫“贡院”，里面是一排排号舍，每间宽不过一米，一块木板白天当桌子，晚上当床。南京的江南贡院到清朝后期有两万多间号舍。考生自带干粮、炭炉、被褥，每一场要在号舍里关两夜三天，三场下来，前后要九天左右。夏末秋初，蚊子、暑热、隔壁考生的鼾声和哭声，都是考试的一部分。蒲松龄在《聊斋志异》里写过一个考生王子安，说考生入场时像乞丐，点名时像囚犯，进了号舍像秋末的冷蜂，出场时像出笼的病鸟，等放榜时像被拴住的猴子……一连串比方，写尽了一个读书人的狼狈。</p>
+  </div>
+
+  <div class="fig" id="kjFig">
+    <div class="fig-label">装置 5</div>
+    <h4>一个读书人的一生</h4>
+    <p class="how">设一个读书人的天赋，再设家里能供他考到几岁，点“让他考一辈子”，看一个人的一生；点“考一万个人”，看一万个人的结局。每次考试的录取率大致按清朝中后期估算。</p>
+    <div class="ctl"><span>天赋</span><input type="range" id="kjT" min="50" max="300" value="100" step="10"><output id="kjTO"></output></div>
+    <div class="ctl"><span>供到几岁</span><input type="range" id="kjA" min="25" max="70" value="45"><output id="kjAO"></output></div>
+    <div class="btns"><button class="btn pri" id="kjOne">让他考一辈子</button><button class="btn" id="kjMany">考一万个人</button></div>
+    <div class="logbox" id="kjLog"></div>
+    <div class="bars" id="kjBars"></div>
+    <div class="say" id="kjSay"></div>
+    <p class="figcap">示意模型。默认每次院试约 1.5% 取中（大致是每次几十万童生争两三万个学额）、每次乡试约 1.5%、每次会试约 5%；院试三年两考，乡试、会试三年一考；二十岁以后每年约 2.5% 的死亡风险。天赋 100% 是普通读书人；天赋只改变每次的录取机会，不改变考试次数。实际各省、各时期的录取率差别很大。</p>
+  </div>
+
+  <div class="col">
+    <h3>考上以后<span class="y">一条长队</span></h3>
+    <p>考中进士，前途也分三六九等。一甲三人直接进翰林院；二甲、三甲里年轻、文章好的，再考一次“朝考”，优秀的选为翰林院庶吉士，这是将来做大学士、尚书的正途；其余的分到六部当主事，或者外放当知县。清朝人说“非翰林不入内阁”，明朝以后的宰辅之臣几乎都是翰林出身。</p>
+    <p>举人的出路窄得多：可以去京城的国子监读书等机会，可以每隔几年参加一次“大挑”，被挑中的当知县或者县学的教官；更多的人在家乡当塾师、做幕友、给人写状子。秀才更多，清朝某一时期全国在册的生员有几十万人，大部分一辈子就是秀才：身份体面，收入微薄，当地方上的“绅士”，调解纠纷，替官府办点事，也包揽词讼。</p>
+    <p>还有一道关是“候补”。考中了，有了资格，可实缺就那么多，于是大批“候补知县”“候补道”在省城里排队等缺，有的一等十几年，靠借债和应酬度日。到了清朝后期，朝廷又大量卖官（下一卷细说），排队的人越来越多，晚清小说《官场现形记》里写满了这些候补官员的众生相。</p>
+
+    <h3>1905 年<span class="y">停考</span></h3>
+    <p>甲午战败、庚子之变以后，朝廷决定兴办新式学堂，科举成了学堂的拦路虎：只要科举还在，读书人就不肯进学堂。1905 年 9 月，袁世凯、张之洞等人联名上奏，请立即停止科举，朝廷当即准奏。自丙午科（1906 年）起，所有乡试、会试一律停止。最后一科进士是 1904 年的甲辰科，状元刘春霖。从隋朝算起，一千三百年的考试，在一道奏折里结束了。</p>
+    <p>停考那年，全国还有几百万童生、几十万秀才、上万名举人。他们一夜之间失去了唯一的上升通道。有人进了新学堂，有人出洋留学，有人去当新军，有人留在乡下教私塾，有人后来成了革命党。<em>一个国家怎样安置“读书人想往上走”的愿望，常常比它考什么更要紧</em>。</p>
+  </div>
+
+  <div class="bio">
+    <div class="hd"><b>蒲松龄</b><small>1640—1715</small><em>考了五十年的人</em></div>
+    <div class="bd">
+      <p>山东淄川人。十九岁那年，县试、府试、院试接连考了三个第一，主持院试的山东学政施闰章非常欣赏他。所有人都以为他前途无量。</p>
+      <dl>
+        <dt>考</dt><dd>此后的五十多年里，他一次又一次参加乡试，一次也没考中。有一次已经写得很顺，却因为“越幅”（翻页时漏了一页，格式违规）被取消资格。</dd>
+        <dt>活</dt><dd>家里穷，三十岁起在本县毕家坐馆教书，一教三十年；中间还给一位知县当过一年幕僚。</dd>
+        <dt>写</dt><dd>教书之余写鬼狐故事，就是《聊斋志异》。里面一再嘲讽考官有眼无珠、考生利欲熏心，《司文郎》里一个瞎眼的和尚闻一闻烧掉的文章就知道好坏，却说考官们的鼻子不如他。</dd>
+        <dt>结局</dt><dd>七十一岁那年，按惯例熬成了“岁贡生”，有了一个虚衔。四年后去世。</dd>
+      </dl>
+      <p>科举挑中了几万个进士，大多数的名字今天没人记得；它没挑中的这个人，写出了一部流传到今天的书。<em>一把尺子量不出所有人的长短</em>。</p>
+    </div>
+  </div>
+
+  <div class="black">
+    <h5>考场上的刀</h5>
+    <p>科举越重要，作弊越多，惩罚也越狠。考生把经文抄在内衣、扇面、蜡丸里带进考场，今天博物馆里还能看到写满了蝇头小字的“夹带”衣服；有人找“枪手”代考；有人买通誊录书吏，在卷子里约定暗号。</p>
+    <p>清朝处理科场案往往用重典。顺治十四年（1657 年）的丁酉科场案，顺天、江南两地考官受贿，十几名考官被处斩，一批考中的举人被抄家流放，才子吴兆骞流放宁古塔二十多年。咸丰八年（1858 年）顺天乡试，主考官、大学士柏葰的家人收钱替人换了卷子，柏葰本人不知情也被处斩，是清朝唯一一位因科场案被杀的一品大员。<b>一张考卷之所以能让几十万人服气，靠的是“大家都觉得它公平”；为了守住这个“觉得”，朝廷不惜砍掉宰相的头</b>。</p>
+  </div>
+
+  <aside class="echo" data-k="存疑">
+    <span class="stamp">存疑</span>
+    <div>
+      <div class="rh">科举影响了西方的文官考试吗</div>
+      <p>十八世纪的伏尔泰、魁奈等人读了传教士的报道，很称赞中国“按考试选官”；十九世纪英国人讨论在印度和本土推行公开考试时，也有人提到中国的例子，反对者还讥讽这是“中国式的办法”。但英国的考试制度直接受中国影响有多大，学者看法不一。第二部第十二章再说。</p>
+    </div>
+  </aside>
+
+  <div class="seal">
+    <div><i>营盘的账<small>制度</small></i>考试的伟大之处，不在于它能挑出最好的人，而在于它让落榜的人也服气。一个让人服气的筛子，比一个精确的筛子更难造。</div>
+    <div><i>你的账<small>生活</small></i>一条路的录取率如果是百分之一，那就提前想好另外九十九种情况下你在哪里。供到几岁，是一个应该在起跑前就和家里商量好的数字。</div>
+  </div>
+</section>
+
+<!-- ============ 第五章 · 胥 ============ -->
+<section class="chap" id="c5" data-vol="卷二 · 考 · 胥">
+  <div class="chead">
+    <div class="big">胥</div>
+    <div>
+      <div class="no">第五章 · 960 年至 1911 年</div>
+      <h2>官无封建，吏有封建</h2>
+      <dl><dt>讲什么</dt><dd>官和吏怎样分了家；不拿俸禄的人靠什么活；位子怎样父传子、明码买卖；“例”和“部费”；海瑞在淳安查陋规</dd><dt>本章装置</dt><dd>一本报销账过户部</dd></dl>
+      <div class="gate" data-g="生 买"></div>
+      <div class="when" data-a="960" data-b="1911"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">县官三年一换，衙门里真正管事的是谁？</p>
+      <p>是<b>胥吏</b>：衙门里的书吏和差役。知县是外省人，考进士出身，读的是四书五经，三年任满就走；书吏是本地人，往往父子相传，熟悉每一块地、每一户人、每一条“例”。朝廷给他们的工钱少得可怜，甚至没有，他们靠各种“规费”过活。南宋的叶适说得最透：<em>官无封建，而吏有封建</em>。官是流水的，吏的位子却像世袭的封地。</p>
+    </div>
+
+    <div class="desk" data-t="档案室 · 第六张卡片">
+      <p>“这张，你看完别跟人说是我写的。”<span class="nm">老温</span>难得压低了声音，又自己先笑了，“开玩笑。不过这张最像咱们。”</p>
+      <p><span class="x">许多</span>看了看：一个清朝县衙户房的书吏，祖孙三代坐同一个位子，管全县的钱粮册籍。卡片上写着“知县换了十一任，他没换”。</p>
+      <p>“咱们局，局长换了几任？”她问。</p>
+      <p>老温掰着指头数了数：“我进来以后，十四任。”他拍拍身后的铁皮柜，“可这些柜子里的东西，每一任都得来问我们在哪儿。”</p>
+    </div>
+
+    <div class="dossier">
+      <div class="dh"><b>履历</b><small>No. 06 · 约 1760—1830 年 · 清，某县户房</small></div>
+      <table>
+        <tr><th>姓名</th><td>周廷禄（拼的）</td></tr>
+        <tr><th>出身</th><td>祖父、父亲都在本县户房当书吏。父亲去世，他接了这个位子，按惯例给前任家属（就是他自家）一笔“顶首银”。</td></tr>
+        <tr><th>名义</th><td>经承（户房书吏的头目），五年役满应当离职。他役满后，换了个名字重新“充役”，接着干。</td></tr>
+        <tr><th>工钱</th><td>官府发的“工食银”一年几两，不够一家人吃一个月。</td></tr>
+        <tr><th>真收入</th><td>征粮时的“串票钱”“册费”，办过户、分家、典卖田地时的“过割费”，给上面造册时向各里收的“纸笔费”。数目都是“老规矩”，谁也说不清从哪年开始的。</td></tr>
+        <tr><th>本事</th><td>全县几万亩地的鱼鳞图册、十几万口人的户籍，哪本账在哪个柜子里，哪块地历史上有过什么纠纷，他闭着眼睛都知道。</td></tr>
+        <tr><th>和知县</th><td>经历了十一任知县。每一任新官到任，第一件事就是叫他来问钱粮的底数。</td></tr>
+        <tr><th>最怕</th><td>碰上一个较真的知县，或者上面派来清查陋规的人。</td></tr>
+      </table>
+      <div class="real">真的部分：县衙六房书吏、经承；工食银微薄；五年役满须离役，以及书吏改名复充、“顶首”买卖缺位的普遍做法；各种规费名目大致据瞿同祖等人对清代州县的研究。周廷禄是拼出来的人。</div>
+    </div>
+
+    <h3>官和吏分家<span class="y">唐宋</span></h3>
+    <p>秦汉的时候，官和吏是一条梯子上的上下两段：萧何从吏做到相国，郑平从佐史做到县长。到了唐朝，梯子中间被锯了一道：九品以内的叫“流内官”，以外的叫“流外”，流外的吏要升成官，得经过专门的考核，而且很难升到高位。宋朝以后，科举出身的士大夫越来越看不起吏，吏也越来越难考科举，两段梯子各走各的。</p>
+    <p>这种分家有它的道理。朝廷要的是一批读圣贤书、讲道理、忠于朝廷的“官”，派到哪里都能代表皇帝；可这样的官往往不懂具体的事：怎么丈量土地，怎么造户籍，怎么核算漕粮的耗损，怎么判一件田产纠纷。这些活需要另一批人：懂行、熟悉本地、不怕琐碎。于是，<em>官管方向，吏管细节；官代表朝廷，吏代表规矩</em>。</p>
+    <p>问题在于，细节里有权力，规矩里有钱。宋朝的吏已经厉害到让士大夫头疼。南宋思想家叶适写过一篇《吏胥》，说如今朝廷里官员调来调去，真正长期掌握事务的是吏胥，世人有句话叫“官无封建，而吏有封建”，说的都是实情。</p>
+  </div>
+
+  <div class="spin">
+    <div class="off"><i>公文 · 原文大意</i><p>故今世号为“官无封建，而吏有封建”者，皆指实而言也。</p></div>
+    <div class="plain"><i>白话</i><p>官员是任期制的，换来换去；吏的位子倒像分封的领地，一家一家传下去。大家这么说，不是夸张，是实话。</p></div>
+    <div class="src">左栏出自叶适《水心别集》卷十四《吏胥》，据通行本转述。</div>
+  </div>
+
+  <div class="col">
+    <p>北宋的王安石也看到了这个问题，他的办法很直接：给吏发工资。熙宁年间推行“仓法”，给原本没有俸禄或者俸禄很少的仓吏、衙吏发放较高的“重禄”，同时严惩受贿，受贿一百钱以上就要判刑。这是历史上第一次认真尝试“高薪养吏”。可朝廷的钱不够长期支撑，王安石下台后，这套办法时断时续，没有坚持下来。</p>
+
+    <h3>不拿俸禄的人怎样活<span class="y">明清</span></h3>
+    <p>明清两朝的州县衙门，大致是这样一个结构：最上面是知县一人，下面有县丞、主簿、典史等几个“佐贰”小官；再下面是吏、户、礼、兵、刑、工“六房”，每房有书吏若干，仿照朝廷的六部分管人事、钱粮、礼仪、兵差、刑狱、工程；再下面是皂班、快班、壮班等差役，负责站堂、缉捕、催粮、押送。</p>
+    <p>朝廷给这些人定了“额设”的名额和“工食银”，名额往往只有几十人，工食银一年几两银子，远远不够养家。实际在衙门里干活的书吏和差役常常是额设的好几倍，一个大县有好几百人，那些额外的叫“贴写”“帮役”“白役”，一分钱工食银也不领。研究清代州县的学者瞿同祖算过，<b>整个衙门的运转，大部分靠的是不在朝廷预算里的钱</b>。</p>
+    <p>这些钱来自“规费”，也叫“陋规”：办任何一件事，都有一笔“老规矩”的钱。征粮时收“串票钱”，打官司要交“状纸钱”“堂礼”，衙役下乡传人要“鞋钱”“饭钱”，分家过户要“过割费”。每一笔都不多，单拿出来看甚至合情合理，书吏也要吃饭；可加在一起，就是压在老百姓身上的一座山。而且这座山没有账，没有上限，全凭“规矩”和书吏的良心。</p>
+    <p>位子本身也成了财产。清朝规定书吏五年役满就要离开，防止他们在一个位子上盘踞太久；可实际上，书吏离役前会把位子“卖”给下一个人，这笔钱叫“顶首银”，好一点的缺位能卖几百两，跟买一块地差不多。也有人役满后换个名字再来，或者让儿子、侄子顶上。一个户房的位子，可以在一个家族里传好几代。</p>
+  </div>
+
+  <aside class="echo" data-k="联系">
+    <span class="stamp">联系</span>
+    <div>
+      <div class="rh">《是，大人》里的那个衙门</div>
+      <p>书房里的《是，大人》写的就是这样一个衙门，只是用了虚构的人物：一位师爷、一个小吏、和坐在堂上的“大人”（读者自己）。那本书讲的是在衙门里怎样处世；这一章讲的是衙门为什么会长成这个样子。两本对着读，会更清楚：<em>那些让人哭笑不得的规矩，大多不是哪个坏人定的，是“官要走、吏不走、钱不够”这三件事凑在一起长出来的</em>。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>例：比法律更大的东西</h3>
+    <p>胥吏最大的本钱，不是钱，是“例”。</p>
+    <p>清朝的法律有《大清律例》，律是根本大法，几百年基本不动；例是在律的基础上根据具体案件一条条加出来的补充规定，越积越多，到清朝后期有将近两千条。六部办事还各有自己的“则例”：户部则例、工部则例、吏部铨选则例……一件工程用多少料、一斤铁多少钱、一个官员升迁要满几年、一份报销要附哪些单据，都写在则例里，而且常常彼此矛盾，新例旧例并存。</p>
+    <p>一个科举出身的官员，读了一辈子四书五经，到了衙门面对这堆则例，往往一头雾水。书吏却世代钻研，哪条例可以这样用、哪条例可以那样解释，烂熟于心。于是同一件事，书吏说“合例”，就能办；书吏说“不合例”，就得驳回重来。<em>谁掌握了解释规矩的权力，谁就掌握了衙门</em>。</p>
+
+    <h3>部费<span class="y">一本报销账怎样过户部</span></h3>
+    <p>这种权力在京城六部表现得最明显。地方上的大笔开支，比如修河、打仗、赈灾，事后要造册向户部或工部“报销”。部里的书吏审核这些账册，总能挑出毛病：某样材料的单价超过了则例，某处数字有零头对不上，某份文书格式不对，某个印没盖清楚。挑出毛病就“驳”，驳了地方就要重新造册，一来一回又是几个月甚至几年，经手的地方官可能早就调走了，这笔账还挂着。</p>
+    <p>怎么办？地方上的人很快就学会了：先给部里的书吏送一笔钱，叫“部费”，按报销总额抽几个百分点。钱到了，账就顺顺当当地通过了。晚清人笔记里有不少这样的故事：一场仗打完，军费报销的部费动辄几十万两，有大臣想绕过部吏直接奏请皇帝，结果账被拖了好几年。</p>
+  </div>
+
+  <div class="fig" id="bfFig">
+    <div class="fig-label">装置 6</div>
+    <h4>一本报销账过户部</h4>
+    <p class="how">你是一个知府，刚修完一段河堤，花了一万两银子，现在要向户部报销。部里的书吏每次审核都可能挑出一个毛病。你可以<b>照例重造</b>（花时间、花人工改账册），也可以<b>送部费</b>（按总额抽成，账马上过）。你的任期还剩三年，账没过就调走的话，这笔一万两要挂在你名下。</p>
+    <div class="kv" id="bfKv"></div>
+    <div class="say" id="bfSay"></div>
+    <div class="btns"><button class="btn pri" id="bfRedo">照例重造</button><button class="btn" id="bfPay">送部费（报销额的 3%）</button><button class="btn" id="bfReset">重来</button></div>
+    <div class="logbox" id="bfLog"></div>
+    <p class="figcap">示意模型。驳回的理由类型参考清代奏销驳查的常见情形；部费的比例、每次重造的耗时与花费都是假设的。真实的部费比例因时因事差别极大，史料多来自笔记和奏折中的指控，具体数目多存疑。</p>
+  </div>
+
+  <div class="bio">
+    <div class="hd"><b>海瑞</b><small>1514—1587</small><em>在淳安查陋规的知县</em></div>
+    <div class="bd">
+      <p>广东琼山人，举人出身，会试没考中，以举人身份当了福建南平县的教谕，后升浙江淳安知县。书房的读者大概都知道他，因为电视剧《大明王朝1566》。这里只讲他当知县时和“规矩”打交道的一面。</p>
+      <dl>
+        <dt>查</dt><dd>在淳安，他写了一份《兴革条例》，把县衙里的各种“常例”一条条列出来：知县每年按惯例能收的各种名目的银子，各房书吏、差役向百姓收的各种钱，哪些革除、哪些保留、保留多少，都写得清清楚楚，贴出来让百姓知道。</dd>
+        <dt>省</dt><dd>他自己不收常例，穿布袍、吃粗粮，让老仆在衙门后面种菜。传说他给母亲过生日，才买了两斤肉，消息传到总督胡宗宪那里，被当成新闻讲。</dd>
+        <dt>硬</dt><dd>总督的儿子路过淳安，嫌驿站招待不周，把驿吏倒吊起来。海瑞说：总督大人巡视时明令各地不许铺张，这人排场这么大，一定是冒充的。他扣下了这位公子和他带的几千两银子，写信报告总督。</dd>
+        <dt>结局</dt><dd>后来上《治安疏》骂嘉靖皇帝，下狱，险些被杀；晚年任南京右都御史，死时同僚去他家里查看，据说只找到八两俸银和一些旧衣，是大家凑钱下葬的。</dd>
+      </dl>
+      <p>海瑞的办法很笨：把规矩写下来、贴出来、自己先不拿。这个办法在淳安一个县里有效，可他走了以后，常例很快又回来了。<em>一个清官能改一个县三年，改不了一张桌子五百年</em>。</p>
+    </div>
+  </div>
+
+  <div class="black">
+    <h5>班房</h5>
+    <p>胥吏的权力落到最底下，最狠的是差役。清朝州县衙门有一种叫“班房”的地方，本来是差役值班的屋子，后来成了私设的拘押所：欠粮的、打官司的、被牵连的证人，常被关在里面，交钱才放。有的被关几个月，有的死在里面。朝廷三令五申禁止私设班房，地方上照设不误。</p>
+    <p>差役的名声很坏，社会地位也很低，清朝规定差役和他们的子孙不许参加科举。<b>一个被社会看不起、又被赋予权力的群体，往往会用权力去讨回看不起的那部分</b>。</p>
+  </div>
+
+  <aside class="echo" data-k="存疑">
+    <span class="stamp">存疑</span>
+    <div>
+      <div class="rh">与胥吏共天下</div>
+      <p>常有人引晚清郭嵩焘的话：“汉唐以来，虽号为君主，然权力实不足，不能不有所分寄，故西汉与宰相外戚共天下，东汉与太监名士共天下，唐与后妃藩镇共天下，北宋与奸臣共天下，南宋与外国共天下，元与奸臣番僧共天下，明与宰相太监共天下，本朝则与胥吏共天下。”这段话流传很广，但出处说法不一，原文是否如此、是否出自郭嵩焘，都有疑问。意思倒是很多清朝人都说过的。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>为什么改不掉</h3>
+    <p>从宋朝的叶适、王安石，到清朝的顾炎武、黄宗羲，再到雍正皇帝，一代代人骂胥吏、想改胥吏，结果都差不多。原因不复杂：</p>
+    <ul class="plain">
+      <li><b>官要走</b>：回避制度规定官员不能在本省做官，任期又短，官永远是外来的、临时的。</li>
+      <li><b>吏不走</b>：吏是本地人，熟悉情况，世代相传，掌握着官员离不开的信息和技能。</li>
+      <li><b>钱不够</b>：朝廷的正式预算只养得起少数官员，衙门真正运转的花费大部分在预算之外，只能靠规费自筹。</li>
+    </ul>
+    <p>这三件事不变，换一批人、杀几个人、贴几张告示，都只能管一阵子。第二部会看到，十九世纪的英国、美国、日本在改革文官制度时，碰到的也是这三样：让流动的长官能管住不流动的下属，让下属的收入来自正式的工资而不是灰色的规费，让规矩公开、统一、可以查。</p>
+  </div>
+
+  <div class="seal">
+    <div><i>营盘的账<small>制度</small></i>谁掌握了细节，谁就掌握了权力。上面的人换得越勤，下面的人就越重要；给的工资越少，规矩外的钱就越多。</div>
+    <div><i>你的账<small>生活</small></i>新到一个地方，先找到那个“知道柜子里每样东西在哪儿”的人，尊重他。将来你成了那个人，也别把知道的东西当成私产。</div>
+  </div>
+</section>
+
+<!-- ============ 第六章 · 幕 ============ -->
+<section class="chap" id="c6" data-vol="卷二 · 考 · 幕">
+  <div class="chead">
+    <div class="big">幕</div>
+    <div>
+      <div class="no">第六章 · 1644 年至 1911 年</div>
+      <h2>知县的账本</h2>
+      <dl><dt>讲什么</dt><dd>“一人政府”；自掏腰包请来的幕友；绍兴师爷；门丁和长随；四十五两俸禄、养廉银和摊捐；汪辉祖的四十年</dd><dt>本章装置</dt><dd>知县的账本</dd></dl>
+      <div class="gate" data-g="荐 考"></div>
+      <div class="when" data-a="1644" data-b="1911"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">知县一年俸禄四十五两银子，怎么养得起一衙门的人？</p>
+      <p>养不起。清朝知县的正俸确实只有四十五两，雍正以后另加一笔几百到一两千两的“养廉银”；可他要自掏腰包请师爷，养一群家丁长随，给上司送节礼，替省里分摊各种“摊捐”，迎来送往。一算下来，<em>不靠规矩外的钱，几乎没有一个知县能把账做平</em>。他请来的师爷，才是县衙真正的大脑。</p>
+    </div>
+
+    <div class="desk" data-t="档案室 · 第七张卡片">
+      <p>第七张卡片的抬头，<span class="x">许多</span>一眼认了出来：“沈思谦？就是考了二十一次那个？”</p>
+      <p>“他当上知县了，总得给他算算账。”<span class="nm">老温</span>说，“这张背面我画了个收支表，你看看哪边多。”</p>
+      <p>许多翻过来，左边一栏“入”，右边一栏“出”，右边比左边长了一大截。最下面一行写着：“不足之数，取于陋规。”</p>
+      <p>“所以他也收？”</p>
+      <p>“他不收，账平不了，师爷走人，衙门就转不动了。”老温说，“这一张我想让你看的不是贪不贪，是<b>预算从一开始就没打算让他活</b>。”</p>
+    </div>
+
+    <div class="dossier">
+      <div class="dh"><b>履历</b><small>No. 07 · 约 1840—1846 年 · 清，某省一个小县</small></div>
+      <table>
+        <tr><th>姓名</th><td>沈思谦（No. 05 的续篇，拼的）</td></tr>
+        <tr><th>到任</th><td>候补六年，五十一岁署理一个“简缺”小县的知县。借了几百两银子做路费、置办官服、送“到任礼”。</td></tr>
+        <tr><th>入</th><td>正俸四十五两；养廉银六百两上下；另有若干“公费”。</td></tr>
+        <tr><th>出</th><td>刑名师爷一位、钱谷师爷一位，束脩合计六七百两；书启、账房各一位；家丁长随十来人的工钱饭食；给知府、道台、藩台的三节两寿礼；省里派下来的各种摊捐；过境官员的招待。</td></tr>
+        <tr><th>差额</th><td>每年亏几百两到上千两。</td></tr>
+        <tr><th>补法</th><td>征粮时的“火耗”和平余，诉讼的规费，书吏差役孝敬的“节礼”，都照前任的规矩收，不加也不减。</td></tr>
+        <tr><th>最怕</th><td>命案。刑名师爷一再叮嘱他：人命案子一个字也错不得，错了是要丢官甚至抵命的。</td></tr>
+        <tr><th>结局</th><td>做满三年，没出大事，借的钱还清了，攒下一点钱。告老还乡，在家乡被称为“沈大老爷”。</td></tr>
+      </table>
+      <div class="real">真的部分：知县正俸四十五两；雍正“耗羡归公”后设养廉银，各县数额从几百到两千多两不等；幕友由官员私人聘请、束脩自付；三节两寿、摊捐、过境招待等开支，大致据瞿同祖、曾小萍等人的研究。具体数目是示意的。</div>
+    </div>
+
+    <h3>一人政府<span class="y">县衙的结构</span></h3>
+    <p>清朝一个县，人口少则几万，多则几十万，朝廷正式任命的“官”往往只有三四个：知县，加上县丞、主簿、典史这几个佐杂小官，有的县连县丞主簿都不设。知县一个人要对全县的一切负责：征收钱粮，审理案件，维持治安，修桥修路，管学校科举，赈济灾荒，接待过往官员，向上级汇报。研究清代地方政府的学者瞿同祖把这种结构叫做<em>“一人政府”</em>。</p>
+    <p>一个读四书五经出身的人，怎么可能一个人干得了这么多事？靠三拨人：</p>
+    <ul class="plain">
+      <li><b>书吏差役</b>：上一章讲的本地胥吏，掌握着档案和规矩，但知县不信任他们。</li>
+      <li><b>长随</b>：知县自己带来的家人仆役，替他看门、管印、跟班、盯着书吏，忠于知县个人，但大多没什么文化。</li>
+      <li><b>幕友</b>：知县花钱聘请的专业顾问，俗称“师爷”。他们懂法律、懂钱粮，替知县拿主意、写公文、审稿子，而且和知县一样，是外地人，不和本地胥吏一伙。</li>
+    </ul>
+    <p>这三拨人互相牵制：长随盯书吏，幕友管文书，知县居中拍板。<b>这套系统的大部分人，都不在朝廷的编制里</b>。</p>
+
+    <h3>师爷<span class="y">刑名与钱谷</span></h3>
+    <p>幕友的种类很多，最要紧的是两种：管司法案件的“刑名”，管赋税钱粮的“钱谷”。一个县至少要请这两位，大一点的县还要请写信应酬的“书启”、管征收催比的“征比”、管登记收发的“挂号”、管银钱出入的“账房”。</p>
+    <p>幕友不是官，也不是仆。按规矩，知县对幕友要行“宾师之礼”：称呼他“先生”，请他住在衙门里单独的院子，逢年过节亲自去拜。幕友不对朝廷负责，只对聘请他的知县负责，合则留，不合则去。束脩由知县私人支付，一位好的刑名师爷一年要几百两甚至上千两，远远超过知县自己的正俸。</p>
+    <p>清朝的师爷以浙江绍兴人最多，所谓“绍兴师爷”。绍兴读书人多、考中的少，很多人考不上就去学幕；学幕要拜师，一个老师爷带几个徒弟，在衙门里边做边学，学几年律例和公文。绍兴人互相介绍、互相提携，从县衙到督抚衙门，形成一张遍布全国的网，有“无绍不成衙”的说法。他们还和六部里同样大量出自绍兴的书吏有乡谊，地方上的公文到了京城，也有熟人照应。</p>
+  </div>
+
+  <aside class="echo" data-k="联系">
+    <span class="stamp">联系</span>
+    <div>
+      <div class="rh">莫师爷是虚构的</div>
+      <p>《是，大人》里的莫师爷是书房原创的人物，一个替“大人”出主意的老幕友，他的对白都是虚构的。这一章讲真实的幕友：他们是怎么来的，拿多少钱，怎样在知县和胥吏之间找位置。<em>莫师爷那些看似油滑的处世术，背后正是这一章的结构：他没有官职、没有编制，全凭主人信任吃饭</em>。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>门上<span class="y">长随</span></h3>
+    <p>长随是另一种人。他们是知县出钱雇的仆役，跟着知县到任，任满一起走。最有权的是“门上”，也叫门丁：所有要见知县的人、所有要送进去的文书，都要经过他。还有管官印的“签押”，管监狱的“管班”，管仓库的“司仓”。</p>
+    <p>长随名义上是家奴，可因为离权力最近，往往比书吏还厉害。见知县要先给门上送“门包”，否则文书压着不递，人也见不着。很多长随是职业的，这一任跟这个知县，下一任跟那个知县，在官场上来回流动，彼此串通，名声比书吏还坏。当官的人也知道他们靠不住，可又离不开：<em>知县需要一群只忠于他个人、和本地没有瓜葛的人</em>。</p>
+
+    <h3>四十五两<span class="y">清朝官员的工资</span></h3>
+    <p>清朝前期官员的俸禄低得出奇。知县正七品，年俸四十五两银子，外加一点“恩俸”和俸米；一品大员也只有一百八十两。这点钱，养活知县一家都勉强，更别说请师爷、养长随了。</p>
+    <p>于是地方官只能靠“火耗”过日子。百姓交的碎银子要熔成大锭上缴，熔化有损耗，所以每两正税加收一点“火耗”来弥补；可实际加收的远远超过损耗，一两加一钱、两钱，甚至更多，多出来的就成了地方官的收入，也用来应付各种开支。这笔钱没有账，各县高低不一，全凭地方官的良心。</p>
+    <p>雍正皇帝在 1720 年代末到 1730 年代推行“耗羡归公”：火耗的比例由各省定死，统一征收，收上来的钱归省里统一使用，一部分作为地方公费，一部分按官员职位高低发给“养廉银”。知县的养廉银各县不同，从几百两到两千多两。这是中国历史上一次少见的财政改革：<b>把灰色收入变成白色工资</b>。美国学者曾小萍专门写过一本书研究它，书名就叫《州县官的银两》。</p>
+    <p>可这次改革只管住了几十年。养廉银的数目定下来以后就不再变，物价却一直在涨；省里和朝廷又不断以各种名义向下“摊捐”，从养廉银里扣钱；耗羡之外，新的陋规又慢慢长了出来。到了十九世纪，地方官的账又回到了雍正以前的样子。</p>
+  </div>
+
+  <div class="fig" id="zxFig">
+    <div class="fig-label">装置 7</div>
+    <h4>知县的账本</h4>
+    <p class="how">你是沈思谦，刚到一个县上任。先选县的类型，再决定请几位师爷、带多少长随、给上司的节礼送多厚。看看一年下来，账上是盈是亏。亏了怎么办？下面那个按钮你迟早要按。</p>
+    <div class="btns" id="zxType"></div>
+    <div class="ctl"><span>师爷</span><input type="range" id="zxM" min="1" max="5" value="2"><output id="zxMO"></output></div>
+    <div class="ctl"><span>长随</span><input type="range" id="zxS" min="4" max="30" value="12"><output id="zxSO"></output></div>
+    <div class="ctl"><span>节礼厚薄</span><input type="range" id="zxG" min="0" max="3" value="1"><output id="zxGO"></output></div>
+    <div class="two">
+      <div><div class="lab">入</div><div class="bars" id="zxIn"></div></div>
+      <div><div class="lab">出</div><div class="bars" id="zxOut"></div></div>
+    </div>
+    <label class="ck"><input type="checkbox" id="zxL">照前任的规矩收陋规</label>
+    <div class="say" id="zxSay"></div>
+    <p class="figcap">示意模型。正俸四十五两是实数；养廉银按“简缺约六百两、中缺约千两、繁缺约一千八百两”取近似；师爷束脩、长随工钱、节礼、摊捐、招待的数目都是按研究者的描述取的大致量级。陋规收入的数额差别极大，这里只取一个中间值。</p>
+  </div>
+
+  <div class="bio">
+    <div class="hd"><b>汪辉祖</b><small>1730—1807</small><em>当了三十四年师爷、又当了四年知县的人</em></div>
+    <div class="bd">
+      <p>浙江萧山人。十一岁丧父，家贫，由嫡母和生母两位母亲抚养长大。二十二岁起学幕，此后三十多年在江苏、浙江的十几个衙门里当刑名师爷。</p>
+      <dl>
+        <dt>幕</dt><dd>他一边当师爷，一边考科举，考了很多年，四十六岁（1775 年）才中进士。中了以后又当了十来年师爷，五十七岁才去湖南宁远县当知县。</dd>
+        <dt>写</dt><dd>把几十年的经验写成两本小书：《佐治药言》写给做幕友的人，《学治臆说》写给做官的人。后来这两本书成了清朝师爷和州县官的必读书，一印再印。晚年又写了一部自传《病榻梦痕录》，记下一生的案子和见闻。</dd>
+        <dt>道</dt><dd>他反复讲几件事：要尽心，人命关天，一个字都不能马虎；要读律，不能只靠老经验；要管住书吏，但不能把他们当贼；不合就走，师爷不能为了饭碗昧着良心替主人办事；要“省事”，能不兴的讼就不兴，能不扰的民就不扰。</dd>
+        <dt>结局</dt><dd>在宁远做知县有政声，后来被上司参劾去职（他自己说是被人诬告）。回乡著书，七十七岁去世。</dd>
+      </dl>
+      <p>他是少有的从桌子两边都坐过的人：先替别人拿主意，后来自己拍板。他的书里有一种很清醒的谦卑：<em>官以为自己在管事，其实是在被书吏、长随、师爷和规矩共同推着走</em>。</p>
+    </div>
+  </div>
+
+  <div class="spin">
+    <div class="off"><i>公文 · 原文大意</i><p>为幕之道，首在尽心。主人以性命相托，我以笔墨相报；合则留，不合则去。宁可失馆，不可失品。</p></div>
+    <div class="plain"><i>白话</i><p>拿人钱财，替人把事办好；可老板要你干昧良心的事，就辞职。饭碗丢了还能再找，名声坏了就没了。</p></div>
+    <div class="src">左栏据汪辉祖《佐治药言》中“尽心”“立品”“不合则去”诸条的大意拼合转述，非原句。</div>
+  </div>
+
+  <div class="black">
+    <h5>摊捐</h5>
+    <p>地方官的账为什么永远平不了？除了自己的开销，还有一个无底洞：上级的“摊派”。省里修衙门、办军需、给皇帝贡品、接待钦差、填补前任的亏空，钱不够，就按各县的大小分摊下去，叫“摊捐”，从养廉银里直接扣。有的县一年的养廉银被扣掉一大半，知县名义上拿一千两，到手只有几百两。</p>
+    <p>知县还要往上送：给知府、道台、布政使、按察使、巡抚、总督送“三节两寿”（端午、中秋、年节和上司本人及其夫人的生日）的礼；京官来往，夏天送“冰敬”，冬天送“炭敬”，离京时送“别敬”。这些钱，最后都要从百姓身上找回来。<b>一级压一级的账，最底下的一级总是老百姓</b>。</p>
+  </div>
+
+  <div class="col">
+    <h3>两套账<span class="y">小结</span></h3>
+    <p>这一卷三章看下来，清朝的地方政府其实同时开着两本账：一本是朝廷的正式账，官员人数少、俸禄低、税负看上去很轻；另一本是没人能看全的“规矩账”，养着书吏、差役、师爷、长随，靠陋规、火耗、部费、门包运转，负担落在百姓头上，比正式账重得多。</p>
+    <p>为什么不干脆把第二本账并进第一本？雍正试过，王安石试过，海瑞在一个县里试过。它难就难在：并账意味着朝廷要公开承认“我需要这么多人、这么多钱”，要大幅加税，要给成千上万没有功名的人发正式工资、让他们进入编制。这在一个以“轻徭薄赋”为美德、以“官”和“吏”有别为秩序的体制里，几乎不可能。</p>
+    <p>到了十九世纪下半叶，欧洲和日本的人也在面对类似的问题，只是他们最后走了另一条路：把所有干活的人都放进一套有考试、有工资、有级别、有档案的体系里。这就是第二部要讲的“现代文官”。在那之前，还有几种别处的办法值得一看：既然自家的官靠不住，有的君主干脆不用“有家的人”。</p>
+  </div>
+
+  <div class="seal">
+    <div><i>营盘的账<small>制度</small></i>一个预算如果从设计上就养不活执行它的人，规矩外的钱就一定会长出来。骂贪官之前，先看看他的工资单。</div>
+    <div><i>你的账<small>生活</small></i>看一份工作，别只看名义上的工资，也看它要你自己掏钱的地方：要请的人、要送的礼、要垫的款。到手的才是真的。</div>
+  </div>
+</section>
+
+<!-- ============ 卷三 · 替身 ============ -->
+<div class="volhead" data-vol="卷三 · 替身">
+  <div class="num">VOLUME THREE · 第一部 · 刀笔</div>
+  <h2>替身<small>卷三</small></h2>
+  <p class="lede">不是每个地方都靠考试或推荐挑官。有的君主专找没有家的人：宦官、奴隶、从远方买来的孩子；有的国家干脆把官位标上价钱卖掉，或者把收税的活包给出价最高的商人；中世纪的欧洲，会写字的人几乎都是教士。这些办法看着离奇，背后都是同一个难题：怎样找到一群既能干、又不会尾大不掉的人。三章：奴、买、符。</p>
+  <svg class="yin" data-t="替身" aria-hidden="true"></svg>
+</div>
+
+<!-- ============ 第七章 · 奴 ============ -->
+<section class="chap" id="c7" data-vol="卷三 · 替身 · 奴">
+  <div class="chead">
+    <div class="big">奴</div>
+    <div>
+      <div class="no">第七章 · 约 1380 年至 1826 年（及更早）</div>
+      <h2>苏丹的孩子</h2>
+      <dl><dt>讲什么</dt><dd>奥斯曼的“征集”和宫廷学校；当了宰相的奴隶；马穆鲁克；宦官、司礼监和批红；清朝的包衣；为什么“替身”最后都会变成主人</dd><dt>本章装置</dt><dd>用谁来管</dd></dl>
+      <div class="gate" data-g="宠"></div>
+      <div class="when" data-a="1380" data-b="1826"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">为什么有的皇帝宁可用宦官和奴隶当官？</p>
+      <p>因为他们<em>没有家</em>。贵族有封地，大族有亲戚，科举官有同乡同年，他们的忠诚分给了很多人；宦官生不了儿子，奴隶出身的官法律上是君主的财产，死后家产归公，他们能靠的只有君主一个人。这个办法在一两代人里往往很好用。可再往后，这群“没有家的人”会自己抱成一团，变成一个新的家：宦官的党、禁卫军的世袭、奴隶兵自己当了苏丹。</p>
+    </div>
+
+    <div class="desk" data-t="档案室 · 第八张卡片">
+      <p>第八张卡片的名字一栏写了两个名字，前一个被划掉了。</p>
+      <p>“他小时候叫尼古拉，”<span class="nm">老温</span>说，“在巴尔干的一个山村里。八九岁那年，苏丹的官员来村里挑男孩，把他挑走了。改了信仰，改了名字，一辈子没再回去。”</p>
+      <p><span class="x">许多</span>看到最后一栏“大维齐尔”，愣了：“他当了宰相？”</p>
+      <p>“好几个这样的。”老温说，“奥斯曼帝国最鼎盛的那一百多年，宰相大多是这么来的。你琢磨琢磨，苏丹为什么放着本国的贵族不用，专用这些外国孩子？”</p>
+    </div>
+
+    <div class="dossier">
+      <div class="dh"><b>履历</b><small>No. 08 · 约 1510—1570 年 · 奥斯曼帝国</small></div>
+      <table>
+        <tr><th>姓名</th><td><s>尼古拉</s> 穆斯塔法（拼的）</td></tr>
+        <tr><th>出身</th><td>巴尔干山区一个基督徒农家，家里有四个儿子。</td></tr>
+        <tr><th>征集</th><td>九岁被“征集”的官员选中，和几十个男孩一起被带往伊斯坦布尔。改宗伊斯兰教，先送到安纳托利亚的土耳其农户家里干活、学语言。</td></tr>
+        <tr><th>选拔</th><td>因为聪明、长相端正，被挑进托普卡帕宫的宫廷学校，学土耳其语、阿拉伯语、波斯语、《古兰经》、书法、骑射、礼仪，一学十几年。同期大部分男孩去了禁卫军。</td></tr>
+        <tr><th>升迁</th><td>出宫后任苏丹的侍从，再外放为一个省的总督，后来进入帝国议会当维齐尔，最终做到大维齐尔。</td></tr>
+        <tr><th>身份</th><td>“苏丹的奴仆”。地位极高，法律上仍属于苏丹。</td></tr>
+        <tr><th>最怕</th><td>苏丹的一句话。大维齐尔被罢免、流放甚至绞死，并不少见。</td></tr>
+        <tr><th>结局</th><td>罢官后被处死。家产大部分被苏丹没收。他在故乡给弟弟谋了个职位，那个弟弟没有改宗。</td></tr>
+      </table>
+      <div class="real">真的部分：“征集”（德夫希尔梅）制度、宫廷学校、改宗与到土耳其农家学语言、出宫外放、维齐尔与大维齐尔的升迁路线；不少大维齐尔出身于此；被处死与没收家产的风险。穆斯塔法是拼出来的人，部分经历参照了索科卢·穆罕默德帕夏等人。</div>
+    </div>
+
+    <h3>征集<span class="y">约 1380—1700</span></h3>
+    <p>奥斯曼帝国在十四世纪末开始实行一种叫“德夫希尔梅”的制度，意思是“征集”。每隔几年，苏丹派官员到帝国境内的基督徒村庄，主要在巴尔干，从农家挑选男孩，年龄一般在八岁到十八岁之间。挑的标准是身体健康、聪明、长相端正；独子、已婚的、做手艺的、孤儿往往不挑。穆斯林家庭的孩子原则上不在征集之列（波斯尼亚改宗的穆斯林是例外）。</p>
+    <p>男孩们被带走后改宗伊斯兰教，先分到安纳托利亚的土耳其农户家里干几年活，学说土耳其话，然后再回首都分流：大部分进禁卫军（新军，耶尼切里），当苏丹的职业步兵；最出众的一小部分进宫廷学校，在宫里接受十几年的教育，出来以后当苏丹的侍从、宫廷官员、省督，最高可以做到大维齐尔，相当于宰相。</p>
+    <p>这些人统称“门下的奴仆”。这里的“奴”和种植园的奴隶完全不是一回事：他们地位显赫，手握重兵大权，可以娶妻生子、积攒财富。但在法律上，他们是苏丹的人，苏丹可以随时罢免、处死他们，没收他们的家产。他们的儿子生来是穆斯林，不能再被“征集”，通常也就进不了这个圈子。</p>
+    <p>对苏丹来说，这套办法有几个大好处：</p>
+    <ul class="plain">
+      <li><b>没有根</b>：这些人远离故乡，和本地的土耳其贵族、宗教世家没有亲戚关系，结不成地方势力。</li>
+      <li><b>只能靠一个人</b>：他们的一切都是苏丹给的，苏丹一句话可以收回。</li>
+      <li><b>传不下去</b>：权力和财富不能直接传给儿子，每一代都要重新从全国挑。</li>
+      <li><b>挑得出人才</b>：从几十万农家孩子里挑最聪明的，再用十几年精心培养，这是一个规模巨大的“人才选拔”。</li>
+    </ul>
+    <p>十六世纪，奥斯曼帝国最强盛的时候，大维齐尔大多出身于“征集”。有一种说法是，苏莱曼大帝时代的大维齐尔里，土耳其本族出身的寥寥无几（<b>存疑</b>，统计口径不同，数字差别很大）。</p>
+  </div>
+
+  <div class="bio">
+    <div class="hd"><b>索科卢·穆罕默德帕夏</b><small>约 1506—1579</small><em>侍奉过三位苏丹的大维齐尔</em></div>
+    <div class="bd">
+      <p>出生在波斯尼亚东部一个塞尔维亚东正教家庭，少年时被“征集”带走，进入宫廷学校。</p>
+      <dl>
+        <dt>升</dt><dd>先后任宫廷侍从、海军司令、鲁米利亚总督，1565 年起任大维齐尔，侍奉了苏莱曼一世、塞利姆二世、穆拉德三世三位苏丹，前后十四年。</dd>
+        <dt>功</dt><dd>苏莱曼死在匈牙利前线时，他秘不发丧，稳住军心，等新苏丹即位才公布消息。塞利姆二世不大理政，帝国实际由他主持。他还设想过开凿连接顿河与伏尔加河、地中海与红海的运河（都没有成功）。</dd>
+        <dt>家</dt><dd>他一直和故乡保持联系。1557 年塞尔维亚东正教的佩奇牧首区恢复，首任牧首马卡里耶是他的亲戚（一般认为是兄弟或堂兄弟）。他还在故乡的德里纳河上修了一座石桥，后来成了一部名著的主角：南斯拉夫作家安德里奇的《德里纳河上的桥》。</dd>
+        <dt>结局</dt><dd>1579 年在议会厅被一个伪装成请愿者的人刺死。</dd>
+      </dl>
+      <p>一个被从家里带走的孩子，做到了帝国的宰相，又回头给故乡修了一座桥。<em>制度想斩断他的根，可人总会想办法把根接回去</em>。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>奴隶兵当了苏丹<span class="y">1250—1517</span></h3>
+    <p>比奥斯曼更早，埃及和叙利亚已经有过一个由奴隶统治的国家：马穆鲁克王朝。“马穆鲁克”的意思是“被拥有的人”。阿拉伯世界的统治者很早就从中亚草原、高加索买来突厥、切尔克斯少年，训练成骑兵和侍卫，再给他们自由，让他们当军官和地方长官。1250 年，埃及的马穆鲁克杀了自己的主人，自立为苏丹，这个奴隶出身的军事集团统治埃及两个多世纪，还打退了蒙古人。</p>
+    <p>马穆鲁克有一条奇特的规矩：他们的儿子大多进不了这个精英圈子，统治集团要不断从外面买新的奴隶少年来补充。这是一种<em>只传一代的贵族</em>，用来防止形成世袭的家族。当然，规矩归规矩，有权势的苏丹总想让儿子接班，内斗从来没停过。1517 年，奥斯曼的军队开进开罗，马穆鲁克王朝灭亡。</p>
+
+    <h3>宦官：没有儿子的人<span class="y">东汉、唐、明，以及别处</span></h3>
+    <p>另一种“没有家的人”是宦官。亚述、波斯、拜占庭、中国，很多宫廷都大量使用宦官。拜占庭有一个很直白的说法：宦官不能当皇帝，所以皇帝放心把大权交给他们。查士丁尼的名将纳尔塞斯就是宦官，七十多岁还带兵收复了意大利。</p>
+    <p>中国的宦官专权有三个高峰：东汉末年的“十常侍”，唐朝后期掌握禁军、能废立皇帝的宦官，和明朝的宦官。明朝的情形最能说明“替身”怎样卡进文官体系：</p>
+    <ul class="plain">
+      <li>朱元璋废了丞相，朝政由皇帝直接处理，后来的皇帝忙不过来，让内阁大学士先看奏章，在一张小纸条上拟好处理意见贴在奏章上，叫“票拟”。</li>
+      <li>票拟送进宫，由皇帝用红笔批定，叫“批红”。可很多皇帝懒得批，就交给身边的司礼监太监代批。</li>
+      <li>于是，内阁的首辅大学士再有学问、再有威望，他拟的意见能不能变成圣旨，最后一笔在一个太监手里。</li>
+    </ul>
+    <p>明朝还设了东厂（1420 年），由宦官掌管，负责侦缉官员和百姓。到明朝后期，魏忠贤以司礼监秉笔太监兼掌东厂，各地官员争相给他修“生祠”，称他“九千岁”。</p>
+  </div>
+
+  <div class="spin">
+    <div class="off"><i>公文 · 原文（批语格式）</i><p>依议。<br>知道了。<br>该部议奏。<br>另有旨。</p></div>
+    <div class="plain"><i>白话</i><p>照你们说的办。<br>我看过了，这事到此为止，别再提。<br>交给部里研究研究，先放一放。<br>不行，我另有想法。</p></div>
+    <div class="src">左栏是明清奏章批语中常见的格式化用语（清朝皇帝朱批多用这几种）；右栏是一般理解的意思，具体语境中含义可能不同。</div>
+  </div>
+
+  <div class="col">
+    <p>这几句批语有一个共同点：<b>一个字都不多</b>。批的人掌握着决定权，不需要解释。可对等着结果的大臣来说，“知道了”和“该部议奏”之间的差别，可能就是一个案子的生死。谁替皇帝写下这几个字，谁就站在权力的正中间。</p>
+
+    <h3>清朝的包衣<span class="y">皇帝的家里人</span></h3>
+    <p>清朝吸取了明朝的教训，严管宦官：顺治在宫里立了一块铁牌，禁止宦官干政。但清朝皇帝也有自己的“私人”：包衣。包衣是满语“家里的”，原本是八旗贵族家里的奴仆，后来上三旗的包衣归皇帝所有，编入内务府，替皇帝管理宫廷事务、皇家产业，还被派去当江宁、苏州、杭州织造和两淮盐政这些肥缺。</p>
+    <p>最有名的包衣是曹寅：他母亲是康熙的保姆，他本人当了二十多年江宁织造，替皇帝采办绸缎，接待南巡，还给康熙写密折，汇报江南的米价、天气、官员动态、读书人的议论。他的孙子叫曹雪芹。包衣的身份是奴，可在地方上，连总督巡抚都要敬他们三分，因为<em>他们是皇帝的眼睛</em>。</p>
+  </div>
+
+  <div class="fig" id="whoFig">
+    <div class="fig-label">装置 8</div>
+    <h4>用谁来管</h4>
+    <p class="how">你是一位君主，要选一种人来替你管国家。四种人各有长处短处。点一种人，看看二百年里“君主说了算”的程度（实线）和“办事能力”（虚线）怎样变化。</p>
+    <div class="btns" id="whoBtns"></div>
+    <svg class="sim" id="whoSvg"></svg>
+    <div class="legend"><span><i style="background:var(--zhu)"></i>君主说了算</span><span><i style="background:var(--main)"></i>办事能力</span></div>
+    <div class="say" id="whoSay"></div>
+    <p class="figcap">纯示意模型：曲线的形状是根据本章讲的历史规律画的，不是任何真实数据。每次运行有随机起伏。</p>
+  </div>
+
+  <div class="black">
+    <h5>被带走的孩子，被割掉的身体</h5>
+    <p>“征集”对被选中的孩子和他们的家庭意味着什么，史料记载不一：有的家庭痛不欲生，想方设法藏孩子、让孩子早婚、贿赂官员；也有记载说，有的穷人家希望孩子被选上，因为那可能是一条通往富贵的路。不管怎样，那是一群八九岁的孩子，被永远地从父母身边带走。</p>
+    <p>宦官则要付出身体的代价。明朝宦官人数极多，宫里当差的据说多达数万（<b>存疑</b>，有“明末宦官十万”的说法，多半夸大）；入宫的门路吸引了大批穷人自己阉割求进，朝廷屡次下令禁止“自宫”，却禁不住，大批自宫的人进不了宫，只能流落街头。<b>一个社会如果把通往权力的门开在这种地方，就会有人把自己削成门的形状</b>。</p>
+  </div>
+
+  <div class="col">
+    <h3>替身最后都会变成主人</h3>
+    <p>把这些办法放在一起看，有一个几乎没有例外的规律：</p>
+    <ul class="plain">
+      <li>奥斯曼的禁卫军后来允许结婚、允许儿子入伍，十七世纪起“征集”越来越少，到十八世纪初基本停了。禁卫军变成了一个世袭的、经商的、动辄哗变废立苏丹的集团，1826 年苏丹马哈茂德二世用大炮把他们轰平，史称“吉祥事件”。</li>
+      <li>马穆鲁克从奴隶变成了主人，自己当了苏丹。</li>
+      <li>东汉、唐、明的宦官，从皇帝的私人变成了能左右皇帝的势力。</li>
+      <li>清朝的包衣家族，有的也变成了世代占据肥缺的世家。</li>
+    </ul>
+    <p>原因不难理解：任何一群人，只要长期掌握权力，就会想办法把权力留住、传下去。“没有家”只是起点，<em>他们会在权力里重新长出一个家来</em>。今天的国家已经不用宦官和奴隶了，可这个问题还在：一个政府里，如果某个部门、某个圈子只对一把手个人负责，不受规矩约束，它迟早会变成另一个权力中心。第二部会看到，现代文官制度给出的答案是：<b>让官员忠于规则和职位，而不是忠于某一个人</b>。</p>
+  </div>
+
+  <div class="seal">
+    <div><i>营盘的账<small>制度</small></i>只对一个人负责的人，好用，也危险。权力找不到“家”的时候，会自己造一个。</div>
+    <div><i>你的账<small>生活</small></i>如果你的一切都系在某一个人的赏识上，你就和苏丹的奴仆差不多：风光，但没有退路。给自己留一点不靠任何人的本事。</div>
+  </div>
+</section>
+
+<!-- ============ 第八章 · 买 ============ -->
+<section class="chap" id="c8" data-vol="卷三 · 替身 · 买">
+  <div class="chead">
+    <div class="big">买</div>
+    <div>
+      <div class="no">第八章 · 178 年至 1905 年（及更早）</div>
+      <h2>明码标价</h2>
+      <dl><dt>讲什么</dt><dd>汉灵帝的西园和“铜臭”；法国的官职买卖和“保莱特税”；买来的贵族；包税人和拉瓦锡的断头台；清朝的捐纳和“捐班”；英国买军官</dd><dt>本章装置</dt><dd>买一个法国的官</dd></dl>
+      <div class="gate" data-g="买 生"></div>
+      <div class="when" data-a="178" data-b="1905"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">官职可以买卖吗？买官的人图什么？</p>
+      <p>可以，而且在很多地方是公开的、合法的、有价目表的。卖官的朝廷图的是<em>马上到手的现钱</em>，等于向买官的人借了一笔永远不用还本的债；买官的人图的是官位带来的收入、免税、体面，以及在法国，<b>一个贵族头衔</b>。代价是：官位成了私产，买来的人想的是回本，朝廷想撤也撤不掉。</p>
+    </div>
+
+    <div class="desk" data-t="档案室 · 第九张卡片">
+      <p>“这张是外国人。”<span class="nm">老温</span>递过来，“十八世纪的巴黎，一个布商的儿子，花钱买了个官。”</p>
+      <p><span class="x">许多</span>看见“买价”一栏写着一个很大的数，后面跟着“锂”。“锂？”</p>
+      <p>“里弗尔，法国那时候的钱，我嫌名字长，写了个简称。”老温说，“你看他图什么。不是工资，那官的工资还不够利息的；他图的是第二十年那一行。”</p>
+      <p>许多往下看：“满二十年，全家成为世袭贵族。”</p>
+      <p>“买一张门票，让孙子不再是布商的孙子。”老温说，“可惜他孙子赶上了 1789 年。”</p>
+    </div>
+
+    <div class="dossier">
+      <div class="dh"><b>履历</b><small>No. 09 · 约 1745—1793 年 · 法国，巴黎</small></div>
+      <table>
+        <tr><th>姓名</th><td>让-巴蒂斯特·吉拉尔（拼的）</td></tr>
+        <tr><th>出身</th><td>巴黎圣德尼街一个呢绒商的儿子，家里有钱，没有门第。</td></tr>
+        <tr><th>买官</th><td>三十岁时，花了一笔相当于几十年生意利润的钱，买下一个“国王秘书”的职位。这个职位几乎不用干活。</td></tr>
+        <tr><th>年费</th><td>每年交一笔“保莱特税”，约为官价的六十分之一，保证他死后官位能传给儿子或转卖。</td></tr>
+        <tr><th>收入</th><td>一点微薄的薪俸和规费，远不够官价的利息。</td></tr>
+        <tr><th>好处</th><td>免交人头税（达伊税）；任满二十年，本人和子孙成为世袭贵族。</td></tr>
+        <tr><th>最怕</th><td>忘了交保莱特税就突然死了：官位会收归国王，几十年的积蓄一笔勾销。</td></tr>
+        <tr><th>结局</th><td>满二十年，全家封为贵族。1789 年八月，国民议会宣布废除卖官制度和贵族特权，官位按价赎回，赎金是很快贬得一文不值的纸币。</td></tr>
+      </table>
+      <div class="real">真的部分：法国的官职买卖、保莱特税（官价约六十分之一）、“国王秘书”职位任满二十年可获世袭贵族（俗称“洗白粗人的肥皂”）、免达伊税；1789 年废除卖官、以指券赎买。吉拉尔是拼出来的人。</div>
+    </div>
+
+    <h3>西园<span class="y">178 年</span></h3>
+    <p>中国历史上最明目张胆的卖官，是东汉灵帝。光和元年（178 年），他在洛阳西园开设卖官的机构，从关内侯、虎贲羽林到三公九卿，都有价钱：</p>
+  </div>
+
+  <div class="spin">
+    <div class="off"><i>公文 · 原文大意</i><p>入钱各有差：二千石二千万，四百石四百万。其以德次应选者，半之，或三分之一。</p></div>
+    <div class="plain"><i>白话</i><p>价目表：年俸二千石的官，两千万钱；四百石的官，四百万钱。按德行排队本来就该轮到的，打五折，或者三折。</p></div>
+    <div class="src">左栏据《后汉书·灵帝纪》李贤注引《山阳公载记》的大意转述。</div>
+  </div>
+
+  <div class="col">
+    <p>灵帝还想得很周到：一时拿不出钱的，可以先上任，到任后加倍还。有名士崔烈花了五百万钱买到司徒，位列三公。他问儿子崔钧：外面对我当三公有什么议论？崔钧说：大人年轻时有名望，大家都说你该当三公；如今当上了，天下人失望。崔烈问为什么，崔钧答：“论者嫌其铜臭。”今天“铜臭”这个词，就是从这里来的。</p>
+    <p>灵帝卖官的钱进了自己的小金库，史书骂了两千年。可他碰到的问题是真实的：东汉末年国库空虚，羌人反复叛乱，军费无底。卖官是一种来钱最快的办法，几乎所有财政紧张的朝廷都动过这个念头。</p>
+
+    <h3>官是一份私产<span class="y">法国，1500—1789</span></h3>
+    <p>把卖官做成一套完整制度的，是近代早期的法国。十六世纪初，法国国王连年对外打仗，缺钱缺得厉害，开始大规模出售各种官职：法官、收税官、财政官员、市政官员、甚至“市场上的猪肉检查员”。1522 年还专门设立了一个机构，管理卖官的收入。</p>
+    <p>买官的人付了钱，官职就成了他的财产，可以转卖，可以抵押。但起初有一个限制：官员要想把官位传给儿子，必须在死前四十天以上办好转让手续，否则突然死了，官位就归国王，国王可以再卖一次。1604 年，亨利四世的财政大臣采纳了一个叫保莱特的人的建议：官员每年交一笔相当于官价六十分之一的年费，就可以不受四十天的限制，官位随时可以传给继承人。这笔税因此叫“保莱特税”。</p>
+    <p>从此，大部分官职实际上变成了世袭的私产。到十七世纪中叶，法国有好几万个可以买卖的官职，总价值是一个惊人的数目（柯尔贝尔 1660 年代的调查估算约四万多个，<b>数字存疑</b>）。很多富商的儿子不再继续经商，而是买官、买地、买头衔，因为官职带来的是免税和身份。某些高等职位任满一定年限，还能让全家成为贵族，这批人叫“穿袍贵族”，以别于祖上打仗出身的“佩剑贵族”。“国王秘书”这个几乎不干活的职位因为能让人二十年后成为贵族，被人戏称为“洗白粗人的肥皂”。</p>
+  </div>
+
+  <div class="fig" id="venFig">
+    <div class="fig-label">装置 9</div>
+    <h4>买一个法国的官</h4>
+    <p class="how">你是一个有钱的平民，要在法国买一个官。选官职，选买入的年份，决定每年交不交保莱特税。点“过一辈子”，看这笔投资的结局：官位的收入、税、是否成了贵族，以及 1789 年那一刀。</p>
+    <div class="btns" id="venType"></div>
+    <div class="ctl"><span>买入年份</span><input type="range" id="venY" min="1700" max="1785" value="1740"><output id="venYO"></output></div>
+    <label class="ck"><input type="checkbox" id="venP" checked>每年交保莱特税</label>
+    <div class="btns"><button class="btn pri" id="venGo">过一辈子</button></div>
+    <div class="kv" id="venKv"></div>
+    <div class="logbox" id="venLog"></div>
+    <div class="say" id="venSay"></div>
+    <p class="figcap">示意模型。官价、年收益率、死亡率都是假设的；保莱特税按官价六十分之一、“国王秘书”二十年封贵族、未交保莱特税而在转让前死亡则官位归国王、1790 年代以指券赎买而指券大幅贬值，这些规则是真的。官价以买入时为一万份计。</p>
+  </div>
+
+  <div class="col">
+    <h3>卖官的好处，居然有人替它说话</h3>
+    <p>法国启蒙思想家孟德斯鸠本人就继承了波尔多高等法院院长的职位（后来他把这个职位卖掉了）。他在《论法的精神》里有一段很出人意料的话：在君主国，卖官是有好处的，因为它让人愿意去当官，又让官职不完全依赖君主的恩宠。</p>
+    <p>这话不全是替自己辩护。买来的官职是私产，国王撤不掉，于是法国的高等法院成了一批不怕国王的人：他们可以拒绝登记国王的法令，跟国王讨价还价，在某种程度上制约王权。<em>一个用钱买来的位子，反倒成了权力的一道闸</em>。可另一面是：国王想改革税制，第一个出来阻挡的，也是这批靠买官获得免税特权的穿袍贵族。十八世纪法国的几次财政改革，都是这样搁浅的，直到 1789 年。</p>
+
+    <h3>包税人<span class="y">把收税包出去</span></h3>
+    <p>卖官的亲戚是“包税”：国家不自己派人收税，而是把某一种税、某一块地方的征收权，包给出价最高的商人或财团。包税人先把一笔固定的钱交给国库，然后自己去收，收多少是他的本事，多出来的归自己。</p>
+    <p>古罗马的“包税人”就这么干，《新约》里的“税吏”名声那么坏，就是因为这个。法国在 1726 年把盐税、烟草税、关税等几种间接税打包，交给一个叫“总包税所”的财团，财团的几十个合伙人叫“总包税人”，他们雇了几万人的稽查队伍，在城门口查货，在乡间缉私。为了防偷漏，他们在 1780 年代绕巴黎修了一道新城墙，进城的货物都要过关交税，巴黎人编了一句顺口溜：<em>围住巴黎的墙，让巴黎嘟囔</em>。</p>
+  </div>
+
+  <aside class="echo" data-k="联系">
+    <span class="stamp">联系</span>
+    <div>
+      <div class="rh">那道墙</div>
+      <p>书房里的《城里城外》第十四章《卡》讲过这道包税墙：它怎样修起来，1789 年怎样在大革命开始前几天被巴黎人放火烧掉一部分关卡，后来又怎样变成了巴黎的林荫大道。那一章讲墙和城，这一章讲修墙的人。</p>
+    </div>
+  </aside>
+
+  <div class="bio">
+    <div class="hd"><b>拉瓦锡</b><small>1743—1794</small><em>化学家，总包税人</em></div>
+    <div class="bd">
+      <p>近代化学的奠基人之一：证明了燃烧是物质与氧结合，提出质量守恒，给化学元素重新命名。读中学化学的人都见过他的名字。</p>
+      <dl>
+        <dt>钱</dt><dd>他做科学实验需要大量的钱，二十多岁就买下了总包税所的一份股份，成了总包税人之一，还娶了另一位总包税人的女儿。包税的收入养活了他的实验室。</dd>
+        <dt>事</dt><dd>他认真对待包税的工作，改进了烟草检验的方法；巴黎那道包税墙，他是积极的推动者之一。</dd>
+        <dt>祸</dt><dd>大革命中，总包税人被视为人民的吸血鬼。1793 年底，所有总包税人被捕；1794 年 5 月 8 日，拉瓦锡和二十多名同事一起被送上断头台。</dd>
+        <dt>结局</dt><dd>据说有人替他求情，说他是伟大的科学家，法官回答“共和国不需要学者”。这句话很可能是后人编的（<b>存疑</b>）。数学家拉格朗日的话倒有记载，大意是：砍下这颗头只要一瞬间，再长出一颗这样的头，一百年也未必够。</dd>
+      </dl>
+      <p>他的悲剧有一半来自那张“包税”的桌子：<em>一个替国家收钱、却把收钱当生意的位子，再干净的人坐上去，也会被当成那张桌子本身</em>。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>捐纳<span class="y">清朝，1674—1905</span></h3>
+    <p>清朝也卖官，叫“捐纳”。康熙十三年（1674 年）为了筹措平定三藩的军费，大开捐例。此后捐纳分两种：一种是常年开放的“常例”，主要卖“监生”资格（可以直接参加乡试，免了考秀才那一关）和各种虚衔、封典；一种是遇到战争、河工、赈灾时临时开放的“暂例”，可以捐实职官。</p>
+    <p>捐来的官在官场上被叫做“捐班”，以别于科举出身的“正途”，正途出身的人看不起他们。可到了太平天国以后，朝廷为了军费大开捐纳，捐官的价钱越来越低，人数越来越多，各省候补的捐班官员挤成一团。研究者估计，十九世纪后期地方官员中捐纳出身的比例相当高（<b>具体比例各家差别很大</b>）。花钱买官的人上任第一件事是回本，吏治随之更坏。</p>
+    <p>1901 年，清廷下诏停止捐纳实官；四年后，科举也停了。一个靠卷子、一个靠银子的两扇门，几乎同时关上。</p>
+
+    <h3>英国：买一个上尉<span class="y">1683—1871</span></h3>
+    <p>别以为卖官只是专制朝廷的事。英国陆军的军官职位，从十七世纪末起一直可以花钱买：一个中尉、上尉、少校的职位都有官方定价，升一级要补差价。理由是：军官花了钱，就和国家利益绑在一起，不会造反；而且出得起钱的都是有产的绅士，能保证军官队伍的“品位”。克里米亚战争中，轻骑兵旅冲进俄军炮阵的惨剧，指挥官卡迪根伯爵就是花大钱买到的团长。1871 年，在激烈争论中，陆军大臣卡德威尔才废除了买卖军官职位，而且国家还要出钱赎回已经卖出的职位。</p>
+  </div>
+
+  <div class="black">
+    <h5>回本</h5>
+    <p>卖官最直接的恶果，是所有买官的人都在算回本。法国的收税官、清朝的捐班知县，上任后最关心的不是治理，是收回本钱和利息；官价越高，伸向百姓的手越重。东汉灵帝的价目表还特意规定了“先上任后付款、加倍偿还”，等于明说：你去地方上搜刮，再分给我一份。</p>
+    <p>而且，一个卖过官的朝廷，很难再有底气去惩罚贪官：<b>是朝廷先把官位当成了一桩买卖</b>。</p>
+  </div>
+
+  <div class="col">
+    <h3>卖官是一种借钱</h3>
+    <p>用今天的眼光看，卖官其实是一种很笨的借钱办法。国家一次性收到一大笔钱，等于借了一笔款；此后它要用官职的薪俸、免税特权和规费，一年一年地“付利息”，而且这笔债永远还不清，除非像法国大革命那样一笔勾销。十八世纪的英国走了另一条路：发行国债，向公众公开借钱，按时付息，官职则逐步不再买卖。<em>同样是缺钱，一个卖掉了官位，一个卖掉了债券</em>。书房里的《轮到谁了》第二十九章讲过英国这条路。下一章，我们去看英国的衙门本身是怎样从教士手里接过来的。</p>
+  </div>
+
+  <div class="seal">
+    <div><i>营盘的账<small>制度</small></i>位子一旦可以买，就一定有人想回本。卖官是用将来的治理换眼前的现钱，利息由老百姓付。</div>
+    <div><i>你的账<small>生活</small></i>花钱买来的“身份”，要先算清它每年要你付多少维持费，以及哪一天它会突然一文不值。</div>
+  </div>
+</section>
+
+<!-- ============ 第九章 · 符 ============ -->
+<section class="chap" id="c9" data-vol="卷三 · 替身 · 符">
+  <div class="chead">
+    <div class="big">符</div>
+    <div>
+      <div class="no">第九章 · 约 700 年至 1834 年</div>
+      <h2>国库里的木棍</h2>
+      <dl><dt>讲什么</dt><dd>“文员”和“教士”为什么是一个词；用教会的钱养国王的文书；阿拉伯的书记官；英格兰财政署的方格布和符木；贝克特；1834 年的一把火</dd><dt>本章装置</dt><dd>劈一根符木</dd></dl>
+      <div class="gate" data-g="宠 生 荐"></div>
+      <div class="when" data-a="700" data-b="1834"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">英文的“文员”为什么和“教士”是一个词？一根木棍怎么烧了议会？</p>
+      <p>中世纪的欧洲，会读写拉丁文的人几乎都是神职人员，国王的文书、账房、法官自然也从教士里找，于是“教士”（clericus）变成了“文员”（clerk）。英格兰国库收钱用刻了缺口的木棍做收据，这种“符木”一直用到 1826 年；1834 年 10 月，政府在议会大厦的地下炉子里集中烧掉这些废木棍，火太大，<em>把整座议会大厦烧掉了</em>。</p>
+    </div>
+
+    <div class="desk" data-t="档案室 · 第十张卡片">
+      <p>“这是第一部的最后一张。”<span class="nm">老温</span>说，“我挑了个英国人收尾，因为下一部的故事，一大半从英国讲起。”</p>
+      <p><span class="x">许多</span>看卡片：一个十二世纪的英格兰王室文书，身份是教士，工资由一座大教堂发，干的却是国王的活。</p>
+      <p>“教会替国王发工资？”</p>
+      <p>“国王没钱养一大批识字的人，就把教会里的好位子赏给自己的文书。”老温说，“挂一个教堂的名，拿一份教堂的钱，人在国王身边干活。<b>编制在甲单位，人在乙单位上班</b>，这事你以后会常见。”</p>
+    </div>
+
+    <div class="dossier">
+      <div class="dh"><b>履历</b><small>No. 10 · 约 1140—1200 年 · 英格兰，威斯敏斯特</small></div>
+      <table>
+        <tr><th>姓名</th><td>沃尔特·德·布卢瓦（拼的）</td></tr>
+        <tr><th>出身</th><td>一个小骑士家的次子。长子继承土地，次子送去教会学校读书。</td></tr>
+        <tr><th>身份</th><td>领过低级圣职的教士，所以算“文书”（clerk），不结婚，剃了顶发。</td></tr>
+        <tr><th>差事</th><td>在国王的财政署当书记员，每年复活节和米迦勒节两次大结账时，坐在方格布桌边抄写账目，给交钱的郡长刻符木、记“卷筒账”。</td></tr>
+        <tr><th>工资</th><td>国王把林肯大教堂的一份“受俸教士”职位赏给他。他几乎没去过林肯，教堂的收入照领，那边的事由一个领小钱的助理代办。</td></tr>
+        <tr><th>特权</th><td>犯了罪归教会法庭审，不归国王的法庭；只要能读出一段拉丁文诗篇，就能证明自己是教士。</td></tr>
+        <tr><th>最怕</th><td>国王和大主教翻脸。他是国王的人，也是教会的人。</td></tr>
+        <tr><th>结局</th><td>晚年做到了一个小主教区的主教。他的侄子接了他在财政署的位子。</td></tr>
+      </table>
+      <div class="real">真的部分：中世纪王室文书多为教士，以教会职位和收入作为报酬；财政署的方格布、一年两次结账、符木与卷筒账（“派普卷”）；“教士特权”和读诗篇的检验办法。沃尔特是拼出来的人。</div>
+    </div>
+
+    <h3>会写字的人都在教会里<span class="y">约 500—1200</span></h3>
+    <p>西罗马帝国垮掉以后，西欧的城市萎缩，学校关门，罗马那一大套书记、档案、税务官员逐渐消失。几百年里，能读写拉丁文的人主要集中在修道院和主教座堂。国王打仗用骑士，可要发一道命令、立一张地契、跟教皇或别的国王通信，就得找会写字的人，而这样的人几乎只有教士。</p>
+    <p>于是，中世纪国王的“秘书处”基本是一群教士。英格兰国王身边有一个叫“文书院”（Chancery）的机构，负责起草和盖印国王的令状，主管叫“大法官”（Chancellor），在很长时间里都由主教兼任。拉丁文的“教士”clericus，演变成了英文里的 clerk：起初指教士，后来指一切读书写字的人，最后成了“文员、办事员”。今天美国法院的书记官、英国议会的秘书长，头衔里都还带着这个词。</p>
+    <p>用教士当文官，对国王有一个大好处：<em>不用自己发工资</em>。教会掌握着大量土地和什一税收入，主教座堂里有很多“受俸教士”的位子，每个位子带着一份固定的收入。国王只要把这些位子赏给自己的文书，就等于由教会替他发了薪水。还有第二个好处：教士不能合法结婚，没有合法的儿子继承他的职位和地产，这一点又和上一章的宦官、奴隶官暗暗押了韵。</p>
+  </div>
+
+  <aside class="echo" data-k="押韵">
+    <span class="stamp">押韵</span>
+    <div>
+      <div class="rh">编制在甲单位，人在乙单位上班</div>
+      <p>中世纪国王把教会的职位赏给自己的文书，清朝的翰林院、今天很多机构里的“借调”“挂职”，道理相通：<em>一个机构缺人缺钱的时候，最便宜的办法是借用另一个机构的位子</em>。它省钱，也留下一个永远的问题：这个人到底听谁的。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>别处：书记官<span class="y">700—1258</span></h3>
+    <p>同一时期，伊斯兰世界有一套比西欧发达得多的文书机构。倭马亚王朝的哈里发阿卜杜勒-马利克在七世纪末下令，把帝国各地的税务账册（“迪万”）从希腊文、波斯文统一改用阿拉伯文，原来替拜占庭和波斯管账的基督徒、波斯人书记，很多改学阿拉伯文，继续留在原位。阿拔斯王朝在巴格达设立了庞大的各部，首脑叫“维齐尔”，下面是一个专门的“书记官”阶层。</p>
+    <p>这些书记官有自己的职业教材，教他们书法、公文格式、会计、地理、历史、诗歌和得体的谈吐；九世纪的学者伊本·古太白就编过一本《书记官的修养》。他们看不起只会打仗的武人，武人也看不起他们。阿拔斯王朝前期权倾朝野的巴尔马克家族，就是一个出身波斯的书记官世家，掌权十几年后，在 803 年被哈里发哈伦·拉希德一夜之间诛灭，原因至今众说纷纭（<b>存疑</b>）。</p>
+
+    <h3>方格布<span class="y">英格兰财政署，约 1110 年起</span></h3>
+    <p>回到英格兰。诺曼征服以后，英格兰国王的收入主要来自各郡：每个郡的郡长替国王收地租、罚款和各种费用，一年两次到国库结账。亨利一世时期（十二世纪初），结账的地方叫“财政署”（Exchequer），名字来自结账用的那张桌子：桌上铺着一块画着方格的布，像一张棋盘（chequer）。</p>
+    <p>那时候大部分人不会算多位数的账，阿拉伯数字也还没传进来。财政署的办法是：方格布上的每一列代表一个单位，镑、先令、便士，一个官员把筹码摆在方格里，一边摆郡长应交的数，一边摆郡长实际交的和花掉的，两边一减，差额一目了然，在场的人都看得见。<em>这是一台用桌布和筹码做成的计算器，也是一场公开的对账表演</em>。</p>
+    <p>对完的账，抄在长长的羊皮纸上，一张接一张缝起来卷成卷，叫“派普卷”（Pipe Roll，大概因为卷起来像一根管子）。现存最早的一卷是 1130 年的，从 1155 年起几乎年年不断，一直记到 1832 年，是世界上延续时间最长的财政档案之一。</p>
+    <p>财政署留下了一本很特别的书：大约 1179 年，国库总管、后来的伦敦主教理查德·菲茨尼尔写了一部《财政署对话录》，以师生问答的形式，把财政署的人员、座次、规矩、算法讲得清清楚楚。这是欧洲第一部“行政管理手册”。他在书里讲了怎样刻符木：</p>
+  </div>
+
+  <div class="spin">
+    <div class="off"><i>公文 · 原文大意</i><p>一千镑，刻一个手掌那么宽的缺口；一百镑，一个拇指宽；二十镑，一个小指宽；一镑，一粒饱满的大麦那么宽；先令再小一点；便士只划一道，不去木头。</p></div>
+    <div class="plain"><i>白话</i><p>钱越多，缺口越宽，不识字的郡长也看得懂、摸得出，想偷偷削掉一块也会被发现。</p></div>
+    <div class="src">左栏据理查德·菲茨尼尔《财政署对话录》（约 1179 年）关于符木刻法一节的大意转述。</div>
+  </div>
+
+  <div class="col">
+    <p>符木是一根削平的榛木或柳木棍。刻好缺口以后，从中间纵向劈开，两半各带一半缺口：较长的一半叫“存根”（stock），给交钱的郡长当收据；较短的一半叫“对根”（foil），留在国库。将来对账时，两半一合，缺口严丝合缝，就证明账是真的。木头的纹理独一无二，没法伪造。</p>
+  </div>
+
+  <div class="fig" id="tallyFig">
+    <div class="fig-label">装置 10</div>
+    <h4>劈一根符木</h4>
+    <p class="how">你是财政署的书记员，一个郡长来交钱。拖动滑块设定他交了多少镑、先令、便士，看符木上的缺口怎样刻；再点“劈开”，把存根交给郡长，对根留在国库。点“郡长动了手脚”，看看削掉一块以后对账会怎样。</p>
+    <div class="ctl"><span>镑</span><input type="range" id="taL" min="0" max="2999" value="1234"><output id="taLO"></output></div>
+    <div class="ctl"><span>先令</span><input type="range" id="taS" min="0" max="19" value="6"><output id="taSO"></output></div>
+    <div class="ctl"><span>便士</span><input type="range" id="taD" min="0" max="11" value="8"><output id="taDO"></output></div>
+    <div class="btns"><button class="btn pri" id="taSplit">劈开</button><button class="btn" id="taCheat">郡长动了手脚</button><button class="btn" id="taJoin">对账</button></div>
+    <div class="scroll-x"><svg class="sim" id="taSvg" style="min-width:520px"></svg></div>
+    <div class="say" id="taSay"></div>
+    <p class="figcap">缺口宽度按《财政署对话录》的比例示意（一千镑一掌宽、一百镑一拇指宽、二十镑一小指宽、一镑一粒大麦宽）；真实符木上缺口的排列方式因时代而有变化，这里画在一侧以便看清。1 镑 = 20 先令，1 先令 = 12 便士。</p>
+  </div>
+
+  <div class="bio">
+    <div class="hd"><b>托马斯·贝克特</b><small>约 1120—1170</small><em>国王以为他是自己人</em></div>
+    <div class="bd">
+      <p>伦敦一个商人的儿子，在坎特伯雷大主教的府里当文书起家，聪明、能干、会办事。</p>
+      <dl>
+        <dt>升</dt><dd>1155 年，年轻的国王亨利二世任命他为大法官。他替国王管文书院，办外交，打仗时还亲自带过骑士，生活奢华，和国王形影不离，是国王最信任的人。</dd>
+        <dt>变</dt><dd>1162 年，亨利二世把他扶上坎特伯雷大主教的位子，满心以为从此教会也归自己管了。贝克特却辞去大法官，换上苦修的衣服，处处站在教会一边，反对国王用世俗法庭审判犯罪的教士（就是“教士特权”问题）。两人彻底决裂，贝克特流亡法国六年。</dd>
+        <dt>死</dt><dd>1170 年，贝克特回国后又开除了几个支持国王的主教。据说亨利二世气得大叫，有句流传很广的话是“难道没人替我除掉这个惹事的教士吗”（原话已不可考，<b>存疑</b>）。四个骑士听了，赶到坎特伯雷大教堂，在祭坛前把他砍死。</dd>
+        <dt>结局</dt><dd>三年后被教皇封为圣徒。亨利二世光着脚到他墓前忏悔，让修士们鞭打自己。坎特伯雷成了欧洲最著名的朝圣地之一，乔叟《坎特伯雷故事集》里的香客，就是去给他上坟的。</dd>
+      </dl>
+      <p>国王用教士当文官，图的是不用发工资、没有世袭；他忘了教士还有另一个上司。<em>一个人的位子是你给的，他的忠诚却不一定只给你</em>。</p>
+    </div>
+  </div>
+
+  <div class="black">
+    <h5>挂名的牧师</h5>
+    <p>用教会的位子养国王的文书，代价落在教区的信徒身上。王室文书和高级教士常常同时挂着好几份、十几份教职，一份都不去，教区的事交给一个领着微薄收入的代理神父去办，有的教堂几年见不到一次真正的主任牧师，房子漏雨、圣事荒废。这种“兼领”和“缺席”，是后来宗教改革时被骂得最狠的弊端之一。</p>
+    <p>教士特权也被滥用。只要能读一段拉丁文就算教士，就能逃避世俗法庭的死刑，于是很多根本不是教士的人去背那一段经文，人称“救命诗”。<b>一项本来保护某个职业的特权，最后成了识字的人逃避法律的后门</b>。</p>
+  </div>
+
+  <div class="col">
+    <h3>一把火<span class="y">1834 年 10 月 16 日</span></h3>
+    <p>符木在英国国库一直用到十九世纪。1782 年议会通过法案，规定在当时的老派官员去世以后废除这种办法，这一拖就是四十多年，直到 1826 年最后一位相关官员去世，符木才正式停用。国库里堆着几百年积下来的旧符木，成千上万根。</p>
+    <p>1834 年，政府决定处理掉这些木棍。有人建议送给穷人当柴烧，没被采纳；最后决定在议会大厦上议院地下的两个暖气炉里烧掉。10 月 16 日，工人们从早上一直往炉子里塞木棍，炉子烧得过热，烟道起火，傍晚火势蔓延到整座建筑。威斯敏斯特宫几乎全部烧毁，只有威斯敏斯特大厅等少数部分幸存。画家透纳站在泰晤士河对岸看完了这场大火，后来画了好几幅画。今天伦敦那座带着大本钟的哥特式议会大厦，就是大火之后重建的。</p>
+    <p>二十年后，小说家狄更斯在一次演讲里拿这件事开涮：一个早该淘汰的老办法，靠着官僚机构的惰性又活了几百年，好不容易废了，处理它的时候还把议会给烧了。他演讲的场合，是一个叫“行政改革协会”的团体的大会。那一年是 1855 年，英国人正在吵一份关于文官制度的报告。</p>
+  </div>
+
+  <aside class="echo" data-k="联系">
+    <span class="stamp">联系</span>
+    <div>
+      <div class="rh">下一部从这里开始</div>
+      <p>狄更斯那时候正在写《小杜丽》，书里有一个虚构的政府部门叫“兜圈子部”，专门研究“怎样不办事”。那份报告叫《诺思科特-特里维廉报告》，书房里的《轮到谁了》第三十五章提过它。第二部会细讲它：英国人怎样把一个靠恩庇、靠关系、靠符木的衙门，改造成一部靠考试和档案运转的机器。</p>
+    </div>
+  </aside>
+
+  <div class="seal">
+    <div><i>营盘的账<small>制度</small></i>一个机构缺钱时，会借别人的位子、别人的工资养自己的人；一个老办法一旦写进了规矩，废掉它往往要等最后一个靠它吃饭的人退休。</div>
+    <div><i>你的账<small>生活</small></i>重要的凭据要“劈成两半”：你留一份，对方留一份，日后能对得上。合同、收据、聊天记录，都是今天的符木。</div>
+  </div>
+</section>
+
+<!-- ============ 第一部 · 部末 ============ -->
+<section class="chap" id="notes1" data-vol="第一部 · 部末">
+  <div class="col">
+    <h3>第一部小结：五千年，六扇门</h3>
+    <p>第一部的十张卡片，从苏美尔的工头到英格兰的文书，看起来天差地别，其实一直在回答同一组问题：</p>
+    <ul class="plain">
+      <li><b>谁来坐这张桌子？</b>书吏的儿子（生）、太守推荐的孝廉（荐）、中正评的上品（生、荐）、考中的进士（考）、出得起钱的人（买）、宦官和奴隶和教士（宠）。每一扇门都有它的道理，每一扇门开久了都会被某一群人占住。</li>
+      <li><b>谁给他发工资？</b>神庙的口粮、朝廷的俸禄、教会的受俸位子、百姓交的规费、官位本身的“利息”。工资不从正门来，就会从后门来。</li>
+      <li><b>他忠于谁？</b>忠于君主个人（宦官、奴隶官、包衣）、忠于自己的家族（门阀、世袭的胥吏）、忠于推荐他的人（门生故吏）、忠于另一个上司（贝克特的教会），还是忠于一套规矩（秦简里的“有事必以书”）。</li>
+      <li><b>流水的官和铁打的吏怎样相处？</b>官三年一换，吏世代相传；谁掌握细节，谁就掌握权力。</li>
+    </ul>
+    <p>第二部要讲的现代文官制度，可以看成是对这四个问题的一套新答案：用公开考试挑人；用国家预算发足额的工资、禁止规费；让官员忠于职位和法律，而不是某一个人；让“流水的”政治家能够领导“铁打的”文官，同时又不能随意把他们换成自己人。这套答案在十九世纪的普鲁士、英国、美国、日本、法国陆续搭起来，搭得各不相同，而且至今还在吵。</p>
+
+    <div class="desk" data-t="档案室 · 第一部看完">
+      <p><span class="x">许多</span>把十张卡片按顺序摞好，放回抽屉：“老温，这些东西为什么没人写？我是说，皇帝将军都有人写，这些人怎么没人写。”</p>
+      <p><span class="nm">老温</span>想了想：“因为写历史的人，大多就是他们。自己写自己，要么嫌没意思，要么不好意思。”他拉开第二个抽屉，“下面这些是近代的，你明天再看。看完这一抽屉，你就知道你考的那张卷子是从哪儿来的了。”</p>
+    </div>
+
+    <h3>第一部：哪些是真的</h3>
+    <p>档案室、许多、老温是虚构的；十张“履历”里，第二张（睡虎地的喜）是真人，其余九张都是按史料拼合的虚构人物，每张卡片下面注明了哪些部分是真的。正文里的人物、制度、事件、引文都是真实的，尽量核对过；装置里的数字多为示意，具体说明见各装置下方的小字。</p>
+    <h3>存疑与争议</h3>
+    <ul class="src">
+      <li><b>泥</b>：乌尔第三王朝已发表泥板的数量；工头死后欠账是否、以及如何从家产中追缴；舒尔吉一日往返尼普尔与乌尔的说法（出自颂歌）；古埃及识字率（约百分之一的估计方法差别很大）。</li>
+      <li><b>简</b>：《迁陵吏志》的员额与在岗人数（据整理者释读）；陈胜吴广“失期，法皆斩”与睡虎地《徭律》的矛盾；“以吏为师”的确切含义。</li>
+      <li><b>举</b>：西汉末吏员总数之外各级人数的估计；尹湾汉简《集簿》的具体数字以释读为准。</li>
+      <li><b>品</b>：门阀政治的功过评价（陈寅恪、唐长孺、田余庆诸家侧重不同）。</li>
+      <li><b>考</b>：科举始于哪一年（587、605、606、607 年诸说）；宋代进士总数；明清各级考试的录取率与考中年龄（各省各期差别极大，装置中为粗略估计）；科举对西方文官考试的影响程度。</li>
+      <li><b>胥</b>：清代州县书吏、差役的实际人数；部费的比例与数额（多出自笔记与弹劾，难以核实）；“本朝则与胥吏共天下”是否出自郭嵩焘及原文。</li>
+      <li><b>幕</b>：知县养廉银、师爷束脩、各项开支的具体数目（装置为示意）。</li>
+      <li><b>奴</b>：“征集”开始的确切年代；十六世纪大维齐尔中“征集”出身者的比例；明代宦官人数；索科卢与牧首马卡里耶的确切亲属关系。</li>
+      <li><b>买</b>：柯尔贝尔时代法国可买卖官职的数量与总值；清末捐纳出身官员的比例；“共和国不需要学者”是否真有其事。</li>
+      <li><b>符</b>：巴尔马克家族覆灭的原因；亨利二世是否说过“谁替我除掉这个惹事的教士”；stock（股票）一词与符木存根的关系。</li>
+    </ul>
+    <h3>主要出处</h3>
+    <ul class="src">
+      <li>公版文献（均为转述或节引）：《史记》（秦始皇本纪、李将军列传、萧相国世家）；《汉书》（武帝纪、百官公卿表）；《后汉书》（灵帝纪及李贤注引《山阳公载记》、丁鸿传、左雄传、陈蕃传、崔烈传）；葛洪《抱朴子·审举》；《晋书·刘毅传》；《南史》（江斅传、恩幸传、侯景传）；《梁书·武帝纪》；颜之推《颜氏家训》（勉学、涉务）；王定保《唐摭言》；叶适《水心别集·吏胥》；海瑞《兴革条例》；《明史·海瑞传》；蒲松龄《聊斋志异》（王子安、司文郎）；汪辉祖《佐治药言》《学治臆说》《病榻梦痕录》；吴敬梓《儒林外史》；埃及中王国《职业讽刺》与新王国《兰辛纸草》（据英译本转述）；苏美尔语《学生时代》与舒尔吉颂歌（据英译本转述）；理查德·菲茨尼尔《财政署对话录》；孟德斯鸠《论法的精神》第五卷；狄更斯 1855 年在行政改革协会的演讲与《小杜丽》。</li>
+      <li>出土文献：云梦睡虎地秦简（《编年记》《秦律十八种》《效律》《法律答问》《封诊式》《为吏之道》）；里耶秦简（《迁陵吏志》、更名方等，据湖南省文物考古研究所整理本）；尹湾汉简（《集簿》《东海郡吏员簿》、元延二年日记）；代尔麦地那缺勤记录陶片（大英博物馆藏）与都灵罢工纸草。</li>
+      <li>现代研究（只作转述，观点均已改写）：Robert Englund 与 Tonia Sharlach 关于乌尔第三王朝行政与工日账的研究；John Baines 关于古埃及识字率的研究；阎步克《察举制度变迁史稿》《品位与职位》；唐长孺、田余庆关于魏晋南北朝门阀的研究；宫崎市定《科举》与《九品官人法研究》；Benjamin Elman《晚期帝制中国的科举文化史》；何炳棣《明清社会史论》；张仲礼《中国绅士》；瞿同祖《清代地方政府》；曾小萍（Madeleine Zelin）《州县官的银两》；郭润涛、高浣月关于清代幕府的研究；Bradley Reed 关于清代巴县衙门胥吏的研究；Colin Imber 与 Halil İnalcık 关于奥斯曼帝国制度的研究；Robert Irwin 关于马穆鲁克的研究；William Doyle《十八世纪法国的卖官》；Roland Mousnier 关于法国官职买卖的研究；M. T. Clanchy《从记忆到书面记录：英格兰 1066—1307》；W. L. Warren 关于亨利二世与英格兰政府的研究；Hugh Kennedy 关于阿拔斯王朝的研究。</li>
+    </ul>
+  </div>
+</section>
+
+<div class="partend" data-vol="第一部完">
+  <div class="k">第一部 · 刀笔 · 完</div>
+  <h3>从泥板到符木</h3>
+  <p class="ni" style="font-size:16px;line-height:1.9;text-align:left">五千年前，第一批文官因为账本而出现；秦朝把国家交给了一套成文规矩和一群刀笔小吏；汉朝靠推荐，魏晋靠门第，隋唐以后靠一张卷子；可无论官员怎样选，衙门真正的齿轮始终是那些不走的胥吏、自掏腰包请来的师爷、只忠于主人的宦官和奴仆、花钱买来的位子、教会替国王养着的文书。<em>桌子后面换过无数种人，桌子本身几乎没变</em>。</p>
+  <p class="ni" style="font-size:16px;line-height:1.9;text-align:left">第二部讲十九、二十世纪的人怎样试图重新设计这张桌子：普鲁士的考试，韦伯的理论，英国的报告，美国一颗子弹换来的法案，法国的名校，日本的大藏省，苏联的名单，新加坡的工资单，和今天中国的编制。</p>
+  <a class="go" href="two.html" data-c="c10">第二部 · 机器 →</a>
+</div>
+
+<footer>
+  <p>《铁打的营盘 · 文官创世记》第一部。档案室和其中的人物是虚构的，“履历”卡片除第二张外均为拼合的虚构人物；正文中的史实尽量核对过，有争议的地方标了“存疑”，说明与出处见<a href="#notes1">上面</a>。</p>
+  <p>书里引用的原文只限公版古籍和出土文献，大多为大意转述；现代学者的观点均为转述。装置里的数字是简化模型或粗略取整的估计，只看数量级和趋势。</p>
+  <a class="nextbook" href="../yes/"><small>书房里的另一本书</small><br><b>是，大人 · 衙门里的处世术</b><br><small>这一部讲衙门怎样长成那个样子；那本书讲在这样一个衙门里怎样做人做事：一位虚构的师爷、一个小吏和坐在堂上的你，十二个案子。</small></a>
+  <p><a href="#top" class="toTop">回到封面 ↑</a>　·　<a href="two.html" data-c="c10">第二部 · 机器</a>　·　<a href="three.html" data-c="c20">第三部 · 心法</a>　·　<a href="../">回书房</a></p>
+</footer>
+
+<script>
+(function(){
+'use strict';
+const $ = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => [...(r || document).querySelectorAll(s)];
+const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+const lerp = (a, b, t) => a + (b - a) * t;
+function rng(seed){ let a = seed >>> 0; return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const fmt = n => n >= 1e8 ? (n / 1e8).toFixed(1) + ' 亿' : n >= 1e4 ? (Math.round(n / 1e3) / 10).toLocaleString() + ' 万' : Math.round(n).toLocaleString();
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+const yr = y => y < 0 ? '前 ' + (-y) : String(y);
+const btnRow = (box, items, cur, cb) => {
+  box.innerHTML = items.map((t, i) => '<button class="btn' + (i === cur ? ' on' : '') + '" data-i="' + i + '">' + t + '</button>').join('');
+  box.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; $$('button', box).forEach(x => x.classList.toggle('on', x === b)); cb(+b.dataset.i); });
+};
+const dev = (sel, fn) => { const el = $(sel); if (el) { try { fn(el); } catch (err) { console.error(sel, err); } } };
+const kv = (box, rows) => { box.innerHTML = rows.map(r => '<div>' + r[0] + '<b>' + r[1] + '</b></div>').join(''); };
+function svgPt(svg, e){
+  const r = svg.getBoundingClientRect(), vb = svg.viewBox.baseVal;
+  const s = Math.max(vb.width / r.width, vb.height / r.height);
+  const ox = (r.width * s - vb.width) / 2, oy = (r.height * s - vb.height) / 2;
+  return {x: (e.clientX - r.left) * s - ox + vb.x, y: (e.clientY - r.top) * s - oy + vb.y};
+}
+function txt(x, y, t, o){ o = o || {}; return '<text x="' + x + '" y="' + y + '" font-size="' + (o.s || 13) + '" fill="' + (o.c || 'var(--ink)') + '" text-anchor="' + (o.a || 'middle') + '"' + (o.w ? ' font-weight="700"' : '') + (o.halo === false ? '' : ' paint-order="stroke" stroke="' + (o.hc || 'var(--card)') + '" stroke-width="3.5" stroke-linejoin="round"') + '>' + t + '</text>'; }
+/* 滑块：绑定 input 与 output，返回读数函数 */
+function slider(id, f, cb){ const r = $('#' + id), o = $('#' + id + 'O'); const go = () => { if (o) o.textContent = f ? f(+r.value) : r.value; if (cb) cb(+r.value); }; r.addEventListener('input', go); go(); return () => +r.value; }
+
+/* ---------- 全书目录（三个网页共用） ---------- */
+const PAGE = /three\.html/.test(location.pathname) ? 3 : /two\.html/.test(location.pathname) ? 2 : 1;
+const READY = 1; // 已经写好的部数；后面的章节在目录里显示“写作中”
+const PURL = {1: './', 2: 'two.html', 3: 'three.html'};
+const TOC = [
+  {p: 1, t: '第一部 · 刀笔 —— 从书吏到师爷'},
+  {v: '序幕'},
+  {id: 'c0', n: '泥', t: '泥板上的欠账', s: '书吏学堂、工日账、“去当书吏吧”：第一批坐办公室的人', r: '前 3200—前 1000'},
+  {v: '卷一 · 吏 —— 秦汉魏晋'},
+  {id: 'c1', n: '简', t: '以吏为师', s: '秦：文书行政、睡虎地和里耶的竹简、刀笔吏', r: '前 359—前 207'},
+  {id: 'c2', n: '举', t: '举孝廉', s: '汉：察举、从二千石到斗食、一个郡的两千个吏', r: '前 206—220'},
+  {id: 'c3', n: '品', t: '上品无寒门', s: '九品中正、门阀、清官和浊官', r: '220—589'},
+  {v: '卷二 · 考 —— 隋唐到明清'},
+  {id: 'c4', n: '考', t: '一张考卷', s: '科举：隋唐的开头、宋朝的糊名、明清的八股和漏斗', r: '587—1905'},
+  {id: 'c5', n: '胥', t: '官无封建，吏有封建', s: '胥吏：不拿俸禄的人怎样管着天下', r: '960—1911'},
+  {id: 'c6', n: '幕', t: '知县的账本', s: '幕友、长随、门丁：一个县衙到底靠谁运转', r: '1644—1911'},
+  {v: '卷三 · 替身 —— 别处的办法'},
+  {id: 'c7', n: '奴', t: '苏丹的孩子', s: '奥斯曼的“征集”、马穆鲁克、宦官：为什么用没有家的人', r: '1380—1826'},
+  {id: 'c8', n: '买', t: '明码标价', s: '西园卖官、法国的官职买卖、捐纳、包税人', r: '178—1905'},
+  {id: 'c9', n: '符', t: '国库里的木棍', s: '教士当文书、财政署的方格布和符木、一把火烧了议会', r: '1066—1834'},
+  {p: 2, t: '第二部 · 机器 —— 现代文官怎样造出来'},
+  {v: '卷四 · 图纸'},
+  {id: 'c10', n: '普', t: '国王的第一仆人', s: '普鲁士：官房学、三道考试、不领工资的见习', r: '1713—1871'},
+  {id: 'c11', n: '韦', t: '铁笼与帕金森', s: '韦伯的官僚制、帕金森定律、彼得原理', r: '1900—1971'},
+  {id: 'c12', n: '白', t: '一份二十页的报告', s: '英国：恩庇、诺思科特-特里维廉、白厅、通才', r: '1780—1968'},
+  {id: 'c13', n: '相', t: '首相与常任秘书', s: '撒切尔、下一步机构、特别顾问、沙发上的政府、后来的拔河', r: '1964—2024'},
+  {id: 'c14', n: '赃', t: '胜利者的战利品', s: '美国：分赃制、加菲尔德、彭德尔顿法、哈奇法、附表 F', r: '1829—2025'},
+  {v: '卷五 · 各家'},
+  {id: 'c15', n: '校', t: '毕业名次', s: '法国：省长、大团、国立行政学院和它的关门', r: '1800—2022'},
+  {id: 'c16', n: '降', t: '从天上下来', s: '日本：大藏省、通产省、同期和“天降”', r: '1868—2017'},
+  {id: 'c17', n: '单', t: '名单上的人', s: '苏联：干部名单、新阶级、“干部稳定”', r: '1920—1991'},
+  {id: 'c18', n: '薪', t: '高薪养廉？', s: '新加坡的部长工资、香港廉署，和清朝的养廉银', r: '1724—2012'},
+  {id: 'c19', n: '编', t: '编制', s: '当代中国：从分配到考试、编制、职级', r: '1978—2025'},
+  {p: 3, t: '第三部 · 心法 —— 营盘里的人怎样想事情'},
+  {v: '卷六 · 性子'},
+  {id: 'c20', n: '稳', t: '不求有功', s: '风险厌恶：为什么做错比不做更可怕', r: '心法'},
+  {id: 'c21', n: '慢', t: '留痕', s: '程序、会签、文件：慢为什么常常是理性的', r: '心法'},
+  {id: 'c22', n: '听', t: '听话听音', s: '文件里的词、信号、信息怎样上下走', r: '心法'},
+  {id: 'c23', n: '婉', t: '不说不', s: '为什么很少直接拒绝，以及“研究研究”的十种意思', r: '心法'},
+  {v: '卷七 · 算盘'},
+  {id: 'c24', n: '房', t: '房子', s: '福利分房、房改、公积金：营盘里的人怎样看房子', r: '心法'},
+  {id: 'c25', n: '车', t: '一笔总账', s: '公车、车改，和体制内外的总账', r: '心法'},
+  {id: 'c26', n: '老', t: '后付的工资', s: '养老、年资、金手铐', r: '心法'},
+  {id: 'c27', n: '时', t: '年龄线', s: '时机：稳和快，什么时候动', r: '心法'},
+  {v: '卷八 · 代价与带走'},
+  {id: 'c28', n: '价', t: '围城', s: '代价：约束、无聊、背锅、慢', r: '心法'},
+  {id: 'c29', n: '带', t: '带走什么', s: '尾声：外面的人能从营盘里学走什么', r: '尾声'}
+];
+const chapPage = {}; { let p = 1; TOC.forEach(x => { if (x.p) p = x.p; if (x.id) chapPage[x.id] = p; }); }
+const href = id => (chapPage[id] === PAGE ? '' : PURL[chapPage[id]]) + '#' + id;
+$$('.bar .parts a').forEach(a => { const p = +a.dataset.p; a.classList.toggle('on', p === PAGE); if (p > READY) { a.removeAttribute('href'); a.style.opacity = .4; a.title = '写作中'; } });
+$('#drawerList').innerHTML = TOC.map(x => x.p ? '<li class="ph">' + x.t + '</li>' : x.v ? '<li class="vh">' + x.v + '</li>' :
+  chapPage[x.id] > READY ? '<li><a style="opacity:.5;pointer-events:none"><span class="n">' + x.n + '</span><span>' + x.t + '<small>写作中</small></span></a></li>' :
+  '<li><a href="' + href(x.id) + '"' + (chapPage[x.id] === PAGE ? ' class="here"' : '') + '><span class="n">' + x.n + '</span><span>' + x.t + '<small>' + x.s + '</small></span></a></li>').join('');
+dev('#toc', ul => {
+  ul.innerHTML = TOC.map(x => x.p ? '<li class="vh" style="color:var(--zhu)">' + x.t + '</li>' : x.v ? '<li class="vh">' + x.v + '</li>' :
+    chapPage[x.id] > READY ? '<li class="soon"><div><span class="n">' + x.n + '</span><span class="t">' + x.t + '<small>' + x.s + '</small></span><span class="r">' + x.r + '</span></div></li>' :
+    '<li' + (chapPage[x.id] === PAGE ? '' : ' class="away"') + '><a href="' + href(x.id) + '"><span class="n">' + x.n + '</span><span class="t">' + x.t + '<small>' + x.s + '</small></span><span class="r">' + x.r + '</span></a></li>').join('');
+});
+/* 页面里写 <a data-c="c12">…</a>，自动拼出跨页链接 */
+$$('a[data-c]').forEach(a => { const id = a.dataset.c; if (chapPage[id] > READY) { a.removeAttribute('href'); a.title = '写作中'; a.style.textDecorationStyle = 'dotted'; } else a.href = href(id); });
+
+/* ---------- 页眉：卷名、进度、目录抽屉 ---------- */
+const barVol = $('#barVol'), prog = $('#prog');
+const vols = $$('[data-vol]');
+let ticking = false;
+function onScroll(){
+  ticking = false;
+  const lim = innerHeight * 0.35; let cur = null;
+  for (const e of vols) { if (e.getBoundingClientRect().top < lim) cur = e; else break; }
+  barVol.textContent = cur ? cur.dataset.vol : '序';
+  const H = document.documentElement.scrollHeight - innerHeight;
+  prog.style.width = (H > 0 ? scrollY / H * 100 : 0) + '%';
+}
+window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, {passive: true});
+onScroll();
+const drawer = $('#drawer');
+function openD(on){ drawer.classList.toggle('on', on); drawer.setAttribute('aria-hidden', on ? 'false' : 'true'); }
+$('#tocBtn').addEventListener('click', () => openD(true));
+drawer.addEventListener('click', e => { if (e.target.closest('[data-close]') || e.target.closest('a')) openD(false); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') openD(false); });
+$$('.toTop').forEach(a => a.addEventListener('click', e => { e.preventDefault(); scrollTo({top: 0, behavior: 'smooth'}); }));
+
+/* 章首：入仕的六扇门 */
+const GATES = [['生', '出身'], ['荐', '推荐'], ['考', '考试'], ['买', '花钱'], ['宠', '君主的私人'], ['任', '政治任命']];
+$$('.gate').forEach(w => { const on = (w.dataset.g || '').split(/\s+/); w.innerHTML = GATES.map(f => '<span' + (on.includes(f[0]) ? ' class="on"' : '') + '><b>' + f[0] + '</b>' + f[1] + '</span>').join(''); });
+
+/* 年代条：前 3200 到 2030，这一章占哪一段（前 3200—前 600 压缩成左边的一小截） */
+const tp = y => y < -600 ? (y + 3200) / 2600 * 18 : 18 + (y + 600) / 2630 * 82;
+$$('.when').forEach(w => {
+  const a = +w.dataset.a, b = +w.dataset.b;
+  w.innerHTML = [-3000, -1000, 1, 500, 1000, 1500, 2000].map(y => '<span style="left:' + Math.max(3, tp(y)) + '%">' + (y === 1 ? '公元' : yr(y)) + '</span>').join('') +
+    '<i style="left:' + tp(a) + '%;width:' + Math.max(.6, tp(b) - tp(a)) + '%"></i>';
+  w.title = yr(a) + ' — ' + yr(b);
+});
+
+/* 卷首的方印 */
+$$('svg.yin').forEach(s => {
+  const t = (s.dataset.t || '营盘').split('');
+  s.setAttribute('viewBox', '0 0 100 100');
+  let g = '<rect x="6" y="6" width="88" height="88" rx="6" fill="none" stroke="currentColor" stroke-width="4"/><rect x="12" y="12" width="76" height="76" rx="3" fill="none" stroke="currentColor" stroke-width="1.2"/>';
+  if (t.length === 4) g += [[67, 42], [67, 78], [33, 42], [33, 78]].map((p, i) => '<text x="' + p[0] + '" y="' + p[1] + '" font-size="34" text-anchor="middle" fill="currentColor" font-family="var(--f-display)">' + t[i] + '</text>').join('');
+  else g += t.map((c, i) => '<text x="50" y="' + (44 + i * 36 - (t.length - 1) * 12) + '" font-size="34" text-anchor="middle" fill="currentColor" font-family="var(--f-display)">' + c + '</text>').join('');
+  s.innerHTML = g;
+});
+
+/* 通用小折线图：series=[{name,color,pts:[[x,y]...],dash}]，opt={xmin,xmax,ymin,ymax,xt,yt,xf,yf,marks:[[x,label]],H} */
+function lineChart(svg, series, opt){
+  const W = 600, H = opt.H || 260, L = opt.L || 46, R = 14, T = 14, B = 30;
+  const X = x => L + (x - opt.xmin) / (opt.xmax - opt.xmin) * (W - L - R);
+  const Y = y => T + (1 - (y - opt.ymin) / (opt.ymax - opt.ymin)) * (H - T - B);
+  let g = '';
+  (opt.yt || []).forEach(v => g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + Y(v) + '" y2="' + Y(v) + '" stroke="var(--rule)"/>' + txt(L - 6, Y(v) + 4, opt.yf ? opt.yf(v) : v, {s: 11, a: 'end', c: 'var(--ink-3)', halo: false}));
+  (opt.xt || []).forEach(v => g += txt(X(v), H - 10, opt.xf ? opt.xf(v) : v, {s: 11, c: 'var(--ink-3)', halo: false}));
+  (opt.marks || []).forEach((m, i) => g += '<line x1="' + X(m[0]) + '" x2="' + X(m[0]) + '" y1="' + T + '" y2="' + (H - B) + '" stroke="var(--ink-3)" stroke-dasharray="2 3"/>' + txt(X(m[0]) + 3, T + 12 + (i % 3) * 14, m[1], {s: 11, a: 'start', c: 'var(--ink-2)'}));
+  series.forEach(s => {
+    const pts = s.pts.filter(p => p[1] != null);
+    g += '<path d="M' + pts.map(p => X(p[0]).toFixed(1) + ',' + Y(p[1]).toFixed(1)).join('L') + '" fill="none" stroke="' + s.color + '" stroke-width="' + (s.w || 2.4) + '"' + (s.dash ? ' stroke-dasharray="' + s.dash + '"' : '') + ' stroke-linejoin="round"/>';
+    if (s.dots) pts.forEach(p => g += '<circle cx="' + X(p[0]).toFixed(1) + '" cy="' + Y(p[1]).toFixed(1) + '" r="3" fill="' + s.color + '"/>');
+  });
+  g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + (H - B) + '" y2="' + (H - B) + '" stroke="var(--ink)" stroke-width="1.2"/>';
+  svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+  return {X, Y, W, H, L, R, T, B};
+}
+/* 横条：rows=[[名字, 数值, 小字, 颜色]] */
+function bars(box, rows, max, f){
+  box.innerHTML = rows.map(r => '<div class="row"><span class="nm">' + r[0] + (r[2] ? '<small>' + r[2] + '</small>' : '') + '</span><span class="tr"><i style="width:' + clamp(r[1] / max * 100, 0, 100) + '%;' + (r[3] ? 'background:' + r[3] : '') + '"></i></span><span class="v">' + (f ? f(r[1]) : r[1]) + '</span></div>').join('');
+}
+
+
+/* ---------- 封面装置：五千年，这张桌子是怎么坐上去的 ---------- */
+dev('#gateFig', fig => {
+  const svg = $('#gateSvg'), say = $('#gateSay');
+  // [门, 起, 止, 名字, 一句话]
+  const D = [
+    ['生', -2500, -1000, '两河、埃及的书吏世家', '书吏多是书吏的儿子，学堂学费不菲'],
+    ['生', -1046, -500, '西周世卿世禄', '卿大夫的位子父死子继'],
+    ['生', 220, 589, '魏晋南北朝门阀', '九品中正名义上评人，实际上评家世'],
+    ['生', 800, 1789, '欧洲封建贵族', '领主就是地方上的官'],
+    ['生', 1603, 1868, '江户日本', '武士家格决定能当什么官'],
+    ['荐', -134, 220, '汉朝察举', '郡国每年举孝廉，名额按人口算'],
+    ['荐', 220, 589, '九品中正', '中正官给本地士人评九个品'],
+    ['荐', 1700, 1870, '英国恩庇', '一封大人物的信就能进衙门'],
+    ['考', 605, 1905, '中国科举', '隋唐起，明清最盛，1905 年停'],
+    ['考', 958, 1894, '高丽、朝鲜科举', '学中国，考了九百多年'],
+    ['考', 1075, 1919, '越南科举', '比中国还晚停了十几年'],
+    ['考', 1770, 2025, '普鲁士与德国的国家考试', '法学考试 + 见习，后来遍及德语世界'],
+    ['考', 1855, 2025, '英国公开竞争考试', '1855 年设委员会，1870 年大多数职位公开考'],
+    ['考', 1883, 2025, '美国功绩制', '彭德尔顿法起，考试职位越来越多'],
+    ['考', 1887, 2025, '日本高等文官考试', '东京帝大法科的天下'],
+    ['考', 1945, 2025, '法国国立行政学院', '2022 年改组为国家公共服务学院'],
+    ['考', 1994, 2025, '中国公务员考试', '1994 年中央国家机关首次统一考录'],
+    ['买', -200, 0, '罗马包税人', '公开竞标收行省的税'],
+    ['买', 178, 189, '东汉西园卖官', '汉灵帝明码标价'],
+    ['买', 1522, 1789, '法国官职买卖', '官职是私产，可以继承和转卖'],
+    ['买', 1674, 1905, '清朝捐纳', '平三藩起大开，太平天国后泛滥'],
+    ['买', 1683, 1871, '英国陆军军官职位买卖', '1871 年才废除'],
+    ['宠', 100, 189, '东汉宦官', '十常侍'],
+    ['宠', 400, 1200, '拜占庭宦官', '宦官不能当皇帝，所以皇帝放心用'],
+    ['宠', 1250, 1517, '埃及马穆鲁克', '奴隶兵自己当了苏丹'],
+    ['宠', 1380, 1700, '奥斯曼“征集”', '基督徒男孩改宗，进宫当兵当官'],
+    ['宠', 1420, 1644, '明朝宦官', '司礼监批红，东厂'],
+    ['任', 1829, 1883, '美国分赃制', '换一个总统，换一批邮政局长'],
+    ['任', 1883, 2025, '美国政治任命', '至今每次换届仍有约四千个位子'],
+    ['任', 1923, 1991, '苏联干部名单', '名单上的位子由党组织决定']
+  ];
+  const G = ['生', '荐', '考', '买', '宠', '任'], GN = ['出身', '推荐', '考试', '花钱', '君主的私人', '政治任命'];
+  const COL = ['var(--kraft)', 'var(--grn)', 'var(--main)', 'var(--och)', 'var(--pur)', 'var(--red)'];
+  let sel = -1;
+  $('#gateBtns').innerHTML = G.map((g, i) => '<button data-i="' + i + '"><b>' + g + '</b>' + GN[i] + '</button>').join('');
+  $('#gateBtns').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; const i = +b.dataset.i; sel = sel === i ? -1 : i; $$('#gateBtns button').forEach(x => x.classList.toggle('on', +x.dataset.i === sel)); draw(); });
+  const W = 600, L = 34, R = 10, T = 22, RH = 34, H = T + RH * 6 + 22;
+  // 时间轴：前 2500—前 600 压缩
+  const X = y => y < -600 ? L + (y + 2500) / 1900 * (W - L - R) * .16 : L + (W - L - R) * (.16 + (y + 600) / 2625 * .84);
+  svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+  function draw(){
+    const y0 = +$('#gateR').value;
+    let g = '';
+    [-2000, -1000, 1, 500, 1000, 1500, 2000].forEach(y => g += '<line x1="' + X(y) + '" x2="' + X(y) + '" y1="' + T + '" y2="' + (H - 20) + '" stroke="var(--rule)" stroke-dasharray="2 3"/>' + txt(X(y), H - 6, y === 1 ? '公元' : yr(y), {s: 10.5, c: 'var(--ink-3)', halo: false}));
+    G.forEach((gg, i) => {
+      const y = T + i * RH;
+      g += txt(16, y + RH / 2 + 6, gg, {s: 17, c: COL[i], halo: false});
+      const rows = D.filter(d => d[0] === gg);
+      rows.forEach((d, k) => {
+        const yy = y + 4 + (k % 3) * 9, on = sel < 0 || sel === i, hit = y0 >= d[1] && y0 <= d[2];
+        g += '<rect x="' + X(d[1]).toFixed(1) + '" y="' + yy + '" width="' + Math.max(3, X(d[2]) - X(d[1])).toFixed(1) + '" height="7" rx="2" fill="' + COL[i] + '" opacity="' + (on ? (hit ? 1 : .55) : .12) + '"><title>' + d[3] + '：' + yr(d[1]) + '—' + yr(d[2]) + '</title></rect>';
+      });
+    });
+    g += '<line x1="' + X(y0) + '" x2="' + X(y0) + '" y1="' + (T - 8) + '" y2="' + (H - 20) + '" stroke="var(--ink)" stroke-width="1.5"/>';
+    svg.innerHTML = g;
+    $('#gateRO').textContent = yr(y0) + ' 年';
+    const act = D.filter(d => y0 >= d[1] && y0 <= d[2] && (sel < 0 || G[sel] === d[0]));
+    if (sel >= 0) {
+      const all = D.filter(d => d[0] === G[sel]);
+      say.innerHTML = '<b>' + G[sel] + ' · ' + GN[sel] + '</b>：' + all.map(d => d[3] + '（' + d[4] + '）').join('；') + '。' + (act.length ? '<br>' + yr(y0) + ' 年正开着这扇门的：<b>' + act.map(d => d[3]).join('、') + '</b>。' : '');
+    } else {
+      say.innerHTML = act.length ? yr(y0) + ' 年：' + act.map(d => '<b style="color:' + COL[G.indexOf(d[0])] + '">' + d[0] + '</b> ' + d[3] + '（' + d[4] + '）').join('；') + '。' : yr(y0) + ' 年：图里这些大国，这一年都没有一种“主要的”选官办法可画。别误会，衙门照样有人，只是史料太少，或者几种办法搅在一起。';
+    }
+  }
+  $('#gateR').addEventListener('input', draw);
+  draw();
+});
+
+
+/* ---------- 装置 1：平一本工日账 ---------- */
+dev('#udFig', fig => {
+  const T = $('#udT'), say = $('#udSay');
+  let st;
+  const nR = $('#udN');
+  function reset(){
+    st = {yr: 0, n: +nR.value, bal: 0, sick: 0, rows: [], r: rng(20 + +nR.value)};
+    nR.disabled = false; $('#udA').disabled = $('#udB').disabled = false;
+    render();
+    say.className = 'say'; say.innerHTML = '总督府的规矩：每人每年 360 天，每 10 天休 1 天，剩下的天数全按定额折成“应完成”的工日。点上面的按钮开始过第一年。';
+  }
+  $('#udNO').textContent = nR.value + ' 人';
+  nR.addEventListener('input', () => { $('#udNO').textContent = nR.value + ' 人'; reset(); });
+  function year(hard){
+    if (st.yr >= 5) return;
+    nR.disabled = true;
+    const r = st.r, n = st.n;
+    const due = Math.round(n * 324);                         // 应完成：人数 × (360 − 36 天休息)
+    // 实际：每人完成率受天气、生病、逃跑影响
+    const flood = r() < 0.25, drought = !flood && r() < 0.2;
+    let sickDays = 0, fled = 0, done = 0;
+    for (let i = 0; i < n; i++) {
+      let days = 324;
+      const pSick = 0.25 + st.sick * 0.08 + (hard ? 0.05 : 0);
+      if (r() < pSick) { const d = Math.round(10 + r() * 40); sickDays += d; days -= d; }
+      if (r() < 0.03 + st.sick * 0.02) { fled++; days -= Math.round(r() * 200); }
+      days = Math.max(0, days);
+      const eff = (hard ? 1.12 : 0.97) * (flood ? 0.88 : drought ? 0.94 : 1) * (0.92 + r() * 0.1);
+      done += days * eff;
+    }
+    done = Math.round(done);
+    st.sick = hard ? Math.min(4, st.sick + 1) : Math.max(0, st.sick - 1);
+    const diff = done - due;
+    st.bal += diff; st.yr++;
+    st.rows.push([st.yr, due, done, diff, st.bal, (flood ? '发大水；' : drought ? '天旱；' : '') + (fled ? '跑了 ' + fled + ' 人；' : '') + '病假约 ' + sickDays + ' 工日' + (hard ? '；逼紧了' : '')]);
+    render();
+    if (st.yr >= 5) {
+      $('#udA').disabled = $('#udB').disabled = true;
+      if (st.bal < 0) { say.className = 'say bad'; say.innerHTML = '五年下来，你一共欠总督府 <b>' + (-st.bal).toLocaleString() + '</b> 个工日，相当于 ' + (-st.bal / 324).toFixed(1) + ' 个人白干一整年。这笔账会一直挂在你名下。<b>别灰心，乌尔第三王朝的工头大多也是这样</b>：定额按“不下雨、不生病、没人跑”来定，现实没有一年配合。'; }
+      else { say.className = 'say ok'; say.innerHTML = '五年下来，你的账上结余 <b>' + st.bal.toLocaleString() + '</b> 个工日。你是少见的好工头，或者运气好。真实的泥板上，能年年结余的工头不多；下一年，总督府很可能顺手把你的定额再提一提。'; }
+    } else {
+      say.className = 'say' + (diff < 0 ? ' bad' : ' ok');
+      say.innerHTML = '第 ' + st.yr + ' 年：应完成 ' + due.toLocaleString() + '，已完成 ' + done.toLocaleString() + '，' + (diff < 0 ? '欠 ' + (-diff).toLocaleString() : '多出 ' + diff.toLocaleString()) + ' 个工日。' + (hard ? '你逼紧了，今年干得多，可手下的人累垮了，<b>明年病的跑的会更多</b>。' : st.sick > 0 ? '去年逼得太紧，伤还没养好。' : '');
+    }
+  }
+  function render(){
+    kv($('#udKv'), [['第几年', st.yr + ' / 5'], ['手下', st.n + ' 人'], ['累计结余', (st.bal >= 0 ? '+' : '') + st.bal.toLocaleString()], ['疲惫程度', ['好', '有点累', '累', '很累', '快垮了'][st.sick]]]);
+    T.innerHTML = '<tr><th>年</th><th>应完成</th><th>已完成</th><th>本年差额</th><th>结转</th><th>备注</th></tr>' +
+      st.rows.map(r => '<tr><td>' + r[0] + '</td><td>' + r[1].toLocaleString() + '</td><td>' + r[2].toLocaleString() + '</td><td style="color:' + (r[3] < 0 ? 'var(--red)' : 'var(--grn)') + '">' + (r[3] >= 0 ? '+' : '') + r[3].toLocaleString() + '</td><td>' + (r[4] >= 0 ? '+' : '') + r[4].toLocaleString() + '</td><td style="font-size:13px;color:var(--ink-3)">' + r[5] + '</td></tr>').join('');
+  }
+  $('#udA').addEventListener('click', () => year(false));
+  $('#udB').addEventListener('click', () => year(true));
+  $('#udR').addEventListener('click', reset);
+  reset();
+});
+
+
+/* ---------- 装置 2：秦朝的收发室 ---------- */
+dev('#qinFig', fig => {
+  const box = $('#qinBox'), say = $('#qinSay'), log = $('#qinLog');
+  const FROM = ['洞庭郡', '启陵乡', '贰春乡', '都乡', '少内', '仓', '司空', '尉', '酉阳县', '临沅县'];
+  const WHAT = ['追捕逃亡者', '核对仓粮', '更名诏书', '上报户口', '征发徭役', '刑徒名籍', '借用船只', '钱粮出入', '迁徙户籍', '祠先农'];
+  let st, r;
+  function reset(){
+    r = rng(7); st = {day: 0, docs: [], sent: 0, liu: 0, fine: 0, cap: 3, used: 0, id: 0};
+    log.textContent = '';
+    nextDay(true);
+  }
+  function newDocs(){
+    const n = 2 + Math.floor(r() * 4) + (st.day > 6 ? 1 : 0);
+    for (let i = 0; i < n; i++) st.docs.push({id: st.id++, urgent: r() < 0.35, from: FROM[Math.floor(r() * FROM.length)], what: WHAT[Math.floor(r() * WHAT.length)], age: 0});
+  }
+  function nextDay(first){
+    if (!first) {
+      // 结算今天：没发的急书和压过一天的不急书都算“留”
+      let bad = [];
+      st.docs.forEach(d => { if (d.urgent || d.age >= 1) bad.push(d); });
+      bad.forEach(d => { st.liu++; st.fine += d.urgent ? 2 : 1; log.textContent = '第 ' + st.day + ' 日：' + d.from + '「' + d.what + '」' + (d.urgent ? '急书' : '压过一日') + '未发，留。' + (d.urgent ? '赀一甲。' : '赀一盾。') + '\n' + log.textContent; });
+      st.docs = st.docs.filter(d => !(d.urgent || d.age >= 1));
+      st.docs.forEach(d => d.age++);
+      // 留下的急书视为已追发
+    }
+    if (st.day >= 10) { end(); return; }
+    st.day++; st.used = 0;
+    st.cap = 3 + (r() < 0.3 ? -1 : 0) + (r() < 0.2 ? 1 : 0);
+    newDocs();
+    render();
+    say.className = 'say';
+    say.innerHTML = '第 ' + st.day + ' 日。今天能派的邮人：<b>' + st.cap + '</b> 个' + (st.cap < 3 ? '（一个邮人被派去服徭役了）' : st.cap > 3 ? '（尉那边借来一个人）' : '') + '。案头文书 ' + st.docs.length + ' 件，其中急书 ' + st.docs.filter(d => d.urgent).length + ' 件、昨天压下的 ' + st.docs.filter(d => d.age >= 1).length + ' 件。';
+  }
+  function render(){
+    kv($('#qinKv'), [['日子', st.day + ' / 10'], ['今天剩余邮人', (st.cap - st.used) + ' / ' + st.cap], ['已发', st.sent + ' 件'], ['被记“留”', st.liu + ' 次'], ['累计罚', Math.floor(st.fine / 2) + ' 甲 ' + (st.fine % 2) + ' 盾']]);
+    box.innerHTML = st.docs.length ? st.docs.map(d => '<button class="btn" data-id="' + d.id + '" style="border-radius:4px;font-size:13px;line-height:1.4;padding:4px 8px;text-align:left;' + (d.urgent ? 'border-color:var(--zhu);color:var(--zhu)' : d.age >= 1 ? 'border-style:dashed' : '') + '"' + (st.used >= st.cap ? ' disabled' : '') + '>' + (d.urgent ? '急 · ' : d.age >= 1 ? '昨 · ' : '') + d.from + '<br><small>' + d.what + '</small></button>').join('') : '<span style="color:var(--ink-3);font-size:14px">案头空了。</span>';
+  }
+  box.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b || st.used >= st.cap) return;
+    const id = +b.dataset.id, d = st.docs.find(x => x.id === id);
+    st.docs = st.docs.filter(x => x.id !== id); st.used++; st.sent++;
+    log.textContent = '第 ' + st.day + ' 日 水十一刻刻下' + (1 + Math.floor(r() * 9)) + '：' + d.from + '「' + d.what + '」' + (d.urgent ? '（急）' : '') + '，以邮行。\n' + log.textContent;
+    render();
+  });
+  function end(){
+    render();
+    box.innerHTML = '';
+    $('#qinNext').disabled = true;
+    say.className = 'say ' + (st.liu > 4 ? 'bad' : 'ok');
+    say.innerHTML = '十天过去。你发出 <b>' + st.sent + '</b> 件文书，被记“留” <b>' + st.liu + '</b> 次，累计罚 ' + Math.floor(st.fine / 2) + ' 甲 ' + (st.fine % 2) + ' 盾。' +
+      (st.liu === 0 ? '一次没留，你是迁陵县的模范令史。' : st.liu > 4 ? '人手永远不够，文书永远在来，这是里耶秦简里的常态。<b>聪明的令史学会的第一件事是：先发急的，再发昨天压下的，最后才发今天新来的不急的。</b>' : '还行。注意到没有：<b>真正让你被罚的，往往不是急书，而是昨天顺手压下的那几件“不急”。</b>');
+  }
+  $('#qinNext').addEventListener('click', () => nextDay(false));
+  $('#qinReset').addEventListener('click', () => { $('#qinNext').disabled = false; reset(); });
+  reset();
+});
+
+
+/* ---------- 装置 3：孝廉名额与大姓 ---------- */
+dev('#xlFig', fig => {
+  const P = $('#xlP'), B = $('#xlB'), W = $('#xlW');
+  // 返回每年的名额（可能是分数：两年一人 = 0.5）
+  function quota(pop, border){
+    if (border) return pop >= 10 ? Math.max(1, Math.floor(pop / 20)) : pop >= 5 ? 0.5 : 1 / 3;
+    if (pop >= 20) return Math.floor(pop / 20);
+    return pop >= 10 ? 0.5 : 1 / 3;
+  }
+  function qtxt(q){ return q >= 1 ? '每年 <b>' + q + '</b> 人' : q === 0.5 ? '<b>两年</b>一人' : '<b>三年</b>一人'; }
+  function showQ(){
+    const pop = +P.value, q = quota(pop, B.checked);
+    $('#xlPO').textContent = pop + ' 万口';
+    $('#xlQ').innerHTML = (B.checked ? '边郡' : '内郡') + '，人口 ' + pop + ' 万：' + qtxt(q) + '。' + (pop >= 140 && !B.checked ? '（丁鸿的奏文写到一百二十万六人为止，再往上按每二十万加一人推算。）' : '') + (B.checked && pop >= 10 && pop < 20 ? '（边郡十万以上每年一人，比内郡宽了一倍。）' : B.checked && pop < 10 ? '（边郡不满十万两年一人，五万以下三年一人。）' : '');
+    return q;
+  }
+  P.addEventListener('input', showQ); B.addEventListener('change', showQ);
+  $('#xlWO').textContent = W.value + '%';
+  W.addEventListener('input', () => { $('#xlWO').textContent = W.value + '%'; });
+  function run(){
+    const q = showQ(), w = +W.value / 100, r = rng(132 + +W.value);
+    // 100 户：0—9 是起初的大姓（各已有 2 个当官的），其余各 0
+    const fam = Array.from({length: 100}, (_, i) => ({big: i < 10, off: i < 10 ? 2 : 0, got: 0}));
+    let acc = 0;
+    for (let y = 0; y < 50; y++) {
+      acc += q; let k = Math.floor(acc); acc -= k;
+      // 每户每年派一个候选人，才能随机
+      while (k-- > 0) {
+        let best = -1, bs = -1;
+        fam.forEach((f, i) => { const merit = r(); const conn = Math.min(1, f.off / 12); const s = (1 - w) * merit + w * conn + (w > 0 ? r() * 0.05 : 0); if (s > bs) { bs = s; best = i; } });
+        fam[best].off++; fam[best].got++;
+      }
+      // 当官的人会老去：每年每户有小概率少一个
+      fam.forEach(f => { if (f.off > 0 && r() < 0.06) f.off--; });
+    }
+    const tot = fam.reduce((s, f) => s + f.got, 0) || 1;
+    const big = fam.filter(f => f.big).reduce((s, f) => s + f.got, 0);
+    const sorted = fam.map(f => f.got).sort((a, b) => b - a);
+    const top5 = sorted.slice(0, 5).reduce((s, x) => s + x, 0);
+    const nonzero = fam.filter(f => f.got > 0).length;
+    bars($('#xlBars'), [
+      ['十户老大姓', big / tot * 100, '起初就有人当官', 'var(--kraft)'],
+      ['其余九十户', (tot - big) / tot * 100, '普通读书人家', 'var(--main)'],
+      ['最多的五户', top5 / tot * 100, '不管原来是谁', 'var(--zhu)']
+    ], 100, v => v.toFixed(0) + '%');
+    $('#xlSay').className = 'say ' + (big / tot > 0.5 ? 'bad' : 'ok');
+    $('#xlSay').innerHTML = '五十年里一共举了 <b>' + tot + '</b> 个孝廉，出自 <b>' + nonzero + '</b> 户人家。' +
+      (w < 0.15 ? '太守只看才能：机会撒得很开，老大姓也没占到什么便宜。可惜现实里的太守很少这么干净。' :
+       big / tot > 0.5 ? '十户老大姓拿走了一大半。<b>关系的权重不用很高，只要“已经有人当官”能加分，雪球就会自己滚起来</b>：当官的越多，下一个越容易是自家人。' :
+       '老大姓占的比例已经明显高于它们只占一成的人口。再把“看关系”往右拖一点试试。');
+  }
+  $('#xlGo').addEventListener('click', run);
+  showQ(); run();
+});
+
+
+/* ---------- 装置 4：中正评品 ---------- */
+dev('#zzFig', fig => {
+  const svg = $('#zzSvg'), Wr = $('#zzW');
+  const CAP = [2, 3, 4, 6, 8, 9, 9, 9, 10]; // 上上……下下，各品名额，合计 60
+  const PN = ['上上', '上中', '上下', '中上', '中中', '中下', '下上', '下中', '下下'];
+  const FC = ['var(--kraft)', 'var(--main)', 'var(--ink-3)'], FN = ['士族', '次门', '寒门'], FV = [1, 0.5, 0];
+  let seed = 3, ppl;
+  function make(){
+    const r = rng(seed);
+    ppl = Array.from({length: 60}, (_, i) => ({f: i < 9 ? 0 : i < 30 ? 1 : 2, t: r(), luck: r()}));
+  }
+  function draw(){
+    const w = +Wr.value / 100;
+    $('#zzWO').textContent = Wr.value + '%';
+    const sc = ppl.map((p, i) => ({i, s: w * FV[p.f] + (1 - w) * p.t + 0.08 * p.luck}));
+    sc.sort((a, b) => b.s - a.s);
+    const grade = []; let k = 0;
+    CAP.forEach((c, g) => { for (let j = 0; j < c; j++) grade[sc[k++].i] = g; });
+    const W = 600, H = 9 * 30 + 20, L = 56;
+    let g = '';
+    PN.forEach((n, gi) => {
+      const y = 14 + gi * 30;
+      g += '<rect x="' + L + '" y="' + y + '" width="' + (W - L - 6) + '" height="26" rx="3" fill="' + (gi < 3 ? 'color-mix(in srgb,var(--zhu) 8%,var(--paper))' : 'var(--paper)') + '"/>' + txt(L - 8, y + 18, n, {s: 13, a: 'end', c: gi < 3 ? 'var(--zhu)' : 'var(--ink-2)', halo: false});
+      const mem = ppl.map((p, i) => ({p, i})).filter(o => grade[o.i] === gi).sort((a, b) => a.p.f - b.p.f || b.p.t - a.p.t);
+      mem.forEach((o, j) => { g += '<circle cx="' + (L + 16 + j * 26) + '" cy="' + (y + 13) + '" r="' + (3 + o.p.t * 8).toFixed(1) + '" fill="' + FC[o.p.f] + '" opacity=".9"><title>' + FN[o.p.f] + '，才能 ' + Math.round(o.p.t * 100) + '</title></circle>'; });
+    });
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+    const top = ppl.map((p, i) => i).filter(i => grade[i] < 3);
+    const hanTop = top.filter(i => ppl[i].f === 2).length;
+    const shiLow = ppl.map((p, i) => i).filter(i => grade[i] > 5 && ppl[i].f === 0).length;
+    const best10 = ppl.map((p, i) => i).sort((a, b) => ppl[b].t - ppl[a].t).slice(0, 10);
+    const best10Top = best10.filter(i => grade[i] < 3).length;
+    const best10Low = best10.filter(i => grade[i] > 5).length;
+    kv($('#zzKv'), [['上品里的寒门', hanTop + ' / ' + top.length], ['下品里的士族', shiLow + ' / ' + ppl.filter(p => p.f === 0).length], ['最有才的十人进上品', best10Top + ' 人'], ['最有才的十人落下品', best10Low + ' 人']]);
+    $('#zzSay').className = 'say ' + (w >= 0.6 ? 'bad' : 'ok');
+    $('#zzSay').innerHTML = w >= 0.6 ? '上品无寒门，下品无势族。<b>才能还在，只是排不上号了</b>：最有才的十个人里，有 ' + best10Low + ' 个被评进了下品，这辈子大概只能做浊官。'
+      : w >= 0.3 ? '家世开始占上风。注意上三品：九个位子里士族已经占了不少，而士族只占全郡人口的一成半。'
+      : '中正只看才能，上品里各家都有。这是陈群设计这套制度时的理想，它大概只在最初几十年里接近过。';
+  }
+  Wr.addEventListener('input', draw);
+  $('#zzNew').addEventListener('click', () => { seed++; make(); draw(); });
+  make(); draw();
+});
+
+
+/* ---------- 装置 5：一个读书人的一生 ---------- */
+dev('#kjFig', fig => {
+  const T = $('#kjT'), A = $('#kjA'), log = $('#kjLog'), say = $('#kjSay');
+  $('#kjTO').textContent = T.value + '%'; $('#kjAO').textContent = A.value + ' 岁';
+  T.addEventListener('input', () => { $('#kjTO').textContent = T.value + '%'; });
+  A.addEventListener('input', () => { $('#kjAO').textContent = A.value + ' 岁'; });
+  const P = {yuan: 0.015, xiang: 0.015, hui: 0.05};
+  // 一生：从 14 岁开始，按年推进。院试每三年两次（年份 %3 != 2），乡试年份 %3 == 0，会试年份 %3 == 1
+  function life(r, talent, stop, story){
+    let age = 14, stage = 0, tries = [0, 0, 0], lines = [];
+    const startYr = Math.floor(r() * 3);
+    for (; age <= 80; age++) {
+      const y = startYr + age;
+      if (age > 20 && r() < 0.025) { lines.push(age + ' 岁：病故。'); return {stage, age, dead: true, lines, tries}; }
+      if (age > stop && stage < 3) { lines.push(age + ' 岁：家里供不起了，不再考。' + (stage === 0 ? '回去学做生意。' : stage === 1 ? '以秀才身份坐馆教书。' : '以举人身份等大挑、做幕友。')); return {stage, age, quit: true, lines, tries}; }
+      if (stage === 0 && y % 3 !== 2) { tries[0]++; if (r() < P.yuan * talent) { stage = 1; lines.push(age + ' 岁：第 ' + tries[0] + ' 次考院试，中秀才。'); } else if (story && tries[0] % 4 === 0) lines.push(age + ' 岁：院试又没中（第 ' + tries[0] + ' 次）。'); }
+      else if (stage === 1 && y % 3 === 0) { tries[1]++; if (r() < P.xiang * talent) { stage = 2; lines.push(age + ' 岁：第 ' + tries[1] + ' 次乡试，中举！'); } else if (story) lines.push(age + ' 岁：乡试落第（第 ' + tries[1] + ' 次）。'); }
+      else if (stage === 2 && y % 3 === 1) { tries[2]++; if (r() < P.hui * talent) { stage = 3; lines.push(age + ' 岁：第 ' + tries[2] + ' 次会试，中进士。'); return {stage, age, lines, tries}; } else if (story) lines.push(age + ' 岁：会试落第（第 ' + tries[2] + ' 次）。'); }
+    }
+    lines.push('八十岁，还在考。'); return {stage, age, lines, tries};
+  }
+  const SN = ['童生', '秀才', '举人', '进士'];
+  let seed = 1;
+  $('#kjOne').addEventListener('click', () => {
+    const res = life(rng(seed++ * 7919), +T.value / 100, +A.value, true);
+    log.textContent = res.lines.join('\n');
+    say.className = 'say' + (res.stage === 3 ? ' ok' : res.stage === 0 ? ' bad' : '');
+    say.innerHTML = '这一生的终点：<b>' + SN[res.stage] + '</b>' + (res.stage === 3 ? '，' + res.age + ' 岁。' : '。') + '一共考了院试 ' + res.tries[0] + ' 次、乡试 ' + res.tries[1] + ' 次、会试 ' + res.tries[2] + ' 次。';
+  });
+  $('#kjMany').addEventListener('click', () => {
+    const r = rng(seed++ * 104729), t = +T.value / 100, st = +A.value;
+    const cnt = [0, 0, 0, 0], ages = [];
+    for (let i = 0; i < 10000; i++) { const res = life(r, t, st, false); cnt[res.stage]++; if (res.stage === 3) ages.push(res.age); }
+    bars($('#kjBars'), SN.map((n, i) => [n, cnt[i] / 100, i === 0 ? '一辈子没中秀才' : i === 3 ? '终于' : '停在这一级', ['var(--ink-3)', 'var(--kraft)', 'var(--main)', 'var(--zhu)'][i]]), 100, v => v.toFixed(v < 1 ? 2 : 1) + '%');
+    const avg = ages.length ? (ages.reduce((s, x) => s + x, 0) / ages.length).toFixed(1) : '—';
+    log.textContent = '一万个读书人，天赋 ' + T.value + '%，家里供到 ' + st + ' 岁。';
+    say.className = 'say';
+    say.innerHTML = '一万人里，中进士的 <b>' + cnt[3] + '</b> 人，平均 ' + avg + ' 岁；中举人而止步的 ' + cnt[2] + ' 人；当了一辈子秀才的 ' + cnt[1] + ' 人；连秀才都没中的 <b>' + cnt[0] + '</b> 人。' +
+      (st < 35 ? '把“供到几岁”往右拖拖看：<b>很多人不是考不上，是熬不到</b>。' : t > 1.5 ? '天赋翻倍，进士也只多了这么些。这条路的窄，不全是天赋能解决的。' : '这就是“三十老明经，五十少进士”背后的算术。');
+  });
+});
+
+
+/* ---------- 装置 6：一本报销账过户部 ---------- */
+dev('#bfFig', fig => {
+  const say = $('#bfSay'), log = $('#bfLog');
+  const FAULT = ['石料单价比则例高了一钱二分', '土方数目有零头对不上', '一张收单的印没有盖清楚', '夫工日数和口粮数核算不符', '造册格式不合部式，须照新式重造', '去年同类工程的旧案未曾声明', '杉木尺寸未注明“围圆”', '册内“壹”字写作“一”，恐有涂改'];
+  let st, r;
+  function reset(){
+    r = rng(1765); st = {m: 0, spent: 0, fee: 0, n: 0, done: false};
+    log.textContent = '';
+    probe();
+  }
+  function probe(){
+    // 每次送部审核：书吏有一定概率挑出毛病；送过部费后基本不挑
+    if (st.done) return;
+    const p = st.fee ? 0.08 : 0.82;
+    st.m += 2;
+    if (r() < p) {
+      st.cur = FAULT[Math.floor(r() * FAULT.length)];
+      log.textContent = '第 ' + st.m + ' 个月：部驳——' + st.cur + '。\n' + log.textContent;
+      say.className = 'say bad'; say.innerHTML = '户部书吏驳回：<b>' + st.cur + '</b>。你是照例重造，还是送部费？';
+    } else {
+      st.done = true;
+      log.textContent = '第 ' + st.m + ' 个月：户部核准，准予开销。\n' + log.textContent;
+      say.className = 'say ok';
+      say.innerHTML = '账过了。用了 <b>' + st.m + '</b> 个月，重造花掉 ' + st.spent + ' 两，部费 ' + st.fee + ' 两，' + (st.fee ? '' : '一文部费没送，你运气真好，或者部里正好在查书吏。') +
+        (st.fee ? '<br>注意：<b>部费比重造便宜，也比重造快</b>。所以几乎所有人都送。也正因为几乎所有人都送，书吏才有理由一直挑毛病。' : '');
+    }
+    if (st.m >= 36 && !st.done) {
+      st.done = true;
+      say.className = 'say bad';
+      say.innerHTML = '三年任满，账还没过。你调走了，<b>一万两银子挂在你名下</b>，下一任知府可以不认这笔账。真实的清朝，这种“未完”的报销案拖上十几年、追到前任家里的，并不少见。';
+    }
+    render();
+  }
+  function render(){
+    kv($('#bfKv'), [['已过去', st.m + ' 个月'], ['任期剩余', Math.max(0, 36 - st.m) + ' 个月'], ['重造花费', st.spent + ' 两'], ['部费', st.fee + ' 两'], ['被驳次数', st.n]]);
+    $('#bfRedo').disabled = $('#bfPay').disabled = st.done;
+    $('#bfPay').textContent = st.fee ? '再“补”一点部费' : '送部费（报销额的 3%）';
+  }
+  $('#bfRedo').addEventListener('click', () => {
+    if (st.done) return;
+    st.n++; const c = 40 + Math.floor(r() * 80), m = 2 + Math.floor(r() * 4);
+    st.spent += c; st.m += m;
+    log.textContent = '重造册籍：' + m + ' 个月，书办工食纸张 ' + c + ' 两。\n' + log.textContent;
+    probe();
+  });
+  $('#bfPay').addEventListener('click', () => {
+    if (st.done) return;
+    st.n++; const f = st.fee ? 100 : 300;
+    st.fee += f;
+    log.textContent = '托京中熟人送部费 ' + f + ' 两。\n' + log.textContent;
+    probe();
+  });
+  $('#bfReset').addEventListener('click', reset);
+  reset();
+});
+
+
+/* ---------- 装置 7：知县的账本 ---------- */
+dev('#zxFig', fig => {
+  const TYPES = [['简缺', 600, 150, 120], ['中缺', 1000, 260, 220], ['繁缺', 1800, 450, 400]]; // 名字, 养廉, 摊捐, 过境招待
+  let ty = 0;
+  btnRow($('#zxType'), TYPES.map(t => t[0]), 0, i => { ty = i; calc(); });
+  const M = $('#zxM'), S = $('#zxS'), G = $('#zxG'), L = $('#zxL');
+  const MN = ['只请刑名', '刑名、钱谷', '加一位书启', '再加账房', '再加征比'];
+  const MF = [360, 330, 120, 100, 100]; // 每位束脩（两）
+  const GN = ['不送（危险）', '照常', '厚一点', '很厚'];
+  [M, S, G].forEach(x => x.addEventListener('input', calc)); L.addEventListener('change', calc);
+  function calc(){
+    const t = TYPES[ty], m = +M.value, s = +S.value, g = +G.value;
+    $('#zxMO').textContent = MN[m - 1]; $('#zxSO').textContent = s + ' 人'; $('#zxGO').textContent = GN[g];
+    const mufee = MF.slice(0, m).reduce((a, b) => a + b, 0) * (ty === 2 ? 1.5 : ty === 1 ? 1.2 : 1);
+    const inc = [['正俸', 45], ['养廉银', t[1]], ['公费', 60]];
+    const lou = Math.round(t[1] * 1.3 + 300);
+    if (L.checked) inc.push(['陋规', lou]);
+    const out = [['师爷束脩', Math.round(mufee)], ['长随工食', s * 24], ['三节两寿', [40, 220, 420, 700][g] * (1 + ty * 0.5)], ['摊捐', t[2]], ['过境招待', t[3]], ['家用', 150]];
+    const I = inc.reduce((a, b) => a + b[1], 0), O = out.reduce((a, b) => a + b[1], 0);
+    const mx = Math.max(I, O, 1);
+    bars($('#zxIn'), inc.map(r => [r[0], r[1], '', r[0] === '陋规' ? 'var(--red)' : 'var(--grn)']), mx * 0.6, v => Math.round(v) + ' 两');
+    bars($('#zxOut'), out.map(r => [r[0], r[1], '', 'var(--zhu)']), mx * 0.6, v => Math.round(v) + ' 两');
+    const d = I - O, say = $('#zxSay');
+    let warn = '';
+    if (m === 1) warn += '只请一位师爷，钱粮账交给书吏去算，等于把账房钥匙交给了最想动它的人。';
+    if (s < 8) warn += '长随太少，门上、签押、管班都排不开，书吏差役没人盯着。';
+    if (g === 0) warn += '一份节礼都不送，下次考核“卓异”还是“不及”，你心里有数。';
+    say.className = 'say ' + (d >= 0 ? 'ok' : 'bad');
+    say.innerHTML = '一年入 <b>' + Math.round(I) + '</b> 两，出 <b>' + Math.round(O) + '</b> 两，' + (d >= 0 ? '结余 ' + Math.round(d) + ' 两。' : '<b>亏 ' + Math.round(-d) + ' 两</b>。') +
+      (L.checked ? (d >= 0 ? '账平了。代价是这 ' + lou + ' 两银子每一文都从百姓身上来，而且没有任何账本记着。' : '收了陋规还亏，你的排场大概太大了。') :
+        (d < 0 ? '不收陋规的话，这个窟窿只能借钱填。三年下来，你会欠一屁股债离任。' : '不收陋规也能平账？那多半是你把师爷、长随、节礼都压到了危险的程度。')) + (warn ? '<br>' + warn : '');
+  }
+  calc();
+});
+
+
+/* ---------- 装置 8：用谁来管 ---------- */
+dev('#whoFig', fig => {
+  const svg = $('#whoSvg'), say = $('#whoSay');
+  // 每种人：控制力曲线 c(t)、能力曲线 a(t)，t 为 0—200 年
+  const K = [
+    {n: '贵族', c: t => 55 - 25 * (t / 200), a: t => 50 - 10 * (t / 200),
+      s: '贵族一开始就有自己的地盘和兵，君主说了算的程度不高，而且随着爵位一代代世袭，越来越低。能力全看投胎：有的儿子能干，有的只会打猎。这是欧洲封建时代和西周的样子：<b>国王常常只是最大的那个贵族</b>。'},
+    {n: '宦官', c: t => t < 80 ? 85 - t * 0.05 : 81 - (t - 80) * 0.45, a: t => 55 - 8 * Math.sin(t / 30),
+      s: '头几十年非常好用：宦官没有儿子，只能靠你。可大约几代人以后，宦官之间结成了“宫里的家”，开始替幼主拿主意、掌握禁军、批红。东汉、唐朝后期、明朝后期都是这条曲线：<b>先是你的手，后来成了你的头</b>。'},
+    {n: '奴隶出身的官', c: t => t < 120 ? 88 - t * 0.04 : 83 - (t - 120) * 0.55, a: t => t < 120 ? 78 : 78 - (t - 120) * 0.35,
+      s: '从全国挑最聪明的孩子，精心培养，能力最高，又绝对依附于你。奥斯曼的十六世纪就是这条曲线的顶点。一百多年后，他们开始结婚、让儿子接班、经商、哗变，“征集”停了，能力下滑，控制力崩塌。<b>最后要用大炮才能收回来</b>。'},
+    {n: '考试出身的文官', c: t => 70 - 8 * Math.sin(t / 45), a: t => 66 - 6 * (t / 200),
+      s: '控制力和能力都不是最高，但最稳：文官有同年、同乡、门生，会结党、会扯皮，可他们的位子不能世袭，每一代都要重新考，没有哪一群人能把权力永久攥在手里。<b>它不是最好用的工具，却是最不容易反噬主人的工具</b>。这大概是科举能延续一千三百年的原因之一。'}
+  ];
+  let k = 0, seed = 1;
+  btnRow($('#whoBtns'), K.map(x => x.n), 0, i => { k = i; run(); });
+  function run(){
+    const r = rng(seed++), o = K[k];
+    const c = [], a = [];
+    for (let t = 0; t <= 200; t += 5) { c.push([t, clamp(o.c(t) + (r() - 0.5) * 8, 2, 98)]); a.push([t, clamp(o.a(t) + (r() - 0.5) * 8, 2, 98)]); }
+    lineChart(svg, [{color: 'var(--zhu)', pts: c, w: 2.8}, {color: 'var(--main)', pts: a, dash: '6 4'}], {xmin: 0, xmax: 200, ymin: 0, ymax: 100, yt: [0, 25, 50, 75, 100], xt: [0, 50, 100, 150, 200], xf: v => v + ' 年', H: 230});
+    say.innerHTML = '<b>' + o.n + '</b>：' + o.s;
+  }
+  run();
+});
+
+
+/* ---------- 装置 9：买一个法国的官 ---------- */
+dev('#venFig', fig => {
+  const TY = [
+    {n: '国王秘书', yld: 0.012, noble: 20, d: '几乎不用干活，收入很少，任满二十年全家成为世袭贵族。'},
+    {n: '高等法院推事', yld: 0.03, noble: 40, d: '体面的法官，收入一般，有“诉讼礼金”；两代人任职后家族可得贵族身份（这里简化为四十年）。'},
+    {n: '收税官', yld: 0.07, noble: 0, d: '要干活，收入高（按征收额抽成），不给贵族头衔。'}
+  ];
+  let ty = 0, seed = 1;
+  btnRow($('#venType'), TY.map(t => t.n), 0, i => { ty = i; });
+  const Y = $('#venY'); const yo = () => $('#venYO').textContent = Y.value + ' 年'; Y.addEventListener('input', yo); yo();
+  $('#venGo').addEventListener('click', () => {
+    const t = TY[ty], r = rng(seed++ * 31 + ty), paul = $('#venP').checked;
+    let nobleY = 0, y = +Y.value, age = 30, holder = 1, got = 0, paid = 0, noble = false, held = 0, lines = [], lost = false;
+    const P = 10000;
+    lines.push(y + '：' + age + ' 岁，买下「' + t.n + '」，付 10,000。' + t.d);
+    while (y < 1790) {
+      y++; age++; held++;
+      got += P * t.yld;
+      if (paul) paid += P / 60;
+      if (t.noble && !noble && held >= t.noble) { noble = true; nobleY = y; lines.push(y + '：任满 ' + t.noble + ' 年，全家成为世袭贵族，免交达伊税。'); }
+      const pd = age < 50 ? 0.012 : age < 65 ? 0.03 : 0.08;
+      if (r() < pd) {
+        if (!paul && r() < 0.85) { lines.push(y + '：第 ' + holder + ' 代持有人突然去世，没交保莱特税，又没来得及在死前四十天办转让。官位收归国王。'); lost = true; break; }
+        holder++; lines.push(y + '：持有人去世，' + (paul ? '因为年年交了保莱特税，' : '幸好提前办了转让，') + '官位传给儿子（第 ' + holder + ' 代）。'); age = 30 + Math.floor(r() * 5); if (t.noble && !noble) held = Math.floor(held * 0.5);
+      }
+    }
+    let back = 0;
+    if (!lost) {
+      lines.push('1789：八月四日夜，国民议会宣布废除特权和卖官制度。官位按价赎回。');
+      // 以指券赎回；假设在 1791—1796 年间逐步花掉，实际价值平均只剩约三成
+      back = P * 0.3;
+      lines.push('1791—1796：拿到指券面值 10,000，可指券一路贬值，最后实际能买到的东西约合 ' + Math.round(back).toLocaleString() + '。' + (noble ? '贵族头衔也一起废了。' : ''));
+    }
+    const net = got + back - P - paid;
+    $('#venLog').textContent = lines.join('\n');
+    kv($('#venKv'), [['持有', (lost ? '中途失去' : '到 1789 年') + ' · ' + holder + ' 代'], ['官位收入', Math.round(got).toLocaleString()], ['保莱特税', Math.round(paid).toLocaleString()], ['赎金实值', Math.round(back).toLocaleString()], ['净账', (net >= 0 ? '+' : '') + Math.round(net).toLocaleString()]]);
+    const say = $('#venSay');
+    say.className = 'say ' + (net >= 0 ? 'ok' : 'bad');
+    say.innerHTML = (lost ? '<b>一场急病，几十年的积蓄归了国王。</b>这就是保莱特税存在的理由：每年交一点钱，买的是“死得不凑巧”的保险。' :
+      net >= 0 ? '这笔买卖赚了。' + (ty === 2 ? '收税官收益高，可也最招人恨：大革命里，收税的人是第一批被清算的。' : '你买得早，吃到了几十年的收益。') :
+      '账面上亏了。' + (ty === 0 ? (noble ? '可你本来就不是为了钱：你买的是“贵族”两个字，它在你家挂了 ' + (1789 - nobleY) + ' 年。' : '二十年还没满，贵族没当上，革命先来了。') : '买得越晚，离 1789 年越近，回本的时间越少。'));
+  });
+});
+
+
+/* ---------- 装置 10：劈一根符木 ---------- */
+dev('#tallyFig', fig => {
+  const svg = $('#taSvg'), say = $('#taSay');
+  const L = $('#taL'), S = $('#taS'), D = $('#taD');
+  let split = false, cheat = false;
+  // 把金额拆成缺口：[宽度, 深度, 名字]
+  function notches(l, s, d){
+    const n = [];
+    const add = (k, w, dep, nm) => { for (let i = 0; i < k; i++) n.push([w, dep, nm]); };
+    add(Math.floor(l / 1000), 34, 22, '千镑'); l %= 1000;
+    add(Math.floor(l / 100), 16, 16, '百镑'); l %= 100;
+    add(Math.floor(l / 20), 10, 12, '二十镑'); l %= 20;
+    add(l, 5, 8, '镑');
+    add(s, 3, 5, '先令');
+    add(d, 0, 4, '便士');
+    return n;
+  }
+  function draw(){
+    const l = +L.value, s = +S.value, d = +D.value;
+    $('#taLO').textContent = l + ' 镑'; $('#taSO').textContent = s + ' 先令'; $('#taDO').textContent = d + ' 便士';
+    const N = notches(l, s, d);
+    const W = 600, x0 = 40;
+    // 计算总长度
+    let len = 0; N.forEach(n => len += n[0] + 4); const stickL = Math.max(260, len + 60);
+    const sc = Math.min(1, (W - 60) / stickL);
+    const H = split ? 200 : 120;
+    let g = '';
+    const stick = (y, h, isStock, cut) => {
+      // 上边缘带缺口
+      let path = 'M' + x0 + ',' + y, x = x0 + 20 * sc;
+      path += ' L' + x + ',' + y;
+      N.forEach((n, i) => {
+        const w = n[0] * sc, dep = n[1];
+        if (cut && i === N.length - 1 - 0 && false) {}
+        if (w > 0) { path += ' L' + x + ',' + (y + dep) + ' L' + (x + w) + ',' + (y + dep) + ' L' + (x + w) + ',' + y; }
+        else { /* 便士：一道划痕 */ }
+        x += w + 4 * sc;
+      });
+      const end = x0 + stickL * sc;
+      path += ' L' + end + ',' + y + ' L' + end + ',' + (y + h) + ' L' + x0 + ',' + (y + h) + ' Z';
+      let gg = '<path d="' + path + '" fill="color-mix(in srgb,var(--kraft) 30%,var(--card))" stroke="var(--kraft)" stroke-width="1.5"/>';
+      // 便士划痕
+      x = x0 + 20 * sc;
+      N.forEach(n => { if (n[0] === 0) gg += '<line x1="' + (x + 1) + '" x2="' + (x + 1) + '" y1="' + y + '" y2="' + (y + 6) + '" stroke="var(--ink-2)" stroke-width="1.2"/>'; x += n[0] * sc + 4 * sc; });
+      // 木纹
+      for (let k = 1; k < 4; k++) gg += '<path d="M' + (x0 + 4) + ',' + (y + h * k / 4) + ' q' + (stickL * sc / 3) + ',' + (k % 2 ? 3 : -3) + ' ' + (stickL * sc - 8) + ',0" fill="none" stroke="var(--kraft)" stroke-opacity=".35"/>';
+      if (cut) gg += '<path d="M' + (x0 + 20 * sc) + ',' + y + ' l26,0 l-6,14 l-20,0 Z" fill="var(--card)" stroke="var(--red)" stroke-width="1.5" stroke-dasharray="3 2"/>';
+      gg += txt(x0 + stickL * sc + 8, y + h / 2 + 4, isStock === null ? '符木' : isStock ? '存根（郡长）' : '对根（国库）', {s: 12, a: 'start', c: 'var(--ink-2)'});
+      return gg;
+    };
+    if (!split) g += stick(30, 50, null, false);
+    else { g += stick(24, 46, true, cheat); g += stick(118, 30, false, false); g += txt(W / 2, 108, '— 劈开 —', {s: 11, c: 'var(--ink-3)', halo: false}); }
+    svg.setAttribute('viewBox', '0 0 ' + Math.max(W, x0 + stickL * sc + 110) + ' ' + H); svg.innerHTML = g;
+    const cnt = {}; N.forEach(n => cnt[n[2]] = (cnt[n[2]] || 0) + 1);
+    return Object.entries(cnt).map(e => e[1] + ' 个' + e[0] + '缺口').join('，');
+  }
+  function upd(){ split = false; cheat = false; const t = draw(); say.className = 'say'; say.innerHTML = '刻好了：' + (t || '一个缺口也没有，郡长今天一文没交') + '。'; }
+  [L, S, D].forEach(x => x.addEventListener('input', upd));
+  $('#taSplit').addEventListener('click', () => { split = true; cheat = false; draw(); say.className = 'say ok'; say.innerHTML = '劈开了。长的一半（存根）郡长拿走当收据，短的一半（对根）锁进国库。英文“股票”“股东”里的 stock，一说就和这根“存根”有关（<b>存疑</b>）。'; });
+  $('#taCheat').addEventListener('click', () => { if (!split) { split = true; } cheat = true; draw(); say.className = 'say bad'; say.innerHTML = '郡长回家后，想在存根上动点手脚，让它看起来像交得更多：他把第一个缺口削宽了一点（红色虚线）。'; });
+  $('#taJoin').addEventListener('click', () => {
+    if (!split) { say.className = 'say'; say.innerHTML = '还没劈开呢。'; return; }
+    say.className = 'say ' + (cheat ? 'bad' : 'ok');
+    say.innerHTML = cheat ? '对账：两半一合，<b>缺口对不上</b>，木纹也错开了。国库里的对根是铁证。郡长要为此付出代价。这根棍子不需要任何人识字，就能防伪。' : '对账：两半合在一起，缺口严丝合缝，木纹也连得上。账是真的。';
+  });
+  upd();
+});
+
+})();
+
+</script>
+</body>
+</html>

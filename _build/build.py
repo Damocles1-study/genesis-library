@@ -6,6 +6,7 @@
     python3 _build/build.py power1 power2 power3   # 《谁说了算》三部
     python3 _build/build.py city1                  # 《城里城外》第一部
     python3 _build/build.py turn1 turn2 turn3 turn4   # 《轮到谁了》四部
+    python3 _build/build.py civil1 civil2 civil3      # 《铁打的营盘》三部
 """
 import os, re, sys
 
@@ -32,6 +33,10 @@ BOOKS = {
     'turn2': ('turn', 'turn/two.html', ['top2.html', 'css.html', 'bar.html'] + ['b%02d.html' % i for i in range(15)]),
     'turn3': ('turn', 'turn/three.html', ['top3.html', 'css.html', 'bar.html'] + ['c%02d.html' % i for i in range(16)]),
     'turn4': ('turn', 'turn/four.html', ['top4.html', 'css.html', 'bar.html'] + ['d%02d.html' % i for i in range(15)]),
+    # 《铁打的营盘》分三部（刀笔 / 机器 / 心法），脚本拆在 _build/civil/js/*.js
+    'civil1': ('civil', 'civil/index.html', ['top1.html', 'css.html', 'bar.html'] + ['a%02d.html' % i for i in range(12)]),
+    'civil2': ('civil', 'civil/two.html', ['top2.html', 'css.html', 'bar.html'] + ['b%02d.html' % i for i in range(13)]),
+    'civil3': ('civil', 'civil/three.html', ['top3.html', 'css.html', 'bar.html'] + ['c%02d.html' % i for i in range(13)]),
 }
 DRAFT = '--draft' in sys.argv  # 写到一半时跳过缺失段落和锚点检查
 

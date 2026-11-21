@@ -7,6 +7,7 @@
     python3 _build/build.py city1                  # 《城里城外》第一部
     python3 _build/build.py turn1 turn2 turn3 turn4   # 《轮到谁了》四部
     python3 _build/build.py civil1 civil2 civil3      # 《铁打的营盘》三部
+    python3 _build/build.py worth1 worth2             # 《值不值》两部
 """
 import os, re, sys
 
@@ -37,6 +38,9 @@ BOOKS = {
     'civil1': ('civil', 'civil/index.html', ['top1.html', 'css.html', 'bar.html'] + ['a%02d.html' % i for i in range(12)]),
     'civil2': ('civil', 'civil/two.html', ['top2.html', 'css.html', 'bar.html'] + ['b%02d.html' % i for i in range(12)]),
     'civil3': ('civil', 'civil/three.html', ['top3.html', 'css.html', 'bar.html'] + ['c%02d.html' % i for i in range(12)]),
+    # 《值不值》分两部（算 / 人），脚本拆在 _build/worth/js/*.js
+    'worth1': ('worth', 'worth/index.html', ['top1.html', 'css.html', 'bar.html'] + ['a%02d.html' % i for i in range(10)]),
+    'worth2': ('worth', 'worth/two.html', ['top2.html', 'css.html', 'bar.html'] + ['b%02d.html' % i for i in range(8)]),
 }
 DRAFT = '--draft' in sys.argv  # 写到一半时跳过缺失段落和锚点检查
 

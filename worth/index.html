@@ -1,0 +1,2040 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="一个人的创世记第一部《算》：机会成本、沉没成本、复利与它的极限、风险杠杆与破产、欲望与比较、白忙活、钱的基本功。写给快毕业的人。">
+<meta property="og:title" content="值不值 · 第一部 · 算">
+<meta property="og:description" content="资源、欲望、风险、回报和白忙活：七个虚构的毕业生走过真实的十年，历史上的人早就替我们犯过这些错。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='4' fill='%232e5b3c'/%3E%3Cpath d='M8 9h16M8 14h16M8 19h16M8 24h16M13 6v21' fill='none' stroke='%23ece3cf' stroke-width='1.6'/%3E%3Ccircle cx='22' cy='22' r='4' fill='%23c4553a'/%3E%3C/svg%3E">
+<title>值不值 · 第一部 · 算</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@500;700&family=Noto+Serif+SC:wght@400;600;700&family=ZCOOL+XiaoWei&display=swap">
+<style>
+/* ZCOOL XiaoWei 把“回”字画成实心方块：这一个字改用系统宋体/黑体，其余字不变 */
+@font-face{font-family:"Hui Fix";unicode-range:U+56DE;src:local("Songti SC"),local("STSongti-SC-Regular"),local("STSong"),local("SimSun"),local("宋体"),local("Noto Serif CJK SC"),local("NotoSerifCJKsc-Regular"),local("Source Han Serif SC"),local("SourceHanSerifSC-Regular"),local("PingFang SC"),local("PingFangSC-Regular"),local("Microsoft YaHei"),local("Noto Sans CJK SC"),local("NotoSansCJKsc-Regular"),local("Droid Sans Fallback")}
+
+/* 版式：一本账簿。主色是账本绿（账页的格线），赤字红是亏损，牛皮纸色是十年账的信封。
+   每章：章首（五个账户、年代条）→ 有人问 → 一场戏（虚构）→ 十年账（虚构）→ 正文 → 再查一遍 → 眉批 → 装置 → 算得清的 / 算不清的。 */
+:root{
+  --paper:#ece3cf; --paper-2:#e2d7bf; --card:#f3ebda;
+  --ink:#1f211d; --ink-2:#4a4b42; --ink-3:#5c5c52; --rule:#ccbfa2;
+  --main:#2e5b3c;   /* 账本绿 */
+  --ter:#a8391f;    /* 赤字 */
+  --zhu:#a8391f;
+  --kraft:#8a6230;  /* 牛皮纸档案袋 */
+  --pur:#5d2f63;
+  --sea:#a9bfc9; --land:#ddd1b4;
+  --och:#7a5510;
+  --red:#983a24;
+  --blu:#2a4f78;
+  --grn:#3c6a4c;
+  --hl:color-mix(in srgb,#c9a44a 34%,transparent);
+  --c-paper:#f2e9d6; --c-ink:#191614;
+  --f-display:"Hui Fix","ZCOOL XiaoWei","Songti SC","STSong","Noto Serif SC",serif;
+  --f-body:"Noto Serif SC","Songti SC","Source Han Serif SC","STSong",serif;
+  --f-hand:"Ma Shan Zheng","Kaiti SC","STKaiti","KaiTi",cursive;
+  --f-sans:"Noto Sans SC","PingFang SC","Hiragino Sans GB",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#141512; --paper-2:#1c1e19; --card:#20221d; --ink:#e9e3d2; --ink-2:#b5af9c; --ink-3:#958f7d; --rule:#363a33;
+  --main:#93c9a0; --ter:#e8876a; --zhu:#e8876a; --kraft:#d1a66a; --pur:#c9a0cf; --sea:#22394a; --land:#332d22; --och:#d9b45e; --red:#e57b5e; --blu:#9cc0e6; --grn:#8fc2a0;
+  --c-paper:#1d1b18; --c-ink:#ece6da; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#141512; --paper-2:#1c1e19; --card:#20221d; --ink:#e9e3d2; --ink-2:#b5af9c; --ink-3:#958f7d; --rule:#363a33;
+  --main:#93c9a0; --ter:#e8876a; --zhu:#e8876a; --kraft:#d1a66a; --pur:#c9a0cf; --sea:#22394a; --land:#332d22; --och:#d9b45e; --red:#e57b5e; --blu:#9cc0e6; --grn:#8fc2a0;
+  --c-paper:#1d1b18; --c-ink:#ece6da; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+.g{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit;text-decoration-color:var(--main);text-underline-offset:3px}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--main);outline-offset:2px}
+svg{max-width:100%;height:auto;display:block}
+
+/* 页眉 */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+.bar-in{max-width:56rem;margin:0 auto;display:flex;align-items:center;gap:10px;padding-block:8px}
+.bar .home{text-decoration:none;font-size:13px;color:var(--ink-3);white-space:nowrap;border:1px solid var(--rule);border-radius:999px;padding:1px 9px}
+.bar .name{font-family:var(--f-display);font-size:19px;letter-spacing:.05em;white-space:nowrap;text-decoration:none}
+.bar .parts{display:flex;gap:2px}
+.bar .parts a{font-size:12.5px;text-decoration:none;color:var(--ink-3);padding:0 6px;border-radius:4px;white-space:nowrap}
+.bar .parts a.on{background:var(--main);color:var(--paper)}
+.bar .vol{margin-left:auto;font-size:13px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.bar .tocbtn{border:1px solid var(--rule);background:transparent;border-radius:6px;padding:0 8px;font-size:13px;cursor:pointer;color:var(--ink-2);white-space:nowrap}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;background:var(--main);width:0}
+.drawer{position:fixed;inset:0;z-index:40;display:none}
+.drawer.on{display:block}
+.drawer .mask{position:absolute;inset:0;background:rgba(0,0,0,.35)}
+.drawer .panel{position:absolute;right:0;top:0;bottom:0;width:min(370px,90vw);background:var(--paper);border-left:1px solid var(--rule);overflow:auto;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px))}
+.drawer h5{font-family:var(--f-display);font-weight:400;font-size:20px;margin:0 0 10px}
+.drawer ol{list-style:none;margin:0;padding:0}
+.drawer li.ph{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.16em;color:var(--main);padding:14px 0 2px}
+.drawer li.vh{font-size:12px;color:var(--ink-3);padding:8px 0 0;letter-spacing:.1em}
+.drawer li a{display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--rule);text-decoration:none;font-size:15px;line-height:1.5}
+.drawer li a .n{font-family:var(--f-display);font-size:18px;color:var(--main);min-width:1.6em;text-align:center}
+.drawer li a small{display:block;color:var(--ink-3);font-size:12px}
+.drawer li a.here .n{background:var(--main);color:var(--paper);border-radius:4px}
+.drawer .x{position:absolute;right:12px;top:10px;border:0;background:transparent;font-size:22px;cursor:pointer;color:var(--ink-2)}
+
+main{display:block}
+.col{max-width:38rem;margin-inline:auto}
+.wide{max-width:54rem;margin-inline:auto}
+.col p{margin:0 0 1.05em;text-indent:2em}
+.col p.ni,.col .ni{text-indent:0}
+h2,h3,h4{text-wrap:balance}
+h3{font-family:var(--f-display);font-weight:400;font-size:24px;line-height:1.4;margin:2.2em 0 .7em;letter-spacing:.03em}
+h3 .y{font-family:var(--f-mono);font-size:13px;color:var(--ink-3);margin-left:10px;letter-spacing:0;white-space:nowrap}
+em{font-style:normal;background:linear-gradient(transparent 62%,var(--hl) 62%)}
+strong{font-weight:600}
+blockquote{margin:1.4em 0;padding:.2em 0 .2em 1.2em;border-left:2px solid var(--och);color:var(--ink-2)}
+blockquote p{text-indent:0!important;margin:0 0 .4em}
+blockquote cite{font-style:normal;font-size:14px;color:var(--ink-3)}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.figcap{font-size:14px;color:var(--ink-2);line-height:1.7;margin-top:8px}
+.sep{text-align:center;color:var(--och);letter-spacing:1.2em;margin:2em 0;text-indent:1.2em!important;font-size:14px}
+ul.plain{font-size:16px;line-height:1.9;padding-left:1.4em}
+ul.plain li{margin:0 0 .35em}
+
+/* 封面 */
+.hero{padding-block:36px 20px}
+.hero .eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;color:var(--ink-3)}
+.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(60px,14vw,124px);line-height:1;margin:.25em 0 .2em;letter-spacing:.1em}
+.hero h1 .sm{display:block;font-size:.19em;letter-spacing:.3em;color:var(--ink-2);margin-top:.6em}
+.hero .part{display:inline-block;font-family:var(--f-display);font-size:22px;color:var(--main);border:1.5px solid var(--main);border-radius:4px;padding:0 10px;margin-bottom:6px;letter-spacing:.1em}
+.hero p.lead{font-size:18px;max-width:36em;margin:0 0 1em}
+.partnav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:24px 0}
+.partnav a{display:block;text-decoration:none;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;background:var(--card);line-height:1.5}
+.partnav a b{display:block;font-family:var(--f-display);font-weight:400;font-size:20px}
+.partnav a small{font-size:12.5px;color:var(--ink-3)}
+.partnav a.on{border-color:var(--main);box-shadow:inset 0 0 0 1px var(--main)}
+.partnav a .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;color:var(--main)}
+
+/* 六张脸 */
+.cast{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin:14px 0}
+.cast figure{margin:0;text-align:center;background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:6px 4px 8px}
+.cast svg{width:100%;max-width:120px;margin:auto;color:var(--c-ink)}
+.cast b{display:block;font-family:var(--f-display);font-weight:400;font-size:19px;line-height:1.2}
+.cast small{display:block;font-size:12px;color:var(--ink-3);line-height:1.4}
+.eras{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 2px}
+
+/* 目录 */
+.toc{list-style:none;margin:20px 0 0;padding:0;border-top:1px solid var(--rule)}
+.toc li a{display:grid;grid-template-columns:2.6em minmax(0,1fr) auto;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--rule);text-decoration:none}
+.toc .n{font-family:var(--f-display);font-size:28px;line-height:1;color:var(--main);text-align:center}
+.toc .t{font-family:var(--f-display);font-size:21px;line-height:1.3}
+.toc .t small{display:block;font-family:var(--f-body);font-size:13px;color:var(--ink-3);margin-top:2px}
+.toc .r{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);text-align:right;white-space:nowrap}
+.toc li a:hover .t{color:var(--main)}
+.toc .vh{padding:16px 0 4px;font-family:var(--f-mono);font-size:12px;letter-spacing:.16em;color:var(--ink-3);border-bottom:1px solid var(--rule)}
+.toc li.away a{opacity:.82}
+.toc li.away .r::after{content:" ↗";color:var(--main)}
+.qmap{list-style:none;margin:0;padding:0;columns:2 17em;column-gap:28px}
+.qmap li{break-inside:avoid;margin:0 0 .5em;font-size:15.5px;line-height:1.65}
+.qmap a{text-decoration:none;border-bottom:1px dashed var(--ink-3)}
+.qmap a:hover{color:var(--main)}
+.qmap b{font-family:var(--f-display);font-weight:400;color:var(--main);margin-left:4px}
+
+/* 卷首 */
+.volhead{position:relative;max-width:54rem;margin:64px auto 20px;padding:30px 22px 24px;border-top:3px double var(--ink);border-bottom:3px double var(--ink);overflow:hidden}
+.volhead .num{font-family:var(--f-mono);font-size:12px;letter-spacing:.24em;color:var(--main)}
+.volhead h2{font-family:var(--f-display);font-weight:400;font-size:clamp(64px,16vw,124px);line-height:1;margin:.1em 0 .12em;letter-spacing:.1em}
+.volhead h2 small{font-size:.24em;letter-spacing:.2em;color:var(--ink-2);margin-left:.4em}
+.volhead .lede{max-width:32em;margin:6px 0 0;font-size:16px;color:var(--ink-2);line-height:1.8}
+.volhead .pyr{position:absolute;right:-10px;bottom:-4px;width:190px;opacity:.9;pointer-events:none}
+
+/* 章首 */
+section.chap{padding-top:24px}
+.chead{position:relative;max-width:54rem;margin:46px auto 26px;padding:20px 22px 18px;display:grid;grid-template-columns:96px minmax(0,1fr);gap:20px;align-items:start;background:var(--paper-2);border-radius:10px;border:1px solid var(--rule)}
+.chead .big{font-family:var(--f-display);font-size:84px;line-height:1;color:var(--main);text-align:center;border:2px solid var(--main);border-radius:8px;padding:4px 0 8px;background:var(--card)}
+.chead .no{font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;color:var(--main)}
+.chead h2{font-family:var(--f-display);font-weight:400;font-size:clamp(32px,7vw,50px);line-height:1.15;margin:.08em 0 .2em;letter-spacing:.06em}
+.chead dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 14px;margin:6px 0 0;font-size:14.5px;line-height:1.7}
+.chead dt{color:var(--ink-3);white-space:nowrap}
+.chead dd{margin:0;color:var(--ink-2)}
+.where{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.where span{font-size:12px;line-height:1.6;border:1px solid var(--rule);border-radius:4px;padding:0 6px;color:var(--ink-3);background:var(--paper)}
+.where span.on{border-color:var(--main);color:var(--main);background:color-mix(in srgb,var(--main) 8%,var(--paper));font-weight:600}
+
+/* 你问的 */
+.ask{margin:1.6em 0;padding:12px 16px 4px;border-radius:8px;background:var(--card);border:1px solid var(--rule)}
+.ask .q{font-family:var(--f-display);font-size:19px;line-height:1.5;margin:0 0 .4em;text-indent:0!important}
+.ask .q::before{content:"有人问";font-family:var(--f-sans);font-size:11.5px;letter-spacing:.14em;color:var(--paper);background:var(--main);border-radius:3px;padding:1px 6px;margin-right:8px;vertical-align:3px}
+.ask p{text-indent:0!important;font-size:15.5px;line-height:1.8;margin:0 0 .7em;color:var(--ink-2)}
+
+/* 河湾：虚构的小地方 */
+.river{margin:1.8em 0 2em;padding:16px 18px 6px;border:1.5px dashed var(--och);border-radius:10px;position:relative;background:color-mix(in srgb,var(--och) 4%,var(--paper))}
+.river::before{content:attr(data-t);position:absolute;top:-12px;left:14px;background:var(--paper);padding:0 8px;font-size:13px;letter-spacing:.12em;color:var(--och);font-weight:600}
+.river::after{content:"虚构";position:absolute;top:-10px;right:14px;background:var(--paper);padding:0 6px;font-size:11px;letter-spacing:.2em;color:var(--ink-3);border:1px solid var(--rule);border-radius:3px;line-height:1.5}
+.river p{text-indent:0!important;font-size:16px;line-height:1.85}
+.river .nm{font-weight:600;color:var(--och)}
+
+/* 别处：同一件事在地球的不同地方 */
+.globe{margin:2em auto;max-width:54rem}
+.globe .gh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;border-bottom:1.5px solid var(--ink);padding-bottom:4px;margin-bottom:10px}
+.globe .gh b{font-family:var(--f-display);font-weight:400;font-size:22px;letter-spacing:.06em}
+.globe .gh span{font-size:13px;color:var(--ink-3)}
+.globe .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(15.5em,1fr));gap:10px}
+.rg{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:10px 13px 8px;font-size:15px;line-height:1.75}
+.rg h6{margin:0 0 4px;font-family:var(--f-display);font-weight:400;font-size:18px;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.rg h6 small{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);white-space:nowrap}
+.rg p{margin:0 0 .5em;text-indent:0!important}
+
+/* 告示 · 白话：讽刺栏 */
+.spin{margin:2em 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:1.5px solid var(--ink);border-radius:6px;overflow:hidden;background:var(--card)}
+.spin>div{padding:12px 16px 10px;font-size:15.5px;line-height:1.8}
+.spin>div p{text-indent:0!important;margin:0 0 .5em}
+.spin .off{font-family:var(--f-display);font-size:17px;letter-spacing:.04em;background:color-mix(in srgb,var(--main) 6%,var(--card))}
+.spin .plain{border-left:1.5px solid var(--ink)}
+.spin i{display:block;font-style:normal;font-family:var(--f-sans);font-size:11.5px;letter-spacing:.2em;color:var(--main);margin-bottom:4px}
+.spin .plain i{color:var(--grn)}
+.spin .src{grid-column:1 / -1;border-top:1px dashed var(--rule);font-size:12.5px;color:var(--ink-3);padding:4px 16px 6px}
+
+/* 那时的一天 */
+.life{margin:2em 0;padding:14px 16px 6px;border-radius:8px;border-left:4px solid var(--grn);background:color-mix(in srgb,var(--grn) 6%,var(--card))}
+.life h5{margin:0 0 .3em;font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--grn)}
+.life h5 small{font-family:var(--f-mono);font-size:12px;color:var(--ink-3);margin-left:8px}
+.life p{text-indent:0!important;font-size:15.5px;line-height:1.8;margin:0 0 .7em}
+
+/* 蓝框 */
+.box{margin:2em 0;padding:16px 18px 8px;border-radius:8px;border:1.5px solid var(--blu);background:color-mix(in srgb,var(--blu) 6%,var(--paper))}
+.box h5{margin:.1em 0 .5em;font-family:var(--f-display);font-weight:400;font-size:21px;color:var(--blu);letter-spacing:.04em}
+.box p{text-indent:0!important;margin:0 0 .8em;font-size:16px;line-height:1.85}
+.box ul,.box ol{margin:0 0 .8em;padding-left:1.2em;font-size:16px;line-height:1.85}
+.box li{margin:0 0 .3em}
+
+/* 眉批 */
+.echo{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;margin:1.6em 0;padding:14px 14px 10px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.echo .stamp{writing-mode:vertical-rl;font-family:var(--f-display);font-size:15px;color:var(--red);border:1.5px solid var(--red);border-radius:3px;padding:6px 2px;letter-spacing:.2em;align-self:start}
+.echo[data-k="存疑"] .stamp{color:var(--ink-3);border-color:var(--ink-3)}
+.echo[data-k="联系"] .stamp{color:var(--och);border-color:var(--och)}
+.echo[data-k="生活"] .stamp{color:var(--grn);border-color:var(--grn)}
+.echo[data-k="押韵"] .stamp{color:var(--blu);border-color:var(--blu)}
+.echo[data-k="讽刺"] .stamp{color:var(--main);border-color:var(--main)}
+.echo p{text-indent:0!important;margin:0 0 .5em;font-size:15.5px;line-height:1.8}
+.echo .rh{font-family:var(--f-display);font-size:18px;margin-bottom:.2em}
+
+/* 章末：史 / 世 */
+.seal{margin:2.6em 0 1em;border:1.5px solid var(--ink);border-radius:6px;background:var(--card);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);overflow:hidden}
+.seal>div{padding:12px 16px 14px;font-size:15.5px;line-height:1.75}
+.seal>div+div{border-left:1.5px solid var(--ink)}
+.seal i{display:block;font-style:normal;font-family:var(--f-display);font-size:22px;letter-spacing:.2em;margin-bottom:2px;color:var(--main)}
+.seal>div+div i{color:var(--grn)}
+.seal i small{font-family:var(--f-body);font-size:12px;letter-spacing:.1em;color:var(--ink-3);margin-left:6px}
+
+/* 装置 */
+.fig{margin:2.2em auto;padding:20px 18px;background:var(--card);border:1px solid var(--rule);border-radius:6px}
+.fig-label{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.12em;color:var(--main)}
+.fig h4{font-family:var(--f-display);font-weight:400;font-size:22px;margin:.25em 0 .35em}
+.fig .how{font-size:14.5px;color:var(--ink-2);margin:0 0 14px;line-height:1.75}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.btn{border:1px solid var(--ink-3);background:transparent;border-radius:999px;padding:4px 14px;font-size:14px;cursor:pointer;line-height:1.6;color:var(--ink)}
+.btn:hover{border-color:var(--ink)}
+.btn.pri{background:var(--main);color:var(--paper);border-color:var(--main)}
+.btn.on{background:var(--main);border-color:var(--main);color:var(--paper)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.readout{font-size:14.5px;color:var(--ink-2);line-height:1.75;min-height:1.5em}
+.readout b{color:var(--ink)}
+.say{background:var(--paper);border-left:3px solid var(--och);padding:8px 12px;margin:10px 0;font-size:15px;line-height:1.75;min-height:3.2em}
+.say.ok{border-left-color:var(--grn)}.say.bad{border-left-color:var(--red)}
+input[type=range]{width:100%;accent-color:var(--main)}
+.ctl{display:grid;grid-template-columns:7em minmax(0,1fr) 6.5em;gap:10px;align-items:center;font-size:14px;color:var(--ink-2);margin:4px 0}
+.ctl output{font-family:var(--f-mono);font-size:13px;color:var(--ink);text-align:right;white-space:nowrap}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(9em,1fr));gap:8px;margin:10px 0}
+.kv div{background:var(--paper);border-radius:6px;padding:6px 10px;font-size:12.5px;color:var(--ink-3);line-height:1.5}
+.kv b{display:block;font-family:var(--f-mono);font-weight:500;font-size:18px;color:var(--ink)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:center}
+.lab{font-size:12.5px;color:var(--ink-3);letter-spacing:.08em;margin:8px 0 4px}
+.chip{display:inline-block;font-size:12px;border:1px solid var(--rule);border-radius:4px;padding:0 6px;color:var(--ink-3);margin:0 4px 4px 0}
+.fig text{font-family:var(--f-sans)}
+.fig .mono{font-family:var(--f-mono)}
+select{border:1px solid var(--ink-3);border-radius:6px;background:var(--paper);padding:2px 6px;font-size:14px}
+label.ck{display:inline-flex;gap:6px;align-items:center;font-size:14px;color:var(--ink-2);margin:2px 12px 2px 0;cursor:pointer}
+label.ck input{accent-color:var(--main)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--ink-2);margin:6px 0}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:0}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(14em,1fr));gap:8px;margin:10px 0}
+.cards .cd{background:var(--paper);border-radius:6px;padding:8px 11px;font-size:14px;line-height:1.65;border:1px solid transparent}
+.cards .cd b{display:block;font-family:var(--f-display);font-weight:400;font-size:17px}
+.cards .cd small{color:var(--ink-3)}
+.cards .cd.on{border-color:var(--main)}
+
+/* 漫画 */
+.comic{max-width:54rem;margin:2em auto;padding:14px;background:var(--c-paper);border:2px solid var(--c-ink);color:var(--c-ink)}
+.comic .ctitle{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px 12px;border-bottom:2px solid var(--c-ink);padding-bottom:6px;margin-bottom:12px}
+.comic .ctitle b{font-family:var(--f-display);font-weight:400;font-size:26px;letter-spacing:.12em}
+.comic .ctitle span{font-family:var(--f-sans);font-size:12px;letter-spacing:.1em}
+.comic .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.pn{position:relative;border:2.5px solid var(--c-ink);background:var(--c-paper);overflow:hidden;container-type:inline-size;aspect-ratio:300/230}
+.pn.w{grid-column:span 2;aspect-ratio:600/250}
+.pn svg{position:absolute;inset:0;width:100%;height:100%;max-width:none;color:var(--c-ink)}
+.pn .cap{position:absolute;left:0;top:0;max-width:62%;background:var(--c-paper);border-right:2px solid var(--c-ink);border-bottom:2px solid var(--c-ink);font-family:var(--f-sans);font-weight:500;font-size:clamp(10.5px,4.1cqw,15px);line-height:1.45;padding:4px 8px;z-index:2}
+.pn .cap.br{left:auto;top:auto;right:0;bottom:0;border:0;border-left:2px solid var(--c-ink);border-top:2px solid var(--c-ink)}
+.pn .bb{position:absolute;z-index:3;background:var(--c-paper);border:2px solid var(--c-ink);border-radius:50%/42%;padding:.5em .85em;font-family:var(--f-sans);font-weight:500;font-size:clamp(10.5px,4.2cqw,16px);line-height:1.45;text-align:center;color:var(--c-ink)}
+.pn.w .bb{font-size:clamp(10.5px,2.5cqw,16px)}
+.pn.w .cap{font-size:clamp(10.5px,2.4cqw,15px)}
+.pn .bb::after{content:"";position:absolute;width:14px;height:14px;background:var(--c-paper);border-right:2px solid var(--c-ink);border-bottom:2px solid var(--c-ink);bottom:-8px;left:30%;transform:skewX(30deg) rotate(45deg)}
+.pn .bb.tr::after{left:auto;right:28%;transform:skewX(-30deg) rotate(45deg)}
+.pn .bb.nt::after{display:none}
+.pn .bb.shout{border-radius:6px;border-width:2.5px;font-weight:700}
+.pn .bb.think{border-style:dashed}
+.pn .sfx{position:absolute;z-index:2;font-family:var(--f-sans);font-weight:700;font-size:clamp(14px,7cqw,30px);color:var(--c-ink);transform:rotate(-8deg);letter-spacing:.05em;text-shadow:2px 2px 0 var(--c-paper),-2px -2px 0 var(--c-paper),2px -2px 0 var(--c-paper),-2px 2px 0 var(--c-paper)}
+.comic .after{font-family:var(--f-sans);font-size:13px;margin:10px 0 0;opacity:.8;line-height:1.7}
+
+/* 表 */
+table.t{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.6;min-width:520px}
+table.t th,table.t td{border-bottom:1px solid var(--rule);padding:7px 8px;text-align:left;vertical-align:top}
+table.t th{font-weight:400;color:var(--ink-3);font-size:13px}
+.src{font-size:14.5px;line-height:1.8;color:var(--ink-2)}
+.src li{margin:0 0 .5em}
+
+/* 本部完 */
+.partend{max-width:38rem;margin:70px auto 0;text-align:center}
+.partend .k{font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;color:var(--main)}
+.partend h3{margin:.3em 0 .6em}
+.partend a.go{display:inline-block;margin-top:8px;padding:8px 18px;border:1.5px solid var(--main);border-radius:999px;text-decoration:none;color:var(--main);font-family:var(--f-display);font-size:19px}
+footer{max-width:38rem;margin:60px auto 0;padding:24px 0 calc(40px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--rule);font-size:14px;color:var(--ink-3);line-height:1.8}
+footer p{text-indent:0!important}
+.nextbook{display:block;margin:20px 0;padding:14px 16px;border:1px solid var(--rule);border-radius:6px;text-decoration:none;background:var(--card)}
+.nextbook b{font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--ink)}
+
+/* ===== 装置专用 ===== */
+.pixels{display:grid;gap:3px;margin:10px 0}
+.pixels span{aspect-ratio:1;border-radius:3px;background:var(--paper);border:1px solid var(--rule)}
+.bars{display:grid;gap:5px;margin:10px 0}
+.bars .row{display:grid;grid-template-columns:7.5em minmax(0,1fr) 4.2em;gap:8px;align-items:center;font-size:13.5px}
+.bars .row .nm{color:var(--ink-2);line-height:1.3}
+.bars .row .nm small{display:block;font-size:11px;color:var(--ink-3)}
+.bars .tr{position:relative;height:18px;background:var(--paper);border-radius:3px;overflow:hidden}
+.bars .tr i{position:absolute;left:0;top:0;bottom:0;background:var(--main);border-radius:3px;transition:width .4s}
+.bars .row .v{font-family:var(--f-mono);font-size:12px;color:var(--ink);text-align:right;white-space:nowrap}
+.tl{position:relative}
+.tl .track{display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:8px;align-items:center;font-size:13px;margin:3px 0}
+.tl .track .nm{color:var(--ink-2);line-height:1.25}
+.tl .lane{position:relative;height:22px;background:var(--paper);border-radius:3px}
+.tl .lane i{position:absolute;top:3px;width:14px;height:14px;margin-left:-7px;border-radius:50%;border:2px solid var(--card)}
+.tl .lane i.f{background:var(--grn)}.tl .lane i.c{background:var(--och)}.tl .lane i.s{background:var(--main)}.tl .lane i.w{background:var(--blu);border-radius:2px}
+.tl .axis{display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:8px;font-family:var(--f-mono);font-size:10.5px;color:var(--ink-3)}
+.tl .axis div:nth-child(2){position:relative;height:16px}
+.tl .axis span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+
+
+
+/* ===== 《值不值》专用 ===== */
+/* 章首：五个账户 */
+.acc{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+.acc span{font-size:12px;line-height:1.6;border:1px solid var(--rule);border-radius:4px;padding:0 7px;color:var(--ink-3);background:var(--paper)}
+.acc span b{font-family:var(--f-display);font-weight:400;font-size:14px;margin-right:3px}
+.acc span.on{border-color:var(--main);color:var(--main);background:color-mix(in srgb,var(--main) 9%,var(--paper));font-weight:600}
+/* 年代条：2016—2026，这一章的故事落在哪几年 */
+.yrs{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));gap:2px;margin-top:10px}
+.yrs span{font-family:var(--f-mono);font-size:10px;line-height:16px;text-align:center;color:var(--ink-3);background:var(--paper);border-radius:2px}
+.yrs span.on{background:var(--main);color:var(--paper)}
+/* 一场戏（虚构） */
+.scene{margin:1.8em 0 2em;padding:16px 18px 6px;border:1.5px dashed var(--kraft);border-radius:10px;position:relative;background:color-mix(in srgb,var(--kraft) 5%,var(--paper))}
+.scene::before{content:attr(data-t);position:absolute;top:-12px;left:14px;background:var(--paper);padding:0 8px;font-size:13px;letter-spacing:.12em;color:var(--kraft);font-weight:600}
+.scene::after{content:"虚构";position:absolute;top:-10px;right:14px;background:var(--paper);padding:0 6px;font-size:11px;letter-spacing:.2em;color:var(--ink-3);border:1px solid var(--rule);border-radius:3px;line-height:1.5}
+.scene p{text-indent:0!important;font-size:16px;line-height:1.85}
+.scene .nm{font-weight:600;color:var(--kraft)}
+/* 十年账：一页手写 */
+.page{margin:2em 0;background:var(--card);border:1px solid var(--rule);border-radius:4px;position:relative;padding:12px 16px 10px 52px;
+  background-image:repeating-linear-gradient(transparent 0 31px,color-mix(in srgb,var(--blu) 22%,transparent) 31px 32px);background-position:0 40px}
+.page::before{content:"";position:absolute;left:38px;top:0;bottom:0;border-left:1.5px solid color-mix(in srgb,var(--red) 55%,transparent)}
+.page .who{font-family:var(--f-sans);font-size:12px;letter-spacing:.14em;color:var(--ink-3);line-height:28px}
+.page .who b{font-family:var(--f-display);font-weight:400;font-size:19px;letter-spacing:.06em;color:var(--ink);margin-right:8px}
+.page dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:0 12px}
+.page dt{font-family:var(--f-sans);font-size:12px;color:var(--main);line-height:32px;white-space:nowrap}
+.page dd{margin:0;font-family:var(--f-hand);font-size:20px;line-height:32px;color:var(--ink-2)}
+.page .stampv{position:absolute;left:6px;top:14px;writing-mode:vertical-rl;font-family:var(--f-display);font-size:13px;letter-spacing:.3em;color:var(--red);opacity:.8}
+/* 再查一遍：流行说法与后来的研究 */
+.myth{margin:2em 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:1.5px solid var(--ink-3);border-radius:6px;overflow:hidden;background:var(--card)}
+.myth>div{padding:12px 16px 8px;font-size:15.5px;line-height:1.8}
+.myth>div p{text-indent:0!important;margin:0 0 .5em}
+.myth .pop{background:color-mix(in srgb,var(--och) 7%,var(--card))}
+.myth .chk{border-left:1.5px solid var(--ink-3)}
+.myth i{display:block;font-style:normal;font-family:var(--f-sans);font-size:11.5px;letter-spacing:.2em;color:var(--och);margin-bottom:4px}
+.myth .chk i{color:var(--main)}
+.myth .tag{grid-column:1 / -1;border-bottom:1px dashed var(--rule);font-family:var(--f-display);font-size:18px;padding:6px 16px 4px;display:flex;gap:10px;align-items:baseline}
+.myth .tag small{font-family:var(--f-sans);font-size:11px;letter-spacing:.18em;color:var(--paper);background:var(--ink-3);border-radius:3px;padding:0 6px}
+/* 两本账：算得清的 / 算不清的 */
+.seal>div+div i{color:var(--kraft)}
+/* 卷首的大字 */
+.volhead .ledg{position:absolute;right:12px;bottom:10px;width:120px;height:90px;opacity:.75;pointer-events:none;color:var(--main)}
+/* 封面：十年格子 */
+.weeks{display:grid;grid-template-columns:repeat(52,minmax(0,1fr));gap:1.5px;margin:10px 0}
+.weeks i{aspect-ratio:1;border-radius:1px;background:var(--paper)}
+.cohort{display:grid;grid-template-columns:repeat(auto-fill,minmax(10.5em,1fr));gap:8px;margin:14px 0}
+.cohort div{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:8px 11px;font-size:13.5px;line-height:1.6}
+.cohort b{display:block;font-family:var(--f-display);font-weight:400;font-size:19px}
+.cohort small{color:var(--ink-3)}
+.sim{display:block;touch-action:manipulation}
+.qa{display:grid;gap:8px;margin:10px 0}
+.qa button{text-align:left;border:1px solid var(--rule);background:var(--paper);border-radius:6px;padding:8px 12px;cursor:pointer;font-size:15px;line-height:1.6}
+.qa button:hover{border-color:var(--main)}
+.qa button.right{border-color:var(--grn);background:color-mix(in srgb,var(--grn) 10%,var(--paper))}
+.qa button.wrong{border-color:var(--red);background:color-mix(in srgb,var(--red) 8%,var(--paper))}
+.logbox{font-family:var(--f-mono);font-size:12.5px;line-height:1.7;background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:6px 10px;max-height:13em;overflow:auto;color:var(--ink-2);white-space:pre-wrap}
+.inrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(11em,1fr));gap:8px 14px;margin:8px 0}
+.inrow label{display:grid;gap:2px;font-size:13px;color:var(--ink-3)}
+.inrow input[type=number],.inrow input[type=text],.inrow select,textarea.in{border:1px solid var(--ink-3);border-radius:6px;background:var(--paper);padding:3px 8px;font-size:15px;width:100%;color:var(--ink)}
+textarea.in{font-family:var(--f-body);line-height:1.7;resize:vertical}
+.ledger{background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:12px 16px;font-size:15px;line-height:1.85}
+.ledger h6{font-family:var(--f-display);font-weight:400;font-size:20px;margin:0 0 .3em;color:var(--main)}
+.ledger p{text-indent:0!important;margin:0 0 .5em}
+.ledger table{width:100%;border-collapse:collapse;font-size:14px}
+.ledger td{border-bottom:1px dashed var(--rule);padding:4px 6px;vertical-align:top}
+.ledger td:first-child{color:var(--ink-3);white-space:nowrap;width:7em}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 10px}
+@media print{.bar,.drawer,footer,.fig:not(.printme){display:none}}
+
+@media (max-width:700px){
+  body{font-size:16.5px}
+  .two,.spin,.myth{grid-template-columns:minmax(0,1fr)}
+  .spin .plain{border-left:0;border-top:1.5px solid var(--ink)}
+  .myth .chk{border-left:0;border-top:1.5px solid var(--ink-3)}
+  .seal{grid-template-columns:minmax(0,1fr)}
+  .seal>div+div{border-left:0;border-top:1.5px solid var(--ink)}
+  .toc li a,.toc li.soon>div{grid-template-columns:2.2em minmax(0,1fr)}
+  .toc .r{grid-column:2;text-align:left}
+  .bar .vol{display:none}
+  .bar .parts a{padding:0 4px}
+  .chead{grid-template-columns:58px minmax(0,1fr);gap:14px;padding:16px 14px}
+  .chead .big{font-size:46px;padding:2px 0 6px}
+  .ctl{grid-template-columns:5.5em minmax(0,1fr)}
+  .ctl output{grid-column:1 / -1;text-align:left;margin-top:-6px}
+  .partnav{grid-template-columns:minmax(0,1fr)}
+  .bars .row{grid-template-columns:5.6em minmax(0,1fr) 3.6em;gap:6px}
+  .volhead .ledg{width:80px;height:60px;opacity:.4}
+  .page{padding-left:44px}.page::before{left:32px}.page dd{font-size:18px}
+  .weeks{gap:1px}
+  .yrs span{font-size:8.5px}
+}
+@media (max-width:480px){.bar .name{font-size:17px}}
+.toc li.soon .t,.toc li.soon .n{opacity:.55}
+.toc li.soon>div{display:grid;grid-template-columns:2.6em minmax(0,1fr) auto;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--rule)}
+.toc li.soon .r::after{content:" · 写作中";color:var(--main)}
+.partnav{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:700px){.partnav{grid-template-columns:minmax(0,1fr)}.toc li.soon>div{grid-template-columns:2.2em minmax(0,1fr)}}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="bar-in g">
+    <a class="home" href="../" title="回创世书房">书房</a>
+    <a class="name" href="./">值不值</a>
+    <nav class="parts" aria-label="两部">
+      <a href="./" data-p="1">算</a><a href="two.html" data-p="2">人</a>
+    </nav>
+    <span class="vol" id="barVol">序</span>
+    <button class="tocbtn" id="tocBtn" aria-label="打开目录">目录</button>
+  </div>
+  <div class="progress" id="prog"></div>
+</header>
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="mask" data-close></div>
+  <nav class="panel" aria-label="目录">
+    <button class="x" data-close aria-label="关闭">×</button>
+    <h5>全书目录</h5>
+    <ol id="drawerList"></ol>
+  </nav>
+</div>
+<main class="g">
+<!-- ============ 封面 · 第一部 ============ -->
+<section class="hero" data-vol="序" id="top">
+  <div class="wide">
+    <div class="eyebrow">IS IT WORTH IT · 时 · 沉 · 复 · 险 · 比 · 忙 · 钱 · 一个人的创世记</div>
+    <h1>值不值<span class="sm">一个人的创世记</span></h1>
+    <span class="part">第一部 · 算</span>
+    <p class="lead">书房里前面的书，讲世界上的东西怎样从无到有：文字、钱、金融、时间、城市、权力、霸主、文官。这一本讲一样更小、离你更近的东西：<em>一个人毕业以后的日子，是怎样一天一天被“造”出来的</em>。</p>
+    <p class="lead">刚毕业的人手里有五样东西：时间、钱、身体、人情和心思。每天都在拿其中一样去换另一样：拿时间换钱，拿钱换时间，拿身体换前途，拿人情换机会，拿心思换一点点安心。“值不值”问的就是换得划不划算。这本书不告诉你该怎么选，只把几笔账摊开：哪些能算清，哪些算不清，以及历史上那些霸主、文官、商人和骗子，早就替我们把哪些错犯过一遍。</p>
+    <p class="lead">陪你读的是七个人。他们是虚构的：2016 年夏天从同一所大学的校报编辑部毕业，走进了真实的十年。2026 年秋天，有人发起了一次十年聚会，请每个人交一页纸。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig" id="wkFig">
+      <div class="fig-label">封面装置</div>
+      <h4>十年，五百二十个格子</h4>
+      <p class="how">毕业后的头十年大约是五百二十个星期，下面一格是一周。拖动滑块填上你预计的一天，看看这十年会被切成几块；最后剩下的那一块，才是真正由你自己支配的。</p>
+      <div class="ctl"><span>睡觉</span><input type="range" id="wkS" min="5" max="10" step="0.5" value="7.5"><output id="wkSO"></output></div>
+      <div class="ctl"><span>上班（每周）</span><input type="range" id="wkW" min="20" max="80" step="1" value="45"><output id="wkWO"></output></div>
+      <div class="ctl"><span>通勤（每天往返）</span><input type="range" id="wkC" min="0" max="180" step="10" value="60"><output id="wkCO"></output></div>
+      <div class="ctl"><span>吃饭洗漱家务</span><input type="range" id="wkE" min="1" max="5" step="0.5" value="2.5"><output id="wkEO"></output></div>
+      <div class="ctl"><span>刷手机（工作外）</span><input type="range" id="wkP" min="0" max="7" step="0.5" value="3"><output id="wkPO"></output></div>
+      <div class="weeks" id="wkGrid" aria-label="五百二十个星期"></div>
+      <div class="legend" id="wkLeg"></div>
+      <div class="say" id="wkSay"></div>
+      <p class="figcap">按一年 52 周、一周 7 天粗算，上班时间按每周五天折进每一天，周末的通勤记为零；没算节假日、生病和带孩子。只看比例。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>七个人</h3>
+    <p class="ni">他们 2012 年入学，在南湖大学（虚构）的校报《南湖》做过四年编辑、记者和美编，2016 年毕业。</p>
+  </div>
+  <div class="wide">
+    <div class="cohort">
+      <div><b>魏然</b><small>统计学 · 保险公司精算 · 发起十年账的人</small></div>
+      <div><b>周一舟</b><small>法学 · 辞掉律所的录用全职备考 · 区里的街道办</small></div>
+      <div><b>陆晴</b><small>计算机 · 北京的大厂 · 后来去了杭州</small></div>
+      <div><b>程浩（大程）</b><small>市场营销 · 创业 · 加杠杆 · 还债</small></div>
+      <div><b>林小满</b><small>生物 · 直博 · 第五年转了硕士</small></div>
+      <div><b>苏禾</b><small>汉语言 · 回县城一中教语文</small></div>
+      <div><b>唐果</b><small>美术 · 每天一张画 · 自由职业</small></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>每一章怎么读</h3>
+    <ul class="plain">
+      <li><b>章首</b>标出这一章动到了五个账户里的哪几个（时间、钱、身体、人情、心思），以及故事落在 2016—2026 的哪几年。</li>
+      <li><b>有人问</b>：一个刚毕业的人常问的问题，先给一个短答。</li>
+      <li><b>一场戏</b>（虚线框，虚构）：七个人里的某一个，在某一年遇到的事。背景里的年份、政策和社会事件是真的。</li>
+      <li><b>十年账</b>（横格纸，虚构）：这个人十年后交上来的那页纸。</li>
+      <li><b>正文</b>讲道理和历史。凡是来自研究的结论，都尽量写明是谁、哪一年做的；有些很有名的实验后来没能被重复出来，会放进<b>再查一遍</b>的框里，标上“存疑”。</li>
+      <li><b>眉批</b>把这一章和书房里别的书接起来：霸主、文官、钱和金融，常常和一个人的小账押韵。</li>
+      <li>每章至少一个<b>装置</b>：计算器或小模拟。数字都是示意，只看方向和数量级。</li>
+      <li>章末<b>两本账</b>：算得清的，和算不清的。</li>
+    </ul>
+    <p>说明一句：书里讲到钱的地方，只讲概念和历史，不推荐任何具体的产品、平台或做法；装置里的收益率、工资、房价都是为了演示而设的整数，不是预测，也不是建议。</p>
+
+    <h3>你可能想问的在这里</h3>
+    <ul class="qmap">
+      <li>两个工作，一个钱多一个离家近，怎么比？<a data-c="c1" href="#c1">时</a></li>
+      <li>读博（考研、考证、创业）读到一半想退，前面的不就白费了？<a data-c="c2" href="#c2">沉</a></li>
+      <li>“每天进步一点点”真的会滚成大雪球吗？一万小时靠谱吗？<a data-c="c3" href="#c3">复</a></li>
+      <li>同学都在加杠杆买房、炒股，我是不是太保守了？<a data-c="c4" href="#c4">险</a></li>
+      <li>工资涨了一倍，为什么没觉得高兴多少？<a data-c="c5" href="#c5">比</a></li>
+      <li>棉花糖实验说能忍住的孩子将来更成功，是真的吗？<a data-c="c5" href="#c5">比</a></li>
+      <li>每天都很忙，却说不出做成了什么？<a data-c="c6" href="#c6">忙</a></li>
+      <li>信用卡分期“每月手续费只要 0.6%”，划算吗？<a data-c="c7" href="#c7">钱</a></li>
+      <li>应急的钱要留多少？保险该买什么？<a data-c="c7" href="#c7">钱</a></li>
+      <li>朋友找我借钱、托我办事，怎么办？<a data-c="c8" href="two.html#c8">情</a></li>
+      <li>大城市还是回老家？稳定的单位还是上升快的行业？<a data-c="c9" href="two.html#c9">城</a></li>
+      <li>“保本、年化百分之十几、名额有限”，听着心动？<a data-c="c10" href="two.html#c10">话</a></li>
+      <li>年轻时拿身体换钱，老了再拿钱换身体，行不行？<a data-c="c11" href="two.html#c11">身</a></li>
+      <li>成功的人都说自己靠努力，那我也照着做？<a data-c="c12" href="two.html#c12">运</a></li>
+      <li>那我自己的账，该怎么记？<a data-c="c13" href="two.html#c13">账</a></li>
+    </ul>
+
+    <div class="partnav">
+      <a href="./" class="on"><span class="k">第一部</span><b>算</b><small>序幕 + 卷一 价 + 卷二 欲 · 账面上的事 · 八章</small></a>
+      <a data-c="c8" href="two.html"><span class="k">第二部</span><b>人</b><small>卷三 人 + 卷四 身与运 + 尾声 · 账面外的事 · 六章</small></a>
+    </div>
+
+    <h3>全书目录</h3>
+  </div>
+  <div class="wide"><ol class="toc" id="toc"></ol></div>
+</section>
+
+<!-- ============ 序幕 · 账 ============ -->
+<section class="chap" id="c0" data-vol="序幕 · 账">
+  <div class="chead">
+    <div class="big">账</div>
+    <div>
+      <div class="no">序幕</div>
+      <h2>十年账</h2>
+      <dl><dt>讲什么</dt><dd>一封聚会邀请；给自己记账的人：富兰克林的小本子、袁了凡的功过格、曾国藩的日记；富兰克林写给朋友的“道德代数”</dd><dt>本章装置</dt><dd>道德代数</dd></dl>
+      <div class="acc" data-a="时 钱 身 人 心"></div>
+      <div class="yrs" data-a="2026"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">这本书会告诉我该怎么选吗？</p>
+      <p>不会。考公还是进公司、留大城市还是回老家、读不读研、买不买房，这些问题没有对所有人都对的答案。这本书能做的，是把一个选择背后的几笔账摊开：<em>你拿什么换了什么，换的时候哪些看得见、哪些看不见，最坏会怎样</em>。算清楚了再选，选错了也知道错在哪儿。</p>
+    </div>
+
+    <div class="scene" data-t="2026 年 9 月 · 一个微信群">
+      <p>群名叫“南湖校报 12 级”，上一次有人说话，是两年前有人转了一条母校校庆的推送。</p>
+      <p>九月初的一个晚上，<span class="nm">魏然</span>在群里发了一长段话：</p>
+      <p>“毕业十年了。国庆假期第三天，老编辑部见，学校同意借我们半天那间屋子。来之前每个人交一页纸，就一页，写三行：这十年你觉得<b>最值</b>的一件事，<b>最不值</b>的一件事，<b>白忙活</b>的一件事。不许写‘遇见了你们’这种话。我是做精算的，我只信账。”</p>
+      <p>过了十分钟，<span class="nm">大程</span>回了一个字：“来。”然后是<span class="nm">苏禾</span>：“县城到省城高铁一个钟头，来。”<span class="nm">陆晴</span>说要看那几天加不加班；<span class="nm">林小满</span>问能不能带孩子；<span class="nm">周一舟</span>问“白忙活”能不能写单位的事，“写了也不能发出去”；<span class="nm">唐果</span>发了一张画：七个小人围着一张旧桌子，桌上一摞稿纸。</p>
+      <p>魏然说：“我先交。”</p>
+    </div>
+
+    <div class="page">
+      <span class="stampv">十年账</span>
+      <div class="who"><b>魏然</b>统计学 · 保险公司精算部</div>
+      <dl>
+        <dt>最值</dt><dd>考了七年精算师，2023 年考完最后一门。</dd>
+        <dt>最不值</dt><dd>2017 年花两万块报了个“财商训练营”，学会的唯一一件事是别再报这种营。</dd>
+        <dt>白忙活</dt><dd>每年元旦写的年度计划，十张，没有一张做完过。</dd>
+      </dl>
+    </div>
+
+    <h3>账是怎么来的</h3>
+    <p>书房里的<a href="../money/">《点石成金》</a>讲过：人类最早的文字，有一大部分是为了记账而发明的。美索不达米亚的泥板上，最先出现的是羊、粮食、啤酒和欠条。<a href="../civil/">《铁打的营盘》</a>里，第一批坐办公室的书吏，干的也是记账：谁交了多少粮，谁欠了几个工日。</p>
+    <p>国家和寺庙给别人记账，记了几千年；给<em>自己</em>记账，要晚得多，也难得多。给别人记账，数字对不上可以追责；给自己记账，数字对不上，只能自己面对。</p>
+
+    <h3>给自己记账的人</h3>
+    <p><b>富兰克林的小本子</b>。本杰明·富兰克林在自传里说，他二十多岁时列了十三种想养成的品行：节制、少言、有序、果断、节俭、勤勉、诚实……然后做了一个小本子，每种品行一行，每周七天七列，哪天犯了，就在格子里点一个黑点。他每周专攻一项，十三周轮一遍，一年轮四遍。他承认，“有序”这一项他一辈子都没做好，本子上的黑点擦了又点，纸都擦破了，后来他把格子画在象牙片上，用铅笔记，方便擦。</p>
+    <p><b>袁了凡的功过格</b>。明朝万历年间，袁黄（号了凡）写了一本给儿子看的家训，后来叫《了凡四训》。书里讲他年轻时被人算定了一生的命数，后来遇到一位禅师，教他用“功过格”记录每天的善行和过失，善事记功，过失记过，功过相抵，积累多了，命数可以改。这本书和功过格在明清两代流传极广，一直印到今天。</p>
+    <p><b>曾国藩的日记</b>。曾国藩三十岁出头在北京做翰林时，立了一个规矩：每天写日记，把当天的言行、念头一条条记下来，自己检查，还送给朋友看，请他们批评。他在日记里骂自己好名、话多、贪玩下棋，后来带兵打仗、做总督，日记一直记到去世前一天。</p>
+  </div>
+
+  <div class="echo" data-k="讽刺">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">功过也能做成生意</p><p>功过格后来流行到什么程度？各种版本的功过格把善恶细化成一张价目表，大善记百功，小过记一过；于是也有人反过来算计：多做些容易做的小善，攒够了功，就能抵掉不想改的过。<b>一套本来用来逼自己反省的账，被人用成了给自己开脱的账</b>。记账的工具本身不分好坏，看你是用它看清自己，还是用它安慰自己。这本书里的装置也一样。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>道德代数</h3>
+    <p>1772 年，英国化学家约瑟夫·普里斯特利（发现氧气的人之一）为一件事拿不定主意，写信问富兰克林。富兰克林回信说，他不能替朋友做决定，但可以告诉他自己的办法，并给它起了个名字，叫“道德代数”，也有人叫它“审慎代数”：</p>
+    <p>拿一张纸，中间画一条线，一边写“赞成”，一边写“反对”。花三四天时间，想到什么就记下来。然后估计每一条的分量：如果一条赞成和一条反对分量差不多，两条一起划掉；如果一条赞成抵得上两条反对，三条一起划掉。划到最后，看哪一边剩下的多。富兰克林说，这样做不能像代数那样精确，但每一条都摆在眼前、被掂量过，人就不容易一时冲动，也不容易漏掉什么。</p>
+    <p>两百五十年后，这仍然是最好用的决策工具之一。它的好处不在算出答案，而在<em>逼你把模糊的感觉写成具体的句子</em>。很多“想不清楚”，其实是“没写下来”。</p>
+  </div>
+
+  <div class="fig" id="maFig">
+    <div class="fig-label">装置 1</div>
+    <h4>道德代数</h4>
+    <p class="how">写下一个让你犹豫的选择，在两边各加几条理由，给每条打一个分量（1—5）。按“抵消”键，装置会像富兰克林说的那样，把分量相当的理由成对划掉，看看最后剩下什么。先放了一个例子，可以全部改掉。</p>
+    <div class="inrow"><label>犹豫的事<input type="text" id="maQ" value="要不要接受外地那份工资高三成的工作"></label></div>
+    <div class="two" style="align-items:start">
+      <div><div class="lab">赞成</div><div id="maPro"></div><button class="btn" data-add="pro">＋ 加一条</button></div>
+      <div><div class="lab">反对</div><div id="maCon"></div><button class="btn" data-add="con">＋ 加一条</button></div>
+    </div>
+    <div class="btns"><button class="btn pri" id="maGo">抵消</button><button class="btn" id="maReset">恢复</button></div>
+    <div class="say" id="maSay"></div>
+    <p class="figcap">抵消的规则是对富兰克林信中办法的一个简单实现：从分量最重的理由开始，在另一边找分量之和相等的一条或几条一起划掉。本装置只在你的浏览器里运行，不保存、不上传。</p>
+  </div>
+
+  <div class="col">
+    <h3>这本书的三条底线</h3>
+    <ul class="plain">
+      <li><b>不保证你成功</b>。讲“成功学”的书，大多是从成功者身上倒推出来的；第十二章会讲，这样推出来的道理为什么常常靠不住。这本书只想让你<em>少犯几个能避免的错，尤其是那种犯了就回不来的错</em>。</li>
+      <li><b>讲取舍，不讲标准答案</b>。每一章的结尾都有两本账：一本是算得清的，一本是算不清的。算不清的那一本，往往才是真正让人纠结的地方，这本书不会假装它不存在。</li>
+      <li><b>数字只是示意</b>。工资、房价、收益率都会变，装置里的数字只是为了让道理看得见。真要做决定，请用你自己的真实数字，再多问几个懂行又和你没有利益关系的人。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>算得清的</i>你有五个账户：时间、钱、身体、人情、心思。每一个选择，都是从一个账户往另一个账户转账。把赞成和反对写下来、掂一掂分量，比在脑子里转一百圈有用。</div>
+      <div><i>算不清的</i>有些东西没法换算成别的东西，比如一个人喜欢做什么、想和谁在一起。账可以帮你看清代价，不能替你决定想要什么。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 卷一 · 价 ============ -->
+<div class="volhead" id="v1" data-vol="卷一 · 价">
+  <div class="num">VOLUME I · PRICE</div>
+  <h2>价<small>每样东西都有价钱</small></h2>
+  <p class="lede">选了一样，就放弃了别的；已经花掉的，拿不回来；今天存下的，会自己长大，也会突然归零。卷一讲四笔最基本的账：机会成本、沉没成本、复利和风险。它们在国王和将军的账本上出现过无数次，在一个刚毕业的人身上，一样也不会少。</p>
+  <svg class="ledg" data-t="价" aria-hidden="true"></svg>
+</div>
+
+<!-- ============ 第一章 · 时 ============ -->
+<section class="chap" id="c1" data-vol="卷一 · 价 · 时">
+  <div class="chead">
+    <div class="big">时</div>
+    <div>
+      <div class="no">第一章 · 价之一</div>
+      <h2>一小时值多少钱</h2>
+      <dl><dt>讲什么</dt><dd>机会成本：巴斯夏的破窗户、雅典人的银子、富兰克林的“时间就是金钱”；一份工作的真实时薪；用钱买时间；那个著名的果酱实验</dd><dt>本章装置</dt><dd>两份工作的真时薪</dd></dl>
+      <div class="acc" data-a="时 钱"></div>
+      <div class="yrs" data-a="2016"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">两份工作，一份钱多，一份轻松离家近，怎么比？</p>
+      <p>别只比月薪，比<b>真时薪</b>：一年到手的钱，减去因为这份工作才多花的钱（房租差价、通勤、应酬），再除以一年里真正被它占去的小时数（上班、加班、通勤，以及下班后缓不过来的时间）。很多“钱多”的工作，一除下来并不多；很多“钱少”的工作，多出来的是整块的、你自己的时间。<em>然后再问：多出来的那些钱或时间，你打算拿去换什么？</em></p>
+    </div>
+
+    <div class="scene" data-t="2016 年 5 月 · 校报编辑部">
+      <p>毕业前一个月，编辑部最后一次开会，其实是散伙饭前的闲聊。</p>
+      <p><span class="nm">陆晴</span>手里有两个录用：北京一家互联网大厂，年薪二十五万左右，组里的学长说“忙的时候十点以后下班是常事”；省城一家国企的信息中心，年薪十万出头，朝九晚五，离家骑车二十分钟。</p>
+      <p><span class="nm">周一舟</span>拿到了省城一家律所的录用，月薪六千。可他想考公务员，去年秋天的国考没进面试。他说想把律所推掉，在家全职复习一年。</p>
+      <p>“你这一年要花多少钱？”<span class="nm">魏然</span>问。</p>
+      <p>“住家里，不花什么钱。”</p>
+      <p>魏然拿过一张废稿纸，写了一行：<b>律所一年工资七万多 + 一年执业经验 + 万一考不上的第二年</b>。“这才是你这一年的价钱。不是不花钱，是花了七万多，外加一年。”</p>
+      <p>周一舟盯着那张纸看了一会儿：“那我更得考上了。”</p>
+    </div>
+
+    <div class="page">
+      <span class="stampv">十年账</span>
+      <div class="who"><b>周一舟</b>法学 · 区里的街道办</div>
+      <dl>
+        <dt>最值</dt><dd>2016 年推掉律所，在家复习了一年。考上了。没考上的话，这一行会写在“最不值”里。</dd>
+        <dt>最不值</dt><dd>头两年几乎每个周末回老家相亲，来回六个钟头，一共见了十几个人。</dd>
+        <dt>白忙活</dt><dd>单位的不能写。写个自己的：备考时顺手考的教师资格证，十年没用过一次。</dd>
+      </dl>
+    </div>
+
+    <h3>看得见的和看不见的</h3>
+    <p>1850 年，法国经济学家巴斯夏写了一篇文章，题目就叫《看得见的与看不见的》。开头是一个小故事：一个淘气的孩子打碎了面包店的橱窗，围观的人安慰店主说，这也不全是坏事，玻璃匠有活干了，钱流动起来了，对大家都好。</p>
+    <p>巴斯夏说，这些人只看到了<b>看得见的</b>：玻璃匠拿到的六法郎。他们没看到<b>看不见的</b>：如果橱窗没碎，店主本来会拿这六法郎去买一双新鞋，或者一本书。现在钱花在了修窗户上，店主只是回到了原来的样子，鞋匠的那笔生意，永远不会发生了。</p>
+    <p>经济学家后来管这种“看不见的”东西叫<b>机会成本</b>：<em>做一件事的真实代价，是你为它放弃的那个最好的选项</em>。周一舟复习一年的代价，不是“住家里不花钱”，而是律所的七万多块和一年的执业经验；读两年研究生的代价，不只是学费，还有两年的工资和工作经验；周末去排两个小时的队省五十块钱，代价是两个小时。</p>
+  </div>
+
+  <div class="echo" data-k="押韵">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">雅典人的银子</p><p>前 483 年前后，雅典的劳里昂银矿挖到了一条大矿脉。照老规矩，这笔钱要分给公民，据希罗多德说，每人能分到十个德拉克马。地米斯托克利说服大家：别分了，拿去造战舰。三年后，这支舰队在萨拉米斯打败了波斯人。<a href="../turn/#c4">《轮到谁了》第四章</a>讲过这个故事。每个雅典人都放弃了眼前的十个德拉克马，这是一个城邦算过的机会成本，而且算对了。可要注意：<b>我们记住它，是因为它算对了</b>。历史上把眼前的钱换成长远投资、最后血本无归的，同样数不清，只是没人讲。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>时间就是金钱，但不全是</h3>
+    <p>“时间就是金钱”这句话，出自富兰克林 1748 年写的一篇短文《给一个年轻商人的忠告》。他的算法是：一个人一天能挣十个先令，如果他出去闲逛、或者在家闲坐半天，就算只花了六便士，也不能只算这六便士，他还白白扔掉了本可以挣到的五个先令。</p>
+    <p>这个算法对一个按天计酬的手艺人很准，对今天大多数拿月薪的年轻人，就要打个折扣。原因有三：</p>
+    <ul class="plain">
+      <li><b>多数人卖不出“多出来的那一小时”</b>。你周六在家多休息一小时，单位不会因此少发你工资；你周六多干一小时，单位也未必多给。所以拿时薪去算周末的每一小时，常常算多了。</li>
+      <li><b>时间不能攒，也不能借</b>。钱可以存起来以后花，可以借明天的来今天花；今天没用掉的二十四小时，明天不会变成四十八小时。这是时间和钱最大的不同。</li>
+      <li><b>小时和小时不一样</b>。精力最好的两个小时，和下班后累得只想躺着的两个小时，名义上都是“两个小时”，能换到的东西完全不同。</li>
+    </ul>
+    <p>所以，比起“我一小时值多少钱”，更有用的问题是：<em>我精力最好的那几个小时，现在都卖给了谁？卖得值不值？</em></p>
+
+    <h3>一份工作的真时薪</h3>
+    <p>算一份工作真正给你的时薪，要做两件事：</p>
+    <p><b>分子里减掉“因为这份工作才多花的钱”</b>：去大城市多出来的房租、更贵的饭钱、通勤的车钱、为了这份工作才买的衣服、才去的应酬。</p>
+    <p><b>分母里加上“因为这份工作才被占去的时间”</b>：加班、通勤、出差在路上，以及有的工作结束以后，人要缓一两个小时才能回过神来。</p>
+    <p>一除下来，常常会发现：年薪差一倍的两份工作，真时薪可能只差三四成；而那三四成，是用每周多出的十几个小时换来的。这不说明钱多的工作不值得去。二十多岁时，钱多的工作往往也是学东西最快的工作，见识和履历是另一种回报，会在第三章“复利”里讲到。只是你得知道，<em>你是在用什么换什么</em>。</p>
+  </div>
+
+  <div class="fig" id="hwFig">
+    <div class="fig-label">装置 2</div>
+    <h4>两份工作的真时薪</h4>
+    <p class="how">填上两份工作的条件（先放了陆晴的两份录用作例子，数字是示意）。装置会算出每份工作一年到手的钱减去“因它而多花的钱”，再除以它占去的全部小时数。</p>
+    <table class="t" id="hwTab" style="min-width:0;table-layout:fixed"><colgroup><col style="width:44%"><col><col></colgroup></table>
+    <div class="kv" id="hwKv"></div>
+    <div class="say" id="hwSay"></div>
+    <p class="figcap">“到手年收入”请填税后、五险一金个人部分扣除后的数；一年按 50 个工作周计。“缓过来的时间”是你下班后需要多久才能做点自己的事，可以填 0。没算公积金、年终奖的不确定和晋升前景。</p>
+  </div>
+
+  <div class="col">
+    <h3>反过来：用钱买时间</h3>
+    <p>机会成本的账，也可以倒过来算。2017 年，加拿大和美国的几位心理学家（惠兰斯、邓恩、诺顿等人）发表了一项研究：他们调查了美国、加拿大、丹麦、荷兰的六千多人，发现那些愿意花钱把讨厌的家务、跑腿外包出去的人，生活满意度普遍更高，而且这和收入高低关系不大；他们还做了一个小实验，让同一批人在两个周末分别拿到 40 美元，一次用来买东西，一次用来买省时间的服务，后一次的心情更好。</p>
+    <p>这项研究的规模和效应都不算大，后来的研究结论也有分歧，但它提醒了一件常被忽略的事：很多刚工作的人宁可花三个小时去省一百块钱，却舍不得花一百块钱省三个小时。<em>当你的时间开始比钱更紧的时候，账就该反过来算了</em>。至于什么时候算“开始”，没有统一的线：如果省下来的时间你只是拿去刷手机，那还是先省钱吧。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">果酱实验<small>存疑</small></div>
+    <div class="pop"><i>流行说法</i><p>选项越多，人越难选，越不开心。2000 年的一项著名实验里，超市试吃摊摆 24 种果酱时，停下来的人多，但只有约 3% 买了；摆 6 种时，有约 30% 买了。所以人生选择也是越少越好。</p></div>
+    <div class="chk"><i>再查一遍</i><p>原实验（艾扬格与莱珀，2000）是真的，但后来很多人重复类似实验，结果时有时无。2010 年一项汇总了五十多个实验的元分析发现，“选项太多导致不选”的平均效应接近于零，只在某些条件下（比如选项难以比较、人本来就不知道自己要什么）才明显。<b>选项多本身不是问题，不知道自己要什么才是</b>。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>“如果当初”的陷阱</h3>
+    <p>机会成本还有一个反方向的陷阱：<b>没选的那条路，在想象里永远更好</b>。你去了大厂，累的时候会想“要是去了国企多轻松”；你去了国企，看到同学晒年终奖，又会想“要是去了大厂……”。可你想象的那条路上，只有它的好处，没有它的麻烦，因为那些麻烦你没亲身经历过。</p>
+    <p>算机会成本，是为了在<em>选之前</em>看清代价；选完之后，再拿一条想象中完美的路来和真实的路比，就不是算账了，是给自己找罪受。周一舟后来说，他在街道办最累的那几年，也想过律所，“可律所的同学也在想当初要是考了公务员，我们俩换一换，谁也不会更高兴”。</p>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>算得清的</i>一件事的代价是你为它放弃的最好选项。算一份工作，比真时薪，不比月薪：分子减掉因它而多花的钱，分母加上因它而被占的时间。时间不能攒、不能借，精力最好的那几小时最贵。</div>
+      <div><i>算不清的</i>二十多岁的一小时，可能换来十年后的一个机会，也可能什么都没换来。没选的那条路，你永远不知道它真正的样子。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第二章 · 沉 ============ -->
+<section class="chap" id="c2" data-vol="卷一 · 价 · 沉">
+  <div class="chead">
+    <div class="big">沉</div>
+    <div>
+      <div class="no">第二章 · 价之二</div>
+      <h2>已经花掉的</h2>
+      <dl><dt>讲什么</dt><dd>沉没成本：协和式飞机、剧院季票、越陷越深；放弃也有成本；破釜沉舟和提前写好的止损线；英特尔的一次自问</dd><dt>本章装置</dt><dd>再投一个月吗</dd></dl>
+      <div class="acc" data-a="时 钱 心"></div>
+      <div class="yrs" data-a="2017" data-b="2021"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">读博（考研、备考、创业、一段感情）走到一半想退出，前面花的那几年不就白费了吗？</p>
+      <p>前面那几年，不管你退不退，都已经花掉了，拿不回来，所以它<b>不该</b>影响你今天的决定。真正该比的只有从今天往后：继续下去要再付出什么、可能得到什么；退出来要付出什么、能拿这些时间去做什么。一个好用的问法是：<em>假如今天才第一次面对这个选择，什么都还没投，我会选它吗？</em>注意，这不等于“遇到困难就该放弃”：放弃也有代价，而有些路本来就是先苦后甜的。</p>
+    </div>
+
+    <div class="scene" data-t="2020 年 12 月 · 上海，一间实验室">
+      <p>晚上十一点，<span class="nm">林小满</span>把第二百多块胶放进成像仪，结果和前面的一样：什么都没有。</p>
+      <p>这是她直博的第五个年头。前两年做得很顺，第三年导师让她换了一个“更有意思”的方向，从那以后，课题就卡住了。导师每次组会都说：“再坚持半年，这个方向一旦做出来就是大文章。”她已经听了三个“半年”。</p>
+      <p>她给<span class="nm">魏然</span>打电话。魏然听完，问了一个问题：“如果你现在是一个刚进组的一年级学生，导师把这个课题和你现在的数据交给你，你会接吗？”</p>
+      <p>电话那头沉默了很久。“不会。”</p>
+      <p>“那你在犹豫的，就不是这个课题，是你已经花掉的那三年。”</p>
+      <p>同一年，<span class="nm">大程</span>在群里讲了他的创业：2017 年做共享雨伞，到 2018 年初伞丢得比借出去的还快，账上的钱眼看着往下掉，“可我已经投进去八十多万了，就这么关了，那八十万算什么？”他又撑了八个月，又亏了四十万。</p>
+    </div>
+
+    <div class="page">
+      <span class="stampv">十年账</span>
+      <div class="who"><b>林小满</b>生物 · 上海一家医药研发外包公司</div>
+      <dl>
+        <dt>最值</dt><dd>2021 年春天，博转硕，退出来了。</dd>
+        <dt>最不值</dt><dd>第三年到第五年那一年半：明知道走不通，还在硬做，就因为舍不得。</dd>
+        <dt>白忙活</dt><dd>二百多块胶，没有一块能用。不过，它们教会了我什么叫止损。</dd>
+      </dl>
+    </div>
+
+    <h3>协和式飞机</h3>
+    <p>1962 年，英国和法国签了一份条约，联合研制一种超音速客机，后来叫“协和”。研制费用一涨再涨，最后达到最初预算的好几倍；还没造完，两国政府里就已经有人算明白了：这东西卖不出去，也赚不回钱。可项目一直没停。最终一共只造了二十架，其中十四架投入航线，由英国航空和法国航空各运营七架，没有别的航空公司买，从 1976 年飞到 2003 年。</p>
+    <p>1976 年，生物学家道金斯和卡莱尔在《自然》杂志上发表了一篇讨论动物抚育后代的文章，借这个项目起了个名字：<b>协和谬误</b>，意思是“因为已经投入了很多，所以继续投入”。经济学里，它更常见的名字是<b>沉没成本谬误</b>。</p>
+    <p>公平地说，协和项目一直没停，原因不全是“舍不得”：条约里故意没写退出条款，1964 年英国新政府想退出时，得到的法律意见是法国可能索要巨额赔偿；还有几万个工作岗位，两国的面子，都压在上面。但“已经花了这么多钱，现在停下来就全浪费了”这句话，确实在两国的议会里反复出现过。</p>
+
+    <h3>剧院季票</h3>
+    <p>普通人也一样。1985 年，美国俄亥俄大学的心理学家阿克斯和布卢默做了一个实验：剧院卖季票时，他们随机给一部分买票的人打折，有人原价，有人便宜一点，有人便宜很多。然后他们统计这些人后来去看了几场。结果，<b>原价买票的人，在上半季去看戏的次数明显更多</b>。戏是同样的戏，座位是同样的座位，唯一的区别是：花得多的人觉得“不去就亏了”。（到了下半季，这个差别就消失了。人对沉没成本的执念，也会随着时间淡下去。）</p>
+    <p>这样的事每天都在发生：买了的健身卡，不想去也逼着自己去；点多了的菜，撑着也要吃完；看了一半的烂电影，坚持看到结尾；排了一个小时的队，明知道前面还要两小时，“都排这么久了”。</p>
+
+    <h3>越陷越深</h3>
+    <p>更麻烦的是，当最初的决定是<em>你自己</em>做的，人会投得更多。1976 年，心理学家斯托做了一个实验：让商学院学生扮演一家公司的财务副总，把一笔研发经费分给两个部门。几年后，告诉他们自己选的那个部门业绩很差，再让他们分第二笔钱。结果，<b>那些亲手做了第一个决定的人，往失败的部门追加的钱，比别人更多</b>。斯托把论文的题目叫《深陷泥潭》。</p>
+    <p>他借用的是一首反越战歌曲里的说法。<a href="../turn/four.html#c47">《轮到谁了》第四十七章</a>讲过那场战争：美国一届又一届政府明知道打不赢，却一再增兵，理由之一就是“不能让已经牺牲的人白白牺牲”。这句话听上去是对死者的尊重，实际效果是让更多的人去死。</p>
+  </div>
+
+  <div class="fig" id="skFig">
+    <div class="fig-label">装置 3</div>
+    <h4>再投一个月吗</h4>
+    <p class="how">你手上会轮流出现五个项目，每个项目可能是“好项目”（每个月有一定机会做成，做成就有回报），也可能是“死项目”（永远做不成），一开始各一半可能。每个月花 1 万，做成得 20 万（好项目每个月约有 15% 的机会做成）。每个月你会收到一份进展报告，好项目报“有进展”的机会大一些，但死项目也会偶尔报喜。大字显示的是你已经投进去的钱，它不会影响项目的好坏。决定：再投一个月，还是收手。</p>
+    <div class="kv" id="skKv"></div>
+    <div class="say" id="skSay"></div>
+    <div class="btns" id="skBtns"></div>
+    <label class="ck"><input type="checkbox" id="skShow">显示“账房”的算法（它只看今后，不看已经花掉的）</label>
+    <div class="logbox" id="skLog"></div>
+  </div>
+
+  <div class="col">
+    <h3>放弃也有成本</h3>
+    <p>讲到这里，很容易得出一个过头的结论：一遇到不顺就该放弃。不是这样。有三件事要放进账里：</p>
+    <ul class="plain">
+      <li><b>退出本身要花钱、花时间</b>。换专业、换行业、换城市，都有一段从头学起、收入下降的日子。这些是<em>未来</em>的成本，要算。</li>
+      <li><b>很多事本来就是前面苦</b>。学一门手艺、读一个学位、做一家店，头几年几乎都是只投入、看不到回报的。如果只因为“还没看到回报”就停，什么都做不成。关键是分清：是“还没到时候”，还是“方向本身错了”。前者看进展有没有在变好，后者看最初的那些判断是不是已经被事实推翻了。</li>
+      <li><b>换来换去本身是一种损失</b>。每一次重新开始，都会把前面攒下的、带不走的东西清零。第三章会讲到，复利最怕的就是断档。</li>
+    </ul>
+  </div>
+
+  <div class="myth">
+    <div class="tag">“毅力”决定成败<small>存疑</small></div>
+    <div class="pop"><i>流行说法</i><p>成功的关键不是天赋，而是“坚毅”（grit）：对长期目标的热情和坚持。心理学家达克沃思 2016 年的畅销书让这个词风靡世界，很多学校开始专门“培养坚毅”。</p></div>
+    <div class="chk"><i>再查一遍</i><p>2017 年，克雷德等人汇总了八十多项研究、六万多人的数据，发现“坚毅”与成绩、表现的相关性只有中等偏弱，而且它和心理学里早就有的“尽责性”高度重合，单独拿出来的额外预测力很小。坚持当然有用，<b>但坚持错的事，只会更快地把你带到错的地方</b>。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>破釜沉舟和止损线</h3>
+    <p>中国人最熟悉的“坚持到底”的故事，是项羽的巨鹿之战。《史记·项羽本纪》写他渡过漳河以后：“皆沉船，破釜甑，烧庐舍，持三日粮，以示士卒必死，无一还心。”船凿沉，锅砸破，营房烧掉，只带三天的干粮。结果九战九胜，大破秦军。</p>
+    <p>这和沉没成本谬误恰好相反。破釜沉舟是<b>事先</b>做的决定：在开打之前，故意把退路断掉，让自己和士兵都没有犹豫的余地。行为经济学管这个叫<b>承诺装置</b>。古希腊史诗里，奥德修斯要经过塞壬的海域，事先让水手把自己绑在桅杆上，并叮嘱：“待会儿我怎么喊都别解开。”</p>
+    <p>两者的区别在于时间：<em>止损的规矩，要在头脑冷静的时候、在投入之前定好；沉没成本谬误，是在投入之后、在头脑发热的时候临时改规矩</em>。所以，做任何一件要花上几年的事之前，最好先写一条“止损线”：</p>
+    <p class="ni" style="padding-left:2em;font-family:var(--f-hand);font-size:20px;line-height:1.6">“如果到 ______ 年 ______ 月，还没有 ______，我就停下来，换一条路。”</p>
+    <p>写下来，告诉一个你信得过的人。到了那一天，按规矩办，不重新讨论。林小满后来说，如果她第三年换方向时写过这么一句，她会早一年半出来。</p>
+  </div>
+
+  <div class="echo" data-k="生活">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">换一个人来坐这个位子</p><p>1985 年，英特尔的存储芯片生意被日本厂商打得节节败退，可存储芯片是英特尔起家的根本，没人舍得放手。据当时的总裁格鲁夫后来回忆，他问董事长摩尔：“如果我们被赶下台，董事会请来一位新总裁，你觉得他会怎么做？”摩尔说：“他会放弃存储芯片。”格鲁夫说：“那我们为什么不自己走出这扇门，再走回来，自己来做这件事？”英特尔后来转做处理器。<b>新来的人没有沉没成本，只看今后</b>。遇到舍不得的事，可以假装自己是新来的。</p></div>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>算得清的</i>已经花掉的钱和时间，不管怎么选都拿不回来，不该进今天的账。比较的只有从今往后：继续的代价与可能的收获，和退出的代价与能换来的东西。止损线要在投入之前、冷静的时候写好。</div>
+      <div><i>算不清的</i>“还没到时候”和“方向错了”，在当下常常分不清。放弃一件做了很久的事，丢掉的不只是时间，还有一部分“我是谁”。这份难受是真的，只是不该替你做决定。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第三章 · 复 ============ -->
+<section class="chap" id="c3" data-vol="卷一 · 价 · 复">
+  <div class="chead">
+    <div class="big">复</div>
+    <div>
+      <div class="no">第三章 · 价之三</div>
+      <h2>利滚利</h2>
+      <dl><dt>讲什么</dt><dd>72 法则、富兰克林的两百年遗嘱；技能、身体、名声怎样“滚”；一万小时和二十一天；复利的三个敌人：断档、天花板、漏水</dd><dt>本章装置</dt><dd>四种复利</dd></dl>
+      <div class="acc" data-a="时 钱 身 人"></div>
+      <div class="yrs" data-a="2016" data-b="2026"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">“每天进步 1%，一年后是 37.8 倍”，是真的吗？</p>
+      <p>数学上是真的：1.01 的 365 次方约等于 37.8。可人不是银行账户。钱可以一直按同一个利率滚；技能、身体、名声也会“滚”，但它们有天花板，会遗忘、会衰退，还会被意外打断。<em>复利最可靠的部分不是那个吓人的倍数，而是两件朴素的事：开始得早，和中间别断</em>。</p>
+    </div>
+
+    <div class="scene" data-t="2016 年 7 月 1 日 · 一间合租房">
+      <p>毕业后第一天上班，晚上十点，<span class="nm">唐果</span>在广告公司加完班回到合租房，在微博上发了一张很潦草的速写：地铁上一个睡着的大叔。配的字是：“每天一张，看能画多久。”</p>
+      <p>第一年的画，她后来自己都不好意思看：透视不对，手画得像鸡爪。转发的只有几个老同学。<span class="nm">大程</span>在下面留言：“每天进步 1%，一年 37.8 倍！”还配了一张那年到处都在转的励志海报。</p>
+      <p>唐果第二天画了一张回复：一个小人背着一个巨大的“1.01<sup>365</sup>”往上爬，旁边另一个小人坐在地上，头顶写着“0.99<sup>365</sup> = 0.03”。配字：“我今天是这个。”</p>
+      <p>那张是她第一年转发最多的画。</p>
+      <p>同一年，<span class="nm">魏然</span>开始考精算师。一共十几门，每年两次考试，她考了七年，挂过三门，最后一门在 2023 年考过。“第一年最难，”她说，“因为后面的每一门都要用到前面的东西。到最后几门，反而是越考越快。”</p>
+    </div>
+
+    <div class="page">
+      <span class="stampv">十年账</span>
+      <div class="who"><b>唐果</b>美术 · 自由插画</div>
+      <dl>
+        <dt>最值</dt><dd>每天一张画。十年，三千六百多张，中间断过两次。</dd>
+        <dt>最不值</dt><dd>2019 年接了一个压价的单子，改了半年，尾款到今天也没给。</dd>
+        <dt>白忙活</dt><dd>2021 到 2023 年，每天睁眼先看后台数据。</dd>
+      </dl>
+    </div>
+
+    <h3>72 法则</h3>
+    <p>复利的意思是：利息也生利息。本金 100 块，年利率 10%，第一年得 10 块利息；第二年按 110 块算利息，得 11 块；第三年按 121 块算……每一年长得都比上一年多一点。</p>
+    <p>算复利有一个心算的小窍门，叫“72 法则”：<b>用 72 除以年增长率（百分数），大约就是翻一倍要的年数</b>。年增长 6%，大约 12 年翻一倍；年增长 9%，大约 8 年。这个窍门很老，1494 年意大利数学家帕乔利（他也是最早系统写复式记账法的人）的书里就提到过。</p>
+    <p>它也能反过来用在坏事上：<em>一笔年利率 24% 的债，三年就翻一倍</em>。第七章讲债的时候会回到这里。</p>
+
+    <h3>富兰克林的两百年遗嘱</h3>
+    <p>没有人比富兰克林更相信复利。1790 年他去世前，在遗嘱的附录里给波士顿和费城各留了 1000 英镑，规定这笔钱要以 5% 的利息借给刚满师、刚结婚的年轻手艺人，让他们开业，还回来的钱再借出去，一滚就是两百年。他亲手算了账：一百年后每个城市能有 131,000 英镑，拿出一部分修公共工程，剩下的再滚一百年，到时候波士顿那份能有四百多万英镑。</p>
+    <p>两百年后的 1990 年，账本打开了。波士顿那份大约值 500 万美元，费城那份大约 200 万美元。钱确实变多了，可和富兰克林算的数比，差了一大截。为什么？借钱的年轻手艺人越来越少（学徒制度消失了），有些人借了不还，基金管理的方式几经改变，中间还有通货膨胀把钱的价值吃掉了一大块。波士顿那份很早就不再死守原来的放贷办法，交给更会理财的机构管，所以比费城多出一倍多。</p>
+    <p>这个故事讲的不是复利不灵，而是：<b>纸上的复利，假定利率永远不变、钱永远不漏、中间永远不断；真实世界里，这三条都做不到</b>。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">“复利是世界第八大奇迹”<small>存疑</small></div>
+    <div class="pop"><i>流行说法</i><p>爱因斯坦说过：复利是世界第八大奇迹，懂它的人赚它，不懂的人付它。（另一个版本是：复利是宇宙中最强大的力量。）</p></div>
+    <div class="chk"><i>再查一遍</i><p>找不到任何可靠证据证明爱因斯坦说过这些话。这类引语最早出现在他去世几十年以后的理财书和广告里，研究名人语录的人普遍认为是附会。<b>一句话前面加上爱因斯坦，更容易被转发，也更容易让人不去检查后半句</b>。第十章讲话术时，你会再见到这个手法。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>技能怎样“滚”</h3>
+    <p>技能的复利，来自一个简单的事实：<em>新知识要挂在旧知识上</em>。会了微积分，学概率就快；会了概率，学统计就快；魏然说的“越考越快”，就是这个。阅读也一样：1986 年，心理学家斯坦诺维奇把一种现象叫作阅读中的“马太效应”：早早读得好的孩子读得更多，读得多又让他们读得更好，差距一年比一年大。</p>
+    <p>但技能的增长曲线，通常<b>不是</b>指数曲线。心理学家研究了几十年的“练习幂律”说的恰恰相反：刚开始进步飞快，越往后，同样的练习换来的进步越小。一个人从完全不会到会画一个像样的人，可能只要一年；从像样到出色，可能要五年；从出色到顶尖，可能一辈子也到不了。</p>
+    <p>那为什么还说技能是复利？因为<b>技能的“价钱”常常是越往上越陡</b>：一个画得还行的人和一个画得很好的人，水平也许只差两成，收入可能差好几倍，因为客户只想找最好的那几个。技能本身是边际递减的，技能换来的机会却可能是边际递增的。这就是为什么很多行业里，前几年的差距看着不大，十年后天差地别。</p>
+    <p>还有一个反方向的力：<b>遗忘</b>。1885 年，德国心理学家艾宾浩斯拿自己做实验，背无意义的音节，测量隔多久忘掉多少，画出了第一条“遗忘曲线”：刚学完的东西，头一两天忘得最快。不复习、不使用的技能，会一点点漏掉。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">一万小时定律<small>存疑</small></div>
+    <div class="pop"><i>流行说法</i><p>任何领域，只要练够一万小时，就能成为专家。这个说法因 2008 年格拉德威尔的畅销书《异类》流行起来。</p></div>
+    <div class="chk"><i>再查一遍</i><p>它来自 1993 年心理学家埃里克森等人对柏林音乐学院小提琴学生的研究：最优秀的那组学生，到二十岁时平均累计练了大约一万小时。这是一个<b>平均数</b>，不是门槛，也只针对“刻意练习”；埃里克森本人后来多次说这个“定律”被误读了。2014 年一项元分析发现，刻意练习能解释的成绩差异，在棋类游戏里约 26%，音乐约 21%，体育约 18%，教育约 4%，职业领域不到 1%；2019 年有人重做小提琴研究，效应也比原来小。<b>练习很重要，但不是唯一的变量，练什么、怎么练、有没有反馈，比练了多少小时更重要</b>。</p></div>
+  </div>
+
+  <div class="myth">
+    <div class="tag">二十一天养成一个习惯<small>存疑</small></div>
+    <div class="pop"><i>流行说法</i><p>坚持二十一天，一件事就会变成习惯。</p></div>
+    <div class="chk"><i>再查一遍</i><p>“二十一天”多半来自一位整形医生 1960 年的书里对病人适应新面孔的观察，不是习惯研究。2010 年伦敦大学学院的拉利等人让 96 个人每天做一件新的小事（比如午饭时喝一瓶水），记录它什么时候变得“不用想就做”：中位数是 <b>66 天</b>，快的 18 天，慢的 254 天。还有一个让人松一口气的发现：<b>偶尔漏掉一天，对养成习惯影响不大</b>。断一天不要紧，要紧的是别因为断了一天就全放弃。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>身体和名声也会滚</h3>
+    <p><b>身体</b>的复利是双向的：每天锻炼一点，体能、睡眠、精力会互相带着往上走；每天熬夜一点，也会互相拖着往下走。只是年轻时，往下的那一面几乎感觉不到，等感觉到时，已经滚了很多年。第十一章专门讲。</p>
+    <p><b>名声</b>是最典型的复利：别人信任你，就会把事交给你、把你介绍给别人，新的人又因为介绍而信任你。但名声的复利<em>极不对称</em>：攒起来要十年，毁掉可能只要一件事。据说巴菲特说过一句意思相近的话：“建立名声要二十年，毁掉它只要五分钟。”第八章会讲。</p>
+
+    <h3>复利的三个敌人</h3>
+    <ul class="plain">
+      <li><b>断档</b>。复利最怕的不是增长慢，而是归零。一笔钱翻了五倍，只要中间有一次亏光，就什么都没了；一门手艺练了五年，换一个完全不相干的行业，大半就用不上了。下一章“险”整章讲这件事。</li>
+      <li><b>天花板</b>。真实世界里，任何东西都不可能一直按同一个速度长下去：一棵树、一座城、一个公司、一个人的技术，长到一定程度都会慢下来。1838 年，比利时数学家韦吕勒画过一条“S 形曲线”：开头像指数，中间最快，到后面贴着天花板走平。</li>
+      <li><b>漏水</b>。钱会被通货膨胀和手续费一点点吃掉，技能会被遗忘一点点吃掉，身体会被年龄一点点吃掉。增长率减去漏水率，才是真正的增长。</li>
+    </ul>
+  </div>
+
+  <div class="fig" id="cpFig">
+    <div class="fig-label">装置 4</div>
+    <h4>四种复利</h4>
+    <p class="how">选一种“资产”，调它的增长率、漏水、天花板和意外。图上三条线：<b>海报上的复利</b>（只有增长率），<b>有天花板和漏水的复利</b>，以及<b>再加上意外以后</b>两百个人里中间那个人的样子（阴影是其中八成人所在的范围）。三十年，横轴是毕业后的年数。</p>
+    <div class="tabs" id="cpTabs"></div>
+    <div class="ctl"><span>增长率</span><input type="range" id="cpG" min="0" max="40" step="1"><output id="cpGO"></output></div>
+    <div class="ctl"><span>漏水</span><input type="range" id="cpD" min="0" max="10" step="0.5"><output id="cpDO"></output></div>
+    <div class="ctl"><span>天花板</span><input type="range" id="cpK" min="20" max="1000" step="10"><output id="cpKO"></output></div>
+    <div class="ctl"><span>意外（每年）</span><input type="range" id="cpQ" min="0" max="25" step="1"><output id="cpQO"></output></div>
+    <div class="ctl"><span>一次意外损失</span><input type="range" id="cpL" min="0" max="100" step="5"><output id="cpLO"></output></div>
+    <svg class="sim" id="cpSvg"></svg>
+    <div class="legend"><span><i style="background:var(--ink-3)"></i>海报上的复利</span><span><i style="background:var(--main)"></i>有天花板和漏水</span><span><i style="background:var(--red)"></i>加上意外（中位数）</span></div>
+    <div class="say" id="cpSay"></div>
+    <p class="figcap">示意模型：每年按 S 形曲线增长（越接近天花板越慢），再减去漏水；每年有一定概率遇到意外，损失当时数值的一部分。四种资产的默认参数是为了说明道理而设的，不代表任何真实的收益率。</p>
+  </div>
+
+  <div class="echo" data-k="押韵">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">复利也替债主干活</p><p>复利不挑人：它让存钱的人的钱生钱，也让欠债的人的债生债。<a href="../turn/three.html#c29">《轮到谁了》第二十九章</a>讲过，十八世纪英国的国债利息一度吃掉了政府税收的一大半；同一部第二十七章里的西班牙国王腓力二世，一辈子宣布破产四次。<a href="../finance/#c9">《柜台里外》“借时间”</a>那一章讲的，就是这把双刃剑怎么来的。一个国家和一个人的区别只在于：国家欠了债还可以印钱、可以加税，一个人不行。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>最朴素的两件事</h3>
+    <p>把这一章压成两句话，就是：<b>早开始，别断档</b>。</p>
+    <p>早开始，是因为复利的大头在后面：同样每年存一笔钱、同样的收益率，二十二岁开始存和三十二岁开始存，到六十岁时的差距，远远大于那十年存进去的本金；同样每天读半小时书，二十出头开始和三十出头开始，十年后的差距也不只是十年的书。</p>
+    <p>别断档，是因为一次归零，会把前面所有的“滚”都抹掉。唐果的每天一张断过两次：一次是 2020 年初生病，一次是 2022 年搬家。她说：“断了的第二天最难。我就画了一张‘今天又是第一天’。”</p>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>算得清的</i>72 除以增长率，约等于翻倍的年数。真实的增长要减去漏水（通胀、手续费、遗忘、衰老），还会碰到天花板。复利的大头在后面，所以早开始最值钱；一次归零会抹掉前面的一切，所以别断档最要紧。</div>
+      <div><i>算不清的</i>哪件事值得滚上十年，开始时往往看不出来。唐果画第一张的时候，不知道它会滚成什么；也有很多人每天坚持一件事，十年后什么也没滚出来。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第四章 · 险 ============ -->
+<section class="chap" id="c4" data-vol="卷一 · 价 · 险">
+  <div class="chead">
+    <div class="big">险</div>
+    <div>
+      <div class="no">第四章 · 价之四</div>
+      <h2>活下来</h2>
+      <dl><dt>讲什么</dt><dd>平均数怎样骗人；破产是一道回不去的墙；凯利公式；诺贝尔奖得主的对冲基金；一个人身上的杠杆；什么样的冒险值得</dd><dt>本章装置</dt><dd>抛硬币的一辈子</dd></dl>
+      <div class="acc" data-a="钱 心"></div>
+      <div class="yrs" data-a="2018" data-b="2023"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">身边的人都在借钱买房、加杠杆炒股，赚了不少，我是不是太保守了？</p>
+      <p>杠杆放大的不只是收益，还有结果的“摆幅”。赚的时候大家都看得见，赔光的人往往不说话。该问的不是“平均能赚多少”，而是<em>最坏的情况下，我会不会被直接踢出局</em>：工作丢了、市场跌了、生了病，我还撑得住吗？只要不被踢出局，就还有下一把；一旦出局，前面赚的都不算数。</p>
+    </div>
+
+    <div class="scene" data-t="2018 年 8 月—2023 年 3 月 · 省城">
+      <p>雨伞公司关门那年夏天，<span class="nm">大程</span>在省城买了一套房。首付三成，七十多万，一半是父母的积蓄，另一半是他用几张信用卡和两笔消费贷凑的。（银行明令不许用消费贷付首付，他是在中介的“指点”下绕过去的。）房贷每月七千多，他那时在一家公司做销售，底薪加提成，好的月份能拿一万出头。</p>
+      <p>头三年，房价涨了一成多。2021 年春节，他在群里说：“我当年要是再胆大点，买两套。”</p>
+      <p>2022 年，他的提成断了大半年。信用卡开始以卡养卡，消费贷到期续不上。2023 年 3 月，他把房子挂出去，比买的时候低了两成才卖掉。还完银行的贷款，首付全部亏掉，手里还欠着三十多万。</p>
+      <p>那天晚上他给<span class="nm">魏然</span>打电话：“我算过的。那几年房价平均每年涨百分之七八，贷款利息才五个多点，怎么算都是赚的。”</p>
+      <p>魏然说：“你算的是平均。可你过的不是平均，你过的是你自己那一条路。那条路上，只要有一年你的工资和房子同时出事，你就出局了。”</p>
+    </div>
+
+    <div class="page">
+      <span class="stampv">十年账</span>
+      <div class="who"><b>程浩（大程）</b>市场营销 · 新能源车销售</div>
+      <dl>
+        <dt>最值</dt><dd>没跑。欠的钱列了一张表，一笔一笔还，还剩最后两笔。</dd>
+        <dt>最不值</dt><dd>2018 年那套房。不是房子不好，是首付里有一半是借的。</dd>
+        <dt>白忙活</dt><dd>共享雨伞。投出去一万多把，收回来不到三千把。</dd>
+      </dl>
+    </div>
+
+    <h3>平均数会骗人</h3>
+    <p>先玩一个想象中的游戏。抛一枚公平的硬币：正面，你的钱增加 50%；反面，你的钱减少 40%。要不要玩？</p>
+    <p>按平均算，这是个好游戏：每抛一次，平均收益是 (+50% − 40%) ÷ 2 = <b>+5%</b>。如果有一万个人同时玩，所有人的钱加起来，确实每轮平均涨 5%。</p>
+    <p>可你只是其中一个人，你要一轮一轮地玩下去。抛两次，一正一反，你的钱变成 1.5 × 0.6 = 0.9 倍，<b>少了一成</b>。一正一反是最常见的结果，所以玩得越久，绝大多数人的钱越少。玩一百轮以后，一万个人里中间那个人，只剩下本钱的百分之零点几；而所有人的平均数却涨到了一百多倍，因为极少数一路抛出正面的人，把平均数拉上了天。</p>
+    <p>物理学家彼得斯 2019 年在《自然·物理》上用这个例子讨论经济学里的一个老问题：<em>“很多人的平均”和“一个人的一辈子”不是一回事</em>。物理学里，两者相等的系统叫“遍历的”；钱、健康、一个人的事业，都不是遍历的：你不能把一万个平行宇宙里的自己加起来求平均，你只有一条路。</p>
+
+    <h3>破产是一道回不去的墙</h3>
+    <p>这里面最要命的，是<b>归零</b>。钱少了一半，还能慢慢挣回来；钱没了、还欠了一身债，就连下一轮都玩不了。概率论里，管这种一碰到就回不去的状态叫“吸收壁”，最古老的例子是“赌徒破产问题”：一个本钱有限的赌徒，和一个本钱无限的赌场赌下去，就算每一把都是公平的，只要一直赌，赌徒最后几乎一定会输光。</p>
+    <p>所以，有经验的人在冒险之前，先问的不是“能赚多少”，而是“最多能亏多少，亏完了我还站得住吗”。<em>一个能让你出局的风险，收益再高也不值得冒，因为出局以后的收益对你等于零</em>。</p>
+
+    <h3>该押多少：凯利公式</h3>
+    <p>那么，碰上一个占便宜的机会，该押上多少？1956 年，贝尔实验室的工程师凯利在研究电话线路的信息传输时，顺带算出了一个答案，后来叫<b>凯利公式</b>：如果你要反复下注、目标是让钱长期增长得最快，每次只该押上身家的一个固定比例，这个比例取决于你的优势有多大。</p>
+    <p>拿上面那枚硬币算，最优的比例是 <b>25%</b>：每次只拿四分之一的钱去抛，剩下的放着不动。这样玩下去，中间那个人的钱会稳稳地涨；而每次都押上全部身家，中间那个人会一路亏光。同一个好游戏，<b>押得太多，好游戏也会变成坏游戏</b>。职业的投资者和赌徒里，很多人连凯利比例都嫌太激进，只押它的一半，因为现实中你永远不确定自己的“优势”到底有多大。</p>
+  </div>
+
+  <div class="fig" id="coinFig">
+    <div class="fig-label">装置 5</div>
+    <h4>抛硬币的一辈子</h4>
+    <p class="how">一千个人，每人 100 块，玩上面那个游戏：正面 +50%，反面 −40%，但只对押上去的那部分算。拖动滑块决定每轮押上身家的多少（超过 100% 就是借钱加杠杆）。图里是其中六十个人的路（纵轴是对数刻度），还有一千人的平均数和中位数。</p>
+    <div class="ctl"><span>每轮押上</span><input type="range" id="coinF" min="0" max="200" step="5" value="100"><output id="coinFO"></output></div>
+    <div class="ctl"><span>玩多少轮</span><input type="range" id="coinN" min="10" max="200" step="10" value="60"><output id="coinNO"></output></div>
+    <div class="btns"><button class="btn" id="coinRe">换一批运气</button><button class="btn" id="coinK">押凯利比例 25%</button></div>
+    <svg class="sim" id="coinSvg"></svg>
+    <div class="legend"><span><i style="background:var(--och)"></i>平均数（一千人）</span><span><i style="background:var(--main)"></i>中位数（中间那个人）</span><span><i style="background:var(--ink-3)"></i>个人的路</span></div>
+    <div class="kv" id="coinKv"></div>
+    <div class="say" id="coinSay"></div>
+    <p class="figcap">“出局”指钱少于本钱的 1%（加杠杆时也可能变成负数，就是倒欠）。这是一个纯数学游戏，用来说明平均数和个人结果的区别，不对应任何真实的投资。</p>
+  </div>
+
+  <div class="col">
+    <h3>聪明人的杠杆</h3>
+    <p>如果你觉得这只是数学游戏，看看 1998 年。</p>
+    <p>美国的长期资本管理公司成立于 1994 年，合伙人里有华尔街最好的交易员，还有两位后来在 1997 年拿了诺贝尔经济学奖的学者（斯科尔斯和默顿）。它的模型找到的是一些很小、但几乎“稳赚”的价差，为了让小价差变成大钱，公司用了极高的杠杆：账面上大约每 1 块钱自己的钱，借来 25 块以上去做；衍生品合约的名义金额超过一万亿美元。头两年，它的年回报超过 40%。</p>
+    <p>1998 年 8 月，俄罗斯政府宣布债务违约，全世界的投资者一窝蜂逃向最安全的资产，那些“几乎不可能同时变坏”的价差，同时变坏了。不到四个月，公司亏掉了大约 46 亿美元。纽约联邦储备银行出面，召集十几家大银行凑了三十多亿美元接手，才没有让它拖垮整个市场。</p>
+    <p>它的模型没有算错概率，<b>它算错的是：在杠杆之下，一个小概率事件只要发生一次，就是死</b>。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">牛顿的那句话<small>存疑</small></div>
+    <div class="pop"><i>流行说法</i><p>1720 年英国南海公司股票泡沫时，牛顿先赚后赔，亏了两万英镑，留下一句名言：“我能算出天体的运行，却算不出人类的疯狂。”</p></div>
+    <div class="chk"><i>再查一遍</i><p>牛顿在南海泡沫里亏了一大笔钱，这一点有当时的记载支持，具体数目说法不一（“两万英镑”来自他身边人的转述）。那句名言则找不到牛顿本人写过或说过的可靠出处，最早见于他去世几十年后的二手记述，很可能是后人替他“总结”的。<b>比名言更值得记住的是事实本身：世上最聪明的人之一，也在泡沫里追高了</b>。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>一个人身上的杠杆</h3>
+    <p>杠杆不只是借钱炒股。一个刚工作的人身上，常见的杠杆有：</p>
+    <ul class="plain">
+      <li><b>借钱</b>：房贷、车贷、消费贷、信用卡、网贷、借亲戚朋友的钱。它们共同的特点是：不管你的收入怎么变，每个月要还的钱是固定的。</li>
+      <li><b>固定支出</b>：一份长期的高房租、一辆每月要养的车、一份每年要交的大额保费、一个规定每月要给家里的数。它们和贷款一样，会把收入的波动放大：收入少三成，可支配的钱可能少一大半。</li>
+      <li><b>“孤注一掷”的选择</b>：辞职创业时没留生活费，把所有积蓄投进一件事，为一个机会把所有退路都断掉。</li>
+    </ul>
+    <p>一个简单的检查：<em>假如明天开始，我半年没有收入，会发生什么？</em>如果答案是“没什么，紧一紧就过去了”，你的杠杆在安全范围里；如果答案是“第二个月就还不上贷款了”，你就像那家对冲基金，平时赚得越多，越说明你在压路机前面捡硬币。第七章会讲应急金怎样算。</p>
+
+    <h3>什么样的冒险值得</h3>
+    <p>讲了这么多风险，不是说年轻人不该冒险。恰恰相反，二十多岁是一生中最适合冒险的时候：输了的代价最小，赢了能享用最久。关键是冒<b>什么样</b>的险。</p>
+    <p>一种思路来自写《黑天鹅》的塔勒布，他叫它<b>“杠铃”</b>：把大部分资源放在非常安全的地方，拿一小部分去冒很大的险，避开中间那种“看起来稳妥、其实一碰就碎”的东西。放到一个人身上，就是：有一份能养活自己的工作和一笔不动的应急金，然后用业余时间和一小笔钱，去试那些<em>输了顶多损失一点、赢了可能改变很多</em>的事：写一个作品集、学一门新手艺、做一个小项目、投一份看起来够不着的简历。</p>
+    <p>要警惕的，是反过来的那种：<b>赢了赚一点，输了赔很多</b>。为了多拿几个点的利息，把全部积蓄放进一个说不清楚的平台；为了提前几年买房，把亲戚朋友的钱都借遍；为了一个“稳赚”的机会，借网贷去投。这类事，平时看起来很聪明，赚过几次以后更觉得自己聪明，直到某一次。</p>
+  </div>
+
+  <div class="echo" data-k="押韵">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">霸主也会押上全部</p><p>前 415 年，正在和斯巴达打仗的雅典，派出一支空前庞大的舰队去远征西西里，想一举拿下那里最富的城市叙拉古。两年后，整支远征军覆没，几万人死的死、被卖的被卖。雅典撑了下来，可再也没有恢复元气，十年后输掉了整场战争。<a href="../turn/#c7">《轮到谁了》第七章</a>讲过。霸主和个人一样：<b>强的时候最容易高估自己的优势，押得太多</b>。</p></div>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>算得清的</i>“很多人的平均”不等于“你的一辈子”。归零是回不去的墙，所以先问最坏会怎样。占便宜的机会也只该押一部分。半年没收入会怎样，是检查自己杠杆的最简单的问题。</div>
+      <div><i>算不清的</i>“最坏的情况”自己常常想不全：大程没想到工资和房价会同时出事，那家基金也没想到。所以要给想不到的事留一份余量。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 卷二 · 欲 ============ -->
+<div class="volhead" id="v2" data-vol="卷二 · 欲">
+  <div class="num">VOLUME II · DESIRE</div>
+  <h2>欲<small>想要的和需要的</small></h2>
+  <p class="lede">卷一的账，钱和时间都摆在桌面上。卷二要算的，是藏在心里的那一笔：想要什么、为什么想要、要到了以后为什么很快又不够了；每天忙忙碌碌，忙出来的到底是什么；以及最朴素的钱的基本功。这里没有“少点欲望”的劝告，司马迁两千年前就说过，求富是人的本性。</p>
+  <svg class="ledg" data-t="欲" aria-hidden="true"></svg>
+</div>
+
+<!-- ============ 第五章 · 比 ============ -->
+<section class="chap" id="c5" data-vol="卷二 · 欲 · 比">
+  <div class="chead">
+    <div class="big">比</div>
+    <div>
+      <div class="no">第五章 · 欲之一</div>
+      <h2>隔壁的琼斯家</h2>
+      <dl><dt>讲什么</dt><dd>天下熙熙；伊斯特林悖论；钱和快乐到底有没有关系；享乐跑步机；和谁比；棉花糖实验和“意志力会用完”的重新检查</dd><dt>本章装置</dt><dd>享乐跑步机</dd></dl>
+      <div class="acc" data-a="钱 心 人"></div>
+      <div class="yrs" data-a="2019"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">工资涨了一倍，为什么没觉得高兴多少？</p>
+      <p>两个原因。一是<b>适应</b>：人对新得到的东西，几个月就习惯了，习惯了就不再带来快乐。二是<b>比较</b>：工资涨了，你身边的人、你拿来比的人也换了一批，参照点跟着往上走。这不是说钱没用。大规模的研究显示，钱多一些，平均来说人确实更满意，只是<em>每多一倍，多出来的那一点快乐差不多一样大</em>：从三千到六千的那一步，和从三万到六万的那一步，带来的提升差不多。所以，知道钱换来的快乐会被“适应”和“比较”吃掉多少，比挣多少更重要。</p>
+    </div>
+
+    <div class="scene" data-t="2019 年 10 月 · 省城一家火锅店">
+      <p>毕业三周年的小聚，来了五个人。</p>
+      <p><span class="nm">陆晴</span>是从北京飞回来的。她那年年薪四十多万，刚提了一辆车，可整顿饭都在说她组里另一个同事：同一年进去的，赶上了一个新项目，期权据说值好几百万。“我比他差在哪儿？就差在当年选组的时候慢了一个星期。”</p>
+      <p><span class="nm">苏禾</span>坐在她对面，月工资五千出头，刚结婚，在县城按揭了一套一百二十平的房子，月供两千。他说他挺满意的。可那天晚上回去，他翻了半小时陆晴的朋友圈，躺在床上算了一笔账：同样一个大学出来的，人家一年挣的，是他七八年。</p>
+      <p>第二天他在群里发了一句：“昨天吃火锅，我是最高兴的那个，回家以后就不是了。”</p>
+      <p><span class="nm">唐果</span>回了一张画：一圈人坐在一个巨大的跑步机上，每个人都在拼命往前跑，每个人都在看前面那个人的后背。</p>
+    </div>
+
+    <div class="page">
+      <span class="stampv">十年账</span>
+      <div class="who"><b>苏禾</b>汉语言 · 县城一中语文老师</div>
+      <dl>
+        <dt>最值</dt><dd>2016 年回了县城。骑电动车上班七分钟，十年省下的通勤，够我读完一个本科。</dd>
+        <dt>最不值</dt><dd>2020 年贷款买了辆二十万的车。县城就那么大，一个月开不了几次。</dd>
+        <dt>白忙活</dt><dd>每次同学聚会前减肥。</dd>
+      </dl>
+    </div>
+
+    <h3>天下熙熙</h3>
+    <p>讲欲望，中国人最常引的是《史记·货殖列传》里的两句：“天下熙熙，皆为利来；天下攘攘，皆为利往。”司马迁在这一篇里还说：“富者，人之情性，所不学而俱欲者也。”想富起来，是不用教就会的人之常情。</p>
+    <p>司马迁写这一篇，不是为了批判，而是为了替商人立传。他的意思是：与其假装人没有欲望，不如老老实实承认，然后想办法让欲望把事情往好的方向推。这一章也是这个态度：<em>不劝你少要，只想让你看清，要到以后会发生什么</em>。</p>
+
+    <h3>钱和快乐有没有关系</h3>
+    <p>1974 年，美国经济学家伊斯特林发表了一篇后来很有名的文章，指出一个怪现象：在同一个国家、同一个时间，富人平均比穷人更快乐；可是一个国家越来越富，国民的平均快乐程度却没怎么涨。比如二战后的美国，人均收入翻了好几番，自称“很快乐”的人的比例几十年都差不多。这被叫作<b>伊斯特林悖论</b>。后来的经济学家为这个悖论争了几十年：有人用更多国家、更长时间的数据，发现国家变富，平均快乐程度还是会涨一些；伊斯特林和支持者则坚持，长期来看涨得很少。至今没有定论。</p>
+    <p>落到个人身上，争论的焦点变成了一个数字。2010 年，诺贝尔奖得主卡尼曼和经济学家迪顿分析了美国几十万人的调查，发现人对生活的<b>总体评价</b>随收入一直往上走，可每天的<b>情绪</b>（开心、不焦虑）到年收入七万五千美元左右就不再明显提高了。这个“七万五千美元”被媒体传遍了世界。</p>
+    <p>2021 年，心理学家基林斯沃思用手机随时询问一百多万次“你此刻感觉怎样”，发现情绪也随收入一直上升，没有看到那道“天花板”。两边的结论打架，于是 2023 年，卡尼曼、基林斯沃思和另一位学者梅勒斯做了一件学术界很少见的事：<b>对立的双方坐下来，一起重新分析数据</b>。他们的结论是：对大多数人来说，快乐随收入的对数一直上升，也就是每翻一倍，涨一截；但对最不快乐的那大约两成人，收入到十万美元左右以后，再多的钱也不再改善他们的情绪，因为让他们痛苦的事，钱解决不了。</p>
+  </div>
+
+  <div class="echo" data-k="生活">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">“对数”是什么意思</p><p>对数增长的意思是：要得到同样多的一份快乐，下一次需要的钱是上一次的两倍。月薪从三千涨到六千，多三千块，快乐涨一截；从六千涨到一万二，要多六千块，才能再涨同样一截；从一万二到两万四，要多一万二。<b>钱越多，钱换快乐的汇率越差</b>。而你为了下一次翻倍付出的时间、身体和人情，往往一次比一次多。这就是为什么很多人收入涨得最快的那几年，并不是他们最快乐的几年。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>享乐跑步机</h3>
+    <p>为什么得到了不会一直快乐？1971 年，心理学家布里克曼和坎贝尔提出了“享乐跑步机”的说法：人会对新的处境很快适应，快乐回到原来的水平，就像在跑步机上，不管跑多快，都停在原地。</p>
+    <p>这个说法后来被修正了：适应是真的，但<b>不是什么都适应得一样快</b>。新手机、新衣服、更大的电视，几个星期就习惯了；更大的房子，几个月到一两年；而有些东西几乎不会被适应：长时间的通勤（2008 年两位瑞士经济学家用德国的长期调查数据发现，通勤时间长的人生活满意度明显更低，更高的工资或更便宜的房子都补不回来）、持续的噪音、慢性的疼痛、长期睡不够、和身边人关系不好。反过来，好的人际关系、足够的睡眠、能掌控自己时间的感觉，带来的满足也不太会被“跑步机”抹平。</p>
+    <p>这给花钱提了个醒：<em>同样一笔钱，花在“很快会被适应”的东西上，快乐来得快去得也快；花在去掉一个“永远不会被适应”的烦恼上，可能管很多年</em>。苏禾说他十年最值的是七分钟的通勤，从研究上看，他说得一点没错。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">中彩票的人一年后就不快乐了<small>存疑</small></div>
+    <div class="pop"><i>流行说法</i><p>1978 年一项研究发现，中彩票大奖的人一年后并不比普通人快乐，因车祸瘫痪的人也没比普通人不快乐多少。所以钱没用，快乐全靠心态。</p></div>
+    <div class="chk"><i>再查一遍</i><p>那项研究（布里克曼等人）是真的，但样本很小：只有 22 个中奖者和 29 个瘫痪的人，而且结论被传得比原文绝对得多。2020 年，林德奎斯特等人追踪了瑞典三千多名彩票中奖者，时间长达五到二十多年，发现中了大奖的人<b>生活满意度长期明显更高</b>，没有被“适应”抹掉；对每天情绪的影响则小得多。钱改善的，主要是人对自己生活的评价和安全感。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>和谁比</h3>
+    <p>1998 年，哈佛的两位研究者做了一个调查，让人在两个世界里选一个：一个世界里，你年收入五万美元，别人平均两万五；另一个世界里，你年收入十万美元，别人平均二十万。东西价格两个世界都一样。结果，大约一半的人选了第一个：<b>宁可绝对收入少一半，也要比别人多</b>。有意思的是，问到假期长短时，大多数人不那么在乎和别人比，宁可自己多休息。</p>
+    <p>早在 1899 年，美国经济学家凡勃伦就写了一本《有闲阶级论》，提出“炫耀性消费”：有些东西买来，不是为了用，是为了让人看见。1913 年起，美国报纸上连载了一部漫画，叫《跟上琼斯家》，讲一家人拼命模仿邻居琼斯家的排场，邻居买什么他们就得买什么。“琼斯家”从此成了一个英语成语。</p>
+    <p>今天，每个人的“隔壁”都变得无限大：朋友圈、短视频里，永远有人比你挣得多、住得好、玩得开心。而人们晒出来的，是自己生活里最好的那几帧。<em>拿自己的全部，去比别人精选过的一小部分，怎么比都是输</em>。陆晴后来说，让她最难受的不是挣得少，而是“同一年进去的那个人”，“如果他不在我们组，我那几年会快乐得多，尽管一分钱都不会多挣”。</p>
+    <p>比较本身不是坏事：没有比较，人也不知道自己在哪儿、该往哪儿走。要紧的是<b>选好和谁比、比什么</b>：和过去的自己比进步，和同行里比你好一点点的人比手艺，比和整个互联网上最成功的人比收入，有用得多，也健康得多。</p>
+  </div>
+
+  <div class="echo" data-k="押韵">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">亚历山大为什么哭</p><p>流传很广的故事说：亚历山大征服了已知的世界，因为“再也没有世界可以征服”而痛哭。这个版本是后人改的。普鲁塔克的原文是：他听哲学家阿那克萨库斯讲，宇宙里有无数个世界，就哭了起来，朋友问他为什么，他说：“世界有无数个，我却连一个都还没征服。”<a href="../turn/#c9">《轮到谁了》第九章</a>讲过他的远征。<b>不管拥有多少，只要参照点是“无数个世界”，人总是不够的</b>。</p></div>
+  </div>
+
+  <div class="fig" id="hdFig">
+    <div class="fig-label">装置 6</div>
+    <h4>享乐跑步机</h4>
+    <p class="how">一个刚工作的人，五年（六十个月）里的“快乐指数”。勾选几样花钱的方式，看它们各自带来的快乐怎样被适应吃掉；再选一个“和谁比”，看参照点怎样把整条线往下拉。</p>
+    <div id="hdCk"></div>
+    <div class="ctl"><span>和谁比</span><select id="hdRef"><option value="0">过去的自己</option><option value="1">同城的同学</option><option value="2" selected>同组的同事</option><option value="3">朋友圈里最好的那几个</option></select><output></output></div>
+    <svg class="sim" id="hdSvg"></svg>
+    <div class="kv" id="hdKv"></div>
+    <div class="say" id="hdSay"></div>
+    <p class="figcap">示意模型：每样东西带来一次快乐的跳升，然后按各自的“适应半衰期”衰减；“搬到离单位近的地方”和“每周和朋友吃顿饭”按几乎不被适应处理，依据是正文提到的通勤和人际关系研究。数值是为了说明道理而设的，没有单位。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">棉花糖实验<small>存疑</small></div>
+    <div class="pop"><i>流行说法</i><p>二十世纪六七十年代，斯坦福大学的米歇尔给幼儿园孩子一块棉花糖，说能忍住十五分钟不吃，就再给一块。后来追踪发现，忍得住的孩子长大后成绩更好、更成功。所以自控力决定命运。</p></div>
+    <div class="chk"><i>再查一遍</i><p>原研究的孩子大多来自斯坦福校园附近的幼儿园，后续追踪的样本也只有几十到一百多人。2018 年，瓦茨、邓肯等人用美国一项九百多个孩子、家庭背景更多样的追踪数据重做，发现等待时间和日后成绩的关系只有原研究的一半左右；<b>把家庭收入、母亲学历、孩子早期的认知能力考虑进去以后，关系几乎消失</b>。忍不忍得住，很大程度上反映的是孩子的成长环境：在一个大人说话常常不算数的环境里，“现在就吃”反而是理性的选择。</p></div>
+  </div>
+
+  <div class="myth">
+    <div class="tag">意志力像肌肉，会用完<small>存疑</small></div>
+    <div class="pop"><i>流行说法</i><p>“自我损耗”：1998 年鲍迈斯特等人的实验里，先被要求忍住不吃巧克力饼干、只吃萝卜的人，接下来做难题时放弃得更快。所以意志力是有限的“资源”，白天用多了，晚上就会放纵。</p></div>
+    <div class="chk"><i>再查一遍</i><p>这一效应曾被几百项研究“证实”。2016 年，二十多个实验室按统一方案、两千多名被试一起重做，得到的效应几乎为零；2021 年另一次三十多个实验室的重做，效应也非常小。今天心理学界对它的大小、甚至是否存在，仍有争论。<b>比“省着用意志力”更靠得住的办法，是少考验意志力</b>：不想吃零食，就别买回家；不想刷手机，就把它放在另一个房间。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>欲望的账怎么记</h3>
+    <ul class="plain">
+      <li><b>先分清会不会被适应</b>。打算花一大笔钱时，问一句：一年以后，我还会每天因为它高兴吗？会，就值得多花；不会，就想想能不能少花。</li>
+      <li><b>去掉一个持续的烦恼，常常比添一个新的享受更值</b>：缩短通勤、换一张好床、修好一直漏水的水龙头、离开一段一直让你难受的关系。</li>
+      <li><b>挑你的参照组</b>。少看会让你难受的人，多看那些手艺比你好一点、你能学到东西的人。</li>
+      <li><b>等一等</b>。很多人给自己定一个规矩：想买的非必需品，放进购物车，等一个月再决定。一个月后还想要，再买。这不是什么科学定律，只是一个让“适应”提前发生的小办法。</li>
+      <li><b>知足不是不要</b>。知足的意思，是知道每多要一份，要付出什么。觉得值，就去要；觉得不值，放下的时候也不必觉得自己输了。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>算得清的</i>钱多，平均更满意，但每翻一倍才多一截。新东西会被适应，长通勤、睡不够、关系差几乎不会。和谁比，决定了同样的收入让你高兴还是难受。著名的棉花糖实验和“意志力会用完”，都没能被很好地重复出来。</div>
+      <div><i>算不清的</i>想要什么，是一个人最私人的事。有人觉得一辆好车每天都让他高兴，那对他就是值的。书里的研究讲的是平均，你不是平均数。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第六章 · 忙 ============ -->
+<section class="chap" id="c6" data-vol="卷二 · 欲 · 忙">
+  <div class="chead">
+    <div class="big">忙</div>
+    <div>
+      <div class="no">第六章 · 欲之二</div>
+      <h2>白忙活</h2>
+      <dl><dt>讲什么</dt><dd>帕金森定律和自行车棚；指标一旦变成目标；郑人买履、河内的老鼠尾巴；留痕和表演；被打断的注意力；怎样分辨忙和产出</dd><dt>本章装置</dt><dd>考核表</dd></dl>
+      <div class="acc" data-a="时 心"></div>
+      <div class="yrs" data-a="2020" data-b="2023"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">每天从早忙到晚，可要说做成了什么，又说不上来。</p>
+      <p>“忙”量的是你投进去了多少，“产出”量的是有什么东西因为你而变了。两者常常不是一回事。三个问题可以帮你分辨：<em>这件事如果不做，一个月后有谁会发现？它留下了什么能被别人用、或者能被你以后用的东西？我做它，是因为它有用，还是因为它会被看见、被统计？</em>三个都答不上来的，多半是白忙活。不过也要承认：在任何组织里，总有一部分白忙活是“入场费”，躲不掉，只能尽量做得快一点。</p>
+    </div>
+
+    <div class="scene" data-t="2021—2023 年 · 两张桌子">
+      <p>2020 年春天，<span class="nm">唐果</span>发了一条三十秒的视频：她一边画一边讲，画的是楼下每天来送菜的外卖小哥。那条视频被转了几十万次，她的粉丝一个月里从三千涨到了十几万。</p>
+      <p>接下来三年，她每天睁眼第一件事是看后台。为了“保持热度”，她每周发三条视频，学剪辑、追热点、研究什么时间发流量好，一条视频从构思到发出要两天。粉丝涨到二十万，就再也不涨了。她算过一次：那三年接的商单，扣掉时间，时薪还不如她以前在广告公司。而那三年，她的“每天一张画”有一大半是凌晨一点草草画完的。</p>
+      <p>另一张桌子在区里的街道办。<span class="nm">周一舟</span>有一个星期，把同一批数据填进了四个不同的系统：区里一个，市里一个，两个上级部门各一个，格式都不一样。每次检查之前，科里要把半年的工作“补拍照片、补签到表、补会议记录”。他在群里说：“我这一周最大的产出，是一个文件夹，里面有三百张照片，证明我们干过活。”</p>
+      <p><span class="nm">陆晴</span>回了一句：“我们管这个叫周报。”</p>
+    </div>
+
+    <div class="page">
+      <span class="stampv">十年账</span>
+      <div class="who"><b>陆晴</b>计算机 · 杭州一家中型软件公司</div>
+      <dl>
+        <dt>最值</dt><dd>2023 年离开北京。钱少了三成，晚上七点能到家。</dd>
+        <dt>最不值</dt><dd>2021 年为了晋升答辩熬的那三个月。答辩过了，人进了医院。</dd>
+        <dt>白忙活</dt><dd>五年写的两百多份周报，写给不看的人看。</dd>
+      </dl>
+    </div>
+
+    <h3>帕金森的海军部</h3>
+    <p>1955 年，英国历史学家帕金森在《经济学人》上发表了一篇讽刺文章，开头一句是：“工作会自动膨胀，直到填满所有可用的时间。”这就是后来的<b>帕金森定律</b>。他举的例子是英国海军部：1914 年到 1928 年，英国海军的主力舰减少了三分之二，水兵减少了三成，可海军部的文职官员却增加了将近八成。<a href="../civil/two.html#c11">《铁打的营盘》第十一章</a>细讲过这个故事。</p>
+    <p>同一篇文章里，帕金森还写了一个委员会开会的场景：一座造价上千万英镑的原子反应堆，两分半钟就批了，因为谁也看不懂；一个三百五十英镑的自行车棚，大家讨论了四十五分钟，因为人人都懂、人人都有意见。后来程序员们把这叫作“自行车棚效应”：<em>人会把最多的时间，花在最容易发表意见、而不是最重要的事情上</em>。</p>
+    <p>落到个人身上，帕金森定律的意思是：如果你给一件事留一整天，它就会花掉一整天；如果没人催，最容易做的、最能被人看见的事，会把重要但难的事挤到明天，再挤到下周。</p>
+
+    <h3>指标一旦变成目标</h3>
+    <p>《韩非子》里有个故事：郑国有个人要去集市买鞋，先在家量好了脚的尺寸，到了集市才发现量好的尺码忘在家里了，于是跑回家去拿。等他拿着尺码回来，集市已经散了。有人问他：你为什么不用脚试一试？他说：“宁信度，无自信也。”我宁可相信量出来的尺码，也不相信自己的脚。</p>
+    <p>两千多年后，英国经济学家古德哈特在 1975 年讨论货币政策时说了一句话，后来被人类学家斯特拉森概括成一句流传更广的格言：<b>“一个指标一旦变成目标，它就不再是一个好指标。”</b>这就是古德哈特定律。</p>
+    <p>道理很简单：人会去优化被考核的那个数字，而不是那个数字原本想代表的东西。考核论文数，就有人把一篇拆成三篇；考核接诊量，就有人把复诊拆成好几次挂号；考核“处理时长”，就有人把没解决的投诉先关掉再说。<a href="../yes/#c7">《是，大人》第六案“考什么，得什么”</a>写的就是这件事。</p>
+  </div>
+
+  <div class="echo" data-k="押韵">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">河内的老鼠尾巴</p><p>1902 年，法国殖民当局为了在河内灭鼠，宣布每交一条老鼠尾巴，就给一点赏钱。很快，交上来的尾巴越来越多，街上的老鼠却没少：有人剪了尾巴把老鼠放走，让它们接着生；后来还发现有人在城外专门养老鼠。历史学家范恩根据殖民档案还原了这件事。<b>你奖励什么，就会得到什么，哪怕那不是你想要的</b>。</p></div>
+  </div>
+
+  <div class="myth">
+    <div class="tag">眼镜蛇效应和苏联的钉子工厂<small>存疑</small></div>
+    <div class="pop"><i>流行说法</i><p>英国统治印度时，德里悬赏眼镜蛇，结果有人专门养蛇换赏钱，悬赏取消后蛇被放出来，蛇反而更多了。苏联有家钉子工厂，按数量考核就造出一堆没用的小钉子，按重量考核就造出几颗巨大的钉子。</p></div>
+    <div class="chk"><i>再查一遍</i><p>这两个故事都找不到可靠的史料。“眼镜蛇效应”这个词是一位德国经济学家 2001 年才起的名字，那个故事更像是寓言；钉子工厂多半来自苏联时期的讽刺漫画和笑话。它们讲的道理是对的，真实的例子也不少（比如上面的河内老鼠），<b>只是讲道理时，最好用真事</b>。</p></div>
+  </div>
+
+  <div class="fig" id="gdFig">
+    <div class="fig-label">装置 7</div>
+    <h4>考核表</h4>
+    <p class="how">你管一个十个人的小组，干半年。选一个考核指标，再决定抽查得多严。看两条线：<b>报表上的成绩</b>和<b>真实的产出</b>。组里的人都不坏，只是一个个都很聪明：哪个数字被考核，他们就慢慢学会把力气往那里使。</p>
+    <div class="btns" id="gdBtns"></div>
+    <div class="ctl"><span>抽查力度</span><input type="range" id="gdA" min="0" max="90" step="5" value="10"><output id="gdAO"></output></div>
+    <svg class="sim" id="gdSvg"></svg>
+    <div class="legend"><span><i style="background:var(--och)"></i>报表上的成绩</span><span><i style="background:var(--main)"></i>真实的产出</span></div>
+    <div class="say" id="gdSay"></div>
+    <p class="figcap">示意模型：每个指标有不同的“可钻空子程度”和“测量本身的成本”（比如写留痕材料要花时间）；钻空子的人数随时间增加，抽查越严增加得越慢，但抽查本身也要占用人手。数字没有单位，起点都是 100。</p>
+  </div>
+
+  <div class="col">
+    <h3>留痕和表演</h3>
+    <p>有一种白忙活，不是为了把事做成，而是为了<em>证明</em>事做过了：会议纪要、签到表、照片、周报、台账。它们一开始是有用的：留下记录，出了问题能查，换了人能接上。<a href="../civil/three.html#c21">《铁打的营盘》第二十一章</a>讲过，留痕怎样从一套必要的程序，长成了“痕迹主义”：痕迹本身成了工作，工作反而成了留痕的素材。2019 年，中央专门发文给基层减负，要求整治“过度留痕”。</p>
+    <p>不光机关这样。公司里有为了被老板看见而发的深夜邮件，有越写越长的周报，有一个小时能说完、却开了一下午的会。人类学家格雷伯 2018 年写了一本书，叫《毫无意义的工作》，引用一项英国民调说，有近四成的人认为自己的工作对世界没什么意义。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">“近四成的工作毫无意义”<small>存疑</small></div>
+    <div class="pop"><i>流行说法</i><p>格雷伯说，现代经济里大量的工作是“狗屁工作”，连做的人自己都觉得没有意义，比例可能高达三四成。</p></div>
+    <div class="chk"><i>再查一遍</i><p>那个“37%”来自 2015 年的一次网络民调，问题很简短。2022 年，英国几位学者用欧洲工作条件调查里三万多人的数据检验，发现说自己的工作“很少或从不”有用的人只有约 5%，而且这种感觉更多和管理差、被不尊重有关，而不是和某一类职业有关。<b>觉得自己白忙活的人没那么多，但白忙活的“时段”可能比白忙活的“工作”多得多</b>：几乎每份工作里，都有一些时间花在了只为被看见的事上。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>被打断的注意力</h3>
+    <p>白忙活还有一个隐蔽的来源：<b>切换</b>。2009 年，管理学者勒罗伊做了一组实验，发现人从一件没做完的事切换到另一件事时，注意力会有一部分“残留”在上一件事上，后一件事做得更差。她管这个叫“注意力残留”。研究人机交互的心理学家马克追踪了二十年人们用电脑的方式，发现人们在一个屏幕上停留的平均时间，从二十一世纪初的两分半钟左右，降到了近年的不到一分钟。</p>
+    <p>一天回了八十条消息、开了五个会、在七个文档之间跳来跳去，人会累得像干了很多活，可真正需要连续想一两个小时才能做出来的东西，一件也没做。写代码、写文章、画画、解难题、学一门新东西，都属于这一类。很多做出东西的人，会刻意每天留出一两个不被打断的小时，把手机放远，把消息关掉。这不是什么秘诀，只是承认人的注意力和时间一样，不能同时卖给两个人。</p>
+
+    <h3>怎样分辨</h3>
+    <ul class="plain">
+      <li><b>谁用？</b>你做出来的东西，有没有人真正在用、在看、在等？没人用的报表、没人看的周报、没人读的长文档，做得再漂亮也是白忙活。</li>
+      <li><b>能留下吗？</b>今天做的事，一年后还有没有一点剩下来：一项技能、一个作品、一段可以复用的代码、一个信任你的人？只留下“我那天很忙”的，多半不算。</li>
+      <li><b>为谁做的？</b>如果没人会看见、没人会统计，你还会做它吗？会，它多半是真有用的；不会，它多半是做给人看的。</li>
+      <li><b>入场费交多少？</b>完全不做做给人看的事，在大多数组织里行不通。聪明的做法是把这部分做得又快又够格（用模板、批量处理、一次做完），然后把省下来的精力留给真正的产出。唐果后来给自己定了个规矩：一周只发一条视频，其余时间画画。“流量掉了一半，”她说，“画好了一倍。”</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>算得清的</i>忙量的是投入，产出量的是改变。工作会膨胀到填满时间；指标一旦成了目标就会被钻空子；切换会吃掉注意力。分辨的问题是：谁用、能留下吗、为谁做的。</div>
+      <div><i>算不清的</i>有些事当下看是白忙活，几年后才发现有用；也有些“入场费”，交了才换来做正事的自由。白忙活和真产出之间的那条线，常常要过很久才看得清。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第七章 · 钱 ============ -->
+<section class="chap" id="c7" data-vol="卷二 · 欲 · 钱">
+  <div class="chead">
+    <div class="big">钱</div>
+    <div>
+      <div class="no">第七章 · 欲之三</div>
+      <h2>钱的基本功</h2>
+      <dl><dt>讲什么</dt><dd>米考伯先生的公式；应急金；倍称之息和“每月只要 0.6%”；保险到底保什么；“保本高收益”为什么是红灯。只讲概念，不推荐任何产品</dd><dt>本章装置</dt><dd>分期的真实利率 · 应急金撑得住吗</dd></dl>
+      <div class="acc" data-a="钱 心"></div>
+      <div class="yrs" data-a="2022"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">第一份工资到手，该怎么安排？</p>
+      <p>这本书不推荐任何理财产品，只说几条基本功，顺序大致是：<b>知道钱去了哪儿</b>（不必记每一分，但要知道房租、吃饭、交通这几大块，和每月能剩多少）；<b>先攒一笔应急的钱</b>，放在安全、随时取得出来的地方；<b>不碰看不懂利率的债</b>；<b>保险只保那些一旦发生你扛不住的事</b>；以及<em>对任何“保本、高收益”的说法，一律先当成红灯</em>。这几条都很无聊，可大多数年轻人在钱上栽的跟头，都是因为少做了其中一条。</p>
+    </div>
+
+    <div class="scene" data-t="2022 年 11 月 · 北京 / 省城">
+      <p>十一月的一个周四下午，<span class="nm">陆晴</span>被叫进一间小会议室，十五分钟后出来，她所在的整个组被“优化”了。公司按规定给了补偿。</p>
+      <p>那天晚上她在群里说的第一句话是：“没事，我有八个月的钱。”她工作第一年就听了魏然的话，每月先往一个单独的账户里存一笔，不碰，攒够了八个月的开销。接下来三个月，她没有急着投简历，先去看了病，睡了几周好觉，然后才开始找工作。</p>
+      <p>同一个月，<span class="nm">大程</span>在用第三张信用卡还第一张信用卡。</p>
+      <p>也是那个月，<span class="nm">苏禾</span>在群里问：“我那辆车是信用卡分期买的，银行说每个月手续费只要 0.6%，一年才 7.2%，比房贷高不了多少，对吧？”</p>
+      <p><span class="nm">魏然</span>回了一张截图，是她用表格算的：“不对。真实的年利率大约是 13%。”</p>
+    </div>
+
+    <div class="page">
+      <span class="stampv">群聊</span>
+      <div class="who"><b>魏然</b>发在群里的五行字</div>
+      <dl>
+        <dt>记</dt><dd>先知道钱去了哪儿。三大块就够：住、吃、行。</dd>
+        <dt>留</dt><dd>攒几个月的开销，单独放，不碰，不拿去“理财”。</dd>
+        <dt>躲</dt><dd>看不懂年利率的债，不借。</dd>
+        <dt>保</dt><dd>只保扛不住的事。手机碎屏不算。</dd>
+        <dt>疑</dt><dd>保本又高收益的，先报警，再听他讲。</dd>
+      </dl>
+    </div>
+
+    <h3>米考伯先生的公式</h3>
+    <p>狄更斯的小说《大卫·科波菲尔》（1850）里，有一位总是欠债、总是乐观的米考伯先生。他被关进债务人监狱时，郑重地给年轻的大卫传授人生经验，大意是：一年收入二十镑，花掉十九镑十九先令六便士，结果是幸福；一年收入二十镑，花掉二十镑零六便士，结果是痛苦。</p>
+    <p>两种结局之间，只差一个先令。这就是预算的全部道理：<em>不在于挣多少，而在于花的是不是比挣的少一点，而且一直少一点</em>。</p>
+    <p>怎样做到？一个流传很广的经验是“先存后花”：工资一到账，先把打算存的那部分转走，剩下的才是可以花的。这个说法来自一本 1926 年的美国通俗理财书，它的道理很朴素：等到月底再看剩多少，往往什么也剩不下。还有人给出更具体的比例，比如“五成必要开支、三成想要的、两成存起来”，这些都只是参考，不是规定。刚毕业、房租又高的人，能存一成就很好；重要的是有存，而且每月都存。</p>
+
+    <h3>应急金</h3>
+    <p>第四章讲过：最要紧的是别被踢出局。对一个刚工作的人，最常见的“出局”方式不是投资亏光，而是<b>一件意外事加上手里没钱</b>：突然失业、生病、家里急用钱，手里又没有积蓄，只好刷信用卡、借网贷，然后被利息越滚越深。</p>
+    <p>应急金就是为这个准备的：一笔<b>专门留着、不拿去做别的</b>的钱。常见的经验是存够三到六个月的必要开支（不是工资，是房租、吃饭、交通、还贷这些不花不行的钱）。收入越不稳定（做销售、自由职业、行业波动大），留得越多；有家人可以依靠、收入很稳的，可以少一些。它该放在安全、随时能取出来的地方，不追求收益，因为它的“收益”就是：<em>出事的时候，你不用做任何一个被逼出来的决定</em>。陆晴失业那三个月没有急着找工作，就是这笔钱买来的。</p>
+  </div>
+
+  <div class="fig" id="efFig">
+    <div class="fig-label">装置 8</div>
+    <h4>应急金撑得住吗</h4>
+    <p class="how">模拟一千个“你”过十年：每个月有一定机会失业（几个月没收入），也有机会碰上一笔意外开销（看病、家里急用）。平时每月往应急金里补一点，用掉了就慢慢补回来。看看有多少个“你”会在某个时刻钱不够，不得不去借高息的钱。</p>
+    <div class="ctl"><span>应急金</span><input type="range" id="efM" min="0" max="12" step="1" value="3"><output id="efMO"></output></div>
+    <div class="ctl"><span>收入稳定程度</span><select id="efJ"><option value="0">很稳（编制、大单位）</option><option value="1" selected>一般（普通公司）</option><option value="2">波动大（销售、自由职业、创业）</option></select><output></output></div>
+    <div class="ctl"><span>每月补回</span><input type="range" id="efS" min="0.05" max="0.5" step="0.05" value="0.15"><output id="efSO"></output></div>
+    <div class="kv" id="efKv"></div>
+    <div class="say" id="efSay"></div>
+    <p class="figcap">示意模型：三种工作每年失业的机会约 3% / 10% / 25%，失业持续 1—6 个月；每年约 8% 的机会碰上一笔相当于 1—6 个月开销的意外。“每月补回”指平时每月能往应急金里补回的钱，相当于月必要开支的几成。没算失业补偿、失业保险和家人支援，这些都会让结果好一些。</p>
+  </div>
+
+  <div class="col">
+    <h3>倍称之息</h3>
+    <p>西汉文帝时，晁错给皇帝上了一篇《论贵粟疏》，讲农民为什么会破产：碰上急着交税的时候，“当具有者半贾而卖，亡者取倍称之息，于是有卖田宅、鬻子孙以偿债者矣”。有东西的半价贱卖，没东西的只能去借加倍利息的债，最后卖田卖房、卖儿卖女来还。两千多年来，高利贷让人破产的路数几乎没变：<b>急用钱的时候，最贵的钱最容易借到</b>。</p>
+    <p>今天的高利贷，常常穿着体面的衣服：信用卡分期、消费分期、各种“先用后付”。它们最常用的一招，是只告诉你“每期手续费”或“日息万分之几”，不告诉你年利率。</p>
+    <p>比如“分 12 期，每期手续费 0.6%”。很多人心算：0.6% × 12 = 7.2%，一年才 7.2%。错在哪儿？手续费每期都按<b>最初的全部本金</b>收，可你每个月都在还本金，欠的钱越来越少，到最后一期只欠十二分之一了，手续费却一分没少。按你实际占用的钱算，真实的年利率大约是 <b>13%</b>，接近名义数字的两倍。“日息万分之五”听着很小，乘以 365，是 18% 以上。</p>
+    <p>2021 年，中国人民银行发布公告，要求所有贷款产品都必须明示年化利率。所以，借任何钱之前，只问一句：<em>“年化利率是多少？”</em>对方支支吾吾、或者只肯说月费日息的，就别借了。</p>
+  </div>
+
+  <div class="fig" id="irFig">
+    <div class="fig-label">装置 9</div>
+    <h4>分期的真实利率</h4>
+    <p class="how">填上分期的本金、期数和每期手续费率，装置会按你每个月实际欠着的钱，算出真实的年利率（内部收益率），和“每期费率 × 12”的心算结果对比。</p>
+    <div class="inrow">
+      <label>本金（元）<input type="number" id="irP" value="12000" min="100" step="100"></label>
+      <label>期数（月）<select id="irN"><option>3</option><option>6</option><option selected>12</option><option>18</option><option>24</option><option>36</option></select></label>
+      <label>每期手续费率（%）<input type="number" id="irR" value="0.6" min="0" max="5" step="0.05"></label>
+    </div>
+    <div class="kv" id="irKv"></div>
+    <svg class="sim" id="irSvg"></svg>
+    <div class="say" id="irSay"></div>
+    <p class="figcap">按等额本金加固定手续费计算（大多数信用卡账单分期是这样收的），真实年利率用内部收益率按月复利折算。各家的收费方式不同，以合同里写明的年化利率为准。</p>
+  </div>
+
+  <div class="echo" data-k="联系">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">借明天的钱</p><p>借钱本身不是坏事：<a href="../finance/#c11">《柜台里外》“借明天”</a>那一章讲过，房贷、助学贷款、企业贷款，都是把未来的钱挪到今天来用，用得好，能让一个人、一个国家早十年过上好日子。问题只在于：<b>你借来的钱，是拿去买一样以后会让你更有能力还钱的东西，还是拿去买一样明天就不值钱的东西</b>。前者是投资，后者是透支。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>保险到底保什么</h3>
+    <p>保险的原理很古老：很多人每人出一点小钱，凑成一个池子，谁碰上了大灾，就从池子里拿钱。1666 年伦敦大火烧掉了一万多栋房子，此后不久，伦敦出现了最早的火灾保险公司；差不多同一时期，伦敦一家咖啡馆成了船主和商人谈海上保险的地方，后来发展成劳合社。<a href="../finance/#c10">《柜台里外》“借运气”</a>和<a href="../city/two.html#c11">《城里城外》第十一章</a>讲过这段历史。</p>
+    <p>从这个原理推下来，买保险有一条最基本的道理：<b>保那些不太会发生、可一旦发生你扛不住的事；不保那些常常发生、但你自己扛得住的事</b>。</p>
+    <ul class="plain">
+      <li>一场大病、一次严重的意外、家里顶梁柱突然倒下：概率小，损失大到能毁掉一个家，这正是保险该干的活。国家的社会医疗保险是第一层，先确保它在。</li>
+      <li>手机碎屏、电器延保、快递丢件：概率不小，可损失你自己掏得起。为这些买保险，你付的保费里有相当一部分是保险公司的成本和利润，很多经济学家认为平均来说不划算。</li>
+      <li>把“保障”和“理财”绑在一起卖的产品，常常两样都做不好，还很难看懂。看不懂的，先别买。买任何保险前，至少看清三样：保什么、不保什么（免责条款）、多久以后才开始保（等待期）。</li>
+    </ul>
+    <p>这里只讲道理，不推荐任何险种和公司。真要买，请找和你没有利益关系、又懂行的人看过条款再说。</p>
+
+    <h3>“保本高收益”是红灯</h3>
+    <p>最后一条基本功最短：<b>安全、随时能取、收益高，这三样东西不可能同时拥有</b>。银行存款安全、能取，收益就低；房子长期收益也许不错，可一时半会儿卖不掉；股票能随时卖，可价格会跌。谁要是说他的东西三样都占，你就问他一个问题：</p>
+    <p class="ni" style="padding-left:2em;font-family:var(--f-display);font-size:19px">“既然这么好，你为什么不去银行用便宜得多的利息借钱自己赚，而要来找我？”</p>
+    <p>历史上几乎所有让普通人倾家荡产的骗局，开头都是这几个字：保本、稳赚、年化百分之十几、名额有限。<a href="../finance/#c12">《柜台里外》“骗局的骨架”</a>拆过它们共同的结构，第十章还会讲怎样不被这类话说动。</p>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>算得清的</i>收入比支出多一点，一直多一点。先攒应急金，三到六个月的必要开支，收入越不稳留越多。借钱只问年化利率：每期 0.6% 的分期，真实年利率约 13%。保险保扛不住的大事。安全、能取、高收益，三样只能占两样。</div>
+      <div><i>算不清的</i>钱该省到什么程度、该花在哪里享受，没有标准。省得太狠，也会错过只有年轻时才做得了的事。基本功是底线，不是全部。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第一部末：存疑与出处 ============ -->
+<section class="chap" id="notes1" data-vol="第一部 · 存疑与出处">
+  <div class="col">
+    <h3>第一部：哪些是真的</h3>
+    <ul class="src">
+      <li><b>虚构的</b>：南湖大学、校报《南湖》编辑部，以及魏然、周一舟、陆晴、程浩、林小满、苏禾、唐果七个人和他们的“十年账”，都是虚构的。他们的经历是按这十年里常见的路拼出来的，不对应任何真人。</li>
+      <li><b>真实的背景</b>：故事里提到的社会背景（2018 年前后的网贷平台爆雷、2020—2022 年的疫情、2022 年前后互联网行业裁员、银行不许用消费贷付房子首付、2021 年央行要求贷款明示年化利率）是真实的，只作背景，不针对任何具体机构。</li>
+      <li><b>真实的历史和研究</b>：正文里的历史人物、事件、实验和数字，都尽量核对过；转述的研究写明了作者和年份，结论都是转述和简化，细节以原文为准。</li>
+      <li><b>装置</b>：全部是示意模型，数字为说明道理而设，不是预测，也不构成任何投资、理财、择业建议。</li>
+    </ul>
+
+    <h3>第一部：存疑与说明</h3>
+    <ul class="src">
+      <li><b>账</b>：功过格的各种版本内容差别很大，“价目表”是概括；曾国藩日记的起止时间以通行的整理本为准。</li>
+      <li><b>时</b>：果酱实验能否重复（标“存疑”）；“用钱买时间”研究的效应不大，后续研究有分歧。</li>
+      <li><b>沉</b>：协和飞机没有停下来的原因很多，“沉没成本”只是其中之一；“坚毅”的预测力（标“存疑”）；英特尔那段对话出自格鲁夫本人的回忆。</li>
+      <li><b>复</b>：富兰克林遗嘱基金 1990 年的价值，各种资料说法不一，这里取常见的约数；“复利是第八大奇迹”不是爱因斯坦说的（标“存疑”）；一万小时定律、二十一天养成习惯（标“存疑”）；“巴菲特说过”的那句话流传的版本很多。</li>
+      <li><b>险</b>：长期资本管理公司的杠杆倍数、亏损额，不同资料略有出入；牛顿在南海泡沫中的亏损额来自转述，那句名言出处不明（标“存疑”）。</li>
+      <li><b>比</b>：伊斯特林悖论至今有争论；中彩票研究、棉花糖实验、“自我损耗”（标“存疑”）；通勤与满意度的研究基于德国数据，其他国家的结果大体相似但不完全一致；装置中各项“适应半衰期”为示意。</li>
+      <li><b>忙</b>：眼镜蛇效应、钉子工厂（标“存疑”）；“近四成工作毫无意义”（标“存疑”）；人们在一个屏幕上停留的时长，不同研究的测量方法不同。</li>
+      <li><b>钱</b>：“三到六个月”“先存后花”“五三二”都是经验说法，不是研究结论；“延保通常不划算”是很多经济学家的看法，具体产品各不相同。</li>
+    </ul>
+
+    <h3>第一部：主要出处</h3>
+    <ul class="src">
+      <li>公版文献（引文或大意）：《史记》项羽本纪、货殖列传；晁错《论贵粟疏》；《韩非子·外储说左上》；袁黄《了凡四训》；富兰克林《自传》、《给一个年轻商人的忠告》（1748）、1772 年致普里斯特利的信、1790 年遗嘱附录；巴斯夏《看得见的与看不见的》（1850）；狄更斯《大卫·科波菲尔》（1850）；希罗多德《历史》；普鲁塔克《论心灵的宁静》。</li>
+      <li>研究（只作转述）：Iyengar &amp; Lepper（2000）及 Scheibehenne 等（2010）关于选择过多；Whillans 等（2017）关于用钱买时间；Dawkins &amp; Carlisle（1976）；Arkes &amp; Blumer（1985）；Staw（1976）；Credé 等（2017）关于坚毅；Grove《只有偏执狂才能生存》；Ebbinghaus（1885）；Stanovich（1986）；Newell &amp; Rosenbloom（1981）关于练习幂律；Ericsson 等（1993）；Macnamara 等（2014）及 Macnamara &amp; Maitra（2019）；Lally 等（2010）；Verhulst（1838）；Peters（2019）关于遍历性；Kelly（1956）；Lowenstein《赌神陨落》等关于长期资本管理公司的记述；Taleb《黑天鹅》《反脆弱》；Easterlin（1974）；Kahneman &amp; Deaton（2010）；Killingsworth（2021）；Killingsworth、Kahneman &amp; Mellers（2023）；Brickman &amp; Campbell（1971）；Brickman 等（1978）；Lindqvist 等（2020）；Stutzer &amp; Frey（2008）；Solnick &amp; Hemenway（1998）；Veblen《有闲阶级论》（1899）；Mischel 等（1972 及以后）；Watts 等（2018）；Baumeister 等（1998）；Hagger 等（2016）；Vohs 等（2021）；Parkinson（1955）；Goodhart（1975）；Strathern（1997）；Vann 关于 1902 年河内灭鼠；Graeber《毫无意义的工作》（2018）；Soffia 等（2022）；Leroy（2009）；Gloria Mark《注意力跨度》。</li>
+      <li>官方文件（大意）：中国人民银行 2021 年关于贷款产品明示年化利率的公告。</li>
+    </ul>
+  </div>
+</section>
+
+<div class="partend" data-vol="第一部完">
+  <div class="k">第一部 · 算 · 完</div>
+  <h3>账面上的事，到这里算完了</h3>
+  <p class="ni" style="font-size:16px;line-height:1.9;text-align:left">第一部算的是能写在纸上的账：机会成本、沉没成本、复利、风险，欲望怎样被适应和比较吃掉，忙和产出的区别，钱的几样基本功。第二部要算的，是更难写在纸上的账：人情和名声，去哪座城、进哪一行，怎样不被话术说动，身体和关系，运气，以及最后，怎样给自己做一本账。</p>
+  <a class="go" data-c="c8" href="two.html">第二部 · 人</a>
+</div>
+
+<footer>
+  <p>《值不值 · 一个人的创世记》第一部。七个毕业生和他们的故事是虚构的；正文中的史实与研究尽量核对过，有争议的地方标了“存疑”，说明与出处见<a href="#notes1">上面</a>。</p>
+  <p>书里讲到钱、保险、借贷的地方，只讲概念和历史，不推荐任何产品、平台或机构。装置里的数字是简化模型，只看方向和数量级，不构成任何投资、理财、择业建议。</p>
+  <a class="nextbook" href="../finance/"><small>书房里的另一本书</small><br><b>柜台里外 · 金融创世记</b><br><small>这本书讲一个人怎样算钱的账；那本书讲这些账背后的工具是怎么来的：借时间、借运气、借明天，以及骗局的骨架。</small></a>
+  <p><a href="#top" class="toTop">回到封面 ↑</a>　·　<a data-c="c8" href="two.html">第二部 · 人</a>　·　<a href="../">回书房</a></p>
+</footer>
+
+<script>
+(function(){
+'use strict';
+const $ = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => [...(r || document).querySelectorAll(s)];
+const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+const lerp = (a, b, t) => a + (b - a) * t;
+function rng(seed){ let a = seed >>> 0; return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const fmt = n => n >= 1e8 ? (n / 1e8).toFixed(1) + ' 亿' : n >= 1e4 ? (Math.round(n / 1e3) / 10).toLocaleString() + ' 万' : Math.round(n).toLocaleString();
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+const yr = y => y < 0 ? '前 ' + (-y) : String(y);
+const btnRow = (box, items, cur, cb) => {
+  box.innerHTML = items.map((t, i) => '<button class="btn' + (i === cur ? ' on' : '') + '" data-i="' + i + '">' + t + '</button>').join('');
+  box.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; $$('button', box).forEach(x => x.classList.toggle('on', x === b)); cb(+b.dataset.i); });
+};
+const dev = (sel, fn) => { const el = $(sel); if (el) { try { fn(el); } catch (err) { console.error(sel, err); } } };
+const kv = (box, rows) => { box.innerHTML = rows.map(r => '<div>' + r[0] + '<b>' + r[1] + '</b></div>').join(''); };
+function svgPt(svg, e){
+  const r = svg.getBoundingClientRect(), vb = svg.viewBox.baseVal;
+  const s = Math.max(vb.width / r.width, vb.height / r.height);
+  const ox = (r.width * s - vb.width) / 2, oy = (r.height * s - vb.height) / 2;
+  return {x: (e.clientX - r.left) * s - ox + vb.x, y: (e.clientY - r.top) * s - oy + vb.y};
+}
+function txt(x, y, t, o){ o = o || {}; return '<text x="' + x + '" y="' + y + '" font-size="' + (o.s || 13) + '" fill="' + (o.c || 'var(--ink)') + '" text-anchor="' + (o.a || 'middle') + '"' + (o.w ? ' font-weight="700"' : '') + (o.halo === false ? '' : ' paint-order="stroke" stroke="' + (o.hc || 'var(--card)') + '" stroke-width="3.5" stroke-linejoin="round"') + '>' + t + '</text>'; }
+/* 滑块：绑定 input 与 output，返回读数函数 */
+function slider(id, f, cb){ const r = $('#' + id), o = $('#' + id + 'O'); const go = () => { if (o) o.textContent = f ? f(+r.value) : r.value; if (cb) cb(+r.value); }; r.addEventListener('input', go); go(); return () => +r.value; }
+
+/* ---------- 全书目录（两个网页共用） ---------- */
+const PAGE = /two\.html/.test(location.pathname) ? 2 : 1;
+const READY = 1; // 已经写好的部数
+const PURL = {1: './', 2: 'two.html'};
+const TOC = [
+  {p: 1, t: '第一部 · 算 —— 账面上的事'},
+  {v: '序幕'},
+  {id: 'c0', n: '账', t: '十年账', s: '一封聚会邀请、七个人、一页纸：最值的、最不值的、白忙活的', r: '2026'},
+  {v: '卷一 · 价 —— 每样东西都有价钱'},
+  {id: 'c1', n: '时', t: '一小时值多少钱', s: '机会成本：选了一样，就放弃了别的；时间是唯一不能攒的钱', r: '2016'},
+  {id: 'c2', n: '沉', t: '已经花掉的', s: '沉没成本、协和式飞机、什么时候该放手，什么时候该破釜沉舟', r: '2017—2021'},
+  {id: 'c3', n: '复', t: '利滚利', s: '复利：技能、身体、名声、钱都会滚，也都有天花板和断档', r: '2016—2026'},
+  {id: 'c4', n: '险', t: '活下来', s: '风险、方差、杠杆、破产：为什么活下来比赚最多更重要', r: '2018—2023'},
+  {v: '卷二 · 欲 —— 想要的和需要的'},
+  {id: 'c5', n: '比', t: '隔壁的琼斯家', s: '欲望、攀比、享乐适应，以及几个被重新检查过的著名实验', r: '2019'},
+  {id: 'c6', n: '忙', t: '白忙活', s: '忙和产出不是一回事：考核、留痕、假装工作，以及怎样分辨', r: '2020—2023'},
+  {id: 'c7', n: '钱', t: '钱的基本功', s: '预算、应急金、债、保险，以及“保本高收益”为什么是红灯', r: '2022'},
+  {p: 2, t: '第二部 · 人 —— 账面外的事'},
+  {v: '卷三 · 人 —— 和别人、和世界打交道'},
+  {id: 'c8', n: '情', t: '人情账', s: '人情、信用、名声：重复博弈里的老实人为什么不吃亏', r: '2018—2026'},
+  {id: 'c9', n: '城', t: '去哪儿', s: '选城市、选行业、选单位；稳的路和快的路', r: '2016—2026'},
+  {id: 'c10', n: '话', t: '话术', s: '信息、广告、骗局：怎样不被人说动', r: '2018'},
+  {v: '卷四 · 身与运'},
+  {id: 'c11', n: '身', t: '身体这个账户', s: '健康和关系是资产，而且是最难补仓的那种', r: '2021'},
+  {id: 'c12', n: '运', t: '运气', s: '失败、运气、幸存者偏差：赢家讲的故事为什么不能全信', r: '2020'},
+  {v: '尾声'},
+  {id: 'c13', n: '账', t: '自己的账本', s: '十年聚会那一晚；以及怎样给自己做一本账', r: '2026'}
+];
+const chapPage = {}; { let p = 1; TOC.forEach(x => { if (x.p) p = x.p; if (x.id) chapPage[x.id] = p; }); }
+const href = id => (chapPage[id] === PAGE ? '' : PURL[chapPage[id]]) + '#' + id;
+$$('.bar .parts a').forEach(a => { const p = +a.dataset.p; a.classList.toggle('on', p === PAGE); if (p > READY) { a.removeAttribute('href'); a.style.opacity = .4; a.title = '写作中'; } });
+$('#drawerList').innerHTML = TOC.map(x => x.p ? '<li class="ph">' + x.t + '</li>' : x.v ? '<li class="vh">' + x.v + '</li>' :
+  chapPage[x.id] > READY ? '<li><a style="opacity:.5;pointer-events:none"><span class="n">' + x.n + '</span><span>' + x.t + '<small>写作中</small></span></a></li>' :
+  '<li><a href="' + href(x.id) + '"' + (chapPage[x.id] === PAGE ? ' class="here"' : '') + '><span class="n">' + x.n + '</span><span>' + x.t + '<small>' + x.s + '</small></span></a></li>').join('');
+dev('#toc', ul => {
+  ul.innerHTML = TOC.map(x => x.p ? '<li class="vh" style="color:var(--main)">' + x.t + '</li>' : x.v ? '<li class="vh">' + x.v + '</li>' :
+    chapPage[x.id] > READY ? '<li class="soon"><div><span class="n">' + x.n + '</span><span class="t">' + x.t + '<small>' + x.s + '</small></span><span class="r">' + x.r + '</span></div></li>' :
+    '<li' + (chapPage[x.id] === PAGE ? '' : ' class="away"') + '><a href="' + href(x.id) + '"><span class="n">' + x.n + '</span><span class="t">' + x.t + '<small>' + x.s + '</small></span><span class="r">' + x.r + '</span></a></li>').join('');
+});
+/* 页面里写 <a data-c="c12">…</a>，自动拼出跨页链接 */
+$$('a[data-c]').forEach(a => { const id = a.dataset.c; if (chapPage[id] > READY) { a.removeAttribute('href'); a.title = '写作中'; a.style.textDecorationStyle = 'dotted'; } else a.href = href(id); });
+
+/* ---------- 页眉：卷名、进度、目录抽屉 ---------- */
+const barVol = $('#barVol'), prog = $('#prog');
+const vols = $$('[data-vol]');
+let ticking = false;
+function onScroll(){
+  ticking = false;
+  const lim = innerHeight * 0.35; let cur = null;
+  for (const e of vols) { if (e.getBoundingClientRect().top < lim) cur = e; else break; }
+  barVol.textContent = cur ? cur.dataset.vol : '序';
+  const H = document.documentElement.scrollHeight - innerHeight;
+  prog.style.width = (H > 0 ? scrollY / H * 100 : 0) + '%';
+}
+window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, {passive: true});
+onScroll();
+const drawer = $('#drawer');
+function openD(on){ drawer.classList.toggle('on', on); drawer.setAttribute('aria-hidden', on ? 'false' : 'true'); }
+$('#tocBtn').addEventListener('click', () => openD(true));
+drawer.addEventListener('click', e => { if (e.target.closest('[data-close]') || e.target.closest('a')) openD(false); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') openD(false); });
+$$('.toTop').forEach(a => a.addEventListener('click', e => { e.preventDefault(); scrollTo({top: 0, behavior: 'smooth'}); }));
+
+/* 章首：五个账户 */
+const ACC = [['时', '时间'], ['钱', '钱'], ['身', '身体'], ['人', '人情与关系'], ['心', '心思']];
+$$('.acc').forEach(w => { const on = (w.dataset.a || '').split(/\s+/); w.innerHTML = ACC.map(f => '<span' + (on.includes(f[0]) ? ' class="on"' : '') + '><b>' + f[0] + '</b>' + f[1] + '</span>').join(''); });
+/* 年代条：2016—2026 */
+$$('.yrs').forEach(w => { const a = +w.dataset.a, b = +(w.dataset.b || w.dataset.a); let h = ''; for (let y = 2016; y <= 2026; y++) h += '<span' + (y >= a && y <= b ? ' class="on"' : '') + '>' + String(y).slice(2) + '</span>'; w.innerHTML = h; w.title = a + (b !== a ? '—' + b : ''); });
+/* 卷首：一页账簿 */
+$$('svg.ledg').forEach(s => {
+  s.setAttribute('viewBox', '0 0 120 90');
+  let g = '<rect x="2" y="2" width="116" height="86" rx="3" fill="none" stroke="currentColor" stroke-width="2"/>';
+  for (let i = 1; i < 7; i++) g += '<line x1="2" x2="118" y1="' + (2 + i * 12.3) + '" y2="' + (2 + i * 12.3) + '" stroke="currentColor" stroke-width=".7"/>';
+  g += '<line x1="30" x2="30" y1="2" y2="88" stroke="currentColor" stroke-width="1.2"/><line x1="82" x2="82" y1="2" y2="88" stroke="currentColor" stroke-width="1.2"/><line x1="100" x2="100" y1="2" y2="88" stroke="currentColor" stroke-width=".7"/>';
+  g += '<text x="60" y="58" font-size="34" text-anchor="middle" fill="currentColor" font-family="var(--f-display)">' + (s.dataset.t || '账') + '</text>';
+  s.innerHTML = g;
+});
+/* 正态随机数、分位数、元 */
+function gauss(r){ let u = 0, v = 0; while (!u) u = r(); while (!v) v = r(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
+const pct = (arr, p) => { const s = [...arr].sort((x, y) => x - y); return s[Math.min(s.length - 1, Math.max(0, Math.floor(p * (s.length - 1))))]; };
+const yuan = n => (n < 0 ? '−' : '') + fmt(Math.abs(n)) + (Math.abs(n) >= 1e4 ? '元' : ' 元');
+
+/* 通用小折线图：series=[{name,color,pts:[[x,y]...],dash}]，opt={xmin,xmax,ymin,ymax,xt,yt,xf,yf,marks:[[x,label]],H} */
+function lineChart(svg, series, opt){
+  const W = 600, H = opt.H || 260, L = opt.L || 46, R = 14, T = 14, B = 30;
+  const X = x => L + (x - opt.xmin) / (opt.xmax - opt.xmin) * (W - L - R);
+  const Y = y => T + (1 - (y - opt.ymin) / (opt.ymax - opt.ymin)) * (H - T - B);
+  let g = '';
+  (opt.yt || []).forEach(v => g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + Y(v) + '" y2="' + Y(v) + '" stroke="var(--rule)"/>' + txt(L - 6, Y(v) + 4, opt.yf ? opt.yf(v) : v, {s: 11, a: 'end', c: 'var(--ink-3)', halo: false}));
+  (opt.xt || []).forEach(v => g += txt(X(v), H - 10, opt.xf ? opt.xf(v) : v, {s: 11, c: 'var(--ink-3)', halo: false}));
+  (opt.marks || []).forEach((m, i) => g += '<line x1="' + X(m[0]) + '" x2="' + X(m[0]) + '" y1="' + T + '" y2="' + (H - B) + '" stroke="var(--ink-3)" stroke-dasharray="2 3"/>' + txt(X(m[0]) + 3, T + 12 + (i % 3) * 14, m[1], {s: 11, a: 'start', c: 'var(--ink-2)'}));
+  series.forEach(s => {
+    const pts = s.pts.filter(p => p[1] != null);
+    g += '<path d="M' + pts.map(p => X(p[0]).toFixed(1) + ',' + Y(p[1]).toFixed(1)).join('L') + '" fill="none" stroke="' + s.color + '" stroke-width="' + (s.w || 2.4) + '"' + (s.dash ? ' stroke-dasharray="' + s.dash + '"' : '') + ' stroke-linejoin="round"/>';
+    if (s.dots) pts.forEach(p => g += '<circle cx="' + X(p[0]).toFixed(1) + '" cy="' + Y(p[1]).toFixed(1) + '" r="3" fill="' + s.color + '"/>');
+  });
+  g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + (H - B) + '" y2="' + (H - B) + '" stroke="var(--ink)" stroke-width="1.2"/>';
+  svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+  return {X, Y, W, H, L, R, T, B};
+}
+/* 横条：rows=[[名字, 数值, 小字, 颜色]] */
+function bars(box, rows, max, f){
+  box.innerHTML = rows.map(r => '<div class="row"><span class="nm">' + r[0] + (r[2] ? '<small>' + r[2] + '</small>' : '') + '</span><span class="tr"><i style="width:' + clamp(r[1] / max * 100, 0, 100) + '%;' + (r[3] ? 'background:' + r[3] : '') + '"></i></span><span class="v">' + (f ? f(r[1]) : r[1]) + '</span></div>').join('');
+}
+
+
+/* ---------- 封面装置：十年，五百二十个格子 ---------- */
+dev('#wkFig', fig => {
+  const grid = $('#wkGrid'), say = $('#wkSay');
+  grid.innerHTML = '<i></i>'.repeat(520);
+  const cells = $$('i', grid);
+  const COL = [['睡觉', 'var(--blu)'], ['上班', 'var(--ink-2)'], ['通勤', 'var(--och)'], ['吃饭家务', 'var(--kraft)'], ['刷手机', 'var(--red)'], ['自己支配', 'var(--grn)']];
+  const v = {};
+  const go = () => {
+    const day = [v.s, v.w / 7, v.c / 60 * 5 / 7, v.e, v.p];
+    const used = day.reduce((a, b) => a + b, 0);
+    const free = Math.max(0, 24 - used);
+    const parts = [...day, free].map(h => h / Math.max(24, used));
+    const wk = parts.map(p => p * 520);
+    let acc = 0, idx = 0; const bounds = wk.map(w => (acc += w));
+    cells.forEach((c, i) => { while (idx < 5 && i + 0.5 > bounds[idx]) idx++; c.style.background = COL[idx][1]; c.style.opacity = idx === 5 ? 1 : .78; });
+    $('#wkLeg').innerHTML = COL.map((c, i) => '<span><i style="background:' + c[1] + '"></i>' + c[0] + ' ' + Math.round(wk[i]) + ' 周</span>').join('');
+    const phoneH = v.p * 3652;
+    say.className = 'say' + (used > 24 ? ' bad' : '');
+    say.innerHTML = used > 24 ? '这样排，一天要 <b>' + used.toFixed(1) + '</b> 个小时，已经超过 24 了：多出来的部分，实际上是从睡觉里偷的。' :
+      '十年里真正由你自己支配的时间，大约是 <b>' + Math.round(wk[5]) + ' 周</b>，也就是每天 <b>' + free.toFixed(1) + '</b> 小时。刷手机这一块是 <b>' + Math.round(wk[4]) + ' 周</b>，约 ' + fmt(phoneH) + ' 小时。' +
+      (v.p >= 1 ? '每天少刷一小时，十年能多出约 <b>' + Math.round(3652 / 24 / 7) + ' 周</b>醒着的时间，够学会一门外语的入门，或者从头读完二三十本厚书。' : '') +
+      (v.c >= 90 ? ' 通勤占了 ' + Math.round(wk[2]) + ' 周：搬家、换工作时，这一项常常被低估。' : '');
+  };
+  [['wkS', 's', x => x + ' 小时'], ['wkW', 'w', x => x + ' 小时'], ['wkC', 'c', x => x + ' 分钟'], ['wkE', 'e', x => x + ' 小时'], ['wkP', 'p', x => x + ' 小时']].forEach(a => slider(a[0], a[2], x => { v[a[1]] = x; if (Object.keys(v).length === 5) go(); }));
+});
+
+
+/* ---------- 装置 1：道德代数 ---------- */
+dev('#maFig', fig => {
+  const DEF = {pro: [['工资高三成，每年多存下一笔', 4], ['新行业学东西快', 3], ['大城市机会多', 3]],
+               con: [['离家远，一年回去两三次', 3], ['房租贵，涨的钱一半给了房东', 2], ['朋友都在这边', 2], ['工作强度大，传说常加班', 2]]};
+  const say = $('#maSay');
+  let data;
+  const row = (side, t, w) => '<div class="ctl" style="grid-template-columns:minmax(0,1fr) 4.5em 1.6em"><input type="text" value="' + esc(t) + '" data-s="' + side + '" style="border:1px solid var(--rule);border-radius:5px;background:var(--paper);padding:2px 6px;min-width:0;width:100%"><select>' + [1, 2, 3, 4, 5].map(k => '<option' + (k === w ? ' selected' : '') + '>' + k + '</option>').join('') + '</select><button class="btn" style="padding:0 6px" title="删掉">×</button></div>';
+  function draw(){
+    $('#maPro').innerHTML = data.pro.map(r => row('pro', r[0], r[1])).join('');
+    $('#maCon').innerHTML = data.con.map(r => row('con', r[0], r[1])).join('');
+  }
+  function read(){
+    ['pro', 'con'].forEach(s => { data[s] = $$('#ma' + (s === 'pro' ? 'Pro' : 'Con') + ' .ctl').map(d => [$('input', d).value.trim(), +$('select', d).value]).filter(r => r[0]); });
+  }
+  function reset(){ data = JSON.parse(JSON.stringify(DEF)); draw(); say.className = 'say'; say.textContent = '改好以后按“抵消”。'; }
+  fig.addEventListener('click', e => {
+    const add = e.target.closest('[data-add]');
+    if (add) { read(); data[add.dataset.add].push(['', 2]); draw(); const ins = $$('#ma' + (add.dataset.add === 'pro' ? 'Pro' : 'Con') + ' input'); ins[ins.length - 1].focus(); return; }
+    const del = e.target.closest('.ctl .btn');
+    if (del) { del.parentNode.remove(); return; }
+  });
+  $('#maReset').addEventListener('click', reset);
+  $('#maGo').addEventListener('click', () => {
+    read();
+    let P = data.pro.map((r, i) => ({t: r[0], w: r[1], s: 'pro', id: 'p' + i})), C = data.con.map((r, i) => ({t: r[0], w: r[1], s: 'con', id: 'c' + i}));
+    const struck = [];
+    // 从最重的开始，在另一边找一条等重，或两条之和等重
+    let changed = true;
+    while (changed) {
+      changed = false;
+      const all = [...P, ...C].sort((a, b) => b.w - a.w);
+      for (const x of all) {
+        const other = x.s === 'pro' ? C : P;
+        let m = other.find(o => o.w === x.w);
+        let group = m ? [m] : null;
+        if (!group) { outer: for (let i = 0; i < other.length; i++) for (let j = i + 1; j < other.length; j++) if (other[i].w + other[j].w === x.w) { group = [other[i], other[j]]; break outer; } }
+        if (group) {
+          struck.push([x, group]);
+          const rm = new Set([x.id, ...group.map(g => g.id)]);
+          P = P.filter(o => !rm.has(o.id)); C = C.filter(o => !rm.has(o.id));
+          changed = true; break;
+        }
+      }
+    }
+    const sp = P.reduce((a, b) => a + b.w, 0), sc = C.reduce((a, b) => a + b.w, 0);
+    const q = esc($('#maQ').value.trim() || '这件事');
+    let h = '<b>' + q + '</b><br>';
+    h += struck.length ? '划掉了 ' + struck.length + ' 组：' + struck.map(s => '“' + esc(s[0].t) + '”（' + s[0].w + '）抵 ' + s[1].map(g => '“' + esc(g.t) + '”（' + g.w + '）').join(' + ')).join('；') + '。<br>' : '没有能成对抵消的理由。<br>';
+    h += '剩下：赞成 ' + (P.length ? P.map(o => esc(o.t) + '（' + o.w + '）').join('、') : '无') + '；反对 ' + (C.length ? C.map(o => esc(o.t) + '（' + o.w + '）').join('、') : '无') + '。<br>';
+    h += sp > sc ? '赞成一边重 <b>' + (sp - sc) + '</b> 分。' : sc > sp ? '反对一边重 <b>' + (sc - sp) + '</b> 分。' : '两边一样重。';
+    h += ' 富兰克林的提醒是：结果不是命令。如果算出来的结论让你心里一沉，那份“一沉”本身就是一条你还没写下来的理由，把它写上去，再算一遍。';
+    say.className = 'say ok'; say.innerHTML = h;
+  });
+  reset();
+});
+
+
+/* ---------- 装置 2：两份工作的真时薪 ---------- */
+dev('#hwFig', fig => {
+  const F = [['nm', '名字', 'text', '北京大厂', '省城国企'], ['inc', '到手年收入（万元）', 'number', 19, 8.5], ['wk', '每周工作小时（含加班）', 'number', 60, 40],
+    ['cm', '每天通勤往返（分钟）', 'number', 80, 40], ['ex', '每月因它多花的钱（元）', 'number', 3500, 0], ['rc', '下班后缓过来（小时 / 天）', 'number', 1, 0]];
+  const tab = $('#hwTab');
+  tab.innerHTML += '<tr><th></th><th>工作 A</th><th>工作 B</th></tr>' + F.map(f => '<tr><td>' + f[1] + '</td>' + [3, 4].map(k => '<td><input type="' + f[2] + '" data-k="' + f[0] + '" data-j="' + (k - 3) + '" value="' + f[k] + '" ' + (f[2] === 'number' ? 'min="0" step="any" ' : '') + 'style="width:100%;min-width:0;border:1px solid var(--rule);border-radius:5px;background:var(--paper);padding:2px 6px"></td>').join('') + '</tr>').join('');
+  const get = (k, j) => { const el = $('input[data-k="' + k + '"][data-j="' + j + '"]', tab); return k === 'nm' ? (el.value || (j ? 'B' : 'A')) : Math.max(0, +el.value || 0); };
+  function go(){
+    const r = [0, 1].map(j => {
+      const hours = 50 * (get('wk', j) + 5 * get('cm', j) / 60 + 5 * get('rc', j));
+      const net = get('inc', j) * 1e4 - 12 * get('ex', j);
+      return {nm: esc(get('nm', j)), hours, net, hr: hours ? net / hours : 0, nom: get('wk', j) ? get('inc', j) * 1e4 / (50 * get('wk', j)) : 0};
+    });
+    kv($('#hwKv'), [[r[0].nm + ' 名义时薪', r[0].nom.toFixed(0) + ' 元'], [r[0].nm + ' 真时薪', r[0].hr.toFixed(0) + ' 元'], [r[1].nm + ' 名义时薪', r[1].nom.toFixed(0) + ' 元'], [r[1].nm + ' 真时薪', r[1].hr.toFixed(0) + ' 元']]);
+    const [a, b] = r[0].net >= r[1].net ? r : [r[1], r[0]];
+    const dn = a.net - b.net, dh = a.hours - b.hours;
+    let s = '一年里，' + r[0].nm + ' 占去你约 <b>' + fmt(r[0].hours) + '</b> 小时，' + r[1].nm + ' 约 <b>' + fmt(r[1].hours) + '</b> 小时。';
+    if (dh > 0 && dn > 0) s += a.nm + ' 多给你 <b>' + yuan(dn) + '</b>，多占你 <b>' + fmt(dh) + '</b> 小时：<b>多出来的每一小时，换来约 ' + (dn / dh).toFixed(0) + ' 元</b>。问问自己：如果有人出这个价，买你下班后、周末里的一小时，你卖不卖？';
+    else if (dn > 0) s += a.nm + ' 钱多，占的时间还不比另一份多：只看这两项，它两头都占优。剩下要比的，是这张表里没有的东西：学得到什么、能干多久、喜不喜欢。';
+    else s += '两份工作扣完成本，到手的钱差不多。';
+    s += ' 名义时薪和真时薪差得越多，说明这份工作“看不见的成本”越大。';
+    $('#hwSay').innerHTML = s;
+  }
+  tab.addEventListener('input', go); go();
+});
+
+
+/* ---------- 装置 3：再投一个月吗 ---------- */
+dev('#skFig', fig => {
+  const H = 0.15, PAY = 20, COST = 1, MAXM = 24, NP = 5;
+  const PG = 0.6, PB = 0.4; // 好 / 死项目报“有进展”的概率
+  const say = $('#skSay'), log = $('#skLog'), btns = $('#skBtns'), show = $('#skShow');
+  let st;
+  function newGame(){
+    const r = rng(Date.now() % 100003);
+    const projs = Array.from({length: NP}, () => ({good: r() < 0.5, us: Array.from({length: MAXM}, r), ug: Array.from({length: MAXM}, r)}));
+    st = {projs, k: 0, m: 0, sunk: 0, lg: 1, lb: 1, total: 0, over: 0, lastSig: null, done: false, res: []};
+    log.textContent = ''; render();
+  }
+  const post = (lg, lb) => 0.5 * lg / (0.5 * lg + 0.5 * lb);
+  const ev = p => p * H * PAY - COST;
+  function step(s, p){ // 推进一个月，返回 {win, sig}
+    const m = s.m;
+    if (p.good && p.us[m] < H) return {win: true};
+    const sig = p.ug[m] < (p.good ? PG : PB);
+    s.lg *= (1 - H) * (sig ? PG : 1 - PG); s.lb *= (sig ? PB : 1 - PB);
+    return {win: false, sig};
+  }
+  // 账房：同样的项目、同样的运气，只在今后期望为正时继续
+  function clerk(p){
+    const s = {m: 0, lg: 1, lb: 1}; let tot = 0;
+    while (s.m < MAXM && ev(post(s.lg, s.lb)) > 0) { tot -= COST; const o = step(s, p); s.m++; if (o.win) return tot + PAY; }
+    return tot;
+  }
+  function render(){
+    if (st.done) return;
+    const p = st.projs[st.k], P = post(st.lg, st.lb);
+    kv($('#skKv'), [['项目', (st.k + 1) + ' / ' + NP], ['第几个月', st.m], ['<span style="font-size:15px">已经投进去</span>', '<span style="font-size:30px;color:var(--red)">' + st.sunk + ' 万</span>'], ['五个项目累计', (st.total >= 0 ? '+' : '') + st.total + ' 万']]);
+    let s = st.m === 0 ? '新项目。是好是死，各一半可能。' : '本月报告：<b>' + (st.lastSig ? '有进展' : '没有进展') + '</b>。';
+    if (show.checked) s += '<br><small>账房：好项目的概率约 <b>' + Math.round(P * 100) + '%</b>；再投一个月的期望收益 ' + (P * H * PAY).toFixed(2) + ' − 1 = <b>' + ev(P).toFixed(2) + ' 万</b>，' + (ev(P) > 0 ? '值得继续。' : '不值得继续了。') + '</small>';
+    say.className = 'say'; say.innerHTML = s;
+    btns.innerHTML = '<button class="btn pri" data-k="go">再投一个月（1 万）</button><button class="btn" data-k="stop">收手</button>';
+  }
+  function finish(win){
+    const p = st.projs[st.k];
+    const mine = (win ? PAY : 0) - st.sunk;
+    st.total += mine;
+    const c = clerk(p);
+    st.res.push([mine, c]);
+    log.textContent = '项目 ' + (st.k + 1) + '（' + (p.good ? '好项目' : '死项目') + '）：' + (win ? '第 ' + st.m + ' 个月做成了，' : '投了 ' + st.m + ' 个月收手，') + '你 ' + (mine >= 0 ? '+' : '') + mine + ' 万；账房 ' + (c >= 0 ? '+' : '') + c + ' 万。\n' + log.textContent;
+    st.k++; st.m = 0; st.sunk = 0; st.lg = 1; st.lb = 1; st.lastSig = null;
+    if (st.k >= NP) end(); else render();
+  }
+  function end(){
+    st.done = true;
+    const ct = st.res.reduce((a, r) => a + r[1], 0);
+    kv($('#skKv'), [['你的总账', (st.total >= 0 ? '+' : '') + st.total + ' 万'], ['账房的总账', (ct >= 0 ? '+' : '') + ct + ' 万'], ['期望已为负还继续的月数', st.over + ' 个月']]);
+    say.className = 'say ' + (st.over <= 2 ? 'ok' : 'bad');
+    say.innerHTML = '五个项目做完。' + (st.over ? '有 <b>' + st.over + '</b> 个月，按今后的期望已经不值得再投了，你还是投了，多花了 ' + st.over + ' 万。' : '你没有在“不值得”的时候多投过一个月。') +
+      ' 账房的规矩只有一条：<b>只看今后，不看已经投进去的数</b>。在这个模型里，“没有进展”的月份一多，好项目的概率就掉得很快，一旦掉到三分之一以下就该收手，不管那时候已经投了多少。<br><small>运气也有份：同一组项目，账房也可能比你亏得多。多玩几轮再比。</small>';
+    btns.innerHTML = '<button class="btn pri" data-k="new">再来五个项目</button>';
+  }
+  btns.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.k === 'new') return newGame();
+    if (st.done) return;
+    if (b.dataset.k === 'stop') return finish(false);
+    if (st.m >= MAXM) return finish(false);
+    if (ev(post(st.lg, st.lb)) <= 0) st.over++;
+    st.sunk += COST;
+    const o = step(st, st.projs[st.k]);
+    st.m++;
+    if (o.win) return finish(true);
+    st.lastSig = o.sig;
+    if (st.m >= MAXM) { log.textContent = '（满 24 个月，项目自动结束）\n' + log.textContent; return finish(false); }
+    render();
+  });
+  show.addEventListener('change', render);
+  newGame();
+});
+
+
+/* ---------- 装置 4：四种复利 ---------- */
+dev('#cpFig', fig => {
+  const P = [
+    {k: '钱', v0: 10, g: 7, d: 3, K: 1000, q: 4, L: 35, unit: '万', note: '默认：年增长 7%，通胀和费用吃掉 3%，每年 4% 的机会遇到一次损失三成多的意外（失业、大病、投资大跌）。钱几乎没有天花板，所以海报和现实的差别主要来自漏水和意外。'},
+    {k: '技能', v0: 5, g: 35, d: 4, K: 100, q: 8, L: 30, unit: '分', note: '默认：起步快（35%），遗忘每年 4%，天花板 100 分；每年 8% 的机会换到不相干的方向，丢掉三成。注意那条绿线：它前几年和海报差不多，后来贴着天花板走平。技能的价钱为什么还会越往上越陡，正文里讲了。'},
+    {k: '身体', v0: 60, g: 10, d: 3, K: 100, q: 6, L: 25, unit: '分', note: '默认：坚持锻炼每年进步 10%，年龄带来的衰退每年 3%（随年龄会更大，这里没算），每年 6% 的机会受伤或生病丢掉四分之一。把增长率拉到 0（不锻炼），看看会怎样。'},
+    {k: '名声', v0: 1, g: 30, d: 1, K: 100, q: 3, L: 85, unit: '分', note: '默认：口碑一传十、十传百，增长很快；但每年有 3% 的机会出一件事，一下子丢掉八成多。把“一次意外损失”拉到 100%，再把意外概率调高一点，看看名声有多脆。'}
+  ];
+  let cur = 0;
+  const ids = ['G', 'D', 'K', 'Q', 'L'];
+  btnRow($('#cpTabs'), P.map(p => p.k), 0, i => { cur = i; load(); });
+  const fmts = {G: x => x + '% / 年', D: x => x + '% / 年', K: x => x + ' ' + P[cur].unit, Q: x => x + '%', L: x => x + '%'};
+  ids.forEach(id => $('#cp' + id).addEventListener('input', () => { $('#cp' + id + 'O').textContent = fmts[id](+$('#cp' + id).value); draw(); }));
+  function load(){
+    const p = P[cur];
+    [['G', p.g], ['D', p.d], ['K', p.K], ['Q', p.q], ['L', p.L]].forEach(a => { $('#cp' + a[0]).value = a[1]; $('#cp' + a[0] + 'O').textContent = fmts[a[0]](a[1]); });
+    draw();
+  }
+  function draw(){
+    const p = P[cur], g = +$('#cpG').value / 100, d = +$('#cpD').value / 100, K = +$('#cpK').value, q = +$('#cpQ').value / 100, L = +$('#cpL').value / 100;
+    const Y = 30, poster = [], logi = [];
+    let a = p.v0, b = p.v0;
+    for (let t = 0; t <= Y; t++) { poster.push([t, a]); logi.push([t, b]); a *= 1 + g; b = Math.max(0, b + g * b * (1 - b / K) - d * b); }
+    const r = rng(12345 + cur), N = 200, paths = [];
+    for (let i = 0; i < N; i++) { let v = p.v0; const path = [v]; for (let t = 1; t <= Y; t++) { v = Math.max(0, v + g * v * (1 - v / K) - d * v); if (r() < q) v *= 1 - L; path.push(v); } paths.push(path); }
+    const med = [], lo = [], hi = [];
+    for (let t = 0; t <= Y; t++) { const col = paths.map(x => x[t]); med.push([t, pct(col, .5)]); lo.push(pct(col, .1)); hi.push(pct(col, .9)); }
+    const ymax = Math.max(...logi.map(x => x[1]), ...hi) * 1.25 || 1;
+    const svg = $('#cpSvg');
+    const ax = lineChart(svg, [
+      {color: 'var(--ink-3)', pts: poster.map(x => [x[0], x[1] <= ymax ? x[1] : null]), dash: '5 4', w: 2},
+      {color: 'var(--main)', pts: logi, w: 2.6},
+      {color: 'var(--red)', pts: med, w: 2.6}
+    ], {xmin: 0, xmax: Y, ymin: 0, ymax, xt: [0, 5, 10, 15, 20, 25, 30], xf: v => v + ' 年', yt: [0, ymax / 4, ymax / 2, ymax * 3 / 4].map(v => +v.toPrecision(2)), yf: v => fmt(v)});
+    const band = '<path d="M' + lo.map((v, t) => ax.X(t).toFixed(1) + ',' + ax.Y(v).toFixed(1)).join('L') + 'L' + hi.map((v, t) => ax.X(t).toFixed(1) + ',' + ax.Y(v).toFixed(1)).reverse().join('L') + 'Z" fill="var(--red)" opacity=".12"/>';
+    svg.innerHTML = band + svg.innerHTML;
+    const out = poster.findIndex(x => x[1] > ymax);
+    if (out > 0) svg.innerHTML += txt(ax.X(out - 1) + 4, ax.T + 12, '海报上的线在第 ' + out + ' 年冲出了图', {s: 11, a: 'start', c: 'var(--ink-3)'});
+    const zero = paths.filter(x => x[Y] < p.v0).length;
+    $('#cpSay').innerHTML = '<b>' + p.k + '</b>：三十年后，海报上的数是 <b>' + fmt(poster[Y][1]) + '</b>，有天花板和漏水是 <b>' + fmt(logi[Y][1]) + '</b>，再加上意外，中间那个人是 <b>' + fmt(med[Y][1]) + '</b>（单位：' + p.unit + '）。两百人里有 <b>' + zero + '</b> 个人最后比起点还少。<br><small>' + p.note + '</small>';
+  }
+  load();
+});
+
+
+/* ---------- 装置 5：抛硬币的一辈子 ---------- */
+dev('#coinFig', fig => {
+  const svg = $('#coinSvg'), N = 1000, SHOW = 60;
+  let seed = 7;
+  const fR = $('#coinF'), nR = $('#coinN');
+  function run(){
+    const f = +fR.value / 100, T = +nR.value;
+    $('#coinFO').textContent = Math.round(f * 100) + '%' + (f > 1 ? '（加杠杆）' : '');
+    $('#coinNO').textContent = T + ' 轮';
+    const r = rng(seed);
+    const W = 600, H = 300, L = 52, R = 12, Tp = 12, B = 28;
+    const lmin = -2, lmax = 5; // 0.01 倍到 10 万倍（相对本钱 100 → 1 元到 1000 万元）
+    const X = t => L + t / T * (W - L - R), Y = v => { const l = Math.log10(Math.max(v / 100, 1e-2)); return Tp + (1 - (Math.min(l, lmax) - lmin) / (lmax - lmin)) * (H - Tp - B); };
+    const paths = [], fin = [];
+    let ruined = 0;
+    const sum = new Array(T + 1).fill(0), meds = [];
+    const all = [];
+    for (let i = 0; i < N; i++) {
+      let w = 100, out = false; const p = [w];
+      for (let t = 1; t <= T; t++) {
+        if (!out) { w = w * (r() < .5 ? 1 + .5 * f : 1 - .4 * f); if (w < 1) { out = true; w = Math.max(w, 0); } }
+        p.push(w);
+      }
+      if (out) ruined++;
+      all.push(p); fin.push(w);
+    }
+    for (let t = 0; t <= T; t++) { let s = 0; for (let i = 0; i < N; i++) s += all[i][t]; sum[t] = s / N; meds.push(pct(all.map(x => x[t]), .5)); }
+    let g = '';
+    [-2, -1, 0, 1, 2, 3, 4, 5].forEach(l => { const y = Y(100 * Math.pow(10, l)); g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y + '" y2="' + y + '" stroke="var(--rule)"' + (l === 0 ? ' stroke-width="1.6" stroke="var(--ink-3)"' : '') + '/>' + txt(L - 6, y + 4, l === 0 ? '本钱' : (l > 0 ? '×' + fmt(Math.pow(10, l)) : (Math.pow(10, l) * 100) + '%'), {s: 10.5, a: 'end', c: 'var(--ink-3)', halo: false}); });
+    for (let i = 0; i < SHOW; i++) g += '<path d="M' + all[i].map((v, t) => X(t).toFixed(1) + ',' + Y(v).toFixed(1)).join('L') + '" fill="none" stroke="var(--ink-3)" stroke-width=".8" opacity=".35"/>';
+    g += '<path d="M' + sum.map((v, t) => X(t).toFixed(1) + ',' + Y(v).toFixed(1)).join('L') + '" fill="none" stroke="var(--och)" stroke-width="3"/>';
+    g += '<path d="M' + meds.map((v, t) => X(t).toFixed(1) + ',' + Y(v).toFixed(1)).join('L') + '" fill="none" stroke="var(--main)" stroke-width="3"/>';
+    [0, Math.round(T / 2), T].forEach(t => g += txt(X(t), H - 8, '第 ' + t + ' 轮', {s: 11, c: 'var(--ink-3)', halo: false}));
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+    const med = meds[T], mean = sum[T];
+    const below = fin.filter(v => v < 100).length;
+    kv($('#coinKv'), [['平均数', fmt(mean) + ' 元'], ['中位数', med < 10 ? med.toFixed(2) + ' 元' : fmt(med) + ' 元'], ['比本钱少的人', Math.round(below / N * 100) + '%'], ['出局的人', Math.round(ruined / N * 100) + '%']]);
+    const s = $('#coinSay');
+    s.className = 'say ' + (med >= 100 ? 'ok' : 'bad');
+    s.innerHTML = f === 0 ? '一分不押，谁也不赚不赔。' :
+      (mean > 100 && med < 100 ? '平均数是 <b>' + fmt(mean) + '</b> 元，看上去很美；可中间那个人只剩 <b>' + (med < 10 ? med.toFixed(2) : fmt(med)) + '</b> 元，' + Math.round(below / N * 100) + '% 的人比本钱少。平均数是被少数幸运儿拉上去的。' :
+       med >= 100 ? '中间那个人也赚了：' + fmt(med) + ' 元。押得适中，好游戏才真的对“一个人”是好游戏。' : '平均数和中位数都在往下掉。') +
+      (f > 1 ? ' 加了杠杆，<b>' + Math.round(ruined / N * 100) + '%</b> 的人出局了，有的还倒欠。' : '') +
+      ' 试试 25%（凯利比例）、50%、100%、150%，比较中位数。';
+  }
+  fR.addEventListener('input', run); nR.addEventListener('input', run);
+  $('#coinRe').addEventListener('click', () => { seed = (seed * 7919 + 13) % 99991; run(); });
+  $('#coinK').addEventListener('click', () => { fR.value = 25; run(); });
+  run();
+});
+
+
+/* ---------- 装置 6：享乐跑步机 ---------- */
+dev('#hdFig', fig => {
+  const T = 60, BASE = 50;
+  // [名字, 发生的月份, 跳升, 适应半衰期（月）, 一次性花费（万）, 每月花费（万）, 留下的长期余温]
+  const IT = [
+    ['换一部新手机', [2], 6, 1.2, 0.6, 0, 0],
+    ['贷款买一辆车', [12], 10, 4, 15, 0.15, 0],
+    ['换一套更大的房子住', [30], 14, 9, 0, 0.25, 0],
+    ['每年一次长途旅行', [6, 18, 30, 42, 54], 7, 1.5, 1, 0, 0.6],
+    ['搬到离单位近的地方', [4], 5, 400, 0, 0.1, 0],
+    ['每周和朋友吃顿饭', [0], 4, 400, 0, 0.08, 0]
+  ];
+  const on = [true, true, false, true, false, false];
+  $('#hdCk').innerHTML = IT.map((it, i) => '<label class="ck"><input type="checkbox" data-i="' + i + '"' + (on[i] ? ' checked' : '') + '>' + it[0] + '</label>').join('');
+  $('#hdCk').addEventListener('change', e => { const c = e.target.closest('input'); if (c) { on[+c.dataset.i] = c.checked; draw(); } });
+  $('#hdRef').addEventListener('change', draw);
+  const REF = [0, 3, 7, 13];
+  function joyOf(it, t){
+    let j = 0;
+    it[1].forEach(m => { if (t >= m) { const dt = t - m; const ramp = it[3] > 100 ? Math.min(1, (dt + 1) / 4) : 1; j += it[2] * ramp * Math.pow(.5, dt / it[3]) + it[6]; } });
+    return j;
+  }
+  function draw(){
+    const ref = +$('#hdRef').value;
+    const raise = [12, 24, 36, 48];
+    const line = [], raw = [];
+    const area = IT.map(() => 0);
+    for (let t = 0; t <= T; t++) {
+      let v = BASE;
+      raise.forEach(m => { if (t >= m) v += 6 * Math.pow(.5, (t - m) / 3); });
+      // 参照点：越往上比，涨工资带来的那一点越快被吃掉，还要倒扣
+      const refPen = REF[ref] * (1 + raise.filter(m => t >= m).length * .25);
+      IT.forEach((it, i) => { if (on[i]) { const j = joyOf(it, t); v += j; area[i] += j; } });
+      line.push([t, v - refPen]); raw.push([t, v]);
+    }
+    const ys = line.map(p => p[1]).concat(raw.map(p => p[1]));
+    const ymin = Math.floor(Math.min(...ys, BASE - 15) / 10) * 10, ymax = Math.ceil(Math.max(...ys, BASE + 10) / 10) * 10;
+    lineChart($('#hdSvg'), [
+      {color: 'var(--rule)', pts: [[0, BASE], [T, BASE]], w: 1.5, dash: '4 4'},
+      ...(ref ? [{color: 'var(--ink-3)', pts: raw, w: 1.5, dash: '3 3'}] : []),
+      {color: 'var(--main)', pts: line, w: 2.6}
+    ], {xmin: 0, xmax: T, ymin, ymax, xt: [0, 12, 24, 36, 48, 60], xf: v => v ? '第 ' + v / 12 + ' 年' : '入职', yt: [ymin, (ymin + ymax) / 2, ymax], marks: [[12, '涨薪'], [24, '涨薪'], [36, '涨薪'], [48, '涨薪']]});
+    const cost = IT.map((it, i) => on[i] ? it[1].length * it[4] + it[5] * (T - it[1][0]) : 0);
+    const rows = IT.map((it, i) => on[i] ? [it[0], cost[i] ? (area[i] / cost[i]).toFixed(0) : '∞'] : null).filter(Boolean);
+    kv($('#hdKv'), rows.map(r => [r[0] + '<br><small>每万元换来的快乐</small>', r[1]]));
+    const avg = line.reduce((a, p) => a + p[1], 0) / line.length;
+    const tot = cost.reduce((a, b) => a + b, 0);
+    $('#hdSay').innerHTML = '五年平均快乐指数 <b>' + avg.toFixed(1) + '</b>（虚线 50 是什么都不买时的起点），这些选择五年共花约 <b>' + tot.toFixed(1) + ' 万元</b>。' +
+      (ref ? ' 灰色虚线是“不和别人比”时的样子，绿线和它之间的差，就是比较吃掉的快乐；比的对象越往上，每次涨薪后被吃掉的越多。' : ' 你只和过去的自己比，涨薪的快乐被适应吃掉，但没有被比较倒扣。') +
+      ' 看看每一项“每万元换来的快乐”：很快被适应的东西，花得越多越不划算；几乎不被适应的那两项，花钱不多，却一直在。';
+  }
+  draw();
+});
+
+
+/* ---------- 装置 7：考核表 ---------- */
+dev('#gdFig', fig => {
+  // [名字, 可钻空子程度, 测量成本, 钻空子能把报表抬高多少倍, 说明]
+  const M = [
+    ['不考核', 0, 0, 0, '没有指标，也就没人钻空子；可也没人知道谁干得好，一部分人会慢慢松下来（模型里真实产出缓慢下降一成多）。'],
+    ['完成件数', .6, .02, 1.6, '件数好刷：把一件大事拆成几件小事，挑容易的先做，难的拖着。'],
+    ['工作时长', .8, .02, 1.3, '时长最好刷：人坐在那里就算数。晚上八点的灯亮着，不代表事在做。'],
+    ['留痕材料', .9, .15, 2.0, '留痕材料最会膨胀：做事的时间越来越多地拿去写“做了事”的证明。'],
+    ['抽查用户满意度', .2, .08, 1.2, '直接去问用的人，最难糊弄；但它慢、贵、有噪音，要占用人手去做。']
+  ];
+  let cur = 1;
+  btnRow($('#gdBtns'), M.map(m => m[0]), 1, i => { cur = i; draw(); });
+  slider('gdA', x => x + '%', () => draw());
+  function draw(){
+    const m = M[cur], a = +$('#gdA').value / 100, T = 26;
+    const audit = cur === 0 ? 0 : a;
+    const auditCost = audit * .25;
+    const real = [], rep = [];
+    for (let t = 0; t <= T; t++) {
+      const s = .7 * m[1] * (1 - audit) * (1 - Math.exp(-t / 6));
+      const slack = cur === 0 ? .12 * (1 - Math.exp(-t / 8)) : 0;
+      const base = 100 * (1 - m[2]) * (1 - auditCost) * (1 - slack);
+      const r = base * (1 - s);
+      real.push([t, r]);
+      if (cur) rep.push([t, r + base * s * m[3]]);
+    }
+    const ymax = Math.max(140, ...rep.map(p => p[1])) * 1.05;
+    lineChart($('#gdSvg'), [{color: 'var(--rule)', pts: [[0, 100], [T, 100]], w: 1.2, dash: '4 4'}, ...(cur ? [{color: 'var(--och)', pts: rep, w: 2.6}] : []), {color: 'var(--main)', pts: real, w: 2.6}],
+      {xmin: 0, xmax: T, ymin: 0, ymax, xt: [0, 4, 8, 13, 17, 21, 26], xf: v => '第 ' + v + ' 周', yt: [0, 50, 100, 150].filter(v => v < ymax)});
+    const rT = real[T][1], pT = cur ? rep[T][1] : null;
+    $('#gdSay').innerHTML = (cur ? '半年后，报表上的成绩是 <b>' + pT.toFixed(0) + '</b>，真实的产出是 <b>' + rT.toFixed(0) + '</b>。' : '半年后，真实的产出是 <b>' + rT.toFixed(0) + '</b>。') + m[4] +
+      (cur && cur !== 4 && a < .3 ? ' 把抽查调严一些，看看两条线怎样靠拢，以及真实产出为什么也会因为抽查本身占人手而降一点。' : '') +
+      (a >= .6 && cur ? ' 抽查已经很严了：空子少了，可抽查本身也成了一份要人做的工作。没有免费的考核。' : '');
+  }
+  draw();
+});
+
+
+/* ---------- 装置 8：应急金撑得住吗 ---------- */
+dev('#efFig', fig => {
+  const LOSE = [.03, .10, .25];
+  const go = () => {
+    const M = +$('#efM').value, J = +$('#efJ').value, S = +$('#efS').value;
+    const r = rng(2026 + J * 31 + M * 7 + Math.round(S * 100));
+    const N = 1000, T = 120;
+    let broke = 0, borrowSum = 0, worst = [];
+    for (let i = 0; i < N; i++) {
+      let fund = M, out = 0, owe = 0, hit = false, maxOwe = 0;
+      for (let t = 0; t < T; t++) {
+        let need = 0;
+        if (out > 0) { need += 1; out--; }            // 失业：这个月的必要开支全靠自己
+        else if (r() < LOSE[J] / 12) { out = 1 + Math.floor(r() * 6); need += 1; out--; }
+        if (r() < .08 / 12) need += 1 + Math.floor(r() * 6);
+        if (need > 0) { if (fund >= need) fund -= need; else { owe += need - fund; fund = 0; hit = true; } }
+        else { // 平时：先还高息的钱，再补应急金
+          let s = S; if (owe > 0) { const p = Math.min(owe, s); owe -= p; s -= p; owe *= 1 + .18 / 12; }
+          fund = Math.min(M, fund + s);
+        }
+        if (owe > 0 && need > 0) owe *= 1 + .18 / 12;
+        maxOwe = Math.max(maxOwe, owe);
+      }
+      if (hit) { broke++; borrowSum += maxOwe; worst.push(maxOwe); }
+    }
+    kv($('#efKv'), [['十年里至少借过一次高息钱', Math.round(broke / N * 100) + '%'], ['借过的人，最多时欠（月开销的几倍）', broke ? (borrowSum / broke).toFixed(1) + ' 倍' : '—'], ['最倒霉的一成人欠到', broke ? pct(worst, .9).toFixed(1) + ' 倍' : '—']]);
+    $('#efSay').innerHTML = (M === 0 ? '一分应急金都没有：' : '应急金 ' + M + ' 个月：') + '一千个“你”里，有 <b>' + Math.round(broke / N * 100) + '%</b> 在十年里的某个时刻钱不够用，只能去借年利率 18% 左右的钱。' +
+      (J === 2 ? ' 收入波动大的工作，同样的应急金，被逼借钱的机会大得多：要么多留，要么少一些固定开支。' : '') +
+      (M >= 6 && J < 2 ? ' 留到六个月以上，再往上加，能多保护的人就越来越少了：多出来的钱，可以考虑别的用处。' : '') +
+      ' 注意：这个模型没算失业补偿、失业保险和家人帮忙，现实中会好一些；但它也没算“一件事接着一件事”的坏年头。';
+  };
+  slider('efM', x => x + ' 个月开支', go); slider('efS', x => Math.round(x * 100) + '% 的月开支', go); $('#efJ').addEventListener('change', go); go();
+});
+
+/* ---------- 装置 9：分期的真实利率 ---------- */
+dev('#irFig', fig => {
+  function irr(P, pay, n){ let lo = 0, hi = 1; for (let k = 0; k < 80; k++) { const m = (lo + hi) / 2; let pv = 0; for (let t = 1; t <= n; t++) pv += pay / Math.pow(1 + m, t); if (pv > P) lo = m; else hi = m; } return (lo + hi) / 2; }
+  function go(){
+    const P = Math.max(100, +$('#irP').value || 0), n = +$('#irN').value, r = Math.max(0, +$('#irR').value || 0) / 100;
+    const pay = P / n + P * r, fee = P * r * n;
+    const i = r > 0 ? irr(P, pay, n) : 0;
+    const apr = i * 12, eff = Math.pow(1 + i, 12) - 1;
+    kv($('#irKv'), [['每月还', pay.toFixed(0) + ' 元'], ['手续费合计', fee.toFixed(0) + ' 元'], ['心算的“年利率”', (r * 12 * 100).toFixed(1) + '%'], ['真实年利率', (apr * 100).toFixed(1) + '%'], ['按复利折算', (eff * 100).toFixed(1) + '%']]);
+    // 每个月实际欠着多少本金 vs 每月手续费
+    const W = 600, H = 170, L = 40, B = 24, T = 10;
+    const bw = (W - L - 10) / n;
+    let g = '';
+    for (let t = 0; t < n; t++) {
+      const owed = P * (1 - t / n), x = L + t * bw;
+      const h = owed / P * (H - T - B);
+      g += '<rect x="' + (x + 1).toFixed(1) + '" y="' + (H - B - h).toFixed(1) + '" width="' + Math.max(1, bw - 2).toFixed(1) + '" height="' + h.toFixed(1) + '" fill="var(--main)" opacity=".55"/>';
+    }
+    g += '<line x1="' + L + '" x2="' + (W - 10) + '" y1="' + T + '" y2="' + T + '" stroke="var(--red)" stroke-width="2" stroke-dasharray="5 3"/>';
+    g += txt(W - 12, T + 14, '手续费一直按这么多本金收', {s: 11.5, a: 'end', c: 'var(--red)'});
+    g += txt(L + bw * n * .3, H - B - (H - T - B) * .2, '你实际欠着的本金', {s: 11.5, c: 'var(--ink)'});
+    g += '<line x1="' + L + '" x2="' + (W - 10) + '" y1="' + (H - B) + '" y2="' + (H - B) + '" stroke="var(--ink)"/>';
+    g += txt(L, H - 6, '第 1 期', {s: 11, a: 'start', c: 'var(--ink-3)', halo: false}) + txt(W - 10, H - 6, '第 ' + n + ' 期', {s: 11, a: 'end', c: 'var(--ink-3)', halo: false});
+    $('#irSvg').setAttribute('viewBox', '0 0 ' + W + ' ' + H); $('#irSvg').innerHTML = g;
+    $('#irSay').innerHTML = r === 0 ? '没有手续费，就没有利息。（注意：有的“免息”分期会把成本藏在商品价格里。）' :
+      '心算的 ' + (r * 12 * 100).toFixed(1) + '%，真实的是 <b>' + (apr * 100).toFixed(1) + '%</b>，是心算的 <b>' + (apr / (r * 12)).toFixed(2) + '</b> 倍。原因就在图里：你欠的本金每个月都在变少（绿色），手续费却一直按全部本金收（红线）。按 72 法则，' + (apr * 100).toFixed(0) + '% 的利率大约 ' + (72 / (apr * 100)).toFixed(1) + ' 年就让一笔债翻倍。';
+  }
+  ['irP', 'irN', 'irR'].forEach(id => $('#' + id).addEventListener('input', go)); go();
+});
+
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,2915 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="文官创世记第二部《机器》：普鲁士、韦伯与帕金森、英国的诺思科特-特里维廉报告与白厅、首相和文官的拔河、美国的分赃制与彭德尔顿法、法国、日本、苏联、新加坡、当代中国。">
+<meta property="og:title" content="铁打的营盘 · 第二部">
+<meta property="og:description" content="古今中外的职业官僚：他们怎样被选出来，怎样运转，怎样想事情。第二部：现代文官怎样造出来。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='4' fill='%232c5552'/%3E%3Cpath d='M8 7h16v19H8zM11 11h10M11 15h10M11 19h6' fill='none' stroke='%23ece3cf' stroke-width='1.8'/%3E%3Ccircle cx='22' cy='22' r='4' fill='%23c4553a'/%3E%3C/svg%3E">
+<title>铁打的营盘 · 第二部</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@500;700&family=Noto+Serif+SC:wght@400;600;700&family=ZCOOL+XiaoWei&display=swap">
+<style>
+/* ZCOOL XiaoWei 把“回”字画成实心方块：这一个字改用系统宋体/黑体，其余字不变 */
+@font-face{font-family:"Hui Fix";unicode-range:U+56DE;src:local("Songti SC"),local("STSongti-SC-Regular"),local("STSong"),local("SimSun"),local("宋体"),local("Noto Serif CJK SC"),local("NotoSerifCJKsc-Regular"),local("Source Han Serif SC"),local("SourceHanSerifSC-Regular"),local("PingFang SC"),local("PingFangSC-Regular"),local("Microsoft YaHei"),local("Noto Sans CJK SC"),local("NotoSansCJKsc-Regular"),local("Droid Sans Fallback")}
+
+/* 版式：一间档案室。主色是墨青（公文的墨），朱色是批红和印章，牛皮纸色是档案袋。
+   每章：章首（入仕的门）→ 有人问 → 库房（虚构）→ 履历（老温拼的）→ 正文 → 小传 → 黑账 → 公文·白话 → 眉批 → 装置 → 两本账。 */
+:root{
+  --paper:#ebe2cc; --paper-2:#e0d5bc; --card:#f2e9d6;
+  --ink:#1f211d; --ink-2:#4a4b42; --ink-3:#5c5c52; --rule:#ccbfa2;
+  --main:#2c5552;   /* 墨青 */
+  --ter:#a33a22;    /* 朱批 */
+  --zhu:#a33a22;
+  --kraft:#8a6230;  /* 牛皮纸档案袋 */
+  --pur:#5d2f63;
+  --sea:#a9bfc9; --land:#ddd1b4;
+  --och:#7a5510;
+  --red:#983a24;
+  --blu:#2a4f78;
+  --grn:#3c6a4c;
+  --hl:color-mix(in srgb,#c9a44a 34%,transparent);
+  --c-paper:#f2e9d6; --c-ink:#191614;
+  --f-display:"Hui Fix","ZCOOL XiaoWei","Songti SC","STSong","Noto Serif SC",serif;
+  --f-body:"Noto Serif SC","Songti SC","Source Han Serif SC","STSong",serif;
+  --f-hand:"Ma Shan Zheng","Kaiti SC","STKaiti","KaiTi",cursive;
+  --f-sans:"Noto Sans SC","PingFang SC","Hiragino Sans GB",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#131513; --paper-2:#1b1e1b; --card:#1f221e; --ink:#e9e3d2; --ink-2:#b5af9c; --ink-3:#958f7d; --rule:#363a33;
+  --main:#8fc4bc; --ter:#e8876a; --zhu:#e8876a; --kraft:#d1a66a; --pur:#c9a0cf; --sea:#22394a; --land:#332d22; --och:#d9b45e; --red:#e57b5e; --blu:#9cc0e6; --grn:#8fc2a0;
+  --c-paper:#1d1b18; --c-ink:#ece6da; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#131513; --paper-2:#1b1e1b; --card:#1f221e; --ink:#e9e3d2; --ink-2:#b5af9c; --ink-3:#958f7d; --rule:#363a33;
+  --main:#8fc4bc; --ter:#e8876a; --zhu:#e8876a; --kraft:#d1a66a; --pur:#c9a0cf; --sea:#22394a; --land:#332d22; --och:#d9b45e; --red:#e57b5e; --blu:#9cc0e6; --grn:#8fc2a0;
+  --c-paper:#1d1b18; --c-ink:#ece6da; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+.g{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit;text-decoration-color:var(--main);text-underline-offset:3px}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--main);outline-offset:2px}
+svg{max-width:100%;height:auto;display:block}
+
+/* 页眉 */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+.bar-in{max-width:56rem;margin:0 auto;display:flex;align-items:center;gap:10px;padding-block:8px}
+.bar .home{text-decoration:none;font-size:13px;color:var(--ink-3);white-space:nowrap;border:1px solid var(--rule);border-radius:999px;padding:1px 9px}
+.bar .name{font-family:var(--f-display);font-size:19px;letter-spacing:.05em;white-space:nowrap;text-decoration:none}
+.bar .parts{display:flex;gap:2px}
+.bar .parts a{font-size:12.5px;text-decoration:none;color:var(--ink-3);padding:0 6px;border-radius:4px;white-space:nowrap}
+.bar .parts a.on{background:var(--main);color:var(--paper)}
+.bar .vol{margin-left:auto;font-size:13px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.bar .tocbtn{border:1px solid var(--rule);background:transparent;border-radius:6px;padding:0 8px;font-size:13px;cursor:pointer;color:var(--ink-2);white-space:nowrap}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;background:var(--main);width:0}
+.drawer{position:fixed;inset:0;z-index:40;display:none}
+.drawer.on{display:block}
+.drawer .mask{position:absolute;inset:0;background:rgba(0,0,0,.35)}
+.drawer .panel{position:absolute;right:0;top:0;bottom:0;width:min(370px,90vw);background:var(--paper);border-left:1px solid var(--rule);overflow:auto;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px))}
+.drawer h5{font-family:var(--f-display);font-weight:400;font-size:20px;margin:0 0 10px}
+.drawer ol{list-style:none;margin:0;padding:0}
+.drawer li.ph{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.16em;color:var(--main);padding:14px 0 2px}
+.drawer li.vh{font-size:12px;color:var(--ink-3);padding:8px 0 0;letter-spacing:.1em}
+.drawer li a{display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--rule);text-decoration:none;font-size:15px;line-height:1.5}
+.drawer li a .n{font-family:var(--f-display);font-size:18px;color:var(--main);min-width:1.6em;text-align:center}
+.drawer li a small{display:block;color:var(--ink-3);font-size:12px}
+.drawer li a.here .n{background:var(--main);color:var(--paper);border-radius:4px}
+.drawer .x{position:absolute;right:12px;top:10px;border:0;background:transparent;font-size:22px;cursor:pointer;color:var(--ink-2)}
+
+main{display:block}
+.col{max-width:38rem;margin-inline:auto}
+.wide{max-width:54rem;margin-inline:auto}
+.col p{margin:0 0 1.05em;text-indent:2em}
+.col p.ni,.col .ni{text-indent:0}
+h2,h3,h4{text-wrap:balance}
+h3{font-family:var(--f-display);font-weight:400;font-size:24px;line-height:1.4;margin:2.2em 0 .7em;letter-spacing:.03em}
+h3 .y{font-family:var(--f-mono);font-size:13px;color:var(--ink-3);margin-left:10px;letter-spacing:0;white-space:nowrap}
+em{font-style:normal;background:linear-gradient(transparent 62%,var(--hl) 62%)}
+strong{font-weight:600}
+blockquote{margin:1.4em 0;padding:.2em 0 .2em 1.2em;border-left:2px solid var(--och);color:var(--ink-2)}
+blockquote p{text-indent:0!important;margin:0 0 .4em}
+blockquote cite{font-style:normal;font-size:14px;color:var(--ink-3)}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.figcap{font-size:14px;color:var(--ink-2);line-height:1.7;margin-top:8px}
+.sep{text-align:center;color:var(--och);letter-spacing:1.2em;margin:2em 0;text-indent:1.2em!important;font-size:14px}
+ul.plain{font-size:16px;line-height:1.9;padding-left:1.4em}
+ul.plain li{margin:0 0 .35em}
+
+/* 封面 */
+.hero{padding-block:36px 20px}
+.hero .eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;color:var(--ink-3)}
+.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(60px,14vw,124px);line-height:1;margin:.25em 0 .2em;letter-spacing:.1em}
+.hero h1 .sm{display:block;font-size:.19em;letter-spacing:.3em;color:var(--ink-2);margin-top:.6em}
+.hero .part{display:inline-block;font-family:var(--f-display);font-size:22px;color:var(--main);border:1.5px solid var(--main);border-radius:4px;padding:0 10px;margin-bottom:6px;letter-spacing:.1em}
+.hero p.lead{font-size:18px;max-width:36em;margin:0 0 1em}
+.partnav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:24px 0}
+.partnav a{display:block;text-decoration:none;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;background:var(--card);line-height:1.5}
+.partnav a b{display:block;font-family:var(--f-display);font-weight:400;font-size:20px}
+.partnav a small{font-size:12.5px;color:var(--ink-3)}
+.partnav a.on{border-color:var(--main);box-shadow:inset 0 0 0 1px var(--main)}
+.partnav a .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;color:var(--main)}
+
+/* 六张脸 */
+.cast{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin:14px 0}
+.cast figure{margin:0;text-align:center;background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:6px 4px 8px}
+.cast svg{width:100%;max-width:120px;margin:auto;color:var(--c-ink)}
+.cast b{display:block;font-family:var(--f-display);font-weight:400;font-size:19px;line-height:1.2}
+.cast small{display:block;font-size:12px;color:var(--ink-3);line-height:1.4}
+.eras{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 2px}
+
+/* 目录 */
+.toc{list-style:none;margin:20px 0 0;padding:0;border-top:1px solid var(--rule)}
+.toc li a{display:grid;grid-template-columns:2.6em minmax(0,1fr) auto;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--rule);text-decoration:none}
+.toc .n{font-family:var(--f-display);font-size:28px;line-height:1;color:var(--main);text-align:center}
+.toc .t{font-family:var(--f-display);font-size:21px;line-height:1.3}
+.toc .t small{display:block;font-family:var(--f-body);font-size:13px;color:var(--ink-3);margin-top:2px}
+.toc .r{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);text-align:right;white-space:nowrap}
+.toc li a:hover .t{color:var(--main)}
+.toc .vh{padding:16px 0 4px;font-family:var(--f-mono);font-size:12px;letter-spacing:.16em;color:var(--ink-3);border-bottom:1px solid var(--rule)}
+.toc li.away a{opacity:.82}
+.toc li.away .r::after{content:" ↗";color:var(--main)}
+.qmap{list-style:none;margin:0;padding:0;columns:2 17em;column-gap:28px}
+.qmap li{break-inside:avoid;margin:0 0 .5em;font-size:15.5px;line-height:1.65}
+.qmap a{text-decoration:none;border-bottom:1px dashed var(--ink-3)}
+.qmap a:hover{color:var(--main)}
+.qmap b{font-family:var(--f-display);font-weight:400;color:var(--main);margin-left:4px}
+
+/* 卷首 */
+.volhead{position:relative;max-width:54rem;margin:64px auto 20px;padding:30px 22px 24px;border-top:3px double var(--ink);border-bottom:3px double var(--ink);overflow:hidden}
+.volhead .num{font-family:var(--f-mono);font-size:12px;letter-spacing:.24em;color:var(--main)}
+.volhead h2{font-family:var(--f-display);font-weight:400;font-size:clamp(64px,16vw,124px);line-height:1;margin:.1em 0 .12em;letter-spacing:.1em}
+.volhead h2 small{font-size:.24em;letter-spacing:.2em;color:var(--ink-2);margin-left:.4em}
+.volhead .lede{max-width:32em;margin:6px 0 0;font-size:16px;color:var(--ink-2);line-height:1.8}
+.volhead .pyr{position:absolute;right:-10px;bottom:-4px;width:190px;opacity:.9;pointer-events:none}
+
+/* 章首 */
+section.chap{padding-top:24px}
+.chead{position:relative;max-width:54rem;margin:46px auto 26px;padding:20px 22px 18px;display:grid;grid-template-columns:96px minmax(0,1fr);gap:20px;align-items:start;background:var(--paper-2);border-radius:10px;border:1px solid var(--rule)}
+.chead .big{font-family:var(--f-display);font-size:84px;line-height:1;color:var(--main);text-align:center;border:2px solid var(--main);border-radius:8px;padding:4px 0 8px;background:var(--card)}
+.chead .no{font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;color:var(--main)}
+.chead h2{font-family:var(--f-display);font-weight:400;font-size:clamp(32px,7vw,50px);line-height:1.15;margin:.08em 0 .2em;letter-spacing:.06em}
+.chead dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 14px;margin:6px 0 0;font-size:14.5px;line-height:1.7}
+.chead dt{color:var(--ink-3);white-space:nowrap}
+.chead dd{margin:0;color:var(--ink-2)}
+.where{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.where span{font-size:12px;line-height:1.6;border:1px solid var(--rule);border-radius:4px;padding:0 6px;color:var(--ink-3);background:var(--paper)}
+.where span.on{border-color:var(--main);color:var(--main);background:color-mix(in srgb,var(--main) 8%,var(--paper));font-weight:600}
+
+/* 你问的 */
+.ask{margin:1.6em 0;padding:12px 16px 4px;border-radius:8px;background:var(--card);border:1px solid var(--rule)}
+.ask .q{font-family:var(--f-display);font-size:19px;line-height:1.5;margin:0 0 .4em;text-indent:0!important}
+.ask .q::before{content:"有人问";font-family:var(--f-sans);font-size:11.5px;letter-spacing:.14em;color:var(--paper);background:var(--main);border-radius:3px;padding:1px 6px;margin-right:8px;vertical-align:3px}
+.ask p{text-indent:0!important;font-size:15.5px;line-height:1.8;margin:0 0 .7em;color:var(--ink-2)}
+
+/* 河湾：虚构的小地方 */
+.river{margin:1.8em 0 2em;padding:16px 18px 6px;border:1.5px dashed var(--och);border-radius:10px;position:relative;background:color-mix(in srgb,var(--och) 4%,var(--paper))}
+.river::before{content:attr(data-t);position:absolute;top:-12px;left:14px;background:var(--paper);padding:0 8px;font-size:13px;letter-spacing:.12em;color:var(--och);font-weight:600}
+.river::after{content:"虚构";position:absolute;top:-10px;right:14px;background:var(--paper);padding:0 6px;font-size:11px;letter-spacing:.2em;color:var(--ink-3);border:1px solid var(--rule);border-radius:3px;line-height:1.5}
+.river p{text-indent:0!important;font-size:16px;line-height:1.85}
+.river .nm{font-weight:600;color:var(--och)}
+
+/* 别处：同一件事在地球的不同地方 */
+.globe{margin:2em auto;max-width:54rem}
+.globe .gh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;border-bottom:1.5px solid var(--ink);padding-bottom:4px;margin-bottom:10px}
+.globe .gh b{font-family:var(--f-display);font-weight:400;font-size:22px;letter-spacing:.06em}
+.globe .gh span{font-size:13px;color:var(--ink-3)}
+.globe .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(15.5em,1fr));gap:10px}
+.rg{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:10px 13px 8px;font-size:15px;line-height:1.75}
+.rg h6{margin:0 0 4px;font-family:var(--f-display);font-weight:400;font-size:18px;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.rg h6 small{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);white-space:nowrap}
+.rg p{margin:0 0 .5em;text-indent:0!important}
+
+/* 告示 · 白话：讽刺栏 */
+.spin{margin:2em 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:1.5px solid var(--ink);border-radius:6px;overflow:hidden;background:var(--card)}
+.spin>div{padding:12px 16px 10px;font-size:15.5px;line-height:1.8}
+.spin>div p{text-indent:0!important;margin:0 0 .5em}
+.spin .off{font-family:var(--f-display);font-size:17px;letter-spacing:.04em;background:color-mix(in srgb,var(--main) 6%,var(--card))}
+.spin .plain{border-left:1.5px solid var(--ink)}
+.spin i{display:block;font-style:normal;font-family:var(--f-sans);font-size:11.5px;letter-spacing:.2em;color:var(--main);margin-bottom:4px}
+.spin .plain i{color:var(--grn)}
+.spin .src{grid-column:1 / -1;border-top:1px dashed var(--rule);font-size:12.5px;color:var(--ink-3);padding:4px 16px 6px}
+
+/* 那时的一天 */
+.life{margin:2em 0;padding:14px 16px 6px;border-radius:8px;border-left:4px solid var(--grn);background:color-mix(in srgb,var(--grn) 6%,var(--card))}
+.life h5{margin:0 0 .3em;font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--grn)}
+.life h5 small{font-family:var(--f-mono);font-size:12px;color:var(--ink-3);margin-left:8px}
+.life p{text-indent:0!important;font-size:15.5px;line-height:1.8;margin:0 0 .7em}
+
+/* 蓝框 */
+.box{margin:2em 0;padding:16px 18px 8px;border-radius:8px;border:1.5px solid var(--blu);background:color-mix(in srgb,var(--blu) 6%,var(--paper))}
+.box h5{margin:.1em 0 .5em;font-family:var(--f-display);font-weight:400;font-size:21px;color:var(--blu);letter-spacing:.04em}
+.box p{text-indent:0!important;margin:0 0 .8em;font-size:16px;line-height:1.85}
+.box ul,.box ol{margin:0 0 .8em;padding-left:1.2em;font-size:16px;line-height:1.85}
+.box li{margin:0 0 .3em}
+
+/* 眉批 */
+.echo{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;margin:1.6em 0;padding:14px 14px 10px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.echo .stamp{writing-mode:vertical-rl;font-family:var(--f-display);font-size:15px;color:var(--red);border:1.5px solid var(--red);border-radius:3px;padding:6px 2px;letter-spacing:.2em;align-self:start}
+.echo[data-k="存疑"] .stamp{color:var(--ink-3);border-color:var(--ink-3)}
+.echo[data-k="联系"] .stamp{color:var(--och);border-color:var(--och)}
+.echo[data-k="生活"] .stamp{color:var(--grn);border-color:var(--grn)}
+.echo[data-k="押韵"] .stamp{color:var(--blu);border-color:var(--blu)}
+.echo[data-k="讽刺"] .stamp{color:var(--main);border-color:var(--main)}
+.echo p{text-indent:0!important;margin:0 0 .5em;font-size:15.5px;line-height:1.8}
+.echo .rh{font-family:var(--f-display);font-size:18px;margin-bottom:.2em}
+
+/* 章末：史 / 世 */
+.seal{margin:2.6em 0 1em;border:1.5px solid var(--ink);border-radius:6px;background:var(--card);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);overflow:hidden}
+.seal>div{padding:12px 16px 14px;font-size:15.5px;line-height:1.75}
+.seal>div+div{border-left:1.5px solid var(--ink)}
+.seal i{display:block;font-style:normal;font-family:var(--f-display);font-size:22px;letter-spacing:.2em;margin-bottom:2px;color:var(--main)}
+.seal>div+div i{color:var(--grn)}
+.seal i small{font-family:var(--f-body);font-size:12px;letter-spacing:.1em;color:var(--ink-3);margin-left:6px}
+
+/* 装置 */
+.fig{margin:2.2em auto;padding:20px 18px;background:var(--card);border:1px solid var(--rule);border-radius:6px}
+.fig-label{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.12em;color:var(--main)}
+.fig h4{font-family:var(--f-display);font-weight:400;font-size:22px;margin:.25em 0 .35em}
+.fig .how{font-size:14.5px;color:var(--ink-2);margin:0 0 14px;line-height:1.75}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.btn{border:1px solid var(--ink-3);background:transparent;border-radius:999px;padding:4px 14px;font-size:14px;cursor:pointer;line-height:1.6;color:var(--ink)}
+.btn:hover{border-color:var(--ink)}
+.btn.pri{background:var(--main);color:var(--paper);border-color:var(--main)}
+.btn.on{background:var(--main);border-color:var(--main);color:var(--paper)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.readout{font-size:14.5px;color:var(--ink-2);line-height:1.75;min-height:1.5em}
+.readout b{color:var(--ink)}
+.say{background:var(--paper);border-left:3px solid var(--och);padding:8px 12px;margin:10px 0;font-size:15px;line-height:1.75;min-height:3.2em}
+.say.ok{border-left-color:var(--grn)}.say.bad{border-left-color:var(--red)}
+input[type=range]{width:100%;accent-color:var(--main)}
+.ctl{display:grid;grid-template-columns:7em minmax(0,1fr) 6.5em;gap:10px;align-items:center;font-size:14px;color:var(--ink-2);margin:4px 0}
+.ctl output{font-family:var(--f-mono);font-size:13px;color:var(--ink);text-align:right;white-space:nowrap}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(9em,1fr));gap:8px;margin:10px 0}
+.kv div{background:var(--paper);border-radius:6px;padding:6px 10px;font-size:12.5px;color:var(--ink-3);line-height:1.5}
+.kv b{display:block;font-family:var(--f-mono);font-weight:500;font-size:18px;color:var(--ink)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:center}
+.lab{font-size:12.5px;color:var(--ink-3);letter-spacing:.08em;margin:8px 0 4px}
+.chip{display:inline-block;font-size:12px;border:1px solid var(--rule);border-radius:4px;padding:0 6px;color:var(--ink-3);margin:0 4px 4px 0}
+.fig text{font-family:var(--f-sans)}
+.fig .mono{font-family:var(--f-mono)}
+select{border:1px solid var(--ink-3);border-radius:6px;background:var(--paper);padding:2px 6px;font-size:14px}
+label.ck{display:inline-flex;gap:6px;align-items:center;font-size:14px;color:var(--ink-2);margin:2px 12px 2px 0;cursor:pointer}
+label.ck input{accent-color:var(--main)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--ink-2);margin:6px 0}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:0}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(14em,1fr));gap:8px;margin:10px 0}
+.cards .cd{background:var(--paper);border-radius:6px;padding:8px 11px;font-size:14px;line-height:1.65;border:1px solid transparent}
+.cards .cd b{display:block;font-family:var(--f-display);font-weight:400;font-size:17px}
+.cards .cd small{color:var(--ink-3)}
+.cards .cd.on{border-color:var(--main)}
+
+/* 漫画 */
+.comic{max-width:54rem;margin:2em auto;padding:14px;background:var(--c-paper);border:2px solid var(--c-ink);color:var(--c-ink)}
+.comic .ctitle{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px 12px;border-bottom:2px solid var(--c-ink);padding-bottom:6px;margin-bottom:12px}
+.comic .ctitle b{font-family:var(--f-display);font-weight:400;font-size:26px;letter-spacing:.12em}
+.comic .ctitle span{font-family:var(--f-sans);font-size:12px;letter-spacing:.1em}
+.comic .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.pn{position:relative;border:2.5px solid var(--c-ink);background:var(--c-paper);overflow:hidden;container-type:inline-size;aspect-ratio:300/230}
+.pn.w{grid-column:span 2;aspect-ratio:600/250}
+.pn svg{position:absolute;inset:0;width:100%;height:100%;max-width:none;color:var(--c-ink)}
+.pn .cap{position:absolute;left:0;top:0;max-width:62%;background:var(--c-paper);border-right:2px solid var(--c-ink);border-bottom:2px solid var(--c-ink);font-family:var(--f-sans);font-weight:500;font-size:clamp(10.5px,4.1cqw,15px);line-height:1.45;padding:4px 8px;z-index:2}
+.pn .cap.br{left:auto;top:auto;right:0;bottom:0;border:0;border-left:2px solid var(--c-ink);border-top:2px solid var(--c-ink)}
+.pn .bb{position:absolute;z-index:3;background:var(--c-paper);border:2px solid var(--c-ink);border-radius:50%/42%;padding:.5em .85em;font-family:var(--f-sans);font-weight:500;font-size:clamp(10.5px,4.2cqw,16px);line-height:1.45;text-align:center;color:var(--c-ink)}
+.pn.w .bb{font-size:clamp(10.5px,2.5cqw,16px)}
+.pn.w .cap{font-size:clamp(10.5px,2.4cqw,15px)}
+.pn .bb::after{content:"";position:absolute;width:14px;height:14px;background:var(--c-paper);border-right:2px solid var(--c-ink);border-bottom:2px solid var(--c-ink);bottom:-8px;left:30%;transform:skewX(30deg) rotate(45deg)}
+.pn .bb.tr::after{left:auto;right:28%;transform:skewX(-30deg) rotate(45deg)}
+.pn .bb.nt::after{display:none}
+.pn .bb.shout{border-radius:6px;border-width:2.5px;font-weight:700}
+.pn .bb.think{border-style:dashed}
+.pn .sfx{position:absolute;z-index:2;font-family:var(--f-sans);font-weight:700;font-size:clamp(14px,7cqw,30px);color:var(--c-ink);transform:rotate(-8deg);letter-spacing:.05em;text-shadow:2px 2px 0 var(--c-paper),-2px -2px 0 var(--c-paper),2px -2px 0 var(--c-paper),-2px 2px 0 var(--c-paper)}
+.comic .after{font-family:var(--f-sans);font-size:13px;margin:10px 0 0;opacity:.8;line-height:1.7}
+
+/* 表 */
+table.t{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.6;min-width:520px}
+table.t th,table.t td{border-bottom:1px solid var(--rule);padding:7px 8px;text-align:left;vertical-align:top}
+table.t th{font-weight:400;color:var(--ink-3);font-size:13px}
+.src{font-size:14.5px;line-height:1.8;color:var(--ink-2)}
+.src li{margin:0 0 .5em}
+
+/* 本部完 */
+.partend{max-width:38rem;margin:70px auto 0;text-align:center}
+.partend .k{font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;color:var(--main)}
+.partend h3{margin:.3em 0 .6em}
+.partend a.go{display:inline-block;margin-top:8px;padding:8px 18px;border:1.5px solid var(--main);border-radius:999px;text-decoration:none;color:var(--main);font-family:var(--f-display);font-size:19px}
+footer{max-width:38rem;margin:60px auto 0;padding:24px 0 calc(40px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--rule);font-size:14px;color:var(--ink-3);line-height:1.8}
+footer p{text-indent:0!important}
+.nextbook{display:block;margin:20px 0;padding:14px 16px;border:1px solid var(--rule);border-radius:6px;text-decoration:none;background:var(--card)}
+.nextbook b{font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--ink)}
+
+/* ===== 装置专用 ===== */
+.pixels{display:grid;gap:3px;margin:10px 0}
+.pixels span{aspect-ratio:1;border-radius:3px;background:var(--paper);border:1px solid var(--rule)}
+.bars{display:grid;gap:5px;margin:10px 0}
+.bars .row{display:grid;grid-template-columns:7.5em minmax(0,1fr) 4.2em;gap:8px;align-items:center;font-size:13.5px}
+.bars .row .nm{color:var(--ink-2);line-height:1.3}
+.bars .row .nm small{display:block;font-size:11px;color:var(--ink-3)}
+.bars .tr{position:relative;height:18px;background:var(--paper);border-radius:3px;overflow:hidden}
+.bars .tr i{position:absolute;left:0;top:0;bottom:0;background:var(--main);border-radius:3px;transition:width .4s}
+.bars .row .v{font-family:var(--f-mono);font-size:12px;color:var(--ink);text-align:right;white-space:nowrap}
+.tl{position:relative}
+.tl .track{display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:8px;align-items:center;font-size:13px;margin:3px 0}
+.tl .track .nm{color:var(--ink-2);line-height:1.25}
+.tl .lane{position:relative;height:22px;background:var(--paper);border-radius:3px}
+.tl .lane i{position:absolute;top:3px;width:14px;height:14px;margin-left:-7px;border-radius:50%;border:2px solid var(--card)}
+.tl .lane i.f{background:var(--grn)}.tl .lane i.c{background:var(--och)}.tl .lane i.s{background:var(--main)}.tl .lane i.w{background:var(--blu);border-radius:2px}
+.tl .axis{display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:8px;font-family:var(--f-mono);font-size:10.5px;color:var(--ink-3)}
+.tl .axis div:nth-child(2){position:relative;height:16px}
+.tl .axis span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+
+
+/* ===== 《铁打的营盘》专用 ===== */
+/* 章首：入仕的六扇门 */
+.gate{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+.gate span{font-size:12px;line-height:1.6;border:1px solid var(--rule);border-radius:4px;padding:0 7px;color:var(--ink-3);background:var(--paper)}
+.gate span b{font-family:var(--f-display);font-weight:400;font-size:14px;margin-right:3px}
+.gate span.on{border-color:var(--zhu);color:var(--zhu);background:color-mix(in srgb,var(--zhu) 9%,var(--paper));font-weight:600}
+.sixg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0}
+.sixg div{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:8px 10px;font-size:14px;line-height:1.6}
+.sixg b{display:block;font-family:var(--f-display);font-weight:400;font-size:30px;line-height:1.1;color:var(--zhu)}
+.sixg small{color:var(--ink-3);font-size:12.5px}
+/* 年代条：前 3200 到 2030 */
+.when{position:relative;height:16px;margin-top:10px;border-radius:3px;background:var(--paper);overflow:hidden;border:1px solid var(--rule)}
+.when i{position:absolute;top:0;bottom:0;background:var(--main);opacity:.8;min-width:3px}
+.when span{position:absolute;top:0;font-family:var(--f-mono);font-size:9.5px;line-height:15px;color:var(--ink-3);transform:translateX(-50%)}
+
+/* 库房：虚构的一场戏 */
+.desk{margin:1.8em 0 2em;padding:16px 18px 6px;border:1.5px dashed var(--kraft);border-radius:10px;position:relative;background:color-mix(in srgb,var(--kraft) 5%,var(--paper))}
+.desk::before{content:attr(data-t);position:absolute;top:-12px;left:14px;background:var(--paper);padding:0 8px;font-size:13px;letter-spacing:.12em;color:var(--kraft);font-weight:600}
+.desk::after{content:"虚构";position:absolute;top:-10px;right:14px;background:var(--paper);padding:0 6px;font-size:11px;letter-spacing:.2em;color:var(--ink-3);border:1px solid var(--rule);border-radius:3px;line-height:1.5}
+.desk p{text-indent:0!important;font-size:16px;line-height:1.85}
+.desk .nm{font-weight:600;color:var(--kraft)}
+.desk .x{font-weight:600;color:var(--main)}
+.desk .note{font-family:var(--f-hand);font-size:19px;line-height:1.6;color:var(--ink-2);background:var(--card);border:1px solid var(--rule);border-radius:4px;padding:6px 12px;margin:.4em 0 1em;transform:rotate(-.4deg)}
+
+/* 履历：老温拼的典型文官 */
+.dossier{margin:2em 0;border:1.5px solid var(--kraft);border-radius:4px;background:color-mix(in srgb,var(--kraft) 7%,var(--card));position:relative;font-size:15px;line-height:1.7}
+.dossier .dh{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap;padding:8px 14px 6px;border-bottom:1.5px solid var(--kraft)}
+.dossier .dh b{font-family:var(--f-display);font-weight:400;font-size:22px;letter-spacing:.12em;color:var(--kraft)}
+.dossier .dh small{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);letter-spacing:.06em}
+.dossier table{width:100%;border-collapse:collapse}
+.dossier th{width:5.6em;text-align:left;vertical-align:top;font-weight:400;color:var(--kraft);font-family:var(--f-display);font-size:16px;padding:6px 8px 6px 14px;border-bottom:1px dashed color-mix(in srgb,var(--kraft) 45%,var(--rule));white-space:nowrap}
+.dossier td{padding:6px 14px 6px 4px;border-bottom:1px dashed color-mix(in srgb,var(--kraft) 45%,var(--rule))}
+.dossier .real{padding:6px 14px 8px;font-size:12.5px;color:var(--ink-3);line-height:1.65}
+.dossier .stampx{position:absolute;right:12px;top:58px;width:62px;height:62px;border:2px solid var(--zhu);border-radius:50%;color:var(--zhu);font-family:var(--f-display);font-size:14px;line-height:1.1;display:grid;place-items:center;text-align:center;transform:rotate(-12deg);opacity:.6;pointer-events:none}
+
+/* 小传 */
+.bio{margin:2em 0;border:1.5px solid var(--main);border-radius:8px;background:var(--card);overflow:hidden}
+.bio .hd{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 12px;padding:10px 16px 8px;background:color-mix(in srgb,var(--main) 10%,var(--card));border-bottom:1px solid color-mix(in srgb,var(--main) 40%,var(--rule))}
+.bio .hd b{font-family:var(--f-display);font-weight:400;font-size:24px;letter-spacing:.05em}
+.bio .hd small{font-family:var(--f-mono);font-size:12px;color:var(--ink-3)}
+.bio .hd em{margin-left:auto;font-size:13px;color:var(--main);background:none;font-weight:600}
+.bio .bd{padding:10px 16px 6px}
+.bio p{text-indent:0!important;margin:0 0 .7em;font-size:15.5px;line-height:1.85}
+.bio dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;margin:0 0 .8em;font-size:15px;line-height:1.7}
+.bio dt{color:var(--main);font-family:var(--f-display);font-size:16px;white-space:nowrap}
+.bio dd{margin:0}
+
+/* 黑账 */
+.black{margin:2em 0;padding:14px 16px 6px;border-radius:8px;background:color-mix(in srgb,var(--red) 7%,var(--card));border-left:5px solid var(--red);position:relative}
+.black h5{margin:0 0 .4em;font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--red);letter-spacing:.06em}
+.black h5::before{content:"黑账";font-family:var(--f-sans);font-size:11px;letter-spacing:.18em;color:var(--paper);background:var(--red);border-radius:3px;padding:1px 6px;margin-right:8px;vertical-align:3px}
+.black p{text-indent:0!important;margin:0 0 .7em;font-size:15.5px;line-height:1.85}
+
+/* 两本账：营盘的 / 你的 */
+.seal i{color:var(--main)}
+
+/* 卷首的印 */
+.volhead .yin{position:absolute;right:10px;bottom:8px;width:96px;height:96px;opacity:.8;pointer-events:none;color:var(--zhu)}
+/* 时间线卡片（封面装置） */
+.gates{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;margin:10px 0}
+.gates button{border:1px solid var(--rule);background:var(--paper);border-radius:6px;padding:6px 2px;cursor:pointer;line-height:1.3;font-size:12px;color:var(--ink-3)}
+.gates button b{display:block;font-family:var(--f-display);font-weight:400;font-size:24px;color:var(--zhu)}
+.gates button.on{border-color:var(--zhu);box-shadow:inset 0 0 0 1px var(--zhu);color:var(--ink)}
+.sim{display:block;touch-action:manipulation}
+.qa{display:grid;gap:8px;margin:10px 0}
+.qa button{text-align:left;border:1px solid var(--rule);background:var(--paper);border-radius:6px;padding:8px 12px;cursor:pointer;font-size:15px;line-height:1.6}
+.qa button:hover{border-color:var(--main)}
+.qa button.right{border-color:var(--grn);background:color-mix(in srgb,var(--grn) 10%,var(--paper))}
+.qa button.wrong{border-color:var(--red);background:color-mix(in srgb,var(--red) 8%,var(--paper))}
+.logbox{font-family:var(--f-mono);font-size:12.5px;line-height:1.7;background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:6px 10px;max-height:13em;overflow:auto;color:var(--ink-2);white-space:pre-wrap}
+
+@media (max-width:700px){
+  .sixg{grid-template-columns:repeat(2,minmax(0,1fr))}.gates{grid-template-columns:repeat(3,minmax(0,1fr))}.dossier .stampx{width:48px;height:48px;font-size:11px;top:84px}
+  .volhead .yin{width:64px;height:64px;opacity:.45}
+  .bio .hd em{margin-left:0;width:100%}
+  body{font-size:16.5px}
+  .two,.spin{grid-template-columns:minmax(0,1fr)}
+  .spin .plain{border-left:0;border-top:1.5px solid var(--ink)}
+  .toc li a,.toc li.soon>div{grid-template-columns:2.2em minmax(0,1fr)}
+  .toc .r{grid-column:2;text-align:left}
+  .bar .vol{display:none}
+  .bar .parts a{padding:0 4px}
+  .chead{grid-template-columns:58px minmax(0,1fr);gap:14px;padding:16px 14px}
+  .chead .big{font-size:46px;padding:2px 0 6px}
+  .ctl{grid-template-columns:5.5em minmax(0,1fr)}
+  .ctl output{grid-column:1 / -1;text-align:left;margin-top:-6px}
+  .partnav{grid-template-columns:minmax(0,1fr)}
+  .bars .row{grid-template-columns:5.6em minmax(0,1fr) 3.6em;gap:6px}
+  .tl .track,.tl .axis{grid-template-columns:4em minmax(0,1fr)}
+  .bio dl{grid-template-columns:minmax(0,1fr)}
+  .bio dt{margin-top:4px}
+}
+@media (max-width:480px){
+  .seal{grid-template-columns:minmax(0,1fr)}
+  .seal>div+div{border-left:0;border-top:1.5px solid var(--ink)}
+  .bar .name{font-size:17px}
+}
+.toc li.soon .t,.toc li.soon .n{opacity:.55}
+.toc li.soon>div{display:grid;grid-template-columns:2.6em minmax(0,1fr) auto;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--rule)}
+.toc li.soon .r::after{content:" · 写作中";color:var(--main)}
+.qmap li.soon{color:var(--ink-3)}
+.qmap li.soon::after{content:" · 写作中";font-size:12px}
+.partnav{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:700px){.partnav{grid-template-columns:minmax(0,1fr)}.toc li.soon>div{grid-template-columns:2.2em minmax(0,1fr)}}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="bar-in g">
+    <a class="home" href="../" title="回创世书房">书房</a>
+    <a class="name" href="./">铁打的营盘</a>
+    <nav class="parts" aria-label="三部">
+      <a href="./" data-p="1">刀笔</a><a href="two.html" data-p="2">机器</a><a href="three.html" data-p="3">心法</a>
+    </nav>
+    <span class="vol" id="barVol">序</span>
+    <button class="tocbtn" id="tocBtn" aria-label="打开目录">目录</button>
+  </div>
+  <div class="progress" id="prog"></div>
+</header>
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="mask" data-close></div>
+  <nav class="panel" aria-label="目录">
+    <button class="x" data-close aria-label="关闭">×</button>
+    <h5>全书目录</h5>
+    <ol id="drawerList"></ol>
+  </nav>
+</div>
+<main class="g">
+
+<!-- ============ 封面 · 第二部 ============ -->
+<section class="hero" data-vol="序" id="top">
+  <div class="wide">
+    <div class="eyebrow">THE PERMANENT DESK · 普鲁士 · 白厅 · 华盛顿 · 巴黎 · 霞关 · 莫斯科 · 新加坡 · 北京 · 文官创世记</div>
+    <h1>铁打的营盘<span class="sm">文官创世记</span></h1>
+    <span class="part">第二部 · 机器</span>
+    <p class="lead">第一部的那张桌子，到了十八、十九世纪，开始被人当成一台机器来重新设计。设计者想解决的，正是第一部反复碰到的那几件事：<em>人从哪儿来，工资从哪儿出，忠于谁，流水的长官怎样管住铁打的下属</em>。</p>
+    <p class="lead">普鲁士的国王把法学考试和不领工资的见习变成了做官的门槛；一个德国社会学家把这种机器的原理写成了理论；英国人写了一份二十来页的报告，花了十六年才落实；美国人等到一位总统被一个求官不成的人打死，才通过了考试法；法国人办了一所学校，毕业名次决定一生；日本人把最好的毕业生送进大藏省，五十多岁再把他们“从天上放下来”；苏联人用一张名单管住了所有的位子；新加坡人给部长开出了银行家的工资；今天的中国，每年有几百万人报考公务员。</p>
+    <p class="lead">这些机器各不相同，却都要面对同一个人：<b>从选举、从政党、从君主那里来的，坐在机器最上面的那个政治家</b>。他想让机器听话，机器想让他别乱来。这一部的另一条线，就是这两边的拔河。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig" id="pubFig">
+      <div class="fig-label">封面装置</div>
+      <h4>一百个上班的人里，几个替政府干活</h4>
+      <p class="how">下面是一些国家“广义政府”雇员占全部就业人数的大致比例（含中央和地方政府，包括教师、医生、警察等，不含国有企业）。点按钮切换排序，再猜一猜：哪个国家的比例最低？</p>
+      <div class="btns" id="pubSort"></div>
+      <div class="bars" id="pubBars"></div>
+      <div class="say" id="pubSay"></div>
+      <p class="figcap">约数，主要据经合组织《政府概览》（Government at a Glance）2019—2023 年各版的“广义政府就业占总就业比例”，不同年份、口径略有差异，只看大小关系。中国没有完全可比的统计，这里不列；第十九章另有说明。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="desk" data-t="档案室 · 第二个抽屉">
+      <p>第二天，<span class="nm">老温</span>拉开了第二个抽屉。这一抽屉的卡片新一些，纸是白的，有几张还是打印的。</p>
+      <p>“这些是近代的。”他说，“第一个抽屉里的人，大多是皇帝、贵族、教会的私人；这一抽屉的人开始变成‘国家的人’：考进来，拿工资，按级别升，到点退休，档案跟着人走。你那张录用通知书，祖宗都在这儿。”</p>
+      <p><span class="x">许多</span>抽出最上面一张，抬头写着：“1790 年，柏林。”</p>
+      <p>“普鲁士。”老温说，“从这儿开始。”</p>
+    </div>
+
+    <h3>这一部的十章</h3>
+    <ul class="plain">
+      <li><b>卷四 · 图纸</b>：普鲁士怎样造出第一批“国家的仆人”；韦伯怎样给这台机器写说明书，帕金森怎样发现它会自己长大；英国怎样从恩庇走到公开考试；首相们怎样想管住白厅；美国怎样从“胜利者的战利品”走到彭德尔顿法，又怎样在两百年后重新吵起来。</li>
+      <li><b>卷五 · 各家</b>：法国的名校和大团；日本的大藏省、通产省和“天降”；苏联的干部名单；新加坡的高薪和香港的廉署；当代中国的公务员考试和编制。</li>
+    </ul>
+
+    <div class="partnav">
+      <a href="./"><span class="k">第一部</span><b>刀笔</b><small>序幕 + 卷一 吏 + 卷二 考 + 卷三 替身 · 十章</small></a>
+      <a href="two.html" class="on"><span class="k">第二部</span><b>机器</b><small>卷四 图纸 + 卷五 各家 · 十章</small></a>
+      <a href="three.html" data-c="c20"><span class="k">第三部</span><b>心法</b><small>卷六 性子 + 卷七 算盘 + 卷八 代价与带走 · 十章</small></a>
+    </div>
+
+    <h3>全书目录</h3>
+  </div>
+  <div class="wide"><ol class="toc" id="toc"></ol></div>
+</section>
+
+<!-- ============ 卷四 · 图纸 ============ -->
+<div class="volhead" data-vol="卷四 · 图纸">
+  <div class="num">VOLUME FOUR · 第二部 · 机器</div>
+  <h2>图纸<small>卷四</small></h2>
+  <p class="lede">十八世纪的普鲁士画出了第一张现代文官的图纸；二十世纪初的韦伯给它写了说明书；英国人照着自己的脾气改了一版，美国人在一颗子弹之后才动手。图纸画好了，最上面那把椅子上坐的政治家，却总想改图纸。五章：普、韦、白、相、赃。</p>
+  <svg class="yin" data-t="图纸" aria-hidden="true"></svg>
+</div>
+
+<!-- ============ 第十章 · 普 ============ -->
+<section class="chap" id="c10" data-vol="卷四 · 图纸 · 普">
+  <div class="chead">
+    <div class="big">普</div>
+    <div>
+      <div class="no">第十章 · 1713 年至 1871 年</div>
+      <h2>国王的第一仆人</h2>
+      <dl><dt>讲什么</dt><dd>士兵国王的账房；大学里的“官房学”；三道考试和不领工资的见习；“国家第一仆人”；耶拿之后的改革；黑格尔的“普遍等级”</dd><dt>本章装置</dt><dd>不领工资的见习</dd></dl>
+      <div class="gate" data-g="考 生"></div>
+      <div class="when" data-a="1713" data-b="1871"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">现代意义上的文官制度，最早是在哪里成形的？</p>
+      <p>一般认为是十八世纪的<b>普鲁士</b>。一个穷、小、四面受敌的王国，想养一支和大国一样大的军队，只能把每一个塔勒都榨出来、算清楚。于是它在大学里开设专门培养官员的学科，用考试挑人，让候选人先当几年不拿工资的见习生，再给通过的人一个终身的、有级别有退休金的位子。<em>考试、见习、终身、按级晋升、对国家而不是对某个大臣效忠</em>，现代文官的这几样东西，普鲁士差不多都先有了。</p>
+    </div>
+
+    <div class="desk" data-t="档案室 · 第十一张卡片">
+      <p>“这张你看看‘入行’那一栏。”<span class="nm">老温</span>说。</p>
+      <p><span class="x">许多</span>念：“法学院毕业后，在法院和地方政府当见习生，前后七年，没有工资。”她抬头：“七年没工资？谁养他？”</p>
+      <p>“他爹。”老温说，“他爹是个牧师，供得起。这就是普鲁士的门槛：考试是公开的，谁都能考；可考之前要先读大学，考上之后要先白干好几年。穷人家的孩子，第一关就过不去。”</p>
+      <p>“那和魏晋的门阀有什么区别？”</p>
+      <p>老温笑了：“区别是，门阀看你爹是谁，普鲁士看你爹有没有钱供你。前一种你没法改，后一种，至少攒得起钱的人家能改。”</p>
+    </div>
+
+    <div class="dossier">
+      <div class="dh"><b>履历</b><small>No. 11 · 约 1790—1860 年 · 普鲁士，明斯特</small></div>
+      <table>
+        <tr><th>姓名</th><td>卡尔·弗里德里希·迈尔（拼的）</td></tr>
+        <tr><th>出身</th><td>勃兰登堡一个乡村牧师的儿子。</td></tr>
+        <tr><th>读书</th><td>在哈勒大学读法学和官房学：财政、农业、林业、矿业、警察学（那时的“警察”指一切公共秩序与福利管理）。</td></tr>
+        <tr><th>见习</th><td>毕业后通过第一次考试，在法院当“旁听生”；再通过第二次考试，成为“见习官”，在地方政府各科室轮岗。前后七年，没有工资，靠家里寄钱。</td></tr>
+        <tr><th>大考</th><td>三十岁通过柏林的高等考试委员会主持的终考，成为“候补官员”，又等了两年，才在新划给普鲁士的威斯特法伦省政府里得到一个“政府参事”的正式职位。</td></tr>
+        <tr><th>待遇</th><td>终身任职；固定工资，按年资增加；退休金；一套制服。非经法定程序不得免职。</td></tr>
+        <tr><th>一天</th><td>早上到署，在科室的合议会上讨论公文；下午处理本科负责的林业和道路案卷；所有意见写成书面意见附在案卷上。</td></tr>
+        <tr><th>最怕</th><td>被人说“不可靠”：在他那个年代，同情自由派、给报纸写文章都可能影响升迁。</td></tr>
+        <tr><th>结局</th><td>做到省政府的处长，六十八岁退休，领着退休金在明斯特终老。他的儿子也学了法律。</td></tr>
+      </table>
+      <div class="real">真的部分：哈勒大学的官房学、法学教育；“旁听生—见习官—候补官员”三段式和多次国家考试；见习期长期无薪；终身任职、年资工资、退休金与制服；1815 年后威斯特法伦归普鲁士；省政府的合议制。迈尔是拼出来的人。</div>
+    </div>
+
+    <h3>士兵国王的账房<span class="y">1713—1740</span></h3>
+    <p>普鲁士在十八世纪初是一个奇怪的国家：领土东一块西一块，从莱茵河边一直散到波罗的海；土地贫瘠，人口不多，却一心想当大国。1713 年即位的国王腓特烈·威廉一世出了名地抠门，号称“士兵国王”，他一辈子只做两件事：养兵和省钱。他即位后把宫廷开支砍掉了一大半，把父亲留下的珠宝和名马变卖，把省下的钱全拿去扩军。</p>
+    <p>要养一支和国力不相称的大军，就得把每一分钱都收上来、花明白。1723 年，他把原来分管王室领地和战争税的几个机构合并成一个“总执行局”，全称很长，大意是“财政、战争与王室领地总执行局”，他亲自出题、亲自批阅、亲自定规矩。各级官员要按时上班，账目要按格式报，误了期要罚款，贪污要严惩。国王常常拄着手杖在柏林街头巡视，看见偷懒的人就打。</p>
+    <p>他还做了一件影响更远的事：1727 年，他在哈勒大学和奥得河畔法兰克福大学设立了“官房学”的教席。“官房”原指王室的财库，官房学就是“怎样管好国家财库”的学问：财政、税收、农业、林业、矿业、人口、警察（当时指一切公共秩序和福利）。<em>这是欧洲第一次在大学里正式开设“培养官员”的专业</em>。</p>
+
+    <h3>三道考试<span class="y">1740—1800</span></h3>
+    <p>他的儿子腓特烈二世，就是后来的“腓特烈大帝”，在位四十六年，继续把这台机器往精细里修。司法系统先有了考试：想当法官，读完法学要通过考试，进法院当没有工资的“旁听生”，再考，成为“见习官”，再考，才能当“候补”。1770 年，普鲁士设立“高等考试委员会”，把这套考试推广到高级行政官员。</p>
+    <p>这套办法有两个后来影响深远的特点：</p>
+    <ul class="plain">
+      <li><b>学法律的人当官</b>：普鲁士以及后来的德国，高级行政官员绝大多数是法学出身，这个传统叫“法律人垄断”，到今天德国的部委里还看得到。</li>
+      <li><b>见习期没有工资</b>：考试名义上对所有人开放，可候选人要先读几年大学，再白干好几年，只有家里有钱、或者有贵族亲戚资助的人才熬得住。<em>门槛不写在规章里，写在账本里</em>。</li>
+    </ul>
+    <p>贵族在高层职位上仍然占着很大的优势，尤其是军队和外交；可在行政系统里，越来越多出身于牧师、教授、官员、商人家庭的平民，靠着大学文凭和考试成绩坐上了位子。十八世纪末，普鲁士已经有了一个靠学历和考试晋升的“官员阶层”，有自己的荣誉感、自己的制服、自己的规矩。</p>
+  </div>
+
+  <div class="fig" id="unpFig">
+    <div class="fig-label">装置 11</div>
+    <h4>不领工资的见习</h4>
+    <p class="how">一千个法学毕业生排队等着当官，他们的家境有穷有富（横轴越往右越富）。拖动滑块设定<b>见习期有几年不领工资</b>，看看坚持到最后、成为正式官员的是哪些人。考试成绩和家境无关，随机。</p>
+    <div class="ctl"><span>无薪年数</span><input type="range" id="unpY" min="0" max="10" value="6"><output id="unpYO"></output></div>
+    <svg class="sim" id="unpSvg"></svg>
+    <div class="kv" id="unpKv"></div>
+    <div class="say" id="unpSay"></div>
+    <p class="figcap">示意模型。每个家庭能供养子女的年数与家境成正比，加一点随机；考试每年淘汰一部分人，与家境无关。真实的普鲁士见习期长短历次调整，且常有少量津贴或兼职机会，这里只看“无薪年数”这一个变量的作用。</p>
+  </div>
+
+  <div class="col">
+    <h3>国家第一仆人</h3>
+    <p>腓特烈大帝年轻时写过一本反驳马基雅维利的小书，后来又给继承人写过几份“政治遗嘱”。他在这些文字里反复说一个意思：</p>
+  </div>
+
+  <div class="spin">
+    <div class="off"><i>公文 · 原文大意</i><p>君主远不是他所统治的人民的绝对主人，他只是他们的第一仆人。</p></div>
+    <div class="plain"><i>白话</i><p>国王也是给国家打工的，只不过是打工的人里头那个。</p></div>
+    <div class="src">左栏据腓特烈二世《反马基雅维利》（1740 年）及其政治遗嘱中相近说法的大意转述，各处措辞不一（“第一仆人”“第一公仆”），流传最广的那句准确出处有争议。</div>
+  </div>
+
+  <div class="col">
+    <p>这句话今天听上去像一句漂亮话，在当时却有实际的意思：<em>效忠的对象从“国王这个人”变成了“国家”这个抽象的东西</em>。官员不是国王的家奴（像奥斯曼的苏丹奴仆），也不是国王的债主（像法国买官的穿袍贵族），而是和国王一起为国家服务的人。1794 年颁布的《普鲁士邦普通法》专门有一章规定国家官员的权利和义务：官员要忠诚、勤勉、保密；非经法定程序不得被免职。官员的位子不再取决于某个大臣的喜怒，这一条后来成了德国“职业官员制”的核心。</p>
+
+    <h3>耶拿之后<span class="y">1806—1848</span></h3>
+    <p>1806 年，普鲁士军队在耶拿和奥尔施泰特被拿破仑打得全军覆没，国王逃到东普鲁士，国土丢了一半。惨败逼出了一场大改革，主持的是两位大臣施泰因和哈登贝格：废除农奴制，允许城市自治，按职能重组中央政府，设立内政、财政、外交、司法、战争五个部，每部一位大臣负责。军队那边，沙恩霍斯特和格奈森瑙改革征兵、开办军校，军官也不再只从贵族中挑。</p>
+    <p>改革的执行者，正是那一批考试出身的官员。此后几十年，普鲁士没有议会，国王和贵族又不太懂行，<b>真正统治这个国家的是官僚</b>。历史学家把这段时期叫做“官僚统治”的时代。哲学家黑格尔就在柏林大学教书，他在 1820 年出版的《法哲学原理》里，把文官称为“普遍等级”：其他阶层各有私利，只有文官以国家的普遍利益为自己的利益。这种说法让官员们很受用，也让后来的批评者（比如年轻的马克思）很不以为然：官员也有自己的私利，最大的私利就是保住自己的位子。</p>
+  </div>
+
+  <div class="bio">
+    <div class="hd"><b>腓特烈·威廉一世</b><small>1688—1740</small><em>不爱读书的“官僚之父”</em></div>
+    <div class="bd">
+      <p>普鲁士第二位国王。脾气暴躁，讨厌法国式的奢华和学问，喜欢抽烟、喝啤酒、打猎和阅兵。</p>
+      <dl>
+        <dt>省</dt><dd>即位第一年就砍掉了大半宫廷开支，变卖珠宝，解散了父亲的乐队。他留给儿子的国库里有大笔存银，军队却扩大到了约八万人，在欧洲排得上前几名，而普鲁士的人口只排第十几位。</dd>
+        <dt>管</dt><dd>建立总执行局，亲自起草几百条办事规则，规定官员几点上班、怎样记账、怎样汇报；在大学设立官房学教席。</dd>
+        <dt>怪</dt><dd>他组建了一个“巨人卫队”，从欧洲各地搜罗甚至绑架身材高大的男人当兵；对亲生儿子极其严厉，王储腓特烈十八岁时试图出逃，被抓回来，被迫看着好友卡特被处死。</dd>
+        <dt>结局</dt><dd>五十一岁病逝。儿子腓特烈二世即位后，几个月内就用他攒下的钱和军队发动了战争，夺取了西里西亚。</dd>
+      </dl>
+      <p>他自己几乎不读书，却给欧洲留下了第一套“读书当官”的大学专业。<em>一台精密机器的设计者，常常是一个只在乎账本的人</em>。</p>
+    </div>
+  </div>
+
+  <div class="black">
+    <h5>“恢复职业官员制”</h5>
+    <p>普鲁士和德国的官员以守法、服从、专业自豪。可这种服从也有另一面。1933 年 4 月 7 日，希特勒上台两个多月，德国颁布了一部法律，名字叫《恢复职业官员制法》。名字听上去是要保护文官制度，内容却是：凡“非雅利安血统”的官员（有一些例外，比如一战老兵，后来也被取消）和“政治上不可靠”的官员，一律免职。成千上万的犹太裔法官、教授、教师、公务员因此丢了工作。</p>
+    <p>绝大多数德国官员照常上班，执行了这部法律，也执行了后来更多的法律。<b>一台只认规则、不问规则对错的机器，换一个司机，就能开往任何地方</b>。下一章会讲到，这正是二十世纪人们对“官僚制”最深的恐惧。</p>
+  </div>
+
+  <aside class="echo" data-k="讽刺">
+    <span class="stamp">讽刺</span>
+    <div>
+      <div class="rh">科佩尼克上尉</div>
+      <p>1906 年 10 月，一个叫威廉·福格特的鞋匠，有过多次前科，在旧货店凑齐了一身普鲁士上尉的军装，在柏林街头拦下一队士兵，命令他们跟着他走。士兵们服从了。他带着他们坐火车到科佩尼克镇，占领市政厅，逮捕了市长，没收了市金库里的四千多马克，然后从容离开。几天后他被抓住，全德国笑成一片，连德皇据说都觉得好笑。<em>一身制服就能让整套官僚机器乖乖听话</em>，这个故事后来被写成了戏剧，“科佩尼克”成了德语里讽刺盲目服从的代名词。</p>
+    </div>
+  </aside>
+
+  <div class="seal">
+    <div><i>营盘的账<small>制度</small></i>现代文官的第一块基石，是“对职位和法律负责，而不是对某个人负责”。可规则本身若被换掉，忠于规则的人也会跟着走。</div>
+    <div><i>你的账<small>生活</small></i>看一条路的门槛，别只看明面上的考试，也看“考之前要准备几年、考之后要熬几年、这期间谁养你”。那才是真正的门票价。</div>
+  </div>
+</section>
+
+<!-- ============ 第十一章 · 韦 ============ -->
+<section class="chap" id="c11" data-vol="卷四 · 图纸 · 韦">
+  <div class="chead">
+    <div class="big">韦</div>
+    <div>
+      <div class="no">第十一章 · 约 1900 年至 1971 年</div>
+      <h2>铁笼与帕金森</h2>
+      <dl><dt>讲什么</dt><dd>韦伯给官僚制写的说明书；“铁笼”；政治家和官员的两种伦理；卡夫卡的保险公司；帕金森在海军部数人头；彼得原理；目标替代</dd><dt>本章装置</dt><dd>帕金森定律</dd></dl>
+      <div class="gate" data-g="考"></div>
+      <div class="when" data-a="1900" data-b="1971"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">“官僚制”到底是什么？它为什么总是越来越大？</p>
+      <p>德国社会学家韦伯把它概括为几条：按规则分工、层级节制、一切留档、专业训练、全职终身、职位和个人财产分开。他认为这是人类发明过的<em>最精确、最可靠、最高效的管理方式</em>，也是一只把人关在里面的笼子。至于它为什么越来越大，英国历史学家帕金森在 1955 年开了个玩笑式的总结：官员想要的是下属，不是对手；官员会互相制造工作。所以不管事情多了还是少了，人总是在增加。</p>
+    </div>
+
+    <div class="desk" data-t="档案室 · 第十二张卡片">
+      <p>这张卡片上有一张小小的手绘图表：两条线，一条往下，一条往上。</p>
+      <p>“往下的是英国海军的主力舰，”<span class="nm">老温</span>说，“往上的是海军部的文职官员。1914 年到 1928 年，船少了三分之二，管船的人多了快一倍。”</p>
+      <p><span class="x">许多</span>看着图：“这是真的？”</p>
+      <p>“是一个叫帕金森的人在杂志上写的，半开玩笑，数字是真的，解释是他的。”老温说，“你在单位待久了就知道，这玩笑不全是玩笑。咱们局三十年前管着全市一百多座小水库，后来大半移交了，综合科的人倒是从五个变成了九个。”</p>
+    </div>
+
+    <div class="dossier">
+      <div class="dh"><b>履历</b><small>No. 12 · 约 1912—1950 年 · 英国，伦敦海军部</small></div>
+      <table>
+        <tr><th>姓名</th><td>阿瑟·平克顿（拼的）</td></tr>
+        <tr><th>入行</th><td>1912 年考进海军部当二等文书，十八岁。</td></tr>
+        <tr><th>一战</th><td>战时海军部人手奇缺，他一年升一级，管舰艇补给的文件。</td></tr>
+        <tr><th>战后</th><td>军舰按条约大批拆除，海军大幅裁员；海军部的文职人员却没有减少，他所在的科还新设了两个副科长的位子，他升了其中一个。</td></tr>
+        <tr><th>工作</th><td>审阅下属起草的文件，转给另一个副科长会签，再送科长；科长有意见退回来，他再让下属改。</td></tr>
+        <tr><th>感受</th><td>一直很忙。</td></tr>
+        <tr><th>最怕</th><td>部里搞精简，自己的科被合并。</td></tr>
+        <tr><th>结局</th><td>二战结束时做到处长，1950 年退休。他的处那时有三十多个人。</td></tr>
+      </table>
+      <div class="real">真的部分：一战后英国海军主力舰大幅减少、海军部文职人员反而增加，数字据帕金森 1955 年的文章；“一直很忙”“互相会签”是帕金森给出的解释。平克顿是拼出来的人。</div>
+    </div>
+
+    <h3>说明书<span class="y">韦伯，约 1910—1920</span></h3>
+    <p>马克斯·韦伯生在普鲁士一个官员和政治家的家庭，父亲是国会议员，他从小看着这台机器长大。二十世纪初，他在一部没写完的大书（后人整理为《经济与社会》）里，把现代官僚制的特征一条条写了出来，大意是：</p>
+    <ul class="plain">
+      <li><b>权限固定</b>：每个机构、每个职位管什么，由规则事先规定，不由上司临时指派。</li>
+      <li><b>层级节制</b>：上级管下级，下级可以向上申诉，有一条清楚的命令链。</li>
+      <li><b>一切留档</b>：办事以书面文件为准，文件归档保存（第一章秦简里的“有事必以书”在这里成了理论）。</li>
+      <li><b>专业训练</b>：任职需要专门的知识，通常要通过考试证明。</li>
+      <li><b>全职</b>：当官是一份全职工作，不是贵族的副业。</li>
+      <li><b>位子不归个人</b>：官员不拥有他的职位，不能买卖、不能世袭；他领的是固定工资和退休金，按年资和成绩晋升。</li>
+    </ul>
+    <p>把这几条和第一部对照一下就很清楚：每一条都是冲着一种旧毛病去的。“位子不归个人”对的是法国的卖官和清朝的顶首银；“全职、固定工资”对的是胥吏的规费；“专业训练、考试”对的是门阀和恩庇；“权限固定、层级节制”对的是宦官和宠臣的越权。<em>韦伯描述的不是一个理想国，而是一个把过去五千年的漏洞一个个堵上的方案</em>。</p>
+    <p>韦伯认为，这样的组织在技术上优于任何其他形式，就像机器优于手工：精确、迅速、明确、连续、统一、节省摩擦和成本。正因为如此，它会扩展到一切领域：政府、军队、政党、教会、大公司、医院、大学。</p>
+
+    <h3>笼子</h3>
+    <p>可韦伯对此一点也不乐观。他在 1905 年的《新教伦理与资本主义精神》末尾写过一个比喻：现代人被理性化的经济秩序罩住，就像住在一个钢铁般坚硬的“外壳”里。后来美国学者帕森斯把这个词译成英文“iron cage”，“铁笼”这个说法从此流行开来。</p>
+    <p>韦伯担心几件事：官僚制一旦建立，几乎不可能摧毁，因为整个社会都已经依赖它；官员掌握着“职务秘密”和专业知识，名义上的主人，无论是君主、议会还是选民，往往说不过他们；而一个人人都只按规则办事的世界，会产生一种“没有灵魂的专家”。</p>
+    <p>1919 年，他在慕尼黑给学生做了一次演讲，题目是《以政治为业》。他在演讲里把政治家和官员区分开来：官员的荣誉在于，即便上级的命令他认为不对，只要上级坚持，他就要像命令符合自己的信念一样认真执行，并且不带感情，“不怒不喜”；政治家的荣誉恰恰相反，在于为自己的决定承担个人责任，不能推给别人。<b>一个国家需要两种人，最怕的是位置错了：让官员去当政治家，或者让政治家像官员一样躲在规则后面</b>。</p>
+  </div>
+
+  <div class="bio">
+    <div class="hd"><b>马克斯·韦伯</b><small>1864—1920</small><em>写说明书的人</em></div>
+    <div class="bd">
+      <p>生在图林根的埃尔福特，在柏林长大。父亲是自由派政治家，母亲是虔诚的新教徒。学法律出身，后来转向经济学和社会学。</p>
+      <dl>
+        <dt>学</dt><dd>三十出头就当上了海德堡大学的教授，研究的范围大得惊人：古代农业、中世纪商业公司、证券交易、宗教与经济（新教、儒教道教、印度教、古代犹太教）、法律、音乐、城市、官僚制、政治。</dd>
+        <dt>病</dt><dd>1897 年和父亲激烈争吵，几周后父亲去世，他随即陷入严重的精神崩溃，好几年不能工作，辞去了教职。</dd>
+        <dt>政</dt><dd>一战后参与起草魏玛宪法的讨论，主张设立一个有实权的民选总统来制衡官僚和议会。这个设计后来被一些人认为为希特勒的上台留下了空子（<b>存疑</b>，争议很大）。</dd>
+        <dt>结局</dt><dd>1920 年死于西班牙流感引起的肺炎，五十六岁。他的大部分著作是死后由妻子玛丽安妮整理出版的。</dd>
+      </dl>
+      <p>他把官僚制说得比谁都透，却最怕被它关住。<em>写说明书的人，往往最清楚机器会伤人</em>。</p>
+    </div>
+  </div>
+
+  <aside class="echo" data-k="联系">
+    <span class="stamp">联系</span>
+    <div>
+      <div class="rh">卡夫卡的白天</div>
+      <p>和韦伯同时代，布拉格有一个叫弗朗茨·卡夫卡的年轻人，白天在“波希米亚王国工人事故保险局”当职员，一干十四年，负责审理工伤赔偿、写事故预防报告，干得很好，一路升到高级秘书；晚上写小说。他的《审判》《城堡》里，主人公一辈子都在和一个看不见的、永远不给答复的官僚机构打交道。韦伯写的是机器的说明书，卡夫卡写的是被机器卡住的人的梦。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>帕金森在数人头<span class="y">1955 年</span></h3>
+    <p>1955 年 11 月，英国《经济学人》杂志刊登了一篇匿名的幽默文章，作者是在新加坡教书的历史学家诺斯古德·帕金森。文章第一句后来成了名言：<em>工作会自动膨胀，直到填满可供完成它的时间</em>。他举了一个例子：一位闲着的老太太给外甥女寄一张明信片，可以花一整天：找明信片一小时，找眼镜一小时，找地址半小时，写字一小时又一刻钟，决定出门寄信时要不要带伞二十分钟……一个忙人三分钟就能办完的事。</p>
+    <p>然后他拿出了数据。据他统计，1914 年英国皇家海军有主力舰六十二艘，到 1928 年只剩二十艘；海军官兵从十四万多人减到十万人；可海军部的文职官员却从约两千人增加到三千五百多人。殖民地部的情形更妙：英国的殖民地越来越少，殖民地部的人却越来越多。他算出，这类行政机构的人员每年大约增长百分之五到六，<b>和要做的事多了还是少了几乎无关</b>。</p>
+    <p>他的解释是两条“定律”：</p>
+  </div>
+
+  <div class="spin">
+    <div class="off"><i>公文 · 原文大意</i><p>一、官员希望增加的是下属，而不是对手。<br>二、官员会为彼此制造工作。</p></div>
+    <div class="plain"><i>白话</i><p>一个人忙不过来，他不会请一个跟他平级的人来分活（那是来抢位子的），而是要两个下属（一个怕他独大）。三个人坐在一起，光是互相传文件、提意见、开会，就够忙一整天了。</p></div>
+    <div class="src">左栏据帕金森 1955 年《经济学人》文章及其 1957 年的同名书《帕金森定律》的大意转述。</div>
+  </div>
+
+  <div class="fig" id="pkFig">
+    <div class="fig-label">装置 12</div>
+    <h4>帕金森定律</h4>
+    <p class="how">一个科室，起初十个人，一年要办一千份真事，人均一百份。每年，“真正要办的事”按你设定的速度变化。可是<b>每多一个人，就会多出一些内部传阅、会签、开会的工作</b>，活会膨胀到填满每个人的时间，于是人人都觉得忙，不时有人申请增加人手，而且从来不裁员。拖动滑块，点“过二十年”。</p>
+    <div class="ctl"><span>真活每年</span><input type="range" id="pkR" min="-10" max="10" value="-5"><output id="pkRO"></output></div>
+    <div class="ctl"><span>内耗系数</span><input type="range" id="pkM" min="0" max="10" value="4"><output id="pkMO"></output></div>
+    <div class="btns"><button class="btn pri" id="pkGo">过二十年</button></div>
+    <svg class="sim" id="pkSvg"></svg>
+    <div class="legend"><span><i style="background:var(--main)"></i>真正要办的事</span><span><i style="background:var(--zhu)"></i>科室人数（×100）</span><span><i style="background:var(--kraft)"></i>总工作量（含内耗）</span></div>
+    <div class="say" id="pkSay"></div>
+    <p class="figcap">示意模型，灵感来自帕金森的两条“定律”。内耗工作量随人数和层级增长；每人每年申请增人的概率随内耗系数和真活的增速上升；没有裁员机制。</p>
+  </div>
+
+  <div class="col">
+    <h3>彼得原理和目标替代</h3>
+    <p>帕金森之后，又有人陆续给这台机器总结出别的毛病。1969 年，加拿大教育学者劳伦斯·彼得出了一本书，提出“彼得原理”：<em>在一个层级组织里，每个人都会被提拔到他不能胜任的那一级为止</em>。道理是：你干得好就升，升到一个干不好的位子，就停在那儿了。久而久之，每个位子上坐的都是一个刚好不胜任的人，工作靠那些还没升到头的人在做。</p>
+    <p>更早一些，美国社会学家默顿在 1940 年写过一篇文章，叫《官僚结构与人格》。他指出，官僚组织训练人严格遵守规则，时间一长，遵守规则本身就变成了目的，忘了规则原本是为了什么。他把这叫做“目标替代”：一个本来为了方便群众的盖章流程，最后变成了“没盖这个章就不能办”，哪怕群众急得跳脚。</p>
+    <p>1971 年，美国经济学家尼斯卡宁又从另一个角度解释了官僚机构为什么会膨胀：一个部门的首长，他的薪水、权力、名声、下属人数，都和本部门的预算大小相关，所以他天然希望预算越大越好；而拨款的议会，对这个部门实际需要多少钱远不如部门自己清楚。</p>
+    <p>这些理论都有夸张的成分，也都被批评过：很多政府部门其实在精简，很多官员是被提拔到能胜任的位子上的，预算最大化的模型太简单。但它们指出的倾向是真实的，第三部讲“心法”的时候还会回来：<b>一个人在这台机器里怎样不被它变成帕金森笔下的人</b>。</p>
+  </div>
+
+  <div class="black">
+    <h5>平庸的恶</h5>
+    <p>二十世纪人们对官僚制最深的恐惧，来自纳粹德国。对几百万人的屠杀，除了凶手，还需要一整套机器：登记户籍的、编制名单的、安排火车时刻表的、核算费用的、没收财产的、签发命令的。很多参与者从未亲手杀人，只是在办公桌后面“按规定办事”。</p>
+    <p>1961 年，负责组织运送犹太人的纳粹官员艾希曼在耶路撒冷受审。哲学家汉娜·阿伦特去旁听，后来写了《艾希曼在耶路撒冷》，提出“平庸之恶”的说法：艾希曼不像一个恶魔，更像一个只想升官、只会说官话、从不思考自己在做什么的官僚。这个说法影响极大，也争议极大：后来的历史学家根据新发现的材料指出，艾希曼其实是一个狂热的反犹主义者，在法庭上的“小职员”形象有表演的成分（<b>存疑</b>）。但阿伦特提出的问题一直在：<b>当一台机器把恶分解成一千个小步骤，每个人只负责其中一步，谁来负责</b>？</p>
+  </div>
+
+  <div class="seal">
+    <div><i>营盘的账<small>制度</small></i>官僚制是把五千年的漏洞堵上的方案，也会长出新的毛病：自我膨胀、规则变成目的、把恶切成碎片。好的设计要同时防这两头。</div>
+    <div><i>你的账<small>生活</small></i>觉得自己“一直很忙”的时候，问一句：这些活里有多少是真事，有多少是在给别人制造的活回话？</div>
+  </div>
+</section>
+
+<!-- ============ 第十二章 · 白 ============ -->
+<section class="chap" id="c12" data-vol="卷四 · 图纸 · 白">
+  <div class="chead">
+    <div class="big">白</div>
+    <div>
+      <div class="no">第十二章 · 约 1780 年至 1968 年</div>
+      <h2>一份二十页的报告</h2>
+      <dl><dt>讲什么</dt><dd>恩庇时代的英国衙门；特罗洛普的入职考试；诺思科特-特里维廉报告；从“有限竞争”到 1870 年的公开考试；白厅、常任秘书和财政部；结婚就得辞职的女文官；富尔顿报告和“业余者崇拜”</dd><dt>本章装置</dt><dd>流水的部长，铁打的秘书</dd></dl>
+      <div class="gate" data-g="荐 考"></div>
+      <div class="when" data-a="1780" data-b="1968"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">英国的文官考试是怎么来的？</p>
+      <p>十九世纪中叶以前，进英国政府部门靠的是大人物的推荐信，叫“恩庇”。1853 年，财政部的两位官员诺思科特和特里维廉写了一份二十来页的报告，建议用公开竞争的考试挑人、按成绩而不是关系升迁。报告遭到强烈反对，<em>拖了十六年，到 1870 年才在大多数部门真正落实</em>。从此，英国文官以“中立、永久、匿名”著称：政府换了，他们不换；他们替部长出主意，但功过归部长。</p>
+    </div>
+
+    <div class="desk" data-t="档案室 · 第十三张卡片">
+      <p>“这个人，”<span class="nm">老温</span>说，“是英国第一批靠公开考试进白厅的。牛津读的是古希腊文和拉丁文，进了财政部，一辈子没管过一天具体的事，最后当上了常任秘书。”</p>
+      <p><span class="x">许多</span>问：“学古希腊文的去管财政？”</p>
+      <p>“那时候的英国人认为，能把柏拉图读通的脑子，什么都学得会。”老温说，“后来有人专门写了份报告骂这个，说英国的文官是一群‘有才华的业余者’。骂了，也改了一些，可到今天，白厅最顶上的那些人，还是牛津剑桥出来的多。”</p>
+    </div>
+
+    <div class="dossier">
+      <div class="dh"><b>履历</b><small>No. 13 · 约 1848—1925 年 · 英国，白厅</small></div>
+      <table>
+        <tr><th>姓名</th><td>爱德华·黑尔（拼的）</td></tr>
+        <tr><th>出身</th><td>一个乡村教区牧师的儿子，读公学，进牛津学古典学。</td></tr>
+        <tr><th>入行</th><td>1871 年参加文官委员会的“第一类”公开竞争考试，考拉丁文、希腊文、数学、英国史、作文，名列前茅，选了财政部。</td></tr>
+        <tr><th>起步</th><td>从“初级书记员”做起，起草给其他部门的回函：财政部不同意这笔开支，理由如下。</td></tr>
+        <tr><th>升迁</th><td>按资历和考评一级级升；四十多岁当上助理秘书，五十多岁当上常任秘书，即财政部级别最高的文官。</td></tr>
+        <tr><th>经历</th><td>侍奉过九位财政大臣，两个党都有。</td></tr>
+        <tr><th>原则</th><td>不参加政党活动，不公开发表政治意见，不在报纸上出现自己的名字。部长做了决定，即便他反对，也全力执行。</td></tr>
+        <tr><th>最怕</th><td>部长把文官的意见当众说出来，让文官背锅。</td></tr>
+        <tr><th>结局</th><td>退休时被封为爵士，进了上议院。没人知道他在任上反对过哪些政策。</td></tr>
+      </table>
+      <div class="real">真的部分：1870 年枢密令后的公开竞争考试、第一类（高级）文官考古典学等科目、牛津剑桥毕业生占优；财政部控制开支；常任秘书是部内最高文官，侍奉不同党派的大臣；中立、匿名的惯例；高级文官退休后常获爵位。黑尔是拼出来的人。</div>
+    </div>
+
+    <h3>恩庇的衙门<span class="y">约 1780—1854</span></h3>
+    <p>十八世纪和十九世纪初的英国政府部门，规模很小，进人全靠恩庇：大臣、议员、贵族手里握着推荐名额，推荐自己的亲戚、朋友、选民的儿子，或者政治盟友托付的人。财政部有专门的“恩庇秘书”替政府分配这些位子，用来换取议员在议会里的支持。今天英国下议院执政党的首席党鞭，正式头衔仍然叫“财政部议会秘书”，就是这个历史的遗迹。</p>
+    <p>进了衙门，混日子的人不少。有一些位子根本不用干活，只领钱，叫“闲差”。十九世纪的小说家安东尼·特罗洛普 1834 年进邮政总局，靠的是母亲认识的人。他在自传里回忆，所谓入职考试就是让他抄一段文字，他字写得很难看，考官看了直摇头，可他还是被录用了。他承认自己最初几年迟到、欠债、工作一塌糊涂。</p>
+    <p>到了 1850 年代，问题越来越明显：国家要管的事越来越多，铁路、工厂、济贫、公共卫生、殖民地，可衙门里的人大多是关系户，不少人能力平平。1854 年开始的克里米亚战争又暴露了陆军后勤的一片混乱，社会上对“政府无能”的不满达到了顶点，伦敦成立了一个“行政改革协会”，狄更斯就是在它的大会上嘲笑国库符木的（见第一部第九章）。</p>
+
+    <h3>二十页<span class="y">1853—1854</span></h3>
+    <p>改革的方案其实在战争之前就写好了。1853 年，财政大臣格莱斯顿委托两个人调查文官制度：斯塔福德·诺思科特，一位保守党议员；查尔斯·特里维廉，财政部的助理秘书，就是爱尔兰大饥荒时主管救济的那位（他在饥荒中的角色，《轮到谁了》第三十五章讲过，那是他身上洗不掉的污点）。他们在 1853 年 11 月交出报告，1854 年 2 月公布，正文只有二十来页。</p>
+    <p>报告的诊断很尖锐：文官这一行吸引不到最好的年轻人，因为它被看成是给“懒散的、无能的、病弱的”人找出路的地方，有出息的人都去当律师、医生、牧师或者经商。它的建议主要有四条：</p>
+    <ul class="plain">
+      <li>设立一个独立的委员会，用<b>公开竞争考试</b>选拔新人，不再由大臣个人推荐。</li>
+      <li>把工作分成“智力的”和“机械的”两类，前者招收受过大学教育的人，后者招收中学程度的人，分开考试。</li>
+      <li>升迁<b>按功绩</b>而不是按资历或关系。</li>
+      <li>把各部门的文官统一成一个整体，可以在部门之间调动。</li>
+    </ul>
+  </div>
+
+  <div class="spin">
+    <div class="off"><i>公文 · 原文大意</i><p>文官职业对那些有抱负、有才能的人吸引力很小，它被当作安置懒散、无能者的去处……我们建议，以公开竞争的考试取代个人恩庇，作为进入公职的方式。</p></div>
+    <div class="plain"><i>白话</i><p>现在进衙门的，多半是混饭的。以后别再靠熟人推荐了，大家一起考，谁考得好要谁。</p></div>
+    <div class="src">左栏据《诺思科特-特里维廉报告》（1854 年公布）相关段落的大意转述。</div>
+  </div>
+
+  <div class="col">
+    <p>报告一公布，反对声铺天盖地。大臣和议员不愿交出推荐的权力；有人说考试只能考出书呆子，考不出品格；有人担心考试会让中下层出身的人涌进政府；维多利亚女王也写信表示忧虑。还有人挖苦说，这是“中国式的办法”：用考试挑官，中国人搞了一千年，也没见搞出什么名堂。</p>
+    <p>1855 年，政府成立了文官委员会，但只做了一半：考试有了，可考生要先由大臣提名，然后在提名的几个人里考，叫“有限竞争”。直到 1870 年，格莱斯顿当了首相，才以枢密令的形式，规定大多数部门的职位通过公开竞争考试录用。外交部等少数部门例外，又坚持了几十年。从报告到落实，用了十六年。</p>
+  </div>
+
+  <aside class="echo" data-k="存疑">
+    <span class="stamp">存疑</span>
+    <div>
+      <div class="rh">学的是中国吗</div>
+      <p>英国东印度公司在 1806 年设立黑利伯里学院培养派往印度的文官，1853 年起印度文官改为公开考试，主持设计的是历史学家麦考莱，比本土早了十几年。当时确有英国人在讨论中提到中国的科举，支持者引为先例，反对者引为笑柄。有学者认为中国的影响通过传教士和东印度公司的经验间接传到了英国，也有学者认为英国的改革主要源于本国的大学考试传统和功利主义思想，中国只是被拿来当论据。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>白厅<span class="y">1870—1960 年代</span></h3>
+    <p>此后近一百年，英国文官形成了一套很有特色的传统，常被概括为四个词：</p>
+    <ul class="plain">
+      <li><b>永久</b>：政府换了，文官不换。新首相上任，各部的常任秘书、司长、科长原封不动，第二天照常上班，为新政府服务。</li>
+      <li><b>中立</b>：文官不参加政党活动，对所有政党一视同仁，替任何一个合法的政府尽心尽力。</li>
+      <li><b>匿名</b>：文官的意见只对部长说，不对外说；政策的功过由部长在议会里承担，叫“部长责任制”。</li>
+      <li><b>通才</b>：高级文官大多是牛津剑桥人文学科的毕业生，不是某个领域的专家，靠的是写作、分析、判断和处理人际关系的能力，在部门间调来调去。</li>
+    </ul>
+    <p>每个部的最高文官叫“常任秘书”。1866 年的一部审计法让常任秘书兼任本部门的“会计主管”，要亲自到议会的公共账目委员会接受质询，回答这笔钱是怎么花的。如果部长坚持要花一笔常任秘书认为不合规矩、不值得的钱，常任秘书可以要求部长下达书面指令，把责任写清楚，这叫“部长指令”，一直沿用到今天。</p>
+    <p>所有部门之上，是财政部。任何新政策要花钱，都要过财政部这一关。1919 年，财政部常任秘书沃伦·费希尔被任命为“文官首长”，统管各部高级文官的任免，财政部从此成了“部中之部”。</p>
+  </div>
+
+  <div class="fig" id="tenFig">
+    <div class="fig-label">装置 13</div>
+    <h4>流水的部长，铁打的秘书</h4>
+    <p class="how">随机生成一个英国政府部门四十年的人事表：上面一行是部长，中间一行是常任秘书，下面一行是一位从入职干到退休的普通文官。点“换一个部门”多看几次，再点任意一年，看看那一年谁对这个部门的历史知道得最多。</p>
+    <div class="btns"><button class="btn pri" id="tenNew">换一个部门</button></div>
+    <div class="scroll-x"><svg class="sim" id="tenSvg" style="min-width:540px"></svg></div>
+    <div class="say" id="tenSay"></div>
+    <p class="figcap">示意模型。部长任期按平均两年上下随机生成，常任秘书平均四到五年，普通文官从入职到退休约三十五年；量级参考英国政府研究所对内阁大臣和常任秘书任期的统计，人和数字都是生成的。</p>
+  </div>
+
+  <div class="bio">
+    <div class="hd"><b>安东尼·特罗洛普</b><small>1815—1882</small><em>邮政局的小说家</em></div>
+    <div class="bd">
+      <p>伦敦一个破落律师的儿子，家里欠债，母亲靠写游记和小说养家。十九岁靠母亲的关系进了邮政总局。</p>
+      <dl>
+        <dt>差</dt><dd>在伦敦混了七年，一事无成。1841 年自请调去爱尔兰当邮政检查员，骑着马在乡间巡视邮路，从此判若两人：勤奋、能干、脾气火爆，在爱尔兰娶了妻，开始写小说。</dd>
+        <dt>邮</dt><dd>1852 年他在海峡群岛的泽西岛推行路边的立式邮筒，英国本土随后普及，红色的邮筒后来成了英国的象征之一。</dd>
+        <dt>写</dt><dd>每天早上五点半起床，在上班前写够一定字数，一刻钟写多少字都有定额。一生写了四十多部长篇小说。1858 年的《三个书记员》写的正是文官考试改革时代三个年轻人的命运，对考试制度既有嘲讽也有认可。</dd>
+        <dt>结局</dt><dd>1867 年辞去邮政局的工作，第二年竞选议员落选。他死后出版的自传，因为坦白自己写作“像鞋匠做鞋一样按定额”，一度让他的文学声誉大跌。</dd>
+      </dl>
+      <p>他是恩庇制度的受益者，也是那种制度下的“废物”；换了一个能让他做事的位子，他成了最能干的人之一。<em>一个人行不行，有时取决于他被放在哪里</em>。</p>
+    </div>
+  </div>
+
+  <div class="black">
+    <h5>结婚就得辞职</h5>
+    <p>考试对所有人开放，可“所有人”起初不包括女性的大部分。十九世纪后期，女性开始被大量招进邮政、电报和打字等“机械类”岗位，工资低于做同样工作的男性。更严厉的是“婚姻限制”：女文官一旦结婚，就必须辞职。英国本土文官的这条规定一直执行到 1946 年，外交部到 1973 年才取消。同工同酬在 1955 年才开始分阶段实行。</p>
+    <p>理由是“已婚妇女应该在家照顾家庭”，以及“不能让一个家庭拿两份公家的工资”。<b>一套号称“唯才是举”的制度，可以同时对一半人口关着门，而且关得理直气壮</b>。</p>
+  </div>
+
+  <div class="col">
+    <h3>业余者崇拜<span class="y">1968 年</span></h3>
+    <p>到了二十世纪六十年代，英国经济相对衰落，人们开始怀疑白厅的这套传统。1966 年，工党首相威尔逊任命富尔顿勋爵主持调查文官制度，1968 年报告出炉，第一章就毫不客气：英国文官本质上仍然建立在十九世纪的哲学之上，崇尚“业余者”“通才”“全才”；高级文官缺乏专业知识，尤其缺乏管理和经济方面的训练；科学家、工程师等专业人员被排除在决策核心之外；文官队伍封闭，很少与外界交流。</p>
+    <p>报告提出了一百多条建议：成立文官学院培训管理技能，打通专业人员的晋升通道，设立独立的文官部，等等。一部分建议落实了，但核心的“通才”传统基本没动。很多文官私下里说：富尔顿报告是一群外人写的，他们不懂白厅为什么这样运转。</p>
+    <p>不过，白厅的好日子也快到头了。十来年后，两位编剧把白厅写成了一部情景喜剧，一位决心“改造白厅”的女首相也上了台。下一章讲他们。</p>
+  </div>
+
+  <div class="seal">
+    <div><i>营盘的账<small>制度</small></i>一份好报告写出来容易，变成制度要十几年：动的是一群人手里推荐亲信的权力。改革最大的阻力，常常不是道理，是名额。</div>
+    <div><i>你的账<small>生活</small></i>“通才”的本事是写清楚、想清楚、和人说清楚，这三样在任何行业都不会过时；但最好再有一样别人替代不了的专长。</div>
+  </div>
+</section>
+
+<!-- ============ 第十三章 · 相 ============ -->
+<section class="chap" id="c13" data-vol="卷四 · 图纸 · 相">
+  <div class="chead">
+    <div class="big">相</div>
+    <div>
+      <div class="no">第十三章 · 1964 年至 2024 年</div>
+      <h2>首相与常任秘书</h2>
+      <dl><dt>讲什么</dt><dd>克罗斯曼的日记；一部情景喜剧；撒切尔的“自己人”和雷纳的审查；下一步机构；“节约真相”；布莱尔的特别顾问和沙发；温德拉什；2020 年代的几次正面冲突</dd><dt>本章装置</dt><dd>部长的一项新政</dd></dl>
+      <div class="gate" data-g="考 任"></div>
+      <div class="when" data-a="1964" data-b="2024"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">英国首相们怎样想管住文官？管住了吗？</p>
+      <p>办法大致有四种：<b>换人</b>（在高级文官的任命上挑“自己人”），<b>拆开</b>（把执行业务的部分拆成独立的“机构”，像公司一样按指标考核），<b>绕开</b>（带进一批政治任命的特别顾问，在首相府里设立直属的班子），<b>公开施压</b>（直接撤换不合意的常任秘书）。每一种都改变了白厅的一部分，没有一种彻底管住它。另一面是，文官体制本身也一直在挡住一些仓促的、不合法的、或者事后被证明是错的决定，<em>它到底是刹车还是绊脚石，取决于你坐在哪个位子上看</em>。</p>
+    </div>
+
+    <div class="desk" data-t="档案室 · 第十四张卡片">
+      <p>“这张卡片上的人，和前面的都不一样。”<span class="nm">老温</span>说，“他也在白厅上班，也拿政府的工资，可他是跟着部长进来的，部长走，他也走。”</p>
+      <p><span class="x">许多</span>看职务一栏：“特别顾问。”</p>
+      <p>“英国人发明的一种半官半政的位子。”老温说，“部长不信任常任秘书那一套，就带几个自己人进来：写讲话稿，盯媒体，替部长去各司‘催一催’。文官们背后叫他们什么的都有。你看最后一栏。”</p>
+      <p>许多念：“三年后部长改组下台，他去了一家公关公司。”</p>
+    </div>
+
+    <div class="dossier">
+      <div class="dh"><b>履历</b><small>No. 14 · 约 1998—2010 年 · 英国，白厅</small></div>
+      <table>
+        <tr><th>姓名</th><td>汤姆·阿什福德（拼的）</td></tr>
+        <tr><th>来历</th><td>大学读政治学，毕业后给一位议员当研究助理，在党部写过竞选材料。</td></tr>
+        <tr><th>入职</th><td>他效力的议员当上大臣，把他带进部里，任命为“特别顾问”：法律上算临时文官，由部长个人挑选，不经考试。</td></tr>
+        <tr><th>差事</th><td>改讲稿，应付记者，替部长和党内、和首相府的人联络；看到司里的文件拖得太久，就去问为什么。</td></tr>
+        <tr><th>规矩</th><td>可以从政治角度提建议，不能直接命令文官；要遵守特别顾问行为守则；不能动用公款搞党派宣传。</td></tr>
+        <tr><th>和文官</th><td>常任秘书对他客客气气，司长们开会时会先看他一眼。</td></tr>
+        <tr><th>最怕</th><td>上报纸头版。他的名字一出现在新闻里，通常就是他该走的时候。</td></tr>
+        <tr><th>结局</th><td>部长在内阁改组中被撤换，他当天收拾东西离开。后来去了一家公关公司，又过几年进了智库。</td></tr>
+      </table>
+      <div class="real">真的部分：特别顾问是由部长个人任命的临时文官，随部长去留；有行为守则，原则上不得指挥文官（1997—2007 年首相府的两位顾问是例外）；人数在布莱尔时期显著增加。阿什福德是拼出来的人。</div>
+    </div>
+
+    <h3>一位部长的日记<span class="y">1964—1975</span></h3>
+    <p>英国人对“部长和文官谁说了算”的大规模好奇，是从一本日记开始的。理查德·克罗斯曼是工党政治家，1964 年威尔逊组阁时当上了住房和地方政府大臣。他有一个习惯：每个周末对着录音机口述一周发生的事。他在日记里抱怨，自己一到部里，就被一张温柔而严密的网包住了：日程由私人办公室排好，文件由常任秘书挑好送来，想做的事总有十个理由暂缓，不想做的事却总在他“同意”之前就已经启动了。</p>
+    <p>克罗斯曼 1974 年去世，日记要出版，内阁办公厅以泄露内阁机密为由告上法庭，想阻止出版。1975 年法院判决：内阁讨论原则上应当保密，但十年前的事已经不那么敏感，可以出版。第一卷一出，白厅的内幕第一次摆在了公众面前。</p>
+
+    <h3>一部情景喜剧<span class="y">1980—1988</span></h3>
+    <p>1980 年，英国广播公司开播了一部情景喜剧，编剧是安东尼·杰伊和乔纳森·林恩。剧的设定很简单：一位雄心勃勃、但对行政一窍不通的新任大臣，一位学识渊博、老谋深算的常任秘书，加上一位夹在两人中间、忠于双方又常常左右为难的私人秘书。每一集，大臣想推行一项改革，常任秘书用各种看似彬彬有礼、合乎程序的办法把它化解掉，或者把它变成对部门有利的东西。后来大臣当上了首相，续集又演了两季。</p>
+    <p>这部剧成了英国电视史上的经典，也成了很多国家公务员私下传阅的“教材”。编剧说他们的素材来自几位前部长、前文官和政治顾问的匿名讲述。剧里的很多桥段夸张，可内行人看了都会心一笑：<em>拖延、设立委员会、要求更多调研、把反对意见包装成对部长的保护</em>，这些手法在真实的白厅里都找得到影子。据说撒切尔夫人是这部剧的忠实观众，1984 年 1 月，她还在一个颁奖晚会上和两位主演一起表演了一段短剧（剧本由谁执笔，说法不一）。</p>
+  </div>
+
+  <aside class="echo" data-k="联系">
+    <span class="stamp">联系</span>
+    <div>
+      <div class="rh">那部剧和这间书房</div>
+      <p>书房里的好几本书都受过这部剧和它的续集的启发，最直接的是《是，大人》：同样是“长官—老吏—中间人”的三角，搬到了一个虚构的古代衙门里，人物和对白都是原创的。这一章只描述那部剧的设定，不引台词。想看原剧的妙处，还是看原剧。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>“他是自己人吗？”<span class="y">撒切尔，1979—1990</span></h3>
+    <p>1979 年上台的撒切尔夫人，对文官有一种天然的不信任。在她看来，白厅是战后“共识政治”的守护者：主张国家干预、和工会妥协、对英国的衰落习以为常。她想改变这一切，就不能指望这批人替她冲锋。</p>
+    <p>她做了几件事。第一，请百货公司马莎的总经理德里克·雷纳进政府，组建一个小小的“效率小组”，到各部门去做“审查”：一个部门一年印多少表格，养多少辆车，一个流程要经过几道手，能省掉哪些。第二，压缩文官人数，从 1979 年的七十三万左右，到她下台时降到五十多万（口径不同，数字略有差异）。第三，在高级文官的任命上亲自过问。她常问的一句话据说是：“他是我们自己人吗？”这句话后来成了记者雨果·扬为她写的传记的书名。</p>
+    <p>反对者说她把文官政治化了；支持者说她只是要求文官别把“部门的观点”当成真理，她挑的人大多仍是职业文官，只是更有干劲、更愿意执行新政策。真相大概在中间：<b>她没有把文官换成党员，但她让文官们明白了，“中立”不等于“替旧政策守门”</b>。</p>
+
+    <h3>下一步<span class="y">1988 年</span></h3>
+    <p>1988 年，效率小组的负责人罗宾·伊布斯交出了一份报告，题目叫《改进政府管理：下一步》。报告指出，九成五的文官其实不在制定政策，而在提供服务：发驾照、发养老金、管监狱、收税。这些工作应当从部里拆出来，交给一个个“执行机构”去做：每个机构有一位首席执行官，签一份框架协议，规定要完成哪些指标，有更多的管理自主权，干不好可以换人。</p>
+    <p>此后十年，驾驶员和车辆执照局、监狱局、福利局、护照办公室……一百多个机构陆续成立，到 1990 年代末，大约四分之三的文官在这些机构里工作。部里只留下一个小小的政策核心。这是白厅一百多年来最大的一次结构改革，也影响了新西兰、澳大利亚等很多国家，被称为“新公共管理”。它的问题后来也暴露出来：<em>政策出了问题，部长说是执行机构没执行好；执行出了问题，机构说是政策和预算定得不对</em>。1995 年，监狱局局长因为一连串越狱事件被内政大臣撤职，他公开说大臣在干预日常管理，责任到底在谁，吵了很久。</p>
+  </div>
+
+  <div class="spin">
+    <div class="off"><i>公文 · 原文</i><p>…… economical with the truth.</p></div>
+    <div class="plain"><i>白话</i><p>节约了一点真相。也就是说：没全说实话，但也不承认撒了谎。</p></div>
+    <div class="src">1986 年 11 月，英国内阁秘书罗伯特·阿姆斯特朗在澳大利亚悉尼为政府阻止一部前情报人员回忆录出版的诉讼中出庭作证，被问到一封信里的说法时，用了这个短语。这个说法十八世纪就有人用过，但因为他而家喻户晓。</p>
+  </div>
+
+  <div class="col">
+    <h3>沙发和特别顾问<span class="y">布莱尔，1997—2007</span></h3>
+    <p>1997 年工党大胜，布莱尔入主唐宁街。他对白厅同样不放心，但办法不一样：不去改造文官，而是在文官旁边搭一套自己的班子。</p>
+    <ul class="plain">
+      <li><b>特别顾问</b>：人数从梅杰时期的三四十人，增加到布莱尔时期的七八十人。上任第一天，一道枢密令授权首相府的两位顾问，新闻主管阿拉斯泰尔·坎贝尔和幕僚长乔纳森·鲍威尔，可以直接向文官下达指令。这在以前是不允许的（2007 年布朗上任后取消）。</li>
+      <li><b>首相府直属单位</b>：设立战略小组、“执行小组”等，直接盯着几项优先政策（学校、医院、犯罪、交通）的数字，定期向首相汇报，催各部门交差。</li>
+      <li><b>沙发上的决策</b>：很多重要的决定不再走正式的内阁会议和书面文件，而是首相和几个亲信在首相书房的沙发上商量着定。2004 年，调查伊拉克战争前情报问题的巴特勒报告批评了这种“非正式”的决策方式：没有书面记录，没有充分讨论，专业的意见没有被正式听取。</li>
+    </ul>
+    <p>布莱尔后来在回忆录里说，他最遗憾的一件事是没有更早、更大胆地改革公共服务；文官则说，正是因为跳过了正式程序，有些决定才错得那么离谱。<b>绕开文官可以让事情快起来，也让错误少了一道拦截</b>。</p>
+  </div>
+
+  <div class="fig" id="minFig">
+    <div class="fig-label">装置 14</div>
+    <h4>部长的一项新政</h4>
+    <p class="how">你是一位新上任的大臣，任期最多三年（十二个季度），想推行一项改革。每个季度，部里会给你一个回应，你来决定怎么办。<b>政治资本</b>用完了，你就推不动了；每个季度还有可能被改组撤换。注意：部里的回应不全是拖延，有的是真问题。</p>
+    <div class="kv" id="minKv"></div>
+    <div class="say" id="minSay"></div>
+    <div class="btns" id="minBtns"></div>
+    <div class="logbox" id="minLog"></div>
+    <p class="figcap">原创的简化玩法，事件类型参考了英国政府决策中常见的程序（公众咨询、法律意见、财政部成本审查、试点、跨部门协调等），不对应任何真实的政策或人物。</p>
+  </div>
+
+  <div class="black">
+    <h5>温德拉什</h5>
+    <p>机器的错，常常不是谁故意拖延，而是谁都没有多想一步。1948 年起，大批加勒比地区的移民应英国政府号召来到英国工作，他们因为第一艘船“帝国温德拉什号”而被称为“温德拉什一代”。他们当时是英国臣民，合法入境，很多人小时候跟着父母来，一辈子没办过任何身份证件。2010 年代，内政部推行“敌意环境”政策，要求房东、雇主、医院、银行查验移民身份。许多在英国生活了几十年的人拿不出证明，丢了工作、被拒绝医疗、被拘押，有人被遣返到一个几十年没回去过的国家。而能证明他们入境时间的旧入境卡，内政部早在 2010 年就已经作为“没用的档案”销毁了。</p>
+    <p>2018 年事情曝光，内政大臣辞职。2020 年的独立调查报告说，内政部对种族问题存在“制度性的无知和轻率”。<b>没有哪一个文官想伤害这些人；可是一层层的指标、表格和规定叠在一起，最后压在了最没有发言权的人身上</b>。</p>
+  </div>
+
+  <div class="col">
+    <h3>2020 年代<span class="y">几次正面冲突</span></h3>
+    <p>脱欧以后，政治家和文官之间的紧张变得公开。2017 年初，英国驻欧盟大使、职业外交官伊万·罗杰斯辞职，临走时给同事写信，提醒大家要敢于对“混乱的思维”说真话。2020 年 1 月，首相约翰逊的首席顾问多米尼克·卡明斯在个人博客上发招聘启事，说要招“怪人和不合群的人”进唐宁街，并扬言白厅要迎来一场“暴风雨”。2020 年 2 月，内政部常任秘书菲利普·鲁特南辞职，指控内政大臣欺凌下属并对他进行舆论攻击，随后起诉政府“推定解雇”，一年后政府与他和解，支付了一笔赔偿（不承认责任）。同年，内阁秘书、文官首长马克·塞德威尔提前离任。</p>
+    <p>2022 年 9 月，特拉斯上任首相的第三天，财政部常任秘书汤姆·斯科拉尔被解职，这在财政部历史上几乎没有先例；几周后，未经独立预算机构评估的减税计划引发市场动荡，特拉斯成了任期最短的首相。2023 年 4 月，副首相拉布在一份关于欺凌投诉的独立调查报告公布后辞职，他在辞职信里说，调查的门槛定得太低，会让少数文官借投诉阻挠部长。</p>
+    <p>每一次冲突，两边都有自己的说法：政治家说文官在抵制选民授权的政策，文官说政治家在破坏法治和专业判断。<em>这场拔河从克罗斯曼的日记开始，到今天也没有分出胜负，大概也不该分出胜负</em>：一个没有刹车的政府很危险，一个只有刹车的政府也走不动。</p>
+  </div>
+
+  <div class="bio">
+    <div class="hd"><b>玛格丽特·撒切尔</b><small>1925—2013</small><em>想“改造白厅”的首相</em></div>
+    <div class="bd">
+      <p>格兰瑟姆一个杂货商的女儿，牛津读化学，当过食品化学研究员和税务律师。1979—1990 年任首相，是二十世纪任期最长的英国首相。</p>
+      <dl>
+        <dt>对</dt><dd>请企业家进政府搞效率审查；削减文官人数；推动“下一步”执行机构改革；亲自过问高级文官的任命；1981 年文官工会大罢工，她没有让步。</dd>
+        <dt>用</dt><dd>她并非一概排斥文官：她信任的几位高级文官，比如内阁秘书罗伯特·阿姆斯特朗、外交事务顾问查尔斯·鲍威尔，在她身边一干就是很多年，后者被认为对她的外交政策影响极大，以致外交部抱怨被绕开。</dd>
+        <dt>争</dt><dd>1985 年，国防部文官克莱夫·庞廷向议员泄露了马岛战争中击沉阿根廷巡洋舰“贝尔格拉诺将军号”的内部文件，以违反保密法被起诉；法官认为罪名成立，陪审团却判他无罪。事后内阁秘书发布了一份备忘录，强调文官的义务是对“当届政府”负责，而不是对他们自己理解的“公共利益”负责。</dd>
+        <dt>结局</dt><dd>1990 年被本党逼宫下台。她设立的执行机构、她带进政府的管理思维，被后来的工党政府大体继承了下来。</dd>
+      </dl>
+      <p>她改变了白厅的很多东西，但白厅也改变了她的一些计划。<em>再强势的首相，也只能和这台机器谈判，没法把它换掉</em>。</p>
+    </div>
+  </div>
+
+  <div class="seal">
+    <div><i>营盘的账<small>制度</small></i>政治家要的是速度和方向，文官给的是程序和记忆。两边各自觉得对方在拖后腿；一个健康的政府，恰恰需要这股拉力。</div>
+    <div><i>你的账<small>生活</small></i>当你是新来的“部长”，先弄清楚下面的人提的反对里，哪些是在保护你、哪些是在保护他们自己。两样都有，而且常常长得很像。</div>
+  </div>
+</section>
+
+<!-- ============ 第十四章 · 赃 ============ -->
+<section class="chap" id="c14" data-vol="卷四 · 图纸 · 赃">
+  <div class="chead">
+    <div class="big">赃</div>
+    <div>
+      <div class="no">第十四章 · 1829 年至 2025 年</div>
+      <h2>胜利者的战利品</h2>
+      <dl><dt>讲什么</dt><dd>杰克逊的“轮换”；求官的人挤满白宫；1881 年车站的两声枪响；彭德尔顿法和“罩进去”；四万个邮政局长；哈奇法；1978 年的改革；至今还有的四千个政治任命；附表 F 的来回</dd><dt>本章装置</dt><dd>换届时换掉多少人</dd></dl>
+      <div class="gate" data-g="任 考"></div>
+      <div class="when" data-a="1829" data-b="2025"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">美国总统换届时，为什么要换掉几千人？</p>
+      <p>因为美国的文官制度是从“分赃制”里慢慢长出来的：十九世纪，赢了选举的党把政府职位当作战利品分给支持者，邮政局长、海关官员、各部职员，一换总统就换一大批。1883 年起，越来越多的职位改由考试录用、受法律保护；可最上面一层始终留给总统自己挑，<em>到今天大约还有四千个</em>，远多于其他发达国家。这一层该有多厚，美国人吵了一百四十年，最近几年又吵得格外凶。</p>
+    </div>
+
+    <div class="desk" data-t="档案室 · 第十五张卡片">
+      <p>“这张是个小镇邮政局长。”<span class="nm">老温</span>说，“看‘结局’那栏。”</p>
+      <p><span class="x">许多</span>念：“1885 年，民主党总统上台，被撤换。理由：他是共和党人。”</p>
+      <p>“干得好不好，没人问。”老温说，“那几年，一个副邮政部长换掉了四万个邮政局长，报纸给他起了个外号叫‘刽子手’。”</p>
+      <p>许多想了想：“那换上来的人呢？”</p>
+      <p>“四年后，又被换下去了。”</p>
+    </div>
+
+    <div class="dossier">
+      <div class="dh"><b>履历</b><small>No. 15 · 约 1840—1900 年 · 美国，俄亥俄州一个小镇</small></div>
+      <table>
+        <tr><th>姓名</th><td>以利亚·哈丁（拼的）</td></tr>
+        <tr><th>出身</th><td>开杂货铺的，内战时当过北军的中士，退伍后是本县共和党的积极分子。</td></tr>
+        <tr><th>得官</th><td>1877 年，因为在选举中替本党拉票有功，经本州的共和党参议员推荐，被任命为镇邮政局长。</td></tr>
+        <tr><th>差事</th><td>邮局就设在他的杂货铺里，一边卖货一边收发信件、卖邮票；按邮件量提成，一年收入比开铺子还多。</td></tr>
+        <tr><th>义务</th><td>每到选举年，要向党部交一笔“政治捐款”，按工资的几个百分点算；还要在投票日组织人去投票。</td></tr>
+        <tr><th>最怕</th><td>本党输掉总统选举。</td></tr>
+        <tr><th>结局</th><td>1885 年民主党总统克利夫兰上台，他被撤换，由镇上一个民主党人接任。1889 年共和党人重回白宫，他托人活动，又当回了邮政局长。</td></tr>
+      </table>
+      <div class="real">真的部分：邮政局长职位是分赃制的大头；任命由本州本党议员推荐；对官员的政治摊派；1885—1889 年克利夫兰政府大规模撤换共和党邮政局长（副邮政部长史蒂文森被称为“刽子手”，撤换约四万人）。哈丁是拼出来的人。</div>
+    </div>
+
+    <h3>轮换<span class="y">1829 年</span></h3>
+    <p>美国建国最初几十年，联邦政府很小，官员多出自东部的绅士阶层，一干就是几十年，换届时也很少撤换。1829 年，安德鲁·杰克逊入主白宫。他是从西部边疆打出来的平民英雄，痛恨华盛顿的“贵族官员”，认为长期占据职位的人会变得腐败、傲慢。他在第一份国情咨文里说了一段很有名的话：</p>
+  </div>
+
+  <div class="spin">
+    <div class="off"><i>公文 · 原文大意</i><p>一切公职的职责都是，或者至少可以被弄得，如此简单明白，任何有头脑的人都能很快胜任……长期任职带来的经验，得不偿失。</p></div>
+    <div class="plain"><i>白话</i><p>当官没什么技术含量，谁都能干。所以别让一批人坐太久，轮流来，大家都有份。</p></div>
+    <div class="src">左栏据杰克逊 1829 年 12 月第一份国情咨文相关段落的大意转述。</div>
+  </div>
+
+  <div class="col">
+    <p>这套说法叫“轮换任职”，听上去很民主：职位不该是少数人的私产。可它很快变成了另一回事。1832 年，纽约州参议员威廉·马西在参议院替自己的政治盟友辩护时说了一句话：“战利品属于胜利者。”从此，这套制度有了一个难听的名字：<b>分赃制</b>。</p>
+    <p>此后五十年，美国政党政治的燃料就是官职。赢得选举的党把成千上万的职位分给助选有功的人：邮政局长、海关稽查、土地局职员、各部的书记员。拿到职位的人要给党交“摊派”，要在选举时替党卖命，否则下次就别想了。每次总统就职，华盛顿就涌来大批求官的人，挤满白宫的走廊和楼梯，堵住总统的去路。林肯在内战最紧张的时候，每天仍要花几个小时接见求官的人。</p>
+    <p>分赃制也不是一无是处：它让大批没有门第的普通人有机会进入政府，把联邦政府和各地的选民紧紧连在一起，给刚刚兴起的大众政党提供了组织的骨架。可到了内战以后，联邦政府越来越大，海关、邮政、税务都需要专业的人手，四年一换的业余官员越来越撑不住，腐败丑闻也一桩接一桩。</p>
+
+    <h3>车站里的两声枪响<span class="y">1881 年</span></h3>
+    <p>1881 年 7 月 2 日上午，刚上任四个月的总统詹姆斯·加菲尔德走进华盛顿的巴尔的摩—波托马克火车站，准备去度假。一个叫查尔斯·吉托的男人从背后朝他开了两枪。</p>
+    <p>吉托是个精神状态不稳定的律师，在大选中写过一篇支持加菲尔德的演讲稿（几乎没人用过），认为自己因此有功，三番五次到白宫和国务院求一个驻巴黎或维也纳领事的职位，都被拒绝。被捕时他喊道，他是共和党里“死硬派”的人，现在副总统阿瑟当总统了。加菲尔德没有当场死去，在床上挨了两个多月，医生们用没消毒的手指和器械一次次探寻子弹，很可能加重了感染。9 月 19 日，总统去世。</p>
+    <p>一个求官不成的人杀了总统，全国震动。报纸把矛头指向了分赃制本身。被分赃制捧上来的副总统切斯特·阿瑟，此前是纽约海关的头号“分赃”官员，人们担心他会变本加厉，结果他当了总统以后却转而支持改革。1882 年中期选举，共和党因为改革不力而大败，害怕在 1884 年丢掉白宫，于是赶在失去国会多数之前，和民主党一起通过了改革法案。</p>
+
+    <h3>彭德尔顿法<span class="y">1883 年 1 月 16 日</span></h3>
+    <p>这部法律以提案人、俄亥俄州参议员乔治·彭德尔顿命名，内容并不复杂：设立文官委员会；一部分联邦职位改为通过公开竞争考试录用，叫“列级职位”；被录用的人不能因为拒绝政治捐款或政治原因被开除；禁止向这些官员摊派政治捐款。</p>
+    <p>起初，列入考试范围的职位只有一成左右，大约一万四千个，其余的仍归分赃。可法律留了一个口子：总统可以用行政命令把更多的职位划进“列级”。于是出现了一种有趣的现象：每一位即将卸任的总统，都赶在走之前把自己任命的一大批人划进受保护的范围，叫“罩进去”，这样新总统就撤不掉他们了。一任一任罩下去，到二十世纪三四十年代，大部分联邦职位都成了考试职位。<em>一部改革法，靠的是每个人都想保住自己人的私心，才慢慢铺开</em>。</p>
+  </div>
+
+  <aside class="echo" data-k="联系">
+    <span class="stamp">联系</span>
+    <div>
+      <div class="rh">接着《轮到谁了》往下</div>
+      <p>《轮到谁了》第四十三章《镀金时代》讲过分赃制、加菲尔德遇刺和彭德尔顿法的大概，还有一个装置“官帽是谁给的”。这一章不再重复，往两头多讲一点：前面是杰克逊为什么觉得轮换是民主，后面是这套制度到今天还剩下什么。</p>
+    </div>
+  </aside>
+
+  <div class="bio">
+    <div class="hd"><b>西奥多·罗斯福</b><small>1858—1919</small><em>先当了六年文官委员</em></div>
+    <div class="bd">
+      <p>人们记得他是美西战争的“莽骑兵”、最年轻的总统、反垄断的斗士。很少有人记得，他三十岁时接受的第一份联邦职务，是一个没什么权力的“文官委员会委员”。</p>
+      <dl>
+        <dt>任</dt><dd>1889 年由共和党总统哈里森任命，1893 年民主党的克利夫兰上台后继续留任，前后六年。</dd>
+        <dt>做</dt><dd>他把这个原本无人理睬的委员会变成了一个大嗓门的机构：公开调查邮政系统里的政治摊派和违规撤换，点名批评本党的大人物，推动考试向更多的职位扩展，还让考试题目更贴近实际工作。</dd>
+        <dt>怨</dt><dd>他在信里抱怨，哈里森总统对改革并不热心，本党的人恨他拆台；可他觉得这份工作“像是在和一支看不见的军队作战”，乐此不疲。</dd>
+        <dt>后</dt><dd>当总统以后，他把列级职位的范围又扩大了很多。他也知道政治离不开任命：他自己用人，同样看忠诚。</dd>
+      </dl>
+      <p>一个后来声名显赫的人，曾经在一个冷衙门里认认真真干了六年。<em>位子小不要紧，要紧的是你把它当成什么</em>。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>哈奇法和 1978 年<span class="y">1939—1978</span></h3>
+    <p>罗斯福新政让联邦政府迅速膨胀，大批新机构起初不在考试范围内。1938 年，参议院一个委员会调查发现，在肯塔基等州的选举中，有人向公共工程救济署雇用的救济工人施压，要他们投票支持某位候选人、交政治捐款。1939 年，国会通过了《哈奇法》：联邦文官不得参与竞选活动，不得利用职权影响选举，不得向下属索要政治捐款。这部法律几经修改，至今仍在。</p>
+    <p>1978 年，卡特总统推动了一次大改革：把原来的文官委员会一分为二，一个是人事管理局，管人事政策；一个是功绩制保护委员会，像法院一样受理文官对不公正处分的申诉；另设一个“高级行政官职系”，让最高层的几千名职业文官可以在部门间调动，也给总统更多调配他们的灵活性。改革的目标是两个：<b>保护文官不被政治迫害，同时让不称职的人更容易被处理</b>。后一个目标，多数人认为没有做到：直到今天，开除一个联邦文官仍然非常困难，要走很长的程序。</p>
+
+    <h3>四千个位子</h3>
+    <p>即便经过一百多年的改革，美国总统换届时仍要任命大约四千个政治职位，其中一千多个需要参议院批准：各部的部长、副部长、助理部长、驻外大使、各种委员会的委员，以及他们的助手。每四年，国会会出版一本列出所有这些职位的小册子，因为封面是紫色的，被叫做“梅子书”。</p>
+    <p>这层任命官员的好处是，总统能迅速把自己的政策意图贯彻到各部门的中层；坏处是，每次换届都有几个月甚至一年多，大批要职空着或由代理人顶着，新来的人要从头熟悉情况，干两三年又走了。英国、德国、日本的新政府只带进来几十到几百人，美国是几千人。</p>
+  </div>
+
+  <div class="fig" id="apFig">
+    <div class="fig-label">装置 15</div>
+    <h4>换届时换掉多少人</h4>
+    <p class="how">比较几个国家换一届政府时，大约有多少个职位会跟着换成执政者自己挑的人。点按钮切换：看绝对人数，还是看每一万个中央政府文职人员里有几个。</p>
+    <div class="btns" id="apMode"></div>
+    <div class="bars" id="apBars"></div>
+    <div class="say" id="apSay"></div>
+    <p class="figcap">粗略的数量级，口径差别很大：美国按约四千个政治任命计；英国按大臣约一百二十人加特别顾问约一百二十人计；法国按部长办公室成员加政府可自由任免的高级职位计；德国按联邦部长、议会国务秘书和可随时令其退休的“政治官员”计；日本按大臣、副大臣、政务官和辅佐官计。分母取各国中央政府文职人员的大致人数。只看相对大小。</p>
+  </div>
+
+  <div class="col">
+    <h3>附表 F<span class="y">2020—2025</span></h3>
+    <p>这层任命该有多厚，近几年又成了美国政治最激烈的争论之一。2020 年 10 月，特朗普总统签署行政命令，设立一类新的职位叫“附表 F”，把“具有政策制定、政策决定或政策倡导性质”的职业文官职位划进去，这些职位的人将失去原来的申诉保护，可以较容易地被撤换。命令还没来得及大规模实施，2021 年 1 月拜登总统上任后就把它撤销了，人事管理局随后还出台了规则，限制以后再这样做。2025 年 1 月特朗普再次就任，第一天就恢复了这项命令，后来改名为“政策/职业”类，政府估计涉及约五万个职位（约占联邦文职的百分之二）；同年还推出了大规模的提前离职和裁员计划，引发了一连串诉讼。</p>
+    <p>支持者的理由是：选民选出了总统，总统就该能指挥行政部门，那些长期不变、抵制新政府政策的职业文官，实际上是一个不受选民问责的“深层国家”。反对者的理由是：这等于部分地回到了分赃制，专业判断会让位于政治忠诚，下一届政府也可以用同样的办法清洗；而且这些文官本来就要依法执行总统的政策。截至本书写作的 2026 年底，相关的规则和诉讼仍在变化之中，这一节只记录已经发生的事实和双方的主要理由。</p>
+  </div>
+
+  <div class="black">
+    <h5>救济款和选票</h5>
+    <p>分赃制最伤人的地方，不在于换了谁当邮政局长，而在于它把公共资源变成了买票的工具。1938 年参议院调查发现，一些州的救济机构对领救济的穷人说：投对了票，下个月还有工作；投错了，就没有。这些人刚刚熬过大萧条最苦的几年，手里的工作是一家人唯一的饭碗。</p>
+    <p>一百年前，这样的事在美国的海关、邮局、市政府里是常态。纽约的坦慕尼协会靠分发市政工作和救济控制了这座城市几十年。<b>当一份公家的工作取决于你投给谁，它就不再是公家的工作了</b>。</p>
+  </div>
+
+  <div class="seal">
+    <div><i>营盘的账<small>制度</small></i>文官该有多“铁”、政治任命该有多厚，没有标准答案：太薄，政治家指挥不动；太厚，就滑回分赃。美国的办法是每隔几十年重新吵一次。</div>
+    <div><i>你的账<small>生活</small></i>一份靠某个人上台才得到的工作，也会随着那个人下台而失去。选工作的时候，问问自己：我凭的是本事，还是站队？</div>
+  </div>
+</section>
+
+<!-- ============ 卷五 · 各家 ============ -->
+<div class="volhead" data-vol="卷五 · 各家">
+  <div class="num">VOLUME FIVE · 第二部 · 机器</div>
+  <h2>各家<small>卷五</small></h2>
+  <p class="lede">同一张图纸，到了不同的国家，长成了不同的样子：法国人把它装进一所学校，日本人把它装进一个省厅，苏联人把它装进一张名单，新加坡人把它装进一张工资单，今天的中国把它装进一场几百万人的考试和两个字：编制。五章：校、降、单、薪、编。</p>
+  <svg class="yin" data-t="各家" aria-hidden="true"></svg>
+</div>
+
+<!-- ============ 第十五章 · 校 ============ -->
+<section class="chap" id="c15" data-vol="卷五 · 各家 · 校">
+  <div class="chead">
+    <div class="big">校</div>
+    <div>
+      <div class="no">第十五章 · 1800 年至 2022 年</div>
+      <h2>毕业名次</h2>
+      <dl><dt>讲什么</dt><dd>拿破仑的省长和“电流一样快”的命令链；工程师的大团；巴黎政治学院；1945 年的国立行政学院；毕业名次和“大团”；“下海穿拖鞋”；国家贵族；2022 年的改名</dd><dt>本章装置</dt><dd>毕业名次决定一生</dd></dl>
+      <div class="gate" data-g="考 生"></div>
+      <div class="when" data-a="1800" data-b="2022"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">法国的高级文官是怎么挑出来的？为什么总统都出自同一所学校？</p>
+      <p>法国的办法是<b>名校加名次</b>：十九世纪靠巴黎综合理工学院培养工程师官员，1945 年以后靠国立行政学院培养行政官员。进校要考，毕业还要排名，名次最靠前的十几个人可以挑进最显赫的几个“大团”：财政监察总署、行政法院、审计法院。这几个团是法国政界和商界的跳板，<em>四位第五共和国总统和一长串总理、部长、大企业老板都出自这一小群人</em>。这套制度效率很高，也被骂成“国家贵族”，2022 年，那所学校被改名重组。</p>
+    </div>
+
+    <div class="desk" data-t="档案室 · 第十六张卡片">
+      <p>“这张卡片，‘入行’那一栏只写了一个数字。”<span class="x">许多</span>说，“七。”</p>
+      <p>“毕业名次第七。”<span class="nm">老温</span>说，“全班一百来个人，他排第七，正好赶上财政监察总署的最后一个名额。排第八的那个，去了外交部。两个人后来的命运，就是从这一个名次上分开的。”</p>
+      <p>“我们考试也排名啊。”</p>
+      <p>“咱们排名是为了录取，录进来以后就看干得怎么样了。”老温说，“他们的名次，要跟着人走一辈子。”</p>
+    </div>
+
+    <div class="dossier">
+      <div class="dh"><b>履历</b><small>No. 16 · 约 1952—2020 年 · 法国，巴黎</small></div>
+      <table>
+        <tr><th>姓名</th><td>菲利普·瓦扬（拼的）</td></tr>
+        <tr><th>出身</th><td>父亲是外省一所中学的校长。巴黎的名牌高中，再进巴黎政治学院。</td></tr>
+        <tr><th>入学</th><td>二十四岁考进国立行政学院，从入学起就算公务员，领工资。</td></tr>
+        <tr><th>毕业</th><td>二十七个月的学习和实习，包括在一个省政府给省长当助手、在一家企业实习。毕业名次第七，选了财政监察总署。</td></tr>
+        <tr><th>跳板</th><td>在总署做了四年审计和检查，被借调到财政部长的“办公室”当技术顾问，后来当上办公室主任。</td></tr>
+        <tr><th>转身</th><td>四十岁出头辞职，“穿拖鞋”去了一家刚私有化的大银行，当副总裁，后来做到总裁。</td></tr>
+        <tr><th>人脉</th><td>同一届的同学里，有一位后来当了总理，两位当了部长，好几位进了大公司的董事会。</td></tr>
+        <tr><th>最怕</th><td>（老温加的）被人在报纸上叫做“技术官僚”。</td></tr>
+        <tr><th>结局</th><td>退休后挂着好几家公司的董事。他的儿子也考进了国立行政学院，名次没他好。</td></tr>
+      </table>
+      <div class="real">真的部分：国立行政学院的入学考试、学员带薪、实习（含省政府和企业）、毕业名次决定分配、财政监察总署等“大团”、部长办公室、“穿拖鞋”（离开公职进入私营企业）、同届校友网络。瓦扬是拼出来的人。</div>
+    </div>
+
+    <h3>省长<span class="y">1800 年</span></h3>
+    <p>法国现代文官的骨架是拿破仑搭的。大革命把旧王朝的官职买卖、包税人、地方特权一扫而空，全国划成八十多个“省”。1800 年 2 月，第一执政拿破仑颁布法律，在每个省设一名“省长”，由中央任命，代表中央政府管理本省的一切；省下面设专区和市镇，层层由上面任命。</p>
+    <p>负责起草这部法律的内政部长沙普塔尔在立法机关里介绍它时，说过一段很得意的话：</p>
+  </div>
+
+  <div class="spin">
+    <div class="off"><i>公文 · 原文大意</i><p>如此，执行的链条从部长到被管理的人，毫不间断地延伸下去，把法律和政府的命令传达到社会秩序最末端的枝节，其迅速犹如电流。</p></div>
+    <div class="plain"><i>白话</i><p>巴黎一拍板，全国每个村子第二天就知道该怎么办，中间谁也别想打折扣。</p></div>
+    <div class="src">左栏据沙普塔尔 1800 年在立法机关介绍省长制度法案时讲话的大意转述。</div>
+  </div>
+
+  <div class="col">
+    <p>同一年，拿破仑设立了“行政法院”（国务委员会），一方面替政府起草法律和法令，一方面审理公民告政府的案子；1807 年设立审计法院，审查公共账目。这几个机构，加上更早的路桥工程团、矿业工程团，后来成了法国文官系统里最显赫的“大团”。所谓“团”，是一种法国特有的组织：同一个团的官员有统一的招募、统一的级别、统一的身份，不管被派到哪里工作，终身属于这个团，团内的人互相提携。</p>
+    <p>工程师在法国官场的地位特别高。1794 年，革命政府创办了巴黎综合理工学院，用数学竞考招生，毕业生进入路桥、矿业、炮兵等国家技术团。十九世纪法国的铁路、运河、矿山、港口，基本是这批工程师官员规划的。到今天，法国的大企业老板里仍有很大一批是“理工人”。</p>
+    <p>行政官员这边，长期没有统一的培养途径，各部、各团自己考试招人。1872 年，普法战争惨败之后，一位叫布特米的知识分子认为法国输在精英的素质上，创办了“政治科学自由学院”，就是后来的巴黎政治学院，专门培养准备参加各部考试的年轻人。几十年里，它几乎垄断了这些考试的录取。</p>
+
+    <h3>1945 年的学校<span class="y">国立行政学院</span></h3>
+    <p>二战期间，法国的高级文官大多留在维希政府里继续工作，替与德国合作的政权服务。1945 年，戴高乐的临时政府决定重建文官的培养方式，主持这件事的是一位年轻的抵抗运动成员米歇尔·德勃雷。1945 年 10 月，国立行政学院成立。</p>
+    <p>它的设计有几个要点：</p>
+    <ul class="plain">
+      <li><b>统一入口</b>：各部、各团不再各自考试，高级行政官员统一从这所学校招。考试分两条路：一条给大学毕业生，一条给已经工作了几年的公务员，后来又加了第三条给有其他工作经历的人。</li>
+      <li><b>带薪学习</b>：学员从入学起就是公务员，领工资，以便家境一般的人也读得起。</li>
+      <li><b>重实习</b>：学制两年多，一半时间在省政府、驻外使馆、企业实习，一半时间在学校做案例。</li>
+      <li><b>按名次分配</b>：毕业时全班排出名次，名次靠前的先挑去向。</li>
+    </ul>
+    <p>本意是打破旧精英的垄断，让分配更公平、更唯才是举。可最后一条，让这所学校变成了一架精密的分拣机：<em>每一届毕业生里，排在最前面的十几个人挑走财政监察总署、行政法院、审计法院三个“大团”的位子，其余的去外交部、省长系统，再往后的当各部的“文职行政官”</em>。名次的差距可能只有零点几分，命运的差距却是一辈子。</p>
+  </div>
+
+  <div class="fig" id="enaFig">
+    <div class="fig-label">装置 16</div>
+    <h4>毕业名次决定一生</h4>
+    <p class="how">假设你是某一届国立行政学院的毕业生，全班九十人。拖动滑块设定你的毕业名次，看看轮到你挑的时候还剩哪些位子，以及那条路通常通向哪里。再切换到“2022 年以后”，看看新规矩下有什么不同。</p>
+    <div class="btns" id="enaMode"></div>
+    <div class="ctl"><span>你的名次</span><input type="range" id="enaR" min="1" max="90" value="7"><output id="enaRO"></output></div>
+    <div class="bars" id="enaBars"></div>
+    <div class="say" id="enaSay"></div>
+    <p class="figcap">示意模型。各去向的名额按 1990—2010 年代一届八九十人的大致比例设定，每年实际名额不同；“通常通向哪里”是对职业路径的概括，不是统计。2022 年起，新学院的毕业生先统一进入“国家行政官”职系，不能直接进入大团，几年后再通过选拔进入。</p>
+  </div>
+
+  <div class="col">
+    <h3>国家贵族<span class="y">1960 年代以后</span></h3>
+    <p>国立行政学院的毕业生叫“埃纳克”。第五共和国的八位总统里，德斯坦、希拉克、奥朗德、马克龙四位是埃纳克；总理里更多。奥朗德那一届（1980 年毕业）同学里出了一位总统、一位总理、好几位部长和大企业老板，那一届因此格外出名。</p>
+    <p>这种集中引来了越来越多的批评。1967 年，一位年轻的埃纳克用笔名出了一本小书，名字就叫《埃纳克统治》，讥讽这批人是“资产阶级社会的官老爷”，作者后来自己当了部长。社会学家布迪厄在 1989 年出版了《国家贵族》，用大量统计说明：考进名校的学生，绝大多数出自高级管理人员和知识分子家庭，<b>考试表面上人人平等，实际上在复制一个新的世袭阶层</b>，只不过传下去的不是爵位，而是文化资本和应试能力。</p>
+    <p>还有一个批评是“穿拖鞋”：法国人把高级文官离开公职、进入私营企业叫做“穿上拖鞋”。埃纳克们年轻时在财政部、在部长办公室里管着银行和大企业，四十来岁转身去这些企业当高管，有时退休前又回到政府。按规定，毕业后十年内离开公职要赔偿国家的培养费用，可这笔钱常常由新雇主替他付了。国家和大企业的精英是同一批人，<em>他们互相监管，也互相关照</em>。</p>
+  </div>
+
+  <div class="bio">
+    <div class="hd"><b>米歇尔·德勃雷</b><small>1912—1996</small><em>造了一所学校，又写了一部宪法</em></div>
+    <div class="bd">
+      <p>巴黎一个医学教授家庭出身，二十多岁考进行政法院，是典型的高级文官。二战中参加抵抗运动。</p>
+      <dl>
+        <dt>校</dt><dd>1945 年受戴高乐委托，筹建国立行政学院，设计了统一招考、带薪学习、实习和按名次分配的制度。</dd>
+        <dt>宪</dt><dd>1958 年戴高乐重新执政，德勃雷主持起草了第五共和国宪法，加强总统和政府的权力，限制议会，被称为“宪法之父”。随后出任第五共和国第一任总理。</dd>
+        <dt>争</dt><dd>任总理期间正值阿尔及利亚战争，他坚持“法属阿尔及利亚”，与戴高乐后来的路线分歧，1962 年离任。晚年担任过多个部长，一直是戴高乐派的元老。</dd>
+        <dt>结局</dt><dd>1996 年去世。他造的那所学校，此后又存在了二十五年。</dd>
+      </dl>
+      <p>他想造一所让出身不再重要的学校，结果造出了一个新的出身。<em>好的设计挡不住一切，它只能把门槛挪个地方</em>。</p>
+    </div>
+  </div>
+
+  <div class="black">
+    <h5>污染的血</h5>
+    <p>技术官僚精英的问题，在一桩丑闻里暴露得最惨烈。1985 年前后，已经有办法对血液制品加热灭活艾滋病病毒，法国国家输血中心却在一段时间里继续向血友病患者发放未经加热处理的血液制品，部分原因是要等本国的检测技术成熟、消耗掉库存。上千名血友病患者因此感染艾滋病，很多人后来去世。</p>
+    <p>1992 年，输血中心的前负责人被判刑；1999 年，事发时的总理和两位部长在专门审理部长的法庭受审，总理和社会事务部长被判无罪，卫生国务秘书被判有罪但免于处罚。<b>每个决定在当时都有一套听起来合理的技术和财务理由，没有一个人觉得自己在杀人</b>。</p>
+  </div>
+
+  <div class="col">
+    <h3>2022 年<span class="y">改名</span></h3>
+    <p>2018 年底，法国爆发“黄背心”运动，很多参与者觉得巴黎的精英根本不了解外省普通人的生活。2019 年 4 月，埃纳克出身的马克龙总统宣布，要撤销国立行政学院。2022 年 1 月 1 日，新的“国家公共服务学院”取而代之：毕业名次直接决定进入大团的做法被取消，所有毕业生先统一进入“国家行政官”职系，在基层和一线工作几年后，再通过选拔进入各个大团；招生更注重社会多样性。</p>
+    <p>批评者说，这只是换了一块牌子；支持者说，取消“二十五岁定终身”是真正的变化。几十年后才知道结果。可以确定的是，法国人用了将近八十年，验证了一个老问题：<em>一扇考试的门，不管设计得多公平，开久了都会被最善于考试的那一群人占住</em>。第一部讲的科举、第十章讲的普鲁士，都碰到过同样的事。</p>
+  </div>
+
+  <div class="seal">
+    <div><i>营盘的账<small>制度</small></i>用一次考试、一个名次决定一个人一辈子的去向，效率很高，代价是把“会考试”变成了一种可以继承的资本。</div>
+    <div><i>你的账<small>生活</small></i>名次决定的是起点，不是终点。可如果你所在的地方真的“名次定终身”，那就在名次之外，再给自己攒一样别人拿不走的本事。</div>
+  </div>
+</section>
+
+<!-- ============ 第十六章 · 降 ============ -->
+<section class="chap" id="c16" data-vol="卷五 · 各家 · 降">
+  <div class="chead">
+    <div class="big">降</div>
+    <div>
+      <div class="no">第十六章 · 1868 年至 2018 年</div>
+      <h2>从天上下来</h2>
+      <dl><dt>讲什么</dt><dd>明治的高等文官考试和东京帝大法科；“官厅中的官厅”大藏省；通产省和行政指导；同期一人当次官、其余全部离开；“天降”和“渡鸟”；1998 年的招待丑闻；五千万条找不到主人的养老金记录；内阁人事局和“忖度”</dd><dt>本章装置</dt><dd>同期二十四人</dd></dl>
+      <div class="gate" data-g="考"></div>
+      <div class="when" data-a="1868" data-b="2018"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">日本官员退休后为什么都去了企业？</p>
+      <p>因为日本的中央省厅有一条不成文的规矩：同一年进来的“同期”里，最后只有一个人能当上事务次官（各省最高的职业官员）；他一上任，同期的其他人就要全部辞职，免得前辈在后辈手下干活。这些人五十岁上下就离开省厅，由省厅安排到相关的公团、协会、企业里去任职，叫“<b>天降</b>”。它是对漫长低薪生涯的补偿，也是省厅和业界之间的一条输油管。<em>它让日本官僚在战后几十年里被看作世界上最有权力的官僚之一，也让他们在泡沫破灭后成了众矢之的</em>。</p>
+    </div>
+
+    <div class="desk" data-t="档案室 · 第十七张卡片">
+      <p><span class="x">许多</span>看到这张卡片的“结局”一栏，一共写了四个单位的名字，每个单位后面都跟着一个“退职金”。</p>
+      <p>“这叫‘渡鸟’。”<span class="nm">老温</span>说，“候鸟一样，从一个单位飞到另一个单位，每个单位待两三年，每走一次领一次退休金。”</p>
+      <p>“这合法吗？”</p>
+      <p>“那时候合法。”老温说，“后来不合法了，可也没完全断。你注意看他最年轻的那几年：工资比他的大学同学低一大截，每天加班到半夜。这些‘鸟’，是他年轻时候攒下的。”</p>
+    </div>
+
+    <div class="dossier">
+      <div class="dh"><b>履历</b><small>No. 17 · 约 1941—2015 年 · 日本，东京霞关</small></div>
+      <table>
+        <tr><th>姓名</th><td>高桥修一（拼的）</td></tr>
+        <tr><th>入省</th><td>东京大学法学部毕业，通过国家公务员上级考试，1964 年进大藏省。同期二十多人。</td></tr>
+        <tr><th>前半生</th><td>二十多岁被派到地方税务署当署长，管几十个比他年长的下属；回到本省后在主计局做预算，常年加班到深夜，睡在省里的沙发上。工资比进银行的同学低很多。</td></tr>
+        <tr><th>升迁</th><td>同期的人几乎同步升到课长；再往上，位子越来越少，每一次人事调动，都有人被“劝退”。</td></tr>
+        <tr><th>分水岭</th><td>五十二岁时，他的一位同期当上了事务次官。按惯例，他和其他尚在省里的同期一起辞职。</td></tr>
+        <tr><th>天降</th><td>由省里安排，先去一家政府系统的金融公库当理事，三年后去一个行业协会当会长，再去一家地方银行当顾问，最后在一家大企业的子公司挂名董事。每换一处，领一次退职金。</td></tr>
+        <tr><th>和老东家</th><td>他在各处的作用之一，是和大藏省的后辈保持联系：哪项规定要改，哪份申请卡在哪里。</td></tr>
+        <tr><th>最怕</th><td>上新闻。1998 年以后，他吃饭时会先问一句：这顿饭谁请？</td></tr>
+        <tr><th>结局</th><td>七十岁时彻底退休。</td></tr>
+      </table>
+      <div class="real">真的部分：东京大学法学部出身者在大藏省占绝大多数；年轻官员早早派任地方税务署长；同期之中一人任事务次官、其余辞职的惯例；省厅安排的“天降”与多次转任领取退职金的“渡”；1998 年大藏省招待丑闻后的风气变化。高桥是拼出来的人。</div>
+    </div>
+
+    <h3>明治的考卷<span class="y">1868—1945</span></h3>
+    <p>明治维新以后，新政府起初靠的是推翻幕府的萨摩、长州等藩的武士，所谓“藩阀”。1880 年代，政府派人考察欧洲各国的制度，最欣赏的是普鲁士（第十章）。1887 年起，日本建立了文官考试制度：高级官员要通过考试录用，帝国大学（后来的东京大学）法科的毕业生起初还享有免试的特权。1894 年起，统一实行“高等文官考试”。</p>
+    <p>此后五十年，东京帝国大学法科几乎垄断了高级官员的来源。这些年轻人二十出头考进各省，从此一辈子在同一个省里升迁，自认为是“天皇的官吏”，地位远在议员之上。政党内阁时期，政党也曾试图把官员换成自己人，但没有成功；到了三十年代，一批“革新官僚”和军部合作，推动统制经济，为战争动员服务。</p>
+    <p>1945 年战败，美国占领当局解散了军队、财阀，整肃了大批政治家，却基本保留了文官队伍，因为要靠他们来管理这个国家。军队没了，政党要重建，财阀被拆散，<b>战后最完整地保留下来的权力中心，恰恰是霞关的官僚</b>。</p>
+
+    <h3>官厅中的官厅<span class="y">大藏省</span></h3>
+    <p>战后日本的中央省厅里，地位最高的是大藏省，人称“官厅中的官厅”。它同时管着几样别国常由不同机构分管的东西：编国家预算（主计局）、收税（主税局、国税厅）、管银行和证券（银行局、证券局）、管国际金融。每年编预算的时候，各省的官员和执政党的议员排着队到大藏省主计局的走廊里等着“陈情”。</p>
+    <p>它管银行的办法叫“护送船团”：像护航舰队一样，按最慢的那条船的速度前进，谁也不许掉队，谁也不许冲得太快，银行利率、分支机构、新业务都要大藏省批准，作为交换，大藏省保证不让任何一家银行倒闭。这套办法在高速增长期运转顺利，到了八十年代末的泡沫和九十年代的坏账危机中，就成了问题的一部分。</p>
+
+    <h3>通产省和“行政指导”<span class="y">1949—2001</span></h3>
+    <p>另一个传奇般的机构是通商产业省（1949 年成立，2001 年改组为经济产业省）。1982 年，美国学者查默斯·约翰逊出版《通产省与日本奇迹》，认为日本战后高速增长的关键之一，是通产省有意识地扶持重点产业：钢铁、造船、汽车、电子，用外汇配额、低息贷款、技术引进审批、合并重组等手段引导企业，日本因此被他称为“发展型国家”。</p>
+    <p>通产省最常用的工具，不是法律，而是“行政指导”：没有法律强制力的劝告、建议、希望。比如“希望贵公司考虑减少产量”“建议推迟这项投资”。企业大多会照办，因为得罪了主管省厅，下一次申请执照、贷款、外汇时就不好办了。<em>不用写在法律里的命令，往往比写在法律里的更好使</em>。</p>
+    <p>约翰逊的看法后来引起很多争论：有人认为日本的成功更多来自企业自身的竞争和市场，通产省有时帮了倒忙，比如它在五六十年代曾经试图阻止新的汽车厂商进入市场，本田就差点被拦在门外（<b>存疑</b>，此事的细节和通产省的实际作用说法不一）。但通产省在战后日本的巨大影响力，没有人否认。</p>
+  </div>
+
+  <div class="bio">
+    <div class="hd"><b>佐桥滋</b><small>1913—1993</small><em>“通产省先生”</em></div>
+    <div class="bd">
+      <p>岐阜县人，东京帝大法学部毕业，1937 年进商工省，就是通产省的前身。</p>
+      <dl>
+        <dt>性</dt><dd>说话直、脾气大、不拍政治家的马屁，常说“官僚要为国家着想，不是为大臣着想”。他是通产省里主张由官僚主导产业政策的“民族派”领袖。</dd>
+        <dt>事</dt><dd>六十年代初，日本即将开放贸易和资本，他力推《特定产业振兴临时措施法》，想让通产省有权指挥企业合并、分工，提高国际竞争力。法案遭到财界和执政党部分议员反对，几次提交国会都没有通过。</dd>
+        <dt>位</dt><dd>1964—1966 年任通产省事务次官。卸任后他没有去企业当顾问董事，几年后出任一个研究“闲暇与生活”的财团法人的负责人，写书，批评官僚和财界。</dd>
+        <dt>书</dt><dd>作家城山三郎以他为原型写了长篇小说《官僚们的夏天》（1975 年），后来多次被改编成电视剧，在日本几乎家喻户晓。</dd>
+      </dl>
+      <p>他被当作“为国家拼命的官僚”的象征，也被批评为不受民意约束的“官僚统治”的象征。<em>同一种干劲，放在不同的人眼里，可以是担当，也可以是专横</em>。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>同期一人<span class="y">事务次官和“天降”</span></h3>
+    <p>日本各省的官员人事，有一套极其精密的规矩。每年各省从考试合格者中录用十几到二十几个“上级职”（后来叫一种、综合职）的年轻人，叫做一个“入省年次”的“同期”。同期的人在前十几年几乎同步晋升，到了课长一级以后，位子越来越少，开始分出高下。最后，同期里只有一个人能当上事务次官。他一上任，同期中还留在省里的人就全部辞职；比他资历更老的人，当然更早就已经离开了。</p>
+    <p>这些五十岁上下就离开的人去哪里？由各省的人事部门安排，去本省主管的特殊法人、公益法人、行业团体，或者和本省有业务往来的企业，担任理事、顾问、董事。几年后，再换一个地方，每换一次领一次退职金，这叫“渡”。</p>
+    <p>这套办法的好处，在官员看来是：年轻时工资低、工作累、早早离开，“天降”是对这种牺牲的补偿；省厅能保持年轻的领导层，避免论资排辈的僵化。在企业和团体看来，请一位前官员来当顾问，等于在省厅里有了一条热线。在批评者看来，这是一种合法化的利益输送：<b>官员在任时对企业网开一面，退休后去企业领钱，这中间的因果，谁也说不清，也谁都知道</b>。</p>
+  </div>
+
+  <div class="fig" id="dkFig">
+    <div class="fig-label">装置 17</div>
+    <h4>同期二十四人</h4>
+    <p class="how">某省某年录用了二十四个人。点“过五年”，看他们一批批升到课长、审议官、局长；每一次位子不够，就有人离开，去“天降”。三十年后，只剩一个人当上事务次官。你可以先点选一个人（圆点），跟着他走。</p>
+    <div class="btns"><button class="btn pri" id="dkGo">过五年</button><button class="btn" id="dkReset">重新录用</button></div>
+    <div class="scroll-x"><svg class="sim" id="dkSvg" style="min-width:520px"></svg></div>
+    <div class="kv" id="dkKv"></div>
+    <div class="say" id="dkSay"></div>
+    <p class="figcap">示意模型。每一级的名额、晋升时点是按“同期中逐级淘汰、最终一人任次官”的惯例设定的，不对应任何一个省的真实数字。离开的人按惯例去“天降”，每次转任领一次退职金。</p>
+  </div>
+
+  <div class="col">
+    <h3>1998 年<span class="y">招待丑闻</span></h3>
+    <p>九十年代，泡沫破灭，银行坏账堆积，住宅金融专门公司破产，山一证券倒闭，大藏省的“护送船团”护不住了。1998 年 1 月，东京地方检察厅以受贿罪逮捕了几名大藏省的官员：他们长期接受银行的高级招待，作为交换，向银行透露检查的日期和内容。媒体详细报道了招待的种种细节，其中一些场所的名字成了全国的笑柄。大藏大臣辞职，事务次官辞职，一百多名官员受到处分。</p>
+    <p>丑闻成了改革的导火索。银行监管权被剥离出来，交给新设的金融监督厅（后来的金融厅）；2001 年中央省厅大改组，大藏省改名为财务省，这个从明治初年用了一百三十年的名字从此消失。</p>
+    <p>此后二十年，政治家一直在想办法收回官僚的权力。2007 年起，法律禁止各省直接为退休官员安排再就业；2014 年设立内阁人事局，由首相官邸统一管理各省审议官级以上约六百名高级官员的任免。官邸对官僚的控制大大加强。2017 年，文部科学省被查出违法为退休官员斡旋“天降”，事务次官引咎辞职。同年，“忖度”（揣摩上意、主动迎合）一词成了日本年度流行语，背景是一连串关于官员是否为迎合首相官邸而处理政务的争议；2018 年，财务省承认篡改了与其中一起土地出售有关的公文。</p>
+  </div>
+
+  <div class="spin">
+    <div class="off"><i>公文 · 仿写（行政指导）</i><p>鉴于当前市场形势，本省希望贵公司慎重研究扩大生产计划的妥当性，并望能于近期就研究结果与本省进行沟通。</p></div>
+    <div class="plain"><i>白话</i><p>别扩产。下周来汇报一下你们打算怎么不扩产。</p></div>
+    <div class="src">左栏为仿写的行政指导用语，不是任何真实文件；这类“希望”“请研究”的措辞，在日本的行政指导中很常见。</div>
+  </div>
+
+  <div class="black">
+    <h5>五千万条</h5>
+    <p>2007 年，日本国会和媒体揭开了一件事：主管公共养老金的社会保险厅，有大约五千万条养老金缴费记录找不到主人。原因五花八门：从纸质记录转入电脑时姓名读音录错，换工作、结婚改姓后没有合并，手写记录本身就有错。很多人一辈子按月缴费，到了领取的时候却查不到自己的记录。</p>
+    <p>调查还发现，社会保险厅内部长期纪律松弛，工会和管理层曾约定限制职员每天在电脑上输入的次数。事件引起舆论愤怒，执政党在当年的参议院选举中大败。社会保险厅在 2009 年被撤销，由新成立的日本年金机构接手。<b>一个管全国老人饭碗的机构，可以在几十年里没有人认真对过账</b>。第一部第一章那个泥板上的工头，至少每年都要对一次。</p>
+  </div>
+
+  <div class="seal">
+    <div><i>营盘的账<small>制度</small></i>早早离开、终身照顾的“天降”，用退休后的回报换年轻时的低薪和拼命。它让官僚有干劲，也让官僚和被管的人分不开。</div>
+    <div><i>你的账<small>生活</small></i>一份工作如果年轻时付得少、老了以后给得多，那它其实是在借你的钱。借之前想清楚：它会不会中途改规矩，到时候你还能不能走得了。</div>
+  </div>
+</section>
+
+<!-- ============ 第十七章 · 单 ============ -->
+<section class="chap" id="c17" data-vol="卷五 · 各家 · 单">
+  <div class="chead">
+    <div class="big">单</div>
+    <div>
+      <div class="no">第十七章 · 1919 年至 1991 年</div>
+      <h2>名单上的人</h2>
+      <dl><dt>讲什么</dt><dd>两张名单：职位的和人的；“干部决定一切”；1937 年；吉拉斯的《新阶级》和沃斯连斯基的七十五万人；特供商店和别墅；“干部稳定”和越来越老的领导层；指标和吊灯；名单的终结</dd><dt>本章装置</dt><dd>干部稳定</dd></dl>
+      <div class="gate" data-g="任 宠"></div>
+      <div class="when" data-a="1919" data-b="1991"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">苏联是怎样管官员的？</p>
+      <p>靠两张名单：一张列出所有重要的职位，从部长、厂长、报社总编到集体农庄主席，这些职位的任免必须经过相应一级党委批准；另一张列出有资格担任这些职位的人。合起来叫“<b>干部名单</b>”（音译“诺缅克拉图拉”）。它把整个国家的人事权集中到了党的组织部门手里，<em>效率极高，可以在几年里调动几十万人去建工厂；也让名单上的人渐渐变成了一个有自己的商店、医院、别墅，甚至有自己的利益的阶层</em>。</p>
+    </div>
+
+    <div class="desk" data-t="档案室 · 第十八张卡片">
+      <p>“这一张，”<span class="nm">老温</span>说，“我拼得最小心。苏联的事，史料多，说法也多。我只写了几件能确定的。”</p>
+      <p><span class="x">许多</span>看到“最怕”那一栏写着两个年份：“1937”“1987”。</p>
+      <p>“前一个，怕的是被抓；后一个，怕的是被改革。”老温说，“同一个人，年轻时怕上面太狠，老了怕上面太软。中间那三十年，他过得最舒服，也是这个国家最停滞的三十年。”</p>
+    </div>
+
+    <div class="dossier">
+      <div class="dh"><b>履历</b><small>No. 18 · 约 1915—1995 年 · 苏联，某州</small></div>
+      <table>
+        <tr><th>姓名</th><td>伊万·彼得罗维奇·索科洛夫（拼的）</td></tr>
+        <tr><th>出身</th><td>伏尔加河边的农民家庭。二十年代读了工农速成学校，后来进技术学院学冶金。</td></tr>
+        <tr><th>上位</th><td>1938 年，他所在工厂的厂长和总工程师在大清洗中被捕，二十三岁的他被提拔为车间主任，两年后当上副厂长。</td></tr>
+        <tr><th>战时</th><td>工厂整体东迁到乌拉尔，他在零下三十度的露天厂房里组织恢复生产，战后获得勋章。</td></tr>
+        <tr><th>入单</th><td>五十年代调到州党委工业部，名字进入州委的干部名单，此后的每一次任命都要经州委或更上级批准。</td></tr>
+        <tr><th>待遇</th><td>一套带暖气的公寓，一辆配司机的公车，郊外一栋别墅（公家的），可以在内部商店买到外面买不到的东西，在专门的医院看病。</td></tr>
+        <tr><th>稳定</th><td>六十年代中期起当了二十年州里的某局局长。上面讲“干部稳定”，没人动他。</td></tr>
+        <tr><th>最怕</th><td>1937 年和 1987 年。</td></tr>
+        <tr><th>结局</th><td>八十年代末被“改革”调整下来，提前退休。苏联解体后，他的儿子把父亲原来管的一家工厂改制，成了老板。</td></tr>
+      </table>
+      <div class="real">真的部分：干部名单制度；大清洗中大批厂长、工程师被捕，年轻技术干部被破格提拔；战时工厂东迁；名单内干部的公寓、公车、别墅、内部商店与专门医院等待遇；勃列日涅夫时期的“干部稳定”；八十年代末的人事调整；九十年代部分原干部及其子女通过私有化成为企业主。索科洛夫是拼出来的人。</div>
+    </div>
+
+    <h3>两张名单<span class="y">1919—1930 年代</span></h3>
+    <p>十月革命后，布尔什维克接管了一个庞大的帝国，旧政府的官员大多不合作或者不可靠，可国家又离不开会办事的人。新政权的办法是：把关键的位子交给党员，或者交给有党员“盯着”的专家；而这些位子由谁来坐，由党的机关来定。</p>
+    <p>二十年代初，党的中央机关逐步建立起一套登记和分配干部的系统。1922 年，斯大林当上总书记，这个起初看起来只是管文书、管人事的职位，让他掌握了全国干部的任免。他把支持自己的人安插到各地党委的要职上，这些人又在党代表大会上投票支持他。<em>谁管名单，谁就管党；谁管党，谁就管国家</em>。</p>
+    <p>名单制度的核心有两样：一是“职位名单”，各级党委开列自己有权任免的职位清单，中央委员会管最高的一批，州委、区委各管一批；二是“人员名单”，记录每一个可以担任这些职位的人的履历、表现和政治可靠性。一个人一旦进了名单，即便犯了错，通常也只是从一个位子调到另一个位子，很少掉出这个圈子。</p>
+  </div>
+
+  <div class="spin">
+    <div class="off"><i>公文 · 原文</i><p>干部决定一切。</p></div>
+    <div class="plain"><i>白话</i><p>厂房、机器、计划都有了，接下来全看坐在位子上的是谁。</p></div>
+    <div class="src">左栏出自斯大林 1935 年 5 月在克里姆林宫对红军院校毕业生的讲话。此前几年流行的口号是“技术决定一切”。</div>
+  </div>
+
+  <div class="col">
+    <h3>1937 年</h3>
+    <p>“干部决定一切”这句话说出来两年以后，名单上的人开始成批地消失。1936 年到 1938 年的大清洗中，据苏联内务部自己的统计，仅 1937、1938 两年就有六十八万多人被判处死刑，被捕的人更多。打击的重点之一就是党政军的干部：据赫鲁晓夫 1956 年在苏共二十大上的秘密报告，1934 年苏共十七大选出的一百三十九名中央委员和候补委员中，有九十八人被捕枪决；一千九百多名代表中，有一千一百多人以“反革命罪”被捕。</p>
+    <p>清洗的另一面，是大批年轻人被突然提拔。三十年代中后期上来的这一代干部，很多人二三十岁就当上了厂长、州委书记、部长，比如后来的勃列日涅夫、柯西金、葛罗米柯。他们的上一代人被抓走了，他们填了进去。这批人后来统治苏联将近半个世纪。</p>
+
+    <h3>新阶级<span class="y">1957 年</span></h3>
+    <p>1957 年，南斯拉夫的前领导人之一米洛万·吉拉斯在西方出版了一本书，叫《新阶级》。他的论点是：在共产党执政的国家里，取代旧有产阶级的，是一个新的阶级，就是党和国家的官僚。他们不拥有生产资料，但支配着生产资料，并从中享受特权，而且这种支配是可以传承的。吉拉斯因为这本书被判刑入狱。</p>
+    <p>二十多年后，一位叫米哈伊尔·沃斯连斯基的苏联学者流亡西德，出版了一本专门研究干部名单的书，书名就叫《诺缅克拉图拉》。他估计，苏联名单上的干部大约有七十五万人，连同家属约三百万人，不到全国人口的百分之一点五（<b>估计方法有争议</b>）。他详细描写了这个阶层的生活：特供商店（门口不挂招牌，里面有进口商品和紧俏食品），专门的医院和疗养院，郊外的公家别墅，配司机的“伏尔加”轿车，子女上的好学校，出国的机会。普通人排几个小时的队买不到的东西，名单上的人凭证件就能买到。</p>
+  </div>
+
+  <aside class="echo" data-k="押韵">
+    <span class="stamp">押韵</span>
+    <div>
+      <div class="rh">一张名单和一个品级</div>
+      <p>魏晋的中正官给士人评九品，品级决定能做什么官，决定能和谁家通婚；苏联的组织部门给干部建名单，名单决定能坐什么位子、能进哪家商店。一个看家世，一个看政治可靠性，可两者都慢慢长出了同一种东西：<em>一个靠着名单或品级过日子、并想把它传给子女的圈子</em>。</p>
+    </div>
+  </aside>
+
+  <div class="col">
+    <h3>干部稳定<span class="y">1964—1982</span></h3>
+    <p>斯大林时代，干部怕的是被抓；赫鲁晓夫时代，干部怕的是被改组，他频繁地拆分和合并部委、把党的机关按工业和农业一分为二、规定各级党委委员每次选举要更换一部分。1964 年，一批对此不满的领导人联手解除了赫鲁晓夫的职务，勃列日涅夫成为第一书记。</p>
+    <p>新领导层的口号是“干部稳定”：不再折腾，信任干部，让大家安心工作。效果立竿见影，官员们终于不用提心吊胆了。可“稳定”很快变成了“不动”：部长一当十几年、二十年，外交部长葛罗米柯从 1957 年当到 1985 年，二十八年；州委书记、部长、将军们一起变老。到八十年代初，苏共政治局委员的平均年龄已经接近七十岁。</p>
+    <p>1982 年勃列日涅夫去世，接任的安德罗波夫六十八岁，十五个月后病逝；再接任的契尔年科七十二岁，十三个月后病逝。三年里三次国葬，莫斯科人私下开玩笑说，这是一个“豪华葬礼五年计划”。</p>
+  </div>
+
+  <div class="fig" id="stabFig">
+    <div class="fig-label">装置 18</div>
+    <h4>干部稳定</h4>
+    <p class="how">一个由一百个领导职位组成的金字塔，从 1964 年开始。拖动滑块，设定每年<b>强制更替</b>多少比例的干部（退休、调离），点“过二十年”，看看最上面十个位子的平均年龄、年轻人的晋升机会怎样变化。</p>
+    <div class="ctl"><span>每年更替</span><input type="range" id="stR" min="0" max="12" value="1"><output id="stRO"></output></div>
+    <div class="btns"><button class="btn pri" id="stGo">过二十年</button></div>
+    <svg class="sim" id="stSvg"></svg>
+    <div class="legend"><span><i style="background:var(--zhu)"></i>最高十个位子的平均年龄</span><span><i style="background:var(--main)"></i>全部一百个位子的平均年龄</span></div>
+    <div class="kv" id="stKv"></div>
+    <div class="say" id="stSay"></div>
+    <p class="figcap">示意模型。起始年龄分布按“三十年代被破格提拔的一代人此时五十来岁”的大致情形设定；只有死亡和强制更替会空出位子，空位由下一级最年长的人递补，最底层由四十岁左右的新人补入。</p>
+  </div>
+
+  <div class="col">
+    <h3>指标和吊灯</h3>
+    <p>名单上的官员怎样考核？主要看计划完成情况：产量多少吨、多少米、多少件。上级给指标，下级报数字，数字好看就升迁。于是出现了一大批苏联人自己都拿来讲笑话的现象：按重量考核的钉子厂造出巨大的钉子，按数量考核的造出一大堆小得没用的钉子；按吨数考核的吊灯厂造出重得能把天花板拽下来的吊灯。这些故事有的是漫画杂志里的讽刺，未必真有其事（<b>存疑</b>），但它们之所以流传，是因为每个苏联人都见过类似的东西。</p>
+    <p>报假数字也是常态。乌兹别克的棉花产量被层层虚报多年，八十年代查出来，牵连了从加盟共和国领导人到基层的一大批干部，这就是著名的“棉花案”。<b>当上面只认数字，下面就会生产数字</b>。第二章里东汉的孝子、这里的棉花，是同一个道理。</p>
+  </div>
+
+  <div class="bio">
+    <div class="hd"><b>列昂尼德·勃列日涅夫</b><small>1906—1982</small><em>“稳定”的总书记</em></div>
+    <div class="bd">
+      <p>乌克兰一个钢铁工人的儿子，学过土地测量和冶金，当过工程师。大清洗前后他被迅速提拔，1939 年三十二岁时当上州委书记。</p>
+      <dl>
+        <dt>上</dt><dd>卫国战争中任方面军政治部主任；战后在乌克兰、摩尔达维亚、哈萨克斯坦任党的领导人；1964 年参与解除赫鲁晓夫的职务，出任第一书记（后称总书记），在位十八年。</dd>
+        <dt>稳</dt><dd>提出“信任干部”“干部稳定”，结束了斯大林式的恐怖和赫鲁晓夫式的折腾。苏联在他任内军事上达到和美国大致对等，普通人的生活在六十年代末到七十年代有明显改善。</dd>
+        <dt>滞</dt><dd>七十年代后期起经济增长放缓，体制僵化，腐败蔓延，后来被称为“停滞时期”。1979 年出兵阿富汗。晚年身体极差，讲话含混，仍然在位。</dd>
+        <dt>结局</dt><dd>1982 年 11 月去世。他的女婿、曾任内务部第一副部长的丘尔巴诺夫，后来在棉花案中被判刑。</dd>
+      </dl>
+      <p>他给了干部们最想要的东西：安全感。<em>可一个人人都安全的官场，也是一个没人需要改变的官场</em>。</p>
+    </div>
+  </div>
+
+  <div class="black">
+    <h5>名单之外的人</h5>
+    <p>名单的特权，是用名单之外的人的匮乏换来的。七八十年代的苏联，普通人买肉、买鞋、买一台冰箱都要排长队或者托关系；名单上的人则有内部商店和内部配给。这种双轨，人人知道，却不能公开谈论。</p>
+    <p>更沉重的是三十年代。大清洗中被枪决、被送进劳改营的人，大多不是什么高官，而是工程师、教师、农民、工人，他们的名字被列在另一种名单上：内务部各地的“限额”。<b>一个擅长开列名单的机器，开列什么样的名单，取决于握着笔的人</b>。</p>
+  </div>
+
+  <div class="col">
+    <h3>名单的终结<span class="y">1985—1991</span></h3>
+    <p>1985 年上台的戈尔巴乔夫五十四岁，在那个政治局里算是年轻人。他推行“改革”和“公开性”，大规模更换各级干部，试图用选举和公开批评来激活这台机器。名单上的很多人发现，改革威胁的正是他们的位子和特权，于是阳奉阴违，拖着不办。1991 年 8 月，一批党政军高层发动政变，试图阻止改革，三天后失败。几个月后，苏联解体。</p>
+    <p>名单解散了，名单上的人却没有消失。研究者发现，九十年代俄罗斯和其他前苏联国家的新政治精英和新富豪中，很大一部分来自原来的干部名单或者共青团系统，他们利用原来的位置和关系，在私有化中拿到了工厂、油田、银行。<em>制度可以一夜之间倒掉，坐在桌子后面的人却往往换个身份接着坐</em>。</p>
+  </div>
+
+  <div class="seal">
+    <div><i>营盘的账<small>制度</small></i>把全部人事权集中在一张名单上，调兵遣将极快，纠错极慢。没有退出机制的“稳定”，最后会变成整个系统一起变老。</div>
+    <div><i>你的账<small>生活</small></i>一个让你觉得“永远不会被动”的位子，也是一个你很难再学到新东西的位子。稳定是好东西，别让它变成停止。</div>
+  </div>
+</section>
+
+<!-- ============ 第十八章 · 薪 ============ -->
+<section class="chap" id="c18" data-vol="卷五 · 各家 · 薪">
+  <div class="chead">
+    <div class="big">薪</div>
+    <div>
+      <div class="no">第十八章 · 1724 年至 2012 年</div>
+      <h2>高薪养廉？</h2>
+      <dl><dt>讲什么</dt><dd>新加坡的贪污调查局和“财产与收入不符”；1994 年白皮书把部长工资挂钩到银行家；2012 年的降薪；香港的葛柏、廉署和 1977 年的特赦；格鲁吉亚换掉全部交警；经济学家怎么算这笔账</dd><dt>本章装置</dt><dd>工资、查处和诱惑</dd></dl>
+      <div class="gate" data-g="考"></div>
+      <div class="when" data-a="1952" data-b="2012"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">给官员发高薪，真的能防腐败吗？</p>
+      <p>单靠高薪不行，单靠严查也不行，两样要一起来。新加坡常被当作“高薪养廉”的典范，可它先做的是另一件事：1950 年代起建立一个权力很大的反贪机构，法律规定官员财产和收入明显不符就可以推定受贿；高薪是后来才加上去的，而且主要是为了<em>把人才从私营企业那边抢过来</em>。经济学家算过这笔账：贪不贪，取决于“贪一次能拿多少”和“被抓的概率乘以被抓后失去的一切”谁大，工资只是后者里的一项。</p>
+    </div>
+
+    <div class="desk" data-t="档案室 · 第十九张卡片">
+      <p>“这张卡片的工资那一栏，你猜猜是多少。”<span class="nm">老温</span>用手指挡住了数字。</p>
+      <p><span class="x">许多</span>看了看职务：新加坡某部常任秘书，四十五岁。“一年……一百万？”</p>
+      <p>老温把手指挪开。许多看了看，没说话。</p>
+      <p>“新加坡元。”老温说，“折成人民币你自己算。可你再看‘入行’那一栏：他十八岁拿了政府奖学金出国读书，签了约，回来要给政府干满六年，干不满要赔钱。这个国家从高中就开始挑人了。”</p>
+    </div>
+
+    <div class="dossier">
+      <div class="dh"><b>履历</b><small>No. 19 · 约 1965—2025 年 · 新加坡</small></div>
+      <table>
+        <tr><th>姓名</th><td>陈俊杰（拼的）</td></tr>
+        <tr><th>入行</th><td>高中毕业考成绩优异，获得公共服务委员会奖学金，去英国读大学，签约回国后为政府服务至少六年。</td></tr>
+        <tr><th>起步</th><td>二十三岁回国，进入“行政官”系列，这是新加坡文官里人数最少、升得最快的一支，每隔两三年在不同的部之间轮换。</td></tr>
+        <tr><th>晋升</th><td>每年考评，按“潜力”排序；三十多岁进入“超级薪级”，四十出头被任命为一个部的常任秘书。</td></tr>
+        <tr><th>工资</th><td>常任秘书年收入在百万新加坡元上下（含与经济增长和个人表现挂钩的奖金）。</td></tr>
+        <tr><th>约束</th><td>每年申报财产和投资；收礼要上交登记；亲属的生意要回避；财产与收入明显不符，贪污调查局可以直接立案。</td></tr>
+        <tr><th>最怕</th><td>贪污调查局的电话。在新加坡，被查本身就意味着前途终结。</td></tr>
+        <tr><th>结局</th><td>五十多岁离开政府，去了一家与政府有关联的大企业当高管。</td></tr>
+      </table>
+      <div class="real">真的部分：公共服务委员会奖学金与服务约定；行政官系列及其轮换与快速晋升；超级薪级；高级公务员薪酬与经济增长、个人表现挂钩；财产申报与收礼登记；《防止贪污法》中关于财产与收入不符的证据规定。工资数额是约数，各年不同；陈俊杰是拼出来的人。</div>
+    </div>
+
+    <h3>先是一个机构<span class="y">新加坡，1952—1960</span></h3>
+    <p>五十年代的新加坡还是英国殖民地，警察、海关、移民部门的贪污很普遍。1952 年，殖民政府把警察内部的反贪部门独立出来，成立了“贪污调查局”，可起初权力有限，作用不大。</p>
+    <p>1959 年李光耀领导的人民行动党上台，把反贪当作立党的招牌之一。1960 年通过的《防止贪污法》大大加强了贪污调查局的权力：可以不经逮捕令逮捕嫌疑人，可以搜查、查银行账户；最重要的是，如果一个官员的财产和他的正当收入明显不相称，法庭可以把这一点当作他受贿的证据，由他自己来解释钱是哪来的。贪污调查局直接对总理负责，几十年来查办过不少高官，包括一位部长：1986 年，国家发展部长郑章远因受贿被调查，在审判前自杀。</p>
+    <p>在这些制度运转了三十多年之后，新加坡才出台了那份著名的工资白皮书。</p>
+
+    <h3>挂钩银行家<span class="y">1994—2012</span></h3>
+    <p>1994 年，新加坡政府发表白皮书，题目大意是《有竞争力的薪金，造就有能力、廉洁的政府》。它提出：部长和高级公务员的工资，应当和私营部门顶尖人才的收入挂钩，具体是参照银行家、会计师、工程师、律师、本地制造企业和跨国公司高管这六个行业里收入最高的一批人，取其一定比例；并且每年随这些人的收入自动调整。理由是：如果政府的工资远低于私营部门，最能干的人就不会来，或者来了以后会被诱惑。李光耀据说多次用过一句俗话：“付花生，就只能请到猴子。”</p>
+    <p>此后十几年，新加坡部长的工资一路上涨，总理的年薪一度超过三百万新加坡元，是美国总统的好几倍，成了国内外舆论争议的焦点。2011 年大选，执政党得票率创下独立以来的新低，部长工资是选民不满的原因之一。大选后成立的委员会重新检讨薪酬，2012 年起，总理年薪降到二百二十万新加坡元左右，降幅约三成六；部长的基准改为“收入最高的一千名新加坡公民的中位数”，再打四折，理由是公职应当带有“奉献”的成分。</p>
+  </div>
+
+  <div class="spin">
+    <div class="off"><i>公文 · 原文大意</i><p>政府必须付给部长和高级公务员有竞争力的薪金，以吸引和留住有能力、正直的人才；薪金应与私营部门可比职位的收入挂钩，并定期调整，以免政府在人才竞争中落后。</p></div>
+    <div class="plain"><i>白话</i><p>想要银行家水平的人来管国家，就得给接近银行家的钱。不然他们去银行了。</p></div>
+    <div class="src">左栏据新加坡 1994 年政府白皮书《有竞争力的薪金，造就有能力、廉洁的政府》主旨的大意转述。</div>
+  </div>
+
+  <div class="col">
+    <h3>香港：捉葛柏<span class="y">1973—1977</span></h3>
+    <p>六七十年代的香港，警队里的贪污是有组织的：收保护费、包庇赌档和毒品，每个警区都有分账的规矩。当时有一句流传很广的话：贪污是一辆巴士，你可以“上车”（一起收），可以“跟车跑”（不收也不揭发），千万别“站在车前面”（揭发），会被碾死。</p>
+    <p>1973 年 6 月，总警司葛柏在被调查期间，利用警方的通行证逃离香港，回到英国。他的财产据估计有四百多万港元，远远超过他的薪水。全港哗然，大学生上街游行，标语是“反贪污，捉葛柏”。港督麦理浩随即成立调查委员会，1974 年 2 月成立“廉政公署”，独立于警队之外，直接向港督负责。1975 年，葛柏被引渡回港受审，判刑四年。</p>
+    <p>廉署成立后大规模查办警队，引起了警察的强烈反弹。1977 年 10 月，数千名警察游行，一部分人冲进廉署总部，打伤职员。麦理浩权衡之后宣布“局部特赦”：1977 年 1 月 1 日以前的一般贪污行为，除非已经在调查或者情节严重，不再追究。这个妥协争议很大，但它稳住了警队，也让廉署从此可以专心对付新的案子。几十年后，香港成了亚洲最廉洁的地区之一。</p>
+  </div>
+
+  <div class="bio">
+    <div class="hd"><b>麦理浩</b><small>1917—2000</small><em>任期最长的港督</em></div>
+    <div class="bd">
+      <p>苏格兰人，牛津毕业后进入殖民地官员体系，二战期间在中国做情报工作，后来是职业外交官，当过驻越南、驻丹麦大使。1971—1982 年任香港总督。</p>
+      <dl>
+        <dt>廉</dt><dd>葛柏案后成立廉政公署，坚持它独立于警队；1977 年警廉冲突时决定局部特赦，用一次妥协换来了制度的生存。</dd>
+        <dt>屋</dt><dd>推出“十年建屋计划”，大规模兴建公屋和新市镇；推行九年免费教育；兴建地铁和郊野公园。</dd>
+        <dt>争</dt><dd>他的这些政策，有人认为是出于对 1967 年动荡的反思和改善民生，也有人认为主要是为了巩固殖民统治、为将来的谈判增加筹码（<b>存疑</b>，各有史料）。</dd>
+        <dt>结局</dt><dd>1979 年访问北京，第一次向中国领导人试探香港前途问题。卸任后被封为终身贵族，进了英国上议院。</dd>
+      </dl>
+      <p>他成立廉署的时候，警队里很多人认定这只是一阵风。<em>一项制度能不能活下来，常常取决于它最难熬的头几年，主事者肯不肯顶住，又肯在哪里让一步</em>。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>别处：一夜之间换掉交警<span class="y">格鲁吉亚，2004</span></h3>
+    <p>还有一种更激进的办法。2004 年，格鲁吉亚新政府面对一支几乎人人收钱的交通警察队伍，干脆把它整个解散，据报道一次解雇了约一万六千人，重新招聘一支人数少得多的巡警，工资提高好几倍，配新车、新制服，在路上设置透明的玻璃警亭。路上的小额勒索很快大幅减少。这个改革常被当作成功的例子，也有人批评它太过粗暴，后来的政府在其他方面也有滥权的指控。</p>
+
+    <h3>经济学家的算法</h3>
+    <p>1968 年，美国经济学家贝克尔提出，犯罪可以看作一种理性计算：如果“干一次的收益”大于“被抓的概率 × 被抓后的损失”，理性的人就会去干。1974 年，他和斯蒂格勒把这个思路用到了执法官员身上：给官员发高于市场水平的工资，等于让他在被开除时损失更多；如果再加上较高的查处概率，受贿就变得不划算。这叫“效率工资”。</p>
+    <p>可是，后来很多实证研究发现，工资和腐败之间的关系并不像理论说的那么强：工资要提高很多倍，腐败才会明显下降；而在查处概率很低的地方，加薪几乎没用，官员会一边拿高薪一边继续拿钱。<b>工资只是天平一边的砝码，另一边是查处的概率；查处概率为零的时候，加多少砝码都没用</b>。清朝的养廉银（第六章）就是一个例子：它把灰色收入变成了白色工资，可没有配上有效的监督，几十年后就被新的陋规淹没了。</p>
+  </div>
+
+  <div class="fig" id="payFig">
+    <div class="fig-label">装置 19</div>
+    <h4>工资、查处和诱惑</h4>
+    <p class="how">一千个官员，有人天性正直、有人见钱眼开。拖动三个滑块：官员工资相当于私营部门同等人才的多少，贪污被查处的概率，以及一次贿赂的金额。看看有多少人会伸手，又有多少顶尖毕业生愿意进来。</p>
+    <div class="ctl"><span>工资</span><input type="range" id="payW" min="30" max="200" value="60" step="5"><output id="payWO"></output></div>
+    <div class="ctl"><span>查处概率</span><input type="range" id="payP" min="0" max="50" value="5"><output id="payPO"></output></div>
+    <div class="ctl"><span>一次贿赂</span><input type="range" id="payB" min="1" max="30" value="5"><output id="payBO"></output></div>
+    <div class="bars" id="payBars"></div>
+    <div class="say" id="paySay"></div>
+    <p class="figcap">示意模型，基于贝克尔—斯蒂格勒的效率工资思路：官员受贿，当且仅当“贿赂 × 他的贪心程度”大于“查处概率 ×（失去的未来工资溢价 + 罚款）”。贿赂以“私营部门年薪的百分之几”计；贪心程度在人群中随机分布；“愿意进来的顶尖毕业生”随工资相对私营部门的比例上升。</p>
+  </div>
+
+  <div class="black">
+    <h5>上车、跟车、别挡车</h5>
+    <p>香港警队的那句“巴士”俗语，说出了有组织腐败最可怕的地方：它不是几个坏人的问题，而是一套连老实人也被裹挟进去的规矩。不收钱的人会被同事排挤、被调去最苦的岗位，揭发的人可能有生命危险。七十年代初，有警察私下说，在某些警区，一个人想保持干净比想发财还难。</p>
+    <p>1977 年的局部特赦，意味着很多人曾经收过的钱永远不会被追究。这是给有组织腐败的一次赦免，也是让制度活下去的代价。<b>清算全部的过去，可能让一支队伍瘫掉；放过过去，又对守规矩的人不公平</b>。几乎每一次大规模的反腐，都要在这两者之间找一个位置。</p>
+  </div>
+
+  <div class="seal">
+    <div><i>营盘的账<small>制度</small></i>高薪的作用不只是防贪，更是抢人；防贪靠的是查得到、罚得重。只给糖不拿鞭子，或者只拿鞭子不给糖，都不长久。</div>
+    <div><i>你的账<small>生活</small></i>评估一个诱惑，算的不只是这一次能得多少，还有被发现的可能乘以你会失去的全部：工作、名声、以后的路。你拥有的越多，这道题越容易做。</div>
+  </div>
+</section>
+
+<!-- ============ 第十九章 · 编 ============ -->
+<section class="chap" id="c19" data-vol="卷五 · 各家 · 编">
+  <div class="chead">
+    <div class="big">编</div>
+    <div>
+      <div class="no">第十九章 · 1949 年至 2025 年</div>
+      <h2>编制</h2>
+      <dl><dt>讲什么</dt><dd>“国家干部”和毕业分配；跟着人走的档案；1993 年的暂行条例和 1994 年的第一次统一招考；公务员法；行政编、事业编和“参公”；三定方案；职务与职级并行；三百七十多万人报考的一年</dd><dt>本章装置</dt><dd>上岸的概率</dd></dl>
+      <div class="gate" data-g="考"></div>
+      <div class="when" data-a="1949" data-b="2025"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">“编制”到底是什么？考公为什么越来越热？</p>
+      <p>“编制”是机构编制部门核定给一个单位的人员名额：这个单位能有多少人、什么级别、财政怎样供养。占了行政编制、通过公务员法规定的方式录用的，是公务员；占事业编制的，是学校、医院、研究所等事业单位的工作人员。今天的中国公务员，绝大多数要通过公开考试录用。报考的人从本世纪初的几万，增加到 2025 年秋天那一次的三百七十多万人。热的原因，大致是三样：<em>稳定、体面，以及其他行业的不确定性越来越大</em>。这一章只讲制度本身是怎么来的、怎样运转，第三部再讲营盘里的人怎样想事情。</p>
+    </div>
+
+    <div class="desk" data-t="档案室 · 第二十张卡片">
+      <p>第二个抽屉的最后一张卡片，字迹和前面的都不一样，是打印的。</p>
+      <p>“这张不是我拼的。”<span class="nm">老温</span>说，“是何科长自己填的，我跟她要的。她说就当给咱们科留个底。”</p>
+      <p><span class="x">许多</span>认出了那个名字，是综合科的科长，报到那天就是她带许多去人事科办的手续。</p>
+      <p>“她是 2006 年考进来的。公务员法就是那年开始施行的。”老温说，“我进来的时候，靠的是分配；她进来的时候，靠的是考试；你进来的时候，靠的是考了两次的考试。三个人，三种门。第三部咱们就讲咱们科自己。”</p>
+    </div>
+
+    <div class="dossier">
+      <div class="dh"><b>履历</b><small>No. 20 · 1983— · 河口市水务局综合科（虚构）</small></div>
+      <table>
+        <tr><th>姓名</th><td>何静（档案室故事里的“何姐”，虚构）</td></tr>
+        <tr><th>出身</th><td>本省一个县城，父母是中学教师。省内一所大学的中文系毕业。</td></tr>
+        <tr><th>入职</th><td>2005 年底参加省公务员考试，笔试、面试、体检、考察、公示，2006 年进入河口市水利局（几年后改名水务局）。</td></tr>
+        <tr><th>头几年</th><td>在综合科写材料：工作总结、领导讲话、信息简报、汇报稿。加班是常事。</td></tr>
+        <tr><th>升迁</th><td>科员，四级主任科员，副科长，科长。职务与职级并行改革后，又晋升了一次职级。</td></tr>
+        <tr><th>编制</th><td>行政编制。局里另有下属的事业单位（水文站、工程管理所），那边的人是事业编。</td></tr>
+        <tr><th>最怕</th><td>（她自己填的）材料里出错别字；领导临时要一个数据，而那个数据在三个科室有三个版本。</td></tr>
+        <tr><th>现在</th><td>综合科科长，管文电、会务、信息、档案、机要和后勤，手下九个人，包括刚来的许多。</td></tr>
+      </table>
+      <div class="real">真的部分：公务员考录流程（笔试、面试、体检、考察、公示）；行政编制与事业编制之分；2006 年公务员法施行；职务与职级并行；综合科的典型职责。河口市水务局与何静都是虚构的。</div>
+    </div>
+
+    <h3>国家干部<span class="y">1949—1980 年代</span></h3>
+    <p>新中国成立后的几十年里，没有“公务员”这个说法，而是“国家干部”：在党政机关、事业单位、国营企业里从事管理和专业工作的人，统统叫干部，由各级组织人事部门统一管理。大中专毕业生由国家统一分配工作，叫“统包统配”，你分到哪里，就去哪里，一般一干到退休。每个人都有一份人事档案，记着出身、学历、工作经历、奖惩、考核、政治表现，档案跟着人走，调动工作要先调档案，没有档案就很难被任何单位接收。</p>
+    <p>老温那一代人就是这样进单位的：1984 年中专毕业，一纸派遣证，到了当时的水利局报到。</p>
+    <p>八十年代改革开放以后，这套笼统的“干部”体制显出了问题：党政机关的人、教师医生、工厂厂长都按同一套办法管，难以分类；进人看分配和调动，缺少公开竞争；能进不能出，能上不能下。1987 年，中共十三大报告提出要建立国家公务员制度，把在政府机关中行使国家行政权力、执行国家公务的人员，从笼统的“干部”中分出来，单独管理。</p>
+
+    <h3>暂行条例和第一次招考<span class="y">1993—1994</span></h3>
+    <p>1993 年 8 月，国务院发布《国家公务员暂行条例》，10 月 1 日起施行。条例规定：录用主任科员以下的非领导职务公务员，要采取公开考试、严格考核的办法，按照德才兼备的标准择优录用。1994 年，中央国家机关第一次面向社会统一招考公务员。此后各省陆续举行本省的公务员考试，也就是后来说的“国考”和“省考”。</p>
+    <p>与此同时，大学毕业生的统一分配逐步取消，到二十世纪末基本改为“双向选择”、自主择业。<em>进入机关的门，从“组织上分配”变成了“自己去考”</em>。从第一部讲的唐朝“投牒自进”算起，这是又一次“自己报名”。</p>
+
+    <h3>公务员法<span class="y">2005 年起</span></h3>
+    <p>2005 年 4 月，全国人大常委会通过《中华人民共和国公务员法》，2006 年 1 月 1 日起施行。它把公务员的范围定为：依法履行公职、纳入国家行政编制、由国家财政负担工资福利的工作人员。按这个定义，公务员不只在政府里，也包括党的机关、人大、政协、法院、检察院、民主党派机关等机构中符合条件的人员。法律规定了录用、考核、职务任免、升降、奖惩、交流、回避、辞职辞退、退休等一整套制度。2018 年底法律修订，2019 年 6 月起施行，其中一项重要变化是“职务与职级并行”：除了科长、处长这样的领导职务，另设一条“职级”序列（从二级科员、一级科员、四级主任科员一直到一级巡视员），让没有领导职务的人也能按年限和考核晋升职级、提高待遇，缓解“千军万马挤领导职务独木桥”的问题。</p>
+    <p>据人力资源和社会保障部公布的数字，截至 2015 年底，全国公务员总数为 716.7 万人；此后官方较少公布总数。另有数量更大的事业单位工作人员（教师、医生、科研人员等），一般估计在三千万人上下（<b>口径不一，存疑</b>）。</p>
+  </div>
+
+  <div class="box">
+    <h5>编制词典</h5>
+    <ul>
+      <li><b>编制</b>：机构编制部门（各级“编办”）核定给一个单位的人员数额和结构。没有编制，单位不能随意进人；占了编制，工资由财政按标准保障。</li>
+      <li><b>行政编制</b>：党政机关的编制，占这类编制并依法录用的，是公务员。</li>
+      <li><b>事业编制</b>：学校、医院、科研院所、水文站之类事业单位的编制。事业单位工作人员一般通过事业单位公开招聘进入，不是公务员。</li>
+      <li><b>参公</b>：“参照公务员法管理”的单位，主要是一些承担行政职能的事业单位，人员按公务员的办法招录和管理。</li>
+      <li><b>三定</b>：一个机构的“定职能、定机构、定编制”方案，规定它管什么、内设哪些处室、有多少人。机构改革的时候，三定方案会重新核定。</li>
+      <li><b>编外</b>：不占编制、通过劳务派遣或合同聘用在机关、事业单位工作的人员。第一部讲的“额外的书吏”，今天也有它的样子。</li>
+      <li><b>选调生</b>：各省从高校应届优秀毕业生中定向选拔、到基层工作的公务员，一般要求是党员或学生干部，培养方向是年轻的领导干部。</li>
+    </ul>
+  </div>
+
+  <div class="spin">
+    <div class="off"><i>公文 · 仿写（招考职位表）</i><p>职位要求：本科及以上学历，水利类专业；具有两年以上基层工作经历；最低服务年限五年；本职位需经常出差、野外作业，适合男性。</p></div>
+    <div class="plain"><i>白话</i><p>要学水利的，刚毕业的不要，进来至少干五年别想调走，常年跑工地。报名之前看清楚，每一行都是筛子。</p></div>
+    <div class="src">左栏为仿写，不是任何真实的职位表。“基层工作经历”“最低服务年限”“专业限制”等是职位表中常见的报考条件；关于性别的表述，近年的招考公告已大多改为“适合”一类的提示性说法或取消。</div>
+  </div>
+
+  <div class="col">
+    <h3>三百七十多万人<span class="y">考公热</span></h3>
+    <p>国考的报名人数，从世纪初的几万人，增长到 2000 年代后期第一次超过一百万，又在 2020 年代迅速攀升。据国家公务员局公布的数字，2026 年度中央机关及其直属机构的公务员考试（2025 年 10 月报名、11 月 30 日笔试），通过资格审查的有约 371.8 万人，计划招录约 3.81 万人，平均约 98 人竞争一个职位；最热门的个别职位，几千人争一个。这一年起，报考年龄的上限也有所放宽。</p>
+    <p>这股热潮背后的原因，各方的分析大同小异：其他行业的收入和就业更不稳定，公务员工作稳定、有保障、社会评价高；高校毕业生人数逐年增加；家庭的期待。也有人担心，太多优秀的年轻人把青春花在备考上，对社会是一种浪费。这些讨论，第三部会从个人的角度再回来。</p>
+  </div>
+
+  <div class="fig" id="gkFig">
+    <div class="fig-label">装置 20</div>
+    <h4>上岸的概率</h4>
+    <p class="how">上半部分是近几年国考的过审人数和平均竞争比。下半部分是一个粗略的计算器：选你报考岗位的竞争比、你在报考人群里的相对水平、每年能考几次（国考、省考、事业编等），以及打算考几年，看看“至少考上一次”的概率。</p>
+    <svg class="sim" id="gkSvg"></svg>
+    <div class="ctl"><span>岗位竞争比</span><input type="range" id="gkR" min="10" max="400" value="80" step="5"><output id="gkRO"></output></div>
+    <div class="ctl"><span>你的水平</span><input type="range" id="gkL" min="1" max="8"><output id="gkLO"></output></div>
+    <div class="ctl"><span>每年考几次</span><input type="range" id="gkN" min="1" max="5" value="2"><output id="gkNO"></output></div>
+    <div class="ctl"><span>打算考几年</span><input type="range" id="gkY" min="1" max="5" value="2"><output id="gkYO"></output></div>
+    <div class="kv" id="gkKv"></div>
+    <div class="say" id="gkSay"></div>
+    <p class="figcap">上半部分：2023—2026 年度国考通过资格审查人数（约 259.8 万、303.3 万、341.6 万、371.8 万）和平均竞争比（约 70、77、86、98 比 1），据国家公务员局公布及媒体报道。下半部分是示意模型：把“你的水平”折算成相对于平均考生的倍数，假设各次考试相互独立，没有考虑岗位选择、面试、心态等因素，只用来感受“竞争比”和“次数”的分量。</p>
+  </div>
+
+  <div class="black">
+    <h5>吃空饷</h5>
+    <p>编制是有财政供养的名额，名额就可能被滥用。一种常见的做法叫“吃空饷”：有人长期不上班照领工资，有人退休、调走、甚至去世后名字还挂在单位的工资表上，有人拿着财政工资在外面经商。2010 年代中期，全国开展了专项清理，据当时公布的数字，各地共清理出“吃空饷”人员十几万人（<b>具体数字以官方公布为准</b>）。</p>
+    <p>这和第一部第五章讲的清朝衙门里挂名的“白役”、第九章讲的中世纪挂名不到任的牧师，是同一个家族的毛病：<b>只要一个名额本身值钱，就会有人想办法占着名额而不干活</b>。治这种病的办法也一样古老：对账，把名单上的每一个名字和一个真人对上。</p>
+  </div>
+
+  <div class="col">
+    <h3>第二部的最后一张卡片</h3>
+    <p>从普鲁士的牧师之子，到白厅的古典学毕业生，到美国小镇的邮政局长，到法国的毕业名次、日本的同期、苏联的名单、新加坡的奖学金，再到河口市水务局的何姐：一百多年里，各国用不同的办法回答了同一组问题。中国今天的答案，是一场规模空前的公开考试，加上一套以编制为核心的名额管理。它和本书讲过的所有制度一样，有它要防的旧毛病，也会长出它自己的新毛病。</p>
+    <p>第三部，换一个角度：不再问“这台机器是怎么造的”，而问“坐在机器里的人是怎么想的”。舞台就是河口市水务局综合科那间地下档案室，四代人：1956 年进局的老范，1984 年的老温，2006 年的何姐，2025 年的许多。</p>
+  </div>
+
+  <div class="seal">
+    <div><i>营盘的账<small>制度</small></i>编制是用名额管人、用财政养人：它让国家知道自己养了多少人，也让名额本身成了稀缺品。名额越稀缺，门口的队就越长。</div>
+    <div><i>你的账<small>生活</small></i>竞争比是一个平均数，你面对的是你报的那个岗位。与其盯着全国的人数，不如仔细读你那张职位表的每一行，再算清楚你愿意为它花几年。</div>
+  </div>
+</section>
+
+<!-- ============ 第二部 · 部末 ============ -->
+<section class="chap" id="notes2" data-vol="第二部 · 部末">
+  <div class="col">
+    <h3>第二部小结：一台机器，和坐在最上面的人</h3>
+    <p>第二部的十章，可以压成三句话：</p>
+    <ul class="plain">
+      <li><b>机器是怎样造的</b>：考试挑人，国家发工资，按级别晋升，终身任职，位子不归个人，一切留档，忠于职位和法律。普鲁士先造，韦伯写说明书，英、美、法、日、中各自照着本国的脾气改了一版。</li>
+      <li><b>机器会长出什么毛病</b>：自己膨胀（帕金森），把规则当目的（默顿），把恶切成碎片（阿伦特），名校和名单变成新的世袭（布迪厄、吉拉斯），和被管的人分不开（天降、穿拖鞋），整体变老（干部稳定）。</li>
+      <li><b>政治家和机器怎样拔河</b>：换人、拆开、绕开、施压、加一层政治任命、收回人事权。机器太听话，会被任何一个司机开往任何地方；太不听话，选民选出来的人就指挥不动。没有一个国家找到过一劳永逸的答案。</li>
+    </ul>
+
+    <div class="desk" data-t="档案室 · 第二部看完">
+      <p><span class="x">许多</span>把第二个抽屉的卡片也摞好，最上面是何姐那一张。</p>
+      <p>“第三个抽屉呢？”</p>
+      <p><span class="nm">老温</span>摇摇头：“没有第三个抽屉了。第三部没有卡片，是咱们科自己的事。”他从柜子最底下拖出一个落满灰的纸箱，箱子上用毛笔写着“范”。“我师父的东西。他 1956 年进局，2009 年走的。你先看看他的笔记本。”</p>
+    </div>
+
+    <h3>第二部：哪些是真的</h3>
+    <p>档案室、许多、老温、何姐、河口市水务局是虚构的；第十一至二十张“履历”都是按史料拼合的虚构人物（第二十张是档案室故事里的人物），每张卡片下面注明了哪些部分是真的。正文里的人物、制度、事件、引文都是真实的，尽量核对过；装置里的数字多为示意，具体说明见各装置下方的小字。</p>
+    <h3>存疑与争议</h3>
+    <ul class="src">
+      <li><b>封面</b>：各国广义政府就业占比的年份与口径差异。</li>
+      <li><b>普</b>：腓特烈二世“国家第一仆人”一语的准确出处和措辞。</li>
+      <li><b>韦</b>：韦伯在魏玛宪法中主张强势总统，与后来纳粹上台之间的关系；帕金森数据的统计口径；阿伦特对艾希曼的判断与后来研究的分歧。</li>
+      <li><b>白</b>：英国文官考试受中国科举影响的程度；特罗洛普入职考试的细节（出自他本人的自传）。</li>
+      <li><b>相</b>：撒切尔夫人“他是自己人吗”一语的出处；1984 年那段短剧的作者；文官人数的统计口径；各次冲突中双方的说法。</li>
+      <li><b>赃</b>：各时期列级职位的比例；“梅子书”职位数目；附表 F 及 2025 年人事政策的后续变化（截至本书写作时仍在诉讼和调整中）。</li>
+      <li><b>校</b>：各届国立行政学院毕业生的去向名额；输血丑闻中各方的责任。</li>
+      <li><b>降</b>：通产省是否曾试图阻止本田进入汽车业；各省“天降”的规模；1998 年受处分官员的人数。</li>
+      <li><b>单</b>：沃斯连斯基对干部名单人数的估计；“吊灯”“钉子”之类笑话的真实性；大清洗各类数字的口径。</li>
+      <li><b>薪</b>：新加坡部长与常任秘书各年的薪酬数额；“付花生请猴子”是否出自李光耀；格鲁吉亚解雇交警的人数；麦理浩施政的动机。</li>
+      <li><b>编</b>：事业单位工作人员总数；清理“吃空饷”的人数；早年国考报名人数。</li>
+    </ul>
+    <h3>主要出处</h3>
+    <ul class="src">
+      <li>公版与官方文献（均为转述或节引）：《普鲁士邦普通法》（1794）；腓特烈二世《反马基雅维利》与政治遗嘱；黑格尔《法哲学原理》；韦伯《新教伦理与资本主义精神》《以政治为业》《经济与社会》；《诺思科特-特里维廉报告》（1854）；特罗洛普《自传》与《三个书记员》；富尔顿委员会报告（1968）；伊布斯报告《改进政府管理：下一步》（1988）；巴特勒报告（2004）；温德拉什教训审查报告（2020）；杰克逊 1829 年国情咨文；《彭德尔顿法》（1883）；《哈奇法》（1939）；美国 1978 年文官改革法；美国 2020、2021、2025 年相关行政命令；沙普塔尔 1800 年关于省长制度的讲话；赫鲁晓夫 1956 年苏共二十大秘密报告；斯大林 1935 年 5 月讲话；新加坡 1994 年薪酬白皮书与 2012 年部长薪酬检讨报告；新加坡《防止贪污法》；香港廉政公署相关资料；《国家公务员暂行条例》（1993）；《中华人民共和国公务员法》（2005，2018 年修订）；国家公务员局历年考录公告与数据；人力资源和社会保障部统计公报。</li>
+      <li>现代研究（只作转述，观点均已改写）：Hans Rosenberg《官僚、贵族与专制：普鲁士的经验》；Christopher Clark《钢铁王国》；Marianne Weber 的韦伯传；C. Northcote Parkinson《帕金森定律》；Laurence Peter《彼得原理》；Robert Merton《官僚结构与人格》；William Niskanen《官僚制与代议制政府》；Hannah Arendt《艾希曼在耶路撒冷》；Bettina Stangneth《耶路撒冷之前的艾希曼》；Peter Hennessy《白厅》；Hugo Young《自己人》；英国政府研究所关于部长与常任秘书任期的研究；Ari Hoogenboom《驱逐分赃者》；Paul Light 关于美国政治任命的研究；Ezra Suleiman 关于法国精英的研究；Pierre Bourdieu《国家贵族》；Chalmers Johnson《通产省与日本奇迹》；城山三郎《官僚们的夏天》；Michael Voslensky《诺缅克拉图拉》；Milovan Djilas《新阶级》；Sheila Fitzpatrick 关于苏联社会的研究；Gary Becker 与 George Stigler 关于执法与报酬的论文；Caroline Van Rijckeghem 与 Beatrice Weder 关于公务员工资与腐败的研究；Jon Quah 关于新加坡反腐的研究；世界银行关于格鲁吉亚改革的报告；Melanie Manion 关于香港廉署的研究。</li>
+    </ul>
+  </div>
+</section>
+
+<div class="partend" data-vol="第二部完">
+  <div class="k">第二部 · 机器 · 完</div>
+  <h3>从柏林到河口</h3>
+  <p class="ni" style="font-size:16px;line-height:1.9;text-align:left">普鲁士的国王把考试和见习变成了做官的门槛，韦伯把这台机器的原理写成了理论，帕金森发现它会自己长大；英国用十六年落实了一份二十页的报告，首相们和白厅拔了半个世纪的河；美国在一颗子弹之后才通过了考试法，两百年后又在争论该保留多少政治任命；法国把它装进一所学校，日本装进一个省厅，苏联装进一张名单，新加坡装进一张工资单；今天的中国，每年有几百万人走进考场。<em>机器的样子千差万别，它要回答的问题，和五千年前那块泥板上的一样</em>。</p>
+  <p class="ni" style="font-size:16px;line-height:1.9;text-align:left">第三部换一个角度：坐在机器里的人，是怎样想事情的。</p>
+  <a class="go" href="./">← 回到第一部 · 刀笔</a>
+  <a class="go" href="three.html" data-c="c20">第三部 · 心法 →</a>
+</div>
+
+<footer>
+  <p>《铁打的营盘 · 文官创世记》第二部。档案室和其中的人物、河口市水务局是虚构的，“履历”卡片均为拼合的虚构人物；正文中的史实尽量核对过，有争议的地方标了“存疑”，说明与出处见<a href="#notes2">上面</a>。</p>
+  <p>引用的原文只限公版文献和公开的官方文件，大多为大意转述；现代学者的观点和现代人物的话均为转述。装置里的数字是简化模型或粗略取整的统计，只看数量级和趋势。离今天很近的事，只写已经发生的事实和各方的说法。</p>
+  <a class="nextbook" href="../turn/four.html"><small>书房里的另一本书</small><br><b>轮到谁了 · 第四部《美国》</b><br><small>这一部讲到的分赃制、彭德尔顿法、忠诚审查、去复兴党化，在那本书里放在美国两百五十年的霸主之路里讲：同一张桌子，怎样被一个大国的兴衰推来推去。</small></a>
+  <p><a href="#top" class="toTop">回到封面 ↑</a>　·　<a href="./">第一部 · 刀笔</a>　·　<a href="three.html" data-c="c20">第三部 · 心法</a>　·　<a href="../">回书房</a></p>
+</footer>
+
+<script>
+(function(){
+'use strict';
+const $ = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => [...(r || document).querySelectorAll(s)];
+const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+const lerp = (a, b, t) => a + (b - a) * t;
+function rng(seed){ let a = seed >>> 0; return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const fmt = n => n >= 1e8 ? (n / 1e8).toFixed(1) + ' 亿' : n >= 1e4 ? (Math.round(n / 1e3) / 10).toLocaleString() + ' 万' : Math.round(n).toLocaleString();
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+const yr = y => y < 0 ? '前 ' + (-y) : String(y);
+const btnRow = (box, items, cur, cb) => {
+  box.innerHTML = items.map((t, i) => '<button class="btn' + (i === cur ? ' on' : '') + '" data-i="' + i + '">' + t + '</button>').join('');
+  box.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; $$('button', box).forEach(x => x.classList.toggle('on', x === b)); cb(+b.dataset.i); });
+};
+const dev = (sel, fn) => { const el = $(sel); if (el) { try { fn(el); } catch (err) { console.error(sel, err); } } };
+const kv = (box, rows) => { box.innerHTML = rows.map(r => '<div>' + r[0] + '<b>' + r[1] + '</b></div>').join(''); };
+function svgPt(svg, e){
+  const r = svg.getBoundingClientRect(), vb = svg.viewBox.baseVal;
+  const s = Math.max(vb.width / r.width, vb.height / r.height);
+  const ox = (r.width * s - vb.width) / 2, oy = (r.height * s - vb.height) / 2;
+  return {x: (e.clientX - r.left) * s - ox + vb.x, y: (e.clientY - r.top) * s - oy + vb.y};
+}
+function txt(x, y, t, o){ o = o || {}; return '<text x="' + x + '" y="' + y + '" font-size="' + (o.s || 13) + '" fill="' + (o.c || 'var(--ink)') + '" text-anchor="' + (o.a || 'middle') + '"' + (o.w ? ' font-weight="700"' : '') + (o.halo === false ? '' : ' paint-order="stroke" stroke="' + (o.hc || 'var(--card)') + '" stroke-width="3.5" stroke-linejoin="round"') + '>' + t + '</text>'; }
+/* 滑块：绑定 input 与 output，返回读数函数 */
+function slider(id, f, cb){ const r = $('#' + id), o = $('#' + id + 'O'); const go = () => { if (o) o.textContent = f ? f(+r.value) : r.value; if (cb) cb(+r.value); }; r.addEventListener('input', go); go(); return () => +r.value; }
+
+/* ---------- 全书目录（三个网页共用） ---------- */
+const PAGE = /three\.html/.test(location.pathname) ? 3 : /two\.html/.test(location.pathname) ? 2 : 1;
+const READY = 2; // 已经写好的部数；后面的章节在目录里显示“写作中”
+const PURL = {1: './', 2: 'two.html', 3: 'three.html'};
+const TOC = [
+  {p: 1, t: '第一部 · 刀笔 —— 从书吏到师爷'},
+  {v: '序幕'},
+  {id: 'c0', n: '泥', t: '泥板上的欠账', s: '书吏学堂、工日账、“去当书吏吧”：第一批坐办公室的人', r: '前 3200—前 1000'},
+  {v: '卷一 · 吏 —— 秦汉魏晋'},
+  {id: 'c1', n: '简', t: '以吏为师', s: '秦：文书行政、睡虎地和里耶的竹简、刀笔吏', r: '前 359—前 207'},
+  {id: 'c2', n: '举', t: '举孝廉', s: '汉：察举、从二千石到斗食、一个郡的两千个吏', r: '前 206—220'},
+  {id: 'c3', n: '品', t: '上品无寒门', s: '九品中正、门阀、清官和浊官', r: '220—589'},
+  {v: '卷二 · 考 —— 隋唐到明清'},
+  {id: 'c4', n: '考', t: '一张考卷', s: '科举：隋唐的开头、宋朝的糊名、明清的八股和漏斗', r: '587—1905'},
+  {id: 'c5', n: '胥', t: '官无封建，吏有封建', s: '胥吏：不拿俸禄的人怎样管着天下', r: '960—1911'},
+  {id: 'c6', n: '幕', t: '知县的账本', s: '幕友、长随、门丁：一个县衙到底靠谁运转', r: '1644—1911'},
+  {v: '卷三 · 替身 —— 别处的办法'},
+  {id: 'c7', n: '奴', t: '苏丹的孩子', s: '奥斯曼的“征集”、马穆鲁克、宦官：为什么用没有家的人', r: '1380—1826'},
+  {id: 'c8', n: '买', t: '明码标价', s: '西园卖官、法国的官职买卖、捐纳、包税人', r: '178—1905'},
+  {id: 'c9', n: '符', t: '国库里的木棍', s: '教士当文书、财政署的方格布和符木、一把火烧了议会', r: '1066—1834'},
+  {p: 2, t: '第二部 · 机器 —— 现代文官怎样造出来'},
+  {v: '卷四 · 图纸'},
+  {id: 'c10', n: '普', t: '国王的第一仆人', s: '普鲁士：官房学、三道考试、不领工资的见习', r: '1713—1871'},
+  {id: 'c11', n: '韦', t: '铁笼与帕金森', s: '韦伯的官僚制、帕金森定律、彼得原理', r: '1900—1971'},
+  {id: 'c12', n: '白', t: '一份二十页的报告', s: '英国：恩庇、诺思科特-特里维廉、白厅、通才', r: '1780—1968'},
+  {id: 'c13', n: '相', t: '首相与常任秘书', s: '撒切尔、下一步机构、特别顾问、沙发上的政府、后来的拔河', r: '1964—2024'},
+  {id: 'c14', n: '赃', t: '胜利者的战利品', s: '美国：分赃制、加菲尔德、彭德尔顿法、哈奇法、附表 F', r: '1829—2025'},
+  {v: '卷五 · 各家'},
+  {id: 'c15', n: '校', t: '毕业名次', s: '法国：省长、大团、国立行政学院和它的关门', r: '1800—2022'},
+  {id: 'c16', n: '降', t: '从天上下来', s: '日本：大藏省、通产省、同期和“天降”', r: '1868—2017'},
+  {id: 'c17', n: '单', t: '名单上的人', s: '苏联：干部名单、新阶级、“干部稳定”', r: '1920—1991'},
+  {id: 'c18', n: '薪', t: '高薪养廉？', s: '新加坡的部长工资、香港廉署，和清朝的养廉银', r: '1724—2012'},
+  {id: 'c19', n: '编', t: '编制', s: '当代中国：从分配到考试、编制、职级', r: '1978—2025'},
+  {p: 3, t: '第三部 · 心法 —— 营盘里的人怎样想事情'},
+  {v: '卷六 · 性子'},
+  {id: 'c20', n: '稳', t: '不求有功', s: '风险厌恶：为什么做错比不做更可怕', r: '心法'},
+  {id: 'c21', n: '慢', t: '留痕', s: '程序、会签、文件：慢为什么常常是理性的', r: '心法'},
+  {id: 'c22', n: '听', t: '听话听音', s: '文件里的词、信号、信息怎样上下走', r: '心法'},
+  {id: 'c23', n: '婉', t: '不说不', s: '为什么很少直接拒绝，以及“研究研究”的十种意思', r: '心法'},
+  {v: '卷七 · 算盘'},
+  {id: 'c24', n: '房', t: '房子', s: '福利分房、房改、公积金：营盘里的人怎样看房子', r: '心法'},
+  {id: 'c25', n: '车', t: '一笔总账', s: '公车、车改，和体制内外的总账', r: '心法'},
+  {id: 'c26', n: '老', t: '后付的工资', s: '养老、年资、金手铐', r: '心法'},
+  {id: 'c27', n: '时', t: '年龄线', s: '时机：稳和快，什么时候动', r: '心法'},
+  {v: '卷八 · 代价与带走'},
+  {id: 'c28', n: '价', t: '围城', s: '代价：约束、无聊、背锅、慢', r: '心法'},
+  {id: 'c29', n: '带', t: '带走什么', s: '尾声：外面的人能从营盘里学走什么', r: '尾声'}
+];
+const chapPage = {}; { let p = 1; TOC.forEach(x => { if (x.p) p = x.p; if (x.id) chapPage[x.id] = p; }); }
+const href = id => (chapPage[id] === PAGE ? '' : PURL[chapPage[id]]) + '#' + id;
+$$('.bar .parts a').forEach(a => { const p = +a.dataset.p; a.classList.toggle('on', p === PAGE); if (p > READY) { a.removeAttribute('href'); a.style.opacity = .4; a.title = '写作中'; } });
+$('#drawerList').innerHTML = TOC.map(x => x.p ? '<li class="ph">' + x.t + '</li>' : x.v ? '<li class="vh">' + x.v + '</li>' :
+  chapPage[x.id] > READY ? '<li><a style="opacity:.5;pointer-events:none"><span class="n">' + x.n + '</span><span>' + x.t + '<small>写作中</small></span></a></li>' :
+  '<li><a href="' + href(x.id) + '"' + (chapPage[x.id] === PAGE ? ' class="here"' : '') + '><span class="n">' + x.n + '</span><span>' + x.t + '<small>' + x.s + '</small></span></a></li>').join('');
+dev('#toc', ul => {
+  ul.innerHTML = TOC.map(x => x.p ? '<li class="vh" style="color:var(--zhu)">' + x.t + '</li>' : x.v ? '<li class="vh">' + x.v + '</li>' :
+    chapPage[x.id] > READY ? '<li class="soon"><div><span class="n">' + x.n + '</span><span class="t">' + x.t + '<small>' + x.s + '</small></span><span class="r">' + x.r + '</span></div></li>' :
+    '<li' + (chapPage[x.id] === PAGE ? '' : ' class="away"') + '><a href="' + href(x.id) + '"><span class="n">' + x.n + '</span><span class="t">' + x.t + '<small>' + x.s + '</small></span><span class="r">' + x.r + '</span></a></li>').join('');
+});
+/* 页面里写 <a data-c="c12">…</a>，自动拼出跨页链接 */
+$$('a[data-c]').forEach(a => { const id = a.dataset.c; if (chapPage[id] > READY) { a.removeAttribute('href'); a.title = '写作中'; a.style.textDecorationStyle = 'dotted'; } else a.href = href(id); });
+
+/* ---------- 页眉：卷名、进度、目录抽屉 ---------- */
+const barVol = $('#barVol'), prog = $('#prog');
+const vols = $$('[data-vol]');
+let ticking = false;
+function onScroll(){
+  ticking = false;
+  const lim = innerHeight * 0.35; let cur = null;
+  for (const e of vols) { if (e.getBoundingClientRect().top < lim) cur = e; else break; }
+  barVol.textContent = cur ? cur.dataset.vol : '序';
+  const H = document.documentElement.scrollHeight - innerHeight;
+  prog.style.width = (H > 0 ? scrollY / H * 100 : 0) + '%';
+}
+window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, {passive: true});
+onScroll();
+const drawer = $('#drawer');
+function openD(on){ drawer.classList.toggle('on', on); drawer.setAttribute('aria-hidden', on ? 'false' : 'true'); }
+$('#tocBtn').addEventListener('click', () => openD(true));
+drawer.addEventListener('click', e => { if (e.target.closest('[data-close]') || e.target.closest('a')) openD(false); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') openD(false); });
+$$('.toTop').forEach(a => a.addEventListener('click', e => { e.preventDefault(); scrollTo({top: 0, behavior: 'smooth'}); }));
+
+/* 章首：入仕的六扇门 */
+const GATES = [['生', '出身'], ['荐', '推荐'], ['考', '考试'], ['买', '花钱'], ['宠', '君主的私人'], ['任', '政治任命']];
+$$('.gate').forEach(w => { const on = (w.dataset.g || '').split(/\s+/); w.innerHTML = GATES.map(f => '<span' + (on.includes(f[0]) ? ' class="on"' : '') + '><b>' + f[0] + '</b>' + f[1] + '</span>').join(''); });
+
+/* 年代条：前 3200 到 2030，这一章占哪一段（前 3200—前 600 压缩成左边的一小截） */
+const tp = y => y < -600 ? (y + 3200) / 2600 * 18 : 18 + (y + 600) / 2630 * 82;
+$$('.when').forEach(w => {
+  const a = +w.dataset.a, b = +w.dataset.b;
+  w.innerHTML = [-3000, -1000, 1, 500, 1000, 1500, 2000].map(y => '<span style="left:' + Math.max(3, tp(y)) + '%">' + (y === 1 ? '公元' : yr(y)) + '</span>').join('') +
+    '<i style="left:' + tp(a) + '%;width:' + Math.max(.6, tp(b) - tp(a)) + '%"></i>';
+  w.title = yr(a) + ' — ' + yr(b);
+});
+
+/* 卷首的方印 */
+$$('svg.yin').forEach(s => {
+  const t = (s.dataset.t || '营盘').split('');
+  s.setAttribute('viewBox', '0 0 100 100');
+  let g = '<rect x="6" y="6" width="88" height="88" rx="6" fill="none" stroke="currentColor" stroke-width="4"/><rect x="12" y="12" width="76" height="76" rx="3" fill="none" stroke="currentColor" stroke-width="1.2"/>';
+  if (t.length === 4) g += [[67, 42], [67, 78], [33, 42], [33, 78]].map((p, i) => '<text x="' + p[0] + '" y="' + p[1] + '" font-size="34" text-anchor="middle" fill="currentColor" font-family="var(--f-display)">' + t[i] + '</text>').join('');
+  else g += t.map((c, i) => '<text x="50" y="' + (44 + i * 36 - (t.length - 1) * 12) + '" font-size="34" text-anchor="middle" fill="currentColor" font-family="var(--f-display)">' + c + '</text>').join('');
+  s.innerHTML = g;
+});
+
+/* 通用小折线图：series=[{name,color,pts:[[x,y]...],dash}]，opt={xmin,xmax,ymin,ymax,xt,yt,xf,yf,marks:[[x,label]],H} */
+function lineChart(svg, series, opt){
+  const W = 600, H = opt.H || 260, L = opt.L || 46, R = 14, T = 14, B = 30;
+  const X = x => L + (x - opt.xmin) / (opt.xmax - opt.xmin) * (W - L - R);
+  const Y = y => T + (1 - (y - opt.ymin) / (opt.ymax - opt.ymin)) * (H - T - B);
+  let g = '';
+  (opt.yt || []).forEach(v => g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + Y(v) + '" y2="' + Y(v) + '" stroke="var(--rule)"/>' + txt(L - 6, Y(v) + 4, opt.yf ? opt.yf(v) : v, {s: 11, a: 'end', c: 'var(--ink-3)', halo: false}));
+  (opt.xt || []).forEach(v => g += txt(X(v), H - 10, opt.xf ? opt.xf(v) : v, {s: 11, c: 'var(--ink-3)', halo: false}));
+  (opt.marks || []).forEach((m, i) => g += '<line x1="' + X(m[0]) + '" x2="' + X(m[0]) + '" y1="' + T + '" y2="' + (H - B) + '" stroke="var(--ink-3)" stroke-dasharray="2 3"/>' + txt(X(m[0]) + 3, T + 12 + (i % 3) * 14, m[1], {s: 11, a: 'start', c: 'var(--ink-2)'}));
+  series.forEach(s => {
+    const pts = s.pts.filter(p => p[1] != null);
+    g += '<path d="M' + pts.map(p => X(p[0]).toFixed(1) + ',' + Y(p[1]).toFixed(1)).join('L') + '" fill="none" stroke="' + s.color + '" stroke-width="' + (s.w || 2.4) + '"' + (s.dash ? ' stroke-dasharray="' + s.dash + '"' : '') + ' stroke-linejoin="round"/>';
+    if (s.dots) pts.forEach(p => g += '<circle cx="' + X(p[0]).toFixed(1) + '" cy="' + Y(p[1]).toFixed(1) + '" r="3" fill="' + s.color + '"/>');
+  });
+  g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + (H - B) + '" y2="' + (H - B) + '" stroke="var(--ink)" stroke-width="1.2"/>';
+  svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+  return {X, Y, W, H, L, R, T, B};
+}
+/* 横条：rows=[[名字, 数值, 小字, 颜色]] */
+function bars(box, rows, max, f){
+  box.innerHTML = rows.map(r => '<div class="row"><span class="nm">' + r[0] + (r[2] ? '<small>' + r[2] + '</small>' : '') + '</span><span class="tr"><i style="width:' + clamp(r[1] / max * 100, 0, 100) + '%;' + (r[3] ? 'background:' + r[3] : '') + '"></i></span><span class="v">' + (f ? f(r[1]) : r[1]) + '</span></div>').join('');
+}
+
+
+/* ---------- 封面装置：五千年，这张桌子是怎么坐上去的 ---------- */
+dev('#gateFig', fig => {
+  const svg = $('#gateSvg'), say = $('#gateSay');
+  // [门, 起, 止, 名字, 一句话]
+  const D = [
+    ['生', -2500, -1000, '两河、埃及的书吏世家', '书吏多是书吏的儿子，学堂学费不菲'],
+    ['生', -1046, -500, '西周世卿世禄', '卿大夫的位子父死子继'],
+    ['生', 220, 589, '魏晋南北朝门阀', '九品中正名义上评人，实际上评家世'],
+    ['生', 800, 1789, '欧洲封建贵族', '领主就是地方上的官'],
+    ['生', 1603, 1868, '江户日本', '武士家格决定能当什么官'],
+    ['荐', -134, 220, '汉朝察举', '郡国每年举孝廉，名额按人口算'],
+    ['荐', 220, 589, '九品中正', '中正官给本地士人评九个品'],
+    ['荐', 1700, 1870, '英国恩庇', '一封大人物的信就能进衙门'],
+    ['考', 605, 1905, '中国科举', '隋唐起，明清最盛，1905 年停'],
+    ['考', 958, 1894, '高丽、朝鲜科举', '学中国，考了九百多年'],
+    ['考', 1075, 1919, '越南科举', '比中国还晚停了十几年'],
+    ['考', 1770, 2025, '普鲁士与德国的国家考试', '法学考试 + 见习，后来遍及德语世界'],
+    ['考', 1855, 2025, '英国公开竞争考试', '1855 年设委员会，1870 年大多数职位公开考'],
+    ['考', 1883, 2025, '美国功绩制', '彭德尔顿法起，考试职位越来越多'],
+    ['考', 1887, 2025, '日本高等文官考试', '东京帝大法科的天下'],
+    ['考', 1945, 2025, '法国国立行政学院', '2022 年改组为国家公共服务学院'],
+    ['考', 1994, 2025, '中国公务员考试', '1994 年中央国家机关首次统一考录'],
+    ['买', -200, 0, '罗马包税人', '公开竞标收行省的税'],
+    ['买', 178, 189, '东汉西园卖官', '汉灵帝明码标价'],
+    ['买', 1522, 1789, '法国官职买卖', '官职是私产，可以继承和转卖'],
+    ['买', 1674, 1905, '清朝捐纳', '平三藩起大开，太平天国后泛滥'],
+    ['买', 1683, 1871, '英国陆军军官职位买卖', '1871 年才废除'],
+    ['宠', 100, 189, '东汉宦官', '十常侍'],
+    ['宠', 400, 1200, '拜占庭宦官', '宦官不能当皇帝，所以皇帝放心用'],
+    ['宠', 1250, 1517, '埃及马穆鲁克', '奴隶兵自己当了苏丹'],
+    ['宠', 1380, 1700, '奥斯曼“征集”', '基督徒男孩改宗，进宫当兵当官'],
+    ['宠', 1420, 1644, '明朝宦官', '司礼监批红，东厂'],
+    ['任', 1829, 1883, '美国分赃制', '换一个总统，换一批邮政局长'],
+    ['任', 1883, 2025, '美国政治任命', '至今每次换届仍有约四千个位子'],
+    ['任', 1923, 1991, '苏联干部名单', '名单上的位子由党组织决定']
+  ];
+  const G = ['生', '荐', '考', '买', '宠', '任'], GN = ['出身', '推荐', '考试', '花钱', '君主的私人', '政治任命'];
+  const COL = ['var(--kraft)', 'var(--grn)', 'var(--main)', 'var(--och)', 'var(--pur)', 'var(--red)'];
+  let sel = -1;
+  $('#gateBtns').innerHTML = G.map((g, i) => '<button data-i="' + i + '"><b>' + g + '</b>' + GN[i] + '</button>').join('');
+  $('#gateBtns').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; const i = +b.dataset.i; sel = sel === i ? -1 : i; $$('#gateBtns button').forEach(x => x.classList.toggle('on', +x.dataset.i === sel)); draw(); });
+  const W = 600, L = 34, R = 10, T = 22, RH = 34, H = T + RH * 6 + 22;
+  // 时间轴：前 2500—前 600 压缩
+  const X = y => y < -600 ? L + (y + 2500) / 1900 * (W - L - R) * .16 : L + (W - L - R) * (.16 + (y + 600) / 2625 * .84);
+  svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+  function draw(){
+    const y0 = +$('#gateR').value;
+    let g = '';
+    [-2000, -1000, 1, 500, 1000, 1500, 2000].forEach(y => g += '<line x1="' + X(y) + '" x2="' + X(y) + '" y1="' + T + '" y2="' + (H - 20) + '" stroke="var(--rule)" stroke-dasharray="2 3"/>' + txt(X(y), H - 6, y === 1 ? '公元' : yr(y), {s: 10.5, c: 'var(--ink-3)', halo: false}));
+    G.forEach((gg, i) => {
+      const y = T + i * RH;
+      g += txt(16, y + RH / 2 + 6, gg, {s: 17, c: COL[i], halo: false});
+      const rows = D.filter(d => d[0] === gg);
+      rows.forEach((d, k) => {
+        const yy = y + 4 + (k % 3) * 9, on = sel < 0 || sel === i, hit = y0 >= d[1] && y0 <= d[2];
+        g += '<rect x="' + X(d[1]).toFixed(1) + '" y="' + yy + '" width="' + Math.max(3, X(d[2]) - X(d[1])).toFixed(1) + '" height="7" rx="2" fill="' + COL[i] + '" opacity="' + (on ? (hit ? 1 : .55) : .12) + '"><title>' + d[3] + '：' + yr(d[1]) + '—' + yr(d[2]) + '</title></rect>';
+      });
+    });
+    g += '<line x1="' + X(y0) + '" x2="' + X(y0) + '" y1="' + (T - 8) + '" y2="' + (H - 20) + '" stroke="var(--ink)" stroke-width="1.5"/>';
+    svg.innerHTML = g;
+    $('#gateRO').textContent = yr(y0) + ' 年';
+    const act = D.filter(d => y0 >= d[1] && y0 <= d[2] && (sel < 0 || G[sel] === d[0]));
+    if (sel >= 0) {
+      const all = D.filter(d => d[0] === G[sel]);
+      say.innerHTML = '<b>' + G[sel] + ' · ' + GN[sel] + '</b>：' + all.map(d => d[3] + '（' + d[4] + '）').join('；') + '。' + (act.length ? '<br>' + yr(y0) + ' 年正开着这扇门的：<b>' + act.map(d => d[3]).join('、') + '</b>。' : '');
+    } else {
+      say.innerHTML = act.length ? yr(y0) + ' 年：' + act.map(d => '<b style="color:' + COL[G.indexOf(d[0])] + '">' + d[0] + '</b> ' + d[3] + '（' + d[4] + '）').join('；') + '。' : yr(y0) + ' 年：图里这些大国，这一年都没有一种“主要的”选官办法可画。别误会，衙门照样有人，只是史料太少，或者几种办法搅在一起。';
+    }
+  }
+  $('#gateR').addEventListener('input', draw);
+  draw();
+});
+
+
+/* ---------- 第二部封面装置：一百个上班的人里，几个替政府干活 ---------- */
+dev('#pubFig', fig => {
+  const D = [['挪威', 30], ['丹麦', 28], ['瑞典', 29], ['芬兰', 25], ['法国', 21], ['加拿大', 19], ['英国', 16], ['意大利', 13], ['美国', 15], ['西班牙', 16], ['德国', 11], ['荷兰', 12], ['韩国', 8], ['日本', 6]];
+  let mode = 0;
+  btnRow($('#pubSort'), ['从高到低', '从低到高', '先别排，我先猜'], 2, i => { mode = i; draw(); });
+  function draw(){
+    let rows = D.slice();
+    if (mode === 0) rows.sort((a, b) => b[1] - a[1]);
+    if (mode === 1) rows.sort((a, b) => a[1] - b[1]);
+    const hide = mode === 2;
+    bars($('#pubBars'), rows.map(r => [r[0], hide ? 0 : r[1], '', r[0] === '日本' && !hide ? 'var(--zhu)' : 'var(--main)']), 32, v => hide ? '?' : '约 ' + v + '%');
+    $('#pubSay').innerHTML = hide ? '先猜一下：哪个国家最低？很多人会猜美国，因为“美国是小政府”。点上面的排序按钮揭晓。' :
+      '最低的是<b>日本</b>，一百个上班的人里大约只有六个替政府干活；北欧国家最高，接近三成，因为那里的托儿所、养老院、医院大多是公立的，护工和教师都算政府雇员。<b>“官僚多不多”和“公务员多不多”是两回事</b>：日本的公务员很少，可它的官僚曾经被认为是世界上最有权力的官僚之一（第十六章）。';
+  }
+  draw();
+});
+
+
+/* ---------- 装置 1：平一本工日账 ---------- */
+dev('#udFig', fig => {
+  const T = $('#udT'), say = $('#udSay');
+  let st;
+  const nR = $('#udN');
+  function reset(){
+    st = {yr: 0, n: +nR.value, bal: 0, sick: 0, rows: [], r: rng(20 + +nR.value)};
+    nR.disabled = false; $('#udA').disabled = $('#udB').disabled = false;
+    render();
+    say.className = 'say'; say.innerHTML = '总督府的规矩：每人每年 360 天，每 10 天休 1 天，剩下的天数全按定额折成“应完成”的工日。点上面的按钮开始过第一年。';
+  }
+  $('#udNO').textContent = nR.value + ' 人';
+  nR.addEventListener('input', () => { $('#udNO').textContent = nR.value + ' 人'; reset(); });
+  function year(hard){
+    if (st.yr >= 5) return;
+    nR.disabled = true;
+    const r = st.r, n = st.n;
+    const due = Math.round(n * 324);                         // 应完成：人数 × (360 − 36 天休息)
+    // 实际：每人完成率受天气、生病、逃跑影响
+    const flood = r() < 0.25, drought = !flood && r() < 0.2;
+    let sickDays = 0, fled = 0, done = 0;
+    for (let i = 0; i < n; i++) {
+      let days = 324;
+      const pSick = 0.25 + st.sick * 0.08 + (hard ? 0.05 : 0);
+      if (r() < pSick) { const d = Math.round(10 + r() * 40); sickDays += d; days -= d; }
+      if (r() < 0.03 + st.sick * 0.02) { fled++; days -= Math.round(r() * 200); }
+      days = Math.max(0, days);
+      const eff = (hard ? 1.12 : 0.97) * (flood ? 0.88 : drought ? 0.94 : 1) * (0.92 + r() * 0.1);
+      done += days * eff;
+    }
+    done = Math.round(done);
+    st.sick = hard ? Math.min(4, st.sick + 1) : Math.max(0, st.sick - 1);
+    const diff = done - due;
+    st.bal += diff; st.yr++;
+    st.rows.push([st.yr, due, done, diff, st.bal, (flood ? '发大水；' : drought ? '天旱；' : '') + (fled ? '跑了 ' + fled + ' 人；' : '') + '病假约 ' + sickDays + ' 工日' + (hard ? '；逼紧了' : '')]);
+    render();
+    if (st.yr >= 5) {
+      $('#udA').disabled = $('#udB').disabled = true;
+      if (st.bal < 0) { say.className = 'say bad'; say.innerHTML = '五年下来，你一共欠总督府 <b>' + (-st.bal).toLocaleString() + '</b> 个工日，相当于 ' + (-st.bal / 324).toFixed(1) + ' 个人白干一整年。这笔账会一直挂在你名下。<b>别灰心，乌尔第三王朝的工头大多也是这样</b>：定额按“不下雨、不生病、没人跑”来定，现实没有一年配合。'; }
+      else { say.className = 'say ok'; say.innerHTML = '五年下来，你的账上结余 <b>' + st.bal.toLocaleString() + '</b> 个工日。你是少见的好工头，或者运气好。真实的泥板上，能年年结余的工头不多；下一年，总督府很可能顺手把你的定额再提一提。'; }
+    } else {
+      say.className = 'say' + (diff < 0 ? ' bad' : ' ok');
+      say.innerHTML = '第 ' + st.yr + ' 年：应完成 ' + due.toLocaleString() + '，已完成 ' + done.toLocaleString() + '，' + (diff < 0 ? '欠 ' + (-diff).toLocaleString() : '多出 ' + diff.toLocaleString()) + ' 个工日。' + (hard ? '你逼紧了，今年干得多，可手下的人累垮了，<b>明年病的跑的会更多</b>。' : st.sick > 0 ? '去年逼得太紧，伤还没养好。' : '');
+    }
+  }
+  function render(){
+    kv($('#udKv'), [['第几年', st.yr + ' / 5'], ['手下', st.n + ' 人'], ['累计结余', (st.bal >= 0 ? '+' : '') + st.bal.toLocaleString()], ['疲惫程度', ['好', '有点累', '累', '很累', '快垮了'][st.sick]]]);
+    T.innerHTML = '<tr><th>年</th><th>应完成</th><th>已完成</th><th>本年差额</th><th>结转</th><th>备注</th></tr>' +
+      st.rows.map(r => '<tr><td>' + r[0] + '</td><td>' + r[1].toLocaleString() + '</td><td>' + r[2].toLocaleString() + '</td><td style="color:' + (r[3] < 0 ? 'var(--red)' : 'var(--grn)') + '">' + (r[3] >= 0 ? '+' : '') + r[3].toLocaleString() + '</td><td>' + (r[4] >= 0 ? '+' : '') + r[4].toLocaleString() + '</td><td style="font-size:13px;color:var(--ink-3)">' + r[5] + '</td></tr>').join('');
+  }
+  $('#udA').addEventListener('click', () => year(false));
+  $('#udB').addEventListener('click', () => year(true));
+  $('#udR').addEventListener('click', reset);
+  reset();
+});
+
+
+/* ---------- 装置 2：秦朝的收发室 ---------- */
+dev('#qinFig', fig => {
+  const box = $('#qinBox'), say = $('#qinSay'), log = $('#qinLog');
+  const FROM = ['洞庭郡', '启陵乡', '贰春乡', '都乡', '少内', '仓', '司空', '尉', '酉阳县', '临沅县'];
+  const WHAT = ['追捕逃亡者', '核对仓粮', '更名诏书', '上报户口', '征发徭役', '刑徒名籍', '借用船只', '钱粮出入', '迁徙户籍', '祠先农'];
+  let st, r;
+  function reset(){
+    r = rng(7); st = {day: 0, docs: [], sent: 0, liu: 0, fine: 0, cap: 3, used: 0, id: 0};
+    log.textContent = '';
+    nextDay(true);
+  }
+  function newDocs(){
+    const n = 2 + Math.floor(r() * 4) + (st.day > 6 ? 1 : 0);
+    for (let i = 0; i < n; i++) st.docs.push({id: st.id++, urgent: r() < 0.35, from: FROM[Math.floor(r() * FROM.length)], what: WHAT[Math.floor(r() * WHAT.length)], age: 0});
+  }
+  function nextDay(first){
+    if (!first) {
+      // 结算今天：没发的急书和压过一天的不急书都算“留”
+      let bad = [];
+      st.docs.forEach(d => { if (d.urgent || d.age >= 1) bad.push(d); });
+      bad.forEach(d => { st.liu++; st.fine += d.urgent ? 2 : 1; log.textContent = '第 ' + st.day + ' 日：' + d.from + '「' + d.what + '」' + (d.urgent ? '急书' : '压过一日') + '未发，留。' + (d.urgent ? '赀一甲。' : '赀一盾。') + '\n' + log.textContent; });
+      st.docs = st.docs.filter(d => !(d.urgent || d.age >= 1));
+      st.docs.forEach(d => d.age++);
+      // 留下的急书视为已追发
+    }
+    if (st.day >= 10) { end(); return; }
+    st.day++; st.used = 0;
+    st.cap = 3 + (r() < 0.3 ? -1 : 0) + (r() < 0.2 ? 1 : 0);
+    newDocs();
+    render();
+    say.className = 'say';
+    say.innerHTML = '第 ' + st.day + ' 日。今天能派的邮人：<b>' + st.cap + '</b> 个' + (st.cap < 3 ? '（一个邮人被派去服徭役了）' : st.cap > 3 ? '（尉那边借来一个人）' : '') + '。案头文书 ' + st.docs.length + ' 件，其中急书 ' + st.docs.filter(d => d.urgent).length + ' 件、昨天压下的 ' + st.docs.filter(d => d.age >= 1).length + ' 件。';
+  }
+  function render(){
+    kv($('#qinKv'), [['日子', st.day + ' / 10'], ['今天剩余邮人', (st.cap - st.used) + ' / ' + st.cap], ['已发', st.sent + ' 件'], ['被记“留”', st.liu + ' 次'], ['累计罚', Math.floor(st.fine / 2) + ' 甲 ' + (st.fine % 2) + ' 盾']]);
+    box.innerHTML = st.docs.length ? st.docs.map(d => '<button class="btn" data-id="' + d.id + '" style="border-radius:4px;font-size:13px;line-height:1.4;padding:4px 8px;text-align:left;' + (d.urgent ? 'border-color:var(--zhu);color:var(--zhu)' : d.age >= 1 ? 'border-style:dashed' : '') + '"' + (st.used >= st.cap ? ' disabled' : '') + '>' + (d.urgent ? '急 · ' : d.age >= 1 ? '昨 · ' : '') + d.from + '<br><small>' + d.what + '</small></button>').join('') : '<span style="color:var(--ink-3);font-size:14px">案头空了。</span>';
+  }
+  box.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b || st.used >= st.cap) return;
+    const id = +b.dataset.id, d = st.docs.find(x => x.id === id);
+    st.docs = st.docs.filter(x => x.id !== id); st.used++; st.sent++;
+    log.textContent = '第 ' + st.day + ' 日 水十一刻刻下' + (1 + Math.floor(r() * 9)) + '：' + d.from + '「' + d.what + '」' + (d.urgent ? '（急）' : '') + '，以邮行。\n' + log.textContent;
+    render();
+  });
+  function end(){
+    render();
+    box.innerHTML = '';
+    $('#qinNext').disabled = true;
+    say.className = 'say ' + (st.liu > 4 ? 'bad' : 'ok');
+    say.innerHTML = '十天过去。你发出 <b>' + st.sent + '</b> 件文书，被记“留” <b>' + st.liu + '</b> 次，累计罚 ' + Math.floor(st.fine / 2) + ' 甲 ' + (st.fine % 2) + ' 盾。' +
+      (st.liu === 0 ? '一次没留，你是迁陵县的模范令史。' : st.liu > 4 ? '人手永远不够，文书永远在来，这是里耶秦简里的常态。<b>聪明的令史学会的第一件事是：先发急的，再发昨天压下的，最后才发今天新来的不急的。</b>' : '还行。注意到没有：<b>真正让你被罚的，往往不是急书，而是昨天顺手压下的那几件“不急”。</b>');
+  }
+  $('#qinNext').addEventListener('click', () => nextDay(false));
+  $('#qinReset').addEventListener('click', () => { $('#qinNext').disabled = false; reset(); });
+  reset();
+});
+
+
+/* ---------- 装置 3：孝廉名额与大姓 ---------- */
+dev('#xlFig', fig => {
+  const P = $('#xlP'), B = $('#xlB'), W = $('#xlW');
+  // 返回每年的名额（可能是分数：两年一人 = 0.5）
+  function quota(pop, border){
+    if (border) return pop >= 10 ? Math.max(1, Math.floor(pop / 20)) : pop >= 5 ? 0.5 : 1 / 3;
+    if (pop >= 20) return Math.floor(pop / 20);
+    return pop >= 10 ? 0.5 : 1 / 3;
+  }
+  function qtxt(q){ return q >= 1 ? '每年 <b>' + q + '</b> 人' : q === 0.5 ? '<b>两年</b>一人' : '<b>三年</b>一人'; }
+  function showQ(){
+    const pop = +P.value, q = quota(pop, B.checked);
+    $('#xlPO').textContent = pop + ' 万口';
+    $('#xlQ').innerHTML = (B.checked ? '边郡' : '内郡') + '，人口 ' + pop + ' 万：' + qtxt(q) + '。' + (pop >= 140 && !B.checked ? '（丁鸿的奏文写到一百二十万六人为止，再往上按每二十万加一人推算。）' : '') + (B.checked && pop >= 10 && pop < 20 ? '（边郡十万以上每年一人，比内郡宽了一倍。）' : B.checked && pop < 10 ? '（边郡不满十万两年一人，五万以下三年一人。）' : '');
+    return q;
+  }
+  P.addEventListener('input', showQ); B.addEventListener('change', showQ);
+  $('#xlWO').textContent = W.value + '%';
+  W.addEventListener('input', () => { $('#xlWO').textContent = W.value + '%'; });
+  function run(){
+    const q = showQ(), w = +W.value / 100, r = rng(132 + +W.value);
+    // 100 户：0—9 是起初的大姓（各已有 2 个当官的），其余各 0
+    const fam = Array.from({length: 100}, (_, i) => ({big: i < 10, off: i < 10 ? 2 : 0, got: 0}));
+    let acc = 0;
+    for (let y = 0; y < 50; y++) {
+      acc += q; let k = Math.floor(acc); acc -= k;
+      // 每户每年派一个候选人，才能随机
+      while (k-- > 0) {
+        let best = -1, bs = -1;
+        fam.forEach((f, i) => { const merit = r(); const conn = Math.min(1, f.off / 12); const s = (1 - w) * merit + w * conn + (w > 0 ? r() * 0.05 : 0); if (s > bs) { bs = s; best = i; } });
+        fam[best].off++; fam[best].got++;
+      }
+      // 当官的人会老去：每年每户有小概率少一个
+      fam.forEach(f => { if (f.off > 0 && r() < 0.06) f.off--; });
+    }
+    const tot = fam.reduce((s, f) => s + f.got, 0) || 1;
+    const big = fam.filter(f => f.big).reduce((s, f) => s + f.got, 0);
+    const sorted = fam.map(f => f.got).sort((a, b) => b - a);
+    const top5 = sorted.slice(0, 5).reduce((s, x) => s + x, 0);
+    const nonzero = fam.filter(f => f.got > 0).length;
+    bars($('#xlBars'), [
+      ['十户老大姓', big / tot * 100, '起初就有人当官', 'var(--kraft)'],
+      ['其余九十户', (tot - big) / tot * 100, '普通读书人家', 'var(--main)'],
+      ['最多的五户', top5 / tot * 100, '不管原来是谁', 'var(--zhu)']
+    ], 100, v => v.toFixed(0) + '%');
+    $('#xlSay').className = 'say ' + (big / tot > 0.5 ? 'bad' : 'ok');
+    $('#xlSay').innerHTML = '五十年里一共举了 <b>' + tot + '</b> 个孝廉，出自 <b>' + nonzero + '</b> 户人家。' +
+      (w < 0.15 ? '太守只看才能：机会撒得很开，老大姓也没占到什么便宜。可惜现实里的太守很少这么干净。' :
+       big / tot > 0.5 ? '十户老大姓拿走了一大半。<b>关系的权重不用很高，只要“已经有人当官”能加分，雪球就会自己滚起来</b>：当官的越多，下一个越容易是自家人。' :
+       '老大姓占的比例已经明显高于它们只占一成的人口。再把“看关系”往右拖一点试试。');
+  }
+  $('#xlGo').addEventListener('click', run);
+  showQ(); run();
+});
+
+
+/* ---------- 装置 4：中正评品 ---------- */
+dev('#zzFig', fig => {
+  const svg = $('#zzSvg'), Wr = $('#zzW');
+  const CAP = [2, 3, 4, 6, 8, 9, 9, 9, 10]; // 上上……下下，各品名额，合计 60
+  const PN = ['上上', '上中', '上下', '中上', '中中', '中下', '下上', '下中', '下下'];
+  const FC = ['var(--kraft)', 'var(--main)', 'var(--ink-3)'], FN = ['士族', '次门', '寒门'], FV = [1, 0.5, 0];
+  let seed = 3, ppl;
+  function make(){
+    const r = rng(seed);
+    ppl = Array.from({length: 60}, (_, i) => ({f: i < 9 ? 0 : i < 30 ? 1 : 2, t: r(), luck: r()}));
+  }
+  function draw(){
+    const w = +Wr.value / 100;
+    $('#zzWO').textContent = Wr.value + '%';
+    const sc = ppl.map((p, i) => ({i, s: w * FV[p.f] + (1 - w) * p.t + 0.08 * p.luck}));
+    sc.sort((a, b) => b.s - a.s);
+    const grade = []; let k = 0;
+    CAP.forEach((c, g) => { for (let j = 0; j < c; j++) grade[sc[k++].i] = g; });
+    const W = 600, H = 9 * 30 + 20, L = 56;
+    let g = '';
+    PN.forEach((n, gi) => {
+      const y = 14 + gi * 30;
+      g += '<rect x="' + L + '" y="' + y + '" width="' + (W - L - 6) + '" height="26" rx="3" fill="' + (gi < 3 ? 'color-mix(in srgb,var(--zhu) 8%,var(--paper))' : 'var(--paper)') + '"/>' + txt(L - 8, y + 18, n, {s: 13, a: 'end', c: gi < 3 ? 'var(--zhu)' : 'var(--ink-2)', halo: false});
+      const mem = ppl.map((p, i) => ({p, i})).filter(o => grade[o.i] === gi).sort((a, b) => a.p.f - b.p.f || b.p.t - a.p.t);
+      mem.forEach((o, j) => { g += '<circle cx="' + (L + 16 + j * 26) + '" cy="' + (y + 13) + '" r="' + (3 + o.p.t * 8).toFixed(1) + '" fill="' + FC[o.p.f] + '" opacity=".9"><title>' + FN[o.p.f] + '，才能 ' + Math.round(o.p.t * 100) + '</title></circle>'; });
+    });
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+    const top = ppl.map((p, i) => i).filter(i => grade[i] < 3);
+    const hanTop = top.filter(i => ppl[i].f === 2).length;
+    const shiLow = ppl.map((p, i) => i).filter(i => grade[i] > 5 && ppl[i].f === 0).length;
+    const best10 = ppl.map((p, i) => i).sort((a, b) => ppl[b].t - ppl[a].t).slice(0, 10);
+    const best10Top = best10.filter(i => grade[i] < 3).length;
+    const best10Low = best10.filter(i => grade[i] > 5).length;
+    kv($('#zzKv'), [['上品里的寒门', hanTop + ' / ' + top.length], ['下品里的士族', shiLow + ' / ' + ppl.filter(p => p.f === 0).length], ['最有才的十人进上品', best10Top + ' 人'], ['最有才的十人落下品', best10Low + ' 人']]);
+    $('#zzSay').className = 'say ' + (w >= 0.6 ? 'bad' : 'ok');
+    $('#zzSay').innerHTML = w >= 0.6 ? '上品无寒门，下品无势族。<b>才能还在，只是排不上号了</b>：最有才的十个人里，有 ' + best10Low + ' 个被评进了下品，这辈子大概只能做浊官。'
+      : w >= 0.3 ? '家世开始占上风。注意上三品：九个位子里士族已经占了不少，而士族只占全郡人口的一成半。'
+      : '中正只看才能，上品里各家都有。这是陈群设计这套制度时的理想，它大概只在最初几十年里接近过。';
+  }
+  Wr.addEventListener('input', draw);
+  $('#zzNew').addEventListener('click', () => { seed++; make(); draw(); });
+  make(); draw();
+});
+
+
+/* ---------- 装置 5：一个读书人的一生 ---------- */
+dev('#kjFig', fig => {
+  const T = $('#kjT'), A = $('#kjA'), log = $('#kjLog'), say = $('#kjSay');
+  $('#kjTO').textContent = T.value + '%'; $('#kjAO').textContent = A.value + ' 岁';
+  T.addEventListener('input', () => { $('#kjTO').textContent = T.value + '%'; });
+  A.addEventListener('input', () => { $('#kjAO').textContent = A.value + ' 岁'; });
+  const P = {yuan: 0.015, xiang: 0.015, hui: 0.05};
+  // 一生：从 14 岁开始，按年推进。院试每三年两次（年份 %3 != 2），乡试年份 %3 == 0，会试年份 %3 == 1
+  function life(r, talent, stop, story){
+    let age = 14, stage = 0, tries = [0, 0, 0], lines = [];
+    const startYr = Math.floor(r() * 3);
+    for (; age <= 80; age++) {
+      const y = startYr + age;
+      if (age > 20 && r() < 0.025) { lines.push(age + ' 岁：病故。'); return {stage, age, dead: true, lines, tries}; }
+      if (age > stop && stage < 3) { lines.push(age + ' 岁：家里供不起了，不再考。' + (stage === 0 ? '回去学做生意。' : stage === 1 ? '以秀才身份坐馆教书。' : '以举人身份等大挑、做幕友。')); return {stage, age, quit: true, lines, tries}; }
+      if (stage === 0 && y % 3 !== 2) { tries[0]++; if (r() < P.yuan * talent) { stage = 1; lines.push(age + ' 岁：第 ' + tries[0] + ' 次考院试，中秀才。'); } else if (story && tries[0] % 4 === 0) lines.push(age + ' 岁：院试又没中（第 ' + tries[0] + ' 次）。'); }
+      else if (stage === 1 && y % 3 === 0) { tries[1]++; if (r() < P.xiang * talent) { stage = 2; lines.push(age + ' 岁：第 ' + tries[1] + ' 次乡试，中举！'); } else if (story) lines.push(age + ' 岁：乡试落第（第 ' + tries[1] + ' 次）。'); }
+      else if (stage === 2 && y % 3 === 1) { tries[2]++; if (r() < P.hui * talent) { stage = 3; lines.push(age + ' 岁：第 ' + tries[2] + ' 次会试，中进士。'); return {stage, age, lines, tries}; } else if (story) lines.push(age + ' 岁：会试落第（第 ' + tries[2] + ' 次）。'); }
+    }
+    lines.push('八十岁，还在考。'); return {stage, age, lines, tries};
+  }
+  const SN = ['童生', '秀才', '举人', '进士'];
+  let seed = 1;
+  $('#kjOne').addEventListener('click', () => {
+    const res = life(rng(seed++ * 7919), +T.value / 100, +A.value, true);
+    log.textContent = res.lines.join('\n');
+    say.className = 'say' + (res.stage === 3 ? ' ok' : res.stage === 0 ? ' bad' : '');
+    say.innerHTML = '这一生的终点：<b>' + SN[res.stage] + '</b>' + (res.stage === 3 ? '，' + res.age + ' 岁。' : '。') + '一共考了院试 ' + res.tries[0] + ' 次、乡试 ' + res.tries[1] + ' 次、会试 ' + res.tries[2] + ' 次。';
+  });
+  $('#kjMany').addEventListener('click', () => {
+    const r = rng(seed++ * 104729), t = +T.value / 100, st = +A.value;
+    const cnt = [0, 0, 0, 0], ages = [];
+    for (let i = 0; i < 10000; i++) { const res = life(r, t, st, false); cnt[res.stage]++; if (res.stage === 3) ages.push(res.age); }
+    bars($('#kjBars'), SN.map((n, i) => [n, cnt[i] / 100, i === 0 ? '一辈子没中秀才' : i === 3 ? '终于' : '停在这一级', ['var(--ink-3)', 'var(--kraft)', 'var(--main)', 'var(--zhu)'][i]]), 100, v => v.toFixed(v < 1 ? 2 : 1) + '%');
+    const avg = ages.length ? (ages.reduce((s, x) => s + x, 0) / ages.length).toFixed(1) : '—';
+    log.textContent = '一万个读书人，天赋 ' + T.value + '%，家里供到 ' + st + ' 岁。';
+    say.className = 'say';
+    say.innerHTML = '一万人里，中进士的 <b>' + cnt[3] + '</b> 人，平均 ' + avg + ' 岁；中举人而止步的 ' + cnt[2] + ' 人；当了一辈子秀才的 ' + cnt[1] + ' 人；连秀才都没中的 <b>' + cnt[0] + '</b> 人。' +
+      (st < 35 ? '把“供到几岁”往右拖拖看：<b>很多人不是考不上，是熬不到</b>。' : t > 1.5 ? '天赋翻倍，进士也只多了这么些。这条路的窄，不全是天赋能解决的。' : '这就是“三十老明经，五十少进士”背后的算术。');
+  });
+});
+
+
+/* ---------- 装置 6：一本报销账过户部 ---------- */
+dev('#bfFig', fig => {
+  const say = $('#bfSay'), log = $('#bfLog');
+  const FAULT = ['石料单价比则例高了一钱二分', '土方数目有零头对不上', '一张收单的印没有盖清楚', '夫工日数和口粮数核算不符', '造册格式不合部式，须照新式重造', '去年同类工程的旧案未曾声明', '杉木尺寸未注明“围圆”', '册内“壹”字写作“一”，恐有涂改'];
+  let st, r;
+  function reset(){
+    r = rng(1765); st = {m: 0, spent: 0, fee: 0, n: 0, done: false};
+    log.textContent = '';
+    probe();
+  }
+  function probe(){
+    // 每次送部审核：书吏有一定概率挑出毛病；送过部费后基本不挑
+    if (st.done) return;
+    const p = st.fee ? 0.08 : 0.82;
+    st.m += 2;
+    if (r() < p) {
+      st.cur = FAULT[Math.floor(r() * FAULT.length)];
+      log.textContent = '第 ' + st.m + ' 个月：部驳——' + st.cur + '。\n' + log.textContent;
+      say.className = 'say bad'; say.innerHTML = '户部书吏驳回：<b>' + st.cur + '</b>。你是照例重造，还是送部费？';
+    } else {
+      st.done = true;
+      log.textContent = '第 ' + st.m + ' 个月：户部核准，准予开销。\n' + log.textContent;
+      say.className = 'say ok';
+      say.innerHTML = '账过了。用了 <b>' + st.m + '</b> 个月，重造花掉 ' + st.spent + ' 两，部费 ' + st.fee + ' 两，' + (st.fee ? '' : '一文部费没送，你运气真好，或者部里正好在查书吏。') +
+        (st.fee ? '<br>注意：<b>部费比重造便宜，也比重造快</b>。所以几乎所有人都送。也正因为几乎所有人都送，书吏才有理由一直挑毛病。' : '');
+    }
+    if (st.m >= 36 && !st.done) {
+      st.done = true;
+      say.className = 'say bad';
+      say.innerHTML = '三年任满，账还没过。你调走了，<b>一万两银子挂在你名下</b>，下一任知府可以不认这笔账。真实的清朝，这种“未完”的报销案拖上十几年、追到前任家里的，并不少见。';
+    }
+    render();
+  }
+  function render(){
+    kv($('#bfKv'), [['已过去', st.m + ' 个月'], ['任期剩余', Math.max(0, 36 - st.m) + ' 个月'], ['重造花费', st.spent + ' 两'], ['部费', st.fee + ' 两'], ['被驳次数', st.n]]);
+    $('#bfRedo').disabled = $('#bfPay').disabled = st.done;
+    $('#bfPay').textContent = st.fee ? '再“补”一点部费' : '送部费（报销额的 3%）';
+  }
+  $('#bfRedo').addEventListener('click', () => {
+    if (st.done) return;
+    st.n++; const c = 40 + Math.floor(r() * 80), m = 2 + Math.floor(r() * 4);
+    st.spent += c; st.m += m;
+    log.textContent = '重造册籍：' + m + ' 个月，书办工食纸张 ' + c + ' 两。\n' + log.textContent;
+    probe();
+  });
+  $('#bfPay').addEventListener('click', () => {
+    if (st.done) return;
+    st.n++; const f = st.fee ? 100 : 300;
+    st.fee += f;
+    log.textContent = '托京中熟人送部费 ' + f + ' 两。\n' + log.textContent;
+    probe();
+  });
+  $('#bfReset').addEventListener('click', reset);
+  reset();
+});
+
+
+/* ---------- 装置 7：知县的账本 ---------- */
+dev('#zxFig', fig => {
+  const TYPES = [['简缺', 600, 150, 120], ['中缺', 1000, 260, 220], ['繁缺', 1800, 450, 400]]; // 名字, 养廉, 摊捐, 过境招待
+  let ty = 0;
+  btnRow($('#zxType'), TYPES.map(t => t[0]), 0, i => { ty = i; calc(); });
+  const M = $('#zxM'), S = $('#zxS'), G = $('#zxG'), L = $('#zxL');
+  const MN = ['只请刑名', '刑名、钱谷', '加一位书启', '再加账房', '再加征比'];
+  const MF = [360, 330, 120, 100, 100]; // 每位束脩（两）
+  const GN = ['不送（危险）', '照常', '厚一点', '很厚'];
+  [M, S, G].forEach(x => x.addEventListener('input', calc)); L.addEventListener('change', calc);
+  function calc(){
+    const t = TYPES[ty], m = +M.value, s = +S.value, g = +G.value;
+    $('#zxMO').textContent = MN[m - 1]; $('#zxSO').textContent = s + ' 人'; $('#zxGO').textContent = GN[g];
+    const mufee = MF.slice(0, m).reduce((a, b) => a + b, 0) * (ty === 2 ? 1.5 : ty === 1 ? 1.2 : 1);
+    const inc = [['正俸', 45], ['养廉银', t[1]], ['公费', 60]];
+    const lou = Math.round(t[1] * 1.3 + 300);
+    if (L.checked) inc.push(['陋规', lou]);
+    const out = [['师爷束脩', Math.round(mufee)], ['长随工食', s * 24], ['三节两寿', [40, 220, 420, 700][g] * (1 + ty * 0.5)], ['摊捐', t[2]], ['过境招待', t[3]], ['家用', 150]];
+    const I = inc.reduce((a, b) => a + b[1], 0), O = out.reduce((a, b) => a + b[1], 0);
+    const mx = Math.max(I, O, 1);
+    bars($('#zxIn'), inc.map(r => [r[0], r[1], '', r[0] === '陋规' ? 'var(--red)' : 'var(--grn)']), mx * 0.6, v => Math.round(v) + ' 两');
+    bars($('#zxOut'), out.map(r => [r[0], r[1], '', 'var(--zhu)']), mx * 0.6, v => Math.round(v) + ' 两');
+    const d = I - O, say = $('#zxSay');
+    let warn = '';
+    if (m === 1) warn += '只请一位师爷，钱粮账交给书吏去算，等于把账房钥匙交给了最想动它的人。';
+    if (s < 8) warn += '长随太少，门上、签押、管班都排不开，书吏差役没人盯着。';
+    if (g === 0) warn += '一份节礼都不送，下次考核“卓异”还是“不及”，你心里有数。';
+    say.className = 'say ' + (d >= 0 ? 'ok' : 'bad');
+    say.innerHTML = '一年入 <b>' + Math.round(I) + '</b> 两，出 <b>' + Math.round(O) + '</b> 两，' + (d >= 0 ? '结余 ' + Math.round(d) + ' 两。' : '<b>亏 ' + Math.round(-d) + ' 两</b>。') +
+      (L.checked ? (d >= 0 ? '账平了。代价是这 ' + lou + ' 两银子每一文都从百姓身上来，而且没有任何账本记着。' : '收了陋规还亏，你的排场大概太大了。') :
+        (d < 0 ? '不收陋规的话，这个窟窿只能借钱填。三年下来，你会欠一屁股债离任。' : '不收陋规也能平账？那多半是你把师爷、长随、节礼都压到了危险的程度。')) + (warn ? '<br>' + warn : '');
+  }
+  calc();
+});
+
+
+/* ---------- 装置 8：用谁来管 ---------- */
+dev('#whoFig', fig => {
+  const svg = $('#whoSvg'), say = $('#whoSay');
+  // 每种人：控制力曲线 c(t)、能力曲线 a(t)，t 为 0—200 年
+  const K = [
+    {n: '贵族', c: t => 55 - 25 * (t / 200), a: t => 50 - 10 * (t / 200),
+      s: '贵族一开始就有自己的地盘和兵，君主说了算的程度不高，而且随着爵位一代代世袭，越来越低。能力全看投胎：有的儿子能干，有的只会打猎。这是欧洲封建时代和西周的样子：<b>国王常常只是最大的那个贵族</b>。'},
+    {n: '宦官', c: t => t < 80 ? 85 - t * 0.05 : 81 - (t - 80) * 0.45, a: t => 55 - 8 * Math.sin(t / 30),
+      s: '头几十年非常好用：宦官没有儿子，只能靠你。可大约几代人以后，宦官之间结成了“宫里的家”，开始替幼主拿主意、掌握禁军、批红。东汉、唐朝后期、明朝后期都是这条曲线：<b>先是你的手，后来成了你的头</b>。'},
+    {n: '奴隶出身的官', c: t => t < 120 ? 88 - t * 0.04 : 83 - (t - 120) * 0.55, a: t => t < 120 ? 78 : 78 - (t - 120) * 0.35,
+      s: '从全国挑最聪明的孩子，精心培养，能力最高，又绝对依附于你。奥斯曼的十六世纪就是这条曲线的顶点。一百多年后，他们开始结婚、让儿子接班、经商、哗变，“征集”停了，能力下滑，控制力崩塌。<b>最后要用大炮才能收回来</b>。'},
+    {n: '考试出身的文官', c: t => 70 - 8 * Math.sin(t / 45), a: t => 66 - 6 * (t / 200),
+      s: '控制力和能力都不是最高，但最稳：文官有同年、同乡、门生，会结党、会扯皮，可他们的位子不能世袭，每一代都要重新考，没有哪一群人能把权力永久攥在手里。<b>它不是最好用的工具，却是最不容易反噬主人的工具</b>。这大概是科举能延续一千三百年的原因之一。'}
+  ];
+  let k = 0, seed = 1;
+  btnRow($('#whoBtns'), K.map(x => x.n), 0, i => { k = i; run(); });
+  function run(){
+    const r = rng(seed++), o = K[k];
+    const c = [], a = [];
+    for (let t = 0; t <= 200; t += 5) { c.push([t, clamp(o.c(t) + (r() - 0.5) * 8, 2, 98)]); a.push([t, clamp(o.a(t) + (r() - 0.5) * 8, 2, 98)]); }
+    lineChart(svg, [{color: 'var(--zhu)', pts: c, w: 2.8}, {color: 'var(--main)', pts: a, dash: '6 4'}], {xmin: 0, xmax: 200, ymin: 0, ymax: 100, yt: [0, 25, 50, 75, 100], xt: [0, 50, 100, 150, 200], xf: v => v + ' 年', H: 230});
+    say.innerHTML = '<b>' + o.n + '</b>：' + o.s;
+  }
+  run();
+});
+
+
+/* ---------- 装置 9：买一个法国的官 ---------- */
+dev('#venFig', fig => {
+  const TY = [
+    {n: '国王秘书', yld: 0.012, noble: 20, d: '几乎不用干活，收入很少，任满二十年全家成为世袭贵族。'},
+    {n: '高等法院推事', yld: 0.03, noble: 40, d: '体面的法官，收入一般，有“诉讼礼金”；两代人任职后家族可得贵族身份（这里简化为四十年）。'},
+    {n: '收税官', yld: 0.07, noble: 0, d: '要干活，收入高（按征收额抽成），不给贵族头衔。'}
+  ];
+  let ty = 0, seed = 1;
+  btnRow($('#venType'), TY.map(t => t.n), 0, i => { ty = i; });
+  const Y = $('#venY'); const yo = () => $('#venYO').textContent = Y.value + ' 年'; Y.addEventListener('input', yo); yo();
+  $('#venGo').addEventListener('click', () => {
+    const t = TY[ty], r = rng(seed++ * 31 + ty), paul = $('#venP').checked;
+    let nobleY = 0, y = +Y.value, age = 30, holder = 1, got = 0, paid = 0, noble = false, held = 0, lines = [], lost = false;
+    const P = 10000;
+    lines.push(y + '：' + age + ' 岁，买下「' + t.n + '」，付 10,000。' + t.d);
+    while (y < 1790) {
+      y++; age++; held++;
+      got += P * t.yld;
+      if (paul) paid += P / 60;
+      if (t.noble && !noble && held >= t.noble) { noble = true; nobleY = y; lines.push(y + '：任满 ' + t.noble + ' 年，全家成为世袭贵族，免交达伊税。'); }
+      const pd = age < 50 ? 0.012 : age < 65 ? 0.03 : 0.08;
+      if (r() < pd) {
+        if (!paul && r() < 0.85) { lines.push(y + '：第 ' + holder + ' 代持有人突然去世，没交保莱特税，又没来得及在死前四十天办转让。官位收归国王。'); lost = true; break; }
+        holder++; lines.push(y + '：持有人去世，' + (paul ? '因为年年交了保莱特税，' : '幸好提前办了转让，') + '官位传给儿子（第 ' + holder + ' 代）。'); age = 30 + Math.floor(r() * 5); if (t.noble && !noble) held = Math.floor(held * 0.5);
+      }
+    }
+    let back = 0;
+    if (!lost) {
+      lines.push('1789：八月四日夜，国民议会宣布废除特权和卖官制度。官位按价赎回。');
+      // 以指券赎回；假设在 1791—1796 年间逐步花掉，实际价值平均只剩约三成
+      back = P * 0.3;
+      lines.push('1791—1796：拿到指券面值 10,000，可指券一路贬值，最后实际能买到的东西约合 ' + Math.round(back).toLocaleString() + '。' + (noble ? '贵族头衔也一起废了。' : ''));
+    }
+    const net = got + back - P - paid;
+    $('#venLog').textContent = lines.join('\n');
+    kv($('#venKv'), [['持有', (lost ? '中途失去' : '到 1789 年') + ' · ' + holder + ' 代'], ['官位收入', Math.round(got).toLocaleString()], ['保莱特税', Math.round(paid).toLocaleString()], ['赎金实值', Math.round(back).toLocaleString()], ['净账', (net >= 0 ? '+' : '') + Math.round(net).toLocaleString()]]);
+    const say = $('#venSay');
+    say.className = 'say ' + (net >= 0 ? 'ok' : 'bad');
+    say.innerHTML = (lost ? '<b>一场急病，几十年的积蓄归了国王。</b>这就是保莱特税存在的理由：每年交一点钱，买的是“死得不凑巧”的保险。' :
+      net >= 0 ? '这笔买卖赚了。' + (ty === 2 ? '收税官收益高，可也最招人恨：大革命里，收税的人是第一批被清算的。' : '你买得早，吃到了几十年的收益。') :
+      '账面上亏了。' + (ty === 0 ? (noble ? '可你本来就不是为了钱：你买的是“贵族”两个字，它在你家挂了 ' + (1789 - nobleY) + ' 年。' : '二十年还没满，贵族没当上，革命先来了。') : '买得越晚，离 1789 年越近，回本的时间越少。'));
+  });
+});
+
+
+/* ---------- 装置 10：劈一根符木 ---------- */
+dev('#tallyFig', fig => {
+  const svg = $('#taSvg'), say = $('#taSay');
+  const L = $('#taL'), S = $('#taS'), D = $('#taD');
+  let split = false, cheat = false;
+  // 把金额拆成缺口：[宽度, 深度, 名字]
+  function notches(l, s, d){
+    const n = [];
+    const add = (k, w, dep, nm) => { for (let i = 0; i < k; i++) n.push([w, dep, nm]); };
+    add(Math.floor(l / 1000), 34, 22, '千镑'); l %= 1000;
+    add(Math.floor(l / 100), 16, 16, '百镑'); l %= 100;
+    add(Math.floor(l / 20), 10, 12, '二十镑'); l %= 20;
+    add(l, 5, 8, '镑');
+    add(s, 3, 5, '先令');
+    add(d, 0, 4, '便士');
+    return n;
+  }
+  function draw(){
+    const l = +L.value, s = +S.value, d = +D.value;
+    $('#taLO').textContent = l + ' 镑'; $('#taSO').textContent = s + ' 先令'; $('#taDO').textContent = d + ' 便士';
+    const N = notches(l, s, d);
+    const W = 600, x0 = 40;
+    // 计算总长度
+    let len = 0; N.forEach(n => len += n[0] + 4); const stickL = Math.max(260, len + 60);
+    const sc = Math.min(1, (W - 60) / stickL);
+    const H = split ? 200 : 120;
+    let g = '';
+    const stick = (y, h, isStock, cut) => {
+      // 上边缘带缺口
+      let path = 'M' + x0 + ',' + y, x = x0 + 20 * sc;
+      path += ' L' + x + ',' + y;
+      N.forEach((n, i) => {
+        const w = n[0] * sc, dep = n[1];
+        if (cut && i === N.length - 1 - 0 && false) {}
+        if (w > 0) { path += ' L' + x + ',' + (y + dep) + ' L' + (x + w) + ',' + (y + dep) + ' L' + (x + w) + ',' + y; }
+        else { /* 便士：一道划痕 */ }
+        x += w + 4 * sc;
+      });
+      const end = x0 + stickL * sc;
+      path += ' L' + end + ',' + y + ' L' + end + ',' + (y + h) + ' L' + x0 + ',' + (y + h) + ' Z';
+      let gg = '<path d="' + path + '" fill="color-mix(in srgb,var(--kraft) 30%,var(--card))" stroke="var(--kraft)" stroke-width="1.5"/>';
+      // 便士划痕
+      x = x0 + 20 * sc;
+      N.forEach(n => { if (n[0] === 0) gg += '<line x1="' + (x + 1) + '" x2="' + (x + 1) + '" y1="' + y + '" y2="' + (y + 6) + '" stroke="var(--ink-2)" stroke-width="1.2"/>'; x += n[0] * sc + 4 * sc; });
+      // 木纹
+      for (let k = 1; k < 4; k++) gg += '<path d="M' + (x0 + 4) + ',' + (y + h * k / 4) + ' q' + (stickL * sc / 3) + ',' + (k % 2 ? 3 : -3) + ' ' + (stickL * sc - 8) + ',0" fill="none" stroke="var(--kraft)" stroke-opacity=".35"/>';
+      if (cut) gg += '<path d="M' + (x0 + 20 * sc) + ',' + y + ' l26,0 l-6,14 l-20,0 Z" fill="var(--card)" stroke="var(--red)" stroke-width="1.5" stroke-dasharray="3 2"/>';
+      gg += txt(x0 + stickL * sc + 8, y + h / 2 + 4, isStock === null ? '符木' : isStock ? '存根（郡长）' : '对根（国库）', {s: 12, a: 'start', c: 'var(--ink-2)'});
+      return gg;
+    };
+    if (!split) g += stick(30, 50, null, false);
+    else { g += stick(24, 46, true, cheat); g += stick(118, 30, false, false); g += txt(W / 2, 108, '— 劈开 —', {s: 11, c: 'var(--ink-3)', halo: false}); }
+    svg.setAttribute('viewBox', '0 0 ' + Math.max(W, x0 + stickL * sc + 110) + ' ' + H); svg.innerHTML = g;
+    const cnt = {}; N.forEach(n => cnt[n[2]] = (cnt[n[2]] || 0) + 1);
+    return Object.entries(cnt).map(e => e[1] + ' 个' + e[0] + '缺口').join('，');
+  }
+  function upd(){ split = false; cheat = false; const t = draw(); say.className = 'say'; say.innerHTML = '刻好了：' + (t || '一个缺口也没有，郡长今天一文没交') + '。'; }
+  [L, S, D].forEach(x => x.addEventListener('input', upd));
+  $('#taSplit').addEventListener('click', () => { split = true; cheat = false; draw(); say.className = 'say ok'; say.innerHTML = '劈开了。长的一半（存根）郡长拿走当收据，短的一半（对根）锁进国库。英文“股票”“股东”里的 stock，一说就和这根“存根”有关（<b>存疑</b>）。'; });
+  $('#taCheat').addEventListener('click', () => { if (!split) { split = true; } cheat = true; draw(); say.className = 'say bad'; say.innerHTML = '郡长回家后，想在存根上动点手脚，让它看起来像交得更多：他把第一个缺口削宽了一点（红色虚线）。'; });
+  $('#taJoin').addEventListener('click', () => {
+    if (!split) { say.className = 'say'; say.innerHTML = '还没劈开呢。'; return; }
+    say.className = 'say ' + (cheat ? 'bad' : 'ok');
+    say.innerHTML = cheat ? '对账：两半一合，<b>缺口对不上</b>，木纹也错开了。国库里的对根是铁证。郡长要为此付出代价。这根棍子不需要任何人识字，就能防伪。' : '对账：两半合在一起，缺口严丝合缝，木纹也连得上。账是真的。';
+  });
+  upd();
+});
+
+
+/* ---------- 装置 11：不领工资的见习 ---------- */
+dev('#unpFig', fig => {
+  const svg = $('#unpSvg'), Y = $('#unpY');
+  const r = rng(1770);
+  // 家境：对数正态，换算成能供养的年数
+  const P = Array.from({length: 1000}, () => { const z = Math.sqrt(-2 * Math.log(r() + 1e-9)) * Math.cos(2 * Math.PI * r()); return {w: Math.exp(z * 0.9), y: r(), exam: r(), q: r()}; });
+  P.sort((a, b) => a.w - b.w);
+  P.forEach((p, i) => { p.rank = i / 999; p.support = 1.2 * Math.log(1 + p.w * 3) * 3 + p.q * 1.5; });
+  function draw(){
+    const yrs = +Y.value;
+    $('#unpYO').textContent = yrs + ' 年';
+    const W = 600, H = 220, L = 20, B = 26;
+    let g = '', fin = 0, finPoor = 0, drop = 0, fail = 0;
+    P.forEach(p => {
+      // 考试：三次，每次刷掉约 25%
+      const passExam = p.exam > 0.58;
+      const canWait = p.support >= yrs;
+      let col, op = 0.85;
+      if (!canWait) { col = 'var(--ink-3)'; op = 0.25; drop++; }
+      else if (!passExam) { col = 'var(--kraft)'; op = 0.45; fail++; }
+      else { col = 'var(--zhu)'; fin++; if (p.rank < 0.5) finPoor++; }
+      g += '<circle cx="' + (L + p.rank * (W - L * 2)).toFixed(1) + '" cy="' + (8 + p.y * (H - B - 14)).toFixed(1) + '" r="2.6" fill="' + col + '" opacity="' + op + '"/>';
+    });
+    g += '<line x1="' + L + '" x2="' + (W - L) + '" y1="' + (H - B + 2) + '" y2="' + (H - B + 2) + '" stroke="var(--ink)"/>' + txt(L, H - 6, '← 穷', {s: 12, a: 'start', c: 'var(--ink-2)', halo: false}) + txt(W - L, H - 6, '富 →', {s: 12, a: 'end', c: 'var(--ink-2)', halo: false}) + txt(W / 2, H - 6, '家境（按排名）', {s: 11, c: 'var(--ink-3)', halo: false});
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+    kv($('#unpKv'), [['熬不住退出', drop + ' 人'], ['考试没过', fail + ' 人'], ['成为官员', fin + ' 人'], ['其中家境在下半', fin ? Math.round(finPoor / fin * 100) + '%' : '—']]);
+    const s = $('#unpSay'), share = fin ? finPoor / fin : 0;
+    s.className = 'say ' + (share < 0.25 ? 'bad' : 'ok');
+    s.innerHTML = yrs === 0 ? '见习期有工资：考试一视同仁，最后的官员里穷富各占一半左右，<b>和考生本身的分布一样</b>。' :
+      share < 0.1 ? '考试一点没变，可最后的官员几乎全是富家子弟（红点都挤在右边）。<b>门槛不写在考卷上，写在“谁供得起”上</b>。' :
+      '无薪的年数越长，左边掉队的灰点越多。考试没有偏袒任何人，筛掉穷人的是时间。';
+  }
+  Y.addEventListener('input', draw); draw();
+});
+
+
+/* ---------- 装置 12：帕金森定律 ---------- */
+dev('#pkFig', fig => {
+  const svg = $('#pkSvg'), R = $('#pkR'), M = $('#pkM');
+  const fr = () => { $('#pkRO').textContent = (+R.value > 0 ? '+' : '') + R.value + '%'; $('#pkMO').textContent = (+M.value / 10).toFixed(1); };
+  R.addEventListener('input', fr); M.addEventListener('input', fr); fr();
+  function run(){
+    const rate = +R.value / 100, mu = +M.value / 10, r = rng(1955 + +M.value * 7 + +R.value);
+    // 起初十个人、一千份真活，人均一百份。帕金森：活会膨胀到填满时间，所以人人都“觉得忙”；
+    // 每年每人有一定概率申请一个下属（内耗越大、真活增长越快，概率越高），而且从不裁员。
+    let real = 1000, n = 10;
+    const sR = [], sN = [], sT = [];
+    for (let y = 0; y <= 20; y++) {
+      const internal = mu * 6 * n * Math.log2(n);           // 传阅、会签、开会：随人数和层级增长
+      sR.push([y, real]); sN.push([y, n * 100]); sT.push([y, real + internal]);
+      const p = clamp(0.015 + mu * 0.012 + Math.max(0, rate) * 0.8, 0, 0.5);
+      let add = 0; for (let i = 0; i < n; i++) if (r() < p) add++;
+      n += add;
+      real = Math.max(100, real * (1 + rate));
+    }
+    const mx = Math.max(...sT.map(p => p[1]), ...sN.map(p => p[1]), 1500);
+    const top = Math.ceil(mx / 1000) * 1000;
+    lineChart(svg, [{color: 'var(--main)', pts: sR}, {color: 'var(--zhu)', pts: sN, w: 2.8}, {color: 'var(--kraft)', pts: sT, dash: '5 4'}], {xmin: 0, xmax: 20, ymin: 0, ymax: top, yt: [0, top / 2, top], xt: [0, 5, 10, 15, 20], xf: v => v + ' 年', H: 230, L: 52});
+    const n20 = sN[20][1] / 100, r20 = sR[20][1];
+    const g = Math.pow(n20 / 10, 1 / 20) - 1;
+    const s = $('#pkSay');
+    s.className = 'say ' + (n20 > 15 ? 'bad' : 'ok');
+    s.innerHTML = '二十年后：真正要办的事从 1000 份变成 <b>' + Math.round(r20) + '</b> 份，科室从 10 人变成 <b>' + n20 + '</b> 人，人数平均每年增长约 ' + (g * 100).toFixed(1) + '%（帕金森估计的是 5%—6%），人均真活从 100 份变成 ' + Math.round(r20 / n20) + ' 份。' +
+      (mu === 0 ? '没有内耗，人几乎不增加。可惜现实里没有零内耗的科室。' :
+       rate < 0 ? '<b>真活在减少，人却在增加</b>：这就是海军部的那两条线。每个人都觉得自己很忙，因为虚线和蓝线之间那一大块，是科室自己给自己造的活。' : '真活增加时人手跟着增加，这很正常；注意看虚线和蓝线之间的距离：那是科室自己给自己造的活。');
+  }
+  $('#pkGo').addEventListener('click', run); run();
+});
+
+
+/* ---------- 装置 13：流水的部长，铁打的秘书 ---------- */
+dev('#tenFig', fig => {
+  const svg = $('#tenSvg'), say = $('#tenSay');
+  const Y0 = 1980, Y1 = 2020, W = 600, L = 70, R = 10;
+  const X = y => L + (y - Y0) / (Y1 - Y0) * (W - L - R);
+  let rows, seed = 5, pick = 2000;
+  const SUR = '史布克罗韦哈特莫兰贝克福克斯格林伍兹霍尔肯特里德'.split('');
+  function gen(){
+    const r = rng(seed++);
+    const seq = (mean, sd, minL) => { const out = []; let y = Y0 - r() * mean; while (y < Y1) { const len = Math.max(minL, mean + (r() - 0.5) * 2 * sd); out.push([y, y + len, SUR[Math.floor(r() * SUR.length)] + SUR[Math.floor(r() * SUR.length)]]); y += len; } return out; };
+    rows = [{n: '部长', c: 'var(--zhu)', s: seq(2.1, 1.5, 0.4)}, {n: '常任秘书', c: 'var(--main)', s: seq(4.6, 1.8, 2)}, {n: '一位文官', c: 'var(--kraft)', s: [[1982, 2017, '何']]}];
+    draw();
+  }
+  function draw(){
+    let g = '';
+    [1980, 1990, 2000, 2010, 2020].forEach(y => g += '<line x1="' + X(y) + '" x2="' + X(y) + '" y1="10" y2="150" stroke="var(--rule)" stroke-dasharray="2 3"/>' + txt(X(y), 166, y, {s: 11, c: 'var(--ink-3)', halo: false}));
+    rows.forEach((row, i) => {
+      const y = 18 + i * 44;
+      g += txt(L - 8, y + 18, row.n, {s: 12.5, a: 'end', c: 'var(--ink-2)', halo: false});
+      row.s.forEach((p, k) => { const a = Math.max(Y0, p[0]), b = Math.min(Y1, p[1]); if (b <= a) return; g += '<rect x="' + X(a).toFixed(1) + '" y="' + y + '" width="' + Math.max(1.5, X(b) - X(a) - 1.5).toFixed(1) + '" height="26" rx="3" fill="' + row.c + '" opacity="' + (k % 2 ? 0.55 : 0.85) + '"/>'; });
+    });
+    g += '<line x1="' + X(pick) + '" x2="' + X(pick) + '" y1="6" y2="152" stroke="var(--ink)" stroke-width="1.6"/>';
+    g += '<rect x="' + L + '" y="0" width="' + (W - L - R) + '" height="172" fill="transparent" id="tenHit" style="cursor:pointer"/>';
+    svg.setAttribute('viewBox', '0 0 ' + W + ' 176'); svg.innerHTML = g;
+    const cnt = i => rows[i].s.filter(p => p[1] > Y0 && p[0] < Y1).length;
+    const cur = i => rows[i].s.find(p => p[0] <= pick && p[1] > pick);
+    const m = cur(0), ps = cur(1);
+    const ym = m ? (pick - Math.max(Y0, m[0])).toFixed(1) : 0, yp = ps ? (pick - ps[0]).toFixed(1) : 0, yc = pick >= 1982 && pick < 2017 ? pick - 1982 : null;
+    say.innerHTML = '这个部门四十年里换了 <b>' + cnt(0) + '</b> 位部长、<b>' + cnt(1) + '</b> 位常任秘书，那位普通文官只有一个。<br>' + Math.round(pick) + ' 年：现任部长来了 ' + ym + ' 年，常任秘书在位 ' + yp + ' 年' + (yc !== null ? '，那位文官已经在这里干了 <b>' + Math.round(yc) + '</b> 年。新部长想知道“上次这个办法为什么没成”，他只能去问后两个人。' : '，那位文官还没入职或已经退休了。');
+    $('#tenHit').addEventListener('click', e => { const p = svgPt(svg, e); pick = clamp(Y0 + (p.x - L) / (W - L - R) * (Y1 - Y0), Y0, Y1 - 0.01); draw(); });
+  }
+  $('#tenNew').addEventListener('click', gen);
+  gen();
+});
+
+
+/* ---------- 装置 14：部长的一项新政 ---------- */
+dev('#minFig', fig => {
+  const say = $('#minSay'), log = $('#minLog'), box = $('#minBtns');
+  // 事件：t 文本，real 是否真问题（硬推会出事），cost 照办耗的季度
+  const EV = [
+    {t: '部里建议先做一次为期十二周的公众咨询。', real: false},
+    {t: '法律顾问提醒：方案的一条可能在法庭上被挑战（司法审查）。', real: true},
+    {t: '财政部要求补交一份详细的成本测算，否则不批钱。', real: false},
+    {t: '司长建议先在两个地区试点一年，看看效果。', real: true},
+    {t: '这件事牵涉另外三个部，建议成立一个跨部门工作组。', real: false},
+    {t: '执行机构说现有的信息系统改不过来，至少要一年。', real: true},
+    {t: '常任秘书说，议会这个会期的立法时间表已经排满了。', real: false},
+    {t: '一份内部评估发现，方案会让一部分低收入家庭受损。', real: true},
+    {t: '部里起草了一份“备选方案”文件，列了五种做法供您选择。', real: false}
+  ];
+  let st, r;
+  function reset(){
+    r = rng(Date.now() % 100000);
+    st = {q: 0, cap: 10, prog: 0, spad: false, pm: false, risk: 0, over: false, cur: null};
+    log.textContent = '';
+    next();
+  }
+  function next(){
+    if (st.over) return;
+    if (st.prog >= 100) return end('done');
+    if (st.q >= 12) return end('time');
+    if (st.q > 1 && r() < 0.07) return end('reshuffle');
+    st.q++;
+    st.cur = EV[Math.floor(r() * EV.length)];
+    render();
+    say.className = 'say'; say.innerHTML = '第 ' + st.q + ' 季度。' + st.cur.t;
+  }
+  function act(k){
+    if (st.over) return;
+    const e = st.cur; let line = '第 ' + st.q + ' 季度：' + e.t + ' → ';
+    if (k === 0) { st.prog += e.real ? 12 : 6; if (e.real) st.risk = Math.max(0, st.risk - 1); line += '照部里的意见办。' + (e.real ? '这一步其实替你排掉了一个雷。' : ''); }
+    if (k === 1) { if (st.cap < 3) { say.innerHTML = '政治资本不够硬推了。'; return; } st.cap -= 3; st.prog += 20; if (e.real) st.risk++; line += '硬推过去。'; }
+    if (k === 2) { if (st.pm || st.cap < 2) { say.innerHTML = st.pm ? '首相这张牌你已经打过了。' : '政治资本不够了。'; return; } st.pm = true; st.cap -= 2; st.prog += 25; line += '找首相撑腰，首相府发话，各部配合。'; }
+    if (k === 3) { if (st.spad || st.cap < 1) { say.innerHTML = st.spad ? '你已经有一位特别顾问在盯着了。' : '政治资本不够了。'; return; } st.spad = true; st.cap -= 1; line += '带进一位特别顾问，盯着每个司的进度。'; }
+    if (st.spad && k !== 3) st.prog += 4;
+    log.textContent = line + '\n' + log.textContent;
+    // 硬推过的真问题可能爆雷
+    if (st.risk > 0 && r() < 0.18 * st.risk) { st.prog = Math.max(0, st.prog - 30); st.cap = Math.max(0, st.cap - 2); st.risk = Math.max(0, st.risk - 1); log.textContent = '⚠ 先前硬推过去的问题爆了：报纸头版、法院裁定或者执行事故。进度倒退，政治资本受损。\n' + log.textContent; }
+    next();
+  }
+  function end(why){
+    st.over = true; render();
+    box.innerHTML = '<button class="btn pri" id="minAgain">再来一任</button>';
+    $('#minAgain').addEventListener('click', reset);
+    say.className = 'say ' + (why === 'done' ? 'ok' : 'bad');
+    say.innerHTML = why === 'done' ? '第 ' + st.q + ' 季度，改革立法通过，开始实施。' + (st.risk > 0 ? '不过有几个被你硬推过去的问题还埋着，接任的人会替你还账。' : '而且你没有硬闯真正的雷区。部里的那些“拖延”，有一半是在保护你。') :
+      why === 'time' ? '三年到了，改革只完成了 ' + st.prog + '%。下一位大臣上任，部里会把这份文件放回柜子里，等他问起。' :
+      '第 ' + st.q + ' 季度，首相改组内阁，你被调去了另一个部。改革进度停在 ' + st.prog + '%。<b>在英国，这是改革失败最常见的原因</b>：部长平均只干两年左右，文官们知道，等一等，就会换一个人来。';
+  }
+  function render(){
+    kv($('#minKv'), [['季度', st.q + ' / 12'], ['政治资本', st.cap], ['改革进度', Math.min(100, st.prog) + '%'], ['埋着的雷', st.risk ? st.risk + ' 个' : '没有']]);
+    if (!st.over) box.innerHTML = ['照部里的意见办', '硬推（−3）', '找首相撑腰（−2，限一次）', '带一位特别顾问（−1）'].map((t, i) => '<button class="btn' + (i === 0 ? ' pri' : '') + '" data-k="' + i + '">' + t + '</button>').join('');
+  }
+  box.addEventListener('click', e => { const b = e.target.closest('button[data-k]'); if (b) act(+b.dataset.k); });
+  reset();
+});
+
+
+/* ---------- 装置 15：换届时换掉多少人 ---------- */
+dev('#apFig', fig => {
+  // [国家, 政治任命约数, 中央政府文职约数（万）, 说明]
+  const D = [['美国', 4000, 220, '约四千个，其中一千多个须参议院批准'], ['法国', 1200, 250, '部长办公室成员 + 可自由任免的高级职位'], ['英国', 240, 51, '大臣约一百二十 + 特别顾问约一百二十'], ['德国', 250, 50, '部长、议会国务秘书 + “政治官员”'], ['日本', 80, 59, '大臣、副大臣、政务官、辅佐官']];
+  let mode = 0;
+  btnRow($('#apMode'), ['绝对人数', '每一万个文职里几个'], 0, i => { mode = i; draw(); });
+  function draw(){
+    const rows = D.map(d => [d[0], mode ? d[1] / d[2] : d[1], d[3], d[0] === '美国' ? 'var(--zhu)' : 'var(--main)']);
+    const mx = Math.max(...rows.map(r => r[1]));
+    bars($('#apBars'), rows, mx * 1.05, v => mode ? '约 ' + v.toFixed(1) : '约 ' + v.toLocaleString());
+    $('#apSay').innerHTML = mode ? '按比例算，美国每一万个联邦文职人员里有十几个是政治任命，英德法大约是几个，日本更少。<b>差别不在一个数量级上</b>：美国新总统带进来的人，能一直伸到各部的中层。' :
+      '美国换一届政府要换掉约四千人；英国、德国大约是两三百人，日本不到一百人。法国的数字不小，但大多是部长身边的办公室班子，各部的职业文官基本不动。';
+  }
+  draw();
+});
+
+
+/* ---------- 装置 16：毕业名次决定一生 ---------- */
+dev('#enaFig', fig => {
+  // 去向按“受追捧程度”排序：[名字, 名额, 通常通向]
+  const C = [['财政监察总署', 5, '审计全国财政，常去部长办公室和大银行、大企业当高管'], ['行政法院', 6, '审理告政府的案子、给政府起草法令，常任部长办公室主任、大公司法务首脑'], ['审计法院', 6, '审计公共账目，同样是政坛和商界的跳板'], ['外交部', 8, '驻外使馆，三十年后可能当上大使'], ['省长系统', 8, '从专区区长做起，二十年后当省长'], ['文职行政官（各部）', 57, '在各部当科长、处长、司长，一辈子在一个领域深耕']];
+  let mode = 0;
+  btnRow($('#enaMode'), ['2022 年以前', '2022 年以后'], 0, i => { mode = i; draw(); });
+  const R = $('#enaR');
+  R.addEventListener('input', draw);
+  function draw(){
+    const rk = +R.value;
+    $('#enaRO').textContent = '第 ' + rk + ' 名';
+    // 前 rk-1 名的人按受欢迎程度依次挑走名额
+    let taken = rk - 1;
+    const left = C.map(c => { const t = Math.min(c[1], taken); taken -= t; return c[1] - t; });
+    if (mode === 1) {
+      bars($('#enaBars'), [['国家行政官（统一入职）', 90, '所有毕业生', 'var(--main)']], 90, v => '90 人');
+      $('#enaSay').innerHTML = '新规矩：不管第一名还是第九十名，都先进入同一个“国家行政官”职系，去部委、地方或一线工作几年，<b>之后再通过选拔进入各个大团</b>。二十五岁那一次排名的分量小了很多；可几年后的选拔看什么、谁来选，就成了新的问题。';
+      return;
+    }
+    bars($('#enaBars'), C.map((c, i) => [c[0], left[i], '剩 ' + left[i] + ' / ' + c[1], left[i] ? (i < 3 ? 'var(--zhu)' : 'var(--main)') : 'var(--rule)']), 8, v => v ? '可选' : '没了');
+    const best = left.findIndex(x => x > 0);
+    const c = C[best];
+    $('#enaSay').innerHTML = '轮到第 ' + rk + ' 名时，最好的选择是<b>' + c[0] + '</b>：' + c[2] + '。' +
+      (best < 3 ? (rk >= 15 ? '' : '你挤进了“大团”。同届人一辈子都会记得这一点。') :
+       rk <= 20 ? '只差几名，你就和三大团擦肩而过了。名次之间的分差，可能只有零点几分。' : '大部分埃纳克走的是这条路：不出名，但国家的大部分日常管理靠他们。');
+  }
+  draw();
+});
+
+
+/* ---------- 装置 17：同期二十四人 ---------- */
+dev('#dkFig', fig => {
+  const svg = $('#dkSvg'), say = $('#dkSay');
+  const LV = ['课长补佐', '课长', '审议官', '局长', '事务次官'];
+  const CAP = [24, 14, 7, 3, 1]; // 每一级能容纳的同期人数
+  const AT = [0, 15, 22, 27, 30]; // 入省第几年升到这一级
+  let st, me = -1;
+  function reset(){
+    const r = rng(Date.now() % 9999);
+    st = {y: 0, ppl: Array.from({length: 24}, (_, i) => ({i, lv: 0, out: 0, score: r(), luck: r()})), r};
+    me = -1; draw();
+  }
+  function step(){
+    if (st.y >= 30) return;
+    st.y += 5;
+    LV.forEach((n, k) => {
+      if (k === 0 || st.y < AT[k]) return;
+      const cand = st.ppl.filter(p => !p.out && p.lv === k - 1).sort((a, b) => (b.score + b.luck * 0.4) - (a.score + a.luck * 0.4));
+      const need = CAP[k] - st.ppl.filter(p => !p.out && p.lv >= k).length;
+      cand.forEach((p, j) => { if (j < need) p.lv = k; else if (st.y >= AT[k]) { p.out = st.y; p.tie = Math.floor(st.r() * 3) + 1 + (p.lv >= 2 ? 1 : 0); } });
+      st.ppl.forEach(p => p.luck = st.r());
+    });
+    if (st.y >= 30) st.ppl.forEach(p => { if (!p.out && p.lv < 4) { p.out = 30; p.tie = 3 + (p.lv >= 3 ? 1 : 0); } });
+    draw();
+  }
+  function draw(){
+    const W = 600, H = 250, L = 80;
+    let g = '';
+    LV.forEach((n, k) => { const y = H - 30 - k * 44; g += '<line x1="' + L + '" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="var(--rule)"/>' + txt(L - 8, y + 4, n, {s: 12, a: 'end', c: 'var(--ink-2)', halo: false}); });
+    g += txt(W - 12, 16, '入省第 ' + st.y + ' 年', {s: 13, a: 'end', c: 'var(--ink)', halo: false});
+    st.ppl.forEach((p, j) => {
+      const x = L + 14 + j * ((W - L - 30) / 23), y = H - 30 - p.lv * 44;
+      const col = p.out ? 'var(--kraft)' : p.lv === 4 ? 'var(--zhu)' : 'var(--main)';
+      g += '<circle cx="' + x.toFixed(1) + '" cy="' + (p.out ? y + 14 : y) + '" r="' + (p.i === me ? 8 : 6) + '" fill="' + col + '" opacity="' + (p.out ? 0.45 : 0.9) + '" stroke="' + (p.i === me ? 'var(--ink)' : 'none') + '" stroke-width="2" data-i="' + p.i + '" style="cursor:pointer"/>';
+      if (p.out) g += txt(x, y + 32, '降', {s: 10, c: 'var(--kraft)', halo: false});
+    });
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+    const out = st.ppl.filter(p => p.out), ties = out.reduce((s, p) => s + (p.tie || 0), 0);
+    kv($('#dkKv'), [['入省', st.y + ' 年'], ['还在省里', (24 - out.length) + ' 人'], ['已“天降”', out.length + ' 人'], ['退职金领取次数', ties + ' 次']]);
+    const m = me >= 0 ? st.ppl[me] : null;
+    say.innerHTML = st.y === 0 ? '二十四个人，同一天进省，同一个起跑线。' + (m ? '你选中了一位，跟着他看。' : '点一个圆点选一个人。') :
+      st.y >= 30 ? '三十年后：一人当上事务次官（红色），其余二十三人全部离开，一共领了约 <b>' + ties + '</b> 次退职金。' + (m ? (m.lv === 4 ? '<b>你跟着的那位，就是次官。</b>' : '你跟着的那位最后做到' + LV[m.lv] + '，第 ' + m.out + ' 年离开，“渡”了 ' + m.tie + ' 个地方。') : '') :
+      '第 ' + st.y + ' 年。' + (m ? '你跟着的那位现在是' + LV[m.lv] + (m.out ? '，已于第 ' + m.out + ' 年离开，去了第一个“天降”的地方。' : '，还在。') : '');
+  }
+  svg.addEventListener('click', e => { const c = e.target.closest('circle[data-i]'); if (c) { me = +c.dataset.i; draw(); } });
+  $('#dkGo').addEventListener('click', step);
+  $('#dkReset').addEventListener('click', reset);
+  reset();
+});
+
+
+/* ---------- 装置 18：干部稳定 ---------- */
+dev('#stabFig', fig => {
+  const svg = $('#stSvg'), R = $('#stR');
+  const fr = () => $('#stRO').textContent = R.value + '%'; R.addEventListener('input', fr); fr();
+  function run(){
+    const rate = +R.value / 100, r = rng(1964 + +R.value);
+    // 金字塔：第 0 层 10 个位子（最高），第 1 层 30 个，第 2 层 60 个
+    const tiers = [10, 30, 60];
+    const pos = [];
+    tiers.forEach((n, t) => { for (let i = 0; i < n; i++) pos.push({t, age: [57, 52, 46][t] + Math.round((r() - 0.5) * 12)}); });
+    const topA = [], allA = []; let promos = 0, young = 0;
+    for (let y = 1964; y <= 1984; y++) {
+      const a0 = pos.filter(p => p.t === 0).reduce((s, p) => s + p.age, 0) / 10;
+      topA.push([y, a0]); allA.push([y, pos.reduce((s, p) => s + p.age, 0) / pos.length]);
+      if (y === 1984) break;
+      // 死亡 + 强制更替 → 空位
+      pos.forEach(p => { const pd = p.age < 60 ? 0.006 : p.age < 70 ? 0.02 : 0.06; p.vac = r() < pd || r() < rate * (p.age > 60 ? 1.6 : 0.6); });
+      // 自上而下递补：由下一层最年长者补入
+      for (let t = 0; t < 3; t++) {
+        pos.filter(p => p.t === t && p.vac).forEach(p => {
+          if (t < 2) { const c = pos.filter(q => q.t === t + 1 && !q.vac).sort((a, b) => b.age - a.age)[0]; if (c) { p.age = c.age; p.vac = false; c.vac = true; promos++; if (c.age < 50) young++; } }
+          else { p.age = 38 + Math.round(r() * 6); p.vac = false; }
+        });
+      }
+      pos.forEach(p => p.age++);
+    }
+    lineChart(svg, [{color: 'var(--zhu)', pts: topA, w: 2.8}, {color: 'var(--main)', pts: allA, dash: '5 4'}], {xmin: 1964, xmax: 1984, ymin: 40, ymax: 80, yt: [40, 50, 60, 70, 80], xt: [1964, 1969, 1974, 1979, 1984], H: 230});
+    const end = topA[topA.length - 1][1];
+    kv($('#stKv'), [['1964 年最高层', topA[0][1].toFixed(1) + ' 岁'], ['1984 年最高层', end.toFixed(1) + ' 岁'], ['二十年晋升次数', promos], ['五十岁前得到晋升', young + ' 次']]);
+    const s = $('#stSay');
+    s.className = 'say ' + (end > 68 ? 'bad' : 'ok');
+    s.innerHTML = rate <= 0.01 ? '几乎不更替：最高层的平均年龄每年涨将近一岁，二十年后接近七十。<b>这差不多就是勃列日涅夫时代的政治局</b>。年轻人的晋升机会少得可怜。' :
+      rate >= 0.08 ? '更替很快：最高层保持年轻，晋升机会多。代价是官员们又回到了赫鲁晓夫时代的提心吊胆，经验也来不及积累。' :
+      '适中的更替让年龄大致稳住。稳定和更新之间，没有一个永远正确的比例。';
+  }
+  $('#stGo').addEventListener('click', run); run();
+});
+
+
+/* ---------- 装置 19：工资、查处和诱惑 ---------- */
+dev('#payFig', fig => {
+  const Wr = $('#payW'), Pr = $('#payP'), Br = $('#payB');
+  const r = rng(1974);
+  const greed = Array.from({length: 1000}, () => { const u = r(); return u < 0.25 ? 0 : Math.pow(r(), 0.7) * 3; }); // 四分之一天性正直，从不伸手
+  function calc(){
+    const w = +Wr.value / 100, p = +Pr.value / 100, b = +Br.value / 100;
+    $('#payWO').textContent = Wr.value + '%'; $('#payPO').textContent = Pr.value + '%'; $('#payBO').textContent = Br.value + '% 年薪';
+    // 被抓的损失：未来几年的工资溢价（相对去私营部门的差额，最低为 0）+ 罚没（按三年工资计）+ 名声
+    const loss = Math.max(0, w - 1) * 3 + w * 0.3 + 0.2;
+    const corrupt = greed.filter(g => g > 0 && b * g > p * loss).length;
+    // 低工资时，体面的人会离开或去兼差，留下的人里贪心的比例上升
+    const talent = clamp(Math.round(100 / (1 + Math.exp(-(w - 0.9) * 5))), 2, 98);
+    bars($('#payBars'), [['会伸手的官员', corrupt / 10, '一千人中', 'var(--red)'], ['愿意进来的顶尖毕业生', talent, '相对比例', 'var(--grn)']], 100, v => Math.round(v) + '%');
+    const s = $('#paySay');
+    s.className = 'say ' + (corrupt > 400 ? 'bad' : corrupt < 150 && talent > 50 ? 'ok' : '');
+    s.innerHTML = p === 0 ? '<b>查处概率为零</b>：不管工资多高，只要有人送钱、又不会被抓，贪心的人都会伸手。高薪在这里只是让他们多拿一份。' :
+      w < 0.8 && p >= 0.25 ? '查得很严，可工资只有私营部门的' + Wr.value + '%：伸手的人少了，<b>可最能干的人也不来了</b>，或者干几年就走。这接近很多国家公务员“清苦”的状态。' :
+      w >= 1.2 && p >= 0.15 ? '工资有竞争力，查处概率也高：伸手划不来，顶尖人才也愿意来。<b>这才是新加坡模式的完整版本</b>，两样缺一不可，而且贵。' :
+      '试试把查处概率拖到零，再把工资拖到最高；然后反过来。看看哪一个滑块对“伸手”的影响更大。';
+  }
+  [Wr, Pr, Br].forEach(x => x.addEventListener('input', calc)); calc();
+});
+
+
+/* ---------- 装置 20：上岸的概率 ---------- */
+dev('#gkFig', fig => {
+  const svg = $('#gkSvg');
+  // 上半：过审人数（万）与竞争比
+  const D = [[2023, 259.8, 70], [2024, 303.3, 77], [2025, 341.6, 86], [2026, 371.8, 98]];
+  (function chart(){
+    const W = 600, H = 170, L = 50, B = 26, T = 12;
+    const X = i => L + 40 + i * ((W - L - 80) / 3), Y = v => T + (1 - v / 400) * (H - T - B);
+    let g = '';
+    [0, 100, 200, 300, 400].forEach(v => g += '<line x1="' + L + '" x2="' + (W - 10) + '" y1="' + Y(v) + '" y2="' + Y(v) + '" stroke="var(--rule)"/>' + txt(L - 6, Y(v) + 4, v + '万', {s: 10.5, a: 'end', c: 'var(--ink-3)', halo: false}));
+    D.forEach((d, i) => {
+      g += '<rect x="' + (X(i) - 30) + '" y="' + Y(d[1]) + '" width="60" height="' + (Y(0) - Y(d[1])) + '" rx="3" fill="var(--main)" opacity=".8"/>';
+      g += txt(X(i), Y(d[1]) - 6, d[1] + ' 万', {s: 12, c: 'var(--ink)'}) + txt(X(i), Y(d[1]) + 18, d[2] + ':1', {s: 12, c: 'var(--paper)', halo: false, w: true});
+      g += txt(X(i), H - 8, d[0] + ' 年度', {s: 11, c: 'var(--ink-3)', halo: false});
+    });
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+  })();
+  const LV = ['后一半', '平均水平', '前 40%', '前 25%', '前 15%', '前 10%', '前 5%', '前 1%'];
+  const MUL = [0.3, 1, 1.6, 2.6, 4, 5.5, 8, 15];
+  const Rr = $('#gkR'), Lr = $('#gkL'), Nr = $('#gkN'), Yr = $('#gkY');
+  Lr.value = 2;
+  function calc(){
+    const ratio = +Rr.value, m = MUL[+Lr.value - 1], n = +Nr.value, y = +Yr.value;
+    $('#gkRO').textContent = ratio + ' : 1'; $('#gkLO').textContent = LV[+Lr.value - 1]; $('#gkNO').textContent = n + ' 次'; $('#gkYO').textContent = y + ' 年';
+    const p = clamp(m / ratio, 0, 0.85);
+    const tot = 1 - Math.pow(1 - p, n * y);
+    kv($('#gkKv'), [['单次考上的概率', (p * 100).toFixed(p < 0.01 ? 2 : 1) + '%'], ['一共考', n * y + ' 次'], ['至少上岸一次', (tot * 100).toFixed(1) + '%']]);
+    const s = $('#gkSay');
+    s.className = 'say ' + (tot > 0.6 ? 'ok' : tot < 0.2 ? 'bad' : '');
+    s.innerHTML = m <= 1 ? '水平在平均线上下的人，面对 ' + ratio + ' 比 1 的岗位，单次机会就是 ' + (100 / ratio).toFixed(1) + '% 左右。<b>决定结果的主要是两样：你能不能挤进前列，以及你报的岗位竞争有多激烈</b>。' :
+      tot > 0.8 ? '如果你真的稳定在这个水平，多考几次，上岸几乎是时间问题。难的是：大多数人高估了自己的位置。' :
+      '把竞争比拖到三十上下（偏远地区、限制条件多的岗位常见），再看看概率变成多少。<b>选岗位，有时候比多刷一套题更管用</b>。';
+  }
+  [Rr, Lr, Nr, Yr].forEach(x => x.addEventListener('input', calc)); calc();
+});
+
+})();
+
+</script>
+</body>
+</html>

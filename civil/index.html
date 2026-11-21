@@ -2068,7 +2068,7 @@ function slider(id, f, cb){ const r = $('#' + id), o = $('#' + id + 'O'); const 
 
 /* ---------- 全书目录（三个网页共用） ---------- */
 const PAGE = /three\.html/.test(location.pathname) ? 3 : /two\.html/.test(location.pathname) ? 2 : 1;
-const READY = 1; // 已经写好的部数；后面的章节在目录里显示“写作中”
+const READY = 2; // 已经写好的部数；后面的章节在目录里显示“写作中”
 const PURL = {1: './', 2: 'two.html', 3: 'three.html'};
 const TOC = [
   {p: 1, t: '第一部 · 刀笔 —— 从书吏到师爷'},
@@ -2266,6 +2266,24 @@ dev('#gateFig', fig => {
     }
   }
   $('#gateR').addEventListener('input', draw);
+  draw();
+});
+
+
+/* ---------- 第二部封面装置：一百个上班的人里，几个替政府干活 ---------- */
+dev('#pubFig', fig => {
+  const D = [['挪威', 30], ['丹麦', 28], ['瑞典', 29], ['芬兰', 25], ['法国', 21], ['加拿大', 19], ['英国', 16], ['意大利', 13], ['美国', 15], ['西班牙', 16], ['德国', 11], ['荷兰', 12], ['韩国', 8], ['日本', 6]];
+  let mode = 0;
+  btnRow($('#pubSort'), ['从高到低', '从低到高', '先别排，我先猜'], 2, i => { mode = i; draw(); });
+  function draw(){
+    let rows = D.slice();
+    if (mode === 0) rows.sort((a, b) => b[1] - a[1]);
+    if (mode === 1) rows.sort((a, b) => a[1] - b[1]);
+    const hide = mode === 2;
+    bars($('#pubBars'), rows.map(r => [r[0], hide ? 0 : r[1], '', r[0] === '日本' && !hide ? 'var(--zhu)' : 'var(--main)']), 32, v => hide ? '?' : '约 ' + v + '%');
+    $('#pubSay').innerHTML = hide ? '先猜一下：哪个国家最低？很多人会猜美国，因为“美国是小政府”。点上面的排序按钮揭晓。' :
+      '最低的是<b>日本</b>，一百个上班的人里大约只有六个替政府干活；北欧国家最高，接近三成，因为那里的托儿所、养老院、医院大多是公立的，护工和教师都算政府雇员。<b>“官僚多不多”和“公务员多不多”是两回事</b>：日本的公务员很少，可它的官僚曾经被认为是世界上最有权力的官僚之一（第十六章）。';
+  }
   draw();
 });
 
@@ -2760,6 +2778,374 @@ dev('#tallyFig', fig => {
     say.innerHTML = cheat ? '对账：两半一合，<b>缺口对不上</b>，木纹也错开了。国库里的对根是铁证。郡长要为此付出代价。这根棍子不需要任何人识字，就能防伪。' : '对账：两半合在一起，缺口严丝合缝，木纹也连得上。账是真的。';
   });
   upd();
+});
+
+
+/* ---------- 装置 11：不领工资的见习 ---------- */
+dev('#unpFig', fig => {
+  const svg = $('#unpSvg'), Y = $('#unpY');
+  const r = rng(1770);
+  // 家境：对数正态，换算成能供养的年数
+  const P = Array.from({length: 1000}, () => { const z = Math.sqrt(-2 * Math.log(r() + 1e-9)) * Math.cos(2 * Math.PI * r()); return {w: Math.exp(z * 0.9), y: r(), exam: r(), q: r()}; });
+  P.sort((a, b) => a.w - b.w);
+  P.forEach((p, i) => { p.rank = i / 999; p.support = 1.2 * Math.log(1 + p.w * 3) * 3 + p.q * 1.5; });
+  function draw(){
+    const yrs = +Y.value;
+    $('#unpYO').textContent = yrs + ' 年';
+    const W = 600, H = 220, L = 20, B = 26;
+    let g = '', fin = 0, finPoor = 0, drop = 0, fail = 0;
+    P.forEach(p => {
+      // 考试：三次，每次刷掉约 25%
+      const passExam = p.exam > 0.58;
+      const canWait = p.support >= yrs;
+      let col, op = 0.85;
+      if (!canWait) { col = 'var(--ink-3)'; op = 0.25; drop++; }
+      else if (!passExam) { col = 'var(--kraft)'; op = 0.45; fail++; }
+      else { col = 'var(--zhu)'; fin++; if (p.rank < 0.5) finPoor++; }
+      g += '<circle cx="' + (L + p.rank * (W - L * 2)).toFixed(1) + '" cy="' + (8 + p.y * (H - B - 14)).toFixed(1) + '" r="2.6" fill="' + col + '" opacity="' + op + '"/>';
+    });
+    g += '<line x1="' + L + '" x2="' + (W - L) + '" y1="' + (H - B + 2) + '" y2="' + (H - B + 2) + '" stroke="var(--ink)"/>' + txt(L, H - 6, '← 穷', {s: 12, a: 'start', c: 'var(--ink-2)', halo: false}) + txt(W - L, H - 6, '富 →', {s: 12, a: 'end', c: 'var(--ink-2)', halo: false}) + txt(W / 2, H - 6, '家境（按排名）', {s: 11, c: 'var(--ink-3)', halo: false});
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+    kv($('#unpKv'), [['熬不住退出', drop + ' 人'], ['考试没过', fail + ' 人'], ['成为官员', fin + ' 人'], ['其中家境在下半', fin ? Math.round(finPoor / fin * 100) + '%' : '—']]);
+    const s = $('#unpSay'), share = fin ? finPoor / fin : 0;
+    s.className = 'say ' + (share < 0.25 ? 'bad' : 'ok');
+    s.innerHTML = yrs === 0 ? '见习期有工资：考试一视同仁，最后的官员里穷富各占一半左右，<b>和考生本身的分布一样</b>。' :
+      share < 0.1 ? '考试一点没变，可最后的官员几乎全是富家子弟（红点都挤在右边）。<b>门槛不写在考卷上，写在“谁供得起”上</b>。' :
+      '无薪的年数越长，左边掉队的灰点越多。考试没有偏袒任何人，筛掉穷人的是时间。';
+  }
+  Y.addEventListener('input', draw); draw();
+});
+
+
+/* ---------- 装置 12：帕金森定律 ---------- */
+dev('#pkFig', fig => {
+  const svg = $('#pkSvg'), R = $('#pkR'), M = $('#pkM');
+  const fr = () => { $('#pkRO').textContent = (+R.value > 0 ? '+' : '') + R.value + '%'; $('#pkMO').textContent = (+M.value / 10).toFixed(1); };
+  R.addEventListener('input', fr); M.addEventListener('input', fr); fr();
+  function run(){
+    const rate = +R.value / 100, mu = +M.value / 10, r = rng(1955 + +M.value * 7 + +R.value);
+    // 起初十个人、一千份真活，人均一百份。帕金森：活会膨胀到填满时间，所以人人都“觉得忙”；
+    // 每年每人有一定概率申请一个下属（内耗越大、真活增长越快，概率越高），而且从不裁员。
+    let real = 1000, n = 10;
+    const sR = [], sN = [], sT = [];
+    for (let y = 0; y <= 20; y++) {
+      const internal = mu * 6 * n * Math.log2(n);           // 传阅、会签、开会：随人数和层级增长
+      sR.push([y, real]); sN.push([y, n * 100]); sT.push([y, real + internal]);
+      const p = clamp(0.015 + mu * 0.012 + Math.max(0, rate) * 0.8, 0, 0.5);
+      let add = 0; for (let i = 0; i < n; i++) if (r() < p) add++;
+      n += add;
+      real = Math.max(100, real * (1 + rate));
+    }
+    const mx = Math.max(...sT.map(p => p[1]), ...sN.map(p => p[1]), 1500);
+    const top = Math.ceil(mx / 1000) * 1000;
+    lineChart(svg, [{color: 'var(--main)', pts: sR}, {color: 'var(--zhu)', pts: sN, w: 2.8}, {color: 'var(--kraft)', pts: sT, dash: '5 4'}], {xmin: 0, xmax: 20, ymin: 0, ymax: top, yt: [0, top / 2, top], xt: [0, 5, 10, 15, 20], xf: v => v + ' 年', H: 230, L: 52});
+    const n20 = sN[20][1] / 100, r20 = sR[20][1];
+    const g = Math.pow(n20 / 10, 1 / 20) - 1;
+    const s = $('#pkSay');
+    s.className = 'say ' + (n20 > 15 ? 'bad' : 'ok');
+    s.innerHTML = '二十年后：真正要办的事从 1000 份变成 <b>' + Math.round(r20) + '</b> 份，科室从 10 人变成 <b>' + n20 + '</b> 人，人数平均每年增长约 ' + (g * 100).toFixed(1) + '%（帕金森估计的是 5%—6%），人均真活从 100 份变成 ' + Math.round(r20 / n20) + ' 份。' +
+      (mu === 0 ? '没有内耗，人几乎不增加。可惜现实里没有零内耗的科室。' :
+       rate < 0 ? '<b>真活在减少，人却在增加</b>：这就是海军部的那两条线。每个人都觉得自己很忙，因为虚线和蓝线之间那一大块，是科室自己给自己造的活。' : '真活增加时人手跟着增加，这很正常；注意看虚线和蓝线之间的距离：那是科室自己给自己造的活。');
+  }
+  $('#pkGo').addEventListener('click', run); run();
+});
+
+
+/* ---------- 装置 13：流水的部长，铁打的秘书 ---------- */
+dev('#tenFig', fig => {
+  const svg = $('#tenSvg'), say = $('#tenSay');
+  const Y0 = 1980, Y1 = 2020, W = 600, L = 70, R = 10;
+  const X = y => L + (y - Y0) / (Y1 - Y0) * (W - L - R);
+  let rows, seed = 5, pick = 2000;
+  const SUR = '史布克罗韦哈特莫兰贝克福克斯格林伍兹霍尔肯特里德'.split('');
+  function gen(){
+    const r = rng(seed++);
+    const seq = (mean, sd, minL) => { const out = []; let y = Y0 - r() * mean; while (y < Y1) { const len = Math.max(minL, mean + (r() - 0.5) * 2 * sd); out.push([y, y + len, SUR[Math.floor(r() * SUR.length)] + SUR[Math.floor(r() * SUR.length)]]); y += len; } return out; };
+    rows = [{n: '部长', c: 'var(--zhu)', s: seq(2.1, 1.5, 0.4)}, {n: '常任秘书', c: 'var(--main)', s: seq(4.6, 1.8, 2)}, {n: '一位文官', c: 'var(--kraft)', s: [[1982, 2017, '何']]}];
+    draw();
+  }
+  function draw(){
+    let g = '';
+    [1980, 1990, 2000, 2010, 2020].forEach(y => g += '<line x1="' + X(y) + '" x2="' + X(y) + '" y1="10" y2="150" stroke="var(--rule)" stroke-dasharray="2 3"/>' + txt(X(y), 166, y, {s: 11, c: 'var(--ink-3)', halo: false}));
+    rows.forEach((row, i) => {
+      const y = 18 + i * 44;
+      g += txt(L - 8, y + 18, row.n, {s: 12.5, a: 'end', c: 'var(--ink-2)', halo: false});
+      row.s.forEach((p, k) => { const a = Math.max(Y0, p[0]), b = Math.min(Y1, p[1]); if (b <= a) return; g += '<rect x="' + X(a).toFixed(1) + '" y="' + y + '" width="' + Math.max(1.5, X(b) - X(a) - 1.5).toFixed(1) + '" height="26" rx="3" fill="' + row.c + '" opacity="' + (k % 2 ? 0.55 : 0.85) + '"/>'; });
+    });
+    g += '<line x1="' + X(pick) + '" x2="' + X(pick) + '" y1="6" y2="152" stroke="var(--ink)" stroke-width="1.6"/>';
+    g += '<rect x="' + L + '" y="0" width="' + (W - L - R) + '" height="172" fill="transparent" id="tenHit" style="cursor:pointer"/>';
+    svg.setAttribute('viewBox', '0 0 ' + W + ' 176'); svg.innerHTML = g;
+    const cnt = i => rows[i].s.filter(p => p[1] > Y0 && p[0] < Y1).length;
+    const cur = i => rows[i].s.find(p => p[0] <= pick && p[1] > pick);
+    const m = cur(0), ps = cur(1);
+    const ym = m ? (pick - Math.max(Y0, m[0])).toFixed(1) : 0, yp = ps ? (pick - ps[0]).toFixed(1) : 0, yc = pick >= 1982 && pick < 2017 ? pick - 1982 : null;
+    say.innerHTML = '这个部门四十年里换了 <b>' + cnt(0) + '</b> 位部长、<b>' + cnt(1) + '</b> 位常任秘书，那位普通文官只有一个。<br>' + Math.round(pick) + ' 年：现任部长来了 ' + ym + ' 年，常任秘书在位 ' + yp + ' 年' + (yc !== null ? '，那位文官已经在这里干了 <b>' + Math.round(yc) + '</b> 年。新部长想知道“上次这个办法为什么没成”，他只能去问后两个人。' : '，那位文官还没入职或已经退休了。');
+    $('#tenHit').addEventListener('click', e => { const p = svgPt(svg, e); pick = clamp(Y0 + (p.x - L) / (W - L - R) * (Y1 - Y0), Y0, Y1 - 0.01); draw(); });
+  }
+  $('#tenNew').addEventListener('click', gen);
+  gen();
+});
+
+
+/* ---------- 装置 14：部长的一项新政 ---------- */
+dev('#minFig', fig => {
+  const say = $('#minSay'), log = $('#minLog'), box = $('#minBtns');
+  // 事件：t 文本，real 是否真问题（硬推会出事），cost 照办耗的季度
+  const EV = [
+    {t: '部里建议先做一次为期十二周的公众咨询。', real: false},
+    {t: '法律顾问提醒：方案的一条可能在法庭上被挑战（司法审查）。', real: true},
+    {t: '财政部要求补交一份详细的成本测算，否则不批钱。', real: false},
+    {t: '司长建议先在两个地区试点一年，看看效果。', real: true},
+    {t: '这件事牵涉另外三个部，建议成立一个跨部门工作组。', real: false},
+    {t: '执行机构说现有的信息系统改不过来，至少要一年。', real: true},
+    {t: '常任秘书说，议会这个会期的立法时间表已经排满了。', real: false},
+    {t: '一份内部评估发现，方案会让一部分低收入家庭受损。', real: true},
+    {t: '部里起草了一份“备选方案”文件，列了五种做法供您选择。', real: false}
+  ];
+  let st, r;
+  function reset(){
+    r = rng(Date.now() % 100000);
+    st = {q: 0, cap: 10, prog: 0, spad: false, pm: false, risk: 0, over: false, cur: null};
+    log.textContent = '';
+    next();
+  }
+  function next(){
+    if (st.over) return;
+    if (st.prog >= 100) return end('done');
+    if (st.q >= 12) return end('time');
+    if (st.q > 1 && r() < 0.07) return end('reshuffle');
+    st.q++;
+    st.cur = EV[Math.floor(r() * EV.length)];
+    render();
+    say.className = 'say'; say.innerHTML = '第 ' + st.q + ' 季度。' + st.cur.t;
+  }
+  function act(k){
+    if (st.over) return;
+    const e = st.cur; let line = '第 ' + st.q + ' 季度：' + e.t + ' → ';
+    if (k === 0) { st.prog += e.real ? 12 : 6; if (e.real) st.risk = Math.max(0, st.risk - 1); line += '照部里的意见办。' + (e.real ? '这一步其实替你排掉了一个雷。' : ''); }
+    if (k === 1) { if (st.cap < 3) { say.innerHTML = '政治资本不够硬推了。'; return; } st.cap -= 3; st.prog += 20; if (e.real) st.risk++; line += '硬推过去。'; }
+    if (k === 2) { if (st.pm || st.cap < 2) { say.innerHTML = st.pm ? '首相这张牌你已经打过了。' : '政治资本不够了。'; return; } st.pm = true; st.cap -= 2; st.prog += 25; line += '找首相撑腰，首相府发话，各部配合。'; }
+    if (k === 3) { if (st.spad || st.cap < 1) { say.innerHTML = st.spad ? '你已经有一位特别顾问在盯着了。' : '政治资本不够了。'; return; } st.spad = true; st.cap -= 1; line += '带进一位特别顾问，盯着每个司的进度。'; }
+    if (st.spad && k !== 3) st.prog += 4;
+    log.textContent = line + '\n' + log.textContent;
+    // 硬推过的真问题可能爆雷
+    if (st.risk > 0 && r() < 0.18 * st.risk) { st.prog = Math.max(0, st.prog - 30); st.cap = Math.max(0, st.cap - 2); st.risk = Math.max(0, st.risk - 1); log.textContent = '⚠ 先前硬推过去的问题爆了：报纸头版、法院裁定或者执行事故。进度倒退，政治资本受损。\n' + log.textContent; }
+    next();
+  }
+  function end(why){
+    st.over = true; render();
+    box.innerHTML = '<button class="btn pri" id="minAgain">再来一任</button>';
+    $('#minAgain').addEventListener('click', reset);
+    say.className = 'say ' + (why === 'done' ? 'ok' : 'bad');
+    say.innerHTML = why === 'done' ? '第 ' + st.q + ' 季度，改革立法通过，开始实施。' + (st.risk > 0 ? '不过有几个被你硬推过去的问题还埋着，接任的人会替你还账。' : '而且你没有硬闯真正的雷区。部里的那些“拖延”，有一半是在保护你。') :
+      why === 'time' ? '三年到了，改革只完成了 ' + st.prog + '%。下一位大臣上任，部里会把这份文件放回柜子里，等他问起。' :
+      '第 ' + st.q + ' 季度，首相改组内阁，你被调去了另一个部。改革进度停在 ' + st.prog + '%。<b>在英国，这是改革失败最常见的原因</b>：部长平均只干两年左右，文官们知道，等一等，就会换一个人来。';
+  }
+  function render(){
+    kv($('#minKv'), [['季度', st.q + ' / 12'], ['政治资本', st.cap], ['改革进度', Math.min(100, st.prog) + '%'], ['埋着的雷', st.risk ? st.risk + ' 个' : '没有']]);
+    if (!st.over) box.innerHTML = ['照部里的意见办', '硬推（−3）', '找首相撑腰（−2，限一次）', '带一位特别顾问（−1）'].map((t, i) => '<button class="btn' + (i === 0 ? ' pri' : '') + '" data-k="' + i + '">' + t + '</button>').join('');
+  }
+  box.addEventListener('click', e => { const b = e.target.closest('button[data-k]'); if (b) act(+b.dataset.k); });
+  reset();
+});
+
+
+/* ---------- 装置 15：换届时换掉多少人 ---------- */
+dev('#apFig', fig => {
+  // [国家, 政治任命约数, 中央政府文职约数（万）, 说明]
+  const D = [['美国', 4000, 220, '约四千个，其中一千多个须参议院批准'], ['法国', 1200, 250, '部长办公室成员 + 可自由任免的高级职位'], ['英国', 240, 51, '大臣约一百二十 + 特别顾问约一百二十'], ['德国', 250, 50, '部长、议会国务秘书 + “政治官员”'], ['日本', 80, 59, '大臣、副大臣、政务官、辅佐官']];
+  let mode = 0;
+  btnRow($('#apMode'), ['绝对人数', '每一万个文职里几个'], 0, i => { mode = i; draw(); });
+  function draw(){
+    const rows = D.map(d => [d[0], mode ? d[1] / d[2] : d[1], d[3], d[0] === '美国' ? 'var(--zhu)' : 'var(--main)']);
+    const mx = Math.max(...rows.map(r => r[1]));
+    bars($('#apBars'), rows, mx * 1.05, v => mode ? '约 ' + v.toFixed(1) : '约 ' + v.toLocaleString());
+    $('#apSay').innerHTML = mode ? '按比例算，美国每一万个联邦文职人员里有十几个是政治任命，英德法大约是几个，日本更少。<b>差别不在一个数量级上</b>：美国新总统带进来的人，能一直伸到各部的中层。' :
+      '美国换一届政府要换掉约四千人；英国、德国大约是两三百人，日本不到一百人。法国的数字不小，但大多是部长身边的办公室班子，各部的职业文官基本不动。';
+  }
+  draw();
+});
+
+
+/* ---------- 装置 16：毕业名次决定一生 ---------- */
+dev('#enaFig', fig => {
+  // 去向按“受追捧程度”排序：[名字, 名额, 通常通向]
+  const C = [['财政监察总署', 5, '审计全国财政，常去部长办公室和大银行、大企业当高管'], ['行政法院', 6, '审理告政府的案子、给政府起草法令，常任部长办公室主任、大公司法务首脑'], ['审计法院', 6, '审计公共账目，同样是政坛和商界的跳板'], ['外交部', 8, '驻外使馆，三十年后可能当上大使'], ['省长系统', 8, '从专区区长做起，二十年后当省长'], ['文职行政官（各部）', 57, '在各部当科长、处长、司长，一辈子在一个领域深耕']];
+  let mode = 0;
+  btnRow($('#enaMode'), ['2022 年以前', '2022 年以后'], 0, i => { mode = i; draw(); });
+  const R = $('#enaR');
+  R.addEventListener('input', draw);
+  function draw(){
+    const rk = +R.value;
+    $('#enaRO').textContent = '第 ' + rk + ' 名';
+    // 前 rk-1 名的人按受欢迎程度依次挑走名额
+    let taken = rk - 1;
+    const left = C.map(c => { const t = Math.min(c[1], taken); taken -= t; return c[1] - t; });
+    if (mode === 1) {
+      bars($('#enaBars'), [['国家行政官（统一入职）', 90, '所有毕业生', 'var(--main)']], 90, v => '90 人');
+      $('#enaSay').innerHTML = '新规矩：不管第一名还是第九十名，都先进入同一个“国家行政官”职系，去部委、地方或一线工作几年，<b>之后再通过选拔进入各个大团</b>。二十五岁那一次排名的分量小了很多；可几年后的选拔看什么、谁来选，就成了新的问题。';
+      return;
+    }
+    bars($('#enaBars'), C.map((c, i) => [c[0], left[i], '剩 ' + left[i] + ' / ' + c[1], left[i] ? (i < 3 ? 'var(--zhu)' : 'var(--main)') : 'var(--rule)']), 8, v => v ? '可选' : '没了');
+    const best = left.findIndex(x => x > 0);
+    const c = C[best];
+    $('#enaSay').innerHTML = '轮到第 ' + rk + ' 名时，最好的选择是<b>' + c[0] + '</b>：' + c[2] + '。' +
+      (best < 3 ? (rk >= 15 ? '' : '你挤进了“大团”。同届人一辈子都会记得这一点。') :
+       rk <= 20 ? '只差几名，你就和三大团擦肩而过了。名次之间的分差，可能只有零点几分。' : '大部分埃纳克走的是这条路：不出名，但国家的大部分日常管理靠他们。');
+  }
+  draw();
+});
+
+
+/* ---------- 装置 17：同期二十四人 ---------- */
+dev('#dkFig', fig => {
+  const svg = $('#dkSvg'), say = $('#dkSay');
+  const LV = ['课长补佐', '课长', '审议官', '局长', '事务次官'];
+  const CAP = [24, 14, 7, 3, 1]; // 每一级能容纳的同期人数
+  const AT = [0, 15, 22, 27, 30]; // 入省第几年升到这一级
+  let st, me = -1;
+  function reset(){
+    const r = rng(Date.now() % 9999);
+    st = {y: 0, ppl: Array.from({length: 24}, (_, i) => ({i, lv: 0, out: 0, score: r(), luck: r()})), r};
+    me = -1; draw();
+  }
+  function step(){
+    if (st.y >= 30) return;
+    st.y += 5;
+    LV.forEach((n, k) => {
+      if (k === 0 || st.y < AT[k]) return;
+      const cand = st.ppl.filter(p => !p.out && p.lv === k - 1).sort((a, b) => (b.score + b.luck * 0.4) - (a.score + a.luck * 0.4));
+      const need = CAP[k] - st.ppl.filter(p => !p.out && p.lv >= k).length;
+      cand.forEach((p, j) => { if (j < need) p.lv = k; else if (st.y >= AT[k]) { p.out = st.y; p.tie = Math.floor(st.r() * 3) + 1 + (p.lv >= 2 ? 1 : 0); } });
+      st.ppl.forEach(p => p.luck = st.r());
+    });
+    if (st.y >= 30) st.ppl.forEach(p => { if (!p.out && p.lv < 4) { p.out = 30; p.tie = 3 + (p.lv >= 3 ? 1 : 0); } });
+    draw();
+  }
+  function draw(){
+    const W = 600, H = 250, L = 80;
+    let g = '';
+    LV.forEach((n, k) => { const y = H - 30 - k * 44; g += '<line x1="' + L + '" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="var(--rule)"/>' + txt(L - 8, y + 4, n, {s: 12, a: 'end', c: 'var(--ink-2)', halo: false}); });
+    g += txt(W - 12, 16, '入省第 ' + st.y + ' 年', {s: 13, a: 'end', c: 'var(--ink)', halo: false});
+    st.ppl.forEach((p, j) => {
+      const x = L + 14 + j * ((W - L - 30) / 23), y = H - 30 - p.lv * 44;
+      const col = p.out ? 'var(--kraft)' : p.lv === 4 ? 'var(--zhu)' : 'var(--main)';
+      g += '<circle cx="' + x.toFixed(1) + '" cy="' + (p.out ? y + 14 : y) + '" r="' + (p.i === me ? 8 : 6) + '" fill="' + col + '" opacity="' + (p.out ? 0.45 : 0.9) + '" stroke="' + (p.i === me ? 'var(--ink)' : 'none') + '" stroke-width="2" data-i="' + p.i + '" style="cursor:pointer"/>';
+      if (p.out) g += txt(x, y + 32, '降', {s: 10, c: 'var(--kraft)', halo: false});
+    });
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+    const out = st.ppl.filter(p => p.out), ties = out.reduce((s, p) => s + (p.tie || 0), 0);
+    kv($('#dkKv'), [['入省', st.y + ' 年'], ['还在省里', (24 - out.length) + ' 人'], ['已“天降”', out.length + ' 人'], ['退职金领取次数', ties + ' 次']]);
+    const m = me >= 0 ? st.ppl[me] : null;
+    say.innerHTML = st.y === 0 ? '二十四个人，同一天进省，同一个起跑线。' + (m ? '你选中了一位，跟着他看。' : '点一个圆点选一个人。') :
+      st.y >= 30 ? '三十年后：一人当上事务次官（红色），其余二十三人全部离开，一共领了约 <b>' + ties + '</b> 次退职金。' + (m ? (m.lv === 4 ? '<b>你跟着的那位，就是次官。</b>' : '你跟着的那位最后做到' + LV[m.lv] + '，第 ' + m.out + ' 年离开，“渡”了 ' + m.tie + ' 个地方。') : '') :
+      '第 ' + st.y + ' 年。' + (m ? '你跟着的那位现在是' + LV[m.lv] + (m.out ? '，已于第 ' + m.out + ' 年离开，去了第一个“天降”的地方。' : '，还在。') : '');
+  }
+  svg.addEventListener('click', e => { const c = e.target.closest('circle[data-i]'); if (c) { me = +c.dataset.i; draw(); } });
+  $('#dkGo').addEventListener('click', step);
+  $('#dkReset').addEventListener('click', reset);
+  reset();
+});
+
+
+/* ---------- 装置 18：干部稳定 ---------- */
+dev('#stabFig', fig => {
+  const svg = $('#stSvg'), R = $('#stR');
+  const fr = () => $('#stRO').textContent = R.value + '%'; R.addEventListener('input', fr); fr();
+  function run(){
+    const rate = +R.value / 100, r = rng(1964 + +R.value);
+    // 金字塔：第 0 层 10 个位子（最高），第 1 层 30 个，第 2 层 60 个
+    const tiers = [10, 30, 60];
+    const pos = [];
+    tiers.forEach((n, t) => { for (let i = 0; i < n; i++) pos.push({t, age: [57, 52, 46][t] + Math.round((r() - 0.5) * 12)}); });
+    const topA = [], allA = []; let promos = 0, young = 0;
+    for (let y = 1964; y <= 1984; y++) {
+      const a0 = pos.filter(p => p.t === 0).reduce((s, p) => s + p.age, 0) / 10;
+      topA.push([y, a0]); allA.push([y, pos.reduce((s, p) => s + p.age, 0) / pos.length]);
+      if (y === 1984) break;
+      // 死亡 + 强制更替 → 空位
+      pos.forEach(p => { const pd = p.age < 60 ? 0.006 : p.age < 70 ? 0.02 : 0.06; p.vac = r() < pd || r() < rate * (p.age > 60 ? 1.6 : 0.6); });
+      // 自上而下递补：由下一层最年长者补入
+      for (let t = 0; t < 3; t++) {
+        pos.filter(p => p.t === t && p.vac).forEach(p => {
+          if (t < 2) { const c = pos.filter(q => q.t === t + 1 && !q.vac).sort((a, b) => b.age - a.age)[0]; if (c) { p.age = c.age; p.vac = false; c.vac = true; promos++; if (c.age < 50) young++; } }
+          else { p.age = 38 + Math.round(r() * 6); p.vac = false; }
+        });
+      }
+      pos.forEach(p => p.age++);
+    }
+    lineChart(svg, [{color: 'var(--zhu)', pts: topA, w: 2.8}, {color: 'var(--main)', pts: allA, dash: '5 4'}], {xmin: 1964, xmax: 1984, ymin: 40, ymax: 80, yt: [40, 50, 60, 70, 80], xt: [1964, 1969, 1974, 1979, 1984], H: 230});
+    const end = topA[topA.length - 1][1];
+    kv($('#stKv'), [['1964 年最高层', topA[0][1].toFixed(1) + ' 岁'], ['1984 年最高层', end.toFixed(1) + ' 岁'], ['二十年晋升次数', promos], ['五十岁前得到晋升', young + ' 次']]);
+    const s = $('#stSay');
+    s.className = 'say ' + (end > 68 ? 'bad' : 'ok');
+    s.innerHTML = rate <= 0.01 ? '几乎不更替：最高层的平均年龄每年涨将近一岁，二十年后接近七十。<b>这差不多就是勃列日涅夫时代的政治局</b>。年轻人的晋升机会少得可怜。' :
+      rate >= 0.08 ? '更替很快：最高层保持年轻，晋升机会多。代价是官员们又回到了赫鲁晓夫时代的提心吊胆，经验也来不及积累。' :
+      '适中的更替让年龄大致稳住。稳定和更新之间，没有一个永远正确的比例。';
+  }
+  $('#stGo').addEventListener('click', run); run();
+});
+
+
+/* ---------- 装置 19：工资、查处和诱惑 ---------- */
+dev('#payFig', fig => {
+  const Wr = $('#payW'), Pr = $('#payP'), Br = $('#payB');
+  const r = rng(1974);
+  const greed = Array.from({length: 1000}, () => { const u = r(); return u < 0.25 ? 0 : Math.pow(r(), 0.7) * 3; }); // 四分之一天性正直，从不伸手
+  function calc(){
+    const w = +Wr.value / 100, p = +Pr.value / 100, b = +Br.value / 100;
+    $('#payWO').textContent = Wr.value + '%'; $('#payPO').textContent = Pr.value + '%'; $('#payBO').textContent = Br.value + '% 年薪';
+    // 被抓的损失：未来几年的工资溢价（相对去私营部门的差额，最低为 0）+ 罚没（按三年工资计）+ 名声
+    const loss = Math.max(0, w - 1) * 3 + w * 0.3 + 0.2;
+    const corrupt = greed.filter(g => g > 0 && b * g > p * loss).length;
+    // 低工资时，体面的人会离开或去兼差，留下的人里贪心的比例上升
+    const talent = clamp(Math.round(100 / (1 + Math.exp(-(w - 0.9) * 5))), 2, 98);
+    bars($('#payBars'), [['会伸手的官员', corrupt / 10, '一千人中', 'var(--red)'], ['愿意进来的顶尖毕业生', talent, '相对比例', 'var(--grn)']], 100, v => Math.round(v) + '%');
+    const s = $('#paySay');
+    s.className = 'say ' + (corrupt > 400 ? 'bad' : corrupt < 150 && talent > 50 ? 'ok' : '');
+    s.innerHTML = p === 0 ? '<b>查处概率为零</b>：不管工资多高，只要有人送钱、又不会被抓，贪心的人都会伸手。高薪在这里只是让他们多拿一份。' :
+      w < 0.8 && p >= 0.25 ? '查得很严，可工资只有私营部门的' + Wr.value + '%：伸手的人少了，<b>可最能干的人也不来了</b>，或者干几年就走。这接近很多国家公务员“清苦”的状态。' :
+      w >= 1.2 && p >= 0.15 ? '工资有竞争力，查处概率也高：伸手划不来，顶尖人才也愿意来。<b>这才是新加坡模式的完整版本</b>，两样缺一不可，而且贵。' :
+      '试试把查处概率拖到零，再把工资拖到最高；然后反过来。看看哪一个滑块对“伸手”的影响更大。';
+  }
+  [Wr, Pr, Br].forEach(x => x.addEventListener('input', calc)); calc();
+});
+
+
+/* ---------- 装置 20：上岸的概率 ---------- */
+dev('#gkFig', fig => {
+  const svg = $('#gkSvg');
+  // 上半：过审人数（万）与竞争比
+  const D = [[2023, 259.8, 70], [2024, 303.3, 77], [2025, 341.6, 86], [2026, 371.8, 98]];
+  (function chart(){
+    const W = 600, H = 170, L = 50, B = 26, T = 12;
+    const X = i => L + 40 + i * ((W - L - 80) / 3), Y = v => T + (1 - v / 400) * (H - T - B);
+    let g = '';
+    [0, 100, 200, 300, 400].forEach(v => g += '<line x1="' + L + '" x2="' + (W - 10) + '" y1="' + Y(v) + '" y2="' + Y(v) + '" stroke="var(--rule)"/>' + txt(L - 6, Y(v) + 4, v + '万', {s: 10.5, a: 'end', c: 'var(--ink-3)', halo: false}));
+    D.forEach((d, i) => {
+      g += '<rect x="' + (X(i) - 30) + '" y="' + Y(d[1]) + '" width="60" height="' + (Y(0) - Y(d[1])) + '" rx="3" fill="var(--main)" opacity=".8"/>';
+      g += txt(X(i), Y(d[1]) - 6, d[1] + ' 万', {s: 12, c: 'var(--ink)'}) + txt(X(i), Y(d[1]) + 18, d[2] + ':1', {s: 12, c: 'var(--paper)', halo: false, w: true});
+      g += txt(X(i), H - 8, d[0] + ' 年度', {s: 11, c: 'var(--ink-3)', halo: false});
+    });
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+  })();
+  const LV = ['后一半', '平均水平', '前 40%', '前 25%', '前 15%', '前 10%', '前 5%', '前 1%'];
+  const MUL = [0.3, 1, 1.6, 2.6, 4, 5.5, 8, 15];
+  const Rr = $('#gkR'), Lr = $('#gkL'), Nr = $('#gkN'), Yr = $('#gkY');
+  Lr.value = 2;
+  function calc(){
+    const ratio = +Rr.value, m = MUL[+Lr.value - 1], n = +Nr.value, y = +Yr.value;
+    $('#gkRO').textContent = ratio + ' : 1'; $('#gkLO').textContent = LV[+Lr.value - 1]; $('#gkNO').textContent = n + ' 次'; $('#gkYO').textContent = y + ' 年';
+    const p = clamp(m / ratio, 0, 0.85);
+    const tot = 1 - Math.pow(1 - p, n * y);
+    kv($('#gkKv'), [['单次考上的概率', (p * 100).toFixed(p < 0.01 ? 2 : 1) + '%'], ['一共考', n * y + ' 次'], ['至少上岸一次', (tot * 100).toFixed(1) + '%']]);
+    const s = $('#gkSay');
+    s.className = 'say ' + (tot > 0.6 ? 'ok' : tot < 0.2 ? 'bad' : '');
+    s.innerHTML = m <= 1 ? '水平在平均线上下的人，面对 ' + ratio + ' 比 1 的岗位，单次机会就是 ' + (100 / ratio).toFixed(1) + '% 左右。<b>决定结果的主要是两样：你能不能挤进前列，以及你报的岗位竞争有多激烈</b>。' :
+      tot > 0.8 ? '如果你真的稳定在这个水平，多考几次，上岸几乎是时间问题。难的是：大多数人高估了自己的位置。' :
+      '把竞争比拖到三十上下（偏远地区、限制条件多的岗位常见），再看看概率变成多少。<b>选岗位，有时候比多刷一套题更管用</b>。';
+  }
+  [Rr, Lr, Nr, Yr].forEach(x => x.addEventListener('input', calc)); calc();
 });
 
 })();

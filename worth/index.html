@@ -506,7 +506,7 @@ textarea.in{font-family:var(--f-body);line-height:1.7;resize:vertical}
     <h3>你可能想问的在这里</h3>
     <ul class="qmap">
       <li>两个工作，一个钱多一个离家近，怎么比？<a data-c="c1" href="#c1">时</a></li>
-      <li>读博（考研、考证、创业）读到一半想退，前面的不就白费了？<a data-c="c2" href="#c2">沉</a></li>
+      <li>读博（考证、创业）读到一半想退，前面的不就白费了？<a data-c="c2" href="#c2">沉</a></li>
       <li>“每天进步一点点”真的会滚成大雪球吗？一万小时靠谱吗？<a data-c="c3" href="#c3">复</a></li>
       <li>同学都在加杠杆买房、炒股，我是不是太保守了？<a data-c="c4" href="#c4">险</a></li>
       <li>工资涨了一倍，为什么没觉得高兴多少？<a data-c="c5" href="#c5">比</a></li>
@@ -749,7 +749,7 @@ textarea.in{font-family:var(--f-body);line-height:1.7;resize:vertical}
 
   <div class="col">
     <div class="ask">
-      <p class="q">读博（考研、备考、创业、一段感情）走到一半想退出，前面花的那几年不就白费了吗？</p>
+      <p class="q">读博（考证、创业、一段感情）走到一半想退出，前面花的那几年不就白费了吗？</p>
       <p>前面那几年，不管你退不退，都已经花掉了，拿不回来，所以它<b>不该</b>影响你今天的决定。真正该比的只有从今天往后：继续下去要再付出什么、可能得到什么；退出来要付出什么、能拿这些时间去做什么。一个好用的问法是：<em>假如今天才第一次面对这个选择，什么都还没投，我会选它吗？</em>注意，这不等于“遇到困难就该放弃”：放弃也有代价，而有些路本来就是先苦后甜的。</p>
     </div>
 
@@ -1489,7 +1489,7 @@ function slider(id, f, cb){ const r = $('#' + id), o = $('#' + id + 'O'); const 
 
 /* ---------- 全书目录（两个网页共用） ---------- */
 const PAGE = /two\.html/.test(location.pathname) ? 2 : 1;
-const READY = 1; // 已经写好的部数
+const READY = 2; // 已经写好的部数
 const PURL = {1: './', 2: 'two.html'};
 const TOC = [
   {p: 1, t: '第一部 · 算 —— 账面上的事'},
@@ -1617,6 +1617,43 @@ dev('#wkFig', fig => {
       (v.c >= 90 ? ' 通勤占了 ' + Math.round(wk[2]) + ' 周：搬家、换工作时，这一项常常被低估。' : '');
   };
   [['wkS', 's', x => x + ' 小时'], ['wkW', 'w', x => x + ' 小时'], ['wkC', 'c', x => x + ' 分钟'], ['wkE', 'e', x => x + ' 小时'], ['wkP', 'p', x => x + ' 小时']].forEach(a => slider(a[0], a[2], x => { v[a[1]] = x; if (Object.keys(v).length === 5) go(); }));
+});
+
+
+/* ---------- 第二部封面装置：七个人的十年 ---------- */
+dev('#tlFig', fig => {
+  const P = [
+    ['魏然', [[2016, '保险公司精算部，开始考精算师'], [2017, '报了两万块的财商营'], [2019, '精算师考过一半科目'], [2023, '考完最后一门'], [2026, '发起十年账']]],
+    ['周一舟', [[2016, '推掉律所，在家复习'], [2017, '考进区里的街道办'], [2018, '周末回老家相亲'], [2020, '疫情防控，社区值守'], [2022, '一周把数据填进四个系统'], [2025, '当了科里的副职']]],
+    ['陆晴', [[2016, '北京一家大厂'], [2019, '年薪四十多万，买了车'], [2021, '晋升答辩，住进医院'], [2022, '被裁，手里有八个月应急金'], [2023, '去了杭州，钱少三成'], [2026, '晚上七点能到家']]],
+    ['大程', [[2016, '和学长筹备创业'], [2017, '共享雨伞'], [2018, '公司关门；借钱凑首付买房；父母投的网贷平台爆雷'], [2021, '房价涨了一成多'], [2022, '提成断了，以卡养卡'], [2023, '亏本卖房，倒欠三十多万'], [2024, '卖新能源车，一笔一笔还债'], [2026, '还剩最后两笔']]],
+    ['林小满', [[2016, '上海直博'], [2018, '换了课题方向'], [2020, '第五年，课题卡住'], [2021, '博转硕，进医药研发外包公司'], [2023, '当上项目经理'], [2025, '孩子出生']]],
+    ['苏禾', [[2016, '回县城一中教语文'], [2018, '结婚'], [2019, '县城按揭买房'], [2020, '分期买了车'], [2024, '当了语文教研组长']]],
+    ['唐果', [[2016, '广告公司美工；开始每天一张画'], [2017, '辞职做自由插画'], [2019, '一单尾款没收回来'], [2020, '一条视频爆了'], [2021, '追数据，一周三条视频'], [2023, '改成一周一条'], [2024, '出了一本绘本'], [2026, '第三千六百多张画']]]
+  ];
+  const E = [[2016, '多地楼市升温，秋天起密集出台限购'], [2017, '“共享经济”融资热'], [2018, '网贷平台集中爆雷'], [2019, '“996”引发全国讨论；中央发文为基层减负'], [2020, '新冠疫情；房企“三道红线”；网贷机构清零'],
+    [2021, '“双减”；央行要求贷款明示年化利率；楼市转冷'], [2022, '互联网行业裁员'], [2023, '6 月 16—24 岁城镇青年失业率 21.3%，随后暂停发布、改口径'], [2024, '决定实施渐进式延迟退休'], [2025, '2026 年度国考报名过审人数约 372 万'], [2026, '十年聚会']];
+  const svg = $('#tlSvg'), W = 600, L = 60, R = 14, top = 22, rowH = 26, H = top + rowH * 8 + 26;
+  const X = y => L + (y - 2016) / 10 * (W - L - R);
+  function draw(y){
+    let g = '';
+    for (let k = 2016; k <= 2026; k++) g += '<line x1="' + X(k) + '" x2="' + X(k) + '" y1="' + (top - 6) + '" y2="' + (H - 22) + '" stroke="var(--rule)"/>' + txt(X(k), H - 8, String(k).slice(2), {s: 11, c: 'var(--ink-3)', halo: false});
+    g += '<rect x="' + (X(y) - 13) + '" y="' + (top - 8) + '" width="26" height="' + (H - top - 10) + '" rx="4" fill="var(--main)" opacity=".12"/>';
+    P.forEach((p, i) => {
+      const cy = top + i * rowH + rowH / 2;
+      g += txt(L - 8, cy + 4, p[0], {s: 12.5, a: 'end', c: 'var(--ink)', halo: false});
+      g += '<line x1="' + X(2016) + '" x2="' + X(2026) + '" y1="' + cy + '" y2="' + cy + '" stroke="var(--ink-3)" stroke-width="1" opacity=".5"/>';
+      p[1].forEach(ev => g += '<circle cx="' + X(ev[0]) + '" cy="' + cy + '" r="' + (ev[0] === y ? 6 : 4) + '" fill="' + (ev[0] <= y ? 'var(--kraft)' : 'var(--card)') + '" stroke="var(--kraft)" stroke-width="1.5"/>');
+    });
+    const ey = top + 7 * rowH + rowH / 2;
+    g += txt(L - 8, ey + 4, '那一年', {s: 12.5, a: 'end', c: 'var(--main)', halo: false});
+    E.forEach(ev => g += '<rect x="' + (X(ev[0]) - 5) + '" y="' + (ey - 5) + '" width="10" height="10" fill="' + (ev[0] === y ? 'var(--main)' : 'var(--card)') + '" stroke="var(--main)" stroke-width="1.5"/>');
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+    const now = P.map(p => { const s = p[1].filter(e => e[0] <= y).pop(); const fresh = s && s[0] === y; return '<b>' + p[0] + '</b>：' + (s ? (fresh ? '' : '<span style="color:var(--ink-3)">') + s[1] + (fresh ? '' : '</span>') : '—'); });
+    const ev = E.find(e => e[0] === y);
+    $('#tlSay').innerHTML = now.join('；') + '。<br><span style="color:var(--main)">' + y + ' 年 · ' + (ev ? ev[1] : '') + '</span>';
+  }
+  slider('tlR', x => x + ' 年', draw);
 });
 
 
@@ -2031,6 +2068,332 @@ dev('#irFig', fig => {
       '心算的 ' + (r * 12 * 100).toFixed(1) + '%，真实的是 <b>' + (apr * 100).toFixed(1) + '%</b>，是心算的 <b>' + (apr / (r * 12)).toFixed(2) + '</b> 倍。原因就在图里：你欠的本金每个月都在变少（绿色），手续费却一直按全部本金收（红线）。按 72 法则，' + (apr * 100).toFixed(0) + '% 的利率大约 ' + (72 / (apr * 100)).toFixed(1) + ' 年就让一笔债翻倍。';
   }
   ['irP', 'irN', 'irR'].forEach(id => $('#' + id).addEventListener('input', go)); go();
+});
+
+
+/* ---------- 装置 10：长街 ---------- */
+dev('#pdFig', fig => {
+  const NM = ['老实人', '精明人', '以牙还牙', '宽厚的以牙还牙', '记仇的', '看心情的'];
+  const CL = ['var(--kraft)', 'var(--red)', 'var(--main)', 'var(--blu)', 'var(--pur)', 'var(--och)'];
+  const PAY = [[3, 0], [5, 1]]; // PAY[我背叛?][对方背叛?]  合作=0 背叛=1
+  function move(k, my, his, r){
+    if (k === 0) return 0; if (k === 1) return 1; if (k === 5) return r() < .5 ? 1 : 0;
+    if (!his.length) return 0;
+    if (k === 2) return his[his.length - 1];
+    if (k === 3) return his[his.length - 1] && r() > .3 ? 1 : 0;
+    if (k === 4) return his.includes(1) ? 1 : 0;
+  }
+  let M = null;
+  function matrix(w, e){
+    const r = rng(Math.round(w * 1000) * 31 + Math.round(e * 1000) + 7), K = 40;
+    const m = NM.map(() => NM.map(() => 0));
+    for (let i = 0; i < 6; i++) for (let j = 0; j < 6; j++) {
+      let tot = 0, rounds = 0;
+      for (let k = 0; k < K; k++) {
+        const ha = [], hb = []; // 各自“看到”的对方历史
+        let n = 0;
+        do {
+          let a = move(i, null, ha, r), b = move(j, null, hb, r);
+          if (r() < e) a = 1 - a; if (r() < e) b = 1 - b;
+          tot += PAY[a][b]; ha.push(b); hb.push(a); n++;
+        } while (r() < w && n < 150);
+        rounds += n;
+      }
+      m[i][j] = tot / rounds;
+    }
+    return m;
+  }
+  const shares = d => { const x = NM.map(() => (1 - d) / 5); x[1] = d; return x; };
+  const fit = x => NM.map((_, i) => x.reduce((s, xj, j) => s + xj * M[i][j], 0));
+  function draw(){
+    const w = +$('#pdW').value / 100, e = +$('#pdE').value / 100, d = +$('#pdD').value / 100;
+    M = matrix(w, e);
+    const f = fit(shares(d));
+    const order = NM.map((n, i) => i).sort((a, b) => f[b] - f[a]);
+    bars($('#pdBars'), order.map(i => [NM[i], f[i], i === 1 ? '比例 ' + Math.round(d * 100) + '%' : '', CL[i]]), 5, v => v.toFixed(2) + ' 分');
+    $('#pdSvg').innerHTML = ''; $('#pdLeg').innerHTML = '';
+    $('#pdSay').innerHTML = '这一场里，每一轮平均得分最高的是 <b>' + NM[order[0]] + '</b>（最高 5 分，两人都合作是 3 分，都背叛是 1 分）。' +
+      (w < .3 ? ' 几乎是一锤子买卖：背叛最划算，老实人吃亏。大城市里一次性的交易，常常就是这样。' : w > .8 ? ' 大家都知道以后还会见很多次：会合作、也会还手的人占了上风。' : '') +
+      (e > .08 ? ' 误会多了以后，“记仇的”和死板的“以牙还牙”会因为一次误会陷入没完没了的互相报复，肯原谅的那一种更占便宜。' : '');
+  }
+  $('#pdEvo').addEventListener('click', () => {
+    if (!M) draw();
+    let x = shares(+$('#pdD').value / 100);
+    const hist = [x.slice()];
+    for (let g = 0; g < 30; g++) { const f = fit(x); const avg = x.reduce((s, xi, i) => s + xi * f[i], 0); x = x.map((xi, i) => xi * f[i] / avg); hist.push(x.slice()); }
+    lineChart($('#pdSvg'), NM.map((n, i) => ({color: CL[i], pts: hist.map((h, g) => [g, h[i] * 100]), w: 2.4})), {xmin: 0, xmax: 30, ymin: 0, ymax: 100, xt: [0, 10, 20, 30], xf: v => '第 ' + v + ' 代', yt: [0, 25, 50, 75, 100], yf: v => v + '%', H: 220});
+    $('#pdLeg').innerHTML = NM.map((n, i) => '<span><i style="background:' + CL[i] + '"></i>' + n + ' ' + Math.round(x[i] * 100) + '%</span>').join('');
+    const top = x.indexOf(Math.max(...x));
+    $('#pdSay').innerHTML = '三十代以后，街上最多的是 <b>' + NM[top] + '</b>（' + Math.round(x[top] * 100) + '%）。' +
+      (top === 1 ? ' 再见面的机会太小，或者精明人一开始就太多，合作的人家被吃光了。把“再见面的机会”往上拉试试。' : ' 精明人一开始能占老实人的便宜，可老实人被吃光以后，精明人只能互相背叛，每轮 1 分，慢慢被会合作又会还手的邻居比下去。<b>“未来的影子”够长，善良才不吃亏</b>。');
+  });
+  ['pdW', 'pdE', 'pdD'].forEach(id => slider(id, x => x + '%', () => { if (M || id) draw(); }));
+});
+
+
+/* ---------- 装置 11：十年三条路 ---------- */
+dev('#pathFig', fig => {
+  const CITY = [
+    {n: '一线城市', pay: 1.6, rent: 4.2, live: 3.6, learn: .03},
+    {n: '省会城市', pay: 1.0, rent: 2.0, live: 2.8, learn: .015},
+    {n: '老家县城', pay: .6, rent: .6, live: 2.0, learn: 0}
+  ];
+  const PATH = [
+    {n: '稳', base: 9, raise: .04, shock: .02, cut: .9, gap: 0, side: false, c: 'var(--blu)'},
+    {n: '快', base: 12, raise: .07, shock: null, cut: .7, gap: .6, side: false, c: 'var(--red)'},
+    {n: '稳＋小路', base: 9, raise: .04, shock: .02, cut: .9, gap: 0, side: true, c: 'var(--grn)'}
+  ];
+  let city = 1;
+  btnRow($('#pathCity'), CITY.map(c => c.n), 1, i => { city = i; run(); });
+  function sim(p, c, vol, r){
+    let pay = p.base * c.pay, tot = 0, neg = false, hit = false;
+    for (let y = 0; y < 10; y++) {
+      let inc = pay;
+      const sp = p.shock == null ? vol : p.shock;
+      if (r() < sp) { inc = pay * (1 - p.gap); pay *= p.cut; }
+      if (p.side && !hit && r() < .04) hit = true;
+      if (hit) inc *= 1.5;
+      const save = inc - c.rent - c.live;
+      if (save < 0) neg = true;
+      tot += save;
+      pay *= 1 + p.raise + c.learn * (p.n === '快' ? 1.5 : 1);
+    }
+    return {tot, neg};
+  }
+  function run(){
+    const vol = +$('#pathV').value / 100, c = CITY[city];
+    const res = PATH.map((p, k) => { const r = rng(99 + k * 17 + city * 5 + Math.round(vol * 100)); const xs = []; let neg = 0; for (let i = 0; i < 500; i++) { const o = sim(p, c, vol, r); xs.push(o.tot); if (o.neg) neg++; } return {p, lo: pct(xs, .1), med: pct(xs, .5), hi: pct(xs, .9), neg: neg / 5, mean: xs.reduce((a, b) => a + b, 0) / xs.length}; });
+    const mx = Math.max(...res.map(r => r.hi), 10), mn = Math.min(0, ...res.map(r => r.lo));
+    const pos = v => ((v - mn) / (mx - mn) * 100).toFixed(1);
+    $('#pathOut').innerHTML = res.map(r => '<div style="display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:8px;align-items:center;margin:8px 0;font-size:13.5px"><span>' + r.p.n + '</span><div style="position:relative;height:30px;background:var(--paper);border-radius:4px">' +
+      (mn < 0 ? '<i style="position:absolute;left:' + pos(0) + '%;top:0;bottom:0;border-left:1px dashed var(--ink-3)"></i>' : '') +
+      '<i style="position:absolute;left:' + pos(r.lo) + '%;width:' + (pos(r.hi) - pos(r.lo)).toFixed(1) + '%;top:8px;height:14px;background:' + r.p.c + ';opacity:.35;border-radius:3px"></i>' +
+      '<i style="position:absolute;left:' + pos(r.med) + '%;top:3px;height:24px;border-left:3px solid ' + r.p.c + '"></i></div></div>' +
+      '<div style="font-size:12.5px;color:var(--ink-3);margin:-4px 0 6px 6.2em">最差一成 ' + r.lo.toFixed(0) + ' 万 · 中位数 <b style="color:var(--ink)">' + r.med.toFixed(0) + ' 万</b> · 最好一成 ' + r.hi.toFixed(0) + ' 万 · 有入不敷出年份的 ' + r.neg.toFixed(0) + '%</div>').join('');
+    const [s, f, sp] = res;
+    $('#pathSay').innerHTML = '在<b>' + c.n + '</b>，十年攒下的钱（中位数）：稳 ' + s.med.toFixed(0) + ' 万，快 ' + f.med.toFixed(0) + ' 万，稳＋小路 ' + sp.med.toFixed(0) + ' 万。' +
+      ' 快的路最好的一成能到 ' + f.hi.toFixed(0) + ' 万，最差的一成只有 ' + f.lo.toFixed(0) + ' 万：<b>条子越长，你越要先问自己掉到左边那一头时扛不扛得住</b>。' +
+      ' “小路”的中位数和“稳”差不多，因为大多数小路做不成；它的价值在右边那一截：花的是业余时间，输了也不出局。' +
+      (city === 0 ? ' 一线城市房租高，头几年攒得少，可“学习溢价”让后几年涨得快；把行业风浪调高，看看快的路最差那一成会怎样。' : city === 2 ? ' 县城攒钱不比大城市少多少，因为房租和开销低；但收入涨得慢，十年后的“本事”差距，这张图里看不见。' : '');
+  }
+  slider('pathV', x => x + '% / 年', run);
+});
+
+
+/* ---------- 装置 12：庞氏能撑多久 ---------- */
+dev('#pzFig', fig => {
+  function run(){
+    const r = +$('#pzR').value / 100, g = +$('#pzG').value / 100, skim = +$('#pzS').value / 100;
+    const POP = 100000, EACH = 2, T = 72; // 潜在客户 10 万人，每人 2 万
+    let adopted = 50, pool = 0, total = 0, owed = 0, out = 0;
+    const cohorts = []; // [进来的月份, 人数, 还在里面的人数]
+    const S = [], TOT = [], NEED = [];
+    let boom = -1;
+    for (let t = 0; t < T; t++) {
+      const newP = t === 0 ? adopted : Math.min(POP - adopted, g * adopted * (1 - adopted / POP));
+      adopted += t === 0 ? 0 : newP;
+      const inflow = newP * EACH;
+      total += inflow; pool += inflow * (1 - skim);
+      cohorts.push([t, newP, newP]);
+      const active = cohorts.reduce((a, c) => a + c[2], 0);
+      const interest = active * EACH * r;
+      const quit = cohorts.reduce((a, c) => a + c[2] * .02, 0) * EACH; // 每月 2% 的人取回本金
+      const need = interest + quit;
+      NEED.push([t, need]); TOT.push([t, total]);
+      if (pool < need) { boom = t; S.push([t, Math.max(0, pool)]); break; }
+      pool -= need; cohorts.forEach(c => c[2] *= .98);
+      S.push([t, pool]);
+    }
+    const end = boom < 0 ? T - 1 : boom;
+    const ymax = Math.max(...TOT.map(p => p[1])) * 1.1 || 1;
+    lineChart($('#pzSvg'), [{color: 'var(--och)', pts: TOT, w: 2}, {color: 'var(--main)', pts: S, w: 2.6}, {color: 'var(--red)', pts: NEED, w: 2}],
+      {xmin: 0, xmax: Math.max(12, end + 2), ymin: 0, ymax, xt: [0, Math.round((end + 2) / 2), end + 2].filter((v, i, a) => a.indexOf(v) === i), xf: v => '第 ' + v + ' 月', yt: [0, ymax / 2, ymax].map(v => +v.toPrecision(2)), yf: v => fmt(v * 1e4), marks: boom >= 0 ? [[boom, '爆雷']] : []});
+    // 谁拿回了本钱：在里面待得够久、利息累计 ≥ 本金的人
+    const need0 = Math.ceil(1 / Math.max(r, 1e-9));
+    const back = cohorts.filter(c => end - c[0] >= need0).reduce((a, c) => a + c[1], 0);
+    const all = cohorts.reduce((a, c) => a + c[1], 0);
+    kv($('#pzKv'), [['撑了', boom < 0 ? '超过 ' + T + ' 个月' : (boom + 1) + ' 个月'], ['累计进来', fmt(total * 1e4) + ' 元'], ['参与人数', fmt(all) + ' 人'], ['靠利息拿回本钱的人', Math.round(back / Math.max(all, 1) * 100) + '%']]);
+    $('#pzSay').innerHTML = (boom < 0 ? '六年里还没爆雷：承诺的回报低、口碑扩散慢，它可以装成正经生意很久。这正是麦道夫的样子：<b>不惊人，所以没人查</b>。但它从第一天起就是一个窟窿，只是窟窿长得慢。' :
+      '第 ' + (boom + 1) + ' 个月爆雷。<b>每月 ' + (r * 100).toFixed(1) + '%</b>，也就是一年约 ' + ((Math.pow(1 + r, 12) - 1) * 100).toFixed(0) + '%，要拿回本钱得在里面待满 ' + need0 + ' 个月；这样的人只占约 ' + Math.round(back / Math.max(all, 1) * 100) + '%，而且大多是最早进来、帮它做了口碑的那批人。') +
+      ' 口碑传得越快，进来的钱越多，爆得也越早：<b>扩张最猛的时候，往往离崩溃最近</b>。';
+  }
+  slider('pzR', x => x + '% / 月', run); slider('pzG', x => x + '% / 月', run); slider('pzS', x => x + '%', run);
+});
+
+/* ---------- 装置 13：红灯 ---------- */
+dev('#rfFig', fig => {
+  const Q = [
+    ['“恭喜您获得 618 大促免单资格！点击链接填写银行卡号和验证码即可领取。”', 1, '稀缺、互惠；任何要验证码的“领奖”都是红灯。正规平台不会通过陌生链接要你的验证码。'],
+    ['“下周三下午两点，三号会议室开项目复盘会，请提前看一下附件里的数据。”', 0, '正常的工作通知：有时间地点、有具体事项，不要钱，也不催你马上做决定。'],
+    ['“我们团队在做跨境电商，月入过万很轻松。先交 3980 元加盟费，送全套培训和货源。”', 1, '先交钱、收益夸张、“很轻松”。要你先付钱才能“上岗”的工作，十有八九是在卖“上岗”本身。'],
+    ['“这只基金过去五年年化 7%，也有过一年跌 20% 的时候，风险等级中高，适合能承受波动的人。”', 0, '讲了收益也讲了亏损和风险等级。这不代表它适合你，但说法本身是正常的。'],
+    ['“哥，我是你表弟的同学，最近急用钱，先借我五千，下周一定还，别告诉我表弟。”', 1, '喜好（攀关系）、急、要求保密。先打电话给“表弟”核实。'],
+    ['“老师您好，我是出版社编辑，看了您的作品，想约稿，稿费和合同下周寄给您看。”', 0, '先给你看合同、不要你先交钱，是正常的约稿流程。（如果下一步是“先交审稿费、出版费”，那就变红了。）'],
+    ['“内部消息，这只股票下周要重组，跟着老师买，保证翻倍。群里已经有三百多人赚了。”', 1, '权威（老师）、社会认同（三百人）、保证翻倍、内部消息。荐股群是证监会反复提醒的骗局形式。'],
+    ['“您的快递丢失，我们将双倍理赔。请下载这个会议软件，开启屏幕共享，我教您操作退款。”', 1, '互惠（双倍理赔）、要你共享屏幕。屏幕共享能让对方看到你的验证码和银行页面。'],
+    ['“下个月起房租每月涨 200 元，合同到期前可以提出异议，附上了周边同类房源的价格。”', 0, '有期限也有异议渠道，给了比较的依据。你可以不接受，但它不是骗局。'],
+    ['“我是公安局的，你的账户涉嫌洗钱，为配合调查，请把资金转到我们的安全账户，并对家人保密。”', 1, '权威、恐惧、保密、转账到“安全账户”。公安机关不会通过电话要你转账，所谓“安全账户”一律是诈骗。']
+  ];
+  let i = 0, right = 0;
+  const q = $('#rfQ'), b = $('#rfBtns'), sc = $('#rfScore');
+  function show(){
+    if (i >= Q.length) { q.className = 'say ' + (right >= 8 ? 'ok' : 'bad'); q.innerHTML = '十条做完，判断对了 <b>' + right + '</b> 条。现实中最难的不是这十条，而是来自你喜欢、信任的人的那一条。'; b.innerHTML = '<button class="btn pri">再做一遍</button>'; sc.textContent = ''; return; }
+    q.className = 'say'; q.innerHTML = '第 ' + (i + 1) + ' 条：' + Q[i][0];
+    b.innerHTML = '<button class="btn" data-a="1">可疑</button><button class="btn" data-a="0">看起来正常</button>';
+    sc.textContent = '已答对 ' + right + ' / ' + i;
+  }
+  b.addEventListener('click', e => {
+    const x = e.target.closest('button'); if (!x) return;
+    if (i >= Q.length) { i = 0; right = 0; return show(); }
+    if (x.dataset.a == null) { i++; return show(); }
+    const ok = +x.dataset.a === Q[i][1]; if (ok) right++;
+    q.className = 'say ' + (ok ? 'ok' : 'bad'); q.innerHTML = (ok ? '对。' : '再想想。') + (Q[i][1] ? '这条可疑：' : '这条看起来正常：') + Q[i][2];
+    b.innerHTML = '<button class="btn pri">下一条</button>';
+    sc.textContent = '已答对 ' + right + ' / ' + (i + 1);
+  });
+  show();
+});
+
+
+/* ---------- 装置 14：身体这个账户 ---------- */
+dev('#hcFig', fig => {
+  const A0 = 22, A1 = 75, LINE = 35;
+  function path(h){ // h(age) -> {s, e, w, f}
+    let H = 100, scar = 0; const pts = [];
+    for (let a = A0; a <= A1; a++) {
+      const x = h(a);
+      const deficit = Math.max(0, 7 - x.s), over = Math.max(0, x.w - 45);
+      let dep = .006 * Math.pow(1.055, a - A0);              // 随年龄上升的折旧
+      dep *= 1 + deficit * .3 + over * .013 - Math.min(x.f, 4) * .05;
+      const scarAdd = (deficit * .2 + over * .012) * (a < 40 ? 1 : 1.6); // 不可逆的损耗
+      scar += scarAdd;
+      const inv = Math.min(x.e, 300) / 150 * 1.1 * Math.pow(.97, a - A0); // 运动：越老效果越小
+      H = H - dep * H - scarAdd * .4 + inv * (1 - H / 105);
+      H = clamp(H, 0, 100 - scar * .5);
+      pts.push([a, H]);
+    }
+    return pts;
+  }
+  const cross = pts => { const p = pts.find(q => q[1] < LINE); return p ? p[0] : null; };
+  function draw(){
+    const s = +$('#hcS').value, e = +$('#hcE').value, w = +$('#hcW').value, f = +$('#hcF').value, fix = $('#hcFix').checked;
+    const me = path(a => fix && a < 32 ? {s: 5.5, e: 0, w: 65, f} : {s, e, w, f});
+    const ref = path(() => ({s: 7.5, e: 150, w: 40, f: 3}));
+    const never = fix ? path(() => ({s: 5.5, e: 0, w: 65, f})) : null;
+    const ax = lineChart($('#hcSvg'), [{color: 'var(--rule)', pts: [[A0, LINE], [A1, LINE]], w: 1.5, dash: '5 4'}, {color: 'var(--ink-3)', pts: ref, w: 2, dash: '4 3'}, ...(fix ? [{color: 'var(--red)', pts: never, w: 2, dash: '2 3'}] : []), {color: 'var(--main)', pts: me, w: 2.8}],
+      {xmin: A0, xmax: A1, ymin: 0, ymax: 105, xt: [22, 30, 40, 50, 60, 70], xf: v => v + ' 岁', yt: [0, 35, 70, 100]});
+    $('#hcSvg').innerHTML += txt(ax.X(A1) - 4, ax.Y(LINE) - 6, '日常生活开始需要人帮忙', {s: 11, a: 'end', c: 'var(--ink-3)'});
+    const cm = cross(me), cr = cross(ref);
+    const at = a => me.find(p => p[0] === a)[1];
+    $('#hcSay').innerHTML = (cm ? '你的账户在 <b>' + cm + ' 岁</b>跌破那条线' : '到七十五岁，你的账户还在那条线以上') + '，参照作息' + (cr ? '是 ' + cr + ' 岁' : '到七十五岁也没有跌破') + '。四十岁时你的账户是 <b>' + at(40).toFixed(0) + '</b>，五十岁是 <b>' + at(50).toFixed(0) + '</b>。' +
+      (fix ? ' 红色虚线是一直不改的样子' + (cross(never) ? '（' + cross(never) + ' 岁跌破）' : '') + '。三十二岁以后补救：补救有用，曲线会被拉回来一截，但<b>前十年留下的那部分不可逆的损耗补不回来</b>，而且同样的运动，三十多岁时的效果已经比二十出头时小了。' :
+        s < 6.5 ? ' 睡眠不足在这个模型里是最大的漏洞：它同时加快折旧、留下损耗。' : w >= 60 ? ' 长时间工作让折旧加快，还挤掉了睡觉和运动的时间（这一点模型没算，现实中更糟）。' : e >= 150 ? ' 运动是这个账户里少有的“正利息”，越早开始越值。' : '') +
+      ' 再说一遍：这是示意，不是医学预测。';
+  }
+  slider('hcS', x => x + ' 小时', draw); slider('hcE', x => x + ' 分钟', draw); slider('hcW', x => x + ' 小时', draw); slider('hcF', x => x + ' 个', draw);
+  $('#hcFix').addEventListener('change', draw);
+});
+
+
+/* ---------- 装置 15：才能与运气 ---------- */
+dev('#tlkFig', fig => {
+  const N = 1000, STEPS = 80;
+  let seed = 11, data = null;
+  function run(){
+    const pl = +$('#tlkL').value / 100, r = rng(seed);
+    data = Array.from({length: N}, () => ({t: clamp(.6 + .1 * gauss(r), 0, 1), c: 10, good: 0, bad: 0}));
+    for (let s = 0; s < STEPS; s++) data.forEach(p => {
+      if (r() < pl) { if (r() < p.t) { p.c *= 2; p.good++; } }
+      if (r() < pl) { p.c /= 2; p.bad++; }
+    });
+    draw();
+  }
+  function draw(){
+    if (!data) return;
+    const sv = $('#tlkSv').checked;
+    const byC = [...data].sort((a, b) => b.c - a.c), byT = [...data].sort((a, b) => b.t - a.t);
+    const top20 = new Set(byC.slice(0, 20));
+    const W = 600, H = 300, L = 50, R = 12, T = 12, B = 30;
+    const tmin = .25, tmax = .95;
+    const lc = data.map(p => Math.log10(p.c)), lmin = Math.floor(Math.min(...lc)), lmax = Math.ceil(Math.max(...lc));
+    const X = t => L + (t - tmin) / (tmax - tmin) * (W - L - R), Y = c => T + (1 - (Math.log10(c) - lmin) / Math.max(1, lmax - lmin)) * (H - T - B);
+    let g = '';
+    for (let l = lmin; l <= lmax; l++) g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + Y(Math.pow(10, l)) + '" y2="' + Y(Math.pow(10, l)) + '" stroke="var(--rule)"' + (l === 1 ? ' stroke="var(--ink-3)"' : '') + '/>' + txt(L - 6, Y(Math.pow(10, l)) + 4, l === 1 ? '起点' : (l > 1 ? '×' + fmt(Math.pow(10, l - 1)) : '÷' + fmt(Math.pow(10, 1 - l))), {s: 10.5, a: 'end', c: 'var(--ink-3)', halo: false});
+    [.3, .4, .5, .6, .7, .8, .9].forEach(t => g += txt(X(t), H - 10, t.toFixed(1), {s: 11, c: 'var(--ink-3)', halo: false}));
+    g += txt(W - R, H - 10, '才能 →', {s: 11, a: 'end', c: 'var(--ink-2)', halo: false});
+    data.forEach(p => {
+      const top = top20.has(p);
+      if (sv && !top) return;
+      g += '<circle cx="' + X(clamp(p.t, tmin, tmax)).toFixed(1) + '" cy="' + Y(p.c).toFixed(1) + '" r="' + (top ? 4.5 : 2.2) + '" fill="' + (top ? 'var(--red)' : 'var(--main)') + '" opacity="' + (top ? .95 : .4) + '"/>';
+    });
+    const best = byT[0];
+    if (!sv) g += '<circle cx="' + X(clamp(best.t, tmin, tmax)) + '" cy="' + Y(best.c) + '" r="7" fill="none" stroke="var(--och)" stroke-width="2.5"/>' + txt(X(clamp(best.t, tmin, tmax)) - 8, Y(best.c) - 10, '最有才能的人', {s: 11, a: 'end', c: 'var(--och)'});
+    $('#tlkSvg').setAttribute('viewBox', '0 0 ' + W + ' ' + H); $('#tlkSvg').innerHTML = g;
+    const richest = byC[0];
+    const rankT = byT.indexOf(richest) + 1, rankC = byC.indexOf(best) + 1;
+    const topT = byC.slice(0, 20).reduce((a, p) => a + p.t, 0) / 20, allT = data.reduce((a, p) => a + p.t, 0) / N;
+    const inTop20T = byC.slice(0, 20).filter(p => byT.indexOf(p) < 100).length;
+    kv($('#tlkKv'), [['最成功的人，才能排第', rankT + ' 名'], ['最有才能的人，成功排第', rankC + ' 名'], ['前二十名里，才能也在前一成的', inTop20T + ' 人'], ['前二十名平均才能 / 全体', topT.toFixed(2) + ' / ' + allT.toFixed(2)]]);
+    $('#tlkSay').innerHTML = sv ? '只看最成功的二十个人：他们的平均才能是 <b>' + topT.toFixed(2) + '</b>，比全体的 ' + allT.toFixed(2) + ' 高一点，于是你会得出“成功靠才能”的结论。可你看不见的是：和他们才能差不多的人有几百个，大多数停在了起点附近，甚至更低。他们好运的次数平均比别人多 ' + (byC.slice(0, 20).reduce((a, p) => a + p.good - p.bad, 0) / 20 - data.reduce((a, p) => a + p.good - p.bad, 0) / N).toFixed(1) + ' 次。' :
+      '四十年后，最成功的那个人才能排第 <b>' + rankT + '</b> 名；最有才能的那个人（橙圈），成功只排第 <b>' + rankC + '</b> 名。前二十名（红点）里，才能也在前一成的只有 ' + inTop20T + ' 个。才能高确实让人更容易抓住好运，所以红点大多在中间偏右；但才能中上的人太多，谁能连抽到好运，很大程度上是运气。多按几次“开始”。';
+  }
+  $('#tlkGo').addEventListener('click', () => { seed = (seed * 48271 + 7) % 2147483647; run(); });
+  slider('tlkL', x => '每半年 ' + x + '%', () => run());
+  $('#tlkSv').addEventListener('change', draw);
+});
+
+
+/* ---------- 装置 16：你的账本 ---------- */
+dev('#ldFig', fig => {
+  const KEY = 'genesis-worth-ledger';
+  const IDS = ['t', 'sr', 'ef', 'debt', 'sl', 'ex', 'fr', 'cmp', 'dq', 'dw', 'dd', 'stop', 'no'];
+  const el = id => $('#ld_' + id);
+  try { const saved = JSON.parse(localStorage.getItem(KEY) || 'null'); if (saved) IDS.forEach(id => { if (saved[id] != null) el(id).value = saved[id]; }); } catch (e) { /* 浏览器不允许存储时，照常使用 */ }
+  let lastText = '';
+  function gen(){
+    const v = {}; IDS.forEach(id => v[id] = el(id).value.trim());
+    try { localStorage.setItem(KEY, JSON.stringify(v)); } catch (e) {}
+    const n = id => +v[id] || 0;
+    const warn = [];
+    if (n('ef') < 3) warn.push(['钱', '应急金不到三个月。先把它攒起来，再考虑别的。（第七章）']);
+    if (n('debt') > 0) warn.push(['钱', '有 ' + fmt(n('debt')) + ' 元高息或看不懂利率的债。先问清年化利率，优先还掉。（第七章）']);
+    if (n('sr') < 5) warn.push(['钱', '每月存下的不到 5%。看看三大块（住、吃、行）里哪一块能动。（第七章）']);
+    if (n('sl') < 7) warn.push(['身', '平均睡不到七小时。你多半觉得“还好”，可第十一章的实验说，觉得还好的人表现也在变差。']);
+    if (n('ex') < 150) warn.push(['身', '每周运动不到 150 分钟。这是身体账户里少有的正利息。（第十一章）']);
+    if (n('fr') < 2) warn.push(['人', '急事能打电话的人不到两个。朋友是时间换来的，从一顿饭开始。（第十一章）']);
+    if (!v.stop) warn.push(['时', '还没写止损线。（第二章）']);
+    const nos = v.no ? v.no.split(/[，,、；;]\s*/).filter(Boolean) : [];
+    const today = new Date(); const ds = today.getFullYear() + ' 年 ' + (today.getMonth() + 1) + ' 月 ' + today.getDate() + ' 日';
+    const rows = [
+      ['时间', v.t ? '精力最好的时间给了：' + esc(v.t) : '（没填：精力最好的时间给了什么？）'],
+      ['钱', '每月存 ' + n('sr') + '%；应急金 ' + n('ef') + ' 个月；高息债 ' + fmt(n('debt')) + ' 元'],
+      ['身体', '每晚 ' + n('sl') + ' 小时；每周运动 ' + n('ex') + ' 分钟'],
+      ['人情', '急事能打电话的人：' + n('fr') + ' 个'],
+      ['心思', v.cmp ? '最常拿来比的：' + esc(v.cmp) : '（没填：最常拿来和自己比的是谁？）']
+    ];
+    let h = '<h6>我的账 · ' + ds + '</h6><table>' + rows.map(r => '<tr><td>' + r[0] + '</td><td>' + r[1] + '</td></tr>').join('') + '</table>';
+    if (v.dq) h += '<p style="margin-top:.6em"><b>决定日记</b>：' + esc(v.dq) + '。最坏：' + (esc(v.dw) || '（没想好）') + '。回来看的日子：' + (esc(v.dd) || '（没定）') + '。</p>';
+    h += '<p><b>止损线</b>：' + (esc(v.stop) || '（还没写）') + '</p>';
+    if (nos.length) h += '<p><b>不做清单</b>：' + nos.map(esc).join('；') + '。</p>';
+    h += warn.length ? '<p style="color:var(--red)"><b>该先看的几行</b></p><ul style="margin:0;padding-left:1.2em">' + warn.map(w => '<li><b>' + w[0] + '</b>：' + w[1] + '</li>').join('') + '</ul>' : '<p style="color:var(--grn)"><b>五个账户都没有亮红灯。</b>剩下的，留给那些算不清、却让你觉得值的事。</p>';
+    $('#ldOut').innerHTML = h;
+    lastText = '我的账 · ' + ds + '\n' + rows.map(r => r[0] + '：' + r[1].replace(/<[^>]+>/g, '')).join('\n') +
+      (v.dq ? '\n决定日记：' + v.dq + '。最坏：' + (v.dw || '') + '。回来看：' + (v.dd || '') : '') + '\n止损线：' + (v.stop || '') + (nos.length ? '\n不做清单：' + nos.join('；') : '') +
+      (warn.length ? '\n该先看的：\n' + warn.map(w => '- ' + w[0] + '：' + w[1]).join('\n') : '');
+    $('#ldMsg').textContent = '';
+  }
+  $('#ldGo').addEventListener('click', gen);
+  $('#ldCopy').addEventListener('click', async () => {
+    if (!lastText) gen();
+    try { await navigator.clipboard.writeText(lastText); $('#ldMsg').textContent = '已复制。'; }
+    catch (e) { $('#ldMsg').textContent = '这个浏览器不允许自动复制，请手动选中上面的文字复制。'; }
+  });
+  $('#ldClear').addEventListener('click', () => {
+    IDS.forEach(id => { if (el(id).type === 'number') el(id).value = ''; else el(id).value = ''; });
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    $('#ldOut').innerHTML = ''; lastText = ''; $('#ldMsg').textContent = '已清空。';
+  });
+  gen();
 });
 
 })();

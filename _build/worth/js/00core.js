@@ -26,7 +26,7 @@ function slider(id, f, cb){ const r = $('#' + id), o = $('#' + id + 'O'); const 
 
 /* ---------- 全书目录（两个网页共用） ---------- */
 const PAGE = /two\.html/.test(location.pathname) ? 2 : 1;
-const READY = 1; // 已经写好的部数
+const READY = 2; // 已经写好的部数
 const PURL = {1: './', 2: 'two.html'};
 const TOC = [
   {p: 1, t: '第一部 · 算 —— 账面上的事'},

@@ -5,7 +5,7 @@
     python3 _build/build.py yes      # 只建一本
     python3 _build/build.py power1 power2 power3   # 《谁说了算》三部
     python3 _build/build.py city1                  # 《城里城外》第一部
-    python3 _build/build.py turn1 turn2            # 《轮到谁了》第一、二部
+    python3 _build/build.py turn1 turn2 turn3      # 《轮到谁了》第一、二、三部
 """
 import os, re, sys
 
@@ -30,6 +30,7 @@ BOOKS = {
     # 《轮到谁了》分四部（希腊 / 罗马 / 欧洲与英国 / 美国），脚本拆在 _build/turn/js/*.js
     'turn1': ('turn', 'turn/index.html', ['top1.html', 'css.html', 'bar.html'] + ['a%02d.html' % i for i in range(13)]),
     'turn2': ('turn', 'turn/two.html', ['top2.html', 'css.html', 'bar.html'] + ['b%02d.html' % i for i in range(15)]),
+    'turn3': ('turn', 'turn/three.html', ['top3.html', 'css.html', 'bar.html'] + ['c%02d.html' % i for i in range(16)]),
 }
 DRAFT = '--draft' in sys.argv  # 写到一半时跳过缺失段落和锚点检查
 

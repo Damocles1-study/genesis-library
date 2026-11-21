@@ -524,7 +524,7 @@ footer p{text-indent:0!important}
     <div class="partnav">
       <a href="./" class="on"><span class="k">第一部</span><b>希腊</b><small>序幕 + 卷一 城邦 + 卷二 霸 + 卷三 灯 · 十一章</small></a>
       <a href="two.html"><span class="k">第二部</span><b>罗马</b><small>卷四 共和 + 卷五 内战 + 卷六 帝国 · 十三章</small></a>
-      <a><span class="k">第三部</span><b>欧洲与英国</b><small>碎片 · 岛 · 日不落 · 写作中</small></a>
+      <a href="three.html"><span class="k">第三部</span><b>欧洲与英国</b><small>卷七 碎片 + 卷八 岛 + 卷九 日不落 · 十四章</small></a>
       <a><span class="k">第四部</span><b>美国</b><small>新 · 裂 · 霸 · 写作中</small></a>
     </div>
 
@@ -544,7 +544,8 @@ footer p{text-indent:0!important}
         <li><a href="#c10">希腊人是怎样把棒交给罗马的？</a><b>书</b></li>
         <li><a href="two.html#c17">罗马共和为什么会变成帝国？</a><b>冠</b></li>
         <li><a href="two.html#c18">罗马是怎样管住那么大地方的？</a><b>省</b></li>
-        <li class="soon">英国一个小岛凭什么成了日不落帝国？</li>
+        <li><a href="three.html#c29">英国一个小岛凭什么成了日不落帝国？</a><b>债</b></li>
+        <li><a href="three.html#c37">日不落帝国是怎样落下去的？</a><b>暮</b></li>
         <li class="soon">美国是怎样从殖民地走到世界山顶的？</li>
       </ul>
     </div>
@@ -2333,7 +2334,7 @@ function txt(x, y, t, o){ o = o || {}; return '<text x="' + x + '" y="' + y + '"
 
 /* ---------- 全书目录（四个网页共用） ---------- */
 const PAGE = /four\.html/.test(location.pathname) ? 4 : /three\.html/.test(location.pathname) ? 3 : /two\.html/.test(location.pathname) ? 2 : 1;
-const READY = 2; // 已经写好的部数；后面的章节在目录里显示“写作中”
+const READY = 3; // 已经写好的部数；后面的章节在目录里显示“写作中”
 const PURL = {1: './', 2: 'two.html', 3: 'three.html', 4: 'four.html'};
 const TOC = [
   {p: 1, t: '第一部 · 希腊 —— 一群吵架的城'},
@@ -2371,21 +2372,21 @@ const TOC = [
   {id: 'c23', n: '城', t: '还有一千年', s: '拜占庭、查士丁尼、1453', r: '476—1453'},
   {p: 3, t: '第三部 · 欧洲与英国 —— 日不落'},
   {v: '卷七 · 碎片'},
-  {id: 'c24', n: '堡', t: '城堡与教堂', s: '封建、教会、十字军', r: '800—1300'},
-  {id: 'c25', n: '章', t: '一张羊皮纸', s: '大宪章、议会、黑死病', r: '1215—1400'},
-  {id: 'c26', n: '印', t: '印刷机和九十五条', s: '文艺复兴、宗教改革', r: '1450—1648'},
-  {id: 'c27', n: '帆', t: '先到的人', s: '葡萄牙、西班牙、荷兰的海', r: '1415—1670'},
+  {id: 'c24', n: '堡', t: '城堡与教堂', s: '查理曼、封建、教皇和皇帝、十字军', r: '800—1300'},
+  {id: 'c25', n: '章', t: '一张羊皮纸', s: '大宪章、议会、黑死病、农民起义', r: '1215—1400'},
+  {id: 'c26', n: '印', t: '印刷机和九十五条', s: '古腾堡、路德、亨利八世、三十年战争', r: '1450—1648'},
+  {id: 'c27', n: '帆', t: '先到的人', s: '葡萄牙、西班牙、波托西的银子', r: '1415—1600'},
   {v: '卷八 · 岛'},
-  {id: 'c28', n: '盗', t: '女王的海盗', s: '伊丽莎白、德雷克、无敌舰队', r: '1558—1603'},
-  {id: 'c29', n: '债', t: '会借钱的国家', s: '内战、光荣革命、英格兰银行与国债', r: '1642—1720'},
-  {id: 'c30', n: '机', t: '煤与蒸汽', s: '工业革命', r: '1750—1850'},
-  {id: 'c31', n: '司', t: '一家公司统治一个国家', s: '东印度公司', r: '1600—1858'},
+  {id: 'c28', n: '盗', t: '女王的海盗', s: '伊丽莎白、德雷克、无敌舰队；荷兰人的公司和交易所', r: '1558—1650'},
+  {id: 'c29', n: '债', t: '会借钱的国家', s: '内战、光荣革命、英格兰银行与国债、南海泡沫', r: '1642—1720'},
+  {id: 'c30', n: '糖', t: '糖与锁链', s: '奴隶贸易、种植园、废奴', r: '1640—1838'},
+  {id: 'c31', n: '海', t: '又一道木墙', s: '和法国打了一百年：七年战争、丢了美洲、纳尔逊、拿破仑', r: '1689—1815'},
   {v: '卷九 · 日不落'},
-  {id: 'c32', n: '茶', t: '丢了美洲', s: '七年战争、印花税、波士顿', r: '1756—1783'},
-  {id: 'c33', n: '烟', t: '鸦片', s: '自由贸易的另一面', r: '1793—1860'},
-  {id: 'c34', n: '饥', t: '饥荒的账', s: '爱尔兰、印度', r: '1845—1900'},
-  {id: 'c35', n: '官', t: '考出来的文官', s: '诺思科特-特里维廉报告', r: '1854—1900'},
-  {id: 'c36', n: '瓜', t: '切蛋糕', s: '瓜分非洲', r: '1884—1914'},
+  {id: 'c32', n: '司', t: '一家公司统治一个国家', s: '东印度公司：普拉西、孟加拉饥荒、1857', r: '1600—1858'},
+  {id: 'c33', n: '机', t: '煤与蒸汽', s: '工业革命、工厂、童工、谷物法', r: '1760—1850'},
+  {id: 'c34', n: '烟', t: '鸦片', s: '茶、白银、炮舰：自由贸易的另一面', r: '1793—1860'},
+  {id: 'c35', n: '官', t: '饥荒与考卷', s: '爱尔兰大饥荒、诺思科特-特里维廉报告', r: '1845—1880'},
+  {id: 'c36', n: '瓜', t: '切蛋糕', s: '埃及的债、柏林会议、刚果、布尔战争', r: '1870—1914'},
   {id: 'c37', n: '暮', t: '日落', s: '两次大战、印度独立、苏伊士', r: '1914—1956'},
   {p: 4, t: '第四部 · 美国 —— 山巅之城'},
   {v: '卷十 · 新'},
@@ -2687,6 +2688,56 @@ dev('#romeFig', fig => {
   }
   btnRow($('#rmBtns'), ['前 264', '前 146', '前 44', '117', '395', '476', '565', '1050', '1453'], 3, i => { R.value = [-264, -146, -44, 117, 395, 476, 565, 1050, 1452][i]; go(); });
   R.addEventListener('input', go);
+  go();
+});
+
+/* ---------- 第三部封面装置：四百年，谁的海军最大 ---------- */
+dev('#seaFig', fig => {
+  const C = [['葡萄牙', '#4f9a6a'], ['西班牙', '#c9573a'], ['荷兰', '#e08a2e'], ['英国', '#3a6ea5'], ['法国', '#7d5ba6'], ['俄国', '#a0785a'], ['德国', '#7a7a7a'], ['日本', '#d16b8f'], ['美国', '#2a9d9a']];
+  // 年份 → 各国份额（%，示意：参照现代学者对主力战舰的统计粗略取整，只看谁上谁下）
+  const D = [
+    [1500, [45, 25, 5, 10, 15, 0, 0, 0, 0]], [1520, [55, 20, 0, 13, 12, 0, 0, 0, 0]], [1550, [45, 25, 5, 12, 13, 0, 0, 0, 0]],
+    [1580, [20, 40, 10, 20, 10, 0, 0, 0, 0]], [1600, [10, 35, 25, 25, 5, 0, 0, 0, 0]], [1630, [5, 25, 40, 20, 10, 0, 0, 0, 0]],
+    [1660, [0, 10, 40, 35, 15, 0, 0, 0, 0]], [1690, [0, 5, 25, 40, 30, 0, 0, 0, 0]], [1720, [0, 10, 15, 55, 15, 5, 0, 0, 0]],
+    [1750, [0, 15, 5, 45, 30, 5, 0, 0, 0]], [1780, [0, 20, 5, 40, 30, 5, 0, 0, 0]], [1810, [0, 5, 0, 70, 15, 10, 0, 0, 0]],
+    [1830, [0, 0, 0, 55, 25, 15, 0, 0, 5]], [1860, [0, 0, 0, 50, 35, 8, 0, 0, 7]], [1880, [0, 0, 0, 55, 25, 8, 5, 2, 5]],
+    [1900, [0, 0, 0, 45, 18, 12, 10, 5, 10]], [1914, [0, 0, 0, 40, 10, 5, 25, 5, 15]], [1930, [0, 0, 0, 35, 8, 2, 2, 18, 35]],
+    [1945, [0, 0, 0, 25, 2, 3, 0, 0, 70]], [1950, [0, 0, 0, 18, 4, 8, 0, 0, 70]]
+  ];
+  const at = y => { let i = 0; while (i < D.length - 2 && D[i + 1][0] <= y) i++; const a = D[i], b = D[i + 1], t = clamp((y - a[0]) / (b[0] - a[0]), 0, 1); const v = a[1].map((x, j) => lerp(x, b[1][j], t)); const s = v.reduce((p, q) => p + q, 0); return v.map(x => x / s * 100); };
+  const R = $('#sfR'), svg = $('#sfSvg');
+  $('#sfLeg').innerHTML = C.map(c => '<span><i style="background:' + c[1] + '"></i>' + c[0] + '</span>').join('');
+  const W = 600, H = 230, L = 34, Rr = 10, T = 10, B = 26;
+  const X = y => L + (y - 1500) / 450 * (W - L - Rr), Y = v => T + (1 - v / 100) * (H - T - B);
+  let base = '';
+  const ys = []; for (let y = 1500; y <= 1950; y += 5) ys.push(y);
+  const vals = ys.map(at);
+  for (let j = C.length - 1; j >= 0; j--) {
+    const top = vals.map(v => v.slice(0, j + 1).reduce((p, q) => p + q, 0)), bot = vals.map(v => v.slice(0, j).reduce((p, q) => p + q, 0));
+    base += '<path d="M' + ys.map((y, i) => X(y).toFixed(1) + ',' + Y(top[i]).toFixed(1)).join('L') + 'L' + ys.slice().reverse().map((y, i) => X(y).toFixed(1) + ',' + Y(bot[bot.length - 1 - i]).toFixed(1)).join('L') + 'Z" fill="' + C[j][1] + '" fill-opacity=".85"/>';
+  }
+  [1500, 1600, 1700, 1800, 1900].forEach(y => base += txt(X(y), H - 8, y, {s: 11, c: 'var(--ink-3)', halo: false}));
+  [0, 50, 100].forEach(v => base += txt(L - 5, Y(v) + 4, v + '%', {s: 10.5, a: 'end', c: 'var(--ink-3)', halo: false}));
+  const SAY = [
+    [1580, '葡萄牙人卡住了印度洋的咽喉，西班牙人守着大西洋的银船航线。英国和荷兰的船还在后面追。'],
+    [1640, '荷兰人来了：一个人口一两百万的小国，船比英、法、西加起来还多（商船更是如此）。<a href="' + href('c28') + '">第二十八章</a>。'],
+    [1700, '英荷三次海战之后，又请来一个荷兰国王（<a href="' + href('c29') + '">第二十九章</a>），英国和荷兰合伙对付法国。'],
+    [1800, '“第二次百年战争”：英国和法国打了一百多年，几乎每一次都是在海上赢的。<a href="' + href('c31') + '">第三十一章</a>。'],
+    [1890, '特拉法尔加以后，皇家海军独步天下将近一百年。英国的规矩是“两强标准”：海军要比排在后面的两个国家加起来还强。'],
+    [1925, '德国的造舰竞赛被一战打断了；1922 年的华盛顿条约，英国第一次同意让美国的主力舰和自己一样多。'],
+    [1951, '二战结束时，美国海军的军舰比全世界其余国家加起来还多。棒交出去了。<a href="' + href('c37') + '">第三十七章</a>。']
+  ];
+  R.addEventListener('input', go);
+  function go(){
+    const y = +R.value, v = at(y);
+    $('#sfO').textContent = y + ' 年';
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    svg.innerHTML = base + '<line x1="' + X(y) + '" x2="' + X(y) + '" y1="' + T + '" y2="' + (H - B) + '" stroke="var(--ink)" stroke-width="2"/>';
+    const order = C.map((c, i) => [c, v[i]]).filter(x => x[1] >= 0.5).sort((a, b) => b[1] - a[1]);
+    $('#sfBars').innerHTML = order.map(x => '<div class="row"><span class="nm">' + x[0][0] + '</span><span class="tr"><i style="width:' + x[1] + '%;background:' + x[0][1] + '"></i></span><span class="v">' + Math.round(x[1]) + '%</span></div>').join('');
+    const s = SAY.find(z => y < z[0]) || SAY[SAY.length - 1];
+    $('#sfSay').innerHTML = '<b>' + y + ' 年，排第一的是' + order[0][0][0] + '。</b>' + s[1];
+  }
   go();
 });
 
@@ -3840,6 +3891,590 @@ dev('#wallFig', fig => {
     say.innerHTML = '<b>' + s[0] + '</b><br>' + s[3];
   }
   go(5);
+});
+
+/* ================= 第三部 ================= */
+/* ---------- 装置 25：养一个骑士 ---------- */
+dev('#knightFig', fig => {
+  // 《里普利安法》价目（单位：苏）。牛按 2 苏一头。
+  const IT = [['战马', 12, 1], ['备用马', 12, 0], ['锁子甲', 12, 1], ['头盔', 6, 1], ['剑和剑鞘', 7, 1], ['护腿', 6, 1], ['长矛和盾', 2, 1]];
+  const OX = 2, UPKEEP = 8, KEEP = 6;   // 每年：马料、侍从等 8 苏；骑士一家吃穿 6 苏（示意）
+  const on = IT.map(x => !!x[2]);
+  const box = $('#knBtns'), S = $('#knS'), Y = $('#knY'), svg = $('#knSvg');
+  box.innerHTML = IT.map((x, i) => '<button class="btn' + (on[i] ? ' on' : '') + '" data-i="' + i + '">' + x[0] + ' · ' + x[1] + ' 苏</button>').join('');
+  box.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; const i = +b.dataset.i; on[i] = !on[i]; b.classList.toggle('on', on[i]); go(); });
+  S.addEventListener('input', go); Y.addEventListener('input', go);
+  function house(x, y, c){ return '<path d="M' + x + ',' + (y + 7) + ' l7,-7 l7,7 v8 h-14 z" fill="' + c + '" stroke="var(--ink-3)" stroke-width=".8"/>'; }
+  function go(){
+    const eq = IT.reduce((s, x, i) => s + (on[i] ? x[1] : 0), 0);
+    const s = +S.value, yrs = +Y.value;
+    $('#knSo').textContent = s + ' 苏/年'; $('#knYo').textContent = yrs + ' 年';
+    const need = eq / yrs + UPKEEP + KEEP, n = Math.ceil(need / s);
+    // 画：左边一个骑士（盾牌 + 长矛），右边 n 座小房子
+    const W = 600, cols = 20, rows = Math.max(2, Math.ceil(n / cols)), H = 40 + rows * 22;
+    let g = '<g transform="translate(18,' + (H / 2 - 30) + ')"><circle cx="22" cy="10" r="8" fill="var(--ink-3)"/><path d="M12,20 h20 l4,26 h-28 z" fill="var(--ink-3)"/>' +
+      (on[2] ? '<path d="M12,20 h20 l4,26 h-28 z" fill="none" stroke="var(--ink)" stroke-dasharray="1.5 1.5"/>' : '') +
+      (on[6] ? '<path d="M2,24 q8,-4 14,0 v14 q-7,8 -14,0 z" fill="var(--ter)"/><line x1="40" y1="-6" x2="40" y2="58" stroke="var(--ink)" stroke-width="2"/>' : '') +
+      (on[0] ? '<path d="M6,58 h40 l4,-10 h-48 z" fill="var(--och)" opacity=".7"/>' : '') + '</g>';
+    g += txt(40, H - 8, '一个骑士', {s: 12, c: 'var(--ink-2)'});
+    for (let i = 0; i < n; i++) g += house(100 + (i % cols) * 24, 20 + Math.floor(i / cols) * 22, i < Math.ceil((eq / yrs) / s) ? 'var(--och)' : i < Math.ceil((eq / yrs + UPKEEP) / s) ? 'var(--main)' : 'var(--grn)');
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+    kv($('#knKV'), [['一身装备', eq + ' 苏'], ['折合', (eq / OX).toFixed(1) + ' 头牛'], ['每年开销（示意）', need.toFixed(1) + ' 苏'], ['要供养他的农户', n + ' 户']]);
+    const say = $('#knSay');
+    say.className = 'say' + (n > 30 ? ' bad' : '');
+    say.innerHTML = '<small><span style="color:var(--och)">■</span> 分摊装备　<span style="color:var(--main)">■</span> 马料、侍从　<span style="color:var(--grn)">■</span> 骑士一家的吃穿</small><br>' +
+      (eq === 0 ? '什么都不买，那就不是骑士，是农民。' :
+      eq >= 45 ? '一身全套行头 ' + eq + ' 苏，差不多是 ' + Math.round(eq / OX) + ' 头牛。美国历史学家林恩·怀特据此估算：一个骑兵的装备，值十户以上农民家里全部的耕牛。' + (on[1] ? '加一匹备用马，又是一大笔：战马在冲锋里最容易死。' : '') :
+      '少了几件，便宜了不少。可上了战场，少的那一件常常就是要命的那一件。') +
+      ' 按每户每年能交出 ' + s + ' 苏的余粮算，这个骑士背后要站着 <b>' + n + '</b> 户农民。';
+  }
+  go();
+});
+
+/* ---------- 装置 26：黑死病之后的工钱 ---------- */
+dev('#wageFig', fig => {
+  const M = $('#wgM'), E = $('#wgE');
+  M.addEventListener('input', go); E.addEventListener('input', go);
+  const bar = (nm, sub, v, max, c, lab) => '<div class="row"><span class="nm">' + nm + (sub ? '<small>' + sub + '</small>' : '') + '</span><span class="tr"><i style="width:' + clamp(v / max * 100, 0, 100) + '%;background:' + c + '"></i></span><span class="v">' + lab + '</span></div>';
+  function go(){
+    const m = +M.value / 100, e = +E.value / 100;
+    $('#wgMo').textContent = Math.round(m * 100) + '%'; $('#wgEo').textContent = Math.round(e * 100) + '%';
+    const L = 1 - m;
+    const wMkt = Math.pow(L, -0.7);          // 市场工钱：人越少越高（示意弹性）
+    const rent = Math.pow(L, 0.6);           // 每亩地租：人越少越低
+    const paid = 1 + (wMkt - 1) * (1 - e * 0.8);   // 法令能压掉的部分（执行力再强也压不尽）
+    const gap = Math.max(0, wMkt - paid) / wMkt;    // 被压下去的比例
+    const flee = clamp(gap * 120 * (0.4 + m), 0, 100);         // 想跑的人（示意）
+    const anger = clamp(gap * 100 + e * m * 60, 0, 100);         // 怨气（示意）
+    $('#wgBars').innerHTML =
+      bar('市场工钱', '没有法令时', wMkt * 100, 300, 'var(--grn)', Math.round(wMkt * 100)) +
+      bar('实际到手', '法令压过以后', paid * 100, 300, 'var(--main)', Math.round(paid * 100)) +
+      bar('每亩地租', '地主的收入', rent * 100, 300, 'var(--och)', Math.round(rent * 100)) +
+      bar('想跑的人', '去别的庄园、进城', flee, 100, 'var(--ter)', Math.round(flee) + '%') +
+      bar('怨气', '离造反有多远', anger, 100, 'var(--red)', Math.round(anger));
+    kv($('#wgKV'), [['活下来的人', Math.round(L * 100) + '%'], ['工钱（瘟疫前 = 100）', Math.round(paid * 100)], ['被法令压掉的', Math.round(gap * 100) + '%']]);
+    const say = $('#wgSay');
+    say.className = 'say' + (anger > 55 ? ' bad' : wMkt > 1.3 && e < .3 ? ' ok' : '');
+    say.innerHTML = m < .05 ? '没有瘟疫，一切照旧：人多地少，工钱低，地租高。十四世纪初的英格兰正是这样，人口多到连贫瘠的山地都开垦了。'
+      : e < .15 ? '法令形同虚设。工钱涨到了瘟疫前的 <b>' + Math.round(wMkt * 100) + '</b>，地主的地租掉到 ' + Math.round(rent * 100) + '。这差不多就是十五世纪英格兰的实情：有人把它叫做“雇工的黄金时代”。'
+      : anger > 55 ? '法令压得越狠，工钱和“该得的”差得越远。被压掉的那一截，变成了逃跑、怠工和怨气。再碰上一次加税，就是 1381 年。'
+      : '法令压住了一部分，可压不住全部：地主们一边投票冻结工钱，一边偷偷多给，<em>因为不多给就没人干活</em>。';
+  }
+  go();
+});
+
+/* ---------- 装置 27：印多少本才划算 ---------- */
+dev('#pressFig', fig => {
+  const P = $('#psP'), N = $('#psN'), svg = $('#psSvg');
+  const SCRIBE = 2.5;      // 抄写员：每天约 2—3 页（书法体）
+  const SET = 2;           // 排字工：每天约排 2 页（含校对、拆版）
+  const SHOP = 60;         // 每一版分摊的作坊本钱（铸字、压印机、房租），折合工日（示意）
+  const PRESS = 1300;      // 一台压印机两个人一天约印 1300 印次（一张纸的一面）
+  const nOf = v => Math.round(Math.pow(10, v / 100 * Math.log10(2000)));   // 1 … 2000（对数刻度）
+  P.addEventListener('input', go); N.addEventListener('input', go);
+  function go(){
+    const p = +P.value, n = Math.max(1, nOf(+N.value));
+    $('#psPo').textContent = p + ' 页'; $('#psNo').textContent = n + ' 本';
+    const scribe = p / SCRIBE;
+    const setup = p / SET + SHOP, run = (p / 4) / PRESS * 2;   // 四开本：一面四页
+    const press = k => setup / k + run;
+    // 对数坐标图
+    const W = 600, H = 250, L = 52, R = 14, T = 14, B = 34;
+    const lx = k => L + Math.log10(k) / Math.log10(2000) * (W - L - R);
+    const ymin = 0.01, ymax = Math.max(1000, scribe * 2);
+    const ly = v => T + (1 - (Math.log10(clamp(v, ymin, ymax)) - Math.log10(ymin)) / (Math.log10(ymax) - Math.log10(ymin))) * (H - T - B);
+    let g = '';
+    [0.01, 0.1, 1, 10, 100, 1000].forEach(v => { if (v <= ymax) g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + ly(v) + '" y2="' + ly(v) + '" stroke="var(--rule)"/>' + txt(L - 6, ly(v) + 4, v >= 1 ? v : v, {s: 11, a: 'end', c: 'var(--ink-3)', halo: false}); });
+    [1, 10, 100, 1000].forEach(k => g += txt(lx(k), H - 12, k + ' 本', {s: 11, c: 'var(--ink-3)', halo: false}));
+    g += txt(L - 6, T + 2, '工日/本', {s: 10.5, a: 'end', c: 'var(--ink-3)', halo: false});
+    g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + ly(scribe) + '" y2="' + ly(scribe) + '" stroke="var(--ter)" stroke-width="2.6"/>' + txt(W - R - 4, ly(scribe) - 7, '抄写', {s: 12.5, a: 'end', c: 'var(--ter)', w: true});
+    let d = ''; for (let i = 0; i <= 120; i++) { const k = Math.pow(2000, i / 120); d += (i ? 'L' : 'M') + lx(k).toFixed(1) + ',' + ly(press(k)).toFixed(1); }
+    g += '<path d="' + d + '" fill="none" stroke="var(--main)" stroke-width="2.6"/>' + txt(W - R - 4, ly(press(2000)) - 7, '印刷', {s: 12.5, a: 'end', c: 'var(--main)', w: true});
+    g += '<line x1="' + lx(n) + '" x2="' + lx(n) + '" y1="' + T + '" y2="' + (H - B) + '" stroke="var(--ink-3)" stroke-dasharray="2 3"/><circle cx="' + lx(n) + '" cy="' + ly(press(n)) + '" r="5" fill="var(--main)"/><circle cx="' + lx(n) + '" cy="' + ly(scribe) + '" r="5" fill="var(--ter)"/>';
+    g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + (H - B) + '" y2="' + (H - B) + '" stroke="var(--ink)" stroke-width="1.2"/>';
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+    const even = Math.ceil(setup / (scribe - run));
+    const pc = press(n), ratio = scribe / pc;
+    kv($('#psKV'), [['抄一本', scribe.toFixed(0) + ' 工日'], ['印一本（摊下来）', pc < 1 ? pc.toFixed(2) + ' 工日' : pc.toFixed(1) + ' 工日'], ['印到第几本开始划算', even + ' 本'], ['抄写的人工是印刷的', ratio < 1 ? '更便宜' : ratio.toFixed(ratio < 10 ? 1 : 0) + ' 倍']]);
+    const say = $('#psSay');
+    say.className = 'say' + (ratio > 20 ? ' ok' : '');
+    say.innerHTML = n < even ? '只要 ' + n + ' 本，不如请抄写员：排版和作坊的本钱摊不开。十五世纪末，小批量的书、私人订制的祈祷书，很多还是抄的。'
+      : '印 ' + n + ' 本，每本的人工只有抄写的 <b>' + (100 / ratio).toFixed(ratio > 100 ? 2 : 1) + '%</b>。' + (p >= 800 ? '一部厚厚的《圣经》，抄写员要干一年多。' : '') +
+        '<br><small>只算人工。真实的书价没掉这么多：纸张、装订、运输、卖不掉的库存和书商的利润都要算进去。可在五十年里，书价确实大跌，一本书从贵族的财产，变成了教师和商人买得起的东西。</small>';
+  }
+  go();
+});
+
+/* ---------- 第三部共用：极简世界示意地图（只为看清方位） ---------- */
+const WORLD = {
+  na: [[-110, 60], [-80, 60], [-77, 45], [-70, 42], [-76, 35], [-81, 31], [-80, 25.5], [-82, 28], [-84, 30], [-90, 29.5], [-97, 28], [-97, 22], [-95, 18.5], [-91, 19], [-87, 21], [-88, 16], [-83, 15], [-83, 10], [-79.5, 9.3], [-77, 8], [-78, 7.5], [-80, 7.5], [-85, 10], [-87, 13], [-92, 14.5], [-96, 15.8], [-100, 17], [-105, 20], [-106, 23], [-110, 24]],
+  sa: [[-77, 8], [-72, 12], [-63, 10.5], [-52, 4], [-50, 0], [-44, -2.5], [-35, -5.5], [-39, -13], [-41, -22], [-48, -26], [-49, -32], [-71.5, -32], [-71, -18], [-76, -14], [-81, -6], [-80, -1], [-78, 2]],
+  cuba: [[-85, 22], [-80, 23.2], [-74.2, 20.2], [-77.5, 19.9], [-82, 22]],
+  afr: [[-6, 35.8], [-17, 21], [-17, 14.7], [-12, 7], [-8, 4.5], [0, 5.5], [9, 4], [9.5, 1], [13, -6], [12, -17], [15, -27], [16, -32], [29, -32], [33, -26], [35, -22], [40, -15], [40, -10], [39, -5], [42, -1], [51, 11.5], [44, 11], [39, 17], [34, 27], [32.5, 30], [29, 31], [20, 32], [20, 30.5], [15, 32], [10, 34], [11, 37], [0, 35.8]],
+  eur: [[-9, 43], [-9, 37], [-6, 36.8], [-2, 36.7], [3, 42], [6, 43.3], [9, 44.4], [12.3, 41.7], [16, 38], [18.5, 40.2], [13, 45.6], [19.5, 41.5], [24, 37.8], [26, 40.5], [29, 41], [36, 36.5], [35.5, 33.5], [34.5, 31.5], [32.5, 30], [34.5, 28], [39, 21], [43, 13], [45, 13], [52, 16], [56, 22.5], [59, 22.5], [56, 26], [50, 30], [48, 30], [51, 27], [56.5, 27], [61, 25], [67, 24.5], [73, 19], [77, 8], [80, 10], [80, 15], [86, 20], [90, 22], [94, 17], [98, 16], [98, 8], [100.5, 4], [103.5, 1.3], [101, 6.5], [100, 13], [104, 10.5], [106, 9], [109, 12], [106.5, 20], [110, 21], [113, 22.3], [117, 23.5], [119.5, 26], [122, 30], [121, 32], [120, 35], [122.5, 37], [118, 38], [117.5, 39], [121, 40.5], [122, 39], [125, 39.8], [127.5, 38], [129, 35], [127, 34.5], [126, 37], [125, 40], [130, 42.5], [131, 60], [30, 60], [10, 60], [5, 58], [8, 57], [9, 54], [4.5, 52.5], [2, 51], [-1.5, 49.6], [-4.6, 48.4], [-1.2, 46], [-1.8, 43.4]],
+  jp: [[130, 31], [131.5, 33.5], [135, 34], [140, 35.5], [141, 38], [141.5, 41], [140, 40], [139, 38], [136, 36.8], [133, 35.5], [130.5, 33.8]],
+  ph: [[120, 18.5], [122, 18.5], [121.5, 14], [124, 13], [125.5, 9.5], [124, 6.5], [122, 7], [123, 10], [120.5, 14.5]],
+  bor: [[109, 1.5], [111, 2.8], [116, 7], [119, 5], [117.5, 1], [116, -3.5], [111, -3], [109.5, -1]],
+  sum: [[95.5, 5.5], [98.5, 3.5], [103.5, -1], [106, -5.8], [104, -5.5], [100, -1], [95.5, 3]],
+  jav: [[105.5, -6], [114.5, -7.7], [114, -8.6], [106, -7]],
+  mad: [[49.5, -12], [50.5, -16], [47, -25], [44, -23], [44, -16]],
+  aus: [[114, -22], [122, -18], [130, -12], [136, -12], [136, -15], [141, -12.5], [143, -14], [146, -19], [150, -22.5], [153, -28], [153, -32], [115, -32]],
+  ire: [[-6.0, 52.2], [-6.1, 53.4], [-5.9, 54.6], [-7.3, 55.3], [-8.3, 55.2], [-10.0, 54.2], [-9.6, 53.2], [-10.3, 52.0], [-9.4, 51.5], [-8.0, 51.8]],
+  ceyl: [[80, 9.8], [81.8, 7.5], [81, 6], [80, 6.2]]
+};
+/* worldMap({lon0, lon1, lat0, lat1, W}) → {svg, P}：等距圆柱，海是底色 */
+function worldMap(o){
+  const sx = o.W / (o.lon1 - o.lon0), H = Math.round((o.lat1 - o.lat0) * sx);
+  const P = (lon, lat) => [(lon - o.lon0) * sx, (o.lat1 - lat) * sx];
+  const poly = pts => 'M' + pts.map(p => P(p[0], p[1]).map(v => v.toFixed(1)).join(',')).join('L') + 'Z';
+  let g = '<rect width="' + o.W + '" height="' + H + '" fill="var(--sea)"/>';
+  for (let lon = Math.ceil(o.lon0 / 30) * 30; lon < o.lon1; lon += 30) g += '<line x1="' + P(lon, 0)[0] + '" x2="' + P(lon, 0)[0] + '" y1="0" y2="' + H + '" stroke="var(--ink-3)" stroke-opacity=".15"/>';
+  for (let lat = Math.ceil(o.lat0 / 30) * 30; lat < o.lat1; lat += 30) g += '<line y1="' + P(0, lat)[1] + '" y2="' + P(0, lat)[1] + '" x1="0" x2="' + o.W + '" stroke="var(--ink-3)" stroke-opacity="' + (lat ? .15 : .35) + '"/>';
+  Object.values(WORLD).concat([NORTH.brit]).forEach(s => g += '<path d="' + poly(s) + '" fill="var(--land)" stroke="var(--ink-3)" stroke-width=".6" stroke-linejoin="round"/>');
+  return {svg: g, P, W: o.W, H, poly};
+}
+
+/* ---------- 装置 28：一枚比索的旅程 ---------- */
+dev('#pesoFig', fig => {
+  // [经度, 纬度, 地名, 谁拿着, 抽走多少（以 100 枚计）, 说明]
+  const R = [
+    [[-65.75, -19.6, '波托西', '矿主', 20, '在海拔四千米的铸币厂里，银锭被打成银币。王室先拿走五分之一（五一税）。剩下的归矿主，可他还欠着水银钱、骡子钱和米塔工的口粮钱。'],
+     [-77.1, -12.05, '利马', '利马的商人', 6, '骡队把银子驮下安第斯山，运到海边，再装船去利马。矿主拿它向利马的商人买从西班牙运来的布、酒和铁器。骡夫、船主、海关各抽一点。'],
+     [-79.5, 9.2, '巴拿马', '利马的商人', 5, '银子在巴拿马上岸，由骡队穿过地峡，到大西洋岸的波托韦洛。这里每年办一次大集市，西班牙来的船队到了才开张。运费、关税、看守费。'],
+     [-82.4, 23.1, '哈瓦那', '利马的商人', 3, '船队在哈瓦那集合，等军舰护航一起横渡大西洋，防英国和法国的海盗。每一箱银子都要交护航税。'],
+     [-6.0, 37.4, '塞维利亚', '塞维利亚的商人', 4, '到了。贸易署登记、过秤、征税。可这枚银币在西班牙待不了几天：塞维利亚商人卖到美洲的货，有一大半是从法国、佛兰德斯、意大利买来的，他得用银子付账。'],
+     [8.9, 44.4, '热那亚', '热那亚的银行家', 8, '国王缺钱，向塞维利亚的商人“借”了一批刚到港的银子，用来还热那亚银行家的债。银行家收下本钱和利息，再借给国王一笔新的，利息更高。'],
+     [4.4, 51.2, '佛兰德斯', '西班牙士兵', 2, '银行家通过汇票，把钱送到尼德兰，给在那里打仗的西班牙军团发饷。这一回军饷总算按时发了（常常是拖欠好几年的）。士兵在酒馆里把它花掉了。'],
+     [4.9, 52.37, '阿姆斯特丹', '荷兰商人', 1, '酒馆老板向荷兰商人买鲱鱼和波罗的海的粮食。荷兰人正在和西班牙打仗，可生意照做：西班牙的银子，养活了它的敌人。1602 年以后，荷兰东印度公司把大箱的西班牙银元装上船，运往亚洲。'],
+     [113.3, 23.1, '广州', '中国商人', 0, '在东方，欧洲人拿不出别的东西，只有银子是人人要的。银币换成了丝绸、瓷器和后来的茶叶，被中国商人剪开、熔成银锭，最后用来交“一条鞭法”的赋税。它的旅程走了两三年，绕了大半个地球。']],
+    [[-65.75, -19.6, '波托西', '矿主', 20, '同样从波托西出发，王室先拿走五分之一。'],
+     [-77.1, -12.05, '利马', '利马的商人', 6, '到了利马。秘鲁和菲律宾之间的直接贸易是被禁止的，西班牙王室怕银子都流到亚洲去。可是银子总能找到路。'],
+     [-99.9, 16.85, '阿卡普尔科', '墨西哥的商人', 6, '一部分秘鲁银子（大多是走私的）北上墨西哥，和墨西哥自己的银子一起，装上每年一次的“马尼拉大帆船”。这条船在太平洋上要走三四个月，死在路上的水手很多。'],
+     [121.0, 14.6, '马尼拉', '马尼拉的西班牙人', 4, '马尼拉的西班牙人自己几乎什么也不生产，他们只是中间人：等每年春天福建的帆船运来生丝、绸缎和瓷器，用美洲银子买下，再装上大帆船运回墨西哥。'],
+     [117.9, 24.4, '月港', '福建商人', 3, '福建海商把银子运回漳州的月港（明朝 1567 年开放的唯一一个准许私人出海贸易的港口），交了“饷银”（关税）。'],
+     [116.4, 39.9, '北京', '明朝的国库', 0, '一条鞭法以后，田赋和徭役都折成银两交纳。福建乡下的一户人家，把卖丝换来的碎银子交给县里，最后有一部分进了北京的太仓库。一个西班牙人在马尼拉写道：中国国王可以用秘鲁运来的银子盖一座宫殿（大意）。']]
+  ];
+  const DEC = [[1531, 86], [1541, 178], [1551, 303], [1561, 943], [1571, 1119], [1581, 2103], [1591, 2708], [1601, 2214], [1611, 2192], [1621, 2145], [1631, 1397], [1641, 1056], [1651, 443]];
+  const OFF = {'波托西': [9, 5, 'start'], '利马': [-9, 5, 'end'], '巴拿马': [-9, 6, 'end'], '哈瓦那': [-9, -5, 'end'], '塞维利亚': [-8, 15, 'end'], '热那亚': [9, 14, 'start'], '佛兰德斯': [-9, -2, 'end'], '阿姆斯特丹': [9, -7, 'start'], '广州': [-9, 14, 'end'], '阿卡普尔科': [-9, 4, 'end'], '马尼拉': [9, 6, 'start'], '月港': [-9, -2, 'end'], '北京': [-9, -6, 'end']};
+  let route = 0, k = 0;
+  const m = worldMap({lon0: -110, lon1: 130, lat0: -32, lat1: 60, W: 600});
+  const svg = $('#psMap');
+  btnRow($('#psRoute'), ['走大西洋：去欧洲', '走太平洋：去中国'], 0, i => { route = i; k = 0; draw(); });
+  $('#psNext').addEventListener('click', () => { if (k < R[route].length - 1) k++; draw(); });
+  $('#psReset').addEventListener('click', () => { k = 0; draw(); });
+  function draw(){
+    const r = R[route];
+    let g = m.svg;
+    const pts = r.map(s => m.P(s[0], s[1]));
+    g += '<path d="M' + pts.map(p => p.map(v => v.toFixed(1)).join(',')).join('L') + '" fill="none" stroke="var(--ink-3)" stroke-width="1.5" stroke-dasharray="3 4"/>';
+    g += '<path d="M' + pts.slice(0, k + 1).map(p => p.map(v => v.toFixed(1)).join(',')).join('L') + '" fill="none" stroke="var(--och)" stroke-width="3"/>';
+    r.forEach((s, i) => { const p = pts[i]; g += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="' + (i === k ? 7 : 4) + '" fill="' + (i <= k ? 'var(--och)' : 'var(--card)') + '" stroke="var(--ink)" stroke-width="1.2"/>'; if (i <= k) { const o = OFF[s[2]] || [8, 4, 'start']; g += txt(p[0] + o[0], p[1] + o[1], s[2], {s: 12, a: o[2], w: i === k}); } });
+    svg.setAttribute('viewBox', '0 0 ' + m.W + ' ' + m.H); svg.innerHTML = g;
+    let left = 100; for (let i = 0; i < k; i++) left -= r[i][4];
+    const s = r[k], after = left - s[4];
+    $('#psStep').innerHTML = '<b>' + (k + 1) + ' / ' + r.length + ' · ' + s[2] + '</b>　现在在：' + s[3] + '<br>' + s[5] + (s[4] ? '<br><small>按一百枚算，这一站被抽走约 ' + s[4] + ' 枚，还剩 ' + after + ' 枚继续往前走（示意）。</small>' : '<br><small>一路下来，一百枚里大约有 ' + (100 - left) + ' 枚被沿途抽走了；其中流进西班牙国王手里的，大部分很快又流到了银行家那里。</small>');
+    $('#psNext').disabled = k >= r.length - 1;
+  }
+  draw();
+  // 每十年的白银
+  const W = 600, H = 170, L = 40, B = 28, T = 12, bw = (W - L - 10) / DEC.length;
+  let g = '';
+  [0, 1000, 2000, 3000].forEach(v => { const y = T + (1 - v / 3000) * (H - T - B); g += '<line x1="' + L + '" x2="' + W + '" y1="' + y + '" y2="' + y + '" stroke="var(--rule)"/>' + txt(L - 5, y + 4, v, {s: 10.5, a: 'end', c: 'var(--ink-3)', halo: false}); });
+  DEC.forEach((d, i) => { const h = d[1] / 3000 * (H - T - B), x = L + i * bw + 3; g += '<rect x="' + x + '" y="' + (H - B - h) + '" width="' + (bw - 6) + '" height="' + h + '" fill="var(--och)" rx="2"/>' + (i % 2 === 0 ? txt(x + bw / 2 - 3, H - 10, d[0] + '', {s: 10.5, c: 'var(--ink-3)', halo: false}) : ''); });
+  g += txt(L + 6 * bw + bw / 2, T + 10, '1590 年代：约 2700 吨', {s: 11.5, c: 'var(--ink-2)'});
+  const b2 = $('#psBars2'); b2.setAttribute('viewBox', '0 0 ' + W + ' ' + H); b2.innerHTML = g;
+});
+
+/* ---------- 装置 29：押哪一条船 ---------- */
+dev('#shipFig', fig => {
+  // 每一轮：[年份, 说明, 选项[[名称, 说明, [[概率, 倍数, 结果说明], ...]], ...]]
+  const RD = [
+    [1577, '一位叫德雷克的船长在招股，说是去“南海”做生意。也有人劝你稳一点。',
+      [['入股德雷克', '五条船去麦哲伦海峡那边', [[.3, 20, '“金鹿号”回来了，船舱里塞满了西班牙的银子。'], [.25, 1.5, '船队回来了一部分，赚得不多。'], [.45, 0, '船沉在了麦哲伦海峡里，什么也没剩下。']]],
+       ['莫斯科公司', '去俄罗斯的白海运毛皮和缆绳', [[.65, 1.4, '一年一趟的老生意，稳稳赚了一点。'], [.35, .7, '一条船在北冰洋的冰里困了一冬，亏了。']]],
+       ['借给女王', '年息一成，女王从不赖账', [[.85, 1.5, '女王按时还了本息。'], [.15, 1.1, '女王拖了几年才还，利息少拿了。']]]]],
+    [1585, '和西班牙公开开战了。港口里有人在招私掠船的股，也有人在募集去美洲建殖民地的钱。',
+      [['私掠船', '拿政府执照去抢西班牙商船', [[.45, 3, '截住了一条从巴西回来的糖船。'], [.55, .3, '在亚速尔群岛外海遇上了西班牙的护航舰队。']]],
+       ['弗吉尼亚', '罗阿诺克岛上的殖民地', [[.1, 2, '殖民地活了下来。（历史上没有。）'], [.9, 0, '三年后补给船再去，岛上一个人也没有了，只在一根柱子上刻着一个词。']]],
+       ['黎凡特公司', '去地中海东岸买葡萄干、丝和棉花', [[.7, 1.8, '在土耳其的港口做了几年好生意。'], [.3, .8, '一条船被北非的海盗劫了。']]]]],
+    [1602, '阿姆斯特丹的荷兰人在募一家新公司的股，伦敦也有一家两年前成立的东印度公司。西班牙国王在卖长期债券，利息不低。',
+      [['荷兰东印度公司', '买股以后不能退，只能卖给别人', [[.9, 6, '你的孙子在 1650 年卖掉了这些股份，加上一路分的红利，翻了好几倍。'], [.1, 2.5, '中途急用钱，便宜卖掉了一半。']]],
+       ['英国东印度公司', '一次航行一结算', [[.6, 2, '胡椒运回来了，一次航行翻了一倍。'], [.4, .8, '在香料群岛被荷兰人挤了出来。']]],
+       ['西班牙国王的债券', '年息六七分', [[.4, 1.4, '一直按时付息。'], [.6, .6, '1607 年国王又一次“暂停偿付”，债券被换成了利息更低的新券。']]]]],
+    [1636, '最后一轮。阿姆斯特丹的小酒馆里，有人在卖一种明年春天才开花的郁金香球茎，价钱一个月翻了一倍。',
+      [['郁金香', '“总春”的球茎，转手就赚', [[.2, 3, '你在 1637 年 1 月卖掉了，赚了一笔。'], [.8, .1, '1637 年 2 月的一天，酒馆里突然没人接手了。']]],
+       ['存进汇兑银行', '不生利息，但最可靠', [[1, 1, '一分不多，一分不少。']]],
+       ['再买些 VOC 股票', '已经不便宜了', [[.85, 1.3, '分红照发。'], [.15, .9, '有一年船队遇上了风暴。']]]]]
+  ];
+  let k, money, log;
+  const opts = $('#spOpts'), say = $('#spSay');
+  function reset(){ k = 0; money = 100; log = []; show('一百镑。差不多是一个伦敦工匠好几年的工钱。'); }
+  function pick(dist){ let r = Math.random(); for (const d of dist) { if ((r -= d[0]) <= 0) return d; } return dist[dist.length - 1]; }
+  opts.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b || k >= RD.length) return;
+    const o = RD[k][2][+b.dataset.i], d = pick(o[2]), before = money;
+    money = Math.round(money * d[1] * 10) / 10;
+    log.push([RD[k][0], o[0], before, money]);
+    k++;
+    if (money === 0) k = RD.length;
+    show('<b>' + RD[k - 1][0] + ' · ' + o[0] + '：</b>' + d[2] + '<br><small>' + Math.round(before) + ' 镑 → ' + Math.round(money) + ' 镑。</small>');
+  });
+  function show(msg){
+    if (k < RD.length) {
+      opts.innerHTML = RD[k][2].map((o, i) => '<button class="btn" data-i="' + i + '">' + o[0] + '<br><small style="opacity:.75">' + o[1] + '</small></button>').join('');
+      say.className = 'say';
+      say.innerHTML = msg + '<br><b>' + RD[k][0] + ' 年：</b>' + RD[k][1];
+    } else {
+      opts.innerHTML = '';
+      const good = money >= 300, bad = money < 50;
+      say.className = 'say ' + (good ? 'ok' : bad ? 'bad' : '');
+      say.innerHTML = msg + '<br><b>五十年过去了。</b>你的一百镑变成了 <b>' + Math.round(money) + '</b> 镑。' +
+        (money === 0 ? '一个浪头，全没了。当时的伦敦，这样的商人很多。' : good ? '你赶上了好船。可回头看看：赚得最多的那几条船，钱是从哪里来的？' : bad ? '高回报的船，沉没的概率也高。' : '不好不坏。大多数人的五十年就是这样。') +
+        '<br><small>荷兰人的发明，就是让你不必把全部身家押在一条船上：一股 VOC 的股票，等于同时押了几十条船。</small>';
+    }
+    kv($('#spKV'), [['手里的钱', Math.round(money) + ' 镑'], ['已经押了', k + ' / ' + RD.length + ' 轮']]);
+    const mx = Math.max(100, ...log.map(l => l[3]));
+    $('#spLog').innerHTML = log.map(l => '<div class="row"><span class="nm">' + l[0] + '<small>' + l[1] + '</small></span><span class="tr"><i style="width:' + (l[3] / mx * 100) + '%;background:' + (l[3] >= l[2] ? 'var(--grn)' : 'var(--red)') + '"></i></span><span class="v">' + Math.round(l[3]) + '</span></div>').join('');
+  }
+  $('#spReset').addEventListener('click', reset);
+  reset();
+});
+
+/* ---------- 装置 30：利息吃掉多少税 ---------- */
+dev('#debtFig3', fig => {
+  const PRE = [
+    ['查理二世，1672', 10, 30, '国王的信用：赖过账的国王，借钱要一成以上的利息。同样拿出三成的税付利息，只借得到三年的税收。然后他宣布“国库停付”，信用更差了。'],
+    ['英格兰银行，1694', 8, 35, '有了议会担保，利息降到八厘。九年战争靠这样的借款撑了下来。'],
+    ['沃波尔时代，1730', 4, 40, '南海泡沫以后，利率继续往下走。'],
+    ['统一公债，1752', 3, 45, '三厘的永续国债。同样的税，能借到的钱是查理二世时代的好几倍。七年战争（第三十一章）就是这样打的。'],
+    ['法国，1788', 7, 50, '法国国王的税收比英国多，可借钱的利息高得多（终身年金实际要付得更多）。到 1788 年，利息已经吃掉了一半左右的税收，国库撑不下去，只好召开一百七十五年没开过的三级会议。']
+  ];
+  const R = $('#dbR3'), S = $('#dbS3'), svg = $('#dbSvg3');
+  let note = '';
+  btnRow($('#dbBtns3'), PRE.map(p => p[0]), -1, i => { R.value = PRE[i][1]; S.value = PRE[i][2]; note = PRE[i][3]; go(true); });
+  R.addEventListener('input', () => { note = ''; go(); }); S.addEventListener('input', () => { note = ''; go(); });
+  function go(){
+    const r = +R.value / 100, s = +S.value / 100, years = s / r;
+    $('#dbR3o').textContent = (+R.value).toFixed(1) + '%'; $('#dbS3o').textContent = Math.round(s * 100) + '%';
+    // 曲线：利率 → 能借到几年的税收
+    const pts = []; for (let x = 2; x <= 14; x += .25) pts.push([x, s / (x / 100)]);
+    const c = lineChart(svg, [{color: 'var(--main)', pts, w: 2.6}], {H: 220, xmin: 2, xmax: 14, ymin: 0, ymax: 35, xt: [2, 4, 6, 8, 10, 12, 14], xf: v => v + '%', yt: [0, 10, 20, 30], yf: v => v + ' 年'});
+    svg.innerHTML += '<circle cx="' + c.X(r * 100) + '" cy="' + c.Y(Math.min(35, years)) + '" r="6" fill="var(--ter)"/>' + txt(c.X(r * 100) + 10, c.Y(Math.min(35, years)) - 8, years.toFixed(1) + ' 年的税', {s: 12.5, a: 'start', w: true});
+    kv($('#dbKV3'), [['利率', (r * 100).toFixed(1) + '%'], ['付利息的税', Math.round(s * 100) + '%'], ['能借到', years.toFixed(1) + ' 年的税收'], ['每借 100 镑，每年付', (r * 100).toFixed(1) + ' 镑']]);
+    const say = $('#dbSay3');
+    say.className = 'say' + (years >= 12 ? ' ok' : years < 4 ? ' bad' : '');
+    say.innerHTML = (note ? note + '<br>' : '') + '<small>打一场大仗，常常要花掉好几年的税收。利率从 10% 降到 3%，同样一份税能撑起的债，大了 ' + (10 / 3).toFixed(1) + ' 倍。十八世纪英国的国债总额，常常是一年税收的十几倍，法国的国债没那么多，却先撑不住了。</small>';
+  }
+  go();
+});
+
+/* ---------- 装置 31：你的糖罐 ---------- */
+dev('#sugarFig', fig => {
+  const PC = [[1700, 4], [1730, 8], [1750, 10], [1770, 13], [1790, 17], [1800, 18], [1815, 19], [1830, 20]];   // 英国人均每年吃糖（磅），示意
+  const per = y => { for (let i = 0; i < PC.length - 1; i++) if (y <= PC[i + 1][0]) return lerp(PC[i][1], PC[i + 1][1], (y - PC[i][0]) / (PC[i + 1][0] - PC[i][0])); return PC[PC.length - 1][1]; };
+  const LBS = 600;   // 每个被奴役者每年产糖（磅，全部人口平均，示意）
+  const Q = [[1501, 1.3], [1526, 5.1], [1551, 6.1], [1576, 15.2], [1601, 35.2], [1626, 31.5], [1651, 48.8], [1676, 72], [1701, 108.8], [1726, 147.1], [1751, 192.5], [1776, 200.8], [1801, 187.6], [1826, 177.1], [1851, 22.5]];
+  const Y = $('#sgY'), N = $('#sgN'), svg = $('#sgSvg');
+  Y.addEventListener('input', go); N.addEventListener('input', go);
+  function go(){
+    const y = +Y.value, n = +N.value, lb = per(y) * n, days = lb / LBS * 365;
+    $('#sgYo').textContent = y + ' 年'; $('#sgNo').textContent = n + ' 人';
+    kv($('#sgKV'), [['每人每年吃糖', per(y).toFixed(0) + ' 磅'], ['你家一年', Math.round(lb) + ' 磅'], ['相当于一个人', Math.round(days) + ' 天的活'], ['一百户这样的人家', (lb * 100 / LBS).toFixed(1) + ' 个人一整年']]);
+    const say = $('#sgSay');
+    say.className = 'say' + (y >= 1807 ? ' ok' : '');
+    say.innerHTML = (y < 1750 ? '糖还没那么普及，可伦敦的咖啡馆和茶馆已经离不开它。' : y < 1791 ? '茶加糖，成了英国工人的日常。几乎每一磅都来自加勒比的奴隶种植园。' : y < 1807 ? '1791 年，几十万人发誓不吃“奴隶糖”。有的商店开始卖“东印度的糖”，广告上写着“不是奴隶种的”。' : y < 1834 ? '奴隶贸易已经禁止了，可种植园里的人还是奴隶，糖照样是他们种的。' : '1834 年以后，英属殖民地的奴隶制废除了。可英国人很快又开始买更便宜的古巴和巴西的糖，那里还是奴隶种的。') +
+      '<br><small>按 1790 年代牙买加的产量粗算（每人每年约 ' + LBS + ' 磅）。这个数字很粗，只说明一个比例：一个英国家庭的糖罐，背后站着的是一个具体的人一年里的好些天。</small>';
+    // 柱状图
+    const W = 600, H = 190, L = 34, B = 26, T = 10, bw = (W - L - 6) / Q.length;
+    let g = '';
+    [0, 100, 200].forEach(v => { const yy = T + (1 - v / 210) * (H - T - B); g += '<line x1="' + L + '" x2="' + W + '" y1="' + yy + '" y2="' + yy + '" stroke="var(--rule)"/>' + txt(L - 5, yy + 4, v, {s: 10.5, a: 'end', c: 'var(--ink-3)', halo: false}); });
+    Q.forEach((q, i) => { const h = q[1] / 210 * (H - T - B), x = L + i * bw + 2, on = y >= q[0] && y < q[0] + 25; g += '<rect x="' + x + '" y="' + (H - B - h) + '" width="' + (bw - 4) + '" height="' + h + '" rx="2" fill="' + (on ? 'var(--red)' : 'var(--ter)') + '" fill-opacity="' + (on ? 1 : .55) + '"/>' + (i % 2 === 0 ? txt(x + bw / 2 - 2, H - 8, q[0], {s: 10.5, c: 'var(--ink-3)', halo: false}) : ''); });
+    const x07 = L + (1807 - 1501) / 25 * bw; g += '<line x1="' + x07 + '" x2="' + x07 + '" y1="' + T + '" y2="' + (H - B) + '" stroke="var(--ink)" stroke-dasharray="3 3"/>' + txt(x07 + 4, T + 12, '1807 英国禁运', {s: 11, a: 'start'});
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+  }
+  go();
+});
+
+/* ---------- 装置 32：造一支舰队 ---------- */
+dev('#navyFig', fig => {
+  // [名称, 橡树（棵）, 船员, 造价（镑）]：取整的估计
+  const T = [['一级舰', 6000, 850, 63000], ['七十四炮舰', 3400, 620, 45000], ['巡航舰', 1200, 260, 20000]];
+  const S = [$('#nvA'), $('#nvB'), $('#nvC')], svg = $('#nvSvg');
+  let lemon = 0;
+  btnRow($('#nvLem'), ['不发柠檬汁（1795 年以前）', '定量发柠檬汁（1795 年以后）'], 0, i => { lemon = i; go(); });
+  S.forEach(s => s.addEventListener('input', go));
+  function tree(x, y, c){ return '<path d="M' + x + ',' + (y + 10) + ' v-4" stroke="var(--ink-3)" stroke-width="1.2"/><circle cx="' + x + '" cy="' + (y + 2) + '" r="4.2" fill="' + c + '"/>'; }
+  function go(){
+    const n = S.map(s => +s.value);
+    S.forEach((s, i) => $('#nv' + 'ABC'[i] + 'o').textContent = n[i] + ' 艘');
+    const trees = n.reduce((a, k, i) => a + k * T[i][1], 0), crew = n.reduce((a, k, i) => a + k * T[i][2], 0), cost = n.reduce((a, k, i) => a + k * T[i][3], 0);
+    const acres = trees / 60, wage = crew * 12 * 1.2 + crew * 15;   // 年饷约 14 镑 + 伙食约 15 镑（示意）
+    const scurvy = Math.round(crew * (lemon ? .01 : .12));          // 一次几个月的长航（示意）
+    // 每个小树代表 1000 棵橡树
+    const k = Math.ceil(trees / 1000), cols = 40, rows = Math.max(1, Math.ceil(k / cols)), W = 600, H = 16 + rows * 14;
+    let g = '';
+    for (let i = 0; i < k; i++) g += tree(14 + (i % cols) * 14.4, 6 + Math.floor(i / cols) * 14, 'var(--grn)');
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+    kv($('#nvKV'), [['橡树', trees.toLocaleString() + ' 棵'], ['森林', Math.round(acres).toLocaleString() + ' 英亩'], ['水手', crew.toLocaleString() + ' 人'], ['造价', fmtGBP(cost)], ['每年饷钱和伙食', fmtGBP(wage)], ['一次长航死于坏血病', scurvy.toLocaleString() + ' 人']]);
+    const big = n[0] + n[1], say = $('#nvSay');
+    say.className = 'say' + (!lemon && crew > 5000 ? ' bad' : big >= 27 ? ' ok' : '');
+    say.innerHTML = '<small>每棵小树代表一千棵橡树。</small><br>' +
+      (big === 0 ? '没有战列舰的舰队只能护航和巡逻，打不了大海战。' : big < 15 ? '一支分舰队的规模。纳尔逊在尼罗河有 13 艘战列舰。' : big < 30 ? '特拉法尔加的规模：纳尔逊有 27 艘战列舰。' : '1805 年前后，皇家海军在役的战列舰有一百多艘，水兵和陆战队员十几万人，比当时英国陆军还多。') +
+      ' 要找 ' + crew.toLocaleString() + ' 个水手，' + (crew > 10000 ? '光靠自愿是不够的，强征队要上街了。' : '港口里的商船水手要被抽走一大批。') +
+      (lemon ? '' : ' 不发柠檬汁，几个月的封锁或远航下来，可能有一成多的人死于坏血病（示意）。');
+  }
+  const fmtGBP = v => v >= 1e6 ? (v / 1e6).toFixed(1) + ' 百万镑' : Math.round(v / 1000) + ' 千镑';
+  go();
+});
+
+/* ---------- 装置 33：收成坏了，税不减 ---------- */
+dev('#bengalFig', fig => {
+  const H = $('#bgH'), Tx = $('#bgT');
+  let mode = 0;
+  btnRow($('#bgMode'), ['照常收（1770 年的做法）', '按收成减免', '减免 + 禁止囤积'], 0, i => { mode = i; go(); });
+  H.addEventListener('input', go); Tx.addEventListener('input', go);
+  const NEED = 52, SEED = 8;   // 一百户一年的口粮、种子（以正常年景的收成 = 100 计）
+  const bar = (nm, sub, v, max, c, lab) => '<div class="row"><span class="nm">' + nm + (sub ? '<small>' + sub + '</small>' : '') + '</span><span class="tr"><i style="width:' + clamp(v / max * 100, 0, 100) + '%;background:' + c + '"></i></span><span class="v">' + lab + '</span></div>';
+  function go(){
+    const h = +H.value, t = +Tx.value;
+    $('#bgHo').textContent = h + '%'; $('#bgTo').textContent = t;
+    const tax = mode === 0 ? t : t * Math.min(1, h / 100);
+    const hoard = mode === 2 ? 0 : h < 80 ? (80 - h) * 0.15 : 0;      // 歉收时被囤积、抬价吃掉的口粮（示意）
+    const food = Math.max(0, h - tax - SEED - hoard);
+    const def = Math.max(0, (NEED - food) / NEED);
+    const mort = clamp(0.38 * Math.pow(def, 1.3), 0, 0.5);
+    const got = mode === 0 ? Math.min(t, h - SEED * .5) : tax;          // 照常收时，连种子也要卖掉一部分来交税
+    $('#bgBars').innerHTML =
+      bar('收成', '正常年景 = 100', h, 110, 'var(--grn)', h) +
+      bar('交税', mode === 0 ? '数目不变' : '跟着收成减', got, 110, 'var(--och)', Math.round(got)) +
+      bar('种子', '明年还要种', SEED, 110, 'var(--ink-3)', SEED) +
+      bar('囤积抬价', '粮商和公司代理人', hoard, 110, 'var(--ter)', Math.round(hoard)) +
+      bar('剩下的口粮', '够吃要 ' + NEED, food, 110, food >= NEED ? 'var(--main)' : 'var(--red)', Math.round(food));
+    kv($('#bgKV'), [['口粮缺口', Math.round(def * 100) + '%'], ['可能饿死（示意）', Math.round(mort * 100) + ' 人 / 每百人'], ['公司收到', Math.round(got) + '（正常 ' + t + '）']]);
+    const say = $('#bgSay');
+    say.className = 'say' + (mort > .15 ? ' bad' : mort < .02 ? ' ok' : '');
+    say.innerHTML = h >= 90 ? '好年景。交完税、留够种子，村里勉强够吃。孟加拉的田赋本来就重，好年景也没有多少余粮。'
+      : mode === 0 ? '收成只有 ' + h + '%，税一点不少。要交税，就得卖粮，甚至卖种子。剩下的口粮差了 ' + Math.round(def * 100) + '%。<b>公司的账本上，这一年的收入一切正常。</b>'
+      : mode === 1 ? '税跟着收成减了，村里多留下了 ' + Math.round(t - tax) + ' 份粮。还是不够，可饿死的人少了很多。公司这一年的收入少了。'
+      : '减了税，又不许囤积抬价。灾年还是灾年，但死亡被压到了最低。这需要有人愿意为孟加拉的农民少赚一点钱。';
+  }
+  go();
+});
+
+/* ---------- 装置 34：纺一百磅棉花要多少小时 ---------- */
+dev('#spinFig', fig => {
+  // 卡特林的估算（工时 / 100 磅棉花）
+  const D = [
+    ['印度手纺', '十八世纪', 50000, '印度的手纺工人技术极好，能纺出最细的纱，可一个人一年也纺不了多少。'],
+    ['克朗普顿骡机', '1780 年', 2000, '一架手摇的骡机，几十个纺锭。工时一下子掉到印度手纺的二十五分之一。'],
+    ['一百锭骡机', '1790 年', 1000, '纺锭越来越多，一个工人照看的锭子越来越多。'],
+    ['动力骡机', '1795 年', 300, '用水力或者蒸汽带动，工人只需要接断头、换纱管。'],
+    ['罗伯茨自动骡机', '1825 年', 135, '理查德·罗伯茨的“自动骡机”，连纱线卷绕都自动了。工厂主们用它来对付罢工的熟练纺纱工。'],
+    ['二十世纪的环锭纺', '1990 年代', 40, '今天的数字。']
+  ];
+  let k = 1;
+  const svg = $('#snSvg');
+  btnRow($('#snBtns'), D.map(d => d[0]), k, i => { k = i; go(); });
+  function go(){
+    const W = 600, rowH = 30, H = D.length * rowH + 30, L = 130, R = 70;
+    const lx = v => L + Math.log10(v / 20) / Math.log10(50000 / 20) * (W - L - R);
+    let g = '';
+    [100, 1000, 10000].forEach(v => g += '<line x1="' + lx(v) + '" x2="' + lx(v) + '" y1="4" y2="' + (H - 22) + '" stroke="var(--rule)"/>' + txt(lx(v), H - 6, v.toLocaleString() + ' 小时', {s: 10.5, c: 'var(--ink-3)', halo: false}));
+    D.forEach((d, i) => {
+      const y = 8 + i * rowH, on = i === k;
+      g += txt(L - 8, y + 15, d[0], {s: 12.5, a: 'end', c: on ? 'var(--ink)' : 'var(--ink-2)', w: on});
+      g += '<rect x="' + L + '" y="' + y + '" width="' + (lx(d[2]) - L) + '" height="20" rx="3" fill="' + (on ? 'var(--ter)' : i === 0 ? 'var(--och)' : 'var(--main)') + '" fill-opacity="' + (on ? 1 : .55) + '"/>';
+      g += txt(lx(d[2]) + 6, y + 15, d[2].toLocaleString(), {s: 12, a: 'start', c: 'var(--ink-2)'});
+    });
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+    const d = D[k], x = D[0][2] / d[2];
+    // 工钱：印度手纺工一天约 0.5 便士（示意），兰开夏工人一天约 12—18 便士
+    const costIn = D[0][2] / 10 * 0.5, costHere = k === 0 ? costIn : d[2] / 12 * 15;
+    kv($('#snKV'), [['工时', d[2].toLocaleString() + ' 小时'], ['比印度手纺快', x < 1.5 ? '—' : Math.round(x) + ' 倍'], ['人工（示意）', Math.round(costHere / 12) + ' 先令'], ['印度手纺人工（示意）', Math.round(costIn / 12) + ' 先令']]);
+    const say = $('#snSay');
+    say.className = 'say' + (k >= 3 ? ' ok' : '');
+    say.innerHTML = d[1] + '：' + d[3] + (k > 0 && k < 5 ? '<br><small>英国工人的日工资是印度纺纱工的二三十倍（示意）。' + (costHere < costIn ? '可工时少了这么多，英国纱的人工反而更便宜了：这就是兰开夏打败印度手工纺织业的算术。' : '工时虽然少了，可英国人的工钱太高，人工还是比印度贵：要再快一些，才能打败印度。') + '</small>' : '');
+  }
+  go();
+});
+
+/* ---------- 装置 35：白银往哪边流 ---------- */
+dev('#opiumFig', fig => {
+  // 每年运进中国的鸦片（箱）与中国白银净流入（百万两，示意）
+  const OP = [[1790, 4000], [1800, 4500], [1810, 4800], [1820, 5000], [1825, 9600], [1830, 18000], [1835, 30000], [1838, 40000], [1840, 20000], [1842, 30000], [1845, 39000], [1850, 50000], [1855, 65000], [1860, 60000]];
+  const AG = [[1790, 3], [1800, 3], [1810, 2], [1818, 0.5], [1822, -1], [1828, -3], [1833, -7], [1838, -9], [1842, -8], [1850, -6], [1856, -4], [1860, -3]];
+  const at = (A, y) => { for (let i = 0; i < A.length - 1; i++) if (y <= A[i + 1][0]) return lerp(A[i][1], A[i + 1][1], (y - A[i][0]) / (A[i + 1][0] - A[i][0])); return A[A.length - 1][1]; };
+  const Y = $('#opY'), svg = $('#opSvg'), tri = $('#opTri');
+  const EV = [[1793, '马戛尔尼'], [1839, '虎门销烟'], [1842, '南京条约'], [1858, '鸦片合法化']];
+  const SIDES = [
+    ['英国 → 印度', '兰开夏的机织棉布。印度的手工纺织业被冲垮（上一章的装置）。印度用卖鸦片的钱付英国的布钱、付英国官员的薪水和退休金。'],
+    ['印度 → 中国', '孟加拉的鸦片，由私商走私进中国，换成白银。到十九世纪中叶，鸦片收入约占英属印度财政收入的七分之一左右（<b>存疑</b>）。'],
+    ['中国 → 英国', '茶叶，还有丝。东印度公司用卖鸦片得来的白银在广州买茶，运回伦敦。英国政府从茶叶上收关税。']
+  ];
+  let side = 1;
+  Y.addEventListener('input', go);
+  tri.addEventListener('click', e => { const g = e.target.closest('[data-s]'); if (g) { side = +g.dataset.s; go(); } });
+  function go(){
+    const y = +Y.value;
+    $('#opYo').textContent = y + ' 年';
+    const W = 600, H = 230, L = 50, R = 50, T = 14, B = 30, mid = T + (H - T - B) * 0.55;
+    const X = v => L + (v - 1790) / 70 * (W - L - R);
+    const Yo = v => mid - v / 70000 * (mid - T), Ya = v => mid - v / 10 * (H - B - mid) * 1.0;
+    let g = '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + mid + '" y2="' + mid + '" stroke="var(--ink)" stroke-width="1"/>';
+    [1790, 1810, 1830, 1850].forEach(v => g += txt(X(v), H - 8, v, {s: 11, c: 'var(--ink-3)', halo: false}));
+    [20000, 40000, 60000].forEach(v => g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + Yo(v) + '" y2="' + Yo(v) + '" stroke="var(--rule)"/>' + txt(L - 5, Yo(v) + 4, (v / 10000) + '万箱', {s: 10.5, a: 'end', c: 'var(--ink-3)', halo: false}));
+    [-5, 5].forEach(v => g += txt(W - R + 5, Ya(v) + 4, (v > 0 ? '+' : '') + v + '百万两', {s: 10.5, a: 'start', c: 'var(--och)', halo: false}));
+    // 鸦片：面积
+    let d = 'M' + X(1790) + ',' + mid; for (let v = 1790; v <= 1860; v++) d += 'L' + X(v).toFixed(1) + ',' + Yo(at(OP, v)).toFixed(1); d += 'L' + X(1860) + ',' + mid + 'Z';
+    g += '<path d="' + d + '" fill="var(--pur)" fill-opacity=".28"/>';
+    let a = ''; for (let v = 1790; v <= 1860; v++) a += (v === 1790 ? 'M' : 'L') + X(v).toFixed(1) + ',' + Ya(at(AG, v)).toFixed(1);
+    g += '<path d="' + a + '" fill="none" stroke="var(--och)" stroke-width="2.6"/>';
+    EV.forEach((e, i) => g += '<line x1="' + X(e[0]) + '" x2="' + X(e[0]) + '" y1="' + T + '" y2="' + (H - B) + '" stroke="var(--ink-3)" stroke-dasharray="2 3"/>' + txt(X(e[0]) + 3, T + 10 + (i % 2) * 13, e[1], {s: 11, a: 'start', c: 'var(--ink-2)'}));
+    g += '<line x1="' + X(y) + '" x2="' + X(y) + '" y1="' + T + '" y2="' + (H - B) + '" stroke="var(--ink)" stroke-width="2"/>';
+    g += txt(L + 4, mid - 6, '紫：鸦片箱数', {s: 11, a: 'start', c: 'var(--pur)'}) + txt(L + 4, mid + 16, '金线：白银进出中国', {s: 11, a: 'start', c: 'var(--och)'});
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+    const op = Math.round(at(OP, y) / 100) * 100, ag = at(AG, y);
+    kv($('#opKV'), [['鸦片', op.toLocaleString() + ' 箱/年'], ['约合', Math.round(op * 63.5 / 1000).toLocaleString() + ' 吨'], ['白银', (ag >= 0 ? '流入 ' : '流出 ') + Math.abs(ag).toFixed(1) + ' 百万两/年（示意）']]);
+    // 三角
+    const P = [[60, 40], [200, 40], [130, 150]], NM = ['英国', '印度', '中国'];
+    let t = '';
+    [[0, 1], [1, 2], [2, 0]].forEach((s, i) => { const p = P[s[0]], q = P[s[1]]; t += '<g data-s="' + i + '" style="cursor:pointer"><line x1="' + p[0] + '" y1="' + p[1] + '" x2="' + q[0] + '" y2="' + q[1] + '" stroke="transparent" stroke-width="18"/><line x1="' + p[0] + '" y1="' + p[1] + '" x2="' + q[0] + '" y2="' + q[1] + '" stroke="' + (i === side ? 'var(--ter)' : 'var(--ink-3)') + '" stroke-width="' + (i === side ? 4 : 2) + '" marker-end="url(#opArr)"/></g>'; });
+    P.forEach((p, i) => t += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="20" fill="var(--paper)" stroke="var(--ink)"/>' + txt(p[0], p[1] + 5, NM[i], {s: 13, w: true, hc: 'var(--paper)'}));
+    tri.setAttribute('viewBox', '0 0 260 190');
+    tri.innerHTML = '<defs><marker id="opArr" viewBox="0 0 10 10" refX="20" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--ink-2)"/></marker></defs>' + t;
+    $('#opSay').innerHTML = '<b>' + SIDES[side][0] + '</b><br>' + SIDES[side][1] + '<br><small>点三角形的边换一条。</small>';
+  }
+  go();
+});
+
+/* ---------- 装置 36：两种选法 ---------- */
+dev('#examFig', fig => {
+  const MODES = ['荐举（看门路）', '公开考试（考古典学）', '考试 + 免费的公立中学'];
+  const CL = [['绅士家庭', 'var(--pur)', .15, 2.2, 1.2], ['中等人家', 'var(--main)', .35, .6, .5], ['穷人家', 'var(--och)', .5, .05, 0]];  // [名, 色, 占比, 门路均值, 补习加分]
+  let mode = 0, seed = 7, P = [];
+  btnRow($('#exMode'), MODES, 0, i => { mode = i; draw(); });
+  $('#exNew').addEventListener('click', () => { seed++; make(); draw(); });
+  function make(){
+    const r = rng(seed), g = () => { let s = 0; for (let i = 0; i < 6; i++) s += r(); return (s - 3) / Math.sqrt(.5); };
+    P = [];
+    for (let i = 0; i < 200; i++) { const u = r(), c = u < CL[0][2] ? 0 : u < CL[0][2] + CL[1][2] ? 1 : 2; P.push({c, ab: g(), con: CL[c][3] + g() * .6, luck: g()}); }
+  }
+  function score(p){
+    if (mode === 0) return p.con + p.ab * .25;
+    const coach = mode === 1 ? CL[p.c][4] : CL[p.c][4] * .35;
+    return p.ab + coach + p.luck * .5;
+  }
+  function draw(){
+    const idx = P.map((p, i) => [score(p), i]).sort((a, b) => b[0] - a[0]).slice(0, 20).map(x => x[1]);
+    const pick = new Set(idx);
+    const W = 600, cols = 25, H = 8 * 22 + 10;
+    let g = '';
+    const order = P.map((p, i) => i).sort((a, b) => P[a].c - P[b].c || P[b].ab - P[a].ab);
+    order.forEach((i, k) => { const p = P[i], x = 14 + (k % cols) * 23.4, y = 14 + Math.floor(k / cols) * 22, rr = 4 + clamp((p.ab + 2.5) / 5, 0, 1) * 4; g += '<circle cx="' + x + '" cy="' + y + '" r="' + rr.toFixed(1) + '" fill="' + CL[p.c][1] + '" fill-opacity="' + (pick.has(i) ? 1 : .35) + '"' + (pick.has(i) ? ' stroke="var(--ink)" stroke-width="2"' : '') + '/>'; });
+    const svg = $('#exSvg'); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+    const sorted = P.map(p => p.ab).sort((a, b) => a - b), pct = v => Math.round(sorted.filter(x => x < v).length / 2);
+    const avg = idx.reduce((s, i) => s + pct(P[i].ab), 0) / idx.length;
+    const mix = [0, 1, 2].map(c => idx.filter(i => P[i].c === c).length);
+    const top20 = P.map((p, i) => [p.ab, i]).sort((a, b) => b[0] - a[0]).slice(0, 20).map(x => x[1]);
+    const hit = idx.filter(i => top20.includes(i)).length;
+    kv($('#exKV'), [['选中者的本事', '超过 ' + Math.round(avg) + '% 的人'], ['真正最有本事的 20 人里选中了', hit + ' 个'], ['绅士 / 中等 / 穷人', mix.join(' / ')]]);
+    const say = $('#exSay');
+    say.className = 'say' + (mode === 0 ? ' bad' : mode === 2 ? ' ok' : '');
+    say.innerHTML = '<small>圆点越大，本事越大；颜色是出身。</small><br>' + (mode === 0 ? '荐举：选进来的几乎全是绅士家的子弟，本事有大有小。这就是 1854 年以前的白厅：“救济贵族的户外救济所”。'
+      : mode === 1 ? '公开考试：选进来的人本事明显大了，可大多数还是绅士家的孩子，因为考的是希腊文和拉丁文，只有上得起公学、请得起家庭教师的人才学得好。这正是诺思科特和特里维廉想要的：<em>绅士里能干的那些</em>。'
+      : '如果穷人家的孩子也能上好学校，考试的结果就更接近“谁有本事谁进来”。英国在 1870 年以后才开始建立普及的初等教育，到二十世纪才有免费的公立中学。考试是否公平，要看考试之前的那些年。');
+  }
+  make(); draw();
+});
+
+/* ---------- 装置 37：用尺子分地 ---------- */
+dev('#rulerFig', fig => {
+  const C = 30, R = 20, N = 13;
+  const PAL = ['#c9a36b', '#9fb87a', '#d7a08c', '#a6b7c9', '#c7b28a', '#b49cc0', '#8fb5a6', '#d1b06a', '#a9a07e', '#c49a9a', '#93a9b9', '#b8c08a', '#c4a4b8'];
+  const COL = ['var(--ter)', 'var(--main)', 'var(--pur)'];
+  const MODES = ['按经纬线画直线', '沿着河，再补几条直线', '按民族的分布画'];
+  let mode = 0, seed = 3, grp, seeds, river;
+  btnRow($('#ruMode'), MODES, 0, i => { mode = i; draw(); });
+  $('#ruNew').addEventListener('click', () => { seed++; make(); draw(); });
+  function make(){
+    const r = rng(seed * 97);
+    seeds = []; for (let i = 0; i < N; i++) seeds.push([r() * C, r() * R, .7 + r() * .8]);
+    grp = []; for (let y = 0; y < R; y++) { grp.push([]); for (let x = 0; x < C; x++) { let b = 0, bd = 1e9; seeds.forEach((s, i) => { const d = Math.hypot(x + .5 - s[0], (y + .5 - s[1]) * 1.1) / s[2] + (r() - .5) * .9; if (d < bd) { bd = d; b = i; } }); grp[y].push(b); } }
+    const a = r() * 4, ph = r() * 6; river = []; for (let x = 0; x <= C; x++) river.push(R * .5 + Math.sin(x / 4 + ph) * (2 + a));
+  }
+  function colonyOf(x, y){
+    if (mode === 0) return x < 11 ? 0 : x < 21 ? (y < 9 ? 1 : 2) : (y < 13 ? 1 : 0);
+    if (mode === 1) { const ry = river[x]; return y + .5 < ry ? (x < 16 ? 0 : 1) : 2; }
+    // 按民族：把每个民族整块分给离它最近的“中心”
+    const s = seeds[grp[y][x]], cs = [[5, 10], [24, 5], [22, 16]];
+    let b = 0, bd = 1e9; cs.forEach((c, i) => { const d = Math.hypot(s[0] - c[0], s[1] - c[1]); if (d < bd) { bd = d; b = i; } }); return b;
+  }
+  function draw(){
+    const cw = 20, W = C * cw, H = R * cw;
+    let g = '';
+    const col = []; for (let y = 0; y < R; y++) { col.push([]); for (let x = 0; x < C; x++) col[y].push(colonyOf(x, y)); }
+    for (let y = 0; y < R; y++) for (let x = 0; x < C; x++) g += '<rect x="' + x * cw + '" y="' + y * cw + '" width="' + cw + '" height="' + cw + '" fill="' + PAL[grp[y][x]] + '"/>';
+    // 民族之间的细线
+    let thin = '', thick = '';
+    for (let y = 0; y < R; y++) for (let x = 0; x < C; x++) {
+      if (x < C - 1) { if (grp[y][x] !== grp[y][x + 1]) thin += 'M' + (x + 1) * cw + ',' + y * cw + 'v' + cw; if (col[y][x] !== col[y][x + 1]) thick += 'M' + (x + 1) * cw + ',' + y * cw + 'v' + cw; }
+      if (y < R - 1) { if (grp[y][x] !== grp[y + 1][x]) thin += 'M' + x * cw + ',' + (y + 1) * cw + 'h' + cw; if (col[y][x] !== col[y + 1][x]) thick += 'M' + x * cw + ',' + (y + 1) * cw + 'h' + cw; }
+    }
+    g += '<path d="' + thin + '" stroke="#5b5146" stroke-opacity=".35" stroke-width="1"/>';
+    g += '<path d="M' + river.map((v, x) => (x * cw).toFixed(1) + ',' + (v * cw).toFixed(1)).join('L') + '" fill="none" stroke="#4f7fa8" stroke-width="4" stroke-linecap="round"/>';
+    g += '<path d="' + thick + '" stroke="#211d1a" stroke-width="4" stroke-linecap="round"/>';
+    // 殖民地编号
+    [0, 1, 2].forEach(c => { let sx = 0, sy = 0, n = 0; for (let y = 0; y < R; y++) for (let x = 0; x < C; x++) if (col[y][x] === c) { sx += x; sy += y; n++; } if (n) g += txt((sx / n + .5) * cw, (sy / n + .5) * cw + 6, '殖民地 ' + 'ABC'[c], {s: 15, w: true, c: '#211d1a', hc: '#f3ebda'}); });
+    const svg = $('#ruSvg'); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+    // 统计
+    const split = []; for (let i = 0; i < N; i++) { const s = new Set(); for (let y = 0; y < R; y++) for (let x = 0; x < C; x++) if (grp[y][x] === i) s.add(col[y][x]); if (s.size) split.push(s.size); }
+    const nSplit = split.filter(v => v > 1).length;
+    const per = [0, 1, 2].map(c => { const s = new Set(); for (let y = 0; y < R; y++) for (let x = 0; x < C; x++) if (col[y][x] === c) s.add(grp[y][x]); return s.size; });
+    kv($('#ruKV'), [['被边界切开的民族', nSplit + ' / ' + split.length], ['每块殖民地里的民族', per.join(' / ')]]);
+    const say = $('#ruSay');
+    say.className = 'say' + (nSplit > 4 ? ' bad' : nSplit === 0 ? ' ok' : '');
+    say.innerHTML = mode === 0 ? '在柏林或伦敦的办公室里，拿尺子沿着经线和纬线画，最省事，也最不需要知道那里住着谁。结果，' + nSplit + ' 个民族被切开了。'
+      : mode === 1 ? '河流是很自然的边界，在地图上一眼就能看到。可对住在河两岸的人来说，河常常不是分界，而是他们一起打鱼、一起用水的地方。'
+      : '按民族画，没有一个民族被切开。可每块殖民地里还是有好几个民族，而且这需要先派人去调查谁住在哪里，<em>当年几乎没有人愿意花这个工夫</em>。即便这样画了，独立以后的国家也很难只有一个民族。';
+  }
+  make(); draw();
+});
+
+/* ---------- 装置 38：日落 ---------- */
+dev('#sunsetFig', fig => {
+  // [年份, 地方, 人口（百万，约）]：离开英国直接统治的年份（不含自治领）
+  const L = [
+    [1922, '爱尔兰自由邦', 3], [1922, '埃及（名义独立）', 14], [1932, '伊拉克', 3.5], [1947, '印度', 345], [1947, '巴基斯坦（含东巴）', 75],
+    [1948, '缅甸', 18], [1948, '锡兰', 7], [1948, '巴勒斯坦', 2], [1956, '苏丹', 10], [1957, '加纳', 6.7], [1957, '马来亚', 6.3],
+    [1960, '尼日利亚', 45], [1960, '塞浦路斯', .6], [1960, '英属索马里兰', .7], [1961, '坦噶尼喀', 10], [1961, '塞拉利昂', 2.3], [1961, '科威特', .3],
+    [1962, '乌干达', 7], [1962, '牙买加', 1.6], [1962, '特立尼达和多巴哥', .9], [1963, '肯尼亚', 9], [1963, '新加坡、沙巴、砂拉越（并入马来西亚）', 3], [1963, '桑给巴尔', .3],
+    [1964, '马拉维', 4], [1964, '赞比亚', 3.6], [1964, '马耳他', .3], [1965, '冈比亚', .4], [1966, '圭亚那', .6], [1966, '博茨瓦纳', .6], [1966, '莱索托', .9], [1966, '巴巴多斯', .25],
+    [1967, '亚丁（南也门）', 1.2], [1968, '毛里求斯', .8], [1968, '斯威士兰', .4]
+  ];
+  const START = 600;   // 各地独立时人口之和，再加上 1970 年以后才离开或一直没离开的地方（约一千五百万），示意
+  const Y = $('#snY'), svg = $('#snSvg2');
+  const left = y => Math.max(5, START - L.filter(l => l[0] <= y).reduce((s, l) => s + l[2], 0));
+  Y.addEventListener('input', go);
+  function go(){
+    const y = +Y.value;
+    $('#snYo').textContent = y + ' 年';
+    const pts = []; for (let t = 1920; t <= 1970; t++) pts.push([t, left(t)]);
+    const c = lineChart(svg, [{color: 'var(--rule)', pts, w: 1.5, dash: '3 3'}, {color: 'var(--och)', pts: pts.filter(p => p[0] <= y), w: 3}],
+      {H: 220, xmin: 1920, xmax: 1970, ymin: 0, ymax: 650, xt: [1920, 1930, 1940, 1950, 1960, 1970], yt: [0, 200, 400, 600], yf: v => v + '百万', marks: [[1947, '1947'], [1956, '苏伊士']]});
+    // 落日
+    const sunY = 220 - 30 - (left(y) / 650) * 150;
+    svg.innerHTML = '<circle cx="560" cy="' + sunY.toFixed(1) + '" r="16" fill="var(--ter)" fill-opacity=".75"/>' + svg.innerHTML;
+    const now = L.filter(l => l[0] === y), sofar = L.filter(l => l[0] <= y).length;
+    kv($('#snKV2'), [['还没离开的地方（按独立时的人口）', '约 ' + Math.round(left(y)) + ' 百万人'], ['离开帝国的地方', sofar + ' 处'], ['这一年', now.length ? now.length + ' 处' : '—']]);
+    const say = $('#snSay2');
+    say.className = 'say' + (y >= 1947 ? ' bad' : '');
+    say.innerHTML = (now.length ? '<b>' + y + ' 年：</b>' + now.map(l => l[1]).join('、') + '。<br>' : '') +
+      (y < 1947 ? '帝国看起来还很大。可两次大战之间，爱尔兰、埃及、伊拉克已经走了，自治领在外交上和伦敦平起平坐，印度的独立运动一年比一年强。'
+      : y < 1956 ? '1947 年：印度和巴基斯坦一走，英国统治下的人口一下子少了四分之三以上。<em>没有印度，就没有“日不落帝国”</em>。'
+      : y < 1965 ? '苏伊士以后，撤退加快了。1960 年，首相麦克米伦在南非议会演说，说“变革之风”正吹过非洲大陆。十年里，几十个殖民地相继独立。'
+      : '到 1970 年，剩下的大多是一些小岛和据点：香港（1997 年交还中国）、直布罗陀、福克兰群岛……太阳还是会照到英国的领土上，只是照到的地方很小了。');
+  }
+  go();
 });
 
 

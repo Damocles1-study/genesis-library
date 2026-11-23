@@ -16,6 +16,10 @@
 | 几点了 · 时间创世记（四卷十二章加尾声） | `time/index.html` |
 | 谁说了算 · 人间秩序创世记（三部八卷，三个网页） | `power/index.html`、`power/two.html`、`power/three.html` |
 | 城里城外 · 城市创世记（三部八卷三十章，三个网页） | `city/index.html`、`city/two.html`、`city/three.html` |
+| 轮到谁了 · 霸主创世记（四部，四个网页） | `turn/index.html`、`turn/two.html`、`turn/three.html`、`turn/four.html` |
+| 铁打的营盘 · 文官创世记（三部，三个网页） | `civil/index.html`、`civil/two.html`、`civil/three.html` |
+| 值不值 · 一个人的创世记（两部，两个网页） | `worth/index.html`、`worth/two.html` |
+| 吃了吗 · 饮食创世记（三部，第一部《火与种》已上架） | `eat/index.html` |
 
 ## 改书
 

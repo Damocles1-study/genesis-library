@@ -20,7 +20,7 @@
 | 铁打的营盘 · 文官创世记（三部，三个网页） | `civil/index.html`、`civil/two.html`、`civil/three.html` |
 | 值不值 · 一个人的创世记（两部，两个网页） | `worth/index.html`、`worth/two.html` |
 | 吃了吗 · 饮食创世记（三部，三个网页） | `eat/index.html`、`eat/two.html`、`eat/three.html` |
-| 上梁 · 建造创世记（三部，第一部《土木》已上架） | `beam/index.html` |
+| 上梁 · 建造创世记（三部，已上架《土木》《匠作》） | `beam/index.html`、`beam/two.html` |
 
 ## 改书
 

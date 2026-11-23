@@ -1,0 +1,2250 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="饮食创世记第二部《路与桌》：胡椒的价钱、哥伦布大交换、番薯玉米辣椒进中国、糖茶咖啡巧克力；饭馆和菜单、筷子刀叉和手、不吃什么、饥荒。">
+<meta property="og:title" content="吃了吗 · 第二部 · 路与桌">
+<meta property="og:description" content="食物怎样跨海翻山、摆上餐桌、闹起饥荒。每章一张虚构的小票，正文是真实的历史。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='6' fill='%238a3b1e'/%3E%3Cpath d='M6 15h20a10 9 0 0 1-20 0z' fill='%23ece3cf'/%3E%3Cpath d='M19 4l-4 10M23 5l-5 9' stroke='%23ece3cf' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<title>吃了吗 · 第二部 · 路与桌</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@500;700&family=Noto+Serif+SC:wght@400;600;700&family=ZCOOL+XiaoWei&display=swap">
+<style>
+/* ZCOOL XiaoWei 把“回”字画成实心方块：这一个字改用系统宋体/黑体，其余字不变 */
+@font-face{font-family:"Hui Fix";unicode-range:U+56DE;src:local("Songti SC"),local("STSongti-SC-Regular"),local("STSong"),local("SimSun"),local("宋体"),local("Noto Serif CJK SC"),local("NotoSerifCJKsc-Regular"),local("Source Han Serif SC"),local("SourceHanSerifSC-Regular"),local("PingFang SC"),local("PingFangSC-Regular"),local("Microsoft YaHei"),local("Noto Sans CJK SC"),local("NotoSansCJKsc-Regular"),local("Droid Sans Fallback")}
+
+/* 版式：一张饭桌。主色是酱色（酱油、陶、炭火），副色是葱绿；每章开头一张小票。
+   每章：章首（饭桌上的六样、年代条）→ 有人问 → 小票（虚构）→ 正文 → 古方·白话 → 端下桌的 → 再查一遍 → 眉批 → 装置 → 那时的饭桌 / 你的饭桌。 */
+:root{
+  --paper:#ece3cf; --paper-2:#e2d7bf; --card:#f3ebda;
+  --ink:#221d18; --ink-2:#4d463c; --ink-3:#5e564b; --rule:#ccbfa2;
+  --main:#8a3b1e;   /* 酱色 */
+  --ter:#3f6b35;    /* 葱绿 */
+  --zhu:#a8391f;
+  --kraft:#8a6230;
+  --pur:#5d2f63;
+  --sea:#a9bfc9; --land:#ddd1b4;
+  --och:#7a5510;
+  --red:#983a24;
+  --blu:#2a4f78;
+  --grn:#3c6a4c;
+  --hl:color-mix(in srgb,#c9a44a 34%,transparent);
+  --c-paper:#f2e9d6; --c-ink:#191614;
+  --f-display:"Hui Fix","ZCOOL XiaoWei","Songti SC","STSong","Noto Serif SC",serif;
+  --f-body:"Noto Serif SC","Songti SC","Source Han Serif SC","STSong",serif;
+  --f-hand:"Ma Shan Zheng","Kaiti SC","STKaiti","KaiTi",cursive;
+  --f-sans:"Noto Sans SC","PingFang SC","Hiragino Sans GB",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#15130f; --paper-2:#1d1a15; --card:#221e18; --ink:#ece4d2; --ink-2:#b9b09c; --ink-3:#988f7c; --rule:#3a342b;
+  --main:#e8a07a; --ter:#9cc98e; --zhu:#e8876a; --kraft:#d1a66a; --pur:#c9a0cf; --sea:#22394a; --land:#332d22; --och:#d9b45e; --red:#e57b5e; --blu:#9cc0e6; --grn:#8fc2a0;
+  --c-paper:#1d1b18; --c-ink:#ece6da; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#15130f; --paper-2:#1d1a15; --card:#221e18; --ink:#ece4d2; --ink-2:#b9b09c; --ink-3:#988f7c; --rule:#3a342b;
+  --main:#e8a07a; --ter:#9cc98e; --zhu:#e8876a; --kraft:#d1a66a; --pur:#c9a0cf; --sea:#22394a; --land:#332d22; --och:#d9b45e; --red:#e57b5e; --blu:#9cc0e6; --grn:#8fc2a0;
+  --c-paper:#1d1b18; --c-ink:#ece6da; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+.g{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit;text-decoration-color:var(--main);text-underline-offset:3px}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--main);outline-offset:2px}
+svg{max-width:100%;height:auto;display:block}
+
+/* 页眉 */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+.bar-in{max-width:56rem;margin:0 auto;display:flex;align-items:center;gap:10px;padding-block:8px}
+.bar .home{text-decoration:none;font-size:13px;color:var(--ink-3);white-space:nowrap;border:1px solid var(--rule);border-radius:999px;padding:1px 9px}
+.bar .name{font-family:var(--f-display);font-size:19px;letter-spacing:.05em;white-space:nowrap;text-decoration:none}
+.bar .parts{display:flex;gap:2px}
+.bar .parts a{font-size:12.5px;text-decoration:none;color:var(--ink-3);padding:0 6px;border-radius:4px;white-space:nowrap}
+.bar .parts a.on{background:var(--main);color:var(--paper)}
+.bar .vol{margin-left:auto;font-size:13px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.bar .tocbtn{border:1px solid var(--rule);background:transparent;border-radius:6px;padding:0 8px;font-size:13px;cursor:pointer;color:var(--ink-2);white-space:nowrap}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;background:var(--main);width:0}
+.drawer{position:fixed;inset:0;z-index:40;display:none}
+.drawer.on{display:block}
+.drawer .mask{position:absolute;inset:0;background:rgba(0,0,0,.35)}
+.drawer .panel{position:absolute;right:0;top:0;bottom:0;width:min(370px,90vw);background:var(--paper);border-left:1px solid var(--rule);overflow:auto;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px))}
+.drawer h5{font-family:var(--f-display);font-weight:400;font-size:20px;margin:0 0 10px}
+.drawer ol{list-style:none;margin:0;padding:0}
+.drawer li.ph{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.16em;color:var(--main);padding:14px 0 2px}
+.drawer li.vh{font-size:12px;color:var(--ink-3);padding:8px 0 0;letter-spacing:.1em}
+.drawer li a{display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--rule);text-decoration:none;font-size:15px;line-height:1.5}
+.drawer li a .n{font-family:var(--f-display);font-size:18px;color:var(--main);min-width:1.6em;text-align:center}
+.drawer li a small{display:block;color:var(--ink-3);font-size:12px}
+.drawer li a.here .n{background:var(--main);color:var(--paper);border-radius:4px}
+.drawer .x{position:absolute;right:12px;top:10px;border:0;background:transparent;font-size:22px;cursor:pointer;color:var(--ink-2)}
+
+main{display:block}
+.col{max-width:38rem;margin-inline:auto}
+.wide{max-width:54rem;margin-inline:auto}
+.col p{margin:0 0 1.05em;text-indent:2em}
+.col p.ni,.col .ni{text-indent:0}
+h2,h3,h4{text-wrap:balance}
+h3{font-family:var(--f-display);font-weight:400;font-size:24px;line-height:1.4;margin:2.2em 0 .7em;letter-spacing:.03em}
+h3 .y{font-family:var(--f-mono);font-size:13px;color:var(--ink-3);margin-left:10px;letter-spacing:0;white-space:nowrap}
+em{font-style:normal;background:linear-gradient(transparent 62%,var(--hl) 62%)}
+strong{font-weight:600}
+blockquote{margin:1.4em 0;padding:.2em 0 .2em 1.2em;border-left:2px solid var(--och);color:var(--ink-2)}
+blockquote p{text-indent:0!important;margin:0 0 .4em}
+blockquote cite{font-style:normal;font-size:14px;color:var(--ink-3)}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.figcap{font-size:14px;color:var(--ink-2);line-height:1.7;margin-top:8px}
+.sep{text-align:center;color:var(--och);letter-spacing:1.2em;margin:2em 0;text-indent:1.2em!important;font-size:14px}
+ul.plain{font-size:16px;line-height:1.9;padding-left:1.4em}
+ul.plain li{margin:0 0 .35em}
+
+/* 封面 */
+.hero{padding-block:36px 20px}
+.hero .eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;color:var(--ink-3)}
+.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(60px,14vw,124px);line-height:1;margin:.25em 0 .2em;letter-spacing:.1em}
+.hero h1 .sm{display:block;font-size:.19em;letter-spacing:.3em;color:var(--ink-2);margin-top:.6em}
+.hero .part{display:inline-block;font-family:var(--f-display);font-size:22px;color:var(--main);border:1.5px solid var(--main);border-radius:4px;padding:0 10px;margin-bottom:6px;letter-spacing:.1em}
+.hero p.lead{font-size:18px;max-width:36em;margin:0 0 1em}
+.partnav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:24px 0}
+.partnav a{display:block;text-decoration:none;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;background:var(--card);line-height:1.5}
+.partnav a b{display:block;font-family:var(--f-display);font-weight:400;font-size:20px}
+.partnav a small{font-size:12.5px;color:var(--ink-3)}
+.partnav a.on{border-color:var(--main);box-shadow:inset 0 0 0 1px var(--main)}
+.partnav a .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;color:var(--main)}
+
+/* 六张脸 */
+.cast{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin:14px 0}
+.cast figure{margin:0;text-align:center;background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:6px 4px 8px}
+.cast svg{width:100%;max-width:120px;margin:auto;color:var(--c-ink)}
+.cast b{display:block;font-family:var(--f-display);font-weight:400;font-size:19px;line-height:1.2}
+.cast small{display:block;font-size:12px;color:var(--ink-3);line-height:1.4}
+.eras{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 2px}
+
+/* 目录 */
+.toc{list-style:none;margin:20px 0 0;padding:0;border-top:1px solid var(--rule)}
+.toc li a{display:grid;grid-template-columns:2.6em minmax(0,1fr) auto;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--rule);text-decoration:none}
+.toc .n{font-family:var(--f-display);font-size:28px;line-height:1;color:var(--main);text-align:center}
+.toc .t{font-family:var(--f-display);font-size:21px;line-height:1.3}
+.toc .t small{display:block;font-family:var(--f-body);font-size:13px;color:var(--ink-3);margin-top:2px}
+.toc .r{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);text-align:right;white-space:nowrap}
+.toc li a:hover .t{color:var(--main)}
+.toc .vh{padding:16px 0 4px;font-family:var(--f-mono);font-size:12px;letter-spacing:.16em;color:var(--ink-3);border-bottom:1px solid var(--rule)}
+.toc li.away a{opacity:.82}
+.toc li.away .r::after{content:" ↗";color:var(--main)}
+.qmap{list-style:none;margin:0;padding:0;columns:2 17em;column-gap:28px}
+.qmap li{break-inside:avoid;margin:0 0 .5em;font-size:15.5px;line-height:1.65}
+.qmap a{text-decoration:none;border-bottom:1px dashed var(--ink-3)}
+.qmap a:hover{color:var(--main)}
+.qmap b{font-family:var(--f-display);font-weight:400;color:var(--main);margin-left:4px}
+
+/* 卷首 */
+.volhead{position:relative;max-width:54rem;margin:64px auto 20px;padding:30px 22px 24px;border-top:3px double var(--ink);border-bottom:3px double var(--ink);overflow:hidden}
+.volhead .num{font-family:var(--f-mono);font-size:12px;letter-spacing:.24em;color:var(--main)}
+.volhead h2{font-family:var(--f-display);font-weight:400;font-size:clamp(64px,16vw,124px);line-height:1;margin:.1em 0 .12em;letter-spacing:.1em}
+.volhead h2 small{font-size:.24em;letter-spacing:.2em;color:var(--ink-2);margin-left:.4em}
+.volhead .lede{max-width:32em;margin:6px 0 0;font-size:16px;color:var(--ink-2);line-height:1.8}
+.volhead .pyr{position:absolute;right:-10px;bottom:-4px;width:190px;opacity:.9;pointer-events:none}
+
+/* 章首 */
+section.chap{padding-top:24px}
+.chead{position:relative;max-width:54rem;margin:46px auto 26px;padding:20px 22px 18px;display:grid;grid-template-columns:96px minmax(0,1fr);gap:20px;align-items:start;background:var(--paper-2);border-radius:10px;border:1px solid var(--rule)}
+.chead .big{font-family:var(--f-display);font-size:84px;line-height:1;color:var(--main);text-align:center;border:2px solid var(--main);border-radius:8px;padding:4px 0 8px;background:var(--card)}
+.chead .no{font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;color:var(--main)}
+.chead h2{font-family:var(--f-display);font-weight:400;font-size:clamp(32px,7vw,50px);line-height:1.15;margin:.08em 0 .2em;letter-spacing:.06em}
+.chead dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 14px;margin:6px 0 0;font-size:14.5px;line-height:1.7}
+.chead dt{color:var(--ink-3);white-space:nowrap}
+.chead dd{margin:0;color:var(--ink-2)}
+.where{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.where span{font-size:12px;line-height:1.6;border:1px solid var(--rule);border-radius:4px;padding:0 6px;color:var(--ink-3);background:var(--paper)}
+.where span.on{border-color:var(--main);color:var(--main);background:color-mix(in srgb,var(--main) 8%,var(--paper));font-weight:600}
+
+/* 你问的 */
+.ask{margin:1.6em 0;padding:12px 16px 4px;border-radius:8px;background:var(--card);border:1px solid var(--rule)}
+.ask .q{font-family:var(--f-display);font-size:19px;line-height:1.5;margin:0 0 .4em;text-indent:0!important}
+.ask .q::before{content:"有人问";font-family:var(--f-sans);font-size:11.5px;letter-spacing:.14em;color:var(--paper);background:var(--main);border-radius:3px;padding:1px 6px;margin-right:8px;vertical-align:3px}
+.ask p{text-indent:0!important;font-size:15.5px;line-height:1.8;margin:0 0 .7em;color:var(--ink-2)}
+
+/* 河湾：虚构的小地方 */
+.river{margin:1.8em 0 2em;padding:16px 18px 6px;border:1.5px dashed var(--och);border-radius:10px;position:relative;background:color-mix(in srgb,var(--och) 4%,var(--paper))}
+.river::before{content:attr(data-t);position:absolute;top:-12px;left:14px;background:var(--paper);padding:0 8px;font-size:13px;letter-spacing:.12em;color:var(--och);font-weight:600}
+.river::after{content:"虚构";position:absolute;top:-10px;right:14px;background:var(--paper);padding:0 6px;font-size:11px;letter-spacing:.2em;color:var(--ink-3);border:1px solid var(--rule);border-radius:3px;line-height:1.5}
+.river p{text-indent:0!important;font-size:16px;line-height:1.85}
+.river .nm{font-weight:600;color:var(--och)}
+
+/* 别处：同一件事在地球的不同地方 */
+.globe{margin:2em auto;max-width:54rem}
+.globe .gh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;border-bottom:1.5px solid var(--ink);padding-bottom:4px;margin-bottom:10px}
+.globe .gh b{font-family:var(--f-display);font-weight:400;font-size:22px;letter-spacing:.06em}
+.globe .gh span{font-size:13px;color:var(--ink-3)}
+.globe .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(15.5em,1fr));gap:10px}
+.rg{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:10px 13px 8px;font-size:15px;line-height:1.75}
+.rg h6{margin:0 0 4px;font-family:var(--f-display);font-weight:400;font-size:18px;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.rg h6 small{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);white-space:nowrap}
+.rg p{margin:0 0 .5em;text-indent:0!important}
+
+/* 告示 · 白话：讽刺栏 */
+.spin{margin:2em 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:1.5px solid var(--ink);border-radius:6px;overflow:hidden;background:var(--card)}
+.spin>div{padding:12px 16px 10px;font-size:15.5px;line-height:1.8}
+.spin>div p{text-indent:0!important;margin:0 0 .5em}
+.spin .off{font-family:var(--f-display);font-size:17px;letter-spacing:.04em;background:color-mix(in srgb,var(--main) 6%,var(--card))}
+.spin .plain{border-left:1.5px solid var(--ink)}
+.spin i{display:block;font-style:normal;font-family:var(--f-sans);font-size:11.5px;letter-spacing:.2em;color:var(--main);margin-bottom:4px}
+.spin .plain i{color:var(--grn)}
+.spin .src{grid-column:1 / -1;border-top:1px dashed var(--rule);font-size:12.5px;color:var(--ink-3);padding:4px 16px 6px}
+
+/* 那时的一天 */
+.life{margin:2em 0;padding:14px 16px 6px;border-radius:8px;border-left:4px solid var(--grn);background:color-mix(in srgb,var(--grn) 6%,var(--card))}
+.life h5{margin:0 0 .3em;font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--grn)}
+.life h5 small{font-family:var(--f-mono);font-size:12px;color:var(--ink-3);margin-left:8px}
+.life p{text-indent:0!important;font-size:15.5px;line-height:1.8;margin:0 0 .7em}
+
+/* 蓝框 */
+.box{margin:2em 0;padding:16px 18px 8px;border-radius:8px;border:1.5px solid var(--blu);background:color-mix(in srgb,var(--blu) 6%,var(--paper))}
+.box h5{margin:.1em 0 .5em;font-family:var(--f-display);font-weight:400;font-size:21px;color:var(--blu);letter-spacing:.04em}
+.box p{text-indent:0!important;margin:0 0 .8em;font-size:16px;line-height:1.85}
+.box ul,.box ol{margin:0 0 .8em;padding-left:1.2em;font-size:16px;line-height:1.85}
+.box li{margin:0 0 .3em}
+
+/* 眉批 */
+.echo{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;margin:1.6em 0;padding:14px 14px 10px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.echo .stamp{writing-mode:vertical-rl;font-family:var(--f-display);font-size:15px;color:var(--red);border:1.5px solid var(--red);border-radius:3px;padding:6px 2px;letter-spacing:.2em;align-self:start}
+.echo[data-k="存疑"] .stamp{color:var(--ink-3);border-color:var(--ink-3)}
+.echo[data-k="联系"] .stamp{color:var(--och);border-color:var(--och)}
+.echo[data-k="生活"] .stamp{color:var(--grn);border-color:var(--grn)}
+.echo[data-k="押韵"] .stamp{color:var(--blu);border-color:var(--blu)}
+.echo[data-k="讽刺"] .stamp{color:var(--main);border-color:var(--main)}
+.echo p{text-indent:0!important;margin:0 0 .5em;font-size:15.5px;line-height:1.8}
+.echo .rh{font-family:var(--f-display);font-size:18px;margin-bottom:.2em}
+
+/* 章末：史 / 世 */
+.seal{margin:2.6em 0 1em;border:1.5px solid var(--ink);border-radius:6px;background:var(--card);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);overflow:hidden}
+.seal>div{padding:12px 16px 14px;font-size:15.5px;line-height:1.75}
+.seal>div+div{border-left:1.5px solid var(--ink)}
+.seal i{display:block;font-style:normal;font-family:var(--f-display);font-size:22px;letter-spacing:.2em;margin-bottom:2px;color:var(--main)}
+.seal>div+div i{color:var(--grn)}
+.seal i small{font-family:var(--f-body);font-size:12px;letter-spacing:.1em;color:var(--ink-3);margin-left:6px}
+
+/* 装置 */
+.fig{margin:2.2em auto;padding:20px 18px;background:var(--card);border:1px solid var(--rule);border-radius:6px}
+.fig-label{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.12em;color:var(--main)}
+.fig h4{font-family:var(--f-display);font-weight:400;font-size:22px;margin:.25em 0 .35em}
+.fig .how{font-size:14.5px;color:var(--ink-2);margin:0 0 14px;line-height:1.75}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.btn{border:1px solid var(--ink-3);background:transparent;border-radius:999px;padding:4px 14px;font-size:14px;cursor:pointer;line-height:1.6;color:var(--ink)}
+.btn:hover{border-color:var(--ink)}
+.btn.pri{background:var(--main);color:var(--paper);border-color:var(--main)}
+.btn.on{background:var(--main);border-color:var(--main);color:var(--paper)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.readout{font-size:14.5px;color:var(--ink-2);line-height:1.75;min-height:1.5em}
+.readout b{color:var(--ink)}
+.say{background:var(--paper);border-left:3px solid var(--och);padding:8px 12px;margin:10px 0;font-size:15px;line-height:1.75;min-height:3.2em}
+.say.ok{border-left-color:var(--grn)}.say.bad{border-left-color:var(--red)}
+input[type=range]{width:100%;accent-color:var(--main)}
+.ctl{display:grid;grid-template-columns:7em minmax(0,1fr) 6.5em;gap:10px;align-items:center;font-size:14px;color:var(--ink-2);margin:4px 0}
+.ctl output{font-family:var(--f-mono);font-size:13px;color:var(--ink);text-align:right;white-space:nowrap}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(9em,1fr));gap:8px;margin:10px 0}
+.kv div{background:var(--paper);border-radius:6px;padding:6px 10px;font-size:12.5px;color:var(--ink-3);line-height:1.5}
+.kv b{display:block;font-family:var(--f-mono);font-weight:500;font-size:18px;color:var(--ink)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:center}
+.lab{font-size:12.5px;color:var(--ink-3);letter-spacing:.08em;margin:8px 0 4px}
+.chip{display:inline-block;font-size:12px;border:1px solid var(--rule);border-radius:4px;padding:0 6px;color:var(--ink-3);margin:0 4px 4px 0}
+.fig text{font-family:var(--f-sans)}
+.fig .mono{font-family:var(--f-mono)}
+select{border:1px solid var(--ink-3);border-radius:6px;background:var(--paper);padding:2px 6px;font-size:14px}
+label.ck{display:inline-flex;gap:6px;align-items:center;font-size:14px;color:var(--ink-2);margin:2px 12px 2px 0;cursor:pointer}
+label.ck input{accent-color:var(--main)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--ink-2);margin:6px 0}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:0}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(14em,1fr));gap:8px;margin:10px 0}
+.cards .cd{background:var(--paper);border-radius:6px;padding:8px 11px;font-size:14px;line-height:1.65;border:1px solid transparent}
+.cards .cd b{display:block;font-family:var(--f-display);font-weight:400;font-size:17px}
+.cards .cd small{color:var(--ink-3)}
+.cards .cd.on{border-color:var(--main)}
+
+/* 漫画 */
+.comic{max-width:54rem;margin:2em auto;padding:14px;background:var(--c-paper);border:2px solid var(--c-ink);color:var(--c-ink)}
+.comic .ctitle{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px 12px;border-bottom:2px solid var(--c-ink);padding-bottom:6px;margin-bottom:12px}
+.comic .ctitle b{font-family:var(--f-display);font-weight:400;font-size:26px;letter-spacing:.12em}
+.comic .ctitle span{font-family:var(--f-sans);font-size:12px;letter-spacing:.1em}
+.comic .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.pn{position:relative;border:2.5px solid var(--c-ink);background:var(--c-paper);overflow:hidden;container-type:inline-size;aspect-ratio:300/230}
+.pn.w{grid-column:span 2;aspect-ratio:600/250}
+.pn svg{position:absolute;inset:0;width:100%;height:100%;max-width:none;color:var(--c-ink)}
+.pn .cap{position:absolute;left:0;top:0;max-width:62%;background:var(--c-paper);border-right:2px solid var(--c-ink);border-bottom:2px solid var(--c-ink);font-family:var(--f-sans);font-weight:500;font-size:clamp(10.5px,4.1cqw,15px);line-height:1.45;padding:4px 8px;z-index:2}
+.pn .cap.br{left:auto;top:auto;right:0;bottom:0;border:0;border-left:2px solid var(--c-ink);border-top:2px solid var(--c-ink)}
+.pn .bb{position:absolute;z-index:3;background:var(--c-paper);border:2px solid var(--c-ink);border-radius:50%/42%;padding:.5em .85em;font-family:var(--f-sans);font-weight:500;font-size:clamp(10.5px,4.2cqw,16px);line-height:1.45;text-align:center;color:var(--c-ink)}
+.pn.w .bb{font-size:clamp(10.5px,2.5cqw,16px)}
+.pn.w .cap{font-size:clamp(10.5px,2.4cqw,15px)}
+.pn .bb::after{content:"";position:absolute;width:14px;height:14px;background:var(--c-paper);border-right:2px solid var(--c-ink);border-bottom:2px solid var(--c-ink);bottom:-8px;left:30%;transform:skewX(30deg) rotate(45deg)}
+.pn .bb.tr::after{left:auto;right:28%;transform:skewX(-30deg) rotate(45deg)}
+.pn .bb.nt::after{display:none}
+.pn .bb.shout{border-radius:6px;border-width:2.5px;font-weight:700}
+.pn .bb.think{border-style:dashed}
+.pn .sfx{position:absolute;z-index:2;font-family:var(--f-sans);font-weight:700;font-size:clamp(14px,7cqw,30px);color:var(--c-ink);transform:rotate(-8deg);letter-spacing:.05em;text-shadow:2px 2px 0 var(--c-paper),-2px -2px 0 var(--c-paper),2px -2px 0 var(--c-paper),-2px 2px 0 var(--c-paper)}
+.comic .after{font-family:var(--f-sans);font-size:13px;margin:10px 0 0;opacity:.8;line-height:1.7}
+
+/* 表 */
+table.t{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.6;min-width:520px}
+table.t th,table.t td{border-bottom:1px solid var(--rule);padding:7px 8px;text-align:left;vertical-align:top}
+table.t th{font-weight:400;color:var(--ink-3);font-size:13px}
+.src{font-size:14.5px;line-height:1.8;color:var(--ink-2)}
+.src li{margin:0 0 .5em}
+
+/* 本部完 */
+.partend{max-width:38rem;margin:70px auto 0;text-align:center}
+.partend .k{font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;color:var(--main)}
+.partend h3{margin:.3em 0 .6em}
+.partend a.go{display:inline-block;margin-top:8px;padding:8px 18px;border:1.5px solid var(--main);border-radius:999px;text-decoration:none;color:var(--main);font-family:var(--f-display);font-size:19px}
+footer{max-width:38rem;margin:60px auto 0;padding:24px 0 calc(40px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--rule);font-size:14px;color:var(--ink-3);line-height:1.8}
+footer p{text-indent:0!important}
+.nextbook{display:block;margin:20px 0;padding:14px 16px;border:1px solid var(--rule);border-radius:6px;text-decoration:none;background:var(--card)}
+.nextbook b{font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--ink)}
+
+/* ===== 装置专用 ===== */
+.pixels{display:grid;gap:3px;margin:10px 0}
+.pixels span{aspect-ratio:1;border-radius:3px;background:var(--paper);border:1px solid var(--rule)}
+.bars{display:grid;gap:5px;margin:10px 0}
+.bars .row{display:grid;grid-template-columns:7.5em minmax(0,1fr) 4.2em;gap:8px;align-items:center;font-size:13.5px}
+.bars .row .nm{color:var(--ink-2);line-height:1.3}
+.bars .row .nm small{display:block;font-size:11px;color:var(--ink-3)}
+.bars .tr{position:relative;height:18px;background:var(--paper);border-radius:3px;overflow:hidden}
+.bars .tr i{position:absolute;left:0;top:0;bottom:0;background:var(--main);border-radius:3px;transition:width .4s}
+.bars .row .v{font-family:var(--f-mono);font-size:12px;color:var(--ink);text-align:right;white-space:nowrap}
+.tl{position:relative}
+.tl .track{display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:8px;align-items:center;font-size:13px;margin:3px 0}
+.tl .track .nm{color:var(--ink-2);line-height:1.25}
+.tl .lane{position:relative;height:22px;background:var(--paper);border-radius:3px}
+.tl .lane i{position:absolute;top:3px;width:14px;height:14px;margin-left:-7px;border-radius:50%;border:2px solid var(--card)}
+.tl .lane i.f{background:var(--grn)}.tl .lane i.c{background:var(--och)}.tl .lane i.s{background:var(--main)}.tl .lane i.w{background:var(--blu);border-radius:2px}
+.tl .axis{display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:8px;font-family:var(--f-mono);font-size:10.5px;color:var(--ink-3)}
+.tl .axis div:nth-child(2){position:relative;height:16px}
+.tl .axis span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+
+
+
+/* ===== 《吃了吗》专用 ===== */
+/* 再查一遍：流行说法与后来的研究 */
+.myth{margin:2em 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:1.5px solid var(--ink-3);border-radius:6px;overflow:hidden;background:var(--card)}
+.myth>div{padding:12px 16px 8px;font-size:15.5px;line-height:1.8}
+.myth>div p{text-indent:0!important;margin:0 0 .5em}
+.myth .pop{background:color-mix(in srgb,var(--och) 7%,var(--card))}
+.myth .chk{border-left:1.5px solid var(--ink-3)}
+.myth i{display:block;font-style:normal;font-family:var(--f-sans);font-size:11.5px;letter-spacing:.2em;color:var(--och);margin-bottom:4px}
+.myth .chk i{color:var(--main)}
+.myth .tag{grid-column:1 / -1;border-bottom:1px dashed var(--rule);font-family:var(--f-display);font-size:18px;padding:6px 16px 4px;display:flex;gap:10px;align-items:baseline}
+.myth .tag small{font-family:var(--f-sans);font-size:11px;letter-spacing:.18em;color:var(--paper);background:var(--ink-3);border-radius:3px;padding:0 6px}
+.sim{display:block;touch-action:manipulation}
+.qa{display:grid;gap:8px;margin:10px 0}
+.qa button{text-align:left;border:1px solid var(--rule);background:var(--paper);border-radius:6px;padding:8px 12px;cursor:pointer;font-size:15px;line-height:1.6}
+.qa button:hover{border-color:var(--main)}
+.qa button.right{border-color:var(--grn);background:color-mix(in srgb,var(--grn) 10%,var(--paper))}
+.qa button.wrong{border-color:var(--red);background:color-mix(in srgb,var(--red) 8%,var(--paper))}
+.logbox{font-family:var(--f-mono);font-size:12.5px;line-height:1.7;background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:6px 10px;max-height:13em;overflow:auto;color:var(--ink-2);white-space:pre-wrap}
+.inrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(11em,1fr));gap:8px 14px;margin:8px 0}
+.inrow label{display:grid;gap:2px;font-size:13px;color:var(--ink-3)}
+.inrow input[type=number],.inrow input[type=text],.inrow select,textarea.in{border:1px solid var(--ink-3);border-radius:6px;background:var(--paper);padding:3px 8px;font-size:15px;width:100%;color:var(--ink)}
+textarea.in{font-family:var(--f-body);line-height:1.7;resize:vertical}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 10px}
+/* 章首：饭桌上的六样 */
+.plate{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+.plate span{font-size:12px;line-height:1.6;border:1px solid var(--rule);border-radius:999px;padding:0 8px;color:var(--ink-3);background:var(--paper)}
+.plate span b{font-family:var(--f-display);font-weight:400;font-size:14px;margin-right:3px}
+.plate span.on{border-color:var(--main);color:var(--main);background:color-mix(in srgb,var(--main) 9%,var(--paper));font-weight:600}
+/* 年代条：两百万年前—今，越往近越细 */
+.when{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));gap:2px;margin-top:10px}
+.when span{font-family:var(--f-mono);font-size:9.5px;line-height:16px;text-align:center;color:var(--ink-3);background:var(--paper);border-radius:2px;white-space:nowrap;overflow:hidden}
+.when span.on{background:var(--main);color:var(--paper)}
+/* 小票（虚构）：热敏纸，底边锯齿 */
+.bill{position:relative;max-width:24rem;margin:2em auto 2.2em;background:var(--card);padding:16px 20px 26px;font-family:var(--f-mono);font-size:13px;line-height:1.7;color:var(--ink-2);
+  -webkit-mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50%/14px 100%;mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50%/14px 100%;
+  box-shadow:inset 0 0 0 1px var(--rule)}
+.bill .shop{font-family:var(--f-display);font-size:21px;text-align:center;color:var(--ink);letter-spacing:.12em;line-height:1.4}
+.bill .sub{text-align:center;font-size:11.5px;color:var(--ink-3);letter-spacing:.08em}
+.bill .fic{position:absolute;right:12px;top:10px;font-family:var(--f-sans);font-size:10.5px;letter-spacing:.2em;border:1px solid var(--ink-3);color:var(--ink-3);border-radius:3px;padding:0 4px;line-height:1.5}
+.bill .cut{border-top:1.5px dashed var(--ink-3);margin:8px 0;opacity:.6}
+.bill .meta{display:grid;grid-template-columns:auto minmax(0,1fr);gap:0 10px;font-size:12px}
+.bill .meta span:nth-child(odd){color:var(--ink-3)}
+.bill table{width:100%;border-collapse:collapse;font-size:13px}
+.bill td{padding:1px 0;vertical-align:top}
+.bill td:nth-child(2){text-align:center;width:3em;color:var(--ink-3)}
+.bill td:last-child{text-align:right;white-space:nowrap;padding-left:8px}
+.bill .item{font-family:var(--f-body);color:var(--ink)}
+.bill .item small{display:block;font-size:11.5px;color:var(--ink-3);line-height:1.5}
+.bill .tot{display:flex;justify-content:space-between;font-weight:500;color:var(--ink);font-size:14px}
+.bill .ft{font-size:11.5px;text-align:center;color:var(--ink-3);margin-top:6px;line-height:1.6}
+.bill .real{font-family:var(--f-body);font-size:12.5px;line-height:1.7;color:var(--ink-2);margin-top:8px;border-top:1px solid var(--rule);padding-top:6px}
+.bill .real b{font-family:var(--f-sans);font-size:11px;letter-spacing:.14em;color:var(--ter);margin-right:6px}
+/* 古方 · 白话 */
+.recipe{margin:2em 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:1.5px solid var(--main);border-radius:6px;overflow:hidden;background:var(--card)}
+.recipe>div{padding:12px 16px 10px;font-size:15.5px;line-height:1.85}
+.recipe>div p{text-indent:0!important;margin:0 0 .5em}
+.recipe .old{font-family:var(--f-display);font-size:17px;letter-spacing:.04em;background:color-mix(in srgb,var(--main) 6%,var(--card))}
+.recipe .now{border-left:1.5px solid var(--main)}
+.recipe i{display:block;font-style:normal;font-family:var(--f-sans);font-size:11.5px;letter-spacing:.2em;color:var(--main);margin-bottom:4px}
+.recipe .now i{color:var(--ter)}
+.recipe .src{grid-column:1 / -1;border-top:1px dashed var(--rule);font-size:12.5px;color:var(--ink-3);padding:4px 16px 6px}
+/* 端下桌的：被淘汰的食物和吃法 */
+.gone{margin:2em 0;padding:12px 16px 6px;border-radius:8px;border:1.5px dashed var(--red);background:color-mix(in srgb,var(--red) 4%,var(--paper));position:relative}
+.gone h5{margin:0 0 .4em;font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--red);display:flex;align-items:center;gap:8px}
+.gone h5::before{content:"";width:22px;height:22px;border:2px solid var(--red);border-radius:50%;background:linear-gradient(135deg,transparent 45%,var(--red) 45% 55%,transparent 55%);flex:none}
+.gone p{text-indent:0!important;font-size:15.5px;line-height:1.8;margin:0 0 .6em}
+.gone p b{color:var(--ink)}
+/* 两本账：那时的饭桌 / 你的饭桌 */
+.seal>div+div i{color:var(--ter)}
+/* 卷首：一只碗 */
+.volhead .bowl{position:absolute;right:12px;bottom:8px;width:130px;height:96px;opacity:.75;pointer-events:none;color:var(--main)}
+/* 封面：拆一份外卖 */
+.dishes{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 10px}
+.ingr{display:grid;grid-template-columns:repeat(auto-fill,minmax(10.5em,1fr));gap:6px;margin:10px 0}
+.ingr div{background:var(--paper);border-radius:6px;padding:5px 9px;font-size:13px;line-height:1.5;border-left:4px solid var(--c,var(--main))}
+.ingr b{font-family:var(--f-display);font-weight:400;font-size:16px;color:var(--ink);margin-right:4px}
+.ingr small{display:block;color:var(--ink-3);font-size:11.5px}
+.ingr div.new{outline:1.5px dashed var(--red);outline-offset:-1.5px}
+.cohort{display:grid;grid-template-columns:repeat(auto-fill,minmax(10.5em,1fr));gap:8px;margin:14px 0}
+.cohort div{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:8px 11px;font-size:13.5px;line-height:1.6}
+.cohort b{display:block;font-family:var(--f-display);font-weight:400;font-size:19px}
+.cohort small{color:var(--ink-3)}
+/* 装置：分肉 */
+.hunters{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:4px;margin:10px 0}
+.hunters span{aspect-ratio:1;border-radius:50%;background:var(--paper);border:1.5px solid var(--rule);display:grid;place-items:center;font-size:11px;font-family:var(--f-mono);color:var(--ink-3)}
+.hunters span.hit{background:var(--main);border-color:var(--main);color:var(--paper)}
+.hunters span.dead{background:transparent;border-style:dashed;opacity:.45}
+/* 装置：腌 —— 微生物表 */
+.bugs{display:grid;gap:5px;margin:10px 0}
+.bugs div{display:grid;grid-template-columns:minmax(0,1fr) 5.5em;gap:8px;align-items:center;background:var(--paper);border-radius:6px;padding:4px 10px;font-size:14px;line-height:1.5}
+.bugs div small{display:block;color:var(--ink-3);font-size:12px}
+.bugs div b{font-family:var(--f-sans);font-size:12px;text-align:center;border-radius:4px;padding:1px 0}
+.bugs div.grow b{background:color-mix(in srgb,var(--red) 18%,transparent);color:var(--red)}
+.bugs div.stop b{background:color-mix(in srgb,var(--grn) 18%,transparent);color:var(--grn)}
+.sparkle{font-family:var(--f-mono);font-size:12px;color:var(--ink-3)}
+
+@media print{.bar,.drawer,footer,.fig:not(.printme){display:none}}
+@media (max-width:700px){
+  body{font-size:16.5px}
+  .two,.spin,.myth,.recipe{grid-template-columns:minmax(0,1fr)}
+  .spin .plain{border-left:0;border-top:1.5px solid var(--ink)}
+  .myth .chk{border-left:0;border-top:1.5px solid var(--ink-3)}
+  .recipe .now{border-left:0;border-top:1.5px solid var(--main)}
+  .seal{grid-template-columns:minmax(0,1fr)}
+  .seal>div+div{border-left:0;border-top:1.5px solid var(--ink)}
+  .toc li a,.toc li.soon>div{grid-template-columns:2.2em minmax(0,1fr)}
+  .toc .r{grid-column:2;text-align:left}
+  .bar .vol{display:none}
+  .bar .parts a{padding:0 4px}
+  .chead{grid-template-columns:58px minmax(0,1fr);gap:14px;padding:16px 14px}
+  .chead .big{font-size:46px;padding:2px 0 6px}
+  .ctl{grid-template-columns:5.5em minmax(0,1fr)}
+  .ctl output{grid-column:1 / -1;text-align:left;margin-top:-6px}
+  .partnav{grid-template-columns:minmax(0,1fr)}
+  .bars .row{grid-template-columns:5.6em minmax(0,1fr) 3.6em;gap:6px}
+  .volhead .bowl{width:84px;height:62px;opacity:.4}
+  .when span{font-size:7.5px}
+  .bill{padding:14px 14px 24px}
+  .hunters{gap:3px}
+}
+@media (max-width:480px){.bar .name{font-size:17px}}
+.toc li.soon .t,.toc li.soon .n{opacity:.55}
+.toc li.soon>div{display:grid;grid-template-columns:2.6em minmax(0,1fr) auto;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--rule)}
+.toc li.soon .r::after{content:" · 写作中";color:var(--main)}
+@media (max-width:700px){.toc li.soon>div{grid-template-columns:2.2em minmax(0,1fr)}}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="bar-in g">
+    <a class="home" href="../" title="回创世书房">书房</a>
+    <a class="name" href="./">吃了吗</a>
+    <nav class="parts" aria-label="三部">
+      <a href="./" data-p="1">火与种</a><a href="two.html" data-p="2">路与桌</a><a href="three.html" data-p="3">厂与秤</a>
+    </nav>
+    <span class="vol" id="barVol">序</span>
+    <button class="tocbtn" id="tocBtn" aria-label="打开目录">目录</button>
+  </div>
+  <div class="progress" id="prog"></div>
+</header>
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="mask" data-close></div>
+  <nav class="panel" aria-label="目录">
+    <button class="x" data-close aria-label="关闭">×</button>
+    <h5>全书目录</h5>
+    <ol id="drawerList"></ol>
+  </nav>
+</div>
+<main class="g">
+<!-- ============ 封面 · 第二部 ============ -->
+<section class="hero" data-vol="第二部 · 路与桌" id="top">
+  <div class="wide">
+    <div class="eyebrow">HAVE YOU EATEN · 香 · 换 · 薯 · 瘾 · 馆 · 筷 · 忌 · 饥 · 饮食创世记</div>
+    <h1>吃了吗<span class="sm">饮食创世记</span></h1>
+    <span class="part">第二部 · 路与桌</span>
+    <p class="lead">第一部结束的时候，世界上有好几张饭桌，彼此离得很远。中国的饭桌上有小米、稻子、猪和酱，没有辣椒和土豆；地中海的饭桌上有麦子、橄榄、葡萄酒和鱼露，没有番茄；美洲的饭桌上有玉米、土豆、辣椒和可可，没有牛、猪、小麦和糖。</p>
+    <p class="lead">第二部讲这些饭桌怎样被连起来，又怎样被摆出规矩。卷四《路》讲走远路的食物：为了胡椒打的仗，1492 年以后两个半球交换的庄稼和牲口，番薯、玉米和辣椒怎样改变了中国的山和中国人的舌头，以及四样让全世界上瘾的东西。卷五《桌》讲饭桌本身：饭馆和菜单怎样出现，筷子、刀叉和手，人们为什么不吃某些东西，以及饭桌空了的时候——饥荒。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig" id="mnFig">
+      <div class="fig-label">第二部封面装置</div>
+      <h4>1491 年的菜单</h4>
+      <p class="how">挑一个地方的一道“招牌菜”，再在“1491 年”和“今天”之间切换。1491 年是哥伦布出海的前一年，那时还没有哪样东西跨过大西洋。被划掉的原料，是那时这个地方根本没有的。</p>
+      <div class="dishes" id="mnBtns"></div>
+      <div class="dishes" id="mnYr"></div>
+      <div class="ingr" id="mnList"></div>
+      <div class="say" id="mnSay"></div>
+      <p class="figcap">每道菜只列主要原料，做法古今也不完全一样；“美洲来的”“旧大陆来的”指原产地，传到各地的年代见卷四。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>这一部怎么读</h3>
+    <p class="ni">和第一部一样：章首、有人问、小票（锯齿边，虚构，票底写明哪些是真的）、正文、古方·白话、端下桌的、再查一遍、眉批、装置、两张饭桌。年代条越往右越细。</p>
+
+    <div class="partnav">
+      <a href="./"><span class="k">第一部</span><b>火与种</b><small>序幕 + 卷一 生 + 卷二 种 + 卷三 变 · 两百万年到三千年前 · 九章</small></a>
+      <a href="two.html" class="on"><span class="k">第二部</span><b>路与桌</b><small>卷四 路 + 卷五 桌 · 食物跨海翻山，摆上餐桌 · 八章</small></a>
+      <a data-c="c17" href="three.html"><span class="k">第三部</span><b>厂与秤</b><small>卷六 存 + 卷七 秤 + 尾声 · 工厂、实验室和体重秤</small></a>
+    </div>
+
+    <h3>全书目录</h3>
+  </div>
+  <div class="wide"><ol class="toc" id="toc"></ol></div>
+</section>
+
+<div class="volhead" id="v4" data-vol="卷四 · 路">
+  <div class="num">VOLUME IV · ROADS</div>
+  <h2>路<small>走远路的食物</small></h2>
+  <p class="lede">有些食物天生要走远路：它只长在地球上很小的一块地方，别处的人却非要它不可。为了一把胡椒、一颗肉豆蔻，人们穿过沙漠、绕过非洲，打了几百年的仗；1492 年以后，整整两个半球的庄稼和牲口互相搬了家。卷四讲这些走远路的食物，以及它们一路上留下的东西。</p>
+  <svg class="bowl" data-t="路" aria-hidden="true"></svg>
+</div>
+
+<!-- ============ 第九章 · 香 ============ -->
+<section class="chap" id="c9" data-vol="卷四 · 路 · 香">
+  <div class="chead">
+    <div class="big">香</div>
+    <div>
+      <div class="no">第九章 · 路之一</div>
+      <h2>胡椒的价钱</h2>
+      <dl><dt>讲什么</dt><dd>罗马的胡椒仓库和老普林尼的抱怨；香料只长在哪里；一路加价到欧洲；中世纪欧洲人为什么那么爱香料；唐朝宰相家抄出八百石胡椒；明朝用胡椒发工资；肉豆蔻和班达群岛；香料便宜了，贵人就不吃了</dd><dt>本章装置</dt><dd>一路加价</dd></dl>
+      <div class="plate" data-k="味 身"></div>
+      <div class="when" data-a="-1213" data-b="1700"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">中世纪的欧洲人那么爱香料，是因为肉坏了要用香料盖住臭味吗？</p>
+      <p>这是一个流传很广的说法，但多半不对。香料比肉贵得多，买得起香料的人，也买得起新鲜的肉；臭了的肉，香料也盖不住。欧洲贵族爱香料，更像今天的人爱名牌：<em>它来自遥远的、传说中的东方，又贵又稀罕，吃它是身份</em>。再加上当时的医学认为香料“温热干燥”，能调和体质，吃香料还算是养生。</p>
+    </div>
+
+    <div class="bill">
+      <span class="fic">虚构</span>
+      <div class="shop">胡椒仓库 · 零售</div>
+      <div class="sub">罗马 · 圣道旁 · 约公元 100 年</div>
+      <div class="cut"></div>
+      <div class="meta"><span>时间</span><span>某次宴会前三天</span><span>顾客</span><span>一位元老家的厨子</span><span>付款</span><span>银币狄纳里</span></div>
+      <div class="cut"></div>
+      <table>
+        <tr><td class="item">黑胡椒<small>印度马拉巴尔海岸，经红海和亚历山大</small></td><td>1 磅</td><td>4 狄纳里</td></tr>
+        <tr><td class="item">白胡椒</td><td>1 磅</td><td>7 狄纳里</td></tr>
+        <tr><td class="item">长胡椒<small>最辣，最贵</small></td><td>1 磅</td><td>15 狄纳里</td></tr>
+      </table>
+      <div class="cut"></div>
+      <div class="tot"><span>合计</span><span>26 狄纳里</span></div>
+      <div class="ft">约等于一个军团士兵一个多月的军饷</div>
+      <div class="real"><b>真的部分</b>三种胡椒每磅的价钱出自老普林尼《自然史》（约公元 77 年）；罗马城里确有皇帝图密善修的胡椒仓库；那时军团士兵一年的军饷约三百狄纳里。买胡椒的厨子是编的。</div>
+    </div>
+
+    <h3>只长在一个地方</h3>
+    <p>香料之所以贵，第一个原因是它们挑地方。黑胡椒原产印度西南的马拉巴尔海岸；肉桂最好的出在斯里兰卡；丁香只长在今天印度尼西亚的几个小岛上；肉豆蔻和它的假种皮（肉豆蔻衣），直到十八世纪以前，几乎只产在班达群岛，十来个加起来不到一百平方公里的火山小岛。</p>
+    <p>胡椒走得最早也最远。约公元前 1213 年下葬的埃及法老拉美西斯二世，木乃伊的鼻孔里塞着几粒黑胡椒，大概是防腐仪式的一部分。罗马帝国的时候，每年夏天，船队趁着西南季风从埃及的红海港口出发，四十来天就能到印度，冬天再借东北季风回来。罗马城里有专门的胡椒仓库。老普林尼抱怨说，印度、中国和阿拉伯每年从罗马帝国拿走一亿塞斯特斯，“这就是我们的奢侈和女人们让我们付出的代价”。</p>
+  </div>
+
+  <div class="recipe">
+    <div class="old"><i>古书 · 原文</i><p>籍其家，钟乳五百两，诏分赐中书、门下台省官，胡椒至八百石，它物称是。</p></div>
+    <div class="now"><i>白话</i><p>抄他的家，抄出钟乳石五百两，皇帝下诏分给中书、门下两省的官员；胡椒有八百石之多，别的东西也是这个规模。</p><p>这是唐代宗大历十二年（777 年）宰相元载被赐死后抄家的清单。<b>一个人家里囤了八百石胡椒</b>，几十吨，不可能是自己吃的：胡椒在唐朝是能保值、能送礼、能换钱的硬通货。</p></div>
+    <div class="src">《新唐书·元载传》。唐代一石的重量各家换算不一，大约几十公斤。</div>
+  </div>
+
+  <div class="col">
+    <h3>一路加价</h3>
+    <p>香料贵的第二个原因是路长。中世纪的胡椒，从马拉巴尔的农民手里收上来，要经过印度的港口商人、阿拉伯和古吉拉特的船主、红海边的转运商、埃及马穆鲁克苏丹的税吏、亚历山大港的批发商，再由威尼斯人运过地中海，卖给德意志、法国、英国的商人，最后进到贵族的厨房。每过一道手，加一道利润；每过一个关卡，交一道税；路上还有沉船、海盗和战争。</p>
+    <p>到底加了多少倍，历史学家估计不一，从十几倍到几十倍都有人说，不同年代差别也很大。但大方向没错：<em>香料在欧洲的价钱，主要不是它本身的价钱，而是这条路的价钱</em>。这就是为什么葡萄牙人拼了命要绕过非洲：只要能直接开船到印度，就能把中间的人统统甩掉。</p>
+  </div>
+
+  <div class="fig" id="ppFig">
+    <div class="fig-label">装置 10</div>
+    <h4>一路加价</h4>
+    <p class="how">一斤胡椒从印度的农民手里出发，按 1 计价。每一站都要加上运费和利润，有些站还要交税。拖动滑块改变各站的加价，或者切换成葡萄牙人绕好望角的航线，看到了欧洲是多少倍。</p>
+    <div class="dishes" id="ppRoute"></div>
+    <div class="ctl"><span>每站利润与运费</span><input type="range" id="ppM" min="10" max="100" step="5" value="40"><output id="ppMO"></output></div>
+    <div class="ctl"><span>埃及关税</span><input type="range" id="ppT" min="0" max="60" step="5" value="30"><output id="ppTO"></output></div>
+    <div class="ctl"><span>路上损耗</span><input type="range" id="ppL" min="0" max="40" step="5" value="10"><output id="ppLO"></output></div>
+    <div class="bars" id="ppBars"></div>
+    <div class="say" id="ppSay"></div>
+    <p class="figcap">示意模型：每一站价钱乘以（1 + 利润与运费），交税的站再乘以（1 + 税率），路上损耗按货物损失、由剩下的货分摊。站数是简化的。绕好望角的航线运费更高、路上损耗更大，但没有中间商和埃及关税。</p>
+  </div>
+
+  <div class="col">
+    <h3>明朝用胡椒发工资</h3>
+    <p>胡椒在中国也是贵东西。唐朝以后，胡椒主要从南洋来，宋元时泉州、广州的海船大量进口。郑和下西洋的船队带回了大批胡椒和苏木（一种红色染料木），多到国库堆不下。明朝永乐、宣德年间起，朝廷干脆用胡椒和苏木来折抵官员的一部分俸禄，叫“胡椒苏木折俸”，京官的俸禄有一部分就领一包胡椒回家。官员们拿着胡椒去换钱，价钱一跌，等于减了薪。<a href="../civil/">《铁打的营盘》</a>讲过明朝官员俸禄之薄，这是其中一个原因。</p>
+
+    <h3>肉豆蔻的血</h3>
+    <p>十六世纪，葡萄牙人绕过非洲来到印度洋，想独占香料贸易，靠的是炮舰和要塞。十七世纪初，荷兰东印度公司接手，手段更狠。为了独占肉豆蔻，1621 年，荷兰总督科恩带兵攻打班达群岛，岛上原住民被杀、饿死、卖为奴隶或逃亡，原来约一万五千人的人口，几年后只剩一千人左右。公司把岛上的土地分成小块，交给荷兰的种植园主，用奴隶来种肉豆蔻。<a href="../turn/">《轮到谁了》</a>第三部讲过这一段。</p>
+    <p>为了维持高价，荷兰人还在丰收的年份烧掉多余的香料，把别处的丁香树、肉豆蔻树砍光。可是秘密守不住：十八世纪七十年代，法国人皮埃尔·普瓦夫尔把丁香和肉豆蔻的苗偷运到印度洋上的毛里求斯；后来英国人又把肉豆蔻种到了加勒比海的格林纳达。今天格林纳达的国旗上，还画着一颗肉豆蔻。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">“荷兰人用曼哈顿换了一个种肉豆蔻的小岛”<small>半真半假</small></div>
+    <div class="pop"><i>流行说法</i><p>1667 年，荷兰人觉得肉豆蔻比北美的一块地值钱，就用曼哈顿岛跟英国人换了班达群岛里的一个小岛。</p></div>
+    <div class="chk"><i>再查一遍</i><p>1667 年的《布雷达和约》结束了第二次英荷战争，双方大致按战争结束时各自占领的地方划界：英国保留了它从荷兰人手里夺来的新阿姆斯特丹（后来的纽约），荷兰保留了它占着的班达群岛中的伦岛，以及南美的苏里南。说成“一换一”是后人的简化。<b>但当时的人确实觉得香料小岛很值钱，这一点没错</b>。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>便宜了，就不吃了</h3>
+    <p>故事的结局有点讽刺。十七世纪，荷兰和英国的船把大量香料运进欧洲，价钱跌了下来，胡椒不再是贵族的专利，普通人家也吃得起了。恰恰在这时候，法国的上流社会开始嫌弃浓重的香料味：1651 年拉瓦雷纳出版的《法国厨师》提倡用黄油、香草、蘑菇和高汤，讲究“食物本来的味道”。此后两百年，法国菜成了欧洲宫廷的标杆，香料在欧洲高级厨房里退居二线。</p>
+    <p>有历史学家认为，这两件事是连在一起的：<em>香料便宜了，就不能再拿来显示身份，于是贵人们换了一种新的讲究</em>。这和今天的事很像：一样东西人人都有了，有钱人就开始追求“看不出来的贵”。</p>
+  </div>
+
+  <div class="gone">
+    <h5>端下桌的：长胡椒和天堂椒</h5>
+    <p><b>长胡椒</b>是胡椒的亲戚，果实是一根细长的穗，比黑胡椒更辣、更甜、更香。在罗马时代它是最贵的胡椒，老普林尼的价目表上排第一。辣椒从美洲传进来以后，又辣又便宜，还能自己种，长胡椒在欧洲的饭桌上很快就消失了，今天只在印度、印尼的一些菜和中药里还用得上（中药叫荜茇）。</p>
+    <p><b>天堂椒</b>是西非的一种香料，中世纪欧洲人觉得它来自伊甸园附近，起了个好听的名字，用来代替昂贵的黑胡椒。西非那段海岸，被欧洲人叫做“胡椒海岸”，名字就是从它来的。黑胡椒一便宜，它也被冷落了。</p>
+  </div>
+
+  <div class="echo" data-k="押韵">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">香料、盐和茶：同一个故事</p><p>上一部讲盐，下一章之后讲茶。三样东西押同一个韵：<b>只在少数地方出产，别处的人离不开，于是谁卡住了路，谁就能收钱</b>。皇帝卡住了盐，马穆鲁克和威尼斯卡住了胡椒，荷兰人干脆把产地也占了。今天的芯片、稀土和石油，是同一首诗的新段落。</p></div>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>那时的饭桌</i>一磅胡椒，抵得上一个士兵一个月的军饷；一个宰相家里囤了八百石；一群小岛上的人，因为岛上长着肉豆蔻而几乎被杀光。</div>
+      <div><i>你的饭桌</i>超市里一瓶黑胡椒粉十几块钱，你撒的时候不会多想。“香料是身份”这件事没有消失，它只是搬到了别的东西上：咖啡豆的产地、红酒的年份、某种叫不出名字的“进口”调料。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第十章 · 换 ============ -->
+<section class="chap" id="c10" data-vol="卷四 · 路 · 换">
+  <div class="chead">
+    <div class="big">换</div>
+    <div>
+      <div class="no">第十章 · 路之二</div>
+      <h2>大交换</h2>
+      <dl><dt>讲什么</dt><dd>“哥伦布大交换”这个词；美洲给了旧大陆什么，旧大陆给了美洲什么；土豆怎样从“魔鬼的块茎”变成欧洲穷人的命根子；番茄被当成观赏植物；墨西哥的弥撒为什么需要小麦；马改变了大平原；苋菜籽和藜麦怎样被冷落</dd><dt>本章装置</dt><dd>一公顷地的热量</dd></dl>
+      <div class="plate" data-k="粮 肉 味 身"></div>
+      <div class="when" data-a="1492" data-b="1890"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">番茄、土豆、辣椒都是美洲来的，那美洲人从我们这儿拿走了什么？</p>
+      <p>小麦、稻米、甘蔗、香蕉、咖啡，牛、猪、羊、马、鸡，还有天花、麻疹和流感。交换很不对等：旧大陆拿到的庄稼养活了几亿人，美洲拿到的病毒在一百多年里杀死了大部分原住民。<em>同一场交换，在大西洋两边，一边是饭碗，一边是坟墓</em>。</p>
+    </div>
+
+    <div class="bill">
+      <span class="fic">虚构</span>
+      <div class="shop">银山脚下的饭摊</div>
+      <div class="sub">波托西（今玻利维亚） · 约 1600 年 · 海拔四千米</div>
+      <div class="cut"></div>
+      <div class="meta"><span>时间</span><span>下井之前</span><span>顾客</span><span>一位从高原村子轮派来的米塔劳工</span><span>付款</span><span>从工钱里扣</span></div>
+      <div class="cut"></div>
+      <table>
+        <tr><td class="item">楚尼奥<small>冻干土豆：夜里冻、白天晒、用脚踩出水，能放好几年</small></td><td>一份</td><td>扣</td></tr>
+        <tr><td class="item">玉米酒奇恰</td><td>一碗</td><td>扣</td></tr>
+        <tr><td class="item">古柯叶<small>嚼着下井，压饿、提神</small></td><td>一小袋</td><td>扣</td></tr>
+        <tr><td class="item">小麦面包<small>西班牙人吃的</small></td><td>—</td><td>买不起</td></tr>
+      </table>
+      <div class="cut"></div>
+      <div class="tot"><span>本月工钱</span><span>所剩无几</span></div>
+      <div class="ft">银子运往塞维利亚和马尼拉，土豆留下</div>
+      <div class="real"><b>真的部分</b>十六七世纪的波托西是世界上最大的银矿城市之一，靠“米塔”制度从高原村子轮派劳工；矿工的主食是冻干土豆楚尼奥和玉米，大量嚼古柯叶，古柯贸易是当地的大生意。吃饭的人是编的。</div>
+    </div>
+
+    <h3>一个词</h3>
+    <p>1972 年，美国历史学家阿尔弗雷德·克罗斯比出了一本书，书名叫《哥伦布大交换》。他说，1492 年以后最重要的事，不是哪个帝国打赢了哪场仗，而是两个隔绝了上万年的生物世界突然连在了一起：庄稼、牲口、杂草、老鼠、细菌和病毒，跟着船来来去去。这本书起初没多少人理，后来成了经典，“哥伦布大交换”成了一个通用的词。</p>
+    <ul class="plain">
+      <li><b>美洲给旧大陆的</b>：玉米、土豆、红薯、木薯、菜豆、南瓜、番茄、辣椒、花生、向日葵、可可、香草、菠萝、火鸡，还有烟草、橡胶和治疟疾的金鸡纳。</li>
+      <li><b>旧大陆给美洲的</b>：小麦、大麦、稻米、甘蔗、香蕉、咖啡、柑橘、洋葱，牛、猪、羊、马、鸡，以及天花、麻疹、流感、疟疾和黄热病，还有被贩运过去的一千多万非洲人。</li>
+    </ul>
+
+    <h3>土豆：从怀疑到离不开</h3>
+    <p>土豆约八千年前在安第斯高原被驯化。印加人和他们的祖先种了几千个品种，还发明了冻干法，把土豆做成能放好几年的楚尼奥，养活军队和城市。西班牙人十六世纪把它带回欧洲，起初没人想吃：它长在地下，是茄科植物的亲戚（欧洲人知道茄科里有不少毒草），《圣经》里也没提到它。有人说它会引起麻风病，有人拿它喂猪。</p>
+    <p>转折来自战争和饥荒。土豆藏在地下，敌人的骑兵踩不坏、抢不走；同一块地，土豆打出的热量是麦子的两三倍；它在寒冷、贫瘠、多雨的地方也能长。1756 年，普鲁士的腓特烈大王发了一道“土豆令”，命令各地官员向农民推广种土豆。法国药剂师帕尔芒捷在七年战争里当了普鲁士的俘虏，在牢里靠土豆活了下来，回国后成了土豆最卖力的推销员。</p>
+    <p>2011 年，两位经济学家内森·纳恩和南希·钱估算：1700 年到 1900 年间，旧大陆人口和城市化的增长，大约有四分之一要归功于土豆。可是一个国家的穷人如果只靠土豆活着，一旦土豆出了事，后果会极其惨烈，第十六章会讲爱尔兰。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">“帕尔芒捷派兵白天看守土豆地，晚上撤岗，让农民去偷”<small>存疑</small></div>
+    <div class="pop"><i>流行说法</i><p>法国人不肯吃土豆，帕尔芒捷想了个妙计：在国王给的地上种土豆，白天派兵看守，让大家以为是宝贝；晚上故意撤岗，农民就去偷来种。</p></div>
+    <div class="chk"><i>再查一遍</i><p>帕尔芒捷推广土豆是真的，国王路易十六支持他、在巴黎郊外拨地给他试种也是真的，他还请名流吃全土豆宴、送花给王后戴在头上。至于“白天看守、晚上撤岗”的妙计，同时代的记载里找不到可靠出处，像是后来编得越来越精彩的故事。<b>同样的故事还被安在腓特烈大王身上</b>。一个好故事常常有好几个主人公，这本身就是存疑的信号。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>番茄：先是看的，后来才吃</h3>
+    <p>番茄的祖先是安第斯山区的野番茄，在墨西哥被驯化，阿兹特克人用它做酱。十六世纪传到欧洲后，很长时间里被当成观赏植物，种在花园里看。意大利人管它叫“金苹果”，因为最早传进来的品种可能是黄色的。直到 1692 年，那不勒斯出版的一本菜谱里，才出现了“西班牙式番茄酱”的做法。意大利菜和番茄真正密不可分，是十八九世纪以后的事。</p>
+    <p>中国人对番茄的态度也一样。明末王象晋的《群芳谱》把它写在花草类里，叫“番柿”，说它来自西番，“故名”。番茄在中国大规模上饭桌，要到二十世纪。今天的西红柿炒鸡蛋，可能是很多中国人学会的第一道菜，它的历史比自行车还短。</p>
+  </div>
+
+  <div class="recipe">
+    <div class="old"><i>古书 · 原文</i><p>番柿，一名六月柿。茎似蒿，高四五尺，叶似艾，花似榴。一枝结五实或三四实，一数二三十实。……草本也，来自西番，故名。</p></div>
+    <div class="now"><i>白话</i><p>番柿，又叫六月柿。茎像蒿子，四五尺高，叶子像艾叶，花像石榴花。一枝结五个或三四个果子，一株能结二三十个。……是草本植物，从西边的番邦来的，所以叫这个名字。</p><p>四百年前的中国人第一次认真打量番茄，描述得很仔细，<b>一个字都没提好不好吃</b>：在他眼里，这是一种好看的花草。</p></div>
+    <div class="src">明·王象晋《群芳谱》（1621），大意据通行本。</div>
+  </div>
+
+  <div class="col">
+    <h3>另一个方向</h3>
+    <p>旧大陆的东西到了美洲，也翻天覆地。西班牙人在墨西哥一定要种小麦，不只是因为吃惯了面包：天主教的弥撒要用小麦做的面饼，玉米饼不行。传教士在每个教区开辟麦田，小麦成了宗教和身份的标志。</p>
+    <p>猪是最会“开疆拓土”的。1539 年，西班牙探险家德索托带着十三头猪登上佛罗里达，三年后猪群繁衍到了七百头，一路上跑丢的猪成了野猪，至今在美国南方横行。牛在墨西哥北部、阿根廷的草原上繁衍成了几百万头的大群，后来有了牛仔和潘帕斯的高乔人。</p>
+    <p>马的影响最出人意料。北美大平原上的原住民，比如科曼奇人、苏人，原本是步行的猎人和农民，十七八世纪从西班牙殖民地得到马以后，很快变成了马背上的野牛猎人，生活方式彻底改变。今天电影里骑马的“印第安人”形象，其实只有两三百年的历史，那匹马是西班牙人带来的。</p>
+    <p>还有甘蔗。旧大陆的甘蔗在加勒比海和巴西的种植园里疯长，需要大量劳力，于是有了大西洋奴隶贸易。<a href="../turn/">《轮到谁了》</a>第三部专门讲过糖与锁链，这本书第十二章还会回到糖。</p>
+  </div>
+
+  <div class="fig" id="hcFig">
+    <div class="fig-label">装置 11</div>
+    <h4>一公顷地的热量</h4>
+    <p class="how">在工业化以前，一公顷（十五亩）地种不同的庄稼，一年能收多少热量、养活几个人？先选这块地是什么样的：有的庄稼在山坡上、寒冷的高原上根本种不了。</p>
+    <div class="dishes" id="hcLand"></div>
+    <div class="bars" id="hcBars"></div>
+    <div class="say" id="hcSay"></div>
+    <p class="figcap">示意：按工业化以前大致的产量和每公斤热量粗算（小麦约 0.8 吨、稻米约 2 吨稻谷、玉米约 1.2 吨、土豆约 8 吨、红薯约 7 吨、木薯约 10 吨鲜薯），一个人一年按七十三万千卡计。不同地方、年景差别很大；热量够不等于营养够，只靠木薯或玉米会缺蛋白质和某些维生素（第三部讲糙皮病）。</p>
+  </div>
+
+  <div class="gone">
+    <h5>端下桌的：苋菜籽和藜麦</h5>
+    <p>阿兹特克人有一种重要的粮食叫苋菜籽（不是我们吃的苋菜叶，是另一种苋的种子）。他们把苋菜籽和蜂蜜或龙舌兰糖浆混在一起，捏成神像，在祭祀后分食。西班牙人征服以后，苋菜籽的种植大幅减少：常见的说法是西班牙人因为它和祭祀有关而禁止种植，学者对“禁令”是否真的存在有争论，但它的衰落是事实。</p>
+    <p>安第斯山的藜麦也有相似的命运：殖民者偏爱小麦和大麦，藜麦被看成“印第安人的穷人饭”，退到了高原的边缘。四百多年后，联合国把 2013 年定为“国际藜麦年”，它以“超级食物”的身份回到了全世界的超市，价钱一度涨得让玻利维亚、秘鲁当地的穷人买不起。</p>
+  </div>
+
+  <div class="echo" data-k="押韵">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">银子往东，土豆往北</p><p>那张小票上的矿工挖出的银子，一半流到了中国：<a href="../turn/">《轮到谁了》</a>讲过，波托西的银子经塞维利亚和马尼拉，最后进了明朝的国库，撑起了“一条鞭法”。同一条船上，还有美洲的番薯、玉米和花生，它们也去了中国。<b>银子改变了中国的税，番薯和玉米改变了中国的山</b>，下一章讲后者。</p></div>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>那时的饭桌</i>一边是冻干的土豆和嚼不完的古柯叶，一边是越来越多的土豆、玉米和番茄，养活了旧大陆的几亿人；同一场交换，大西洋两边的账完全不同。</div>
+      <div><i>你的饭桌</i>西红柿炒鸡蛋、薯条、玉米棒子、辣椒油，都是 1492 年的“后果”。你说的“家乡味”，很多只有两三百年；所谓“传统”，常常是上一次全球化留下的东西。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第十一章 · 薯 ============ -->
+<section class="chap" id="c11" data-vol="卷四 · 路 · 薯">
+  <div class="chead">
+    <div class="big">薯</div>
+    <div>
+      <div class="no">第十一章 · 路之三</div>
+      <h2>番薯、玉米和辣椒进中国</h2>
+      <dl><dt>讲什么</dt><dd>陈振龙从吕宋带回番薯藤；“金薯”；玉米、花生、土豆的第一次记载；清朝人口从一亿多到四亿；棚民上山与水土流失；辣椒先是花，后来“代盐”；四川菜什么时候开始辣；茱萸怎样被挤下了桌</dd><dt>本章装置</dt><dd>上山</dd></dl>
+      <div class="plate" data-k="粮 味 身"></div>
+      <div class="when" data-a="1550" data-b="1850"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">听说清朝人口暴涨是因为番薯和玉米，是真的吗？</p>
+      <p>有关系，但不是全部。清朝人口从十八世纪初的一亿多涨到十九世纪中期的四亿多，原因很多：长时间没有大战乱、摊丁入亩、双季稻和精耕细作、种痘，以及番薯和玉米让人能在原本养不活人的山坡和旱地上种出粮食。美洲作物更像是让人口“能涨上去”的条件之一，而不是唯一的发动机。<em>它们最明显的影响，是改变了中国的山</em>。</p>
+    </div>
+
+    <div class="bill">
+      <span class="fic">虚构</span>
+      <div class="shop">福州城外 · 一户人家</div>
+      <div class="sub">明 · 万历二十二年（1594）· 饥荒</div>
+      <div class="cut"></div>
+      <div class="meta"><span>时间</span><span>夏天，稻子歉收以后</span><span>来路</span><span>巡抚衙门发的藤，自家种的</span><span>人数</span><span>一家六口</span></div>
+      <div class="cut"></div>
+      <table>
+        <tr><td class="item">煮番薯<small>藤插下去四个月就能挖</small></td><td>一锅</td><td>自家</td></tr>
+        <tr><td class="item">番薯叶汤</td><td>一碗</td><td>自家</td></tr>
+        <tr><td class="item">米饭</td><td>—</td><td>今年没有</td></tr>
+      </table>
+      <div class="cut"></div>
+      <div class="tot"><span>合计</span><span>活下来了</span></div>
+      <div class="ft">巡抚金公劝种 · 乡人呼为“金薯”</div>
+      <div class="real"><b>真的部分</b>据清代陈振龙后人编的《金薯传习录》，福建长乐商人陈振龙 1593 年从吕宋（今菲律宾）带回番薯藤，次年福建饥荒，巡抚金学曾下令推广，百姓因此称番薯为“金薯”；细节出自家族记述，有传说成分。这一家人是编的。</div>
+    </div>
+
+    <h3>藏在船上的藤</h3>
+    <p>番薯是哪一年、从哪条路进中国的，说法不止一个。最有名的是福建这一路：长乐人陈振龙在吕宋做生意，看到当地人种一种叫“甘薯”的块根，产量高、不挑地。当时吕宋的西班牙殖民当局不许薯种外传，据说陈振龙把薯藤绞进船上的缆绳里（也有说法是编在竹篮里），1593 年带回了福建。第二年福建大旱，巡抚金学曾让各县推广，番薯救了不少人。</p>
+    <p>广东还有另一个故事：东莞人陈益从安南（今越南）带回番薯，比福建早十来年；云南一路则可能从缅甸、印度传入。番薯插藤就能活，在沙地、坡地、旱地上都能长，一亩收的斤数是稻麦的好几倍，很快在东南沿海的山区和海边铺开。十八世纪，乾隆皇帝专门下旨，让河南、山东等地推广番薯，地方官编了《甘薯录》之类的小册子教人种。</p>
+
+    <h3>玉米、花生、土豆</h3>
+    <p>玉米进中国比番薯还早一点。十六世纪中期，河南、云南等地的地方志里已经有了“玉麦”“番麦”“御麦”的记载，可能分别从西北的陆路、西南的缅甸和东南的海路进来。它在平原上起初只是零星种着，真正的大发展，是十八世纪以后在山区。</p>
+    <p>花生在明代中后期出现在江南，起初叫“落花生”，因为它开了花以后花柄扎进土里结果，古人以为是花落进土里长出来的。土豆进中国最晚，十七世纪才有记载，长期只在西北、西南的高寒山区种，有的地方叫它“洋芋”。</p>
+  </div>
+
+  <div class="col">
+    <h3>上山</h3>
+    <p>在美洲作物来以前，中国南方的很多山区人烟稀少：稻子要水田，山坡上种不了；麦子、小米在南方的酸性红壤坡地上收成很差。玉米和番薯改变了这一点：<em>它们能在陡坡上、在没有水的地方长，头几年产量还不错</em>。</p>
+    <p>十八世纪，江西、福建、浙江、安徽交界的山区，湖北、陕西、四川交界的秦巴山区，涌进了成千上万从平原来的穷人。他们在山上搭棚子住，被叫做“棚民”，砍掉树林、放火烧荒，种上玉米。头几年收成很好，几年以后，表土被雨水冲走，地越来越瘦，只好再往深山里去开新的一块。冲下来的泥沙淤塞了河道和下游的湖泊，平原上的水灾多了起来。当时就有官员上书，请求禁止棚民开山，可是禁不住。</p>
+    <p><a href="../city/">《城里城外》</a>讲过黄河怎样变成悬河。山上的一块玉米地，和下游城里的一场大水，隔着几百里，是同一笔账的两头。</p>
+  </div>
+
+  <div class="fig" id="hlFig">
+    <div class="fig-label">装置 12</div>
+    <h4>上山</h4>
+    <p class="how">一户棚民在山坡上烧荒种玉米。头一年地最肥，以后每年雨水冲走一层表土，收成跟着往下掉；收成低到不够吃，就只能扔下这块地，再往山里开一块。拖动滑块，改变坡有多陡、要不要花力气修梯田，看看一块地能种几年、一户人二十年里要开几块地、冲走多少土。</p>
+    <div class="ctl"><span>坡度</span><input type="range" id="hlS" min="5" max="35" step="1" value="25"><output id="hlSO"></output></div>
+    <div class="dishes" id="hlT"></div>
+    <svg id="hlChart" class="sim" aria-label="二十年的收成"></svg>
+    <div class="kv" id="hlKv"></div>
+    <div class="say" id="hlSay"></div>
+    <p class="figcap">示意模型：顺坡种玉米，每年表土流失的比例随坡度增大；修梯田要多花三年的力气（这三年收成打折），之后流失少得多。收成跌到起始的四成就弃地另开。数字只为说明方向。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">“没有番薯和玉米，就没有清朝的四亿人”<small>存疑</small></div>
+    <div class="pop"><i>流行说法</i><p>清朝人口暴涨到四亿，全靠美洲来的高产作物。</p></div>
+    <div class="chk"><i>再查一遍</i><p>这个说法最早的学术版本，来自历史学家何炳棣在二十世纪五十年代的研究，他很重视美洲作物的作用。后来的研究有补充也有修正：十八世纪人口增长最快的江南、两湖平原，主粮仍然是稻米，番薯和玉米在那里占比不大；它们的作用主要在山区和沿海的贫瘠地带，以及荒年救急。还有学者用各府县引种玉米的时间做统计，估计玉米对清代人口增长的贡献在一成多到两成之间。<b>重要，但不是唯一的原因</b>。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>辣椒：先是花</h3>
+    <p>今天说起中国菜，很多人第一个想到的是辣。可辣椒进中国才四百多年。中国古书上最早关于辣椒的明确记载，是明朝高濂 1591 年刊行的《遵生八笺》，它被写在“花”的部分，和番茄一样，是种着看的。</p>
+  </div>
+
+  <div class="recipe">
+    <div class="old"><i>古书 · 原文</i><p>番椒丛生，白花，果俨似秃笔头，味辣色红，甚可观。</p><p>海椒，俗名辣火，土苗用以代盐。</p></div>
+    <div class="now"><i>白话</i><p>番椒一丛一丛地长，开白花，果子很像写秃了的毛笔头，味道辣，颜色红，很好看。</p><p>海椒，俗称“辣火”，当地的苗族百姓拿它来代替盐。</p><p>前一句是 1591 年的杭州文人在赏花；后一句是一百三十年后贵州的地方志，<b>辣椒第一次以“吃的东西”的身份出现在记载里，是因为穷，买不起盐</b>。</p></div>
+    <div class="src">前一句见高濂《遵生八笺·燕闲清赏笺》；后一句见清康熙《思州府志》（1722），据学者引述。</div>
+  </div>
+
+  <div class="col">
+    <h3>辣椒为什么往西南跑</h3>
+    <p>辣椒从东南沿海上岸，可是最爱它的，却是离海最远的贵州、湖南、四川、云南、江西。学者给过几种解释：</p>
+    <ul class="plain">
+      <li><b>代盐</b>：上一部讲过，盐是官府专卖，内陆山区运盐路远，盐价最贵。辣椒能让粗粮、淡菜也吃得下饭，上面那句“土苗用以代盐”就是证据。</li>
+      <li><b>下饭</b>：辣椒便宜，能自己种，一点点辣就能让一大碗玉米饭、红薯饭下肚。它和美洲来的粗粮，是一起上山的。</li>
+      <li><b>移民</b>：明末清初，四川经历长期战乱，人口锐减，清初“湖广填四川”，大批湖南、湖北、广东、江西人迁入，把辣椒带了进去。</li>
+      <li><b>潮湿</b>：民间常说吃辣能“祛湿”。这是传统的说法，现代营养学没有可靠证据。</li>
+    </ul>
+    <p>四川菜也不是一开始就辣。清朝中期乾隆年间的川菜谱子里，辣椒还很少见；辣椒在四川菜里大量出现，是十九世纪以后的事。今天的麻婆豆腐、回锅肉、水煮鱼，没有一道比美国的历史长。</p>
+  </div>
+
+  <div class="gone">
+    <h5>端下桌的：茱萸</h5>
+    <p>辣椒来以前，中国人的“辛辣”主要靠三样：花椒、姜和茱萸。茱萸有好几种，其中“食茱萸”（又叫越椒、艾子）的果实辛辣，古人用来调味，《礼记·内则》里说的“三牲用藙”，藙就是茱萸。王维“遍插茱萸少一人”，插的一般认为是另一种吴茱萸，用来辟邪。</p>
+    <p>辣椒比茱萸更辣、更便宜，还容易种。几百年里，茱萸在饭桌上几乎被挤得一干二净，只在湘西、川南等地的一些乡下还有人用它的果实做“艾油”。重阳节插茱萸的习俗也淡了。今天大多数人只在一首诗里认识它。</p>
+  </div>
+
+  <div class="echo" data-k="生活">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">“正宗”的年龄</p><p>家乡菜常被说成“祖祖辈辈都这么吃”。可是湘菜、川菜、黔菜的辣，三四百年前还没有；东北的土豆炖、西北的洋芋擦擦，也只有两三百年。<b>“正宗”往往只是最近一次变化留下来的样子</b>。下次和外地同学争“豆腐脑该放糖还是放盐”“粽子该甜还是咸”的时候，可以想一想：你们的曾曾曾祖父，可能都不吃辣椒。</p></div>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>那时的饭桌</i>荒年的一锅番薯，山坡上一块越种越瘦的玉米地，一碗靠辣椒才咽得下去的粗粮饭。它们让更多的人活了下来，也让山秃了，河浑了。</div>
+      <div><i>你的饭桌</i>烤红薯、玉米棒、薯条、辣条、火锅底料，你吃的是一场四百年前开始的大迁徙。辣是穷出来的，也是后来才变成“爱”的。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第十二章 · 瘾 ============ -->
+<section class="chap" id="c12" data-vol="卷四 · 路 · 瘾">
+  <div class="chead">
+    <div class="big">瘾</div>
+    <div>
+      <div class="no">第十二章 · 路之四</div>
+      <h2>糖、茶、咖啡和巧克力</h2>
+      <dl><dt>讲什么</dt><dd>四样不顶饱、却让全世界离不开的东西；陆羽和《茶经》；朱元璋废团茶；茶马互市；麦加禁咖啡；伦敦的咖啡馆和保险业；阿兹特克人拿可可豆当钱；英国人的糖从一年几磅到几十磅；工人的下午茶；你今天喝了多少咖啡因和糖</dd><dt>本章装置</dt><dd>今天这一杯</dd></dl>
+      <div class="plate" data-k="味 身"></div>
+      <div class="when" data-a="760" data-b="1900"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">奶茶、咖啡、可乐，为什么一天不喝就难受？</p>
+      <p>因为它们里面有两样让人上瘾的东西：咖啡因和糖。咖啡因让人不困，糖让人快乐，天天喝，身体就习惯了，停下来会头疼、没精神。这两样东西在几百年里征服了全世界，靠的不只是好喝：<em>它们让人在不吃饱、不休息的情况下多干几个小时活</em>，这正是工厂、办公室和考场需要的。</p>
+    </div>
+
+    <div class="bill">
+      <span class="fic">虚构</span>
+      <div class="shop">帕斯夸·罗塞的咖啡摊</div>
+      <div class="sub">伦敦 · 圣米迦勒巷 · 1652 年</div>
+      <div class="cut"></div>
+      <div class="meta"><span>时间</span><span>上午，交易所开门以前</span><span>顾客</span><span>一位做土耳其生意的商人</span><span>付款</span><span>便士</span></div>
+      <div class="cut"></div>
+      <table>
+        <tr><td class="item">咖啡<small>黑，苦，盛在小碟里</small></td><td>1 碟</td><td>1 便士</td></tr>
+        <tr><td class="item">今天的新闻小报</td><td>随便看</td><td>免费</td></tr>
+        <tr><td class="item">和陌生人吵架</td><td>不限</td><td>免费</td></tr>
+      </table>
+      <div class="cut"></div>
+      <div class="tot"><span>合计</span><span>1 便士</span></div>
+      <div class="ft">传单：咖啡能治头痛、咳嗽、痛风和忧郁（店家说的）</div>
+      <div class="real"><b>真的部分</b>伦敦的第一家咖啡馆约 1652 年由一个叫帕斯夸·罗塞的人在圣米迦勒巷开设，他是一位做土耳其生意的英国商人的仆人；他印过一张宣传咖啡种种好处的传单。咖啡馆很快遍布伦敦，一便士一碗、可以随便看报聊天，被人称为“便士大学”。顾客是编的。</div>
+    </div>
+
+    <h3>茶：从药到国饮</h3>
+    <p>茶原产中国西南。汉代王褒的《僮约》里有“烹荼尽具”“武阳买荼”，一般认为是买茶、煮茶的最早记载之一。那时的茶更像一种药汤，常常和葱、姜、枣、橘皮、薄荷一起煮。</p>
+    <p>唐朝的陆羽写了《茶经》，把喝茶变成了一门讲究的学问：怎样采、怎样蒸压成饼、怎样烤、怎样碾、用什么水、几沸下茶。他瞧不起加葱姜枣橘一锅煮的喝法，说那是“沟渠间弃水”，只赞成放一点盐。唐德宗贞元九年（793 年）开始征茶税，茶成了国家的又一个钱袋子。</p>
+    <p>宋朝人把茶饼碾成极细的粉末，用沸水冲，再用竹筅快速击打出白色的泡沫，比谁的泡沫白、持久，叫“斗茶”“点茶”。宋徽宗还写过一本《大观茶论》。为了保证马匹供应，宋、明两朝在西北和西南设“茶马司”，用内地的茶换藏区、西北的马，这就是“茶马互市”：高原上的人以肉和奶为主，离不开茶来解腻、补充维生素。</p>
+  </div>
+
+  <div class="recipe">
+    <div class="old"><i>古书 · 原文</i><p>上以重劳民力，罢造龙团，惟采芽茶以进。</p></div>
+    <div class="now"><i>白话</i><p>皇上觉得（造团茶）太劳累百姓，下令停止制造“龙团”贡茶，只采茶芽进贡。</p><p>这是明太祖朱元璋洪武二十四年（1391 年）的一道命令。压成饼的团茶工序繁多，进贡负担很重；从此，<b>中国人慢慢改喝用开水直接泡的散茶</b>，就是今天的喝法。宋朝那种碾成粉、打成泡沫的点茶，在中国渐渐失传了。</p></div>
+    <div class="src">《明太祖实录》卷二百一十二，大意据通行引文。</div>
+  </div>
+
+  <div class="col">
+    <h3>咖啡：从苏菲派到交易所</h3>
+    <p>咖啡树原产埃塞俄比亚。最早可靠的饮用记录来自十五世纪的也门：苏菲派的修行者在夜里祈祷、念经，用咖啡提神。从也门出发，咖啡传到麦加、开罗、伊斯坦布尔，咖啡馆成了男人聊天、下棋、听说书、议论时政的地方。</p>
+    <p>正因为大家在咖啡馆里议论时政，统治者对它总是不放心。1511 年，麦加的总督召集学者开会，宣布咖啡违禁，焚烧咖啡豆；开罗的苏丹不久就推翻了这道禁令。奥斯曼帝国的苏丹穆拉德四世据说在十七世纪关过咖啡馆。英国国王查理二世 1675 年底下令取缔咖啡馆，理由是那里散布“虚假、恶意和诽谤性的消息”，引起一片抗议，不到两个星期就收回了成命。</p>
+    <p>伦敦的咖啡馆里，后来长出了现代世界的好几样东西：爱德华·劳埃德的咖啡馆聚着一群船主和海上保险商，后来变成了劳合社；乔纳森咖啡馆里的股票经纪人，后来成了伦敦证券交易所的一部分。<a href="../finance/">《柜台里外》</a>讲过保险和交易所的来历，它们都是喝着咖啡谈出来的。</p>
+    <p>欧洲人喝上了咖啡，就想自己种。荷兰人把咖啡种到了爪哇，法国人种到了加勒比海的圣多明各，十八世纪末，圣多明各一度出产全世界一半左右的咖啡，靠的是奴隶。1791 年那里的奴隶起义，建立了海地。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">“牧羊人卡尔迪看到山羊吃了咖啡果乱蹦，发现了咖啡”<small>存疑</small></div>
+    <div class="pop"><i>流行说法</i><p>很久以前，埃塞俄比亚一个叫卡尔迪的牧羊人发现，山羊吃了一种红果子后又跳又叫，整夜不睡，于是咖啡被发现了。</p></div>
+    <div class="chk"><i>再查一遍</i><p>这个故事最早见于 1671 年一位在罗马的黎巴嫩学者写的拉丁文小册子，离咖啡开始流行已经过去两百年。<b>故事很可爱，但没有任何更早的证据</b>。咖啡怎样从埃塞俄比亚的野林子到了也门的修道场，历史学家至今说不清。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>巧克力：从神的饮料到糖块</h3>
+    <p>可可树原产南美的亚马孙上游，考古发现厄瓜多尔约五千多年前就有人用可可。中美洲的玛雅人和阿兹特克人把可可豆烤了磨碎，加水、玉米粉、辣椒、香草，打出泡沫来喝，又苦又辣，是贵族和战士的饮料。可可豆还被当成钱用：西班牙人记载，在阿兹特克的市场上，一只兔子、一个火鸡蛋都有用可可豆计的价钱。</p>
+    <p>西班牙人起初嫌它苦，加了糖和肉桂以后，它成了西班牙宫廷的时髦饮料，十七世纪传遍欧洲贵族。巧克力变成能嚼的固体，是工业时代的事：1828 年，荷兰人范豪滕发明了压榨机，把可可脂压出去，得到可可粉；1847 年，英国的弗莱公司做出了第一块可以吃的巧克力板；1875 年，瑞士人丹尼尔·彼得加进了奶粉，有了牛奶巧克力。</p>
+
+    <h3>糖：从药到工人的燃料</h3>
+    <p>糖贯穿了上面三样东西：茶、咖啡、巧克力，在欧洲都是加了糖才流行起来的。甘蔗原产新几内亚，把甘蔗汁熬成结晶的糖，是印度人的发明，后来阿拉伯人把甘蔗种到了地中海边，糖在中世纪欧洲是药铺里卖的贵东西。</p>
+    <p>美洲的种植园让糖变得便宜。人类学家西敏司在《甜与权力》（1985）里算过：英国人平均每人每年吃的糖，从十七世纪末的几磅，涨到十八世纪末的近二十磅，到了二十世纪初接近九十磅。他的解释是：<em>一杯加了糖的热茶，是工厂里的工人最便宜的热量和提神剂</em>。工人早上喝一杯甜茶、吃一块面包抹果酱，就能撑到中午；工厂主乐见其成，“下午茶时间”也慢慢成了工厂里的规矩。<a href="../turn/">《轮到谁了》</a>里的“你的糖罐”，讲的是这罐糖在大西洋另一头的代价。</p>
+  </div>
+
+  <div class="fig" id="cfFig">
+    <div class="fig-label">装置 13</div>
+    <h4>今天这一杯</h4>
+    <p class="how">勾上你今天喝了、吃了的东西（可以点几次加份数），看看加起来有多少咖啡因、多少添加糖，和常见的参考上限比一比。</p>
+    <div class="cards" id="cfList"></div>
+    <div class="btns"><button class="btn" id="cfClear">清空</button></div>
+    <div class="bars" id="cfBars"></div>
+    <div class="say" id="cfSay"></div>
+    <p class="figcap">数字是常见产品的大致含量，不同品牌、做法差别很大（尤其是奶茶和现磨咖啡）。参考线：欧洲食品安全局认为健康成年人每天四百毫克以内的咖啡因一般没有安全问题，孕妇、青少年要更低；世界卫生组织建议添加糖（游离糖）每天少于五十克，最好少于二十五克。不是医疗建议。</p>
+  </div>
+
+  <div class="gone">
+    <h5>端下桌的：煎茶、点茶和团茶</h5>
+    <p>唐朝人把茶饼烤过、碾碎，在锅里煮，加一点盐，叫“煎茶”；宋朝人把茶粉放在碗里冲点、击打出泡沫，叫“点茶”。明朝废了团茶以后，中国人改用开水泡散茶，煎茶和点茶都渐渐没人会了。</p>
+    <p>点茶的做法被南宋时来中国学佛的日本僧人带回了日本，在那里一代代传下来，成了今天的“抹茶道”。抹茶后来又被做成冰淇淋、蛋糕和拿铁，回到中国的奶茶店里。很多人以为这是日本的发明，其实是一位离家八百多年的老亲戚。</p>
+  </div>
+
+  <div class="echo" data-k="联系">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">瘾、税和战争</p><p>茶税、糖税、咖啡税，是很多国家财政的支柱；为了茶叶贸易的逆差，英国人往中国卖鸦片，引出了一场战争（<a href="../turn/">《轮到谁了》</a>第三部）；为了茶叶税，北美殖民地的人把茶倒进了波士顿港（第四部）。<b>一个人戒不掉的东西，最后都会变成国家的事</b>。第六章说酒是这样，第七章说盐是这样，这一章的四样也是。</p></div>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>那时的饭桌</i>一碗加盐的煎茶，一碟一便士的苦咖啡，一杯又苦又辣的可可，一勺比银子还贵的糖。几百年后，它们一起变成了工人和职员的燃料。</div>
+      <div><i>你的饭桌</i>一杯奶茶里的糖，常常就超过了一天的建议量；一大杯美式的咖啡因，接近一天参考上限的一半。熬夜复习的时候，你和三百年前的纺织女工喝的是同一样东西。</div>
+    </div>
+  </div>
+</section>
+
+<div class="volhead" id="v5" data-vol="卷五 · 桌">
+  <div class="num">VOLUME V · TABLES</div>
+  <h2>桌<small>怎样吃，和谁吃，不吃什么</small></h2>
+  <p class="lede">食物到了，还要摆上桌。在哪儿吃：自家灶边，还是花钱请陌生人做？用什么吃：手、筷子，还是叉子？什么不能吃：猪、牛、狗，还是虫子？以及，桌子上什么都没有的时候怎么办。卷五讲饭桌上的规矩，和规矩失灵的时候。</p>
+  <svg class="bowl" data-t="桌" aria-hidden="true"></svg>
+</div>
+
+<!-- ============ 第十三章 · 馆 ============ -->
+<section class="chap" id="c13" data-vol="卷五 · 桌 · 馆">
+  <div class="chead">
+    <div class="big">馆</div>
+    <div>
+      <div class="no">第十三章 · 桌之一</div>
+      <h2>饭馆和菜单</h2>
+      <dl><dt>讲什么</dt><dd>饭馆以前，出门在外吃什么；坊墙倒了以后的汴京夜市；一个跑堂要记住二十个人的口味；杭州的酒楼和外卖；巴黎的“恢复元气的汤”怎样变成了“餐厅”；大革命和厨子失业的故事；轮胎公司的美食指南；“八大菜系”有多老</dd><dt>本章装置</dt><dd>跑堂的记性</dd></dl>
+      <div class="plate" data-k="器 味"></div>
+      <div class="when" data-a="960" data-b="1931"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">饭馆不是一直都有吗？</p>
+      <p>卖吃的地方一直都有：客栈、酒肆、路边的饼摊、庙会上的小吃。但“饭馆”有几个特别的地方：<em>你坐在自己的位子上，从一张写好的单子里挑你想吃的，什么时候来都行，按菜付钱</em>。这在中国大约是宋朝成形的，在欧洲是十八世纪末的巴黎。在那之前，出门在外多半是主人做什么你吃什么，大家一锅、一桌、一个钟点。</p>
+    </div>
+
+    <div class="bill">
+      <span class="fic">虚构</span>
+      <div class="shop">州桥夜市 · 杂嚼</div>
+      <div class="sub">北宋 · 东京开封 · 约 1120 年 · 夏夜</div>
+      <div class="cut"></div>
+      <div class="meta"><span>时间</span><span>夜里，过了二更</span><span>顾客</span><span>两个刚散了酒席还不想回家的年轻人</span><span>付款</span><span>铜钱</span></div>
+      <div class="cut"></div>
+      <table>
+        <tr><td class="item">鳝鱼包子<small>梅家鹿家的</small></td><td>×2</td><td>不过 15 文</td></tr>
+        <tr><td class="item">鸡皮</td><td>×1</td><td>不过 15 文</td></tr>
+        <tr><td class="item">腰肾</td><td>×1</td><td>不过 15 文</td></tr>
+        <tr><td class="item">鸡碎</td><td>×1</td><td>不过 15 文</td></tr>
+        <tr><td class="item">冰雪冷元子<small>冰镇的小圆子，夏天才有</small></td><td>×2</td><td>价钱书里没写</td></tr>
+      </table>
+      <div class="cut"></div>
+      <div class="tot"><span>合计</span><span>七八十文上下</span></div>
+      <div class="ft">本夜市营业至三更 · 往南直到龙津桥</div>
+      <div class="real"><b>真的部分</b>这几样小吃、鳝鱼包子鸡皮腰肾鸡碎“每个不过十五文”、夜市开到三更，都出自孟元老《东京梦华录·州桥夜市》，书写成于南宋初，回忆的是北宋末年的开封。两个顾客是编的。</div>
+    </div>
+
+    <h3>墙倒了，夜市来了</h3>
+    <p>唐朝的长安城，分成一百多个四四方方的坊，坊有墙有门，天黑就关门，买卖只能在东市、西市两个地方做，太阳落山就收摊。<a href="../city/">《城里城外》</a>讲过，这种城到了北宋就守不住了：商人把铺子开到了街边，坊墙被拆掉，夜禁也松了。北宋的开封，有了通宵的夜市和早市。</p>
+    <p>孟元老在开封住过二十多年，北宋亡了以后，他在南方回忆起这座城，写成《东京梦华录》。书里列了几百种吃的：州桥夜市一路的小吃，“每个不过十五文”；大酒楼七十二家，最大的樊楼五座楼连在一起，夜里灯火通明；还有专门的饭店、面店、羊肉店、素分茶（素菜馆）、南食店（专做南方菜）、川饭店。<em>一个城市里能同时吃到南北各地的菜，本身就说明了一种新生活</em>。</p>
+  </div>
+
+  <div class="recipe">
+    <div class="old"><i>古书 · 原文</i><p>客坐，则一人执箸纸，遍问坐客。都人侈纵，百端呼索，或热或冷，或温或整，或绝冷、精浇、膘浇之类，人人索唤不同。行菜得之，近局次立，从头唱念，报与局内。……须臾，行菜者左手杈三碗，右臂自手至肩驮叠约二十碗，散下尽合各人呼索，不容差错。一有差错，坐客白之主人，必加叱骂，或罚工价，甚者逐之。</p></div>
+    <div class="now"><i>白话</i><p>客人坐下，就有一个伙计拿着筷子和纸，挨个问客人要什么。京城人讲究，要求五花八门：要热的、要冷的、要温的、要整的，要冰凉的、要浇瘦肉的、要浇肥肉的，每个人都不一样。跑堂的记下来，走到灶台边站好，从头到尾唱一遍，报给厨房。……一会儿，跑堂的左手叉着三碗，右胳膊从手到肩膀叠着二十来碗，一碗碗放下，<b>和每个人要的分毫不差</b>。错一样，客人告诉老板，跑堂的轻则挨骂，重则扣工钱，甚至被赶走。</p></div>
+    <div class="src">孟元老《东京梦华录·食店》。</div>
+  </div>
+
+  <div class="fig" id="wtFig">
+    <div class="fig-label">装置 14</div>
+    <h4>跑堂的记性</h4>
+    <p class="how">你是开封食店里的跑堂。一桌客人点了面，每人要的不一样。点“开始”，菜单会亮几秒钟，然后消失；凭记忆给每位客人配上他要的那一碗。客人越多，亮的时间越短。</p>
+    <div class="dishes" id="wtLv"></div>
+    <div class="btns"><button class="btn pri" id="wtGo">开始</button></div>
+    <div id="wtShow" class="logbox" style="min-height:4em"></div>
+    <div id="wtAns" class="inrow"></div>
+    <div class="btns"><button class="btn" id="wtCheck" disabled>上菜</button></div>
+    <div class="say" id="wtSay"></div>
+    <p class="figcap">面的种类和浇头借用了《东京梦华录》《梦粱录》里出现过的名目，组合是随机的。没有计时上限，但掌柜在看着。</p>
+  </div>
+
+  <div class="col">
+    <h3>杭州：外卖和菜单</h3>
+    <p>南宋迁都临安（杭州）以后，吴自牧的《梦粱录》记了另一座城的吃喝：酒楼、茶坊、面店、分茶酒店，还有沿街叫卖、送餐上门的。富贵人家办宴席，可以找“四司六局”这样的专业班子，从借桌椅器皿、搭棚子到上菜、斟酒、点灯一条龙承办。临安的食店也有了写在牌子上的菜名，客人照着点。</p>
+    <p>宋朝以后，饭馆在中国城市里一直是常见的东西。可在欧洲，情况很不一样。</p>
+
+    <h3>巴黎：一碗汤</h3>
+    <p>十八世纪的巴黎，出门吃饭大致有两种去处：客栈和熟食店。客栈的“主人桌”到点开饭，大家围一张长桌，主人上什么吃什么，来晚了就只剩残羹；熟食店受行会限制，有的只能卖整块的烤肉，有的只能卖酱汁炖菜，不许卖别的。</p>
+    <p>1760 年代，一种新店出现了。店里卖一种叫 restaurant 的浓汤，这个词的本意是“让人恢复元气的东西”，专门卖给身体虚弱、胃口不好的城里人。为了照顾这些“娇气”的客人，店家给每个人单独一张小桌，任何时候来都行，从一张写着价钱的单子上选，吃完按单子结账。历史学家丽贝卡·斯潘认为，第一家这样的店，约 1766 年由一位叫马蒂兰·罗兹·德尚图瓦索的人开设。</p>
+    <p>后来，店里的东西越来越多，汤成了配角，可名字留了下来：今天全世界的“餐厅”，名字的意思都还是“一碗补汤”。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">“法国大革命砍了贵族的头，贵族家的厨子失业了，于是开了餐厅”<small>存疑</small></div>
+    <div class="pop"><i>流行说法</i><p>巴黎的餐厅是大革命的产物：主人上了断头台或者逃到国外，他们的厨子只好上街开店，把宫廷菜卖给老百姓。</p></div>
+    <div class="chk"><i>再查一遍</i><p>大革命前二十多年，巴黎就已经有了“餐厅”；革命以后确实有一些名厨开店，餐厅的数量也大大增加，因为行会被废除了、各地来巴黎的议员和官员要吃饭。<b>革命让餐厅更多了，但没有发明餐厅</b>。“厨子失业开店”是个好故事，只说对了一小部分。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>星星和菜系</h3>
+    <p>1900 年，法国的米其林轮胎公司印了一本小册子，免费送给开车的人，上面有加油站、修车铺、旅馆和饭馆的地址，目的是让人多开车、多磨轮胎。后来它开始给饭馆打星，1931 年定下了三颗星的体系，“值得专程前往”的三星，原本的意思就是：值得你为了它开很远的车。</p>
+    <p>中国的“菜系”说法也比很多人以为的年轻。清末民初，人们开始说“川、鲁、粤、苏”几帮菜；“八大菜系”成为一个流行的固定说法，一般认为是二十世纪下半叶的事，和饭店分级、烹饪教材、电视节目一起普及开来。<em>菜系是一种分类，分类是为了方便人们谈论和做生意</em>；在真实的厨房里，一个县和邻县的菜，常常比两个“菜系”之间差得还多。</p>
+  </div>
+
+  <div class="gone">
+    <h5>端下桌的：唱菜和主人桌</h5>
+    <p><b>唱菜</b>：宋朝跑堂的靠嗓子和脑子，把每位客人的要求唱给厨房。这门功夫在中国的老饭馆里传了很久，“堂倌”能一口气报出十几道菜，后来被写在单子上的点菜、电脑和手机扫码取代了。今天你扫一下桌上的二维码，再没人需要记住你要“精浇”还是“膘浇”。</p>
+    <p><b>主人桌</b>：欧洲客栈里那张定时开饭、大家一起吃的长桌，被餐厅一张张的小桌取代了。和陌生人围坐一桌、主人做什么吃什么，今天只在某些民宿和“私房菜”里还能遇到。</p>
+  </div>
+
+  <div class="echo" data-k="押韵">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">外卖骑手和宋朝的“闲汉”</p><p>《东京梦华录》里说，开封的食店会替人把饭菜送到家里；还有一种叫“闲汉”的人，专门在酒楼里替客人跑腿、送东西、传话，赚点赏钱。<b>九百年后，你的手机里有几百万个“闲汉”</b>，他们骑着电动车，在你点完单的半小时里，把一碗面从城的这头送到那头。序幕那张小票上的骑手，比预计的晚了三分钟。</p></div>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>那时的饭桌</i>坊墙一倒，城里就有了夜市、酒楼和不分昼夜的吃喝；一碗补汤，变成了全世界的“餐厅”。一个好跑堂，能记住二十个人的口味。</div>
+      <div><i>你的饭桌</i>你可以在任何时间，从几百家店的几千道菜里挑一样，半小时送到。这在一千年前只有开封和杭州的有钱人能想象；在三百年前的巴黎，连有钱人都不行。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第十四章 · 筷 ============ -->
+<section class="chap" id="c14" data-vol="卷五 · 桌 · 筷">
+  <div class="chead">
+    <div class="big">筷</div>
+    <div>
+      <div class="no">第十四章 · 桌之二</div>
+      <h2>筷子、刀叉和手</h2>
+      <dl><dt>讲什么</dt><dd>三种吃法；殷墟的铜箸；“饭黍毋以箸”：古人吃饭用勺；箸为什么改叫筷；一位拜占庭新娘的金叉子；一个英国人从意大利带回叉子，被叫做“叉子先生”；圆头的餐刀；礼仪书和“难为情的门槛”；从一人一案到围着一张桌子</dd><dt>本章装置</dt><dd>夹得住吗</dd></dl>
+      <div class="plate" data-k="器 身"></div>
+      <div class="when" data-a="-1200" data-b="2020"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">用筷子和用刀叉，哪个更“文明”？</p>
+      <p>都不比用手更文明。今天全世界大约还有几十亿人主要用手吃饭（南亚、中东、非洲的很多地方），他们有一整套讲究：只用右手、只用指尖、不让食物沾到手掌。用什么吃饭，和一个地方的食物有关：切成小块、炖得软烂的菜适合筷子，大块的烤肉适合刀叉，抓饭和面饼适合手。<em>“文明”的标准，常常是一群人拿来和另一群人划界线的</em>。</p>
+    </div>
+
+    <div class="bill">
+      <span class="fic">虚构</span>
+      <div class="shop">总督府婚宴</div>
+      <div class="sub">威尼斯 · 约 1004 年</div>
+      <div class="cut"></div>
+      <div class="meta"><span>时间</span><span>新娘到达后的第一场宴会</span><span>新娘</span><span>拜占庭皇帝的亲戚玛丽亚</span><span>新郎</span><span>威尼斯总督的儿子</span></div>
+      <div class="cut"></div>
+      <table>
+        <tr><td class="item">烤肉<small>宾客用手和刀</small></td><td>若干</td><td>总督府</td></tr>
+        <tr><td class="item">新娘的点心<small>她让太监切成小块，用一把两齿的小金叉送进嘴里</small></td><td>一份</td><td>自带餐具</td></tr>
+        <tr><td class="item">修道士的评语</td><td>一段</td><td>免费，几十年后才送到</td></tr>
+      </table>
+      <div class="cut"></div>
+      <div class="tot"><span>合计</span><span>一场丑闻</span></div>
+      <div class="ft">新娘几年后死于瘟疫，修道士说这是上帝对她骄奢的惩罚</div>
+      <div class="real"><b>真的部分</b>约 1004 年，拜占庭贵族之女玛丽亚嫁给威尼斯总督之子乔瓦尼·奥尔赛奥洛；几十年后，意大利修道士彼得·达米安在文章里批评她奢侈，说她不用手抓食物，而让仆人切碎，用金叉子吃；她和丈夫几年后死于瘟疫。婚宴的场面和菜是编的。</div>
+    </div>
+
+    <h3>三种吃法</h3>
+    <p>人类学家常把世界的吃法分成三大块：用手的、用筷子的、用刀叉（和勺）的，各占全世界人口的一大块，具体比例的说法不一，常见的说法是大致三分。用筷子的，是东亚和东南亚的一部分，也就是历史上受中国文化影响的地方：中国、日本、朝鲜半岛、越南。</p>
+
+    <h3>筷子原来不吃饭</h3>
+    <p>河南安阳殷墟出土过约三千多年前的青铜箸，一般认为那时的筷子主要是做饭时在锅里夹东西用的，有点像今天的长筷子。古人吃饭，主食是粟、黍做的饭，用的是勺子（匕、匙）；筷子是用来夹羹里的菜的。《礼记》里说得很明白。</p>
+  </div>
+
+  <div class="recipe">
+    <div class="old"><i>古书 · 原文</i><p>饭黍毋以箸。</p><p>羹之有菜者用梜，其无菜者不用梜。</p><p>民间俗讳，各处有之，而吴中为甚。如舟行讳住、讳翻，以箸为快儿，幡布为抹布。</p></div>
+    <div class="now"><i>白话</i><p>吃黍米饭，不要用筷子。</p><p>羹里有菜，用筷子（梜）夹；羹里没有菜，就不用筷子。</p><p>民间各地都有忌讳，苏州一带最多。比如行船的人忌讳说“住”（停）、忌讳说“翻”，所以把“箸”叫“快儿”，把“幡布”叫“抹布”。</p><p>前两句说明，<b>先秦的人吃饭用勺，筷子只夹菜</b>；后一句说明，“筷子”这个名字是明朝江南船家图吉利改出来的：“箸”和“住”同音，船要快走，不要停住。</p></div>
+    <div class="src">前两句见《礼记·曲礼上》；后一段见明·陆容《菽园杂记》。</div>
+  </div>
+
+  <div class="col">
+    <p>那么，中国人什么时候开始用筷子扒饭？一般的看法是，汉唐以后，北方面食越来越多，面条、饺子用勺不方便，筷子的地位上升；南方吃稻米，粳米饭有黏性，能用筷子夹成一团送进嘴里；到了明朝，筷子成了吃饭的主角，勺子退到了喝汤的位置。日本人更彻底，饭菜汤都用筷子，喝汤直接端起碗；朝鲜半岛则一直保留着“筷子夹菜、勺子吃饭”的古老分工，用的是金属的筷子和勺。</p>
+
+    <h3>叉子：从丑闻到餐桌</h3>
+    <p>叉子作为做饭工具很古老，但作为吃饭的工具，在欧洲要晚得多。拜占庭的贵族最早在餐桌上用小叉子，经威尼斯传入意大利。在西欧，上面那位新娘的金叉子被修道士当成堕落的象征：上帝给了人手指，用叉子是嫌弃上帝的造物。</p>
+    <p>意大利人因为吃面条，渐渐接受了叉子，到十四五世纪已经比较常见。阿尔卑斯山以北慢得多。1608 年，英国旅行家托马斯·科里亚特在意大利看到人们用叉子吃饭，觉得新奇，回国后也学着用，在他 1611 年出版的游记里专门讲了这件事，朋友们笑话他，给他起了个外号，叫“叉子先生”。据说法国国王路易十四一直用手抓着吃，直到十八世纪，四个齿、带弧度的餐叉才在欧洲的上流社会普及开来。</p>
+    <p>餐刀也变了样。中世纪的欧洲人随身带着自己的尖刀，吃饭时既用来切肉，也用来把肉叉起来送进嘴里，还能拿来剔牙、打架。据说法国红衣主教黎塞留嫌客人用刀尖剔牙不雅，让人把自家餐刀的刀尖磨圆；1669 年，路易十四颁令禁止在餐桌上使用尖头刀。今天西餐的餐刀都是圆头的，钝得切不动什么东西，切牛排要专门换一把。这个故事有几分是传说，但圆头餐刀的流行是真的。</p>
+
+    <h3>难为情的门槛</h3>
+    <p>德国社会学家诺贝特·埃利亚斯在 1939 年的《文明的进程》里，读了几百年间欧洲的礼仪书，发现了一个规律：中世纪的礼仪书教人“不要在桌布上擤鼻涕”“不要把啃过的骨头放回公用的盘子里”；几百年后，这些话已经不用写了，因为大家觉得说出来都难为情。他把这叫做“难为情的门槛”不断升高：<em>规矩一开始写在书里，后来写在人心里，最后连写出来都显得粗鲁</em>。</p>
+    <p>这些礼仪也是划分阶层的工具：会用几把刀叉、知道哪个杯子喝哪种酒，可以一眼看出一个人是不是“自己人”。<a href="../yes/">《是，大人》</a>里讲过衙门的规矩怎样让外人摸不着门道，饭桌上的规矩是同一回事。</p>
+  </div>
+
+  <div class="fig" id="csFig">
+    <div class="fig-label">装置 15</div>
+    <h4>夹得住吗</h4>
+    <p class="how">筷子是一根杠杆：手指在中间某处使劲，尖端夹住东西。手指离尖端越远，尖端的力就越小。拖动滑块改变握的位置，选筷子的材料和要夹的东西，看看手指要用多大的力。</p>
+    <div class="ctl"><span>手指离支点</span><input type="range" id="csG" min="30" max="95" step="5" value="60"><output id="csGO"></output></div>
+    <div class="lab">筷子</div>
+    <div class="dishes" id="csM"></div>
+    <div class="lab">要夹的</div>
+    <div class="dishes" id="csF"></div>
+    <svg id="csSvg" class="sim" aria-label="筷子杠杆示意"></svg>
+    <div class="kv" id="csKv"></div>
+    <div class="say" id="csSay"></div>
+    <p class="figcap">示意模型：把筷子看成以虎口为支点的杠杆（筷长约 24 厘米），尖端两侧各有摩擦，夹住需要的力约等于重量除以两倍摩擦系数，再按杠杆比折到手指上；摩擦系数是粗略的数。真实的夹法里，下面那根筷子是固定的，手指还会调整角度。</p>
+  </div>
+
+  <div class="col">
+    <h3>从一人一案到一张圆桌</h3>
+    <p>中国人围着一张桌子、大家伸筷子夹同一盘菜，叫“合餐”。这也不是从来如此。先秦到汉唐，人们席地而坐，每人面前一张小矮桌（案、几），菜一份一份分好，各吃各的，这叫“分餐”。鸿门宴上，项羽、项伯、范增、刘邦、张良各坐一方，各有各的食案；“举案齐眉”的孟光，举起来的就是这样一张小食案。</p>
+    <p>魏晋以后，胡床、椅子从西北传入；到了宋朝，高桌高椅在普通人家普及，大家坐得高了，围着一张大桌子吃饭变得自然，合餐慢慢成了主流。二十世纪以来，每逢瘟疫，就有人提倡用公筷、改分餐；2020 年以后，公筷公勺在很多饭馆里成了标配。<em>饭桌的样子，随着家具、疫病和人们对“一家人”的想象一起变</em>。</p>
+  </div>
+
+  <div class="gone">
+    <h5>端下桌的：吃饭的匕和自带的刀</h5>
+    <p><b>匕</b>：先秦人吃饭用的勺子，叫匕或匙，青铜的、骨头的都有，是吃饭的主角。筷子扒饭普及以后，它退到了喝汤的位置，改叫“调羹”“汤匙”。今天只有朝鲜半岛还保留着用勺子吃饭的老习惯。</p>
+    <p><b>自带的刀</b>：中世纪欧洲人赴宴，自己带刀；主人家一般不给客人准备餐具。后来主人开始成套地准备刀叉，随身带刀上桌就成了粗鲁甚至危险的事。中国古人赴宴也常常自带，“刀俎”是割肉的家伙，后来变成了成语里的意思。</p>
+  </div>
+
+  <div class="echo" data-k="讽刺">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">“叉子先生”的后代</p><p>四百年前，从意大利带回叉子的英国人被朋友嘲笑；今天，在西餐厅里不知道该用哪把叉子的人，会被侍者和邻桌悄悄打量。<b>同一样东西，先是被当成娘娘腔的怪癖，后来变成了衡量教养的门槛</b>。新事物被接受的路，常常是这样：先是笑话，后是时髦，最后是规矩。</p></div>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>那时的饭桌</i>一人一张矮案，勺子吃饭，筷子夹菜；欧洲人自带尖刀，一位用金叉子的新娘被骂了几十年。</div>
+      <div><i>你的饭桌</i>你用筷子扒饭，觉得天经地义；你用公筷，这习惯才几年。下次夹不住一颗鹌鹑蛋，别怪自己：换一双木筷子，握得靠前一点。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第十五章 · 忌 ============ -->
+<section class="chap" id="c15" data-vol="卷五 · 桌 · 忌">
+  <div class="chead">
+    <div class="big">忌</div>
+    <div>
+      <div class="no">第十五章 · 桌之三</div>
+      <h2>不吃什么</h2>
+      <dl><dt>讲什么</dt><dd>《利未记》里的洁与不洁；两种解释：分类说和成本说；印度的圣牛；唐律禁止杀耕牛；日本一千多年不吃牛，明治天皇当众吃牛肉；教皇不许日耳曼人吃马；狗肉；周天子的蚂蚁卵酱；二十亿人吃虫子；梁武帝让和尚吃素；恶心是学来的</dd><dt>本章装置</dt><dd>你敢吃吗</dd></dl>
+      <div class="plate" data-k="肉 身 味"></div>
+      <div class="when" data-a="-1000" data-b="2020"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">为什么有的人不吃猪肉，有的人不吃牛肉，有的人吃狗肉，有的人觉得吃虫子很恶心？</p>
+      <p>每一种饮食禁忌背后，常常有宗教、历史、经济和身份几条线缠在一起，很难用一个原因说清。这一章讲几种学者的解释，也讲几个禁忌怎样出现、又怎样松动。有一点几乎是确定的：<em>你觉得什么东西“恶心”，主要是小时候跟身边的人学来的</em>。这一章只讲历史，不评判任何人今天的信仰和选择。</p>
+    </div>
+
+    <div class="bill">
+      <span class="fic">虚构</span>
+      <div class="shop">寺院斋堂</div>
+      <div class="sub">南朝梁 · 建康（今南京）· 约 520 年</div>
+      <div class="cut"></div>
+      <div class="meta"><span>时间</span><span>午前，过午不食</span><span>食客</span><span>寺里的僧人，奉诏断酒肉以后</span><span>付款</span><span>十方供养</span></div>
+      <div class="cut"></div>
+      <table>
+        <tr><td class="item">粟米饭</td><td>一钵</td><td>—</td></tr>
+        <tr><td class="item">菜羹<small>葵菜、蔓菁</small></td><td>一碗</td><td>—</td></tr>
+        <tr><td class="item">豆酱</td><td>一碟</td><td>—</td></tr>
+        <tr><td class="item">鱼、肉、酒</td><td>—</td><td>皇帝不许</td></tr>
+      </table>
+      <div class="cut"></div>
+      <div class="tot"><span>合计</span><span>素</span></div>
+      <div class="ft">敕：僧尼有饮酒食肉者，依法治罪</div>
+      <div class="real"><b>真的部分</b>梁武帝萧衍笃信佛教，约在天监年间写了《断酒肉文》，召集僧众宣讲，要求出家人戒除酒肉，违者治罪；汉传佛教出家人吃素的规矩，一般认为由此确立。印度和南传佛教的僧人托钵乞食，并不严格吃素。斋堂里的饭菜是编的。</div>
+    </div>
+
+    <h3>洁与不洁</h3>
+    <p>世界上最有名的一份饮食禁令，在希伯来《圣经》的《利未记》里。它把能吃的和不能吃的动物分得很细：地上的走兽，要“蹄分两瓣、倒嚼”才能吃；水里的，要“有翅有鳞”才能吃；空中的，列了一串不能吃的鸟。</p>
+  </div>
+
+  <div class="recipe">
+    <div class="old"><i>古书 · 原文</i><p>凡蹄分两瓣、倒嚼的走兽，你们都可以吃。……猪，因为蹄分两瓣，却不倒嚼，就与你们不洁净。这些兽的肉，你们不可吃；死的，你们不可摸，都与你们不洁净。</p></div>
+    <div class="now"><i>白话</i><p>牛、羊、鹿这样蹄子分成两半、又会反刍的动物可以吃。猪的蹄子分两半，可它不反刍，所以不洁净，不能吃，死了也不能碰。</p><p>按这条标准，骆驼（反刍但蹄子不分瓣）、兔子也不能吃。犹太教的饮食规矩（洁食）和伊斯兰教的清真规矩都不吃猪肉，后者另有自己的经文依据。</p></div>
+    <div class="src">《利未记》11:3—8，用 1919 年和合本译文。</div>
+  </div>
+
+  <div class="col">
+    <h3>两种解释</h3>
+    <p>为什么偏偏是这些动物？二十世纪有两种很有名的解释，互相打了几十年的架。</p>
+    <p><b>分类说</b>。英国人类学家玛丽·道格拉斯在 1966 年的《洁净与危险》里说：古代以色列人心中有一套世界的“正常分类”，走兽就该蹄分两瓣、会反刍，鱼就该有鳞有鳍。凡是不合分类、“越界”的东西，就是不洁的：猪蹄子像牛羊，却不反刍；龙虾在水里，却没有鳞。禁忌守护的，是一个整齐的世界观。</p>
+    <p><b>成本说</b>。美国人类学家马文·哈里斯在《好吃：食物与文化之谜》（1985）里反对说：禁忌背后常常是一笔实际的账。猪是森林动物，怕热、要阴凉和泥水，吃的东西和人差不多（粮食），不能拉犁、不产奶、不能吃草；在炎热干旱的中东，养猪划不来，于是被宗教禁止了。同理，在印度，牛活着比死了值钱：拉犁、产奶、牛粪是燃料和肥料，荒年里把耕牛吃了，明年就种不了地，所以牛成了神圣的。</p>
+    <p>两种解释都有道理，也都有人举出反例：比如古代中东其实养过猪，有的地方养得还不少；不吃猪肉的规矩在不同人群里出现的时间和原因也不一样。今天很多学者认为，<em>禁忌一旦形成，就会变成“我们是谁”的一部分</em>，它最初的原因反而不那么要紧了：不吃某样东西，是一群人和另一群人区别开来的方式。</p>
+
+    <h3>牛：别杀耕牛</h3>
+    <p>中国古代没有宗教上的牛肉禁忌，却有法律上的。农耕社会里，耕牛是最值钱的农具，杀牛等于砸犁。秦汉就有禁止私宰耕牛的法令；《唐律》规定，故意杀死官家或私人的马牛，判徒刑一年半。宋元明清都有类似的禁令，民间也流传着“吃牛肉要遭报应”的说法。水浒故事里，好汉们进店张口就要“切二斤熟牛肉”，在当时的读者听来，带着一点“不守王法”的豪横。</p>
+    <p>日本更彻底。675 年，天武天皇下诏，在每年的农忙季节禁止吃牛、马、狗、猴、鸡；加上佛教的影响，此后一千多年里，大多数日本人不吃牛肉，主要吃鱼。1872 年，为了“文明开化”、让国民体格向西方看齐，明治天皇公开吃了牛肉，消息登在报纸上。牛肉火锅（寿喜烧的前身）在东京流行起来。</p>
+
+    <h3>马、狗和虫子</h3>
+    <p>八世纪，教皇格里高利三世写信给去日耳曼传教的圣卜尼法斯，要他禁止新入教的人吃马肉，因为吃马和日耳曼的异教祭祀有关。英国人从此一直不吃马肉，法国人却在十九世纪的饥荒和战争里重新吃了起来，1866 年巴黎有了合法的马肉铺子。</p>
+    <p>狗是人最早的伙伴，也一直被一些地方的人吃。中国先秦秦汉吃狗很普遍，樊哙屠狗，“狗”在六畜里；唐宋以后，北方草原民族的影响、佛教、把狗当看家伙伴的观念，让吃狗在很多地方淡了下来。2020 年，中国农业农村部明确狗属于伴侣动物，不列入畜禽遗传资源目录。</p>
+    <p>虫子是另一个极端。联合国粮农组织 2013 年的报告估计，全世界约有二十亿人的传统饮食里有昆虫，有一千九百多种昆虫被人吃过。《周礼》里，天子的厨房有一道“蚳醢”，是蚂蚁卵做的酱。今天云南的蜂蛹、竹虫，东北的蚕蛹，山东的炸蚂蚱，都是地方名吃。第三部的尾声会讲，有人认为虫子会是未来的蛋白质来源。</p>
+  </div>
+
+  <div class="fig" id="dgFig">
+    <div class="fig-label">装置 16</div>
+    <h4>你敢吃吗</h4>
+    <p class="how">下面是十二样真实存在、在某个地方被当成美味的食物。凭第一反应，点“敢”或“不敢”。最后看看：你拒绝的东西，在哪里是家常饭。</p>
+    <div id="dgQ" class="qa"></div>
+    <div class="say" id="dgSay"></div>
+    <p class="figcap">这些食物都是某地真实的传统吃法，有的受法律限制或已不常见。装置不记录、不上传你的选择。</p>
+  </div>
+
+  <div class="col">
+    <h3>恶心是学来的</h3>
+    <p>美国心理学家保罗·罗津研究“恶心”几十年。他发现，两三岁以前的小孩几乎什么都往嘴里放，包括很多让大人作呕的东西；恶心这种感觉，是孩子在几年里看着父母和身边的人的反应，一点一点学会的。成年以后，它变得极其顽固：哪怕你知道一样东西完全无害、干干净净，比如装在全新便盆里的果汁，很多人还是喝不下去。</p>
+    <p>这就是为什么饮食禁忌那么难改：它不是写在脑子里的一条规定，而是长在身体里的一种反应。也是为什么，<em>尝一口别人的家乡菜，是一种很实在的尊重</em>。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">“不吃猪肉是因为古人发现猪肉会传染寄生虫”<small>存疑</small></div>
+    <div class="pop"><i>流行说法</i><p>古代中东的人发现吃猪肉容易得旋毛虫病，所以宗教禁止了猪肉，这是古人的卫生智慧。</p></div>
+    <div class="chk"><i>再查一遍</i><p>这个解释在十九世纪很流行。可是旋毛虫和猪肉的关系，是十九世纪中期才被科学家发现的；牛羊肉没煮熟同样会传寄生虫和细菌，却没有被禁。古代的经文本身，也没有给出卫生上的理由。<b>“卫生说”更像是现代人用现代知识替古人找的理由</b>。</p></div>
+  </div>
+
+  <div class="gone">
+    <h5>端下桌的：蚳醢和熊掌</h5>
+    <p><b>蚳醢</b>：用蚂蚁卵加盐和酒做的酱，《周礼》里列在天子祭祀、宴饮用的酱里。后来的汉族饭桌上几乎再也见不到它。</p>
+    <p><b>熊掌</b>：孟子说“鱼，我所欲也；熊掌，亦我所欲也”，熊掌是先秦以来的顶级珍馐，楚成王被逼自杀前，还请求吃一顿熊掌再死（没被允许）。今天，中国的黑熊、棕熊都是国家重点保护野生动物，熊掌被彻底端下了桌。<b>一样东西从“最想吃的”变成“不许吃的”，有时只需要换一套规矩</b>。</p>
+  </div>
+
+  <div class="echo" data-k="联系">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">禁忌是一道边界</p><p><a href="../power/">《谁说了算》</a>讲过，人群怎样用祭祀、服饰、口音和规矩把“我们”和“他们”分开。饮食禁忌是其中最日常的一种：每天三顿，每一顿都在提醒你属于哪里。1857 年印度兵变的导火索之一，就是传言新式步枪的子弹纸包上涂着牛油和猪油，要用嘴咬开（<a href="../turn/">《轮到谁了》</a>第三部）。<b>一块油，同时冒犯了两种信仰，点燃了一场起义</b>。</p></div>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>那时的饭桌</i>不吃猪、不杀耕牛、不吃马、不吃荤，每一条规矩背后都缠着信仰、账本和“我们是谁”。</div>
+      <div><i>你的饭桌</i>宿舍里来自不同地方的同学，有的不吃猪肉，有的不吃香菜，有的一闻到臭豆腐就跑，有的离不开它。尊重一个人不吃什么，和请他尝一口你爱吃的，都是在交朋友。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第十六章 · 饥 ============ -->
+<section class="chap" id="c16" data-vol="卷五 · 桌 · 饥">
+  <div class="chead">
+    <div class="big">饥</div>
+    <div>
+      <div class="no">第十六章 · 桌之四</div>
+      <h2>饥荒</h2>
+      <dl><dt>讲什么</dt><dd>歉收一成，粮价涨三成：格雷戈里·金的表；常平仓、义仓、社仓；范仲淹让杭州人赛龙舟、修寺庙；朱橚的《救荒本草》；丁戊奇荒；爱尔兰的土豆和照常出口的粮食；阿马蒂亚·森：饥荒常常不是因为没有粮食；二十世纪的几次大饥荒；“何不食肉糜”和“让他们吃蛋糕”</dd><dt>本章装置</dt><dd>格雷戈里·金的表</dd></dl>
+      <div class="plate" data-k="粮 身"></div>
+      <div class="when" data-a="-54" data-b="1961"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">饥荒不就是因为天灾、地里没收成吗？</p>
+      <p>天灾常常是开头，但不是全部。很多大饥荒发生的时候，国家或地区里的粮食总量并没有少到养不活人，问题在于：粮价飞涨、穷人失去了工钱或收成，<em>买不起，也换不到</em>；粮食照常运往别处，或者被囤起来；政府的反应太慢、太傲慢，或者干脆是政策本身造成的。这一章讲饥荒，也讲古人和今人怎样对付饥荒。</p>
+    </div>
+
+    <div class="bill">
+      <span class="fic">虚构</span>
+      <div class="shop">索耶的汤厨房</div>
+      <div class="sub">都柏林 · 皇家军营旁 · 1847 年春</div>
+      <div class="cut"></div>
+      <div class="meta"><span>时间</span><span>中午，铃声一响，一批一百人</span><span>顾客</span><span>从乡下走进城的一家人</span><span>付款</span><span>免费（凭票）</span></div>
+      <div class="cut"></div>
+      <table>
+        <tr><td class="item">汤<small>水多，牛肉少，加了玉米面、燕麦和洋葱</small></td><td>约一升</td><td>0</td></tr>
+        <tr><td class="item">面包</td><td>四分之一磅</td><td>0</td></tr>
+        <tr><td class="item">勺子<small>用铁链拴在桌上</small></td><td>×1</td><td>不得带走</td></tr>
+      </table>
+      <div class="cut"></div>
+      <div class="tot"><span>合计</span><span>六分钟吃完，下一批</span></div>
+      <div class="ft">医学杂志评：此汤营养不足以维持生命</div>
+      <div class="real"><b>真的部分</b>1847 年，伦敦的名厨亚历克西·索耶受英国政府之托，在都柏林设计了一座模范汤厨房，每批约一百人进场，限时吃完，勺子用链子拴在桌上；他的汤被一些医生和报纸批评营养太少。吃汤的一家人是编的。</div>
+    </div>
+
+    <h3>歉收一成，粮价涨三成</h3>
+    <p>十七世纪末，英国统计学家格雷戈里·金和查尔斯·达文南特留下了一张简单的表：如果粮食收成比平常少一成，粮价会涨三成；少两成，涨八成；少三成，涨一倍六；少四成，涨两倍八；少一半，涨四倍半。这张表的数字不一定精确，道理却极其重要：<em>粮食是人人每天必须买的东西，少一点点，价钱就会疯涨</em>，因为谁都不能少吃太多，有钱人还会多买囤着。</p>
+    <p>粮价一涨，最先倒下的是没有地、靠工钱买粮的人：短工、手艺人、城里的穷人。他们的工钱不会跟着涨，有时反而跌了，因为荒年里没人雇人。这就是为什么，<b>歉收两成，可能有一半的人吃不饱</b>。</p>
+  </div>
+
+  <div class="fig" id="kgFig">
+    <div class="fig-label">装置 17</div>
+    <h4>格雷戈里·金的表</h4>
+    <p class="how">拖动滑块，改变今年的收成比平常少了几成，看粮价会涨多少（按金和达文南特的表插值）。再看一个靠工钱买粮的短工，他的工钱能买到多少粮。最后试试打开“常平仓”：官府丰年存下的粮，荒年平价放出来，相当于把歉收补回一部分。</p>
+    <div class="ctl"><span>歉收</span><input type="range" id="kgD" min="0" max="50" step="1" value="20"><output id="kgDO"></output></div>
+    <div class="ctl"><span>仓里能放出</span><input type="range" id="kgR" min="0" max="20" step="1" value="0"><output id="kgRO"></output></div>
+    <svg id="kgChart" class="sim" aria-label="歉收与粮价"></svg>
+    <div class="kv" id="kgKv"></div>
+    <div class="say" id="kgSay"></div>
+    <p class="figcap">示意：金—达文南特的表只有五个点（歉收一至五成），中间用平滑插值；“短工”的工钱假设平常够买一家人一点二倍的口粮、荒年工钱不涨。仓粮放出的量，按占平常收成的百分比，简单地从歉收里减去。</p>
+  </div>
+
+  <div class="col">
+    <h3>常平仓</h3>
+    <p>中国人很早就懂这个道理。第四章讲过，战国时李悝主张“平籴”：丰年官府买进，荒年卖出。西汉宣帝五凤四年（前 54 年），大司农中丞耿寿昌在边郡设“常平仓”，“谷贱时增其贾而籴，以利农；谷贵时减贾而粜”，粮贱时加价收购，免得伤农；粮贵时降价卖出，免得伤民。此后两千年，常平仓时设时废，隋朝有“义仓”（百姓按户交粮存在本地），南宋朱熹在福建建“社仓”（借粮给农民，秋后加息还）。</p>
+    <p>仓的难处在于管理：官吏侵吞、粮食霉烂、该放的时候不放、账上有粮仓里没粮。<a href="../civil/">《铁打的营盘》</a>里的胥吏，有不少就是靠管仓吃饭的。</p>
+  </div>
+
+  <div class="recipe">
+    <div class="old"><i>古书 · 原文</i><p>皇祐二年，吴中大饥，殍殣枕路。是时范文正领浙西，发粟及募民存饷，为术甚备。吴人喜竞渡，好为佛事，希文乃纵民竞渡，太守日出宴于湖上，自春至夏，居民空巷出游。又召诸佛寺主首，谕之曰：“饥岁工价至贱，可以大兴土木之役。”于是诸寺工作鼎兴。又新敖仓吏舍，日役千夫。……是岁，两浙唯杭州晏然，民不流徙，皆文正之惠也。</p></div>
+    <div class="now"><i>白话</i><p>1050 年，江浙大饥荒，路上饿死的人一个挨一个。范仲淹当时管杭州，除了开仓放粮、募人捐粮，还干了几件被人弹劾的事：放任百姓赛龙舟，自己天天在西湖上摆酒；召集各寺院的住持说，荒年工钱最便宜，正好大修寺庙；官府自己也翻修粮仓和吏舍，每天雇上千人。</p><p>有人告他不体恤荒年、劳民伤财。他解释说：这样做是让有钱人和寺院把钱花出来，让靠力气吃饭的穷人有活干、有工钱。<b>这一年两浙只有杭州安然无事</b>。九百年后，这叫“以工代赈”，也叫刺激消费。</p></div>
+    <div class="src">北宋·沈括《梦溪笔谈·官政一》。</div>
+  </div>
+
+  <div class="col">
+    <h3>丁戊奇荒</h3>
+    <p>1876 年到 1879 年，华北的山西、河南、陕西、直隶、山东连续大旱，饥荒最重的是 1877、1878 两年，干支纪年是丁丑、戊寅，所以叫“丁戊奇荒”。据估计死亡人数在一千万上下，山西一些县人口减少了一半以上。交通闭塞，赈灾的粮食从天津运进山西要翻太行山，路上的骡马也饿死了；朝廷和地方的救济、江南士绅的义赈、外国传教士的赈灾都来了，还是远远不够。同一时期，印度、巴西也发生了大饥荒，有学者把它们和那几年的强厄尔尼诺联系在一起。</p>
+
+    <h3>爱尔兰：粮食在往外运</h3>
+    <p>第十章讲过，土豆让欧洲的穷人活了下来。十九世纪初，爱尔兰有三分之一以上的人几乎只靠土豆过活：一个成年男子一天要吃十几磅土豆。他们种的麦子、燕麦、养的牛和猪，是用来交地租的，大部分运往英国。</p>
+    <p>1845 年，一种从美洲传来的晚疫病（一种霉菌一样的病原体）在爱尔兰爆发，土豆在地里、在窖里成片烂掉，此后几年接连歉收。到 1852 年，约一百万人死于饥饿和疾病，一百多万人移民海外，爱尔兰人口此后一百多年都没恢复。饥荒最重的那几年，爱尔兰仍然在向英国出口粮食和牲畜。英国政府起初相信市场会自己调节，不愿“干预”，后来设了汤厨房和以工代赈的修路工程，又很快收紧。<a href="../turn/">《轮到谁了》</a>第三部讲过当时主管救济的财政部官员特里维廉。</p>
+
+    <h3>阿马蒂亚·森</h3>
+    <p>印度经济学家阿马蒂亚·森九岁时，亲眼看见了 1943 年的孟加拉大饥荒：大约三百万人死去。几十年后，他在《贫困与饥荒》（1981）里研究了这次饥荒，发现了一件怪事：1943 年孟加拉的粮食产量并不比几年前的正常年份低多少。饥荒的原因是战争：日本占领缅甸，英国当局担心日军入侵，在沿海征收船只和粮食；战时物价飞涨，城里的人和军工厂有钱买粮，农村的渔民、手艺人、雇农的“交换权利”崩溃了，买不起粮。</p>
+    <p>森由此提出一个影响很大的观点：<em>饥荒常常不是“没有粮食”，而是一部分人失去了得到粮食的门路</em>。他还说过一句常被引用的话：在一个有正常运作的民主制度和新闻自由的国家里，从没有发生过大饥荒，因为政府不能对报纸上的饿死人装看不见。这句话也有学者争论，但它让人们开始把饥荒看成一种政治和制度的失败。</p>
+
+    <h3>二十世纪</h3>
+    <p>二十世纪仍然是饥荒的世纪。1932 到 1933 年，苏联在集体化和强制征粮中发生大饥荒，乌克兰和哈萨克斯坦受害最重，死亡数百万人。1959 到 1961 年，中国发生了严重的饥荒，官方称“三年困难时期”，造成大量非正常死亡，各方估计的人数差别很大，从一千多万到三千多万不等。这两次饥荒都和天灾有关，但研究者普遍认为，政策失误、高指标与浮夸、高征购，以及消息传不上去，是主要的原因。二十世纪后期以来，大饥荒越来越少，剩下的大多发生在战乱地区。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">“没有面包，让他们吃蛋糕”<small>存疑</small></div>
+    <div class="pop"><i>流行说法</i><p>法国大革命前，王后玛丽·安托瓦内特听说老百姓没有面包吃，说：“那就让他们吃蛋糕吧！”</p></div>
+    <div class="chk"><i>再查一遍</i><p>这句话最早出现在卢梭的《忏悔录》里，他说是“一位大公主”讲的，那部分写于 1760 年代，当时玛丽·安托瓦内特还是个孩子，住在奥地利。没有任何可靠记载说她讲过这句话。<b>它是被安在一个不受欢迎的王后头上的</b>。中国也有一句意思相近的：晋惠帝听说百姓饿死，问“何不食肉糜”（为什么不喝肉粥），见于《晋书》，同样被当成统治者不知民间疾苦的象征。</p></div>
+  </div>
+
+  <div class="gone">
+    <h5>端下桌的：救荒的野菜和观音土</h5>
+    <p>明朝初年，朱元璋的儿子周王朱橚在封地开封组织人手，把四百多种荒年可以充饥的野生植物种在园子里，一一观察、绘图，写成《救荒本草》（1406 年），告诉饥民哪些能吃、怎样去毒。这是一本为了饿肚子的人写的植物图谱。</p>
+    <p>荒年里，人们吃野菜、树皮、草根、榆钱、糠，最后吃一种叫“观音土”的白色黏土，填饱肚子却不能消化，常常胀死。今天，荠菜、马齿苋、榆钱、槐花成了春天饭馆里的时鲜，价钱不便宜；观音土，再也没人需要吃了。</p>
+  </div>
+
+  <div class="echo" data-k="押韵">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">李悝、范仲淹和凯恩斯</p><p>李悝说粮价太贱伤农、太贵伤民，要国家来平；范仲淹在荒年里鼓励花钱和修庙，让穷人有活干；两千年后，凯恩斯在大萧条里说，危机时政府该花钱，雇人挖坑再填上都比不干强（<a href="../finance/">《柜台里外》</a>和<a href="../turn/">《轮到谁了》</a>第四部讲过罗斯福新政）。<b>不同的时代，不同的语言，同一个道理：最危险的不是没有东西，是东西和需要它的人之间断了线</b>。</p></div>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>那时的饭桌</i>一碗稀汤、一块面包、一株野菜、一捧观音土；歉收两成，粮价翻倍，没有地的人先倒下；而粮食常常就在不远处的仓里、船上。</div>
+      <div><i>你的饭桌</i>你这一代人很可能一辈子不会经历饥荒，这在人类历史上是极少见的幸运。爷爷奶奶那一辈“碗里不许剩一粒饭”的规矩，是从饿过的日子里来的；第三部的最后一章，会回到他们的饭桌。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第二部末：哪些是真的、存疑与出处 ============ -->
+<section class="chap" id="notes2" data-vol="第二部 · 存疑与出处">
+  <div class="col">
+    <h3>第二部：哪些是真的</h3>
+    <ul class="src">
+      <li><b>虚构的</b>：每章小票上吃饭的人、场面和“合计”的说法是编的。小票上的价钱和食物有真实出处的，在票底写明：罗马胡椒价出自老普林尼，开封夜市的小吃和“每个不过十五文”出自《东京梦华录》，伦敦咖啡一便士一碗、都柏林汤厨房的规矩出自当时的记载。</li>
+      <li><b>真实的</b>：正文里的人物、事件、年代、文献和研究，都尽量核对过；大的伤亡数字只给约数和范围，各家估计不一。</li>
+      <li><b>古书引文</b>：“古书 · 原文”框只引公版文献，注明了出处，个别引文据通行本，字句可能与某些版本略有出入；《圣经》引文用 1919 年和合本译文。</li>
+      <li><b>装置</b>：全部是示意模型，数字为说明道理而设；第十二章的咖啡因和糖是常见产品的大致含量，不是医疗或饮食建议。第十五章的测验不记录、不上传你的选择。</li>
+    </ul>
+
+    <h3>第二部：存疑与说明</h3>
+    <ul class="src">
+      <li><b>香</b>：香料从产地到欧洲加了多少倍，历史学家估计差别很大；“香料用来掩盖臭肉”（存疑，正文已说明）；“曼哈顿换伦岛”（半真半假）；“香料便宜了贵人就不吃了”是部分历史学家的解释；元载抄家胡椒八百石，唐代一石的重量换算不一。</li>
+      <li><b>换</b>：“帕尔芒捷派兵看守”（存疑）；苋菜籽“被禁止种植”的说法有争论；土豆对人口增长“约四分之一”的贡献是一项计量研究的估计；《群芳谱》引文据通行本。</li>
+      <li><b>薯</b>：陈振龙带回番薯的细节出自其后人编的《金薯传习录》，有传说成分；番薯、玉米进入中国的路线和年代说法不一；美洲作物对清代人口增长的贡献（存疑）；《思州府志》“代盐”一句据学者引述；“吃辣祛湿”没有可靠的现代证据；王维所插茱萸的种类有不同说法。</li>
+      <li><b>瘾</b>：王褒《僮约》里的“荼”是否就是茶，有学者讨论；“牧羊人卡尔迪”（存疑）；穆拉德四世关闭咖啡馆的细节各家记载不一；英国人均糖消费的数字来自西敏司的整理，口径不一；奶茶、咖啡里的咖啡因和糖含量差别很大。</li>
+      <li><b>馆</b>：“第一家餐厅”是谁开的，按斯潘的研究写；“大革命厨子开餐厅”（存疑）；“八大菜系”形成的年代说法不一。</li>
+      <li><b>筷</b>：用手、筷子、刀叉的人口比例是粗略说法；筷子取代勺子吃饭的时间各地不同；路易十四用手吃饭、黎塞留磨圆刀尖的故事有传说成分；装置里的摩擦系数是粗略值。</li>
+      <li><b>忌</b>：道格拉斯和哈里斯的解释都有争议；“卫生说”（存疑）；日本禁肉诏的具体范围和执行情况有不同解读。</li>
+      <li><b>饥</b>：金—达文南特表的数字不一定精确；丁戊奇荒、孟加拉饥荒、苏联饥荒、中国 1959—1961 年饥荒的死亡人数，各方估计差别很大，这里只给范围；森关于民主与饥荒的论断有争论；“让他们吃蛋糕”（存疑）；《梦溪笔谈》引文据通行本，有省略。</li>
+    </ul>
+
+    <h3>第二部：主要出处</h3>
+    <ul class="src">
+      <li>公版古籍（引文或大意）：老普林尼《自然史》；《新唐书·元载传》；《明史·食货志》；王象晋《群芳谱》；《金薯传习录》；高濂《遵生八笺》；康熙《思州府志》；王褒《僮约》；陆羽《茶经》；赵佶《大观茶论》；《明太祖实录》；孟元老《东京梦华录》；吴自牧《梦粱录》；《礼记·曲礼上》《礼记·内则》；陆容《菽园杂记》；《史记·项羽本纪》；《后汉书·梁鸿传》；《利未记》（和合本）；梁武帝《断酒肉文》；《唐律疏议》；《日本书纪》；《周礼·醢人》；《孟子·告子上》；《左传·文公元年》；《汉书·食货志》；沈括《梦溪笔谈》；朱橚《救荒本草》；《晋书·惠帝纪》；卢梭《忏悔录》。</li>
+      <li>研究与著作（只作转述）：Crosby《The Columbian Exchange》（1972）；Nunn &amp; Qian（2011）；Freedman《Out of the East》及 Schivelbusch《Tastes of Paradise》关于香料；Milton《Nathaniel's Nutmeg》；何炳棣（1955）及 Chen &amp; Kung（2016）关于美洲作物与清代人口；Osborne 关于清代长江上游的山区开发；曹雨《中国食辣史》；Mintz《Sweetness and Power》（1985）；Ellis《The Coffee House》；Ukers《All About Coffee》；Coe &amp; Coe《The True History of Chocolate》；Spang《The Invention of the Restaurant》（2000）；Wang《Chopsticks》（2015）；Elias《文明的进程》（1939）；Douglas《Purity and Danger》（1966）；Harris《Good to Eat》（1985）；Rozin 等关于恶心的研究；FAO《Edible Insects》（2013）；Sen《Poverty and Famines》（1981）；Ó Gráda 关于爱尔兰大饥荒；Edgerton-Tarpley 关于丁戊奇荒；Davis《维多利亚晚期的大屠杀》。</li>
+      <li>参考数值：欧洲食品安全局关于咖啡因的意见（2015）；世界卫生组织关于游离糖的指南（2015）。</li>
+    </ul>
+  </div>
+</section>
+
+<div class="partend" data-vol="第二部完">
+  <div class="k">第二部 · 路与桌 · 完</div>
+  <h3>饭桌连起来了，也摆好了规矩</h3>
+  <p class="ni" style="font-size:16px;line-height:1.9;text-align:left">第二部讲食物怎样跨海翻山，饭桌上怎样有了饭馆、筷子、禁忌，以及饭桌空了的时候。到十九世纪末，世界上大多数人仍然在“够不够吃”的边上过日子。第三部讲接下来一百多年里发生的翻天覆地：罐头和冰箱让食物不再坏，化肥让地里长出几倍的粮食，科学家找到了“缺”出来的病；然后，人类历史上第一次，吃太多成了比吃不饱更普遍的问题。最后一章，回到爷爷奶奶的粮票和你的外卖。</p>
+  <a class="go" data-c="c17" href="three.html">第三部 · 厂与秤（写作中）</a>
+</div>
+
+<footer>
+  <p>《吃了吗 · 饮食创世记》第二部。每章开头的小票是虚构的；正文中的史实与研究尽量核对过，有争议的地方标了“存疑”，说明与出处见<a href="#notes2">上面</a>。</p>
+  <p>讲到营养、健康和食品安全的地方，只讲历史和研究的大意，不是医疗或饮食建议。讲到宗教和饮食禁忌的地方，只讲历史，不评判任何人的信仰和选择。</p>
+  <a class="nextbook" href="../turn/"><small>书房里的另一本书</small><br><b>轮到谁了 · 霸主创世记</b><br><small>这本书讲胡椒、糖、茶和土豆走过的路；那本书讲是谁的船在走这条路：葡萄牙、荷兰、英国的炮舰、公司和账本。</small></a>
+  <p><a href="#top" class="toTop">回到封面 ↑</a>　·　<a href="./">第一部 · 火与种</a>　·　<a href="../">回书房</a></p>
+</footer>
+
+<script>
+(function(){
+'use strict';
+const $ = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => [...(r || document).querySelectorAll(s)];
+const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+const lerp = (a, b, t) => a + (b - a) * t;
+function rng(seed){ let a = seed >>> 0; return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const fmt = n => n >= 1e8 ? (n / 1e8).toFixed(1) + ' 亿' : n >= 1e4 ? (Math.round(n / 1e3) / 10).toLocaleString() + ' 万' : Math.round(n).toLocaleString();
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+/* 年份：负数是公元前；一万年以前写成“约 N 万年前” */
+const yr = y => y <= -10000 ? '约 ' + fmt(-y + 2000).replace(' ', '') + '年前' : y < 0 ? '前 ' + (-y) : String(y);
+const btnRow = (box, items, cur, cb) => {
+  box.innerHTML = items.map((t, i) => '<button class="btn' + (i === cur ? ' on' : '') + '" data-i="' + i + '">' + t + '</button>').join('');
+  box.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; $$('button', box).forEach(x => x.classList.toggle('on', x === b)); cb(+b.dataset.i); });
+};
+const dev = (sel, fn) => { const el = $(sel); if (el) { try { fn(el); } catch (err) { console.error(sel, err); } } };
+const kv = (box, rows) => { box.innerHTML = rows.map(r => '<div>' + r[0] + '<b>' + r[1] + '</b></div>').join(''); };
+function txt(x, y, t, o){ o = o || {}; return '<text x="' + x + '" y="' + y + '" font-size="' + (o.s || 13) + '" fill="' + (o.c || 'var(--ink)') + '" text-anchor="' + (o.a || 'middle') + '"' + (o.w ? ' font-weight="700"' : '') + (o.halo === false ? '' : ' paint-order="stroke" stroke="' + (o.hc || 'var(--card)') + '" stroke-width="3.5" stroke-linejoin="round"') + '>' + t + '</text>'; }
+/* 滑块：绑定 input 与 output，返回读数函数 */
+/* 初始化时只写读数，不调回调（回调里常用到还没赋值的读数函数），装置自己再调一次 draw() */
+function slider(id, f, cb){ const r = $('#' + id), o = $('#' + id + 'O'); const go = init => { if (o) o.textContent = f ? f(+r.value) : r.value; if (cb && !init) cb(+r.value); }; r.addEventListener('input', () => go(false)); go(true); return () => +r.value; }
+
+/* ---------- 全书目录（三个网页共用） ---------- */
+const PAGE = /three\.html/.test(location.pathname) ? 3 : /two\.html/.test(location.pathname) ? 2 : 1;
+const READY = 2; // 已经写好的部数
+const PURL = {1: './', 2: 'two.html', 3: 'three.html'};
+const TOC = [
+  {p: 1, t: '第一部 · 火与种 —— 两百万年到三千年前'},
+  {v: '序幕'},
+  {id: 'c0', n: '饭', t: '吃了吗', s: '一句问候的来历；人一辈子吃掉多少；一天里有几个钟头是在给嘴干活', r: '古今'},
+  {v: '卷一 · 生 —— 从生到熟'},
+  {id: 'c1', n: '火', t: '第一口熟食', s: '烹饪假说：火怎样替人嚼、替人消化，换来一个大脑袋', r: '约 200 万—40 万年前'},
+  {id: 'c2', n: '猎', t: '打猎的和挖块茎的', s: '骨髓、蜂蜜、块茎；分肉为什么比打到肉要紧；没有一种“原始人饮食”', r: '约 260 万—1 万年前'},
+  {v: '卷二 · 种 —— 把野草和野兽留在身边'},
+  {id: 'c3', n: '麦', t: '一株不掉粒的麦子', s: '新月沃地、先有面包后有农业、驯化慢得出奇；农民为什么变矮了', r: '约 1.4 万—5000 年前'},
+  {id: 'c4', n: '稻', t: '粟、稻和社稷', s: '北方的小米、南方的稻、西边来的麦；面条、石磨、占城稻；葵怎样被白菜挤下了桌', r: '约 1 万年前—宋'},
+  {id: 'c5', n: '畜', t: '六畜', s: '狗、羊、猪、牛、鸡、马；鸡起初不是养来吃的；喝奶的基因怎样在几千年里传开', r: '约 1.5 万—3000 年前'},
+  {v: '卷三 · 变 —— 让食物变个样子'},
+  {id: 'c6', n: '酵', t: '看不见的厨子', s: '啤酒和面包、酒曲、酱、奶酪、鱼露：人类和微生物合伙做饭', r: '约 9000 年前—今'},
+  {id: 'c7', n: '盐', t: '白色的税', s: '离不开的盐、煮海和凿井、盐铁专卖、私盐贩子造反、甘地走到海边', r: '前 2000—1930'},
+  {id: 'c8', n: '灶', t: '锅、灶和最早的菜谱', s: '两万年前的陶罐、鼎和甑、巴比伦泥板上的炖菜、炒菜为什么晚、灶里烧什么', r: '约 2 万年前—宋'},
+  {p: 2, t: '第二部 · 路与桌 —— 食物跨海翻山，摆上餐桌'},
+  {v: '卷四 · 路 —— 走远路的食物'},
+  {id: 'c9', n: '香', t: '胡椒的价钱', s: '香料之路、肉豆蔻和战争、为什么中世纪欧洲人那么爱香料', r: '前 1000—1700'},
+  {id: 'c10', n: '换', t: '大交换', s: '土豆、玉米、番茄、辣椒、可可去了旧大陆，小麦、牛、马、糖和病菌去了新大陆', r: '1492—1800'},
+  {id: 'c11', n: '薯', t: '番薯、玉米和辣椒进中国', s: '一个福建商人藏在船里的藤；山地被开垦；辣椒怎样替贵州人省下盐', r: '1550—1850'},
+  {id: 'c12', n: '瘾', t: '糖、茶、咖啡和巧克力', s: '提神的、上瘾的、让工人熬夜的：四样饮料怎样改变世界', r: '1600—1900'},
+  {v: '卷五 · 桌 —— 怎样吃，和谁吃，不吃什么'},
+  {id: 'c13', n: '馆', t: '饭馆和菜单', s: '汴京的夜市、杭州的酒楼、巴黎的“恢复元气的汤”，以及菜系是怎样被发明的', r: '960—1900'},
+  {id: 'c14', n: '筷', t: '筷子、刀叉和手', s: '三种吃法、一把叉子引起的丑闻、餐桌礼仪怎样一层一层加上去', r: '前 1200—今'},
+  {id: 'c15', n: '忌', t: '不吃什么', s: '猪、牛、狗、马、虫子：禁忌的来历，和“恶心”是怎样学会的', r: '古今'},
+  {id: 'c16', n: '饥', t: '饥荒', s: '饥荒很少只是因为没粮食：爱尔兰、孟加拉、中国的几次大饥荒和阿马蒂亚·森', r: '1590—1960'},
+  {p: 3, t: '第三部 · 厂与秤 —— 工厂、实验室和体重秤'},
+  {v: '卷六 · 存 —— 让食物不坏，让地里长出更多'},
+  {id: 'c17', n: '罐', t: '罐头、冰和冷链', s: '拿破仑的悬赏、卖冰的人、冰箱、冷链：一年四季吃同样的东西', r: '1795—1990'},
+  {id: 'c18', n: '氮', t: '从空气里拿面包', s: '鸟粪战争、哈伯—博施法、绿色革命、杂交水稻：化肥养活了多少人', r: '1840—2000'},
+  {id: 'c19', n: '维', t: '少了一点点', s: '坏血病、脚气病、糙皮病：人类花了几百年才明白，有些病是“缺”出来的', r: '1747—1940'},
+  {v: '卷七 · 秤 —— 吃得太多的时代'},
+  {id: 'c20', n: '脂', t: '脂肪和糖的官司', s: '一场打了半个世纪的营养学官司，以及“膳食指南”是怎样写出来的', r: '1950—2020'},
+  {id: 'c21', n: '快', t: '快餐、方便面和外卖', s: '流水线搬进厨房：汉堡、方便面、超市和骑手', r: '1920—今'},
+  {id: 'c22', n: '胖', t: '第一次吃得太多', s: '人类历史上第一次，胖的人比饿的人多：为什么，怎么办', r: '1970—今'},
+  {id: 'c23', n: '票', t: '粮票到外卖', s: '一个国家七十年的饭桌：统购统销、粮票、菜篮子、吃饱、吃好', r: '1949—今'},
+  {v: '尾声'},
+  {id: 'c24', n: '明', t: '明天吃什么', s: '人造肉、虫子、气候和一碗米饭的将来', r: '今—'}
+];
+const chapPage = {}; { let p = 1; TOC.forEach(x => { if (x.p) p = x.p; if (x.id) chapPage[x.id] = p; }); }
+const href = id => (chapPage[id] === PAGE ? '' : PURL[chapPage[id]]) + '#' + id;
+$$('.bar .parts a').forEach(a => { const p = +a.dataset.p; a.classList.toggle('on', p === PAGE); if (p > READY) { a.removeAttribute('href'); a.style.opacity = .4; a.title = '写作中'; } });
+$('#drawerList').innerHTML = TOC.map(x => x.p ? '<li class="ph">' + x.t + '</li>' : x.v ? '<li class="vh">' + x.v + '</li>' :
+  chapPage[x.id] > READY ? '<li><a style="opacity:.5;pointer-events:none"><span class="n">' + x.n + '</span><span>' + x.t + '<small>写作中</small></span></a></li>' :
+  '<li><a href="' + href(x.id) + '"' + (chapPage[x.id] === PAGE ? ' class="here"' : '') + '><span class="n">' + x.n + '</span><span>' + x.t + '<small>' + x.s + '</small></span></a></li>').join('');
+dev('#toc', ul => {
+  ul.innerHTML = TOC.map(x => x.p ? '<li class="vh" style="color:var(--main)">' + x.t + '</li>' : x.v ? '<li class="vh">' + x.v + '</li>' :
+    chapPage[x.id] > READY ? '<li class="soon"><div><span class="n">' + x.n + '</span><span class="t">' + x.t + '<small>' + x.s + '</small></span><span class="r">' + x.r + '</span></div></li>' :
+    '<li' + (chapPage[x.id] === PAGE ? '' : ' class="away"') + '><a href="' + href(x.id) + '"><span class="n">' + x.n + '</span><span class="t">' + x.t + '<small>' + x.s + '</small></span><span class="r">' + x.r + '</span></a></li>').join('');
+});
+/* 页面里写 <a data-c="c12">…</a>，自动拼出跨页链接 */
+$$('a[data-c]').forEach(a => { const id = a.dataset.c; if (chapPage[id] > READY) { a.removeAttribute('href'); a.title = '写作中'; a.style.textDecorationStyle = 'dotted'; a.style.opacity = .6; } else a.href = href(id); });
+$$('.partnav a[data-c]').forEach(a => { if (!a.hasAttribute('href')) a.style.opacity = .55; });
+
+/* ---------- 页眉：卷名、进度、目录抽屉 ---------- */
+const barVol = $('#barVol'), prog = $('#prog');
+const vols = $$('[data-vol]');
+let ticking = false;
+function onScroll(){
+  ticking = false;
+  const lim = innerHeight * 0.35; let cur = null;
+  for (const e of vols) { if (e.getBoundingClientRect().top < lim) cur = e; else break; }
+  barVol.textContent = cur ? cur.dataset.vol : '序';
+  const H = document.documentElement.scrollHeight - innerHeight;
+  prog.style.width = (H > 0 ? scrollY / H * 100 : 0) + '%';
+}
+window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, {passive: true});
+onScroll();
+const drawer = $('#drawer');
+function openD(on){ drawer.classList.toggle('on', on); drawer.setAttribute('aria-hidden', on ? 'false' : 'true'); }
+$('#tocBtn').addEventListener('click', () => openD(true));
+drawer.addEventListener('click', e => { if (e.target.closest('[data-close]') || e.target.closest('a')) openD(false); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') openD(false); });
+$$('.toTop').forEach(a => a.addEventListener('click', e => { e.preventDefault(); scrollTo({top: 0, behavior: 'smooth'}); }));
+
+/* 章首：饭桌上的六样 */
+const PLATE = [['火', '火候'], ['粮', '主食'], ['肉', '肉奶'], ['味', '滋味'], ['器', '锅碗'], ['身', '身体']];
+$$('.plate').forEach(w => { const on = (w.dataset.k || '').split(/\s+/); w.innerHTML = PLATE.map(f => '<span' + (on.includes(f[0]) ? ' class="on"' : '') + '><b>' + f[0] + '</b>' + f[1] + '</span>').join(''); });
+/* 年代条：两百万年前—今，越往近格子越细 */
+const ERA = [['200万', -2e6, -5e5], ['50万', -5e5, -1e5], ['10万', -1e5, -2e4], ['2万', -2e4, -1e4], ['1万', -1e4, -3000], ['前3千', -3000, 0], ['公元', 0, 1000], ['1000', 1000, 1500], ['1500', 1500, 1800], ['1800', 1800, 1900], ['1900', 1900, 2100]];
+$$('.when').forEach(w => { const a = +w.dataset.a, b = +(w.dataset.b || w.dataset.a); w.innerHTML = ERA.map(e => '<span' + (b >= e[1] && a < e[2] ? ' class="on"' : '') + '>' + e[0] + '</span>').join(''); w.title = yr(a) + (b !== a ? ' — ' + yr(b) : ''); });
+/* 卷首：一只碗 */
+$$('svg.bowl').forEach(s => {
+  s.setAttribute('viewBox', '0 0 130 96');
+  s.innerHTML = '<path d="M10 44h110a55 44 0 0 1-110 0z" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M48 88h34" stroke="currentColor" stroke-width="2.4"/>' +
+    '<path d="M86 6l-14 34M104 10l-20 30" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' +
+    '<path d="M40 40q4-10 8 0q4-10 8 0q4-10 8 0q4-10 8 0" fill="none" stroke="currentColor" stroke-width="1.2"/>' +
+    '<text x="65" y="74" font-size="26" text-anchor="middle" fill="currentColor" font-family="var(--f-display)">' + (s.dataset.t || '食') + '</text>';
+});
+/* 正态随机数、分位数 */
+function gauss(r){ let u = 0, v = 0; while (!u) u = r(); while (!v) v = r(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
+const pct = (arr, p) => { const s = [...arr].sort((x, y) => x - y); return s[Math.min(s.length - 1, Math.max(0, Math.floor(p * (s.length - 1))))]; };
+
+/* 通用小折线图：series=[{name,color,pts:[[x,y]...],dash,dots,w}]，opt={xmin,xmax,ymin,ymax,xt,yt,xf,yf,marks:[[x,label]],H,L} */
+function lineChart(svg, series, opt){
+  const W = 600, H = opt.H || 260, L = opt.L || 46, R = 14, T = 14, B = 30;
+  const X = x => L + (x - opt.xmin) / (opt.xmax - opt.xmin) * (W - L - R);
+  const Y = y => T + (1 - (y - opt.ymin) / (opt.ymax - opt.ymin)) * (H - T - B);
+  let g = '';
+  (opt.yt || []).forEach(v => g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + Y(v) + '" y2="' + Y(v) + '" stroke="var(--rule)"/>' + txt(L - 6, Y(v) + 4, opt.yf ? opt.yf(v) : v, {s: 11, a: 'end', c: 'var(--ink-3)', halo: false}));
+  (opt.xt || []).forEach(v => g += txt(X(v), H - 10, opt.xf ? opt.xf(v) : v, {s: 11, c: 'var(--ink-3)', halo: false}));
+  (opt.marks || []).forEach((m, i) => g += '<line x1="' + X(m[0]) + '" x2="' + X(m[0]) + '" y1="' + T + '" y2="' + (H - B) + '" stroke="var(--ink-3)" stroke-dasharray="2 3"/>' + txt(X(m[0]) + 3, T + 12 + (i % 3) * 14, m[1], {s: 11, a: 'start', c: 'var(--ink-2)'}));
+  series.forEach(s => {
+    const pts = s.pts.filter(p => p[1] != null);
+    if (!pts.length) return;
+    g += '<path d="M' + pts.map(p => X(p[0]).toFixed(1) + ',' + Y(p[1]).toFixed(1)).join('L') + '" fill="none" stroke="' + s.color + '" stroke-width="' + (s.w || 2.4) + '"' + (s.dash ? ' stroke-dasharray="' + s.dash + '"' : '') + ' stroke-linejoin="round"/>';
+    if (s.dots) pts.forEach(p => g += '<circle cx="' + X(p[0]).toFixed(1) + '" cy="' + Y(p[1]).toFixed(1) + '" r="3" fill="' + s.color + '"/>');
+  });
+  g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + (H - B) + '" y2="' + (H - B) + '" stroke="var(--ink)" stroke-width="1.2"/>';
+  svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+  return {X, Y, W, H, L, R, T, B};
+}
+/* 横条：rows=[[名字, 数值, 小字, 颜色]] */
+function bars(box, rows, max, f){
+  box.innerHTML = rows.map(r => '<div class="row"><span class="nm">' + r[0] + (r[2] ? '<small>' + r[2] + '</small>' : '') + '</span><span class="tr"><i style="width:' + clamp(r[1] / max * 100, 0, 100) + '%;' + (r[3] ? 'background:' + r[3] : '') + '"></i></span><span class="v">' + (f ? f(r[1]) : r[1]) + '</span></div>').join('');
+}
+
+/* ---------- 极简世界示意地图（从《轮到谁了》搬来，只为看清方位） ---------- */
+const WORLD = {
+  na: [[-110, 60], [-80, 60], [-77, 45], [-70, 42], [-76, 35], [-81, 31], [-80, 25.5], [-82, 28], [-84, 30], [-90, 29.5], [-97, 28], [-97, 22], [-95, 18.5], [-91, 19], [-87, 21], [-88, 16], [-83, 15], [-83, 10], [-79.5, 9.3], [-77, 8], [-78, 7.5], [-80, 7.5], [-85, 10], [-87, 13], [-92, 14.5], [-96, 15.8], [-100, 17], [-105, 20], [-106, 23], [-110, 24]],
+  sa: [[-77, 8], [-72, 12], [-63, 10.5], [-52, 4], [-50, 0], [-44, -2.5], [-35, -5.5], [-39, -13], [-41, -22], [-48, -26], [-49, -32], [-71.5, -32], [-71, -18], [-76, -14], [-81, -6], [-80, -1], [-78, 2]],
+  cuba: [[-85, 22], [-80, 23.2], [-74.2, 20.2], [-77.5, 19.9], [-82, 22]],
+  afr: [[-6, 35.8], [-17, 21], [-17, 14.7], [-12, 7], [-8, 4.5], [0, 5.5], [9, 4], [9.5, 1], [13, -6], [12, -17], [15, -27], [16, -32], [29, -32], [33, -26], [35, -22], [40, -15], [40, -10], [39, -5], [42, -1], [51, 11.5], [44, 11], [39, 17], [34, 27], [32.5, 30], [29, 31], [20, 32], [20, 30.5], [15, 32], [10, 34], [11, 37], [0, 35.8]],
+  eur: [[-9, 43], [-9, 37], [-6, 36.8], [-2, 36.7], [3, 42], [6, 43.3], [9, 44.4], [12.3, 41.7], [16, 38], [18.5, 40.2], [13, 45.6], [19.5, 41.5], [24, 37.8], [26, 40.5], [29, 41], [36, 36.5], [35.5, 33.5], [34.5, 31.5], [32.5, 30], [34.5, 28], [39, 21], [43, 13], [45, 13], [52, 16], [56, 22.5], [59, 22.5], [56, 26], [50, 30], [48, 30], [51, 27], [56.5, 27], [61, 25], [67, 24.5], [73, 19], [77, 8], [80, 10], [80, 15], [86, 20], [90, 22], [94, 17], [98, 16], [98, 8], [100.5, 4], [103.5, 1.3], [101, 6.5], [100, 13], [104, 10.5], [106, 9], [109, 12], [106.5, 20], [110, 21], [113, 22.3], [117, 23.5], [119.5, 26], [122, 30], [121, 32], [120, 35], [122.5, 37], [118, 38], [117.5, 39], [121, 40.5], [122, 39], [125, 39.8], [127.5, 38], [129, 35], [127, 34.5], [126, 37], [125, 40], [130, 42.5], [131, 60], [30, 60], [10, 60], [5, 58], [8, 57], [9, 54], [4.5, 52.5], [2, 51], [-1.5, 49.6], [-4.6, 48.4], [-1.2, 46], [-1.8, 43.4]],
+  jp: [[130, 31], [131.5, 33.5], [135, 34], [140, 35.5], [141, 38], [141.5, 41], [140, 40], [139, 38], [136, 36.8], [133, 35.5], [130.5, 33.8]],
+  ph: [[120, 18.5], [122, 18.5], [121.5, 14], [124, 13], [125.5, 9.5], [124, 6.5], [122, 7], [123, 10], [120.5, 14.5]],
+  bor: [[109, 1.5], [111, 2.8], [116, 7], [119, 5], [117.5, 1], [116, -3.5], [111, -3], [109.5, -1]],
+  sum: [[95.5, 5.5], [98.5, 3.5], [103.5, -1], [106, -5.8], [104, -5.5], [100, -1], [95.5, 3]],
+  jav: [[105.5, -6], [114.5, -7.7], [114, -8.6], [106, -7]],
+  mad: [[49.5, -12], [50.5, -16], [47, -25], [44, -23], [44, -16]],
+  aus: [[114, -22], [122, -18], [130, -12], [136, -12], [136, -15], [141, -12.5], [143, -14], [146, -19], [150, -22.5], [153, -28], [153, -32], [115, -32]],
+  ire: [[-6.0, 52.2], [-6.1, 53.4], [-5.9, 54.6], [-7.3, 55.3], [-8.3, 55.2], [-10.0, 54.2], [-9.6, 53.2], [-10.3, 52.0], [-9.4, 51.5], [-8.0, 51.8]],
+  ceyl: [[80, 9.8], [81.8, 7.5], [81, 6], [80, 6.2]]
+};
+WORLD.brit = [[-5.7, 50.05], [-3.5, 50.2], [-1.0, 50.75], [1.4, 51.15], [1.75, 52.5], [0.3, 53.4], [-0.2, 54.5], [-1.6, 55.6], [-2.0, 57.6], [-3.3, 58.6], [-5.0, 58.6], [-6.2, 56.7], [-5.6, 55.3], [-4.9, 54.8], [-3.0, 54.0], [-3.1, 53.3], [-4.6, 53.3], [-4.1, 52.3], [-5.3, 51.7], [-3.2, 51.4], [-4.5, 51.0]];
+WORLD.west = [[-105, 20], [-106, 23], [-110, 24], [-109.5, 23], [-112, 26.5], [-114.5, 30], [-117, 32.5], [-120.5, 34.5], [-122.5, 37.7], [-124, 40.5], [-124.5, 43], [-124, 46.5], [-124.7, 48.4], [-123, 49], [-127, 51], [-130, 55], [-130, 56], [-105, 56]];
+WORLD.ng = [[131, -1.5], [141, -2.6], [147.5, -6], [150, -10.5], [146, -8.5], [141, -9.2], [137.5, -5], [132, -4]];
+/* worldMap({lon0, lon1, lat0, lat1, W}) → {svg, P}：等距圆柱，海是底色 */
+function worldMap(o){
+  const sx = o.W / (o.lon1 - o.lon0), H = Math.round((o.lat1 - o.lat0) * sx);
+  const P = (lon, lat) => [(lon - o.lon0) * sx, (o.lat1 - lat) * sx];
+  const poly = pts => 'M' + pts.map(p => P(p[0], p[1]).map(v => v.toFixed(1)).join(',')).join('L') + 'Z';
+  let g = '<rect width="' + o.W + '" height="' + H + '" fill="var(--sea)"/>';
+  for (let lat = Math.ceil(o.lat0 / 30) * 30; lat < o.lat1; lat += 30) g += '<line y1="' + P(0, lat)[1] + '" y2="' + P(0, lat)[1] + '" x1="0" x2="' + o.W + '" stroke="var(--ink-3)" stroke-opacity="' + (lat ? .15 : .35) + '"/>';
+  Object.values(WORLD).forEach(s => g += '<path d="' + poly(s) + '" fill="var(--land)" stroke="var(--ink-3)" stroke-width=".6" stroke-linejoin="round"/>');
+  return {svg: g, P, W: o.W, H, poly};
+}
+
+/* ---------- 封面装置：拆一份外卖 ---------- */
+/* 原料：[名字, 出生地, 经度, 纬度, 大约多少年前, 说明, 是否 1500 年后才从美洲进中国, 大洲] */
+const ING = {
+  rice: ['稻米', '长江中下游', 120, 30, 9000, '约一万年前开始种，九千到七千年前慢慢驯化成', 0, '亚'],
+  wheat: ['小麦', '新月沃地', 40, 37, 10500, '约一万年前驯化，约四千五百年前到中国', 0, '亚'],
+  chicken: ['鸡', '东南亚大陆', 101, 16, 3500, '约三千五百年前；起初多半不是为了吃', 0, '亚'],
+  pig: ['猪', '安纳托利亚 / 黄河流域', 112, 34, 9000, '约一万年前在西亚、约九千年前在中国各驯化一次', 0, '亚'],
+  cattle: ['牛', '新月沃地', 41, 36, 10500, '约一万年前由野牛驯化', 0, '亚'],
+  milk: ['牛奶', '西亚', 38, 38, 9000, '约九千年前的陶片上已有奶脂', 0, '亚'],
+  tomato: ['番茄', '墨西哥（野生祖先在安第斯）', -97, 19, 2500, '驯化年代不详，至少两千多年前；中国人大量吃是二十世纪的事', 1, '美'],
+  chili: ['辣椒', '墨西哥', -98, 21, 6000, '约六千年前；1591 年的中国书里第一次出现', 1, '美'],
+  potato: ['土豆', '安第斯高原', -70, -15, 8000, '约八千年前；明末清初进中国', 1, '美'],
+  maize: ['玉米', '墨西哥', -101, 18, 9000, '约九千年前由一种野草驯化', 1, '美'],
+  sweet: ['红薯', '中美洲 / 南美北部', -84, 9, 5000, '五千年以上；1593 年由福建商人带回', 1, '美'],
+  peanut: ['花生（油）', '南美', -60, -22, 7000, '约七千年前；明代进中国', 1, '美'],
+  cassava: ['木薯（珍珠）', '亚马孙南缘', -58, -12, 8000, '约八千年前；十九世纪才到中国南方', 1, '美'],
+  soy: ['大豆', '中国北方', 116, 37, 5000, '至少五千年前，东亚驯化', 0, '亚'],
+  tofu: ['豆腐', '中国', 117, 32, 1000, '最晚宋代已很普遍；“淮南王发明”是传说', 0, '亚'],
+  sauce: ['酱油', '中国', 114, 35, 800, '“酱”有三千年，“酱油”这个词宋代才见到', 0, '亚'],
+  onion: ['洋葱', '中亚', 65, 40, 5000, '约五千年前；清代才在中国普及', 0, '亚'],
+  garlic: ['大蒜', '中亚', 70, 41, 5000, '汉代以后进中原；“张骞带回”是后人附会', 0, '亚'],
+  scallion: ['葱', '中国', 108, 36, 3000, '先秦已有', 0, '亚'],
+  ginger: ['姜', '东南亚 / 华南', 110, 22, 2500, '《论语》说孔子“不撤姜食”', 0, '亚'],
+  sichuan: ['花椒', '中国', 104, 31, 3000, '《诗经》里就有', 0, '亚'],
+  coriander: ['香菜', '地中海', 25, 37, 3000, '汉晋以后进中国，旧名“胡荽”', 0, '欧'],
+  lettuce: ['生菜', '埃及 / 地中海东岸', 31, 29, 4500, '古埃及墓画里就有', 0, '非'],
+  cabbage: ['白菜', '中国江南', 120, 31, 600, '大白菜明清才普及；更早的主菜叫“葵”', 0, '亚'],
+  sugar: ['糖', '新几内亚（甘蔗）', 145, -6, 8000, '甘蔗约八千年前在新几内亚种植；把它熬成糖是印度人的发明', 0, '洋'],
+  tea: ['茶', '中国西南', 100, 24, 2000, '汉代已有买茶的记载', 0, '亚'],
+  mung: ['绿豆', '印度', 78, 22, 4500, '约四千五百年前', 0, '亚'],
+  sesame: ['芝麻', '印度河流域', 70, 27, 4500, '约四千五百年前；旧名“胡麻”', 0, '亚'],
+  cola: ['可乐', '美国亚特兰大', -84, 34, 140, '1886 年一位药剂师调出来的', 0, '美'],
+  pepper: ['胡椒', '印度西南海岸', 76, 11, 3200, '三千二百年前，法老的木乃伊鼻孔里塞着胡椒粒', 0, '亚']
+};
+const DISH = [
+  ['黄焖鸡米饭', ['chicken', 'rice', 'potato', 'chili', 'sauce', 'ginger', 'scallion', 'sugar']],
+  ['番茄炒蛋盖饭', ['tomato', 'chicken', 'rice', 'scallion', 'sugar', 'peanut']],
+  ['麻辣烫', ['chili', 'sichuan', 'potato', 'tofu', 'soy', 'cabbage', 'sweet', 'cattle', 'sesame']],
+  ['牛肉拉面', ['wheat', 'cattle', 'chili', 'coriander', 'garlic', 'scallion', 'pepper']],
+  ['汉堡薯条可乐', ['wheat', 'cattle', 'lettuce', 'tomato', 'onion', 'milk', 'potato', 'cola', 'sugar']],
+  ['煎饼果子', ['mung', 'wheat', 'chicken', 'scallion', 'coriander', 'sauce', 'sesame']],
+  ['珍珠奶茶', ['tea', 'milk', 'sugar', 'cassava']]
+];
+const ageCol = y => y >= 8000 ? 'var(--grn)' : y >= 4000 ? 'var(--blu)' : y >= 1000 ? 'var(--och)' : 'var(--red)';
+const ageTxt = y => y >= 10000 ? '约 ' + (y / 10000).toFixed(y % 10000 ? 2 : 0).replace(/0$/, '') + ' 万年' : y >= 1000 ? '约 ' + Math.round(y / 100) * 100 + ' 年' : '约 ' + y + ' 年';
+dev('#cvFig', () => {
+  const svg = $('#cvMap'), list = $('#cvList'), say = $('#cvSay');
+  const m = worldMap({lon0: -125, lon1: 160, lat0: -38, lat1: 60, W: 600});
+  svg.setAttribute('viewBox', '0 0 ' + m.W + ' ' + m.H);
+  function show(i){
+    const keys = DISH[i][1], items = keys.map(k => ING[k]);
+    let g = m.svg;
+    const home = m.P(114, 30);
+    items.forEach((it, j) => {
+      const p = m.P(it[2], it[3]);
+      g += '<path d="M' + p[0].toFixed(1) + ',' + p[1].toFixed(1) + 'Q' + ((p[0] + home[0]) / 2).toFixed(1) + ',' + (Math.min(p[1], home[1]) - 30).toFixed(1) + ' ' + home[0].toFixed(1) + ',' + home[1].toFixed(1) + '" fill="none" stroke="' + ageCol(it[4]) + '" stroke-width="1.2" stroke-opacity=".55"' + (it[6] ? ' stroke-dasharray="3 3"' : '') + '/>';
+    });
+    items.forEach((it, j) => {
+      const p = m.P(it[2], it[3]);
+      g += '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="6.5" fill="' + ageCol(it[4]) + '" stroke="var(--card)" stroke-width="1.5"/>';
+      g += txt(p[0] + 8, p[1] - 6 + (j % 2) * 19, it[0], {s: 15, a: 'start'});
+    });
+    g += '<circle cx="' + home[0] + '" cy="' + home[1] + '" r="4" fill="none" stroke="var(--ink)" stroke-width="1.5"/>';
+    svg.innerHTML = g;
+    list.innerHTML = items.map(it => '<div class="' + (it[6] ? 'new' : '') + '" style="--c:' + ageCol(it[4]) + '"><b>' + it[0] + '</b>' + ageTxt(it[4]) + '<small>' + it[1] + ' · ' + it[5] + '</small></div>').join('');
+    const old = items.reduce((a, b) => a[4] >= b[4] ? a : b), young = items.reduce((a, b) => a[4] <= b[4] ? a : b);
+    const am = items.filter(it => it[6]);
+    const conts = new Set(items.map(it => it[7]));
+    say.innerHTML = '一份' + DISH[i][0] + '，' + items.length + ' 样原料，来自' + conts.size + '个大洲（或大洋上的岛）。最老的是<b>' + old[0] + '</b>（' + ageTxt(old[4]) + '），最年轻的是<b>' + young[0] + '</b>（' + ageTxt(young[4]) + '）。' +
+      (am.length ? '如果你活在 1500 年的中国，这份饭里的<b>' + am.map(x => x[0]).join('、') + '</b>你见都没见过，它们那时还在大洋另一边。' : '这份饭里没有美洲来的东西，1500 年的中国人大体也能吃到，不过多半没这么便宜。');
+  }
+  btnRow($('#cvBtns'), DISH.map(d => d[0]), 0, show);
+  show(0);
+  const leg = document.createElement('div'); leg.className = 'legend';
+  leg.innerHTML = [['var(--grn)', '八千年以上'], ['var(--blu)', '四千到八千年'], ['var(--och)', '一千到四千年'], ['var(--red)', '一千年以内']].map(x => '<span><i style="background:' + x[0] + '"></i>' + x[1] + '</span>').join('') + '<span>虚线：1500 年后从美洲来的 · 黑圈：你（假设在中国）</span>';
+  svg.parentNode.after(leg);
+});
+
+/* ---------- 第二部封面装置：1491 年的菜单 ---------- */
+dev('#mnFig', () => {
+  /* 菜：[地方 · 菜名, 所在半球(O 旧大陆 / A 美洲), [[原料, 原产半球, 小注]...], 1491 年的说法] */
+  const D = [
+    ['意大利 · 番茄意面', 'O', [['小麦面', 'O'], ['番茄', 'A', '1544 年才在意大利的书里出现'], ['橄榄油', 'O'], ['大蒜', 'O'], ['罗勒', 'O'], ['奶酪', 'O']], '意大利人吃面早就有了，可面上浇的是奶酪、香草和油，没有红酱。'],
+    ['爱尔兰 · 炖羊肉', 'O', [['羊肉', 'O'], ['土豆', 'A', '十六世纪末才到爱尔兰'], ['洋葱', 'O'], ['胡萝卜', 'O']], '一锅没有土豆的炖菜，配燕麦饼。爱尔兰人后来离不开土豆，第十六章会讲代价。'],
+    ['印度 · 鸡肉咖喱', 'O', [['鸡', 'O'], ['洋葱', 'O'], ['番茄', 'A'], ['辣椒', 'A', '葡萄牙人十六世纪带到果阿'], ['姜', 'O'], ['姜黄', 'O'], ['孜然', 'O'], ['黑胡椒', 'O'], ['米饭', 'O']], '印度菜早就很香很辣，那时的辣靠黑胡椒、长胡椒和姜，不靠辣椒。'],
+    ['四川 · 麻婆豆腐', 'O', [['豆腐', 'O'], ['牛肉末', 'O'], ['豆瓣酱', 'O', '蚕豆发酵，今天的做法要加辣椒'], ['辣椒', 'A', '四川人大量吃辣椒是清代中后期的事'], ['花椒', 'O'], ['蒜苗', 'O']], '只剩下“麻”，没有“辣”。明朝的四川人吃花椒、姜和茱萸。'],
+    ['中国 · 宫保鸡丁', 'O', [['鸡丁', 'O'], ['花生', 'A', '明代中后期才在江南出现'], ['干辣椒', 'A'], ['花椒', 'O'], ['葱', 'O'], ['酱油', 'O'], ['糖', 'O'], ['醋', 'O']], '这道菜本身是清朝晚期才有名的，它离不开两样美洲来的东西。'],
+    ['泰国 · 冬阴功汤', 'O', [['虾', 'O'], ['香茅', 'O'], ['南姜', 'O'], ['青柠叶', 'O'], ['鱼露', 'O'], ['辣椒', 'A', '十六七世纪由葡萄牙商人带来'], ['番茄', 'A']], '酸、香、咸都有，辣要靠胡椒。今天泰国是世界上最爱辣的地方之一。'],
+    ['西非 · 番茄焖饭', 'O', [['米', 'O', '西非本地有自己驯化的非洲稻'], ['番茄', 'A'], ['辣椒', 'A'], ['洋葱', 'O'], ['鸡', 'O'], ['花生油', 'A']], '饭还在，红色的番茄和辣椒都不在。西非今天的很多主食，玉米、木薯、花生，都是美洲来的。'],
+    ['墨西哥 · 猪肉塔可', 'A', [['玉米饼', 'A'], ['猪肉', 'O', '西班牙人 1519 年后带来'], ['洋葱', 'O'], ['香菜', 'O'], ['青柠', 'O'], ['辣椒', 'A'], ['番茄', 'A'], ['牛油果', 'A']], '玉米饼、辣椒、番茄、牛油果都是本地的；包在里面的猪肉、撒在上面的洋葱和香菜、挤上去的青柠，全是西班牙人带来的。阿兹特克人卷的是火鸡、狗肉、鱼和豆子。'],
+    ['瑞士 · 牛奶巧克力', 'O', [['可可', 'A', '十六世纪才到西班牙'], ['糖', 'O'], ['牛奶', 'O']], '1491 年的欧洲人没听说过可可。牛奶巧克力是 1875 年瑞士人做出来的。'],
+    ['美国 · 感恩节火鸡', 'A', [['火鸡', 'A'], ['南瓜', 'A'], ['玉米', 'A'], ['土豆泥', 'A'], ['蔓越莓', 'A'], ['小麦面包馅', 'O'], ['黄油', 'O'], ['糖', 'O']], '主角火鸡、南瓜、玉米、蔓越莓都是本地的；面包、黄油、糖要等欧洲人带来。']
+  ];
+  let cur = 0, yr = 0;
+  btnRow($('#mnBtns'), D.map(d => d[0]), 0, i => { cur = i; draw(); });
+  btnRow($('#mnYr'), ['1491 年', '今天'], 0, i => { yr = i; draw(); });
+  function draw(){
+    const d = D[cur], miss = d[2].filter(x => x[1] !== d[1]);
+    $('#mnList').innerHTML = d[2].map(x => {
+      const gone = yr === 0 && x[1] !== d[1];
+      return '<div class="' + (gone ? 'new' : '') + '" style="--c:' + (x[1] === 'A' ? 'var(--red)' : 'var(--grn)') + (gone ? ';opacity:.6' : '') + '"><b' + (gone ? ' style="text-decoration:line-through"' : '') + '>' + x[0] + '</b>' + (x[1] === 'A' ? '美洲来的' : '旧大陆来的') + (x[2] ? '<small>' + x[2] + '</small>' : '') + '</div>';
+    }).join('');
+    $('#mnSay').innerHTML = yr === 0 ? '1491 年，这道菜少了 <b>' + miss.length + '</b> 样：' + miss.map(x => x[0]).join('、') + '。' + d[3] :
+      '今天，这道菜的 ' + d[2].length + ' 样原料里，有 ' + miss.length + ' 样是在 1492 年以后才跨过大西洋来的。很多人把它当成“地道的传统”，它的传统其实不到五百年。';
+  }
+  draw();
+});
+
+/* ---------- 装置 1：一天里几个钟头在给嘴干活 ---------- */
+dev('#enFig', () => {
+  const P = [
+    ['中世纪英格兰工匠', 80, '经济史常用的一篮子权重'],
+    ['1901 美国城市家庭', 42.5, '家庭支出'],
+    ['1978 中国农村', 67.7, '居民恩格尔系数'],
+    ['1978 中国城镇', 57.5, '居民恩格尔系数'],
+    ['2023 中国全国', 29.8, '居民恩格尔系数，约数'],
+    ['2020 年代美国', 11, '可支配收入，约数'],
+    ['你', null, '自己拖滑块']
+  ];
+  let cur = 2;
+  const h = slider('enH', v => v + ' 小时', () => draw());
+  const me = slider('enMe', v => v + '%', () => draw());
+  btnRow($('#enBtns'), P.map(p => p[0]), cur, i => { cur = i; draw(); });
+  function draw(){
+    const H = h(), share = i => P[i][1] == null ? me() : P[i][1];
+    $('#enMeRow').style.display = P[cur][1] == null ? '' : 'none';
+    bars($('#enBars'), P.map((p, i) => [p[0], share(i) / 100 * H, p[2], i === cur ? 'var(--main)' : 'var(--ink-3)']), H, v => v.toFixed(1) + ' 时');
+    const s = share(cur), fh = s / 100 * H;
+    const life = fh * 300 * 40;
+    $('#enSay').innerHTML = '<b>' + P[cur][0] + '</b>：吃的钱约占 ' + s + '%。一天干 ' + H + ' 小时，其中约 <b>' + fh.toFixed(1) + ' 小时</b>是在给嘴干活，剩下 ' + (H - fh).toFixed(1) + ' 小时换来房子、衣服、灯油和其他一切。' +
+      '按一年干三百天、干四十年算，一辈子约有 <b>' + fmt(life) + ' 小时</b>（约 ' + (life / 24 / 365).toFixed(1) + ' 年不睡觉的时间）是为了吃饭。' +
+      (s >= 60 ? '这是农业社会的常态：几乎所有的剩余都被肚子吃掉了。' : s <= 15 ? '吃饭只占一点零头，这是人类历史上极少数人才有过的日子。' : '');
+  }
+  draw();
+});
+
+/* ---------- 装置 2：嚼 ---------- */
+dev('#chFig', () => {
+  const svg = $('#chDay');
+  const RR = 12.6, RC = 2.4; // 每 100 千卡要嚼几分钟：生 / 熟
+  const c = slider('chC', v => v + '%', () => draw());
+  const e = slider('chE', v => v + ' 千卡', () => draw());
+  function draw(){
+    const k = c() / 100, need = e();
+    const eff = 0.7 + 0.3 * k;              // 能量吸收率
+    const intake = need / eff;               // 要吃下去的“生重能量”
+    const chew = intake * ((1 - k) * RR + k * RC) / 100 / 60; // 小时
+    const find = 1.5 + intake / 1000 * 1.2;  // 找吃的、搬回来（示意）
+    const cook = k * 1.2;                    // 拾柴、看火
+    const sleep = 9;
+    const free = Math.max(0, 24 - sleep - chew - find - cook);
+    const segs = [['睡觉', sleep, 'var(--ink-3)'], ['嚼', chew, 'var(--red)'], ['找吃的', find, 'var(--och)'], ['拾柴看火', cook, 'var(--main)'], ['剩下', free, 'var(--grn)']];
+    let x = 10, g = '';
+    segs.forEach(s => { const w = s[1] / 24 * 580; if (w > 0.5) { g += '<rect x="' + x.toFixed(1) + '" y="10" width="' + w.toFixed(1) + '" height="34" fill="' + s[2] + '" fill-opacity=".85"/>'; if (w > 34) g += txt(x + w / 2, 32, s[0], {s: 12, c: 'var(--paper)', halo: false}); } x += w; });
+    for (let h = 0; h <= 24; h += 6) g += txt(10 + h / 24 * 580, 62, h + '时', {s: 11, c: 'var(--ink-3)', halo: false});
+    svg.setAttribute('viewBox', '0 0 600 70'); svg.innerHTML = g;
+    kv($('#chKv'), [['一天咀嚼', chew.toFixed(1) + ' 小时'], ['要吃下去', Math.round(intake) + ' 千卡'], ['吸收率', Math.round(eff * 100) + '%'], ['剩下的时间', free.toFixed(1) + ' 小时']]);
+    $('#chSay').innerHTML = k === 0 ? '全吃生的：每天要嚼 ' + chew.toFixed(1) + ' 小时，和黑猩猩差不多；醒着的时候，一大半在吃和找吃的。没有多余的时间，也没有多余的能量去养一个大脑袋。' :
+      k < 0.6 ? '一部分熟食：嚼的时间已经明显少了，但还离不开整天找吃的。' :
+      '大部分吃熟的：每天嚼不到 ' + Math.ceil(chew) + ' 小时，吃得也少了三成。多出来的 ' + free.toFixed(1) + ' 小时可以打猎、做工具、带孩子，以及在火堆旁讲故事。代价是：每天得有人去拾柴、看火，火种不能灭。';
+  }
+  draw();
+});
+
+/* ---------- 装置 3：分肉 ---------- */
+dev('#shFig', () => {
+  const N = 10, DAYS = 120, MEAT = 40, EAT = 4, CAP = 10, START = 5;
+  let mode = 0, seed = 7;
+  function run(p, g, share, r){
+    const res = Array(N).fill(START), dead = Array(N).fill(0);
+    for (let d = 1; d <= DAYS; d++) {
+      const alive = []; for (let i = 0; i < N; i++) if (!dead[i]) alive.push(i);
+      if (!alive.length) break;
+      const kills = alive.filter(() => r() < p);
+      alive.forEach(i => res[i] -= (1 - g));       // 植物补不上的缺口
+      if (share) {
+        const per = Math.min(EAT, kills.length * MEAT / alive.length);
+        alive.forEach(i => res[i] = Math.min(CAP, res[i] + per));
+      } else kills.forEach(i => res[i] = Math.min(CAP, res[i] + EAT));
+      alive.forEach(i => { if (res[i] < 0) dead[i] = d; });
+    }
+    return dead;
+  }
+  const p = slider('shP', v => v + '%', () => draw());
+  const g = slider('shG', v => v + '%', () => draw());
+  btnRow($('#shMode'), ['各吃各的', '全部平分', '再来一次'], 0, i => { if (i === 2) { seed++; $$('#shMode button')[2].classList.remove('on'); $$('#shMode button')[mode].classList.add('on'); } else mode = i; draw(); });
+  function stats(share){
+    const r = rng(1234 + share), P = p() / 100, G = g() / 100; let tot = 0, all = 0;
+    for (let t = 0; t < 400; t++) { const d = run(P, G, share, r); const s = d.filter(x => !x).length; tot += s; if (s === N) all++; }
+    return [tot / 400, all / 4];
+  }
+  function draw(){
+    const P = p() / 100, G = g() / 100;
+    const one = run(P, G, mode === 1, rng(seed * 97 + mode));
+    $('#shOne').innerHTML = one.map(d => '<span class="' + (d ? 'dead' : 'hit') + '">' + (d || DAYS) + '</span>').join('');
+    const a = stats(false), b = stats(true);
+    kv($('#shKv'), [['各吃各的 · 平均活下来', a[0].toFixed(1) + ' 人'], ['各吃各的 · 十人全活', a[1].toFixed(0) + '%'], ['全部平分 · 平均活下来', b[0].toFixed(1) + ' 人'], ['全部平分 · 十人全活', b[1].toFixed(0) + '%']]);
+    const solo = P * EAT, need = 1 - G;
+    $('#shSay').innerHTML = (b[0] - a[0] > 1.5 ? '平分的营地活下来的人明显多：<b>运气被摊平了</b>。各吃各的时候，一个人连着倒霉十几天就撑不住，而他打到肉的那天，吃不完的肉只能看着烂掉。' :
+      b[0] >= 9.5 && a[0] >= 9.5 ? '打猎的机会够大、植物够多，怎么分都饿不死。这样的好地方不多。' :
+      b[0] < 3 ? '机会太小、植物太少，怎么分都撑不住：这时候该做的不是改规矩，而是搬家。' : '平分比各吃各的好一些，但差得不算多。') +
+      '（一个人平均每天能从自己的猎物里补 ' + solo.toFixed(2) + ' 天，缺口是 ' + need.toFixed(2) + ' 天。）';
+  }
+  draw();
+});
+
+/* ---------- 装置 4：割麦子 ---------- */
+dev('#rcFig', () => {
+  const Q0 = 0.001, YRS = 2000;
+  function path(L, m){
+    const out = [[0, Q0]]; let q = Q0, t50 = null, t95 = null;
+    for (let y = 1; y <= YRS; y++) {
+      const qs = q / (q + (1 - q) * (1 - L));   // 掉粒的先掉了一部分
+      q = (1 - m) * qs + m * Q0;                  // 混进野地新采的种子
+      if (t50 == null && q >= 0.5) t50 = y;
+      if (t95 == null && q >= 0.95) t95 = y;
+      if (y % 10 === 0 || y < 60) out.push([y, q]);
+    }
+    return {pts: out, t50, t95, end: q};
+  }
+  const L = slider('rcL', v => v + '% 已掉', () => draw());
+  const M = slider('rcM', v => v + '%', () => draw());
+  const ideal = path(0.6, 0);
+  function draw(){
+    const l = L() / 100, m = M() / 100, r = path(l, m);
+    lineChart($('#rcChart'), [
+      {pts: ideal.pts.map(p => [p[0], p[1] * 100]), color: 'var(--ink-3)', dash: '4 4', w: 1.6},
+      {pts: r.pts.map(p => [p[0], p[1] * 100]), color: 'var(--main)', w: 2.6}
+    ], {xmin: 0, xmax: YRS, ymin: 0, ymax: 100, xt: [0, 500, 1000, 1500, 2000], yt: [0, 50, 95], xf: v => v + ' 年', yf: v => v + '%', H: 230,
+      marks: [[1500, '考古看到的大致速度']]});
+    kv($('#rcKv'), [['占一半', r.t50 ? r.t50 + ' 年' : '两千年内没到'], ['占九成五', r.t95 ? r.t95 + ' 年' : '两千年内没到'], ['两千年后', (r.end * 100).toFixed(r.end < 0.01 ? 2 : 0) + '%']]);
+    const grow = (1 - m) / (1 - l);
+    const ceil = m > 0 ? Math.max(0, 1 - m / l) : 1;
+    $('#rcSay').innerHTML = grow > 1 && !r.t95 && ceil < 0.95 && Math.abs(r.end - ceil) < 0.08 ? '不掉粒的麦子涨到约 ' + Math.round(r.end * 100) + '% 就卡住了：每年从野地里新采的种子不断把它冲淡，<b>只要人们还一边种、一边去野地里采，驯化就走不完</b>。把“野地新采的种子”拖到零试试。' :
+      grow <= 1 ? '每年带回家的优势（' + (1 / (1 - l)).toFixed(2) + ' 倍）抵不过野地种子的冲淡，不掉粒的麦子永远是少数：<b>只要人们还在不停地去野地里采，驯化就不会发生</b>。' :
+      r.t95 && r.t95 < 100 ? '这是“理想的早期农民”：熟透了才割，只种自己留的种。不到一百年，麦子就离不开人了。可惜考古证据说，真实的历史没有这么快。' :
+      r.t95 ? '要 ' + r.t95 + ' 年，几十代人，才走完驯化。这更接近考古看到的样子：没有谁看得到这件事在发生。' : '优势很小，两千年还没走完。慢，但方向是定的。';
+  }
+  draw();
+});
+
+/* ---------- 装置 5：李悝的账（《汉书·食货志》） ---------- */
+dev('#lkFig', () => {
+  const Y = slider('lkY', v => v.toFixed(1) + ' 石', () => draw());
+  const T = slider('lkT', v => v === 10 ? '十一之税' : v + '%', () => draw());
+  const N = slider('lkN', v => v + ' 口', () => draw());
+  const P = slider('lkP', v => v + ' 钱', () => draw());
+  function draw(){
+    const crop = 100 * Y(), tax = crop * T() / 100, food = N() * 1.5 * 12;
+    const left = crop - tax - food, cash = left * P();
+    const rite = 300, cloth = N() * 300, bal = cash - rite - cloth;
+    const mx = Math.max(crop * P(), 1);
+    bars($('#lkBars'), [
+      ['收成', crop * P(), Math.round(crop) + ' 石', 'var(--grn)'],
+      ['交税', tax * P(), Math.round(tax) + ' 石', 'var(--red)'],
+      ['口粮', food * P(), Math.round(food) + ' 石', 'var(--och)'],
+      ['祭祀过节', rite, '', 'var(--ink-3)'],
+      ['穿衣', cloth, '', 'var(--blu)'],
+      [bal >= 0 ? '剩下' : '欠着', Math.abs(bal), '', bal >= 0 ? 'var(--grn)' : 'var(--red)']
+    ], mx, v => Math.round(v) + ' 钱');
+    const deflt = Y() === 1.5 && T() === 10 && N() === 5 && P() === 30;
+    $('#lkSay').innerHTML = (left < 0 ? '连口粮都不够：还差 ' + Math.round(-left) + ' 石，这一家人只能借、只能卖地，或者饿着。' :
+      bal < 0 ? '粮够吃，钱不够花：一年下来<b>欠 ' + Math.round(-bal) + ' 钱</b>。' : '一年下来<b>剩 ' + Math.round(bal) + ' 钱</b>，可以存一点防灾年。') +
+      (deflt ? '这正是李悝的原账：“不足四百五十”。他由此主张国家丰年买进、荒年卖出，稳住粮价。' :
+       P() <= 20 && left > 0 ? '粮价太贱，丰收也换不来钱，这就是“谷贱伤农”。' :
+       P() >= 80 ? '粮价贵，种地的人卖粮划算了，可城里买粮吃的人要叫苦：李悝说“籴甚贵伤民，甚贱伤农”。' :
+       T() >= 30 ? '税到了三成以上，同样的地、同样的人，日子就过不下去了。' : '');
+  }
+  draw();
+});
+
+/* ---------- 装置 6：喝奶的基因 ---------- */
+dev('#lcFig', () => {
+  const P = slider('lcP', v => (v === 0 ? 0.1 : v / 10).toFixed(1) + '% 的基因', () => draw());
+  const S = slider('lcS', v => v.toFixed(1) + '%', () => draw());
+  const GEN = 25, YRS = 8000;
+  function draw(){
+    let p = (P() === 0 ? 0.1 : P() / 10) / 100; const s = S() / 100;
+    const pts = [], ph = x => 1 - (1 - x) * (1 - x);
+    let t50 = null, t90 = null;
+    for (let y = 0; y <= YRS; y += GEN) {
+      const f = ph(p);
+      pts.push([y, f * 100]);
+      if (t50 == null && f >= 0.5) t50 = y;
+      if (t90 == null && f >= 0.9) t90 = y;
+      const wbar = 1 + s * f;
+      p = p * (1 + s) / wbar;
+    }
+    lineChart($('#lcChart'), [{pts, color: 'var(--main)', w: 2.6}], {xmin: 0, xmax: YRS, ymin: 0, ymax: 100, xt: [0, 2000, 4000, 6000, 8000], yt: [0, 50, 90], xf: v => v + ' 年', yf: v => v + '%', H: 220});
+    kv($('#lcKv'), [['开头能消化的人', (ph((P() === 0 ? 0.1 : P() / 10) / 100) * 100).toFixed(1) + '%'], ['过半要', t50 != null ? t50 + ' 年' : '八千年内没到'], ['到九成要', t90 != null ? t90 + ' 年' : '八千年内没到'], ['相当于', t90 != null ? Math.round(t90 / GEN) + ' 代人' : '—']]);
+    $('#lcSay').innerHTML = (t90 != null && t90 <= 6000 ? '每代只多留下 ' + S().toFixed(1) + '% 的后代，' + Math.round(t90 / GEN) + ' 代人以后，九成的人都能喝奶了。<b>一点点优势，乘上几百代，就是翻天覆地</b>。' :
+      t50 != null ? '优势不大，要很久才传开。欧洲的乳糖酶持续性从少见到常见，只用了三四千年，说明当时的选择相当猛烈，这正是“饥荒和瘟疫”那种解释想说明的。' :
+      '优势太小、开头太少，八千年也传不开。很多人群里这个突变始终罕见，一个原因是那里从来没有靠奶熬过荒年的历史。');
+  }
+  draw();
+});
+
+/* ---------- 装置 7：发酵罐 ---------- */
+dev('#fmFig', () => {
+  const S = slider('fmS', v => v + ' 克', () => draw());
+  const T = slider('fmT', v => v + ' ℃', () => draw());
+  const EMAX = 118; // 约 15% 酒精度对应的克/升
+  function sim(s0, t){
+    const f = t <= 30 ? Math.exp(-Math.pow((t - 30) / 11, 2)) : t <= 35 ? 1 - (t - 30) * 0.05 : Math.max(0, 0.75 - (t - 35) * 0.15);
+    const kd = t > 35 ? 0.06 * (t - 35) : 0;
+    let X = 0.01, s = s0, E = 0, dt = 0.05, done = null;
+    const out = [[0, s, 0]];
+    for (let d = dt, i = 1; d <= 30.0001; d += dt, i++) {
+      const inh = Math.max(0, 1 - E / EMAX), sat = s / (s + 4);
+      const use = Math.min(s, 45 * X * f * inh * sat * dt);
+      X += (1.4 * f * X * (1 - X) * inh * sat - kd * X) * dt;
+      X = Math.max(0, X); s -= use; E += 0.48 * use;
+      if (i % 10 === 0) out.push([d, s, E]);
+    }
+    const e95 = 0.95 * E; for (const q of out) if (q[2] >= e95) { done = q[0]; break; }
+    if (done != null && done > 29) done = null;
+    return {out, s, E, done};
+  }
+  function draw(){
+    const r = sim(S(), T());
+    const abv = e => e / 7.89;
+    const m = lineChart($('#fmChart'), [
+      {pts: r.out.map(p => [p[0], p[1]]), color: 'var(--och)', w: 2.4},
+      {pts: r.out.map(p => [p[0], abv(p[2]) * 20]), color: 'var(--main)', w: 2.6}
+    ], {xmin: 0, xmax: 30, ymin: 0, ymax: 320, xt: [0, 5, 10, 15, 20, 25, 30], yt: [0, 100, 200, 300], xf: v => v + ' 天', H: 230, L: 40});
+    let g = '';
+    [0, 5, 10, 15].forEach(v => g += txt(m.W - m.R + 2, m.Y(v * 20) + 4, v + '%', {s: 11, a: 'end', c: 'var(--main)', halo: false}));
+    $('#fmChart').insertAdjacentHTML('beforeend', g);
+    const A = abv(r.E);
+    kv($('#fmKv'), [['最后的酒精度', A.toFixed(1) + '%'], ['剩下的糖', Math.round(r.s) + ' 克/升'], ['大致发酵完', r.done ? Math.round(r.done) + ' 天' : '三十天还没完']]);
+    const t = T();
+    $('#fmSay').innerHTML = t > 36 ? '太热了：酵母还没干多少活就开始死，糖剩下一大半。夏天酿酒容易坏，古人挑季节、挑日子，有道理。' :
+      t < 12 ? '太冷：酵母慢吞吞，三十天还在干。有些啤酒和葡萄酒就是故意在低温下慢慢发酵的，味道更干净，只是要等。' :
+      A >= 14 && r.s > 20 ? '酒精到了 ' + A.toFixed(1) + '%，酵母被自己的酒毒得干不动了，罐子里还剩不少糖：这就是甜酒。想要更烈，只能靠蒸馏。' :
+      r.s < 5 && A < 8 ? '糖不多，几天就吃光了，得到一罐低度的酒，像古代的啤酒和醴。' :
+      '糖差不多都变成了酒精和二氧化碳：一罐“干”的酒，约 ' + A.toFixed(1) + ' 度。';
+  }
+  draw();
+});
+
+/* ---------- 装置 8：腌 ---------- */
+dev('#slFig', () => {
+  const AW = [[0, 1], [3.5, 0.98], [5, 0.97], [10, 0.935], [15, 0.895], [20, 0.84], [26, 0.75]];
+  const aw = s => { for (let i = 1; i < AW.length; i++) if (s <= AW[i][0]) { const a = AW[i - 1], b = AW[i]; return lerp(a[1], b[1], (s - a[0]) / (b[0] - a[0])); } return 0.75; };
+  const BUG = [
+    ['大多数让肉、鱼发臭的细菌', '比如假单胞菌', 0.96, 0],
+    ['大肠杆菌、沙门氏菌', '常见的致病菌', 0.945, 0],
+    ['肉毒杆菌（常见的几型）', '毒素极强，没腌够的罐装、密封食物里要当心', 0.94, 0],
+    ['乳酸菌', '做泡菜、酸菜、酸奶靠它', 0.925, 1],
+    ['大多数酵母', '酱、酒里有用，也会让东西长白膜', 0.88, 2],
+    ['金黄色葡萄球菌', '很耐盐，能在火腿、咸肉表面活下来', 0.86, 0],
+    ['大多数霉菌', '长毛的那些', 0.80, 2],
+    ['嗜盐菌', '在晒盐场、死海里也能活', 0.75, 2]
+  ];
+  const PRE = [['海水', 3.5], ['泡菜', 3], ['腌咸菜', 10], ['酱油', 17], ['咸鱼', 24]];
+  const s = slider('slS', v => v.toFixed(1) + '%', () => draw());
+  btnRow($('#slBtns'), PRE.map(p => p[0] + ' ' + p[1] + '%'), -1, i => { $('#slS').value = PRE[i][1]; $('#slSO').textContent = PRE[i][1].toFixed(1) + '%'; draw(); });
+  function draw(){
+    const S = s(), a = aw(S);
+    kv($('#slKv'), [['水活度', a.toFixed(3)], ['相当于一升水放盐', Math.round(S / (100 - S) * 1000) + ' 克']]);
+    $('#slBugs').innerHTML = BUG.map(b => '<div class="' + (a >= b[2] ? 'grow' : 'stop') + '"><span>' + b[0] + '<small>' + b[1] + ' · 最低约 ' + b[2] + '</small></span><b>' + (a >= b[2] ? '能长' : '长不了') + '</b></div>').join('');
+    $('#slSay').innerHTML = S < 1.5 ? '几乎没放盐：什么都能长，这块肉明天就臭了。' :
+      a >= 0.945 ? '盐不够多，有害的细菌还能长。泡菜就在这个区间：盐只负责先压一压，真正把坏菌挡住的是乳酸菌产的酸，所以泡菜要密封、要等它酸起来，没酸透的不能久放。' :
+      a >= 0.88 ? '大多数致病菌长不了了，乳酸菌和酵母还能慢慢干活：这是腌咸菜、做酱的区间，咸，但还有“发酵”的香味。' :
+      a >= 0.80 ? '只剩下耐盐的球菌、少数酵母和霉菌还能长：酱油、豆瓣酱在这里，靠盐和时间把豆子慢慢“熬”熟。' :
+      '接近饱和：连大多数霉菌都长不了，这是咸鱼、腌肉的做法，能放一整个冬天，代价是吃之前要泡好久的水。';
+  }
+  draw();
+});
+
+/* ---------- 装置 9：柴火账 ---------- */
+dev('#fuFig', () => {
+  const M = [['三块石头支锅', 1.8], ['泥灶 + 陶釜', 1.2], ['带烟囱的灶 + 铁锅', 0.8], ['燃气灶（折合）', 0.25]];
+  const N = [['一家五口', 5], ['一个村子', 500], ['一座县城', 50000], ['北宋汴京', 1000000]];
+  let m = 0, n = 0;
+  btnRow($('#fuM'), M.map(x => x[0]), 0, i => { m = i; draw(); });
+  btnRow($('#fuN'), N.map(x => x[0] + (x[1] >= 1e4 ? '（约 ' + fmt(x[1]) + '人）' : '')), 0, i => { n = i; draw(); });
+  const YIELD = 3; // 吨 / 公顷 / 年
+  function draw(){
+    const ppl = N[n][1];
+    const t = k => M[k][1] * ppl * 365 / 1000;             // 吨 / 年
+    const area = k => t(k) / YIELD;                          // 公顷
+    bars($('#fuBars'), M.map((x, k) => [x[0], t(k), '', k === m ? 'var(--main)' : 'var(--ink-3)']), t(0), v => v >= 1e4 ? fmt(v) + '吨' : v >= 10 ? Math.round(v) + ' 吨' : v.toFixed(1) + ' 吨');
+    const a = area(m), km2 = a / 100;
+    kv($('#fuKv'), [['一年烧掉', (t(m) >= 1e4 ? fmt(t(m)) + '吨' : t(m).toFixed(t(m) < 10 ? 1 : 0) + ' 吨')], ['要多大的林子', a >= 100 ? (km2 >= 100 ? Math.round(km2).toLocaleString() : km2.toFixed(1)) + ' 平方公里' : a.toFixed(a < 10 ? 1 : 0) + ' 公顷'], ['约等于', a >= 100 ? (km2 / 62).toFixed(km2 < 620 ? 1 : 0) + ' 个北京二环以内那么大' : Math.round(a * 1.4) + ' 个足球场']]);
+    const big = N[n][1] >= 1e6;
+    $('#fuSay').innerHTML = big && m === 3 ? '今天的大城市也一样要烧很多东西，只不过换成了从几千公里外用管道送来的天然气，和从电厂送来的电。林子不用砍了，账记到了别的地方。' : big ? '一百万人的城市，哪怕用最省柴的灶，每年也要砍掉相当于一个大县的林子，而且要年年从几十上百公里外运进城。<b>这就是汴京改烧煤的原因</b>：不是人们喜欢煤，是附近已经没有能砍的林子了。' :
+      n === 0 ? '一家人一年要烧几吨柴，在古代，拾柴、砍柴、劈柴是家里的一项大活，常常落在孩子和女人身上。' :
+      m === 0 ? '换一个带烟囱的灶，同样的饭，柴能省一半多，屋里的烟也少得多。今天很多国家推广“改良炉灶”，算的就是这笔账。' : '人一多，林子就不够了。古代很多地方的山被砍秃，水土流失，河流泛滥，起点就是千家万户的灶。';
+  }
+  draw();
+});
+
+/* ---------- 装置 10：一路加价 ---------- */
+dev('#ppFig', () => {
+  /* 站：[名字, 是否收埃及关税] */
+  const OLD = [['马拉巴尔的农民', 0], ['卡利卡特港商', 0], ['阿拉伯船主', 0], ['红海转运', 0], ['开罗与亚历山大', 1], ['威尼斯批发', 0], ['德意志、法、英商人', 0], ['贵族的厨房', 0]];
+  const CAPE = [['马拉巴尔的农民', 0], ['葡萄牙代理商', 0], ['绕好望角的船', 0], ['里斯本王室商行', 0], ['安特卫普批发', 0], ['贵族的厨房', 0]];
+  let route = 0;
+  btnRow($('#ppRoute'), ['经红海和威尼斯（约 1450）', '绕好望角（约 1520）'], 0, i => { route = i; draw(); });
+  const M = slider('ppM', v => v + '%', () => draw());
+  const T = slider('ppT', v => v + '%', () => draw());
+  const L = slider('ppL', v => v + '%', () => draw());
+  function chain(r){
+    const st = r ? CAPE : OLD, m = M() / 100, t = T() / 100, loss = L() / 100;
+    let p = 1; const out = [[st[0][0], 1]];
+    for (let i = 1; i < st.length; i++) {
+      const legLoss = r === 1 && i === 2 ? loss * 2.2 : loss / (st.length - 1) * 1.6; // 绕非洲那一段最险
+      const mm = r === 1 && i === 2 ? m * 2.5 : m;                                      // 远洋运费更贵
+      p = p * (1 + mm) / Math.max(0.2, 1 - legLoss);
+      if (st[i][1]) p *= 1 + t;
+      out.push([st[i][0], p]);
+    }
+    return out;
+  }
+  function draw(){
+    const a = chain(route), other = chain(1 - route);
+    const fin = a[a.length - 1][1], fo = other[other.length - 1][1];
+    bars($('#ppBars'), a.map((x, i) => [x[0], x[1], '', i === a.length - 1 ? 'var(--main)' : 'var(--och)']), Math.max(fin, fo), v => v.toFixed(v < 10 ? 1 : 0) + ' 倍');
+    $('#ppSay').innerHTML = '到了贵族的厨房，这斤胡椒是产地价的 <b>' + fin.toFixed(1) + ' 倍</b>；换另一条路是 ' + fo.toFixed(1) + ' 倍。' +
+      (route === 1 ? (fin < fo ? '绕好望角虽然路远、风险大，但甩掉了三四层中间人和埃及的关税，<b>还是更便宜</b>。这就是葡萄牙人拼命开辟航路的账。' : '这样设定下，绕远路反而更贵：远洋的损耗和运费吃掉了省下的中间环节。历史上，红海那条路在十六世纪也没有完全断掉，两条路竞争了好几十年。') :
+      (T() >= 40 ? '埃及的关税一高，整条路的价钱都跟着涨。马穆鲁克苏丹和威尼斯人坐收其利，欧洲其他国家就想找别的路。' : '路上每多一个人，价钱就多乘一次。这不是谁特别贪心，是路太长。'));
+  }
+  draw();
+});
+
+/* ---------- 装置 11：一公顷地的热量 ---------- */
+dev('#hcFig', () => {
+  /* [庄稼, 吨/公顷, 千卡/公斤, 能种的地（平 水 坡 冷）, 美洲来的?] */
+  const C = [
+    ['小麦', 0.8, 3300, 'plain slope cold', 0],
+    ['稻米', 2.0 * 0.7, 3600, 'water', 0],
+    ['玉米', 1.2, 3600, 'plain slope', 1],
+    ['土豆', 8, 770, 'plain slope cold', 1],
+    ['红薯', 7, 860, 'plain slope', 1],
+    ['木薯', 10, 1500, 'slope', 1]
+  ];
+  const LAND = [['平原旱地', 'plain'], ['有水的平地', 'water'], ['山坡', 'slope'], ['寒冷高地', 'cold']];
+  const YEAR = 730000;
+  let land = 0;
+  btnRow($('#hcLand'), LAND.map(l => l[0]), 0, i => { land = i; draw(); });
+  function draw(){
+    const L = LAND[land][1];
+    const rows = C.map(c => { const ok = c[3].includes(L) || (L === 'water' && c[0] !== '木薯'); const ppl = ok ? c[1] * 1000 * c[2] / YEAR : 0; return [c[0], ppl, ok ? (c[4] ? '美洲来的' : '旧大陆的') : '这块地种不了', c[4] ? 'var(--red)' : 'var(--grn)']; });
+    bars($('#hcBars'), rows, 22, v => v ? v.toFixed(1) + ' 人' : '—');
+    const ok = rows.filter(r => r[1] > 0).sort((a, b) => b[1] - a[1]);
+    const oldBest = rows.filter((r, i) => r[1] > 0 && !C[i][4]).sort((a, b) => b[1] - a[1])[0];
+    const best = ok[0];
+    $('#hcSay').innerHTML = (L === 'cold' ? '寒冷的高地上，麦子勉强能种，土豆却能养活两倍多的人：这就是土豆征服北欧、爱尔兰和安第斯山的原因。' :
+      L === 'slope' ? '山坡旱地，稻子种不了，麦子产量低；玉米、红薯、木薯却长得不错。<b>美洲的庄稼让人能爬上原来养不活人的山</b>，下一章讲中国的山上发生了什么。' :
+      L === 'water' ? '有水的平地，稻子最稳当：亩产高，营养也比块茎全面。美洲的块茎在这里有优势，但没有替代稻子。' :
+      '平原旱地上，美洲的块茎热量最多。') +
+      (best && oldBest ? '这块地上最能养人的是<b>' + best[0] + '</b>（' + best[1].toFixed(1) + ' 人），旧大陆原有的庄稼里最好的是' + oldBest[0] + '（' + oldBest[1].toFixed(1) + ' 人）。' : best ? '这块地上，只有美洲来的庄稼能种。' : '');
+  }
+  draw();
+});
+
+/* ---------- 装置 12：上山 ---------- */
+dev('#hlFig', () => {
+  let terr = 0;
+  const S = slider('hlS', v => v + '°', () => draw());
+  btnRow($('#hlT'), ['顺坡直接种', '先修梯田'], 0, i => { terr = i; draw(); });
+  function draw(){
+    const slope = S(), YRS = 20;
+    const loss = 0.004 * slope * (terr ? 0.18 : 1);   // 每年表土流失比例
+    let soil = 1, plots = 1, age = 0, total = 0, washed = 0;
+    const pts = [], ages = [];
+    for (let y = 1; y <= YRS; y++) {
+      age++;
+      let crop = soil * (terr && age <= 3 ? 0.6 : 1);
+      total += crop; pts.push([y, crop * 100]);
+      washed += soil * loss; soil *= 1 - loss;
+      if (soil < 0.4) { ages.push(age); plots++; soil = 1; age = 0; }
+    }
+    lineChart($('#hlChart'), [{pts, color: 'var(--och)', w: 2.4, dots: true}], {xmin: 1, xmax: YRS, ymin: 0, ymax: 110, xt: [1, 5, 10, 15, 20], yt: [0, 40, 100], xf: v => '第 ' + v + ' 年', yf: v => v + '%', H: 210,
+      marks: [[1, '']].slice(0, 0)});
+    const life = ages.length ? Math.round(ages.reduce((a, b) => a + b, 0) / ages.length) : null;
+    kv($('#hlKv'), [['一块地能种', life ? '约 ' + life + ' 年' : '二十年以上'], ['二十年开了', plots + ' 块地'], ['平均收成', Math.round(total / YRS * 100) + '%'], ['冲走的表土', (washed).toFixed(1) + ' 块地的量']]);
+    $('#hlSay').innerHTML = slope >= 20 && !terr ? '陡坡上顺坡种玉米，几年地就瘦了，只好扔下往深处走。二十年里这一户人要开 ' + plots + ' 块地，冲下去的土，最后都进了山下的河。这正是十八世纪秦巴山区和皖南山区发生的事。' :
+      terr ? '修梯田前几年吃亏，往后收成稳得多，地也能一直种下去。可是修梯田要大量的人工和本钱，租山种地的棚民不知道明年还在不在这里，很少有人愿意下这个本。' :
+      '坡缓一些，地能多种几年，但慢慢流失还在发生。';
+  }
+  draw();
+});
+
+/* ---------- 装置 13：今天这一杯 ---------- */
+dev('#cfFig', () => {
+  /* [名字, 小注, 咖啡因毫克, 添加糖克] */
+  const I = [
+    ['美式咖啡', '大杯', 225, 0], ['加糖拿铁', '大杯，加一泵糖浆', 150, 20], ['奶茶', '500 毫升，全糖', 150, 50], ['可乐', '一罐 330 毫升', 34, 35],
+    ['能量饮料', '一罐 250 毫升', 80, 27], ['瓶装冰红茶', '500 毫升', 20, 45], ['绿茶', '一杯，自己泡', 30, 0], ['红茶', '一杯，自己泡', 47, 0],
+    ['黑巧克力', '50 克', 40, 15], ['牛奶巧克力', '50 克', 10, 25], ['一块奶油蛋糕', '', 0, 30]
+  ];
+  const n = I.map(() => 0);
+  const box = $('#cfList');
+  function list(){ box.innerHTML = I.map((x, i) => '<div class="cd' + (n[i] ? ' on' : '') + '" data-i="' + i + '" role="button" tabindex="0" style="cursor:pointer"><b>' + x[0] + (n[i] ? ' ×' + n[i] : '') + '</b><small>' + (x[1] ? x[1] + ' · ' : '') + '咖啡因约 ' + x[2] + ' 毫克 · 糖约 ' + x[3] + ' 克</small></div>').join(''); }
+  box.addEventListener('click', e => { const c = e.target.closest('.cd'); if (!c) return; n[+c.dataset.i] = (n[+c.dataset.i] + 1) % 5; draw(); });
+  box.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { const c = e.target.closest('.cd'); if (c) { e.preventDefault(); n[+c.dataset.i] = (n[+c.dataset.i] + 1) % 5; draw(); } } });
+  $('#cfClear').addEventListener('click', () => { n.fill(0); draw(); });
+  n[2] = 1;
+  function draw(){
+    list();
+    const caf = I.reduce((a, x, i) => a + x[2] * n[i], 0), sug = I.reduce((a, x, i) => a + x[3] * n[i], 0);
+    bars($('#cfBars'), [['咖啡因', caf, '参考上限 400 毫克', caf > 400 ? 'var(--red)' : 'var(--main)'], ['添加糖', sug, '建议少于 50 克，最好少于 25', sug > 50 ? 'var(--red)' : sug > 25 ? 'var(--och)' : 'var(--grn)']], Math.max(400, caf, sug * 8) , v => Math.round(v));
+    $$('#cfBars .row')[1].querySelector('i').style.width = clamp(sug / 50 * 50, 0, 100) + '%';
+    $$('#cfBars .row')[0].querySelector('i').style.width = clamp(caf / 400 * 50, 0, 100) + '%';
+    $$('#cfBars .row .v')[0].textContent = caf + ' 毫克'; $$('#cfBars .row .v')[1].textContent = sug + ' 克';
+    const tsp = sug / 4;
+    $('#cfSay').innerHTML = !caf && !sug ? '点上面的卡片，记下今天喝了什么。' :
+      '一共约 <b>' + caf + ' 毫克咖啡因</b>、<b>' + sug + ' 克添加糖</b>（约 ' + tsp.toFixed(0) + ' 小勺）。' +
+      (sug >= 50 ? '糖已经到了一天的建议上限。十八世纪初一个英国人平均一年只吃几磅糖，一天不到五克；你今天这些，够他吃' + Math.round(sug / 5) + ' 天。' : sug > 25 ? '糖在“最好少于 25 克”和“少于 50 克”之间。' : '') +
+      (caf > 400 ? '咖啡因超过了健康成年人的一般参考上限，可能心慌、睡不着。' : caf > 200 ? '咖啡因不算少，下午三四点以后再喝，可能影响晚上的睡眠。' : '') +
+      '（条的中点是参考上限。）';
+  }
+  draw();
+});
+
+/* ---------- 装置 14：跑堂的记性 ---------- */
+dev('#wtFig', () => {
+  const NOODLE = ['插肉面', '大燠面', '桐皮面', '冷淘', '鸡丝面'];
+  const ASK = ['要热的', '要冷的', '要温的', '绝冷', '精浇（瘦）', '膘浇（肥）'];
+  const WHO = ['穿青衫的书生', '戴幞头的官人', '胖员外', '军爷', '老妈妈', '卖炭的', '和尚', '小娘子'];
+  const LV = [['三位客人', 3, 6], ['五位客人', 5, 8], ['八位客人', 8, 10]];
+  let lv = 0, orders = [], timer = null, r = rng(Date.now() % 100000);
+  btnRow($('#wtLv'), LV.map(l => l[0]), 0, i => { lv = i; reset(); });
+  function reset(){ clearInterval(timer); $('#wtShow').textContent = '点“开始”，菜单会亮几秒钟。'; $('#wtAns').innerHTML = ''; $('#wtCheck').disabled = true; $('#wtSay').textContent = ''; }
+  const pick = a => a[Math.floor(r() * a.length)];
+  $('#wtGo').addEventListener('click', () => {
+    clearInterval(timer);
+    const n = LV[lv][1], who = [...WHO].sort(() => r() - 0.5).slice(0, n);
+    orders = who.map(w => [w, pick(NOODLE), pick(ASK)]);
+    let left = LV[lv][2];
+    const show = () => { $('#wtShow').textContent = orders.map(o => o[0] + '：' + o[1] + '，' + o[2]).join('\n') + '\n—— 还剩 ' + left + ' 秒'; };
+    show(); $('#wtAns').innerHTML = ''; $('#wtCheck').disabled = true; $('#wtSay').textContent = '记！';
+    timer = setInterval(() => {
+      left--; if (left > 0) { show(); return; }
+      clearInterval(timer);
+      $('#wtShow').textContent = '（菜单收起来了。厨房在等你唱菜。）';
+      $('#wtAns').innerHTML = orders.map((o, i) => '<label>' + o[0] + '<select data-k="n" data-i="' + i + '"><option value="">面？</option>' + NOODLE.map(x => '<option>' + x + '</option>').join('') + '</select><select data-k="a" data-i="' + i + '"><option value="">怎么做？</option>' + ASK.map(x => '<option>' + x + '</option>').join('') + '</select></label>').join('');
+      $('#wtCheck').disabled = false; $('#wtSay').textContent = '凭记忆配好每个人的面，然后上菜。';
+    }, 1000);
+  });
+  $('#wtCheck').addEventListener('click', () => {
+    let ok = 0; const wrong = [];
+    orders.forEach((o, i) => {
+      const n = $('#wtAns select[data-k="n"][data-i="' + i + '"]').value, a = $('#wtAns select[data-k="a"][data-i="' + i + '"]').value;
+      if (n === o[1] && a === o[2]) ok++; else wrong.push(o[0] + '要的是' + o[1] + '，' + o[2]);
+    });
+    $('#wtCheck').disabled = true;
+    const all = orders.length;
+    $('#wtSay').className = 'say ' + (ok === all ? 'ok' : 'bad');
+    $('#wtSay').innerHTML = ok === all ? '全对！' + all + ' 碗面分毫不差。掌柜点了点头。宋朝的好跑堂一次要记二十来碗，你可以试试八位客人。' :
+      '对了 ' + ok + ' / ' + all + ' 碗。' + wrong.join('；') + '。' + (ok <= all / 2 ? '照《东京梦华录》的规矩，这要“罚工价”了。' : '客人告诉了掌柜，挨了一顿骂。');
+  });
+  reset();
+});
+
+/* ---------- 装置 15：夹得住吗 ---------- */
+dev('#csFig', () => {
+  const MAT = [['竹木', 0.45], ['塑料', 0.3], ['光面不锈钢', 0.16], ['带纹的不锈钢', 0.28]];
+  /* [食物, 克, 滑度系数, 最多受得了的力（牛），无上限记 0] */
+  const FOOD = [['花生米', 1, 0.9, 0], ['红烧肉', 30, 0.7, 0], ['鹌鹑蛋', 10, 0.45, 0], ['一筷子粉丝', 20, 0.4, 0], ['嫩豆腐', 15, 0.7, 0.35]];
+  let m = 0, f = 2;
+  const G = slider('csG', v => v + '% 处', () => draw());
+  btnRow($('#csM'), MAT.map(x => x[0]), 0, i => { m = i; draw(); });
+  btnRow($('#csF'), FOOD.map(x => x[0]), 2, i => { f = i; draw(); });
+  function draw(){
+    const d = G() / 100, food = FOOD[f], mu = MAT[m][1] * food[2];
+    const W = food[1] / 1000 * 9.8, tip = W / (2 * mu), finger = tip / d;
+    const svg = $('#csSvg');
+    const x0 = 40, x1 = 560, y0 = 70, yt = 46;
+    const fx = x0 + (x1 - x0) * d;
+    let g = '<line x1="' + x0 + '" y1="' + y0 + '" x2="' + x1 + '" y2="' + yt + '" stroke="var(--kraft)" stroke-width="6" stroke-linecap="round"/>' +
+      '<line x1="' + x0 + '" y1="' + y0 + '" x2="' + x1 + '" y2="' + (y0 + 28) + '" stroke="var(--kraft)" stroke-width="6" stroke-linecap="round"/>' +
+      '<circle cx="' + x0 + '" cy="' + y0 + '" r="9" fill="none" stroke="var(--ink)" stroke-width="2"/>' + txt(x0, y0 + 30, '虎口（支点）', {s: 12}) +
+      '<path d="M' + fx + ',' + (yt + (y0 - yt) * (1 - d) - 26) + 'l0,18" stroke="var(--red)" stroke-width="3" marker-end="url(#csA)"/>' + txt(fx, yt + (y0 - yt) * (1 - d) - 32, '手指 ' + finger.toFixed(1) + ' 牛', {s: 12, c: 'var(--red)'}) +
+      '<circle cx="' + (x1 + 4) + '" cy="' + ((yt + y0 + 28) / 2) + '" r="' + (6 + Math.sqrt(food[1]) * 2) + '" fill="var(--och)" fill-opacity=".8"/>' + txt(x1 - 10, (yt + y0 + 28) / 2 + 40, food[0], {s: 12, a: 'end'});
+    svg.setAttribute('viewBox', '0 0 600 130');
+    svg.innerHTML = '<defs><marker id="csA" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--red)"/></marker></defs>' + g;
+    kv($('#csKv'), [['尖端要夹的力', tip.toFixed(2) + ' 牛'], ['手指要用的力', finger.toFixed(2) + ' 牛'], ['相当于提起', Math.round(finger / 9.8 * 1000) + ' 克的东西']]);
+    const fragile = food[3] && tip > food[3];
+    $('#csSay').innerHTML = fragile ? '夹豆腐要的力已经超过了豆腐受得了的力：<b>一夹就碎</b>。这时候该换勺子，或者把筷子平着伸到底下托。' :
+      finger > 1.5 ? '手指要用很大的力，夹久了手会酸，稍一松就掉。试试换双竹木筷子，或者握得离尖端近一点（滑块往右）。' :
+      finger > 0.6 ? '夹得住，但要用点力。光滑的金属筷子配上滑溜的东西，是很多人到了韩国餐馆才发现的难题。' :
+      '轻轻一夹就住了。握得越靠前，越省力，但能张开的口子越小；握得靠后，口子大，但费力。会用筷子的人，会随手调整位置。';
+  }
+  draw();
+});
+
+/* ---------- 装置 16：你敢吃吗 ---------- */
+dev('#dgFig', () => {
+  /* [食物, 说明, 在哪儿是家常, 中国常见?] */
+  const F = [
+    ['皮蛋', '鸭蛋用碱和盐裹几个星期，蛋白变成黑色透明的冻', '中国各地，配豆腐、熬粥', 1],
+    ['臭豆腐', '豆腐泡进发酵的卤水，闻着臭、吃着香', '长沙、绍兴、台湾的夜市', 1],
+    ['蓝纹奶酪', '奶酪里特意种上青霉菌，一道道蓝绿色的霉纹', '法国、英国、意大利', 0],
+    ['瑞典鲱鱼罐头', '鲱鱼在罐子里继续发酵，罐子会鼓起来，开罐要在户外', '瑞典北部，夏末的聚会', 0],
+    ['炸蚕蛹', '缫丝剩下的蚕蛹，油炸或爆炒', '东北、山东、江浙', 1],
+    ['焗蜗牛', '蜗牛加黄油、大蒜、香芹，放回壳里烤', '法国，节日的前菜', 0],
+    ['凤爪', '鸡爪卤、蒸或泡椒', '广东早茶、全国的卤味店', 1],
+    ['牛蛙 / 青蛙腿', '炒、烤、干锅', '中国南方；法国人吃青蛙腿', 1],
+    ['羊杂碎布丁', '羊心、肝、肺切碎，加燕麦和板油，塞进羊胃里煮', '苏格兰，彭斯之夜必吃', 0],
+    ['发酵鲨鱼肉', '格陵兰鲨鱼肉本身有毒，埋起来发酵几个月再风干', '冰岛，冬季的传统宴席', 0],
+    ['炸蜂蛹', '蜂巢里的幼虫和蛹，油炸后撒盐', '云南、贵州；日本长野', 1],
+    ['卡苏马苏奶酪', '让苍蝇在羊奶酪里产卵，幼虫把奶酪“吃软”，带着活的幼虫吃', '意大利撒丁岛（受卫生法规限制）', 0]
+  ];
+  const ans = F.map(() => null);
+  const box = $('#dgQ');
+  function list(){
+    box.innerHTML = F.map((f, i) => '<div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;background:var(--paper);border-radius:6px;padding:6px 10px;font-size:14.5px;line-height:1.55"><span><b style="font-family:var(--f-display);font-weight:400;font-size:17px">' + f[0] + '</b><br><small style="color:var(--ink-3)">' + f[1] + (ans[i] != null ? ' · <b style="color:var(--ink-2)">' + f[2] + '</b>' : '') + '</small></span><span class="btns" style="margin:0;flex-wrap:nowrap"><button class="btn' + (ans[i] === 1 ? ' on' : '') + '" data-i="' + i + '" data-v="1">敢</button><button class="btn' + (ans[i] === 0 ? ' on' : '') + '" data-i="' + i + '" data-v="0">不敢</button></span></div>').join('');
+  }
+  box.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; ans[+b.dataset.i] = +b.dataset.v; list(); say(); });
+  function say(){
+    const done = ans.filter(a => a != null).length;
+    if (done < F.length) { $('#dgSay').textContent = '还剩 ' + (F.length - done) + ' 样。'; return; }
+    const no = F.filter((f, i) => ans[i] === 0);
+    const cnNo = F.filter((f, i) => f[3] && ans[i] === 0).length, cnAll = F.filter(f => f[3]).length;
+    const fNo = no.length - cnNo, fAll = F.length - cnAll;
+    $('#dgSay').innerHTML = (no.length ? '你拒绝了 <b>' + no.length + '</b> 样：' + no.map(f => f[0] + '（' + f[2] + '）').join('；') + '。每一样，都有人从小吃到大，觉得香。' : '十二样全敢，你是天生的旅行家。') +
+      (no.length ? '<br>中国常见的 ' + cnAll + ' 样里你拒绝了 ' + cnNo + ' 样，外国的 ' + fAll + ' 样里拒绝了 ' + fNo + ' 样。' + (fNo / fAll > cnNo / cnAll + 0.15 ? '<b>越是没见过的，越觉得恶心</b>：这正是罗津说的，恶心是跟着身边的人学来的。一个瑞典人做这份测验，结果多半正好反过来。' : '你对家乡的和外国的东西差不多一样挑剔，或者一样大胆。') : '');
+  }
+  list(); say();
+});
+
+/* ---------- 装置 17：格雷戈里·金的表 ---------- */
+dev('#kgFig', () => {
+  const K = [[0, 0], [10, 30], [20, 80], [30, 160], [40, 280], [50, 450]];
+  const inc = d => { d = clamp(d, 0, 50); for (let i = 1; i < K.length; i++) if (d <= K[i][0]) { const a = K[i - 1], b = K[i], t = (d - a[0]) / (b[0] - a[0]); return lerp(a[1], b[1], t * t * (3 - 2 * t) * 0.35 + t * 0.65); } return 450; };
+  const D = slider('kgD', v => '少了 ' + v + '%', () => draw());
+  const R = slider('kgR', v => v ? v + '%' : '没有仓', () => draw());
+  function draw(){
+    const d = D(), eff = Math.max(0, d - R()), up = inc(eff), P = 1 + up / 100;
+    const pts = []; for (let x = 0; x <= 50; x++) pts.push([x, inc(x)]);
+    const m = lineChart($('#kgChart'), [{pts, color: 'var(--red)', w: 2.4}, {pts: K, color: 'var(--ink)', w: 0, dots: true}], {xmin: 0, xmax: 50, ymin: 0, ymax: 460, xt: [0, 10, 20, 30, 40, 50], yt: [0, 100, 200, 300, 400], xf: v => '少' + v + '%', yf: v => '+' + v + '%', H: 230, L: 52});
+    $('#kgChart').insertAdjacentHTML('beforeend', '<circle cx="' + m.X(eff) + '" cy="' + m.Y(up) + '" r="7" fill="none" stroke="var(--main)" stroke-width="2.5"/>');
+    const eat = 1.2 / P;
+    kv($('#kgKv'), [['实际缺口', eff + '%'], ['粮价', '涨 ' + Math.round(up) + '%'], ['短工的工钱能买到', Math.round(eat * 100) + '% 的口粮']]);
+    $('#kgSay').innerHTML = (eff === 0 ? (d ? '仓里放出的粮把缺口补上了，粮价稳住：这就是常平仓的本意。前提是仓里真的有粮，账上的数字不算。' : '平常年景。短工的工钱够一家人吃，还能剩一点。') :
+      eat >= 1 ? '粮价涨了，短工一家还勉强吃得饱，但已经没有余钱了。' :
+      eat >= 0.6 ? '收成只少了 ' + eff + '%，粮价却涨了 ' + Math.round(up) + '%：短工的工钱只够一家人吃个半饱，开始卖家当、借高利贷。' :
+      '粮价涨了 ' + Math.round(up) + '%，短工的工钱连一家人六成的口粮都买不到。<b>地里只少了 ' + eff + '% 的粮，他家却少了一大半</b>。这就是森说的“交换权利”崩溃。') +
+      (R() && d > R() ? '仓里放出 ' + R() + '% 的粮，粮价从涨 ' + Math.round(inc(d)) + '% 降到涨 ' + Math.round(up) + '%，放一点点，效果比看上去大得多。' : '');
+  }
+  draw();
+});
+
+})();
+
+</script>
+</body>
+</html>

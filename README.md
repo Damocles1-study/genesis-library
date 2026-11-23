@@ -19,7 +19,7 @@
 | 轮到谁了 · 霸主创世记（四部，四个网页） | `turn/index.html`、`turn/two.html`、`turn/three.html`、`turn/four.html` |
 | 铁打的营盘 · 文官创世记（三部，三个网页） | `civil/index.html`、`civil/two.html`、`civil/three.html` |
 | 值不值 · 一个人的创世记（两部，两个网页） | `worth/index.html`、`worth/two.html` |
-| 吃了吗 · 饮食创世记（三部，第一部《火与种》已上架） | `eat/index.html` |
+| 吃了吗 · 饮食创世记（三部，前两部《火与种》《路与桌》已上架） | `eat/index.html`、`eat/two.html` |
 
 ## 改书
 

@@ -8,7 +8,7 @@
     python3 _build/build.py turn1 turn2 turn3 turn4   # 《轮到谁了》四部
     python3 _build/build.py civil1 civil2 civil3      # 《铁打的营盘》三部
     python3 _build/build.py worth1 worth2             # 《值不值》两部
-    python3 _build/build.py eat1 eat2                 # 《吃了吗》两部（第三部待写）
+    python3 _build/build.py eat1 eat2 eat3            # 《吃了吗》三部
 """
 import os, re, sys
 
@@ -45,6 +45,7 @@ BOOKS = {
     # 《吃了吗》分三部（火与种 / 路与桌 / 厂与秤），脚本拆在 _build/eat/js/*.js
     'eat1': ('eat', 'eat/index.html', ['top1.html', 'css.html', 'bar.html'] + ['a%02d.html' % i for i in range(11)]),
     'eat2': ('eat', 'eat/two.html', ['top2.html', 'css.html', 'bar.html'] + ['b%02d.html' % i for i in range(10)]),
+    'eat3': ('eat', 'eat/three.html', ['top3.html', 'css.html', 'bar.html'] + ['c%02d.html' % i for i in range(10)]),
 }
 DRAFT = '--draft' in sys.argv  # 写到一半时跳过缺失段落和锚点检查
 

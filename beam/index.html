@@ -1,0 +1,2367 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="建造创世记第一部《土木》：人为什么要盖房子；泥、木、石、砖四样材料怎样被人拿来盖房；梁、拱、穹顶和斗拱怎样把重量送到地上。">
+<meta property="og:title" content="上梁 · 第一部 · 土木">
+<meta property="og:description" content="四十多万年，人类怎样把泥、木、石、砖垒成房子，又怎样学会让它们站住。每章一张虚构的工牌，正文是真实的历史。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='6' fill='%232b4d6b'/%3E%3Cpath d='M5 17L16 7l11 10' fill='none' stroke='%23ece3cf' stroke-width='2.2' stroke-linejoin='round'/%3E%3Cpath d='M9 15v11M23 15v11M9 19h14' stroke='%23ece3cf' stroke-width='1.8'/%3E%3Crect x='13' y='5' width='6' height='3' fill='%23c9603a'/%3E%3C/svg%3E">
+<title>上梁 · 第一部 · 土木</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@500;700&family=Noto+Serif+SC:wght@400;600;700&family=ZCOOL+XiaoWei&display=swap">
+<style>
+/* ZCOOL XiaoWei 把“回”字画成实心方块：这一个字改用系统宋体/黑体，其余字不变 */
+@font-face{font-family:"Hui Fix";unicode-range:U+56DE;src:local("Songti SC"),local("STSongti-SC-Regular"),local("STSong"),local("SimSun"),local("宋体"),local("Noto Serif CJK SC"),local("NotoSerifCJKsc-Regular"),local("Source Han Serif SC"),local("SourceHanSerifSC-Regular"),local("PingFang SC"),local("PingFangSC-Regular"),local("Microsoft YaHei"),local("Noto Sans CJK SC"),local("NotoSansCJKsc-Regular"),local("Droid Sans Fallback")}
+
+/* 版式：一张图纸。主色是晒图蓝，副色是砖红，强调是安全帽的赭黄；每章开头一张工牌。
+   每章：章首（六样家当、年代条）→ 有人问 → 工牌（虚构）→ 正文 → 古法·白话 → 拆掉的 → 再查一遍 → 眉批 → 装置 → 那时的工地 / 你住的房子。 */
+:root{
+  --paper:#ece3cf; --paper-2:#e2d7bf; --card:#f3ebda;
+  --ink:#221d18; --ink-2:#4d463c; --ink-3:#5e564b; --rule:#ccbfa2;
+  --main:#2b4d6b;   /* 晒图蓝 */
+  --ter:#99472a;    /* 砖红 */
+  --zhu:#a8391f;
+  --kraft:#8a6230;
+  --pur:#5d2f63;
+  --sea:#a9bfc9; --land:#ddd1b4;
+  --och:#7a5510;
+  --red:#983a24;
+  --blu:#2a4f78;
+  --grn:#3c6a4c;
+  --hl:color-mix(in srgb,#c9a44a 34%,transparent);
+  --c-paper:#f2e9d6; --c-ink:#191614;
+  --f-display:"Hui Fix","ZCOOL XiaoWei","Songti SC","STSong","Noto Serif SC",serif;
+  --f-body:"Noto Serif SC","Songti SC","Source Han Serif SC","STSong",serif;
+  --f-hand:"Ma Shan Zheng","Kaiti SC","STKaiti","KaiTi",cursive;
+  --f-sans:"Noto Sans SC","PingFang SC","Hiragino Sans GB",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#15130f; --paper-2:#1d1a15; --card:#221e18; --ink:#ece4d2; --ink-2:#b9b09c; --ink-3:#988f7c; --rule:#3a342b;
+  --main:#93b9da; --ter:#e39a78; --zhu:#e8876a; --kraft:#d1a66a; --pur:#c9a0cf; --sea:#22394a; --land:#332d22; --och:#d9b45e; --red:#e57b5e; --blu:#9cc0e6; --grn:#8fc2a0;
+  --c-paper:#1d1b18; --c-ink:#ece6da; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#15130f; --paper-2:#1d1a15; --card:#221e18; --ink:#ece4d2; --ink-2:#b9b09c; --ink-3:#988f7c; --rule:#3a342b;
+  --main:#93b9da; --ter:#e39a78; --zhu:#e8876a; --kraft:#d1a66a; --pur:#c9a0cf; --sea:#22394a; --land:#332d22; --och:#d9b45e; --red:#e57b5e; --blu:#9cc0e6; --grn:#8fc2a0;
+  --c-paper:#1d1b18; --c-ink:#ece6da; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+.g{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit;text-decoration-color:var(--main);text-underline-offset:3px}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--main);outline-offset:2px}
+svg{max-width:100%;height:auto;display:block}
+
+/* 页眉 */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+.bar-in{max-width:56rem;margin:0 auto;display:flex;align-items:center;gap:10px;padding-block:8px}
+.bar .home{text-decoration:none;font-size:13px;color:var(--ink-3);white-space:nowrap;border:1px solid var(--rule);border-radius:999px;padding:1px 9px}
+.bar .name{font-family:var(--f-display);font-size:19px;letter-spacing:.05em;white-space:nowrap;text-decoration:none}
+.bar .parts{display:flex;gap:2px}
+.bar .parts a{font-size:12.5px;text-decoration:none;color:var(--ink-3);padding:0 6px;border-radius:4px;white-space:nowrap}
+.bar .parts a.on{background:var(--main);color:var(--paper)}
+.bar .vol{margin-left:auto;font-size:13px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.bar .tocbtn{border:1px solid var(--rule);background:transparent;border-radius:6px;padding:0 8px;font-size:13px;cursor:pointer;color:var(--ink-2);white-space:nowrap}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;background:var(--main);width:0}
+.drawer{position:fixed;inset:0;z-index:40;display:none}
+.drawer.on{display:block}
+.drawer .mask{position:absolute;inset:0;background:rgba(0,0,0,.35)}
+.drawer .panel{position:absolute;right:0;top:0;bottom:0;width:min(370px,90vw);background:var(--paper);border-left:1px solid var(--rule);overflow:auto;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px))}
+.drawer h5{font-family:var(--f-display);font-weight:400;font-size:20px;margin:0 0 10px}
+.drawer ol{list-style:none;margin:0;padding:0}
+.drawer li.ph{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.16em;color:var(--main);padding:14px 0 2px}
+.drawer li.vh{font-size:12px;color:var(--ink-3);padding:8px 0 0;letter-spacing:.1em}
+.drawer li a{display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--rule);text-decoration:none;font-size:15px;line-height:1.5}
+.drawer li a .n{font-family:var(--f-display);font-size:18px;color:var(--main);min-width:1.6em;text-align:center}
+.drawer li a small{display:block;color:var(--ink-3);font-size:12px}
+.drawer li a.here .n{background:var(--main);color:var(--paper);border-radius:4px}
+.drawer .x{position:absolute;right:12px;top:10px;border:0;background:transparent;font-size:22px;cursor:pointer;color:var(--ink-2)}
+
+main{display:block}
+.col{max-width:38rem;margin-inline:auto}
+.wide{max-width:54rem;margin-inline:auto}
+.col p{margin:0 0 1.05em;text-indent:2em}
+.col p.ni,.col .ni{text-indent:0}
+h2,h3,h4{text-wrap:balance}
+h3{font-family:var(--f-display);font-weight:400;font-size:24px;line-height:1.4;margin:2.2em 0 .7em;letter-spacing:.03em}
+h3 .y{font-family:var(--f-mono);font-size:13px;color:var(--ink-3);margin-left:10px;letter-spacing:0;white-space:nowrap}
+em{font-style:normal;background:linear-gradient(transparent 62%,var(--hl) 62%)}
+strong{font-weight:600}
+blockquote{margin:1.4em 0;padding:.2em 0 .2em 1.2em;border-left:2px solid var(--och);color:var(--ink-2)}
+blockquote p{text-indent:0!important;margin:0 0 .4em}
+blockquote cite{font-style:normal;font-size:14px;color:var(--ink-3)}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.figcap{font-size:14px;color:var(--ink-2);line-height:1.7;margin-top:8px}
+.sep{text-align:center;color:var(--och);letter-spacing:1.2em;margin:2em 0;text-indent:1.2em!important;font-size:14px}
+ul.plain{font-size:16px;line-height:1.9;padding-left:1.4em}
+ul.plain li{margin:0 0 .35em}
+
+/* 封面 */
+.hero{padding-block:36px 20px}
+.hero .eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;color:var(--ink-3)}
+.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(60px,14vw,124px);line-height:1;margin:.25em 0 .2em;letter-spacing:.1em}
+.hero h1 .sm{display:block;font-size:.19em;letter-spacing:.3em;color:var(--ink-2);margin-top:.6em}
+.hero .part{display:inline-block;font-family:var(--f-display);font-size:22px;color:var(--main);border:1.5px solid var(--main);border-radius:4px;padding:0 10px;margin-bottom:6px;letter-spacing:.1em}
+.hero p.lead{font-size:18px;max-width:36em;margin:0 0 1em}
+.partnav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:24px 0}
+.partnav a{display:block;text-decoration:none;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;background:var(--card);line-height:1.5}
+.partnav a b{display:block;font-family:var(--f-display);font-weight:400;font-size:20px}
+.partnav a small{font-size:12.5px;color:var(--ink-3)}
+.partnav a.on{border-color:var(--main);box-shadow:inset 0 0 0 1px var(--main)}
+.partnav a .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;color:var(--main)}
+
+/* 六张脸 */
+.cast{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin:14px 0}
+.cast figure{margin:0;text-align:center;background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:6px 4px 8px}
+.cast svg{width:100%;max-width:120px;margin:auto;color:var(--c-ink)}
+.cast b{display:block;font-family:var(--f-display);font-weight:400;font-size:19px;line-height:1.2}
+.cast small{display:block;font-size:12px;color:var(--ink-3);line-height:1.4}
+.eras{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 2px}
+
+/* 目录 */
+.toc{list-style:none;margin:20px 0 0;padding:0;border-top:1px solid var(--rule)}
+.toc li a{display:grid;grid-template-columns:2.6em minmax(0,1fr) auto;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--rule);text-decoration:none}
+.toc .n{font-family:var(--f-display);font-size:28px;line-height:1;color:var(--main);text-align:center}
+.toc .t{font-family:var(--f-display);font-size:21px;line-height:1.3}
+.toc .t small{display:block;font-family:var(--f-body);font-size:13px;color:var(--ink-3);margin-top:2px}
+.toc .r{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);text-align:right;white-space:nowrap}
+.toc li a:hover .t{color:var(--main)}
+.toc .vh{padding:16px 0 4px;font-family:var(--f-mono);font-size:12px;letter-spacing:.16em;color:var(--ink-3);border-bottom:1px solid var(--rule)}
+.toc li.away a{opacity:.82}
+.toc li.away .r::after{content:" ↗";color:var(--main)}
+.qmap{list-style:none;margin:0;padding:0;columns:2 17em;column-gap:28px}
+.qmap li{break-inside:avoid;margin:0 0 .5em;font-size:15.5px;line-height:1.65}
+.qmap a{text-decoration:none;border-bottom:1px dashed var(--ink-3)}
+.qmap a:hover{color:var(--main)}
+.qmap b{font-family:var(--f-display);font-weight:400;color:var(--main);margin-left:4px}
+
+/* 卷首 */
+.volhead{position:relative;max-width:54rem;margin:64px auto 20px;padding:30px 22px 24px;border-top:3px double var(--ink);border-bottom:3px double var(--ink);overflow:hidden}
+.volhead .num{font-family:var(--f-mono);font-size:12px;letter-spacing:.24em;color:var(--main)}
+.volhead h2{font-family:var(--f-display);font-weight:400;font-size:clamp(64px,16vw,124px);line-height:1;margin:.1em 0 .12em;letter-spacing:.1em}
+.volhead h2 small{font-size:.24em;letter-spacing:.2em;color:var(--ink-2);margin-left:.4em}
+.volhead .lede{max-width:32em;margin:6px 0 0;font-size:16px;color:var(--ink-2);line-height:1.8}
+.volhead .pyr{position:absolute;right:-10px;bottom:-4px;width:190px;opacity:.9;pointer-events:none}
+
+/* 章首 */
+section.chap{padding-top:24px}
+.chead{position:relative;max-width:54rem;margin:46px auto 26px;padding:20px 22px 18px;display:grid;grid-template-columns:96px minmax(0,1fr);gap:20px;align-items:start;background:var(--paper-2);border-radius:10px;border:1px solid var(--rule)}
+.chead .big{font-family:var(--f-display);font-size:84px;line-height:1;color:var(--main);text-align:center;border:2px solid var(--main);border-radius:8px;padding:4px 0 8px;background:var(--card)}
+.chead .no{font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;color:var(--main)}
+.chead h2{font-family:var(--f-display);font-weight:400;font-size:clamp(32px,7vw,50px);line-height:1.15;margin:.08em 0 .2em;letter-spacing:.06em}
+.chead dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 14px;margin:6px 0 0;font-size:14.5px;line-height:1.7}
+.chead dt{color:var(--ink-3);white-space:nowrap}
+.chead dd{margin:0;color:var(--ink-2)}
+.where{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.where span{font-size:12px;line-height:1.6;border:1px solid var(--rule);border-radius:4px;padding:0 6px;color:var(--ink-3);background:var(--paper)}
+.where span.on{border-color:var(--main);color:var(--main);background:color-mix(in srgb,var(--main) 8%,var(--paper));font-weight:600}
+
+/* 你问的 */
+.ask{margin:1.6em 0;padding:12px 16px 4px;border-radius:8px;background:var(--card);border:1px solid var(--rule)}
+.ask .q{font-family:var(--f-display);font-size:19px;line-height:1.5;margin:0 0 .4em;text-indent:0!important}
+.ask .q::before{content:"有人问";font-family:var(--f-sans);font-size:11.5px;letter-spacing:.14em;color:var(--paper);background:var(--main);border-radius:3px;padding:1px 6px;margin-right:8px;vertical-align:3px}
+.ask p{text-indent:0!important;font-size:15.5px;line-height:1.8;margin:0 0 .7em;color:var(--ink-2)}
+
+/* 河湾：虚构的小地方 */
+.river{margin:1.8em 0 2em;padding:16px 18px 6px;border:1.5px dashed var(--och);border-radius:10px;position:relative;background:color-mix(in srgb,var(--och) 4%,var(--paper))}
+.river::before{content:attr(data-t);position:absolute;top:-12px;left:14px;background:var(--paper);padding:0 8px;font-size:13px;letter-spacing:.12em;color:var(--och);font-weight:600}
+.river::after{content:"虚构";position:absolute;top:-10px;right:14px;background:var(--paper);padding:0 6px;font-size:11px;letter-spacing:.2em;color:var(--ink-3);border:1px solid var(--rule);border-radius:3px;line-height:1.5}
+.river p{text-indent:0!important;font-size:16px;line-height:1.85}
+.river .nm{font-weight:600;color:var(--och)}
+
+/* 别处：同一件事在地球的不同地方 */
+.globe{margin:2em auto;max-width:54rem}
+.globe .gh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;border-bottom:1.5px solid var(--ink);padding-bottom:4px;margin-bottom:10px}
+.globe .gh b{font-family:var(--f-display);font-weight:400;font-size:22px;letter-spacing:.06em}
+.globe .gh span{font-size:13px;color:var(--ink-3)}
+.globe .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(15.5em,1fr));gap:10px}
+.rg{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:10px 13px 8px;font-size:15px;line-height:1.75}
+.rg h6{margin:0 0 4px;font-family:var(--f-display);font-weight:400;font-size:18px;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.rg h6 small{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);white-space:nowrap}
+.rg p{margin:0 0 .5em;text-indent:0!important}
+
+/* 告示 · 白话：讽刺栏 */
+.spin{margin:2em 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:1.5px solid var(--ink);border-radius:6px;overflow:hidden;background:var(--card)}
+.spin>div{padding:12px 16px 10px;font-size:15.5px;line-height:1.8}
+.spin>div p{text-indent:0!important;margin:0 0 .5em}
+.spin .off{font-family:var(--f-display);font-size:17px;letter-spacing:.04em;background:color-mix(in srgb,var(--main) 6%,var(--card))}
+.spin .plain{border-left:1.5px solid var(--ink)}
+.spin i{display:block;font-style:normal;font-family:var(--f-sans);font-size:11.5px;letter-spacing:.2em;color:var(--main);margin-bottom:4px}
+.spin .plain i{color:var(--grn)}
+.spin .src{grid-column:1 / -1;border-top:1px dashed var(--rule);font-size:12.5px;color:var(--ink-3);padding:4px 16px 6px}
+
+/* 那时的一天 */
+.life{margin:2em 0;padding:14px 16px 6px;border-radius:8px;border-left:4px solid var(--grn);background:color-mix(in srgb,var(--grn) 6%,var(--card))}
+.life h5{margin:0 0 .3em;font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--grn)}
+.life h5 small{font-family:var(--f-mono);font-size:12px;color:var(--ink-3);margin-left:8px}
+.life p{text-indent:0!important;font-size:15.5px;line-height:1.8;margin:0 0 .7em}
+
+/* 蓝框 */
+.box{margin:2em 0;padding:16px 18px 8px;border-radius:8px;border:1.5px solid var(--blu);background:color-mix(in srgb,var(--blu) 6%,var(--paper))}
+.box h5{margin:.1em 0 .5em;font-family:var(--f-display);font-weight:400;font-size:21px;color:var(--blu);letter-spacing:.04em}
+.box p{text-indent:0!important;margin:0 0 .8em;font-size:16px;line-height:1.85}
+.box ul,.box ol{margin:0 0 .8em;padding-left:1.2em;font-size:16px;line-height:1.85}
+.box li{margin:0 0 .3em}
+
+/* 眉批 */
+.echo{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;margin:1.6em 0;padding:14px 14px 10px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.echo .stamp{writing-mode:vertical-rl;font-family:var(--f-display);font-size:15px;color:var(--red);border:1.5px solid var(--red);border-radius:3px;padding:6px 2px;letter-spacing:.2em;align-self:start}
+.echo[data-k="存疑"] .stamp{color:var(--ink-3);border-color:var(--ink-3)}
+.echo[data-k="联系"] .stamp{color:var(--och);border-color:var(--och)}
+.echo[data-k="生活"] .stamp{color:var(--grn);border-color:var(--grn)}
+.echo[data-k="押韵"] .stamp{color:var(--blu);border-color:var(--blu)}
+.echo[data-k="讽刺"] .stamp{color:var(--main);border-color:var(--main)}
+.echo p{text-indent:0!important;margin:0 0 .5em;font-size:15.5px;line-height:1.8}
+.echo .rh{font-family:var(--f-display);font-size:18px;margin-bottom:.2em}
+
+/* 章末：史 / 世 */
+.seal{margin:2.6em 0 1em;border:1.5px solid var(--ink);border-radius:6px;background:var(--card);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);overflow:hidden}
+.seal>div{padding:12px 16px 14px;font-size:15.5px;line-height:1.75}
+.seal>div+div{border-left:1.5px solid var(--ink)}
+.seal i{display:block;font-style:normal;font-family:var(--f-display);font-size:22px;letter-spacing:.2em;margin-bottom:2px;color:var(--main)}
+.seal>div+div i{color:var(--grn)}
+.seal i small{font-family:var(--f-body);font-size:12px;letter-spacing:.1em;color:var(--ink-3);margin-left:6px}
+
+/* 装置 */
+.fig{margin:2.2em auto;padding:20px 18px;background:var(--card);border:1px solid var(--rule);border-radius:6px}
+.fig-label{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.12em;color:var(--main)}
+.fig h4{font-family:var(--f-display);font-weight:400;font-size:22px;margin:.25em 0 .35em}
+.fig .how{font-size:14.5px;color:var(--ink-2);margin:0 0 14px;line-height:1.75}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.btn{border:1px solid var(--ink-3);background:transparent;border-radius:999px;padding:4px 14px;font-size:14px;cursor:pointer;line-height:1.6;color:var(--ink)}
+.btn:hover{border-color:var(--ink)}
+.btn.pri{background:var(--main);color:var(--paper);border-color:var(--main)}
+.btn.on{background:var(--main);border-color:var(--main);color:var(--paper)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.readout{font-size:14.5px;color:var(--ink-2);line-height:1.75;min-height:1.5em}
+.readout b{color:var(--ink)}
+.say{background:var(--paper);border-left:3px solid var(--och);padding:8px 12px;margin:10px 0;font-size:15px;line-height:1.75;min-height:3.2em}
+.say.ok{border-left-color:var(--grn)}.say.bad{border-left-color:var(--red)}
+input[type=range]{width:100%;accent-color:var(--main)}
+.ctl{display:grid;grid-template-columns:7em minmax(0,1fr) 6.5em;gap:10px;align-items:center;font-size:14px;color:var(--ink-2);margin:4px 0}
+.ctl output{font-family:var(--f-mono);font-size:13px;color:var(--ink);text-align:right;white-space:nowrap}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(9em,1fr));gap:8px;margin:10px 0}
+.kv div{background:var(--paper);border-radius:6px;padding:6px 10px;font-size:12.5px;color:var(--ink-3);line-height:1.5}
+.kv b{display:block;font-family:var(--f-mono);font-weight:500;font-size:18px;color:var(--ink)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:center}
+.lab{font-size:12.5px;color:var(--ink-3);letter-spacing:.08em;margin:8px 0 4px}
+.chip{display:inline-block;font-size:12px;border:1px solid var(--rule);border-radius:4px;padding:0 6px;color:var(--ink-3);margin:0 4px 4px 0}
+.fig text{font-family:var(--f-sans)}
+.fig .mono{font-family:var(--f-mono)}
+select{border:1px solid var(--ink-3);border-radius:6px;background:var(--paper);padding:2px 6px;font-size:14px}
+label.ck{display:inline-flex;gap:6px;align-items:center;font-size:14px;color:var(--ink-2);margin:2px 12px 2px 0;cursor:pointer}
+label.ck input{accent-color:var(--main)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--ink-2);margin:6px 0}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:0}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(14em,1fr));gap:8px;margin:10px 0}
+.cards .cd{background:var(--paper);border-radius:6px;padding:8px 11px;font-size:14px;line-height:1.65;border:1px solid transparent}
+.cards .cd b{display:block;font-family:var(--f-display);font-weight:400;font-size:17px}
+.cards .cd small{color:var(--ink-3)}
+.cards .cd.on{border-color:var(--main)}
+
+/* 漫画 */
+.comic{max-width:54rem;margin:2em auto;padding:14px;background:var(--c-paper);border:2px solid var(--c-ink);color:var(--c-ink)}
+.comic .ctitle{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px 12px;border-bottom:2px solid var(--c-ink);padding-bottom:6px;margin-bottom:12px}
+.comic .ctitle b{font-family:var(--f-display);font-weight:400;font-size:26px;letter-spacing:.12em}
+.comic .ctitle span{font-family:var(--f-sans);font-size:12px;letter-spacing:.1em}
+.comic .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.pn{position:relative;border:2.5px solid var(--c-ink);background:var(--c-paper);overflow:hidden;container-type:inline-size;aspect-ratio:300/230}
+.pn.w{grid-column:span 2;aspect-ratio:600/250}
+.pn svg{position:absolute;inset:0;width:100%;height:100%;max-width:none;color:var(--c-ink)}
+.pn .cap{position:absolute;left:0;top:0;max-width:62%;background:var(--c-paper);border-right:2px solid var(--c-ink);border-bottom:2px solid var(--c-ink);font-family:var(--f-sans);font-weight:500;font-size:clamp(10.5px,4.1cqw,15px);line-height:1.45;padding:4px 8px;z-index:2}
+.pn .cap.br{left:auto;top:auto;right:0;bottom:0;border:0;border-left:2px solid var(--c-ink);border-top:2px solid var(--c-ink)}
+.pn .bb{position:absolute;z-index:3;background:var(--c-paper);border:2px solid var(--c-ink);border-radius:50%/42%;padding:.5em .85em;font-family:var(--f-sans);font-weight:500;font-size:clamp(10.5px,4.2cqw,16px);line-height:1.45;text-align:center;color:var(--c-ink)}
+.pn.w .bb{font-size:clamp(10.5px,2.5cqw,16px)}
+.pn.w .cap{font-size:clamp(10.5px,2.4cqw,15px)}
+.pn .bb::after{content:"";position:absolute;width:14px;height:14px;background:var(--c-paper);border-right:2px solid var(--c-ink);border-bottom:2px solid var(--c-ink);bottom:-8px;left:30%;transform:skewX(30deg) rotate(45deg)}
+.pn .bb.tr::after{left:auto;right:28%;transform:skewX(-30deg) rotate(45deg)}
+.pn .bb.nt::after{display:none}
+.pn .bb.shout{border-radius:6px;border-width:2.5px;font-weight:700}
+.pn .bb.think{border-style:dashed}
+.pn .sfx{position:absolute;z-index:2;font-family:var(--f-sans);font-weight:700;font-size:clamp(14px,7cqw,30px);color:var(--c-ink);transform:rotate(-8deg);letter-spacing:.05em;text-shadow:2px 2px 0 var(--c-paper),-2px -2px 0 var(--c-paper),2px -2px 0 var(--c-paper),-2px 2px 0 var(--c-paper)}
+.comic .after{font-family:var(--f-sans);font-size:13px;margin:10px 0 0;opacity:.8;line-height:1.7}
+
+/* 表 */
+table.t{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.6;min-width:520px}
+table.t th,table.t td{border-bottom:1px solid var(--rule);padding:7px 8px;text-align:left;vertical-align:top}
+table.t th{font-weight:400;color:var(--ink-3);font-size:13px}
+.src{font-size:14.5px;line-height:1.8;color:var(--ink-2)}
+.src li{margin:0 0 .5em}
+
+/* 本部完 */
+.partend{max-width:38rem;margin:70px auto 0;text-align:center}
+.partend .k{font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;color:var(--main)}
+.partend h3{margin:.3em 0 .6em}
+.partend a.go{display:inline-block;margin-top:8px;padding:8px 18px;border:1.5px solid var(--main);border-radius:999px;text-decoration:none;color:var(--main);font-family:var(--f-display);font-size:19px}
+footer{max-width:38rem;margin:60px auto 0;padding:24px 0 calc(40px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--rule);font-size:14px;color:var(--ink-3);line-height:1.8}
+footer p{text-indent:0!important}
+.nextbook{display:block;margin:20px 0;padding:14px 16px;border:1px solid var(--rule);border-radius:6px;text-decoration:none;background:var(--card)}
+.nextbook b{font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--ink)}
+
+/* ===== 装置专用 ===== */
+.pixels{display:grid;gap:3px;margin:10px 0}
+.pixels span{aspect-ratio:1;border-radius:3px;background:var(--paper);border:1px solid var(--rule)}
+.bars{display:grid;gap:5px;margin:10px 0}
+.bars .row{display:grid;grid-template-columns:7.5em minmax(0,1fr) 4.2em;gap:8px;align-items:center;font-size:13.5px}
+.bars .row .nm{color:var(--ink-2);line-height:1.3}
+.bars .row .nm small{display:block;font-size:11px;color:var(--ink-3)}
+.bars .tr{position:relative;height:18px;background:var(--paper);border-radius:3px;overflow:hidden}
+.bars .tr i{position:absolute;left:0;top:0;bottom:0;background:var(--main);border-radius:3px;transition:width .4s}
+.bars .row .v{font-family:var(--f-mono);font-size:12px;color:var(--ink);text-align:right;white-space:nowrap}
+.tl{position:relative}
+.tl .track{display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:8px;align-items:center;font-size:13px;margin:3px 0}
+.tl .track .nm{color:var(--ink-2);line-height:1.25}
+.tl .lane{position:relative;height:22px;background:var(--paper);border-radius:3px}
+.tl .lane i{position:absolute;top:3px;width:14px;height:14px;margin-left:-7px;border-radius:50%;border:2px solid var(--card)}
+.tl .lane i.f{background:var(--grn)}.tl .lane i.c{background:var(--och)}.tl .lane i.s{background:var(--main)}.tl .lane i.w{background:var(--blu);border-radius:2px}
+.tl .axis{display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:8px;font-family:var(--f-mono);font-size:10.5px;color:var(--ink-3)}
+.tl .axis div:nth-child(2){position:relative;height:16px}
+.tl .axis span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+
+
+
+
+/* ===== 《上梁》专用 ===== */
+/* 再查一遍：流行说法与后来的研究 */
+.myth{margin:2em 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:1.5px solid var(--ink-3);border-radius:6px;overflow:hidden;background:var(--card)}
+.myth>div{padding:12px 16px 8px;font-size:15.5px;line-height:1.8}
+.myth>div p{text-indent:0!important;margin:0 0 .5em}
+.myth .pop{background:color-mix(in srgb,var(--och) 7%,var(--card))}
+.myth .chk{border-left:1.5px solid var(--ink-3)}
+.myth i{display:block;font-style:normal;font-family:var(--f-sans);font-size:11.5px;letter-spacing:.2em;color:var(--och);margin-bottom:4px}
+.myth .chk i{color:var(--main)}
+.myth .tag{grid-column:1 / -1;border-bottom:1px dashed var(--rule);font-family:var(--f-display);font-size:18px;padding:6px 16px 4px;display:flex;gap:10px;align-items:baseline}
+.myth .tag small{font-family:var(--f-sans);font-size:11px;letter-spacing:.18em;color:var(--paper);background:var(--ink-3);border-radius:3px;padding:0 6px}
+.sim{display:block;touch-action:manipulation}
+.qa{display:grid;gap:8px;margin:10px 0}
+.qa button{text-align:left;border:1px solid var(--rule);background:var(--paper);border-radius:6px;padding:8px 12px;cursor:pointer;font-size:15px;line-height:1.6}
+.qa button:hover{border-color:var(--main)}
+.qa button.right{border-color:var(--grn);background:color-mix(in srgb,var(--grn) 10%,var(--paper))}
+.qa button.wrong{border-color:var(--red);background:color-mix(in srgb,var(--red) 8%,var(--paper))}
+.logbox{font-family:var(--f-mono);font-size:12.5px;line-height:1.7;background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:6px 10px;max-height:13em;overflow:auto;color:var(--ink-2);white-space:pre-wrap}
+.inrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(11em,1fr));gap:8px 14px;margin:8px 0}
+.inrow label{display:grid;gap:2px;font-size:13px;color:var(--ink-3)}
+.inrow input[type=number],.inrow input[type=text],.inrow select,textarea.in{border:1px solid var(--ink-3);border-radius:6px;background:var(--paper);padding:3px 8px;font-size:15px;width:100%;color:var(--ink)}
+textarea.in{font-family:var(--f-body);line-height:1.7;resize:vertical}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 10px}
+/* 章首：六样家当 */
+/* 古法 · 白话 */
+.code{margin:2em 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:1.5px solid var(--main);border-radius:6px;overflow:hidden;background:var(--card)}
+.code>div{padding:12px 16px 10px;font-size:15.5px;line-height:1.85}
+.code>div p{text-indent:0!important;margin:0 0 .5em}
+.code .old{font-family:var(--f-display);font-size:17px;letter-spacing:.04em;background:color-mix(in srgb,var(--main) 6%,var(--card))}
+.code .now{border-left:1.5px solid var(--main)}
+.code i{display:block;font-style:normal;font-family:var(--f-sans);font-size:11.5px;letter-spacing:.2em;color:var(--main);margin-bottom:4px}
+.code .now i{color:var(--ter)}
+.code .src{grid-column:1 / -1;border-top:1px dashed var(--rule);font-size:12.5px;color:var(--ink-3);padding:4px 16px 6px}
+/* 拆掉的：被淘汰的材料和做法 */
+.gone{margin:2em 0;padding:12px 16px 6px;border-radius:8px;border:1.5px dashed var(--red);background:color-mix(in srgb,var(--red) 4%,var(--paper));position:relative}
+.gone h5{margin:0 0 .4em;font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--red);display:flex;align-items:center;gap:8px}
+.gone h5::before{content:"";width:22px;height:22px;border:2px solid var(--red);border-radius:50%;background:linear-gradient(135deg,transparent 45%,var(--red) 45% 55%,transparent 55%);flex:none}
+.gone p{text-indent:0!important;font-size:15.5px;line-height:1.8;margin:0 0 .6em}
+.gone p b{color:var(--ink)}
+/* 那时的工地 / 你住的房子 */
+.seal>div+div i{color:var(--ter)}
+
+/* 工牌（虚构）：挂绳卡，顶上一个穿绳的孔 */
+.badge{position:relative;max-width:23rem;margin:2.4em auto 2.2em;background:var(--card);border:1px solid var(--rule);border-radius:14px;overflow:hidden;box-shadow:0 3px 0 var(--rule)}
+.badge::before{content:"";position:absolute;left:50%;top:9px;width:46px;height:9px;margin-left:-23px;border-radius:9px;background:var(--paper);box-shadow:inset 0 1px 2px rgba(0,0,0,.25);z-index:2}
+.badge .hd{background:var(--ter);color:var(--card);padding:26px 16px 8px;text-align:center}
+.badge .hd b{display:block;font-family:var(--f-display);font-weight:400;font-size:21px;letter-spacing:.12em;line-height:1.35}
+.badge .hd small{display:block;font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;opacity:.9}
+.badge .fic{position:absolute;right:10px;top:8px;font-family:var(--f-sans);font-size:10.5px;letter-spacing:.2em;border:1px solid currentColor;color:var(--card);border-radius:3px;padding:0 4px;line-height:1.5;z-index:3}
+.badge .bd{display:grid;grid-template-columns:78px minmax(0,1fr);gap:14px;padding:14px 16px 8px;align-items:start}
+.badge .ph{width:78px;height:96px;border:1px solid var(--rule);border-radius:6px;background:var(--paper);color:var(--ink-3)}
+.badge .ph svg{width:100%;height:100%}
+.badge dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:1px 10px;margin:0;font-size:13.5px;line-height:1.6}
+.badge dt{color:var(--ink-3);font-size:12px;white-space:nowrap;padding-top:1px}
+.badge dd{margin:0;color:var(--ink)}
+.badge dd.nm{font-family:var(--f-display);font-size:19px;line-height:1.3}
+.badge .rule{margin:4px 16px 0;padding:6px 10px;font-size:12.5px;line-height:1.65;color:var(--ink-2);background:var(--paper);border-radius:6px;border-left:3px solid var(--och)}
+.badge .rule b{font-family:var(--f-sans);font-size:11px;letter-spacing:.14em;color:var(--och);margin-right:6px}
+.badge .no{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 16px 10px;font-family:var(--f-mono);font-size:11px;color:var(--ink-3)}
+.badge .no i{flex:1;height:18px;background:repeating-linear-gradient(90deg,var(--ink-2) 0 1px,transparent 1px 3px,var(--ink-2) 3px 5px,transparent 5px 6px,var(--ink-2) 6px 7px,transparent 7px 10px);opacity:.55}
+.badge .real{font-size:12.5px;line-height:1.7;color:var(--ink-2);border-top:1px dashed var(--rule);padding:8px 16px 12px}
+.badge .real b{font-family:var(--f-sans);font-size:11px;letter-spacing:.14em;color:var(--main);margin-right:6px}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .badge .hd,:root:not([data-theme="light"]) .badge .fic{background:color-mix(in srgb,var(--ter) 26%,var(--card));color:var(--ink)}}
+:root[data-theme="dark"] .badge .hd,:root[data-theme="dark"] .badge .fic{background:color-mix(in srgb,var(--ter) 26%,var(--card));color:var(--ink)}
+/* 受力：一张小图解 */
+.load{margin:2em 0;display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;align-items:center;padding:12px 16px;border:1.5px solid var(--main);border-radius:8px;background:color-mix(in srgb,var(--main) 5%,var(--paper))}
+.load svg{width:150px;height:auto;color:var(--main)}
+.load h5{margin:0 0 .3em;font-family:var(--f-display);font-weight:400;font-size:19px;color:var(--main)}
+.load h5::before{content:"受力";font-family:var(--f-sans);font-size:11px;letter-spacing:.16em;color:var(--card);background:var(--main);border-radius:3px;padding:1px 6px;margin-right:8px;vertical-align:3px}
+.load p{text-indent:0!important;margin:0 0 .5em;font-size:15.5px;line-height:1.8}
+/* 卷首：一副梁架 */
+.volhead .frame{position:absolute;right:12px;bottom:8px;width:150px;height:100px;opacity:.75;pointer-events:none;color:var(--main)}
+/* 封面：最高的建筑 */
+.sky{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;margin:10px 0}
+.sky>div{background:var(--paper);border-radius:6px;padding:6px 10px 8px;font-size:13.5px;line-height:1.6}
+.sky b{display:block;font-family:var(--f-display);font-weight:400;font-size:18px;color:var(--ink)}
+.sky small{color:var(--ink-3)}
+.sky .w{border-left:4px solid var(--main)}.sky .c{border-left:4px solid var(--ter)}
+/* 装置：砌墙 */
+.bonds{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 10px}
+
+@media print{.bar,.drawer,footer,.fig:not(.printme){display:none}}
+@media (max-width:700px){
+  body{font-size:16.5px}
+  .two,.spin,.myth,.code,.sky{grid-template-columns:minmax(0,1fr)}
+  .spin .plain{border-left:0;border-top:1.5px solid var(--ink)}
+  .myth .chk{border-left:0;border-top:1.5px solid var(--ink-3)}
+  .code .now{border-left:0;border-top:1.5px solid var(--main)}
+  .seal{grid-template-columns:minmax(0,1fr)}
+  .seal>div+div{border-left:0;border-top:1.5px solid var(--ink)}
+  .toc li a,.toc li.soon>div{grid-template-columns:2.2em minmax(0,1fr)}
+  .toc .r{grid-column:2;text-align:left}
+  .bar .vol{display:none}
+  .bar .parts a{padding:0 4px}
+  .chead{grid-template-columns:58px minmax(0,1fr);gap:14px;padding:16px 14px}
+  .chead .big{font-size:46px;padding:2px 0 6px}
+  .ctl{grid-template-columns:5.5em minmax(0,1fr)}
+  .ctl output{grid-column:1 / -1;text-align:left;margin-top:-6px}
+  .partnav{grid-template-columns:minmax(0,1fr)}
+  .bars .row{grid-template-columns:5.6em minmax(0,1fr) 3.6em;gap:6px}
+  .volhead .frame{width:96px;height:64px;opacity:.4}
+  .when span{font-size:7.5px}
+  .load{grid-template-columns:minmax(0,1fr)}
+  .load svg{width:130px;margin:auto}
+  .badge .bd{grid-template-columns:62px minmax(0,1fr);gap:10px;padding:12px 12px 6px}
+  .badge .ph{width:62px;height:78px}
+}
+@media (max-width:480px){.bar .name{font-size:17px}}
+.toc li.soon .t,.toc li.soon .n{opacity:.55}
+.toc li.soon>div{display:grid;grid-template-columns:2.6em minmax(0,1fr) auto;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--rule)}
+.toc li.soon .r::after{content:" · 写作中";color:var(--main)}
+@media (max-width:700px){.toc li.soon>div{grid-template-columns:2.2em minmax(0,1fr)}}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="bar-in g">
+    <a class="home" href="../" title="回创世书房">书房</a>
+    <a class="name" href="./">上梁</a>
+    <nav class="parts" aria-label="三部">
+      <a href="./" data-p="1">土木</a><a href="two.html" data-p="2">匠作</a><a href="three.html" data-p="3">钢与玻璃</a>
+    </nav>
+    <span class="vol" id="barVol">序</span>
+    <button class="tocbtn" id="tocBtn" aria-label="打开目录">目录</button>
+  </div>
+  <div class="progress" id="prog"></div>
+</header>
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="mask" data-close></div>
+  <nav class="panel" aria-label="目录">
+    <button class="x" data-close aria-label="关闭">×</button>
+    <h5>全书目录</h5>
+    <ol id="drawerList"></ol>
+  </nav>
+</div>
+<main class="g">
+
+<!-- ============ 封面 · 第一部 ============ -->
+<section class="hero" data-vol="序" id="top">
+  <div class="wide">
+    <div class="eyebrow">TOPPING OUT · 窝 · 泥 · 木 · 石 · 砖 · 梁 · 拱 · 穹 · 斗 · 建造创世记</div>
+    <h1>上梁<span class="sm">建造创世记</span></h1>
+    <span class="part">第一部 · 土木</span>
+    <p class="lead">中国北方盖房子，最热闹的一天不是开工，也不是住进去，而是<em>上梁</em>：最高处那根脊檩吊上去的那一刻。梁上挂红布，贴“上梁大吉”，放鞭炮，主人家站在梁上往下撒馒头、糖和硬币，底下的人抢。欧洲人也有差不多的规矩，叫“封顶”：最后一根梁或者最后一层浇完，在楼顶插一棵小树、挂一面旗，请工人喝一顿。</p>
+    <p class="lead">两种仪式隔着半个地球，庆祝的是同一件事：<em>它站住了</em>。墙立起来不算数，屋顶的重量压上去、整副骨架还没有歪，才算数。人类盖了几十万年房子，大部分力气都花在这一件事上：让一堆泥、木头、石头和砖，在重力、风、雨、火和地震面前站住，而且站得够久。</p>
+    <p class="lead">书房里的<a href="../city/">《城里城外》</a>讲过城市怎样长出来：街道、城墙、下水道、公园。这一本往里走一步，只看一栋房子：它用什么盖，为什么不塌，谁来盖，怎样算账，塌了以后人学到了什么。全书三部。第一部《土木》讲四样家当（泥、木、石、砖）和三种站法（梁、拱、穹），最后落到中国的斗拱和《营造法式》。第二部《匠作》讲人：搬砖的、画图的、量尺寸的，以及风雨、冷热和地震。第三部《钢与玻璃》讲铁、水泥、玻璃和电梯怎样让房子往天上长。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig" id="cvFig">
+      <div class="fig-label">封面装置</div>
+      <h4>五千年，最高的房子</h4>
+      <p class="how">拖动年份，看那一年世界上最高的建筑物是哪一座、中国内地有代表性的高建筑是哪一座。蓝线是世界，红线是中国；小人是一米七，画在同一个比例尺上。注意蓝线中间那一段四千年的平地。</p>
+      <div class="ctl"><span>年份</span><input type="range" id="cvY" min="-2700" max="2026" step="1" value="1056"><output id="cvYO"></output></div>
+      <div class="dishes" id="cvBtns"></div>
+      <div class="scroll-x"><svg id="cvSil" class="sim" aria-label="两座最高建筑的剪影比较"></svg></div>
+      <div class="sky"><div class="w" id="cvW"></div><div class="c" id="cvC"></div></div>
+      <svg id="cvLine" class="sim" aria-label="最高建筑高度随时间变化"></svg>
+      <div class="say" id="cvSay"></div>
+      <p class="figcap">只算“建筑物”，不算电视塔、天线杆和烟囱；尖塔算，天线不算。古代的高度多是后人测量或按文献推算的，北魏永宁寺塔的高度只有文献记载、各家估算差得很远（标“存疑”）。中国一栏只列有代表性的几座，不是逐年完整记录。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>每一章怎么读</h3>
+    <ul class="plain">
+      <li><b>章首</b>标出这一章动到了盖房子的哪几样家当（泥土、木头、石头、烧制的砖瓦灰铁、受力、人手），以及讲的是哪个年代；年代条越往右越细，因为越往近，变得越快。</li>
+      <li><b>有人问</b>：一个住房子的人可能会问的问题，先给一个短答。</li>
+      <li><b>工牌</b>（挂绳卡，虚构）：历史上某个工地上的一个人，做成一张今天工地上那样的工牌。人名和工号是编的，工地、年代、工种、工钱和规矩尽量是真的；工牌下面一行小字写明哪些是真的。</li>
+      <li><b>正文</b>讲历史和道理。考古年代常有出入，有争议的地方写“约”“一般认为”，或者放进<b>再查一遍</b>的框里，标“存疑”。</li>
+      <li><b>受力</b>：一张小图，说清楚这一章的东西为什么站得住、会从哪里坏。</li>
+      <li><b>古法·白话</b>：古书里怎样写盖房子，左边是原文（只用公版古籍）或原文大意，右边是白话。</li>
+      <li><b>拆掉的</b>：曾经人人会用、后来被淘汰的材料和做法。</li>
+      <li><b>眉批</b>把这一章和书房里别的书接起来，也找历史上押韵的地方。</li>
+      <li>每章一个<b>装置</b>：小计算器或小模拟，数字是示意，只看方向和数量级，不能拿来设计真房子。</li>
+      <li>章末两栏：<b>那时的工地</b>，<b>你住的房子</b>。</li>
+    </ul>
+
+    <h3>你可能想问的在这里</h3>
+    <ul class="qmap">
+      <li>人是从什么时候开始盖房子的？一栋楼到底有多重？<a data-c="c0" href="#c0">窝</a></li>
+      <li>土房子能住多久？长城和城墙是怎样“夯”出来的？<a data-c="c1" href="#c1">泥</a></li>
+      <li>中国古建筑为什么用木头，不用石头？榫卯为什么不用钉子？<a data-c="c2" href="#c2">木</a></li>
+      <li>金字塔是奴隶盖的吗？那么大的石头怎么运？<a data-c="c3" href="#c3">石</a></li>
+      <li>“秦砖汉瓦”是什么？城墙砖上为什么刻着人名？<a data-c="c4" href="#c4">砖</a></li>
+      <li>古希腊神庙为什么全是柱子？大楼越大越结实吗？<a data-c="c5" href="#c5">梁</a></li>
+      <li>拱桥为什么不用水泥也不塌？赵州桥厉害在哪？<a data-c="c6" href="#c6">拱</a></li>
+      <li>万神殿的圆顶两千年没塌，怎么做到的？<a data-c="c7" href="#c7">穹</a></li>
+      <li>斗拱是干什么用的？《营造法式》是一本什么书？<a data-c="c8" href="#c8">斗</a></li>
+      <li>古代工地上的人拿多少工钱？谁画图纸？<a data-c="c9" href="two.html#c9">役</a></li>
+      <li>地震里为什么有的房子塌、有的不塌？<a data-c="c14" href="two.html#c14">塌</a></li>
+      <li>没有空调的时候怎样让房子凉快？<a data-c="c16" href="two.html#c16">暖</a></li>
+      <li>水泥是谁发明的？钢筋混凝土为什么能用？<a data-c="c18" href="three.html#c18">灰</a></li>
+      <li>摩天楼是怎样出现的？风为什么比重量更可怕？<a data-c="c21" href="three.html#c21">楼</a></li>
+      <li>中国这几十年为什么能盖得这么快？<a data-c="c23" href="three.html#c23">快</a></li>
+    </ul>
+
+    <div class="partnav">
+      <a href="./" class="on"><span class="k">第一部</span><b>土木</b><small>序幕 + 卷一 材 + 卷二 力 · 四样家当、三种站法 · 九章</small></a>
+      <a data-c="c9" href="two.html"><span class="k">第二部</span><b>匠作</b><small>卷三 人 + 卷四 天 · 谁来盖，塌了怎么办</small></a>
+      <a data-c="c17" href="three.html"><span class="k">第三部</span><b>钢与玻璃</b><small>卷五 新家当 + 卷六 往高处去 + 尾声</small></a>
+    </div>
+
+    <h3>全书目录</h3>
+  </div>
+  <div class="wide"><ol class="toc" id="toc"></ol></div>
+</section>
+
+<!-- ============ 序幕 · 窝 ============ -->
+<section class="chap" id="c0" data-vol="序幕 · 窝">
+  <div class="chead">
+    <div class="big">窝</div>
+    <div>
+      <div class="no">序幕</div>
+      <h2>人为什么要盖房子</h2>
+      <dl><dt>讲什么</dt><dd>织布鸟、海狸和白蚁也盖房子；四十七万年前两根刻了槽的木头；尼安德特人在山洞深处摆的石笋圈；猛犸骨头搭的小屋；先有房子还是先有田；“上栋下宇”；我们一天有多少时间待在屋里；一栋楼有多重</dd><dt>本章装置</dt><dd>一栋楼称一称</dd></dl>
+      <div class="mat" data-k="土 木 人"></div>
+      <div class="when" data-a="-476000" data-b="2026"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">盖房子不就是遮风挡雨吗，有什么好讲几十万年的？</p>
+      <p>遮风挡雨只是开头。房子还用来防野兽和敌人、存粮食、养孩子、供神、显摆，最后还用来当钱存（这一条以后再说）。更要紧的是，人想要的房子一直比手里的材料“大一号”：想要更宽的屋子，木头不够长；想要更高的塔，石头会被自己压碎；想要更大的窗，墙就撑不住屋顶。<em>建造的历史，就是人和重力讨价还价的历史</em>，每一次讨到一点便宜，房子的样子就变一次。</p>
+    </div>
+
+    <div class="badge">
+      <span class="fic">虚构</span>
+      <div class="hd"><b>城南某住宅项目 · 三标段</b><small>施工现场人员实名制工牌</small></div>
+      <div class="bd">
+        <div class="ph" data-h="helmet"></div>
+        <dl>
+          <dt>姓名</dt><dd class="nm">（编）老韩</dd>
+          <dt>工种</dt><dd>钢筋工</dd>
+          <dt>班组</dt><dd>劳务分包 · 钢筋二班</dd>
+          <dt>工钱</dt><dd>约 400 元一天，按天记工，月底结</dd>
+          <dt>进场</dt><dd>2026 年 3 月</dd>
+        </dl>
+      </div>
+      <div class="rule"><b>进场须知</b>已完成三级安全教育（公司、项目、班组）。进入现场戴好安全帽；高处作业系安全带。刷脸进出，考勤直连工资专户。</div>
+      <div class="no"><span>No. 2026-0317</span><i></i></div>
+      <div class="real"><b>真的部分</b>建筑工人实名制、三级安全教育、“安全帽、安全带、安全网”三宝都是中国工地上的实际规定；钢筋工的日工钱各地不同，这里取大约的数。人名和工号是编的。国家统计局 2023 年的调查说，农民工的平均年龄是 43.1 岁。</div>
+    </div>
+
+    <h3>先看看别的盖房子的</h3>
+    <p>盖房子不是人的专利。非洲和南亚的织布鸟用草叶打结，编出口朝下的吊巢，蛇很难爬进去；雄鸟编好了，雌鸟来看，看不上就拆了重编。北美的海狸啃倒树、拖来泥和石头，在小溪上筑坝，造出一片深水，再在水中间垒一座只有水下入口的窝。2007 年，有人在加拿大伍德布法罗国家公园的卫星照片上认出一道海狸坝，长约八百五十米，是已知最长的一道。</p>
+    <p>非洲稀树草原上的白蚁更厉害。大白蚁属的蚁塚能高过人头，里面有错综的通道；几百万只白蚁在地下养真菌，蚁塚像一个巨大的肺，和外面换气。1996 年，津巴布韦首都哈拉雷盖了一座办公楼“东门中心”，建筑师说借鉴了白蚁塚的通风原理，不装常规空调也能保持凉爽。这个故事被讲了很多年，后来的研究把它修正了不少（见本章的“再查一遍”）。</p>
+    <p>动物的房子有一个共同点：<em>一代一代几乎不变</em>。今天的织布鸟和一万年前的织布鸟编的是同一种巢。人的房子不一样，它会变，而且越变越快。</p>
+
+    <h3>最早的几根木头</h3>
+    <p>木头会烂，所以最早的人盖过什么，大多已经找不到了。考古学家能找到的，只是一些幸运的残片。</p>
+    <p>2023 年，一个英国和赞比亚的团队在《自然》杂志上发表了一项发现：在赞比亚卡兰博瀑布附近的河岸泥里，挖出两根交叉叠放的木头，上面那根被人用石器刻出一道凹槽，正好卡住下面那根。测年结果大约是<em>四十七万六千年前</em>，比我们这个物种智人出现还早。做这件东西的是哪一种古人类，现在还不知道；它是平台、是走道、还是房子的一部分，也说不清。但这是目前已知最早的、有意把两块木头接在一起的“构造”。</p>
+    <p>法国南部的尼斯有一处叫“阿玛塔台地”的遗址，二十世纪六十年代的发掘者说，在约四十万年前的地层里找到了用树枝搭的椭圆形窝棚的痕迹。这个说法后来受到很多质疑，至今没有定论。</p>
+    <p>更确定的是法国西南部的布吕尼凯勒洞。2016 年的研究说，在离洞口三百多米、一片漆黑的深处，有人把大约四百根石笋敲断，摆成两个大圈和几个小堆，上面还有火烧过的痕迹。年代约十七万六千年前，那时候欧洲只有尼安德特人。他们在洞里摆这些圈做什么，没人知道；但要在完全没有光的地方干这个活，得会用火、会分工、还得有个“要搭成这样”的想法。</p>
+    <p>再往后，证据就多了起来。以色列加利利海边的奥哈罗二号遗址，约两万三千年前的人用树枝和草搭了几座小棚子，地上铺着草（<a href="../eat/">《吃了吗》</a>第三章讲过，他们在棚子里磨过野麦子）。乌克兰的梅日里奇，约一万五千年前的人用猛犸象的下颌骨、腿骨和獠牙垒成圆顶小屋，几座小屋用掉了上百头猛犸的骨头。在没有大树的冰原上，骨头就是木头。</p>
+  </div>
+
+  <div class="code">
+    <div class="old"><i>古书 · 原文</i><p>上古之世，人民少而禽兽众，人民不胜禽兽虫蛇。有圣人作，构木为巢以避群害，而民悦之，使王天下，号之曰有巢氏。</p><p>上古穴居而野处，后世圣人易之以宫室，上栋下宇，以待风雨。</p></div>
+    <div class="now"><i>白话</i><p>远古的时候人少兽多，人打不过野兽和虫蛇。有一位圣人出来，教大家在树上搭窝，躲开这些祸害，大家很高兴，推他做王，叫他“有巢氏”。</p><p>远古的人住在洞里、睡在野外，后来的圣人把这改成了房屋：上面有栋梁，四边有屋檐，用来挡风雨。</p></div>
+    <div class="src">前一段见《韩非子·五蠹》，后一段见《周易·系辞下》。“栋”是屋顶正中最高的那根梁，上梁上的就是它；“宇”本来是屋檐。</div>
+  </div>
+
+  <div class="col">
+    <h3>先有房子，还是先有田</h3>
+    <p>人们常以为，先学会种地，才定居下来盖房子。考古的证据有时候是反过来的。在今天以色列和约旦一带，约一万五千到一万一千年前的纳图夫人还在打猎采集，却已经在一些地方盖起了半埋在地下的圆形石基小屋，在同一个地方一住好几代，把死去的人埋在屋子底下。他们靠的是那一带丰富的野麦、橡子和瞪羚。<em>先是有了舍不得离开的地方，才有了房子；有了房子，才有了守着一块地种庄稼的耐心</em>。</p>
+    <p>中国也有类似的半地穴房子。西安半坡遗址约六千多年前的房子，有的一半挖在地下，地上用木柱撑起草泥屋顶，屋子中间是火塘，门口有一道斜坡。往地下挖一截，墙就省了一截，冬天还暖和。</p>
+  </div>
+
+  <div class="gone">
+    <h5>拆掉的：半地穴</h5>
+    <p>往地下挖半截、上面盖顶的房子，在中国北方用了好几千年。东北的“地窨子”一直用到二十世纪，伐木工和猎人冬天住在里面。它的缺点是潮、暗、怕雨水倒灌。等到墙能用夯土和砖垒得又高又结实，人就一步一步从地下走了上来。今天它只剩一个影子：北方农村的菜窖。</p>
+  </div>
+
+  <div class="col">
+    <h3>我们在屋里待多久</h3>
+    <p>美国环境保护署 2001 年发表过一项全国调查：美国人平均一天里有百分之八十七的时间待在室内，另有百分之六在车里，加起来超过九成。别的国家的调查数字也差不多。一个生活在城市里的现代人，一辈子大约只有几年是在“外面”度过的。</p>
+    <p>这是很新的事情。一个狩猎采集者一天大部分时间在野外；中世纪的农民天亮下地、天黑回家，房子主要是睡觉、做饭和躲雨的地方。<em>房子从“晚上回去的地方”变成“几乎整天待着的地方”</em>，只有一两百年。所以第三部会讲到，玻璃窗、电灯、暖气和空调这些“墙里的东西”，为什么会比墙本身更要紧。</p>
+
+    <h3>一栋楼有多重</h3>
+    <p>你住的楼有多重？很少有人想过。一栋普通的钢筋混凝土住宅楼，连墙带楼板、柱子、基础，每平方米建筑面积大约重一吨多，主要是混凝土。一栋三十层、每层六百平方米的住宅楼，大约就是两万多吨，相当于四五千头大象。这些重量一层一层往下压，最后全部压在地基上。<em>你家的地板，同时也是楼上所有人家的“地基”的一部分</em>。</p>
+    <p>2020 年，以色列魏茨曼研究所的一个团队在《自然》上估算：人类造出来的东西（建筑、道路、机器……）的总重量，大约在 2020 年前后超过了地球上全部活着的生物的干重，两者都是一万亿吨上下；人造物里最大的一项是混凝土，其次是砂石和砖。从这个意义上说，人是地球上最能盖房子的动物，没有之一。</p>
+  </div>
+
+  <div class="fig" id="wtFig">
+    <div class="fig-label">装置 1</div>
+    <h4>一栋楼称一称</h4>
+    <p class="how">选一种房子，拖动滑块改每层面积和层数。装置按每平方米建筑面积的大致重量，算出整栋楼有多重、用了多少混凝土和钢筋，再拿它和大象、金字塔比一比。</p>
+    <div class="dishes" id="wtBtns"></div>
+    <div class="ctl"><span>每层面积</span><input type="range" id="wtA" min="40" max="2000" step="20" value="600"><output id="wtAO"></output></div>
+    <div class="ctl"><span>层数</span><input type="range" id="wtN" min="1" max="100" step="1" value="30"><output id="wtNO"></output></div>
+    <div class="kv" id="wtKv"></div>
+    <div class="bars" id="wtBars"></div>
+    <div class="say" id="wtSay"></div>
+    <p class="figcap">每平方米的重量是很粗的估计（只算房子自己，不算家具和人）：土坯房墙厚，按约 2 吨；砖混楼约 1.3 吨；钢筋混凝土住宅约 1.4 吨，其中混凝土约 0.4 立方米、钢筋约 50 公斤；钢结构写字楼约 0.9 吨；轻型木结构约 0.35 吨。真实数字随设计、地震设防和层数变化很大。胡夫金字塔按约 600 万吨。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">“白蚁塚是天然空调，人照着它盖出了不用空调的楼”<small>存疑</small></div>
+    <div class="pop"><i>流行说法</i><p>白蚁塚靠“烟囱效应”让热空气从顶上排出、凉空气从底下进来，所以里面恒温；哈拉雷的东门中心照抄了这个原理，省了九成空调电费。</p></div>
+    <div class="chk"><i>再查一遍</i><p>研究白蚁塚几十年的生理学家斯科特·特纳等人后来发现，蚁塚里的空气主要不是靠稳定的烟囱效应流动，而是靠白天黑夜的温差和阵风来回“推拉”；蚁塚里的温度也没有传说中那么恒定。东门中心确实用了夜间通风、厚重墙体和烟囱来降温，省下不少能耗，但它的设计更多来自建筑师熟悉的被动降温手法，“照抄白蚁”是一个好听的说法。结论：<b>白蚁是好老师，但这个故事被讲得太顺了</b>。</p></div>
+  </div>
+
+  <div class="echo" data-k="联系">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">宇宙本来是一间屋子</p><p>“宇宙”两个字，本来是房子的零件。《淮南子》里说燕子麻雀以为凤凰“不能与之争于宇宙之间”，东汉高诱注：“宇，屋檐也；宙，栋梁也。”燕雀眼里的天下，就是一间屋子的屋檐到房梁。后来“宇”被借去指上下四方，“宙”指古往今来。今天说一个人是“栋梁之材”，说的也是那根最后吊上去的梁：<em>整间屋子的重量，最后都落到它身上</em>。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>这本书怎样走</h3>
+    <p>第一部分两卷。卷一“材”讲四样家当：泥土、木头、石头和砖。每一样都有自己的脾气：泥便宜但怕水，木头好用但怕火怕虫，石头结实但太重，砖要用火烧，烧砖要柴，柴要砍树。卷二“力”讲三种让房子站住的办法：用梁横着架过去，用拱弯着撑过去，用穹顶把一个圆盖起来；最后讲中国人把木头玩到极致的斗拱，和一本给工地算账用的书《营造法式》。</p>
+    <p>每一章开头有一张工牌，是那个时代某个工地上的一个人。他们大多没有在历史上留下名字，但房子是他们一块一块垒起来的。</p>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>那时的工地</i>几十万年里，人的“房子”大多是一个能挡风、能生火、能守着的窝。最早留下来的，是两根刻了槽的木头和一圈敲断的石笋。</div>
+      <div><i>你住的房子</i>你一天九成时间待在屋里，头顶和脚下压着几万吨混凝土，每平方米都有人算过它扛不扛得住。这本书讲的，就是这笔账是怎样学会算的。</div>
+    </div>
+  </div>
+</section>
+
+<div class="volhead" id="v1" data-vol="卷一 · 材">
+  <div class="num">VOLUME I · MATERIALS</div>
+  <h2>材<small>四样家当</small></h2>
+  <p class="lede">在钢筋和水泥出现以前，人类盖房子差不多只有四样家当：脚下的泥土，林子里的木头，山上的石头，以及把泥土放进火里烧出来的砖和瓦。哪里有什么，就用什么；缺什么，就得花大价钱从远处运来。卷一讲这四样东西各自的脾气，以及围着它们干活的人。</p>
+  <svg class="frame" data-t="材" aria-hidden="true"></svg>
+</div>
+
+<!-- ============ 第一章 · 泥 ============ -->
+<section class="chap" id="c1" data-vol="卷一 · 材 · 泥">
+  <div class="chead">
+    <div class="big">泥</div>
+    <div>
+      <div class="no">第一章</div>
+      <h2>一捧土怎样站起来</h2>
+      <dl><dt>讲什么</dt><dd>三种泥房子：抹泥、土坯、夯土；杰里科和恰塔尔许于克；埃及人的砖里为什么掺草；“筑之登登，百堵皆兴”；版筑工出身的宰相；统万城的锥子；沙漠里的高楼和全城一起抹墙的清真寺；土楼和窑洞；土房子怕什么</dd><dt>本章装置</dt><dd>百堵皆兴：夯一圈城墙要多少人</dd></dl>
+      <div class="mat" data-k="土 人"></div>
+      <div class="when" data-a="-9000" data-b="2026"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">土一沾水就成了泥，怎么能拿来盖房子？</p>
+      <p>土确实怕水，但只要让它干着，它比很多人想的结实得多。夯实的土墙能扛住几层楼的重量，有的已经站了两三千年。人类最古老的城墙、最多人住过的房子，都是土做的；直到今天，世界上仍有很多人住在土房子里。土房子的诀窍只有一句：<em>给它一双好靴子，再给它一顶好帽子</em>，也就是不被水泡的墙脚和够宽的屋檐。</p>
+    </div>
+
+    <div class="badge">
+      <span class="fic">虚构</span>
+      <div class="hd"><b>大夏 · 统万城营造</b><small>朔方水北 · 黑水之南</small></div>
+      <div class="bd">
+        <div class="ph" data-h="wrap"></div>
+        <dl>
+          <dt>姓名</dt><dd class="nm">（编）阿骨</dd>
+          <dt>工种</dt><dd>版筑夫 · 蒸土</dd>
+          <dt>所属</dt><dd>将作大匠叱干阿利部</dd>
+          <dt>工钱</dt><dd>无；岭北夷夏征发十万人之一</dd>
+          <dt>进场</dt><dd>凤翔元年（413）</dd>
+        </dl>
+      </div>
+      <div class="rule"><b>验收办法</b>筑成一版，以铁锥刺之。锥入一寸，即杀作人，并筑之。</div>
+      <div class="no"><span>No. 413-统万</span><i></i></div>
+      <div class="real"><b>真的部分</b>赫连勃勃建大夏国、派叱干阿利发十万人筑统万城、“蒸土筑城，锥入一寸即杀作人而并筑之”，都出自《晋书·赫连勃勃载记》。统万城遗址在今陕西靖边，城墙残段至今还站着，当地人叫它“白城子”。人名是编的。</div>
+    </div>
+
+    <h3>三种泥房子</h3>
+    <p>用土盖房，大致有三种办法。</p>
+    <p>第一种是<b>抹泥</b>：先用树枝、竹子或芦苇编一个骨架，再把掺了草的泥糊上去，干了就是墙。西安半坡六千多年前的房子用的就是这种“木骨泥墙”；欧洲直到十九世纪，很多房子还是木框架里填编条再抹泥。</p>
+    <p>第二种是<b>土坯</b>：把湿泥倒进木头模子里，脱出一块一块的坯子，在太阳底下晒干，再像砌砖一样垒起来。土坯不用火烧，省柴。</p>
+    <p>第三种是<b>夯土</b>：用木板夹出一个槽，往里倒半湿的土，用木杵一下一下砸实，砸完一层再加一层，满了就把板子往上挪。中国古书里管这叫“版筑”，版是夹板，筑是砸。</p>
+    <p>这三种办法在世界各地都被独立发明过很多次，因为土到处都有，不要钱。</p>
+
+    <h3>最早的泥城</h3>
+    <p>约旦河谷的杰里科，是人类住得最久的地方之一。一万一千多年前，那里的人就用一面平一面鼓的手捏土坯盖圆形小屋；再晚一些，土坯变成了长条形，上面留着一排一排的拇指印，方便抹泥时咬得更牢。</p>
+    <p>今天土耳其中部的恰塔尔许于克更奇怪。约九千年前到八千年前，几千人住在一片紧挨着的土坯房里，房子和房子之间没有街道，大家在屋顶上走路，从屋顶开个洞，顺着梯子下到自己家。墙面每年重新抹一层白灰泥，有的墙前后抹了上百层，像树的年轮。房子塌了或者旧了，就把它填平，在上面接着盖新的。几百年下来，整个村子越摞越高，成了一座土丘。</p>
+    <p>美索不达米亚和埃及更是土坯的天下。两河流域缺石头、缺大树，最不缺的就是河边的泥。埃及人用尼罗河的淤泥掺上碎草做坯，《出埃及记》里法老为难以色列人，就是从草下手的：</p>
+    <blockquote><p>你们不可照常把草给百姓做砖，叫他们自己去捡草。他们素常做砖多少，你们仍旧向他们要多少，一点不可减少。</p><cite>《旧约·出埃及记》第五章，和合本</cite></blockquote>
+    <p>草在泥里的作用，和今天混凝土里的钢筋有点像：泥干的时候会收缩，容易裂，草的纤维把裂缝拉住。西班牙语里的土坯叫 adobe，这个词从阿拉伯语来，阿拉伯语又是从古埃及语里借的。一个“土坯”字，走了几千年。</p>
+  </div>
+
+  <div class="code">
+    <div class="old"><i>古书 · 原文</i><p>乃召司空，乃召司徒，俾立室家。其绳则直，缩版以载，作庙翼翼。</p><p>捄之陾陾，度之薨薨，筑之登登，削屦冯冯。百堵皆兴，鼛鼓弗胜。</p></div>
+    <div class="now"><i>白话</i><p>叫来管工程的官、管人手的官，让他们盖房子。拉起墨线，绳子笔直；夹好木板，一层一层往上筑；宗庙盖得端端正正。</p><p>筐里装土沙沙响，倒进版里轰轰响，木杵夯土登登响，削平墙面砰砰响。上百堵墙一起往上长，催工的大鼓都压不住这片声音。</p></div>
+    <div class="src">见《诗经·大雅·绵》，讲周人的祖先古公亶父迁到岐山下建城。这是中国最早的一段工地录音。</div>
+  </div>
+
+  <div class="col">
+    <h3>版筑</h3>
+    <p>中国的夯土，比文字还早。河南、山西、山东一带的龙山文化遗址里，已经有夯土城墙，距今四千多年。郑州商城的城墙约三千六百年前筑成，周长约七公里，残高至今还有好几米；考古学家把墙切开，能看到一层一层的夯土，每层不到十厘米厚，层面上布满了圆圆的夯窝，是当年木杵砸出来的。</p>
+    <p>版筑是苦活，干这个的是最底层的人。《孟子》里说“傅说举于版筑之间”：商王武丁的宰相傅说，据说原来是在工地上筑墙的刑徒。这句话的意思和“英雄不问出处”差不多，但它也透露了一件事：在古人心里，筑墙的人和宰相之间，隔着整个天下。</p>
+    <p>秦汉的长城，大部分也不是砖砌的，而是就地取材：黄土高原上夯黄土，戈壁上用一层砂石、一层芦苇或红柳枝交替铺压。今天甘肃敦煌一带还能看到汉代的长城残段，两千年的风沙吹过，芦苇层还清清楚楚。我们印象里那种青砖包皮、垛口整齐的长城，大多是明朝中后期才修的。</p>
+    <p>夯土要结实，关键是土的湿度和砸得够不够。太干砸不实，太湿砸成了泥饼。老工匠的经验是“手握成团，落地开花”。后来人们发现往土里掺石灰更结实，石灰、黏土和砂混在一起，南方叫“三合土”，硬起来接近石头。</p>
+
+    <h3>锥子</h3>
+    <p>公元 413 年，匈奴人赫连勃勃在今天陕西北部建都，取名“统万”，意思是要统一天下、君临万邦。负责工程的叱干阿利“性尤工巧，然残忍刻暴”，他的验收办法是拿铁锥扎墙：<em>锥子扎进去一寸，就把筑这段墙的人杀了，一起筑进墙里</em>。赫连勃勃认为这是忠心，把整个工程都交给他。</p>
+    <p>统万城的城墙确实结实，一千六百年后的今天还站在毛乌素沙地边上，白得发亮。现代学者分析过它的土，发现里面掺了石灰，和砂、黏土一起成了三合土；所谓“蒸土”，可能就是生石灰遇水发热冒气的样子。可是城再结实也没用：大夏国在 431 年就亡了，离筑城不到二十年。城留下来了，筑城的人和下令的人都没留下来。</p>
+  </div>
+
+  <div class="load">
+    <svg viewBox="0 0 150 130" aria-hidden="true"><path d="M50 18h50l12 92H38z" fill="var(--kraft)" fill-opacity=".35" stroke="currentColor" stroke-width="2"/><path d="M20 18h110" stroke="var(--ter)" stroke-width="5"/><path d="M75 30v60" stroke="currentColor" stroke-width="2"/><path d="M69 82l6 10 6-10" fill="currentColor"/><path d="M34 110h82v12H34z" fill="currentColor" fill-opacity=".5"/><path d="M8 124q14-6 28 0t28 0t28 0t28 0t28 0" fill="none" stroke="var(--blu)" stroke-width="2"/></svg>
+    <div>
+      <h5>土墙只会“扛”</h5>
+      <p>土墙压得住，拉不住：重量从上往下传，墙越往下压力越大，所以夯土墙要下厚上薄，这在古建筑里叫“收分”。它怕的是两样东西：一是水，从墙脚往上渗，把土泡软，所以墙底要垫石头（好靴子）；二是雨，从上往下冲，所以屋檐要挑得够远（好帽子）。还有一样更可怕的：地震时墙会被左右推拉，而土一被拉就裂。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>土做的高楼，土做的节日</h3>
+    <p>也门东部的希巴姆城，有约五百座土坯塔楼挤在一道城墙里，大多是十六世纪以后重建的，五到十一层，最高的约三十米，被人叫作“沙漠里的曼哈顿”。楼越往上墙越薄，外面刷白灰防雨，屋顶要年年修。</p>
+    <p>西非马里的杰内大清真寺，1907 年重建，是世界上最大的土坯建筑。它的墙上插满了伸出来的棕榈木棍，看着像刺猬。这些木棍是脚手架：每年雨季前，全城的人在一个节日里一起出动，有人和泥，有人运泥，有人爬上木棍把新泥抹到墙上，把一年里被雨水冲掉的那层补回来。<em>一座土房子能站一百年，是因为一座城的人一百年里每年都来抹它一遍</em>。</p>
+    <p>中国福建、广东山区的客家土楼，是另一种极致。圆的、方的，外墙底部厚一两米，墙里埋着竹片或杉木条当“筋”，四五层高，一座楼住几十户、几百口人，大门一关就是一座堡垒。2008 年，福建土楼进了世界遗产名录。黄土高原上的人则干脆不往上盖，而往里挖：窑洞冬暖夏凉，因为几米厚的黄土把外面的冷热都挡住了。</p>
+
+    <h3>土房子的账</h3>
+    <p>土房子便宜、隔热、拆了还能回到地里，这是它的好处。它的坏处在地震里暴露得最惨。2003 年 12 月 26 日，伊朗东南部的巴姆发生六点六级地震，城里大多是土坯房，两万六千多人死亡；那座有两千年历史、全用土坯垒成的古城堡，几十秒里塌成了一堆土。土坯又重又脆，墙一倒，整片屋顶就砸下来。</p>
+    <p>所以，土房子在很多地方是穷的代名词：住得起砖房的人，都搬出了土房。可是在另一些人眼里，它又回来了。中国建筑师王澍在杭州象山校园里盖的“水岸山居”，就用了大面积的夯土墙；欧洲和美国也有建筑师重新研究夯土，配上钢筋和防水，盖出又好看又节能的房子。<em>同一捧土，穷的时候是不得已，富了以后成了讲究</em>。</p>
+  </div>
+
+  <div class="fig" id="hdFig">
+    <div class="fig-label">装置 2</div>
+    <h4>百堵皆兴：夯一圈城墙要多少人</h4>
+    <p class="how">选一段墙，或者自己拖滑块改尺寸。墙的截面按梯形算（下宽上窄）。“每人每天”是一个人一天连挖带运带夯，能做成多少立方米的夯土墙，古代人力大约在零点二到零点五之间。</p>
+    <div class="dishes" id="hdBtns"></div>
+    <div class="ctl"><span>长度</span><input type="range" id="hdL" min="0.5" max="50" step="0.5" value="7"><output id="hdLO"></output></div>
+    <div class="ctl"><span>高</span><input type="range" id="hdH" min="2" max="16" step="0.5" value="10"><output id="hdHO"></output></div>
+    <div class="ctl"><span>底宽</span><input type="range" id="hdB" min="1" max="30" step="0.5" value="20"><output id="hdBO"></output></div>
+    <div class="ctl"><span>顶宽</span><input type="range" id="hdT" min="0.5" max="12" step="0.5" value="5"><output id="hdTO"></output></div>
+    <div class="ctl"><span>人手</span><input type="range" id="hdW" min="500" max="100000" step="500" value="10000"><output id="hdWO"></output></div>
+    <div class="ctl"><span>每人每天</span><input type="range" id="hdP" min="0.1" max="0.8" step="0.05" value="0.3"><output id="hdPO"></output></div>
+    <svg id="hdSec" class="sim" aria-label="城墙截面"></svg>
+    <div class="kv" id="hdKv"></div>
+    <div class="say" id="hdSay"></div>
+    <p class="figcap">示意模型。按“郑州商城”算出的土方约八十多万立方米，和考古学家常引的估计同一个量级；真实工期还要看农闲、天气、取土远近，古代徭役一年往往只征一两个月。长城一段按戈壁上的汉长城大致尺寸假设。</p>
+  </div>
+
+  <div class="gone">
+    <h5>拆掉的：木骨泥墙</h5>
+    <p>树枝编骨、两面抹泥的墙，在中国用到先秦，在欧洲用到十九世纪。英国都铎时代那种黑木框白墙的老房子，白的部分很多就是编条抹泥。它轻、便宜、好修，但不隔音、怕火、要年年补。砖便宜了以后，它就从城里退到了乡下，又从乡下退进了博物馆。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">“长城是太空中唯一能用肉眼看到的人造建筑”<small>错</small></div>
+    <div class="pop"><i>流行说法</i><p>长城那么长，从月球上都能看见。</p></div>
+    <div class="chk"><i>再查一遍</i><p>这个说法在宇航员上天以前就流传了。长城虽然长，但大多数地段只有几米宽，颜色又和周围的土石差不多，从几百公里高的轨道上，肉眼基本分辨不出；月球就更不用说了。2003 年杨利伟乘神舟五号回来后说，他没有看到长城。从轨道上更容易看见的，反倒是城市的灯光、机场跑道和大片的温室。<b>长城的伟大不在于从太空看得见，而在于每一段都是人一筐一筐背上去的</b>。</p></div>
+  </div>
+
+  <div class="echo" data-k="押韵">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">锥子和名单</p><p>统万城用锥子验收，杀的是干活的人；下一章会讲到，明朝采皇木，死的也是干活的人；第四章会讲到，明朝南京城墙的砖上刻着从知府到窑匠的一串名字，出了问题按名字追责。三种办法都是为了让工程“做实”，只是挨刀的人不一样。<a href="../civil/">《铁打的营盘》</a>讲过秦律里“效律”的罚甲罚盾：秦朝的验收已经知道罚管事的，而不只是杀干活的。往后的两千年，大部分工程的问责，都在这两头之间摇摆。</p></div>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>那时的工地</i>一万年里，世界上大多数房子是土做的。一捧土站起来，靠的是夹板、木杵、掺进去的草和石灰，以及一年又一年有人来抹它、补它。</div>
+      <div><i>你住的房子</i>你家楼下的地基、路基，用的还是“夯”这个字：压路机就是一根会走路的大木杵。至于土房子，它从穷人的家变成了建筑师的作品，正在悄悄回来。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第二章 · 木 ============ -->
+<section class="chap" id="c2" data-vol="卷一 · 材 · 木">
+  <div class="chead">
+    <div class="big">木</div>
+    <div>
+      <div class="no">第二章</div>
+      <h2>榫卯和皇木</h2>
+      <dl><dt>讲什么</dt><dd>木头的好和坏；河姆渡七千年前的榫头；石斧做出来的德国古井；中国为什么偏爱木头；伊势神宫二十年一拆；法隆寺的火；明朝的皇木和“入山一千，出山五百”；楠木用完了以后；钉子便宜了以后的“气球框架”；木头楼又回来了</dd><dt>本章装置</dt><dd>隔多少年重建一次，手艺才传得下去</dd></dl>
+      <div class="mat" data-k="木 人"></div>
+      <div class="when" data-a="-5300" data-b="2026"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">木头会烂、会烧、会被虫蛀，中国古人为什么偏要用木头盖房子？</p>
+      <p>因为木头有一样别的老家当都没有的本事：它既扛得住压，也拉得住。一根木梁能横着架过去，土和石头做不到。木头还轻、好砍、好接，盖得快，拆了能再用。至于为什么中国把木头用到了极致、欧洲把石头用到了极致，学者争了一百年，答案不止一个。<em>可以肯定的是，木头房子的寿命不在木头里，而在一代一代会修它的人手里</em>。</p>
+    </div>
+
+    <div class="badge">
+      <span class="fic">虚构</span>
+      <div class="hd"><b>北京宫殿采木 · 四川一路</b><small>马湖府 · 深山大木</small></div>
+      <div class="bd">
+        <div class="ph" data-h="hat"></div>
+        <dl>
+          <dt>姓名</dt><dd class="nm">（编）冉老三</dd>
+          <dt>工种</dt><dd>采木夫 · 拽运</dd>
+          <dt>所属</dt><dd>工部尚书宋礼督办</dd>
+          <dt>工钱</dt><dd>官给口粮；本县派役，抵当年差徭</dd>
+          <dt>进场</dt><dd>永乐四年（1406）</dd>
+        </dl>
+      </div>
+      <div class="rule"><b>须知</b>大木伐倒后，候山水涨发，顺溪放出，沿江编筏，经运河解京。一路各府县交接，不得延误。</div>
+      <div class="no"><span>No. 永乐-皇木-0412</span><i></i></div>
+      <div class="real"><b>真的部分</b>永乐四年下诏营建北京宫殿，派宋礼等人分赴四川、湖广、江西、浙江、山西采木；大木要等山洪把它冲出山谷，再编成木筏经长江、运河运到北京，往往要走好几年。采木死伤很多，民间有“入山一千，出山五百”的说法。人名、工号和“须知”的措辞是编的。</div>
+    </div>
+
+    <h3>木头的脾气</h3>
+    <p>一块石头，你压它，它很硬；你掰它、拉它，它很容易断。木头不一样，顺着纹理拉，它的强度能和压的时候差不多，甚至更高，因为木头本来就是树用来抗风的：风一吹，树干一边被拉、一边被压，两边都得顶住。所以，<em>木头是人类最早拥有的、能做横梁的材料</em>。四根柱子、几根横梁，就能撑起一个屋顶，墙只用来挡风，不用来承重。</p>
+    <p>木头的坏处也很清楚：会烂，怕潮；会被白蚁和甲虫蛀；会烧。还有一条常被忘记：树只能长那么长、那么粗。一根梁最长能有多长，是由山里还剩什么树决定的。</p>
+
+    <h3>石斧做出来的榫卯</h3>
+    <p>浙江余姚的河姆渡遗址，约七千年前的人住在架空的“干栏式”长屋里：先在湿地上打下一排排木桩，桩上架梁铺板，人住在上面，下面通风防潮。考古学家在那里挖出了几百件带榫卯的木构件：有凸出的榫头、挖空的卯眼，有防止拔出的燕尾榫，有插销钉的榫，还有一边凸一边凹、能拼成平整地板的企口板。这些全是用石斧、石凿和骨器做出来的。</p>
+    <p>欧洲也有同样惊人的例子。德国东部发现过几口约七千年前的新石器时代水井，井壁是用橡木板一块块咬合起来的方框，转角处的接口做得很精细。树木年轮能把砍树的年份定到具体某一年。研究者说，那时候的人还只有石器和骨器，却已经是很好的木匠了。</p>
+    <p>为什么不用钉子？最简单的原因是：很长时间里根本没有便宜的钉子。铁钉要一根一根手工打，很贵。更深的原因是，木头会随着干湿胀缩、会在风里和地震里晃动，钉子一晃就松，榫卯却能“让一让”再回来。榫卯还能拆开，一座房子拆了，梁柱能拿去盖另一座。</p>
+  </div>
+
+  <div class="code">
+    <div class="old"><i>古书 · 原文</i><p>天有时，地有气，材有美，工有巧。合此四者，然后可以为良。</p><p>斧斤以时入山林，材木不可胜用也。</p></div>
+    <div class="now"><i>白话</i><p>天要合时令，地要合水土，材料要好，工匠要巧。四样都对了，才能做出好东西。</p><p>按季节进山砍树，木材就用不完。</p></div>
+    <div class="src">前一句见《周礼·考工记》，后一句见《孟子·梁惠王上》。后一句是一条两千多年前的“可持续采伐”，可惜后来的皇帝大多没听。</div>
+  </div>
+
+  <div class="col">
+    <h3>中国为什么偏爱木头</h3>
+    <p>中国不是不会用石头。石桥、石塔、石墓、石阙都有，而且做得很好（第六章讲赵州桥）。但宫殿、寺庙、住宅，几千年里一直是木构架为主。为什么？</p>
+    <p>说法很多，各有道理，也各有反例。有人说是材料：古代黄河、长江流域森林多，好木头容易得。有人说是速度：木构可以先在地上把构件做好，再像搭积木一样立起来，一座宫殿几年就能完工，而欧洲的石头大教堂动辄盖一百年。有人说是地震：木构架能晃、能变形，比砌体房子更能扛地震。梁思成说中国人“不求原物长存”，旧了就修、坏了就换，对房子的态度和对石头纪念碑的态度不一样。也有人反驳说，这些都是事后的解释，欧洲北部森林也多，日本也用木头，原因多半是一大串偶然加在一起。<em>没有一个答案能单独说服所有人</em>，这本身就很能说明问题：一种建筑传统，往往是很多理由一起推出来的。</p>
+
+    <h3>二十年拆一次</h3>
+    <p>日本三重县的伊势神宫，主要的殿舍每二十年在旁边的空地上原样重建一次，新殿建好，神体迁过去，旧殿拆掉。这个规矩叫“式年迁宫”，据记载从七世纪末开始，中间因为战乱中断过一百多年，到 2013 年是第六十二次，下一次在 2033 年。每一次都要用上万根桧木，提前几年就开始准备。</p>
+    <p>这样做，房子本身永远是新的，最老的也只有二十年；可是“怎样盖这座房子”这件事，已经传了一千三百年。二十年是一个很巧的间隔：一个木匠年轻时当学徒参加一次，中年时当骨干参加一次，老了还能带着徒弟再参加一次。<em>伊势神宫保存的不是木头，是手艺</em>。</p>
+    <p>奈良的法隆寺走的是另一条路。它的金堂、五重塔是七世纪后期的木构，是世界上现存最古老的木建筑之一，靠的是一千三百年里一次又一次的修理、换件。1949 年 1 月，法隆寺金堂在修理中失火，著名的壁画被烧毁。这场火直接推动日本在 1950 年制定了《文化财保护法》，失火那天后来被定为“文化财防火日”。木头房子能活多久，最后要看人能不能防住一把火。</p>
+  </div>
+
+  <div class="fig" id="sgFig">
+    <div class="fig-label">装置 3</div>
+    <h4>隔多少年重建一次，手艺才传得下去</h4>
+    <p class="how">假设一个木匠二十岁入行、六十五岁收手，每隔几年就有一个新人入行。拖动滑块改重建的间隔，看每次重建时，现场有没有“以前干过的人”和“干过两次、能当师傅的人”。图上每一横条是一个木匠的一辈子，圆点是他赶上的重建：浅色是第一次，中间色是第二次，深色是第三次以上。</p>
+    <div class="ctl"><span>重建间隔</span><input type="range" id="sgT" min="5" max="60" step="1" value="20"><output id="sgTO"></output></div>
+    <div class="scroll-x"><svg id="sgSvg" class="sim" style="min-width:520px" aria-label="木匠的一辈子和重建的年份"></svg></div>
+    <div class="kv" id="sgKv"></div>
+    <div class="say" id="sgSay"></div>
+    <p class="figcap">示意模型：只看“有没有人亲手干过”，不考虑图纸、文字记录和口传。真实的伊势神宫还有很多别的维修和准备工作，木匠之间也有严格的师徒体系。</p>
+  </div>
+
+  <div class="col">
+    <h3>皇木</h3>
+    <p>明朝永乐皇帝决定迁都北京，从 1406 年起营建紫禁城。宫殿的大柱和大梁要用楠木，楠木长在四川、贵州、湖广的深山里，又高又直，耐腐，有香气。朝廷派大臣分头进山采木。</p>
+    <p>采木是拿命换的。深山里有毒蛇、瘴气、悬崖，大树砍倒以后，要靠人力拖到溪边，等山洪暴发，让水把它冲出山谷；然后在江边编成木筏，顺长江而下，再转运河北上，一根木头从山里到北京，常常要走三四年。民间流传“入山一千，出山五百”，进山一千人，能活着出来的只有一半。这个数字未必精确，但明朝的大臣自己在奏疏里也一再说采木“死者甚众”。</p>
+    <p>紫禁城后来屡次失火。嘉靖、万历年间三大殿几次烧毁重建，每一次都要重新进山采木，好树越来越少、越来越远，花的银子越来越多。到清朝康熙年间重修太和殿时，已经很难找到足够的大楠木，只好大量改用东北和南方的松木等，粗柱子用几块木料拼起来，外面箍上铁箍，再包一层木皮，这种做法叫“包镶”。</p>
+    <p><em>一座宫殿的柱子从整根变成拼的，记录的是一片山林从有到无</em>。</p>
+  </div>
+
+  <div class="gone">
+    <h5>拆掉的：整根的楠木大柱</h5>
+    <p>明代长陵祾恩殿里的六十根金丝楠木大柱，最粗的直径一米多，到今天还站着，是“整根楠木”时代的标本。清代以后，这样的大料再也凑不齐了。今天野生的大楠木已经成了保护植物，市场上的“金丝楠木”多是小料、老料或替代品。整根的大柱子，就这样被端下了建筑的桌子。</p>
+  </div>
+
+  <div class="col">
+    <h3>钉子便宜了以后</h3>
+    <p>北美的殖民者带来了另一种木头房子。十七世纪中叶在特拉华河一带定居的瑞典人和芬兰人，带来了家乡的原木屋：把整根的树干横着一层层叠起来，转角处砍出缺口互相咬住。原木屋后来成了美国西部拓荒的象征，几位总统都喜欢宣传自己出生在原木屋里。</p>
+    <p>真正改变美国城市的，是十九世纪三十年代在芝加哥出现的“气球框架”。那时候机器已经能大批切出标准尺寸的木条，也能大批压出便宜的铁钉。于是人们不再用粗大的梁柱和复杂的榫卯，而是用很多根细细的木条（后来的“二乘四”）钉成密密的骨架，几个没受过多少训练的人，几天就能立起一栋房子。老木匠们嘲笑它轻得像气球，一阵风就能吹跑，“气球框架”的名字就这么来了。可它便宜、快，正好赶上芝加哥和整个美国西部的狂飙。直到今天，美国大部分新建的独栋住宅仍然是木框架的后代。</p>
+    <p>注意这里的顺序：<em>不是先想出了新的结构，再去造便宜的钉子；而是钉子先便宜了，新的结构才有人用</em>。这样的顺序，在建造的历史上会反复出现。</p>
+
+    <h3>木头楼又回来了</h3>
+    <p>二十世纪大部分时间里，木头被看成落后、易燃的材料，城市里的高楼只用钢和混凝土。九十年代，奥地利和德国发展出了“正交胶合木”：把木板一层横、一层竖地胶在一起压成大板，又结实又不容易变形，而且厚木头着火时外面先烧成炭，炭层反而能保护里面。2019 年，挪威建成了一座八十多米高的木结构楼；2022 年，美国密尔沃基又盖了一座更高的。木头重新回到城市，理由是它轻、盖得快，而且树在生长时吸收了二氧化碳。</p>
+  </div>
+
+  <div class="load">
+    <svg viewBox="0 0 150 120" aria-hidden="true"><rect x="18" y="20" width="22" height="92" fill="var(--kraft)" fill-opacity=".4" stroke="currentColor" stroke-width="2"/><rect x="40" y="38" width="88" height="20" fill="var(--kraft)" fill-opacity=".4" stroke="currentColor" stroke-width="2"/><rect x="24" y="38" width="16" height="20" fill="none" stroke="var(--ter)" stroke-width="2" stroke-dasharray="3 2"/><path d="M84 18v16" stroke="currentColor" stroke-width="2"/><path d="M79 28l5 8 5-8" fill="currentColor"/><path d="M48 66h70" stroke="var(--ter)" stroke-width="2"/><path d="M48 66l6-4M48 66l6 4M118 66l-6-4M118 66l-6 4" stroke="var(--ter)" stroke-width="2"/><text x="83" y="82" font-size="11" text-anchor="middle" fill="var(--ter)">拉</text></svg>
+    <div>
+      <h5>木梁两头都扛得住</h5>
+      <p>梁压弯时，上半截被挤、下半截被拉。木头两样都能对付，所以能当梁。它真正的弱点在接头：榫头插进卯眼，柱子被挖掉了一块，接头处的木头最少、最容易裂。古代木匠的大部分学问，就花在怎样让接头既咬得紧，又不把柱子挖得太空。</p>
+    </div>
+  </div>
+
+  <div class="myth">
+    <div class="tag">“中国古建筑一根钉子都不用”<small>一半对</small></div>
+    <div class="pop"><i>流行说法</i><p>中国古建筑全靠榫卯，一根钉子都没有。</p></div>
+    <div class="chk"><i>再查一遍</i><p>柱、梁、枋、斗拱这些承重的大构件，确实主要靠榫卯咬合，不靠钉子。但屋顶上的椽子、望板，门窗、栏杆这些小构件，古代一直在用铁钉；宋代的《营造法式》里还专门规定了各种钉子的长短和用量，清代的拼合大柱外面箍的是铁箍。<b>说“主体结构靠榫卯”是对的，说“一根钉子都不用”是夸张</b>。</p></div>
+  </div>
+
+  <div class="echo" data-k="押韵">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">好木头总是在更远的山里</p><p>雅典人造三列桨战舰的木头要从马其顿和黑海运来，<a href="../turn/">《轮到谁了》</a>里写过英国皇家海军为橡树发愁；明朝为宫殿的楠木一次次进山更深。<a href="../eat/">《吃了吗》</a>讲过烧火做饭也要砍树。<em>建房子、造船、烧饭、烧砖，四样都在吃同一片林子</em>。人类历史上很多次“木材危机”，都是这四样一起把树吃光的。</p></div>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>那时的工地</i>木头能横着架，所以人有了大屋顶。木头房子能活多久，看的是有没有人会修、有没有人防火，以及山里还剩不剩大树。</div>
+      <div><i>你住的房子</i>你家的门框、地板和家具多半还是木头，承重的骨架却换成了钢筋混凝土。也许再过几十年，你会住进一栋木头盖的高楼。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第三章 · 石 ============ -->
+<section class="chap" id="c3" data-vol="卷一 · 材 · 石">
+  <div class="chead">
+    <div class="big">石</div>
+    <div>
+      <div class="no">第三章</div>
+      <h2>拉石头的人</h2>
+      <dl><dt>讲什么</dt><dd>哥贝克力的 T 形石柱；巨石阵的石头从多远运来；从台阶金字塔到大金字塔；梅勒的日记；金字塔工人吃什么、病了谁管；往沙子上泼水；阿斯旺那块没凿完的方尖碑；巴勒贝克的巨石；印加人的石墙为什么不怕地震；两万人在冰上拉一块石头进紫禁城</dd><dt>本章装置</dt><dd>拉石头：要多少人</dd></dl>
+      <div class="mat" data-k="石 力 人"></div>
+      <div class="when" data-a="-9600" data-b="1600"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">金字塔是奴隶盖的吗？那么大的石头是怎么运过去的？</p>
+      <p>按照近几十年的考古发现，盖大金字塔的主力不是被铁链锁着的奴隶，而是一批有组织、有口粮、有名字的劳工，有的是长期的匠人，有的是轮班来服役的农民。至于运石头，没有什么神秘的高科技：雪橇、绳子、坡道、船、很多很多人，以及一桶往沙子上泼的水。<em>真正难的不是哪一块石头，而是两百多万块石头背后的那一整套后勤</em>。</p>
+    </div>
+
+    <div class="badge">
+      <span class="fic">虚构</span>
+      <div class="hd"><b>胡夫的地平线（吉萨）</b><small>胡夫在位约第二十七年 · 运石船队</small></div>
+      <div class="bd">
+        <div class="ph" data-h="bare"></div>
+        <dl>
+          <dt>姓名</dt><dd class="nm">（编）伊杜</dd>
+          <dt>工种</dt><dd>船工 · 装卸石料</dd>
+          <dt>所属</dt><dd>督察梅勒的队，约四十人</dd>
+          <dt>工钱</dt><dd>面包、啤酒、谷物、布匹，按旬发放</dd>
+          <dt>进场</dt><dd>约前 2560 年，泛滥季</dd>
+        </dl>
+      </div>
+      <div class="rule"><b>这一旬的活</b>在图拉石场装白石灰岩，顺水路到吉萨卸下，空船返回；一旬往返两到三趟。归王兄安赫哈夫统管。</div>
+      <div class="no"><span>No. 前2560-梅勒</span><i></i></div>
+      <div class="real"><b>真的部分</b>2013 年，法国考古学家皮埃尔·塔莱在红海边的瓦迪贾尔夫港发现一批纸草，其中有一位叫梅勒的督察记的工作日志，记录了他的队伍在胡夫统治晚期运送图拉石灰岩到吉萨的行程，是目前已知最古老的写在纸草上的文字之一。人名“伊杜”和工号是编的。</div>
+    </div>
+
+    <h3>石头的脾气</h3>
+    <p>石头和木头正好相反：压它，它几乎压不坏；拉它、弯它，它很容易断。石头的另一个脾气是重，一立方米花岗岩将近三吨。所以石头盖房子的历史，前半段是“怎样把它搬过去”，后半段是“怎样让它别弯”（第五章讲梁、第六章讲拱）。</p>
+    <p>它的好处只有一个，但这一个足够了：<em>石头不烂、不烧、不被虫蛀，能站几千年</em>。所以人类最早想“永远留下来”的东西，几乎都是石头做的：神庙、坟墓、纪念碑。</p>
+
+    <h3>先有神庙</h3>
+    <p>土耳其东南部的哥贝克力石阵，约一万一千年前就有人在山顶上立起了一圈一圈的 T 形石柱，最高的五米多、重十来吨，柱子上刻着狐狸、野猪、蝎子和秃鹫。那时候附近的人还没有完全开始种地。这处遗址的用途还有很多争论，但它说明：在有农田和村庄以前，人已经能组织起几十上百人，从采石场凿出巨石、拖上山、立起来。</p>
+    <p>英国的巨石阵晚得多，主体约在五千年前到四千五百年前分几期建成。外圈的大砂岩每块约二十多吨，来自约二十五公里外；里圈较小的“青石”来自两百多公里外的威尔士山区。2024 年的一项研究更进一步：巨石阵正中那块六吨重的“祭坛石”，成分和苏格兰东北部的岩石吻合，离巨石阵约七百公里。它是走陆路还是走海路过来的，还没有答案。</p>
+
+    <h3>从台阶到尖顶</h3>
+    <p>埃及第一座大型石头建筑，是约四千六百多年前左塞尔国王的台阶金字塔，传统上认为是大臣伊姆霍特普设计的：六层逐层缩小的石台，像把几座平顶墓摞在一起。此后约一百年里，埃及人连续试了好几次：有的塔外皮塌了，有的修到一半发现太陡，中途改小了角度，成了“弯曲金字塔”；终于在斯尼夫鲁国王手里修成了第一座光滑的真正金字塔。他的儿子胡夫，接着修了最大的那一座。</p>
+    <p>胡夫的大金字塔约建于公元前 2560 年前后，原高约一百四十六米，由大约两百三十万块石头砌成，平均每块两吨多，总重约六百万吨。在此后将近四千年里，它是世界上最高的建筑物（见封面装置）。底边四条边的长度彼此只差几厘米，四个面大致对准东西南北。</p>
+  </div>
+
+  <div class="code">
+    <div class="old"><i>原文大意</i><p>修这座金字塔时，十万人一班，每班干三个月。光是修运石头的路就用了十年；塔本身又修了二十年。塔上用埃及文字刻着工人吃掉的萝卜、洋葱和大蒜花了多少钱，给我翻译的人说是一千六百塔兰特银子。</p></div>
+    <div class="now"><i>白话</i><p>这是古希腊历史学家希罗多德在大金字塔建成两千年后去埃及时听来的。“二十年”和今天学者估计的工期大体相合；“十万人”多半夸大了，今天的估计是连后勤在内一两万到两三万人；塔上刻萝卜洋葱价钱的铭文，没有人找到过，很可能是导游讲错了，或者是他把别的铭文当成了账单。</p></div>
+    <div class="src">见希罗多德《历史》卷二第一百二十四、一百二十五节，这里只写大意。</div>
+  </div>
+
+  <div class="col">
+    <h3>金字塔工人吃什么</h3>
+    <p>二十世纪九十年代起，美国考古学家马克·雷纳和埃及考古学家扎希·哈瓦斯在金字塔南边发掘出一座工人城：有面包房、啤酒作坊、储藏粮食的仓库，大量的牛羊骨头（说明工人吃得到肉），还有成排的长屋，像是轮班工人的集体宿舍。旁边是一片工人墓地，墓里的人有名字和头衔，有的骨头上有骨折愈合的痕迹，甚至有截肢后又活了很久的，说明受伤以后有人给他们治。</p>
+    <p>工人们分成一个个“队”，队还有名字。在金字塔内部不对外人看的石块上，留着工人们用红颜料写的涂鸦，有的写着队名，比如“胡夫的朋友”，在孟卡拉国王的金字塔里还出现过“孟卡拉的醉汉”。这些名字很像今天工地上的班组，或者大学里的球队。</p>
+    <p>这不等于他们是自由自在的雇工。大部分人大概是按照国家的要求轮流来服役的农民，泛滥季地里没活干，就被征来修王的坟。用今天的话说，<em>他们不是奴隶，也不是打工人，而是服徭役的百姓</em>：有饭吃，有地方住，受伤了有人管，但不来不行。</p>
+
+    <h3>梅勒的日记</h3>
+    <p>2013 年在红海边发现的纸草，让我们第一次读到一个金字塔工地上的人自己写的东西。督察梅勒带着大约四十个人，在胡夫统治的晚期，往来于尼罗河东岸的图拉采石场和西岸的吉萨之间，把用来做金字塔外皮的上等白色石灰岩装船运过去。尼罗河泛滥的时候，河水漫到金字塔脚下附近，挖出的水道和港池让船能一直开到工地边上。日志按旬记录：哪天在哪里过夜，哪天装石头，哪天到达“胡夫的地平线”（金字塔的名字）。工程的总负责人，是胡夫的同父异母兄弟安赫哈夫。</p>
+    <p>日志写得非常枯燥，像今天的出车记录。正是这份枯燥最珍贵：<em>它说明金字塔不是一个奇迹，而是一个项目</em>，有排班表、有物流线路、有后勤供应、有层层的管理者。</p>
+
+    <h3>往沙子上泼水</h3>
+    <p>埃及中部有一座约三千九百年前的贵族墓，叫杰胡蒂霍特普墓。墓里有一幅壁画：一座巨大的坐像被绑在木橇上，前面一百多人拉着绳子，雕像脚下站着一个人，正在往木橇前面的地上倒一罐液体。很长时间里，人们以为这是某种仪式。2014 年，荷兰阿姆斯特丹大学的物理学家做了实验：在沙子上拉一个重物，沙子干的时候，橇板会把沙子推出一个小土堆，越拉越费劲；把沙子弄到适当的湿度，沙粒之间被水“粘”住，表面变硬，拉的力气能省下一半左右。那个倒水的人，很可能是工地上最重要的人之一。</p>
+    <p>石头怎样从地面升到一百多米高，至今仍有多种说法：一条长长的直坡道，绕着塔身盘旋的坡道，塔身内部的螺旋通道，或者几种办法混着用。2018 年，考古学家在埃及哈特努布的古采石场找到了一条约四千五百年前的陡坡道，两边有台阶和一排排柱洞，柱子上可能装过绞拉的装置，说明当时的人已经能把石头沿着很陡的坡往上拉。</p>
+  </div>
+
+  <div class="fig" id="hlFig">
+    <div class="fig-label">装置 4</div>
+    <h4>拉石头：要多少人</h4>
+    <p class="how">挑一块石头，选它底下垫的是什么，拖动坡度。装置用最简单的摩擦公式算出要多大的力，再除以每人能出的力，得到最少要多少人一起拉。</p>
+    <div class="dishes" id="hlBtns"></div>
+    <div class="ctl"><span>重量</span><input type="range" id="hlM" min="1" max="1100" step="1" value="58"><output id="hlMO"></output></div>
+    <div class="dishes" id="hlSurf"></div>
+    <div class="ctl"><span>坡度</span><input type="range" id="hlA" min="0" max="15" step="0.5" value="0"><output id="hlAO"></output></div>
+    <div class="ctl"><span>每人出力</span><input type="range" id="hlF" min="200" max="800" step="50" value="400"><output id="hlFO"></output></div>
+    <svg id="hlSvg" class="sim" aria-label="拉石头的人"></svg>
+    <div class="kv" id="hlKv"></div>
+    <div class="say" id="hlSay"></div>
+    <p class="figcap">示意模型：拉力 = 重量 ×（摩擦系数 × 坡度余弦 + 坡度正弦）。摩擦系数是大致的：干沙约 0.45，湿沙约 0.2（2014 年阿姆斯特丹的实验说泼水能省一半左右），木轨上抹泥约 0.12，冰上约 0.03。每人出力 400 牛顿约等于拉起四十公斤的东西。这里算的是“已经动起来以后”的最小人数；起步、拐弯、上坡、换班和后勤，会让真实人数多出好几倍。</p>
+  </div>
+
+  <div class="col">
+    <h3>凿不完的方尖碑，搬不走的巨石</h3>
+    <p>埃及南部阿斯旺的花岗岩采石场里，躺着一块没凿完的方尖碑，如果完成，长约四十二米，重一千吨上下。凿到一半，石头上出现了裂缝，工程就停了，一扔三千多年。碑的四周留着一圈凹槽，是工人用比花岗岩更硬的黑色粗粒玄武岩石球一下一下砸出来的。它让我们看到了做法：没有铁器，就用更硬的石头砸更软的石头。</p>
+    <p>黎巴嫩的巴勒贝克，罗马人在那里修了巨大的神庙。神庙基座里有三块石头，每块约八百吨，被抬到七米多高的位置。附近的古采石场里还躺着几块更大的，2014 年发现的一块估计重约一千六百多吨，是已知古代人凿出来的最大石块。罗马人有滑轮、绞盘和成千上万的人手，可这几块最大的也没有挪走。</p>
+
+    <h3>印加人的石墙</h3>
+    <p>南美的印加人没有铁器，没有轮子，也没有能拉重物的大牲口，却在安第斯山上盖出了世界上最精密的石墙。秘鲁库斯科城外的萨克塞瓦曼要塞，有的石头重一百多吨，形状不规则，有的一块有十几条边，块与块之间不用灰浆，接缝严密得插不进一张纸。</p>
+    <p>他们怎样做到的，今天的主流看法是：用硬石锤一点一点砸，反复把石头抬上去试，不合适就放下来再砸，靠的是时间和人力。“印加人会用一种植物汁液把石头泡软”的说法流传很广，但没有证据。</p>
+    <p>这样的墙有一个意想不到的好处：不怕地震。1650 年和 1950 年，库斯科两次大地震，西班牙人在印加地基上盖的教堂和房子塌了不少，底下的印加石墙大多完好。原因是石块彼此咬合、墙面向内微微倾斜，地震时石头会跳一下，再落回原来的位置。</p>
+
+    <h3>在冰上拉石头</h3>
+    <p>中国也搬过巨石，只是大多不是为了盖房，而是为了宫殿台阶上的“御路石”。北京紫禁城保和殿后面的那块云龙石雕，长十六米多，重两百多吨，是故宫里最大的一块石头。据明代贺仲轼的《两宫鼎建记》记载，明朝后期为宫殿运一块这样的大石料，是在冬天进行的：沿路每隔一段挖一口井，打水泼在路上冻成冰道，用“旱船”载着石头，征调了两万民夫，走了二十八天才运进京城，花费白银十几万两。冰的摩擦系数只有干沙的十几分之一，这和埃及人往沙子上泼水，是同一个道理。</p>
+  </div>
+
+  <div class="load">
+    <svg viewBox="0 0 150 130" aria-hidden="true"><rect x="58" y="10" width="34" height="104" fill="var(--ink-3)" fill-opacity=".25" stroke="currentColor" stroke-width="2"/><path d="M40 114h70" stroke="currentColor" stroke-width="3"/><path d="M75 20v80" stroke="currentColor" stroke-width="2"/><path d="M69 92l6 10 6-10" fill="currentColor"/><path d="M30 60q-10 0-10 10" fill="none" stroke="var(--ter)" stroke-width="2" stroke-dasharray="3 3"/><text x="18" y="56" font-size="11" fill="var(--ter)">7 公里</text></svg>
+    <div>
+      <h5>石头被自己压碎之前</h5>
+      <p>花岗岩大约能扛住每平方厘米两吨的压力。算一下：一根花岗岩柱子要高到约七公里，柱脚才会被它自己的重量压碎。所以石头建筑的高度从来不是被“压碎”限制住的，而是被别的东西：太高会被风吹得弯、会因为一点点不正而歪倒、地基会沉下去，以及最现实的一条，石头搬不上去。</p>
+    </div>
+  </div>
+
+  <div class="gone">
+    <h5>拆掉的：整块的巨石</h5>
+    <p>从哥贝克力到巴勒贝克，人类花了一万年比赛谁搬得动更大的石头。今天的石头建筑几乎都换了一种做法：把石头锯成两三厘米厚的薄板，用金属挂件挂在钢筋混凝土的外墙上，这叫“干挂”。你在商场和写字楼外面看到的大理石、花岗岩，多半只是一层皮。整块巨石作为承重的东西，已经被端下了工地。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">“金字塔是成千上万的奴隶在皮鞭下盖起来的”<small>大体不对</small></div>
+    <div class="pop"><i>流行说法</i><p>法老驱使大批奴隶，在鞭子下拖着石头，死了就埋在沙子里。</p></div>
+    <div class="chk"><i>再查一遍</i><p>这个印象主要来自希罗多德的转述、《圣经》里以色列人在埃及做苦工的故事（那说的是更晚的年代和土坯砖），以及好莱坞电影。吉萨的工人城和工人墓地显示，盖金字塔的人有口粮、有肉吃、有医疗，死后埋在离国王不远的地方，墓里有名字和头衔。但他们很可能也不是自愿的：大多数是被征来服役的农民。<b>说“奴隶”不对，说“自由雇工”也不对；更接近的说法是“服徭役的人”</b>。</p></div>
+  </div>
+
+  <div class="echo" data-k="联系">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">最早的账本和最早的工地</p><p><a href="../reed/">《苇城书记》</a>讲过，文字最早是为了记账发明的；梅勒的日记说明，最早的一批“工作日志”也是为了工地。<a href="../civil/">《铁打的营盘》</a>序幕讲过古埃及代尔麦地那工匠村的缺勤记录和罢工：那是一千多年后，修帝王谷王陵的工匠们因为口粮没按时发，放下工具坐在神庙后面不走。<em>从金字塔起，大工程就有两张清单：一张记石头，一张记人</em>。第二部的“役”会把后一张清单摊开来讲。</p></div>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>那时的工地</i>石头能站几千年，所以人用它盖神庙和坟墓。搬动它靠的是雪橇、水、冰、船和成千上万的人，以及一个把这些人组织起来的国家。</div>
+      <div><i>你住的房子</i>你身边的石头多半是一层两三厘米的皮，或者被碾成了碎石，混在混凝土里。混凝土本身，就是“人造的石头”，第三部再讲。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第四章 · 砖 ============ -->
+<section class="chap" id="c4" data-vol="卷一 · 材 · 砖">
+  <div class="chead">
+    <div class="big">砖</div>
+    <div>
+      <div class="no">第四章</div>
+      <h2>砖上的名字</h2>
+      <dl><dt>讲什么</dt><dd>把土烧成石头；印度河的砖为什么都是一个比例；“把砖烧透了”的巴别塔；印着国王名字的砖；秦砖汉瓦；青砖和红砖差在哪一步；“物勒工名”；南京城墙砖上的一串人名；漕船顺带的贡砖；砌法；英国的砖税；一块砖为什么是这个尺寸</dd><dt>本章装置</dt><dd>砌一堵墙</dd></dl>
+      <div class="mat" data-k="土 火 人"></div>
+      <div class="when" data-a="-3500" data-b="1850"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">“秦砖汉瓦”说的是什么？为什么有的城墙砖上刻着人名？</p>
+      <p>“秦砖汉瓦”是后人对秦汉时代烧制砖瓦工艺的赞美，那时候的砖瓦做得厚重规整，有的还印着精美的花纹和吉祥话，后来成了收藏品。砖上刻人名，则是一种很古老的问责办法：谁烧的、谁监造的、谁验收的，统统写上去，砖出了问题，照着名字找人。<em>一块砖，同时是一件建材和一张责任书</em>。</p>
+    </div>
+
+    <div class="badge">
+      <span class="fic">虚构</span>
+      <div class="hd"><b>京师城垣造砖 · 袁州府宜春县</b><small>洪武年间 · 窑场</small></div>
+      <div class="bd">
+        <div class="ph" data-h="wrap"></div>
+        <dl>
+          <dt>姓名</dt><dd class="nm">（编）黄四</dd>
+          <dt>工种</dt><dd>造砖人夫</dd>
+          <dt>所属</dt><dd>本县某里 · 甲首某某名下</dd>
+          <dt>工钱</dt><dd>无；按里甲摊派的差役</dd>
+          <dt>进场</dt><dd>洪武初年</dd>
+        </dl>
+      </div>
+      <div class="rule"><b>砖侧须印</b>府、州、县名；提调官、司吏；总甲、甲首、小甲；窑匠；造砖人夫。烧造不坚、尺寸不合者，按名追究。</div>
+      <div class="no"><span>No. 洪武-袁州-砖</span><i></i></div>
+      <div class="real"><b>真的部分</b>明初修南京城墙，砖由长江中下游一百多个府州县分派烧造，砖侧模印从府县官员到窑匠、人夫的一串名字，今天城墙上还能读到成千上万块，“袁州府宜春县”就是常见的产地之一。人名和工号是编的。</div>
+    </div>
+
+    <h3>把土烧成石头</h3>
+    <p>土坯怕水，因为土粒之间只是被晒干的黏土粘着，一遇水就松开。把土坯放进窑里，烧到八九百度以上，黏土里的矿物会发生变化，颗粒之间烧结在一起，冷却以后就再也泡不软了。<em>烧砖，就是用火把泥土变成人造的石头</em>：形状由人定，大小一样，不用去山里凿，河边有泥、有柴就能做。</p>
+    <p>代价是柴。烧砖要大量燃料，一座砖窑一开，周围的林子就开始变稀（上一章讲过，盖房、造船、烧饭、烧砖都在吃同一片林子）。所以在很长时间里，烧砖只用在最要紧的地方：墙脚、外皮、排水沟、宫殿和城门，里面照旧是土坯和夯土。</p>
+    <p>美索不达米亚的人五千多年前就开始烧砖。约四千一百年前，乌尔第三王朝的国王乌尔纳姆在乌尔城修了一座巨大的阶梯形塔庙“吉库拉特”：芯子是土坯，外面包了一层两米多厚的烧砖，砖缝里灌的是沥青。这层烧砖外皮，让它在雨水里一直站到今天。</p>
+    <p>差不多同一时期，印度河流域的哈拉帕和摩亨佐达罗，砖做得更整齐。从几百公里外的不同城市挖出来的砖，长、宽、厚的比例几乎都是四比二比一。这说明那里很早就有了某种统一的标准，城里还有砖砌的排水沟和公共浴池。</p>
+  </div>
+
+  <div class="code">
+    <div class="old"><i>古书 · 原文</i><p>他们彼此商量说：“来吧！我们要作砖，把砖烧透了。”他们就拿砖当石头，又拿石漆当灰泥。他们说：“来吧！我们要建造一座城和一座塔，塔顶通天，为要传扬我们的名，免得我们分散在全地上。”</p></div>
+    <div class="now"><i>白话</i><p>这是巴别塔的故事。写下它的人显然很熟悉两河流域的工地：那里没有石头，所以“拿砖当石头”；砖缝里灌的“石漆”，就是当地地面上渗出来的沥青。巴比伦城的大塔庙“埃特曼安基”，很可能就是这个故事的原型。</p></div>
+    <div class="src">见《旧约·创世记》第十一章，和合本。</div>
+  </div>
+
+  <div class="col">
+    <h3>印着国王名字的砖</h3>
+    <p>约公元前六世纪，巴比伦国王尼布甲尼撒二世大修首都。城北的伊什塔尔门用蓝色釉砖砌成，墙面上是一排排金黄色的狮子、公牛和传说中的龙，今天它的一部分被重建在柏林的佩加蒙博物馆里。他用的砖数以百万计，很多砖上压印着同一段话，大意是：“巴比伦王尼布甲尼撒，埃萨吉拉和埃齐达神庙的供养人，那波帕拉萨尔的长子。”考古学家在巴比伦挖出这样的砖实在太多，以至于后来附近的村民拆遗址的砖去盖自家房子，好多农舍的墙上都印着这位国王的名字。</p>
+    <p>罗马人也在砖上盖章。罗马城的砖窑会在砖上压一个小戳，写着窑场、窑主，有时还有当年的执政官名字。今天的考古学家拿这些戳当日历用：一面墙里的砖戳是哪一年的，墙大概就是哪一年砌的。</p>
+
+    <h3>秦砖汉瓦</h3>
+    <p>中国烧陶的历史很长，烧砖却比较晚，因为中国北方有大量好用的夯土。目前已知较早的烧制砖出现在陕西的龙山时代遗址里，距今约五千年前后；西周的宫殿已经大量用瓦。到战国秦汉，砖瓦工艺成熟了：秦始皇陵和阿房宫遗址出土的砖又大又硬，有的铺地砖一面印着几何花纹；汉代的瓦当上印着“长乐未央”“千秋万岁”，墓室里砌着画像砖，一块砖就是一幅画。</p>
+    <p>中国的砖大多是青灰色的，欧洲的砖多是红色的。差别在最后一步：砖坯在窑里烧到最热的时候，如果让空气充分进去，土里的铁被氧化成红色；如果把窑封住，再从窑顶往里慢慢浇水，窑里缺氧、充满水汽，铁就变成青灰色。这一步叫“窨水”，费工费水，但青砖更致密。二十世纪中国大量建房时，为了省事，红砖才多了起来。</p>
+    <p>宫殿里最讲究的砖是“金砖”。北京紫禁城几座大殿地上铺的方砖，产自苏州的御窑：选土、练泥、制坯、阴干、烧制，前后要一年以上，敲起来有金属声。“金砖”这个名字怎么来的，有说因为它卖到京城值一块金子，有说是“京砖”的音变，有说因为敲击有金石之声，没有定论。</p>
+  </div>
+
+  <div class="code">
+    <div class="old"><i>古书 · 原文</i><p>是月也，命工师效功，陈祭器，按度程，毋或作为淫巧，以荡上心，必功致为上。物勒工名，以考其诚。功有不当，必行其罪，以穷其情。</p></div>
+    <div class="now"><i>白话</i><p>这个月，命令工官考核工匠的活：摆出做好的器物，对照规定的尺寸和工期检查，不许做些花里胡哨的东西去讨好上面，结实精致才是最好的。东西上要刻上工匠的名字，用来考查他是否尽心；做得不合格，一定要治罪，把情况追查到底。</p></div>
+    <div class="src">见《礼记·月令》（《吕氏春秋》里也有几乎相同的话）。秦国出土的兵器、漆器上，常刻着监造的相邦、工师、丞和工匠的名字。</div>
+  </div>
+
+  <div class="col">
+    <h3>南京城墙上的名字</h3>
+    <p>明朝开国，朱元璋定都南京，从 1366 年起修了二十多年的城墙。今天保存下来的南京明城墙，主体部分全长三十多公里，是世界上现存最长的古代都城城墙之一。墙芯多是夯土和石头，外面包砖，用砖的数量常说是上亿块，确数说不清。</p>
+    <p>这些砖不是在南京烧的，而是摊派给长江中下游今天江西、湖北、湖南、安徽、江苏等地的一百多个府、州、县，各地烧好以后通过长江水运过来。每一块砖的侧面都要模印一串名字：哪个府、哪个县，负责的提调官，经手的司吏，基层管事的总甲、甲首、小甲，烧砖的窑匠，以及出工的造砖人夫。最长的一串，有十几个人。</p>
+    <p>这串名字是一条完整的责任链，从知府一直到村里出力气的农民。南京城墙的砖质量好，很多至今敲起来还很响，一般认为和这套追责办法有关。今天走在南京城墙上，随手翻一块砖，就能读到六百多年前某个县里某个人的名字，他也许一辈子都没来过南京。<em>历史书上没有他，可他的名字在墙上站了六百年</em>。</p>
+    <p>明朝后来修北京城墙和紫禁城，又在山东临清等地设窑专烧“贡砖”。临清在大运河边上，朝廷规定南来北往的漕船、商船都要顺带捎上一定数量的砖，免费运到北京。用运粮的船顺路运砖，这是一个聪明的办法；对船户来说，这是一笔额外的负担。</p>
+  </div>
+
+  <div class="load">
+    <svg viewBox="0 0 150 120" aria-hidden="true"><g fill="var(--ter)" fill-opacity=".35" stroke="currentColor" stroke-width="1.5"><rect x="10" y="80" width="40" height="16"/><rect x="52" y="80" width="40" height="16"/><rect x="94" y="80" width="40" height="16"/><rect x="31" y="62" width="40" height="16"/><rect x="73" y="62" width="40" height="16"/><rect x="10" y="44" width="40" height="16"/><rect x="52" y="44" width="40" height="16"/><rect x="94" y="44" width="40" height="16"/></g><path d="M72 18v20" stroke="currentColor" stroke-width="2"/><path d="M66 30l6 10 6-10" fill="currentColor"/><path d="M72 98l-30 16M72 98l30 16" stroke="var(--ter)" stroke-width="1.6" stroke-dasharray="3 2"/></svg>
+    <div>
+      <h5>错缝</h5>
+      <p>砌砖墙的第一条规矩是上下两层的竖缝要错开，不能对齐成一条直线（工地上叫“通缝”）。错开了，一块砖上的重量会分给下面两块，再往下分给三块、四块，像金字塔一样摊开；对齐了，墙就成了一根根互不相干的细砖柱，一推就裂开。各种“砌法”，本质上都是在想办法把缝错开，同时让墙的里外两层咬在一起。</p>
+    </div>
+  </div>
+
+  <div class="fig" id="bkFig">
+    <div class="fig-label">装置 5</div>
+    <h4>砌一堵墙</h4>
+    <p class="how">选一种砌法，看它在墙面上是什么样子、一平方米要用多少块砖、竖缝错没错开。“顺”是砖的长边朝外，“丁”是短头朝外（丁砖横穿墙身，把里外两层拉在一起）。最后一种“对缝”是错误示范。</p>
+    <div class="bonds" id="bkBtns"></div>
+    <div class="scroll-x"><svg id="bkSvg" class="sim" aria-label="砖墙立面"></svg></div>
+    <div class="kv" id="bkKv"></div>
+    <div class="say" id="bkSay"></div>
+    <p class="figcap">按今天中国的标准砖算：长 240、宽 115、厚 53 毫米，灰缝约 10 毫米；墙厚 240 毫米（“二四墙”）时，一平方米大约用一百二十多块砖。空斗墙按“一眠一斗”粗算。不同地方、不同年代的砖尺寸差别很大，只看比较。</p>
+  </div>
+
+  <div class="col">
+    <h3>一块砖为什么是这个尺寸</h3>
+    <p>今天中国的标准砖长 240 毫米、宽 115 毫米、厚 53 毫米。这几个数字是算出来的：加上 10 毫米的灰缝，四块砖的长度（4 × 250）正好一米，两块砖的宽度加一道缝正好等于一块砖的长度，四块砖的厚度加四道缝也差不多是一块砖的长度。<em>长、宽、厚之间能互相换算，墙角和墙垛才砌得齐</em>。</p>
+    <p>还有一条更古老的规矩：砖要能用一只手拿起来。砌砖的人一只手拿瓦刀，另一只手拿砖，一天要拿起放下几千次。所以世界各地的砖，大小虽然不同，重量大多在两三公斤上下。砖的尺寸，最后是由人手和人的力气定的。</p>
+
+    <h3>砖税</h3>
+    <p>1666 年伦敦大火以后，英国议会规定伦敦重建的房子要用砖和石头，砖从此成了英国城市的颜色（<a href="../city/">《城里城外》</a>第十一章讲过这场火）。一百多年后，英国为了筹措对美洲殖民地战争的军费，在 1784 年开征砖税，按块计税。砖厂和建房的人很快想出了对策：把砖做大一点，块数就少了。政府随即对超过一定尺寸的大砖加倍征税。这项税一直收到 1850 年才取消。今天英国一些十八世纪末的老房子里，还能找到这种比普通砖大一圈的“避税砖”。</p>
+    <p>同一时期英国还有窗户税，按窗户数量收，于是很多人家把窗户砌死了。第三部讲玻璃的时候会再说。</p>
+  </div>
+
+  <div class="gone">
+    <h5>拆掉的：实心黏土砖</h5>
+    <p>烧实心黏土砖要挖大量耕地上的好土，还要烧大量的煤。二十世纪末起，中国开始限制和禁止在城市里使用实心黏土砖，很多地方的砖窑被关掉，取而代之的是空心砖、加气混凝土砌块和用工业废料做的砖。北方乡下那种“轮窑”的大烟囱，一根一根被拆掉了。红砖墙和青砖墙，正在从新房子上退场，只留在老房子和怀旧的餐厅里。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">“长城和古城墙是用糯米汤砌的，所以特别结实”<small>一半对</small></div>
+    <div class="pop"><i>流行说法</i><p>古人用糯米汤和石灰砌墙，比现代水泥还结实，所以长城千年不倒。</p></div>
+    <div class="chk"><i>再查一遍</i><p>“糯米灰浆”确有其事：2010 年前后，中国学者分析了明代城墙、墓葬等处的灰浆，在里面找到了支链淀粉，证明有些重要工程确实往石灰浆里加了糯米汁，能让灰浆更韧、更防水。但它用在少数重要的砖石工程上，成本很高，不是普遍做法；秦汉长城大多是夯土和砂石芦苇，根本没有灰浆。它也不比现代水泥“更结实”，只是更有韧性、更适合修补古建筑。<b>糯米灰浆是真的，“长城都是糯米砌的”是夸张</b>。</p></div>
+  </div>
+
+  <div class="echo" data-k="押韵">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">从砖上的名字到工程终身责任制</p><p>“物勒工名”是两千多年前的规矩。今天中国的建设工程实行“质量终身责任制”：建设、勘察、设计、施工、监理五方的项目负责人要签字存档，房子出了质量问题，退休了、调走了也要追责；有的地方还要求在建筑物上立一块永久性标牌，写明这五方单位的名字。<a href="../civil/">《铁打的营盘》</a>说过，追责链条越长，签字的人越多，每个人越会想办法让自己“不担那个责”。南京城墙砖上那十几个名字里，真正被追究的，大概也是最底下那几个。</p></div>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>那时的工地</i>砖是用火烧出来的石头，大小一样，能批量生产，能印上名字。烧砖要柴，所以很长时间里它只用在最要紧的地方。</div>
+      <div><i>你住的房子</i>你家的墙里可能已经没有一块传统的砖了，换成了砌块和混凝土。但你楼下那块写着设计、施工、监理单位名字的牌子，是砖上那串名字的后代。</div>
+    </div>
+  </div>
+</section>
+
+<div class="volhead" id="v2" data-vol="卷二 · 力">
+  <div class="num">VOLUME II · FORCES</div>
+  <h2>力<small>让它站住</small></h2>
+  <p class="lede">有了家当，还要让它们站住。房子里的每一份重量，屋顶的瓦、楼上的人、墙自己，最后都要找到一条路走到地面上去。人类找到的路大致有三条：用梁横着架过去，用拱弯着撑过去，用穹顶把一个圆盖住。卷二讲这三条路，以及中国人怎样在木头上把第一条路走到了头。</p>
+  <svg class="frame" data-t="力" aria-hidden="true"></svg>
+</div>
+
+<!-- ============ 第五章 · 梁 ============ -->
+<section class="chap" id="c5" data-vol="卷二 · 力 · 梁">
+  <div class="chead">
+    <div class="big">梁</div>
+    <div>
+      <div class="no">第五章</div>
+      <h2>石头怕弯</h2>
+      <dl><dt>讲什么</dt><dd>柱子加横梁；巨石阵上的榫卯；卡纳克神庙的柱林；希腊神庙是“石头做的木头房子”；帕特农的弯线和藏在大理石里的铁条；刻在石碑上的工钱；伽利略的悬臂梁和巨人的骨头；为什么梁要竖着放；抬梁和穿斗；面阔几间</dd><dt>本章装置</dt><dd>一根梁能搭多远</dd></dl>
+      <div class="mat" data-k="木 石 力"></div>
+      <div class="when" data-a="-2500" data-b="1700"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">古希腊、古埃及的神庙为什么到处是柱子？</p>
+      <p>因为它们用石头做横梁，而石头怕弯。一根石梁搭得越长，中间就越容易从底下裂开，所以柱子只能一根挨着一根，间距大多只有几米。埃及卡纳克神庙的大柱厅里立着一百三十多根大柱，人走进去像走进一片石头森林，这片森林不是为了好看，是被石头的脾气逼出来的。<em>神庙的样子，一半是信仰定的，一半是材料定的</em>。</p>
+    </div>
+
+    <div class="badge">
+      <span class="fic">虚构</span>
+      <div class="hd"><b>雅典卫城 · 厄瑞克透斯神庙</b><small>建造委员会账目 · 第一个议事期</small></div>
+      <div class="bd">
+        <div class="ph" data-h="bare"></div>
+        <dl>
+          <dt>姓名</dt><dd class="nm">（编）阿尔基亚斯</dd>
+          <dt>身份</dt><dd>外邦人，住梅利特区</dd>
+          <dt>工种</dt><dd>石匠 · 刻柱身凹槽</dd>
+          <dt>工钱</dt><dd>按条计件；做日工时一天一德拉克马</dd>
+          <dt>进场</dt><dd>约前 408 年</dd>
+        </dl>
+      </div>
+      <div class="rule"><b>公示</b>每人做了哪一件活、领了多少钱，连同姓名和身份（公民、外邦人、奴隶），刻石立于卫城。</div>
+      <div class="no"><span>No. 前408-卫城</span><i></i></div>
+      <div class="real"><b>真的部分</b>厄瑞克透斯神庙的建造账目刻在石碑上保存了下来，列出了一百多名工人，公民、外邦人和奴隶并肩干活，日工钱大多是一德拉克马，连建筑师也是一天一德拉克马；刻柱身凹槽按条计酬。人名和工号是编的。</div>
+    </div>
+
+    <h3>柱子加横梁</h3>
+    <p>最简单的房子骨架，是两根柱子顶一根横梁。小孩搭积木第一个学会的就是这个。它的道理也简单：柱子只管往下扛，横梁负责把上面的重量“送”到两边的柱子上。</p>
+    <p>英国巨石阵外圈的砂岩，就是一圈柱子顶着一圈横梁。有意思的是，横梁和立柱之间用的是凸榫和凹眼，相邻的横梁之间用的是一边凸一边凹的企口，这都是木匠的做法。考古学家认为，巨石阵的建造者原本熟悉的是木构，他们是在用石头模仿木头。</p>
+    <p>古埃及的神庙把柱子加横梁做到了最大。底比斯卡纳克神庙的大柱厅建于约三千三百年前，一百三十四根石柱排成十六行，中间两排最高，约二十多米。柱子之间的距离很小，因为柱顶的石梁搭不远。屋顶早已塌了，柱子还站着。</p>
+
+    <h3>石头做的木头房子</h3>
+    <p>古希腊的神庙一开始是木头和土坯的。约公元前七世纪起，神庙渐渐改用石头盖，但样子还保留着木构的影子：檐口下面那一排竖着三道槽的方块（三陇板），很像木梁伸出来的梁头；它下面那一排小圆钉一样的装饰，像固定木构件的木钉。古罗马的建筑师维特鲁威就是这样解释的，今天很多学者也同意，这叫“石化”：<em>形状从木头那里来，材料换成了石头</em>。</p>
+    <p>雅典卫城上的帕特农神庙建于公元前 447 年到前 432 年，正面八根柱子，侧面十七根，柱子之间约四米多。它有一系列让后人惊叹的“修正”：地基的台面中间微微拱起，柱子不是直上直下，而是略微向内倾斜，柱身中段微微鼓出来。这些细微的弯曲，据说是为了抵消人眼的错觉，让整座神庙看起来更挺拔。</p>
+    <p>希腊人知道大理石梁的弱点。卫城山门的建筑师在一些长的大理石梁里，偷偷埋进了铁条来帮它扛拉力。这个做法很超前，像两千多年后的钢筋混凝土；可它也有隐患：铁会生锈膨胀，把石头胀裂。二十世纪修复卫城时，工程师们最头疼的问题之一，就是早年修复时埋进去的铁件锈蚀，后来全部换成了钛合金。</p>
+  </div>
+
+  <div class="load">
+    <svg viewBox="0 0 150 110" aria-hidden="true"><path d="M12 40q63 22 126 0v18q-63 22-126 0z" fill="var(--kraft)" fill-opacity=".35" stroke="currentColor" stroke-width="2"/><path d="M8 62l8-6 8 6zM126 62l8-6 8 6z" fill="currentColor"/><path d="M75 14v18" stroke="currentColor" stroke-width="2"/><path d="M69 26l6 9 6-9" fill="currentColor"/><path d="M52 47l8-2M90 45l8 2" stroke="var(--blu)" stroke-width="2"/><text x="75" y="44" font-size="10" text-anchor="middle" fill="var(--blu)">压</text><path d="M50 66h50" stroke="var(--ter)" stroke-width="2"/><path d="M50 66l5-3M50 66l5 3M100 66l-5-3M100 66l-5 3" stroke="var(--ter)" stroke-width="2"/><text x="75" y="84" font-size="10" text-anchor="middle" fill="var(--ter)">拉 · 裂从这里开始</text></svg>
+    <div>
+      <h5>梁的上半截被挤，下半截被拉</h5>
+      <p>一根梁被压弯时，上半截被挤短，下半截被拉长，中间有一层不挤也不拉。石头不怕挤、怕拉，所以石梁总是从底面中间先裂。梁的承载力和它的高度的平方成正比，和宽度只是一次方：同样一块木料，竖着放比平着放结实得多。钢铁的工字梁把材料尽量放在离中间最远的上下两条边上，中间只留一片薄腹板，就是这个道理。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>伽利略的梁和巨人的骨头</h3>
+    <p>人类盖了几千年房子，梁该做多粗，全凭经验和口诀。第一个试图用数学来回答这个问题的，是伽利略。1638 年，他在软禁中出版了《关于两门新科学的对话》，所谓“两门新科学”，一门是运动，另一门就是材料的强度。</p>
+    <p>他在书里问了一个看似简单的问题：一根一头插在墙里、一头悬空的梁，能挂多重的东西？他的答案在细节上是错的（他以为梁的整个截面都在受拉，没有意识到上半截其实在受压，这个错误要再过一百多年才被法国人纠正），但他抓住了一个关键的道理：</p>
+    <p><em>把一个东西按比例放大，它的重量按尺寸的三次方增长，而它的强度只按截面积，也就是尺寸的二次方增长</em>。尺寸翻一倍，重量变成八倍，强度只变成四倍。所以一根梁、一座建筑、一只动物，都不能无限地按比例放大。伽利略举的例子是骨头：一个巨人的骨头如果和普通人比例一样，会被自己的体重压断；大象的腿骨之所以那么粗，就是这个原因。神话里的巨人，在力学上是不可能的。</p>
+    <p>这条“平方—立方”的道理，是理解所有大建筑的钥匙：小房子能用的办法，放大十倍就不灵了，得换一种结构。</p>
+
+    <h3>梁为什么竖着放</h3>
+    <p>宋代的《营造法式》规定，梁的截面高和宽的比例是三比二。这个比例怎样来的，书里没有说；后人算过，从一根圆木里锯出一根矩形梁，要让它最能扛弯，高和宽之比应该是根号二比一，约一点四比一，和三比二相差无几。<em>宋朝的工匠没有微积分，但他们的经验已经走到了离最优解很近的地方</em>。</p>
+  </div>
+
+  <div class="code">
+    <div class="old"><i>古书 · 原文</i><p>凡梁之大小，各随其广分为三分，以二分为厚。</p><p>夫人不可不自勉。不善之人未必本恶，习以性成，遂至于此。梁上君子者是矣！</p></div>
+    <div class="now"><i>白话</i><p>梁不管大小，都把它的高分成三份，宽取其中两份。</p><p>人不能不自我勉励。做坏事的人不一定本性就坏，是坏习惯慢慢变成了本性，才落到这一步。房梁上的这位君子就是这样！</p></div>
+    <div class="src">前一句见李诫《营造法式》卷五“大木作制度”；后一段见《后汉书·陈寔传》：陈寔发现小偷躲在自家房梁上，就把子孙叫来训了这一番话，小偷羞愧下来认错。“梁上君子”从此成了小偷的雅称。</div>
+  </div>
+
+  <div class="fig" id="bmFig">
+    <div class="fig-label">装置 6</div>
+    <h4>一根梁能搭多远</h4>
+    <p class="how">选一种材料，拖动梁高、梁上压的重量和跨度，看这根梁扛不扛得住。梁的截面按“高三宽二”算（钢按工字梁算）。读数里的“吃力程度”超过 100%，就是要裂了。最后试试按钮“放大一倍”：所有尺寸都翻倍，看看伽利略说的事。</p>
+    <div class="dishes" id="bmBtns"></div>
+    <div class="ctl"><span>梁高</span><input type="range" id="bmH" min="0.1" max="2" step="0.05" value="0.6"><output id="bmHO"></output></div>
+    <div class="ctl"><span>上面压着</span><input type="range" id="bmQ" min="0" max="60" step="1" value="12"><output id="bmQO"></output></div>
+    <div class="ctl"><span>跨度</span><input type="range" id="bmL" min="1" max="40" step="0.5" value="6"><output id="bmLO"></output></div>
+    <div class="btns"><button class="btn" id="bmX2">放大一倍</button><button class="btn" id="bmR">还原</button></div>
+    <svg id="bmSvg" class="sim" aria-label="一根简支梁"></svg>
+    <div class="kv" id="bmKv"></div>
+    <div class="say" id="bmSay"></div>
+    <p class="figcap">示意模型：两端简单搁在柱子上的梁，按均布荷载算最大弯曲应力。“允许应力”已经打了安全折扣：石材按约 2.5 兆帕、木材约 10 兆帕、钢约 160 兆帕。“上面压着”的单位是每米梁上多少千牛：一开间瓦屋顶压在一根梁上大约十几千牛每米。真实设计还要算挠度、剪力、稳定和长期变形。</p>
+  </div>
+
+  <div class="col">
+    <h3>抬梁和穿斗</h3>
+    <p>中国的木构房子，骨架主要有两种搭法。</p>
+    <p>北方和宫殿常用<b>抬梁式</b>：前后两根柱子上架一根大梁，大梁上立两根短柱，再架一根短一点的梁，层层往上抬，最上面顶着脊檩。这样屋子中间没有柱子，空间开阔；代价是最下面那根大梁要又长又粗，非得有大树不可。</p>
+    <p>南方民居常用<b>穿斗式</b>：沿着进深方向立一排柱子，每根柱子直接顶着一根檩条，柱子之间用一层层的“穿枋”穿起来，像一面木头的格子墙。它不需要大料，小树也能用，结构轻巧、抗风抗震；代价是屋里柱子多，不好隔出大房间。很多南方民居两种混用：中间的厅堂用抬梁，两边的山墙用穿斗。</p>
+    <p>两根柱子之间叫一“间”。中国人量房子不说多少平方米，而说“面阔几间、进深几间”。“间”的数量还是等级：普通百姓的房子多是三间，王府五间、七间，紫禁城的太和殿是十一间，面阔六十多米，是规格最高的。一个“间”能做多宽，最后又回到了梁：<em>天下最尊贵的房子，开间的宽窄也得听山里那棵树的</em>。</p>
+  </div>
+
+  <div class="gone">
+    <h5>拆掉的：石头横梁</h5>
+    <p>门窗上方那块横着的石头叫“过梁”。在拱和钢筋混凝土普及以前，砖石房子的门窗上都得架一块石过梁，它决定了窗户只能开多宽。今天你家窗户上方也有过梁，只是换成了藏在墙里、看不见的钢筋混凝土。宽大的落地窗，是石过梁退场以后才有的事。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">“古希腊神庙和雕像都是一片洁白的大理石”<small>错</small></div>
+    <div class="pop"><i>流行说法</i><p>古典建筑的美在于纯白的大理石，简洁素雅。</p></div>
+    <div class="chk"><i>再查一遍</i><p>古希腊人和古罗马人的神庙、雕像，原本大多涂着鲜艳的颜色：红、蓝、绿、金。经过两千多年的风吹日晒，颜料几乎掉光，只剩下白色的石头。文艺复兴和十八世纪的欧洲人看到的是褪了色的遗迹，以为“白”就是古典美，并照着它盖了大量白色建筑。今天用紫外线和光谱分析，还能在很多雕像和建筑构件上找到颜料的残迹。<b>我们心目中的“古典的白”，是时间涂上去的</b>。</p></div>
+  </div>
+
+  <div class="echo" data-k="联系">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">刻在石头上的工钱</p><p><a href="../turn/">《轮到谁了》</a>第一部讲过伯里克利用提洛同盟的钱修帕特农神庙，盟友们的贡金变成了雅典的大理石。厄瑞克透斯神庙的账目则让我们看到另一面：钱最后落到了谁手里。公民、外邦人和奴隶拿一样的日工钱，账目刻在石头上给全城人看。这是一个奇怪的平等：<em>政治上天差地别的三种人，在工地上一天值一样的价钱</em>。</p></div>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>那时的工地</i>梁让人第一次有了“不用墙撑着的屋顶”。石梁搭不远，所以神庙成了柱林；木梁搭得远，可又要等山里长出大树。</div>
+      <div><i>你住的房子</i>你家楼板底下藏着梁，它的高度是按跨度算出来的：跨度大约每多四五米，梁就要高出一大截。买房时说的“大开间”“无柱空间”，说到底是在买一根更贵的梁。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第六章 · 拱 ============ -->
+<section class="chap" id="c6" data-vol="卷二 · 力 · 拱">
+  <div class="chead">
+    <div class="big">拱</div>
+    <div>
+      <div class="no">第六章</div>
+      <h2>拱的道理</h2>
+      <dl><dt>讲什么</dt><dd>假拱和真拱；楔石和拱架：拱为什么合龙以前站不住；拉美西斯的粮仓；罗马人的水道和加尔桥；推力：拱脚为什么总要往外跑；赵州桥：又平又空的拱；无梁殿；胡克的字谜和倒挂的链子；拱靠形状，不靠强度</dd><dt>本章装置</dt><dd>推力线：这道拱站得住吗</dd></dl>
+      <div class="mat" data-k="石 火 力"></div>
+      <div class="when" data-a="-1300" data-b="1700"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">古代的石拱桥砖缝里没有水泥，为什么一千多年都不塌？</p>
+      <p>因为拱里的每一块石头都在挤它旁边的石头，整道拱从头到尾只受压，没有一处被拉。石头最不怕的就是压。只要拱的形状对，两头的地基又不往外跑，石头之间甚至不用灰浆也能站住。<em>拱不是靠石头有多结实站住的，而是靠形状</em>；它真正怕的，是脚下的地基松了。</p>
+    </div>
+
+    <div class="badge">
+      <span class="fic">虚构</span>
+      <div class="hd"><b>赵郡 · 洨河石桥</b><small>隋 · 开皇大业之间</small></div>
+      <div class="bd">
+        <div class="ph" data-h="wrap"></div>
+        <dl>
+          <dt>姓名</dt><dd class="nm">（编）石小五</dd>
+          <dt>工种</dt><dd>石匠 · 拱石</dd>
+          <dt>所属</dt><dd>匠人李春</dd>
+          <dt>工钱</dt><dd>官府给钱粮，数目不详</dd>
+          <dt>进场</dt><dd>约 595 年</dd>
+        </dl>
+      </div>
+      <div class="rule"><b>做法</b>大拱用二十八道拱石并列砌成，每道自成一拱；道与道之间嵌腰铁拉住。拱肩上再开两对小拱，留出泄洪的路。</div>
+      <div class="no"><span>No. 隋-洨河-28</span><i></i></div>
+      <div class="real"><b>真的部分</b>赵州桥（安济桥）建于隋代，约 595 年到 605 年间，唐代张嘉贞的《安济桥铭》说是“隋匠李春之迹”；大拱由二十八道拱圈并列组成，拱石之间用铁件连接，拱肩上有四个小拱。工人的名字和工钱是编的，史书没有记载。</div>
+    </div>
+
+    <h3>假拱和真拱</h3>
+    <p>想在一道门洞上面架一个顶，最直观的办法是“叠涩”：两边的石头一层比一层往里多伸出一点，伸到中间碰头。希腊迈锡尼的“阿特柔斯宝库”约建于三千二百多年前，是一个十三米多高的蜂巢形石室，就是这样一圈一圈收上去的；中美洲玛雅人的神庙走廊，也是这种“假拱”。它其实还是梁的道理：每一块伸出去的石头都是一根短短的悬臂梁，所以伸不远，墙要很厚。</p>
+    <p>“真拱”完全不一样：一块块做成楔形的石头（或砖），沿着一条弯线排开，每一块都被两边的邻居夹住，谁也掉不下去。最上面正中的那一块叫“拱心石”或“楔石”，最后放进去。</p>
+    <p>真拱有一个麻烦：<em>合龙以前，它根本站不住</em>。所以要先用木头搭一个弧形的托架，在中国叫“拱架”或“胎架”，石头一块块垒在托架上，拱心石放进去以后，再小心地把托架拆掉，看着它自己立住。拆架子那一刻，是工地上最紧张的时候。</p>
+    <p>最早的真拱用的是土坯砖。今天埃及卢克索西岸拉美西斯二世的祭庙旁，有一排约三千二百多年前的土坯拱顶粮仓，至今还站着。两河流域和埃及的工匠还会一种不用托架的砌法：把每一圈砖斜靠在后墙上砌，一圈一圈往前推，砖靠着砖，不用木头也能把拱顶合上。在缺木头的地方，这个办法省下了最贵的东西。</p>
+
+    <h3>罗马的水道</h3>
+    <p>把拱用到登峰造极的是罗马人。他们并没有发明拱，但他们把拱当成了一件工业产品：桥、水道、城门、凯旋门、斗兽场的看台下面，到处是一模一样的半圆拱，一个挨一个排下去。</p>
+    <p>罗马城最多有十一条引水道，总长五百公里左右，大部分其实埋在地下，只有在跨过山谷时才架到高高的拱桥上。法国南部的加尔桥是其中最有名的一段，约建于公元一世纪中叶，三层拱叠起来，高约四十九米，下面两层的大石块之间没有用灰浆，就那样干摞着站了两千年。整条水道从源头到尼姆城约五十公里，落差只有十几米，平均每公里只降低二三十厘米。</p>
+    <p>半圆拱有一个好处：好算。半圆就是半圆，每一块楔石都可以做成一样的形状，批量生产。它也有一个坏处：高。跨度十米的半圆拱，拱顶就要高出五米，桥面得跟着抬高，桥头要修很长的坡道。</p>
+  </div>
+
+  <div class="load">
+    <svg viewBox="0 0 150 110" aria-hidden="true"><path d="M20 92A55 55 0 0 1 130 92h-16A39 39 0 0 0 36 92z" fill="var(--ink-3)" fill-opacity=".25" stroke="currentColor" stroke-width="2"/><path d="M75 6v22" stroke="currentColor" stroke-width="2"/><path d="M69 20l6 9 6-9" fill="currentColor"/><path d="M28 86q2-50 47-52q45 2 47 52" fill="none" stroke="var(--ter)" stroke-width="2" stroke-dasharray="4 3"/><path d="M14 98h-12M136 98h12" stroke="currentColor" stroke-width="2.4"/><path d="M4 94l-4 4 4 4M146 94l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2.4"/><text x="18" y="108" font-size="10" fill="currentColor">推</text><text x="124" y="108" font-size="10" fill="currentColor">推</text></svg>
+    <div>
+      <h5>拱把重量变成“斜着推”</h5>
+      <p>拱把压在上面的重量，沿着弯线一路挤下去，到了两只拱脚，变成一个斜向下、往外的推力。往下的那部分由地基扛，往外的那部分要有东西顶住：厚墙、桥台、相邻的另一道拱。拱越扁，往外推得越狠；拱越高越尖，推得越轻。拱倒塌，多半不是石头碎了，而是拱脚被推得往外挪了一点，拱顶随之下沉，石缝张开，形成几个“铰”，然后整道拱像折叠尺一样折下来。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>又平又空的赵州桥</h3>
+    <p>河北赵县城南的洨河上，有一座建于隋代的石拱桥，正式的名字叫安济桥，人们习惯叫它赵州桥。它的主拱跨度约三十七米，在此后很长时间里，都是中国跨度最大的石拱桥。</p>
+    <p>它和罗马的半圆拱有两处根本不同。第一，它很“扁”：拱高只有七米多，约为跨度的五分之一，是一段圆弧而不是半圆。这样桥面很平，车马好走，代价是拱脚的推力大得多，两岸的桥台必须非常结实。第二，它是“空”的：在主拱两肩上各开了两个小拱，叫“敞肩”。小拱减轻了桥自身的重量，省了石料，洪水来时还能从小拱里泄过去，减轻水流对桥的冲击。西方学者常把它说成世界上最早的敞肩石拱桥之一，比欧洲同类的桥早了好几百年。</p>
+    <p>它的主拱不是一整块，而是由二十八道独立的拱圈并排砌成，道与道之间用铁件拉住。这样做的好处是，哪一道坏了，可以单独拆下来修，不必动整座桥。历史上它确实坏过、修过多次，二十世纪五十年代还做过一次大修。一千四百年里，它经历了多次洪水和地震，至今还站在原地。</p>
+  </div>
+
+  <div class="code">
+    <div class="old"><i>古书 · 原文</i><p>赵郡洨河石桥，隋匠李春之迹也。制造奇特，人不知其所以为。</p><p>赵州石桥什么人修？玉石栏杆什么人留？</p></div>
+    <div class="now"><i>白话</i><p>赵郡洨河上的石桥，是隋朝工匠李春的作品。造得很奇特，人们不知道它是怎样做成的。</p><p>民间小调《小放牛》里的一问。下一句答“赵州石桥鲁班爷修”：老百姓记不住李春，就把功劳算到了木匠祖师鲁班头上。</p></div>
+    <div class="src">前一句见唐代张嘉贞《安济桥铭》，是李春这个名字留下来的唯一依据；后一句是北方流传的民间小调，各地唱词略有不同。</div>
+  </div>
+
+  <div class="col">
+    <h3>中国的拱</h3>
+    <p>中国人很早就会做拱，但长时间里主要用在两个地方：地下和水上。汉代的砖室墓，墓顶多是砖砌的拱券；桥则从石梁桥慢慢发展到石拱桥，北魏郦道元的《水经注》记载，西晋时洛阳城外有一座“旅人桥”，全用大石砌成，下面是圆的，能过大船，这是文献里较早的石拱桥记录。</p>
+    <p>地面上的房子，中国人却一直坚持木构。直到明朝初年，南京灵谷寺才出现了一座完全用砖拱券砌成、不用一根木梁的大殿，人们管它叫“无梁殿”。此后各地又陆续建了一些无梁殿，多用来藏经、防火。<em>能做拱而不用拱，说明选择木头不是因为技术不够，而是另有理由</em>（第二章讲过那些理由）。</p>
+
+    <h3>胡克的字谜</h3>
+    <p>拱该是什么形状？罗马人用半圆，赵州桥用扁圆弧，哥特式教堂用尖拱。到十七世纪，英国科学家罗伯特·胡克想出了答案，但他不想马上公开，就在 1675 年的一本书后面附了一串打乱字母顺序的拉丁文字谜。他死后，人们才解开了谜底：</p>
+    <blockquote><p>柔软的绳子怎样挂着，倒过来，刚硬的拱就怎样站着。</p><cite>胡克字谜的意思，原文是拉丁文</cite></blockquote>
+    <p>道理是这样的：一根两头挂起来的链子，只能受拉，不能受压也不能受弯，它在自身重量下自然垂成的那条曲线，正好是每一处都只受拉的形状。把它上下颠倒过来，拉变成压，就是一条每一处都只受压的拱。这条曲线叫“悬链线”，比半圆更尖一点。</p>
+    <p>胡克的朋友克里斯托弗·雷恩在设计伦敦圣保罗大教堂的穹顶时，就用到了这个思路。两百多年后，西班牙建筑师高迪把这个办法做成了模型：他用绳子和装着铅弹的小袋子，倒挂出一整座教堂的形状，再翻过来看它正着的样子。巴塞罗那郊外科洛尼亚·古埃尔教堂的地下礼拜堂就是这样设计出来的，他后来的圣家堂，很多形状也来自同样的思路。</p>
+    <p>二十世纪六十年代，英国工程师雅克·海曼把这些古老的经验总结成了一句话：一道砖石拱只要能在它的厚度里找到一条“推力线”，它就是安全的。古代拱桥里的石头，实际用到的强度往往只有它能承受的几十分之一。<em>工匠们不知道公式，但他们的拱大多做得足够厚，厚到推力线怎么走都出不去</em>。</p>
+  </div>
+
+  <div class="fig" id="arFig">
+    <div class="fig-label">装置 7</div>
+    <h4>推力线：这道拱站得住吗</h4>
+    <p class="how">选一种拱的形状，拖动拱的厚度和矢高（拱有多高）。装置会在拱身里找一条推力线（红色虚线）：找得到，拱就站得住；推力线越贴近拱身正中，越稳。推力线戳出拱身，拱就会裂出铰、塌下来。</p>
+    <div class="dishes" id="arBtns"></div>
+    <div class="ctl"><span>矢高 / 跨度</span><input type="range" id="arF" min="0.12" max="0.8" step="0.01" value="0.2"><output id="arFO"></output></div>
+    <div class="ctl"><span>厚度 / 跨度</span><input type="range" id="arT" min="0.02" max="0.2" step="0.005" value="0.06"><output id="arTO"></output></div>
+    <div class="dishes" id="arLoad"></div>
+    <svg id="arSvg" class="sim" aria-label="拱和推力线"></svg>
+    <div class="kv" id="arKv"></div>
+    <div class="say" id="arSay"></div>
+    <p class="figcap">示意模型，按海曼的“安全定理”思路简化：只考虑对称的竖向荷载，在拱身厚度内搜索一条推力线；“很稳”指推力线留在拱身正中三分之一以内。半圆拱只靠自重时，理论上的最小厚度约为半径的十分之一多一点，装置的结果应在这附近。真实的拱还要看拱脚是否移动、荷载是否偏在一边、灰缝和石块的强度。</p>
+  </div>
+
+  <div class="gone">
+    <h5>拆掉的：叠涩顶</h5>
+    <p>一层比一层伸出一点、在头顶碰头的“假拱”，在真拱普及以后退出了承重的舞台。但它没有完全消失：中国的砖塔、砖墙的檐口，常用一层层往外伸的砖做出线脚，这就是叠涩；印度和东南亚的很多石庙，也一直用它。它从“撑起屋顶的办法”，变成了“好看的花边”。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">“拱是罗马人发明的”<small>错</small></div>
+    <div class="pop"><i>流行说法</i><p>罗马人发明了拱，所以能修出水道、斗兽场和万神殿。</p></div>
+    <div class="chk"><i>再查一遍</i><p>真拱至少在罗马建城前一千多年就出现在两河流域和埃及的土坯建筑里，意大利本地的伊特鲁里亚人也比罗马人更早使用石拱。罗马人的贡献是把拱大规模、标准化地用在公共工程上，并且配上了他们的另一项绝活，混凝土（下一章和第三部会讲）。<b>罗马人是拱最大的推广者，不是发明者</b>。</p></div>
+  </div>
+
+  <div class="echo" data-k="生活">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">合龙以前最危险</p><p>拱有一个很像人生的地方：<em>没合龙以前，每一块石头都要靠外面的架子撑着；合龙以后，架子一拆，石头们互相挤着，反倒谁也掉不下来</em>。很多事情也是这样，最难的是从“靠别人托着”到“自己能立住”的那一段，在那以前看着都是摇摇欲坠的半截。另一个道理是：拱最怕的不是上面压得重，而是脚下往外跑。一个人扛不扛得住压力，常常要看身边有没有人顶着。</p></div>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>那时的工地</i>拱让石头和砖第一次能“横着”跨过大跨度，靠的是形状，不是强度。造拱的人要先搭一个托架，还要给它两只踩得稳的脚。</div>
+      <div><i>你住的房子</i>你身边的拱少了，但拱的道理还在：隧道、地铁站、桥、水坝的弯面，都在把压力“弯”着送到地上。下次过一座老石桥，看看它的拱脚，那是它最用力的地方。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第七章 · 穹 ============ -->
+<section class="chap" id="c7" data-vol="卷二 · 力 · 穹">
+  <div class="chead">
+    <div class="big">穹</div>
+    <div>
+      <div class="no">第七章</div>
+      <h2>盖一个天</h2>
+      <dl><dt>讲什么</dt><dd>拱转一圈就是穹顶；“天似穹庐”：蒙古包的顶圈和腰绳；万神殿：越往上越轻的混凝土；把圆顶放到方房子上；圣索菲亚塌了又修；佛罗伦萨大教堂那个空了几十年的大洞；布鲁内莱斯基的人字砖、铁链和船；圣彼得大教堂的裂缝和倒挂的链子</dd><dt>本章装置</dt><dd>穹顶的箍</dd></dl>
+      <div class="mat" data-k="石 火 力"></div>
+      <div class="when" data-a="-1250" data-b="1750"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">万神殿的圆顶两千年没塌，它是怎么做到的？</p>
+      <p>三个办法一起用：形状、配料和重量的分配。圆顶的形状让它整体受压；罗马人的混凝土越往上用的骨料越轻，到顶上掺的是轻得能浮在水上的浮石；圆顶的底部又厚又重，外面一圈圈台阶压着，把它最容易裂开的下半截箍住了。<em>穹顶最难的不是顶，而是腰</em>：它的下半截总想往外撑开，谁能把这一圈“腰”管住，谁的圆顶就站得住。</p>
+    </div>
+
+    <div class="badge">
+      <span class="fic">虚构</span>
+      <div class="hd"><b>佛罗伦萨 · 圣母百花大教堂穹顶</b><small>大教堂工程局 · 穹顶工地</small></div>
+      <div class="bd">
+        <div class="ph" data-h="cap"></div>
+        <dl>
+          <dt>姓名</dt><dd class="nm">（编）巴尔托洛</dd>
+          <dt>工种</dt><dd>砌砖工 · 人字砌</dd>
+          <dt>所属</dt><dd>总工程师布鲁内莱斯基</dd>
+          <dt>工钱</dt><dd>按日计；冬天日短，工价比夏天低</dd>
+          <dt>进场</dt><dd>1430 年</dd>
+        </dl>
+      </div>
+      <div class="rule"><b>须知</b>穹顶上设有伙房，午饭在上面吃，不必下去；供应的葡萄酒是掺了水的。上下全靠牛拉的吊车。</div>
+      <div class="no"><span>No. 1430-Cupola</span><i></i></div>
+      <div class="real"><b>真的部分</b>佛罗伦萨大教堂穹顶 1420 年动工、1436 年合拢，主持人是布鲁内莱斯基；工程局的账簿保存至今，夏季和冬季工价不同；据记载为了节省上下的时间，穹顶上设了供饭的地方，酒要掺水以防工人醉了从高处跌下。人名和工号是编的。</div>
+    </div>
+
+    <h3>天似穹庐</h3>
+    <p>把一道拱绕着它的中线转一圈，就得到一个穹顶。上一章讲的“假拱”也能转：迈锡尼的阿特柔斯宝库，就是一圈圈石头往里收出来的蜂巢顶。真正的穹顶要等到罗马人手里。</p>
+    <p>不过在那以前很久，草原上的人已经天天住在穹顶下面了。蒙古包的顶是一圈细木杆，下头搭在网格墙上，上头插进中间一个木头圆环（蒙古语叫“陶脑”，就是天窗）。这个结构里藏着穹顶的全部秘密：木杆往中间挤，顶上的圆环被四面八方压着，是一个<em>受压的环</em>；木杆的下脚往外撑，网格墙的顶上必须用绳子或毛带勒一圈，是一个<em>受拉的环</em>。没有那根腰绳，墙会被顶杆撑开，整个包会塌下来。</p>
+  </div>
+
+  <div class="code">
+    <div class="old"><i>古书 · 原文</i><p>敕勒川，阴山下。天似穹庐，笼盖四野。天苍苍，野茫茫，风吹草低见牛羊。</p></div>
+    <div class="now"><i>白话</i><p>敕勒人的草原在阴山脚下。天像一顶大毡帐，罩住了四面的原野。天是青的，原野望不到边，风一吹，草低下去，露出了牛羊。</p></div>
+    <div class="src">北朝民歌《敕勒歌》，见宋代郭茂倩《乐府诗集》。“穹庐”就是游牧民的圆顶毡帐，今天“苍穹”“穹顶”的“穹”，说的就是这种弯成半个球的顶。</div>
+  </div>
+
+  <div class="col">
+    <h3>万神殿</h3>
+    <p>罗马万神殿现在的这座建筑，是哈德良皇帝在公元二世纪初重建的，门廊上还保留着一百多年前第一座神殿的主人阿格里帕的名字。它的圆顶直径约四十三点三米，从地面到顶点的高度也是四十三点三米，正好能装下一个完整的大球。顶上正中开着一个直径八米多的圆洞，没有玻璃，下雨时雨水直接落进来，从地面上的小孔排走。</p>
+    <p>两千年后，它仍然是世界上最大的无钢筋混凝土穹顶。秘密在配料。罗马混凝土用石灰和维苏威火山附近出产的一种火山灰调制，这种火山灰后来被叫作“波佐拉纳”，它和石灰反应以后能在潮湿甚至水下硬化。万神殿的建造者按高度换骨料：底下用沉重的石灰华，往上换成凝灰岩和碎砖，最上面掺的是浮石。圆顶的厚度也从底部的约六米，逐渐减到顶上洞口边的一米多。圆顶内面那一格一格凹进去的方格，既好看，又减轻了重量。</p>
+    <p>2023 年，美国麻省理工学院的一个团队发表研究说，罗马混凝土里常见的白色石灰小颗粒不是没拌匀，而是故意用生石灰“热拌”留下的：日后混凝土开裂，雨水渗进裂缝，碰到这些石灰颗粒，会重新生成碳酸钙，把裂缝慢慢填上。这可能是罗马混凝土“会自己愈合”的原因之一。</p>
+  </div>
+
+  <div class="load">
+    <svg viewBox="0 0 150 120" aria-hidden="true"><path d="M15 98A60 60 0 0 1 135 98" fill="none" stroke="currentColor" stroke-width="3"/><path d="M38 52A60 60 0 0 1 112 52" fill="none" stroke="var(--blu)" stroke-width="5"/><path d="M15 98A60 60 0 0 1 38 52M112 52A60 60 0 0 1 135 98" fill="none" stroke="var(--ter)" stroke-width="5"/><path d="M75 44l-6-6M75 44l6-6" stroke="var(--blu)" stroke-width="2"/><path d="M14 72l-10-2M136 72l10-2" stroke="var(--ter)" stroke-width="2"/><path d="M4 66l-2 5 5 2M146 66l2 5-5 2" fill="none" stroke="var(--ter)" stroke-width="2"/><text x="75" y="30" font-size="10" text-anchor="middle" fill="var(--blu)">上半截：一圈圈被挤</text><text x="75" y="114" font-size="10" text-anchor="middle" fill="var(--ter)">下半截：一圈圈被撑开</text></svg>
+    <div>
+      <h5>穹顶的腰</h5>
+      <p>穹顶和拱不同的地方在于，它不光沿着经线（从顶到底）传力，还沿着纬线（一圈一圈）传力。一个只受自身重量的半球形穹顶，从顶往下大约五十二度以内，每一圈都被左右挤着；过了这条线，每一圈都被往外撑，像要被拉断的腰带。砖石最怕拉，所以老穹顶的下半截常常出现一道道从下往上的竖裂缝。古人的对策和蒙古包一样：在腰上箍一圈，用石头链、铁链、木头链，或者干脆在外面压上沉重的墙和台阶。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>把圆顶放在方房子上</h3>
+    <p>万神殿的圆顶坐在一圈圆形的厚墙上，这最简单。可大多数房子是方的，怎样把一个圆顶放到四根柱子或四堵墙围成的方形上？拜占庭人的答案叫“帆拱”：在方形四个角上，各砌一块像船帆一样弯曲的三角形曲面，四块帆拱的顶边合起来，正好是一个圆圈，圆顶就坐在这个圆圈上。</p>
+    <p>君士坦丁堡的圣索菲亚大教堂把帆拱用到了极致。它是查士丁尼皇帝在 532 年尼卡暴动烧毁旧教堂以后下令重建的，主持设计的不是建筑师，而是两位数学家，特拉勒斯的安特米乌斯和米利都的伊西多尔。教堂只用了五年多就建成，537 年落成。圆顶直径约三十一米，底部一圈开了四十扇窗，光从窗里射进来，圆顶看上去像浮在半空。同时代的历史学家普罗科匹厄斯说，它不像是坐在墙上，倒像是用一根金链子从天上挂下来的。</p>
+    <p>可它太扁了。557 年两次地震之后，558 年圆顶塌了。老伊西多尔的侄子小伊西多尔重建了一个更高、更陡的圆顶，562 年完工；这个圆顶后来又在 989 年和 1346 年两次局部塌落、两次修好，一直站到今天。<em>“像浮在半空”和“容易塌”，是同一件事的两面</em>：圆顶越扁，看起来越轻盈，往外推得也越狠。</p>
+    <p>据说查士丁尼走进落成的教堂时喊了一声：“所罗门，我胜过你了！”这句话出自好几百年后的传说，未必是真的。一千年后，奥斯曼帝国的建筑师锡南也和这座教堂较劲了一辈子，他晚年在埃迪尔内修的塞利米耶清真寺，圆顶直径和圣索菲亚几乎一样大，据说他认为自己终于赶上了。</p>
+  </div>
+
+  <div class="code">
+    <div class="old"><i>原文大意</i><p>圆顶仿佛不是靠下面的建筑撑着，而是用一根金链子从天上挂下来，罩住了这片地方。</p></div>
+    <div class="now"><i>白话</i><p>这是六世纪的拜占庭历史学家普罗科匹厄斯在《论建筑》里对圣索菲亚圆顶的描写。他是替查士丁尼歌功颂德的官方作家，但这句话后来被一代代人引用，因为走进去的人确实是这种感觉。</p></div>
+    <div class="src">见普罗科匹厄斯《论建筑》卷一，这里只写大意。</div>
+  </div>
+
+  <div class="col">
+    <h3>佛罗伦萨的大洞</h3>
+    <p>十四世纪，佛罗伦萨人决心盖一座比对手比萨和锡耶纳都大的大教堂。教堂的身子盖好了，交叉处留着一个八边形的大洞，宽四十多米，准备将来盖一个圆顶。问题是：没有人知道怎么盖。这么大的跨度，按老办法要先搭一个满堂的木头拱架，可整个托斯卡纳都找不出够长够多的木头；而且拱架本身的重量，可能就会把下面的墙压垮。那个大洞就这样敞着，一敞就是几十年，雨水直接落进教堂里。</p>
+    <p>1418 年，大教堂工程局悬赏征集方案。一个本行是金匠的人，菲利波·布鲁内莱斯基，拿出了一个让所有人都怀疑的办法：不用满堂拱架，直接在空中一圈圈往上砌。他赢了，但工程局不放心，让他的老对手、雕塑家吉贝尔蒂和他一起当总工程师。布鲁内莱斯基后来用各种办法把吉贝尔蒂挤出了工程。</p>
+    <p>他的穹顶 1420 年动工，1436 年合拢，主要有几样诀窍。它是两层的：里层厚、外层薄，中间是空的，可以走人，减轻了重量。砖是“人字形”砌的：每砌几块平砖，就竖着插一块，一圈圈螺旋上去，竖砖像楔子一样把还没干的平砖卡住，不让它们往里滑，所以不用拱架。穹顶的腰上箍了几道用砂岩块和铁件连成的“链子”，还有一道木头的，专门对付下半截往外撑的力。为了把几百万块砖和巨大的石块吊上五十多米的高处，他还设计了一台牛拉的吊车，牛一直朝一个方向走，靠换挡就能让吊钩上升或下降，不用把牛掉头。</p>
+    <p>布鲁内莱斯基也有失手的时候。他曾设计一种运大理石的船，1421 年从佛罗伦萨政府那里拿到了三年的专营权，这被一些人看作欧洲最早的专利之一。1428 年，这艘船装着大理石在阿诺河上沉了。</p>
+  </div>
+
+  <div class="fig" id="dmFig">
+    <div class="fig-label">装置 8</div>
+    <h4>穹顶的箍</h4>
+    <p class="how">拖动“穹顶开多大”：从一个很扁的盖子一直开到半个球。蓝色是被挤的部分，红色是被往外撑、容易裂的部分。再选跨度和厚度，看底部需要箍多大的力；勾上“顶上加个灯塔”，看看在圆顶最上面压一个重东西会怎样。</p>
+    <div class="dishes" id="dmBtns"></div>
+    <div class="ctl"><span>开多大</span><input type="range" id="dmP" min="15" max="90" step="1" value="90"><output id="dmPO"></output></div>
+    <div class="ctl"><span>跨度</span><input type="range" id="dmD" min="3" max="45" step="0.5" value="43"><output id="dmDO"></output></div>
+    <div class="ctl"><span>厚度</span><input type="range" id="dmT" min="0.1" max="4" step="0.1" value="2"><output id="dmTO"></output></div>
+    <label class="ck"><input type="checkbox" id="dmL"> 顶上加个灯塔（按圆顶自重的一成算）</label>
+    <svg id="dmSvg" class="sim" aria-label="穹顶的剖面和受力"></svg>
+    <div class="kv" id="dmKv"></div>
+    <div class="say" id="dmSay"></div>
+    <p class="figcap">示意模型：按等厚球壳的“薄膜理论”计算，砖石按每立方米两吨。真实的穹顶厚度上下不一、带肋、开窗、有多层，佛罗伦萨的穹顶还是八边形的尖顶，都和这个理想球壳不同，只看方向。蒙古包的顶杆是木头，靠的是腰绳而不是砖石，这里只借它的形状。</p>
+  </div>
+
+  <div class="col">
+    <h3>圣彼得的裂缝</h3>
+    <p>一百多年后，罗马圣彼得大教堂的大圆顶在米开朗琪罗的设计基础上，由贾科莫·德拉·波尔塔在 1590 年完成。到了十八世纪，人们发现圆顶上出现了很多从下往上的裂缝，正是“腰”裂开的样子。教皇请了三位数学家来诊断，他们在 1743 年提交报告，主张在圆顶上加铁箍。另一位工程师乔瓦尼·波莱尼则用了胡克的办法：按圆顶的剖面和重量，做了一根挂着小重物的链子，证明它的推力线还在圆顶的厚度之内，圆顶本身是安全的，裂缝是“腰”上的箍不够紧造成的。结果，圣彼得的圆顶上又加了几道铁箍，一直用到今天。</p>
+    <p>这是建筑史上第一批用科学计算去“体检”一座老房子的例子。<em>在那以前，房子塌不塌靠经验和运气；从那以后，人开始拿着算式去问一座房子：你还好吗</em>。</p>
+  </div>
+
+  <div class="gone">
+    <h5>拆掉的：满堂拱架</h5>
+    <p>中世纪的大拱顶，砌之前要先在下面搭一整座木头的“森林”：成百上千根木料组成的托架，支撑着还没合拢的砖石。布鲁内莱斯基让人看到，聪明的砌法可以不要它。今天浇混凝土仍然要搭支架和模板，但它们是钢管和可以反复周转的模板，用完就拆走，几十层楼一套轮着用。整片林子砍下来只为托一次拱的日子，已经过去了。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">“布鲁内莱斯基把鸡蛋立在桌上，赢了圆顶的比赛”<small>存疑</small></div>
+    <div class="pop"><i>流行说法</i><p>评委问谁能把鸡蛋立在大理石桌上，大家都做不到；布鲁内莱斯基把蛋的一头磕扁，立住了。别人说这谁都会，他说：那等我把圆顶的办法讲出来，你们也会说谁都会。</p></div>
+    <div class="chk"><i>再查一遍</i><p>这个故事出自一百多年后瓦萨里写的《艺苑名人传》，当时的文献里找不到依据；几乎一模一样的“立鸡蛋”故事，后来又被安到了哥伦布头上。布鲁内莱斯基确实不肯公开自己的全部办法，怕被人抄走，这一点是有记载的。<b>鸡蛋多半是后人编的，“不肯说”是真的</b>。</p></div>
+  </div>
+
+  <div class="echo" data-k="押韵">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">圆顶和权力</p><p>万神殿是皇帝的，圣索菲亚是皇帝的，佛罗伦萨的圆顶是一座城市的，圣彼得的圆顶是教皇的，美国国会大厦的圆顶是一个共和国的。<em>圆顶比别的屋顶贵得多、难得多，所以谁盖得起一个大圆顶，谁就在告诉全世界自己有多少钱、多少人、多少本事</em>。<a href="../turn/">《轮到谁了》</a>里的四个霸主，每一个都在自己的首都留下了一个圆顶。</p></div>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>那时的工地</i>穹顶是人能盖出来的最像“天”的东西。它的上半截好对付，下半截总想往外撑，几千年的穹顶，都在想办法给自己系一根腰带。</div>
+      <div><i>你住的房子</i>你身边的穹顶多半是体育馆和大剧院，用钢和混凝土做，腰上照样箍着一圈“环梁”。下次撑开一把伞，看看伞骨和伞面：它也在和同样的力打交道。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第八章 · 斗 ============ -->
+<section class="chap" id="c8" data-vol="卷二 · 力 · 斗">
+  <div class="chead">
+    <div class="big">斗</div>
+    <div>
+      <div class="no">第八章</div>
+      <h2>斗拱和法式</h2>
+      <dl><dt>讲什么</dt><dd>斗、拱、昂是什么；屋檐为什么要挑那么远；战国的铜案上已经有斗拱；唐代的斗拱有半根柱子高；“以材为祖”；李诫为什么写《营造法式》：一半是图纸，一半是账本；应县木塔的五十四种斗拱和九百多年的难题；梁思成、林徽因骑骡子找唐代木构；斗拱怎样一路缩小，变成了花边</dd><dt>本章装置</dt><dd>以材为祖：八等材</dd></dl>
+      <div class="mat" data-k="木 力 人"></div>
+      <div class="when" data-a="-310" data-b="1937"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">斗拱到底是干什么用的？只是好看吗？</p>
+      <p>它最初是实打实的结构件。斗拱夹在柱子顶上和屋顶之间，一层层往外挑，把屋檐送出去很远，让雨水落得离墙和柱脚远一点；它还把屋顶的重量收拢到柱头上，缩短了梁的跨度；地震时，一层层木块之间会滑动、摩擦，消耗掉一部分震动。后来，它又成了身份的标志：什么人家能用斗拱、用几层，朝廷都有规定。<em>斗拱先是一个办法，后来是一个等级，最后成了一个符号</em>。</p>
+    </div>
+
+    <div class="badge">
+      <span class="fic">虚构</span>
+      <div class="hd"><b>应州宝宫寺 · 释迦塔</b><small>辽 · 清宁二年</small></div>
+      <div class="bd">
+        <div class="ph" data-h="hat"></div>
+        <dl>
+          <dt>姓名</dt><dd class="nm">（编）田十八</dd>
+          <dt>工种</dt><dd>大木作 · 斗拱</dd>
+          <dt>所属</dt><dd>都料匠（总木匠）手下</dd>
+          <dt>工钱</dt><dd>寺院与施主出资，数目不详</dd>
+          <dt>进场</dt><dd>1056 年</dd>
+        </dl>
+      </div>
+      <div class="rule"><b>做法</b>塔外看五层，内藏四个暗层；各层内外柱圈、梁枋、斗拱连成一体。斗拱随位置不同，共做五十余种，尺寸一律按“材”“分”折算。</div>
+      <div class="no"><span>No. 辽-应州-54</span><i></i></div>
+      <div class="real"><b>真的部分</b>应县木塔建于辽清宁二年（1056），高约六十七米，是世界上现存最高、最古老的木塔，外观五层、内有四个暗层，全塔斗拱一般说有五十四种；“都料匠”是宋辽时对主持木工的匠师的称呼。人名、工号和工钱是编的。</div>
+    </div>
+
+    <h3>斗、拱、昂</h3>
+    <p>斗拱由几种小木件一层层叠起来。<b>斗</b>是方形的木块，上面开槽，像一只量米的斗；<b>拱</b>是两头微微上弯的弓形短木，搁在斗上，两头再各托一个小斗；<b>昂</b>是斜着伸出去的长木，像一根杠杆，外头挑着屋檐，里头被屋顶的重量压住。斗上托拱，拱上托斗，斗上再托拱，一层比一层往外伸出一点，叫“出跳”。</p>
+    <p>为什么要往外伸？第一章讲过，土房子和木房子都需要“一顶好帽子”：屋檐挑得越远，雨水越不容易打湿墙和柱脚。可椽子只能伸出去那么一点，再远就要断。斗拱像一只张开的手，在柱头上把檐檩托出去，屋檐因此能挑出两三米远。唐代的大殿，屋檐深远、出檐舒展，就是斗拱托出来的。</p>
+    <p>斗拱的历史很长。河北平山战国中山王墓出土的一件错金银铜方案，案面四角就用了斗拱形状的构件来托；汉代的石阙、陶楼明器上，斗拱已经很常见。到了唐代，斗拱又大又雄壮，山西五台山佛光寺东大殿的斗拱，高度差不多有柱子的一半。</p>
+  </div>
+
+  <div class="load">
+    <svg viewBox="0 0 150 120" aria-hidden="true"><rect x="64" y="70" width="18" height="48" fill="var(--kraft)" fill-opacity=".4" stroke="currentColor" stroke-width="1.6"/><rect x="58" y="60" width="30" height="10" fill="var(--kraft)" fill-opacity=".4" stroke="currentColor" stroke-width="1.6"/><path d="M40 52h66v8H40z" fill="var(--kraft)" fill-opacity=".4" stroke="currentColor" stroke-width="1.6"/><path d="M28 42h90v8H28z" fill="var(--kraft)" fill-opacity=".4" stroke="currentColor" stroke-width="1.6"/><path d="M8 20L132 46l-2 6L6 26z" fill="var(--ter)" fill-opacity=".35" stroke="currentColor" stroke-width="1.6"/><path d="M12 8v12" stroke="currentColor" stroke-width="2"/><path d="M7 14l5 8 5-8" fill="currentColor"/><path d="M122 30v12" stroke="currentColor" stroke-width="2"/><path d="M117 36l5 8 5-8" fill="currentColor"/><circle cx="73" cy="38" r="3" fill="var(--blu)"/><text x="8" y="6" font-size="9" fill="currentColor">屋檐</text><text x="104" y="24" font-size="9" fill="currentColor">屋内压住</text></svg>
+    <div>
+      <h5>一层层的悬臂和一根杠杆</h5>
+      <p>每一跳拱都是一根短短的悬臂梁，只伸出去几十厘米，所以不容易断；几跳叠起来，就把屋檐送出去一两米。昂更聪明：它是一根斜放的杠杆，柱头上的斗是支点，外头挑着沉重的屋檐，里头的尾巴被屋内的梁和屋顶压住，两头的重量互相平衡。斗拱靠的不是哪一块木头特别结实，而是“很多短的”代替“一根长的”。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>以材为祖</h3>
+    <p>北宋元符三年（1100 年），将作监李诫编成了一部建筑书，崇宁二年（1103 年）刻版颁行，这就是《营造法式》。将作监是朝廷管宫殿、衙署、城池等工程的机构，李诫在那里干了十几年，主持过不少大工程。</p>
+    <p>这部书的来历很有意思。朝廷之前已经让人编过一部，叫《元祐法式》，可是被认为“工料太宽，关防无术”：定的人工和材料太松，没法防止工程里虚报人工、多领材料。于是朝廷让李诫重编。<em>《营造法式》首先是一部防贪污的书</em>：全书三十多卷，讲做法的“制度”只占一部分，大量篇幅是“功限”和“料例”，规定每一种构件要花多少个工、用多少料，夏天白天长和冬天白天短，一个工的工作量还不一样。有了这些定额，就能按图算出一座房子该花多少，谁多报了一眼就看得出来。</p>
+    <p>它最了不起的发明叫“材分制”。全书的尺寸，大多不用尺寸写，而是用“材”和“分”写。</p>
+  </div>
+
+  <div class="code">
+    <div class="old"><i>古书 · 原文</i><p>凡构屋之制，皆以材为祖。材有八等，度屋之大小，因而用之。</p><p>各以其材之广，分为十五分，以十分为其厚。凡屋宇之高深，名物之短长，曲直举折之势，规矩绳墨之宜，皆以所用材之分，以为制度焉。</p></div>
+    <div class="now"><i>白话</i><p>凡是盖房子，都以“材”为根本。材分八个等级，看房子多大，选用哪一等。</p><p>每一等材，把它的高分成十五“分”，宽取十“分”。房子的高低深浅、各种构件的长短、曲线和屋面坡度的走势、画线下料的尺度，全都用所选那一等材的“分”来规定。</p></div>
+    <div class="src">见李诫《营造法式》卷四“大木作制度一”。“材”本来是一根标准断面的拱料，高宽比三比二（第五章讲过这个比例）；上下两层拱之间的空当叫“栔”，高六分。</div>
+  </div>
+
+  <div class="col">
+    <p>这套办法的妙处在于：<em>只要先定下用哪一等材，整座房子所有构件的尺寸就都定了</em>。大殿用一等材，亭子用七八等材，可是一座大殿和一座小亭子里，同一种斗拱的样子、比例完全一样，只是放大缩小。工匠只要背熟每种构件是“多少分”，拿到不同等级的材，就能换算出实际的尺寸。这和今天的“模数化设计”是一个思路，比欧洲早得多。</p>
+    <p>清朝雍正年间（1734 年），工部颁布《工程做法》，又把模数改成以斗拱最下面那只大斗上开口的宽度，也就是“斗口”为单位。一千年里，中国的官式建筑一直在用一个“小单位”管住整座大房子。</p>
+
+    <h3>九百七十年的木塔</h3>
+    <p>山西应县的释迦塔，比《营造法式》早几十年。它建于辽代清宁二年（1056 年），通高约六十七米，是世界上现存最高、最古老的木构塔。外面看是五层六檐，每两层之间还藏着一个看不见的暗层，暗层里有斜撑，像在塔身里箍了一圈圈结实的腰带。全塔的斗拱据统计有五十四种，每一种都在不同的位置干不同的活。</p>
+    <p>九百多年里，它经历过多次地震，至今没倒。可它的日子并不好过：二十世纪二十年代军阀混战，木塔被炮弹打中过很多次；后来有人为了“加固”，在暗层里拆掉了一些斜撑，换成了砖墙和门窗，反而削弱了结构。今天，木塔的二层、三层明显向东北方向倾斜、扭曲。怎样修，争论了三十多年：有人主张全部拆下来重新组装（“落架大修”），有人认为一拆就再也装不回原样，只能加支撑慢慢维持。到现在也没有定论。<em>一座木房子活了九百多年，最难的问题反而是：现在的人该怎样对待它</em>。</p>
+  </div>
+
+  <div class="gone">
+    <h5>拆掉的：真昂</h5>
+    <p>唐宋的昂是真正的杠杆，长长的一根斜着穿过斗拱，尾巴伸进屋内被压住。到了明清，屋顶的做法变了，挑檐的活改由别的构件承担，昂慢慢失去了作用。工匠们仍然保留了它的样子：在一根水平的拱头上，雕出一个斜斜向下的“昂嘴”，看上去像昂，其实里面没有那根斜木。这叫“假昂”。从真昂到假昂，是斗拱从结构变成装饰的缩影。</p>
+  </div>
+
+  <div class="col">
+    <h3>斗拱缩小了</h3>
+    <p>如果把唐、宋、明、清的官式建筑排在一起看，会发现一条很清楚的线：斗拱越来越小，越来越密。唐代佛光寺的斗拱硕大雄浑，柱子之间只放一两朵；到了清代的紫禁城，斗拱的高度只剩柱高的几分之一，柱子之间密密地排着好几朵，雕得精细，刷着彩画，看上去更像一条华丽的花边。</p>
+    <p>原因有好几种说法：大木料越来越少（第二章讲过皇木），屋檐的挑出改由梁头承担，砖墙普及以后不那么怕雨了，等级制度越来越细需要更多的装饰。也许几条都对。<em>一个东西不再被需要的时候，它不一定马上消失，常常是先变小、变漂亮，留下来当一个符号</em>。</p>
+
+    <h3>骑骡子的人</h3>
+    <p>二十世纪初，日本学者断言，中国已经没有唐代的木构建筑了，要看唐代的木建筑只能去日本奈良。这句话刺激了一批中国学者。</p>
+    <p>1919 年，曾任北洋政府内务总长的朱启钤在南京的江南图书馆发现了一部《营造法式》的手抄本，随即影印出版。1925 年，梁启超把一部新印的《营造法式》寄给在美国学建筑的儿子梁思成，在扉页上写道，这部书在千年前是杰作，“可为吾族文化之光宠也”。梁思成打开一看，发现几乎读不懂，满纸是“材”“栔”“昂”“铺作”这样的行话，他称之为“天书”。1930 年，朱启钤创办中国营造学社，梁思成和林徽因先后加入，从此开始了一边读这部天书、一边下乡测绘古建筑的十几年。</p>
+    <p>他们要找唐代的木构。线索来自敦煌：伯希和出版的敦煌石窟图录里，第六十一窟有一幅五台山的地图壁画，上面画着一座“大佛光之寺”。1937 年 6 月，梁思成、林徽因和莫宗江、纪玉堂骑着骡子进了五台山，在一个偏僻的山坳里找到了佛光寺。他们爬进大殿的天花板上面，在漆黑和厚厚的蝙蝠粪里测量梁架；林徽因因为远视，最先看清了大梁底下一行墨书题字，“女弟子宁公遇”。对照殿前石经幢上的年份，大殿建于唐大中十一年，即 857 年。</p>
+    <p>这是当时已知中国最古老的木构建筑（后来又在五台山找到了更早一点、建于 782 年的南禅寺大殿）。几个星期后，七七事变爆发，他们在回北平的路上才听到消息。此后八年，营造学社辗转到了四川宜宾的李庄，在油灯下整理测绘图，梁思成用英文写成了一部中国建筑史图录。</p>
+  </div>
+
+  <div class="fig" id="cfFig">
+    <div class="fig-label">装置 9</div>
+    <h4>以材为祖：八等材</h4>
+    <p class="how">选一等“材”，装置按《营造法式》里同一组斗拱的“分数”，画出它在这一等材下的实际大小，旁边站着一个一米七的人。所有的斗、拱都是同一张图按比例缩放的；只要换一个“材等”，整座房子的每一个构件就跟着变。</p>
+    <div class="dishes" id="cfBtns"></div>
+    <div class="scroll-x"><svg id="cfSvg" class="sim" style="min-width:540px" aria-label="斗拱和人的比例"></svg></div>
+    <div class="kv" id="cfKv"></div>
+    <div class="say" id="cfSay"></div>
+    <p class="figcap">八等材的尺寸按《营造法式》卷四，宋代一尺按约 31 厘米折算（各地出土宋尺在 30 到 33 厘米之间）。图上的斗拱是简化的正立面：栌斗、泥道拱、慢拱、散斗、柱头枋，各件的“分数”取自《营造法式》，做了省略，不是任何一座真实建筑的测绘图。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">“有斗拱的古建筑都不怕地震”<small>一半对</small></div>
+    <div class="pop"><i>流行说法</i><p>斗拱是古人的“抗震神器”，木塔九百年不倒全靠它；古建筑大地震里都不会塌。</p></div>
+    <div class="chk"><i>再查一遍</i><p>斗拱的木块之间能滑动、摩擦，榫卯能转动，这些确实能消耗一部分地震的能量，实验也证明过；应县木塔能挺过多次地震，除了斗拱，还靠它的暗层斜撑、内外两圈柱子和巨大的整体性。但历史上地震里倒塌的木构建筑也很多，2008 年汶川地震中，四川不少古建筑受损严重；木构件糟朽、虫蛀以后，再好的斗拱也扛不住。<b>斗拱有帮助，但不是神器；木房子抗震，靠的是整体、维护和运气</b>。</p></div>
+  </div>
+
+  <div class="echo" data-k="联系">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">一本建筑书，一半是账</p><p>《营造法式》编出来是为了“关防工料”，管住工地上的虚报冒领。<a href="../civil/">《铁打的营盘》</a>第五章讲过清代工部的“则例”和“部费”：规矩越细，书吏的生意越好，因为只有他们查得清每一条该怎么算。<em>定额本来是用来防贪污的，熟悉定额的人却最会利用它</em>。南京城墙砖上的名字、宋代的功限料例、今天工程预算里的“定额”，是同一条线上的三个点。</p></div>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>那时的工地</i>中国的工匠把木头的“梁”和“悬臂”玩到了头：一层层短木托出深远的屋檐，一个“分”管住整座宫殿。一本建筑书，一半是做法，一半是账本。</div>
+      <div><i>你住的房子</i>你家的房子也是“以材为祖”的：楼层高度、开间、门窗都按 100 毫米或 300 毫米的模数排。至于斗拱，它从屋檐下走进了仿古建筑、博物馆的标志和城市的门牌，成了一个符号。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第一部末：哪些是真的、存疑与出处 ============ -->
+<section class="chap" id="notes1" data-vol="第一部 · 存疑与出处">
+  <div class="col">
+    <h3>第一部：哪些是真的</h3>
+    <ul class="src">
+      <li><b>虚构的</b>：每章开头的工牌都是编的：工牌上的人名、工号、版式和“须知”的措辞。每张工牌下面的“真的部分”写明了它依据的史料：统万城的验收办法出自《晋书》，梅勒的日志是真实的纸草，厄瑞克透斯神庙的工钱出自刻石账目，南京城墙砖上的责任人名单是实物，佛罗伦萨穹顶工地的冬夏工价出自工程局账簿。</li>
+      <li><b>真实的</b>：正文里的遗址、建筑、年代、人物、文献和实验，都尽量核对过。考古年代常有出入，建筑的尺寸各家测量也略有不同，所以多写了“约”。</li>
+      <li><b>古书引文</b>：只引公版古籍，“古书 · 原文”框里注明了出处；《圣经》引文用 1919 年和合本译文；希罗多德、普罗科匹厄斯只写大意。白话是意译。</li>
+      <li><b>装置</b>：全部是示意模型，数字为说明道理而设，只看方向和数量级，<b>不能用来设计或评估真实的建筑</b>。</li>
+    </ul>
+
+    <h3>第一部：存疑与说明</h3>
+    <ul class="src">
+      <li><b>窝</b>：卡兰博瀑布木构的用途和制作者不明；阿玛塔台地的“窝棚”有争议；梅日里奇用掉的猛犸数量各家统计不同；白蚁塚通风和东门中心节能的说法（标“存疑”）；“人造物总重超过生物量”是 2020 年的一项估算，口径（是否计入废弃物、生物量按干重）不同结论会变。</li>
+      <li><b>泥</b>：“蒸土”是否指掺石灰有不同解释；郑州商城城墙的土方和工期，各家估算不同，装置只是同一量级的示意；“世界上仍有很多人住在土房子里”的具体人数没有可靠统计；“长城太空可见”（标“错”）。</li>
+      <li><b>木</b>：中国为什么偏爱木构，各家说法都只是解释之一；“入山一千，出山五百”是民间说法，不是统计；伊势神宫式年迁宫的起始年代按《太神宫诸杂事记》等记载，每次用木数量各说不一；气球框架的发明人有不同说法；“一根钉子都不用”（标“一半对”）。</li>
+      <li><b>石</b>：巨石阵祭坛石来自苏格兰是 2024 年的研究，运输方式不明；金字塔工人人数、坡道形式都有争论；希罗多德的说法多处不可靠；故宫大石料的运输按明人贺仲轼《两宫鼎建记》的记载转述，具体数字以原书为准；印加人“用植物汁液软化石头”没有证据；“奴隶盖金字塔”（标“大体不对”）。</li>
+      <li><b>砖</b>：中国最早的烧制砖年代随新发现在变；南京城墙用砖数量没有确数；“金砖”名字的来历没有定论；临清贡砖由漕船捎带的数额各时期不同；“糯米砌长城”（标“一半对”）。</li>
+      <li><b>梁</b>：希腊神庙“石化”说是主流解释，也有学者认为三陇板不一定模仿梁头；帕特农的“视觉修正”是否真为抵消错觉，有不同看法；卫城山门铁条的具体做法以考古报告为准；“希腊神庙是白色的”（标“错”）。</li>
+      <li><b>拱</b>：赵州桥的建造年代按一般说法写作约 595—605 年；“世界最早的敞肩拱桥”是常见说法，具体比欧洲早多少年各书说法不一；“罗马人发明拱”（标“错”）。</li>
+      <li><b>穹</b>：万神殿圆顶直径、洞口尺寸各家测量略有出入；罗马混凝土“自愈合”是 2023 年的一项研究，并非唯一解释；查士丁尼“胜过所罗门”是后世传说；锡南与圣索菲亚比大小的说法出自他的自传和后人转述；穹顶工地伙房和掺水酒的细节来自后世史家对工程局档案的转述；“立鸡蛋”（标“存疑”）。</li>
+      <li><b>斗</b>：应县木塔斗拱种类的统计口径不同，常说五十四种；木塔修缮方案至今在讨论；斗拱缩小的原因各家说法不同；“斗拱抗震神器”（标“一半对”）；佛光寺发现过程以梁思成、林徽因的记述为主。</li>
+    </ul>
+
+    <h3>第一部：主要出处</h3>
+    <ul class="src">
+      <li>公版古籍（引文或大意）：《韩非子·五蠹》；《周易·系辞下》；《淮南子·览冥训》及高诱注；《诗经·大雅·绵》；《孟子·告子下》《孟子·梁惠王上》；《晋书·赫连勃勃载记》；《周礼·考工记》；《礼记·月令》；《后汉书·陈寔传》；郦道元《水经注·谷水》；张嘉贞《安济桥铭》；《敕勒歌》（《乐府诗集》）；李诫《营造法式》；《明史·宋礼传》；贺仲轼《两宫鼎建记》；《旧约·出埃及记》《旧约·创世记》（和合本）；希罗多德《历史》；普罗科匹厄斯《论建筑》；维特鲁威《建筑十书》；伽利略《关于两门新科学的对话》；瓦萨里《艺苑名人传》。</li>
+      <li>研究与著作（只作转述）：Barham 等（2023）关于卡兰博瀑布木构；Jaubert 等（2016）关于布吕尼凯勒洞；Nadel 等关于奥哈罗二号；Klepeis 等（2001）美国人室内时间调查；Elhacham 等（2020）关于人造物总量；Turner &amp; Soar 关于白蚁塚通风；Tegel 等（2012）关于德国新石器时代木井；浙江省文物考古研究所《河姆渡》发掘报告；Tallet 关于瓦迪贾尔夫纸草与梅勒日志；Lehner &amp; Hawass《Giza and the Pyramids》；Fall 等（2014）关于湿沙摩擦；Clarke 等（2024）关于巨石阵祭坛石；Parker Pearson 关于巨石阵；Protzen 关于印加石作；Kenyon 关于杰里科；Hodder 关于恰塔尔许于克；南京城墙保护管理中心关于城砖铭文的整理；Yang 等（2010）关于糯米灰浆；Heyman《The Stone Skeleton》（1966）及《The Masonry Arch》；茅以升、罗英关于赵州桥；Seymour 等（2023）关于罗马混凝土热拌；Mainstone《Hagia Sophia》；Ross King《Brunelleschi's Dome》；Poleni（1748）关于圣彼得穹顶；梁思成《中国建筑史》《图像中国建筑史》及《记五台山佛光寺建筑》；陈明达《营造法式大木作研究》；潘谷西、何建中《营造法式解读》；中国文化遗产研究院等关于应县木塔的研究；Galileo 原著及 Timoshenko《材料力学史》。</li>
+      <li>官方资料（约数）：国家统计局《农民工监测调查报告》；住房和城乡建设部关于建筑工人实名制和工程质量终身责任制的规定。</li>
+    </ul>
+  </div>
+</section>
+
+<div class="partend" data-vol="第一部完">
+  <div class="k">第一部 · 土木 · 完</div>
+  <h3>家当齐了，也学会了怎样让它们站住</h3>
+  <p class="ni" style="font-size:16px;line-height:1.9;text-align:left">第一部从四十七万年前两根刻了槽的木头，走到 1937 年山坳里的一座唐代大殿。泥、木、石、砖四样家当，梁、拱、穹三种站法，人类在几千年里差不多都试遍了。可是这一部里还有很多人只露了一面：金字塔的轮班工人、南京城墙砖上的人夫、佛罗伦萨穹顶上吃午饭的砌砖工。第二部《匠作》讲他们：谁来搬砖，谁画图纸，尺子从哪儿来，东西怎样吊上去；以及风雨、冷热和地震怎样一次次逼着人改规矩。</p>
+  <a class="go" data-c="c9" href="two.html">第二部 · 匠作</a>
+</div>
+
+<footer>
+  <p>《上梁 · 建造创世记》第一部。每章开头的工牌是虚构的；正文中的史实与研究尽量核对过，有争议的地方标了“存疑”，说明与出处见<a href="#notes1">上面</a>。</p>
+  <p>装置里的数字是简化模型，只看方向和数量级，不能用于真实建筑的设计、施工或安全判断。</p>
+  <a class="nextbook" href="../city/"><small>书房里的另一本书</small><br><b>城里城外 · 城市创世记</b><br><small>这本书只看一栋房子；那本书看一整座城：街道、城墙、下水道、派出所和公园，以及规划者和守着一亩三分地的人怎样坐到一张桌子边。</small></a>
+  <p><a href="#top" class="toTop">回到封面 ↑</a>　·　<a data-c="c9" href="two.html">第二部 · 匠作</a>　·　<a href="../">回书房</a></p>
+</footer>
+
+<script>
+(function(){
+'use strict';
+const $ = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => [...(r || document).querySelectorAll(s)];
+const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+const lerp = (a, b, t) => a + (b - a) * t;
+function rng(seed){ let a = seed >>> 0; return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const fmt = n => n >= 1e8 ? (n / 1e8).toFixed(1) + ' 亿' : n >= 1e4 ? (Math.round(n / 1e3) / 10).toLocaleString() + ' 万' : Math.round(n).toLocaleString();
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+/* 年份：负数是公元前；一万年以前写成“约 N 万年前” */
+const yr = y => y <= -10000 ? '约 ' + fmt(-y + 2000).replace(' ', '') + '年前' : y < 0 ? '前 ' + (-y) : String(y);
+const btnRow = (box, items, cur, cb) => {
+  box.innerHTML = items.map((t, i) => '<button class="btn' + (i === cur ? ' on' : '') + '" data-i="' + i + '">' + t + '</button>').join('');
+  box.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; $$('button', box).forEach(x => x.classList.toggle('on', x === b)); cb(+b.dataset.i); });
+};
+const dev = (sel, fn) => { const el = $(sel); if (el) { try { fn(el); } catch (err) { console.error(sel, err); } } };
+const kv = (box, rows) => { box.innerHTML = rows.map(r => '<div>' + r[0] + '<b>' + r[1] + '</b></div>').join(''); };
+function txt(x, y, t, o){ o = o || {}; return '<text x="' + x + '" y="' + y + '" font-size="' + (o.s || 13) + '" fill="' + (o.c || 'var(--ink)') + '" text-anchor="' + (o.a || 'middle') + '"' + (o.w ? ' font-weight="700"' : '') + (o.halo === false ? '' : ' paint-order="stroke" stroke="' + (o.hc || 'var(--card)') + '" stroke-width="3.5" stroke-linejoin="round"') + '>' + t + '</text>'; }
+/* 滑块：绑定 input 与 output，返回读数函数 */
+/* 初始化时只写读数，不调回调（回调里常用到还没赋值的读数函数），装置自己再调一次 draw() */
+function slider(id, f, cb){ const r = $('#' + id), o = $('#' + id + 'O'); const go = init => { if (o) o.textContent = f ? f(+r.value) : r.value; if (cb && !init) cb(+r.value); }; r.addEventListener('input', () => go(false)); go(true); return () => +r.value; }
+
+/* ---------- 全书目录（三个网页共用） ---------- */
+const PAGE = /three\.html/.test(location.pathname) ? 3 : /two\.html/.test(location.pathname) ? 2 : 1;
+const READY = 1; // 已经写好的部数
+const PURL = {1: './', 2: 'two.html', 3: 'three.html'};
+const TOC = [
+  {p: 1, t: '第一部 · 土木 —— 四样家当，三种站法'},
+  {v: '序幕'},
+  {id: 'c0', n: '窝', t: '人为什么要盖房子', s: '鸟窝、海狸坝和白蚁塚；四十七万年前的两根木头；一栋楼有多重', r: '约 47 万年前—今'},
+  {v: '卷一 · 材 —— 四样家当'},
+  {id: 'c1', n: '泥', t: '一捧土怎样站起来', s: '土坯和夯土；“筑之登登”；锥子扎进一寸就杀人的统万城；全城一起抹墙的杰内', r: '约前 9000—今'},
+  {id: 'c2', n: '木', t: '榫卯和皇木', s: '河姆渡的榫头；二十年一拆的神宫；“入山一千，出山五百”；钉子便宜以后的气球框架', r: '约前 5000—今'},
+  {id: 'c3', n: '石', t: '拉石头的人', s: '巨石阵、金字塔和梅勒的日记；往沙子上泼水；印加的石墙；两万人拉一块石头进京', r: '约前 9500—1600'},
+  {id: 'c4', n: '砖', t: '砖上的名字', s: '烧透了的砖；巴别塔和伊什塔尔门；物勒工名；南京城墙砖上的名字；砖税', r: '约前 3500—1850'},
+  {v: '卷二 · 力 —— 让它站住'},
+  {id: 'c5', n: '梁', t: '石头怕弯', s: '柱子和横梁；神庙为什么是一片柱林；伽利略的悬臂梁；抬梁和穿斗', r: '约前 2500—1700'},
+  {id: 'c6', n: '拱', t: '拱的道理', s: '楔石和拱架；罗马的水道；赵州桥；胡克的倒挂链子', r: '约前 1300—1700'},
+  {id: 'c7', n: '穹', t: '盖一个天', s: '万神殿、圣索菲亚、佛罗伦萨大教堂；穹顶下半截为什么要箍铁链', r: '约前 1250—1750'},
+  {id: 'c8', n: '斗', t: '斗拱和法式', s: '“以材为祖”；李诫的《营造法式》；应县木塔；梁思成骑骡子找到佛光寺', r: '782—1937'},
+  {p: 2, t: '第二部 · 匠作 —— 谁来盖，怎样盖，塌了怎么办'},
+  {v: '卷三 · 人 —— 图纸、尺子和搬砖的人'},
+  {id: 'c9', n: '役', t: '谁在搬砖', s: '徭役、金字塔工人村、长城、罗马军团、奴隶和雇工、包工头', r: '前 2600—今'},
+  {id: 'c10', n: '图', t: '图纸', s: '维特鲁威；《营造法式》的图样；样式雷的烫样；蓝图怎样晒出来；电脑画图', r: '前 30—今'},
+  {id: 'c11', n: '尺', t: '一把尺子', s: '腕尺和鲁班尺；黄金比例的传说；模数；一块砖为什么是这个大小', r: '前 3000—今'},
+  {id: 'c12', n: '吊', t: '往上搬', s: '滑轮、罗马人踩的大轮子、竹脚手架、塔吊', r: '前 500—今'},
+  {v: '卷四 · 天 —— 风雨、冷热和地震'},
+  {id: 'c13', n: '尖', t: '大教堂', s: '尖拱和飞扶壁；几代人盖一座；博韦塌了两次', r: '1140—1600'},
+  {id: 'c14', n: '塌', t: '塌了以后', s: '汉谟拉比第 229 条；里斯本、旧金山、唐山、汶川；规范是用命写的', r: '前 1750—今'},
+  {id: 'c15', n: '顶', t: '屋顶', s: '茅草、瓦和举折；屋顶为什么是弯的；防水这门手艺', r: '约前 8000—今'},
+  {id: 'c16', n: '暖', t: '冷和热', s: '火炕、罗马的地暖、波斯的风塔、窑洞和冰屋：空调以前的房子', r: '约前 5000—1950'},
+  {p: 3, t: '第三部 · 钢与玻璃 —— 新家当，往高处去'},
+  {v: '卷五 · 新家当'},
+  {id: 'c17', n: '铁', t: '铁桥和水晶宫', s: '1779 年的铁桥；九个月盖起来的水晶宫；埃菲尔铁塔', r: '1779—1889'},
+  {id: 'c18', n: '灰', t: '水泥', s: '罗马混凝土为什么失传；斯米顿的灯塔；波特兰水泥；花匠发明的钢筋混凝土', r: '1756—1930'},
+  {id: 'c19', n: '窗', t: '玻璃窗', s: '窗户纸、皇冠玻璃、窗户税、浮法玻璃和玻璃幕墙', r: '100—1960'},
+  {id: 'c20', n: '管', t: '看不见的房子', s: '上下水、电灯、电梯、暖气和空调：墙里的东西', r: '1850—1960'},
+  {v: '卷六 · 往高处去'},
+  {id: 'c21', n: '楼', t: '摩天楼', s: '奥的斯砍断绳子；芝加哥的钢骨；纽约的竞高；风比重量更难对付', r: '1853—今'},
+  {id: 'c22', n: '桥', t: '拉住的桥', s: '布鲁克林大桥、塔科马海峡桥、金门大桥、港珠澳大桥', r: '1883—今'},
+  {id: 'c23', n: '快', t: '一天盖一层', s: '预制板、莱维敦、赫鲁晓夫楼、筒子楼、商品房和“中国速度”', r: '1945—今'},
+  {v: '尾声'},
+  {id: 'c24', n: '梁', t: '上梁', s: '拆和留、碳、三十年和一百年：你住的房子', r: '今—'}
+];
+const chapPage = {}; { let p = 1; TOC.forEach(x => { if (x.p) p = x.p; if (x.id) chapPage[x.id] = p; }); }
+const href = id => (chapPage[id] === PAGE ? '' : PURL[chapPage[id]]) + '#' + id;
+$$('.bar .parts a').forEach(a => { const p = +a.dataset.p; a.classList.toggle('on', p === PAGE); if (p > READY) { a.removeAttribute('href'); a.style.opacity = .4; a.title = '写作中'; } });
+$('#drawerList').innerHTML = TOC.map(x => x.p ? '<li class="ph">' + x.t + '</li>' : x.v ? '<li class="vh">' + x.v + '</li>' :
+  chapPage[x.id] > READY ? '<li><a style="opacity:.5;pointer-events:none"><span class="n">' + x.n + '</span><span>' + x.t + '<small>写作中</small></span></a></li>' :
+  '<li><a href="' + href(x.id) + '"' + (chapPage[x.id] === PAGE ? ' class="here"' : '') + '><span class="n">' + x.n + '</span><span>' + x.t + '<small>' + x.s + '</small></span></a></li>').join('');
+dev('#toc', ul => {
+  ul.innerHTML = TOC.map(x => x.p ? '<li class="vh" style="color:var(--main)">' + x.t + '</li>' : x.v ? '<li class="vh">' + x.v + '</li>' :
+    chapPage[x.id] > READY ? '<li class="soon"><div><span class="n">' + x.n + '</span><span class="t">' + x.t + '<small>' + x.s + '</small></span><span class="r">' + x.r + '</span></div></li>' :
+    '<li' + (chapPage[x.id] === PAGE ? '' : ' class="away"') + '><a href="' + href(x.id) + '"><span class="n">' + x.n + '</span><span class="t">' + x.t + '<small>' + x.s + '</small></span><span class="r">' + x.r + '</span></a></li>').join('');
+});
+/* 页面里写 <a data-c="c12">…</a>，自动拼出跨页链接 */
+$$('a[data-c]').forEach(a => { const id = a.dataset.c; if (chapPage[id] > READY) { a.removeAttribute('href'); a.title = '写作中'; a.style.textDecorationStyle = 'dotted'; a.style.opacity = .6; } else a.href = href(id); });
+$$('.partnav a[data-c]').forEach(a => { if (!a.hasAttribute('href')) a.style.opacity = .55; });
+
+/* ---------- 页眉：卷名、进度、目录抽屉 ---------- */
+const barVol = $('#barVol'), prog = $('#prog');
+const vols = $$('[data-vol]');
+let ticking = false;
+function onScroll(){
+  ticking = false;
+  const lim = innerHeight * 0.35; let cur = null;
+  for (const e of vols) { if (e.getBoundingClientRect().top < lim) cur = e; else break; }
+  barVol.textContent = cur ? cur.dataset.vol : '序';
+  const H = document.documentElement.scrollHeight - innerHeight;
+  prog.style.width = (H > 0 ? scrollY / H * 100 : 0) + '%';
+}
+window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, {passive: true});
+onScroll();
+const drawer = $('#drawer');
+function openD(on){ drawer.classList.toggle('on', on); drawer.setAttribute('aria-hidden', on ? 'false' : 'true'); }
+$('#tocBtn').addEventListener('click', () => openD(true));
+drawer.addEventListener('click', e => { if (e.target.closest('[data-close]') || e.target.closest('a')) openD(false); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') openD(false); });
+$$('.toTop').forEach(a => a.addEventListener('click', e => { e.preventDefault(); scrollTo({top: 0, behavior: 'smooth'}); }));
+
+/* 章首：六样家当 */
+const MAT = [['土', '泥土'], ['木', '木头'], ['石', '石头'], ['火', '烧制'], ['力', '受力'], ['人', '人手']];
+$$('.mat').forEach(w => { const on = (w.dataset.k || '').split(/\s+/); w.innerHTML = MAT.map(f => '<span' + (on.includes(f[0]) ? ' class="on"' : '') + '><b>' + f[0] + '</b>' + f[1] + '</span>').join(''); });
+/* 年代条：五十万年前—今，越往近格子越细 */
+const ERA = [['50万', -5e5, -5e4], ['5万', -5e4, -1.2e4], ['1.2万', -1.2e4, -5000], ['前5千', -5000, -2000], ['前2千', -2000, 0], ['公元', 0, 1000], ['1000', 1000, 1400], ['1400', 1400, 1700], ['1700', 1700, 1850], ['1850', 1850, 1950], ['1950', 1950, 2100]];
+$$('.when').forEach(w => { const a = +w.dataset.a, b = +(w.dataset.b || w.dataset.a); w.innerHTML = ERA.map(e => '<span' + (b >= e[1] && a < e[2] ? ' class="on"' : '') + '>' + e[0] + '</span>').join(''); w.title = yr(a) + (b !== a ? ' — ' + yr(b) : ''); });
+/* 卷首：一副梁架，正中挂红 */
+$$('svg.frame').forEach(s => {
+  s.setAttribute('viewBox', '0 0 150 100');
+  s.innerHTML = '<path d="M8 52L75 10l67 42" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/>' +
+    '<path d="M26 44v52M124 44v52M26 60h98M46 60v-22M104 60v-22M46 38h58M75 38v-28" fill="none" stroke="currentColor" stroke-width="2"/>' +
+    '<path d="M66 12h18l-3 12h-12z" fill="var(--ter)"/>' +
+    '<text x="75" y="88" font-size="22" text-anchor="middle" fill="currentColor" font-family="var(--f-display)">' + (s.dataset.t || '梁') + '</text>';
+});
+/* 工牌上的人：data-h = helmet 安全帽 / wrap 头巾 / hat 斗笠 / cap 软帽 / veil 包头（女）/ bare 不戴 */
+$$('.badge .ph').forEach(p => {
+  const h = p.dataset.h || 'bare';
+  const head = '<circle cx="39" cy="40" r="15" fill="currentColor" opacity=".35"/>';
+  const body = '<path d="M10 96c2-22 14-30 29-30s27 8 29 30z" fill="currentColor" opacity=".35"/>';
+  const hw = {
+    helmet: '<path d="M22 38a17 15 0 0 1 34 0z" fill="var(--och)"/><rect x="18" y="36" width="42" height="4" rx="2" fill="var(--och)"/>',
+    wrap: '<path d="M24 35q15-12 30 0" fill="none" stroke="var(--ter)" stroke-width="6"/><path d="M53 33l9 8" stroke="var(--ter)" stroke-width="3"/>',
+    hat: '<path d="M8 34L39 15l31 19z" fill="var(--kraft)"/>',
+    cap: '<path d="M24 34q2-14 15-14t16 12l-4 3q-10-6-27-1z" fill="var(--main)"/>',
+    veil: '<path d="M22 42q-2-20 17-21t17 21v20h-4v-18q-2-14-13-14t-13 14v18h-4z" fill="var(--ter)" opacity=".85"/>',
+    bare: ''
+  }[h] || '';
+  p.innerHTML = '<svg viewBox="0 0 78 96" aria-hidden="true">' + body + head + hw + '</svg>';
+});
+/* 正态随机数、分位数 */
+function gauss(r){ let u = 0, v = 0; while (!u) u = r(); while (!v) v = r(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
+const pct = (arr, p) => { const s = [...arr].sort((x, y) => x - y); return s[Math.min(s.length - 1, Math.max(0, Math.floor(p * (s.length - 1))))]; };
+
+/* 通用小折线图：series=[{name,color,pts:[[x,y]...],dash,dots,w}]，opt={xmin,xmax,ymin,ymax,xt,yt,xf,yf,marks:[[x,label]],H,L} */
+function lineChart(svg, series, opt){
+  const W = 600, H = opt.H || 260, L = opt.L || 46, R = 14, T = 14, B = 30;
+  const X = x => L + (x - opt.xmin) / (opt.xmax - opt.xmin) * (W - L - R);
+  const Y = y => T + (1 - (y - opt.ymin) / (opt.ymax - opt.ymin)) * (H - T - B);
+  let g = '';
+  (opt.yt || []).forEach(v => g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + Y(v) + '" y2="' + Y(v) + '" stroke="var(--rule)"/>' + txt(L - 6, Y(v) + 4, opt.yf ? opt.yf(v) : v, {s: 11, a: 'end', c: 'var(--ink-3)', halo: false}));
+  (opt.xt || []).forEach(v => g += txt(X(v), H - 10, opt.xf ? opt.xf(v) : v, {s: 11, c: 'var(--ink-3)', halo: false}));
+  (opt.marks || []).forEach((m, i) => g += '<line x1="' + X(m[0]) + '" x2="' + X(m[0]) + '" y1="' + T + '" y2="' + (H - B) + '" stroke="var(--ink-3)" stroke-dasharray="2 3"/>' + txt(X(m[0]) + 3, T + 12 + (i % 3) * 14, m[1], {s: 11, a: 'start', c: 'var(--ink-2)'}));
+  series.forEach(s => {
+    const pts = s.pts.filter(p => p[1] != null);
+    if (!pts.length) return;
+    g += '<path d="M' + pts.map(p => X(p[0]).toFixed(1) + ',' + Y(p[1]).toFixed(1)).join('L') + '" fill="none" stroke="' + s.color + '" stroke-width="' + (s.w || 2.4) + '"' + (s.dash ? ' stroke-dasharray="' + s.dash + '"' : '') + ' stroke-linejoin="round"/>';
+    if (s.dots) pts.forEach(p => g += '<circle cx="' + X(p[0]).toFixed(1) + '" cy="' + Y(p[1]).toFixed(1) + '" r="3" fill="' + s.color + '"/>');
+  });
+  g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + (H - B) + '" y2="' + (H - B) + '" stroke="var(--ink)" stroke-width="1.2"/>';
+  svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+  return {X, Y, W, H, L, R, T, B};
+}
+/* 横条：rows=[[名字, 数值, 小字, 颜色]] */
+function bars(box, rows, max, f){
+  box.innerHTML = rows.map(r => '<div class="row"><span class="nm">' + r[0] + (r[2] ? '<small>' + r[2] + '</small>' : '') + '</span><span class="tr"><i style="width:' + clamp(r[1] / max * 100, 0, 100) + '%;' + (r[3] ? 'background:' + r[3] : '') + '"></i></span><span class="v">' + (f ? f(r[1]) : r[1]) + '</span></div>').join('');
+}
+
+
+/* ---------- 封面装置：五千年，最高的房子 ---------- */
+/* [起始年, 高度米, 名字, 说明, 形状] 形状：p 金字塔 / s 尖塔 / t 塔楼 / e 铁塔 / k 摩天楼 */
+const TALL_W = [
+  [-2650, 62, '左塞尔台阶金字塔', '埃及萨卡拉，第一座大型石头建筑', 'p'],
+  [-2600, 105, '红色金字塔', '斯尼夫鲁国王，第一座光滑的真金字塔', 'p'],
+  [-2560, 146.6, '胡夫大金字塔', '埃及吉萨，原高约 146.6 米，在榜首约 3800 年', 'p'],
+  [1311, 160, '林肯大教堂', '英格兰，中央尖塔约 160 米（一说更低），1548 年尖塔倒塌', 's'],
+  [1549, 151, '施特拉尔松德圣母教堂', '德国北部，尖塔 1647 年被雷击烧毁', 's'],
+  [1647, 142, '斯特拉斯堡大教堂', '法国阿尔萨斯，石头尖塔', 's'],
+  [1874, 147, '汉堡圣尼古拉教堂', '德国，新哥特式尖塔', 's'],
+  [1876, 151, '鲁昂大教堂', '法国，铸铁尖塔', 's'],
+  [1880, 157, '科隆大教堂', '德国，开工六百多年后才完工', 's'],
+  [1884, 169, '华盛顿纪念碑', '美国，石头方尖碑', 's'],
+  [1889, 300, '埃菲尔铁塔', '巴黎，熟铁，第三部讲', 'e'],
+  [1930, 319, '克莱斯勒大厦', '纽约，尖顶偷偷在楼里组装好再顶出去', 'k'],
+  [1931, 381, '帝国大厦', '纽约，不到十四个月盖完', 'k'],
+  [1972, 417, '世界贸易中心北塔', '纽约，2001 年被毁', 'k'],
+  [1974, 442, '西尔斯大厦', '芝加哥，束筒结构', 'k'],
+  [1998, 452, '双子塔', '吉隆坡', 'k'],
+  [2004, 508, '台北 101', '台北，楼顶挂着一个六百多吨的大钢球防风', 'k'],
+  [2010, 828, '哈利法塔', '迪拜，至今最高', 'k']
+];
+const TALL_C = [
+  [-2700, 10, '夯土台基上的宫室', '龙山、二里头时代的高台建筑，高度只是示意', 't'],
+  [-300, 20, '高台榭', '战国诸侯竞筑高台，高度只是示意', 't'],
+  [516, 136, '北魏永宁寺塔（存疑）', '洛阳，木塔，《水经注》说高四十九丈，534 年焚毁', 's'],
+  [535, 40, '嵩岳寺塔', '河南登封，北魏砖塔，约 37 米，现存最早的砖塔', 's'],
+  [1055, 84, '开元寺料敌塔', '河北定州，北宋砖塔，约 84 米，现存最高的古砖塔；第二年建成的应县木塔约 67 米', 's'],
+  [1934, 84, '上海国际饭店', '83.8 米，此后约三十年是上海最高的楼', 'k'],
+  [1968, 88, '广州宾馆', '二十七层', 'k'],
+  [1976, 114, '广州白云宾馆', '三十三层', 'k'],
+  [1985, 160, '深圳国贸大厦', '“三天一层楼”的深圳速度，第三部讲', 'k'],
+  [1990, 208, '北京京广中心', '', 'k'],
+  [1996, 384, '深圳地王大厦', '钢结构', 'k'],
+  [1999, 421, '上海金茂大厦', '浦东', 'k'],
+  [2008, 492, '上海环球金融中心', '顶上一个梯形的洞', 'k'],
+  [2015, 632, '上海中心大厦', '扭转着往上长，降低风的作用', 'k']
+];
+dev('#cvFig', () => {
+  const at = (L, y) => { let r = null; for (const e of L) if (e[0] <= y) r = e; return r; };
+  const yS = slider('cvY', v => yr(v), () => draw());
+  const presets = [['金字塔', -2560], ['罗马', 120], ['唐', 750], ['应县木塔', 1056], ['佛罗伦萨', 1436], ['埃菲尔', 1889], ['今天', 2026]];
+  btnRow($('#cvBtns'), presets.map(p => p[0]), -1, i => { $('#cvY').value = presets[i][1]; $('#cvY').dispatchEvent(new Event('input')); });
+  function shape(kind, x, w, H, base, col){
+    const top = base - H, cx = x + w / 2;
+    if (kind === 'p') return '<path d="M' + x + ',' + base + 'L' + cx + ',' + top + 'L' + (x + w) + ',' + base + 'Z" fill="' + col + '" fill-opacity=".55" stroke="' + col + '"/>';
+    if (kind === 'e') return '<path d="M' + (x + 4) + ',' + base + 'Q' + (cx - 4) + ',' + (base - H * .5) + ' ' + (cx - 1) + ',' + top + 'L' + (cx + 1) + ',' + top + 'Q' + (cx + 4) + ',' + (base - H * .5) + ' ' + (x + w - 4) + ',' + base + 'Z" fill="' + col + '" fill-opacity=".55" stroke="' + col + '"/>';
+    if (kind === 's') { const bw = w * .5; return '<path d="M' + (cx - bw / 2) + ',' + base + 'V' + (base - H * .45) + 'L' + cx + ',' + top + 'L' + (cx + bw / 2) + ',' + (base - H * .45) + 'V' + base + 'Z" fill="' + col + '" fill-opacity=".55" stroke="' + col + '"/>'; }
+    if (kind === 'k') { const bw = w * .42; return '<path d="M' + (cx - bw / 2) + ',' + base + 'V' + (base - H * .9) + 'L' + cx + ',' + top + 'L' + (cx + bw / 2) + ',' + (base - H * .9) + 'V' + base + 'Z" fill="' + col + '" fill-opacity=".55" stroke="' + col + '"/>'; }
+    const bw = w * .6; return '<rect x="' + (cx - bw / 2) + '" y="' + top + '" width="' + bw + '" height="' + H + '" fill="' + col + '" fill-opacity=".55" stroke="' + col + '"/>';
+  }
+  function draw(){
+    const y = yS(), w = at(TALL_W, y), c = at(TALL_C, y);
+    const svg = $('#cvSil'), W = 600, Hh = 250, base = 228;
+    const maxH = Math.max(w ? w[1] : 10, c ? c[1] : 10, 40);
+    const k = (base - 22) / maxH;
+    let g = '<line x1="10" x2="590" y1="' + base + '" y2="' + base + '" stroke="var(--ink)" stroke-width="1.4"/>';
+    [50, 100, 200, 300, 500, 800].filter(v => v <= maxH * 1.02).forEach(v => g += '<line x1="40" x2="590" y1="' + (base - v * k) + '" y2="' + (base - v * k) + '" stroke="var(--rule)" stroke-dasharray="2 4"/>' + txt(36, base - v * k + 4, v + ' 米', {s: 10.5, a: 'end', c: 'var(--ink-3)', halo: false}));
+    if (w) { g += shape(w[4], 120, 150, w[1] * k, base, 'var(--main)'); g += txt(195, base - w[1] * k - 6, w[1] + ' 米', {s: 12, w: 1}); }
+    if (c) { g += shape(c[4], 340, 150, c[1] * k, base, 'var(--ter)'); g += txt(415, base - c[1] * k - 6, c[1] + ' 米', {s: 12, w: 1}); }
+    const ph = Math.max(1.7 * k, 0.6);
+    g += '<rect x="300" y="' + (base - ph) + '" width="' + Math.max(ph * .3, 1) + '" height="' + ph + '" fill="var(--ink)"/>' + txt(306, base - ph - 4, ph < 6 ? '← 人（一米七）' : '人', {s: 10.5, a: 'start', c: 'var(--ink-2)'});
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + Hh); svg.innerHTML = g;
+    $('#cvW').innerHTML = w ? '<small>世界最高</small><b>' + w[2] + '</b>' + w[1] + ' 米 · ' + w[3] : '<small>世界最高</small><b>（还没有）</b>';
+    $('#cvC').innerHTML = c ? '<small>中国内地（举例）</small><b>' + c[2] + '</b>' + c[1] + ' 米 · ' + c[3] : '<small>中国内地（举例）</small><b>（还没有）</b>';
+    const step = L => { const pts = []; L.forEach((e, i) => { if (i) pts.push([e[0], L[i - 1][1]]); pts.push([e[0], e[1]]); }); pts.push([2026, L[L.length - 1][1]]); return pts; };
+    const T = lineChart($('#cvLine'), [{name: '世界', color: 'var(--main)', pts: step(TALL_W)}, {name: '中国', color: 'var(--ter)', pts: step(TALL_C), w: 1.8}],
+      {xmin: -2700, xmax: 2026, ymin: 0, ymax: 850, xt: [-2500, -1500, -500, 500, 1500, 2026], xf: v => v === 2026 ? '今' : yr(v), yt: [0, 200, 400, 600, 800], yf: v => v + 'm', H: 200, marks: [[y, '']]});
+    const yrs = w ? (TALL_W.find(e => e[0] > w[0]) || [2026])[0] - w[0] : 0;
+    $('#cvSay').innerHTML = !w ? '这一年，世界上还没有大型石头建筑，最高的房子大概也就十来米。' :
+      w[2] === '胡夫大金字塔' ? '你正站在蓝线那段四千年的平地上。胡夫大金字塔从约前 2560 年起一直是世界最高的建筑物，到 1311 年林肯大教堂的尖塔才超过它，前后约 ' + yrs + ' 年。四千年里人类盖了无数宫殿和神庙，却没有一座比一堆石头更高：<b>石头能垒高，但只能垒成下宽上窄的山</b>。' :
+      y >= 1889 ? '1889 年以后，蓝线突然往上冲：铁、钢、电梯和钢筋混凝土登场（第三部）。从埃菲尔铁塔到哈利法塔，一百二十年里最高纪录涨了将近两倍；而在那以前的四千年里，它几乎没动过。' :
+      '中世纪欧洲的尖塔终于超过了金字塔，但只高出一点点，而且好几座尖塔后来塌了、烧了。用石头往上盖，四千年才多出十几米。';
+  }
+  draw();
+});
+
+/* ---------- 装置 1：一栋楼称一称 ---------- */
+dev('#wtFig', () => {
+  /* [名字, 每平方米吨数, 混凝土立方米/㎡, 钢 公斤/㎡, 说明, 最多层数] */
+  const T = [
+    ['土坯平房', 2.0, 0, 0, '墙厚，重量几乎全在墙上', 2],
+    ['砖混楼', 1.3, 0.2, 20, '砖墙承重、混凝土楼板，多见于七层以下', 7],
+    ['钢筋混凝土住宅', 1.4, 0.4, 50, '今天中国城市住宅最常见的做法', 100],
+    ['钢结构写字楼', 0.9, 0.15, 110, '钢骨架加压型钢板楼面', 100],
+    ['木结构（轻型 / 胶合木）', 0.35, 0.03, 8, '欧美独栋住宅和新一代木楼', 20]
+  ];
+  let cur = 2;
+  btnRow($('#wtBtns'), T.map(t => t[0]), cur, i => { cur = i; const n = $('#wtN'); n.max = T[i][5]; if (+n.value > T[i][5]) n.value = T[i][5]; n.dispatchEvent(new Event('input')); });
+  const A = slider('wtA', v => v + ' ㎡', () => draw());
+  const N = slider('wtN', v => v + ' 层', () => draw());
+  function draw(){
+    const t = T[cur], area = A() * N(), mass = area * t[1];
+    const conc = area * t[2], steel = area * t[3] / 1000;
+    kv($('#wtKv'), [['建筑面积', fmt(area) + ' ㎡'], ['整栋重约', fmt(mass) + ' 吨'], ['混凝土', fmt(conc) + ' m³'], ['钢材', fmt(steel) + ' 吨'], ['搅拌车（每车约 10 m³）', fmt(Math.ceil(conc / 10)) + ' 车']]);
+    const cmp = [['成年人（65 公斤）', mass / 0.065], ['非洲象（约 5 吨）', mass / 5], ['蓝鲸（约 150 吨）', mass / 150], ['万吨巨轮', mass / 10000], ['胡夫金字塔', mass / 6e6]];
+    const logMax = Math.log10(Math.max(...cmp.map(c => c[1]), 10));
+    bars($('#wtBars'), cmp.map(c => [c[0], Math.max(0, Math.log10(Math.max(c[1], 1))), '', 'var(--main)']), logMax, v => '');
+    $$('#wtBars .row .v').forEach((el, i) => { const v = cmp[i][1]; el.textContent = v >= 1 ? fmt(v) + ' 个' : (v * 100).toFixed(v < 0.01 ? 2 : 1) + '%'; });
+    const pyr = 6e6 / mass;
+    $('#wtSay').innerHTML = t[0] + '：' + t[4] + '。这栋楼约 <b>' + fmt(mass) + ' 吨</b>，相当于 ' + fmt(mass / 5) + ' 头大象' +
+      (pyr > 1 ? '；要 ' + fmt(pyr) + ' 栋这样的楼才抵得上一座胡夫金字塔。' : '，比胡夫金字塔还重。') +
+      (cur === 2 && N() >= 20 ? ' 压在最底下那几根柱子上的，是上面每一户人家的重量加起来。' : '') +
+      (cur === 4 ? ' 木头楼轻得多，地基和抗震都省事，但要对付防火和防潮。' : '');
+  }
+  draw();
+});
+
+/* ---------- 装置 2：百堵皆兴 ---------- */
+dev('#hdFig', () => {
+  const P = [
+    ['郑州商城（大致尺度）', 7, 10, 20, 5, 10000, 0.3],
+    ['一座县城', 4, 8, 10, 4, 5000, 0.3],
+    ['五十公里长城（戈壁）', 50, 4, 3.5, 2, 3000, 0.3],
+    ['统万城西城（示意）', 2.5, 12, 16, 6, 100000, 0.3]
+  ];
+  const ids = ['hdL', 'hdH', 'hdB', 'hdT', 'hdW', 'hdP'];
+  btnRow($('#hdBtns'), P.map(p => p[0]), 0, i => { ids.forEach((id, k) => { $('#' + id).value = P[i][k + 1]; $('#' + id).dispatchEvent(new Event('input')); }); });
+  const L = slider('hdL', v => v + ' 公里', () => draw());
+  const H = slider('hdH', v => v + ' 米', () => draw());
+  const B = slider('hdB', v => v + ' 米', () => draw());
+  const Tp = slider('hdT', v => v + ' 米', () => draw());
+  const W = slider('hdW', v => fmt(v) + ' 人', () => draw());
+  const Pp = slider('hdP', v => v.toFixed(2) + ' m³', () => draw());
+  function draw(){
+    const b = B(), t = Math.min(Tp(), b), h = H();
+    const vol = L() * 1000 * h * (b + t) / 2;
+    const pd = vol / Pp(), days = pd / W();
+    const layers = Math.round(h / 0.09);
+    // 截面图
+    const svg = $('#hdSec'), S = Math.min(140 / h, 400 / b), base = 160, cx = 300;
+    let g = '<line x1="40" x2="560" y1="' + base + '" y2="' + base + '" stroke="var(--ink)" stroke-width="1.4"/>';
+    const pts = [[cx - b * S / 2, base], [cx - t * S / 2, base - h * S], [cx + t * S / 2, base - h * S], [cx + b * S / 2, base]];
+    g += '<path d="M' + pts.map(p => p.map(v => v.toFixed(1)).join(',')).join('L') + 'Z" fill="var(--kraft)" fill-opacity=".45" stroke="var(--ink-2)"/>';
+    const n = Math.min(layers, 40);
+    for (let i = 1; i < n; i++) { const yy = base - h * S * i / n, ww = (b - (b - t) * i / n) * S; g += '<line x1="' + (cx - ww / 2).toFixed(1) + '" x2="' + (cx + ww / 2).toFixed(1) + '" y1="' + yy.toFixed(1) + '" y2="' + yy.toFixed(1) + '" stroke="var(--ink-3)" stroke-width=".5"/>'; }
+    g += '<rect x="' + (cx + b * S / 2 + 14) + '" y="' + (base - 1.7 * S) + '" width="' + Math.max(1.7 * S * .3, 1.5) + '" height="' + 1.7 * S + '" fill="var(--ink)"/>';
+    g += txt(cx, base + 16, '底宽 ' + b + ' 米', {s: 11, c: 'var(--ink-3)', halo: false}) + txt(cx, base - h * S - 6, '顶宽 ' + t + ' 米 · 高 ' + h + ' 米', {s: 11, c: 'var(--ink-2)'});
+    svg.setAttribute('viewBox', '0 0 600 180'); svg.innerHTML = g;
+    kv($('#hdKv'), [['土方', fmt(vol) + ' m³'], ['总工日', fmt(pd)], ['不停干要', days < 365 ? Math.round(days) + ' 天' : (days / 365).toFixed(1) + ' 年'], ['每年只干两个月', (days / 60).toFixed(1) + ' 年'], ['夯层（每层约 9 厘米）', layers + ' 层']]);
+    $('#hdSay').innerHTML = '这段墙约 <b>' + fmt(vol) + ' 立方米</b>土，要 ' + fmt(pd) + ' 个工日。' + fmt(W()) + ' 人不停地干，要 ' + (days < 365 ? Math.round(days) + ' 天' : (days / 365).toFixed(1) + ' 年') +
+      '；可古代的徭役大多只在农闲征一两个月，那就是 <b>' + (days / 60).toFixed(1) + ' 年</b>。' +
+      (days / 60 > 5 ? '一代人的青壮年，有好几年的农闲是在城墙上度过的。' : '') +
+      ' 墙上的每一层，都要有人一杵一杵地砸上几遍。';
+  }
+  draw();
+});
+
+/* ---------- 装置 3：隔多少年重建一次，手艺才传得下去 ---------- */
+dev('#sgFig', () => {
+  const T = slider('sgT', v => v + ' 年', () => draw());
+  const SPAN = 45, Y0 = 0, Y1 = 240;
+  function draw(){
+    const t = T(), builds = [];
+    for (let y = 0; y <= Y1; y += t) builds.push(y);
+    const starts = []; for (let s = -45; s <= Y1; s += 4) starts.push(s);
+    // 每次重建时：在场的人，各自以前干过几次
+    let withExp = 0, withMaster = 0, counted = 0;
+    builds.forEach(y => {
+      if (y < 60) return; // 跳过开头的“冷启动”
+      counted++;
+      let e = 0, m = 0;
+      starts.forEach(s => { if (y >= s && y <= s + SPAN) { const prior = builds.filter(b => b >= s && b < y).length; if (prior >= 1) e = 1; if (prior >= 2) m = 1; } });
+      withExp += e; withMaster += m;
+    });
+    // 画图：显示 60—220 年这一段，挑 12 个木匠
+    const svg = $('#sgSvg'), W = 600, X = y => 70 + (y - 60) / 160 * 510;
+    const show = starts.filter(s => s >= 20 && s <= 190).filter((s, i) => i % 3 === 0).slice(0, 12);
+    let g = '';
+    builds.filter(b => b >= 60 && b <= 220).forEach(b => g += '<line x1="' + X(b) + '" x2="' + X(b) + '" y1="8" y2="' + (16 + show.length * 18) + '" stroke="var(--ter)" stroke-opacity=".5" stroke-dasharray="3 3"/>');
+    show.forEach((s, i) => {
+      const yy = 20 + i * 18, a = Math.max(s, 60), b = Math.min(s + SPAN, 220);
+      if (b > a) g += '<line x1="' + X(a) + '" x2="' + X(b) + '" y1="' + yy + '" y2="' + yy + '" stroke="var(--ink-3)" stroke-width="5" stroke-linecap="round" stroke-opacity=".35"/>';
+      let k = 0;
+      builds.forEach(bd => { if (bd >= s && bd <= s + SPAN) { k++; if (bd >= 60 && bd <= 220) g += '<circle cx="' + X(bd) + '" cy="' + yy + '" r="5.5" fill="var(--main)" fill-opacity="' + (k === 1 ? .3 : k === 2 ? .65 : 1) + '" stroke="var(--main)"/>'; } });
+      g += txt(62, yy + 4, '木匠' + (i + 1), {s: 10.5, a: 'end', c: 'var(--ink-3)', halo: false});
+    });
+    const H = 30 + show.length * 18;
+    [60, 100, 140, 180, 220].forEach(y => g += txt(X(y), H, '第 ' + y + ' 年', {s: 10.5, c: 'var(--ink-3)', halo: false}));
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + (H + 6)); svg.innerHTML = g;
+    const per = Math.floor(SPAN / t) + (SPAN % t ? 1 : 1);
+    const pe = counted ? withExp / counted : 0, pm = counted ? withMaster / counted : 0;
+    kv($('#sgKv'), [['一辈子赶上', (SPAN / t).toFixed(1) + ' 次左右'], ['现场有人干过', Math.round(pe * 100) + '%'], ['现场有“师傅”', Math.round(pm * 100) + '%']]);
+    $('#sgSay').innerHTML = pm >= 0.99 ? '每 ' + t + ' 年一次：每次重建，现场都有干过两次以上的老师傅，还有干过一次的骨干和第一次来的学徒。<b>三代人同时在一个工地上</b>，手艺能一直传下去。伊势神宫的二十年就落在这一段。' :
+      pe >= 0.99 ? '每 ' + t + ' 年一次：每次都有人干过，但很多时候找不到干过两次的人。手艺还在，只是一代比一代薄，要靠记录和口传补。' :
+      pe > 0 ? '每 ' + t + ' 年一次：有些重建现场一个干过的人都没有，只能翻旧图纸、看旧房子去猜当年是怎么做的。' :
+      '每 ' + t + ' 年一次：间隔超过了一个木匠的职业生涯，<b>每一次都是从头再来</b>。这就是很多古建筑“大修”时遇到的难题：上一次修它的人，早就不在了。';
+  }
+  draw();
+});
+
+/* ---------- 装置 4：拉石头 ---------- */
+dev('#hlFig', () => {
+  const STONES = [['金字塔平均一块', 2.5], ['巨石阵砂岩', 25], ['杰胡蒂霍特普雕像', 58], ['故宫大石料', 250], ['巴勒贝克三巨石之一', 800], ['阿斯旺方尖碑', 1090]];
+  const SURF = [['干沙', 0.45], ['湿沙', 0.2], ['木轨抹泥', 0.12], ['冰面', 0.03]];
+  let s = 1;
+  btnRow($('#hlBtns'), STONES.map(x => x[0]), 2, i => { $('#hlM').value = STONES[i][1]; $('#hlM').dispatchEvent(new Event('input')); });
+  btnRow($('#hlSurf'), SURF.map(x => x[0]), s, i => { s = i; draw(); });
+  const M = slider('hlM', v => v + ' 吨', () => draw());
+  const A = slider('hlA', v => v + '°', () => draw());
+  const F = slider('hlF', v => v + ' 牛', () => draw());
+  function draw(){
+    const m = M() * 1000, a = A() * Math.PI / 180, mu = SURF[s][1];
+    const force = m * 9.8 * (mu * Math.cos(a) + Math.sin(a));
+    const n = Math.ceil(force / F());
+    const svg = $('#hlSvg'), W = 600, H = 150;
+    const tilt = -A() * 2; // 画面上夸张一点
+    let g = '<g transform="rotate(' + tilt + ' 300 120)">';
+    g += '<line x1="0" x2="600" y1="122" y2="122" stroke="' + (s === 3 ? 'var(--blu)' : 'var(--kraft)') + '" stroke-width="4"/>';
+    const sz = 16 + Math.cbrt(M()) * 6;
+    g += '<rect x="' + (520 - sz) + '" y="' + (114 - sz) + '" width="' + sz + '" height="' + sz + '" fill="var(--ink-3)" fill-opacity=".5" stroke="var(--ink-2)"/><rect x="' + (516 - sz) + '" y="114" width="' + (sz + 8) + '" height="6" fill="var(--kraft)"/>';
+    const show = Math.min(n, 160), cols = Math.ceil(show / 4), gap = Math.min(10, (500 - sz - 30) / Math.max(cols, 1));
+    g += '<line x1="' + (510 - sz - cols * gap) + '" x2="' + (516 - sz) + '" y1="104" y2="104" stroke="var(--ink-2)" stroke-width="1.2"/>';
+    for (let i = 0; i < show; i++) { const c = Math.floor(i / 4), r = i % 4, x = 506 - sz - c * gap, y = 98 + (r - 1.5) * 7; g += '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="2.6" fill="var(--ter)"/>'; }
+    if (s === 1) g += '<path d="M' + (512 - sz) + ',100l6 14" stroke="var(--blu)" stroke-width="2" stroke-dasharray="2 2"/>';
+    g += '</g>';
+    if (n > show) g += txt(80, 30, '（只画了 ' + show + ' 个人，实际要 ' + fmt(n) + ' 人）', {s: 12, a: 'start', c: 'var(--ink-2)'});
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+    kv($('#hlKv'), [['要的拉力', (force / 1000).toFixed(force < 1e4 ? 1 : 0) + ' 千牛'], ['最少人数', fmt(n) + ' 人'], ['摩擦系数', mu]]);
+    const dry = Math.ceil(m * 9.8 * (0.45 * Math.cos(a) + Math.sin(a)) / F());
+    $('#hlSay').innerHTML = '拉动 ' + M() + ' 吨的石头，在' + SURF[s][0] + '上' + (A() ? '、' + A() + '° 的坡上' : '') + '，至少要 <b>' + fmt(n) + '</b> 人一起使劲。' +
+      (s > 0 && dry > n ? '换成干沙要 ' + fmt(dry) + ' 人：那个泼水（或泼冰）的人，一个人顶 ' + fmt(dry - n) + ' 个拉绳子的。' : '') +
+      (Math.abs(M() - 58) < 1 && s === 2 ? ' 壁画上画了约一百七十个人，和这个数字差不多。' : '') +
+      (A() >= 8 ? ' 坡一陡，重量本身往下溜的那部分很快超过了摩擦：修坡道和拉石头一样费人。' : '');
+  }
+  draw();
+});
+
+/* ---------- 装置 5：砌一堵墙 ---------- */
+dev('#bkFig', () => {
+  /* 每种砌法：[名字, 每一皮的样式（循环）, 每平方米块数, 墙厚, 说明, 是否对缝] */
+  const B = [
+    ['全顺', ['s0', 's1'], 64, '120 毫米（半砖墙）', '每一皮都是顺砖，上下错开半块。墙只有半块砖厚，只能做隔墙。', 0],
+    ['一顺一丁', ['s0', 'h'], 128, '240 毫米', '一皮顺砖、一皮丁砖交替。丁砖横穿墙身，把里外两层顺砖拉在一起，结实，北方最常见。', 0],
+    ['三顺一丁', ['s0', 's1', 's0', 'h'], 128, '240 毫米', '三皮顺砖压一皮丁砖。顺砖多，砌得快，看着也整齐，中国南北都用。', 0],
+    ['梅花丁', ['f0', 'f1'], 128, '240 毫米', '同一皮里顺砖和丁砖交替，上下皮的丁砖落在顺砖正中。竖缝错得最匀，墙面像撒了一层梅花，英国人叫“佛兰德斯砌法”。', 0],
+    ['空斗墙', ['e', 'h'], 90, '240 毫米（中空）', '砖立起来砌成一个个空斗，中间填土或留空，隔一层平铺一皮“眠砖”。南方民居常用，省砖三成左右、更隔热，但不耐震、不能承重太多。', 0],
+    ['对缝（错误）', ['s0', 's0'], 128, '240 毫米', '每一皮的竖缝都对在同一条线上，“通缝”从上到下。墙成了一根根互不相连的细砖柱，一推就裂。工地上这是要返工的。', 1]
+  ];
+  let cur = 1;
+  btnRow($('#bkBtns'), B.map(b => b[0]), cur, i => { cur = i; draw(); });
+  function draw(){
+    const b = B[cur], k = 0.42, W = 600, wallW = 1300; // 毫米
+    const L = 240, Wd = 115, Th = 53, J = 10;
+    let y = 0, g = '<defs><clipPath id="bkClip"><rect x="0" y="0" width="' + wallW * k + '" height="400"/></clipPath></defs><g clip-path="url(#bkClip)">';
+    const brick = (x, yy, w, h, tone) => '<rect x="' + (x * k).toFixed(1) + '" y="' + (yy * k).toFixed(1) + '" width="' + (w * k).toFixed(1) + '" height="' + (h * k).toFixed(1) + '" fill="var(--ter)" fill-opacity="' + tone + '" stroke="var(--ink-2)" stroke-width=".6"/>';
+    const joints = [];
+    let row = 0, H = 0;
+    while (H < 820) {
+      const t = b[1][row % b[1].length];
+      if (t === 's0' || t === 's1') { const off = t === 's1' ? -(L + J) / 2 : 0; for (let x = off; x < wallW; x += L + J) { g += brick(x, H, L, Th, .55); joints.push([x + L + J / 2, H, Th]); } H += Th + J; }
+      else if (t === 'h') { for (let x = row % 4 === 3 ? -(Wd + J) / 2 : 0; x < wallW; x += Wd + J) g += brick(x, H, Wd, Th, .8); H += Th + J; }
+      else if (t === 'f0' || t === 'f1') { let x = t === 'f1' ? (L - Wd) / 2 - (L + Wd + 2 * J) : 0; let s = t !== 'f1'; while (x < wallW) { const w = s ? L : Wd; g += brick(x, H, w, Th, s ? .55 : .85); x += w + J; s = !s; } H += Th + J; }
+      else if (t === 'e') { let x = 0, s = true; const eh = Wd; while (x < wallW) { const w = s ? L : Th; g += brick(x, H, w, eh, s ? .45 : .85); if (s) g += '<rect x="' + ((x + 20) * k).toFixed(1) + '" y="' + ((H + 25) * k).toFixed(1) + '" width="' + ((L - 40) * k).toFixed(1) + '" height="' + ((eh - 50) * k).toFixed(1) + '" fill="none" stroke="var(--ink-3)" stroke-dasharray="2 2" stroke-width=".6"/>'; x += w + J; s = !s; } H += eh + J; }
+      row++;
+    }
+    g += '</g>';
+    if (b[5]) { const xs = [...new Set(joints.map(j => Math.round(j[0])))].filter(x => x > 0 && x < wallW); xs.forEach(x => g += '<line x1="' + (x * k) + '" x2="' + (x * k) + '" y1="0" y2="' + (H * k) + '" stroke="var(--red)" stroke-width="2" stroke-dasharray="5 3"/>'); }
+    g += txt(wallW * k + 8, 14, '1.3 米', {s: 11, a: 'start', c: 'var(--ink-3)', halo: false});
+    const svg = $('#bkSvg'); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + Math.ceil(H * k + 4)); svg.innerHTML = g;
+    kv($('#bkKv'), [['墙厚', b[3]], ['每平方米约', b[2] + ' 块'], ['一面 3×10 米的墙', fmt(b[2] * 30) + ' 块'], ['竖缝', b[5] ? '通缝 ✗' : '错开 ✓']]);
+    $('#bkSay').innerHTML = b[4];
+    $('#bkSay').className = 'say' + (b[5] ? ' bad' : '');
+  }
+  draw();
+});
+
+/* ---------- 装置 6：一根梁能搭多远 ---------- */
+dev('#bmFig', () => {
+  /* [名字, 密度, 允许应力 Pa, 截面类型] */
+  const M = [['石梁', 2600, 2.5e6, 'r'], ['木梁', 500, 10e6, 'r'], ['钢工字梁', 7850, 160e6, 'i']];
+  let cur = 1;
+  btnRow($('#bmBtns'), M.map(m => m[0]), cur, i => { cur = i; draw(); });
+  const Hs = slider('bmH', v => v.toFixed(2) + ' 米', () => draw());
+  const Q = slider('bmQ', v => v + ' 千牛/米', () => draw());
+  const Ls = slider('bmL', v => v + ' 米', () => draw());
+  const sec = (m, h) => m[3] === 'r' ? {A: 2 / 3 * h * h, S: h * h * h / 9} : {A: 0.043 * h * h, S: 0.33 * 0.043 * h * h * h};
+  const set = (id, v) => { const r = $('#' + id); r.value = v; r.dispatchEvent(new Event('input')); };
+  let saved = null;
+  $('#bmX2').addEventListener('click', () => { saved = saved || [Hs(), Ls()]; set('bmH', Math.min(2, Hs() * 2)); set('bmL', Math.min(40, Ls() * 2)); });
+  $('#bmR').addEventListener('click', () => { const s = saved || [0.6, 6]; set('bmH', s[0]); set('bmL', s[1]); saved = null; });
+  function draw(){
+    const m = M[cur], h = Hs(), q = Q() * 1000, L = Ls();
+    const s = sec(m, h), w = m[1] * 9.8 * s.A;
+    const sig = (w + q) * L * L / 8 / s.S, r = sig / m[2];
+    const sigSelf = w * L * L / 8 / s.S;
+    const Lmax = Math.sqrt(8 * s.S * m[2] / (w + q));
+    const svg = $('#bmSvg'), W = 600, H = 150;
+    const px = 520 / Math.max(L, Lmax * 1.05, 4), x0 = 40, x1 = x0 + L * px, bh = Math.max(4, Math.min(30, h * px));
+    const sag = Math.min(26, 6 * r);
+    const col = r > 1 ? 'var(--red)' : r > 0.7 ? 'var(--och)' : 'var(--grn)';
+    let g = '<rect x="' + (x0 - 10) + '" y="70" width="12" height="70" fill="var(--ink-3)" fill-opacity=".5"/><rect x="' + (x1 - 2) + '" y="70" width="12" height="70" fill="var(--ink-3)" fill-opacity=".5"/>';
+    g += '<path d="M' + x0 + ',' + (70 - bh) + 'Q' + ((x0 + x1) / 2) + ',' + (70 - bh + sag * 2) + ' ' + x1 + ',' + (70 - bh) + 'L' + x1 + ',70Q' + ((x0 + x1) / 2) + ',' + (70 + sag * 2) + ' ' + x0 + ',70Z" fill="' + col + '" fill-opacity=".35" stroke="' + col + '" stroke-width="1.5"/>';
+    if (r > 1) g += '<path d="M' + ((x0 + x1) / 2) + ',' + (70 + sag) + 'l-3,-' + (bh * .5) + 'l5,-4l-3,-' + (bh * .3) + '" fill="none" stroke="var(--red)" stroke-width="2"/>';
+    const lm = x0 + Lmax * px; if (Lmax * px < 560) g += '<line x1="' + lm + '" x2="' + lm + '" y1="20" y2="140" stroke="var(--ink-3)" stroke-dasharray="3 3"/>' + txt(lm, 16, '最远约 ' + Lmax.toFixed(1) + ' 米', {s: 11, c: 'var(--ink-2)'});
+    g += '<rect x="' + (x1 + 22) + '" y="' + (140 - 1.7 * px) + '" width="' + Math.max(1.7 * px * .28, 1.5) + '" height="' + 1.7 * px + '" fill="var(--ink)"/>';
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+    kv($('#bmKv'), [['吃力程度', Math.round(r * 100) + '%'], ['其中自重占', Math.round(sigSelf / sig * 100) + '%'], ['这样的梁最远', Lmax.toFixed(1) + ' 米'], ['梁每米重', (w / 9800).toFixed(2) + ' 吨']]);
+    $('#bmSay').innerHTML = (r > 1 ? '<b>要裂了。</b>' : r > 0.7 ? '扛得住，但已经很吃力。' : '轻松扛住。') +
+      ' 这根' + m[0] + '高 ' + h.toFixed(2) + ' 米，最远能搭约 ' + Lmax.toFixed(1) + ' 米。' +
+      (cur === 0 ? ' 石头很重又怕拉，自重就吃掉了一大半力气，所以神庙的柱子只能隔几米一根。' : cur === 1 ? ' 木头轻，能搭得比同样高的石梁远得多；可是山里很难找到又高又直的大树。' : ' 钢又结实又能做成工字形，几十米的跨度不在话下，第三部讲它怎样改变了房子。') +
+      (saved ? ' 你刚把尺寸放大了一倍：自重造成的应力也跟着翻了一倍，这就是伽利略说的“不能无限放大”。' : '');
+    $('#bmSay').className = 'say' + (r > 1 ? ' bad' : r <= 0.7 ? ' ok' : '');
+  }
+  draw();
+});
+
+/* ---------- 装置 7：推力线 ---------- */
+dev('#arFig', () => {
+  const SH = [['半圆拱（罗马）', 'semi'], ['弓形拱（赵州桥）', 'seg'], ['尖拱（哥特）', 'pt'], ['悬链线拱', 'cat']];
+  const LD = [['只有拱自己', 0], ['上面还压着平的桥面', 1]];
+  let sh = 1, ld = 0;
+  btnRow($('#arBtns'), SH.map(s => s[0]), sh, i => { sh = i; draw(); });
+  btnRow($('#arLoad'), LD.map(s => s[0]), ld, i => { ld = i; draw(); });
+  const F = slider('arF', v => v.toFixed(2), () => draw());
+  const Tt = slider('arT', v => (v * 100).toFixed(1) + '%', () => draw());
+  /* 右半条中线：从拱顶（x=0）到拱脚（x=0.5），跨度为 1 */
+  function half(kind, f){
+    const n = 70, P = [];
+    if (kind === 'semi') { for (let i = 0; i <= n; i++) { const a = Math.PI / 2 * (1 - i / n); P.push([0.5 * Math.cos(a), 0.5 * Math.sin(a)]); } return {P, f: 0.5}; }
+    if (kind === 'seg') { const R = (0.25 + f * f) / (2 * f), yc = f - R, t0 = Math.asin(0.5 / R); for (let i = 0; i <= n; i++) { const p = t0 * i / n; P.push([R * Math.sin(p), yc + R * Math.cos(p)]); } return {P, f}; }
+    if (kind === 'pt') { const top = Math.PI / 3; for (let i = 0; i <= n; i++) { const a = top * (1 - i / n); P.push([-0.5 + Math.cos(a), Math.sin(a)]); } return {P, f: Math.sqrt(0.75)}; }
+    let lo = 0.005, hi = 200; for (let k = 0; k < 80; k++) { const a = (lo + hi) / 2; if (a * (Math.cosh(0.5 / a) - 1) > f) lo = a; else hi = a; }
+    const a = (lo + hi) / 2; for (let i = 0; i <= n; i++) { const x = 0.5 * i / n; P.push([x, f - a * (Math.cosh(x / a) - 1)]); } return {P, f};
+  }
+  function solve(P, t, deck){
+    const n = P.length, w = new Array(n).fill(0);
+    let arcW = 0;
+    for (let i = 1; i < n; i++) { const ds = Math.hypot(P[i][0] - P[i - 1][0], P[i][1] - P[i - 1][1]), xm = (P[i][0] + P[i - 1][0]) / 2; w[i] = ds * t; arcW += ds * t; P[i].xm = xm; }
+    if (deck) for (let i = 1; i < n; i++) w[i] += arcW * 2 * (P[i][0] - P[i - 1][0]);
+    const V = w.reduce((a, b) => a + b, 0);
+    const M0 = P.map(p => { let m = 0; for (let j = 1; j < n; j++) if (P[j].xm < p[0]) m += w[j] * (p[0] - P[j].xm); return m; });
+    const f = P[0][1];
+    let best = {D: 1e9};
+    for (let ci = 0; ci <= 20; ci++) {
+      const c = f - t / 2 + t * ci / 20;
+      for (let hi = 0; hi <= 60; hi++) {
+        const H = V * Math.pow(10, -1.6 + 2.6 * hi / 60);
+        let D = 0; const yT = M0.map(m => c - m / H);
+        for (let i = 0; i < n && D <= best.D; i++) {
+          let dmin = 1e9;
+          for (let j = Math.max(1, i - 14); j < Math.min(n, i + 15); j++) {
+            const ax = P[j - 1][0], ay = P[j - 1][1], bx = P[j][0], by = P[j][1], dx = bx - ax, dy = by - ay;
+            const u = clamp(((P[i][0] - ax) * dx + (yT[i] - ay) * dy) / (dx * dx + dy * dy), 0, 1);
+            dmin = Math.min(dmin, Math.hypot(P[i][0] - ax - u * dx, yT[i] - ay - u * dy));
+          }
+          D = Math.max(D, dmin);
+        }
+        let xb; if (yT[n - 1] >= 0) xb = 0.5 + yT[n - 1] * H / V; else { let k = n - 1; while (k > 0 && yT[k - 1] < 0) k--; xb = k ? P[k - 1][0] + (P[k][0] - P[k - 1][0]) * yT[k - 1] / (yT[k - 1] - yT[k]) : 0; }
+        D = Math.max(D, Math.abs(xb - 0.5));
+        if (D < best.D) best = {D, c, H, yT, xb, V};
+      }
+    }
+    return best;
+  }
+  function draw(){
+    const kind = SH[sh][1], t = Tt();
+    const fr = $('#arF'); fr.disabled = kind === 'semi' || kind === 'pt'; fr.parentElement.style.opacity = fr.disabled ? .45 : 1;
+    const {P, f} = half(kind, F());
+    const b = solve(P.map(p => [p[0], p[1]]), t, ld);
+    const S = 340 / Math.max(1, (f + t) * 1.15), X = x => 300 + x * S, base = (f + t / 2) * S + 24, Y = y => base - y * S;
+    const full = [...P.slice().reverse().map(p => [-p[0], p[1]]), ...P.slice(1)];
+    const nrm = full.map((p, i) => { const a = full[Math.max(0, i - 1)], c = full[Math.min(full.length - 1, i + 1)], dx = c[0] - a[0], dy = c[1] - a[1], L = Math.hypot(dx, dy); return [-dy / L, dx / L]; });
+    const outer = full.map((p, i) => [p[0] + nrm[i][0] * t / 2, p[1] + nrm[i][1] * t / 2]), inner = full.map((p, i) => [p[0] - nrm[i][0] * t / 2, p[1] - nrm[i][1] * t / 2]);
+    const pth = pts => pts.map((p, i) => (i ? 'L' : 'M') + X(p[0]).toFixed(1) + ',' + Y(p[1]).toFixed(1)).join('');
+    let g = '<line x1="20" x2="580" y1="' + Y(0) + '" y2="' + Y(0) + '" stroke="var(--ink)" stroke-width="1.2"/>';
+    g += '<rect x="' + (X(-0.5) - 60) + '" y="' + Y(0) + '" width="' + (60 + t / 2 * S) + '" height="14" fill="var(--ink-3)" fill-opacity=".35"/><rect x="' + (X(0.5) - t / 2 * S) + '" y="' + Y(0) + '" width="' + (60 + t / 2 * S) + '" height="14" fill="var(--ink-3)" fill-opacity=".35"/>';
+    g += '<path d="' + pth(outer) + pth(inner.slice().reverse()).replace('M', 'L') + 'Z" fill="var(--kraft)" fill-opacity=".4" stroke="var(--ink-2)" stroke-width="1"/>';
+    // 中间三分之一
+    const m1 = full.map((p, i) => [p[0] + nrm[i][0] * t / 6, p[1] + nrm[i][1] * t / 6]), m2 = full.map((p, i) => [p[0] - nrm[i][0] * t / 6, p[1] - nrm[i][1] * t / 6]);
+    g += '<path d="' + pth(m1) + '" fill="none" stroke="var(--ink-3)" stroke-width=".6" stroke-dasharray="1 3"/><path d="' + pth(m2) + '" fill="none" stroke="var(--ink-3)" stroke-width=".6" stroke-dasharray="1 3"/>';
+    const ok = b.D <= t / 2 + 1e-9, good = b.D <= t / 6;
+    const tr = P.map((p, i) => [p[0], b.yT[i]]); tr.push([b.xb, 0]);
+    const trFull = [...tr.slice().reverse().map(p => [-p[0], p[1]]), ...tr.slice(1)];
+    g += '<path d="' + pth(trFull) + '" fill="none" stroke="var(--red)" stroke-width="2" stroke-dasharray="6 4"/>';
+    if (ld) for (let k = -5; k <= 5; k++) g += '<path d="M' + X(k / 10.5) + ',' + (Y(f + t / 2) - 22) + 'v14" stroke="var(--blu)" stroke-width="1.4"/><path d="M' + (X(k / 10.5) - 3) + ',' + (Y(f + t / 2) - 12) + 'l3 5 3-5" fill="var(--blu)"/>';
+    const Hh = Math.ceil(base + 22);
+    const svg = $('#arSvg'); svg.setAttribute('viewBox', '0 0 600 ' + Hh); svg.innerHTML = g;
+    const push = b.H / (2 * b.V);
+    kv($('#arKv'), [['推力线偏离（半厚 = 100%）', Math.round(b.D / (t / 2) * 100) + '%'], ['往外推的力', '总重的 ' + Math.round(push * 100) + '%'], ['矢跨比', f.toFixed(2)]]);
+    $('#arSay').className = 'say' + (good ? ' ok' : ok ? '' : ' bad');
+    $('#arSay').innerHTML = (good ? '<b>很稳。</b>推力线留在拱身正中三分之一以内，石头之间处处压得实实的。' : ok ? '<b>站得住，</b>但推力线已经靠近拱身边缘，石缝的一侧开始张开，再薄一点就危险了。' : '<b>会塌。</b>在这个厚度里找不到一条推力线，拱会在几个地方裂开成铰，折下来。') +
+      ' 拱脚往外推的力约为整道拱重量的 ' + Math.round(push * 100) + '%' + (push > 0.4 ? '，推得很狠，两岸要有非常结实的桥台。' : push < 0.2 ? '，推得轻，桥台可以省一些。' : '。') +
+      (kind === 'semi' && !ld ? ' 试着把厚度往下调：半圆拱只靠自重时，大约在厚度为跨度的 5% 上下站不住，这就是海曼算出的“半径的十分之一”。' : '') +
+      (kind === 'cat' && !ld ? ' 悬链线拱正好是倒挂链子的形状，推力线几乎和中线重合，可以做得很薄。' : '') +
+      (kind === 'seg' && ld ? ' 平的桥面让荷载更均匀，扁拱反而更合身：赵州桥选扁拱，不只是为了桥面平。' : '');
+  }
+  draw();
+});
+
+/* ---------- 装置 8：穹顶的箍 ---------- */
+dev('#dmFig', () => {
+  /* [名字, 开多大(度), 跨度 m, 厚度 m]：大致数字，只为示意 */
+  const P = [['万神殿（大致）', 90, 43, 2.5], ['圣索菲亚（大致）', 70, 31, 0.8], ['佛罗伦萨（按球壳近似）', 60, 42, 2.2], ['蒙古包的形状', 25, 6, 0.1], ['一把伞的形状', 40, 1, 0.1]];
+  const ids = ['dmP', 'dmD', 'dmT'];
+  btnRow($('#dmBtns'), P.map(p => p[0]), 0, i => ids.forEach((id, k) => { $('#' + id).value = P[i][k + 1]; $('#' + id).dispatchEvent(new Event('input')); }));
+  const Ph = slider('dmP', v => v + '°', () => draw());
+  const D = slider('dmD', v => v + ' 米', () => draw());
+  const T = slider('dmT', v => v.toFixed(1) + ' 米', () => draw());
+  $('#dmL').addEventListener('change', () => draw());
+  function draw(){
+    const p0 = Ph() * Math.PI / 180, d = D(), t = T(), lantern = $('#dmL').checked;
+    const a = d / 2 / Math.sin(p0), w = 2000 * 9.8 * t;
+    const Wd = 2 * Math.PI * a * a * (1 - Math.cos(p0)) * w, PL = lantern ? 0.1 * Wd : 0;
+    const Nphi = f => -a * w / (1 + Math.cos(f)) - PL / (2 * Math.PI * a * Math.sin(f) ** 2);
+    const Nth = f => a * w * (1 / (1 + Math.cos(f)) - Math.cos(f)) + PL / (2 * Math.PI * a * Math.sin(f) ** 2);
+    const svg = $('#dmSvg'), S = 250 / a, cx = 300, base = 30 + a * S * (1 - Math.cos(p0)) + 10;
+    const Pt = f => [cx + a * S * Math.sin(f), base - a * S * (Math.cos(f) - Math.cos(p0))];
+    let g = '<line x1="20" x2="580" y1="' + base + '" y2="' + base + '" stroke="var(--ink)" stroke-width="1.2"/>';
+    const sw = clamp(t * S, 3, 18);
+    let maxT = 0, maxC = 0, firstTen = null, tsum = 0;
+    const n = 60;
+    for (let i = 0; i < n; i++) {
+      const f1 = p0 * i / n, f2 = p0 * (i + 1) / n, fm = (f1 + f2) / 2, nt = Nth(fm);
+      if (fm > 0.06 || !lantern) { if (nt > 0) { maxT = Math.max(maxT, nt); if (firstTen === null) firstTen = fm; } else maxC = Math.max(maxC, -nt); }
+      if (nt > 0) tsum += nt * a * (f2 - f1);
+      const col = nt > 0 ? 'var(--red)' : 'var(--blu)';
+      [1, -1].forEach(sg => { const A = Pt(f1), B = Pt(f2); g += '<line x1="' + (cx + (A[0] - cx) * sg).toFixed(1) + '" y1="' + A[1].toFixed(1) + '" x2="' + (cx + (B[0] - cx) * sg).toFixed(1) + '" y2="' + B[1].toFixed(1) + '" stroke="' + col + '" stroke-width="' + sw + '" stroke-linecap="round"/>'; });
+    }
+    if (p0 > 0.904 && !lantern) { const q = Pt(0.9046); g += '<line x1="' + (2 * cx - q[0] - 40) + '" x2="' + (q[0] + 40) + '" y1="' + q[1] + '" y2="' + q[1] + '" stroke="var(--ink-3)" stroke-dasharray="3 3"/>' + txt(q[0] + 44, q[1] + 4, '约 52°', {s: 11, a: 'start', c: 'var(--ink-2)'}); }
+    if (lantern) { const tp = Pt(0); g += '<rect x="' + (cx - 10) + '" y="' + (tp[1] - 34) + '" width="20" height="30" fill="var(--ink-3)" fill-opacity=".6"/>'; }
+    const H = Math.abs(Nphi(p0)) * Math.cos(p0), ring = H * a * Math.sin(p0) + tsum;
+    const e = Pt(p0); g += '<ellipse cx="' + cx + '" cy="' + e[1] + '" rx="' + (e[0] - cx) + '" ry="7" fill="none" stroke="var(--och)" stroke-width="2.5"/>';
+    svg.setAttribute('viewBox', '0 0 600 ' + Math.ceil(base + 14)); svg.innerHTML = g;
+    const sig = maxT / t / 1e6;
+    kv($('#dmKv'), [['圆顶自重', fmt(Wd / 9800) + ' 吨'], ['腰上需要的箍力', ring > 1 ? fmt(ring / 9800) + ' 吨' : '几乎不用'], ['最大横向拉应力', sig > 0.0005 ? sig.toFixed(2) + ' 兆帕' : '没有'], ['矢高', (a * (1 - Math.cos(p0))).toFixed(1) + ' 米']]);
+    const crack = sig > 0.1;
+    $('#dmSay').className = 'say' + (crack ? ' bad' : ' ok');
+    $('#dmSay').innerHTML = (maxT <= 0 ? '整个圆顶每一圈都被挤着（全是蓝色）：这是个扁的盖子，开口没过 52°。它不会自己裂开，但底部一圈往外推，要靠墙或箍顶住：箍力约 <b>' + fmt(ring / 9800) + ' 吨</b>，是圆顶自重的 ' + Math.round(ring / Wd * 100) + '%。越扁，这个比例越大。蒙古包的腰绳干的就是这个活。' :
+      '红色部分每一圈都被往外撑。' + (firstTen !== null ? '从顶往下约 ' + Math.round(firstTen * 180 / Math.PI) + '° 以后变红。' : '') + '最大的横向拉应力约 ' + sig.toFixed(2) + ' 兆帕，' + (crack ? '<b>砖石扛不住</b>（灰缝的抗拉能力只有零点一兆帕上下），会从下往上裂出一道道竖缝：所以要箍铁链、压重墙。' : '还不算大，靠灰缝和自重勉强能对付。')) +
+      (lantern ? ' 顶上加了灯塔以后，整个圆顶每一圈都多了一份往外撑的力，连顶上也变红了：布鲁内莱斯基的穹顶最后压上一座大理石灯塔，他必须事先在腰上箍好链子。' : '');
+  }
+  draw();
+});
+
+/* ---------- 装置 9：以材为祖 ---------- */
+dev('#cfFig', () => {
+  /* [等, 广寸, 厚寸, 用途]，《营造法式》卷四 */
+  const C = [
+    ['一等', 9, 6, '殿身九间至十一间'], ['二等', 8.25, 5.5, '殿身五间至七间'], ['三等', 7.5, 5, '殿身三间至五间，或厅堂七间'],
+    ['四等', 7.2, 4.8, '殿三间，厅堂五间'], ['五等', 6.6, 4.4, '殿小三间，厅堂大三间'], ['六等', 6, 4, '亭榭或小厅堂'],
+    ['七等', 5.25, 3.5, '小殿及亭榭'], ['八等', 4.5, 3, '殿内藻井，或小亭榭施铺作多者']
+  ];
+  const CUN = 3.1; // 宋一寸约 3.1 厘米
+  let cur = 0;
+  btnRow($('#cfBtns'), C.map(c => c[0] + '材'), cur, i => { cur = i; draw(); });
+  /* 斗拱正立面，单位是“分”，原点在柱顶中线；[x, y(往上), 宽, 高, 名字] */
+  const PARTS = [
+    [-16, 0, 32, 20, '栌斗'],
+    [-31, 12, 62, 15, '泥道拱'],
+    [-38, 27, 14, 10, '散斗'], [-7, 27, 14, 10, ''], [24, 27, 14, 10, ''],
+    [-46, 37, 92, 15, '慢拱'],
+    [-53, 52, 14, 10, ''], [-7, 52, 14, 10, ''], [39, 52, 14, 10, ''],
+    [-70, 62, 140, 15, '柱头枋']
+  ];
+  function draw(){
+    const c = C[cur], fen = c[1] * CUN / 15; // 1 分 = 多少厘米
+    const big = C[0][1] * CUN / 15, PX = 1.15 / big * 2.2; // 一等材时 1 分约 2.5 像素
+    const k = fen * PX, base = 300, cx = 220;
+    let g = '';
+    // 柱子：直径约 42 分
+    g += '<rect x="' + (cx - 21 * k) + '" y="' + base + '" width="' + 42 * k + '" height="' + (330 - base) + '" fill="var(--ter)" fill-opacity=".35" stroke="var(--ink-2)"/>';
+    PARTS.forEach(p => {
+      const x = cx + p[0] * k, y = base - (p[1] + p[3]) * k;
+      const isGong = /拱/.test(p[4]);
+      if (isGong) { const r = 4 * k; g += '<path d="M' + x + ',' + (y) + 'h' + p[2] * k + 'v' + (p[3] * k - r) + 'q0,' + r + ' -' + r + ',' + r + 'h-' + (p[2] * k - 2 * r) + 'q-' + r + ',0 -' + r + ',-' + r + 'z" fill="var(--kraft)" fill-opacity=".5" stroke="var(--ink-2)" stroke-width="1"/>'; }
+      else g += '<rect x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + (p[2] * k).toFixed(1) + '" height="' + (p[3] * k).toFixed(1) + '" fill="var(--kraft)" fill-opacity="' + (p[4] === '柱头枋' ? .3 : .65) + '" stroke="var(--ink-2)" stroke-width="1"/>';
+      if (p[4]) g += txt(cx + (p[0] + p[2]) * k + 6, y + p[3] * k / 2 + 4, p[4] + ' ' + p[2] + '×' + p[3] + '分', {s: 10.5, a: 'start', c: 'var(--ink-2)'});
+    });
+    // 一米七的人
+    const hp = 170 * PX, hx = 545;
+    g += '<circle cx="' + hx + '" cy="' + (330 - hp + hp * .07) + '" r="' + hp * .07 + '" fill="var(--ink-3)"/><rect x="' + (hx - hp * .09) + '" y="' + (330 - hp * .86) + '" width="' + hp * .18 + '" height="' + hp * .86 + '" rx="' + hp * .05 + '" fill="var(--ink-3)"/>';
+    g += txt(hx, 344, '人 1.7 米', {s: 11, c: 'var(--ink-3)', halo: false});
+    g += '<line x1="20" x2="580" y1="330" y2="330" stroke="var(--ink)" stroke-width="1"/>';
+    const top = base - 77 * k;
+    g += '<line x1="' + (cx - 90 * k) + '" x2="' + (cx - 90 * k) + '" y1="' + top + '" y2="' + base + '" stroke="var(--ink-3)"/>' + txt(cx - 90 * k - 4, (top + base) / 2, (77 * fen).toFixed(0) + ' 厘米', {s: 11, a: 'end', c: 'var(--ink-2)'});
+    const svg = $('#cfSvg'); svg.setAttribute('viewBox', '0 0 600 350'); svg.innerHTML = g;
+    kv($('#cfKv'), [['材', c[1] + '×' + c[2] + ' 寸 ≈ ' + (c[1] * CUN).toFixed(0) + '×' + (c[2] * CUN).toFixed(0) + ' 厘米'], ['一分', fen.toFixed(2) + ' 厘米'], ['这组斗拱高', (77 * fen / 100).toFixed(2) + ' 米'], ['用在', c[3]]]);
+    $('#cfSay').innerHTML = c[0] + '材：一“分”约 ' + fen.toFixed(2) + ' 厘米，这组斗拱约 ' + (77 * fen / 100).toFixed(2) + ' 米高，' + (cur < 3 ? '比人还高，是大殿用的。' : cur < 6 ? '和人差不多高。' : '只有半人高，用在亭子和藻井里。') +
+      ' 一等材和八等材的斗拱，<b>样子一模一样，只是整体缩放了 ' + (C[0][1] / C[7][1]).toFixed(0) + ' 倍</b>。工匠只要记住“泥道拱长六十二分”，不管拿到哪一等材，都能算出该锯多长。';
+  }
+  draw();
+});
+
+})();
+
+</script>
+</body>
+</html>

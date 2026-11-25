@@ -21,6 +21,7 @@
 | 值不值 · 一个人的创世记（两部，两个网页） | `worth/index.html`、`worth/two.html` |
 | 吃了吗 · 饮食创世记（三部，三个网页） | `eat/index.html`、`eat/two.html`、`eat/three.html` |
 | 上梁 · 建造创世记（三部，三个网页） | `beam/index.html`、`beam/two.html`、`beam/three.html` |
+| 红与绿 · 投资创世记（三部，写作中：第一部已上架） | `stock/index.html`（`two.html`、`three.html` 待写） |
 
 ## 改书
 

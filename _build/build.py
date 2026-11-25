@@ -10,6 +10,7 @@
     python3 _build/build.py worth1 worth2             # 《值不值》两部
     python3 _build/build.py eat1 eat2 eat3            # 《吃了吗》三部
     python3 _build/build.py beam1 beam2 beam3         # 《上梁》三部
+    python3 _build/build.py stock1 stock2 stock3      # 《红与绿》三部
 """
 import os, re, sys
 
@@ -51,6 +52,8 @@ BOOKS = {
     'beam1': ('beam', 'beam/index.html', ['top1.html', 'css.html', 'bar.html'] + ['a%02d.html' % i for i in range(11)]),
     'beam2': ('beam', 'beam/two.html', ['top2.html', 'css.html', 'bar.html'] + ['b%02d.html' % i for i in range(10)]),
     'beam3': ('beam', 'beam/three.html', ['top3.html', 'css.html', 'bar.html'] + ['c%02d.html' % i for i in range(10)]),
+    # 《红与绿》分三部（盘 / 手 / 花），脚本拆在 _build/stock/js/*.js
+    'stock1': ('stock', 'stock/index.html', ['top1.html', 'css.html', 'bar.html'] + ['a%02d.html' % i for i in range(11)]),
 }
 DRAFT = '--draft' in sys.argv  # 写到一半时跳过缺失段落和锚点检查
 

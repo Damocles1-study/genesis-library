@@ -11,6 +11,7 @@
     python3 _build/build.py eat1 eat2 eat3            # 《吃了吗》三部
     python3 _build/build.py beam1 beam2 beam3         # 《上梁》三部
     python3 _build/build.py stock1 stock2 stock3      # 《红与绿》三部
+    python3 _build/build.py open1 open2 open3         # 《开张》三部
 """
 import os, re, sys
 
@@ -56,6 +57,10 @@ BOOKS = {
     'stock1': ('stock', 'stock/index.html', ['top1.html', 'css.html', 'bar.html'] + ['a%02d.html' % i for i in range(11)]),
     'stock2': ('stock', 'stock/two.html', ['top2.html', 'css.html', 'bar.html'] + ['b%02d.html' % i for i in range(10)]),
     'stock3': ('stock', 'stock/three.html', ['top3.html', 'css.html', 'bar.html'] + ['c%02d.html' % i for i in range(10)]),
+    # 《开张》分三部（摊 / 路 / 账），脚本拆在 _build/open/js/*.js
+    'open1': ('open', 'open/index.html', ['top1.html', 'css.html', 'bar.html'] + ['a%02d.html' % i for i in range(11)]),
+    'open2': ('open', 'open/two.html', ['top2.html', 'css.html', 'bar.html'] + ['b%02d.html' % i for i in range(10)]),
+    'open3': ('open', 'open/three.html', ['top3.html', 'css.html', 'bar.html'] + ['c%02d.html' % i for i in range(10)]),
 }
 DRAFT = '--draft' in sys.argv  # 写到一半时跳过缺失段落和锚点检查
 

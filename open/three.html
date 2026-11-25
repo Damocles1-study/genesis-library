@@ -1,0 +1,2896 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="个人创业创世记第三部 · 账：做生意怎样和钱搭上边：现金流、个体户还是公司、发票和税、借钱的边界、拿别人的钱、做大，以及体面地退出。">
+<meta property="og:title" content="开张 · 第三部 · 账">
+<meta property="og:description" content="小生意怎样和钱搭上边，怎样做大，怎样体面地收摊。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='4' fill='%23ece3cf'/%3E%3Cpath d='M4 9h24l-2 6H6z' fill='%239b3d17'/%3E%3Cpath d='M10 9l-1 6M16 9v6M22 9l1 6' stroke='%23ece3cf' stroke-width='1.6'/%3E%3Crect x='7' y='15' width='18' height='12' fill='none' stroke='%231f1d1b' stroke-width='1.4'/%3E%3Crect x='13' y='19' width='6' height='8' fill='%232b5d63'/%3E%3C/svg%3E">
+<title>开张 · 第三部 · 账</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@500;700&family=Noto+Serif+SC:wght@400;600;700&family=ZCOOL+XiaoWei&display=swap">
+<style>
+/* ZCOOL XiaoWei 把“回”字画成实心方块：这一个字改用系统宋体/黑体，其余字不变 */
+@font-face{font-family:"Hui Fix";unicode-range:U+56DE;src:local("Songti SC"),local("STSongti-SC-Regular"),local("STSong"),local("SimSun"),local("宋体"),local("Noto Serif CJK SC"),local("NotoSerifCJKsc-Regular"),local("Source Han Serif SC"),local("SourceHanSerifSC-Regular"),local("PingFang SC"),local("PingFangSC-Regular"),local("Microsoft YaHei"),local("Noto Sans CJK SC"),local("NotoSansCJKsc-Regular"),local("Droid Sans Fallback")}
+
+/* 版式：一块新挂的招牌。主色是开张那天的炮仗红，对色是铜锈青。
+   每章：章首（五样本钱：钱 时 手 人 信；年代条）→ 营业执照（虚构格式，真实的人和事）→ 有人问 → 沈舟（虚构）→ 正文 → 最多亏多少 → 再查一遍 → 眉批 → 装置 → 两本账。 */
+:root{
+  --paper:#ece3cf; --paper-2:#e2d7bf; --card:#f3ebda;
+  --ink:#1f1d1b; --ink-2:#4b4740; --ink-3:#5d584f; --rule:#ccbfa2;
+  --main:#9b3d17;   /* 炮仗红 */
+  --ter:#2b5d63;    /* 铜锈青 */
+  --zhu:#9b3d17;
+  --kraft:#7d5a2a;  /* 牛皮纸、账本 */
+  --pur:#5d2f63;
+  --sea:#a9bfc9; --land:#ddd1b4;
+  --och:#7a5510;
+  --red:#983a24;
+  --blu:#2a4f78;
+  --grn:#2f6a48;
+  --up:#a8302a; --dn:#1f6e48;
+  --hl:color-mix(in srgb,#c9a44a 34%,transparent);
+  --c-paper:#f2e9d6; --c-ink:#191614;
+  --f-display:"Hui Fix","ZCOOL XiaoWei","Songti SC","STSong","Noto Serif SC",serif;
+  --f-body:"Noto Serif SC","Songti SC","Source Han Serif SC","STSong",serif;
+  --f-hand:"Ma Shan Zheng","Kaiti SC","STKaiti","KaiTi",cursive;
+  --f-sans:"Noto Sans SC","PingFang SC","Hiragino Sans GB",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#151413; --paper-2:#1d1b19; --card:#221f1c; --ink:#ebe4d4; --ink-2:#b8b09e; --ink-3:#978f7e; --rule:#3a3631;
+  --main:#ee9a72; --ter:#86c3c9; --zhu:#ee9a72; --kraft:#d1a66a; --pur:#c9a0cf; --sea:#22394a; --land:#332d22; --och:#d9b45e; --red:#e57b5e; --blu:#9cc0e6; --grn:#8fc2a0;
+  --up:#f07a6c; --dn:#5fc98f;
+  --c-paper:#1d1b18; --c-ink:#ece6da; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#151413; --paper-2:#1d1b19; --card:#221f1c; --ink:#ebe4d4; --ink-2:#b8b09e; --ink-3:#978f7e; --rule:#3a3631;
+  --main:#ee9a72; --ter:#86c3c9; --zhu:#ee9a72; --kraft:#d1a66a; --pur:#c9a0cf; --sea:#22394a; --land:#332d22; --och:#d9b45e; --red:#e57b5e; --blu:#9cc0e6; --grn:#8fc2a0;
+  --up:#f07a6c; --dn:#5fc98f;
+  --c-paper:#1d1b18; --c-ink:#ece6da; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+.g{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit;text-decoration-color:var(--main);text-underline-offset:3px}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--main);outline-offset:2px}
+svg{max-width:100%;height:auto;display:block}
+
+/* 页眉 */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+.bar-in{max-width:56rem;margin:0 auto;display:flex;align-items:center;gap:10px;padding-block:8px}
+.bar .home{text-decoration:none;font-size:13px;color:var(--ink-3);white-space:nowrap;border:1px solid var(--rule);border-radius:999px;padding:1px 9px}
+.bar .name{font-family:var(--f-display);font-size:19px;letter-spacing:.05em;white-space:nowrap;text-decoration:none}
+.bar .parts{display:flex;gap:2px}
+.bar .parts a{font-size:12.5px;text-decoration:none;color:var(--ink-3);padding:0 6px;border-radius:4px;white-space:nowrap}
+.bar .parts a.on{background:var(--main);color:var(--paper)}
+.bar .vol{margin-left:auto;font-size:13px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.bar .tocbtn{border:1px solid var(--rule);background:transparent;border-radius:6px;padding:0 8px;font-size:13px;cursor:pointer;color:var(--ink-2);white-space:nowrap}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;background:var(--main);width:0}
+.drawer{position:fixed;inset:0;z-index:40;display:none}
+.drawer.on{display:block}
+.drawer .mask{position:absolute;inset:0;background:rgba(0,0,0,.35)}
+.drawer .panel{position:absolute;right:0;top:0;bottom:0;width:min(370px,90vw);background:var(--paper);border-left:1px solid var(--rule);overflow:auto;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px))}
+.drawer h5{font-family:var(--f-display);font-weight:400;font-size:20px;margin:0 0 10px}
+.drawer ol{list-style:none;margin:0;padding:0}
+.drawer li.ph{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.16em;color:var(--main);padding:14px 0 2px}
+.drawer li.vh{font-size:12px;color:var(--ink-3);padding:8px 0 0;letter-spacing:.1em}
+.drawer li a{display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--rule);text-decoration:none;font-size:15px;line-height:1.5}
+.drawer li a .n{font-family:var(--f-display);font-size:18px;color:var(--main);min-width:1.6em;text-align:center}
+.drawer li a small{display:block;color:var(--ink-3);font-size:12px}
+.drawer li a.here .n{background:var(--main);color:var(--paper);border-radius:4px}
+.drawer .x{position:absolute;right:12px;top:10px;border:0;background:transparent;font-size:22px;cursor:pointer;color:var(--ink-2)}
+
+main{display:block}
+.col{max-width:38rem;margin-inline:auto}
+.wide{max-width:54rem;margin-inline:auto}
+.col p{margin:0 0 1.05em;text-indent:2em}
+.col p.ni,.col .ni{text-indent:0}
+h2,h3,h4{text-wrap:balance}
+h3{font-family:var(--f-display);font-weight:400;font-size:24px;line-height:1.4;margin:2.2em 0 .7em;letter-spacing:.03em}
+h3 .y{font-family:var(--f-mono);font-size:13px;color:var(--ink-3);margin-left:10px;letter-spacing:0;white-space:nowrap}
+em{font-style:normal;background:linear-gradient(transparent 62%,var(--hl) 62%)}
+strong{font-weight:600}
+blockquote{margin:1.4em 0;padding:.2em 0 .2em 1.2em;border-left:2px solid var(--och);color:var(--ink-2)}
+blockquote p{text-indent:0!important;margin:0 0 .4em}
+blockquote cite{font-style:normal;font-size:14px;color:var(--ink-3)}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.figcap{font-size:14px;color:var(--ink-2);line-height:1.7;margin-top:8px}
+.sep{text-align:center;color:var(--och);letter-spacing:1.2em;margin:2em 0;text-indent:1.2em!important;font-size:14px}
+ul.plain{font-size:16px;line-height:1.9;padding-left:1.4em}
+ul.plain li{margin:0 0 .35em}
+
+/* 封面 */
+.hero{padding-block:36px 20px}
+.hero .eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;color:var(--ink-3)}
+.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(60px,14vw,124px);line-height:1;margin:.25em 0 .2em;letter-spacing:.1em}
+.hero h1 .sm{display:block;font-size:.19em;letter-spacing:.3em;color:var(--ink-2);margin-top:.6em}
+.hero .part{display:inline-block;font-family:var(--f-display);font-size:22px;color:var(--main);border:1.5px solid var(--main);border-radius:4px;padding:0 10px;margin-bottom:6px;letter-spacing:.1em}
+.hero p.lead{font-size:18px;max-width:36em;margin:0 0 1em}
+.partnav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:24px 0}
+.partnav a{display:block;text-decoration:none;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;background:var(--card);line-height:1.5}
+.partnav a b{display:block;font-family:var(--f-display);font-weight:400;font-size:20px}
+.partnav a small{font-size:12.5px;color:var(--ink-3)}
+.partnav a.on{border-color:var(--main);box-shadow:inset 0 0 0 1px var(--main)}
+.partnav a .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;color:var(--main)}
+
+/* 六张脸 */
+.cast{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin:14px 0}
+.cast figure{margin:0;text-align:center;background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:6px 4px 8px}
+.cast svg{width:100%;max-width:120px;margin:auto;color:var(--c-ink)}
+.cast b{display:block;font-family:var(--f-display);font-weight:400;font-size:19px;line-height:1.2}
+.cast small{display:block;font-size:12px;color:var(--ink-3);line-height:1.4}
+.eras{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 2px}
+
+/* 目录 */
+.toc{list-style:none;margin:20px 0 0;padding:0;border-top:1px solid var(--rule)}
+.toc li a{display:grid;grid-template-columns:2.6em minmax(0,1fr) auto;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--rule);text-decoration:none}
+.toc .n{font-family:var(--f-display);font-size:28px;line-height:1;color:var(--main);text-align:center}
+.toc .t{font-family:var(--f-display);font-size:21px;line-height:1.3}
+.toc .t small{display:block;font-family:var(--f-body);font-size:13px;color:var(--ink-3);margin-top:2px}
+.toc .r{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);text-align:right;white-space:nowrap}
+.toc li a:hover .t{color:var(--main)}
+.toc .vh{padding:16px 0 4px;font-family:var(--f-mono);font-size:12px;letter-spacing:.16em;color:var(--ink-3);border-bottom:1px solid var(--rule)}
+.toc li.away a{opacity:.82}
+.toc li.away .r::after{content:" ↗";color:var(--main)}
+.qmap{list-style:none;margin:0;padding:0;columns:2 17em;column-gap:28px}
+.qmap li{break-inside:avoid;margin:0 0 .5em;font-size:15.5px;line-height:1.65}
+.qmap a{text-decoration:none;border-bottom:1px dashed var(--ink-3)}
+.qmap a:hover{color:var(--main)}
+.qmap b{font-family:var(--f-display);font-weight:400;color:var(--main);margin-left:4px}
+
+/* 卷首 */
+.volhead{position:relative;max-width:54rem;margin:64px auto 20px;padding:30px 22px 24px;border-top:3px double var(--ink);border-bottom:3px double var(--ink);overflow:hidden}
+.volhead .num{font-family:var(--f-mono);font-size:12px;letter-spacing:.24em;color:var(--main)}
+.volhead h2{font-family:var(--f-display);font-weight:400;font-size:clamp(64px,16vw,124px);line-height:1;margin:.1em 0 .12em;letter-spacing:.1em}
+.volhead h2 small{font-size:.24em;letter-spacing:.2em;color:var(--ink-2);margin-left:.4em}
+.volhead .lede{max-width:32em;margin:6px 0 0;font-size:16px;color:var(--ink-2);line-height:1.8}
+.volhead .pyr{position:absolute;right:-10px;bottom:-4px;width:190px;opacity:.9;pointer-events:none}
+
+/* 章首 */
+section.chap{padding-top:24px}
+.chead{position:relative;max-width:54rem;margin:46px auto 26px;padding:20px 22px 18px;display:grid;grid-template-columns:96px minmax(0,1fr);gap:20px;align-items:start;background:var(--paper-2);border-radius:10px;border:1px solid var(--rule)}
+.chead .big{font-family:var(--f-display);font-size:84px;line-height:1;color:var(--main);text-align:center;border:2px solid var(--main);border-radius:8px;padding:4px 0 8px;background:var(--card)}
+.chead .no{font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;color:var(--main)}
+.chead h2{font-family:var(--f-display);font-weight:400;font-size:clamp(32px,7vw,50px);line-height:1.15;margin:.08em 0 .2em;letter-spacing:.06em}
+.chead dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 14px;margin:6px 0 0;font-size:14.5px;line-height:1.7}
+.chead dt{color:var(--ink-3);white-space:nowrap}
+.chead dd{margin:0;color:var(--ink-2)}
+.where{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.where span{font-size:12px;line-height:1.6;border:1px solid var(--rule);border-radius:4px;padding:0 6px;color:var(--ink-3);background:var(--paper)}
+.where span.on{border-color:var(--main);color:var(--main);background:color-mix(in srgb,var(--main) 8%,var(--paper));font-weight:600}
+
+/* 你问的 */
+.ask{margin:1.6em 0;padding:12px 16px 4px;border-radius:8px;background:var(--card);border:1px solid var(--rule)}
+.ask .q{font-family:var(--f-display);font-size:19px;line-height:1.5;margin:0 0 .4em;text-indent:0!important}
+.ask .q::before{content:"有人问";font-family:var(--f-sans);font-size:11.5px;letter-spacing:.14em;color:var(--paper);background:var(--main);border-radius:3px;padding:1px 6px;margin-right:8px;vertical-align:3px}
+.ask p{text-indent:0!important;font-size:15.5px;line-height:1.8;margin:0 0 .7em;color:var(--ink-2)}
+
+/* 河湾：虚构的小地方 */
+.river{margin:1.8em 0 2em;padding:16px 18px 6px;border:1.5px dashed var(--och);border-radius:10px;position:relative;background:color-mix(in srgb,var(--och) 4%,var(--paper))}
+.river::before{content:attr(data-t);position:absolute;top:-12px;left:14px;background:var(--paper);padding:0 8px;font-size:13px;letter-spacing:.12em;color:var(--och);font-weight:600}
+.river::after{content:"虚构";position:absolute;top:-10px;right:14px;background:var(--paper);padding:0 6px;font-size:11px;letter-spacing:.2em;color:var(--ink-3);border:1px solid var(--rule);border-radius:3px;line-height:1.5}
+.river p{text-indent:0!important;font-size:16px;line-height:1.85}
+.river .nm{font-weight:600;color:var(--och)}
+
+/* 别处：同一件事在地球的不同地方 */
+.globe{margin:2em auto;max-width:54rem}
+.globe .gh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;border-bottom:1.5px solid var(--ink);padding-bottom:4px;margin-bottom:10px}
+.globe .gh b{font-family:var(--f-display);font-weight:400;font-size:22px;letter-spacing:.06em}
+.globe .gh span{font-size:13px;color:var(--ink-3)}
+.globe .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(15.5em,1fr));gap:10px}
+.rg{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:10px 13px 8px;font-size:15px;line-height:1.75}
+.rg h6{margin:0 0 4px;font-family:var(--f-display);font-weight:400;font-size:18px;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.rg h6 small{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);white-space:nowrap}
+.rg p{margin:0 0 .5em;text-indent:0!important}
+
+/* 告示 · 白话：讽刺栏 */
+.spin{margin:2em 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:1.5px solid var(--ink);border-radius:6px;overflow:hidden;background:var(--card)}
+.spin>div{padding:12px 16px 10px;font-size:15.5px;line-height:1.8}
+.spin>div p{text-indent:0!important;margin:0 0 .5em}
+.spin .off{font-family:var(--f-display);font-size:17px;letter-spacing:.04em;background:color-mix(in srgb,var(--main) 6%,var(--card))}
+.spin .plain{border-left:1.5px solid var(--ink)}
+.spin i{display:block;font-style:normal;font-family:var(--f-sans);font-size:11.5px;letter-spacing:.2em;color:var(--main);margin-bottom:4px}
+.spin .plain i{color:var(--grn)}
+.spin .src{grid-column:1 / -1;border-top:1px dashed var(--rule);font-size:12.5px;color:var(--ink-3);padding:4px 16px 6px}
+
+/* 那时的一天 */
+.life{margin:2em 0;padding:14px 16px 6px;border-radius:8px;border-left:4px solid var(--grn);background:color-mix(in srgb,var(--grn) 6%,var(--card))}
+.life h5{margin:0 0 .3em;font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--grn)}
+.life h5 small{font-family:var(--f-mono);font-size:12px;color:var(--ink-3);margin-left:8px}
+.life p{text-indent:0!important;font-size:15.5px;line-height:1.8;margin:0 0 .7em}
+
+/* 蓝框 */
+.box{margin:2em 0;padding:16px 18px 8px;border-radius:8px;border:1.5px solid var(--blu);background:color-mix(in srgb,var(--blu) 6%,var(--paper))}
+.box h5{margin:.1em 0 .5em;font-family:var(--f-display);font-weight:400;font-size:21px;color:var(--blu);letter-spacing:.04em}
+.box p{text-indent:0!important;margin:0 0 .8em;font-size:16px;line-height:1.85}
+.box ul,.box ol{margin:0 0 .8em;padding-left:1.2em;font-size:16px;line-height:1.85}
+.box li{margin:0 0 .3em}
+
+/* 眉批 */
+.echo{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;margin:1.6em 0;padding:14px 14px 10px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.echo .stamp{writing-mode:vertical-rl;font-family:var(--f-display);font-size:15px;color:var(--red);border:1.5px solid var(--red);border-radius:3px;padding:6px 2px;letter-spacing:.2em;align-self:start}
+.echo[data-k="存疑"] .stamp{color:var(--ink-3);border-color:var(--ink-3)}
+.echo[data-k="联系"] .stamp{color:var(--och);border-color:var(--och)}
+.echo[data-k="生活"] .stamp{color:var(--grn);border-color:var(--grn)}
+.echo[data-k="押韵"] .stamp{color:var(--blu);border-color:var(--blu)}
+.echo[data-k="讽刺"] .stamp{color:var(--main);border-color:var(--main)}
+.echo p{text-indent:0!important;margin:0 0 .5em;font-size:15.5px;line-height:1.8}
+.echo .rh{font-family:var(--f-display);font-size:18px;margin-bottom:.2em}
+
+/* 章末：史 / 世 */
+.seal{margin:2.6em 0 1em;border:1.5px solid var(--ink);border-radius:6px;background:var(--card);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);overflow:hidden}
+.seal>div{padding:12px 16px 14px;font-size:15.5px;line-height:1.75}
+.seal>div+div{border-left:1.5px solid var(--ink)}
+.seal i{display:block;font-style:normal;font-family:var(--f-display);font-size:22px;letter-spacing:.2em;margin-bottom:2px;color:var(--main)}
+.seal>div+div i{color:var(--grn)}
+.seal i small{font-family:var(--f-body);font-size:12px;letter-spacing:.1em;color:var(--ink-3);margin-left:6px}
+
+/* 装置 */
+.fig{margin:2.2em auto;padding:20px 18px;background:var(--card);border:1px solid var(--rule);border-radius:6px}
+.fig-label{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.12em;color:var(--main)}
+.fig h4{font-family:var(--f-display);font-weight:400;font-size:22px;margin:.25em 0 .35em}
+.fig .how{font-size:14.5px;color:var(--ink-2);margin:0 0 14px;line-height:1.75}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.btn{border:1px solid var(--ink-3);background:transparent;border-radius:999px;padding:4px 14px;font-size:14px;cursor:pointer;line-height:1.6;color:var(--ink)}
+.btn:hover{border-color:var(--ink)}
+.btn.pri{background:var(--main);color:var(--paper);border-color:var(--main)}
+.btn.on{background:var(--main);border-color:var(--main);color:var(--paper)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.readout{font-size:14.5px;color:var(--ink-2);line-height:1.75;min-height:1.5em}
+.readout b{color:var(--ink)}
+.say{background:var(--paper);border-left:3px solid var(--och);padding:8px 12px;margin:10px 0;font-size:15px;line-height:1.75;min-height:3.2em}
+.say.ok{border-left-color:var(--grn)}.say.bad{border-left-color:var(--red)}
+input[type=range]{width:100%;accent-color:var(--main)}
+.ctl{display:grid;grid-template-columns:7em minmax(0,1fr) 6.5em;gap:10px;align-items:center;font-size:14px;color:var(--ink-2);margin:4px 0}
+.ctl output{font-family:var(--f-mono);font-size:13px;color:var(--ink);text-align:right;white-space:nowrap}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(9em,1fr));gap:8px;margin:10px 0}
+.kv div{background:var(--paper);border-radius:6px;padding:6px 10px;font-size:12.5px;color:var(--ink-3);line-height:1.5}
+.kv b{display:block;font-family:var(--f-mono);font-weight:500;font-size:18px;color:var(--ink)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:center}
+.lab{font-size:12.5px;color:var(--ink-3);letter-spacing:.08em;margin:8px 0 4px}
+.chip{display:inline-block;font-size:12px;border:1px solid var(--rule);border-radius:4px;padding:0 6px;color:var(--ink-3);margin:0 4px 4px 0}
+.fig text{font-family:var(--f-sans)}
+.fig .mono{font-family:var(--f-mono)}
+select{border:1px solid var(--ink-3);border-radius:6px;background:var(--paper);padding:2px 6px;font-size:14px}
+label.ck{display:inline-flex;gap:6px;align-items:center;font-size:14px;color:var(--ink-2);margin:2px 12px 2px 0;cursor:pointer}
+label.ck input{accent-color:var(--main)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--ink-2);margin:6px 0}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:0}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(14em,1fr));gap:8px;margin:10px 0}
+.cards .cd{background:var(--paper);border-radius:6px;padding:8px 11px;font-size:14px;line-height:1.65;border:1px solid transparent}
+.cards .cd b{display:block;font-family:var(--f-display);font-weight:400;font-size:17px}
+.cards .cd small{color:var(--ink-3)}
+.cards .cd.on{border-color:var(--main)}
+
+/* 漫画 */
+.comic{max-width:54rem;margin:2em auto;padding:14px;background:var(--c-paper);border:2px solid var(--c-ink);color:var(--c-ink)}
+.comic .ctitle{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px 12px;border-bottom:2px solid var(--c-ink);padding-bottom:6px;margin-bottom:12px}
+.comic .ctitle b{font-family:var(--f-display);font-weight:400;font-size:26px;letter-spacing:.12em}
+.comic .ctitle span{font-family:var(--f-sans);font-size:12px;letter-spacing:.1em}
+.comic .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.pn{position:relative;border:2.5px solid var(--c-ink);background:var(--c-paper);overflow:hidden;container-type:inline-size;aspect-ratio:300/230}
+.pn.w{grid-column:span 2;aspect-ratio:600/250}
+.pn svg{position:absolute;inset:0;width:100%;height:100%;max-width:none;color:var(--c-ink)}
+.pn .cap{position:absolute;left:0;top:0;max-width:62%;background:var(--c-paper);border-right:2px solid var(--c-ink);border-bottom:2px solid var(--c-ink);font-family:var(--f-sans);font-weight:500;font-size:clamp(10.5px,4.1cqw,15px);line-height:1.45;padding:4px 8px;z-index:2}
+.pn .cap.br{left:auto;top:auto;right:0;bottom:0;border:0;border-left:2px solid var(--c-ink);border-top:2px solid var(--c-ink)}
+.pn .bb{position:absolute;z-index:3;background:var(--c-paper);border:2px solid var(--c-ink);border-radius:50%/42%;padding:.5em .85em;font-family:var(--f-sans);font-weight:500;font-size:clamp(10.5px,4.2cqw,16px);line-height:1.45;text-align:center;color:var(--c-ink)}
+.pn.w .bb{font-size:clamp(10.5px,2.5cqw,16px)}
+.pn.w .cap{font-size:clamp(10.5px,2.4cqw,15px)}
+.pn .bb::after{content:"";position:absolute;width:14px;height:14px;background:var(--c-paper);border-right:2px solid var(--c-ink);border-bottom:2px solid var(--c-ink);bottom:-8px;left:30%;transform:skewX(30deg) rotate(45deg)}
+.pn .bb.tr::after{left:auto;right:28%;transform:skewX(-30deg) rotate(45deg)}
+.pn .bb.nt::after{display:none}
+.pn .bb.shout{border-radius:6px;border-width:2.5px;font-weight:700}
+.pn .bb.think{border-style:dashed}
+.pn .sfx{position:absolute;z-index:2;font-family:var(--f-sans);font-weight:700;font-size:clamp(14px,7cqw,30px);color:var(--c-ink);transform:rotate(-8deg);letter-spacing:.05em;text-shadow:2px 2px 0 var(--c-paper),-2px -2px 0 var(--c-paper),2px -2px 0 var(--c-paper),-2px 2px 0 var(--c-paper)}
+.comic .after{font-family:var(--f-sans);font-size:13px;margin:10px 0 0;opacity:.8;line-height:1.7}
+
+/* 表 */
+table.t{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.6;min-width:520px}
+table.t th,table.t td{border-bottom:1px solid var(--rule);padding:7px 8px;text-align:left;vertical-align:top}
+table.t th{font-weight:400;color:var(--ink-3);font-size:13px}
+.src{font-size:14.5px;line-height:1.8;color:var(--ink-2)}
+.src li{margin:0 0 .5em}
+
+/* 本部完 */
+.partend{max-width:38rem;margin:70px auto 0;text-align:center}
+.partend .k{font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;color:var(--main)}
+.partend h3{margin:.3em 0 .6em}
+.partend a.go{display:inline-block;margin-top:8px;padding:8px 18px;border:1.5px solid var(--main);border-radius:999px;text-decoration:none;color:var(--main);font-family:var(--f-display);font-size:19px}
+footer{max-width:38rem;margin:60px auto 0;padding:24px 0 calc(40px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--rule);font-size:14px;color:var(--ink-3);line-height:1.8}
+footer p{text-indent:0!important}
+.nextbook{display:block;margin:20px 0;padding:14px 16px;border:1px solid var(--rule);border-radius:6px;text-decoration:none;background:var(--card)}
+.nextbook b{font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--ink)}
+
+/* ===== 装置专用 ===== */
+.pixels{display:grid;gap:3px;margin:10px 0}
+.pixels span{aspect-ratio:1;border-radius:3px;background:var(--paper);border:1px solid var(--rule)}
+.bars{display:grid;gap:5px;margin:10px 0}
+.bars .row{display:grid;grid-template-columns:7.5em minmax(0,1fr) 4.2em;gap:8px;align-items:center;font-size:13.5px}
+.bars .row .nm{color:var(--ink-2);line-height:1.3}
+.bars .row .nm small{display:block;font-size:11px;color:var(--ink-3)}
+.bars .tr{position:relative;height:18px;background:var(--paper);border-radius:3px;overflow:hidden}
+.bars .tr i{position:absolute;left:0;top:0;bottom:0;background:var(--main);border-radius:3px;transition:width .4s}
+.bars .row .v{font-family:var(--f-mono);font-size:12px;color:var(--ink);text-align:right;white-space:nowrap}
+.tl{position:relative}
+.tl .track{display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:8px;align-items:center;font-size:13px;margin:3px 0}
+.tl .track .nm{color:var(--ink-2);line-height:1.25}
+.tl .lane{position:relative;height:22px;background:var(--paper);border-radius:3px}
+.tl .lane i{position:absolute;top:3px;width:14px;height:14px;margin-left:-7px;border-radius:50%;border:2px solid var(--card)}
+.tl .lane i.f{background:var(--grn)}.tl .lane i.c{background:var(--och)}.tl .lane i.s{background:var(--main)}.tl .lane i.w{background:var(--blu);border-radius:2px}
+.tl .axis{display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:8px;font-family:var(--f-mono);font-size:10.5px;color:var(--ink-3)}
+.tl .axis div:nth-child(2){position:relative;height:16px}
+.tl .axis span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+
+
+
+/* ===== 《值不值》专用 ===== */
+/* 章首：五个账户 */
+.acc{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+.acc span{font-size:12px;line-height:1.6;border:1px solid var(--rule);border-radius:4px;padding:0 7px;color:var(--ink-3);background:var(--paper)}
+.acc span b{font-family:var(--f-display);font-weight:400;font-size:14px;margin-right:3px}
+.acc span.on{border-color:var(--main);color:var(--main);background:color-mix(in srgb,var(--main) 9%,var(--paper));font-weight:600}
+/* 年代条：2016—2026，这一章的故事落在哪几年 */
+.yrs{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));gap:2px;margin-top:10px}
+.yrs span{font-family:var(--f-mono);font-size:10px;line-height:16px;text-align:center;color:var(--ink-3);background:var(--paper);border-radius:2px}
+.yrs span.on{background:var(--main);color:var(--paper)}
+/* 一场戏（虚构） */
+.scene{margin:1.8em 0 2em;padding:16px 18px 6px;border:1.5px dashed var(--kraft);border-radius:10px;position:relative;background:color-mix(in srgb,var(--kraft) 5%,var(--paper))}
+.scene::before{content:attr(data-t);position:absolute;top:-12px;left:14px;background:var(--paper);padding:0 8px;font-size:13px;letter-spacing:.12em;color:var(--kraft);font-weight:600}
+.scene::after{content:"虚构";position:absolute;top:-10px;right:14px;background:var(--paper);padding:0 6px;font-size:11px;letter-spacing:.2em;color:var(--ink-3);border:1px solid var(--rule);border-radius:3px;line-height:1.5}
+.scene p{text-indent:0!important;font-size:16px;line-height:1.85}
+.scene .nm{font-weight:600;color:var(--kraft)}
+/* 外公的硬面抄：一页手写 */
+.page{margin:2em 0;background:var(--card);border:1px solid var(--rule);border-radius:4px;position:relative;padding:12px 16px 10px 52px;
+  background-image:repeating-linear-gradient(transparent 0 31px,color-mix(in srgb,var(--blu) 22%,transparent) 31px 32px);background-position:0 40px}
+.page::before{content:"";position:absolute;left:38px;top:0;bottom:0;border-left:1.5px solid color-mix(in srgb,var(--red) 55%,transparent)}
+.page .who{font-family:var(--f-sans);font-size:12px;letter-spacing:.14em;color:var(--ink-3);line-height:28px}
+.page .who b{font-family:var(--f-display);font-weight:400;font-size:19px;letter-spacing:.06em;color:var(--ink);margin-right:8px}
+.page dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:0 12px}
+.page dt{font-family:var(--f-sans);font-size:12px;color:var(--main);line-height:32px;white-space:nowrap}
+.page dd{margin:0;font-family:var(--f-hand);font-size:20px;line-height:32px;color:var(--ink-2)}
+.page .stampv{position:absolute;left:6px;top:14px;writing-mode:vertical-rl;font-family:var(--f-display);font-size:13px;letter-spacing:.3em;color:var(--red);opacity:.8}
+/* 再查一遍：流行说法与后来的研究 */
+.myth{margin:2em 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:1.5px solid var(--ink-3);border-radius:6px;overflow:hidden;background:var(--card)}
+.myth>div{padding:12px 16px 8px;font-size:15.5px;line-height:1.8}
+.myth>div p{text-indent:0!important;margin:0 0 .5em}
+.myth .pop{background:color-mix(in srgb,var(--och) 7%,var(--card))}
+.myth .chk{border-left:1.5px solid var(--ink-3)}
+.myth i{display:block;font-style:normal;font-family:var(--f-sans);font-size:11.5px;letter-spacing:.2em;color:var(--och);margin-bottom:4px}
+.myth .chk i{color:var(--main)}
+.myth .tag{grid-column:1 / -1;border-bottom:1px dashed var(--rule);font-family:var(--f-display);font-size:18px;padding:6px 16px 4px;display:flex;gap:10px;align-items:baseline}
+.myth .tag small{font-family:var(--f-sans);font-size:11px;letter-spacing:.18em;color:var(--paper);background:var(--ink-3);border-radius:3px;padding:0 6px}
+/* 两本账：算得清的 / 算不清的 */
+.seal>div+div i{color:var(--kraft)}
+/* 卷首的大字 */
+.volhead .ledg{position:absolute;right:12px;bottom:10px;width:120px;height:90px;opacity:.75;pointer-events:none;color:var(--main)}
+/* 封面：十年格子 */
+.weeks{display:grid;grid-template-columns:repeat(52,minmax(0,1fr));gap:1.5px;margin:10px 0}
+.weeks i{aspect-ratio:1;border-radius:1px;background:var(--paper)}
+.cohort{display:grid;grid-template-columns:repeat(auto-fill,minmax(10.5em,1fr));gap:8px;margin:14px 0}
+.cohort div{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:8px 11px;font-size:13.5px;line-height:1.6}
+.cohort b{display:block;font-family:var(--f-display);font-weight:400;font-size:19px}
+.cohort small{color:var(--ink-3)}
+.sim{display:block;touch-action:manipulation}
+.qa{display:grid;gap:8px;margin:10px 0}
+.qa button{text-align:left;border:1px solid var(--rule);background:var(--paper);border-radius:6px;padding:8px 12px;cursor:pointer;font-size:15px;line-height:1.6}
+.qa button:hover{border-color:var(--main)}
+.qa button.right{border-color:var(--grn);background:color-mix(in srgb,var(--grn) 10%,var(--paper))}
+.qa button.wrong{border-color:var(--red);background:color-mix(in srgb,var(--red) 8%,var(--paper))}
+.logbox{font-family:var(--f-mono);font-size:12.5px;line-height:1.7;background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:6px 10px;max-height:13em;overflow:auto;color:var(--ink-2);white-space:pre-wrap}
+.inrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(11em,1fr));gap:8px 14px;margin:8px 0}
+.inrow label{display:grid;gap:2px;font-size:13px;color:var(--ink-3)}
+.inrow input[type=number],.inrow input[type=text],.inrow select,textarea.in{border:1px solid var(--ink-3);border-radius:6px;background:var(--paper);padding:3px 8px;font-size:15px;width:100%;color:var(--ink)}
+textarea.in{font-family:var(--f-body);line-height:1.7;resize:vertical}
+.ledger{background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:12px 16px;font-size:15px;line-height:1.85}
+.ledger h6{font-family:var(--f-display);font-weight:400;font-size:20px;margin:0 0 .3em;color:var(--main)}
+.ledger p{text-indent:0!important;margin:0 0 .5em}
+.ledger table{width:100%;border-collapse:collapse;font-size:14px}
+.ledger td{border-bottom:1px dashed var(--rule);padding:4px 6px;vertical-align:top}
+.ledger td:first-child{color:var(--ink-3);white-space:nowrap;width:7em}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 10px}
+@media print{.bar,.drawer,footer,.fig:not(.printme){display:none}}
+
+@media (max-width:700px){
+  body{font-size:16.5px}
+  .two,.spin,.myth{grid-template-columns:minmax(0,1fr)}
+  .spin .plain{border-left:0;border-top:1.5px solid var(--ink)}
+  .myth .chk{border-left:0;border-top:1.5px solid var(--ink-3)}
+  .seal{grid-template-columns:minmax(0,1fr)}
+  .seal>div+div{border-left:0;border-top:1.5px solid var(--ink)}
+  .toc li a,.toc li.soon>div{grid-template-columns:2.2em minmax(0,1fr)}
+  .toc .r{grid-column:2;text-align:left}
+  .bar .vol{display:none}
+  .bar .parts a{padding:0 4px}
+  .chead{grid-template-columns:58px minmax(0,1fr);gap:14px;padding:16px 14px}
+  .chead .big{font-size:46px;padding:2px 0 6px}
+  .ctl{grid-template-columns:5.5em minmax(0,1fr)}
+  .ctl output{grid-column:1 / -1;text-align:left;margin-top:-6px}
+  .partnav{grid-template-columns:minmax(0,1fr)}
+  .bars .row{grid-template-columns:5.6em minmax(0,1fr) 3.6em;gap:6px}
+  .volhead .ledg{width:80px;height:60px;opacity:.4}
+  .page{padding-left:44px}.page::before{left:32px}.page dd{font-size:18px}
+  .weeks{gap:1px}
+  .yrs span{font-size:8.5px}
+}
+@media (max-width:480px){.bar .name{font-size:17px}}
+.toc li.soon .t,.toc li.soon .n{opacity:.55}
+.toc li.soon>div{display:grid;grid-template-columns:2.6em minmax(0,1fr) auto;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--rule)}
+.toc li.soon .r::after{content:" · 写作中";color:var(--main)}
+@media (max-width:700px){.partnav{grid-template-columns:minmax(0,1fr)}.toc li.soon>div{grid-template-columns:2.2em minmax(0,1fr)}}
+
+.up{color:var(--up)}.dn{color:var(--dn)}
+/* 家族群：虚构 */
+.chat{margin:1.8em 0 2em;border:1px solid var(--rule);border-radius:12px;background:var(--paper-2);overflow:hidden;max-width:36rem}
+.chat .hd{display:flex;justify-content:space-between;align-items:center;font-family:var(--f-sans);font-size:13px;padding:7px 14px;border-bottom:1px solid var(--rule);background:var(--card);color:var(--ink-2);font-weight:500}
+.chat .hd::after{content:"虚构";font-size:11px;letter-spacing:.2em;color:var(--ink-3);border:1px solid var(--rule);border-radius:3px;padding:0 5px;line-height:1.5;font-weight:500}
+.chat .bd{padding:10px 12px 4px}
+.chat .t{text-align:center;font-family:var(--f-mono);font-size:11px;color:var(--ink-3);margin:2px 0 8px}
+.chat .m{display:grid;grid-template-columns:34px minmax(0,1fr);gap:8px;margin:0 0 10px;align-items:start}
+.chat .av{width:34px;height:34px;border-radius:6px;display:grid;place-items:center;font-family:var(--f-display);font-size:17px;line-height:1;color:var(--paper);background:var(--ink-3)}
+.chat .g .av{background:var(--kraft)}.chat .ma .av{background:var(--blu)}.chat .j .av{background:var(--och)}.chat .y .av{background:var(--main)}
+.chat .nm{font-family:var(--f-sans);font-size:11.5px;color:var(--ink-3);line-height:1.3;margin-bottom:2px}
+.chat .b{display:inline-block;background:var(--card);border:1px solid var(--rule);border-radius:4px 10px 10px 10px;padding:5px 10px;font-family:var(--f-sans);font-weight:500;font-size:14.5px;line-height:1.65;max-width:100%;text-align:left}
+.chat .m.y{grid-template-columns:minmax(0,1fr) 34px}
+.chat .m.y .av{order:2}.chat .m.y>div{text-align:right}
+.chat .m.y .b{background:color-mix(in srgb,var(--main) 12%,var(--card));border-radius:10px 4px 10px 10px}
+.chat .b.fw{border-left:3px solid var(--och);font-size:13.5px}
+.chat .b.fw b{display:block;font-size:14.5px;color:var(--ink)}
+.chat .b.fw small{display:block;color:var(--ink-3);font-size:11.5px}
+.chat .b.pic{font-size:13px;color:var(--ink-3);font-style:italic}
+.chat .sys{text-align:center;font-family:var(--f-sans);font-size:12px;color:var(--ink-3);margin:0 0 10px}
+/* 这条消息值不值得深挖 */
+.news{margin:2em 0;border:1.5px solid var(--ink);border-radius:6px;background:var(--card);overflow:hidden}
+.news .hl{padding:10px 16px 9px;border-bottom:1.5px solid var(--ink);background:color-mix(in srgb,var(--main) 6%,var(--card))}
+.news .hl .k{font-family:var(--f-sans);font-size:11.5px;letter-spacing:.2em;color:var(--main);font-weight:700}
+.news .hl b{display:block;font-family:var(--f-display);font-weight:400;font-size:21px;line-height:1.4;margin:.2em 0 .1em}
+.news .hl small{font-family:var(--f-mono);font-size:12px;color:var(--ink-3)}
+.news ol{list-style:none;margin:0;padding:8px 16px 4px}
+.news li{display:grid;grid-template-columns:5.2em minmax(0,1fr);gap:10px;font-size:15px;line-height:1.75;padding:3px 0;border-bottom:1px dashed var(--rule)}
+.news li:last-child{border-bottom:0}
+.news li span{font-family:var(--f-sans);font-size:12.5px;color:var(--ink-3);font-weight:500;padding-top:2px}
+.news .vd{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:center;padding:9px 16px 11px;border-top:1.5px solid var(--ink);background:var(--paper)}
+.news .vd i{font-style:normal;font-family:var(--f-display);font-size:19px;letter-spacing:.12em;border:2px solid currentColor;border-radius:4px;padding:0 8px;transform:rotate(-4deg);white-space:nowrap;color:var(--blu)}
+.news .vd[data-v="噪音"] i{color:var(--ink-3)}.news .vd[data-v="信号"] i{color:var(--main)}.news .vd[data-v="早已计入"] i{color:var(--och)}.news .vd[data-v="值得深挖"] i{color:var(--grn)}
+.news .vd p{margin:0;text-indent:0!important;font-size:15px;line-height:1.75}
+/* 交割单 */
+/* 卷首小 K 线 */
+.volhead .awn{position:absolute;right:10px;bottom:8px;width:180px;height:110px;opacity:.85;pointer-events:none}
+/* 收益三角 */
+.cast4{display:grid;grid-template-columns:repeat(auto-fit,minmax(13em,1fr));gap:10px;margin:12px 0}
+.cast4>div{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:9px 12px;line-height:1.6;display:grid;grid-template-columns:38px minmax(0,1fr);gap:10px;align-items:center}
+.cast4 .av{width:38px;height:38px;border-radius:7px;display:grid;place-items:center;font-family:var(--f-display);font-size:19px;color:var(--paper)}
+.cast4 b{font-family:var(--f-display);font-weight:400;font-size:18px}
+.cast4 small{display:block;font-size:12.5px;color:var(--ink-3)}
+.seen{margin:1.2em 0;padding:12px 16px 6px;border:1.5px solid var(--och);border-radius:8px;background:color-mix(in srgb,var(--och) 5%,var(--paper))}
+.seen h5{margin:0 0 .4em;font-family:var(--f-display);font-weight:400;font-size:19px;color:var(--och)}
+.seen ul{margin:0 0 .6em;padding-left:1.1em;font-size:15px;line-height:1.8}
+.seen li{margin:0 0 .3em}
+@media (max-width:700px){
+    .news li{grid-template-columns:minmax(0,1fr);gap:0}
+  .news .vd{grid-template-columns:minmax(0,1fr)}
+  .news .vd i{justify-self:start}
+  .volhead .awn{width:90px;height:56px;opacity:.4}
+}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+
+/* ============ 《开张》新增 ============ */
+/* 营业执照：虚构的格式，真实的人和事 */
+.lic{max-width:25rem;margin:2.4em auto 2.2em;background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:9px;position:relative;box-shadow:0 3px 0 var(--rule)}
+.lic .in{border:2px solid var(--main);outline:1px solid color-mix(in srgb,var(--main) 60%,transparent);outline-offset:-7px;padding:16px 18px 8px;position:relative}
+.lic h5{text-align:center;font-family:var(--f-display);font-weight:400;font-size:25px;letter-spacing:.55em;text-indent:.55em;margin:0;color:var(--main);line-height:1.3}
+.lic .sub{text-align:center;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.18em;color:var(--ink-3);margin-bottom:10px}
+.lic dl{display:grid;grid-template-columns:4.6em minmax(0,1fr);gap:3px 12px;margin:0 0 6px;font-size:14px;line-height:1.65}
+.lic dt{color:var(--ink-3);font-size:12.5px;text-align:justify;text-align-last:justify;padding-top:1px}
+.lic dd{margin:0;color:var(--ink)}
+.lic dd.nm{font-family:var(--f-display);font-size:20px;line-height:1.35}
+.lic dd.end{color:var(--main);font-weight:600}
+.lic .stamp{position:absolute;right:14px;top:58px;width:70px;height:70px;border:2px solid var(--main);border-radius:50%;color:var(--main);opacity:.72;transform:rotate(-14deg);display:grid;place-items:center;text-align:center;font-family:var(--f-display);font-size:13px;line-height:1.15;pointer-events:none}
+.lic .stamp::before{content:"";position:absolute;inset:4px;border:1px solid currentColor;border-radius:50%}
+.lic .no{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:10.5px;color:var(--ink-3);border-top:1px dashed var(--rule);padding-top:5px;margin-top:4px}
+.lic .real{font-size:12.5px;line-height:1.7;color:var(--ink-2);padding:9px 6px 3px}
+.lic .real b{font-family:var(--f-sans);font-size:11px;letter-spacing:.14em;color:var(--ter);margin-right:6px}
+/* 最多亏多少 */
+.floor{margin:2em 0;border:1.5px solid var(--ink);border-radius:6px;background:var(--card);overflow:hidden}
+.floor h6{margin:0;padding:8px 16px 7px;font-family:var(--f-sans);font-size:12px;letter-spacing:.18em;color:var(--main);background:color-mix(in srgb,var(--main) 9%,var(--card));border-bottom:1.5px solid var(--ink);display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.floor h6 b{font-family:var(--f-display);font-weight:400;font-size:19px;letter-spacing:.08em;color:var(--ink)}
+.floor dl{display:grid;grid-template-columns:3.4em minmax(0,1fr);gap:0;margin:0;padding:4px 16px}
+.floor dt{font-family:var(--f-display);font-size:17px;color:var(--ter);padding:7px 0;border-bottom:1px dashed var(--rule)}
+.floor dd{margin:0;font-size:15px;line-height:1.75;padding:7px 0;border-bottom:1px dashed var(--rule)}
+.floor dl>*:nth-last-child(-n+2){border-bottom:0}
+.floor .bot{padding:9px 16px 11px;border-top:1.5px solid var(--ink);background:var(--paper);font-size:15px;line-height:1.75}
+.floor .bot b{color:var(--main)}
+/* 岔路 */
+.fork{display:grid;gap:10px;margin:10px 0}
+.fork .q{background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:8px 12px}
+.fork .q p{margin:0 0 6px;font-size:15px;text-indent:0}
+.fork .q .btns{margin:0}
+.fork .q.off{opacity:.35;pointer-events:none}
+.road{border:1.5px solid var(--ter);border-radius:8px;background:color-mix(in srgb,var(--ter) 6%,var(--card));padding:12px 16px 8px}
+.road h5{margin:0 0 4px;font-family:var(--f-display);font-weight:400;font-size:21px;color:var(--ter)}
+.road dl{display:grid;grid-template-columns:5.2em minmax(0,1fr);gap:4px 10px;margin:0;font-size:14.5px;line-height:1.7}
+.road dt{font-family:var(--f-sans);font-size:12px;color:var(--ink-3);padding-top:2px}
+.road dd{margin:0}
+.trail{display:flex;flex-wrap:wrap;gap:4px;margin:4px 0 8px;font-family:var(--f-sans);font-size:12px}
+.trail span{border:1px solid var(--rule);border-radius:999px;padding:0 8px;background:var(--paper);color:var(--ink-2)}
+.trail span.x{color:var(--main);border-color:var(--main)}
+.trail span.o{color:var(--ter);border-color:var(--ter)}
+/* 一张流水 */
+.flow{font-family:var(--f-mono);font-size:12.5px;line-height:1.7;background:var(--paper);border:1px dashed var(--ink-3);border-radius:3px;padding:10px 14px;margin:10px 0;white-space:pre;overflow-x:auto;color:var(--ink)}
+.cash svg,.chartbox svg{width:100%}
+.pos{color:var(--ter)}.neg{color:var(--main)}
+@media (max-width:700px){.lic .stamp{width:58px;height:58px;font-size:11px;right:8px;top:52px}.lic dl{grid-template-columns:4.2em minmax(0,1fr)}.floor dl{grid-template-columns:2.8em minmax(0,1fr)}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="bar-in g">
+    <a class="home" href="../" title="回创世书房">书房</a>
+    <a class="name" href="./">开张</a>
+    <nav class="parts" aria-label="三部">
+      <a href="./" data-p="1">摊</a><a href="two.html" data-p="2">路</a><a href="three.html" data-p="3">账</a>
+    </nav>
+    <span class="vol" id="barVol">序</span>
+    <button class="tocbtn" id="tocBtn" aria-label="打开目录">目录</button>
+  </div>
+  <div class="progress" id="prog"></div>
+</header>
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="mask" data-close></div>
+  <nav class="panel" aria-label="目录">
+    <button class="x" data-close aria-label="关闭">×</button>
+    <h5>全书目录</h5>
+    <ol id="drawerList"></ol>
+  </nav>
+</div>
+<main class="g">
+
+<!-- ============ 封面 · 第三部 ============ -->
+<section class="hero" data-vol="第三部" id="top">
+  <div class="wide">
+    <div class="eyebrow">OPEN FOR BUSINESS · 流 · 形 · 税 · 借 · 股 · 大 · 退 · 张 · 个人创业创世记</div>
+    <h1>开张<span class="sm">一个人的生意创世记</span></h1>
+    <span class="part">第三部 · 账</span>
+    <p class="lead">第一部讲摊子，第二部讲路。第三部讲一门小生意活下来以后，迟早要碰到的那几本账：赚了钱为什么手里没钱；该用个体户还是公司的身份做生意，出了事用谁的钱来赔；发票和税；借钱的边界在哪里，一个人怎样替别人背上两亿；拿别人的钱要付出什么；怎样做大，或者决定不做大；以及怎样体面地收摊。</p>
+    <p class="lead">这一部的故事主要发生在周畅的工作室里。时间是 2028 年到 2032 年，比写这本书的时候晚得多，<em>工作室的生意、沈舟这几年在做什么，都是编的</em>；几场考试的结果，书里到最后也不替他选，尾声给了三个版本。正文里的历史、法规和数字尽量写真，涉及税、法律和贷款的地方，规定会变、各地不同，以当时的官方文本为准。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig" id="formFig">
+      <div class="fig-label">第三部封面装置</div>
+      <h4>用哪种身份做生意</h4>
+      <p class="how">一门小生意走到某一步，就要选一个“身份”：先不登记，个体户，还是公司。回答五个问题，看看一般来说哪一种更合适，以及要当心什么。</p>
+      <div class="fork" id="fmQs"></div>
+      <div id="fmOut"></div>
+      <p class="figcap">这只是对一般情况的粗略归纳，不是法律或税务意见。登记、税收和责任的规定会变，地方也有差别；真要注册之前，问当地的市场监管和税务部门，或者找一位会计。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>这一部回答的问题</h3>
+    <ul class="qmap">
+      <li>账上赚了钱，手里却没钱，是怎么回事？要不要把生意的钱和自己的钱分开？<a href="#c17">流</a></li>
+      <li>个体户、个人独资企业、一人公司、有限公司有什么区别？注册资本写多少？<a href="#c18">形</a></li>
+      <li>小生意要交哪些税？要不要开发票？怎样记账？<a href="#c19">税</a></li>
+      <li>做生意能不能借钱？创业担保贷款、网贷、信用卡、给公司担保，边界在哪？<a href="#c20">借</a></li>
+      <li>有人要投资我，对赌、回购、控制权是怎么回事？向亲友集资有什么风险？<a href="#c21">股</a></li>
+      <li>怎样做大？雇第一个人要注意什么？不做大行不行？<a href="#c22">大</a></li>
+      <li>做不下去了怎样收摊？什么时候该卖掉？<a href="#c23">退</a></li>
+      <li>五年以后会怎样？全书最多亏多少？<a href="#c24">张</a></li>
+    </ul>
+
+    <div class="partnav">
+      <a href="./"><span class="k">第一部</span><b>摊</b><small>序幕 + 卷一 市 + 卷二 法 · 普通人怎样做生意 · 九章</small></a>
+      <a href="two.html"><span class="k">第二部</span><b>路</b><small>卷三 器 + 卷四 岔 · AI 时代一个毕业生的岔路 · 八章</small></a>
+      <a href="three.html" class="on"><span class="k">第三部</span><b>账</b><small>卷五 钱 + 卷六 大与退 + 尾声 · 和钱搭上边 · 八章</small></a>
+    </div>
+
+    <h3>全书目录</h3>
+  </div>
+  <div class="wide"><ol class="toc" id="toc"></ol></div>
+</section>
+
+<div class="volhead" id="v5" data-vol="卷五 · 钱">
+  <div class="num">VOLUME V · MONEY</div>
+  <h2>钱<small>和钱搭上边</small></h2>
+  <p class="lede">一门小生意活下来以后，账就复杂起来了：钱什么时候进来、什么时候出去；生意用谁的名义做，出了事谁来赔；要不要开发票，交哪几样税；要不要借钱扩大。卷五讲这四本账。它们不像找客户那样让人兴奋，可很多生意不是死在没有客户上，而是死在这几本账上。</p>
+  <svg class="awn" aria-hidden="true"></svg>
+</div>
+
+<!-- ============ 第十七章 · 流 ============ -->
+<section class="chap" id="c17" data-vol="卷五 · 钱 · 流">
+  <div class="chead">
+    <div class="big">流</div>
+    <div>
+      <div class="no">第十七章</div>
+      <h2>赚钱了，钱呢</h2>
+      <dl><dt>讲什么</dt><dd>一位修士写下的威尼斯记账法；利润和现金不是一回事；账期、库存和预付款；黑字倒闭；大公司欠小公司的钱；会员储值是你欠顾客的钱；公私分开，给自己发工资</dd><dt>本章装置</dt><dd>利润和现金</dd></dl>
+      <div class="acc" data-a="钱 信"></div>
+      <div class="yrs" data-a="1494" data-b="2028"></div>
+    </div>
+  </div>
+
+  <div class="lic">
+    <div class="in">
+      <h5>营业执照</h5>
+      <div class="sub">仿制格式 · 这是一本书，不是一门生意</div>
+      <span class="stamp">仿制<br>示意</span>
+      <dl>
+        <dt>名称</dt><dd class="nm">《算术、几何、比与比例概要》</dd>
+        <dt>作者</dt><dd>卢卡·帕乔利，方济各会修士、数学老师</dd>
+        <dt>出版地</dt><dd>威尼斯</dd>
+        <dt>出版年</dt><dd>1494 年</dd>
+        <dt>其中一篇</dt><dd>《论计算与记录》：二十几页，讲威尼斯商人的记账法</dd>
+        <dt>要点</dt><dd>每一笔都记两次：一边记借，一边记贷，两边永远相等</dd>
+        <dt>写给谁</dt><dd>做买卖的人：他说商人需要钱、会算账、记得清</dd>
+        <dt>结局</dt><dd class="end">五百多年后，全世界的会计还在这样记账</dd>
+      </dl>
+      <div class="no"><span>No. 1494</span><span>登记机关：无</span></div>
+    </div>
+    <div class="real"><b>真的部分</b>帕乔利 1494 年在威尼斯出版了一部数学百科全书，其中一篇系统介绍了当时意大利商人使用的复式记账法，这是现存最早印刷出版的复式记账教材。复式记账并不是他发明的，意大利的商人早已在用，他的贡献是把它写清楚、印出来。他的好朋友里有达·芬奇。</div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">账上赚了钱，手里却没钱，是怎么回事？</p>
+      <p>利润是“这单生意赚了多少”，现金是“钱现在在不在你手里”，两者常常不同步。客户的钱还没付（账期），钱压在货上（库存），你先付了供应商和员工，这些都会让一门赚钱的生意手里没钱。<em>生意可以亏着活好几年，但没有现金，一个月都撑不过去</em>。所以要做三件事：生意的钱和自己的钱分开，每个月看一张现金表，以及尽量先收钱、后付钱。</p>
+    </div>
+
+    <div class="scene" data-t="周畅的工作室 · 2028 年 4 月 · 出租屋改的办公室">
+      <p>毕业快一年，周畅的工作室已经接了四十多家小店。三月，一家有十几家门店的打印连锁找上门来，要把那个排队小程序改成全连锁用的系统，合同三万块。周畅高兴坏了，马上请了一个做设计的朋友帮忙，先付了人家八千。</p>
+      <p>系统四月初交付了。连锁店的财务说：“我们是月结九十天，七月底付。”</p>
+      <p>四月中旬，周畅的卡上只剩两千多块，房租、服务器费和那位设计朋友的尾款都要付。他给沈舟打电话：“合同签了三万，账上赚了两万，我怎么快交不起房租了？”</p>
+      <p>那个周末沈舟去了一趟，在白板上画了一张表，一列是“赚了多少”，一列是“钱在哪里”。</p>
+    </div>
+
+    <h3>记两遍的账</h3>
+    <p>1494 年，一位叫帕乔利的修士在威尼斯出版了一本厚厚的数学书，里面有一篇专门讲威尼斯商人怎样记账。他说，一个好商人需要三样东西：足够的钱，会算账，以及把账记得清清楚楚。</p>
+    <p>他介绍的办法叫复式记账：每一笔交易都在两个地方各记一次，一边是钱从哪里来，一边是钱到哪里去，两边永远相等。卖出一批货，一边记“应收账款”多了，一边记“收入”多了；收到钱的那一天，再一边记“现金”多了，一边记“应收账款”少了。</p>
+    <p>这个办法的妙处在于，它把“赚了”和“收到了”分成了两件事，一眼就能看出：<em>你赚的钱里，有多少还在别人口袋里</em>。周畅那两万块利润，全部躺在“应收账款”那一栏，要到七月底才会变成现金。</p>
+
+    <h3>利润是观点，现金是事实</h3>
+    <p>做生意的人有一句老话：利润是观点，现金是事实。利润要靠一套规则来算，什么时候确认收入、成本怎样分摊，不同的算法可以算出不同的数；而银行卡里有没有钱，只有一个答案。</p>
+    <p>让一门赚钱的生意手里没钱的，通常是这几样：</p>
+    <ul class="plain">
+      <li><b>账期</b>：客户晚付款。给大公司、连锁店、政府单位做事，月结、季结很常见。</li>
+      <li><b>库存</b>：钱变成了货，货还没卖出去。第一章说过，本钱少的人靠周转，货压着不动，钱就不转。</li>
+      <li><b>先付后收</b>：员工、外包、房租、服务器都是先付的，客户的钱是后到的。</li>
+      <li><b>增长</b>：生意越好，要先垫的钱越多。很多生意恰恰是在生意最好的时候断了现金。</li>
+    </ul>
+    <p>日本商界有个词叫“黑字倒闭”：账面上是盈利的（黑字），企业却因为周转不过来而倒闭。这不是什么罕见的事，而是小企业死亡的常见方式之一。</p>
+    <p>反过来，也有让现金比利润先到的办法：预收款、定金、会员储值、先款后货。周畅后来就改了合同的写法：三成定金，交付时再付五成，最后两成验收后付。</p>
+  </div>
+
+  <div class="fig" id="cashFig">
+    <div class="fig-label">装置 18</div>
+    <h4>利润和现金</h4>
+    <p class="how">设一门每个月都在增长的小生意：每月收入多少、毛利几成、固定开销多少、客户晚多少天付款、你晚多少天付给供应商，开张时手里有多少钱。看看一年里累计利润和手里的现金各是什么样子，现金会不会在赚钱的时候断掉。</p>
+    <div class="ctl"><span>第一个月收入</span><input type="range" id="cfR" min="2000" max="100000" step="1000" value="20000"><output id="cfRO"></output></div>
+    <div class="ctl"><span>每月增长</span><input type="range" id="cfG" min="0" max="30" step="1" value="12"><output id="cfGO"></output></div>
+    <div class="ctl"><span>毛利</span><input type="range" id="cfM" min="10" max="90" step="5" value="50"><output id="cfMO"></output></div>
+    <div class="ctl"><span>每月固定开销</span><input type="range" id="cfF" min="0" max="50000" step="500" value="6000"><output id="cfFO"></output></div>
+    <div class="ctl"><span>客户晚付</span><input type="range" id="cfD" min="0" max="180" step="15" value="90"><output id="cfDO"></output></div>
+    <div class="ctl"><span>你晚付供应商</span><input type="range" id="cfP" min="0" max="90" step="15" value="0"><output id="cfPO"></output></div>
+    <div class="ctl"><span>开张时手里有</span><input type="range" id="cfC" min="0" max="100000" step="1000" value="10000"><output id="cfCO"></output></div>
+    <div class="chartbox"><svg id="cfSvg" role="img" aria-label="累计利润和现金"></svg></div>
+    <div class="kv" id="cfKv"></div>
+    <div class="say" id="cfSay"></div>
+    <p class="figcap">示意模型：按月计算，“晚付”按三十天一个月折成整月；变动成本（收入 ×（1 − 毛利））付给供应商，固定开销当月付清；没有算税和你自己的工资。真实的生意收款不会这么整齐。</p>
+  </div>
+
+  <div class="col">
+    <h3>大公司欠小公司的钱</h3>
+    <p>周畅碰到的事，很多小企业都碰到过：大客户、大企业、政府单位拖着小供应商的钱，把自己的周转压力推给最弱的一方。这件事严重到国家专门立了规矩。2020 年 9 月起施行的《保障中小企业款项支付条例》规定，机关、事业单位从中小企业采购货物、工程、服务，应当自交付之日起三十日内支付款项，合同另有约定的，最长不得超过六十日。2025 年修订后的条例又进一步规定，大型企业从中小企业采购，付款期限一般不得超过六十日。具体以最新文本为准。</p>
+    <p>有规矩，不等于每一单都能按时收到钱。签合同之前问清楚付款时间和方式、能不能分阶段付款，比事后催款有用得多。<em>一份写着“验收后九十天付款”的合同，等于你先借给对方九十天的钱，而且没有利息</em>。</p>
+
+    <h3>储值卡是你欠顾客的钱</h3>
+    <p>反方向的一件事也要说清楚。很多小店喜欢让顾客“充值送礼”：充一千送两百。钱一下子进来了，现金很好看。</p>
+    <p>可这笔钱不是你的收入，是你<b>欠顾客的</b>：顾客以后每来一次，你都要用服务还他。把预收的钱当成利润花掉、拿去开新店，等顾客来消费的时候，店里已经没有钱支撑服务了。这些年美容院、健身房、培训机构、理发店“卷款跑路”，多是这样开始的，受害的是充了值的顾客。国家对单用途预付卡的发行有专门的管理办法，各地也在加强监管。对一个想做长久生意的人来说，规矩很简单：<em>预收的钱，按欠款对待，单独放着</em>。</p>
+  </div>
+
+  <div class="echo" data-k="押韵">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">标会</p><p>第零章的沙县标会，崩盘的根子是拿后来的人交的钱，去付前面的人的利息；一家拿新会员的储值去填老会员服务的店，结构上是一样的。《柜台里外》讲过<a href="../finance/#c12">骗局的骨架</a>：钱一直在进，只要进的比出的多，一切看起来都很好，直到有一天进的停了。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>公私分开</h3>
+    <p>周畅那张“快交不起房租”的卡，是他自己的工资卡，也是工作室的收款卡，也是交房租、付外包、充话费的卡。钱混在一起，他根本说不清工作室到底赚没赚钱、自己到底花了多少。</p>
+    <p>小生意最该早早养成的习惯，也是最简单的：</p>
+    <ul class="plain">
+      <li><b>一张生意的卡，一张自己的卡</b>。生意的收入和支出只走那一张，第八章那三个人一开始就是这样约定的。</li>
+      <li><b>给自己发工资</b>。每个月从生意的卡里固定转一笔到自己的卡上，剩下的留在生意里。别缺钱了就从生意里拿一点，有钱了就往里放一点。</li>
+      <li><b>先留出税和应急</b>。收到一笔钱，先按比例留出要交的税（第十九章）和几个月的固定开销，剩下的才是能动的。</li>
+      <li><b>每个月看一张现金表</b>：月初有多少，进了多少，出了多少，月底剩多少，接下来三个月要进多少、出多少。</li>
+    </ul>
+    <p>还有一个现实的理由：用个人收款码大量收经营款，支付平台和银行的风控会注意到，会要求你改用经营收款码；用了公司的身份（第十八章），公司的钱和股东的钱混在一起，还会让“有限责任”这道墙失效。</p>
+  </div>
+
+  <div class="floor">
+    <h6><span>最多亏多少</span><b>一门赚钱却没钱的生意</b></h6>
+    <dl>
+      <dt>钱</dt><dd>现金断了，最常见的补法是借钱，而为了补周转借的钱，常常是一门好生意变成一门欠债生意的开始。</dd>
+      <dt>时间</dt><dd>催款、垫钱、拆东墙补西墙，会把老板的时间全部吃掉。</dd>
+      <dt>信用</dt><dd>付不出员工的工资、外包的尾款，伤的是最信任你的人；把顾客的储值花掉，伤的是顾客，严重的要承担法律责任。</dd>
+      <dt>退路</dt><dd>手里有几个月固定开销的现金，就有时间想办法；没有，就只能被逼着做决定。</dd>
+    </dl>
+    <div class="bot"><b>一句话</b>：利润是观点，现金是事实；先收后付，公私分开，预收的钱当欠款。</div>
+  </div>
+
+  <div class="myth">
+    <div class="tag">生意越好，钱越多<small>常常相反</small></div>
+    <div class="pop"><i>流行说法</i><p>只要生意好、订单多，钱自然就多了，现金流是大公司才要操心的事。</p></div>
+    <div class="chk"><i>再查一遍</i><p>订单越多，要先垫的进货钱、人工钱就越多；客户付款越晚，垫的时间就越长。<b>增长本身是吃现金的</b>，在“先付后收”的生意里尤其如此，这就是为什么很多小企业恰恰在接到大单、快速扩张的时候周转不过来。上面那个装置里，把“每月增长”往右拖、把“客户晚付”拉长，就能看到这件事。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>白板上的两列</h3>
+    <p>那个周末，周畅打电话给连锁店的老板，说明了情况，对方同意先付一半。房租交上了。</p>
+    <p>周畅后来在工作室的白板上，把沈舟画的那张表留了下来，最上面写着一行字：<span style="font-family:var(--f-hand);font-size:19px">赚了多少 ≠ 钱在哪里。</span></p>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>那时的摊子</i>1494 年帕乔利在威尼斯印出了复式记账法，把“赚了”和“收到了”分成两件事。黑字倒闭说的是账上盈利却周转不过来；国家专门立了条例，限制大企业和政府单位拖欠中小企业的款；储值卡卷款跑路，多是把预收的钱当成了利润。</div>
+      <div><i>你的摊子</i>一张生意的卡、一张自己的卡；给自己发固定的工资；收到钱先留税和应急；签合同时把付款时间和分阶段付款写清楚，先收定金；预收的钱按欠款对待；每个月看一张现金表，看到未来三个月。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第十八章 · 形 ============ -->
+<section class="chap" id="c18" data-vol="卷五 · 钱 · 形">
+  <div class="chead">
+    <div class="big">形</div>
+    <div>
+      <div class="no">第十八章</div>
+      <h2>个体户还是公司</h2>
+      <dl><dt>讲什么</dt><dd>一个靴匠和他的公司打了一场官司；有限责任是一道墙；个体户、个人独资企业、一人公司、有限公司、合伙企业；注册资本五年缴足；墙在哪三种时候会塌：没缴的钱、混在一起的账、你签的担保；挂名的法定代表人；注销</dd><dt>本章装置</dt><dd>出了事，用谁的钱赔</dd></dl>
+      <div class="acc" data-a="钱 信"></div>
+      <div class="yrs" data-a="1892" data-b="2028"></div>
+    </div>
+  </div>
+
+  <div class="lic">
+    <div class="in">
+      <h5>营业执照</h5>
+      <div class="sub">仿制格式 · 英国公司的登记文件不是这个样子</div>
+      <span class="stamp">仿制<br>示意</span>
+      <dl>
+        <dt>名称</dt><dd class="nm">A. 萨洛蒙有限公司</dd>
+        <dt>经营者</dt><dd>阿伦·萨洛蒙，伦敦东区的皮革商和靴匠</dd>
+        <dt>股东</dt><dd>他本人两万股；妻子和五个孩子各一股（凑够法律要求的七人）</dd>
+        <dt>经营范围</dt><dd>做皮靴，承接政府的靴子订单</dd>
+        <dt>成立日期</dt><dd>1892 年</dd>
+        <dt>特别之处</dt><dd>他把自己的店卖给了这家公司，公司还欠他一笔有担保的债</dd>
+        <dt>破产</dt><dd>一年后，罢工、丢了订单，公司资不抵债</dd>
+        <dt>结局</dt><dd class="end">债主要他个人还钱；英国上议院判他不用还</dd>
+      </dl>
+      <div class="no"><span>No. 1892</span><span>登记机关：英国公司登记处</span></div>
+    </div>
+    <div class="real"><b>真的部分</b>萨洛蒙把经营多年的皮靴生意转给新成立的公司，公司除用股份付款外，还欠他一笔有担保的债。公司很快破产，清算人和无担保的债权人认为这家公司只是他的“替身”，要他个人承担债务，下级法院支持了这种看法。1896 年底英国上议院推翻了判决（判例集记为 1897 年）：公司依法成立，就是一个独立于股东的“人”，股东只以出资为限承担责任。这个案子至今是公司法的基石之一。</div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">个体户、个人独资企业、一人公司、有限公司有什么区别？</p>
+      <p>最大的区别在于：<b>生意欠了钱，用谁的钱来还</b>。个体户和个人独资企业，用你个人（或家庭）的财产还，没有上限；有限公司（包括只有你一个股东的一人公司）以公司的财产还，你个人一般只以认缴的出资为限。可这道墙有三个常见的洞：你认缴了却没缴的钱，你和公司混在一起的账，你亲手签的个人担保。<em>选形式之前先想：我会不会欠大钱；选了公司以后要做到：账分得清、注册资本写实、担保不乱签</em>。</p>
+    </div>
+
+    <div class="scene" data-t="周畅的工作室 · 2028 年 6 月 · 楼下的面馆">
+      <p>工作室一直挂在周畅的一个个体户执照下面。连锁店的单子让他们意识到，往后的合同越来越大，老韩也想正式入伙。三个人在面馆里商量要不要改成公司。</p>
+      <p>老韩说：“要改就注册个有限公司，注册资本写五百万，显得有实力，反正是认缴，不用真掏钱。”</p>
+      <p>周畅说：“法人写谁？我不想当，听说出了事法人要被限高。”</p>
+      <p>老韩说：“让我表弟挂个名，给他点钱就行。”</p>
+      <p>沈舟那天正好在，他放下筷子：“这三句话，每一句都有坑。”</p>
+    </div>
+
+    <h3>靴匠和他的公司</h3>
+    <p>阿伦·萨洛蒙在伦敦东区做了三十年皮靴，生意不小。1892 年，他按当时的法律成立了一家有限公司，法律要求至少七个股东，他就让妻子和五个孩子各持一股，自己持两万股。然后他把自己的店卖给了这家公司，公司付给他股份，还欠他一笔有担保的债。</p>
+    <p>一年后，工人罢工，政府的订单丢了，公司破产。公司的财产先还给有担保的萨洛蒙，其他的债主几乎什么也没拿到。债主们不服：这家公司明明就是萨洛蒙本人，凭什么他拿走了钱，我们却要不到？下级法院站在债主一边。1896 年底，英国上议院推翻了判决：公司依法成立，就是一个独立的“人”，它的债就是它的债，股东只以出资为限承担责任。</p>
+    <p>《红与绿》第一章讲过有限责任是怎样来的：它让普通人敢于把钱投进一家自己管不了的公司，因为最坏的情况是这笔钱没了，不会连房子都赔进去。萨洛蒙案把这道墙推到了极致：<em>哪怕公司只有一个真正的主人，墙也是墙</em>。</p>
+    <p>可也正是因为这道墙这么硬，后来各国的法律都在墙上开了一些门：当股东滥用这道墙逃避债务的时候，法院可以“揭开公司的面纱”，让股东自己承担。</p>
+
+    <h3>五种形式</h3>
+    <p>在中国，一个人或几个人做生意，常见的形式有这几种：</p>
+  </div>
+
+  <div class="wide">
+    <div class="scroll-x">
+      <table class="t">
+        <tr><th>形式</th><th>谁能办</th><th>欠了钱用谁的钱还</th><th>交什么所得税</th><th>适合</th></tr>
+        <tr><td><b>个体工商户</b></td><td>一个人或一家人</td><td>个人经营的用个人财产，家庭经营的用家庭财产，没有上限</td><td>个人所得税（经营所得）</td><td>一个人、小额、要开票收款</td></tr>
+        <tr><td><b>个人独资企业</b></td><td>一个自然人</td><td>投资人以个人财产承担无限责任</td><td>个人所得税（经营所得）</td><td>想要一个企业字号、又不打算有合伙人</td></tr>
+        <tr><td><b>一人有限责任公司</b></td><td>一个股东</td><td>公司财产；股东以出资为限，但要自己证明公司财产和个人财产分得开</td><td>企业所得税；分红再交个人所得税</td><td>一个人做、可能欠下大额的钱、账能分得清</td></tr>
+        <tr><td><b>有限责任公司</b></td><td>多个股东</td><td>公司财产；股东以认缴的出资为限</td><td>同上</td><td>有合伙人、有投资人</td></tr>
+        <tr><td><b>合伙企业</b></td><td>两个以上合伙人</td><td>普通合伙人承担无限连带责任，有限合伙人以出资为限</td><td>由合伙人各自交个人所得税</td><td>见第八章，几个刚毕业的人一般不必用</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="col">
+    <p>2023 年修订、2024 年 7 月起施行的《公司法》有几处改动，和小生意关系很大：</p>
+    <ul class="plain">
+      <li><b>注册资本五年缴足</b>。有限责任公司股东认缴的出资，应当自公司成立之日起五年内缴足。2024 年的配套规定还要求，此前成立、认缴期限过长的公司，在 2027 年 6 月底前把剩余的期限调整到五年以内。“认缴不用真掏钱”的时代过去了。</li>
+      <li><b>出资可以“提前到期”</b>。公司不能清偿到期债务的，公司或者债权人可以要求已认缴、但出资期限还没到的股东提前缴纳。也就是说，注册资本写五百万，公司欠了钱，你可能要把没缴的那部分补上。</li>
+      <li><b>一人公司</b>。取消了“一个自然人只能投资设立一个一人有限责任公司”的限制，但保留了一条硬规矩：只有一个股东的公司，股东不能证明公司财产独立于自己的财产的，应当对公司债务承担连带责任。</li>
+    </ul>
+    <p>所以，老韩那句“注册资本写五百万，反正不用真掏钱”，是第一个坑：<em>注册资本不是面子，是你承诺要掏的钱，公司出了事要兑现</em>。按生意实际需要、自己五年内能缴得起的写。</p>
+  </div>
+
+  <div class="fig" id="wallFig">
+    <div class="fig-label">装置 19</div>
+    <h4>出了事，用谁的钱赔</h4>
+    <p class="how">设一门生意关门时的情况：欠了多少钱，还剩多少财产。选一种形式，再勾上墙上那几个洞，看看债主能从公司拿多少，从你个人那里拿多少。</p>
+    <div class="btns" id="wlForm"></div>
+    <div class="ctl"><span>欠下的债</span><input type="range" id="wlD" min="10000" max="2000000" step="10000" value="400000"><output id="wlDO"></output></div>
+    <div class="ctl"><span>还剩的财产</span><input type="range" id="wlA" min="0" max="2000000" step="10000" value="100000"><output id="wlAO"></output></div>
+    <div class="ctl"><span>认缴了没缴的</span><input type="range" id="wlU" min="0" max="5000000" step="10000" value="500000"><output id="wlUO"></output></div>
+    <div class="ctl"><span>你签了担保的贷款</span><input type="range" id="wlG" min="0" max="1000000" step="10000" value="0"><output id="wlGO"></output></div>
+    <label class="ck"><input type="checkbox" id="wlMix"> 公司的钱和我自己的钱混在一起，说不清</label>
+    <div class="bars" id="wlBars"></div>
+    <div class="say" id="wlSay"></div>
+    <p class="figcap">极简的示意，不是法律意见。现实中还有清偿顺序、夫妻共同财产、合伙人之间的追偿、法院的具体认定等许多因素；“欠下的债”里包含“签了担保的贷款”。</p>
+  </div>
+
+  <div class="col">
+    <h3>墙上的三个洞</h3>
+    <p><b>没缴的钱</b>。见上。</p>
+    <p><b>混在一起的账</b>。公司的钱打到股东个人的卡里，股东拿公司的钱买房买车，公司和股东用同一张卡收付款，账目说不清哪笔是公司的、哪笔是个人的：这时法院可以认定公司的人格被滥用，让股东对公司的债务承担连带责任。一人公司更严格：举证的责任在股东自己。第十七章说的“公私分开”，到了公司这一步，就不只是好习惯，而是这道墙的地基。</p>
+    <p><b>你签的担保</b>。这是最常见、也最容易被忽视的洞。小公司去银行贷款，银行几乎一定会要求老板（常常还有老板的配偶）签个人连带责任保证。签了字，公司还不上，银行就找你个人。<em>有限责任挡得住你不认识的债主，挡不住你亲手签过字的债主</em>。第二十章会讲一个人怎样因此背上了两亿。</p>
+
+    <h3>挂名的法定代表人</h3>
+    <p>周畅说的“法人要被限高”，指的是法定代表人。公司被法院列为失信被执行人以后，按最高人民法院的规定，可以限制它的法定代表人、主要负责人乘坐飞机、高铁一等座等高消费行为。这本身是为了逼公司还钱，可它也意味着：法定代表人不是一个随便挂的名字。</p>
+    <p>老韩说的“让表弟挂个名”，是第三个坑。这些年各地都有挂名的法定代表人，公司出事后被限高、被列入名单、甚至卷进刑事案件的报道；被骗去挂名、注册公司，是一些诈骗团伙常用的手法。<b>谁真正经营，谁就当法定代表人</b>；不要替别人挂名，也不要让别人替你挂名。</p>
+
+    <h3>注销</h3>
+    <p>最后一件常被忽略的事：生意不做了，要注销。个体户注销很简单；公司要清算、清税、公告，没有债权债务的可以走简易注销，承诺并公示一段时间就能办完。别让一家不再经营的公司挂着：它每年还要报税、年报，不报会进经营异常名录，牵连股东和法定代表人的信用。第二十三章细讲。</p>
+  </div>
+
+  <div class="floor">
+    <h6><span>最多亏多少</span><b>选错了身份</b></h6>
+    <dl>
+      <dt>钱</dt><dd>个体户、个人独资、普通合伙：没有上限。有限公司：一般以认缴的出资为限，再加上你签了担保的那部分；账混在一起时，可能没有上限。</dd>
+      <dt>时间</dt><dd>公司的设立、记账、年报、注销都比个体户麻烦，要么花时间，要么花钱请会计。</dd>
+      <dt>信用</dt><dd>法定代表人、股东的信用和公司绑在一起；替人挂名，最容易替人背锅。</dd>
+      <dt>退路</dt><dd>形式选得对，生意失败时亏的是生意；选得不对，亏的是家。</dd>
+    </dl>
+    <div class="bot"><b>一句话</b>：有限责任是一道墙，墙上的洞是没缴的钱、混着的账、签了的担保；谁经营谁当法定代表人。</div>
+  </div>
+
+  <div class="myth">
+    <div class="tag">开了公司就是有限责任，欠多少都跟我没关系<small>不成立</small></div>
+    <div class="pop"><i>流行说法</i><p>做生意一定要开公司，因为公司是有限责任，公司欠的钱跟老板个人没关系，大不了公司倒闭。</p></div>
+    <div class="chk"><i>再查一遍</i><p>有限责任是真的，也很重要。可对小公司来说，它常常比想象的薄：<b>银行贷款几乎都要老板个人担保</b>，注册资本没缴的部分可以被要求提前缴，公司和个人账目混同可能被揭开面纱，一人公司还要自证清白。再加上法定代表人的限高。准确的说法是：<em>有限责任保护的是守规矩的股东</em>。</p></div>
+  </div>
+
+  <div class="echo" data-k="押韵">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">七个股东</p><p>萨洛蒙让妻子和五个孩子各持一股，只为凑够法律要求的七个人；一百多年后，老韩想让表弟挂个名，只为凑一个法定代表人。<em>法律要的是一个数字，人们给它的常常是一个名字</em>。萨洛蒙赢了官司，是因为他的公司在法律上无可挑剔；挂名的人要是出了事，没有一个上议院替他说话。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>三句话，三个坑</h3>
+    <p>那顿饭吃到最后，三个人定了下来：注册一个有限公司，注册资本写三十万，三个人按股权比例五年内缴足；周畅当法定代表人，因为他全职经营；公司的账请一位代账会计做，一个月几百块；任何人不得以公司或个人名义替公司担保借款，要借，三个人一起签字同意。</p>
+    <p>老韩嘟囔了一句：“三十万，听起来好小。”</p>
+    <p>周畅说：“小的是面子，大的是麻烦。”</p>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>那时的摊子</i>1896 年英国上议院判定：萨洛蒙的公司依法成立，就是一个独立的人，靴匠不必替它还债。一百多年后，中国的新《公司法》要求注册资本五年缴足，债务到期可以让股东提前缴，一人公司要自证财产独立。</div>
+      <div><i>你的摊子</i>一个人小额起步用个体户，会欠大钱、有合伙人再用公司。注册资本按五年内缴得起的写；公司和个人的账分得一清二楚；个人担保想清楚再签；谁经营谁当法定代表人，不替人挂名；不做了就注销。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第十九章 · 税 ============ -->
+<section class="chap" id="c19" data-vol="卷五 · 钱 · 税">
+  <div class="chead">
+    <div class="big">税</div>
+    <div>
+      <div class="no">第十九章</div>
+      <h2>发票和税</h2>
+      <dl><dt>讲什么</dt><dd>一张能中奖的发票；发票是让顾客替税务局看账的纸；小规模纳税人和增值税；经营所得和减半；一人公司的两道税；没执照接活的劳务报酬；记账、报税和年报；两条不能碰的线</dd><dt>本章装置</dt><dd>同样赚一年，交多少税</dd></dl>
+      <div class="acc" data-a="钱 信"></div>
+      <div class="yrs" data-a="1950" data-b="2028"></div>
+    </div>
+  </div>
+
+  <div class="lic">
+    <div class="in">
+      <h5>营业执照</h5>
+      <div class="sub">仿制格式 · 这是一种制度，不是一门生意</div>
+      <span class="stamp">仿制<br>示意</span>
+      <dl>
+        <dt>名称</dt><dd class="nm">统一发票</dd>
+        <dt>发行者</dt><dd>台湾地区的财税部门</dd>
+        <dt>开办年代</dt><dd>1950 年代初</dd>
+        <dt>办法</dt><dd>每一张发票印一个号码，定期开奖</dd>
+        <dt>目的</dt><dd>让买东西的人主动向店家要发票</dd>
+        <dt>原理</dt><dd>顾客要了发票，店家的收入就留下了记录</dd>
+        <dt>同类</dt><dd>大陆不少城市也办过“有奖发票”</dd>
+        <dt>结局</dt><dd class="end">七十多年后还在开奖，后来变成了手机里的电子发票</dd>
+      </dl>
+      <div class="no"><span>No. 1950s</span><span>登记机关：无</span></div>
+    </div>
+    <div class="real"><b>真的部分</b>台湾地区 1950 年代初实行“统一发票”制度，并给发票设奖，定期开奖，用来鼓励消费者索取发票、减少商家漏报收入，这一制度沿用至今，后来扩展到电子发票。大陆不少城市在 1980 年代以后也陆续办过“有奖发票”。开办的具体年份和最初的奖额，各种资料说法略有出入。</div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">小生意要交哪些税？要不要开发票？</p>
+      <p>常见的是两样：<b>增值税</b>（按卖出去的钱交，小规模纳税人月销售额在十万元以下的，写作时的政策是免征），和<b>所得税</b>（按赚到的钱交：个体户交个人所得税里的“经营所得”，公司交企业所得税，分红给自己时再交个人所得税）。小生意的税负，在写作时有不少优惠，大多有效期到 2027 年底。发票要开，它是客户入账的凭证，也是你收入的记录。<em>按时报税、哪怕是零申报，比少交几块钱重要得多</em>：两条线不能碰，一是隐瞒收入，二是虚开发票。</p>
+    </div>
+
+    <div class="scene" data-t="周畅的工作室 · 2028 年 10 月 · 第一个季度的申报">
+      <p>公司注册以后的第一个季度申报，周畅打开电子税务局，看了十分钟，把电脑推给了代账会计。会计是一位四十多岁的大姐，一边操作一边念叨：“你们这季度开票不到三十万，增值税免；利润也不高，小微企业所得税有优惠。可是你们这张给连锁店开的专票……”</p>
+      <p>“他们说只要专票。”</p>
+      <p>“专票就不能享受免税了，要按征收率交。”大姐抬头看了一眼，“还有，你们上个月有三笔收款打到了你个人的卡上，这个月要补进公司的账。不然以后说不清。”</p>
+      <p>周畅脸一红。沈舟在旁边默默记下：第十七章那句“公私分开”，在会计这里是要一笔一笔对出来的。</p>
+    </div>
+
+    <h3>能中奖的发票</h3>
+    <p>税务局最大的难题，从来不是税率怎么定，而是<b>怎么知道你卖了多少</b>。一家小店每天收了多少现金，只有老板自己知道。</p>
+    <p>1950 年代初，台湾地区想出了一个办法：所有商家统一使用印着号码的发票，每张发票都可以参加定期开奖。消费者为了中奖，买东西就会主动要发票；店家开了发票，收入就留下了记录。<em>一张发票，让千千万万个顾客替税务局看了账</em>。这个办法一直用到今天，后来大陆不少城市也办过“有奖发票”。</p>
+    <p>今天，发票早就搬进了系统：2024 年起全国推广“全面数字化的电子发票”，开票、收票、报税连在一起；2025 年起施行的规定还要求互联网平台向税务部门报送平台内经营者的身份和收入信息。对一门小生意来说，这意味着一件事：<b>收入是看得见的</b>。与其想办法藏，不如弄清楚怎样合法地少交、按时地交。</p>
+
+    <h3>增值税</h3>
+    <p>增值税按卖出去的钱算。小生意大多是“小规模纳税人”（2026 年起施行的《增值税法》以年销售额五百万元为界），按销售额乘一个较低的征收率交税，不能抵扣进项。</p>
+    <p>写作时的优惠政策是：小规模纳税人<b>月销售额十万元以下（按季度申报的是三十万元以下）免征增值税</b>；超过的，原本 3% 征收率的减按 1% 交。这些政策延续到 2027 年 12 月 31 日，之后怎样以届时的规定为准。</p>
+    <p>有一个常见的坑：客户如果要增值税<b>专用</b>发票（他们拿去抵扣），开出去的那部分一般就不能享受免税，要按征收率交税。接大客户的单子之前，问清楚对方要普票还是专票，报价时把税算进去。</p>
+
+    <h3>所得税</h3>
+    <p><b>个体户和个人独资企业</b>交个人所得税的“经营所得”：一年的收入减去成本费用，再减去每年六万元的基本减除费用（如果你没有别的工资收入）等，剩下的按百分之五到百分之三十五的五级超额累进税率交。写作时的优惠是：个体工商户年应纳税所得额不超过二百万元的部分，在此基础上再减半征收，同样延续到 2027 年底。一些地方对规模很小的个体户实行“定期定额”的核定征收，每月交一个固定的数。</p>
+    <p><b>公司</b>先交企业所得税。符合条件的小型微利企业，写作时年应纳税所得额不超过三百万元的部分，实际税负为百分之五（同样至 2027 年底）。公司的钱是公司的，股东要拿回自己口袋，除了发工资（按工资交个税），以分红的形式拿，还要再交百分之二十的个人所得税。这就是“两道税”。</p>
+    <p><b>没有执照、个人接活</b>：对方付给你的钱，一般按“劳务报酬”算，由付款的单位预扣个税；年底并入综合所得做年度汇算，收入不高的人常常还能退回一些。客户要发票的，个人可以到税务机关申请代开。</p>
+  </div>
+
+  <div class="fig" id="taxFig">
+    <div class="fig-label">装置 20</div>
+    <h4>同样赚一年，交多少税</h4>
+    <p class="how">设一年的收入和成本费用，比较三种做法大致要交多少税、最后落到自己手里多少：没有执照按劳务报酬、个体户、一人公司（利润全部分红给自己）。</p>
+    <div class="ctl"><span>一年收入</span><input type="range" id="txR" min="20000" max="3000000" step="10000" value="300000"><output id="txRO"></output></div>
+    <div class="ctl"><span>成本费用占</span><input type="range" id="txC" min="0" max="90" step="5" value="40"><output id="txCO"></output></div>
+    <div class="bars" id="txBars"></div>
+    <div class="kv" id="txKv"></div>
+    <div class="say" id="txSay"></div>
+    <p class="figcap">极简示意，按写作时的政策（多数优惠至 2027 年底）粗算：增值税按小规模纳税人、月均十万以下免征、超过的按 1%，不计附加税费；劳务报酬按收入的八成并入综合所得，只减每年六万元基本减除费用，不考虑成本，也不计增值税；个体户按经营所得、减六万元、二百万元以内部分减半；一人公司按小型微利企业百分之五（超过三百万元按百分之二十五）再按百分之二十交分红个税，没有算给自己发工资的方案。都没算社保、专项附加扣除和地方政策。不是税务意见，以税务部门为准。</p>
+  </div>
+
+  <div class="col">
+    <h3>记账、报税和年报</h3>
+    <p>税务上真正让小生意吃亏的，往往不是税率，而是忘了做事：</p>
+    <ul class="plain">
+      <li><b>按时申报，哪怕是零</b>。办了执照，每个月或每个季度都要申报，没有收入也要“零申报”。逾期不报会被罚款、影响纳税信用。</li>
+      <li><b>每年年报</b>。企业和个体户每年要在规定时间（一般是上半年）报送上一年的年度报告，不报会被列入经营异常名录。</li>
+      <li><b>留好凭证</b>。成本费用要有发票或者凭证才能扣除。第十七章说的单独的卡，在这里变成了最省事的账本。</li>
+      <li><b>请代账会计</b>。公司的账，一个月几百块请人做，通常比自己摸索划算得多。</li>
+    </ul>
+
+    <h3>两条线</h3>
+    <p><b>隐瞒收入</b>。用个人卡收款不入账、两套账、让客户不要发票打折，这些做法在“收入看得见”的今天越来越难藏。《刑法》对逃税有专门的规定，首次被查、按要求补缴税款和滞纳金、接受了行政处罚的，一般可以不追究刑事责任，但补缴、滞纳金和罚款加起来，远比当初少交的多，纳税信用也会受影响。</p>
+    <p><b>虚开发票</b>。没有真实交易而开发票、替别人开发票、买发票来抵扣，是严重的犯罪，虚开增值税专用发票的刑罚可以很重。有人会找上小公司说“帮忙走一笔账，给你点费用”，这和第十二章的借卡走流水是一样的东西。<em>发票只开真实发生的生意</em>，没有例外。</p>
+  </div>
+
+  <div class="floor">
+    <h6><span>最多亏多少</span><b>税上的事</b></h6>
+    <dl>
+      <dt>钱</dt><dd>按规矩交的税是成本，不是亏损。真正的亏损是罚款、滞纳金，以及因为说不清账而多交的税。</dd>
+      <dt>时间</dt><dd>每月、每季、每年的申报，一个人做要花时间学；请代账会计，一个月几百块。</dd>
+      <dt>信用</dt><dd>纳税信用和经营异常名录会影响贷款、投标、开票，甚至法定代表人和股东的出行。</dd>
+      <dt>退路</dt><dd>虚开发票和大额逃税会把退路一次关死，和借卡一样。</dd>
+    </dl>
+    <div class="bot"><b>一句话</b>：收入是看得见的；按时报、留凭证、只开真实交易的发票，用好写在明处的优惠。</div>
+  </div>
+
+  <div class="myth">
+    <div class="tag">小生意不开发票、走个人卡，就不用交税<small>不成立，也越来越行不通</small></div>
+    <div class="pop"><i>流行说法</i><p>小本生意，客户不要发票就不开，钱走个人卡，税务局查不到，省下的都是自己的。</p></div>
+    <div class="chk"><i>再查一遍</i><p>不开发票不等于不用交税，纳税义务来自经营本身。银行流水、支付平台、电商平台的数据都在接入税务系统，平台报送收入信息的规定也已施行。<b>更实际的一点是，小生意在写作时的税负本来就不高</b>：月销售额十万以下免增值税，个体户经营所得有减半，小微企业所得税百分之五。为了省一点本来就不多的税，冒罚款和信用的风险，账算不过来。</p></div>
+  </div>
+
+  <div class="echo" data-k="押韵">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">牙帖和发票</p><p>第一章的明代牙行要用官府发的“印信文簿”，登记往来客商的姓名、货物和数目，按月送官查验。五百年后，这本簿子变成了电子发票和平台的报送数据。<em>官府想知道你卖了多少，这件事从来没变过</em>，变的是它知道得越来越快、越来越全。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>补进账里的三笔钱</h3>
+    <p>那个月，周畅把打到自己卡上的三笔钱转回了公司账户，附上说明交给会计。会计大姐说：“这就对了。以后客户扫码，就扫公司的码。”</p>
+    <p>周畅问：“我们以后要不要变成一般纳税人？”</p>
+    <p>“等你们一年快到五百万再说。”大姐笑了，“先把这季度报了。”</p>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>那时的摊子</i>1950 年代初，一张能中奖的统一发票让顾客替税务局看了账；七十年后，发票全面数字化，平台要报送经营者的收入。写作时的小规模纳税人月销售额十万以下免增值税，个体户经营所得减半，小微企业所得税百分之五，大多至 2027 年底。</div>
+      <div><i>你的摊子</i>按时申报，哪怕是零；每年年报；收款走生意的账；留好凭证；问清客户要普票还是专票、报价算进税；公司的账请代账会计；发票只开真实的生意。优惠写在明处，用足它，不必去冒险。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第二十章 · 借 ============ -->
+<section class="chap" id="c20" data-vol="卷五 · 钱 · 借">
+  <div class="chead">
+    <div class="big">借</div>
+    <div>
+      <div class="no">第二十章</div>
+      <h2>借钱的边界</h2>
+      <dl><dt>讲什么</dt><dd>一位遗孀被判在两亿元范围内承担责任；共债共签；各种钱的价钱：亲友、信用卡、网贷、经营贷、创业担保贷款；什么钱可以借，什么钱不能借；个人担保；借钱扩张的账</dd><dt>本章装置</dt><dd>借钱扩张，最后欠不欠</dd></dl>
+      <div class="acc" data-a="钱 人 信"></div>
+      <div class="yrs" data-a="2011" data-b="2028"></div>
+    </div>
+  </div>
+
+  <div class="lic">
+    <div class="in">
+      <h5>营业执照</h5>
+      <div class="sub">仿制格式 · 据公开报道整理</div>
+      <span class="stamp">仿制<br>示意</span>
+      <dl>
+        <dt>名称</dt><dd class="nm">小马奔腾（影视公司）</dd>
+        <dt>创办人</dt><dd>李明等</dd>
+        <dt>经营范围</dt><dd>电视剧、电影制作</dd>
+        <dt>融资</dt><dd>2011 年一家投资基金投入约四亿多元</dd>
+        <dt>条件</dt><dd>据报道约定：到期未能上市，要按约定回购股份</dd>
+        <dt>变故</dt><dd>2014 年初，创办人突发疾病去世，公司未能上市</dd>
+        <dt>官司</dt><dd>投资方要求回购，追到创办人的遗孀</dd>
+        <dt>结局</dt><dd class="end">法院认定为夫妻共同债务，遗孀在两亿元范围内承担连带责任</dd>
+      </dl>
+      <div class="no"><span>No. 2011—2018</span><span>登记机关：北京</span></div>
+    </div>
+    <div class="real"><b>真的部分</b>据多家媒体报道，小马奔腾 2011 年获得建银文化产业基金约 4.5 亿元投资，相关协议约定了上市期限和回购条款。2014 年 1 月创办人李明去世，公司未能如期上市，投资方起诉要求回购。2017—2018 年，法院一审、二审认定李明个人承担的回购义务属于夫妻共同债务，判其遗孀金燕在约两亿元范围内承担连带清偿责任。此案后来成为讨论“夫妻共同债务”和“对赌”的著名案例。细节以判决书为准。</div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">做生意能不能借钱？边界在哪？</p>
+      <p>可以借，但只借两种：一是<b>借来买一样能产生现金、而且你有把握的东西</b>（一台马上有活干的设备、一批已经卖出去的货），二是<b>利息低、期限够、还款压力在你主业收入能扛住的范围内</b>。不能借的也有两种：<em>借钱填亏损、借钱付生活费，以及借高息的钱（网贷、信用卡套现）做生意</em>。另外，给公司签个人担保、让配偶一起签字之前，先读这一章的执照：一份签了字的担保，可以让一个家庭替一门生意还很多年。</p>
+    </div>
+
+    <div class="scene" data-t="周畅的工作室 · 2029 年 3 月 · 银行打来的电话">
+      <p>公司开了快一年，账上有了几万块的余钱，银行的客户经理打电话来推经营贷：“二十万，年化四个点左右，随借随还，您是法定代表人，签个字就行。”</p>
+      <p>老韩很兴奋：“借二十万，招两个销售，一个月多签二十家店，一年就回来了。”</p>
+      <p>周畅没吭声。晚上他把沈舟叫来，三个人对着一张表算到半夜：两个销售一个月工资加社保要两万多；一个新销售多久能开单？二十家店要多久签下来？要是半年都签不下来呢？</p>
+      <p>沈舟问了最后一个问题：“签字的时候，银行要不要你爱人也签？”</p>
+      <p>周畅愣了一下：他年底要结婚了。</p>
+    </div>
+
+    <h3>两亿元</h3>
+    <p>小马奔腾的故事在中国创业圈流传很广，因为它把几件事极端地放在了一起：一家明星公司、一份对赌协议、一个意外，和一位原本不参与经营的家人。</p>
+    <p>据报道，2011 年一家投资基金投入四亿多元，协议约定了上市的期限，到期没上市，就要回购投资方的股份，而创办人个人也被约定承担回购的责任。2014 年初，创办人突然去世，公司没能上市。投资方起诉要求回购，最后法院认定这笔个人债务属于夫妻共同债务，判他的遗孀在两亿元的范围内承担连带清偿责任。</p>
+    <p>这个判决当时引起很大争议：一个不参与公司经营的配偶，要为丈夫签下的对赌承担巨额债务吗？2018 年，最高人民法院出台了关于夫妻债务的司法解释，确立了“共债共签”的原则；2021 年起施行的《民法典》第一千零六十四条把它写进了法律：夫妻双方共同签名或者一方事后追认的债务，以及一方为家庭日常生活需要所负的债务，属于共同债务；一方以个人名义超出家庭日常生活需要所负的债务，债权人要证明它用于共同生活、共同生产经营或者基于双方共同意思，才算共同债务。</p>
+    <p>规矩变清楚了，可现实中，银行给小企业放贷，常常就要求老板和配偶<b>一起签字</b>担保。一起签了，就是共同债务，没有争议。<em>第十八章说有限责任是一道墙，个人担保是墙上的一扇门；配偶一起签字，就是把这扇门开到了家里</em>。</p>
+
+    <h3>各种钱的价钱</h3>
+    <p>借钱之前，先看清楚钱的价钱。写作时大致是这样（利率会变，以合同为准）：</p>
+  </div>
+
+  <div class="wide">
+    <div class="scroll-x">
+      <table class="t">
+        <tr><th>钱从哪里来</th><th>大致的价钱</th><th>要当心的</th></tr>
+        <tr><td><b>亲戚朋友</b></td><td>常常不要利息</td><td>最贵的是人情。写借条，写清金额、期限；不借父母的养老钱和看病钱（第七章）</td></tr>
+        <tr><td><b>银行经营贷</b></td><td>年化几个百分点</td><td>期限短，到期要还或者续贷；几乎都要老板个人担保，常常还要配偶签字</td></tr>
+        <tr><td><b>创业担保贷款</b></td><td>有财政贴息，个人额度写作时最高三十万元左右</td><td>有申请条件（如毕业年限、登记注册、带动就业），要担保或反担保，各地办法不同</td></tr>
+        <tr><td><b>信用卡分期、套现</b></td><td>分期的实际年化常在百分之十几；循环利息更高</td><td>《值不值》第七章算过分期的真实利率；套现违反规定</td></tr>
+        <tr><td><b>网贷、消费贷</b></td><td>常见年化百分之十几到二十几</td><td>写作时民间借贷受司法保护的利率上限约为一年期贷款市场报价利率的四倍；用途通常限定为消费，挪去经营违约</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="col">
+    <p>这张表里最便宜的钱（亲友、经营贷、创业担保贷款），往往附着最重的东西：人情、个人担保、配偶的签字。最容易借到的钱（网贷、信用卡），价钱最贵。<em>没有既便宜、又容易、又不牵连别人的钱</em>。</p>
+
+    <h3>什么钱可以借</h3>
+    <p>一个简单的检验：<b>这笔钱借来以后，变成了什么？</b></p>
+    <ul class="plain">
+      <li><b>变成了一样确定能带来现金的东西</b>：已经有客户下单、只差一台设备；一批已经卖出去、等着交货的货。借来的钱有确定的回头路，可以借，借期限和回款匹配的钱。</li>
+      <li><b>变成了一次尝试</b>：招人开拓新市场、开第二家店、投广告。结果不确定。能用自己赚来的钱做，就别借；非借不可，按“失败了也还得上”来定金额，也就是你的主业收入能扛住每个月的还款。</li>
+      <li><b>变成了窟窿里的填补</b>：付上个月的工资、还上一笔到期的债、交房租。这是最危险的信号：生意本身已经不赚钱了，借钱只是把亏损推迟、放大。这时候该做的是第十六章的那张红灯表，不是借钱。</li>
+    </ul>
+    <p>第零章说的“有上限的亏”和“没有上限的亏”，分界线就在这里：<em>用自己的钱试，亏到止损线就停；用借来的钱试，停下来的时候，债还开着</em>。</p>
+  </div>
+
+  <div class="fig" id="loanFig">
+    <div class="fig-label">装置 21</div>
+    <h4>借钱扩张，最后欠不欠</h4>
+    <p class="how">工作室现在每月有一点利润。借一笔钱去招人扩张：设好借多少、利率、几个月还清，扩张成功的话每月能多赚多少、多久见效、成功的可能有多大。装置会把这件事跑一千遍，看看两年后有多少次赚了，有多少次还欠着。</p>
+    <div class="ctl"><span>借多少</span><input type="range" id="lnL" min="0" max="500000" step="10000" value="200000"><output id="lnLO"></output></div>
+    <div class="ctl"><span>年利率</span><input type="range" id="lnI" min="2" max="24" step="0.5" value="4"><output id="lnIO"></output></div>
+    <div class="ctl"><span>几个月还清</span><input type="range" id="lnT" min="6" max="36" step="1" value="12"><output id="lnTO"></output></div>
+    <div class="ctl"><span>扩张每月多花</span><input type="range" id="lnC" min="0" max="60000" step="1000" value="22000"><output id="lnCO"></output></div>
+    <div class="ctl"><span>成了每月多赚</span><input type="range" id="lnG" min="0" max="100000" step="1000" value="40000"><output id="lnGO"></output></div>
+    <div class="ctl"><span>多久见效</span><input type="range" id="lnR" min="1" max="18" step="1" value="6"><output id="lnRO"></output></div>
+    <div class="ctl"><span>成的可能</span><input type="range" id="lnP" min="5" max="95" step="5" value="40"><output id="lnPO"></output></div>
+    <div class="ctl"><span>现在每月利润</span><input type="range" id="lnB" min="0" max="50000" step="1000" value="8000"><output id="lnBO"></output></div>
+    <div class="bars" id="lnBars"></div>
+    <div class="kv" id="lnKv"></div>
+    <div class="say" id="lnSay"></div>
+    <p class="figcap">示意模型：贷款按月等额本息；“扩张每月多花”是新招的人的工资社保等，失败时第几个月发现不对就停掉扩张（取“多久见效”的时间）；成功时从“多久见效”那个月起每月多赚，且有一些随机波动。两年后看现金：负数表示要靠个人或家里来还。不是贷款建议。</p>
+  </div>
+
+  <div class="floor">
+    <h6><span>最多亏多少</span><b>借钱做生意</b></h6>
+    <dl>
+      <dt>钱</dt><dd>借来的本金加利息，减去它带来的现金。借钱填窟窿、借高息的钱，亏损没有上限。</dd>
+      <dt>时间</dt><dd>还款期就是你被绑住的时间。期限短、回款慢，就要不停地借新还旧。</dd>
+      <dt>信用</dt><dd>逾期会上征信，被起诉会成为被执行人、失信人、被限高（第零章）。签了担保、配偶也签了，牵连的是一个家。</dd>
+      <dt>退路</dt><dd>不借钱，生意失败了就停；借了钱，生意失败了还要还。这是两种完全不同的退路。</dd>
+    </dl>
+    <div class="bot"><b>一句话</b>：只借买得来确定现金的钱，按“失败了也还得上”定金额；不借钱填窟窿，不借高息的钱，担保和配偶签字想清楚再签。</div>
+  </div>
+
+  <div class="myth">
+    <div class="tag">做生意不借钱，就做不大<small>一半对</small></div>
+    <div class="pop"><i>流行说法</i><p>会做生意的人都会用别人的钱，靠自己赚的钱慢慢滚，一辈子也做不大。</p></div>
+    <div class="chk"><i>再查一遍</i><p>有些生意确实离不开借款：要建厂、要买设备、要先垫大笔货款的。可第一部讲过的几门生意，Mailchimp、老干妈，据报道都长期不靠借款或外部融资做到了很大；第二十二章会算一门生意不借钱能长多快。更要紧的是方向：<b>借钱能让一门已经证明赚钱的生意长得更快，却救不了一门还没证明赚钱的生意</b>。后者借得越多，倒下时砸得越重。</p></div>
+  </div>
+
+  <div class="echo" data-k="联系">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">借来的钱能撑多久</p><p>《红与绿》第十三章算过借钱炒股：涨的时候放大收益，跌的时候放大亏损，最可怕的是在最低点被迫卖出。<a href="../stock/two.html#c13">借钱做生意</a>是同一个道理：借来的钱有到期日，而生意的好转没有。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>没签的字</h3>
+    <p>那天半夜，三个人用上面那个装置跑了好几遍。按他们自己估的成功可能，一千次里有六成左右，两年后比不借还差，少了十几万：原来两年攒下的利润，大半搭了进去。</p>
+    <p>最后的决定是：不借。先用账上的钱招一个销售，试三个月；签下的店多了，再招第二个。老韩有点失望，周畅说：“慢一点，可不会有人替我们还钱。”</p>
+    <p>周畅给银行回了电话，说暂时不需要。挂了电话，他给未婚妻发了条消息：“以后要是有人让你签担保，先问我。”</p>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>那时的摊子</i>一位不参与经营的遗孀，被法院认定在两亿元范围内为丈夫签下的回购义务承担连带责任；此后有了“共债共签”，《民法典》写明了夫妻共同债务的边界。最便宜的钱附着人情、担保和配偶的签字，最容易的钱最贵。</div>
+      <div><i>你的摊子</i>先问借来的钱变成了什么：确定的现金可以借，一次尝试尽量用自己的钱，窟窿绝不能借钱填。按失败了也还得上定金额；不借网贷和信用卡做生意；个人担保和配偶签字，想清楚再签。</div>
+    </div>
+  </div>
+</section>
+
+<div class="volhead" id="v6" data-vol="卷六 · 大与退">
+  <div class="num">VOLUME VI · GROW OR GO</div>
+  <h2>大与退<small>做大，或者收摊</small></h2>
+  <p class="lede">一门小生意站稳以后，会碰到三个岔口：有人要投钱给你，你要不要；要不要做大，怎样做大，不做大行不行；以及哪一天该卖掉、关掉、转身。卷六讲这三件事。它们的共同点是：<em>每一件都比开张那天更需要先算“最多亏多少”</em>。</p>
+  <svg class="awn" aria-hidden="true"></svg>
+</div>
+
+<!-- ============ 第二十一章 · 股 ============ -->
+<section class="chap" id="c21" data-vol="卷六 · 大与退 · 股">
+  <div class="chead">
+    <div class="big">股</div>
+    <div>
+      <div class="no">第二十一章</div>
+      <h2>拿别人的钱</h2>
+      <dl><dt>讲什么</dt><dd>一家高档餐厅的投资、上市和出局；股和债；估值和稀释；对赌、回购、领售权；三分之二、过半数和三分之一；向亲友集资和非法集资的边界；拿钱之前问的五个问题</dd><dt>本章装置</dt><dd>一份投资条款的账</dd></dl>
+      <div class="acc" data-a="钱 人 信"></div>
+      <div class="yrs" data-a="2000" data-b="2029"></div>
+    </div>
+  </div>
+
+  <div class="lic">
+    <div class="in">
+      <h5>营业执照</h5>
+      <div class="sub">仿制格式 · 据公开报道整理</div>
+      <span class="stamp">仿制<br>示意</span>
+      <dl>
+        <dt>名称</dt><dd class="nm">俏江南（餐厅）</dd>
+        <dt>创办人</dt><dd>张兰</dd>
+        <dt>第一家店</dt><dd>2000 年，北京</dd>
+        <dt>经营范围</dt><dd>中高档川菜，后来开到几十家</dd>
+        <dt>融资</dt><dd>2008 年，一家投资机构投入约两亿元，占约一成股份</dd>
+        <dt>条款</dt><dd>据报道包括上市期限、回购和“领售权”</dd>
+        <dt>上市</dt><dd>2011 年申请 A 股，次年终止；后来转战香港，也未成</dd>
+        <dt>结局</dt><dd class="end">2014 年控股权卖给另一家基金，创办人随后离开</dd>
+      </dl>
+      <div class="no"><span>No. 2000—2015</span><span>登记机关：北京</span></div>
+    </div>
+    <div class="real"><b>真的部分</b>据多家媒体报道，张兰 2000 年创办俏江南，2008 年获得鼎晖投资约两亿元、占约百分之十左右的股份，相关协议据报道包含上市期限、股份回购和“领售权”等条款。2011 年其 A 股上市申请提交后，次年被终止审查；之后餐饮业受到冲击，赴港上市也未成。2014 年，欧洲私募基金 CVC 收购了俏江南的控股权，有报道认为这是投资方行使领售权、要求创始人一起出售股份的结果，张兰随后离开。对条款细节和因果，各方说法不一，标“据报道”。</div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">有人要投资我，对赌、回购、控制权是怎么回事？</p>
+      <p>投资人给你钱、换你一部分股份，不用像贷款那样按月还。可他通常会在协议里加上保护自己的条款：达不到某个业绩或者没能在期限内上市，你要补偿他、或者按约定的价钱把股份买回来（对赌和回购）；他卖股份的时候可以拉着你一起卖（领售权）；某些大事他有一票否决。<em>最要当心的一条，是“由创始人个人承担回购义务”</em>：它把一笔股权投资，变成了你个人的一笔债。另外，向亲友以外的人许诺回报、四处募钱，可能触犯非法集资的红线。</p>
+    </div>
+
+    <div class="scene" data-t="周畅的工作室 · 2029 年 7 月 · 一家烘焙连锁的会议室">
+      <p>工作室给一家烘焙连锁做了会员系统，对方老板很满意，提出要投资：六十万，占百分之二十。</p>
+      <p>条款发过来，周畅看得眼花。沈舟周末陪他逐条读，在其中一条下面画了红线：“若公司两年内服务门店数未达三百家，投资方有权要求创始股东按投资额加年化百分之十的价格回购其股份，创始股东对此承担连带责任。”</p>
+      <p>“三百家，我们现在有一百一十家。”周畅说。</p>
+      <p>“意思是，”沈舟说，“如果两年后没到三百家，签了字的创始股东，个人要一起掏七十多万出来。谁付不出，另外的人替他付。”</p>
+    </div>
+
+    <h3>一家餐厅的十几年</h3>
+    <p>俏江南的故事常被拿来讲“对赌”，因为它的转折点几乎都和投资条款有关。</p>
+    <p>2000 年，张兰在北京开了第一家俏江南，做中高档川菜，几年里开到几十家。2008 年，一家投资机构据报道投入约两亿元，占约一成股份，协议据报道包含了上市期限和回购的约定。2011 年公司申请在 A 股上市，2012 年初被终止审查，那几年餐饮企业上市很难；接着高端餐饮受到冲击，赴港上市也没有成。</p>
+    <p>到了 2014 年，一家欧洲私募基金收购了俏江南的控股权。很多报道认为，这和投资协议里的“领售权”有关：投资方要出售股份时，可以要求创始人按同样的条件一起卖。创始人随后离开了自己创办的公司。也有报道和当事人对这个因果有不同的说法，书里只取大意。</p>
+    <p>不管细节如何，这个故事提醒的是一件很朴素的事：<em>拿了别人的钱，签下的每一个条款，都会在最坏的那一天被认真执行</em>。签字的时候想的是“我们一定能上市”，执行的时候，对方只看合同。</p>
+
+    <h3>股和债</h3>
+    <p>别人的钱有两种拿法。<b>借</b>（债）：按约定还本付息，不管生意好坏，还完了就两清，对方不管你的公司（第二十章）。<b>入股</b>（股权）：对方拿走一部分所有权，生意好了一起分，生意坏了一起亏，不用你还，可他从此是你公司的一个主人，要分利润、要知情、要在大事上说话。</p>
+    <p>对赌协议（法律上常叫“估值调整协议”）是夹在两者中间的东西：形式上是入股，可加上了“达不到就补偿或回购”的条件，让投资人在坏的情况下，像债主一样拿回本钱和利息。2019 年最高人民法院的《全国法院民商事审判工作会议纪要》对此有专门的意见：投资方与公司的股东或者实际控制人订立的对赌协议，一般认定有效；与公司本身订立的，协议本身不当然无效，但要求公司回购时，必须符合公司法关于减资等程序的规定。说得直白些：<b>投资方最容易追到的，是签了字的创始人个人</b>。</p>
+
+    <h3>三个比例</h3>
+    <p>股份不只是分钱的比例，也是说话的比例。按《公司法》，有限责任公司修改章程、增加或减少注册资本、合并、分立、解散、变更公司形式，必须经代表三分之二以上表决权的股东通过（章程可以有不同的约定，在法律允许的范围内）。于是有了几条常被提到的线：</p>
+    <ul class="plain">
+      <li><b>三分之二以上</b>：上面那些大事，你一个人就能决定。</li>
+      <li><b>过半数</b>：普通的事项（按章程规定）你能决定。</li>
+      <li><b>三分之一以上</b>：那些大事，没有你同意就通不过，也就是常说的“一票否决”。</li>
+    </ul>
+    <p>每一次拿钱，你的股份都会被稀释一些，几轮下来，创始人可能就跨过了这几条线。投资人还常常通过条款，单独拿到一些大事的否决权。<em>算股份的时候，别只算能分多少钱，也要算还能不能说了算</em>。</p>
+  </div>
+
+  <div class="fig" id="termFig">
+    <div class="fig-label">装置 22</div>
+    <h4>一份投资条款的账</h4>
+    <p class="how">设一笔投资：投多少、占多少（隐含的估值）、以后还会有几轮各稀释多少；再设对赌：几年、回购的年化利率、达成目标的可能、创始人是否个人承担。看看你的股份最后剩多少、跨没跨那几条线，以及没达成时个人要掏多少。</p>
+    <div class="ctl"><span>投多少</span><input type="range" id="tmI" min="100000" max="10000000" step="50000" value="600000"><output id="tmIO"></output></div>
+    <div class="ctl"><span>占多少</span><input type="range" id="tmS" min="5" max="49" step="1" value="20"><output id="tmSO"></output></div>
+    <div class="ctl"><span>你现在持股</span><input type="range" id="tmF" min="20" max="100" step="1" value="45"><output id="tmFO"></output></div>
+    <div class="ctl"><span>以后还有几轮</span><input type="range" id="tmN" min="0" max="4" step="1" value="1"><output id="tmNO"></output></div>
+    <div class="ctl"><span>每轮稀释</span><input type="range" id="tmD" min="5" max="30" step="1" value="15"><output id="tmDO"></output></div>
+    <div class="ctl"><span>对赌期限</span><input type="range" id="tmY" min="1" max="5" step="1" value="2"><output id="tmYO"></output></div>
+    <div class="ctl"><span>回购年化</span><input type="range" id="tmR" min="0" max="20" step="1" value="10"><output id="tmRO"></output></div>
+    <div class="ctl"><span>达成目标的可能</span><input type="range" id="tmP" min="5" max="95" step="5" value="35"><output id="tmPO"></output></div>
+    <label class="ck"><input type="checkbox" id="tmG" checked> 创始人个人承担回购义务（连带）</label>
+    <div class="bars" id="tmBars"></div>
+    <div class="kv" id="tmKv"></div>
+    <div class="say" id="tmSay"></div>
+    <p class="figcap">示意模型：“你现在持股”指投资前你在公司的比例（比如三个合伙人里你占多少）；稀释按比例同步摊薄所有老股东；回购价按投资额加单利计算；没有算业绩补偿、清算优先权、领售权等其他条款。不是投资或法律意见。</p>
+  </div>
+
+  <div class="col">
+    <h3>向亲友集资的边界</h3>
+    <p>小生意更常见的“拿别人的钱”，不是找投资机构，而是找身边的人：“你出五万，年底给你分红”“入股吧，保证一年百分之十五”。这里有一条很重要的线：</p>
+    <p>《刑法》规定了非法吸收公众存款罪；司法解释把非法集资的特征概括为四条：未经批准（非法性）、通过网络、媒体、推介会、传单、短信等方式向社会公开宣传（公开性）、承诺在一定期限内还本付息或者给付回报（利诱性）、向社会公众即不特定对象吸收资金（社会性）。只向亲友、单位内部特定的人吸收资金，而且没有向社会公开宣传的，一般不属于向社会公众吸收资金；可亲友再拉亲友、在群里朋友圈里转发、许诺固定回报，就很容易越线。</p>
+    <p>即便没有越线，也有两件事要写清楚：<b>这钱是借款还是入股</b>（借款要还，入股要担风险，“保本保息的入股”是最容易出纠纷的说法），以及<b>出了问题怎么办</b>。第八章那张纸，对亲友投资同样适用。</p>
+
+    <h3>拿钱之前的五个问题</h3>
+    <ul class="plain">
+      <li><b>我真的需要这笔钱吗？</b>能用自己赚的钱慢慢长的生意，常常不必拿（第二十二章）。</li>
+      <li><b>它是股还是债？</b>名字叫投资，条款里有保底回报和回购的，实质上是债。</li>
+      <li><b>谁承担回购？</b>公司，还是你个人？配偶要不要签字？</li>
+      <li><b>我还说了算吗？</b>拿完以后，跨没跨三分之二、过半数、三分之一那几条线？对方有哪些一票否决权？</li>
+      <li><b>最坏的那一天，会发生什么？</b>把每个条款在“没达成、没上市、要散伙”的那一天念一遍。</li>
+    </ul>
+    <p>以及第零个问题：请一位自己付钱的律师看一遍。对方的律师是替对方看的。</p>
+  </div>
+
+  <div class="floor">
+    <h6><span>最多亏多少</span><b>拿别人的钱</b></h6>
+    <dl>
+      <dt>钱</dt><dd>纯粹的股权投资，最坏是生意没了，钱是对方的。签了个人回购、个人担保的，最坏是回购款加利息，从你个人和家里出。</dd>
+      <dt>时间</dt><dd>对赌的期限会改变你做事的节奏：为了达标而扩张、为了上市而改账，常常比没拿钱时更危险。</dd>
+      <dt>信用</dt><dd>向社会公众许诺回报募钱，可能是犯罪；向亲友募钱没写清，伤的是最亲的人。</dd>
+      <dt>退路</dt><dd>失去控制权以后，你可能连离开自己公司的方式都不能自己决定。</dd>
+    </dl>
+    <div class="bot"><b>一句话</b>：拿钱之前把每个条款在最坏的那一天念一遍；不签个人回购，不向公众许诺回报，算股份也算控制权。</div>
+  </div>
+
+  <div class="myth">
+    <div class="tag">拿到投资，就说明成功了<small>不成立</small></div>
+    <div class="pop"><i>流行说法</i><p>一家公司拿到了投资、估值很高，说明它被认可了，离成功不远了。</p></div>
+    <div class="chk"><i>再查一遍</i><p>第四章说过，拿到风投的公司大约四分之三没能把钱还给投资人。融资是一笔交易，不是一个奖：你用一部分所有权和一些条款，换来一笔钱和一段时间。<b>高估值的另一面，是更高的期望和更严的条款</b>：估值越高，对赌的目标往往越难。融资新闻会上报，没达成的回购和对赌官司，大多不会。</p></div>
+  </div>
+
+  <div class="echo" data-k="押韵">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">卓王孙的钱</p><p>第七章的司马相如，用一家小酒铺逼岳父拿出了“僮百人，钱百万”，这笔钱没有附带任何条款。<em>两千年后，别人的钱很少再这么干净</em>：它带着期限、目标、回购、否决和领售。愿意不带条件把钱交给你的人，通常只有家里人，而家里人的钱，第七章说过，最不该拿来冒险。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>没签的条款</h3>
+    <p>周畅把那条红线发回给烘焙连锁的老板，提了一个修改：去掉创始人个人回购，改成达不到目标时，按约定调整投资方的持股比例。</p>
+    <p>对方没有同意。投资的事就这样黄了。</p>
+    <p>可烘焙连锁的会员系统，照样每个月付维护费。周畅说：“它要当我们的股东，不成；当我们的客户，挺好。”</p>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>那时的摊子</i>一家高档餐厅拿了约两亿元投资，据报道附带上市期限、回购和领售权，上市未成，创始人最终离开了自己的公司。法院对对赌的态度是：与股东的一般有效，与公司的回购要走减资程序；三分之二、过半数、三分之一是股东会的几条线。</div>
+      <div><i>你的摊子</i>先问需不需要这笔钱，再问它是股还是债、谁承担回购、我还说不说了算、最坏那天会怎样。不签个人回购，配偶不签字；向亲友拿钱写清是借是投，不向公众许诺回报；请自己的律师看合同。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第二十二章 · 大 ============ -->
+<section class="chap" id="c22" data-vol="卷六 · 大与退 · 大">
+  <div class="chead">
+    <div class="big">大</div>
+    <div>
+      <div class="no">第二十二章</div>
+      <h2>做大</h2>
+      <dl><dt>讲什么</dt><dd>一家加盟杂货店和一份没有续租条款的租约；不借钱能长多快；雇第一个人：劳动合同、社保和二倍工资；技术员、经理和创业者；把自己从流程里拿出来；不做大的公司</dd><dt>本章装置</dt><dd>不借钱能长多快</dd></dl>
+      <div class="acc" data-a="钱 时 人"></div>
+      <div class="yrs" data-a="1945" data-b="2030"></div>
+    </div>
+  </div>
+
+  <div class="lic">
+    <div class="in">
+      <h5>营业执照</h5>
+      <div class="sub">仿制格式 · 美国小店并不领这样的执照</div>
+      <span class="stamp">仿制<br>示意</span>
+      <dl>
+        <dt>名称</dt><dd class="nm">一家“本·富兰克林”加盟杂货店</dd>
+        <dt>经营者</dt><dd>萨姆·沃尔顿，二十七岁，刚退伍</dd>
+        <dt>经营场所</dt><dd>阿肯色州纽波特，一个小镇的主街</dd>
+        <dt>资金数额</dt><dd>岳父借给他两万美元，加上自己攒的五千</dd>
+        <dt>成立日期</dt><dd>1945 年</dd>
+        <dt>生意</dt><dd>五年里做成了这个加盟系统在当地最好的店之一</dd>
+        <dt>租约</dt><dd>五年期，没有写续租的条款</dd>
+        <dt>结局</dt><dd class="end">1950 年房东不续租，把店收给自己的儿子；他搬到另一个小镇重来</dd>
+      </dl>
+      <div class="no"><span>No. 1945</span><span>登记机关：无</span></div>
+    </div>
+    <div class="real"><b>真的部分</b>沃尔玛的创始人萨姆·沃尔顿在自传里写过：1945 年他用岳父借的两万美元和自己的五千美元，在纽波特买下了一家本·富兰克林连锁加盟的杂货店，几年里把它做得很好。可他签的租约没有续租的选项，1950 年房东拒绝续租，要把店给自己的儿子。他只好卖掉店，搬到本顿维尔重新开始。他说这是他一生中最低落的时候，也让他从此对合同的每一条都格外小心。1962 年他才开出第一家沃尔玛。</div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">怎样做大？雇第一个人要注意什么？不做大行不行？</p>
+      <p>做大有两种钱：自己赚的钱滚进去，和别人的钱（借或者投）。自己的钱能让生意长多快，有一个算得出来的上限，大致是“本钱的回报率 × 留在生意里的比例”。雇第一个人，是从“一个人的手艺”变成“一门生意”的那一步：一个月内签书面劳动合同、交社保，否则要付二倍工资等代价。做大的关键，是<em>把自己从每一个流程里拿出来</em>。不做大也完全可以：一门每年稳稳赚钱、自己过得好的小生意，本身就是一个成功的结局。</p>
+    </div>
+
+    <div class="scene" data-t="周畅的工作室 · 2030 年 1 月 · 年会（四个人）">
+      <p>工作室服务的小店到了两百多家。年会是在楼下的火锅店，一共四个人：周畅、老韩、去年招的销售小郑，和沈舟，他是来蹭饭的。</p>
+      <p>老韩说今年要冲五百家，再招三个人。周畅没说话，他这一年瘦了十斤：所有店主的问题最后都会转到他手机上，半夜也有人发语音说小程序打不开。</p>
+      <p>沈舟问周畅：“你要是请一个月假，会怎样？”</p>
+      <p>周畅想了想：“会塌。”</p>
+      <p>“那今年的第一件事，可能不是五百家。”沈舟说。</p>
+    </div>
+
+    <h3>一份没有续租条款的租约</h3>
+    <p>沃尔顿的第一家店做得很好，好到房东眼红。可他犯了一个刚开始做生意的人很常见的错：签租约的时候只想着开张，没想到五年以后。租约里没有续租的条款，房东一句话，他五年攒下的生意就没了。</p>
+    <p>他后来在自传里说，那是他一生中最低落的时候。他没有借更多的钱去打官司，而是卖掉了店，拿着钱搬到另一个小镇，从头再开一家。十二年后，他才开出第一家沃尔玛。</p>
+    <p>这个故事常被当作“逆境成就伟人”来讲。可对一个想把生意做大的人，它更实在的教训是：<em>生意越大，越容易被一张你当初没细看的纸打倒</em>。租约、合同、股东协议、对赌条款，规模小的时候它们无关紧要，规模大了，任何一条都可能要你的命。</p>
+
+    <h3>不借钱能长多快</h3>
+    <p>第二十章、第二十一章讲了借钱和拿投资的代价。如果都不要，只用自己赚的钱滚，生意能长多快？</p>
+    <p>财务上有一个简单的算法，叫“可持续增长率”：<b>一年最多能长多快 ≈ 投进去的本钱一年能赚回几成 × 赚的钱里有几成留下来继续投</b>。比如一门生意投进去十万元的本钱，一年赚回三万（三成），你从中拿走一半过日子、留一半继续投，那它不借钱，一年大约能长一成五。想长得更快，要么让同样的本钱赚得更多（提高利润率、加快周转，第一章的货郎），要么少拿一点过日子，要么就得用别人的钱。</p>
+    <p>这条公式还说明一件事：<em>本钱回报率高的生意（手艺、软件、服务），不借钱也能长得很快；本钱回报率低的生意（开店、囤货），想快就只能借</em>。这也是为什么本书一直建议本钱少的人从前一类开始。</p>
+  </div>
+
+  <div class="fig" id="growFig">
+    <div class="fig-label">装置 23</div>
+    <h4>不借钱能长多快</h4>
+    <p class="how">设好每一块钱的本钱一年能带来多少收入（周转）、利润率、赚的钱里留下几成继续投。看看不借钱一年能长多快、五年后多大，以及想达到“目标增长”，每年还差多少钱要从外面拿。</p>
+    <div class="ctl"><span>投进去的本钱</span><input type="range" id="grK" min="10000" max="1000000" step="10000" value="100000"><output id="grKO"></output></div>
+    <div class="ctl"><span>一块本钱一年带来收入</span><input type="range" id="grT" min="0.5" max="10" step="0.5" value="3"><output id="grTO"></output></div>
+    <div class="ctl"><span>利润率</span><input type="range" id="grM" min="1" max="50" step="1" value="15"><output id="grMO"></output></div>
+    <div class="ctl"><span>留下继续投</span><input type="range" id="grB" min="0" max="100" step="5" value="40"><output id="grBO"></output></div>
+    <div class="ctl"><span>想要的年增长</span><input type="range" id="grW" min="0" max="100" step="5" value="50"><output id="grWO"></output></div>
+    <div class="chartbox"><svg id="grSvg" role="img" aria-label="五年的规模"></svg></div>
+    <div class="kv" id="grKv"></div>
+    <div class="say" id="grSay"></div>
+    <p class="figcap">示意模型：假设周转和利润率不随规模变化（现实中往往会变差：管理变难、市场变小）；“本钱”包括设备、存货、垫付的账款等一切压在生意里的钱。可持续增长率 = 本钱回报率 × 留存比例，是财务学里的常用近似。</p>
+  </div>
+
+  <div class="col">
+    <h3>雇第一个人</h3>
+    <p>雇第一个人，是一门生意最大的一次变形：从此每个月有一笔不管生意好坏都要付的钱（第七章的固定成本），有一个人的生计系在你身上。法律上有几条必须做到的：</p>
+    <ul class="plain">
+      <li><b>书面劳动合同</b>：按《劳动合同法》，用工之日起一个月内要订立书面劳动合同；超过一个月不满一年没签的，应当向劳动者每月支付二倍的工资。</li>
+      <li><b>社保</b>：用人单位应当为职工缴纳社会保险，这不是可以和员工“商量着不交”的事。</li>
+      <li><b>试用期和工资</b>：试用期长短有法定上限，工资不得低于当地最低工资标准，按时足额支付。</li>
+      <li><b>灵活的方式</b>：活不多时，可以先找外包、按项目合作，或者用非全日制用工（一般每天不超过四小时、每周累计不超过二十四小时，按小时计酬、结算周期最长十五天）。</li>
+    </ul>
+    <p>比法律更难的是管理。第一个员工来了，你会发现很多事“自己做五分钟，教别人要一小时”，于是又自己做了。这正是周畅瘦了十斤的原因。</p>
+
+    <h3>把自己从流程里拿出来</h3>
+    <p>1986 年，美国的小企业顾问迈克尔·格伯写了一本书，讲一个常见的误会：大多数小生意是由一个“技术员”开的，他擅长做那件事（做面包、写代码、修车），以为会做这件事就会经营这门生意。可一门生意还需要一个“经理”来安排秩序，和一个“创业者”来想往哪里走。技术员当了老板，往往把自己困在每天干活里，生意越好，他越累，生意的大小被他一个人的时间封了顶。</p>
+    <p>他的建议是：<em>把生意当成一套可以复制的系统来做</em>，每一件重复的事都写成步骤、做成清单，让别人照着做也能做好；老板的工作，是改进这套系统，而不是亲自跑完每一个流程。</p>
+    <p>对周畅来说，这意味着很具体的几件事：把店主最常问的二十个问题写成帮助文档；把客服交给小郑，自己只处理他解决不了的；把部署和备份做成自动的；以及，真的请一个月假试试，看哪里会塌，然后把那里补上。第十章说过，一人公司是单点故障；一家四个人的公司，如果所有的事都要过老板的手，它还是一个单点故障。</p>
+
+    <h3>不做大的公司</h3>
+    <p>做大不是唯一的结局。</p>
+    <p>美国的软件公司 37signals（做项目管理软件 Basecamp）多年刻意保持小规模，员工几十人，不拿风投，创始人写书讲为什么工作不必疯狂。河南的零售企业胖东来，以对员工和顾客好出名，创始人据报道多次表示不往外省大规模扩张，宁可在几个城市里把店做好。它们的选择未必适合别人，可它们说明：<em>“不进则退”不是规律，而是一种选择</em>。</p>
+    <p>一门生意大到什么程度合适，取决于你想要什么样的生活。第二部的“一周一百六十八小时”在这里同样适用：生意每长大一圈，它要你的时间和心思也长一圈，除非你把自己从流程里拿出来。</p>
+  </div>
+
+  <div class="floor">
+    <h6><span>最多亏多少</span><b>把生意做大</b></h6>
+    <dl>
+      <dt>钱</dt><dd>做大意味着更多的固定成本：人、房租、系统。用借来的钱做大，规模越大，倒下时砸得越重。</dd>
+      <dt>时间</dt><dd>老板不把自己从流程里拿出来，生意越大越累，最后被自己的时间卡住。</dd>
+      <dt>信用</dt><dd>员工的工资和社保、合同的每一条，都是你的信用；欠薪是最伤人的。</dd>
+      <dt>退路</dt><dd>规模越大，转身越难。签每一份长约之前，想清楚五年以后。</dd>
+    </dl>
+    <div class="bot"><b>一句话</b>：用自己赚的钱先算出能长多快；雇人先守法；把自己从流程里拿出来；不做大也是一种成功。</div>
+  </div>
+
+  <div class="myth">
+    <div class="tag">生意不做大，就会被淘汰<small>看是什么生意</small></div>
+    <div class="pop"><i>流行说法</i><p>做生意不进则退，不扩张就会被对手吃掉，小而美是自欺欺人。</p></div>
+    <div class="chk"><i>再查一遍</i><p>在有强烈规模效应的行业（平台、制造、连锁零售），规模确实很重要，小的容易被挤掉。可街上的大多数小生意（一家好面馆、一个手艺人、一个服务几百家店的小工作室），优势来自手艺、口碑和熟客，规模大了反而可能丢掉这些。<b>被淘汰的常常不是不做大的，而是为了做大借了太多钱、开了太多店的</b>（第七章、第二十章）。</p></div>
+  </div>
+
+  <div class="echo" data-k="押韵">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">一张纸</p><p>沃尔顿丢掉第一家店，是因为租约里少写了一行；第八章富兰克林和梅雷迪斯散伙时，连一副马鞍都写进了条件。<em>小生意靠手艺活下来，大生意靠纸活下来</em>。从小到大的那一步，很大程度上，就是从“讲好了”到“写下来”的那一步。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>一个月的假</h3>
+    <p>那年三月，周畅真的请了一个月假，去补办了婚礼和蜜月。临走前，他和小郑把最常见的问题写成了三十页的文档，服务器的报警设成发到两个人的手机。</p>
+    <p>一个月里出了两次问题，一次小郑自己解决了，一次打了周畅的电话。回来以后，他们把第二次的问题也写进了文档。</p>
+    <p>那一年他们没有冲五百家，到年底是两百六十家。周畅胖回了五斤。</p>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>那时的摊子</i>沃尔顿的第一家店因为租约里没有续租条款被房东收回，十二年后才开出第一家沃尔玛。可持续增长率说的是不借钱能长多快；格伯说小老板多半是困在活里的技术员；也有公司刻意不做大。</div>
+      <div><i>你的摊子</i>先用自己赚的钱算出能长多快；雇人一个月内签书面合同、交社保；把重复的事写成文档和清单，请一个月假看看哪里会塌；签每一份长约前想清楚五年后；不做大，也是一种成功。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第二十三章 · 退 ============ -->
+<section class="chap" id="c23" data-vol="卷六 · 大与退 · 退">
+  <div class="chead">
+    <div class="big">退</div>
+    <div>
+      <div class="no">第二十三章</div>
+      <h2>收摊</h2>
+      <dl><dt>讲什么</dt><dd>一天赚五万美元的时候亲手下架的游戏；三种收摊：卖掉、交出去、关掉；关门时先还谁；一场还债的直播和中国第一部个人破产条例；什么时候该走；停掉一个产品的礼貌</dd><dt>本章装置</dt><dd>卖掉，还是继续</dd></dl>
+      <div class="acc" data-a="钱 时 信"></div>
+      <div class="yrs" data-a="2013" data-b="2030"></div>
+    </div>
+  </div>
+
+  <div class="lic">
+    <div class="in">
+      <h5>营业执照</h5>
+      <div class="sub">仿制格式 · 个人开发者的“店”在应用商店里</div>
+      <span class="stamp">仿制<br>示意</span>
+      <dl>
+        <dt>名称</dt><dd class="nm">《笨鸟先飞》（Flappy Bird）</dd>
+        <dt>开发者</dt><dd>阮哈东，越南河内，一个人</dd>
+        <dt>开发时间</dt><dd>据他说，两三天</dd>
+        <dt>经营范围</dt><dd>一只鸟穿过水管，点一下飞一下</dd>
+        <dt>上架</dt><dd>2013 年 5 月，大半年无人问津</dd>
+        <dt>走红</dt><dd>2014 年初登上下载榜首，据他说广告一天收入约五万美元</dd>
+        <dt>下架</dt><dd>2014 年 2 月，他自己宣布并下架</dd>
+        <dt>理由</dt><dd class="end">它毁了我简单的生活</dd>
+      </dl>
+      <div class="no"><span>No. 2014</span><span>登记机关：无</span></div>
+    </div>
+    <div class="real"><b>真的部分</b>越南开发者阮哈东 2013 年发布了这款简单的手机游戏，2014 年 1 月突然爆红，他在采访中说当时广告收入每天约五万美元。巨大的关注、媒体的追逐和玩家“上瘾”的抱怨让他不堪其扰，2014 年 2 月 8 日他发推说将在二十二小时后下架，随后果然下架，他说它毁了他简单的生活。已经下载的玩家仍能继续玩。下架后网上出现大量模仿者。</div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">做不下去了怎样收摊？什么时候该卖掉？</p>
+      <p>收摊有三种：<b>卖掉</b>（给愿意接手的人，常见的价钱是几年的利润）、<b>交出去</b>（让合伙人或员工接手）、<b>关掉</b>（结清工资、税和债，退还预收的钱，注销）。什么时候该走，最好在开始时就写好（第十五、十六章）；走到半路还要再看几个信号：你的优势是不是没了，这门生意给你的，是不是比你去做别的少，以及你的身体和家里。<em>关掉不丢人，丢人的是一走了之</em>：欠着工资、拖着债、留着顾客的储值。</p>
+    </div>
+
+    <div class="scene" data-t="周畅的工作室 · 2030 年 9 月 · 一封收购邮件">
+      <p>两件事几乎同时发生。</p>
+      <p>一件是坏消息：几个大平台开始给小商户免费提供 AI 生成的点餐和会员小程序，填几个空就能用。工作室的点餐模板，这一年新签的店越来越少，老店也开始流失。</p>
+      <p>一件是好消息：一家做打印店管理软件的公司发来邮件，想买下工作室的打印排队系统，连同三百多家打印店客户，出价是这块业务年利润的三倍。</p>
+      <p>老韩说：“卖了不就等于认输？”</p>
+      <p>周畅说：“点餐那块，谁都能做了。打印那块，人家给的价钱，比我们自己再做三年稳当。”</p>
+      <p>那个周末，沈舟带着笔记本来了，三个人把两块业务分开，各算了一本账。</p>
+    </div>
+
+    <h3>亲手下架</h3>
+    <p>2014 年 2 月，越南开发者阮哈东做了一件让全世界都看不懂的事：他的小游戏《笨鸟先飞》正在下载榜首，据他说广告每天能带来约五万美元，他却宣布下架，二十二小时后真的下架了。他说这个游戏毁了他简单的生活。</p>
+    <p>很多人骂他傻，也有人说他是被逼的。可从这本书的角度看，他做了一件极少有人做得到的事：<em>在最赚钱的时候，按自己想要的生活做了决定</em>。第二十二章说过，生意要多大，取决于你想要什么样的生活；收摊也是一样。他后来继续做游戏，过着他想要的、不太被人注意的日子。</p>
+    <p>多数人的收摊没有这么戏剧化。更常见的是：生意慢慢变差，老板舍不得，一个月一个月地撑，直到钱用完、或者借了钱。</p>
+
+    <h3>三种收摊</h3>
+    <p><b>卖掉</b>。一门有稳定利润、有客户的生意，是可以卖的。小生意常见的价钱是年利润的几倍，差别很大：利润越稳、越不依赖老板本人、客户越多，越值钱。第二十二章说的“把自己从流程里拿出来”，在这里变成了真金白银：<em>一门离了你就转不动的生意，没人买</em>。</p>
+    <p><b>交出去</b>。让合伙人、员工或者家人接手。第五章的富兰克林四十二岁就把印刷生意交给合伙人霍尔经营，自己按约定分利润，转身去做研究。交出去之前，同样要写清楚：谁拥有、谁经营、利润怎么分、多少年。</p>
+    <p><b>关掉</b>。按《公司法》，公司解散要清算，财产按顺序清偿：先付清算费用，再付职工的工资、社会保险费用和法定补偿金，再缴所欠的税款，再还公司的债务，最后剩下的才分给股东。没有债权债务的，可以走简易注销；有的，要好好清算。个体户注销简单得多，但它的债要个人来还。</p>
+    <p>不管哪一种，有几件事是收摊的礼貌，也是保护自己：提前通知客户，退还预收的钱（第十七章的储值），帮客户把数据导出、按《个人信息保护法》删除你手里的个人信息，结清员工的工资和社保，按时注销执照（第十八、十九章）。</p>
+  </div>
+
+  <div class="fig" id="exitFig">
+    <div class="fig-label">装置 24</div>
+    <h4>卖掉，还是继续</h4>
+    <p class="how">设好这门生意现在一年的利润、以后每年是涨还是跌、你自己去做别的一年能挣多少（机会成本）、对方出价是年利润的几倍。比一比：现在卖掉拿到的钱，和接着干五年的账（按每年打个折，换算成今天的钱）。</p>
+    <div class="ctl"><span>一年利润</span><input type="range" id="exP" min="10000" max="1000000" step="10000" value="200000"><output id="exPO"></output></div>
+    <div class="ctl"><span>以后每年</span><input type="range" id="exG" min="-50" max="30" step="5" value="-15"><output id="exGO"></output></div>
+    <div class="ctl"><span>你去做别的一年挣</span><input type="range" id="exO" min="0" max="500000" step="10000" value="120000"><output id="exOO"></output></div>
+    <div class="ctl"><span>对方出价</span><input type="range" id="exM" min="0.5" max="8" step="0.5" value="3"><output id="exMO"></output></div>
+    <div class="ctl"><span>每年打的折</span><input type="range" id="exD" min="0" max="20" step="1" value="8"><output id="exDO"></output></div>
+    <div class="bars" id="exBars"></div>
+    <div class="kv" id="exKv"></div>
+    <div class="say" id="exSay"></div>
+    <p class="figcap">示意模型：“继续干”的价值 = 五年里每年（利润 − 你去做别的能挣的钱）按折扣率折回今天，再加上五年后还能按同样倍数卖掉的价值；卖掉的这五年，你按“去做别的”挣钱。没有算税、交接期和卖不掉的风险。不是投资或交易建议。</p>
+  </div>
+
+  <div class="col">
+    <h3>一场还债的直播</h3>
+    <p>收摊最难的一种，是欠着债的收摊。</p>
+    <p>2012 年，罗永浩创办了锤子科技，做智能手机。几年后公司陷入困境，2019 年前后，他因为公司的债务纠纷被法院列为限制高消费的人员。据他自己说，他背上了约六亿元的债，其中有些是他个人担保、依法要还的，有些他本可以不管，他选择都还。2020 年 4 月，他开始在短视频平台直播卖货还债，网友把这段经历叫“真还传”。2022 年底前后，他说债已基本还清。</p>
+    <p>这个故事被讲成了一个“诚信”和“逆袭”的故事，它也确实是。可从这本书的角度，它更该被当作第二十章的一个注脚来读：<em>公司的债之所以变成了他个人的债，常常是因为当初签了个人担保</em>。他还得上，是因为他有极少数人才有的名气和带货能力。大多数背上个人担保的小老板，没有直播间可以去。</p>
+    <p>中国还没有全国性的个人破产制度。2021 年 3 月起施行的《深圳经济特区个人破产条例》是第一部地方性的个人破产法规，适用范围很有限。对绝大多数人来说，背上的个人债务，只能一点一点还。这正是本书从第零章起反复说“先定上限”的原因。</p>
+  </div>
+
+  <div class="echo" data-k="押韵">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">停薪留职的绳子</p><p>第十三章说，四十年前系着绳子下海的人，有人回来时发现厂已经没了：退路会自己消失。收摊也是一样：<em>最好的收摊时机，往往是还有人愿意买、还有力气转身的时候</em>，而不是撑到最后一分钱。阮哈东在一天五万美元的时候下架，周畅在打印业务还值三倍利润的时候卖掉，都是在退路还开着的时候走的。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>什么时候该走</h3>
+    <p>第十六章给了一张红黄绿灯的表，那是“扛不住了”的信号。生意还过得去的时候，也有几个值得认真想一想的信号：</p>
+    <ul class="plain">
+      <li><b>你的优势没了</b>。你会做、别人不会做的东西，现在谁都能做了（比如被平台免费、被 AI 替代）。</li>
+      <li><b>它给你的比别处少</b>。扣掉你自己的时间，它一年给你的，比你去上班、去做别的还少（上面那个装置算的就是这个）。</li>
+      <li><b>它在变差，而你说不出为什么会变好</b>。“再撑一下”说不出具体的理由，就是《值不值》第二章讲过的沉没成本在说话。</li>
+      <li><b>有人愿意出一个公道的价</b>。买家不是天天有的。</li>
+      <li><b>你的身体和家里在发信号</b>。</li>
+    </ul>
+  </div>
+
+  <div class="floor">
+    <h6><span>最多亏多少</span><b>收摊</b></h6>
+    <dl>
+      <dt>钱</dt><dd>卖得太晚，生意越来越不值钱；关得太晚，亏损越撑越大。没签个人担保的，关掉时亏的是生意；签了的，债跟着人走。</dd>
+      <dt>时间</dt><dd>清算、交接、注销都要时间，几周到几个月。</dd>
+      <dt>信用</dt><dd>一走了之是最贵的：欠薪、欠税、欠债、卷走储值，会被追究、被限高、被列入名单。好好收摊，是下一次开张的本钱。</dd>
+      <dt>退路</dt><dd>收摊本身就是退路。按约定的条件走，比被逼着走好得多。</dd>
+    </dl>
+    <div class="bot"><b>一句话</b>：在退路还开着的时候走；卖掉、交出去、关掉都可以，一走了之不行。</div>
+  </div>
+
+  <div class="myth">
+    <div class="tag">坚持就是胜利，放弃就是失败<small>看坚持的是什么</small></div>
+    <div class="pop"><i>流行说法</i><p>成功的人都是熬出来的，多少人倒在黎明前，再坚持一下就成了。</p></div>
+    <div class="chk"><i>再查一遍</i><p>熬出来的故事是真的，可我们听到的都是熬成了的（第四章、《值不值》第十二章的幸存者偏差），熬垮了的人不会上台演讲。<b>值得坚持的是方向和手艺，不是某一门已经变差的生意</b>。第十五章的萨拉斯瓦蒂发现，老练的创业者把意外当材料、随时调头；第五章的林蔚给自己定了十八个月。按事先写好的条件停下来，不是放弃，是计划的一部分。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>两本账</h3>
+    <p>那个周末算完账，三个人做了两个决定。</p>
+    <p>打印排队系统卖掉。周畅花了两个月帮买家交接，一家一家给打印店老板打电话说明情况，把文档、数据和服务器都交了过去。</p>
+    <p>点餐模板不再签新店，给老客户一年的过渡期，期间照常维护，到期前三个月通知，帮他们把菜单和会员数据导出来，不收一分钱。</p>
+    <p>卖掉打印系统的钱，按股权比例分了一部分，留了一部分在公司里。周畅说：“我们还剩一样东西，是平台免费不了的：会给小店做事、懂小店的人。”</p>
+    <p>下一步做什么，尾声再说。</p>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>那时的摊子</i>阮哈东在一天赚五万美元的时候亲手下架了游戏；富兰克林四十二岁把印刷生意交给合伙人；公司解散时先付工资社保，再缴税、还债，最后才轮到股东；一位创业者背着约六亿元的债直播还了几年，中国的个人破产制度只在深圳试行。</div>
+      <div><i>你的摊子</i>在退路还开着时走：优势没了、它给你的比别处少、说不出为什么会变好，就认真考虑卖掉、交出去或关掉。离了你也能转的生意才卖得掉。收摊时结清工资、税和债，退还预收，交出数据，按时注销。</div>
+    </div>
+  </div>
+</section>
+
+<div class="volhead" id="v7" data-vol="尾声">
+  <div class="num">EPILOGUE</div>
+  <h2>张<small>开张</small></h2>
+  <p class="lede">书从一挂鞭炮开始，也在一挂鞭炮里结束。尾声不替沈舟选结局：他的五年有三个版本，读者可以自己挑一个，或者都不信。不变的是全书二十四章里那二十四句“一句话”，以及最后一张营业执照，它是空白的。</p>
+  <svg class="awn" aria-hidden="true"></svg>
+</div>
+
+<!-- ============ 尾声 · 张 ============ -->
+<section class="chap" id="c24" data-vol="尾声 · 张">
+  <div class="chead">
+    <div class="big">张</div>
+    <div>
+      <div class="no">尾声</div>
+      <h2>开张</h2>
+      <dl><dt>讲什么</dt><dd>五年以后的沈舟，三个版本；押韵的地方；全书二十四句“最多亏多少”；一间终于有了门面的工作室；最后一张营业执照</dd><dt>本章装置</dt><dd>全书最多亏多少</dd></dl>
+      <div class="acc" data-a="钱 时 手 人 信"></div>
+      <div class="yrs" data-a="2032" data-b="2032"></div>
+    </div>
+  </div>
+
+  <div class="lic">
+    <div class="in">
+      <h5>营业执照</h5>
+      <div class="sub">空白 · 等你来填</div>
+      <span class="stamp">待填<br>空白</span>
+      <dl>
+        <dt>名称</dt><dd class="nm">__________</dd>
+        <dt>经营者</dt><dd>你</dd>
+        <dt>经营场所</dt><dd>__________</dd>
+        <dt>经营范围</dt><dd>__________</dd>
+        <dt>资金数额</dt><dd>最多亏 ______ 元，不借钱</dd>
+        <dt>每周时间</dt><dd>最多 ______ 小时</dd>
+        <dt>检查日期</dt><dd>______ 年 ___ 月 ___ 日</dd>
+        <dt>结局</dt><dd class="end">还没写</dd>
+      </dl>
+      <div class="no"><span>No. ______</span><span>登记机关：你自己</span></div>
+    </div>
+    <div class="real"><b>真的部分</b>这一张是空的。全书前面二十四张执照，记的都是别人的生意：货郎、个体户、网店、靴匠、修士、加盟店、游戏开发者。最后一张留给读这本书的人。它可以一辈子都是空的，那也没什么不好；如果有一天要填，“资金数额”那一行最重要：最多亏多少。</div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">五年以后会怎样？</p>
+      <p>没人知道。这本书没有替沈舟选结局，因为现实中考试会怎样、平台会怎样、AI 会怎样，五年后都可能和今天想的不一样。可有几件事，不管哪一个版本都成立：<em>先定亏损的上限；本钱少就靠手艺和周转；不借钱填窟窿，不借卡，不签说不清的担保；按事先写好的条件开始，也按事先写好的条件停下</em>。</p>
+    </div>
+
+    <h3>三个版本</h3>
+    <p>2027 年 12 月的那几场考试，书里一直没写结果。下面是五年以后的三个版本，都是编的。它们对应封面那张岔路图上的三个终点。</p>
+
+    <div class="scene" data-t="版本 A · 读研那条线 · 2032 年">
+      <p>二战上岸以后，沈舟读了三年研究生。研一他按约定退出了工作室的股份，拿回了那一万块；研二跟着导师做零售数据的项目，工作室有时找他审代码，他事先问过导师，只做不占科研时间的事，不拿钱。</p>
+      <p>2031 年毕业，他进了一家做零售软件的公司。工资不算高，可他是全组最懂小店的人：他在学校周边走过那五家店，知道面馆老板为什么三千块的小程序没人用。业余他维护着一个开源的小工具，帮小店老板自己看账。</p>
+      <p>他没有开公司。他的家当清单上，钱那一栏，第一次有了五位数的存款，旁边写着：没借钱。</p>
+    </div>
+
+    <div class="scene" data-t="版本 B · 在编那条线 · 2032 年">
+      <p>2027 年秋天，事业编的录用通知终于来了。十二月的考研他照样去考了，没上，就安心留在了单位。按第十三章写好的“上岸版”，他先过试用期，问清楚了单位的规定，然后按约定退出了工作室的股份，钱原数拿回。</p>
+      <p>五年里，他在单位做信息化，把一堆纸质的流程搬进了系统，有一年还被评了先进。他不做生意，可单位里谁家孩子要开店、谁的亲戚要加盟，都会来问他，他就把第七章那几句话讲一遍：查备案，找直营店，问三家开了一年的店主。</p>
+      <p>周末他偶尔去工作室蹭饭，只吃饭，不拿钱。他的家当清单上写着：编制，医保，没借钱。</p>
+    </div>
+
+    <div class="scene" data-t="版本 C · 三无那条线 · 2032 年">
+      <p>2028 年春天，几场考试都没上。他照着“没上版”做：回家住，续上医保，去人社部门找了一个就业见习的岗位，在本地一家软件公司见习了半年，学会了怎样给真实的客户交付。</p>
+      <p>2028 年秋天，他全职加入了周畅的工作室，按第八章那张纸，从那天起出力的股份开始成熟。他管账、管文档、管交付，2030 年卖掉打印系统那件事，是他算的账。现在他们五个人，专门给县城和小镇上的小店做数字化：平台免费给的东西，店主不会用，他们去教、去配、去改。</p>
+      <p>他三十岁之前没再考试。他的家当清单上写着：一门手艺，一群信得过的人，一家有限公司，没借钱。</p>
+    </div>
+
+    <p>三个版本里，一个读研、一个在编、一个做了生意，过得都不坏，也都不传奇。<em>这本书想说的，正是这一点：一个普通人的“开张”，不一定是开一家公司；它可以是在任何一个结局里，知道自己最多亏多少，然后往前走</em>。</p>
+
+    <h3>押韵的地方</h3>
+    <p>写完这本书回头看，有好几处地方，两千年前和今天押上了韵：</p>
+    <ul class="plain">
+      <li>李嵩画里摇着拨浪鼓的货郎，和今天在平台上接单的人：本钱最小，退路最宽，天花板最低。</li>
+      <li>官府发的牙帖，和平台发的账号：谁站在中间，谁就定规矩。</li>
+      <li>汉代的“市籍”连累到孙子一辈，奶奶家嫌爷爷是个体户：站在册子外面的人天然矮半截。</li>
+      <li>沙县的标会，和把新会员的储值拿去填老会员服务的店：钱一直在进，直到有一天进的停了。</li>
+      <li>1930 年街角挤满的苹果小贩，和今天挤满的骑手、代驾：门槛为零的生意，所有人都能做。</li>
+      <li>停薪留职的那根绳子，和事业单位专技人员的离岗创业：系着绳子下海，可绳子也会断。</li>
+      <li>司马相如用小酒铺换来岳父的家底，今天的人用家底去开店：方向反了，风险也反了。</li>
+      <li>富兰克林和合伙人散伙时写进去的那副马鞍，沃尔顿租约里少写的那一行：小生意靠手艺，大生意靠纸。</li>
+      <li>萨洛蒙让妻儿各持一股凑够七人，老韩想让表弟挂名法人：法律要一个数字，人们给它一个名字。</li>
+      <li>修士帕乔利写下的“借”和“贷”，和白板上那两列“赚了多少”“钱在哪里”：五百年来，生意死在账上的比死在客人上的多。</li>
+    </ul>
+  </div>
+
+  <div class="fig" id="allFig">
+    <div class="fig-label">装置 25</div>
+    <h4>全书最多亏多少</h4>
+    <p class="how">二十四章，每章一个“最多亏多少”的框，每个框末尾一句话。全部摆在这里；可以按卷看，也可以抽一条带走。点章名回到那一章。</p>
+    <div class="btns" id="alVol"></div>
+    <div class="btns"><button class="btn pri" id="alPick">抽一条</button></div>
+    <div class="say" id="alOne" style="display:none"></div>
+    <ol id="alList" style="padding-left:0;list-style:none;margin:10px 0 0"></ol>
+    <p class="figcap">这些句子是本书各章的概括，不是法律、税务或职业规划的意见。</p>
+  </div>
+
+  <div class="col">
+    <h3>如果只记六句</h3>
+    <ol class="plain" style="padding-left:1.2em">
+      <li>先定亏损的上限，再想赚多少；上限定不下来的，不做。</li>
+      <li>本钱少，就卖手艺、做服务、让钱转得快；不囤货，不租铺，不交加盟费。</li>
+      <li>有人付钱之前什么都不算；先找付钱的人，再做东西。</li>
+      <li>你的卡、身份证、手机号不借给任何人；钱来得说不清的，不碰。</li>
+      <li>不借钱填窟窿，不借高息的钱，个人担保和配偶签字想清楚再签。</li>
+      <li>按写好的条件开始，也按写好的条件停下；回去上班、考试、读书，都是计划里的一种结局。</li>
+    </ol>
+  </div>
+
+  <div class="floor">
+    <h6><span>最多亏多少</span><b>你的那一门生意</b></h6>
+    <dl>
+      <dt>钱</dt><dd>______ 元。不借，不担保，不动家里的养老钱。</dd>
+      <dt>时间</dt><dd>每周最多 ______ 小时，到 ______ 为止。</dd>
+      <dt>信用</dt><dd>答应的做到；做不到就退钱、说清楚。</dd>
+      <dt>退路</dt><dd>__________（写下你停下来以后回到哪里）。</dd>
+    </dl>
+    <div class="bot"><b>一句话</b>：这一格留给你自己写。</div>
+  </div>
+
+  <div class="col">
+    <h3>门面</h3>
+    <p>2032 年春天，周畅的工作室第一次有了一间临街的门面，在一座小城的老街上，楼上办公，楼下摆着几台电脑，给来问事的店主坐。不管是哪一个版本里的沈舟，那天都来了。</p>
+    <p>开张那天，门口放了一挂鞭炮，挂了一块红绸。老韩站在门口发烟，见人就说“多关照”。</p>
+    <p>周畅把沈舟拉到一边，压低声音问：“你帮我看看，这间门面的租约，签了三年，有没有续租条款？”</p>
+    <p>沈舟看了一眼，笑了：“有。押一付三，最多亏多少，你自己算过了吧？”</p>
+    <p>“算过了。”周畅说，“亏光了，也就是这间门面。我们没借钱。”</p>
+    <p>鞭炮响完了，街上的红纸屑被风吹得到处都是。沈舟想起五年前那本草稿本上的第一页，家当清单的最后一行：“最怕像表哥那样，开个店，亏二十万。”</p>
+    <p>他现在不怕了。不是因为不会亏，而是因为他知道最多亏多少。</p>
+  </div>
+
+  <div class="col">
+    <div class="seal">
+      <div><i>那时的摊子</i>两千年里，货郎、牙行、个体户、平台上的小店、靴匠的公司、加盟的杂货店、一个人的游戏，开张的方式变了很多遍；押韵的是：本钱小的人靠手艺和周转，借来的钱会把有上限的亏变成没有上限的亏，生意死在账上的比死在客人上的多。</div>
+      <div><i>你的摊子</i>那张空白的执照，可以一辈子不填。要填的那一天，先填“最多亏多少”。然后找第一个付钱的人，一张生意的卡，一页纸的计划，一半写的是什么时候停。开张大吉。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 书末：哪些是真的、存疑与出处 ============ -->
+<section class="chap" id="notes3" data-vol="书末 · 存疑与出处">
+  <div class="col">
+    <h3>全书：哪些是真的</h3>
+    <ul class="src">
+      <li><b>虚构的</b>：沈舟、他的爸妈和爷爷、表哥陈亮、室友周畅和老韩、学姐林蔚、销售小郑、代账会计大姐，学校周边的几家店、打印连锁、烘焙连锁、来收购打印系统的公司，周畅的工作室和它的每一笔生意，都是虚构的，不对应任何真人或真实企业。故事从 2027 年寒假写到 2032 年春天，<b>全部晚于本书的写作时间</b>：书里的考试安排和结果、尾声的三个版本，都是编的，不是对任何人的预测。</li>
+      <li><b>营业执照</b>：二十四张执照的格式都是仿的，很多年代根本没有营业执照；执照上记的人和事是真实的历史（第十二章那张不针对具体的人，第十三章那张是按当年通行做法仿写的停薪留职协议），框底写明了可靠的部分。尾声那一张是空白的。</li>
+      <li><b>正文</b>：历史、人物、法规、判决和研究尽量核对过，有争议的地方标了“存疑”或“据报道”。<b>法律、税收、社保、考试和编制的规定，是写作时（2026 年底）的概括</b>，很多优惠政策有明确的截止日期（多数到 2027 年底），以后会变，地方也有差别；它们不是法律、税务或职业规划的意见。</li>
+      <li><b>装置</b>：全书二十五个章节装置和三个封面装置，都是示意模型或对照清单，数字为说明道理而设，不是预测；不推荐任何项目、加盟品牌、平台、贷款或课程。装置 13、17 不记录选择；装置 16 的内容只保存在你自己的浏览器里。</li>
+    </ul>
+
+    <h3>第三部：存疑与说明</h3>
+    <ul class="src">
+      <li><b>流</b>：帕乔利的书名为意译，复式记账并非他发明，他是最早系统印行的人；“利润是观点，现金是事实”是流传的说法，出处不一；《保障中小企业款项支付条例》2020 年施行、2025 年修订，付款期限的表述为大意，以原文为准；单用途预付卡的管理规定为概括。</li>
+      <li><b>形</b>：萨洛蒙案的股数、金额和年份按通行的教科书叙述（上议院判决于 1896 年 11 月，判例集记为 1897 年）；2023 年修订《公司法》关于五年缴足、出资加速到期、一人公司举证责任的规定，以及 2024 年国务院关于注册资本登记管理的过渡规定，均为大意；法定代表人被限制消费的规定按最高人民法院的相关司法解释概括。</li>
+      <li><b>税</b>：台湾地区统一发票的开办和给奖年份，各资料说法略有出入；小规模纳税人增值税、个体工商户经营所得减半、小型微利企业所得税的优惠，按财政部、税务总局 2023 年的相关公告，执行至 2027 年 12 月 31 日；《增值税法》2026 年 1 月 1 日起施行；全面数字化电子发票和互联网平台涉税信息报送的时间按公开报道。装置 20 极度简化，不能用来报税。</li>
+      <li><b>借</b>：小马奔腾的投资金额、协议条款、判决的法院和年份，均为“据报道”，以判决书为准；《民法典》第一千零六十四条的表述为大意；创业担保贷款“个人最高三十万元左右”为写作时的全国口径，各地执行不同；民间借贷利率的司法保护上限为“一年期贷款市场报价利率的四倍”，具体数字随报价利率变化。</li>
+      <li><b>股</b>：俏江南的投资金额、持股比例、协议条款以及“领售权导致创始人出局”的说法，均为媒体报道，当事人有不同说法，本书不评判是非；《全国法院民商事审判工作会议纪要》（2019）关于对赌协议的意见为大意；有限责任公司三分之二表决权事项按《公司法》概括，章程可在法律范围内另作约定；非法集资四个特征按司法解释的通行概括。</li>
+      <li><b>大</b>：沃尔顿第一家店的资金来源和租约的经过出自他的自传，细节以原书为准；可持续增长率是财务学中的近似；《劳动合同法》二倍工资、非全日制用工的规定为大意；格伯的观点只作概括；37signals 和胖东来的经营选择为“据报道”。</li>
+      <li><b>退</b>：《笨鸟先飞》每天约五万美元的广告收入出自开发者本人接受采访时的说法；罗永浩的债务金额、还债时间均为他本人公开的说法；公司清算的清偿顺序按《公司法》概括；《深圳经济特区个人破产条例》2021 年 3 月 1 日起施行。</li>
+      <li><b>张</b>：尾声三个版本全部是虚构；“押韵的地方”是本书的归纳。</li>
+    </ul>
+
+    <h3>第三部：主要出处</h3>
+    <ul class="src">
+      <li>法规与文件（大意）：《公司法》（2023 年修订）；国务院关于实施公司法注册资本登记管理制度的规定（2024）；《民法典》；《合伙企业法》；《个人独资企业法》；《劳动合同法》；《保障中小企业款项支付条例》（2020，2025 年修订）；《增值税法》；财政部、税务总局 2023 年关于小规模纳税人增值税、个体工商户和小型微利企业所得税优惠的公告；《刑法》关于逃税、虚开增值税专用发票、非法吸收公众存款的规定及相关司法解释；最高人民法院关于夫妻债务（2018）、民间借贷利率、限制被执行人高消费的规定；《全国法院民商事审判工作会议纪要》（2019）；《深圳经济特区个人破产条例》；《个人信息保护法》。</li>
+      <li>著作与研究（只作转述）：Luca Pacioli, <i>Summa de arithmetica</i>（1494）；<i>Salomon v A Salomon &amp; Co Ltd</i>（英国上议院，1896/1897）；Robert C. Higgins 关于可持续增长率的论述；Michael Gerber, <i>The E-Myth</i>（1986）；Sam Walton, <i>Made in America</i>（1992）；Jason Fried &amp; David Heinemeier Hansson, <i>It Doesn't Have to Be Crazy at Work</i>（2018）。</li>
+      <li>其他：书房里的《值不值》《红与绿》《柜台里外》《铁打的营盘》中相关章节。全书前两部的出处见<a href="./#notes1">第一部</a>和<a href="two.html#notes2">第二部</a>的部末。</li>
+    </ul>
+  </div>
+</section>
+
+<div class="partend" data-vol="全书完">
+  <div class="k">第三部 · 账 · 全书完</div>
+  <h3>开张，到这里讲完了</h3>
+  <p class="ni" style="font-size:16px;line-height:1.9;text-align:left">第三部讲的是活下来以后的几本账：赚了钱手里没钱，是因为利润和现金不同步；有限责任是一道墙，墙上的洞是没缴的钱、混着的账和签了的担保；收入是看得见的，小生意的税在写作时本来不高；只借买得来确定现金的钱；拿别人的钱之前，把每个条款在最坏的那一天念一遍；不借钱能长多快是算得出来的，不做大也是一种成功；在退路还开着的时候收摊。全书三部二十五章，从一副货郎担讲到一间终于有了门面的工作室，说来说去是一句话：<em>先定亏损的上限，再想赚多少</em>。</p>
+  <a class="go" href="./">回到第一部 · 摊</a>
+</div>
+
+<footer>
+  <p>《开张 · 一个人的生意创世记》全书三部。沈舟和他身边的人、他们的生意和未来都是虚构的；正文中的史实、法规与研究尽量核对过，有争议的地方标了“存疑”，说明与出处见<a href="#notes3">上面</a>及前两部部末。</p>
+  <p>本书只讲历史、机制和概念，不推荐任何项目、加盟品牌、平台、贷款或课程，不构成法律、税务、投资或职业规划的意见。涉及法律、税收、社保、考试和编制的规定，以当时的官方文本和公告为准。</p>
+  <a class="nextbook" href="../stock/"><small>书房里的另一本书</small><br><b>红与绿 · 投资创世记</b><br><small>这本书讲一个普通人怎样开一门小生意；那本书讲他攒下的钱走进股市会碰到什么，以及钱攒下来到底拿来干什么。</small></a>
+  <p><a href="#top" class="toTop">回到封面 ↑</a>　·　<a href="./">第一部 · 摊</a>　·　<a href="two.html">第二部 · 路</a>　·　<a href="../">回书房</a></p>
+</footer>
+
+<script>
+(function(){
+'use strict';
+const $ = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => [...(r || document).querySelectorAll(s)];
+const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+const lerp = (a, b, t) => a + (b - a) * t;
+function rng(seed){ let a = seed >>> 0; return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const fmt = n => n >= 1e8 ? (n / 1e8).toFixed(1) + ' 亿' : n >= 1e4 ? (Math.round(n / 1e3) / 10).toLocaleString() + ' 万' : Math.round(n).toLocaleString();
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+const yr = y => y < 0 ? '前 ' + (-y) : String(y);
+const btnRow = (box, items, cur, cb) => {
+  box.innerHTML = items.map((t, i) => '<button class="btn' + (i === cur ? ' on' : '') + '" data-i="' + i + '">' + t + '</button>').join('');
+  box.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; $$('button', box).forEach(x => x.classList.toggle('on', x === b)); cb(+b.dataset.i); });
+};
+const dev = (sel, fn) => { const el = $(sel); if (el) { try { fn(el); } catch (err) { console.error(sel, err); } } };
+const kv = (box, rows) => { box.innerHTML = rows.map(r => '<div>' + r[0] + '<b>' + r[1] + '</b></div>').join(''); };
+function svgPt(svg, e){
+  const r = svg.getBoundingClientRect(), vb = svg.viewBox.baseVal;
+  const s = Math.max(vb.width / r.width, vb.height / r.height);
+  const ox = (r.width * s - vb.width) / 2, oy = (r.height * s - vb.height) / 2;
+  return {x: (e.clientX - r.left) * s - ox + vb.x, y: (e.clientY - r.top) * s - oy + vb.y};
+}
+function txt(x, y, t, o){ o = o || {}; return '<text x="' + x + '" y="' + y + '" font-size="' + (o.s || 13) + '" fill="' + (o.c || 'var(--ink)') + '" text-anchor="' + (o.a || 'middle') + '"' + (o.w ? ' font-weight="700"' : '') + (o.halo === false ? '' : ' paint-order="stroke" stroke="' + (o.hc || 'var(--card)') + '" stroke-width="3.5" stroke-linejoin="round"') + '>' + t + '</text>'; }
+/* 滑块：绑定 input 与 output，返回读数函数 */
+function slider(id, f, cb){ const r = $('#' + id), o = $('#' + id + 'O'); const go = () => { if (o) o.textContent = f ? f(+r.value) : r.value; if (cb) cb(+r.value); }; r.addEventListener('input', go); go(); return () => +r.value; }
+
+/* ---------- 全书目录（三个网页共用） ---------- */
+const PAGE = /three\.html/.test(location.pathname) ? 3 : /two\.html/.test(location.pathname) ? 2 : 1;
+const READY = 3; // 已经写好的部数
+const PURL = {1: './', 2: 'two.html', 3: 'three.html'};
+const TOC = [
+  {p: 1, t: '第一部 · 摊 —— 普通人怎样做生意'},
+  {v: '序幕'},
+  {id: 'c0', n: '底', t: '先算最多亏多少', s: '一个没有积蓄、不想欠债的毕业生；一亿多户个体户；五种开法；能撑几个月', r: '今'},
+  {v: '卷一 · 市 —— 古今的小买卖'},
+  {id: 'c1', n: '担', t: '一副担子', s: '倚市门、货郎图、市籍和七科谪、牙行和牙帖；本钱少的人靠周转', r: '前 500—1900'},
+  {id: 'c2', n: '证', t: '第一张执照', s: '温州一个十九岁的姑娘、雇工八人的算术、傻子瓜子、从个体户到私营企业', r: '1979—2022'},
+  {id: 'c3', n: '网', t: '平台上的小店', s: '免费开店、双十一、网约车和外卖骑手、二选一和封号；抽成之后还剩多少', r: '2003—2026'},
+  {v: '卷二 · 法 —— 五种开法'},
+  {id: 'c4', n: '星', t: '天才的那条路', s: '八个叛徒和一张一百多万美元的支票、幂律、小黄车的押金；风投要的和你要的不一样', r: '1946—2023'},
+  {id: 'c5', n: '攒', t: '先上班', s: '印刷学徒富兰克林、四十三岁的两万一千块、卖凉粉的饭店；创业者的平均年龄', r: '1718—2020'},
+  {id: 'c6', n: '艺', t: '一门手艺', s: '一个人做了四年多的游戏、副业做成的一百二十亿美元、一千个铁杆粉丝；手艺归谁', r: '2001—2024'},
+  {id: 'c7', n: '铺', t: '拿家底开店', s: '卓文君当垆、两店一年、快招公司、固定成本；开一家奶茶店', r: '前 130—2026'},
+  {id: 'c8', n: '伙', t: '几个人凑钱', s: '富兰克林的酒鬼合伙人和一位寡妇、无限连带、五五开的僵局、肉夹馍；分股权', r: '1728—2014'},
+  {p: 2, t: '第二部 · 路 —— AI 时代一个毕业生的岔路'},
+  {v: '卷三 · 器 —— 新工具'},
+  {id: 'c9', n: '器', t: '一个人干一个组的活', s: '一百美元的电子表格、记账员和会计师、快了一半也慢了五分之一；阿姆达尔定律', r: '1967—2027'},
+  {id: 'c10', n: '单', t: '一个人的公司', s: '半年卖掉的一人公司、十二个月十二个产品、收入的长尾、在中国要过的几道门；订阅的天花板', r: '2009—2027'},
+  {id: 'c11', n: '卖', t: '第一个付钱的人', s: '到鞋店里拍鞋、一段演示视频、做不能规模化的事、别问“你会不会买”；一个漏斗', r: '1999—2027'},
+  {id: 'c12', n: '坑', t: 'AI 时代的坑', s: '一百九十九元的 AI 课、借卡和帮信罪、刷单、爬数据、套壳、换脸、AI 代写；红灯还是绿灯', r: '2015—2027'},
+  {v: '卷四 · 岔 —— 都没上怎么办'},
+  {id: 'c13', n: '岔', t: '读研、考编、上岸', s: '停薪留职、应届生身份和择业期、年龄线、四种身份各能做什么；两个版本的计划', r: '1983—2027'},
+  {id: 'c14', n: '无', t: '三无的时候', s: '街角的苹果、先保住的四样、自己交社保、见习和补贴；三无的底线账', r: '1930—2027'},
+  {id: 'c15', n: '步', t: '第一步', s: '邮购的少年、从手里有的出发、可承受损失、第一步的八条、什么时候办执照；一页纸的计划', r: '1943—2027'},
+  {id: 'c16', n: '身', t: '一个人扛', s: '早睡早起的历书、创业者的心理健康、怎样跟爸妈说、面子；该不该回去上班', r: '1732—2027'},
+  {p: 3, t: '第三部 · 账 —— 和钱搭上边'},
+  {v: '卷五 · 钱'},
+  {id: 'c17', n: '流', t: '赚钱了，钱呢', s: '威尼斯的复式记账、利润和现金、账期和黑字倒闭、储值卡是欠顾客的钱、公私分开；利润和现金', r: '1494—2028'},
+  {id: 'c18', n: '形', t: '个体户还是公司', s: '靴匠和他的公司、五种形式、注册资本五年缴足、墙上的三个洞、挂名法人；出了事用谁的钱赔', r: '1892—2028'},
+  {id: 'c19', n: '税', t: '发票和税', s: '能中奖的发票、小规模纳税人、经营所得减半、一人公司的两道税、两条不能碰的线；同样赚一年交多少税', r: '1950—2028'},
+  {id: 'c20', n: '借', t: '借钱的边界', s: '两亿元和共债共签、各种钱的价钱、什么钱可以借；借钱扩张最后欠不欠', r: '2011—2029'},
+  {v: '卷六 · 大与退'},
+  {id: 'c21', n: '股', t: '拿别人的钱', s: '一家高档餐厅的投资和出局、股和债、对赌和回购、三个比例、亲友集资的边界；一份投资条款的账', r: '2000—2029'},
+  {id: 'c22', n: '大', t: '做大', s: '没有续租条款的租约、不借钱能长多快、雇第一个人、把自己从流程里拿出来、不做大的公司', r: '1945—2030'},
+  {id: 'c23', n: '退', t: '收摊', s: '亲手下架的游戏、卖掉交出去关掉、关门先还谁、还债的直播和个人破产；卖掉还是继续', r: '2013—2030'},
+  {v: '尾声'},
+  {id: 'c24', n: '张', t: '开张', s: '五年以后的三个版本、押韵的地方、全书最多亏多少、一张空白的营业执照', r: '2032'}
+];
+const chapPage = {}; { let p = 1; TOC.forEach(x => { if (x.p) p = x.p; if (x.id) chapPage[x.id] = p; }); }
+const href = id => (chapPage[id] === PAGE ? '' : PURL[chapPage[id]]) + '#' + id;
+$$('.bar .parts a').forEach(a => { const p = +a.dataset.p; a.classList.toggle('on', p === PAGE); if (p > READY) { a.removeAttribute('href'); a.style.opacity = .4; a.title = '写作中'; } });
+$('#drawerList').innerHTML = TOC.map(x => x.p ? '<li class="ph">' + x.t + '</li>' : x.v ? '<li class="vh">' + x.v + '</li>' :
+  chapPage[x.id] > READY ? '<li><a style="opacity:.5;pointer-events:none"><span class="n">' + x.n + '</span><span>' + x.t + '<small>写作中</small></span></a></li>' :
+  '<li><a href="' + href(x.id) + '"' + (chapPage[x.id] === PAGE ? ' class="here"' : '') + '><span class="n">' + x.n + '</span><span>' + x.t + '<small>' + x.s + '</small></span></a></li>').join('');
+dev('#toc', ul => {
+  ul.innerHTML = TOC.map(x => x.p ? '<li class="vh" style="color:var(--main)">' + x.t + '</li>' : x.v ? '<li class="vh">' + x.v + '</li>' :
+    chapPage[x.id] > READY ? '<li class="soon"><div><span class="n">' + x.n + '</span><span class="t">' + x.t + '<small>' + x.s + '</small></span><span class="r">' + x.r + '</span></div></li>' :
+    '<li' + (chapPage[x.id] === PAGE ? '' : ' class="away"') + '><a href="' + href(x.id) + '"><span class="n">' + x.n + '</span><span class="t">' + x.t + '<small>' + x.s + '</small></span><span class="r">' + x.r + '</span></a></li>').join('');
+});
+/* 页面里写 <a data-c="c12">…</a>，自动拼出跨页链接 */
+$$('a[data-c]').forEach(a => { const id = a.dataset.c; if (chapPage[id] > READY) { a.removeAttribute('href'); a.title = '写作中'; a.style.textDecorationStyle = 'dotted'; } else a.href = href(id); });
+
+/* ---------- 页眉：卷名、进度、目录抽屉 ---------- */
+const barVol = $('#barVol'), prog = $('#prog');
+const vols = $$('[data-vol]');
+let ticking = false;
+function onScroll(){
+  ticking = false;
+  const lim = innerHeight * 0.35; let cur = null;
+  for (const e of vols) { if (e.getBoundingClientRect().top < lim) cur = e; else break; }
+  barVol.textContent = cur ? cur.dataset.vol : '序';
+  const H = document.documentElement.scrollHeight - innerHeight;
+  prog.style.width = (H > 0 ? scrollY / H * 100 : 0) + '%';
+}
+window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, {passive: true});
+onScroll();
+const drawer = $('#drawer');
+function openD(on){ drawer.classList.toggle('on', on); drawer.setAttribute('aria-hidden', on ? 'false' : 'true'); }
+$('#tocBtn').addEventListener('click', () => openD(true));
+drawer.addEventListener('click', e => { if (e.target.closest('[data-close]') || e.target.closest('a')) openD(false); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') openD(false); });
+$$('.toTop').forEach(a => a.addEventListener('click', e => { e.preventDefault(); scrollTo({top: 0, behavior: 'smooth'}); }));
+
+/* 章首：五样本钱 */
+const ACC = [['钱', '本钱'], ['时', '时间'], ['手', '手艺'], ['人', '人脉'], ['信', '信用']];
+$$('.acc').forEach(w => { const on = (w.dataset.a || '').split(/\s+/); w.innerHTML = ACC.map(f => '<span' + (on.includes(f[0]) ? ' class="on"' : '') + '><b>' + f[0] + '</b>' + f[1] + '</span>').join(''); });
+/* 年代条：前 600—今，十一格 */
+const ERA = [[-600, 0, '先秦'], [0, 1000, '汉唐'], [1000, 1500, '宋明'], [1500, 1800, '近世'], [1800, 1950, '19世纪'], [1950, 1978, '1950'], [1978, 1992, '1978'], [1992, 2003, '1992'], [2003, 2014, '2003'], [2014, 2022, '2014'], [2022, 2100, '今']];
+$$('.yrs').forEach(w => { const a = +w.dataset.a, b = +(w.dataset.b || w.dataset.a); w.innerHTML = ERA.map(e => '<span' + (b >= e[0] && a < e[1] ? ' class="on"' : '') + '>' + e[2] + '</span>').join(''); w.title = yr(a) + (b !== a ? '—' + yr(b) : ''); });
+/* 卷首：一块遮阳棚和一间门面 */
+$$('svg.awn').forEach((s, k) => {
+  s.setAttribute('viewBox', '0 0 180 110');
+  const n = 6, w = 150 / n, w2 = 134 / n;
+  let g = '';
+  for (let i = 0; i < n; i++) {
+    const x0 = 15 + i * w, x1 = x0 + w, b0 = 23 + i * w2, b1 = b0 + w2, f = i % 2 ? 'var(--card)' : 'var(--main)';
+    g += '<path d="M' + x0 + ' 20H' + x1 + 'L' + b1 + ' 46H' + b0 + 'Z" fill="' + f + '" stroke="var(--main)" stroke-width=".8"/>';
+    g += '<path d="M' + b0 + ' 46Q' + (b0 + w2 / 2) + ' 56 ' + b1 + ' 46Z" fill="' + f + '" stroke="var(--main)" stroke-width=".8"/>';
+  }
+  g += '<rect x="30" y="58" width="120" height="48" fill="none" stroke="var(--ink-2)" stroke-width="1.5"/><rect x="78" y="70" width="24" height="36" fill="var(--ter)" opacity=".8"/><rect x="40" y="68" width="28" height="22" fill="none" stroke="var(--ink-3)"/><rect x="112" y="68" width="28" height="22" fill="none" stroke="var(--ink-3)"/>';
+  g += '<rect x="64" y="3" width="52" height="15" rx="2" fill="var(--card)" stroke="var(--ink-2)"/>' + txt(90, 14.5, k % 2 ? '营业中' : '开 张', {s: 10, c: 'var(--main)', halo: false});
+  s.innerHTML = g;
+});
+/* 正态随机数、分位数、元 */
+function gauss(r){ let u = 0, v = 0; while (!u) u = r(); while (!v) v = r(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
+const pct = (arr, p) => { const s = [...arr].sort((x, y) => x - y); return s[Math.min(s.length - 1, Math.max(0, Math.floor(p * (s.length - 1))))]; };
+const yuan = n => (n < 0 ? '−' : '') + fmt(Math.abs(n)) + (Math.abs(n) >= 1e4 ? '元' : ' 元');
+const wan = n => (n < 0 ? '−' : '') + String(+(Math.abs(n) / 1e4).toFixed(Math.abs(n) >= 1e5 ? 1 : 2)) + ' 万';
+const pc = (x, d) => (x > 0 ? '+' : x < 0 ? '−' : '') + Math.abs(x * 100).toFixed(d == null ? 1 : d) + '%';
+
+/* 通用小折线图：series=[{name,color,pts:[[x,y]...],dash}]，opt={xmin,xmax,ymin,ymax,xt,yt,xf,yf,marks:[[x,label]],H} */
+function lineChart(svg, series, opt){
+  const W = 600, H = opt.H || 260, L = opt.L || 46, R = 14, T = 14, B = 30;
+  const X = x => L + (x - opt.xmin) / (opt.xmax - opt.xmin) * (W - L - R);
+  const Y = y => T + (1 - (y - opt.ymin) / (opt.ymax - opt.ymin)) * (H - T - B);
+  let g = '';
+  (opt.yt || []).forEach(v => g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + Y(v) + '" y2="' + Y(v) + '" stroke="var(--rule)"/>' + txt(L - 6, Y(v) + 4, opt.yf ? opt.yf(v) : v, {s: 11, a: 'end', c: 'var(--ink-3)', halo: false}));
+  (opt.xt || []).forEach(v => g += txt(X(v), H - 10, opt.xf ? opt.xf(v) : v, {s: 11, c: 'var(--ink-3)', halo: false}));
+  (opt.marks || []).forEach((m, i) => g += '<line x1="' + X(m[0]) + '" x2="' + X(m[0]) + '" y1="' + T + '" y2="' + (H - B) + '" stroke="var(--ink-3)" stroke-dasharray="2 3"/>' + txt(X(m[0]) + 3, T + 12 + (i % 3) * 14, m[1], {s: 11, a: 'start', c: 'var(--ink-2)'}));
+  series.forEach(s => {
+    const pts = s.pts.filter(p => p[1] != null);
+    g += '<path d="M' + pts.map(p => X(p[0]).toFixed(1) + ',' + Y(p[1]).toFixed(1)).join('L') + '" fill="none" stroke="' + s.color + '" stroke-width="' + (s.w || 2.4) + '"' + (s.dash ? ' stroke-dasharray="' + s.dash + '"' : '') + ' stroke-linejoin="round"/>';
+    if (s.dots) pts.forEach(p => g += '<circle cx="' + X(p[0]).toFixed(1) + '" cy="' + Y(p[1]).toFixed(1) + '" r="3" fill="' + s.color + '"/>');
+  });
+  g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + (H - B) + '" y2="' + (H - B) + '" stroke="var(--ink)" stroke-width="1.2"/>';
+  svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+  return {X, Y, W, H, L, R, T, B};
+}
+/* 横条：rows=[[名字, 数值, 小字, 颜色]] */
+function bars(box, rows, max, f){
+  box.innerHTML = rows.map(r => '<div class="row"><span class="nm">' + r[0] + (r[2] ? '<small>' + r[2] + '</small>' : '') + '</span><span class="tr"><i style="width:' + clamp(r[1] / max * 100, 0, 100) + '%;' + (r[3] ? 'background:' + r[3] : '') + '"></i></span><span class="v">' + (f ? f(r[1]) : r[1]) + '</span></div>').join('');
+}
+
+/* ---------- 封面装置：一张岔路图 ---------- */
+dev('#forkFig', fig => {
+  const qs = $('#forkQs'), out = $('#forkOut');
+  const ch = (id, t) => '<a data-c="' + id + '" href="' + href(id) + '">' + t + '</a>';
+  /* 每一步：问题、选项（下一步或者终点） */
+  const Q = {
+    q1: {p: '2026 年 12 月，考研一战。', o: [['上岸', 'A'], ['没上', 'q2']]},
+    q2: {p: '2027 年春天，先考一个事业编。', o: [['上岸', 'B'], ['没上', 'q3']]},
+    q3: {p: '下半年准备二战和家乡的公务员。这一年怎么过？', o: [['在家全职备考', 'q4'], ['找份工作，边上班边考', 'q4w']]},
+    q4: {p: '2027 年底到 2028 年春天，结果出来了。', o: [['二战上岸', 'A2'], ['公务员上岸', 'C'], ['都没上', 'q5']]},
+    q4w: {p: '2027 年底到 2028 年春天，结果出来了。', o: [['二战上岸', 'A2'], ['公务员上岸', 'C'], ['都没上，但手里有份工作', 'D'], ['都没上，工作也没了', 'E']]},
+    q5: {p: '这时手里有没有一份工作？', o: [['先找一份工作再说', 'D'], ['一时找不到，也没积蓄', 'E']]}
+  };
+  const R = {
+    A: {t: '读研', first: '研一把课和导师的事顺下来；技术方向的人，有空把几个小项目做成能给人看的作品。', side: '可以做零成本的小项目、接一点不占整块时间的活，但先看学校和导师对兼职的规定；别让它拖延毕业。', worst: '最坏是副业拖了科研、延期毕业：亏的是时间，不是钱。', read: ['c6', 'c9', 'c11']},
+    A2: {t: '晚一年读研', first: '空出来的这段时间，可以上一段班或者实习，把简历上那一年填上。', side: '同上：零成本、不占整块时间的小项目可以，开店、囤货、借钱都不必。', worst: '最坏是多花了一年：二十三四岁的一年，代价比四十岁的一年小得多。', read: ['c5', 'c13', 'c15']},
+    B: {t: '在编（事业单位）', first: '先把试用期过了，把本职工作做熟。编制里最值钱的东西是“稳”，别为一点外快去碰它。', side: '多数事业单位不允许工作人员违规经商、办企业、兼职取酬，有的岗位可以按规定兼职，以本单位规定为准。能做的通常是学习、考证、业余的兴趣。', worst: '最坏是违规经营被处分，丢了编制：这一条亏得最多，一定先问清楚。', read: ['c13', 'c5']},
+    C: {t: '公务员', first: '同上：试用期、本职、规矩。', side: '《公务员法》明确禁止公务员违反规定从事或者参与营利性活动、在企业兼职。副业这条路基本是关着的，想做生意，就要想清楚是不是离开这个系统。', worst: '最坏是违纪处分。想清楚以后再决定，别边在里面边偷偷做。', read: ['c13', 'c16']},
+    D: {t: '先上班', first: '在一家公司里把一门本事学到能卖钱的程度：看清一个行业怎样赚钱、客户在哪里、钱怎样流。这是第五章讲的那条最常见的路。', side: '可以利用晚上和周末做零成本的小项目或接活，但先看劳动合同里有没有兼职和竞业限制的约定，别用公司的资源和客户。', worst: '最坏是副业没做起来：亏的是一些业余时间。主业的工资是你的安全垫。', read: ['c5', 'c6', 'c15']},
+    E: {t: '三无：没工作、没积蓄、没门路', first: '先保住底线：吃饭、住处、社保不断。然后找一份能马上有收入的活（哪怕是临时的），同时选一门手艺往深里学。毕业两年内的择业期，有的考试还可以按应届生报名，别轻易放弃这个身份，具体看当年的公告。', side: '可以，而且只能做零成本的：接活、做服务、卖手艺，不囤货、不租铺面、不借钱。第一笔钱从别人付给你的钱里来，不从借来的钱里来。', worst: '最坏是一年没赚到钱：只要没借钱、没交加盟费，亏的就是一年时间和一点生活费，还能回头找工作、再考。', read: ['c14', 'c15', 'c3']}
+  };
+  let path = [];
+  function render(){
+    let html = '', key = 'q1', i = 0;
+    while (key && Q[key]) {
+      const q = Q[key], pick = path[i];
+      html += '<div class="q"><p><b>' + (i + 1) + '.</b> ' + q.p + '</p><div class="btns">' + q.o.map((o, j) => '<button class="btn' + (pick === j ? ' on' : '') + '" data-i="' + i + '" data-j="' + j + '">' + o[0] + '</button>').join('') + '</div></div>';
+      if (pick == null) { key = null; break; }
+      key = q.o[pick][1]; i++;
+    }
+    qs.innerHTML = html;
+    if (key && R[key]) {
+      const r = R[key];
+      let trail = '', k2 = 'q1';
+      path.forEach((p, n) => { const o = Q[k2].o[p]; trail += '<span class="' + (/上岸|先找|手里有/.test(o[0]) ? 'o' : /没上|没了|找不到/.test(o[0]) ? 'x' : '') + '">' + o[0] + '</span>'; k2 = o[1]; });
+      const full = path.length > 2 && Q.q3 && path[2] === 0;
+      out.innerHTML = '<div class="road"><div class="trail">' + trail + '</div><h5>' + r.t + '</h5><dl>' +
+        '<dt>第一步</dt><dd>' + r.first + '</dd>' +
+        '<dt>顺带做点小生意？</dt><dd>' + r.side + '</dd>' +
+        '<dt>最多亏多少</dt><dd>' + r.worst + '</dd>' +
+        (full ? '<dt>全职备考那一年</dt><dd>别在这一年开张。生意和考试抢的是同一样东西：整块的时间和心思。</dd>' : '') +
+        '<dt>读这几章</dt><dd>' + r.read.map(id => { const t = TOC.find(x => x.id === id); return ch(id, t.n + ' · ' + t.t); }).join('　') + '</dd></dl></div>';
+      $$('a[data-c]', out).forEach(a => { if (chapPage[a.dataset.c] > READY) { a.removeAttribute('href'); a.title = '写作中'; a.style.textDecorationStyle = 'dotted'; } });
+    } else out.innerHTML = '<div class="say">' + (path.length ? '接着往下点。' : '从第一步点起。') + '</div>';
+  }
+  qs.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; const i = +b.dataset.i, j = +b.dataset.j; path = path.slice(0, i); path[i] = j; render(); });
+  render();
+});
+
+/* ---------- 第二部封面装置：一周一百六十八小时 ---------- */
+dev('#weekFig', fig => {
+  const svg = $('#wkSvg'), kvb = $('#wkKv'), say = $('#wkSay');
+  const PRE = [['全职备考', 7.5, 2.5, 60, 14], ['上班', 7.5, 3, 45, 14], ['读研', 7.5, 2.5, 48, 14], ['三无，在家', 8, 2, 25, 16]];
+  const ids = ['wkS', 'wkE', 'wkM', 'wkR'];
+  const g = {}; let ready = false, mode = 0;
+  function draw(){
+    if (!ready) return;
+    const sleep = g.s * 7, eat = g.e * 7, main = g.m, rest = g.r;
+    const left = 168 - sleep - eat - main - rest;
+    const parts = [['睡觉', sleep, 'var(--ink-3)'], ['吃饭洗漱通勤', eat, 'var(--rule)'], ['主线', main, 'var(--ter)'], ['休息运动陪人', rest, 'var(--och)'], ['剩下的', Math.max(0, left), 'var(--main)']];
+    const W = 600, H = 92, L = 4, R = 4; let x = L, gg = '';
+    const tot = parts.reduce((a, p) => a + p[1], 0);
+    const scale = (W - L - R) / Math.max(168, tot);
+    parts.forEach(p => { const w = p[1] * scale; if (w > 0) { gg += '<rect x="' + x.toFixed(1) + '" y="10" width="' + w.toFixed(1) + '" height="40" fill="' + p[2] + '" stroke="var(--card)" stroke-width="1.5"/>'; if (w > 60) gg += txt(x + w / 2, 37, p[0].slice(0, 4), {s: 17, c: 'var(--ink)'}); } x += w; });
+    gg += '<line x1="' + (L + 168 * scale) + '" x2="' + (L + 168 * scale) + '" y1="4" y2="58" stroke="var(--ink)" stroke-width="1.5"/>' + txt(L + 168 * scale - 2, 76, '168 小时', {s: 15, a: 'end', c: 'var(--ink-2)'});
+    if (left < 0) gg += txt(W / 2, 88, '超出了 ' + (-left).toFixed(1) + ' 小时：这一周排不下', {s: 15, c: 'var(--main)', w: 1});
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = gg;
+    kv(kvb, [['睡觉', sleep.toFixed(1) + ' 小时'], ['主线', main + ' 小时'], ['剩下的', '<b class="' + (left >= 8 ? 'pos' : 'neg') + '">' + Math.max(0, left).toFixed(1) + ' 小时</b>'], ['平均每天', (Math.max(0, left) / 7).toFixed(1) + ' 小时']]);
+    let s;
+    if (left < 0) s = '这一周已经排不下了。最先被挤掉的通常是睡觉和运动，可它们是撑住主线的东西。';
+    else if (g.m >= 55 && mode === 0) s = '全职备考的一周，剩下 ' + left.toFixed(1) + ' 小时。看上去还有一点，可备考要的不只是小时数，还有整块的、不被打断的心思。这一年最好的生意，是把考试考好。';
+    else if (left < 8) s = '剩下不到八小时，一门小生意很难持续：接一个活，回客户消息、改需求，就能把这点时间吃光。先别开张，或者只做一件很小、随时能停的事。';
+    else if (left < 20) s = '剩下 ' + left.toFixed(1) + ' 小时，大约每天一两个小时。够做一件小事：接一两个活、维护一个小工具、每周写一篇东西。要选能被打断、随时能停的。';
+    else s = '剩下 ' + left.toFixed(1) + ' 小时，相当于半份工作。时间是够的，难的是把它用在“有人付钱”的事情上，而不是用在准备上（第十一章）。';
+    say.textContent = s;
+  }
+  const go = () => { if (ready) draw(); };
+  slider('wkS', v => { g.s = v; return v + ' 小时'; }, go);
+  slider('wkE', v => { g.e = v; return v + ' 小时'; }, go);
+  slider('wkM', v => { g.m = v; return v + ' 小时'; }, go);
+  slider('wkR', v => { g.r = v; return v + ' 小时'; }, go);
+  btnRow($('#wkPre'), PRE.map(p => p[0]), 0, i => {
+    mode = i; ready = false;
+    ids.forEach((id, k) => { const r = $('#' + id); r.value = PRE[i][k + 1]; r.dispatchEvent(new Event('input')); });
+    ready = true; draw();
+  });
+  ready = true; draw();
+});
+
+/* ---------- 第三部封面装置：用哪种身份做生意 ---------- */
+dev('#formFig', fig => {
+  const qs = $('#fmQs'), out = $('#fmOut');
+  const Q = [
+    ['你现在在编制里，或者是公务员吗？', ['是', '不是']],
+    ['收入是零星的几单，还是已经稳定、每个月都有？', ['零星的几单', '已经稳定']],
+    ['客户要不要你开发票、签正式合同，或者你要开商户号收款？', ['不要', '要']],
+    ['有没有合伙人，或者打算拿别人的投资？', ['没有，就我一个', '有']],
+    ['生意会不会欠下大额的钱：大额进货、长租约、大合同的违约责任、雇好几个人？', ['不会，都是小额', '可能会']]
+  ];
+  const a = Q.map(() => null);
+  const ch = (id, t) => '<a data-c="' + id + '" href="' + href(id) + '">' + t + '</a>';
+  function render(){
+    qs.innerHTML = Q.map((q, i) => '<div class="q' + (i > 0 && a[0] === 0 ? ' off' : '') + '"><p><b>' + (i + 1) + '.</b> ' + q[0] + '</p><div class="btns">' + q[1].map((o, j) => '<button class="btn' + (a[i] === j ? ' on' : '') + '" data-i="' + i + '" data-j="' + j + '">' + o + '</button>').join('') + '</div></div>').join('');
+    let r = null;
+    if (a[0] === 0) r = ['先别登记', '在编和公务员一般不能经商办企业（第十三章）。这时候的问题不是选哪种身份，而是先弄清你所在单位的规定；想做生意，要先想清楚是不是离开这个系统。', ['c13']];
+    else if (a.every(x => x != null)) {
+      if (a[3] === 1) r = ['有限责任公司', '有合伙人或者外部投资，用有限公司把每个人出多少、占多少、怎么退出写进章程；别用普通合伙（第八章）。注册资本按实际能缴的写，五年内要缴足。签字时留意个人担保和回购条款。', ['c18', 'c21', 'c8']];
+      else if (a[4] === 1) r = ['一人有限责任公司', '一个人做、但可能欠下大额的钱，有限责任这道墙有用。前提是公司的账和你自己的账必须分得清清楚楚：一人公司的股东要证明公司财产独立于自己，否则要对公司的债务承担连带责任。', ['c18', 'c17']];
+      else if (a[1] === 1 || a[2] === 1) r = ['个体工商户', '一个人、小额、收入稳定，或者要开票收款：个体户登记简单，可以开发票、开商户号，税收上常有优惠和核定的办法，注销也容易。记住它没有有限责任：债务由个人或家庭财产承担，所以别让它欠大钱。', ['c19', 'c2', 'c18']];
+      else r = ['先不登记', '零星的几单、自己的手艺，按法律的零星小额和便民劳务豁免，可以先不办执照；对方付你的钱按劳务报酬，由付款方代扣个税或者你自己申报。等收入稳定、要开票收款时再办。准备考试的人，办之前先看公告（第十三章）。', ['c15', 'c19', 'c13']];
+    }
+    if (r) {
+      out.innerHTML = '<div class="road"><h5>' + r[0] + '</h5><p style="margin:0 0 .4em;text-indent:0">' + r[1] + '</p><div class="trail">' + r[2].map(id => { const t = TOC.find(x => x.id === id); return '<span>' + ch(id, t.n + ' · ' + t.t) + '</span>'; }).join('') + '</div></div>';
+      $$('a[data-c]', out).forEach(x => { if (chapPage[x.dataset.c] > READY) { x.removeAttribute('href'); x.title = '写作中'; } });
+    } else out.innerHTML = '<div class="say">' + (a.some(x => x != null) ? '接着回答。' : '从第一个问题回答起。') + '</div>';
+  }
+  qs.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; a[+b.dataset.i] = +b.dataset.j; render(); });
+  render();
+});
+
+/* ---------- 装置 1：能撑几个月 ---------- */
+dev('#runFig', fig => {
+  const svg = $('#rnSvg'), kvb = $('#rnKv'), say = $('#rnSay'), loan = $('#rnLoan');
+  let ready = false;
+  const g = {};
+  function draw(){
+    if (!ready) return;
+    const L = loan.checked ? 100000 : 0, rate = 0.12 / 12;
+    const stopAmt = g.stop * g.live;
+    let cash = g.cash + L - g.up, months = 36, hit = null, pts = [[0, cash]], everProfit = null, spent = g.up;
+    for (let m = 1; m <= months; m++) {
+      const rev = g.rev * Math.min(1, m / 12);
+      const out = g.live + g.op + L * rate;
+      cash += rev - out;
+      if (everProfit == null && rev - g.op - L * rate >= 0 && rev > 0) everProfit = m;
+      if (hit == null) spent += Math.max(0, g.op + L * rate - rev);
+      pts.push([m, cash]);
+      if (hit == null && cash < stopAmt) hit = m;
+    }
+    const ys = pts.map(p => p[1]).concat([stopAmt, 0]);
+    let lo = Math.min(...ys), hi = Math.max(...ys); if (hi - lo < 1000) hi = lo + 1000;
+    const pad = (hi - lo) * 0.08; lo -= pad; hi += pad;
+    const step = (hi - lo) > 2e5 ? 50000 : (hi - lo) > 8e4 ? 20000 : (hi - lo) > 3e4 ? 10000 : 5000;
+    const yt = []; for (let v = Math.ceil(lo / step) * step; v <= hi; v += step) yt.push(v);
+    const c = lineChart(svg, [{pts: pts.map(p => [p[0], p[1]]), color: 'var(--ter)', w: 2.6}], {xmin: 0, xmax: months, ymin: lo, ymax: hi, xt: [0, 6, 12, 18, 24, 30, 36], xf: v => v + ' 月', yt: yt, yf: v => (v / 1e4) + ' 万', H: 250, L: 50});
+    let extra = '<line x1="' + c.L + '" x2="' + (c.W - c.R) + '" y1="' + c.Y(stopAmt) + '" y2="' + c.Y(stopAmt) + '" stroke="var(--main)" stroke-dasharray="5 4" stroke-width="1.6"/>' + txt(c.W - c.R - 4, c.Y(stopAmt) - 6, '止损线', {s: 12, a: 'end', c: 'var(--main)'});
+    if (lo < 0) extra += '<line x1="' + c.L + '" x2="' + (c.W - c.R) + '" y1="' + c.Y(0) + '" y2="' + c.Y(0) + '" stroke="var(--ink-3)" stroke-width="1"/>';
+    if (hit != null) extra += '<circle cx="' + c.X(hit) + '" cy="' + c.Y(pts[hit][1]) + '" r="5" fill="var(--main)"/>' + txt(c.X(hit), c.Y(pts[hit][1]) + 20, '第 ' + hit + ' 个月停', {s: 12, c: 'var(--main)', w: 1});
+    svg.insertAdjacentHTML('beforeend', extra);
+    const afterStop = hit != null ? pts[hit][1] : null;
+    const owe = L;
+    const rows = [['能撑', hit == null ? '三年以上' : hit + ' 个月'], ['生意本身不亏（不算生活费）', everProfit ? '第 ' + everProfit + ' 个月' : '三年内没有']];
+    if (hit != null) rows.push(['停下时生意一共亏了', yuan(spent)]);
+    if (L) rows.push(['停下时还欠', '<span class="neg">' + yuan(owe) + '</span>']);
+    kv(kvb, rows);
+    let s;
+    if (g.cash < g.up) s = '一次性投入比手里的钱还多，' + (L ? '靠借来的钱才开得了张。' : '这门生意开不了张。') + ' ';
+    else s = '';
+    if (hit == null) s += '在这些假设下，钱撑得过三年。可假设是你自己定的：把“满一年时的月收入”往左拖一半，看看会怎样。';
+    else if (!L) s += '钱在第 ' + hit + ' 个月碰到止损线，这时必须停。停下来的时候你亏了大约 ' + yuan(spent) + '（不算生活费），手里还留着 ' + g.stop + ' 个月的生活费去找下一份活。<b>这就是“有上限的亏”</b>。';
+    else s += '钱在第 ' + hit + ' 个月碰到止损线。可这一回，停下来并不是结束：借来的十万还在，每个月一千块利息照付。<b>这就是“没有上限的亏”</b>：生意关了，债还开着。';
+    say.innerHTML = s;
+  }
+  const go = () => { if (ready) draw(); };
+  const k = (id, f) => slider(id, v => { g[id.slice(2).toLowerCase()] = v; return f(v); }, go);
+  k('rnCash', v => yuan(v)); k('rnUp', v => yuan(v)); k('rnLive', v => yuan(v)); k('rnOp', v => yuan(v)); k('rnRev', v => yuan(v));
+  k('rnStop', v => v ? '留 ' + v + ' 个月生活费' : '不留，花光为止');
+  loan.addEventListener('change', go);
+  ready = true; draw();
+});
+
+/* ---------- 装置 2：一副担子的账 ---------- */
+dev('#turnFig', fig => {
+  const box = $('#tnBars'), kvb = $('#tnKv'), say = $('#tnSay');
+  const g = {}; let ready = false;
+  const DAYS = 330;
+  const calc = (cap, m, d, f) => { const turns = DAYS / d; const gross = cap * m * turns; const net = gross - f * DAYS; return {turns, gross, net, roc: net / cap}; };
+  const REF = [['货郎', 3000, 0.15, 4, 5, '本钱小，薄利，三四天一圈'], ['杂货铺', 30000, 0.25, 30, 60, '一个月一圈，要交铺租'], ['古玩铺', 30000, 1.0, 300, 60, '一件赚一倍，一年不到一圈']];
+  function draw(){
+    if (!ready) return;
+    const me = calc(g.cap, g.m / 100, g.d, g.f);
+    const rows = REF.map(r => { const c = calc(r[1], r[2], r[3], r[4]); return [r[0], c.net, r[5] + '；本钱 ' + yuan(r[1]) + '，一年赚回本钱的 ' + Math.round(c.roc * 100) + '%', 'var(--ink-3)']; });
+    rows.push(['你的摊子', me.net, '本钱 ' + yuan(g.cap) + '，一年 ' + me.turns.toFixed(1) + ' 圈，赚回本钱的 ' + Math.round(me.roc * 100) + '%', 'var(--main)']);
+    const max = Math.max(10000, ...rows.map(r => r[1]));
+    bars(box, rows.map(r => [r[0], Math.max(0, r[1]), r[2] + (r[1] < 0 ? '（亏）' : ''), r[3]]), max, v => wan(v));
+    kv(kvb, [['一年转', me.turns.toFixed(1) + ' 圈'], ['毛利合计', yuan(me.gross)], ['减去固定花费', yuan(g.f * DAYS)], ['一年净赚', '<span class="' + (me.net >= 0 ? 'pos' : 'neg') + '">' + yuan(me.net) + '</span>'], ['本钱的', Math.round(me.roc * 100) + '%']]);
+    let s;
+    if (me.net < 0) s = '固定花费把毛利吃光了。本钱小的时候，每天固定要掏的钱是最危险的：摊位费、房租、油钱，不管卖没卖出去都得付。';
+    else if (me.turns >= 30 && g.m <= 30) s = '利润率不高，可本钱一年转了 ' + me.turns.toFixed(0) + ' 圈，这就是货郎的打法：薄利，但快。';
+    else if (me.turns < 3) s = '每一圈赚得多，可一年转不了几圈。这样的生意要的是本钱厚、等得起，不适合本钱少的人。';
+    else s = '一年净赚 ' + yuan(me.net) + '，是本钱的 ' + Math.round(me.roc * 100) + '%。试试把“几天卖完一圈”拖长一倍：利润率不变，一年的收入就少了一半。';
+    say.textContent = s;
+  }
+  const go = () => { if (ready) draw(); };
+  slider('tnCap', v => { g.cap = v; return yuan(v); }, go);
+  slider('tnM', v => { g.m = v; return v + '%'; }, go);
+  slider('tnD', v => { g.d = v; return v + ' 天'; }, go);
+  slider('tnF', v => { g.f = v; return v + ' 元 / 天'; }, go);
+  ready = true; draw();
+});
+
+/* ---------- 装置 3：雇几个人才能不干活（《资本论》第一卷的算例） ---------- */
+dev('#eightFig', fig => {
+  const px = $('#e8Px'), kvb = $('#e8Kv'), say = $('#e8Say');
+  const g = {}; let ready = false;
+  const man = (c, t) => '<span title="' + t + '" style="display:inline-grid;place-items:center;width:34px;height:42px;border-radius:6px;border:1px solid var(--rule);background:var(--paper)"><svg viewBox="0 0 20 26" width="20" height="26"><circle cx="10" cy="6" r="4" fill="' + c + '"/><path d="M3 25v-8q0-6 7-6t7 6v8z" fill="' + c + '"/></svg></span>';
+  function draw(){
+    if (!ready) return;
+    const surplus = g.h - g.n;
+    if (surplus <= 0) {
+      px.innerHTML = man('var(--main)', '雇主');
+      kv(kvb, [['每个工人每天的剩余', '0 小时']]);
+      say.textContent = '工人干的时间全用来挣回自己的工资了，雇多少人雇主也拿不到剩余：这时谁也当不了“资本家”。';
+      return;
+    }
+    const N = g.m * g.n / (surplus * (1 - g.r / 100));
+    const n = Math.ceil(N - 1e-9);
+    let h = man('var(--main)', '雇主');
+    h += '<span style="align-self:center;color:var(--ink-3);font-size:14px">雇</span>';
+    for (let i = 0; i < Math.min(n, 60); i++) h += man(i < 7 ? 'var(--ter)' : 'var(--och)', '第 ' + (i + 1) + ' 个工人');
+    if (n > 60) h += '<span style="align-self:center;color:var(--ink-3)">……共 ' + n + ' 人</span>';
+    px.innerHTML = h;
+    kv(kvb, [['每个工人每天的剩余', surplus + ' 小时'], ['雇主要拿到', (g.m * g.n / (1 - g.r / 100)).toFixed(1) + ' 小时的价值'], ['算出来要雇', N.toFixed(2) + ' 人'], ['取整', '<b>' + n + ' 人</b>']]);
+    let s = '';
+    if (g.h === 12 && g.n === 8 && g.m === 2 && g.r === 50) s = '这就是《资本论》里那个算例的原数：8 个人。前七个是绿色的，第八个换了颜色：当年的“七上八下”，就是从这里来的。';
+    else if (n <= 7) s = '换了这组假设，雇 ' + n + ' 个人就够了，没碰到“八”。可见这条线取决于你假设工人一天干多久、雇主想过多好的日子。';
+    else s = '换了这组假设，要雇 ' + n + ' 个人。一条写进法规的数字线，背后是一组可以随便拨动的假设。';
+    say.textContent = s;
+  }
+  const go = () => { if (ready) draw(); };
+  slider('e8H', v => { g.h = v; return v + ' 小时'; }, go);
+  slider('e8N', v => { g.n = v; return v + ' 小时'; }, go);
+  slider('e8M', v => { g.m = v; return v === 1 ? '和工人一样' : '好 ' + (v - 1) + ' 倍（工人的 ' + v + ' 倍）'; }, go);
+  slider('e8R', v => { g.r = v; return v ? '剩余的 ' + v + '%' : '不扩大，全拿来过日子'; }, go);
+  ready = true; draw();
+});
+
+/* ---------- 装置 4：一百块钱的去向 ---------- */
+dev('#platFig', fig => {
+  const box = $('#plBars'), kvb = $('#plKv'), say = $('#plSay');
+  const g = {}; let ready = false;
+  function draw(){
+    if (!ready) return;
+    const P = g.p, r = g.r / 100;
+    // 每“成交”一单（付款）的平均账：退货单收回货、退回货款、平台抽成退回，运费和推广费白花
+    const keep = 1 - r;
+    const cost = P * g.c / 100 * keep;
+    const fee = P * g.k / 100 * keep;
+    const ad = P * g.a / 100;
+    const ship = g.s * (1 + r);          // 退货多出一段运费
+    const rev = P * keep;
+    const net = rev - cost - fee - ad - ship;
+    const rows = [
+      ['卖出的货款', rev, '扣掉退货以后', 'var(--ter)'],
+      ['进价', cost, '', 'var(--ink-3)'],
+      ['平台抽成', fee, '', 'var(--och)'],
+      ['推广费', ad, '退货的单也白花了', 'var(--och)'],
+      ['运费和包装', ship, '退货要多付一段', 'var(--ink-3)'],
+      ['落到手里', Math.max(0, net), net < 0 ? '每单倒贴 ' + Math.abs(net).toFixed(1) + ' 元' : '', 'var(--main)']
+    ];
+    bars(box, rows, P, v => v.toFixed(1) + ' 元');
+    const need = net > 0 ? Math.ceil(g.t / net) : Infinity;
+    kv(kvb, [['每单到手', '<span class="' + (net >= 0 ? 'pos' : 'neg') + '">' + net.toFixed(1) + ' 元</span>'], ['占卖价', (net / P * 100).toFixed(1) + '%'], ['每月要卖', need === Infinity ? '卖越多亏越多' : need.toLocaleString() + ' 单'], ['平均每天', need === Infinity ? '—' : Math.ceil(need / 30) + ' 单']]);
+    let s;
+    if (net <= 0) s = '每卖一单都在亏钱。这种时候“走量”只会越走越亏，先回头看推广费和退货率。';
+    else if (net / P < 0.1) s = '卖一百块，落到手里不到十块。每月想到手 ' + yuan(g.t) + '，得卖 ' + need.toLocaleString() + ' 单，平均每天 ' + Math.ceil(need / 30) + ' 单，回消息、发货、售后都是一个人的活。';
+    else s = '每单到手 ' + net.toFixed(1) + ' 元，占卖价的 ' + (net / P * 100).toFixed(0) + '%。试着把推广费往右拖：新店没有自然流量的时候，常常就是这一刀把利润吃光的。';
+    say.textContent = s;
+  }
+  const go = () => { if (ready) draw(); };
+  slider('plP', v => { g.p = v; return v + ' 元'; }, go);
+  slider('plC', v => { g.c = v; return '卖价的 ' + v + '%'; }, go);
+  slider('plK', v => { g.k = v; return v + '%'; }, go);
+  slider('plA', v => { g.a = v; return '卖价的 ' + v + '%'; }, go);
+  slider('plS', v => { g.s = v; return v + ' 元 / 单'; }, go);
+  slider('plR', v => { g.r = v; return v + '%'; }, go);
+  slider('plT', v => { g.t = v; return yuan(v); }, go);
+  ready = true; draw();
+});
+
+/* ---------- 装置 5：一百家公司里赚钱的是谁 ---------- */
+dev('#vcFig', fig => {
+  const svg = $('#vcSvg'), kvb = $('#vcKv'), say = $('#vcSay');
+  let seed = 11;
+  function outcome(r){
+    const u = r();
+    if (u < 0.5) return 0;                               // 归零
+    if (u < 0.8) return 0.2 + r() * 2.3;                  // 拿回零点几倍到两三倍
+    if (u < 0.94) return 3 + r() * 7;                     // 三到十倍
+    return 10 * Math.pow(1 - r(), -1 / 1.15);             // 幂律尾巴：十倍以上
+  }
+  function run(){
+    const r = rng(seed++);
+    const xs = []; for (let i = 0; i < 100; i++) xs.push(Math.min(outcome(r), 400));
+    xs.sort((a, b) => b - a);
+    const total = xs.reduce((a, b) => a + b, 0);
+    const top5 = xs.slice(0, 5).reduce((a, b) => a + b, 0);
+    const zero = xs.filter(x => x === 0).length, lose = xs.filter(x => x < 1).length;
+    // 画柱：对数高度
+    const W = 600, H = 220, L = 40, B = 26, T = 10, bw = (W - L - 10) / 100;
+    const Y = v => T + (1 - Math.log10(1 + v) / Math.log10(401)) * (H - T - B);
+    let g = '';
+    [0, 1, 10, 100].forEach(v => { g += '<line x1="' + L + '" x2="' + (W - 10) + '" y1="' + Y(v) + '" y2="' + Y(v) + '" stroke="var(--rule)"/>' + txt(L - 5, Y(v) + 4, v + '×', {s: 11, a: 'end', c: 'var(--ink-3)', halo: false}); });
+    xs.forEach((v, i) => { const y = Y(v); g += '<rect x="' + (L + i * bw + .5).toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + Math.max(1, bw - 1).toFixed(1) + '" height="' + Math.max(0.5, Y(0) - y).toFixed(1) + '" fill="' + (v === 0 ? 'var(--ink-3)' : v < 1 ? 'var(--och)' : i < 5 ? 'var(--main)' : 'var(--ter)') + '"/>'; });
+    g += '<line x1="' + L + '" x2="' + (W - 10) + '" y1="' + Y(0) + '" y2="' + Y(0) + '" stroke="var(--ink)" stroke-width="1.2"/>';
+    g += txt(L + 2.5 * bw, H - 8, '前五家', {s: 11, c: 'var(--main)', halo: false}) + txt(W - 60, H - 8, '归零的', {s: 11, c: 'var(--ink-3)', halo: false});
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+    const mult = total / 100;
+    kv(kvb, [['基金拿回', mult.toFixed(2) + ' 倍'], ['前五家贡献', Math.round(top5 / total * 100) + '%'], ['归零的公司', zero + ' 家'], ['没拿回本钱的', lose + ' 家']]);
+    say.innerHTML = (mult >= 1 ? '这一次，基金整体拿回了 ' + mult.toFixed(1) + ' 倍，而其中 ' + Math.round(top5 / total * 100) + '% 来自最赚钱的五家。' : '这一次运气不好，基金整体没回本：最大的赢家不够大。') +
+      ' 换到创始人的位置上：你只是这一百根柱子里的一根，<b>有 ' + lose + '% 的可能落在没拿回本钱的那一堆里，' + zero + '% 的可能归零</b>。基金可以再投一百家，你不能。';
+  }
+  $('#vcGo').addEventListener('click', run);
+  run();
+});
+
+/* ---------- 装置 6：先攒几年 ---------- */
+dev('#saveFig', fig => {
+  const svg = $('#svSvg'), kvb = $('#svKv'), say = $('#svSay');
+  const g = {}; let ready = false;
+  const chance = y => 0.2 + 0.3 * (1 - Math.exp(-y / 3));   // 示意曲线
+  const saved = (y) => { let s = 0, w = g.w; for (let i = 0; i < y; i++) { s += w * 12 * g.s / 100; w *= 1 + g.g / 100; } return s; };
+  function draw(){
+    if (!ready) return;
+    const pts = [], cp = [];
+    for (let y = 0; y <= 10; y++) { pts.push([y, saved(y) / 1e4]); cp.push([y, chance(y) * 100]); }
+    const maxS = Math.max(10, Math.ceil(pts[10][1] / 10) * 10);
+    // 左轴：攒下的钱（万），右轴：机会（%）映射到同一高度
+    const c = lineChart(svg, [{pts: pts, color: 'var(--ter)', w: 2.6}, {pts: cp.map(p => [p[0], p[1] / 100 * maxS]), color: 'var(--main)', dash: '6 4', w: 2}], {xmin: 0, xmax: 10, ymin: 0, ymax: maxS, xt: [0, 2, 4, 6, 8, 10], xf: v => v + ' 年', yt: [0, maxS / 2, maxS], yf: v => v + ' 万', H: 240, L: 50});
+    let ex = '<line x1="' + c.X(g.y) + '" x2="' + c.X(g.y) + '" y1="' + c.T + '" y2="' + (c.H - c.B) + '" stroke="var(--ink-2)" stroke-dasharray="2 3"/>';
+    ex += '<circle cx="' + c.X(g.y) + '" cy="' + c.Y(pts[g.y][1]) + '" r="5" fill="var(--ter)"/><circle cx="' + c.X(g.y) + '" cy="' + c.Y(cp[g.y][1] / 100 * maxS) + '" r="5" fill="var(--main)"/>';
+    ex += txt(c.W - c.R - 4, c.T + 12, '实线：攒下的钱　虚线：示意的机会（右边满格 = 100%）', {s: 11, a: 'end', c: 'var(--ink-2)'});
+    svg.insertAdjacentHTML('beforeend', ex);
+    const S = saved(g.y), risk = S * g.r / 100, keep = S - risk, months = Math.floor(risk / 4000), back = Math.floor(keep / 4000);
+    kv(kvb, [['出来时攒下', yuan(S)], ['拿出来冒险', yuan(risk)], ['冒险的钱够撑', months + ' 个月生活费'], ['失败后还剩', yuan(keep) + '（' + back + ' 个月）'], ['示意的机会', Math.round(chance(g.y) * 100) + '%']]);
+    let s;
+    if (g.y === 0) s = '一毕业就出来：手里没有攒下的钱，只能做本钱几乎为零的生意；示意的机会也最低。好处是退路宽：失败了，二十三四岁还能从头上班。';
+    else if (g.r >= 90) s = '几乎全部押上了：失败了就从零开始，回去上班之前连几个月生活费都没有。先上班的好处，就是可以只拿一部分出来冒险。';
+    else if (g.y >= 8) s = '攒了 ' + g.y + ' 年，钱和机会都多了，可示意曲线越往后涨得越慢。现实里还要加上房贷、家庭和越来越高的工资：“金手铐”可能比这条曲线更早把你锁住。';
+    else s = '上 ' + g.y + ' 年班，攒下 ' + yuan(S) + '，拿出一部分冒险，够撑 ' + months + ' 个月；失败了还剩 ' + back + ' 个月的生活费回去找工作。这就是“先上班”这条路的样子：慢，但每一步都有底。';
+    say.textContent = s;
+  }
+  const go = () => { if (ready) draw(); };
+  slider('svW', v => { g.w = v; return yuan(v); }, go);
+  slider('svG', v => { g.g = v; return v + '%'; }, go);
+  slider('svS', v => { g.s = v; return v + '%'; }, go);
+  slider('svY', v => { g.y = v; return v ? v + ' 年' : '一毕业就出来'; }, go);
+  slider('svR', v => { g.r = v; return v + '%'; }, go);
+  ready = true; draw();
+});
+
+/* ---------- 装置 7：一千个铁杆粉丝 ---------- */
+dev('#fanFig', fig => {
+  const kvb = $('#fnKv'), say = $('#fnSay');
+  const g = {}; let ready = false;
+  function draw(){
+    if (!ready) return;
+    const fans = g.f * g.c / 100;
+    const per = g.s * (1 - g.k / 100);
+    const income = fans * per;
+    const needFans = Math.ceil(g.t / per);
+    const needFollow = Math.ceil(needFans / (g.c / 100));
+    kv(kvb, [['铁杆粉丝', Math.round(fans).toLocaleString() + ' 人'], ['每人到你手里', per.toFixed(0) + ' 元 / 年'], ['一年收入', '<span class="' + (income >= g.t ? 'pos' : 'neg') + '">' + yuan(income) + '</span>'], ['达到目标要铁杆', needFans.toLocaleString() + ' 人'], ['也就是关注的人', needFollow.toLocaleString() + ' 人']]);
+    let s;
+    if (income >= g.t) s = '够了：' + Math.round(fans).toLocaleString() + ' 个铁杆粉丝，一年 ' + yuan(income) + '。可要记得，这一大群关注你的人，你是怎样攒起来的、花了几年。';
+    else s = '还差 ' + yuan(g.t - income) + '。按这个比例，你需要 ' + needFollow.toLocaleString() + ' 个关注的人，才能攒出 ' + needFans.toLocaleString() + ' 个铁杆。“一千个”听起来不多，可它通常藏在一大群路人里面。试试把“每人每年花”往右拖：把价格定高一点、把东西做得更值，往往比涨粉更快。';
+    say.textContent = s;
+  }
+  const go = () => { if (ready) draw(); };
+  slider('fnF', v => { g.f = v; return v.toLocaleString() + ' 人'; }, go);
+  slider('fnC', v => { g.c = v; return v.toFixed(1) + '%'; }, go);
+  slider('fnS', v => { g.s = v; return v + ' 元'; }, go);
+  slider('fnK', v => { g.k = v; return v + '%'; }, go);
+  slider('fnT', v => { g.t = v; return yuan(v); }, go);
+  ready = true; draw();
+});
+
+/* ---------- 装置 8：开一家奶茶店 ---------- */
+dev('#shopFig', fig => {
+  const svg = $('#shSvg'), kvb = $('#shKv'), say = $('#shSay');
+  const g = {}; let ready = false;
+  const MISC = 1500, M = 36;
+  function draw(){
+    if (!ready) return;
+    const margin = g.p * (1 - g.c / 100);            // 每杯扣掉变动成本
+    const fixed = g.rent + g.wage + MISC;            // 每月固定成本
+    const be = Math.ceil(fixed / 30 / margin);        // 盈亏平衡：每天多少杯
+    const cupsAt = m => m <= 3 ? g.n : g.n * (1 - g.drop / 100);
+    let cash = -g.up; const pts = [[0, cash]]; let endCash = null;
+    for (let m = 1; m <= M; m++) {
+      const prof = cupsAt(m) * 30 * margin - fixed;
+      cash += prof; pts.push([m, cash]);
+      if (m === g.end) endCash = cash + g.up * g.back / 100;
+    }
+    const ys = pts.map(p => p[1]).concat([0, endCash]);
+    let lo = Math.min(...ys), hi = Math.max(...ys, 10000); const pad = (hi - lo) * .08; lo -= pad; hi += pad;
+    const step = (hi - lo) > 6e5 ? 200000 : (hi - lo) > 2.5e5 ? 100000 : 50000;
+    const yt = []; for (let v = Math.ceil(lo / step) * step; v <= hi; v += step) yt.push(v);
+    const c = lineChart(svg, [{pts: pts.slice(0, g.end + 1), color: 'var(--ter)', w: 2.6}, {pts: pts.slice(g.end), color: 'var(--ink-3)', dash: '3 4', w: 1.6}], {xmin: 0, xmax: M, ymin: lo, ymax: hi, xt: [0, 6, 12, 18, 24, 30, 36], xf: v => v + ' 月', yt: yt, yf: v => (v / 1e4) + ' 万', H: 250, L: 50});
+    let ex = '<line x1="' + c.L + '" x2="' + (c.W - c.R) + '" y1="' + c.Y(0) + '" y2="' + c.Y(0) + '" stroke="var(--ink)" stroke-width="1"/>' + txt(c.L + 4, c.Y(0) - 6, '回本线', {s: 11, a: 'start', c: 'var(--ink-2)'});
+    ex += '<line x1="' + c.X(g.end) + '" x2="' + c.X(g.end) + '" y1="' + c.T + '" y2="' + (c.H - c.B) + '" stroke="var(--main)" stroke-dasharray="4 3"/>';
+    ex += '<circle cx="' + c.X(g.end) + '" cy="' + c.Y(endCash) + '" r="5" fill="var(--main)"/>' + txt(c.X(g.end), c.Y(endCash) + (endCash < 0 ? 20 : -10), '关店：' + wan(endCash), {s: 12, c: 'var(--main)', w: 1});
+    svg.insertAdjacentHTML('beforeend', ex);
+    const later = cupsAt(4);
+    const payback = pts.findIndex(p => p[1] >= 0);
+    kv(kvb, [['每杯扣掉原料剩', margin.toFixed(1) + ' 元'], ['每月固定成本', yuan(fixed)], ['每天要卖', '<b>' + be + ' 杯</b>才不亏'], ['三个月后每天卖', Math.round(later) + ' 杯'], ['回本', payback > 0 ? '第 ' + payback + ' 个月' : '三年内回不了本'], ['关店时一共', '<span class="' + (endCash >= 0 ? 'pos' : 'neg') + '">' + (endCash >= 0 ? '赚 ' : '亏 ') + yuan(Math.abs(endCash)) + '</span>']]);
+    let s;
+    if (later < be) s = '新鲜劲过去以后，每天只卖 ' + Math.round(later) + ' 杯，比不亏的 ' + be + ' 杯还少：从第四个月起，店每开一天都在亏。头三个月的排队，是最容易让人看错的东西。';
+    else if (payback < 0) s = '每个月是赚的，可赚得太少，三年都填不平开张前花掉的 ' + yuan(g.up) + '。开张前那笔钱越大，回本越远。';
+    else s = '这组假设下，第 ' + payback + ' 个月回本。注意“三个月回本”的说法需要什么条件：试着把开张前的钱往右拖，或者把客流掉的比例调高一点。';
+    say.textContent = s;
+  }
+  const go = () => { if (ready) draw(); };
+  slider('shUp', v => { g.up = v; return yuan(v); }, go);
+  slider('shRent', v => { g.rent = v; return yuan(v); }, go);
+  slider('shWage', v => { g.wage = v; return v ? yuan(v) : '只有自己干'; }, go);
+  slider('shP', v => { g.p = v; return v + ' 元'; }, go);
+  slider('shC', v => { g.c = v; return v + '%'; }, go);
+  slider('shN', v => { g.n = v; return v + ' 杯'; }, go);
+  slider('shDrop', v => { g.drop = v; return v + '%'; }, go);
+  slider('shEnd', v => { g.end = v; return '第 ' + v + ' 个月'; }, go);
+  slider('shBack', v => { g.back = v; return v + '%'; }, go);
+  ready = true; draw();
+});
+
+/* ---------- 装置 9：分股权 ---------- */
+dev('#eqFig', fig => {
+  const box = $('#eqBars'), kvb = $('#eqKv'), say = $('#eqSay'), vest = $('#eqV');
+  const NM = ['周畅', '老韩', '沈舟'], LAB = [1, 1, 0.3], COL = ['var(--ter)', 'var(--och)', 'var(--main)'];
+  const g = {who: 2}; let ready = false;
+  function draw(){
+    if (!ready) return;
+    const money = [g.a, g.b, g.c], mt = money.reduce((x, y) => x + y, 0) || 1, lt = LAB.reduce((x, y) => x + y, 0), w = g.w / 100;
+    const mPart = money.map(m => m / mt * (1 - w)), lPart = LAB.map(l => l / lt * w);
+    const share = mPart.map((m, i) => m + lPart[i]);
+    // 离开的人
+    const k = g.who, t = g.t;
+    const vf = vest.checked ? (t < 12 ? 0 : Math.min(1, t / 48)) : 1;
+    const keep = mPart[k] + lPart[k] * vf, back = share[k] - keep;
+    const after = share.map((s, i) => i === k ? keep : s + back * s / (1 - share[k]));
+    const rows = [];
+    NM.forEach((n, i) => rows.push([n, share[i] * 100, '开张时 · ' + (LAB[i] === 1 ? '全职' : '兼职') + '，出 ' + yuan(money[i]), COL[i]]));
+    NM.forEach((n, i) => rows.push([n + (i === k ? '（离开）' : ''), after[i] * 100, '第 ' + t + ' 个月以后', i === k ? 'var(--ink-3)' : COL[i]]));
+    bars(box, rows, 100, v => v.toFixed(1) + '%');
+    const others = after.reduce((x, y, i) => i === k ? x : x + y, 0);
+    kv(kvb, [['离开的人开张时', (share[k] * 100).toFixed(1) + '%'], ['出力部分已成熟', Math.round(vf * 100) + '%'], ['离开后还握着', '<b>' + (keep * 100).toFixed(1) + '%</b>'], ['留下的两人合计', (others * 100).toFixed(1) + '%']]);
+    let s;
+    if (!vest.checked) s = NM[k] + '第 ' + t + ' 个月就走了，却带走了开张时的全部 ' + (share[k] * 100).toFixed(1) + '%。以后这家工作室赚的每一块钱，都有这么多要分给一个不再干活的人。勾上“股权成熟”看看区别。';
+    else if (t < 12) s = '还没干满一年就走，出力的那部分一点没成熟，' + NM[k] + '只保留了出钱买的 ' + (keep * 100).toFixed(1) + '%。没成熟的股份按比例回到了留下的人手里。';
+    else s = NM[k] + '干了 ' + t + ' 个月，出力的部分成熟了 ' + Math.round(vf * 100) + '%，带走 ' + (keep * 100).toFixed(1) + '%。干得越久，带走越多：这比一开始平分、然后为“谁干得多”吵架要公平。';
+    say.textContent = s;
+  }
+  const go = () => { if (ready) draw(); };
+  slider('eqA', v => { g.a = v; return yuan(v); }, go);
+  slider('eqB', v => { g.b = v; return yuan(v); }, go);
+  slider('eqC', v => { g.c = v; return yuan(v); }, go);
+  slider('eqW', v => { g.w = v; return v + '%'; }, go);
+  slider('eqT', v => { g.t = v; return '第 ' + v + ' 个月'; }, go);
+  btnRow($('#eqWho'), NM.map(n => n + '离开'), 2, i => { g.who = i; draw(); });
+  vest.addEventListener('change', go);
+  ready = true; draw();
+});
+
+/* ---------- 装置 10：阿姆达尔的账 ---------- */
+dev('#amdFig', fig => {
+  const rowsBox = $('#amdRows'), svg = $('#amdSvg'), kvb = $('#amdKv'), say = $('#amdSay');
+  // [名字, 原来的小时, AI 默认快几倍, 最大倍数]
+  const T = [['弄清店主要什么', 6, 1, 3], ['设计页面', 6, 3, 10], ['写代码', 30, 5, 20], ['测试和改错', 10, 2, 10], ['上线、接支付、资质', 8, 1, 3], ['找到愿意付钱的店', 12, 1, 3], ['教店主用、售后、催款', 10, 1.2, 3]];
+  rowsBox.innerHTML = T.map((t, i) => '<div class="ctl"><span>' + t[0] + '<br><small style="color:var(--ink-3)">原来 ' + t[1] + ' 小时</small></span><input type="range" id="am' + i + '" min="1" max="' + t[3] + '" step="0.5" value="' + t[2] + '"><output id="am' + i + 'O"></output></div>').join('');
+  const sp = T.map(t => t[2]); let ready = false;
+  function draw(){
+    if (!ready) return;
+    const before = T.reduce((a, t) => a + t[1], 0);
+    const after = T.map((t, i) => t[1] / sp[i]);
+    const tot = after.reduce((a, b) => a + b, 0);
+    const W = 600, rowH = 26, L = 150, H = T.length * rowH + 30, max = Math.max(...T.map(t => t[1]));
+    const X = v => L + v / max * (W - L - 50);
+    let g = '';
+    T.forEach((t, i) => {
+      const y = 8 + i * rowH;
+      g += txt(L - 8, y + 15, t[0], {s: 12, a: 'end', c: 'var(--ink-2)', halo: false});
+      g += '<rect x="' + L + '" y="' + (y + 3) + '" width="' + (X(t[1]) - L).toFixed(1) + '" height="16" fill="var(--rule)"/>';
+      g += '<rect x="' + L + '" y="' + (y + 3) + '" width="' + Math.max(1, X(after[i]) - L).toFixed(1) + '" height="16" fill="' + (sp[i] <= 1.2 ? 'var(--main)' : 'var(--ter)') + '"/>';
+      g += txt(X(t[1]) + 4, y + 16, after[i].toFixed(1) + 'h', {s: 11, a: 'start', c: 'var(--ink-2)', halo: false});
+    });
+    g += txt(L, H - 6, '灰色：原来的小时　青色：AI 加速后　红色：几乎没被加速', {s: 11, a: 'start', c: 'var(--ink-3)', halo: false});
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+    // 卡脖子的一截
+    let k = 0; after.forEach((v, i) => { if (v > after[k]) k = i; });
+    const slow = T.reduce((a, t, i) => a + (sp[i] <= 1.2 ? after[i] : 0), 0);
+    const limit = before / slow;
+    kv(kvb, [['原来一共', before + ' 小时'], ['用 AI 以后', tot.toFixed(1) + ' 小时'], ['整体快了', (before / tot).toFixed(2) + ' 倍'], ['最慢的一截', T[k][0]], ['就算 AI 无限快', isFinite(limit) ? '最多 ' + limit.toFixed(1) + ' 倍' : '—']]);
+    say.textContent = '写代码快了 ' + sp[2] + ' 倍，整件事只快了 ' + (before / tot).toFixed(1) + ' 倍。现在最费时间的是“' + T[k][0] + '”，花了 ' + after[k].toFixed(1) + ' 小时。' + (isFinite(limit) ? '只要那几截见人、等人、担责任的活还是原样，就算能加速的部分快到无穷，整件事也最多快 ' + limit.toFixed(1) + ' 倍。这就是阿姆达尔定律。' : '');
+  }
+  T.forEach((t, i) => slider('am' + i, v => { sp[i] = v; return v <= 1 ? '帮不上' : '快 ' + v + ' 倍'; }, () => { if (ready) draw(); }));
+  ready = true; draw();
+});
+
+/* ---------- 装置 11：订阅的天花板 ---------- */
+dev('#subFig', fig => {
+  const svg = $('#sbSvg'), kvb = $('#sbKv'), say = $('#sbSay');
+  const g = {}; let ready = false;
+  function draw(){
+    if (!ready) return;
+    const c = g.c / 100, net = g.p * (1 - g.k / 100);
+    let u = 0; const pts = [[0, 0]];
+    for (let m = 1; m <= 36; m++) { u = u * (1 - c) + g.n; pts.push([m, u]); }
+    const cap = g.n / c;
+    const ymax = Math.max(cap, u) * 1.1;
+    const step = ymax > 2000 ? 1000 : ymax > 800 ? 200 : ymax > 200 ? 100 : 20;
+    const yt = []; for (let v = 0; v <= ymax; v += step) yt.push(v);
+    const ch = lineChart(svg, [{pts: pts, color: 'var(--ter)', w: 2.6}], {xmin: 0, xmax: 36, ymin: 0, ymax: ymax, xt: [0, 6, 12, 18, 24, 30, 36], xf: v => v + ' 月', yt: yt, yf: v => v + ' 人', H: 240, L: 54});
+    svg.insertAdjacentHTML('beforeend', '<line x1="' + ch.L + '" x2="' + (ch.W - ch.R) + '" y1="' + ch.Y(cap) + '" y2="' + ch.Y(cap) + '" stroke="var(--main)" stroke-dasharray="5 4" stroke-width="1.5"/>' + txt(ch.W - ch.R - 4, ch.Y(cap) - 6, '天花板 ' + Math.round(cap) + ' 人', {s: 12, a: 'end', c: 'var(--main)'}));
+    const u12 = pts[12][1], u36 = pts[36][1];
+    kv(kvb, [['第 12 个月', Math.round(u12) + ' 人 · ' + yuan(u12 * net) + ' / 月'], ['第 36 个月', Math.round(u36) + ' 人 · ' + yuan(u36 * net) + ' / 月'], ['天花板', Math.round(cap) + ' 人 · ' + yuan(cap * net) + ' / 月'], ['用户平均待', (1 / c).toFixed(1) + ' 个月']]);
+    let s = '每月新来 ' + g.n + ' 人、走掉 ' + g.c + '%，付费用户最后会停在约 ' + Math.round(cap) + ' 人，月收入约 ' + yuan(cap * net) + '。';
+    s += c >= 0.15 ? ' 流失这么快，说明很多人试了就走：先别急着拉新，弄清楚他们为什么走。' : ' 把流失率从 ' + g.c + '% 降到一半，天花板就翻一倍，这常常比多拉一倍新用户便宜。';
+    say.textContent = s;
+  }
+  const go = () => { if (ready) draw(); };
+  slider('sbN', v => { g.n = v; return v + ' 人'; }, go);
+  slider('sbC', v => { g.c = v; return v + '%'; }, go);
+  slider('sbP', v => { g.p = v; return v + ' 元'; }, go);
+  slider('sbK', v => { g.k = v; return v + '%'; }, go);
+  ready = true; draw();
+});
+
+/* ---------- 装置 12：第一个付钱的人在漏斗的哪一层 ---------- */
+dev('#funFig', fig => {
+  const box = $('#fuBars'), kvb = $('#fuKv'), say = $('#fuSay');
+  const PRE = [['上门和熟人', 10, 60, 30, 35], ['在群里和二手平台发帖', 300, 5, 20, 15], ['花钱投放', 2000, 1.5, 15, 10]];
+  const ids = ['fuR', 'fuA', 'fuB', 'fuC'];
+  const g = {}; let ready = false, mode = 0;
+  function draw(){
+    if (!ready) return;
+    const a = g.r * g.a / 100, b = a * g.b / 100, c = b * g.c / 100;
+    bars(box, [['每周接触', g.r, '', 'var(--ink-3)'], ['愿意聊', a, '', 'var(--och)'], ['愿意试', b, '', 'var(--ter)'], ['付钱', c, '', 'var(--main)']].map(r => [r[0], Math.log10(1 + r[1]), r[1] < 10 ? r[1].toFixed(2) + ' 人' : Math.round(r[1]) + ' 人', r[3]]), Math.log10(1 + Math.max(g.r, 10)), v => '');
+    const w1 = c > 0 ? Math.ceil(1 / c) : Infinity, w10 = c > 0 ? Math.ceil(10 / c) : Infinity;
+    kv(kvb, [['每周大约付钱', c.toFixed(2) + ' 人'], ['第一个付钱的', w1 === Infinity ? '—' : '约第 ' + w1 + ' 周'], ['第十个', w10 === Infinity ? '—' : '约第 ' + w10 + ' 周'], ['一百个接触里付钱的', (g.a * g.b * g.c / 1e4).toFixed(2) + ' 人']]);
+    let s;
+    if (mode === 0) s = '上门和熟人接触的人少，可每一层留下的多：一周十个人，大约 ' + w1 + ' 周能有第一个付钱的。慢，但每一个都是真的，还能顺便听到他真正的麻烦。';
+    else if (mode === 2) s = '花钱投放接触的人最多，漏得也最多。还没算投放本身的花费：如果每接触一个人要几毛钱，第一个付钱的客人可能已经花掉了好几百。早期没验证过需求就投钱，是最快的亏法。';
+    else s = '发帖接触的人多，可每一层都漏得厉害。要紧的是“愿意试”到“付钱”那一层：它说明东西本身有没有用。';
+    say.textContent = s;
+  }
+  const go = () => { if (ready) draw(); };
+  slider('fuR', v => { g.r = v; return v + ' 人'; }, go);
+  slider('fuA', v => { g.a = v; return v + '%'; }, go);
+  slider('fuB', v => { g.b = v; return v + '%'; }, go);
+  slider('fuC', v => { g.c = v; return v + '%'; }, go);
+  btnRow($('#fnPre'), PRE.map(p => p[0]), 0, i => {
+    mode = i; ready = false;
+    ids.forEach((id, k) => { const r = $('#' + id); r.value = PRE[i][k + 1]; r.dispatchEvent(new Event('input')); });
+    ready = true; draw();
+  });
+  ready = true; draw();
+});
+
+/* ---------- 装置 13：红灯还是绿灯 ---------- */
+dev('#redFig', fig => {
+  const box = $('#redQs'), say = $('#redSay');
+  const OPT = ['可以做', '别做', '先弄清规定'];
+  // [情境, 答案序号, 理由]
+  const Q = [
+    ['朋友说借你的银行卡“走几天流水”，你不用操作，给你五百块。', 1, '这是帮信罪最常见的样子。即使没被判刑，账户也可能五年不能用手机支付和网上转账。'],
+    ['用 AI 帮学校周边的小店写菜单文案和活动海报，按次收费。', 0, '正常的服务。东西要自己看过，别用别人的商标和明星的脸。'],
+    ['同学出八百块，让你用 AI 替他写毕业论文。', 1, '《学位法》规定利用人工智能代写属于学术不端，可以不授予或撤销学位；替人代写的在校生同样可能受处分。'],
+    ['写一个爬虫，把某个平台上商家的手机号抓下来，卖给做推广的人。', 1, '抓取、出售个人信息可能构成侵犯公民个人信息罪；绕过防护抓数据还可能构成非法获取计算机信息系统数据罪。'],
+    ['买几个境外大模型的账号，自己搭个网站，转卖给国内用户使用。', 1, '私自搭建跨境通道、转卖服务，会碰到网络管理、数据出境和生成式 AI 服务备案方面的规定，风险高、说不清。'],
+    ['给自己的网店刷几十条好评，让新店看起来热闹一点。', 1, '《电子商务法》禁止编造用户评价，平台查到会降权、扣保证金甚至封店。'],
+    ['用 AI 生成一位明星的脸和声音，给一家店拍带货视频。', 1, '没有授权，侵犯肖像权和声音权益；合成内容还要按规定标识。'],
+    ['做一个 AI 画图小工具，对全网开放、按次收费。', 2, '向公众提供生成式 AI 服务有安全评估、备案和内容标识的要求；收钱还需要合适的经营主体和支付渠道。先弄清楚再上线。'],
+    ['在二手平台上卖掉自己用过的旧显卡。', 0, '个人卖自己的闲置物品是正常的。如实描述成色，别卖来路不明的东西。'],
+    ['花一千九百八十元报名“AI 副业训练营”，号称二十一天月入过万、不回本全退。', 1, '一般不违法，但多半是坑。看清退款条件，问一句：老师的钱是靠做这件事赚的，还是靠教这件事赚的？'],
+    ['用 AI 帮人改简历、做求职用的 PPT，收几十块。', 0, '正常的服务。别编造对方的经历。'],
+    ['你考上了事业编，晚上给朋友的公司写代码，按月拿报酬。', 2, '多数事业单位不允许违规兼职取酬，有的岗位可以按规定兼职。先看单位的规定，问清楚再说（第十三章）。']
+  ];
+  const ans = Q.map(() => null);
+  box.innerHTML = Q.map((q, i) => '<div class="qa" data-i="' + i + '"><p style="margin:.6em 0 .2em;text-indent:0"><b>' + (i + 1) + '.</b> ' + q[0] + '</p><div class="btns">' + OPT.map((o, j) => '<button class="btn" data-j="' + j + '">' + o + '</button>').join('') + '</div><p class="why" style="display:none;margin:.3em 0 .6em;font-size:14.5px;color:var(--ink-2);text-indent:0"></p></div>').join('');
+  box.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    const wrap = b.closest('.qa'), i = +wrap.dataset.i, j = +b.dataset.j;
+    ans[i] = j;
+    $$('button', wrap).forEach(x => { const k = +x.dataset.j; x.classList.toggle('on', k === j); x.style.borderColor = k === Q[i][1] ? 'var(--ter)' : (k === j ? 'var(--main)' : ''); });
+    const w = $('.why', wrap); w.style.display = 'block';
+    w.innerHTML = (j === Q[i][1] ? '<b class="pos">对。</b>' : '<b class="neg">答案是“' + OPT[Q[i][1]] + '”。</b>') + Q[i][2];
+    const done = ans.filter(a => a != null).length, right = ans.filter((a, k) => a === Q[k][1]).length;
+    say.textContent = done < Q.length ? '已答 ' + done + ' 题，答对 ' + right + ' 题。' : '十二题答对 ' + right + ' 题。' + (right >= 10 ? '你对坑的嗅觉不错。最危险的那几个，都长着“只赚不亏的小钱”的样子。' : '没关系，记住最要紧的一条：钱从哪里来、为什么给你，说不清的不碰。');
+  });
+});
+
+/* ---------- 装置 14：这个身份能不能做 ---------- */
+dev('#idFig', fig => {
+  const tbl = $('#idTbl'), say = $('#idSay');
+  const COLS = ['在读研究生', '事业编', '公务员', '公司职员', '择业期，还没工作'];
+  const L = {y: ['一般可以', 'var(--ter)'], m: ['看规定', 'var(--och)'], n: ['一般不行', 'var(--main)']};
+  // 每行：[事情, [五种身份的 [等级, 说明]]]
+  const R = [
+    ['买卖上市公司股票、基金', [['y', '一般可以，注意别借钱、别影响学业。'], ['y', '一般允许，按规定不能利用职务便利和内幕信息；个别岗位有额外限制。'], ['y', '在规定范围内一般允许；有的岗位、有的情况要申报或回避。'], ['y', '一般可以；证券、基金等金融行业的员工有专门的限制。'], ['y', '可以。只用闲钱，别借钱。']]],
+    ['在二手平台卖自己的闲置', [['y', '可以。'], ['y', '个人处理自己的物品，一般可以。'], ['y', '个人处理自己的物品，一般可以。'], ['y', '可以。'], ['y', '可以。']]],
+    ['业余写作、做自媒体拿稿费', [['y', '一般可以，别占用科研时间。'], ['m', '业余写作一般可以；靠它持续经营、接广告带货，就可能算营利性活动，看单位规定。'], ['m', '有严格规定，不能利用职务影响，接商业广告、带货一般不行。'], ['y', '一般可以，注意别泄露公司信息、看合同约定。'], ['y', '可以。']]],
+    ['接外包活，按次收费', [['m', '看学校和导师的规定，别耽误学业和毕业。'], ['m', '多数单位不允许兼职取酬；部分专业技术岗位经批准可以兼职。'], ['n', '属于从事营利性活动，一般不行。'], ['m', '看劳动合同、公司规章和竞业约定；不能用公司的资源和客户。'], ['y', '可以，是零成本起步的好办法。注意先收定金。']]],
+    ['开网店', [['m', '个人零星小额的可以；做大了要登记，看学校规定。'], ['n', '属于经商，一般不行。'], ['n', '属于经商，不行。'], ['m', '看合同和公司规定，别与本职有利益冲突。'], ['y', '可以，零库存起步。']]],
+    ['注册个体户或公司', [['m', '学生可以注册；可申请休学创业，按学校的办法。'], ['n', '经商办企业，一般不行（离岗创业另有规定，须单位批准）。'], ['n', '不行。'], ['m', '法律不禁止，但看合同、竞业约定和公司规定。'], ['m', '可以注册，但有的考试在认定应届生身份时会看营业执照、股东身份，注册前先看公告。']]],
+    ['入股朋友的公司', [['m', '一般可以，看学校规定，别承担担保责任。'], ['n', '一般不行。'], ['n', '一般不行。'], ['m', '看竞业约定和利益冲突规定。'], ['m', '可以，但可能影响应届生身份认定，先看公告；别签个人担保。']]],
+    ['在企业兼职拿工资', [['m', '看学校规定；实习、助教另算。'], ['m', '多数不允许；部分专业技术人员经批准可以兼职。'], ['n', '在企业兼任职务，不行。'], ['m', '看劳动合同和公司规定，有的明令禁止。'], ['m', '可以，但签劳动合同、以单位名义交社保，可能影响“未落实工作单位”的认定，先看公告。']]]
+  ];
+  tbl.innerHTML = '<tr><th></th>' + COLS.map(c => '<th>' + c + '</th>').join('') + '</tr>' +
+    R.map((r, i) => '<tr><td style="min-width:7.5em"><b>' + r[0] + '</b></td>' + r[1].map((c, j) => '<td data-i="' + i + '" data-j="' + j + '" style="cursor:pointer;color:' + L[c[0]][1] + ';font-weight:600;white-space:nowrap">' + (c[0] === 'y' ? '●' : c[0] === 'm' ? '◐' : '○') + ' ' + L[c[0]][0] + '</td>').join('') + '</tr>').join('');
+  tbl.addEventListener('click', e => {
+    const td = e.target.closest('td[data-i]'); if (!td) return;
+    $$('td[data-i]', tbl).forEach(x => x.style.outline = '');
+    td.style.outline = '2px solid var(--ink-2)';
+    const r = R[+td.dataset.i], c = r[1][+td.dataset.j];
+    say.innerHTML = '<b>' + COLS[+td.dataset.j] + ' · ' + r[0] + '：' + L[c[0]][0] + '。</b>' + c[1];
+  });
+});
+
+/* ---------- 装置 15：三无的底线账 ---------- */
+dev('#nilFig', fig => {
+  const kvb = $('#nlKv'), say = $('#nlSay');
+  const g = {}; let ready = false;
+  const FREE = 70; // 一周可用小时
+  function draw(){
+    if (!ready) return;
+    const need = g.h + g.f + g.m + g.p + g.x;
+    const gap = Math.max(0, need - g.j);
+    const hrsMonth = gap / g.w, hrsWeek = hrsMonth / 4.33;
+    const left = FREE - hrsWeek;
+    kv(kvb, [['每月最少要', yuan(need)], ['接活能补', yuan(g.j)], ['还差', yuan(gap)], ['每周要打零工', hrsWeek.toFixed(1) + ' 小时'], ['留给手艺和考试', '<span class="' + (left >= 30 ? 'pos' : 'neg') + '">' + Math.max(0, left).toFixed(1) + ' 小时 / 周</span>']]);
+    let s;
+    if (left < 20) s = '零工吃掉了大部分时间，留给手艺和考试的不到二十小时。最大的一项通常是房租：试着把“住”拖到零，看看差多少。';
+    else if (g.h === 0) s = '住在家里，一个月最少 ' + yuan(need) + '，每周打 ' + hrsWeek.toFixed(0) + ' 小时零工就能打平，还剩 ' + left.toFixed(0) + ' 小时。面子上不好看，可它买到的是时间：一门手艺、一次更好的考试。';
+    else s = '一个月最少 ' + yuan(need) + '，每周要打 ' + hrsWeek.toFixed(0) + ' 小时零工，还剩 ' + left.toFixed(0) + ' 小时。接活的收入每多一千，每周就能少打约 ' + (1000 / g.w / 4.33).toFixed(0) + ' 小时零工：这就是一门手艺在三无时的价值。';
+    say.textContent = s;
+  }
+  const go = () => { if (ready) draw(); };
+  slider('nlH', v => { g.h = v; return v ? yuan(v) : '住家里'; }, go);
+  slider('nlF', v => { g.f = v; return yuan(v); }, go);
+  slider('nlM', v => { g.m = v; return yuan(v); }, go);
+  slider('nlP', v => { g.p = v; return v ? yuan(v) : '先不交'; }, go);
+  slider('nlX', v => { g.x = v; return yuan(v); }, go);
+  slider('nlW', v => { g.w = v; return v + ' 元 / 小时'; }, go);
+  slider('nlJ', v => { g.j = v; return yuan(v); }, go);
+  ready = true; draw();
+});
+
+/* ---------- 装置 16：写一张第一步的计划（只存在本机浏览器） ---------- */
+dev('#planFig', fig => {
+  const KEY = 'genesis-open-plan';
+  const card = $('#plCard');
+  const T = ['plWhat', 'plWho', 'plGo', 'plStop'];
+  const g = {}; let ready = false;
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { saved = {}; }
+  T.forEach(id => { if (saved[id]) $('#' + id).value = saved[id]; });
+  ['plH', 'plM', 'plW'].forEach(id => { if (saved[id] != null) $('#' + id).value = saved[id]; });
+  const val = id => esc(($('#' + id).value || '').trim()) || '<span style="color:var(--ink-3)">（还没写）</span>';
+  function draw(){
+    if (!ready) return;
+    const d = new Date(); d.setDate(d.getDate() + g.w * 7);
+    const ds = d.getFullYear() + ' 年 ' + (d.getMonth() + 1) + ' 月 ' + d.getDate() + ' 日';
+    card.innerHTML = '<span class="stampv">第一步</span><div class="who"><b>我的第一步</b>一页纸</div><dl>' +
+      '<dt>做什么</dt><dd>' + val('plWhat') + '</dd>' +
+      '<dt>卖给谁</dt><dd>' + val('plWho') + '</dd>' +
+      '<dt>时间</dt><dd>每周最多 ' + g.h + ' 小时，到点就停</dd>' +
+      '<dt>最多亏</dt><dd>' + (g.m ? yuan(g.m) : '一分钱也不亏') + '，不借钱，不囤货</dd>' +
+      '<dt>检查日</dt><dd>' + ds + '（' + g.w + ' 周后）</dd>' +
+      '<dt>继续</dt><dd>' + val('plGo') + '</dd>' +
+      '<dt>立刻停</dt><dd>' + val('plStop') + '</dd></dl>';
+    const o = {plH: g.h, plM: g.m, plW: g.w}; T.forEach(id => o[id] = $('#' + id).value);
+    try { localStorage.setItem(KEY, JSON.stringify(o)); } catch (e) {}
+  }
+  const go = () => { if (ready) draw(); };
+  slider('plH', v => { g.h = v; return v + ' 小时'; }, go);
+  slider('plM', v => { g.m = v; return v ? yuan(v) : '零'; }, go);
+  slider('plW', v => { g.w = v; return v + ' 周'; }, go);
+  T.forEach(id => $('#' + id).addEventListener('input', go));
+  $('#plClear').addEventListener('click', () => { T.forEach(id => $('#' + id).value = ''); try { localStorage.removeItem(KEY); } catch (e) {} draw(); });
+  ready = true; draw();
+});
+
+/* ---------- 装置 17：该不该回去上班 ---------- */
+dev('#backFig', fig => {
+  const out = $('#bkOut');
+  const g = {}; let ready = false;
+  const CK = [['bkM', '主线被拖累了：这是最先该停的信号，小生意本来是长在主线旁边的。'], ['bkB', '想借钱来撑：这是红线。第零章说过，借来的钱会把“有上限的亏”变成“没有上限的亏”。'], ['bkP', '计划里写好的停止条件已经出现：按计划执行，这正是当初写它的原因。'], ['bkH', '身体或情绪出了持续的问题：先去看医生，生意可以停，身体不能透支。']];
+  function draw(){
+    if (!ready) return;
+    const red = [], yel = [];
+    if (g.s < 3) red.push('存款只够 ' + g.s + ' 个月，已经碰到了止损线。');
+    else if (g.s < 6) yel.push('存款还够 ' + g.s + ' 个月，离止损线不远了。');
+    if (g.l >= 6) red.push('连续 ' + g.l + ' 个月入不敷出。');
+    else if (g.l >= 3) yel.push('连续 ' + g.l + ' 个月入不敷出，到检查点了。');
+    if (g.z < 5.5) red.push('平均每晚只睡 ' + g.z + ' 小时。');
+    else if (g.z < 6.5) yel.push('睡眠偏少。');
+    CK.forEach(c => { if ($('#' + c[0]).checked) (c[0] === 'bkM' ? yel : red).push(c[1]); });
+    let light, col, head;
+    if (red.length) { light = '红灯'; col = 'var(--main)'; head = '该停下来，按计划回去上班或者回到主线。'; }
+    else if (yel.length) { light = '黄灯'; col = 'var(--och)'; head = '到了该认真检查的时候：回去看你的计划，把这几样摆到桌上，和一个信得过的人说一说。'; }
+    else { light = '绿灯'; col = 'var(--ter)'; head = '暂时没有危险信号。继续按计划走，到检查日再看。'; }
+    out.style.borderColor = col;
+    out.innerHTML = '<h5 style="color:' + col + '">' + light + '</h5><p style="margin:0 0 .4em;text-indent:0">' + head + '</p>' + (red.concat(yel).length ? '<ul class="plain" style="margin:0 0 .4em">' + red.map(x => '<li><b class="neg">●</b> ' + x + '</li>').join('') + yel.map(x => '<li><b style="color:var(--och)">●</b> ' + x + '</li>').join('') + '</ul>' : '');
+  }
+  const go = () => { if (ready) draw(); };
+  slider('bkS', v => { g.s = v; return v + ' 个月'; }, go);
+  slider('bkL', v => { g.l = v; return v ? v + ' 个月' : '没有'; }, go);
+  slider('bkZ', v => { g.z = v; return v + ' 小时'; }, go);
+  CK.forEach(c => $('#' + c[0]).addEventListener('change', go));
+  ready = true; draw();
+});
+
+/* ---------- 装置 18：利润和现金 ---------- */
+dev('#cashFig', fig => {
+  const svg = $('#cfSvg'), kvb = $('#cfKv'), say = $('#cfSay');
+  const g = {}; let ready = false;
+  function draw(){
+    if (!ready) return;
+    const M = 12, lagIn = Math.round(g.d / 30), lagOut = Math.round(g.p / 30);
+    const rev = [], cogs = [];
+    for (let m = 0; m < M + 6; m++) { rev.push(g.r * Math.pow(1 + g.g / 100, m)); cogs.push(rev[m] * (1 - g.m / 100)); }
+    let profit = 0, cash = g.c; const pP = [[0, 0]], pC = [[0, cash]]; let low = cash, lowM = 0, firstNeg = null;
+    for (let m = 0; m < M; m++) {
+      profit += rev[m] - cogs[m] - g.f;
+      const inflow = m - lagIn >= 0 ? rev[m - lagIn] : 0;
+      const outV = m - lagOut >= 0 ? cogs[m - lagOut] : 0;
+      cash += inflow - outV - g.f;
+      pP.push([m + 1, profit]); pC.push([m + 1, cash]);
+      if (cash < low) { low = cash; lowM = m + 1; }
+      if (firstNeg == null && cash < 0) firstNeg = m + 1;
+    }
+    const ys = pP.concat(pC).map(p => p[1]).concat([0]);
+    let lo = Math.min(...ys), hi = Math.max(...ys); const pad = (hi - lo) * .08 || 1000; lo -= pad; hi += pad;
+    const span = hi - lo, step = span > 2e6 ? 500000 : span > 8e5 ? 200000 : span > 3e5 ? 100000 : span > 1.2e5 ? 50000 : span > 5e4 ? 20000 : 10000;
+    const yt = []; for (let v = Math.ceil(lo / step) * step; v <= hi; v += step) yt.push(v);
+    const c = lineChart(svg, [{pts: pP, color: 'var(--ter)', w: 2.6}, {pts: pC, color: 'var(--main)', w: 2.6, dash: '6 4'}], {xmin: 0, xmax: M, ymin: lo, ymax: hi, xt: [0, 3, 6, 9, 12], xf: v => v + ' 月', yt: yt, yf: v => (v / 1e4) + ' 万', H: 250, L: 50});
+    let ex = '<line x1="' + c.L + '" x2="' + (c.W - c.R) + '" y1="' + c.Y(0) + '" y2="' + c.Y(0) + '" stroke="var(--ink)" stroke-width="1"/>';
+    ex += txt(c.L + 6, c.T + 12, '实线：累计利润　虚线：手里的现金', {s: 11, a: 'start', c: 'var(--ink-2)'});
+    if (firstNeg) ex += '<circle cx="' + c.X(firstNeg) + '" cy="' + c.Y(pC[firstNeg][1]) + '" r="5" fill="var(--main)"/>' + txt(c.X(firstNeg), c.Y(pC[firstNeg][1]) + 20, '第 ' + firstNeg + ' 个月钱没了', {s: 12, c: 'var(--main)', w: 1});
+    svg.insertAdjacentHTML('beforeend', ex);
+    kv(kvb, [['一年累计利润', '<span class="' + (profit >= 0 ? 'pos' : 'neg') + '">' + yuan(profit) + '</span>'], ['年底手里的现金', yuan(cash)], ['现金最低', yuan(low) + '（第 ' + lowM + ' 个月）'], ['被客户压着的钱', yuan(rev.slice(M - lagIn, M).reduce((a, b) => a + b, 0))]]);
+    let s;
+    if (firstNeg && profit > 0) s = '这就是“黑字倒闭”的样子：一年下来赚了 ' + yuan(profit) + '，可第 ' + firstNeg + ' 个月手里的钱就用光了，最低时差 ' + yuan(-low) + '。要么先借钱垫上，要么想办法让钱早点回来：收定金、分阶段付款、晚一点付供应商。';
+    else if (firstNeg) s = '生意本身就在亏，现金先断是迟早的事。';
+    else if (lagIn >= 2) s = '这一回没断，可年底有 ' + yuan(rev.slice(M - lagIn, M).reduce((a, b) => a + b, 0)) + ' 压在客户手里。试着把“每月增长”往右拖：生意越好，压着的钱越多。';
+    else s = '客户付款快，现金几乎跟着利润走。这是先收后付的好处。';
+    say.textContent = s;
+  }
+  const go = () => { if (ready) draw(); };
+  slider('cfR', v => { g.r = v; return yuan(v); }, go);
+  slider('cfG', v => { g.g = v; return v + '%'; }, go);
+  slider('cfM', v => { g.m = v; return v + '%'; }, go);
+  slider('cfF', v => { g.f = v; return yuan(v); }, go);
+  slider('cfD', v => { g.d = v; return v ? v + ' 天' : '当场付'; }, go);
+  slider('cfP', v => { g.p = v; return v ? v + ' 天' : '当场付'; }, go);
+  slider('cfC', v => { g.c = v; return yuan(v); }, go);
+  ready = true; draw();
+});
+
+/* ---------- 装置 19：出了事，用谁的钱赔 ---------- */
+dev('#wallFig', fig => {
+  const box = $('#wlBars'), say = $('#wlSay'), mix = $('#wlMix');
+  const F = ['个体户', '个人独资企业', '一人公司', '有限公司（几个股东）', '普通合伙（两人）'];
+  const g = {f: 3}; let ready = false;
+  function draw(){
+    if (!ready) return;
+    const D = g.d, A = Math.min(g.a, D), short = Math.max(0, D - A);
+    let mine = 0, lost = 0, why = '';
+    if (g.f <= 1) { mine = short; why = F[g.f] + '没有有限责任：生意还不上的 ' + yuan(short) + '，全部由你个人' + (g.f === 0 ? '（家庭经营的，用家庭财产）' : '') + '承担。'; }
+    else if (g.f === 4) { mine = short; why = '普通合伙人对合伙企业的债务承担无限连带责任：债主可以找你要全部 ' + yuan(short) + '，你替合伙人还了的部分，再去找他追偿，追不追得回来另说。'; }
+    else {
+      const company = g.f === 2 && mix.checked ? '一人公司的股东要自己证明公司财产独立于个人财产；账混在一起，证明不了，' : mix.checked ? '账目混同，可能被认定滥用公司人格，' : '';
+      if (mix.checked) { mine = short; why = company + '这道墙塌了：还不上的 ' + yuan(short) + ' 可能都要你承担连带责任。'; }
+      else {
+        const guar = Math.min(g.g, short), rest = short - guar;
+        const unpaid = Math.min(g.u, rest);
+        mine = guar + unpaid; lost = rest - unpaid;
+        why = '有限责任这道墙在起作用。' + (guar ? '可你签了担保的 ' + yuan(guar) + '，银行直接找你。' : '') + (unpaid ? '注册资本里认缴了没缴的 ' + yuan(unpaid) + '，债主可以要求你提前缴上。' : '') + (lost ? '剩下的 ' + yuan(lost) + '，债主拿不到：这才是“有限责任”真正保护你的部分。' : '墙后面已经没有剩下的了：你个人要掏的，和无限责任差不多。');
+      }
+    }
+    if (g.f <= 1 || g.f === 4) lost = 0;
+    bars(box, [['公司或生意的财产', A, '先拿来还债', 'var(--ter)'], ['你个人掏', mine, '', 'var(--main)'], ['债主拿不到', lost, '', 'var(--ink-3)']], D, v => yuan(v));
+    say.textContent = why;
+  }
+  const go = () => { if (ready) draw(); };
+  slider('wlD', v => { g.d = v; return yuan(v); }, go);
+  slider('wlA', v => { g.a = v; return yuan(v); }, go);
+  slider('wlU', v => { g.u = v; return yuan(v); }, go);
+  slider('wlG', v => { g.g = v; return v ? yuan(v) : '没签'; }, go);
+  mix.addEventListener('change', go);
+  btnRow($('#wlForm'), F, 3, i => { g.f = i; draw(); });
+  ready = true; draw();
+});
+
+/* ---------- 装置 20：同样赚一年，交多少税（写作时政策的极简示意） ---------- */
+dev('#taxFig', fig => {
+  const box = $('#txBars'), kvb = $('#txKv'), say = $('#txSay');
+  const g = {}; let ready = false;
+  const prog = (x, B) => { if (x <= 0) return 0; for (const b of B) if (x <= b[0]) return x * b[1] - b[2]; return 0; };
+  const BIZ = [[30000, .05, 0], [90000, .10, 1500], [300000, .20, 10500], [500000, .30, 40500], [Infinity, .35, 65500]];
+  const COMP = [[36000, .03, 0], [144000, .10, 2520], [300000, .20, 16920], [420000, .25, 31920], [660000, .30, 52920], [960000, .35, 85920], [Infinity, .45, 181920]];
+  function draw(){
+    if (!ready) return;
+    const R = g.r, cost = R * g.c / 100;
+    const vat = R / 12 <= 100000 ? 0 : R / 1.01 * 0.01;
+    // 劳务报酬：收入八成并入综合所得，减六万
+    const lw = prog(R * 0.8 - 60000, COMP), lwNet = R - cost - lw;
+    // 个体户：经营所得，减六万，二百万以内部分减半
+    const ti = R - vat - cost - 60000;
+    const t0 = prog(ti, BIZ), t = ti > 0 ? t0 - t0 * Math.min(1, 2e6 / ti) * 0.5 : 0, bizNet = R - vat - cost - t;
+    // 一人公司：利润全分红
+    const pr = R - vat - cost, cit = pr <= 0 ? 0 : pr <= 3e6 ? pr * 0.05 : pr * 0.25, div = Math.max(0, pr - cit) * 0.2, coNet = pr - cit - div;
+    const rows = [['没执照，按劳务报酬', lw, '到手 ' + yuan(lwNet) + '（成本不能扣）', 'var(--och)'], ['个体户', vat + t, '增值税 ' + yuan(vat) + ' + 个税 ' + yuan(t) + '，到手 ' + yuan(bizNet), 'var(--ter)'], ['一人公司，全部分红', vat + cit + div, '增值税 ' + yuan(vat) + ' + 企业所得税 ' + yuan(cit) + ' + 分红个税 ' + yuan(div) + '，到手 ' + yuan(coNet), 'var(--main)']];
+    bars(box, rows, Math.max(1, ...rows.map(r => r[1])), v => yuan(v));
+    kv(kvb, [['利润', yuan(R - cost)], ['月均收入', yuan(R / 12)], ['增值税', vat ? '超过月十万，按 1%' : '月十万以下，免']]);
+    const best = [[lwNet, '按劳务报酬'], [bizNet, '个体户'], [coNet, '一人公司']].sort((a, b) => b[0] - a[0])[0][1];
+    let s = '这组数字下，到手最多的是“' + best + '”。';
+    if (g.c >= 30 && R < 200000) s += ' 成本占得多的时候，按劳务报酬不能扣成本，就显得吃亏：这是有了稳定生意以后办个体户的一个理由。';
+    else if (R - cost > 1e6) s += ' 利润很高时，公司那百分之五看着低，可分红还有一道百分之二十；个体户超过二百万的部分不再减半。高收入的税务安排，一定要找专业的人。';
+    else s += ' 小生意在写作时的税负普遍不高。比起选哪种形式省几千块，按时申报、账目清楚更重要。';
+    say.textContent = s;
+  }
+  const go = () => { if (ready) draw(); };
+  slider('txR', v => { g.r = v; return yuan(v); }, go);
+  slider('txC', v => { g.c = v; return v + '%'; }, go);
+  ready = true; draw();
+});
+
+/* ---------- 装置 21：借钱扩张，最后欠不欠（蒙特卡洛） ---------- */
+dev('#loanFig', fig => {
+  const box = $('#lnBars'), kvb = $('#lnKv'), say = $('#lnSay');
+  const g = {}; let ready = false;
+  function draw(){
+    if (!ready) return;
+    const L = g.l, i = g.i / 100 / 12, T = g.t;
+    const pay = L ? (i ? L * i / (1 - Math.pow(1 + i, -T)) : L / T) : 0;
+    const r = rng(2029), N = 1000, M = 24, ends = [];
+    for (let k = 0; k < N; k++) {
+      const ok = r() < g.p / 100;
+      let cash = L; // 借来的钱先进账
+      for (let m = 1; m <= M; m++) {
+        cash += g.b;                               // 原来的利润
+        if (m <= T) cash -= pay;                    // 还贷
+        if (ok || m <= g.r) cash -= g.c;            // 扩张的花费；失败的在“见效”时停掉
+        if (ok && m > g.r) cash += g.g * (0.7 + 0.6 * r());
+      }
+      if (T > M) { const q = 1 + i; cash -= i ? L * Math.pow(q, M) - pay * (Math.pow(q, M) - 1) / i : L - pay * M; } // 两年后还没还完的本金
+      ends.push(cash - g.b * M);                    // 只看这次扩张带来的变化
+    }
+    ends.sort((a, b) => a - b);
+    const lose = ends.filter(x => x < 0).length / N, worst = ends[Math.floor(N * 0.05)], med = ends[Math.floor(N / 2)];
+    let debt = 0; // 两年后总现金（含原来的利润）仍为负
+    for (let k = 0; k < N; k++) { if (ends[k] + g.b * M < 0) debt++; }
+    bars(box, [['比不借不扩张更差', lose * 100, '', 'var(--main)'], ['两年后还欠着（原利润也填不上）', debt / N * 100, '', 'var(--och)'], ['比不借更好', (1 - lose) * 100, '', 'var(--ter)']], 100, v => Math.round(v) + '%');
+    kv(kvb, [['每月还款', yuan(pay)], ['每月要掏', yuan(pay + g.c)], ['中间情况', (med >= 0 ? '多赚 ' : '少了 ') + yuan(Math.abs(med))], ['最差的二十分之一', (worst >= 0 ? '多赚 ' : '少了 ') + yuan(Math.abs(worst))]]);
+    let s;
+    if (pay + g.c > g.b * 2 && debt / N > 0.2) s = '每月要掏的 ' + yuan(pay + g.c) + '，是现在每月利润的 ' + ((pay + g.c) / Math.max(1, g.b)).toFixed(1) + ' 倍。一千次里有 ' + Math.round(debt / N * 100) + '% 两年后还欠着，要靠个人或家里来还：这就是“失败了还不上”的样子。';
+    else if (lose > 0.5) s = '比不借更差的可能超过一半。成功的可能和见效的时间，是你自己估的：创业的人估这两个数，通常偏乐观。';
+    else s = '在这组假设下，多数情况比不借更好。再试试把“多久见效”往右拖几个月，或者把“成的可能”往左拖一点：看看结论有多脆。';
+    say.textContent = s;
+  }
+  const go = () => { if (ready) draw(); };
+  slider('lnL', v => { g.l = v; return v ? yuan(v) : '不借'; }, go);
+  slider('lnI', v => { g.i = v; return v + '%'; }, go);
+  slider('lnT', v => { g.t = v; return v + ' 个月'; }, go);
+  slider('lnC', v => { g.c = v; return yuan(v); }, go);
+  slider('lnG', v => { g.g = v; return yuan(v); }, go);
+  slider('lnR', v => { g.r = v; return '第 ' + v + ' 个月'; }, go);
+  slider('lnP', v => { g.p = v; return v + '%'; }, go);
+  slider('lnB', v => { g.b = v; return yuan(v); }, go);
+  ready = true; draw();
+});
+
+/* ---------- 装置 22：一份投资条款的账 ---------- */
+dev('#termFig', fig => {
+  const box = $('#tmBars'), kvb = $('#tmKv'), say = $('#tmSay'), gu = $('#tmG');
+  const g = {}; let ready = false;
+  function draw(){
+    if (!ready) return;
+    const post = g.i / (g.s / 100), pre = post - g.i;
+    let mine = g.f / 100 * (1 - g.s / 100);
+    const steps = [['投资前', g.f]];
+    steps.push(['这一轮之后', mine * 100]);
+    for (let k = 0; k < g.n; k++) { mine *= 1 - g.d / 100; steps.push(['再融第 ' + (k + 1) + ' 轮', mine * 100]); }
+    const line = v => v > 200 / 3 ? '能独自决定大事' : v > 50 ? '过半数' : v > 100 / 3 ? '还能一票否决大事' : '大事已经说了不算';
+    bars(box, steps.map(s => [s[0], s[1], line(s[1]), s[1] > 50 ? 'var(--ter)' : s[1] > 100 / 3 ? 'var(--och)' : 'var(--main)']), 100, v => v.toFixed(1) + '%');
+    const buy = g.i * (1 + g.r / 100 * g.y);
+    const exp = (1 - g.p / 100) * buy;
+    kv(kvb, [['投后估值', yuan(post)], ['投前估值', yuan(pre)], ['没达成时回购款', yuan(buy)], ['你个人承担', gu.checked ? '<span class="neg">' + yuan(buy) + '（和其他创始人连带）</span>' : '由公司按程序处理'], ['按你估的可能，期望要掏', gu.checked ? yuan(exp) : '—']]);
+    let s;
+    if (gu.checked && g.p < 50) s = '按你自己估的，没达成的可能是 ' + (100 - g.p) + '%。那时回购款 ' + yuan(buy) + '，由创始人个人连带承担：这笔“投资”在最坏的那一天，就是你个人欠下的一笔债，而且其他创始人付不出的部分，债主可以找你要。';
+    else if (gu.checked) s = '就算你觉得达成的可能更大，也把“没达成”那一天念一遍：回购款 ' + yuan(buy) + ' 从你个人和家里出。估计目标的人，通常偏乐观。';
+    else s = '去掉了创始人个人回购，最坏的那一天，亏的是公司和这门生意，不是你的家。投资方往往会要求别的保护，比如调整股份、优先清算，这些可以谈。';
+    if (mine * 100 < 100 / 3) s += ' 另外，几轮下来你只剩 ' + (mine * 100).toFixed(1) + '%，连一票否决大事的那条线都守不住了。';
+    say.textContent = s;
+  }
+  const go = () => { if (ready) draw(); };
+  slider('tmI', v => { g.i = v; return yuan(v); }, go);
+  slider('tmS', v => { g.s = v; return v + '%'; }, go);
+  slider('tmF', v => { g.f = v; return v + '%'; }, go);
+  slider('tmN', v => { g.n = v; return v ? v + ' 轮' : '不再融'; }, go);
+  slider('tmD', v => { g.d = v; return v + '%'; }, go);
+  slider('tmY', v => { g.y = v; return v + ' 年'; }, go);
+  slider('tmR', v => { g.r = v; return v + '%'; }, go);
+  slider('tmP', v => { g.p = v; return v + '%'; }, go);
+  gu.addEventListener('change', go);
+  ready = true; draw();
+});
+
+/* ---------- 装置 23：不借钱能长多快 ---------- */
+dev('#growFig', fig => {
+  const svg = $('#grSvg'), kvb = $('#grKv'), say = $('#grSay');
+  const g = {}; let ready = false;
+  function draw(){
+    if (!ready) return;
+    const roe = g.t * g.m / 100, sg = roe * g.b / 100, want = g.w / 100;
+    const a = [[0, g.k]], b = [[0, g.k]];
+    for (let y = 1; y <= 5; y++) { a.push([y, a[y - 1][1] * (1 + sg)]); b.push([y, b[y - 1][1] * (1 + want)]); }
+    const ymax = Math.max(a[5][1], b[5][1]) * 1.1;
+    const step = ymax > 5e6 ? 2e6 : ymax > 2e6 ? 1e6 : ymax > 8e5 ? 5e5 : ymax > 3e5 ? 1e5 : 5e4;
+    const yt = []; for (let v = 0; v <= ymax; v += step) yt.push(v);
+    lineChart(svg, [{pts: b, color: 'var(--ink-3)', dash: '5 4', w: 2}, {pts: a, color: 'var(--ter)', w: 2.8, dots: true}], {xmin: 0, xmax: 5, ymin: 0, ymax: ymax, xt: [0, 1, 2, 3, 4, 5], xf: v => v + ' 年', yt: yt, yf: v => (v / 1e4) + ' 万', H: 230, L: 54});
+    svg.insertAdjacentHTML('beforeend', txt(60, 22, '实线：只用自己赚的钱　虚线：想要的增长', {s: 11, a: 'start', c: 'var(--ink-2)'}));
+    const profit = g.k * roe, take = profit * (1 - g.b / 100);
+    const gap = Math.max(0, g.k * (want - sg));
+    kv(kvb, [['一年利润', yuan(profit)], ['拿走过日子', yuan(take)], ['不借钱一年能长', '<b>' + (sg * 100).toFixed(1) + '%</b>'], ['五年后本钱', yuan(a[5][1])], ['想要的增长第一年还差', gap ? yuan(gap) : '不差']]);
+    let s;
+    if (sg >= want) s = '只用自己赚的钱，一年就能长 ' + (sg * 100).toFixed(0) + '%，够了。不需要借，也不需要拿投资。';
+    else if (roe >= 0.4) s = '本钱回报率很高（一块本钱一年赚回 ' + roe.toFixed(2) + ' 元），自己滚也能长得不慢。想再快，可以少拿一点过日子，往右拖“留下继续投”试试，而不是先想着借钱。';
+    else s = '本钱回报率只有 ' + (roe * 100).toFixed(0) + '%，自己滚一年只能长 ' + (sg * 100).toFixed(0) + '%。想达到 ' + g.w + '%，第一年就要从外面拿 ' + yuan(gap) + '，往后每年更多：这是开店、囤货这类生意想快就得借钱的原因。先问一句，真的要那么快吗？';
+    say.textContent = s;
+  }
+  const go = () => { if (ready) draw(); };
+  slider('grK', v => { g.k = v; return yuan(v); }, go);
+  slider('grT', v => { g.t = v; return v + ' 元'; }, go);
+  slider('grM', v => { g.m = v; return v + '%'; }, go);
+  slider('grB', v => { g.b = v; return v + '%'; }, go);
+  slider('grW', v => { g.w = v; return v + '%'; }, go);
+  ready = true; draw();
+});
+
+/* ---------- 装置 24：卖掉，还是继续 ---------- */
+dev('#exitFig', fig => {
+  const box = $('#exBars'), kvb = $('#exKv'), say = $('#exSay');
+  const g = {}; let ready = false;
+  function draw(){
+    if (!ready) return;
+    const d = g.d / 100, gr = g.g / 100, Y = 5;
+    let keep = 0, p = g.p, sellPath = g.p * g.m;
+    for (let t = 1; t <= Y; t++) {
+      keep += (p - g.o) / Math.pow(1 + d, t);   // 多赚的（或少赚的）
+      p *= 1 + gr;
+    }
+    const later = Math.max(0, p / (1 + gr) * g.m) / Math.pow(1 + d, Y); // 五年后再卖
+    const keepV = keep + later;
+    bars(box, [['现在卖掉', sellPath, '一次拿到 ' + g.m + ' 倍年利润，之后去做别的', 'var(--ter)'], ['继续干五年', Math.max(0, keepV), keepV < 0 ? '比去做别的还亏 ' + yuan(-keepV) : '比去做别的多出的，折成今天的钱，含五年后再卖', 'var(--main)']], Math.max(sellPath, keepV, 1), v => yuan(v));
+    const p5 = g.p * Math.pow(1 + gr, Y - 1);
+    kv(kvb, [['卖掉拿到', yuan(sellPath)], ['继续干的价值', yuan(keepV)], ['第五年的利润', yuan(p5)], ['五年后再卖值', yuan(Math.max(0, p5 * g.m))]]);
+    let s;
+    if (sellPath > keepV * 1.15) s = '在这组假设下，现在卖掉更划算：生意在变差，或者它给你的并不比你去做别的多。买家出的是今天的价，五年后它可能只值一半。';
+    else if (keepV > sellPath * 1.15) s = '在这组假设下，继续干更划算：利润在涨，而且比你去做别的多出不少。那就别卖，但想一想这份判断有多大把握。';
+    else s = '两条路差不多。这时候数字帮不了你多少：想想你想要什么样的生活，第二十二章的那个问题。';
+    if (g.o >= g.p) s += ' 注意：你去做别的一年能挣的，已经不比这门生意少了，你是在用自己的时间补贴它。';
+    say.textContent = s;
+  }
+  const go = () => { if (ready) draw(); };
+  slider('exP', v => { g.p = v; return yuan(v); }, go);
+  slider('exG', v => { g.g = v; return (v > 0 ? '涨 ' : v < 0 ? '跌 ' : '不变 ') + (v ? Math.abs(v) + '%' : ''); }, go);
+  slider('exO', v => { g.o = v; return yuan(v); }, go);
+  slider('exM', v => { g.m = v; return v + ' 倍'; }, go);
+  slider('exD', v => { g.d = v; return v + '%'; }, go);
+  ready = true; draw();
+});
+
+/* ---------- 装置 25：全书最多亏多少（数据由各章 .floor 的“一句话”抽取） ---------- */
+dev('#allFig', fig => {
+  const F = [["c0", "一门本钱几乎为零的小生意", "先定亏损的上限，再想赚多少。上限定不下来的生意，不做。"], ["c1", "一副货郎担", "本钱最小、亏得最少的店面，代价是天花板也最低，而且离不开人。"], ["c2", "今天办一个个体户", "执照是安心，不是保护伞。个体户的债，最后落在你自己和家里。"], ["c3", "在平台上开一家小店", "平台给的流量是租来的，熟客和手艺才是自己的。"], ["c4", "拿风投，做大公司", "钱不是你的，可时间是；把命交给下一轮融资之前，想清楚散伙以后自己在哪里。"], ["c5", "先上班，攒够了再出来", "让别人的店替你交学费，同时说好什么时候、带多少钱出来，失败了什么时候回去。"], ["c6", "一门手艺，从接活开始", "先卖时间证明有人付钱，再把重复的活变成产品，签字之前弄清楚手艺归谁。"], ["c7", "拿家底开一家店", "开店的钱大多在开张前就花掉了，花之前问一句：这笔钱亏光了，家里还过得去吗？过不去，就不开。"], ["c8", "几个人凑钱开工作室", "关系最好的时候，把最难听的话写下来：谁说了算，谁走了怎么办，亏了谁担。"], ["c9", "用 AI 工具接活、做小产品", "AI 让“试一下”变便宜了，没让“卖出去”和“负得起责”变便宜。"], ["c10", "一个人做一个小产品", "把每一次尝试做得足够便宜，别只盯着长尾最右边的那几个人。"], ["c11", "先卖，后做", "先问过去，再开价，有人付了钱才开始做。"], ["c12", "掉进 AI 时代的坑", "钱来得容易、说不清为什么给你的，不碰。你的卡、你的身份证、你的手机号，不借给任何人。"], ["c13", "在一个身份里顺带做点什么", "先看清你这个身份的规矩，再决定顺带做什么；拿不准，先问，书面问。"], ["c14", "三无的那一年", "先保住住、吃、医保和干净的身份；一份马上有钱的活，一门往深里学的手艺，两样同时做。"], ["c15", "按这八条迈出的第一步", "第一步要小到亏了也无所谓，计划要短到一页纸写得下，一半写的是什么时候停。"], ["c16", "一个人扛", "讲底线，不讲梦想；回去上班是计划里写好的一种结局；别让面子替你做决定。"], ["c17", "一门赚钱却没钱的生意", "利润是观点，现金是事实；先收后付，公私分开，预收的钱当欠款。"], ["c18", "选错了身份", "有限责任是一道墙，墙上的洞是没缴的钱、混着的账、签了的担保；谁经营谁当法定代表人。"], ["c19", "税上的事", "收入是看得见的；按时报、留凭证、只开真实交易的发票，用好写在明处的优惠。"], ["c20", "借钱做生意", "只借买得来确定现金的钱，按“失败了也还得上”定金额；不借钱填窟窿，不借高息的钱，担保和配偶签字想清楚再签。"], ["c21", "拿别人的钱", "拿钱之前把每个条款在最坏的那一天念一遍；不签个人回购，不向公众许诺回报，算股份也算控制权。"], ["c22", "把生意做大", "用自己赚的钱先算出能长多快；雇人先守法；把自己从流程里拿出来；不做大也是一种成功。"], ["c23", "收摊", "在退路还开着的时候走；卖掉、交出去、关掉都可以，一走了之不行。"]];
+  const VOL = [['全部', 0, 99], ['序幕 · 卷一', 0, 3], ['卷二 · 五种开法', 4, 8], ['卷三 · 器', 9, 12], ['卷四 · 岔', 13, 16], ['卷五 · 钱', 17, 20], ['卷六 · 大与退', 21, 23]];
+  const list = $('#alList'), one = $('#alOne');
+  const num = id => +id.slice(1);
+  const item = r => { const t = TOC.find(x => x.id === r[0]); return '<li style="padding:8px 0;border-bottom:1px dashed var(--rule)"><a data-c="' + r[0] + '" href="' + href(r[0]) + '" style="font-family:var(--f-display);font-size:18px;color:var(--main);text-decoration:none">' + t.n + '</a> <small style="color:var(--ink-3)">' + t.t + ' · ' + r[1] + '</small><br><span style="font-size:15.5px">' + r[2] + '</span></li>'; };
+  function show(v){ const [, a, b] = VOL[v]; list.innerHTML = F.filter(r => num(r[0]) >= a && num(r[0]) <= b).map(item).join(''); }
+  btnRow($('#alVol'), VOL.map(v => v[0]), 0, show);
+  let last = -1;
+  $('#alPick').addEventListener('click', () => { let k; do { k = Math.floor(Math.random() * F.length); } while (k === last && F.length > 1); last = k; const r = F[k], t = TOC.find(x => x.id === r[0]); one.style.display = 'block'; one.innerHTML = '<b>' + t.n + ' · ' + r[1] + '</b><br>' + r[2]; });
+  show(0);
+});
+
+})();
+
+</script>
+</body>
+</html>

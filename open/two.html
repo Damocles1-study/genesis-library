@@ -1717,7 +1717,7 @@ function slider(id, f, cb){ const r = $('#' + id), o = $('#' + id + 'O'); const 
 
 /* ---------- 全书目录（三个网页共用） ---------- */
 const PAGE = /three\.html/.test(location.pathname) ? 3 : /two\.html/.test(location.pathname) ? 2 : 1;
-const READY = 2; // 已经写好的部数
+const READY = 3; // 已经写好的部数
 const PURL = {1: './', 2: 'two.html', 3: 'three.html'};
 const TOC = [
   {p: 1, t: '第一部 · 摊 —— 普通人怎样做生意'},
@@ -1746,16 +1746,16 @@ const TOC = [
   {id: 'c16', n: '身', t: '一个人扛', s: '早睡早起的历书、创业者的心理健康、怎样跟爸妈说、面子；该不该回去上班', r: '1732—2027'},
   {p: 3, t: '第三部 · 账 —— 和钱搭上边'},
   {v: '卷五 · 钱'},
-  {id: 'c17', n: '流', t: '赚钱了，钱呢', s: '利润和现金流、账期、库存；公私分开', r: '1494—2026'},
-  {id: 'c18', n: '形', t: '个体户还是公司', s: '有限责任的边界、一人公司、合伙企业、个人担保', r: '1855—2024'},
-  {id: 'c19', n: '税', t: '发票和税', s: '小规模纳税人、经营所得、记账；为什么要开发票', r: '今'},
-  {id: 'c20', n: '借', t: '借钱的边界', s: '创业担保贷款、网贷、信用卡和夫妻共同债务；一个人背了两亿', r: '2013—2026'},
+  {id: 'c17', n: '流', t: '赚钱了，钱呢', s: '威尼斯的复式记账、利润和现金、账期和黑字倒闭、储值卡是欠顾客的钱、公私分开；利润和现金', r: '1494—2028'},
+  {id: 'c18', n: '形', t: '个体户还是公司', s: '靴匠和他的公司、五种形式、注册资本五年缴足、墙上的三个洞、挂名法人；出了事用谁的钱赔', r: '1892—2028'},
+  {id: 'c19', n: '税', t: '发票和税', s: '能中奖的发票、小规模纳税人、经营所得减半、一人公司的两道税、两条不能碰的线；同样赚一年交多少税', r: '1950—2028'},
+  {id: 'c20', n: '借', t: '借钱的边界', s: '两亿元和共债共签、各种钱的价钱、什么钱可以借；借钱扩张最后欠不欠', r: '2011—2029'},
   {v: '卷六 · 大与退'},
-  {id: 'c21', n: '股', t: '拿别人的钱', s: '天使、风投、对赌和控制权；一家餐厅的故事', r: '2008—2024'},
-  {id: 'c22', n: '大', t: '做大', s: '雇第一个人、利润滚利润、把自己从流程里拿出来', r: '今'},
-  {id: 'c23', n: '退', t: '收摊', s: '卖掉、关掉、转身；一个下架的游戏和一场还债的直播', r: '2014—2026'},
+  {id: 'c21', n: '股', t: '拿别人的钱', s: '一家高档餐厅的投资和出局、股和债、对赌和回购、三个比例、亲友集资的边界；一份投资条款的账', r: '2000—2029'},
+  {id: 'c22', n: '大', t: '做大', s: '没有续租条款的租约、不借钱能长多快、雇第一个人、把自己从流程里拿出来、不做大的公司', r: '1945—2030'},
+  {id: 'c23', n: '退', t: '收摊', s: '亲手下架的游戏、卖掉交出去关掉、关门先还谁、还债的直播和个人破产；卖掉还是继续', r: '2013—2030'},
   {v: '尾声'},
-  {id: 'c24', n: '张', t: '开张', s: '五年以后的沈舟；全书最多亏多少', r: '2032'}
+  {id: 'c24', n: '张', t: '开张', s: '五年以后的三个版本、押韵的地方、全书最多亏多少、一张空白的营业执照', r: '2032'}
 ];
 const chapPage = {}; { let p = 1; TOC.forEach(x => { if (x.p) p = x.p; if (x.id) chapPage[x.id] = p; }); }
 const href = id => (chapPage[id] === PAGE ? '' : PURL[chapPage[id]]) + '#' + id;
@@ -1929,6 +1929,37 @@ dev('#weekFig', fig => {
     ready = true; draw();
   });
   ready = true; draw();
+});
+
+/* ---------- 第三部封面装置：用哪种身份做生意 ---------- */
+dev('#formFig', fig => {
+  const qs = $('#fmQs'), out = $('#fmOut');
+  const Q = [
+    ['你现在在编制里，或者是公务员吗？', ['是', '不是']],
+    ['收入是零星的几单，还是已经稳定、每个月都有？', ['零星的几单', '已经稳定']],
+    ['客户要不要你开发票、签正式合同，或者你要开商户号收款？', ['不要', '要']],
+    ['有没有合伙人，或者打算拿别人的投资？', ['没有，就我一个', '有']],
+    ['生意会不会欠下大额的钱：大额进货、长租约、大合同的违约责任、雇好几个人？', ['不会，都是小额', '可能会']]
+  ];
+  const a = Q.map(() => null);
+  const ch = (id, t) => '<a data-c="' + id + '" href="' + href(id) + '">' + t + '</a>';
+  function render(){
+    qs.innerHTML = Q.map((q, i) => '<div class="q' + (i > 0 && a[0] === 0 ? ' off' : '') + '"><p><b>' + (i + 1) + '.</b> ' + q[0] + '</p><div class="btns">' + q[1].map((o, j) => '<button class="btn' + (a[i] === j ? ' on' : '') + '" data-i="' + i + '" data-j="' + j + '">' + o + '</button>').join('') + '</div></div>').join('');
+    let r = null;
+    if (a[0] === 0) r = ['先别登记', '在编和公务员一般不能经商办企业（第十三章）。这时候的问题不是选哪种身份，而是先弄清你所在单位的规定；想做生意，要先想清楚是不是离开这个系统。', ['c13']];
+    else if (a.every(x => x != null)) {
+      if (a[3] === 1) r = ['有限责任公司', '有合伙人或者外部投资，用有限公司把每个人出多少、占多少、怎么退出写进章程；别用普通合伙（第八章）。注册资本按实际能缴的写，五年内要缴足。签字时留意个人担保和回购条款。', ['c18', 'c21', 'c8']];
+      else if (a[4] === 1) r = ['一人有限责任公司', '一个人做、但可能欠下大额的钱，有限责任这道墙有用。前提是公司的账和你自己的账必须分得清清楚楚：一人公司的股东要证明公司财产独立于自己，否则要对公司的债务承担连带责任。', ['c18', 'c17']];
+      else if (a[1] === 1 || a[2] === 1) r = ['个体工商户', '一个人、小额、收入稳定，或者要开票收款：个体户登记简单，可以开发票、开商户号，税收上常有优惠和核定的办法，注销也容易。记住它没有有限责任：债务由个人或家庭财产承担，所以别让它欠大钱。', ['c19', 'c2', 'c18']];
+      else r = ['先不登记', '零星的几单、自己的手艺，按法律的零星小额和便民劳务豁免，可以先不办执照；对方付你的钱按劳务报酬，由付款方代扣个税或者你自己申报。等收入稳定、要开票收款时再办。准备考试的人，办之前先看公告（第十三章）。', ['c15', 'c19', 'c13']];
+    }
+    if (r) {
+      out.innerHTML = '<div class="road"><h5>' + r[0] + '</h5><p style="margin:0 0 .4em;text-indent:0">' + r[1] + '</p><div class="trail">' + r[2].map(id => { const t = TOC.find(x => x.id === id); return '<span>' + ch(id, t.n + ' · ' + t.t) + '</span>'; }).join('') + '</div></div>';
+      $$('a[data-c]', out).forEach(x => { if (chapPage[x.dataset.c] > READY) { x.removeAttribute('href'); x.title = '写作中'; } });
+    } else out.innerHTML = '<div class="say">' + (a.some(x => x != null) ? '接着回答。' : '从第一个问题回答起。') + '</div>';
+  }
+  qs.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; a[+b.dataset.i] = +b.dataset.j; render(); });
+  render();
 });
 
 /* ---------- 装置 1：能撑几个月 ---------- */
@@ -2521,6 +2552,282 @@ dev('#backFig', fig => {
   slider('bkZ', v => { g.z = v; return v + ' 小时'; }, go);
   CK.forEach(c => $('#' + c[0]).addEventListener('change', go));
   ready = true; draw();
+});
+
+/* ---------- 装置 18：利润和现金 ---------- */
+dev('#cashFig', fig => {
+  const svg = $('#cfSvg'), kvb = $('#cfKv'), say = $('#cfSay');
+  const g = {}; let ready = false;
+  function draw(){
+    if (!ready) return;
+    const M = 12, lagIn = Math.round(g.d / 30), lagOut = Math.round(g.p / 30);
+    const rev = [], cogs = [];
+    for (let m = 0; m < M + 6; m++) { rev.push(g.r * Math.pow(1 + g.g / 100, m)); cogs.push(rev[m] * (1 - g.m / 100)); }
+    let profit = 0, cash = g.c; const pP = [[0, 0]], pC = [[0, cash]]; let low = cash, lowM = 0, firstNeg = null;
+    for (let m = 0; m < M; m++) {
+      profit += rev[m] - cogs[m] - g.f;
+      const inflow = m - lagIn >= 0 ? rev[m - lagIn] : 0;
+      const outV = m - lagOut >= 0 ? cogs[m - lagOut] : 0;
+      cash += inflow - outV - g.f;
+      pP.push([m + 1, profit]); pC.push([m + 1, cash]);
+      if (cash < low) { low = cash; lowM = m + 1; }
+      if (firstNeg == null && cash < 0) firstNeg = m + 1;
+    }
+    const ys = pP.concat(pC).map(p => p[1]).concat([0]);
+    let lo = Math.min(...ys), hi = Math.max(...ys); const pad = (hi - lo) * .08 || 1000; lo -= pad; hi += pad;
+    const span = hi - lo, step = span > 2e6 ? 500000 : span > 8e5 ? 200000 : span > 3e5 ? 100000 : span > 1.2e5 ? 50000 : span > 5e4 ? 20000 : 10000;
+    const yt = []; for (let v = Math.ceil(lo / step) * step; v <= hi; v += step) yt.push(v);
+    const c = lineChart(svg, [{pts: pP, color: 'var(--ter)', w: 2.6}, {pts: pC, color: 'var(--main)', w: 2.6, dash: '6 4'}], {xmin: 0, xmax: M, ymin: lo, ymax: hi, xt: [0, 3, 6, 9, 12], xf: v => v + ' 月', yt: yt, yf: v => (v / 1e4) + ' 万', H: 250, L: 50});
+    let ex = '<line x1="' + c.L + '" x2="' + (c.W - c.R) + '" y1="' + c.Y(0) + '" y2="' + c.Y(0) + '" stroke="var(--ink)" stroke-width="1"/>';
+    ex += txt(c.L + 6, c.T + 12, '实线：累计利润　虚线：手里的现金', {s: 11, a: 'start', c: 'var(--ink-2)'});
+    if (firstNeg) ex += '<circle cx="' + c.X(firstNeg) + '" cy="' + c.Y(pC[firstNeg][1]) + '" r="5" fill="var(--main)"/>' + txt(c.X(firstNeg), c.Y(pC[firstNeg][1]) + 20, '第 ' + firstNeg + ' 个月钱没了', {s: 12, c: 'var(--main)', w: 1});
+    svg.insertAdjacentHTML('beforeend', ex);
+    kv(kvb, [['一年累计利润', '<span class="' + (profit >= 0 ? 'pos' : 'neg') + '">' + yuan(profit) + '</span>'], ['年底手里的现金', yuan(cash)], ['现金最低', yuan(low) + '（第 ' + lowM + ' 个月）'], ['被客户压着的钱', yuan(rev.slice(M - lagIn, M).reduce((a, b) => a + b, 0))]]);
+    let s;
+    if (firstNeg && profit > 0) s = '这就是“黑字倒闭”的样子：一年下来赚了 ' + yuan(profit) + '，可第 ' + firstNeg + ' 个月手里的钱就用光了，最低时差 ' + yuan(-low) + '。要么先借钱垫上，要么想办法让钱早点回来：收定金、分阶段付款、晚一点付供应商。';
+    else if (firstNeg) s = '生意本身就在亏，现金先断是迟早的事。';
+    else if (lagIn >= 2) s = '这一回没断，可年底有 ' + yuan(rev.slice(M - lagIn, M).reduce((a, b) => a + b, 0)) + ' 压在客户手里。试着把“每月增长”往右拖：生意越好，压着的钱越多。';
+    else s = '客户付款快，现金几乎跟着利润走。这是先收后付的好处。';
+    say.textContent = s;
+  }
+  const go = () => { if (ready) draw(); };
+  slider('cfR', v => { g.r = v; return yuan(v); }, go);
+  slider('cfG', v => { g.g = v; return v + '%'; }, go);
+  slider('cfM', v => { g.m = v; return v + '%'; }, go);
+  slider('cfF', v => { g.f = v; return yuan(v); }, go);
+  slider('cfD', v => { g.d = v; return v ? v + ' 天' : '当场付'; }, go);
+  slider('cfP', v => { g.p = v; return v ? v + ' 天' : '当场付'; }, go);
+  slider('cfC', v => { g.c = v; return yuan(v); }, go);
+  ready = true; draw();
+});
+
+/* ---------- 装置 19：出了事，用谁的钱赔 ---------- */
+dev('#wallFig', fig => {
+  const box = $('#wlBars'), say = $('#wlSay'), mix = $('#wlMix');
+  const F = ['个体户', '个人独资企业', '一人公司', '有限公司（几个股东）', '普通合伙（两人）'];
+  const g = {f: 3}; let ready = false;
+  function draw(){
+    if (!ready) return;
+    const D = g.d, A = Math.min(g.a, D), short = Math.max(0, D - A);
+    let mine = 0, lost = 0, why = '';
+    if (g.f <= 1) { mine = short; why = F[g.f] + '没有有限责任：生意还不上的 ' + yuan(short) + '，全部由你个人' + (g.f === 0 ? '（家庭经营的，用家庭财产）' : '') + '承担。'; }
+    else if (g.f === 4) { mine = short; why = '普通合伙人对合伙企业的债务承担无限连带责任：债主可以找你要全部 ' + yuan(short) + '，你替合伙人还了的部分，再去找他追偿，追不追得回来另说。'; }
+    else {
+      const company = g.f === 2 && mix.checked ? '一人公司的股东要自己证明公司财产独立于个人财产；账混在一起，证明不了，' : mix.checked ? '账目混同，可能被认定滥用公司人格，' : '';
+      if (mix.checked) { mine = short; why = company + '这道墙塌了：还不上的 ' + yuan(short) + ' 可能都要你承担连带责任。'; }
+      else {
+        const guar = Math.min(g.g, short), rest = short - guar;
+        const unpaid = Math.min(g.u, rest);
+        mine = guar + unpaid; lost = rest - unpaid;
+        why = '有限责任这道墙在起作用。' + (guar ? '可你签了担保的 ' + yuan(guar) + '，银行直接找你。' : '') + (unpaid ? '注册资本里认缴了没缴的 ' + yuan(unpaid) + '，债主可以要求你提前缴上。' : '') + (lost ? '剩下的 ' + yuan(lost) + '，债主拿不到：这才是“有限责任”真正保护你的部分。' : '墙后面已经没有剩下的了：你个人要掏的，和无限责任差不多。');
+      }
+    }
+    if (g.f <= 1 || g.f === 4) lost = 0;
+    bars(box, [['公司或生意的财产', A, '先拿来还债', 'var(--ter)'], ['你个人掏', mine, '', 'var(--main)'], ['债主拿不到', lost, '', 'var(--ink-3)']], D, v => yuan(v));
+    say.textContent = why;
+  }
+  const go = () => { if (ready) draw(); };
+  slider('wlD', v => { g.d = v; return yuan(v); }, go);
+  slider('wlA', v => { g.a = v; return yuan(v); }, go);
+  slider('wlU', v => { g.u = v; return yuan(v); }, go);
+  slider('wlG', v => { g.g = v; return v ? yuan(v) : '没签'; }, go);
+  mix.addEventListener('change', go);
+  btnRow($('#wlForm'), F, 3, i => { g.f = i; draw(); });
+  ready = true; draw();
+});
+
+/* ---------- 装置 20：同样赚一年，交多少税（写作时政策的极简示意） ---------- */
+dev('#taxFig', fig => {
+  const box = $('#txBars'), kvb = $('#txKv'), say = $('#txSay');
+  const g = {}; let ready = false;
+  const prog = (x, B) => { if (x <= 0) return 0; for (const b of B) if (x <= b[0]) return x * b[1] - b[2]; return 0; };
+  const BIZ = [[30000, .05, 0], [90000, .10, 1500], [300000, .20, 10500], [500000, .30, 40500], [Infinity, .35, 65500]];
+  const COMP = [[36000, .03, 0], [144000, .10, 2520], [300000, .20, 16920], [420000, .25, 31920], [660000, .30, 52920], [960000, .35, 85920], [Infinity, .45, 181920]];
+  function draw(){
+    if (!ready) return;
+    const R = g.r, cost = R * g.c / 100;
+    const vat = R / 12 <= 100000 ? 0 : R / 1.01 * 0.01;
+    // 劳务报酬：收入八成并入综合所得，减六万
+    const lw = prog(R * 0.8 - 60000, COMP), lwNet = R - cost - lw;
+    // 个体户：经营所得，减六万，二百万以内部分减半
+    const ti = R - vat - cost - 60000;
+    const t0 = prog(ti, BIZ), t = ti > 0 ? t0 - t0 * Math.min(1, 2e6 / ti) * 0.5 : 0, bizNet = R - vat - cost - t;
+    // 一人公司：利润全分红
+    const pr = R - vat - cost, cit = pr <= 0 ? 0 : pr <= 3e6 ? pr * 0.05 : pr * 0.25, div = Math.max(0, pr - cit) * 0.2, coNet = pr - cit - div;
+    const rows = [['没执照，按劳务报酬', lw, '到手 ' + yuan(lwNet) + '（成本不能扣）', 'var(--och)'], ['个体户', vat + t, '增值税 ' + yuan(vat) + ' + 个税 ' + yuan(t) + '，到手 ' + yuan(bizNet), 'var(--ter)'], ['一人公司，全部分红', vat + cit + div, '增值税 ' + yuan(vat) + ' + 企业所得税 ' + yuan(cit) + ' + 分红个税 ' + yuan(div) + '，到手 ' + yuan(coNet), 'var(--main)']];
+    bars(box, rows, Math.max(1, ...rows.map(r => r[1])), v => yuan(v));
+    kv(kvb, [['利润', yuan(R - cost)], ['月均收入', yuan(R / 12)], ['增值税', vat ? '超过月十万，按 1%' : '月十万以下，免']]);
+    const best = [[lwNet, '按劳务报酬'], [bizNet, '个体户'], [coNet, '一人公司']].sort((a, b) => b[0] - a[0])[0][1];
+    let s = '这组数字下，到手最多的是“' + best + '”。';
+    if (g.c >= 30 && R < 200000) s += ' 成本占得多的时候，按劳务报酬不能扣成本，就显得吃亏：这是有了稳定生意以后办个体户的一个理由。';
+    else if (R - cost > 1e6) s += ' 利润很高时，公司那百分之五看着低，可分红还有一道百分之二十；个体户超过二百万的部分不再减半。高收入的税务安排，一定要找专业的人。';
+    else s += ' 小生意在写作时的税负普遍不高。比起选哪种形式省几千块，按时申报、账目清楚更重要。';
+    say.textContent = s;
+  }
+  const go = () => { if (ready) draw(); };
+  slider('txR', v => { g.r = v; return yuan(v); }, go);
+  slider('txC', v => { g.c = v; return v + '%'; }, go);
+  ready = true; draw();
+});
+
+/* ---------- 装置 21：借钱扩张，最后欠不欠（蒙特卡洛） ---------- */
+dev('#loanFig', fig => {
+  const box = $('#lnBars'), kvb = $('#lnKv'), say = $('#lnSay');
+  const g = {}; let ready = false;
+  function draw(){
+    if (!ready) return;
+    const L = g.l, i = g.i / 100 / 12, T = g.t;
+    const pay = L ? (i ? L * i / (1 - Math.pow(1 + i, -T)) : L / T) : 0;
+    const r = rng(2029), N = 1000, M = 24, ends = [];
+    for (let k = 0; k < N; k++) {
+      const ok = r() < g.p / 100;
+      let cash = L; // 借来的钱先进账
+      for (let m = 1; m <= M; m++) {
+        cash += g.b;                               // 原来的利润
+        if (m <= T) cash -= pay;                    // 还贷
+        if (ok || m <= g.r) cash -= g.c;            // 扩张的花费；失败的在“见效”时停掉
+        if (ok && m > g.r) cash += g.g * (0.7 + 0.6 * r());
+      }
+      if (T > M) { const q = 1 + i; cash -= i ? L * Math.pow(q, M) - pay * (Math.pow(q, M) - 1) / i : L - pay * M; } // 两年后还没还完的本金
+      ends.push(cash - g.b * M);                    // 只看这次扩张带来的变化
+    }
+    ends.sort((a, b) => a - b);
+    const lose = ends.filter(x => x < 0).length / N, worst = ends[Math.floor(N * 0.05)], med = ends[Math.floor(N / 2)];
+    let debt = 0; // 两年后总现金（含原来的利润）仍为负
+    for (let k = 0; k < N; k++) { if (ends[k] + g.b * M < 0) debt++; }
+    bars(box, [['比不借不扩张更差', lose * 100, '', 'var(--main)'], ['两年后还欠着（原利润也填不上）', debt / N * 100, '', 'var(--och)'], ['比不借更好', (1 - lose) * 100, '', 'var(--ter)']], 100, v => Math.round(v) + '%');
+    kv(kvb, [['每月还款', yuan(pay)], ['每月要掏', yuan(pay + g.c)], ['中间情况', (med >= 0 ? '多赚 ' : '少了 ') + yuan(Math.abs(med))], ['最差的二十分之一', (worst >= 0 ? '多赚 ' : '少了 ') + yuan(Math.abs(worst))]]);
+    let s;
+    if (pay + g.c > g.b * 2 && debt / N > 0.2) s = '每月要掏的 ' + yuan(pay + g.c) + '，是现在每月利润的 ' + ((pay + g.c) / Math.max(1, g.b)).toFixed(1) + ' 倍。一千次里有 ' + Math.round(debt / N * 100) + '% 两年后还欠着，要靠个人或家里来还：这就是“失败了还不上”的样子。';
+    else if (lose > 0.5) s = '比不借更差的可能超过一半。成功的可能和见效的时间，是你自己估的：创业的人估这两个数，通常偏乐观。';
+    else s = '在这组假设下，多数情况比不借更好。再试试把“多久见效”往右拖几个月，或者把“成的可能”往左拖一点：看看结论有多脆。';
+    say.textContent = s;
+  }
+  const go = () => { if (ready) draw(); };
+  slider('lnL', v => { g.l = v; return v ? yuan(v) : '不借'; }, go);
+  slider('lnI', v => { g.i = v; return v + '%'; }, go);
+  slider('lnT', v => { g.t = v; return v + ' 个月'; }, go);
+  slider('lnC', v => { g.c = v; return yuan(v); }, go);
+  slider('lnG', v => { g.g = v; return yuan(v); }, go);
+  slider('lnR', v => { g.r = v; return '第 ' + v + ' 个月'; }, go);
+  slider('lnP', v => { g.p = v; return v + '%'; }, go);
+  slider('lnB', v => { g.b = v; return yuan(v); }, go);
+  ready = true; draw();
+});
+
+/* ---------- 装置 22：一份投资条款的账 ---------- */
+dev('#termFig', fig => {
+  const box = $('#tmBars'), kvb = $('#tmKv'), say = $('#tmSay'), gu = $('#tmG');
+  const g = {}; let ready = false;
+  function draw(){
+    if (!ready) return;
+    const post = g.i / (g.s / 100), pre = post - g.i;
+    let mine = g.f / 100 * (1 - g.s / 100);
+    const steps = [['投资前', g.f]];
+    steps.push(['这一轮之后', mine * 100]);
+    for (let k = 0; k < g.n; k++) { mine *= 1 - g.d / 100; steps.push(['再融第 ' + (k + 1) + ' 轮', mine * 100]); }
+    const line = v => v > 200 / 3 ? '能独自决定大事' : v > 50 ? '过半数' : v > 100 / 3 ? '还能一票否决大事' : '大事已经说了不算';
+    bars(box, steps.map(s => [s[0], s[1], line(s[1]), s[1] > 50 ? 'var(--ter)' : s[1] > 100 / 3 ? 'var(--och)' : 'var(--main)']), 100, v => v.toFixed(1) + '%');
+    const buy = g.i * (1 + g.r / 100 * g.y);
+    const exp = (1 - g.p / 100) * buy;
+    kv(kvb, [['投后估值', yuan(post)], ['投前估值', yuan(pre)], ['没达成时回购款', yuan(buy)], ['你个人承担', gu.checked ? '<span class="neg">' + yuan(buy) + '（和其他创始人连带）</span>' : '由公司按程序处理'], ['按你估的可能，期望要掏', gu.checked ? yuan(exp) : '—']]);
+    let s;
+    if (gu.checked && g.p < 50) s = '按你自己估的，没达成的可能是 ' + (100 - g.p) + '%。那时回购款 ' + yuan(buy) + '，由创始人个人连带承担：这笔“投资”在最坏的那一天，就是你个人欠下的一笔债，而且其他创始人付不出的部分，债主可以找你要。';
+    else if (gu.checked) s = '就算你觉得达成的可能更大，也把“没达成”那一天念一遍：回购款 ' + yuan(buy) + ' 从你个人和家里出。估计目标的人，通常偏乐观。';
+    else s = '去掉了创始人个人回购，最坏的那一天，亏的是公司和这门生意，不是你的家。投资方往往会要求别的保护，比如调整股份、优先清算，这些可以谈。';
+    if (mine * 100 < 100 / 3) s += ' 另外，几轮下来你只剩 ' + (mine * 100).toFixed(1) + '%，连一票否决大事的那条线都守不住了。';
+    say.textContent = s;
+  }
+  const go = () => { if (ready) draw(); };
+  slider('tmI', v => { g.i = v; return yuan(v); }, go);
+  slider('tmS', v => { g.s = v; return v + '%'; }, go);
+  slider('tmF', v => { g.f = v; return v + '%'; }, go);
+  slider('tmN', v => { g.n = v; return v ? v + ' 轮' : '不再融'; }, go);
+  slider('tmD', v => { g.d = v; return v + '%'; }, go);
+  slider('tmY', v => { g.y = v; return v + ' 年'; }, go);
+  slider('tmR', v => { g.r = v; return v + '%'; }, go);
+  slider('tmP', v => { g.p = v; return v + '%'; }, go);
+  gu.addEventListener('change', go);
+  ready = true; draw();
+});
+
+/* ---------- 装置 23：不借钱能长多快 ---------- */
+dev('#growFig', fig => {
+  const svg = $('#grSvg'), kvb = $('#grKv'), say = $('#grSay');
+  const g = {}; let ready = false;
+  function draw(){
+    if (!ready) return;
+    const roe = g.t * g.m / 100, sg = roe * g.b / 100, want = g.w / 100;
+    const a = [[0, g.k]], b = [[0, g.k]];
+    for (let y = 1; y <= 5; y++) { a.push([y, a[y - 1][1] * (1 + sg)]); b.push([y, b[y - 1][1] * (1 + want)]); }
+    const ymax = Math.max(a[5][1], b[5][1]) * 1.1;
+    const step = ymax > 5e6 ? 2e6 : ymax > 2e6 ? 1e6 : ymax > 8e5 ? 5e5 : ymax > 3e5 ? 1e5 : 5e4;
+    const yt = []; for (let v = 0; v <= ymax; v += step) yt.push(v);
+    lineChart(svg, [{pts: b, color: 'var(--ink-3)', dash: '5 4', w: 2}, {pts: a, color: 'var(--ter)', w: 2.8, dots: true}], {xmin: 0, xmax: 5, ymin: 0, ymax: ymax, xt: [0, 1, 2, 3, 4, 5], xf: v => v + ' 年', yt: yt, yf: v => (v / 1e4) + ' 万', H: 230, L: 54});
+    svg.insertAdjacentHTML('beforeend', txt(60, 22, '实线：只用自己赚的钱　虚线：想要的增长', {s: 11, a: 'start', c: 'var(--ink-2)'}));
+    const profit = g.k * roe, take = profit * (1 - g.b / 100);
+    const gap = Math.max(0, g.k * (want - sg));
+    kv(kvb, [['一年利润', yuan(profit)], ['拿走过日子', yuan(take)], ['不借钱一年能长', '<b>' + (sg * 100).toFixed(1) + '%</b>'], ['五年后本钱', yuan(a[5][1])], ['想要的增长第一年还差', gap ? yuan(gap) : '不差']]);
+    let s;
+    if (sg >= want) s = '只用自己赚的钱，一年就能长 ' + (sg * 100).toFixed(0) + '%，够了。不需要借，也不需要拿投资。';
+    else if (roe >= 0.4) s = '本钱回报率很高（一块本钱一年赚回 ' + roe.toFixed(2) + ' 元），自己滚也能长得不慢。想再快，可以少拿一点过日子，往右拖“留下继续投”试试，而不是先想着借钱。';
+    else s = '本钱回报率只有 ' + (roe * 100).toFixed(0) + '%，自己滚一年只能长 ' + (sg * 100).toFixed(0) + '%。想达到 ' + g.w + '%，第一年就要从外面拿 ' + yuan(gap) + '，往后每年更多：这是开店、囤货这类生意想快就得借钱的原因。先问一句，真的要那么快吗？';
+    say.textContent = s;
+  }
+  const go = () => { if (ready) draw(); };
+  slider('grK', v => { g.k = v; return yuan(v); }, go);
+  slider('grT', v => { g.t = v; return v + ' 元'; }, go);
+  slider('grM', v => { g.m = v; return v + '%'; }, go);
+  slider('grB', v => { g.b = v; return v + '%'; }, go);
+  slider('grW', v => { g.w = v; return v + '%'; }, go);
+  ready = true; draw();
+});
+
+/* ---------- 装置 24：卖掉，还是继续 ---------- */
+dev('#exitFig', fig => {
+  const box = $('#exBars'), kvb = $('#exKv'), say = $('#exSay');
+  const g = {}; let ready = false;
+  function draw(){
+    if (!ready) return;
+    const d = g.d / 100, gr = g.g / 100, Y = 5;
+    let keep = 0, p = g.p, sellPath = g.p * g.m;
+    for (let t = 1; t <= Y; t++) {
+      keep += (p - g.o) / Math.pow(1 + d, t);   // 多赚的（或少赚的）
+      p *= 1 + gr;
+    }
+    const later = Math.max(0, p / (1 + gr) * g.m) / Math.pow(1 + d, Y); // 五年后再卖
+    const keepV = keep + later;
+    bars(box, [['现在卖掉', sellPath, '一次拿到 ' + g.m + ' 倍年利润，之后去做别的', 'var(--ter)'], ['继续干五年', Math.max(0, keepV), keepV < 0 ? '比去做别的还亏 ' + yuan(-keepV) : '比去做别的多出的，折成今天的钱，含五年后再卖', 'var(--main)']], Math.max(sellPath, keepV, 1), v => yuan(v));
+    const p5 = g.p * Math.pow(1 + gr, Y - 1);
+    kv(kvb, [['卖掉拿到', yuan(sellPath)], ['继续干的价值', yuan(keepV)], ['第五年的利润', yuan(p5)], ['五年后再卖值', yuan(Math.max(0, p5 * g.m))]]);
+    let s;
+    if (sellPath > keepV * 1.15) s = '在这组假设下，现在卖掉更划算：生意在变差，或者它给你的并不比你去做别的多。买家出的是今天的价，五年后它可能只值一半。';
+    else if (keepV > sellPath * 1.15) s = '在这组假设下，继续干更划算：利润在涨，而且比你去做别的多出不少。那就别卖，但想一想这份判断有多大把握。';
+    else s = '两条路差不多。这时候数字帮不了你多少：想想你想要什么样的生活，第二十二章的那个问题。';
+    if (g.o >= g.p) s += ' 注意：你去做别的一年能挣的，已经不比这门生意少了，你是在用自己的时间补贴它。';
+    say.textContent = s;
+  }
+  const go = () => { if (ready) draw(); };
+  slider('exP', v => { g.p = v; return yuan(v); }, go);
+  slider('exG', v => { g.g = v; return (v > 0 ? '涨 ' : v < 0 ? '跌 ' : '不变 ') + (v ? Math.abs(v) + '%' : ''); }, go);
+  slider('exO', v => { g.o = v; return yuan(v); }, go);
+  slider('exM', v => { g.m = v; return v + ' 倍'; }, go);
+  slider('exD', v => { g.d = v; return v + '%'; }, go);
+  ready = true; draw();
+});
+
+/* ---------- 装置 25：全书最多亏多少（数据由各章 .floor 的“一句话”抽取） ---------- */
+dev('#allFig', fig => {
+  const F = [["c0", "一门本钱几乎为零的小生意", "先定亏损的上限，再想赚多少。上限定不下来的生意，不做。"], ["c1", "一副货郎担", "本钱最小、亏得最少的店面，代价是天花板也最低，而且离不开人。"], ["c2", "今天办一个个体户", "执照是安心，不是保护伞。个体户的债，最后落在你自己和家里。"], ["c3", "在平台上开一家小店", "平台给的流量是租来的，熟客和手艺才是自己的。"], ["c4", "拿风投，做大公司", "钱不是你的，可时间是；把命交给下一轮融资之前，想清楚散伙以后自己在哪里。"], ["c5", "先上班，攒够了再出来", "让别人的店替你交学费，同时说好什么时候、带多少钱出来，失败了什么时候回去。"], ["c6", "一门手艺，从接活开始", "先卖时间证明有人付钱，再把重复的活变成产品，签字之前弄清楚手艺归谁。"], ["c7", "拿家底开一家店", "开店的钱大多在开张前就花掉了，花之前问一句：这笔钱亏光了，家里还过得去吗？过不去，就不开。"], ["c8", "几个人凑钱开工作室", "关系最好的时候，把最难听的话写下来：谁说了算，谁走了怎么办，亏了谁担。"], ["c9", "用 AI 工具接活、做小产品", "AI 让“试一下”变便宜了，没让“卖出去”和“负得起责”变便宜。"], ["c10", "一个人做一个小产品", "把每一次尝试做得足够便宜，别只盯着长尾最右边的那几个人。"], ["c11", "先卖，后做", "先问过去，再开价，有人付了钱才开始做。"], ["c12", "掉进 AI 时代的坑", "钱来得容易、说不清为什么给你的，不碰。你的卡、你的身份证、你的手机号，不借给任何人。"], ["c13", "在一个身份里顺带做点什么", "先看清你这个身份的规矩，再决定顺带做什么；拿不准，先问，书面问。"], ["c14", "三无的那一年", "先保住住、吃、医保和干净的身份；一份马上有钱的活，一门往深里学的手艺，两样同时做。"], ["c15", "按这八条迈出的第一步", "第一步要小到亏了也无所谓，计划要短到一页纸写得下，一半写的是什么时候停。"], ["c16", "一个人扛", "讲底线，不讲梦想；回去上班是计划里写好的一种结局；别让面子替你做决定。"], ["c17", "一门赚钱却没钱的生意", "利润是观点，现金是事实；先收后付，公私分开，预收的钱当欠款。"], ["c18", "选错了身份", "有限责任是一道墙，墙上的洞是没缴的钱、混着的账、签了的担保；谁经营谁当法定代表人。"], ["c19", "税上的事", "收入是看得见的；按时报、留凭证、只开真实交易的发票，用好写在明处的优惠。"], ["c20", "借钱做生意", "只借买得来确定现金的钱，按“失败了也还得上”定金额；不借钱填窟窿，不借高息的钱，担保和配偶签字想清楚再签。"], ["c21", "拿别人的钱", "拿钱之前把每个条款在最坏的那一天念一遍；不签个人回购，不向公众许诺回报，算股份也算控制权。"], ["c22", "把生意做大", "用自己赚的钱先算出能长多快；雇人先守法；把自己从流程里拿出来；不做大也是一种成功。"], ["c23", "收摊", "在退路还开着的时候走；卖掉、交出去、关掉都可以，一走了之不行。"]];
+  const VOL = [['全部', 0, 99], ['序幕 · 卷一', 0, 3], ['卷二 · 五种开法', 4, 8], ['卷三 · 器', 9, 12], ['卷四 · 岔', 13, 16], ['卷五 · 钱', 17, 20], ['卷六 · 大与退', 21, 23]];
+  const list = $('#alList'), one = $('#alOne');
+  const num = id => +id.slice(1);
+  const item = r => { const t = TOC.find(x => x.id === r[0]); return '<li style="padding:8px 0;border-bottom:1px dashed var(--rule)"><a data-c="' + r[0] + '" href="' + href(r[0]) + '" style="font-family:var(--f-display);font-size:18px;color:var(--main);text-decoration:none">' + t.n + '</a> <small style="color:var(--ink-3)">' + t.t + ' · ' + r[1] + '</small><br><span style="font-size:15.5px">' + r[2] + '</span></li>'; };
+  function show(v){ const [, a, b] = VOL[v]; list.innerHTML = F.filter(r => num(r[0]) >= a && num(r[0]) <= b).map(item).join(''); }
+  btnRow($('#alVol'), VOL.map(v => v[0]), 0, show);
+  let last = -1;
+  $('#alPick').addEventListener('click', () => { let k; do { k = Math.floor(Math.random() * F.length); } while (k === last && F.length > 1); last = k; const r = F[k], t = TOC.find(x => x.id === r[0]); one.style.display = 'block'; one.innerHTML = '<b>' + t.n + ' · ' + r[1] + '</b><br>' + r[2]; });
+  show(0);
 });
 
 })();

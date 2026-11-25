@@ -1,0 +1,2319 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="投资创世记第二部《手》：散户的位置、看不见的费、买下整个市场、脑子里的坑、杠杆、港卡与美股、币圈、怎样交学费。">
+<meta property="og:title" content="红与绿 · 第二部 · 手">
+<meta property="og:description" content="自己下场之前：先知道你在牌桌的哪个位置。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='4' fill='%23ece3cf'/%3E%3Cpath d='M9 6v20M16 4v24M23 8v18' stroke='%231f1d1b' stroke-width='1.4'/%3E%3Crect x='6.5' y='10' width='5' height='10' fill='%23a8302a'/%3E%3Crect x='13.5' y='13' width='5' height='9' fill='%231f6e48'/%3E%3Crect x='20.5' y='11' width='5' height='11' fill='%23a8302a'/%3E%3C/svg%3E">
+<title>红与绿 · 第二部 · 手</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@500;700&family=Noto+Serif+SC:wght@400;600;700&family=ZCOOL+XiaoWei&display=swap">
+<style>
+/* ZCOOL XiaoWei 把“回”字画成实心方块：这一个字改用系统宋体/黑体，其余字不变 */
+@font-face{font-family:"Hui Fix";unicode-range:U+56DE;src:local("Songti SC"),local("STSongti-SC-Regular"),local("STSong"),local("SimSun"),local("宋体"),local("Noto Serif CJK SC"),local("NotoSerifCJKsc-Regular"),local("Source Han Serif SC"),local("SourceHanSerifSC-Regular"),local("PingFang SC"),local("PingFangSC-Regular"),local("Microsoft YaHei"),local("Noto Sans CJK SC"),local("NotoSansCJKsc-Regular"),local("Droid Sans Fallback")}
+
+/* 版式：一块行情屏。主色是 A 股的涨（红），对色是跌（绿）；右上角可以切换成美股习惯（绿涨红跌）。
+   每章：章首（五样：价 信 本 心 时；年代条）→ 有人问 → 家族群（虚构）→ 正文 → 这条消息值不值得深挖 → 再查一遍 → 眉批 → 装置 → 两本账。 */
+:root{
+  --paper:#ece3cf; --paper-2:#e2d7bf; --card:#f3ebda;
+  --ink:#1f1d1b; --ink-2:#4b4740; --ink-3:#5d584f; --rule:#ccbfa2;
+  --main:#9a2a24;   /* 涨 · 行情红 */
+  --ter:#22694a;    /* 跌 · 行情绿 */
+  --zhu:#9a2a24;
+  --kraft:#8a6230;  /* 牛皮纸袋、硬面抄 */
+  --pur:#5d2f63;
+  --sea:#a9bfc9; --land:#ddd1b4;
+  --och:#7a5510;
+  --red:#983a24;
+  --blu:#2a4f78;
+  --grn:#2f6a48;
+  --up:#a8302a; --dn:#1f6e48;
+  --hl:color-mix(in srgb,#c9a44a 34%,transparent);
+  --c-paper:#f2e9d6; --c-ink:#191614;
+  --f-display:"Hui Fix","ZCOOL XiaoWei","Songti SC","STSong","Noto Serif SC",serif;
+  --f-body:"Noto Serif SC","Songti SC","Source Han Serif SC","STSong",serif;
+  --f-hand:"Ma Shan Zheng","Kaiti SC","STKaiti","KaiTi",cursive;
+  --f-sans:"Noto Sans SC","PingFang SC","Hiragino Sans GB",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#151413; --paper-2:#1d1b19; --card:#221f1c; --ink:#ebe4d4; --ink-2:#b8b09e; --ink-3:#978f7e; --rule:#3a3631;
+  --main:#ec8a7c; --ter:#7fcca3; --zhu:#ec8a7c; --kraft:#d1a66a; --pur:#c9a0cf; --sea:#22394a; --land:#332d22; --och:#d9b45e; --red:#e57b5e; --blu:#9cc0e6; --grn:#8fc2a0;
+  --up:#f07a6c; --dn:#5fc98f;
+  --c-paper:#1d1b18; --c-ink:#ece6da; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#151413; --paper-2:#1d1b19; --card:#221f1c; --ink:#ebe4d4; --ink-2:#b8b09e; --ink-3:#978f7e; --rule:#3a3631;
+  --main:#ec8a7c; --ter:#7fcca3; --zhu:#ec8a7c; --kraft:#d1a66a; --pur:#c9a0cf; --sea:#22394a; --land:#332d22; --och:#d9b45e; --red:#e57b5e; --blu:#9cc0e6; --grn:#8fc2a0;
+  --up:#f07a6c; --dn:#5fc98f;
+  --c-paper:#1d1b18; --c-ink:#ece6da; color-scheme:dark}
+/* 美股习惯：绿涨红跌 */
+:root[data-ud="us"]{--up:#1f6e48; --dn:#a8302a}
+@media (prefers-color-scheme: dark){:root[data-ud="us"]:not([data-theme="light"]){--up:#5fc98f; --dn:#f07a6c}}
+:root[data-theme="dark"][data-ud="us"]{--up:#5fc98f; --dn:#f07a6c}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+.g{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit;text-decoration-color:var(--main);text-underline-offset:3px}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--main);outline-offset:2px}
+svg{max-width:100%;height:auto;display:block}
+
+/* 页眉 */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+.bar-in{max-width:56rem;margin:0 auto;display:flex;align-items:center;gap:10px;padding-block:8px}
+.bar .home{text-decoration:none;font-size:13px;color:var(--ink-3);white-space:nowrap;border:1px solid var(--rule);border-radius:999px;padding:1px 9px}
+.bar .name{font-family:var(--f-display);font-size:19px;letter-spacing:.05em;white-space:nowrap;text-decoration:none}
+.bar .parts{display:flex;gap:2px}
+.bar .parts a{font-size:12.5px;text-decoration:none;color:var(--ink-3);padding:0 6px;border-radius:4px;white-space:nowrap}
+.bar .parts a.on{background:var(--main);color:var(--paper)}
+.bar .vol{margin-left:auto;font-size:13px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.bar .tocbtn{border:1px solid var(--rule);background:transparent;border-radius:6px;padding:0 8px;font-size:13px;cursor:pointer;color:var(--ink-2);white-space:nowrap}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;background:var(--main);width:0}
+.drawer{position:fixed;inset:0;z-index:40;display:none}
+.drawer.on{display:block}
+.drawer .mask{position:absolute;inset:0;background:rgba(0,0,0,.35)}
+.drawer .panel{position:absolute;right:0;top:0;bottom:0;width:min(370px,90vw);background:var(--paper);border-left:1px solid var(--rule);overflow:auto;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px))}
+.drawer h5{font-family:var(--f-display);font-weight:400;font-size:20px;margin:0 0 10px}
+.drawer ol{list-style:none;margin:0;padding:0}
+.drawer li.ph{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.16em;color:var(--main);padding:14px 0 2px}
+.drawer li.vh{font-size:12px;color:var(--ink-3);padding:8px 0 0;letter-spacing:.1em}
+.drawer li a{display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--rule);text-decoration:none;font-size:15px;line-height:1.5}
+.drawer li a .n{font-family:var(--f-display);font-size:18px;color:var(--main);min-width:1.6em;text-align:center}
+.drawer li a small{display:block;color:var(--ink-3);font-size:12px}
+.drawer li a.here .n{background:var(--main);color:var(--paper);border-radius:4px}
+.drawer .x{position:absolute;right:12px;top:10px;border:0;background:transparent;font-size:22px;cursor:pointer;color:var(--ink-2)}
+
+main{display:block}
+.col{max-width:38rem;margin-inline:auto}
+.wide{max-width:54rem;margin-inline:auto}
+.col p{margin:0 0 1.05em;text-indent:2em}
+.col p.ni,.col .ni{text-indent:0}
+h2,h3,h4{text-wrap:balance}
+h3{font-family:var(--f-display);font-weight:400;font-size:24px;line-height:1.4;margin:2.2em 0 .7em;letter-spacing:.03em}
+h3 .y{font-family:var(--f-mono);font-size:13px;color:var(--ink-3);margin-left:10px;letter-spacing:0;white-space:nowrap}
+em{font-style:normal;background:linear-gradient(transparent 62%,var(--hl) 62%)}
+strong{font-weight:600}
+blockquote{margin:1.4em 0;padding:.2em 0 .2em 1.2em;border-left:2px solid var(--och);color:var(--ink-2)}
+blockquote p{text-indent:0!important;margin:0 0 .4em}
+blockquote cite{font-style:normal;font-size:14px;color:var(--ink-3)}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.figcap{font-size:14px;color:var(--ink-2);line-height:1.7;margin-top:8px}
+.sep{text-align:center;color:var(--och);letter-spacing:1.2em;margin:2em 0;text-indent:1.2em!important;font-size:14px}
+ul.plain{font-size:16px;line-height:1.9;padding-left:1.4em}
+ul.plain li{margin:0 0 .35em}
+
+/* 封面 */
+.hero{padding-block:36px 20px}
+.hero .eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;color:var(--ink-3)}
+.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(60px,14vw,124px);line-height:1;margin:.25em 0 .2em;letter-spacing:.1em}
+.hero h1 .sm{display:block;font-size:.19em;letter-spacing:.3em;color:var(--ink-2);margin-top:.6em}
+.hero .part{display:inline-block;font-family:var(--f-display);font-size:22px;color:var(--main);border:1.5px solid var(--main);border-radius:4px;padding:0 10px;margin-bottom:6px;letter-spacing:.1em}
+.hero p.lead{font-size:18px;max-width:36em;margin:0 0 1em}
+.partnav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:24px 0}
+.partnav a{display:block;text-decoration:none;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;background:var(--card);line-height:1.5}
+.partnav a b{display:block;font-family:var(--f-display);font-weight:400;font-size:20px}
+.partnav a small{font-size:12.5px;color:var(--ink-3)}
+.partnav a.on{border-color:var(--main);box-shadow:inset 0 0 0 1px var(--main)}
+.partnav a .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;color:var(--main)}
+
+/* 六张脸 */
+.cast{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin:14px 0}
+.cast figure{margin:0;text-align:center;background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:6px 4px 8px}
+.cast svg{width:100%;max-width:120px;margin:auto;color:var(--c-ink)}
+.cast b{display:block;font-family:var(--f-display);font-weight:400;font-size:19px;line-height:1.2}
+.cast small{display:block;font-size:12px;color:var(--ink-3);line-height:1.4}
+.eras{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 2px}
+
+/* 目录 */
+.toc{list-style:none;margin:20px 0 0;padding:0;border-top:1px solid var(--rule)}
+.toc li a{display:grid;grid-template-columns:2.6em minmax(0,1fr) auto;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--rule);text-decoration:none}
+.toc .n{font-family:var(--f-display);font-size:28px;line-height:1;color:var(--main);text-align:center}
+.toc .t{font-family:var(--f-display);font-size:21px;line-height:1.3}
+.toc .t small{display:block;font-family:var(--f-body);font-size:13px;color:var(--ink-3);margin-top:2px}
+.toc .r{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);text-align:right;white-space:nowrap}
+.toc li a:hover .t{color:var(--main)}
+.toc .vh{padding:16px 0 4px;font-family:var(--f-mono);font-size:12px;letter-spacing:.16em;color:var(--ink-3);border-bottom:1px solid var(--rule)}
+.toc li.away a{opacity:.82}
+.toc li.away .r::after{content:" ↗";color:var(--main)}
+.qmap{list-style:none;margin:0;padding:0;columns:2 17em;column-gap:28px}
+.qmap li{break-inside:avoid;margin:0 0 .5em;font-size:15.5px;line-height:1.65}
+.qmap a{text-decoration:none;border-bottom:1px dashed var(--ink-3)}
+.qmap a:hover{color:var(--main)}
+.qmap b{font-family:var(--f-display);font-weight:400;color:var(--main);margin-left:4px}
+
+/* 卷首 */
+.volhead{position:relative;max-width:54rem;margin:64px auto 20px;padding:30px 22px 24px;border-top:3px double var(--ink);border-bottom:3px double var(--ink);overflow:hidden}
+.volhead .num{font-family:var(--f-mono);font-size:12px;letter-spacing:.24em;color:var(--main)}
+.volhead h2{font-family:var(--f-display);font-weight:400;font-size:clamp(64px,16vw,124px);line-height:1;margin:.1em 0 .12em;letter-spacing:.1em}
+.volhead h2 small{font-size:.24em;letter-spacing:.2em;color:var(--ink-2);margin-left:.4em}
+.volhead .lede{max-width:32em;margin:6px 0 0;font-size:16px;color:var(--ink-2);line-height:1.8}
+.volhead .pyr{position:absolute;right:-10px;bottom:-4px;width:190px;opacity:.9;pointer-events:none}
+
+/* 章首 */
+section.chap{padding-top:24px}
+.chead{position:relative;max-width:54rem;margin:46px auto 26px;padding:20px 22px 18px;display:grid;grid-template-columns:96px minmax(0,1fr);gap:20px;align-items:start;background:var(--paper-2);border-radius:10px;border:1px solid var(--rule)}
+.chead .big{font-family:var(--f-display);font-size:84px;line-height:1;color:var(--main);text-align:center;border:2px solid var(--main);border-radius:8px;padding:4px 0 8px;background:var(--card)}
+.chead .no{font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;color:var(--main)}
+.chead h2{font-family:var(--f-display);font-weight:400;font-size:clamp(32px,7vw,50px);line-height:1.15;margin:.08em 0 .2em;letter-spacing:.06em}
+.chead dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 14px;margin:6px 0 0;font-size:14.5px;line-height:1.7}
+.chead dt{color:var(--ink-3);white-space:nowrap}
+.chead dd{margin:0;color:var(--ink-2)}
+.where{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.where span{font-size:12px;line-height:1.6;border:1px solid var(--rule);border-radius:4px;padding:0 6px;color:var(--ink-3);background:var(--paper)}
+.where span.on{border-color:var(--main);color:var(--main);background:color-mix(in srgb,var(--main) 8%,var(--paper));font-weight:600}
+
+/* 你问的 */
+.ask{margin:1.6em 0;padding:12px 16px 4px;border-radius:8px;background:var(--card);border:1px solid var(--rule)}
+.ask .q{font-family:var(--f-display);font-size:19px;line-height:1.5;margin:0 0 .4em;text-indent:0!important}
+.ask .q::before{content:"有人问";font-family:var(--f-sans);font-size:11.5px;letter-spacing:.14em;color:var(--paper);background:var(--main);border-radius:3px;padding:1px 6px;margin-right:8px;vertical-align:3px}
+.ask p{text-indent:0!important;font-size:15.5px;line-height:1.8;margin:0 0 .7em;color:var(--ink-2)}
+
+/* 河湾：虚构的小地方 */
+.river{margin:1.8em 0 2em;padding:16px 18px 6px;border:1.5px dashed var(--och);border-radius:10px;position:relative;background:color-mix(in srgb,var(--och) 4%,var(--paper))}
+.river::before{content:attr(data-t);position:absolute;top:-12px;left:14px;background:var(--paper);padding:0 8px;font-size:13px;letter-spacing:.12em;color:var(--och);font-weight:600}
+.river::after{content:"虚构";position:absolute;top:-10px;right:14px;background:var(--paper);padding:0 6px;font-size:11px;letter-spacing:.2em;color:var(--ink-3);border:1px solid var(--rule);border-radius:3px;line-height:1.5}
+.river p{text-indent:0!important;font-size:16px;line-height:1.85}
+.river .nm{font-weight:600;color:var(--och)}
+
+/* 别处：同一件事在地球的不同地方 */
+.globe{margin:2em auto;max-width:54rem}
+.globe .gh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;border-bottom:1.5px solid var(--ink);padding-bottom:4px;margin-bottom:10px}
+.globe .gh b{font-family:var(--f-display);font-weight:400;font-size:22px;letter-spacing:.06em}
+.globe .gh span{font-size:13px;color:var(--ink-3)}
+.globe .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(15.5em,1fr));gap:10px}
+.rg{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:10px 13px 8px;font-size:15px;line-height:1.75}
+.rg h6{margin:0 0 4px;font-family:var(--f-display);font-weight:400;font-size:18px;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.rg h6 small{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);white-space:nowrap}
+.rg p{margin:0 0 .5em;text-indent:0!important}
+
+/* 告示 · 白话：讽刺栏 */
+.spin{margin:2em 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:1.5px solid var(--ink);border-radius:6px;overflow:hidden;background:var(--card)}
+.spin>div{padding:12px 16px 10px;font-size:15.5px;line-height:1.8}
+.spin>div p{text-indent:0!important;margin:0 0 .5em}
+.spin .off{font-family:var(--f-display);font-size:17px;letter-spacing:.04em;background:color-mix(in srgb,var(--main) 6%,var(--card))}
+.spin .plain{border-left:1.5px solid var(--ink)}
+.spin i{display:block;font-style:normal;font-family:var(--f-sans);font-size:11.5px;letter-spacing:.2em;color:var(--main);margin-bottom:4px}
+.spin .plain i{color:var(--grn)}
+.spin .src{grid-column:1 / -1;border-top:1px dashed var(--rule);font-size:12.5px;color:var(--ink-3);padding:4px 16px 6px}
+
+/* 那时的一天 */
+.life{margin:2em 0;padding:14px 16px 6px;border-radius:8px;border-left:4px solid var(--grn);background:color-mix(in srgb,var(--grn) 6%,var(--card))}
+.life h5{margin:0 0 .3em;font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--grn)}
+.life h5 small{font-family:var(--f-mono);font-size:12px;color:var(--ink-3);margin-left:8px}
+.life p{text-indent:0!important;font-size:15.5px;line-height:1.8;margin:0 0 .7em}
+
+/* 蓝框 */
+.box{margin:2em 0;padding:16px 18px 8px;border-radius:8px;border:1.5px solid var(--blu);background:color-mix(in srgb,var(--blu) 6%,var(--paper))}
+.box h5{margin:.1em 0 .5em;font-family:var(--f-display);font-weight:400;font-size:21px;color:var(--blu);letter-spacing:.04em}
+.box p{text-indent:0!important;margin:0 0 .8em;font-size:16px;line-height:1.85}
+.box ul,.box ol{margin:0 0 .8em;padding-left:1.2em;font-size:16px;line-height:1.85}
+.box li{margin:0 0 .3em}
+
+/* 眉批 */
+.echo{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;margin:1.6em 0;padding:14px 14px 10px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.echo .stamp{writing-mode:vertical-rl;font-family:var(--f-display);font-size:15px;color:var(--red);border:1.5px solid var(--red);border-radius:3px;padding:6px 2px;letter-spacing:.2em;align-self:start}
+.echo[data-k="存疑"] .stamp{color:var(--ink-3);border-color:var(--ink-3)}
+.echo[data-k="联系"] .stamp{color:var(--och);border-color:var(--och)}
+.echo[data-k="生活"] .stamp{color:var(--grn);border-color:var(--grn)}
+.echo[data-k="押韵"] .stamp{color:var(--blu);border-color:var(--blu)}
+.echo[data-k="讽刺"] .stamp{color:var(--main);border-color:var(--main)}
+.echo p{text-indent:0!important;margin:0 0 .5em;font-size:15.5px;line-height:1.8}
+.echo .rh{font-family:var(--f-display);font-size:18px;margin-bottom:.2em}
+
+/* 章末：史 / 世 */
+.seal{margin:2.6em 0 1em;border:1.5px solid var(--ink);border-radius:6px;background:var(--card);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);overflow:hidden}
+.seal>div{padding:12px 16px 14px;font-size:15.5px;line-height:1.75}
+.seal>div+div{border-left:1.5px solid var(--ink)}
+.seal i{display:block;font-style:normal;font-family:var(--f-display);font-size:22px;letter-spacing:.2em;margin-bottom:2px;color:var(--main)}
+.seal>div+div i{color:var(--grn)}
+.seal i small{font-family:var(--f-body);font-size:12px;letter-spacing:.1em;color:var(--ink-3);margin-left:6px}
+
+/* 装置 */
+.fig{margin:2.2em auto;padding:20px 18px;background:var(--card);border:1px solid var(--rule);border-radius:6px}
+.fig-label{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.12em;color:var(--main)}
+.fig h4{font-family:var(--f-display);font-weight:400;font-size:22px;margin:.25em 0 .35em}
+.fig .how{font-size:14.5px;color:var(--ink-2);margin:0 0 14px;line-height:1.75}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.btn{border:1px solid var(--ink-3);background:transparent;border-radius:999px;padding:4px 14px;font-size:14px;cursor:pointer;line-height:1.6;color:var(--ink)}
+.btn:hover{border-color:var(--ink)}
+.btn.pri{background:var(--main);color:var(--paper);border-color:var(--main)}
+.btn.on{background:var(--main);border-color:var(--main);color:var(--paper)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.readout{font-size:14.5px;color:var(--ink-2);line-height:1.75;min-height:1.5em}
+.readout b{color:var(--ink)}
+.say{background:var(--paper);border-left:3px solid var(--och);padding:8px 12px;margin:10px 0;font-size:15px;line-height:1.75;min-height:3.2em}
+.say.ok{border-left-color:var(--grn)}.say.bad{border-left-color:var(--red)}
+input[type=range]{width:100%;accent-color:var(--main)}
+.ctl{display:grid;grid-template-columns:7em minmax(0,1fr) 6.5em;gap:10px;align-items:center;font-size:14px;color:var(--ink-2);margin:4px 0}
+.ctl output{font-family:var(--f-mono);font-size:13px;color:var(--ink);text-align:right;white-space:nowrap}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(9em,1fr));gap:8px;margin:10px 0}
+.kv div{background:var(--paper);border-radius:6px;padding:6px 10px;font-size:12.5px;color:var(--ink-3);line-height:1.5}
+.kv b{display:block;font-family:var(--f-mono);font-weight:500;font-size:18px;color:var(--ink)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:center}
+.lab{font-size:12.5px;color:var(--ink-3);letter-spacing:.08em;margin:8px 0 4px}
+.chip{display:inline-block;font-size:12px;border:1px solid var(--rule);border-radius:4px;padding:0 6px;color:var(--ink-3);margin:0 4px 4px 0}
+.fig text{font-family:var(--f-sans)}
+.fig .mono{font-family:var(--f-mono)}
+select{border:1px solid var(--ink-3);border-radius:6px;background:var(--paper);padding:2px 6px;font-size:14px}
+label.ck{display:inline-flex;gap:6px;align-items:center;font-size:14px;color:var(--ink-2);margin:2px 12px 2px 0;cursor:pointer}
+label.ck input{accent-color:var(--main)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--ink-2);margin:6px 0}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:0}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(14em,1fr));gap:8px;margin:10px 0}
+.cards .cd{background:var(--paper);border-radius:6px;padding:8px 11px;font-size:14px;line-height:1.65;border:1px solid transparent}
+.cards .cd b{display:block;font-family:var(--f-display);font-weight:400;font-size:17px}
+.cards .cd small{color:var(--ink-3)}
+.cards .cd.on{border-color:var(--main)}
+
+/* 漫画 */
+.comic{max-width:54rem;margin:2em auto;padding:14px;background:var(--c-paper);border:2px solid var(--c-ink);color:var(--c-ink)}
+.comic .ctitle{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px 12px;border-bottom:2px solid var(--c-ink);padding-bottom:6px;margin-bottom:12px}
+.comic .ctitle b{font-family:var(--f-display);font-weight:400;font-size:26px;letter-spacing:.12em}
+.comic .ctitle span{font-family:var(--f-sans);font-size:12px;letter-spacing:.1em}
+.comic .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.pn{position:relative;border:2.5px solid var(--c-ink);background:var(--c-paper);overflow:hidden;container-type:inline-size;aspect-ratio:300/230}
+.pn.w{grid-column:span 2;aspect-ratio:600/250}
+.pn svg{position:absolute;inset:0;width:100%;height:100%;max-width:none;color:var(--c-ink)}
+.pn .cap{position:absolute;left:0;top:0;max-width:62%;background:var(--c-paper);border-right:2px solid var(--c-ink);border-bottom:2px solid var(--c-ink);font-family:var(--f-sans);font-weight:500;font-size:clamp(10.5px,4.1cqw,15px);line-height:1.45;padding:4px 8px;z-index:2}
+.pn .cap.br{left:auto;top:auto;right:0;bottom:0;border:0;border-left:2px solid var(--c-ink);border-top:2px solid var(--c-ink)}
+.pn .bb{position:absolute;z-index:3;background:var(--c-paper);border:2px solid var(--c-ink);border-radius:50%/42%;padding:.5em .85em;font-family:var(--f-sans);font-weight:500;font-size:clamp(10.5px,4.2cqw,16px);line-height:1.45;text-align:center;color:var(--c-ink)}
+.pn.w .bb{font-size:clamp(10.5px,2.5cqw,16px)}
+.pn.w .cap{font-size:clamp(10.5px,2.4cqw,15px)}
+.pn .bb::after{content:"";position:absolute;width:14px;height:14px;background:var(--c-paper);border-right:2px solid var(--c-ink);border-bottom:2px solid var(--c-ink);bottom:-8px;left:30%;transform:skewX(30deg) rotate(45deg)}
+.pn .bb.tr::after{left:auto;right:28%;transform:skewX(-30deg) rotate(45deg)}
+.pn .bb.nt::after{display:none}
+.pn .bb.shout{border-radius:6px;border-width:2.5px;font-weight:700}
+.pn .bb.think{border-style:dashed}
+.pn .sfx{position:absolute;z-index:2;font-family:var(--f-sans);font-weight:700;font-size:clamp(14px,7cqw,30px);color:var(--c-ink);transform:rotate(-8deg);letter-spacing:.05em;text-shadow:2px 2px 0 var(--c-paper),-2px -2px 0 var(--c-paper),2px -2px 0 var(--c-paper),-2px 2px 0 var(--c-paper)}
+.comic .after{font-family:var(--f-sans);font-size:13px;margin:10px 0 0;opacity:.8;line-height:1.7}
+
+/* 表 */
+table.t{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.6;min-width:520px}
+table.t th,table.t td{border-bottom:1px solid var(--rule);padding:7px 8px;text-align:left;vertical-align:top}
+table.t th{font-weight:400;color:var(--ink-3);font-size:13px}
+.src{font-size:14.5px;line-height:1.8;color:var(--ink-2)}
+.src li{margin:0 0 .5em}
+
+/* 本部完 */
+.partend{max-width:38rem;margin:70px auto 0;text-align:center}
+.partend .k{font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;color:var(--main)}
+.partend h3{margin:.3em 0 .6em}
+.partend a.go{display:inline-block;margin-top:8px;padding:8px 18px;border:1.5px solid var(--main);border-radius:999px;text-decoration:none;color:var(--main);font-family:var(--f-display);font-size:19px}
+footer{max-width:38rem;margin:60px auto 0;padding:24px 0 calc(40px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--rule);font-size:14px;color:var(--ink-3);line-height:1.8}
+footer p{text-indent:0!important}
+.nextbook{display:block;margin:20px 0;padding:14px 16px;border:1px solid var(--rule);border-radius:6px;text-decoration:none;background:var(--card)}
+.nextbook b{font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--ink)}
+
+/* ===== 装置专用 ===== */
+.pixels{display:grid;gap:3px;margin:10px 0}
+.pixels span{aspect-ratio:1;border-radius:3px;background:var(--paper);border:1px solid var(--rule)}
+.bars{display:grid;gap:5px;margin:10px 0}
+.bars .row{display:grid;grid-template-columns:7.5em minmax(0,1fr) 4.2em;gap:8px;align-items:center;font-size:13.5px}
+.bars .row .nm{color:var(--ink-2);line-height:1.3}
+.bars .row .nm small{display:block;font-size:11px;color:var(--ink-3)}
+.bars .tr{position:relative;height:18px;background:var(--paper);border-radius:3px;overflow:hidden}
+.bars .tr i{position:absolute;left:0;top:0;bottom:0;background:var(--main);border-radius:3px;transition:width .4s}
+.bars .row .v{font-family:var(--f-mono);font-size:12px;color:var(--ink);text-align:right;white-space:nowrap}
+.tl{position:relative}
+.tl .track{display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:8px;align-items:center;font-size:13px;margin:3px 0}
+.tl .track .nm{color:var(--ink-2);line-height:1.25}
+.tl .lane{position:relative;height:22px;background:var(--paper);border-radius:3px}
+.tl .lane i{position:absolute;top:3px;width:14px;height:14px;margin-left:-7px;border-radius:50%;border:2px solid var(--card)}
+.tl .lane i.f{background:var(--grn)}.tl .lane i.c{background:var(--och)}.tl .lane i.s{background:var(--main)}.tl .lane i.w{background:var(--blu);border-radius:2px}
+.tl .axis{display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:8px;font-family:var(--f-mono);font-size:10.5px;color:var(--ink-3)}
+.tl .axis div:nth-child(2){position:relative;height:16px}
+.tl .axis span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+
+
+
+/* ===== 《值不值》专用 ===== */
+/* 章首：五个账户 */
+.acc{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+.acc span{font-size:12px;line-height:1.6;border:1px solid var(--rule);border-radius:4px;padding:0 7px;color:var(--ink-3);background:var(--paper)}
+.acc span b{font-family:var(--f-display);font-weight:400;font-size:14px;margin-right:3px}
+.acc span.on{border-color:var(--main);color:var(--main);background:color-mix(in srgb,var(--main) 9%,var(--paper));font-weight:600}
+/* 年代条：2016—2026，这一章的故事落在哪几年 */
+.yrs{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));gap:2px;margin-top:10px}
+.yrs span{font-family:var(--f-mono);font-size:10px;line-height:16px;text-align:center;color:var(--ink-3);background:var(--paper);border-radius:2px}
+.yrs span.on{background:var(--main);color:var(--paper)}
+/* 一场戏（虚构） */
+.scene{margin:1.8em 0 2em;padding:16px 18px 6px;border:1.5px dashed var(--kraft);border-radius:10px;position:relative;background:color-mix(in srgb,var(--kraft) 5%,var(--paper))}
+.scene::before{content:attr(data-t);position:absolute;top:-12px;left:14px;background:var(--paper);padding:0 8px;font-size:13px;letter-spacing:.12em;color:var(--kraft);font-weight:600}
+.scene::after{content:"虚构";position:absolute;top:-10px;right:14px;background:var(--paper);padding:0 6px;font-size:11px;letter-spacing:.2em;color:var(--ink-3);border:1px solid var(--rule);border-radius:3px;line-height:1.5}
+.scene p{text-indent:0!important;font-size:16px;line-height:1.85}
+.scene .nm{font-weight:600;color:var(--kraft)}
+/* 外公的硬面抄：一页手写 */
+.page{margin:2em 0;background:var(--card);border:1px solid var(--rule);border-radius:4px;position:relative;padding:12px 16px 10px 52px;
+  background-image:repeating-linear-gradient(transparent 0 31px,color-mix(in srgb,var(--blu) 22%,transparent) 31px 32px);background-position:0 40px}
+.page::before{content:"";position:absolute;left:38px;top:0;bottom:0;border-left:1.5px solid color-mix(in srgb,var(--red) 55%,transparent)}
+.page .who{font-family:var(--f-sans);font-size:12px;letter-spacing:.14em;color:var(--ink-3);line-height:28px}
+.page .who b{font-family:var(--f-display);font-weight:400;font-size:19px;letter-spacing:.06em;color:var(--ink);margin-right:8px}
+.page dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:0 12px}
+.page dt{font-family:var(--f-sans);font-size:12px;color:var(--main);line-height:32px;white-space:nowrap}
+.page dd{margin:0;font-family:var(--f-hand);font-size:20px;line-height:32px;color:var(--ink-2)}
+.page .stampv{position:absolute;left:6px;top:14px;writing-mode:vertical-rl;font-family:var(--f-display);font-size:13px;letter-spacing:.3em;color:var(--red);opacity:.8}
+/* 再查一遍：流行说法与后来的研究 */
+.myth{margin:2em 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:1.5px solid var(--ink-3);border-radius:6px;overflow:hidden;background:var(--card)}
+.myth>div{padding:12px 16px 8px;font-size:15.5px;line-height:1.8}
+.myth>div p{text-indent:0!important;margin:0 0 .5em}
+.myth .pop{background:color-mix(in srgb,var(--och) 7%,var(--card))}
+.myth .chk{border-left:1.5px solid var(--ink-3)}
+.myth i{display:block;font-style:normal;font-family:var(--f-sans);font-size:11.5px;letter-spacing:.2em;color:var(--och);margin-bottom:4px}
+.myth .chk i{color:var(--main)}
+.myth .tag{grid-column:1 / -1;border-bottom:1px dashed var(--rule);font-family:var(--f-display);font-size:18px;padding:6px 16px 4px;display:flex;gap:10px;align-items:baseline}
+.myth .tag small{font-family:var(--f-sans);font-size:11px;letter-spacing:.18em;color:var(--paper);background:var(--ink-3);border-radius:3px;padding:0 6px}
+/* 两本账：算得清的 / 算不清的 */
+.seal>div+div i{color:var(--kraft)}
+/* 卷首的大字 */
+.volhead .ledg{position:absolute;right:12px;bottom:10px;width:120px;height:90px;opacity:.75;pointer-events:none;color:var(--main)}
+/* 封面：十年格子 */
+.weeks{display:grid;grid-template-columns:repeat(52,minmax(0,1fr));gap:1.5px;margin:10px 0}
+.weeks i{aspect-ratio:1;border-radius:1px;background:var(--paper)}
+.cohort{display:grid;grid-template-columns:repeat(auto-fill,minmax(10.5em,1fr));gap:8px;margin:14px 0}
+.cohort div{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:8px 11px;font-size:13.5px;line-height:1.6}
+.cohort b{display:block;font-family:var(--f-display);font-weight:400;font-size:19px}
+.cohort small{color:var(--ink-3)}
+.sim{display:block;touch-action:manipulation}
+.qa{display:grid;gap:8px;margin:10px 0}
+.qa button{text-align:left;border:1px solid var(--rule);background:var(--paper);border-radius:6px;padding:8px 12px;cursor:pointer;font-size:15px;line-height:1.6}
+.qa button:hover{border-color:var(--main)}
+.qa button.right{border-color:var(--grn);background:color-mix(in srgb,var(--grn) 10%,var(--paper))}
+.qa button.wrong{border-color:var(--red);background:color-mix(in srgb,var(--red) 8%,var(--paper))}
+.logbox{font-family:var(--f-mono);font-size:12.5px;line-height:1.7;background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:6px 10px;max-height:13em;overflow:auto;color:var(--ink-2);white-space:pre-wrap}
+.inrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(11em,1fr));gap:8px 14px;margin:8px 0}
+.inrow label{display:grid;gap:2px;font-size:13px;color:var(--ink-3)}
+.inrow input[type=number],.inrow input[type=text],.inrow select,textarea.in{border:1px solid var(--ink-3);border-radius:6px;background:var(--paper);padding:3px 8px;font-size:15px;width:100%;color:var(--ink)}
+textarea.in{font-family:var(--f-body);line-height:1.7;resize:vertical}
+.ledger{background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:12px 16px;font-size:15px;line-height:1.85}
+.ledger h6{font-family:var(--f-display);font-weight:400;font-size:20px;margin:0 0 .3em;color:var(--main)}
+.ledger p{text-indent:0!important;margin:0 0 .5em}
+.ledger table{width:100%;border-collapse:collapse;font-size:14px}
+.ledger td{border-bottom:1px dashed var(--rule);padding:4px 6px;vertical-align:top}
+.ledger td:first-child{color:var(--ink-3);white-space:nowrap;width:7em}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 10px}
+@media print{.bar,.drawer,footer,.fig:not(.printme){display:none}}
+
+@media (max-width:700px){
+  body{font-size:16.5px}
+  .two,.spin,.myth{grid-template-columns:minmax(0,1fr)}
+  .spin .plain{border-left:0;border-top:1.5px solid var(--ink)}
+  .myth .chk{border-left:0;border-top:1.5px solid var(--ink-3)}
+  .seal{grid-template-columns:minmax(0,1fr)}
+  .seal>div+div{border-left:0;border-top:1.5px solid var(--ink)}
+  .toc li a,.toc li.soon>div{grid-template-columns:2.2em minmax(0,1fr)}
+  .toc .r{grid-column:2;text-align:left}
+  .bar .vol{display:none}
+  .bar .parts a{padding:0 4px}
+  .chead{grid-template-columns:58px minmax(0,1fr);gap:14px;padding:16px 14px}
+  .chead .big{font-size:46px;padding:2px 0 6px}
+  .ctl{grid-template-columns:5.5em minmax(0,1fr)}
+  .ctl output{grid-column:1 / -1;text-align:left;margin-top:-6px}
+  .partnav{grid-template-columns:minmax(0,1fr)}
+  .bars .row{grid-template-columns:5.6em minmax(0,1fr) 3.6em;gap:6px}
+  .volhead .ledg{width:80px;height:60px;opacity:.4}
+  .page{padding-left:44px}.page::before{left:32px}.page dd{font-size:18px}
+  .weeks{gap:1px}
+  .yrs span{font-size:8.5px}
+}
+@media (max-width:480px){.bar .name{font-size:17px}}
+.toc li.soon .t,.toc li.soon .n{opacity:.55}
+.toc li.soon>div{display:grid;grid-template-columns:2.6em minmax(0,1fr) auto;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--rule)}
+.toc li.soon .r::after{content:" · 写作中";color:var(--main)}
+@media (max-width:700px){.partnav{grid-template-columns:minmax(0,1fr)}.toc li.soon>div{grid-template-columns:2.2em minmax(0,1fr)}}
+
+/* 红涨绿涨切换 */
+.bar .udbtn{border:1px solid var(--rule);background:transparent;border-radius:6px;padding:0 7px;font-size:12.5px;cursor:pointer;white-space:nowrap;color:var(--ink-2)}
+.bar .udbtn i{font-style:normal;color:var(--up);font-weight:700}
+.up{color:var(--up)}.dn{color:var(--dn)}
+/* 家族群：虚构 */
+.chat{margin:1.8em 0 2em;border:1px solid var(--rule);border-radius:12px;background:var(--paper-2);overflow:hidden;max-width:36rem}
+.chat .hd{display:flex;justify-content:space-between;align-items:center;font-family:var(--f-sans);font-size:13px;padding:7px 14px;border-bottom:1px solid var(--rule);background:var(--card);color:var(--ink-2);font-weight:500}
+.chat .hd::after{content:"虚构";font-size:11px;letter-spacing:.2em;color:var(--ink-3);border:1px solid var(--rule);border-radius:3px;padding:0 5px;line-height:1.5;font-weight:500}
+.chat .bd{padding:10px 12px 4px}
+.chat .t{text-align:center;font-family:var(--f-mono);font-size:11px;color:var(--ink-3);margin:2px 0 8px}
+.chat .m{display:grid;grid-template-columns:34px minmax(0,1fr);gap:8px;margin:0 0 10px;align-items:start}
+.chat .av{width:34px;height:34px;border-radius:6px;display:grid;place-items:center;font-family:var(--f-display);font-size:17px;line-height:1;color:var(--paper);background:var(--ink-3)}
+.chat .g .av{background:var(--kraft)}.chat .ma .av{background:var(--blu)}.chat .j .av{background:var(--och)}.chat .y .av{background:var(--main)}
+.chat .nm{font-family:var(--f-sans);font-size:11.5px;color:var(--ink-3);line-height:1.3;margin-bottom:2px}
+.chat .b{display:inline-block;background:var(--card);border:1px solid var(--rule);border-radius:4px 10px 10px 10px;padding:5px 10px;font-family:var(--f-sans);font-weight:500;font-size:14.5px;line-height:1.65;max-width:100%;text-align:left}
+.chat .m.y{grid-template-columns:minmax(0,1fr) 34px}
+.chat .m.y .av{order:2}.chat .m.y>div{text-align:right}
+.chat .m.y .b{background:color-mix(in srgb,var(--main) 12%,var(--card));border-radius:10px 4px 10px 10px}
+.chat .b.fw{border-left:3px solid var(--och);font-size:13.5px}
+.chat .b.fw b{display:block;font-size:14.5px;color:var(--ink)}
+.chat .b.fw small{display:block;color:var(--ink-3);font-size:11.5px}
+.chat .b.pic{font-size:13px;color:var(--ink-3);font-style:italic}
+.chat .sys{text-align:center;font-family:var(--f-sans);font-size:12px;color:var(--ink-3);margin:0 0 10px}
+/* 这条消息值不值得深挖 */
+.news{margin:2em 0;border:1.5px solid var(--ink);border-radius:6px;background:var(--card);overflow:hidden}
+.news .hl{padding:10px 16px 9px;border-bottom:1.5px solid var(--ink);background:color-mix(in srgb,var(--main) 6%,var(--card))}
+.news .hl .k{font-family:var(--f-sans);font-size:11.5px;letter-spacing:.2em;color:var(--main);font-weight:700}
+.news .hl b{display:block;font-family:var(--f-display);font-weight:400;font-size:21px;line-height:1.4;margin:.2em 0 .1em}
+.news .hl small{font-family:var(--f-mono);font-size:12px;color:var(--ink-3)}
+.news ol{list-style:none;margin:0;padding:8px 16px 4px}
+.news li{display:grid;grid-template-columns:5.2em minmax(0,1fr);gap:10px;font-size:15px;line-height:1.75;padding:3px 0;border-bottom:1px dashed var(--rule)}
+.news li:last-child{border-bottom:0}
+.news li span{font-family:var(--f-sans);font-size:12.5px;color:var(--ink-3);font-weight:500;padding-top:2px}
+.news .vd{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:center;padding:9px 16px 11px;border-top:1.5px solid var(--ink);background:var(--paper)}
+.news .vd i{font-style:normal;font-family:var(--f-display);font-size:19px;letter-spacing:.12em;border:2px solid currentColor;border-radius:4px;padding:0 8px;transform:rotate(-4deg);white-space:nowrap;color:var(--blu)}
+.news .vd[data-v="噪音"] i{color:var(--ink-3)}.news .vd[data-v="信号"] i{color:var(--main)}.news .vd[data-v="早已计入"] i{color:var(--och)}.news .vd[data-v="值得深挖"] i{color:var(--grn)}
+.news .vd p{margin:0;text-indent:0!important;font-size:15px;line-height:1.75}
+/* 交割单 */
+.slip{font-family:var(--f-mono);font-size:13px;line-height:1.7;background:var(--paper);border:1px dashed var(--ink-3);border-radius:3px;padding:10px 14px;margin:10px 0;white-space:pre;overflow-x:auto;color:var(--ink)}
+/* 卷首小 K 线 */
+.volhead .kl{position:absolute;right:10px;bottom:8px;width:180px;height:110px;opacity:.85;pointer-events:none}
+/* 收益三角 */
+.tri{display:block;width:100%;touch-action:manipulation}
+.tri rect{cursor:pointer}
+.cast4{display:grid;grid-template-columns:repeat(auto-fit,minmax(13em,1fr));gap:10px;margin:12px 0}
+.cast4>div{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:9px 12px;line-height:1.6;display:grid;grid-template-columns:38px minmax(0,1fr);gap:10px;align-items:center}
+.cast4 .av{width:38px;height:38px;border-radius:7px;display:grid;place-items:center;font-family:var(--f-display);font-size:19px;color:var(--paper)}
+.cast4 b{font-family:var(--f-display);font-weight:400;font-size:18px}
+.cast4 small{display:block;font-size:12.5px;color:var(--ink-3)}
+.seen{margin:1.2em 0;padding:12px 16px 6px;border:1.5px solid var(--och);border-radius:8px;background:color-mix(in srgb,var(--och) 5%,var(--paper))}
+.seen h5{margin:0 0 .4em;font-family:var(--f-display);font-weight:400;font-size:19px;color:var(--och)}
+.seen ul{margin:0 0 .6em;padding-left:1.1em;font-size:15px;line-height:1.8}
+.seen li{margin:0 0 .3em}
+.wgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.wgrid>div{background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:4px;cursor:pointer;position:relative}
+.wgrid>div.pick{outline:2px solid var(--main)}
+.wgrid small{position:absolute;left:6px;top:3px;font-family:var(--f-mono);font-size:11px;color:var(--ink-3)}
+.wgrid em{display:block;font-style:normal;font-size:12px;line-height:1.5;color:var(--ink-2);padding:0 4px 2px;min-height:1.5em}
+@media (max-width:700px){
+  .wgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .news li{grid-template-columns:minmax(0,1fr);gap:0}
+  .news .vd{grid-template-columns:minmax(0,1fr)}
+  .news .vd i{justify-self:start}
+  .volhead .kl{width:90px;height:56px;opacity:.4}
+  .bar .udbtn{padding:0 5px}
+}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="bar-in g">
+    <a class="home" href="../" title="回创世书房">书房</a>
+    <a class="name" href="./">红与绿</a>
+    <nav class="parts" aria-label="三部">
+      <a href="./" data-p="1">盘</a><a href="two.html" data-p="2">手</a><a href="three.html" data-p="3">花</a>
+    </nav>
+    <span class="vol" id="barVol">序</span>
+    <button class="udbtn" id="udBtn" title="切换涨跌配色：A 股红涨绿跌 / 美股绿涨红跌"><i>红</i>涨</button>
+    <button class="tocbtn" id="tocBtn" aria-label="打开目录">目录</button>
+  </div>
+  <div class="progress" id="prog"></div>
+</header>
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="mask" data-close></div>
+  <nav class="panel" aria-label="目录">
+    <button class="x" data-close aria-label="关闭">×</button>
+    <h5>全书目录</h5>
+    <ol id="drawerList"></ol>
+  </nav>
+</div>
+<main class="g">
+
+<!-- ============ 封面 · 第二部 ============ -->
+<section class="hero" data-vol="第二部" id="top">
+  <div class="wide">
+    <div class="eyebrow">RED &amp; GREEN · 散 · 费 · 指 · 心 · 杠 · 外 · 币 · 学 · 投资创世记</div>
+    <h1>红与绿<span class="sm">投资创世记</span></h1>
+    <span class="part">第二部 · 手</span>
+    <p class="lead">第一部讲的是牌桌：价格怎样撮合，消息、政策和嘴怎样推着它走，庄家怎样让它走错。结论是，在“谁先知道”的比赛里，普通人不在前排。</p>
+    <p class="lead">第二部轮到你自己下场。先看清你坐在哪个位置：两亿五千万个账户里，散户整体是赚是亏，钱被谁拿走了（卷三 · 场）；再看几条具体的路：借钱炒股、去香港开户买美股、币圈，以及一个新手第一年到底该怎样交学费（卷四 · 路）。</p>
+    <p class="lead">这一部比第一部更“近”，也更要说清楚一句话：<em>书里只讲机制、规则和历史上的教训，不推荐任何股票、基金、平台或币种，不替任何人做决定</em>。方远在这一部里做的每一个选择，都只是一个虚构的人在那个处境下的选择。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig" id="gapFig">
+      <div class="fig-label">封面装置</div>
+      <h4>一年的收益，是怎样被一点一点拆掉的</h4>
+      <p class="how">假设市场整体一年涨了某个数。一个散户最后拿到手的，要先扣掉交易费用，再扣掉“追涨杀跌”的择时损失，选股则是一场扣完费用后平均为负的比赛。拖动滑块，看看从“市场赚的”到“你赚的”之间隔着什么。</p>
+      <div class="ctl"><span>市场一年涨</span><input type="range" id="gpM" min="-20" max="30" step="1" value="8"><output id="gpMO"></output></div>
+      <div class="ctl"><span>一年换手几遍</span><input type="range" id="gpT" min="0" max="30" step="0.5" value="5"><output id="gpTO"></output></div>
+      <div class="ctl"><span>每换一遍的成本</span><input type="range" id="gpC" min="0.05" max="1" step="0.05" value="0.3"><output id="gpCO"></output></div>
+      <div class="ctl"><span>追涨杀跌的程度</span><input type="range" id="gpB" min="0" max="10" step="1" value="4"><output id="gpBO"></output></div>
+      <svg id="gpSvg"></svg>
+      <div class="say" id="gpSay"></div>
+      <p class="figcap">示意模型：“换手一遍”指把全部持仓卖掉再买一遍；每遍成本含佣金、印花税和买卖价差、冲击成本，粗略取 0.1%—1%。“追涨杀跌的程度”每档按每年少赚约 0.5 个百分点粗算，研究里常见的“行为缺口”在每年零点几到两三个百分点之间（第十章、第十二章）。选股这一项只画了平均值：有人赚有人亏，平均起来扣完费用是负的。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>这一部回答的问题</h3>
+    <ul class="qmap">
+      <li>散户整体是赚是亏？“七亏二平一赚”是真的吗？<a href="#c9">散</a></li>
+      <li>交易越勤越好吗？谁赚走了我的钱？<a href="#c9">散</a></li>
+      <li>基金经理、基金的费用到底吃掉多少？主动基金值不值？<a href="#c10">费</a></li>
+      <li>为什么基金赚钱，基民不赚钱？<a href="#c10">费</a></li>
+      <li>指数基金是什么？定投真能“微笑”吗？<a href="#c11">指</a></li>
+      <li>上证指数为什么不能代表 A 股？<a href="#c11">指</a></li>
+      <li>为什么亏的拿着、赚的先卖？为什么总觉得自己比别人强？<a href="#c12">心</a></li>
+      <li>融资、配资、期货、期权：借钱炒股会怎样？<a href="#c13">杠</a></li>
+      <li>新手拿 A 股练手，还是办港卡买美股？现在还能开吗？<a href="#c14">外</a></li>
+      <li>纳指 ETF 为什么溢价？买美股要交什么税？<a href="#c14">外</a></li>
+      <li>虚拟币要不要碰？它在中国到底合不合法？<a href="#c15">币</a></li>
+      <li>第一笔本金多少合适？模拟盘有用吗？第一年该做什么？<a href="#c16">学</a></li>
+    </ul>
+
+    <div class="partnav">
+      <a href="./"><span class="k">第一部</span><b>盘</b><small>序幕 + 卷一 起 + 卷二 声 · 市场是怎么回事 · 九章</small></a>
+      <a href="two.html" class="on"><span class="k">第二部</span><b>手</b><small>卷三 场 + 卷四 路 · 自己下场 · 八章</small></a>
+      <a data-c="c17" href="three.html"><span class="k">第三部</span><b>花</b><small>卷五 序 + 卷六 苦与乐 + 尾声 · 钱拿来干什么 · 八章</small></a>
+    </div>
+
+    <h3>全书目录</h3>
+  </div>
+  <div class="wide"><ol class="toc" id="toc"></ol></div>
+</section>
+
+<!-- ============ 卷三 · 场 ============ -->
+<div class="volhead" id="v3" data-vol="卷三 · 场">
+  <div class="num">VOLUME III · THE TABLE</div>
+  <h2>场<small>你坐在牌桌的哪个位置</small></h2>
+  <p class="lede">打牌之前先看清桌上坐着谁、谁在抽水、谁手里的牌比你好。卷三讲四件事：散户整体在这张桌上赚了还是亏了；那些看不见的费用一年吃掉多少；有没有一种不用跟人比牌的玩法；以及我们脑子里那几个天生的坑。</p>
+  <svg class="kl" aria-hidden="true"></svg>
+</div>
+
+<!-- ============ 第九章 · 散 ============ -->
+<section class="chap" id="c9" data-vol="卷三 · 场 · 散">
+  <div class="chead">
+    <div class="big">散</div>
+    <div>
+      <div class="no">第九章 · 场之一</div>
+      <h2>谁在赚谁的钱</h2>
+      <dl><dt>讲什么</dt><dd>两亿五千万个账户和两成的市值；六万户美国家庭的交易记录；台湾散户一年输掉多少；巴西的日内交易者；上交所账户里的大散户和小散户；游戏驿站那一周；“七亏二平一赚”</dd><dt>本章装置</dt><dd>一千个散户的一年</dd></dl>
+      <div class="acc" data-a="本 心"></div>
+      <div class="yrs" data-a="1991" data-b="2026"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">散户整体是赚还是亏？</p>
+      <p>把“长期拿着”和“来回倒手”分开看。长期拿着一篮子股票，散户和所有人一样分到公司的利润，这一截是正的；来回倒手这一截，是和别人对赌，扣掉费用就是负的，而散户恰恰是倒手最勤的那群人。世界各地的研究结论很一致：<em>散户整体跑输市场，交易越勤跑输越多，账户越小越吃亏</em>。不是因为散户笨，是因为这张桌子上，散户的牌最差、付的抽水最多。</p>
+    </div>
+
+    <div class="chat">
+      <div class="hd">顾家（4）</div>
+      <div class="bd">
+        <div class="t">2027 年 1 月 20 日 16:05</div>
+        <div class="m y"><span class="av">远</span><div><div class="nm">方远</div><span class="b">开户了！风险测评说我是“积极型”😂 我想先拿一万块试试短线，每天盯盘练感觉</span></div></div>
+        <div class="m j"><span class="av">磊</span><div><div class="nm">舅舅</div><span class="b">好！年轻人就要敢冲。舅舅教你打板</span></div></div>
+        <div class="m ma"><span class="av">敏</span><div><div class="nm">妈妈</div><span class="b">期末考试呢？</span></div></div>
+        <div class="m g"><span class="av">庚</span><div><div class="nm">外公</div><span class="b">试吧。一年以后告诉我两个数：你交易了多少次，交了多少手续费。</span></div></div>
+      </div>
+    </div>
+
+    <h3>桌上坐着谁</h3>
+    <p>到 2025 年底，中国登记在册的证券投资者大约两亿五千万，其中九成九以上是个人。可人数不等于分量。按上交所的统计，个人投资者持有的股票市值，只占沪市的两成左右（2017 年约 21%）；剩下的在大股东、国有资本、基金、保险、外资和各种机构手里。而在每天的成交额里，个人投资者又贡献了大半。</p>
+    <p>也就是说，散户是这张桌上<b>人最多、筹码最少、出牌最勤</b>的一群。和你对赌的那一方，可能是一家有几十个研究员的基金，一台在交易所机房旁边、每秒报几千次价的量化服务器，或者一位比你更早知道公司情况、正想减持的大股东。</p>
+
+    <h3>六万户家庭的账单</h3>
+    <p>1990 年代末，加州大学的布拉德·巴伯和特伦斯·奥迪恩拿到了美国一家大型折扣券商的数据：1991 到 1996 年间六万多户家庭的全部交易记录。2000 年，他们发表了一篇论文，题目直截了当：《交易有害你的财富》。</p>
+    <p>结论是：这些家庭平均每年把持仓换掉七成多；扣掉费用以后，平均年收益比市场低约 1.5 个百分点。最勤快的那五分之一家庭，一年换手两倍多，年收益只有 11.4%，同期市场是 17.9%。他们挑股票的眼光并不比别人差多少，钱是被<b>交易本身</b>吃掉的。</p>
+    <p>后来，巴伯、奥迪恩和台湾学者合作，拿到了台湾证券交易所 1995 到 1999 年的全部交易数据，算出了一个更惊人的数：台湾散户因为频繁交易，每年整体跑输约 3.8 个百分点，加起来的损失约等于台湾 GDP 的 2.2%。这些钱去了哪里？大头流向了机构，尤其是外资机构。</p>
+    <p>巴西的研究者查得更细：他们追踪了 2013 到 2015 年开始做股指期货日内交易的所有个人，在坚持做了三百天以上的人里，97% 是亏钱的，只有约 1% 的人赚到的钱比巴西的最低工资还多。</p>
+    <p>A 股也有类似的研究。几位学者利用上交所的账户数据，按账户大小把投资者分成几档，发现账户越小、交易越频繁，买卖之后的表现越差，小散户整体在亏；最大的那一档散户和机构，整体是赚的。<em>同一张桌子，牌越小的人输得越多</em>。</p>
+  </div>
+
+  <div class="echo" data-k="押韵">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">赌场的抽水</p><p>赌场从不需要猜轮盘会停在红还是黑，它只要在每一把里抽一点点：轮盘上多出来的一两个零格，就是庄家优势。玩得越久、下注越勤，赌客整体的钱就越确定地流向赌场。股市的抽水小得多，每次只有千分之一二，可勤快的人一年转几十圈，抽水就从“一点点”变成了“一大截”。<a href="../worth/#c4">《值不值》第四章</a>讲过赌徒破产：只要每一把的期望是负的，玩得越久，输光的概率越接近一。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>钱是怎样被拿走的</h3>
+    <p>拆开来看，散户的钱主要从三个口子流走：</p>
+    <ul class="plain">
+      <li><b>抽水</b>：佣金、印花税、过户费，以及看不见的买卖价差和冲击成本。每一次都很小，加起来很大。第十章细算。</li>
+      <li><b>信息</b>：第一部讲过，你在“谁先知道”的比赛里不在前排。你买进的时候，卖给你的人常常比你更清楚他为什么要卖。</li>
+      <li><b>情绪</b>：涨了追进去，跌了割出来；拿着亏的，卖掉赚的。这些习惯每年悄悄扣掉一两个百分点，第十二章讲。</li>
+    </ul>
+    <p>还有一个口子，近几年越来越大：<b>速度</b>。程序化交易、量化基金能在毫秒之间对价格变化作出反应，在一只股票的买卖价差里一天赚无数次小钱。监管部门这几年对程序化交易加强了报告和限制，但速度上的差距不会消失。</p>
+
+    <div class="news">
+      <div class="hl"><span class="k">这条消息值不值得深挖</span><b>“散户逼空华尔街”：游戏驿站一周涨了好几倍</b><small>2021-01 下旬 · 美国</small></div>
+      <ol>
+        <li><span>那一周</span>一个网络论坛上的散户集体买入被对冲基金大量做空的游戏驿站股票，股价从月初的二十美元左右冲到 1 月 28 日盘中四百八十多美元，一家做空它的对冲基金一个月亏掉一半。当天，几家券商限制了散户买入。</li>
+        <li><span>三周后</span>股价跌回四十美元上下。</li>
+        <li><span>结局</span>早进早出的人赚了大钱，成了新闻；看到新闻才冲进去的人，大多在几百美元的地方接了货，没有成为新闻。</li>
+      </ol>
+      <div class="vd" data-v="噪音"><i>噪音</i><p>它是真事，也确实有散户赢了。可对一个在新闻里第一次听说它的人来说，它是第五章那张“散场图”的最后一排。<b>“散户赢了”的新闻，讲的是第一排的人；你读到它的时候，你在最后一排。</b></p></div>
+    </div>
+  </div>
+
+  <div class="fig" id="crowdFig">
+    <div class="fig-label">装置 10</div>
+    <h4>一千个散户的一年</h4>
+    <p class="how">一千个散户，每个人都毫无选股本事（买卖的涨跌全凭运气），区别只在于一年交易多少次。设定市场全年涨多少、每次交易的成本，看看一年下来，多少人跑赢了市场，跑得最好的人像不像“股神”。</p>
+    <div class="ctl"><span>市场全年</span><input type="range" id="crM" min="-20" max="30" step="1" value="8"><output id="crMO"></output></div>
+    <div class="ctl"><span>一年交易次数</span><input type="range" id="crK" min="0" max="200" step="2" value="50"><output id="crKO"></output></div>
+    <div class="ctl"><span>每次成本</span><input type="range" id="crC" min="0.05" max="0.6" step="0.05" value="0.2"><output id="crCO"></output></div>
+    <div class="btns"><button class="btn" id="crRe">再来一年</button></div>
+    <svg id="crSvg"></svg>
+    <div class="kv" id="crKv"></div>
+    <div class="say" id="crSay"></div>
+    <p class="figcap">示意模型：每个人的收益 = 市场收益 + 每次交易一个随机的“运气”（平均为零）− 交易成本；交易越多，运气的波动越大。直方图里红色竖线是市场收益。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">“七亏二平一赚”<small>出处不明</small></div>
+    <div class="pop"><i>流行说法</i><p>股市里永远是七成人亏钱、两成人打平、一成人赚钱。</p></div>
+    <div class="chk"><i>再查一遍</i><p>我们没有找到这句话的可靠出处，它更像一句行话，不是统计。实际的比例随年份变化很大：大牛市的年份大多数人账面赚钱，熊市的年份大多数人亏钱。比这句行话更可靠的，是上面那些研究共同的结论：<em>和市场相比</em>，大多数散户跑输了，跑输的幅度和交易频率成正比。问题不在于“赚没赚钱”，而在于“比什么都不做，多赚了还是少赚了”。</p></div>
+  </div>
+
+  <div class="col">
+    <p>舅舅那天晚上私聊方远：“别听你外公的，他老了，胆子小。”方远回：“舅舅，你 2015 年那次，一年交易了多少次？”舅舅没回。</p>
+    <div class="seal">
+      <div><i>市场记得的</i>两亿五千万投资者里九成九是个人，但个人只持有两成左右的市值、贡献大半的成交。美国六万户家庭最勤快的那五分之一，年收益比市场低六个百分点；台湾散户一年整体输掉 GDP 的 2.2%；巴西坚持日内交易的人 97% 亏钱；A 股账户越小、交易越勤，表现越差。</div>
+      <div><i>你该记的</i>长期拿着是正和，来回倒手是负和，散户恰好最爱倒手。你的对手常常比你更快、更早知道、筹码更多。先问自己的不是“这次能不能赚”，而是“比什么都不做，我多赚了还是少赚了”。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第十章 · 费 ============ -->
+<section class="chap" id="c10" data-vol="卷三 · 场 · 费">
+  <div class="chead">
+    <div class="big">费</div>
+    <div>
+      <div class="no">第十章 · 场之二</div>
+      <h2>看不见的费</h2>
+      <dl><dt>讲什么</dt><dd>基金的五种费；夏普的一道算术题；巴菲特赌了十年的一百万美元；1975 年的“五一”和后来的零佣金；中国公募基金的费率改革；为什么基金赚钱、基民不赚钱</dd><dt>本章装置</dt><dd>一个百分点的三十年</dd></dl>
+      <div class="acc" data-a="本 时"></div>
+      <div class="yrs" data-a="1975" data-b="2026"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">基金每年收 1% 左右的管理费，听着不多，要紧吗？</p>
+      <p>要紧，因为它年年收、不管赚赔都收，而且是按你的全部本金收，不是按你赚的钱收。一年 1.5% 和一年 0.2%，差一个多点，放到三十年，复利一滚，最后的钱能差出三成左右。<em>收益是不确定的，费用是确定的</em>；在你能控制的东西里，费用几乎是唯一一个稳赚的。</p>
+    </div>
+
+    <div class="chat">
+      <div class="hd">顾家（4）</div>
+      <div class="bd">
+        <div class="t">2027 年 1 月 24 日 12:40</div>
+        <div class="m ma"><span class="av">敏</span><div><div class="nm">妈妈</div><span class="b">小远，我其实 2021 年也买过一次基金。银行经理推荐的，说基金经理是冠军，排队都买不到。</span></div></div>
+        <div class="m ma"><span class="av">敏</span><div><div class="nm">妈妈</div><span class="b">一年亏了三成多，我就再也不碰了。</span></div></div>
+        <div class="m y"><span class="av">远</span><div><div class="nm">方远</div><span class="b">妈，你还记得申购费是多少吗？</span></div></div>
+        <div class="m ma"><span class="av">敏</span><div><div class="nm">妈妈</div><span class="b">还有申购费？</span></div></div>
+      </div>
+    </div>
+
+    <h3>五种费</h3>
+    <p>买一只公募基金，钱会从五个口子流出去。<b>申购费</b>，买的时候收一次，名义上常见 1.5%，网上平台多打一折；<b>赎回费</b>，卖的时候收，持有越短越贵，不满七天要收 1.5% 的惩罚性费用；<b>管理费</b>，每年按资产收，付给基金公司；<b>托管费</b>，每年按资产收，付给保管资产的银行；有的基金还有<b>销售服务费</b>，每年付给卖基金的渠道。后三种不单独扣你的钱，而是每天从基金净值里悄悄扣掉，你看到的涨跌已经是扣完以后的。</p>
+    <p>还有一种费不写在任何地方：基金经理买卖股票时付的佣金、印花税和冲击成本，也从基金资产里出。换手越勤的基金，这笔看不见的费越高。</p>
+    <p>2023 年 7 月，证监会启动公募基金费率改革，把新发的主动权益类基金的管理费上限降到 1.2%、托管费上限降到 0.2%，此后又陆续降低了基金买卖股票的交易佣金。在这之前，很多主动基金的管理费是 1.5%。指数基金的管理费，低的已经只有 0.15% 左右。</p>
+
+    <h3>一道算术题</h3>
+    <p>1991 年，诺贝尔经济学奖得主威廉·夏普写了一篇只有三页的短文，叫《主动管理的算术》。他说，把市场上的所有投资者分成两拨：一拨是“被动”的，按市场的比例买下所有股票，什么都不挑；另一拨是“主动”的，挑来挑去。被动的那一拨，扣费用之前的收益必然等于市场；整个市场又是两拨人加起来，所以主动的那一拨，<b>扣费用之前，平均也必然等于市场</b>。</p>
+    <p>主动的人收费更高、交易更勤，所以<b>扣完费用以后，主动投资者的平均收益必然低于被动投资者</b>。这不是统计规律，是算术。当然，主动投资者里有人赢有人输，问题是你能不能事先挑出赢的那个人。</p>
+    <p>美国标普公司每年发布的统计显示，拉长到十五年、二十年，大约九成的美国大盘股主动基金跑输了标普 500 指数。中国的情况不太一样：过去很长一段时间，A 股里散户多、定价效率低，主动偏股基金的整体表现常常好过沪深 300 指数；可 2021 年以后，不少明星基金大幅回撤，而且下面会讲到，基金跑赢了，不等于买基金的人赚到了。</p>
+  </div>
+
+  <div class="echo" data-k="押韵">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">从梧桐树到零佣金</p><p>第二章讲过，1792 年纽约那二十四个经纪人签的第一份协议，就是一个佣金不低于 0.25% 的价格同盟。这个固定佣金制度在纽约维持了一百八十多年，直到 1975 年 5 月 1 日美国证监会下令废除，华尔街管这一天叫“五一节”。此后折扣券商兴起，2019 年前后美国几家大券商干脆把股票佣金降到了零。可券商并没有变成慈善机构：零佣金的平台，很多靠把你的买卖单卖给做市商赚钱。<em>费没有消失，只是换了个地方收</em>。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>赌了十年的一百万</h3>
+    <p>2007 年，巴菲特公开下了一个赌注：从 2008 年 1 月 1 日起的十年里，一只普通的标普 500 指数基金，会跑赢任何人挑选的一组对冲基金。一家叫门徒合伙人的基金公司应战，挑了五只“基金中的基金”，里面装着一百多家对冲基金。双方各出钱买了债券，赢的一方把一百万美元捐给自己指定的慈善机构。</p>
+    <p>十年后的结果：指数基金累计涨了约 126%，年化约 7.1%；五只对冲基金组合平均累计涨了约 36%，年化约 2.2%。对手在第九年就认输了。巴菲特在 2017 年的致股东信里解释：这些对冲基金经理大多很聪明，可他们每年收约 2% 的管理费，赚了钱还要分走两成，再加上基金中的基金自己的一层费用，<b>聪明被费用吃掉了</b>。</p>
+
+    <div class="news">
+      <div class="hl"><span class="k">这条消息值不值得深挖</span><b>证监会启动公募基金费率改革：主动权益类基金管理费率上限降至 1.2%、托管费率上限降至 0.2%</b><small>2023-07-07 · 证监会</small></div>
+      <ol>
+        <li><span>随即</span>主要基金公司纷纷公告，把旗下已有的主动权益基金的费率也一并降下来。</li>
+        <li><span>此后</span>交易佣金、销售费用等环节的降费陆续推进，“降费让利”成了此后两年的主线之一。</li>
+        <li><span>对你</span>假如你在一只主动基金里放了十万元，每年少交几百元，年年如此。</li>
+      </ol>
+      <div class="vd" data-v="信号"><i>信号</i><p>对大盘几乎没有影响，对你的账户是确定的、年年都有的好处。<b>和第一部序幕的印花税一样：一条对行情是噪音的消息，可能对你自己的成本是信号。</b>这类消息值得记住，然后去看看自己买的产品到底收多少。</p></div>
+    </div>
+
+    <h3>基金赚钱，基民不赚钱</h3>
+    <p>还有一笔费用，不交给任何人，交给你自己的情绪。基金净值涨的时候，宣传最热闹，新钱涌进来；跌下去以后，大家赎回走人。于是大部分钱，是在高处进、低处出的。</p>
+    <p>美国晨星公司每年统计这个“缺口”：基金本身的收益，和基金里所有投资者按进出时点算出来的平均收益之差。最近几年的报告里，这个缺口大约是每年一个百分点。中国的几家机构也做过类似统计，结论相同，而且缺口更大：同一段时间里，偏股基金的净值涨了不少，买它的人却有相当一部分是亏的。</p>
+    <p>顾敏 2021 年买的那只基金就是这样：她在 2021 年初、明星基金经理最红的时候买进，这只基金此前三年翻了一倍多；一年后亏了三成多，她赎回了。又过了几年，基金净值回来了一部分，她已经不在里面。</p>
+  </div>
+
+  <div class="fig" id="feeFig">
+    <div class="fig-label">装置 11</div>
+    <h4>一个百分点的三十年</h4>
+    <p class="how">十万元放三十年，两只基金扣费前的收益完全一样，只是每年的总费用不同。再加上一个“情绪缺口”：因为追涨杀跌，你实际拿到的收益比基金本身每年少多少。</p>
+    <div class="ctl"><span>扣费前年化</span><input type="range" id="feR" min="2" max="12" step="0.5" value="7"><output id="feRO"></output></div>
+    <div class="ctl"><span>便宜的基金</span><input type="range" id="feA" min="0.1" max="1" step="0.05" value="0.2"><output id="feAO"></output></div>
+    <div class="ctl"><span>贵的基金</span><input type="range" id="feB" min="0.5" max="3" step="0.1" value="1.6"><output id="feBO"></output></div>
+    <div class="ctl"><span>情绪缺口</span><input type="range" id="feG" min="0" max="3" step="0.25" value="1"><output id="feGO"></output></div>
+    <svg id="feSvg"></svg>
+    <div class="kv" id="feKv"></div>
+    <div class="say" id="feSay"></div>
+    <p class="figcap">“总费用”包括管理费、托管费、销售服务费和基金内部的交易成本，按年从收益里扣；没算申购赎回费和税。“情绪缺口”加在贵的那只基金上，模拟一个追着热门基金跑的人。数字只为演示复利，不是对任何产品的预测。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">便宜没好货，贵的基金更好<small>大体相反</small></div>
+    <div class="pop"><i>流行说法</i><p>费率高一点无所谓，选到好的基金经理才最重要；收费贵的基金，说明人家有本事。</p></div>
+    <div class="chk"><i>再查一遍</i><p>晨星公司 2010 年和 2016 年做过两次研究，比较了各种指标对基金未来表现的预测力，结论是：<b>费率是最可靠的预测指标</b>，在几乎每一类基金、每一个时间段里，最便宜的那一档未来跑赢同类的概率都明显高于最贵的那一档。过去的业绩、明星排名，预测力反而弱得多。原因就是夏普的那道算术题：本事难以事先看出来，费用却是白纸黑字、年年都扣。</p></div>
+  </div>
+
+  <div class="col">
+    <p>方远帮妈妈翻出了 2021 年的交易记录：申购费 0.15%，持有一年多赎回，赎回费 0.5%，每年的管理费和托管费加起来 1.75%。妈妈看了半天说：“那几年就算不亏，我也白给了人家好几千。”</p>
+    <div class="seal">
+      <div><i>市场记得的</i>基金有申购、赎回、管理、托管、销售服务五种费，还有看不见的交易成本。夏普证明：扣费以后，主动投资的平均收益必然低于被动投资。巴菲特十年赌局，指数年化约 7.1%，对冲基金组合约 2.2%。2023 年中国公募费率改革，主动权益管理费上限降至 1.2%。晨星发现，费率是预测基金未来表现最可靠的指标。</div>
+      <div><i>你该记的</i>收益不确定，费用是确定的。看一只产品先看它一年总共收多少；一个百分点放到三十年，是三成左右的差距。基金跑赢了不等于你赚到了：高处进、低处出的那个缺口，交给的是你自己的情绪。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第十一章 · 指 ============ -->
+<section class="chap" id="c11" data-vol="卷三 · 场 · 指">
+  <div class="chead">
+    <div class="big">指</div>
+    <div>
+      <div class="no">第十一章 · 场之三</div>
+      <h2>买下整个市场</h2>
+      <dl><dt>讲什么</dt><dd>萨缪尔森的一篇挑战书；博格和被嘲笑的“傻瓜基金”；指数是怎样编出来的；为什么上证指数不能代表 A 股；全收益指数；定投和“微笑曲线”</dd><dt>本章装置</dt><dd>一次买进，还是每年买一点</dd></dl>
+      <div class="acc" data-a="价 本 时"></div>
+      <div class="yrs" data-a="1974" data-b="2026"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">指数基金是什么？定投真的能稳赚吗？</p>
+      <p>指数基金不挑股票，按一个指数的名单和比例，把里面的股票全部买下来。它不跟人比牌，只拿市场整体的那一份，再扣一点很低的费用。定投是每隔一段时间买一点，好处是不用猜买点、能管住手，但它并不保证赚钱：如果市场十年后比现在低，定投也会亏；如果市场一路涨，一次买进反而赚得更多。<em>定投管的是人，不是市场</em>。</p>
+    </div>
+
+    <div class="chat">
+      <div class="hd">顾家（4）</div>
+      <div class="bd">
+        <div class="t">2027 年 1 月 28 日 22:47</div>
+        <div class="m y"><span class="av">远</span><div><div class="nm">方远</div><span class="b">短线一周：交易二十一次，亏了 3.4%，手续费一百九十块。同期沪深 300 涨了 1.2%。</span></div></div>
+        <div class="m j"><span class="av">磊</span><div><div class="nm">舅舅</div><span class="b">一周说明不了问题，坚持！</span></div></div>
+        <div class="m y"><span class="av">远</span><div><div class="nm">方远</div><span class="b">我在想，如果我什么都不挑，直接把整个市场买下来呢？</span></div></div>
+        <div class="m j"><span class="av">磊</span><div><div class="nm">舅舅</div><span class="b">那叫躺平，赚的是平均数，没意思</span></div></div>
+      </div>
+    </div>
+
+    <h3>傻瓜基金</h3>
+    <p>1974 年，经济学家保罗·萨缪尔森在一本投资杂志的创刊号上发表文章，题目叫《对判断力的挑战》。他回顾了几十年的研究，说大多数基金经理跑不赢市场，建议有人去办一只基金，什么都不挑，就按标普 500 的比例把股票全买下来，收最低的费用。“哪怕只是为了做个对照组也好。”</p>
+    <p>接下这个挑战的是约翰·博格。他刚被自己工作的基金公司赶出来，1975 年另起炉灶，创办了先锋集团，第二年推出了第一只面向普通人的指数基金。承销商原本希望募集一亿五千万美元，结果只募到一千一百多万。同行嘲笑它是“博格的愚蠢”，有人印了海报，上面写着：“指数基金是不美国的！”意思是，美国人怎么能满足于平均数？</p>
+    <p>四十多年后，2023 年底前后，美国被动型基金的资产规模第一次超过了主动型基金。博格 2019 年去世时，先锋管着的钱已经接近五万亿美元。中国的第一只 ETF，华夏上证 50ETF，在 2004 年底成立；到 2020 年代，境内 ETF 的规模已经是几万亿元，大部分份额在个人投资者手里。</p>
+    <p>“平均数”为什么不丢人？回到第十章夏普的那道算术题：扣费之前，所有人的平均就是市场；扣费以后，收费最低、交易最少的人，必然站在平均数之上。<em>在一场扣完费用平均为负的比赛里，拿到平均数，就已经赢了大多数人</em>。</p>
+  </div>
+
+  <div class="echo" data-k="生活">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">安静地待在房间里</p><p>帕斯卡在《思想录》里说，人类所有的不幸，都来自一件事：不能安静地待在自己的房间里。投资里最难的往往不是挑股票，是什么都不做。指数基金的道理一句话就能说完，难的是在别人晒收益的日子里、在暴跌的日子里，一直不去动它。舅舅说它“没意思”，说中了要害：它的好处，恰恰来自没意思。</p></div>
+  </div>
+
+  <div class="col">
+    <div class="news">
+      <div class="hl"><span class="k">这条消息值不值得深挖</span><b>第一只面向散户的指数基金上市，募资一千一百多万美元，远低于预期</b><small>1976-08 · 美国 · 被同行称为“博格的愚蠢”</small></div>
+      <ol>
+        <li><span>当时</span>华尔街几乎一致认为它会失败：谁愿意花钱买“平均”？</li>
+        <li><span>十年后</span>它慢慢长大，可规模仍然远不如明星主动基金。</li>
+        <li><span>四十多年后</span>指数基金成了美国最大的基金类别，费用一路降到千分之一以下。</li>
+      </ol>
+      <div class="vd" data-v="值得深挖"><i>值得深挖</i><p>这是一条当时被所有人当成笑话的消息。<b>真正改变一切的消息，常常在出现的那天很冷清；被所有人转发的“重磅”，常常第二天就被忘了。</b>值得深挖的是那些改变规则和成本的东西，哪怕它出现时没人在意。</p></div>
+    </div>
+
+    <h3>指数是怎样编出来的</h3>
+    <p>一个指数，就是一份名单加一套算法：挑哪些股票，每只占多少分量，什么时候换人。不同的编法，会让“同一个市场”看起来完全不同。</p>
+    <p>封面那张图用的是上证综指，因为它历史最长、名气最大，也最常被拿来说“大 A 十几年还在三千点”。可它作为“代表 A 股的尺子”，有几个老毛病：</p>
+    <ul class="plain">
+      <li><b>只算上海</b>：深圳的股票不在里面，创业板的成长公司不在里面；腾讯、阿里这些中国最赚钱的互联网公司在香港或美国上市，也不在里面。</li>
+      <li><b>按总市值加权，新股进得早</b>：很长时间里，新股上市第十一个交易日就计入指数。像 2007 年的中国石油，按上市初期的高价、按全部股本计入，此后股价一路下跌，把指数拖了好多年。2020 年 7 月，上交所修改了编制方案：大市值新股上市满三个月、其他新股满一年才计入，并剔除了被实施风险警示的股票。</li>
+      <li><b>不算分红</b>：上证综指是“价格指数”，公司分红发下去，股价除息下跌，指数就跟着掉，而分给股东的钱不计入。每年两三个百分点的分红，二十年下来是很大的一截。交易所另外编有“全收益指数”，把分红再投进去，那条线比价格指数高出一大截。</li>
+    </ul>
+    <p>所以“大 A 不涨”这句话，一半是真的，一半是尺子的问题：从 2007 年山顶算起，用一把不算分红、偏重银行石油、漏掉了很多成长公司的尺子量，当然很难看。换成沪深 300 全收益、中证全指这些尺子，再换一个起点，结论会温和得多，但也确实比同期的美股差。两件事都是真的。</p>
+
+    <h3>定投和“微笑曲线”</h3>
+    <p>定投，是每个月或每年固定拿一笔钱去买。它最常被宣传的好处是“摊低成本”：价格低的时候同样的钱买得多，价格高的时候买得少，平均成本就低于平均价格。这一点在数学上是对的。</p>
+    <p>可它常被夸大成“定投必赚”“跌得越多赚得越多”，配上一张“微笑曲线”：先跌后涨，在谷底买得最多，涨回来就大赚。问题是，这张图默认了“一定会涨回来”。如果跌下去不回来，定投就是一路买进一个越来越不值钱的东西。</p>
+    <p>2012 年，先锋公司比较了美国、英国、澳大利亚几十年的历史数据：如果你手里已经有一笔钱，一次全部买进，大约三分之二的时候比分一年慢慢买进的收益更高，因为市场涨的时候比跌的时候多。定投真正的价值在于两件事：一是对大多数拿工资的人来说，钱本来就是每个月才有的；二是它让人不用猜买点，不会因为怕买在山顶而一直不敢动，也不会因为一时冲动全部押上。</p>
+  </div>
+
+  <div class="fig" id="dcaFig">
+    <div class="fig-label">装置 12</div>
+    <h4>一次买进，还是每年买一点</h4>
+    <p class="how">用真实的年末点位（上证综指或标普 500）：一种做法是在起始年底一次投入一笔钱，另一种是把同样的钱分成每年一份、一直买到 2025 年底。选起始年份，看两种做法在 2025 年底各剩多少。</p>
+    <div class="btns" id="dcaIdx"></div>
+    <div class="ctl"><span>从哪年底开始</span><input type="range" id="dcaY" min="1995" max="2020" step="1" value="2007"><output id="dcaYO"></output></div>
+    <label class="ck"><input type="checkbox" id="dcaDiv"> 加上大约每年 2% 的分红再投入（粗估）</label>
+    <svg id="dcaSvg"></svg>
+    <div class="kv" id="dcaKv"></div>
+    <div class="say" id="dcaSay"></div>
+    <p class="figcap">每份投入相同金额，按当年年末点位买入，2025 年底按收盘点位计算；不含费用、税和通胀，两个指数的货币不同，不能直接比谁好。勾选“分红”只是每年粗略加 2%。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">定投必赚，跌得越多赚得越多<small>不对</small></div>
+    <div class="pop"><i>流行说法</i><p>定投能穿越牛熊，只要坚持，微笑曲线一定会出现，跌得越深，将来赚得越多。</p></div>
+    <div class="chk"><i>再查一遍</i><p>“摊低成本”是真的，“必赚”不是。定投的结果完全取决于你停止的时候价格在哪里：日本日经指数 1989 年底见顶后，过了三十多年才回到那个点位，在那期间开始定投的人，有很长一段时间是亏的。定投也不能替你挑对东西：定投一只最后退市的股票，只会亏得更多。<em>能“穿越牛熊”的不是定投，是你定投的那个东西本身长期向上</em>，而这一点没有人能保证。</p></div>
+  </div>
+
+  <div class="col">
+    <p>方远在装置里把起始年份拖来拖去，最后在群里发了一张截图：2007 年底起在上证每年买一份，到 2025 年底也是赚的。舅舅回：“那一次买呢？”方远：“一次买在 2007 年底，亏两成多。”外公：“所以我那一年不该全押。”</p>
+    <div class="seal">
+      <div><i>市场记得的</i>1974 年萨缪尔森提出挑战，1976 年博格推出第一只散户指数基金，被嘲笑为“博格的愚蠢”；四十多年后美国被动基金规模超过主动基金。上证综指只算上海、不算分红、新股曾经进得太早，2020 年修订了编制方案。先锋的研究发现，一次买进约三分之二的时候胜过分批买进。</div>
+      <div><i>你该记的</i>在一场扣完费用平均为负的比赛里，拿到平均数就赢了大多数人。“大 A 不涨”一半是真的，一半是尺子和起点的问题。定投管的是人，不是市场；它不保证赚钱，保证的是你不用猜买点。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第十二章 · 心 ============ -->
+<section class="chap" id="c12" data-vol="卷三 · 场 · 心">
+  <div class="chead">
+    <div class="big">心</div>
+    <div>
+      <div class="no">第十二章 · 场之四</div>
+      <h2>脑子里的坑</h2>
+      <dl><dt>讲什么</dt><dd>卡尼曼和特沃斯基的前景理论；亏一百块的痛和赚一百块的乐；拿着亏的、卖掉赚的；九成司机觉得自己车技中上；男人为什么交易更多；一个幸运轮盘上的数字；排队开户；“死人的账户收益最好”</dd><dt>本章装置</dt><dd>你的损失厌恶</dd></dl>
+      <div class="acc" data-a="心"></div>
+      <div class="yrs" data-a="1974" data-b="2024"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">为什么我总是亏的股票死拿着，赚的股票一涨就卖？</p>
+      <p>因为卖掉赚的，是把一个“赢”落袋；卖掉亏的，是承认一个“输”。对人脑来说，亏损的痛大约是同样大小收益的两倍，所以人愿意为了不承认亏损而继续等，愿意为了锁住一点点盈利而早早离场。研究发现，这个习惯平均会让人少赚：卖掉的赚钱股，此后往往还在涨；留着的亏钱股，此后往往还在跌。<em>股票不知道你是在什么价钱买的</em>，只有你知道。</p>
+    </div>
+
+    <div class="chat">
+      <div class="hd">顾家（4）</div>
+      <div class="bd">
+        <div class="t">2027 年 2 月 3 日 21:15</div>
+        <div class="m y"><span class="av">远</span><div><div class="nm">方远</div><span class="b">我短线账户里剩两只：一只赚了 12%，一只亏了 15%。我想先把赚的卖了，亏的等它回本</span></div></div>
+        <div class="m g"><span class="av">庚</span><div><div class="nm">外公</div><span class="b">我硬面抄里有一只，等它回本等了九年。</span></div></div>
+        <div class="m g"><span class="av">庚</span><div><div class="nm">外公</div><span class="b">你换个问法：如果今天手里只有现金，这两只你还会不会买？</span></div></div>
+      </div>
+    </div>
+
+    <h3>两个以色列人</h3>
+    <p>1970 年代，两位以色列心理学家丹尼尔·卡尼曼和阿莫斯·特沃斯基在一起做了一系列实验，问人们一些很简单的问题。比如：抛一枚硬币，正面你赢一百五十块，反面你输一百块，你玩不玩？按期望算，这是一个划算的赌局，可大多数人拒绝。要让人愿意玩，赢的那一边通常要提到两百块以上。</p>
+    <p>1979 年，他们把这些发现写成“前景理论”：人不是按最终有多少钱来做决定，而是按<b>相对于某个参照点的得失</b>来做决定；而且<b>失去的痛大约是得到的乐的两倍</b>，这叫损失厌恶。卡尼曼后来因为这项工作获得了 2002 年的诺贝尔经济学奖（特沃斯基 1996 年已经去世）。</p>
+    <p>在股市里，那个“参照点”通常就是你的买入价。同一只股票，十块钱，你在八块买的就觉得是赢，在十二块买的就觉得是输，虽然它对你们俩未来的意义完全一样。</p>
+
+    <h3>拿着亏的，卖掉赚的</h3>
+    <p>1985 年，两位美国学者给这个现象起了个名字：<b>处置效应</b>。1998 年，奥迪恩查了一家券商一万个账户七年的记录，发现投资者卖出赚钱股票的倾向，比卖出亏钱股票高出约一半。更扎心的是后面的数字：被卖掉的赚钱股，在接下来一年里，平均比被留下来的亏钱股多涨了约 3.4 个百分点。人们卖错了。</p>
+    <p>外公那个问题，是对付处置效应的老办法：<em>假装今天手里全是现金，问自己还会不会买这两只</em>。会买的就留着，不会买的就卖掉，跟买入价没有关系。这个问法说起来简单，做起来很难，因为它要求你在心里承认一个“输”。</p>
+  </div>
+
+  <div class="echo" data-k="联系">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">协和飞机和回本</p><p>“等它回本”和<a href="../worth/#c2">《值不值》第二章</a>讲的沉没成本是一回事：已经亏掉的钱，不会因为你继续拿着而回来，它只会让你在该放手的时候不放手。英法两国为协和飞机继续砸钱，一个散户为一只亏损股继续等，背后是同一个声音：“现在走，前面的就白费了。”</p></div>
+  </div>
+
+  <div class="col">
+    <h3>我比别人强</h3>
+    <p>1981 年，一项调查问美国的大学生：你觉得自己开车的技术和安全程度，比同龄人强还是弱？九成多的人说自己在中位数以上。这在数学上不可能。心理学家管这叫<b>过度自信</b>，它几乎在每一项能力上都存在。</p>
+    <p>在股市里，过度自信的表现是交易太多：每一次买卖，都意味着你认为自己比对面那个人判断得更准。2001 年，巴伯和奥迪恩又发表了一篇论文，题目叫《男孩终究是男孩》：他们发现，男性投资者的交易频率比女性高约 45%，因为交易太勤，男性每年的净收益被拖累约 2.65 个百分点，女性约 1.72 个百分点。单身男性最严重。这不是说女性更会挑股票，而是说她们动得少，所以被费用和错误判断扣掉的少。</p>
+
+    <h3>轮盘上的数字</h3>
+    <p>1974 年，卡尼曼和特沃斯基做过一个更奇怪的实验。他们转动一个做过手脚的幸运轮盘，让它要么停在 10，要么停在 65，然后问被试：非洲国家在联合国里占的比例，比这个数高还是低？大概是多少？看到 10 的人，平均猜 25%；看到 65 的人，平均猜 45%。一个明明毫无关系的随机数字，拖着人的判断走。这叫<b>锚定</b>。</p>
+    <p>股市里到处是锚：你的买入价、去年的最高点、“历史最低市盈率”、一个整数关口（“三千点保卫战”）。研究发现，股价接近过去一年的最高点时，很多人会觉得“太高了”而不敢买，反应偏慢。锚本身不一定错，错的是把它当成了价值。</p>
+  </div>
+
+  <div class="fig" id="laFig">
+    <div class="fig-label">装置 13</div>
+    <h4>你的损失厌恶</h4>
+    <p class="how">下面六个赌局，每个都是抛一枚公平的硬币：反面你输 100 元，正面你赢不同的钱。每一个都选“玩”或“不玩”。最后还有一道卖股票的题。</p>
+    <div id="laQs"></div>
+    <div class="btns"><button class="btn pri" id="laGo">看结果</button><button class="btn" id="laRe">重来</button></div>
+    <div class="say" id="laSay"></div>
+    <p class="figcap">这个小测验只在你的浏览器里计算，不记录、不上传。学术研究里的测量方法更严格，这里只是让你感受一下自己的“参照点”。</p>
+  </div>
+
+  <div class="col">
+    <h3>排队开户的时候</h3>
+    <p>最后一个坑，是看别人。别人都在买的时候，不买就像错过了什么；别人都在卖的时候，不卖就像要被丢下。外公那一代人在营业部大厅里看得见别人，今天的人在群里、在热搜上看得见别人，力量更大了。</p>
+    <div class="news">
+      <div class="hl"><span class="k">这条消息值不值得深挖</span><b>“开户潮”：券商系统一度拥堵，A 股单月新开户数创下多年来的新高</b><small>2024-10 · 九二四之后</small></div>
+      <ol>
+        <li><span>当时</span>10 月 8 日开盘，大量新股民冲进来，几家券商的 App 一度卡顿；这个月的新开户数接近七百万户，是历史上开户最多的月份之一。</li>
+        <li><span>之后</span>10 月 8 日的开盘价成了此后几个月的最高点，大盘在随后几个月里来回震荡。</li>
+        <li><span>回头看</span>2007 年 5 月、2015 年 4 到 6 月，也都出现过排队开户、App 卡顿的新闻。</li>
+      </ol>
+      <div class="vd" data-v="噪音"><i>噪音</i><p>开户数不是关于公司的消息，是关于人群情绪的消息。<b>它是温度计，不是指南针</b>：告诉你此刻有多热，不告诉你该往哪走。当“连从不炒股的人都来开户了”成为新闻，你至少该问一问：我是因为看到了什么而买，还是因为看到别人在买而买？</p></div>
+    </div>
+  </div>
+
+  <div class="myth">
+    <div class="tag">收益最好的账户，属于死人和忘了密码的人<small>查无此研究</small></div>
+    <div class="pop"><i>流行说法</i><p>富达基金做过一项研究，发现收益最好的客户账户，是那些已经去世、或者忘了自己有账户的人，因为他们从来不动。</p></div>
+    <div class="chk"><i>再查一遍</i><p>这个故事在投资圈流传很广，但据媒体报道，富达公司表示自己从没做过这样的研究，它的来源可能是一次演讲里的玩笑。故事是假的，道理却和本章、第九章、第十章的研究方向一致：<em>动得越少的人，被费用、情绪和过度自信扣掉的越少</em>。只是“从来不动”的前提，是你一开始买的东西本身值得长期拿着。</p></div>
+  </div>
+
+  <div class="col">
+    <p>方远按外公的问法想了一晚上，把那只亏了 15% 的卖了，把赚了 12% 的留着。一个月后，卖掉的那只又跌了一成，留着的那只没怎么动。他在硬面抄的空白页上记了一行：“这次对了，不代表这个办法每次都对。可至少这次我是自己想的。”</p>
+    <div class="seal">
+      <div><i>市场记得的</i>前景理论：人按相对参照点的得失做决定，失去的痛约是得到的乐的两倍。处置效应：卖赚钱股的倾向比卖亏钱股高约一半，卖掉的赚钱股此后反而多涨。过度自信：男性交易多约 45%，收益被拖累更多。锚定：随机数字也能拖着判断走。开户潮常常出现在阶段高点附近。</div>
+      <div><i>你该记的</i>股票不知道你的买入价。拿不定主意时，假装手里全是现金，问自己还会不会买。每想交易一次，先想对面那个人为什么愿意跟你做这笔买卖。看到别人都在买的时候，问一句：我看到了什么？</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 卷四 · 路 ============ -->
+<div class="volhead" id="v4" data-vol="卷四 · 路">
+  <div class="num">VOLUME IV · THE ROADS</div>
+  <h2>路<small>怎样下场</small></h2>
+  <p class="lede">看清了牌桌，下一步是选一条路走进去。有人借钱，想走得更快；有人想去香港开户、去买美股，觉得那边的路更直；有人去了币圈，觉得那边才有真正的机会；更多的人，只想知道一个新手第一年该怎样走、带多少钱上路。卷四一条一条地看：每条路的规矩、成本，以及走过这条路的人留下了什么。</p>
+  <svg class="kl" aria-hidden="true"></svg>
+</div>
+
+<!-- ============ 第十三章 · 杠 ============ -->
+<section class="chap" id="c13" data-vol="卷四 · 路 · 杠">
+  <div class="chead">
+    <div class="big">杠</div>
+    <div>
+      <div class="no">第十三章 · 路之一</div>
+      <h2>借来的钱</h2>
+      <dl><dt>讲什么</dt><dd>杠杆的算术；1929 年的保证金；融资融券的门槛和平仓线；2015 年夏天的配资和强平；期货的保证金和“原油宝”的负油价；期权的买方和卖方；用消费贷炒股；年轻人该不该加杠杆的争论</dd><dt>本章装置</dt><dd>借来的钱能撑多久</dd></dl>
+      <div class="acc" data-a="本 心 时"></div>
+      <div class="yrs" data-a="1929" data-b="2024"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">借钱炒股，看对了不就赚得更多吗？</p>
+      <p>看对了确实赚得多，可问题不在终点，在路上。借来的钱有一条平仓线：价格中途跌到某个位置，券商或配资方会强制卖掉你的股票，哪怕你对最终的方向判断完全正确，你也已经出局了，没机会等到它涨回来。<em>不借钱的人只要不卖，账面亏损就只是账面；借钱的人，账面亏损会在某一天变成真的</em>。杠杆把一个“看对看错”的问题，变成了一个“能不能活过中间那段路”的问题。</p>
+    </div>
+
+    <div class="chat">
+      <div class="hd">顾家（4）</div>
+      <div class="bd">
+        <div class="t">2027 年 2 月 8 日 23:02</div>
+        <div class="m j"><span class="av">磊</span><div><div class="nm">舅舅</div><span class="b">小远，既然你问了，舅舅就说一次。2015 年 5 月，我自己二十万，找配资公司配了八十万，一共一百万全买了。</span></div></div>
+        <div class="m j"><span class="av">磊</span><div><div class="nm">舅舅</div><span class="b">6 月中旬开始跌，跌到第八天，配资公司打电话说到线了，不补钱就平仓。我借了亲戚五万补进去，第十一天还是被平了。</span></div></div>
+        <div class="m j"><span class="av">磊</span><div><div class="nm">舅舅</div><span class="b">后来那几只股票，有两只两年后涨回去了。跟我没关系了。</span></div></div>
+        <div class="m g"><span class="av">庚</span><div><div class="nm">外公</div><span class="b">所以我说别借钱。</span></div></div>
+      </div>
+    </div>
+
+    <h3>杠杆的算术</h3>
+    <p>用自己的一块钱，加上借来的四块钱，买五块钱的股票，这叫五倍杠杆。股票涨 10%，你的五块变五块五，还掉借的四块，自己的那一块变成了一块五，赚了 50%；股票跌 10%，你剩五毛，亏了 50%；股票跌 20%，你那一块钱就没了。<b>杠杆把涨跌放大同样的倍数，可它不对称地放大了“出局”的可能</b>：不加杠杆，股价要跌到零你才输光；五倍杠杆，跌两成就输光，而且通常不等跌到两成，平仓线就到了。</p>
+    <p>还有一笔常被忽略的账：借来的钱要付利息，不管你赚不赚钱；以及“跌了要涨更多才回本”：跌 50% 要涨 100% 才回来。加了杠杆，这个坑会更深。</p>
+    <p>1920 年代的美国，买股票只要交一小部分现金，其余向券商借，券商再向银行借。股价涨的时候，人人都在“用别人的钱发财”；1929 年秋天股价一跌，券商追加保证金的电报雪片一样发出去，交不出钱的人被强制卖出，越卖越跌。<a href="../turn/four.html#c45">《轮到谁了》第四十五章</a>讲过那一年。此后美国规定了买股票的最低自有资金比例。</p>
+
+    <h3>融资融券和场外配资</h3>
+    <p>A 股在 2010 年 3 月推出融资融券：向券商借钱买股票，叫融资；借股票来卖，叫融券。它有门槛：开通前二十个交易日日均资产不低于五十万元，有半年以上的交易经验。借了钱，你账户里的资产和负债之比（维持担保比例）要保持在一条线上，这条线通常在 130% 左右，由券商和客户约定；跌破了，要么补钱，要么被强制平仓。</p>
+    <p>2015 年上半年，场内的融资余额一度超过两万两千亿元。门槛之外，还有大量“场外配资”：一些配资公司通过分仓软件和信托产品，把钱借给连融资门槛都不够的人，一比四、一比五，最高一比十。没人确切知道场外配资有多少，各方的估计从几千亿到上万亿元不等。</p>
+  </div>
+
+  <div class="echo" data-k="押韵">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">最聪明的人也一样</p><p>1998 年，美国长期资本管理公司里坐着两位诺贝尔经济学奖得主和一群华尔街最好的交易员，他们的模型很精妙，用了几十倍的杠杆。俄罗斯国债违约的那个夏天，市场偏离了模型，几个月里亏光了四十多亿美元，美联储不得不出面组织银行接手。<a href="../worth/#c4">《值不值》第四章</a>讲过这件事。舅舅和诺贝尔奖得主犯的是同一个错：他们都可能看对了方向，却没能活过中间那段路。</p></div>
+  </div>
+
+  <div class="col">
+    <div class="news">
+      <div class="hl"><span class="k">这条消息值不值得深挖</span><b>证监会要求证券公司不得为场外配资活动提供便利，开始清理场外配资</b><small>2015-06-12 前后 · 证监会</small></div>
+      <ol>
+        <li><span>当天</span>6 月 12 日，上证综指收于五千一百七十八点，是那一轮牛市的最高点。</li>
+        <li><span>此后三周</span>配资账户一个个触到平仓线，被强制卖出，卖出又带来下跌，下跌又触发更多平仓。上证综指在不到一个月里跌掉三成多，千股跌停的日子出现了好几次。</li>
+        <li><span>此后</span>7 月初救市（第六章）。很多配资的人在救市之前就已经被平仓了。</li>
+      </ol>
+      <div class="vd" data-v="信号"><i>信号</i><p>对没有借钱的人，这只是一条监管消息；对借了钱的人，它是一条致命的消息，因为清理配资意味着市场上最脆弱的那部分买盘要被强制变成卖盘。<b>一条消息有多重，取决于你借了多少钱。</b>这是第四章那句话的另一面。</p></div>
+    </div>
+
+    <h3>负油价</h3>
+    <p>期货天生带杠杆：买一手期货只要交合约价值一成左右的保证金。<a href="../finance/#c11">《柜台里外》第十一章</a>讲过 1995 年的 327 国债期货。</p>
+    <p>2020 年 4 月 20 日，美国西得克萨斯原油五月期货合约，在到期前一天跌到了每桶负 37.63 美元：疫情让石油卖不出去，储油罐满了，手里拿着合约、又没有地方放油的人，愿意倒贴钱让别人接走。中国银行有一款面向普通客户的“原油宝”产品，挂钩的正是这个合约，按这个负价格结算，很多客户不但本金全没了，账户还欠了银行钱。很多人买它的时候，以为自己买的是“油”，不知道自己买的是一张会到期的期货合约。事后，银行承担了负价部分的损失、退还了部分保证金，并被监管部门罚款。</p>
+    <p><em>你不知道自己买的是什么的时候，最坏的情况通常比你想象的更坏</em>：这里的最坏是负数。</p>
+
+    <h3>期权、消费贷和“年轻人该加杠杆”</h3>
+    <p>期权是另一种杠杆。买期权，最多亏掉买它花的钱，但大多数期权到期时一文不值，时间每过一天，它就贬值一点；卖期权，赚的是一点点权利金，可一旦行情反向剧烈波动，亏损可能远远超过本金。所以个股期权在 A 股也有五十万元的资产门槛和知识测试。</p>
+    <p>还有一种不叫杠杆的杠杆：用信用卡、消费贷、网贷的钱炒股。每逢股市大涨，监管部门都会重申，消费贷不得流入股市。这类钱利息高、期限短、到期必须还，等于给自己设了一条看不见的平仓线：还款日。</p>
+  </div>
+
+  <div class="fig" id="levFig">
+    <div class="fig-label">装置 14</div>
+    <h4>借来的钱能撑多久</h4>
+    <p class="how">一年两百五十个交易日，模拟一千种可能的走势。市场全年平均上涨的幅度和波动由你设定；你的本金加上借来的钱一起买进，账户里自己的钱跌到持仓的一定比例以下就被强制平仓，平了就出局。</p>
+    <div class="ctl"><span>杠杆倍数</span><input type="range" id="lvL" min="1" max="10" step="0.5" value="3"><output id="lvLO"></output></div>
+    <div class="ctl"><span>市场年均涨</span><input type="range" id="lvM" min="-10" max="30" step="1" value="10"><output id="lvMO"></output></div>
+    <div class="ctl"><span>年波动率</span><input type="range" id="lvS" min="10" max="60" step="5" value="25"><output id="lvSO"></output></div>
+    <div class="ctl"><span>借款年利率</span><input type="range" id="lvR" min="0" max="15" step="0.5" value="6"><output id="lvRO"></output></div>
+    <div class="btns"><button class="btn" id="lvRe">再跑一千次</button></div>
+    <svg id="lvSvg"></svg>
+    <div class="kv" id="lvKv"></div>
+    <div class="say" id="lvSay"></div>
+    <p class="figcap">示意模型：每日涨跌服从正态分布（真实市场的尾巴更肥，第四章，所以真实的爆仓概率更高）；平仓线设为自有资金低于持仓的 15%（大约相当于维持担保比例跌破 118%），一触线就按当天收盘价全部卖出，不考虑跳空和补仓。图里画了前三十条走势，红色叉是被强平的位置。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">年轻人本金少，更应该加杠杆<small>有争论</small></div>
+    <div class="pop"><i>流行说法</i><p>年轻人钱少、时间多，不加杠杆一辈子也滚不大；有学者都说了，年轻人应该借钱买股票。</p></div>
+    <div class="chk"><i>再查一遍</i><p>确实有学者这样主张：耶鲁的艾尔斯和纳尔巴夫在 2010 年的《生命周期投资》里建议，年轻人可以用两倍左右的杠杆买一篮子分散的指数，理由是年轻人未来的工资是一大笔“看不见的资产”，现在的股票占一生财富的比例其实很低。可这个主张有很多前提：买的是分散的整个市场，不是几只股票；借款利率很低；杠杆不超过两倍左右；能扛住中途腰斩不被平仓、不慌着卖出。批评者指出，大多数人做不到最后一条，而真实市场的暴跌比模型里更频繁。<em>它是一个关于整个市场、低成本、低倍数的学术建议，不是配资、借网贷、买题材股的理由</em>。</p></div>
+  </div>
+
+  <div class="col">
+    <p>方远把装置里的杠杆拖到五倍、波动拖到四十，爆仓率超过一半。他在群里没说话，只是把截图发给了舅舅。舅舅过了很久回：“那年要是有人给我看这个图就好了。”外公回：“那年也有人说过，你没听。”</p>
+    <div class="seal">
+      <div><i>市场记得的</i>五倍杠杆跌两成就输光；1929 年的保证金和 2015 年的配资都在下跌中变成强制卖盘。2015 年 6 月 12 日清理配资的消息出来时，正是那一轮的山顶。2020 年 4 月 20 日原油期货跌到负 37.63 美元，原油宝客户本金归零还倒欠。</div>
+      <div><i>你该记的</i>杠杆把“看对看错”变成了“能不能活过中间那段路”。不借钱的人有一样别人没有的东西：等待的权利。消费贷、网贷的还款日也是一条平仓线。不知道自己买的是什么的时候，最坏情况可能是负数。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第十四章 · 外 ============ -->
+<section class="chap" id="c14" data-vol="卷四 · 路 · 外">
+  <div class="chead">
+    <div class="big">外</div>
+    <div>
+      <div class="no">第十四章 · 路之二</div>
+      <h2>港卡和美股</h2>
+      <dl><dt>讲什么</dt><dd>五万美元额度能干什么、不能干什么；2007 年没开成的“港股直通车”；沪港通、深港通和五十万门槛；QDII 的额度和溢价；跨境券商从整改到综合整治；去香港开卡；美股的税、遗产税和汇率；美股是不是只涨不跌</dd><dt>本章装置</dt><dd>溢价和汇率吃掉多少</dd></dl>
+      <div class="acc" data-a="本 信 时"></div>
+      <div class="yrs" data-a="2006" data-b="2026"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">新手是拿 A 股练手，还是去办港卡、买美股？</p>
+      <p>先看规矩，再谈好坏。到 2026 年，一个内地居民想投资境外市场，合法的路主要是三条：在 A 股账户里买投资境外的 QDII 基金和 ETF，资产够五十万元以后开通港股通，大湾区居民还可以用跨境理财通。用个人每年五万美元的购汇额度买境外股票，规定不允许；境外券商在内地招揽客户、给内地居民开户，2026 年起被明令整治。所以“办港卡买美股”这条路，对一个刚开始、本金不多的人来说，<em>门槛、成本和合规风险都比看上去高得多</em>；而 A 股和 QDII 已经能让你接触到两个市场，学到的交易规则、费用和心态也是通用的。下面把每条路的规矩讲清楚，选择是你自己的。</p>
+    </div>
+
+    <div class="chat">
+      <div class="hd">顾家（4）</div>
+      <div class="bd">
+        <div class="t">2027 年 2 月 12 日 20:30</div>
+        <div class="m j"><span class="av">磊</span><div><div class="nm">舅舅</div><span class="b">小远，A 股就是个赌场，你看人家美股，十几年慢牛。去趟香港办张卡，开个户，买纳指，闭着眼睛赚</span></div></div>
+        <div class="m ma"><span class="av">敏</span><div><div class="nm">妈妈</div><span class="b">钱怎么过去？我听说现在查得很严，有人卡被冻了</span></div></div>
+        <div class="m j"><span class="av">磊</span><div><div class="nm">舅舅</div><span class="b">找人换嘛，大家都这么弄</span></div></div>
+        <div class="m y"><span class="av">远</span><div><div class="nm">方远</div><span class="b">我先把规矩查清楚。“大家都这么弄”这句话，外公硬面抄里出现过好几次</span></div></div>
+      </div>
+    </div>
+
+    <h3>五万美元能干什么</h3>
+    <p>人民币在“经常项目”下可以自由兑换，出国旅游、留学、看病、买进口货，都可以换外汇；可在“资本项目”下，也就是把钱拿出去投资，仍然有管制。每个人每年有五万美元的购汇便利化额度，但从 2017 年起，购汇时要填申报表，写明用途，并承诺不用于境外买房、证券投资、购买人寿保险和投资性质的保险等尚未开放的项目。</p>
+    <p>也就是说，<b>这五万美元，是给你出境花的，不是给你买美股的</b>。至于“找人换”：私下买卖外汇、通过地下钱庄或别人的账户对敲转钱，本身就违反外汇管理规定，情节严重的构成非法经营罪；更现实的风险是，你收到的钱可能来自诈骗或洗钱，2020 年起持续开展的“断卡行动”里，很多人的银行卡就是因为卷进这种资金链被冻结的，有人还因“帮助信息网络犯罪活动罪”被追究。</p>
+
+    <h3>合法的三条路</h3>
+    <p><b>QDII</b>（合格境内机构投资者）：2006 年起，国家给基金公司、银行、券商发放额度，让它们在额度内用外汇投资境外市场。你在 A 股账户里买一只“纳斯达克 100 ETF”，或者在银行、基金平台买一只 QDII 基金，就是通过这条路间接持有美股。门槛很低，一手 ETF 只要几百元；麻烦在于额度：额度用完了，基金就不能再按净值接受新的申购。</p>
+    <p><b>港股通</b>：2014 年 11 月 17 日沪港通开通，2016 年 12 月深港通开通，内地投资者可以通过本地券商买卖一部分港股。门槛是证券账户和资金账户资产合计不低于五十万元。港股没有涨跌停，一手的股数各家不同，分红还要被代扣一部分税。</p>
+    <p><b>跨境理财通</b>：2021 年起在粤港澳大湾区试点，大湾区内地居民可以买香港、澳门银行销售的部分理财产品；2024 年的“2.0 版”把个人额度提到三百万元，并引入了券商。只限大湾区居民。</p>
+  </div>
+
+  <div class="col">
+    <div class="news">
+      <div class="hl"><span class="k">这条消息值不值得深挖</span><b>“港股直通车”：允许内地居民通过天津的银行直接投资港股</b><small>2007-08-20 · 国家外汇管理局宣布试点</small></div>
+      <ol>
+        <li><span>此后两个月</span>市场预期内地资金将大举南下，恒生指数从两万二千多点一路涨到 10 月 30 日的三万一千九百多点，涨了四成多。</li>
+        <li><span>11 月初</span>国务院领导表示，这项措施还需要研究，涉及外汇管理、法律等问题。直通车被无限期搁置，后来再也没有开通。</li>
+        <li><span>一年后</span>2008 年 10 月，恒生指数跌到一万一千点以下，比高点跌了三分之二。七年后，取而代之的是沪港通。</li>
+      </ol>
+      <div class="vd" data-v="要看量级"><i>要看量级</i><p>“有一大笔钱要来”的消息，市场会立刻按“全部会来”定价；可钱会不会真的来、什么时候来、来多少，要看政策能不能落地。<b>对一条“将要”的消息，先问：它落地了吗？落地的是多少？</b>在“将要”上下注，赌的是别人的决定。</p></div>
+    </div>
+
+    <h3>溢价：排队买额度</h3>
+    <p>QDII 的额度不够用，就会出现一个奇怪的现象：一只纳斯达克 100 ETF，背后那篮子美股实际值 1 元一份，可它在 A 股上交易的价格是 1.1 元、1.2 元，甚至更高。这叫<b>溢价</b>。原因是新的份额创造不出来，想买的人只能互相抬价。</p>
+    <p>2024 年 2、3 月间，一只纳指科技 ETF 的溢价一度超过一成，基金公司一个多月里发了十几条风险提示，还多次申请临时停牌。2026 年夏秋，纳指再创新高，十几只投资美股的 QDII 基金又集中提示溢价风险，有的停牌，九月初以来一共发了两百多条溢价公告。按溢价买进的人，等于先付了一笔“门票”：溢价消失的那一天，哪怕美股一分钱没跌，你也会亏掉这一截。</p>
+  </div>
+
+  <div class="echo" data-k="押韵">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">又一次排队</p><p>1992 年，深圳的人排两三天队买抽签表，上海的人花三十块买认购证，因为新股是稀缺的，抢到了就能赚差价（第二章）。三十多年后，人们在 A 股上加价一成去买一只美股 ETF，因为额度是稀缺的。稀缺的东西都会有溢价，溢价的钱最后由最后一个排队的人付。第二章的“杨百万”在两地价差里赚钱，前提是他能把东西从便宜的地方搬到贵的地方；QDII 的溢价搬不平，正是因为额度这道墙。</p></div>
+  </div>
+
+  <div class="col">
+    <h3>跨境券商：从整改到整治</h3>
+    <p>过去十多年，一些在香港、美国注册的互联网券商，通过手机 App 在内地大量招揽客户，帮内地居民开户买港股美股。2022 年 12 月 30 日，证监会宣布要求其中两家主要机构整改：不得再招揽内地投资者、发展新客户，已有的客户可以继续交易，但不得接受违反外汇管理规定的新资金转入。</p>
+    <p>2026 年 5 月 22 日，证监会等八部门联合发布综合整治非法跨境证券期货基金经营活动的实施方案，对三家跨境券商的境内外主体立案调查，拟没收违法所得并处以罚款。方案设了两年集中整治期：其间，这些机构不得为存量客户在境内提供新的买入和转入资金服务，只允许卖出和转出；期满后全面关停境内的网站、App 和配套服务。已开的账户不会被强制注销，里面的资产不会被强制清理。官方同时提示：港股通、QDII 和跨境理财通仍然是合法渠道。</p>
+
+    <h3>去香港开一张卡</h3>
+    <p>“港卡”指香港银行的个人账户。开户一般要本人到香港，按银行要求提供身份证件、地址证明和开户理由，审核这几年越来越严，有的银行要求一定的存款，长期不用的账户也可能被关闭。有了港卡，可以在香港的持牌券商开户，但钱从哪里来，还是回到上面那道墙：内地的钱不能拿五万美元额度合法地转过去买股票。</p>
+
+    <h3>美股的三笔额外的账</h3>
+    <ul class="plain">
+      <li><b>中国的税</b>：中国税收居民的境外所得要申报纳税，股息红利和财产转让所得适用 20% 的税率，在境外已经缴的税可以按规定抵免。A 股里个人买卖股票的差价目前不征个人所得税，境外的却要。2025 年起，多地税务机关依据通过“共同申报准则”（CRS）交换来的境外账户信息，提醒和督促居民补报境外所得，还通报了一些典型案例。</li>
+      <li><b>美国的税</b>：非美国居民拿到的美股股息，美国默认预扣 30%，按中美税收协定填好表格后通常是 10%；买卖差价一般不交美国的税。</li>
+      <li><b>遗产税</b>：很少有人提起的一笔。非美国居民去世时，持有的美国股票属于美国境内资产，超过六万美元的部分可能要交美国遗产税，最高税率 40%。这对年轻人似乎很遥远，可这条线定得很低。</li>
+    </ul>
+    <p>还有汇率。美元兑人民币 2005 年汇改时约 8.28，2014 年前后升值到 6.1 左右，此后又回到 7 上下。你持有美元资产，人民币升值时，换回来的人民币就变少；贬值时变多。这是一笔额外的、无法预测的涨跌。</p>
+  </div>
+
+  <div class="fig" id="qdFig">
+    <div class="fig-label">装置 15</div>
+    <h4>溢价和汇率吃掉多少</h4>
+    <p class="how">通过一只 QDII ETF 持有美股指数：设定买进和卖出时的溢价、持有年数、美股指数的年化涨幅（美元计）、这些年美元兑人民币的变化。看看你最后的人民币收益，和“指数本身涨了多少”差多少。</p>
+    <div class="ctl"><span>买进时溢价</span><input type="range" id="qdB" min="0" max="30" step="1" value="10"><output id="qdBO"></output></div>
+    <div class="ctl"><span>卖出时溢价</span><input type="range" id="qdS" min="0" max="30" step="1" value="1"><output id="qdSO"></output></div>
+    <div class="ctl"><span>持有几年</span><input type="range" id="qdY" min="1" max="15" step="1" value="3"><output id="qdYO"></output></div>
+    <div class="ctl"><span>指数年化（美元）</span><input type="range" id="qdR" min="-10" max="20" step="1" value="8"><output id="qdRO"></output></div>
+    <div class="ctl"><span>这些年人民币</span><input type="range" id="qdF" min="-20" max="20" step="1" value="0"><output id="qdFO"></output></div>
+    <div class="kv" id="qdKv"></div>
+    <div class="say" id="qdSay"></div>
+    <p class="figcap">“人民币”滑块为正表示人民币对美元升值（换回的人民币变少）。假设基金的总费用每年 0.8%，没算交易佣金和税。只为演示溢价和汇率的作用，不是对任何产品的预测。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">美股只涨不跌，闭眼买纳指<small>不对</small></div>
+    <div class="pop"><i>流行说法</i><p>美股是全世界最好的市场，十几年一直在涨，长期买纳指、标普，闭着眼睛也能赚。</p></div>
+    <div class="chk"><i>再查一遍</i><p>美股过去十几年确实很好，可历史更长：纳斯达克指数 2000 年 3 月见顶后，花了十五年才在 2015 年回到那个点位；标普 500 从 2000 年到 2013 年，有十多年基本原地踏步，被称为“失去的十年”。日经指数 1989 年见顶后，三十多年才回来。<em>“过去十几年最好”恰恰是最多人在高处进场的理由</em>。美国市场的长期表现有它的原因（公司赚钱能力、法治、美元地位），但没有哪个市场的未来是被保证的，买的时候的价格（第三章）和溢价（本章）同样要紧。</p></div>
+  </div>
+
+  <div class="col">
+    <p>方远把查到的规矩列成一张表发到群里，最后一行写的是：“我决定先在 A 股账户里学，美股就看看 QDII，溢价超过 3% 不买。等哪天有了五十万再说港股通。”舅舅回：“那得等到什么时候。”外公回：“等到他知道自己在干什么的时候。”</p>
+    <div class="seal">
+      <div><i>市场记得的</i>五万美元购汇额度不能用于境外证券投资；合法的境外投资渠道是 QDII、港股通（五十万门槛）和跨境理财通（大湾区）。2007 年“港股直通车”没开成，恒指先涨四成后跌三分之二。QDII 额度不足时会出现一成以上的溢价。2026 年 5 月八部门整治跨境券商，存量客户两年内只许卖出和转出。境外所得要按 20% 申报纳税，美股还有六万美元起的遗产税。</div>
+      <div><i>你该记的</i>选路之前先问合不合规、钱怎样合法地进出、税怎么交。“大家都这么弄”不是理由，冻卡的风险落在你自己身上。按溢价买进是先付了一张门票；“过去十几年最好”不是未来的保证。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第十五章 · 币 ============ -->
+<section class="chap" id="c15" data-vol="卷四 · 路 · 币">
+  <div class="chead">
+    <div class="big">币</div>
+    <div>
+      <div class="no">第十五章 · 路之三</div>
+      <h2>币圈</h2>
+      <dl><dt>讲什么</dt><dd>一份九页的白皮书和一块披萨；交易所跑路；中国从 2013 年到 2025 年的六份文件和一次会议；首次代币发行、稳定币、交易所崩盘和比特币 ETF；腰斩再腰斩；一半以上的币已经死了；在中国碰币，风险不只是价格</dd><dt>本章装置</dt><dd>一万个新币的一年</dd></dl>
+      <div class="acc" data-a="价 本 心"></div>
+      <div class="yrs" data-a="2008" data-b="2026"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">虚拟币要不要碰？</p>
+      <p>先说规矩：在中国内地，虚拟货币不具有和法定货币同等的法律地位，相关的兑换、交易、发币、提供撮合和信息服务等业务，被认定为非法金融活动；个人买卖本身没有被写成犯罪，但这类交易不受法律保护，投资合同常被法院认定无效，损失自担。2025 年 11 月，人民银行牵头十三个部门开会重申了这些规定，并第一次把稳定币也认定为虚拟货币的一种。再说风险：价格可以一年腰斩再腰斩，绝大多数小币种最后归零；出入金要经过私下交易，钱可能来自诈骗或洗钱，卡被冻结的人不少。<em>在中国碰币，你要承担的不只是价格风险，还有法律不保护、卡被冻结和卷进别人案子的风险</em>。</p>
+    </div>
+
+    <div class="chat">
+      <div class="hd">顾家（4）</div>
+      <div class="bd">
+        <div class="t">2027 年 2 月 15 日 13:20</div>
+        <div class="m y"><span class="av">远</span><div><div class="nm">方远</div><span class="b">我室友说他去年玩币翻了五倍，让我也搞点，说股市太慢了</span></div></div>
+        <div class="m j"><span class="av">磊</span><div><div class="nm">舅舅</div><span class="b">这个舅舅不懂，但听着比配资还刺激</span></div></div>
+        <div class="m ma"><span class="av">敏</span><div><div class="nm">妈妈</div><span class="b">不许碰。我们医院有个同事就是这个，银行卡全冻了，工资都取不出来</span></div></div>
+        <div class="m g"><span class="av">庚</span><div><div class="nm">外公</div><span class="b">你室友翻五倍的时候，有多少人归零了？他知道吗？</span></div></div>
+      </div>
+    </div>
+
+    <h3>九页纸和一块披萨</h3>
+    <p>2008 年 10 月 31 日，正是全球金融危机最紧张的时候，一个化名“中本聪”的人在一个密码学邮件列表里发出一份九页的白皮书，题目是《比特币：一种点对点的电子现金系统》。2009 年 1 月 3 日，比特币网络的第一个区块被挖出，里面嵌了一行字，是当天英国《泰晤士报》的头条：“财政大臣即将对银行进行第二轮救助。”这行字常被看作它的宣言：<em>一种不需要银行、不需要中央银行的钱</em>。</p>
+    <p>头一年，比特币几乎一文不值。2010 年 5 月 22 日，美国程序员拉斯洛·汉耶奇用一万个比特币，换了两张披萨。后来这一天被币圈称为“比特币披萨节”。如果他留到 2025 年 10 月比特币价格最高的时候，那一万个币值十二亿美元以上。</p>
+    <p>这个故事被讲了无数遍，几乎总是用来说明“早买就发财”。可它还有另一面：汉耶奇在那个年代换掉的，是一个没人知道会不会归零的东西。十几年里，比特币的价格有四次从高点跌掉七成到九成以上，<a href="../worth/#c4">《值不值》第四章</a>讲的“活下来”，在币圈是最难的一件事。</p>
+
+    <h3>交易所、发币和崩盘</h3>
+    <p>比特币本身的账本很难被篡改，可普通人很少直接持有它，而是放在交易所里。2014 年 2 月，当时全球最大的比特币交易所、东京的 Mt. Gox 宣布破产，用户的大约八十五万个比特币不见了。此后十几年，交易所被盗、跑路、破产的事一再发生。</p>
+    <p>2017 年，币圈流行“首次代币发行”（ICO）：一个团队写一份白皮书，发行一种新币，向公众募集比特币或以太坊，很多项目除了白皮书什么都没有。2022 年，号称“算法稳定币”的 UST 和它的姐妹币 Luna 在几天之内崩盘，几百亿美元市值归零；同年 11 月，全球第二大交易所 FTX 破产，创始人挪用客户资金，后来被美国法院判处二十五年监禁。</p>
+    <p>另一边，币圈也在“上岸”：2024 年 1 月，美国证监会批准了比特币现货 ETF；香港从 2023 年起给虚拟资产交易平台发牌，2025 年通过了《稳定币条例》。这些变化让一部分资产进入了被监管的框架，但它们发生在美国和香港，不改变中国内地的规定。</p>
+  </div>
+
+  <div class="col">
+    <h3>中国内地的规矩</h3>
+    <p>从 2013 年起，中国内地对虚拟货币的态度一步步收紧：</p>
+    <ul class="plain">
+      <li><b>2013 年 12 月</b>：人民银行等五部门发文，认定比特币不是货币，金融机构和支付机构不得开展相关业务。</li>
+      <li><b>2017 年 9 月 4 日</b>：七部门叫停首次代币发行，认定它本质上是未经批准的非法公开融资；境内的虚拟货币交易平台随后关闭。</li>
+      <li><b>2021 年</b>：先是要求打击比特币“挖矿”和交易行为；9 月，十部门发布通知（常被称为“九二四通知”），明确虚拟货币相关业务活动属于非法金融活动，境外交易所向境内居民提供服务也属非法，参与虚拟货币投资交易的，“相关民事法律行为无效，由此引发的损失由其自行承担”。</li>
+      <li><b>2025 年 11 月 28 日</b>：人民银行召开打击虚拟货币交易炒作工作协调机制会议，十三个部门参加，认为近期投机炒作有所抬头，重申以上规定，并第一次明确稳定币是虚拟货币的一种，不能满足客户身份识别和反洗钱的要求。</li>
+    </ul>
+    <p>对一个普通人来说，最现实的风险常常不是价格，而是出入金。买币要先把人民币换成币，卖币要把币换回人民币，在内地没有合法的平台，只能私下和“币商”交易。你收到的那笔人民币，可能是别人被骗的钱；警方顺着资金链查下来，你的卡就会被冻结，严重的还会以“帮助信息网络犯罪活动罪”或“掩饰、隐瞒犯罪所得罪”被追究。</p>
+
+    <div class="news">
+      <div class="hl"><span class="k">这条消息值不值得深挖</span><b>美国证监会批准比特币现货 ETF</b><small>2024-01-10 · 美国</small></div>
+      <ol>
+        <li><span>当时</span>被币圈称为“历史性时刻”，大量资金通过 ETF 流入。</li>
+        <li><span>之后</span>比特币价格在 2024 年底和 2025 年接连创新高，2025 年 10 月一度超过每枚十二万美元；此后又大幅回落。</li>
+        <li><span>对中国内地居民</span>这些 ETF 在美国上市，内地居民不能合法地用购汇额度去买；内地的规定没有任何变化。</li>
+      </ol>
+      <div class="vd" data-v="要看量级"><i>要看量级</i><p>这是一条改变了美国规则的真消息，对比特币价格的影响是真的；可它对一个内地居民能做什么、该承担什么风险，没有改变一个字。<b>别人那里的规则变了，不等于你这里的规则变了。</b>币圈的新闻常常把这两件事混在一起说。</p></div>
+    </div>
+  </div>
+
+  <div class="echo" data-k="押韵">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">1883 年的矿股和 2017 年的白皮书</p><p>第一章讲过，1882 年前后的上海，很多矿务公司只有一纸章程，矿还没挖，股票已经炒到面值的几倍，第二年全部崩盘。2017 年的首次代币发行，很多项目只有一份白皮书，代码还没写，币已经涨了几十倍。<a href="../turn/three.html#c29">南海泡沫</a>、1883 年的矿股、1999 年的“.com”、2017 年的白皮书，每一次都有一个真东西在背后（远洋贸易、矿产、互联网、区块链），每一次也都有一大群只有名字的东西搭着它的车。</p></div>
+  </div>
+
+  <div class="fig" id="coinFig">
+    <div class="fig-label">装置 16</div>
+    <h4>一万个新币的一年</h4>
+    <p class="how">假设一年里发行了一万个新币。每个币每个月都有一定概率“死掉”（项目方跑路、没人交易、归零），活下来的币价格剧烈波动。你在发行时随机买了其中几个，各放一样的钱。看看一年后你手里还剩什么，以及那几个“翻了几十倍”的币有多少。</p>
+    <div class="ctl"><span>每月死亡率</span><input type="range" id="cnD" min="1" max="20" step="1" value="8"><output id="cnDO"></output></div>
+    <div class="ctl"><span>年波动率</span><input type="range" id="cnV" min="50" max="300" step="10" value="150"><output id="cnVO"></output></div>
+    <div class="ctl"><span>你买了几个</span><input type="range" id="cnN" min="1" max="20" step="1" value="5"><output id="cnNO"></output></div>
+    <div class="btns"><button class="btn" id="cnRe">再来一年</button></div>
+    <div class="bars" id="cnBars"></div>
+    <div class="kv" id="cnKv"></div>
+    <div class="say" id="cnSay"></div>
+    <p class="figcap">示意模型，不是对任何币的预测。真实世界里：数据网站 CoinGecko 统计，2021 年 7 月以来在它追踪的平台上出现过交易的两千多万个代币里，到 2025 年底有一半以上已经停止交易，光是 2025 年就有一千一百多万个“死亡”，大多是一阵热潮里批量发行的“迷因币”。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">比特币是“数字黄金”，长期一定涨<small>存疑</small></div>
+    <div class="pop"><i>流行说法</i><p>比特币总量只有两千一百万枚，越来越稀缺，就像黄金一样，长期拿着一定会涨。</p></div>
+    <div class="chk"><i>再查一遍</i><p>总量上限是真的，写在它的规则里。可“稀缺”只说明它不会被无限增发，不说明它一定值钱：稀缺而没人要的东西很多。它过去十几年的上涨也是真的，可同一时期它四次跌掉七成以上，2022 年那次从六万九千美元跌到一万六千美元左右。至于“像黄金”，在几次股市大跌时，比特币常常和股票一起跌，而不是像避险资产那样逆势上涨。<em>它可能是一种新的资产，也可能不是；但无论是哪种，它都不是一个“一定”的东西</em>。而在中国内地，这个争论之外还有一条更硬的线：规定。</p></div>
+  </div>
+
+  <div class="col">
+    <p>方远没有去碰。他问室友：“你那五倍，是怎么换回人民币的？”室友说还没换，“等再涨一点”。三个月后，室友在宿舍里说那个币“没了”，交易所也打不开了。</p>
+    <div class="seal">
+      <div><i>市场记得的</i>2008 年白皮书，2010 年一万个比特币换两张披萨；2014 年 Mt. Gox 破产，2022 年 Luna 和 FTX 崩盘，2024 年美国批准比特币 ETF，2025 年 10 月比特币一度超过十二万美元。中国内地 2013、2017、2021 年接连发文，2025 年 11 月十三部门重申虚拟货币相关业务属非法金融活动，并把稳定币也纳入。一半以上的代币已经停止交易。</div>
+      <div><i>你该记的</i>在中国碰币，要承担的不只是价格风险，还有法律不保护、出入金冻卡和卷进别人案子的风险。“早买就发财”的故事里，没有讲那些归零的人。别人那里的规则变了，不等于你这里的规则变了。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第十六章 · 学 ============ -->
+<section class="chap" id="c16" data-vol="卷四 · 路 · 学">
+  <div class="chead">
+    <div class="big">学</div>
+    <div>
+      <div class="no">第十六章 · 路之四</div>
+      <h2>交学费</h2>
+      <dl><dt>讲什么</dt><dd>什么样的本事能靠练习学会；模拟盘学得到什么、学不到什么；第一笔本金多大合适；交易日记；怎样读一份年报；能力圈；余额宝和“稳”的那部分钱；本金小的时候，最大的变量是什么</dd><dt>本章装置</dt><dd>本金、存钱和收益率</dd></dl>
+      <div class="acc" data-a="本 心 时"></div>
+      <div class="yrs" data-a="2009" data-b="2027"></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="ask">
+      <p class="q">第一笔本金多少合适？模拟盘有用吗？第一年该做什么？</p>
+      <p>没有统一的数，但有几条大多数人都同意的前提：不动应急的钱，不借钱，三五年内要用的钱不放进去。在这个前提下，常见的说法是“小到亏光也不影响生活，大到亏了会心疼”：心疼，才学得到东西。模拟盘能教你规则和操作，教不了你亏钱那一刻的手抖。第一年最值得做的事，不是赚多少，而是<em>弄清楚自己在做什么、为什么做，并且留下记录，一年后能和“什么都不做”比一比</em>。本金小的时候，你存下多少钱、你的本事值多少钱，比收益率重要得多，下面的装置会算给你看。</p>
+    </div>
+
+    <div class="chat">
+      <div class="hd">顾家（4）</div>
+      <div class="bd">
+        <div class="t">2027 年 2 月 20 日 21:40</div>
+        <div class="m y"><span class="av">远</span><div><div class="nm">方远</div><span class="b">外公，我把一年的打算写在硬面抄后面了，拍给你看</span></div></div>
+        <div class="m y"><span class="av">远</span><div><div class="nm">方远</div><span class="b pic">[图片：硬面抄的一页，字迹比前面的工整]</span></div></div>
+        <div class="m g"><span class="av">庚</span><div><div class="nm">外公</div><span class="b">第四条好。我当年要是有这一条，硬面抄能薄一半。</span></div></div>
+        <div class="m ma"><span class="av">敏</span><div><div class="nm">妈妈</div><span class="b">第一条我同意。</span></div></div>
+      </div>
+    </div>
+
+    <div class="page">
+      <span class="stampv">硬面抄</span>
+      <div class="who"><b>方远的一年</b>2027 年 2 月 · 虚构人物的打算，不是建议</div>
+      <dl>
+        <dt>一</dt><dd>不借钱，不碰币，不进收费的群。</dd>
+        <dt>二</dt><dd>外公给的两万，大头放进一只宽基指数基金，每月再从实习工资里定投一点。</dd>
+        <dt>三</dt><dd>拿出一小份做“实验账户”，自己挑股票，每一笔写下理由和打算拿多久。</dd>
+        <dt>四</dt><dd>一年以后，把实验账户和指数比一比。跑输了，就承认。</dd>
+        <dt>五</dt><dd>读完三家公司的年报，三张表对着看。</dd>
+        <dt>六</dt><dd>每天看行情不超过十分钟。先把毕业设计做完。</dd>
+      </dl>
+    </div>
+
+    <h3>什么样的本事能练出来</h3>
+    <p>2009 年，两位观点常常对立的心理学家，丹尼尔·卡尼曼和研究消防员、护士直觉的加里·克莱因，合写了一篇文章，题目叫《直觉专长的条件：一次没能达成的分歧》。他们最后同意：一个人的直觉要变得可靠，需要两个条件，一是环境足够有规律，二是有足够多、足够快、足够准的反馈。下棋、开车、救火符合这两条；挑股票、预测股市不符合：环境里噪音太多，反馈又慢又模糊，你赚了一笔，很难分清是判断对了还是运气好。</p>
+    <p>这就是为什么第七章里专家的预测成绩那么差，也是为什么一个新手做了二十笔短线、赚了十几笔，很可能什么都没学到，反而学到了一个错误的自信。<em>在一个反馈很吵的地方，练习的次数不等于学到的东西</em>。</p>
+    <p>但有些东西是学得会的：规则（交易制度、费用、税）、读账（一家公司怎样赚钱、钱从哪来到哪去）、认识自己（你在亏钱时会怎样）。这三样不需要猜涨跌，反馈也清楚。</p>
+
+    <h3>模拟盘和真钱</h3>
+    <p>很多券商 App 有模拟炒股，用虚拟的钱买卖真实的行情。它适合学操作：怎样下单、什么是挂单和撤单、涨跌停和 T+1 是什么感觉。它学不到的，是第十二章讲的那些：亏了真钱时的心跳、等回本的煎熬、看别人赚钱的焦躁。不少人在模拟盘上胆子很大、收益很好，一到真钱就变了一个人。</p>
+    <p>所以常见的做法是，先用模拟盘熟悉规则，再用一笔小钱体验真实的情绪。这笔钱的大小，各种说法都有，比较一致的是两条：它亏光了不影响你的生活和学业；它大到你亏了会认真反思，而不是一笑了之。另外记得第一部序幕的装置：一笔太小的买卖，会被“最低五元”的佣金吃掉一大截，频繁地做小额交易，费用占比会高得离谱。</p>
+
+    <h3>交易日记和年报</h3>
+    <p>外公的硬面抄只记了价钱和股数，偶尔写一句“听说”。如果重来，他说他会在每一笔旁边多写三样东西：<b>为什么买</b>（我看到了什么，别人没看到什么），<b>打算拿多久</b>，<b>什么情况下我承认自己错了</b>。一年后翻回来看，你会发现很多“理由”其实是“别人说”；也会发现自己在哪种情况下最容易冲动。这是第十二章那些坑在你自己身上的样子，只有记下来才看得见。</p>
+    <p>年报是免费的，上市公司的定期报告都在交易所网站和巨潮资讯网上公开。第一次读，不必从头读到尾，先看三样：管理层讨论与分析（公司自己怎样描述它的生意）、三张报表（利润表说赚了多少、现金流量表说钱真进来了多少、资产负债表说家底和欠债），以及审计意见（“标准无保留意见”以外的都要多看一眼）。第八章的六个红灯，就藏在这里。</p>
+    <p>巴菲特有个说法叫“能力圈”：你不必懂所有公司，只要清楚自己懂哪些、不懂哪些，在圈里面下注就行。“圈有多大不重要，知道边界在哪儿才重要。”对一个新手来说，第一年的圈可能很小，小到只有一只指数基金，这完全没问题。</p>
+  </div>
+
+  <div class="echo" data-k="生活">
+    <div class="stamp">眉批</div>
+    <div><p class="rh">先把自己这只股票做好</p><p>二十多岁时，一个人身上最大的一笔资产，是他未来几十年的收入，经济学上叫“人力资本”，<a href="../worth/two.html#c9">《值不值》第九章</a>讲过它。一万块钱一年涨 10% 是一千块；一个人的本事让工资一年多涨一千块，往后每年都多这一千块，而且通常还会接着涨。<a href="../civil/three.html#c24">《铁打的营盘》第二十四章</a>说稳定的收入本身就是一种资产，说的是同一件事。本金小的时候，最划算的投资常常不在股市里。</p></div>
+  </div>
+
+  <div class="col">
+    <div class="news">
+      <div class="hl"><span class="k">这条消息值不值得深挖</span><b>余额宝上线</b><small>2013-06-13 · 支付宝与天弘基金</small></div>
+      <ol>
+        <li><span>当时</span>一块钱就能买的货币基金，随时取用，七日年化收益率一度超过 6%，比银行活期高出十几倍，几亿人第一次知道了“基金”。</li>
+        <li><span>一年后</span>规模超过五千亿元，成了当时全国最大的基金。</li>
+        <li><span>十年后</span>随着市场利率一路下行，它的年化收益率降到了 1% 多一点。</li>
+      </ol>
+      <div class="vd" data-v="信号"><i>信号</i><p>对一个学投资的人，这条消息最值得记住的不是余额宝本身，而是那条收益率曲线：它告诉你，<b>“几乎没有风险”的那部分钱，能赚多少，是由整个社会的利率决定的，会变</b>。利率从 4%、5% 降到 1% 多，意味着“稳”的那部分钱赚得越来越少，也意味着任何承诺“保本、高收益”的东西越来越可疑。</p></div>
+    </div>
+  </div>
+
+  <div class="fig" id="learnFig">
+    <div class="fig-label">装置 17</div>
+    <h4>本金、存钱和收益率</h4>
+    <p class="how">十年以后你有多少钱，取决于三件事：一开始的本金、每个月能存下多少、每年的收益率。设定一个起点，再分别看看“收益率多 2 个点”和“每个月多存一千块”各能多出多少。</p>
+    <div class="ctl"><span>起始本金</span><input type="range" id="lnP" min="0" max="20" step="0.5" value="2"><output id="lnPO"></output></div>
+    <div class="ctl"><span>每月存下</span><input type="range" id="lnS" min="0" max="10000" step="500" value="2000"><output id="lnSO"></output></div>
+    <div class="ctl"><span>年收益率</span><input type="range" id="lnR" min="0" max="12" step="0.5" value="4"><output id="lnRO"></output></div>
+    <div class="ctl"><span>年数</span><input type="range" id="lnY" min="3" max="30" step="1" value="10"><output id="lnYO"></output></div>
+    <svg id="lnSvg"></svg>
+    <div class="kv" id="lnKv"></div>
+    <div class="say" id="lnSay"></div>
+    <p class="figcap">按月复利计算，每月月末存入；不考虑通胀、税和工资增长（现实里工资通常会涨，会让“存钱”这一项更重要）。收益率只是一个假设的数，不是预测。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">一年翻倍不难，年化五成很正常<small>红灯</small></div>
+    <div class="pop"><i>流行说法</i><p>我认识的某某去年翻了倍；跟着老师操作，年化百分之五十很正常。</p></div>
+    <div class="chk"><i>再查一遍</i><p>巴菲特被称为股神，他执掌的伯克希尔公司从 1965 年到 2024 年，每股市值的年化增长约 20%，持续了六十年，这已经是有记录以来最惊人的长期成绩之一。一年翻倍的人确实有，第九章和第七章的装置说明了为什么：人数够多，总有人运气好。可“连续多年年化五成”几乎不存在，宣称自己做得到并且向你收费的，第七章和<a href="../worth/two.html#c10">《值不值》第十章</a>已经讲过是什么了。<em>一个承诺的收益率越高、越稳，越像骗局</em>；余额宝那条下降的曲线告诉你，“稳”的钱现在只值 1% 多。</p></div>
+  </div>
+
+  <div class="col">
+    <p>外公在群里回了最后一条：“第三条留着。一年后，我们看第四条。”</p>
+    <p>第二部到这里讲完了怎样下场。可方远心里还有一个问题，没在群里问：就算这两万块十年后变成了四万、五万，然后呢？攒下来的钱，到底是拿来干什么的？那是第三部的事。</p>
+
+    <div class="seal">
+      <div><i>市场记得的</i>卡尼曼和克莱因认为，直觉要可靠，需要有规律的环境和快速准确的反馈，挑股票两样都不具备。模拟盘教规则，教不了情绪。年报在交易所网站和巨潮资讯网上免费公开。余额宝 2013 年上线时七日年化一度超过 6%，十年后降到 1% 多。巴菲特六十年的年化约 20%。</div>
+      <div><i>你该记的</i>第一年的目标是弄清楚自己在做什么，并留下记录，一年后和“什么都不做”比。不动应急的钱，不借钱，近几年要用的钱不放进去。本金小的时候，存下多少、本事值多少，比收益率重要得多。承诺越高越稳的收益，越要小心。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第二部末：存疑与出处 ============ -->
+<section class="chap" id="notes2" data-vol="第二部 · 存疑与出处">
+  <div class="col">
+    <h3>第二部：哪些是真的</h3>
+    <ul class="src">
+      <li><b>虚构的</b>：顾家四个人、群聊、外公和方远的硬面抄、舅舅 2015 年的配资经历、妈妈 2021 年买的基金、方远室友的币，都是虚构的，是按那些年里常见的经历拼出来的。方远的“一年打算”是一个虚构人物在他的处境下的选择，不是给读者的建议。</li>
+      <li><b>真实的历史、法规和研究</b>：正文里的事件、文件、判决、数字和研究结论都尽量核对过，研究只作转述和简化，细节以原文为准；政策规定以写作时（2026 年 11 月）为准，今后可能调整。</li>
+      <li><b>“这条消息值不值得深挖”</b>：消息和此后的行情是真实的，描述取整数；印章是本书的判断。</li>
+      <li><b>装置</b>：装置 12 用的是上证综指和标普 500 的真实年末收盘点位；其余装置是示意模型。所有装置都不是预测，不构成任何投资、理财建议；书中不推荐任何股票、基金、平台、券商、银行或币种。</li>
+    </ul>
+
+    <h3>第二部：存疑与说明</h3>
+    <ul class="src">
+      <li><b>散</b>：个人投资者的持股市值占比用的是 2017 年沪市数据（约 21%），成交额中个人的占比各年不同，这里只说“大半”；A 股按账户大小分档的研究为转述，具体分档和数字以原文为准；“七亏二平一赚”出处不明。游戏驿站的价格取约数。</li>
+      <li><b>费</b>：“大约九成主动基金跑输”指标普公司 SPIVA 报告中美国大盘股基金在十五到二十年期的统计，各年略有不同；中国主动偏股基金与沪深 300 的长期比较，结论随时间段不同而不同；晨星“行为缺口”约每年一个百分点是近几年报告的大致数；“基民亏损比例”各机构口径不同，这里只作定性描述。</li>
+      <li><b>指</b>：第一只散户指数基金首次募资的金额各资料略有出入（约一千一百万美元）；美国被动基金规模超过主动基金的时间点，因统计口径不同有 2023 年底和 2024 年初两种说法；先锋 2012 年研究的“约三分之二”是对多个市场、多个时段的概括。</li>
+      <li><b>心</b>：奥迪恩 1998 年研究的具体比例为转述；2024 年 10 月新开户数取“接近七百万户”的约数；“死人的账户收益最好”查无此研究（标“查无此研究”）。</li>
+      <li><b>杠</b>：2015 年场外配资规模没有权威统计，各方估计差别很大；融资融券的平仓线由券商与客户约定，130% 是常见值；原油宝事后的处理以监管部门和银行的公告为准，这里只作概括；《生命周期投资》的主张有争论（标“有争论”）。</li>
+      <li><b>外</b>：五万美元额度的用途限制以外汇局购汇申报的规定为准；2026 年 5 月八部门方案的细节以官方文件为准，书中依据新华社等媒体的报道；境外所得的税务处理有不少细节（抵免、所得类别、申报期限），这里只讲原则；美国预扣税和遗产税的规则可能调整，具体请以美国国税局的规定为准。汇率取整。</li>
+      <li><b>币</b>：Mt. Gox 损失的比特币数量后来有部分被找回，这里取最初公布的约数；比特币历次回撤的幅度取约数；CoinGecko 的“死亡代币”统计只覆盖它追踪的平台，口径为“曾有交易、后来停止交易”；“数字黄金”的说法（标“存疑”）。</li>
+      <li><b>学</b>：“小到亏光也不影响生活，大到亏了会心疼”是常见的经验说法，不是研究结论；余额宝的规模与收益率取约数；伯克希尔的年化数字来自巴菲特 2024 年致股东信中的统计（1965—2024 年每股市值）。</li>
+    </ul>
+
+    <h3>第二部：主要出处</h3>
+    <ul class="src">
+      <li>官方文件与公告（大意）：中国证券登记结算公司统计年报；上交所统计年鉴与 2020 年上证综指编制方案修订公告；证监会 2023 年公募基金费率改革方案；证监会 2022 年 12 月 30 日关于跨境券商的通报；证监会等八部门 2026 年 5 月 22 日《综合整治非法跨境证券期货基金经营活动实施方案》（据新华社报道）；国家外汇管理局个人购汇申报的相关规定；《中华人民共和国个人所得税法》；人民银行等五部门 2013 年《关于防范比特币风险的通知》；七部门 2017 年《关于防范代币发行融资风险的公告》；十部门 2021 年《关于进一步防范和处置虚拟货币交易炒作风险的通知》；人民银行 2025 年 11 月 28 日打击虚拟货币交易炒作工作协调机制会议通稿。</li>
+      <li>研究（只作转述）：Barber &amp; Odean（2000, 2001）；Barber, Lee, Liu &amp; Odean（2009）；Chague, De-Losso &amp; Giovannetti（2019）；Jones, Shi, Zhang &amp; Zhang 关于上交所账户数据的研究；Sharpe（1991）；Samuelson（1974）；Vanguard（2012）关于一次投入与分批投入；Morningstar《Mind the Gap》系列及 Kinnel（2010, 2016）关于费率的预测力；S&amp;P Dow Jones Indices SPIVA 报告；Kahneman &amp; Tversky（1974, 1979）、Tversky &amp; Kahneman（1992）；Shefrin &amp; Statman（1985）；Odean（1998）；Svenson（1981）；George &amp; Hwang（2004）；Ayres &amp; Nalebuff《生命周期投资》（2010）；Kahneman &amp; Klein（2009）；CoinGecko 关于失效代币的报告（2025, 2026）。</li>
+      <li>其他：巴菲特 2017 年、2025 年致股东信；中本聪《比特币白皮书》（2008）；帕斯卡《思想录》；书房里的《值不值》《柜台里外》《轮到谁了》《铁打的营盘》中相关章节。</li>
+    </ul>
+  </div>
+</section>
+
+<div class="partend" data-vol="第二部完">
+  <div class="k">第二部 · 手 · 完</div>
+  <h3>怎样下场，到这里讲完了</h3>
+  <p class="ni" style="font-size:16px;line-height:1.9;text-align:left">第二部讲的是你自己：散户在牌桌上的位置，看不见的费，买下整个市场，脑子里的坑，借来的钱，港卡和美股，币圈，以及第一年怎样交学费。说起来也很短：少动，少借，少付费，分清规矩，留下记录；本金小的时候，存下的钱和自己的本事比收益率重要。第三部《花》问最后一个问题：钱攒下来，到底拿来干什么？先填哪个坑，一场大病，买房还是租房，买车还是打车，旅游还是显卡，那些拼命攒钱的人图什么，老一辈的存折。</p>
+  <a class="go" data-c="c17" href="three.html">第三部 · 花</a>
+</div>
+
+<footer>
+  <p>《红与绿 · 投资创世记》第二部。顾家四个人和他们的群聊、硬面抄是虚构的；正文中的史实、法规与研究尽量核对过，有争议的地方标了“存疑”，说明与出处见<a href="#notes2">上面</a>。</p>
+  <p>本书只讲历史、规则和机制，不推荐任何股票、基金、平台、券商、银行或币种，不构成投资建议；写作者不是持牌投资顾问。涉及外汇、税务和虚拟货币的规定以官方最新文件为准。</p>
+  <a class="nextbook" href="../worth/"><small>书房里的另一本书</small><br><b>值不值 · 一个人的创世记</b><br><small>这本书讲一个人怎样走进股市；那本书讲一个刚毕业的人手里的五样东西：时间、钱、身体、人情和心思，以及杠杆、复利和“先活下来”。</small></a>
+  <p><a href="#top" class="toTop">回到封面 ↑</a>　·　<a href="./">第一部 · 盘</a>　·　<a data-c="c17" href="three.html">第三部 · 花</a>　·　<a href="../">回书房</a></p>
+</footer>
+
+<script>
+(function(){
+'use strict';
+const $ = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => [...(r || document).querySelectorAll(s)];
+const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+const lerp = (a, b, t) => a + (b - a) * t;
+function rng(seed){ let a = seed >>> 0; return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const fmt = n => n >= 1e8 ? (n / 1e8).toFixed(1) + ' 亿' : n >= 1e4 ? (Math.round(n / 1e3) / 10).toLocaleString() + ' 万' : Math.round(n).toLocaleString();
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+const yr = y => y < 0 ? '前 ' + (-y) : String(y);
+const btnRow = (box, items, cur, cb) => {
+  box.innerHTML = items.map((t, i) => '<button class="btn' + (i === cur ? ' on' : '') + '" data-i="' + i + '">' + t + '</button>').join('');
+  box.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; $$('button', box).forEach(x => x.classList.toggle('on', x === b)); cb(+b.dataset.i); });
+};
+const dev = (sel, fn) => { const el = $(sel); if (el) { try { fn(el); } catch (err) { console.error(sel, err); } } };
+const kv = (box, rows) => { box.innerHTML = rows.map(r => '<div>' + r[0] + '<b>' + r[1] + '</b></div>').join(''); };
+function svgPt(svg, e){
+  const r = svg.getBoundingClientRect(), vb = svg.viewBox.baseVal;
+  const s = Math.max(vb.width / r.width, vb.height / r.height);
+  const ox = (r.width * s - vb.width) / 2, oy = (r.height * s - vb.height) / 2;
+  return {x: (e.clientX - r.left) * s - ox + vb.x, y: (e.clientY - r.top) * s - oy + vb.y};
+}
+function txt(x, y, t, o){ o = o || {}; return '<text x="' + x + '" y="' + y + '" font-size="' + (o.s || 13) + '" fill="' + (o.c || 'var(--ink)') + '" text-anchor="' + (o.a || 'middle') + '"' + (o.w ? ' font-weight="700"' : '') + (o.halo === false ? '' : ' paint-order="stroke" stroke="' + (o.hc || 'var(--card)') + '" stroke-width="3.5" stroke-linejoin="round"') + '>' + t + '</text>'; }
+/* 滑块：绑定 input 与 output，返回读数函数 */
+function slider(id, f, cb){ const r = $('#' + id), o = $('#' + id + 'O'); const go = () => { if (o) o.textContent = f ? f(+r.value) : r.value; if (cb) cb(+r.value); }; r.addEventListener('input', go); go(); return () => +r.value; }
+
+/* ---------- 全书目录（三个网页共用） ---------- */
+const PAGE = /three\.html/.test(location.pathname) ? 3 : /two\.html/.test(location.pathname) ? 2 : 1;
+const READY = 2; // 已经写好的部数
+const PURL = {1: './', 2: 'two.html', 3: 'three.html'};
+const TOC = [
+  {p: 1, t: '第一部 · 盘 —— 市场是怎么回事'},
+  {v: '序幕'},
+  {id: 'c0', n: '袋', t: '外公的牛皮纸袋', s: '一张认购证、一本硬面抄、两万块学费；红涨绿跌；一手是多少，开户要多少钱', r: '1992 / 2026'},
+  {v: '卷一 · 起 —— 股票和交易所是怎么来的'},
+  {id: 'c1', n: '股', t: '一家公司切成一万份', s: '合伙、份额、有限责任；轮船招商局和 1883 年的股灾；分红、增发和“高送转”', r: '1553—2024'},
+  {id: 'c2', n: '所', t: '梧桐树下', s: '咖啡馆里的价目表、二十四个经纪人、静安的小柜台、浦江饭店、深圳的排队；价格是怎样撮合出来的', r: '1698—1992'},
+  {id: 'c3', n: '价', t: '一张纸凭什么值钱', s: '未来的钱折回今天；市场先生；市盈率；互联网泡沫和四十八块的中石油', r: '1934—2007'},
+  {id: 'c4', n: '波', t: '醉汉的脚步', s: '随机游走、有效市场、肥尾和黑色星期一；K 线里看见的形状', r: '1900—2016'},
+  {v: '卷二 · 声 —— 消息、政策和嘴'},
+  {id: 'c5', n: '信', t: '消息跑得有多快', s: '信鸽、电报、十三毫秒的光缆；挑战者号那天的股价；你看到推送的时候', r: '1850—2010'},
+  {id: 'c6', n: '策', t: '政策市', s: '三大救市政策、一篇评论员文章、半夜鸡叫、熔断四天、九二四；还有美联储主席的嘴', r: '1994—2025'},
+  {id: 'c7', n: '嘴', t: '专家、黑嘴和大 V', s: '预测的成绩单、研报为什么不说卖、抢帽子、一条推文和一个“好时机”；巴尔的摩的来信', r: '1933—2025'},
+  {id: 'c8', n: '局', t: '庄家、内幕和假账', s: '坐庄四步、乌龙指、账上消失的现金；真正值得深挖的是什么', r: '1998—2021'},
+  {p: 2, t: '第二部 · 手 —— 自己下场'},
+  {v: '卷三 · 场 —— 你坐在牌桌的哪个位置'},
+  {id: 'c9', n: '散', t: '谁在赚谁的钱', s: '两亿五千万个账户；交易越多越亏；负和的那一截', r: '1990—2026'},
+  {id: 'c10', n: '费', t: '看不见的费', s: '佣金、印花税、管理费、滑点；一个赌了十年的赌局', r: '1975—2017'},
+  {id: 'c11', n: '指', t: '买下整个市场', s: '博格的“傻瓜基金”、指数和定投；为什么上证指数不等于 A 股', r: '1976—2026'},
+  {id: 'c12', n: '心', t: '脑子里的坑', s: '损失厌恶、拿着亏的卖掉赚的、过度自信、锚和羊群', r: '1979—2020'},
+  {v: '卷四 · 路 —— 怎样下场'},
+  {id: 'c13', n: '杠', t: '借来的钱', s: '融资、配资、期货期权；2015 年夏天的强平', r: '1929—2015'},
+  {id: 'c14', n: '外', t: '港卡和美股', s: '外汇额度、港股通、QDII 的溢价、跨境券商整治、税和遗产税、汇率', r: '2006—2026'},
+  {id: 'c15', n: '币', t: '币圈', s: '一块披萨、交易所跑路、九二四通知、稳定币；它在中国是什么', r: '2008—2026'},
+  {id: 'c16', n: '学', t: '交学费', s: '模拟盘还是真钱、多少钱起步、交易日记、读年报；第一年该做什么', r: '今'},
+  {p: 3, t: '第三部 · 花 —— 钱拿来干什么'},
+  {v: '卷五 · 序 —— 先后'},
+  {id: 'c17', n: '先', t: '先后', s: '应急金、保险、高息债、自己、体验、投资：一笔钱该先填哪个坑', r: '今'},
+  {id: 'c18', n: '病', t: '老了一场大病', s: '省一辈子、一病花光：医保、大病保险和预防性储蓄', r: '1951—2026'},
+  {id: 'c19', n: '房', t: '买房还是租房', s: '“智商税”的说法、租售比、杠杆和七十年；房子是消费品、投资品还是户口本', r: '1998—2026'},
+  {id: 'c20', n: '车', t: '买车还是打车', s: '折旧、停车费和自由；一辆车一年真正花多少', r: '1908—2026'},
+  {v: '卷六 · 苦与乐'},
+  {id: 'c21', n: '游', t: '旅游还是显卡', s: '体验和东西、记忆的利息、什么时候花最值', r: '今'},
+  {id: 'c22', n: '省', t: '他们这么苦图什么', s: '提前退休运动、百分之四、戒糖健身狂攒钱：苦行的人在买什么', r: '1992—2026'},
+  {id: 'c23', n: '享', t: '老一辈的存折', s: '高储蓄率是怎么来的；省钱一生和享福一生之间', r: '1978—2026'},
+  {v: '尾声'},
+  {id: 'c24', n: '收', t: '收盘', s: '外公的最后一页硬面抄；红与绿', r: '2027'}
+];
+const chapPage = {}; { let p = 1; TOC.forEach(x => { if (x.p) p = x.p; if (x.id) chapPage[x.id] = p; }); }
+const href = id => (chapPage[id] === PAGE ? '' : PURL[chapPage[id]]) + '#' + id;
+$$('.bar .parts a').forEach(a => { const p = +a.dataset.p; a.classList.toggle('on', p === PAGE); if (p > READY) { a.removeAttribute('href'); a.style.opacity = .4; a.title = '写作中'; } });
+$('#drawerList').innerHTML = TOC.map(x => x.p ? '<li class="ph">' + x.t + '</li>' : x.v ? '<li class="vh">' + x.v + '</li>' :
+  chapPage[x.id] > READY ? '<li><a style="opacity:.5;pointer-events:none"><span class="n">' + x.n + '</span><span>' + x.t + '<small>写作中</small></span></a></li>' :
+  '<li><a href="' + href(x.id) + '"' + (chapPage[x.id] === PAGE ? ' class="here"' : '') + '><span class="n">' + x.n + '</span><span>' + x.t + '<small>' + x.s + '</small></span></a></li>').join('');
+dev('#toc', ul => {
+  ul.innerHTML = TOC.map(x => x.p ? '<li class="vh" style="color:var(--main)">' + x.t + '</li>' : x.v ? '<li class="vh">' + x.v + '</li>' :
+    chapPage[x.id] > READY ? '<li class="soon"><div><span class="n">' + x.n + '</span><span class="t">' + x.t + '<small>' + x.s + '</small></span><span class="r">' + x.r + '</span></div></li>' :
+    '<li' + (chapPage[x.id] === PAGE ? '' : ' class="away"') + '><a href="' + href(x.id) + '"><span class="n">' + x.n + '</span><span class="t">' + x.t + '<small>' + x.s + '</small></span><span class="r">' + x.r + '</span></a></li>').join('');
+});
+/* 页面里写 <a data-c="c12">…</a>，自动拼出跨页链接 */
+$$('a[data-c]').forEach(a => { const id = a.dataset.c; if (chapPage[id] > READY) { a.removeAttribute('href'); a.title = '写作中'; a.style.textDecorationStyle = 'dotted'; } else a.href = href(id); });
+
+/* ---------- 页眉：卷名、进度、目录抽屉 ---------- */
+const barVol = $('#barVol'), prog = $('#prog');
+const vols = $$('[data-vol]');
+let ticking = false;
+function onScroll(){
+  ticking = false;
+  const lim = innerHeight * 0.35; let cur = null;
+  for (const e of vols) { if (e.getBoundingClientRect().top < lim) cur = e; else break; }
+  barVol.textContent = cur ? cur.dataset.vol : '序';
+  const H = document.documentElement.scrollHeight - innerHeight;
+  prog.style.width = (H > 0 ? scrollY / H * 100 : 0) + '%';
+}
+window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, {passive: true});
+onScroll();
+const drawer = $('#drawer');
+function openD(on){ drawer.classList.toggle('on', on); drawer.setAttribute('aria-hidden', on ? 'false' : 'true'); }
+$('#tocBtn').addEventListener('click', () => openD(true));
+drawer.addEventListener('click', e => { if (e.target.closest('[data-close]') || e.target.closest('a')) openD(false); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') openD(false); });
+$$('.toTop').forEach(a => a.addEventListener('click', e => { e.preventDefault(); scrollTo({top: 0, behavior: 'smooth'}); }));
+
+/* 章首：五样 */
+const ACC = [['价', '价格'], ['信', '消息'], ['本', '本钱'], ['心', '人心'], ['时', '时间']];
+$$('.acc').forEach(w => { const on = (w.dataset.a || '').split(/\s+/); w.innerHTML = ACC.map(f => '<span' + (on.includes(f[0]) ? ' class="on"' : '') + '><b>' + f[0] + '</b>' + f[1] + '</span>').join(''); });
+/* 年代条：1550—今，十一格 */
+const ERA = [[1550, 1700, '17世纪'], [1700, 1800, '18'], [1800, 1900, '19'], [1900, 1946, '1900'], [1946, 1990, '1950'], [1990, 2000, '1990'], [2000, 2007, '2000'], [2007, 2015, '2007'], [2015, 2020, '2015'], [2020, 2026, '2020'], [2026, 2100, '今']];
+$$('.yrs').forEach(w => { const a = +w.dataset.a, b = +(w.dataset.b || w.dataset.a); w.innerHTML = ERA.map(e => '<span' + (b >= e[0] && a < e[1] ? ' class="on"' : '') + '>' + e[2] + '</span>').join(''); w.title = a + (b !== a ? '—' + b : ''); });
+/* 卷首：几根 K 线 */
+$$('svg.kl').forEach((s, k) => {
+  s.setAttribute('viewBox', '0 0 180 110'); const r = rng(7 + k * 13); let p = 60, g = '';
+  for (let i = 0; i < 14; i++) {
+    const o = p, c = clamp(o + (r() - .48) * 22, 14, 96), hi = Math.min(o, c) - r() * 9, lo = Math.max(o, c) + r() * 9, x = 8 + i * 12.2, up = c < o, col = up ? 'var(--up)' : 'var(--dn)';
+    g += '<line x1="' + (x + 4) + '" x2="' + (x + 4) + '" y1="' + hi.toFixed(1) + '" y2="' + lo.toFixed(1) + '" stroke="' + col + '" stroke-width="1.2"/><rect x="' + x + '" y="' + Math.min(o, c).toFixed(1) + '" width="8" height="' + Math.max(1.5, Math.abs(c - o)).toFixed(1) + '" fill="' + col + '"/>';
+    p = c;
+  }
+  s.innerHTML = g;
+});
+/* 红涨 / 绿涨：只换颜色，不换数据 */
+const UDK = 'genesis-stock-ud';
+function setUD(v){
+  if (v === 'us') document.documentElement.dataset.ud = 'us'; else delete document.documentElement.dataset.ud;
+  const b = $('#udBtn'); if (b) b.innerHTML = v === 'us' ? '<i>绿</i>涨' : '<i>红</i>涨';
+}
+try { setUD(localStorage.getItem(UDK) || 'cn'); } catch (e) { setUD('cn'); }
+$('#udBtn').addEventListener('click', () => { const v = document.documentElement.dataset.ud === 'us' ? 'cn' : 'us'; setUD(v); try { localStorage.setItem(UDK, v); } catch (e) {} });
+/* 上证综指年末收盘（取两位小数，来自公开行情；2025 年为 3968.84）与标普 500 年末收盘（美元） */
+const SH = {1990: 127.61, 1991: 292.75, 1992: 780.39, 1993: 833.80, 1994: 647.87, 1995: 555.29, 1996: 917.02, 1997: 1194.10, 1998: 1146.70, 1999: 1366.58, 2000: 2073.48, 2001: 1645.97, 2002: 1357.65, 2003: 1497.04, 2004: 1266.50, 2005: 1161.06, 2006: 2675.47, 2007: 5261.56, 2008: 1820.81, 2009: 3277.14, 2010: 2808.08, 2011: 2199.42, 2012: 2269.13, 2013: 2115.98, 2014: 3234.68, 2015: 3539.18, 2016: 3103.64, 2017: 3307.17, 2018: 2493.90, 2019: 3050.12, 2020: 3473.07, 2021: 3639.78, 2022: 3089.26, 2023: 2974.93, 2024: 3351.76, 2025: 3968.84};
+const SP = {1990: 330.22, 1991: 417.09, 1992: 435.71, 1993: 466.45, 1994: 459.27, 1995: 615.93, 1996: 740.74, 1997: 970.43, 1998: 1229.23, 1999: 1469.25, 2000: 1320.28, 2001: 1148.08, 2002: 879.82, 2003: 1111.92, 2004: 1211.92, 2005: 1248.29, 2006: 1418.30, 2007: 1468.36, 2008: 903.25, 2009: 1115.10, 2010: 1257.64, 2011: 1257.60, 2012: 1426.19, 2013: 1848.36, 2014: 2058.90, 2015: 2043.94, 2016: 2238.83, 2017: 2673.61, 2018: 2506.85, 2019: 3230.78, 2020: 3756.07, 2021: 4766.18, 2022: 3839.50, 2023: 4769.83, 2024: 5881.63, 2025: 6845.50};
+/* K 线：bars=[{o,h,l,c}]，画进 svg */
+function candles(svg, bars, o){
+  o = o || {}; const W = o.W || 300, H = o.H || 150, P = 6;
+  let lo = Infinity, hi = -Infinity; bars.forEach(b => { lo = Math.min(lo, b.l); hi = Math.max(hi, b.h); });
+  const Y = v => P + (1 - (v - lo) / (hi - lo || 1)) * (H - 2 * P), dx = (W - 2 * P) / bars.length, bw = Math.max(1.5, dx * .62);
+  let g = '';
+  bars.forEach((b, i) => { const x = P + i * dx + dx / 2, col = b.c >= b.o ? 'var(--up)' : 'var(--dn)';
+    g += '<line x1="' + x.toFixed(1) + '" x2="' + x.toFixed(1) + '" y1="' + Y(b.h).toFixed(1) + '" y2="' + Y(b.l).toFixed(1) + '" stroke="' + col + '" stroke-width="1"/>';
+    g += '<rect x="' + (x - bw / 2).toFixed(1) + '" y="' + Y(Math.max(b.o, b.c)).toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + Math.max(1, Math.abs(Y(b.o) - Y(b.c))).toFixed(1) + '" fill="' + col + '"/>'; });
+  svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+}
+/* 正态随机数、分位数、元 */
+function gauss(r){ let u = 0, v = 0; while (!u) u = r(); while (!v) v = r(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
+const pct = (arr, p) => { const s = [...arr].sort((x, y) => x - y); return s[Math.min(s.length - 1, Math.max(0, Math.floor(p * (s.length - 1))))]; };
+const yuan = n => (n < 0 ? '−' : '') + fmt(Math.abs(n)) + (Math.abs(n) >= 1e4 ? '元' : ' 元');
+const pc = (x, d) => (x > 0 ? '+' : x < 0 ? '−' : '') + Math.abs(x * 100).toFixed(d == null ? 1 : d) + '%';
+
+/* 通用小折线图：series=[{name,color,pts:[[x,y]...],dash}]，opt={xmin,xmax,ymin,ymax,xt,yt,xf,yf,marks:[[x,label]],H} */
+function lineChart(svg, series, opt){
+  const W = 600, H = opt.H || 260, L = opt.L || 46, R = 14, T = 14, B = 30;
+  const X = x => L + (x - opt.xmin) / (opt.xmax - opt.xmin) * (W - L - R);
+  const Y = y => T + (1 - (y - opt.ymin) / (opt.ymax - opt.ymin)) * (H - T - B);
+  let g = '';
+  (opt.yt || []).forEach(v => g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + Y(v) + '" y2="' + Y(v) + '" stroke="var(--rule)"/>' + txt(L - 6, Y(v) + 4, opt.yf ? opt.yf(v) : v, {s: 11, a: 'end', c: 'var(--ink-3)', halo: false}));
+  (opt.xt || []).forEach(v => g += txt(X(v), H - 10, opt.xf ? opt.xf(v) : v, {s: 11, c: 'var(--ink-3)', halo: false}));
+  (opt.marks || []).forEach((m, i) => g += '<line x1="' + X(m[0]) + '" x2="' + X(m[0]) + '" y1="' + T + '" y2="' + (H - B) + '" stroke="var(--ink-3)" stroke-dasharray="2 3"/>' + txt(X(m[0]) + 3, T + 12 + (i % 3) * 14, m[1], {s: 11, a: 'start', c: 'var(--ink-2)'}));
+  series.forEach(s => {
+    const pts = s.pts.filter(p => p[1] != null);
+    g += '<path d="M' + pts.map(p => X(p[0]).toFixed(1) + ',' + Y(p[1]).toFixed(1)).join('L') + '" fill="none" stroke="' + s.color + '" stroke-width="' + (s.w || 2.4) + '"' + (s.dash ? ' stroke-dasharray="' + s.dash + '"' : '') + ' stroke-linejoin="round"/>';
+    if (s.dots) pts.forEach(p => g += '<circle cx="' + X(p[0]).toFixed(1) + '" cy="' + Y(p[1]).toFixed(1) + '" r="3" fill="' + s.color + '"/>');
+  });
+  g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + (H - B) + '" y2="' + (H - B) + '" stroke="var(--ink)" stroke-width="1.2"/>';
+  svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+  return {X, Y, W, H, L, R, T, B};
+}
+/* 横条：rows=[[名字, 数值, 小字, 颜色]] */
+function bars(box, rows, max, f){
+  box.innerHTML = rows.map(r => '<div class="row"><span class="nm">' + r[0] + (r[2] ? '<small>' + r[2] + '</small>' : '') + '</span><span class="tr"><i style="width:' + clamp(r[1] / max * 100, 0, 100) + '%;' + (r[3] ? 'background:' + r[3] : '') + '"></i></span><span class="v">' + (f ? f(r[1]) : r[1]) + '</span></div>').join('');
+}
+
+
+/* ---------- 封面装置：哪一年进场，哪一年离场 ---------- */
+dev('#triFig', fig => {
+  const svg = $('#triSvg'), kvb = $('#triKv'), say = $('#triSay'), divCk = $('#triDiv');
+  const Y0 = 1990, Y1 = 2025, N = Y1 - Y0 + 1;
+  let idx = 0, sel = [2007, 2025];
+  const DATA = [SH, SP], NAME = ['上证综指', '标普 500'];
+  const ann = (a, b) => { const d = DATA[idx]; return Math.pow(d[b] / d[a], 1 / (b - a)) - 1 + (divCk.checked ? 0.02 : 0); };
+  const tot = (a, b) => DATA[idx][b] / DATA[idx][a] * (divCk.checked ? Math.pow(1.02, b - a) : 1) - 1;
+  function draw(){
+    const L = 44, T = 10, cs = 15, W = L + (N - 1) * cs + 10, H = T + (N - 1) * cs + 34;
+    let g = '';
+    for (let i = 0; i < N - 1; i++) for (let j = i + 1; j < N; j++) {
+      const a = Y0 + i, b = Y0 + j, r = ann(a, b), k = Math.min(1, Math.abs(r) / 0.22), m = Math.round(12 + k * 82);
+      const col = r >= 0 ? 'var(--up)' : 'var(--dn)', on = sel[0] === a && sel[1] === b;
+      g += '<rect x="' + (L + (j - 1) * cs) + '" y="' + (T + i * cs) + '" width="' + (cs - 1) + '" height="' + (cs - 1) + '" style="fill:color-mix(in srgb,' + col + ' ' + m + '%,var(--card))' + (on ? ';stroke:var(--ink);stroke-width:2' : '') + '" data-a="' + a + '" data-b="' + b + '"><title>' + a + ' 年底买，' + b + ' 年底卖：年化 ' + pc(r) + '</title></rect>';
+    }
+    for (let i = 0; i < N - 1; i += 5) g += txt(L - 5, T + i * cs + 11, Y0 + i, {s: 10.5, a: 'end', c: 'var(--ink-3)', halo: false});
+    for (let j = 1; j < N; j++) if ((Y0 + j) % 5 === 0) g += txt(L + (j - 1) * cs + 7, T + (N - 1) * cs + 12, Y0 + j, {s: 10.5, c: 'var(--ink-3)', halo: false});
+    g += txt(L + (N - 1) * cs / 2, H - 4, '卖出的年份（年底）→', {s: 11.5, c: 'var(--ink-2)', halo: false});
+    g += '<text x="12" y="' + (T + (N - 1) * cs / 2) + '" font-size="11.5" fill="var(--ink-2)" text-anchor="middle" transform="rotate(-90 12 ' + (T + (N - 1) * cs / 2) + ')">买进的年份（年底）→</text>';
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.style.minWidth = '460px'; svg.innerHTML = g;
+    readout();
+  }
+  function readout(){
+    const [a, b] = sel, d = DATA[idx], r = ann(a, b), t = tot(a, b);
+    let win = 0, all = 0, win10 = 0, all10 = 0;
+    for (let x = Y0; x < Y1; x++) for (let y = x + 1; y <= Y1; y++) { const z = ann(x, y); all++; if (z > 0) win++; if (y - x >= 10) { all10++; if (z > 0) win10++; } }
+    kv(kvb, [['买进 · ' + a + ' 年底', d[a].toFixed(2)], ['卖出 · ' + b + ' 年底', d[b].toFixed(2)], ['总涨跌', '<span class="' + (t >= 0 ? 'up' : 'dn') + '">' + pc(t) + '</span>'], ['年化', '<span class="' + (r >= 0 ? 'up' : 'dn') + '">' + pc(r) + '</span>']]);
+    let s = NAME[idx] + '：' + a + ' 年底买、拿 ' + (b - a) + ' 年，';
+    s += t >= 0 ? '赚了 ' + pc(t).slice(1) + '。' : '亏了 ' + pc(t).slice(1) + '。';
+    s += '这张图里一共 ' + all + ' 种“哪年买、哪年卖”的组合，' + Math.round(win / all * 100) + '% 是赚的；只看拿满十年以上的，' + Math.round(win10 / all10 * 100) + '% 是赚的。';
+    let w2 = 0, a2 = 0; for (let x = 2000; x < Y1; x++) for (let y = x + 1; y <= Y1; y++) { a2++; if (ann(x, y) > 0) w2++; }
+    s += '只看 2000 年以后买进的组合，赚的占 ' + Math.round(w2 / a2 * 100) + '%' + (idx === 0 ? '：上证的总数被九十年代初一百多点的起点抬高了不少。' : '。');
+    if (idx === 0 && a === 2007) s += ' 2007 年底正是那一轮大牛市的山顶附近，“十几年还在三千点”说的多半是从山顶算起的账。';
+    if (idx === 0 && a === 2005) s += ' 2005 年底是那一轮熊市的谷底附近，从这里算，同一个指数就成了“好市场”。';
+    say.textContent = s;
+  }
+  btnRow($('#triIdx'), NAME, 0, i => { idx = i; draw(); });
+  divCk.addEventListener('change', draw);
+  svg.addEventListener('click', e => { const r = e.target.closest('rect'); if (!r) return; sel = [+r.dataset.a, +r.dataset.b]; draw(); });
+  draw();
+});
+
+
+/* ---------- 第二部封面装置：一年的收益是怎样被拆掉的 ---------- */
+dev('#gapFig', fig => {
+  const svg = $('#gpSvg'), say = $('#gpSay');
+  let ready = false;
+  function go(){
+    if (!ready) return;
+    const M = gM(), T = gT(), C = gC(), B = gB();
+    const fee = T * C, beh = B * 0.5, pick = T * 0.15; // 选股：换手越多，与更快的对手交易越多，平均越吃亏（示意）
+    const steps = [['市场涨', M, 'm'], ['交易费用', -fee, 'd'], ['追涨杀跌', -beh, 'd'], ['选股（平均）', -pick, 'd'], ['你拿到', M - fee - beh - pick, 'm']];
+    const W = 600, H = 250, L = 40, R = 10, T0 = 16, B0 = 40;
+    const vals = [0, M, M - fee, M - fee - beh, M - fee - beh - pick];
+    const lo = Math.min(0, ...vals) - 2, hi = Math.max(0, ...vals) + 2;
+    const Y = v => T0 + (1 - (v - lo) / (hi - lo)) * (H - T0 - B0), bw = (W - L - R) / steps.length;
+    let g = '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + Y(0) + '" y2="' + Y(0) + '" stroke="var(--ink)" stroke-width="1.2"/>';
+    let run = 0;
+    steps.forEach((s, i) => {
+      const x = L + i * bw + bw * 0.15, w = bw * 0.7;
+      let a, b;
+      if (s[2] === 'm') { a = 0; b = s[1]; run = s[1]; } else { a = run; b = run + s[1]; run = b; }
+      const col = s[2] === 'm' ? (s[1] >= 0 ? 'var(--up)' : 'var(--dn)') : 'var(--ink-3)';
+      g += '<rect x="' + x + '" y="' + Math.min(Y(a), Y(b)) + '" width="' + w + '" height="' + Math.max(1.5, Math.abs(Y(a) - Y(b))) + '" fill="' + col + '" opacity="' + (s[2] === 'm' ? 1 : .55) + '"/>';
+      g += txt(x + w / 2, Math.min(Y(a), Y(b)) - 6, (s[1] > 0 ? '+' : '') + s[1].toFixed(1) + '%', {s: 12, w: true});
+      g += txt(x + w / 2, H - 18, s[0], {s: 12, c: 'var(--ink-2)', halo: false});
+    });
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+    const net = M - fee - beh - pick;
+    let t = '市场涨了 ' + M + '%，你拿到 ' + net.toFixed(1) + '%。';
+    t += ' 差出来的 ' + (M - net).toFixed(1) + ' 个百分点里，交易费用 ' + fee.toFixed(1) + '，追涨杀跌 ' + beh.toFixed(1) + '，选股平均 ' + pick.toFixed(1) + '。';
+    if (net < 0 && M > 0) t += ' 市场在涨，你却在亏：这正是很多人说的“赚了指数不赚钱”。';
+    if (T === 0 && B === 0) t += ' 一年不动、也不追涨杀跌，你几乎拿到了市场的全部收益：这是买下整个市场的思路（第十一章）。';
+    if (M < 0) t += ' 市场跌的年份，费用和情绪照样在扣，不会因为行情不好就打折。';
+    say.textContent = t;
+  }
+  const gM = slider('gpM', v => (v > 0 ? '+' : '') + v + '%', go), gT = slider('gpT', v => v + ' 遍', go), gC = slider('gpC', v => v.toFixed(2) + '%', go), gB = slider('gpB', v => ['不追', '很少', '偶尔', '有时', '常常', '经常', '很常', '非常', '极常', '每天', '上头'][v], go);
+  ready = true; go();
+});
+
+
+/* ---------- 装置 1：拆一张交割单 ---------- */
+dev('#slipFig', fig => {
+  const slip = $('#slSlip'), kvb = $('#slKv'), say = $('#slSay'), mn = $('#slMin');
+  const f2 = x => x.toFixed(2).padStart(10);
+  let P, Nh, C, G, T;
+  function draw(){
+    if (P == null) return;
+    const sh = Nh * 100, buyAmt = P * sh, sellP = Math.round(P * (1 + G / 100) * 100) / 100, sellAmt = sellP * sh, c = C / 1e4;
+    const com = a => mn.checked ? Math.max(5, a * c) : a * c;
+    const bCom = com(buyAmt), bTr = buyAmt * 1e-5, sCom = com(sellAmt), sTr = sellAmt * 1e-5, sTax = sellAmt * 5e-4;
+    const fee = bCom + bTr + sCom + sTr + sTax, feeR = fee / buyAmt;
+    const pnl = sellAmt - buyAmt - fee;
+    // 回本需要的涨幅（二分）
+    let lo = 0, hi = 0.2; for (let k = 0; k < 40; k++) { const m = (lo + hi) / 2, sa = P * (1 + m) * sh; (sa - buyAmt - bCom - bTr - com(sa) - sa * 1e-5 - sa * 5e-4 > 0) ? hi = m : lo = m; }
+    slip.textContent =
+      '成交日期    业务     数量      成交价      成交金额\n' +
+      '----------------------------------------------------\n' +
+      'T 日        买入   ' + String(sh).padStart(6) + '  ' + P.toFixed(2).padStart(9) + '  ' + f2(buyAmt) + '\n' +
+      '              佣金                        ' + f2(bCom) + '\n' +
+      '              过户费                      ' + f2(bTr) + '\n' +
+      'T+n 日      卖出   ' + String(sh).padStart(6) + '  ' + sellP.toFixed(2).padStart(9) + '  ' + f2(sellAmt) + '\n' +
+      '              佣金                        ' + f2(sCom) + '\n' +
+      '              过户费                      ' + f2(sTr) + '\n' +
+      '              印花税                      ' + f2(sTax) + '\n' +
+      '----------------------------------------------------\n' +
+      '              费用合计                    ' + f2(fee) + '\n' +
+      '              净盈亏                      ' + f2(pnl);
+    const yearDrag = Math.pow(1 - feeR, T) - 1;
+    kv(kvb, [['一来一回的费用', fee.toFixed(2) + ' 元'], ['占本金', (feeR * 100).toFixed(2) + '%'], ['回本要涨', (hi * 100).toFixed(2) + '%'], ['一年 ' + T + ' 次，费用吃掉', '<span class="dn">' + (yearDrag * 100).toFixed(1) + '%</span>']]);
+    let s;
+    if (mn.checked && bCom === 5 && buyAmt * c < 5) s = '这笔买卖太小，佣金被“最低五元”抬高了：本来按费率只要 ' + (buyAmt * c).toFixed(2) + ' 元。小额、频繁的交易，费用占比会高得吓人。';
+    else if (feeR < 0.002) s = '一来一回的费用只占本金的千分之 ' + (feeR * 1000).toFixed(1) + '，单看一次几乎可以忽略。';
+    else s = '一来一回的费用占本金的 ' + (feeR * 100).toFixed(2) + '%。';
+    s += ' 但费用是每次都收的：如果一年像这样来回 ' + T + ' 次，光费用就让本金缩水 ' + (-yearDrag * 100).toFixed(1) + '%，你选的股票得先跑赢这一截。';
+    say.textContent = s;
+  }
+  let ready = false;
+  const go = () => { if (!ready) return; P = gP(); Nh = gN(); C = gC(); G = gG(); T = gT(); draw(); };
+  const gP = slider('slP', v => v.toFixed(2) + ' 元', go);
+  const gN = slider('slN', v => v + ' 手（' + v * 100 + ' 股）', go);
+  const gC = slider('slC', v => '万分之 ' + v, go);
+  const gG = slider('slG', v => (v > 0 ? '+' : '') + v + '%', go);
+  const gT = slider('slT', v => v + ' 次', go);
+  mn.addEventListener('change', go);
+  ready = true; go();
+});
+
+
+/* ---------- 装置 2：切蛋糕 ---------- */
+dev('#cakeFig', fig => {
+  const kvb = $('#cakeKv'), say = $('#cakeSay'), PE = 15;
+  let st;
+  const reset = () => { st = {shares: 10000, mine: 100, profit: 1e6, cashCo: 0, cashMe: 0}; };
+  // 公司价值 = 利润 × 市盈率 + 账上多出来的现金
+  const val = () => st.profit * PE + st.cashCo;
+  const price = () => val() / st.shares;
+  function show(msg){
+    const p = price(), wealth = st.mine * p + st.cashMe;
+    kv(kvb, [['你的股数', st.mine.toLocaleString()], ['你占公司', (st.mine / st.shares * 100).toFixed(3) + '%'], ['每股利润', (st.profit / st.shares).toFixed(2) + ' 元'], ['股价', p.toFixed(2) + ' 元'], ['你收到的现金', st.cashMe.toFixed(0) + ' 元'], ['你的总财富', '<b style="font-size:inherit">' + wealth.toFixed(0) + ' 元</b>']]);
+    say.textContent = msg;
+  }
+  reset();
+  const w0 = () => st.mine * price() + st.cashMe;
+  $('#cakeBtns').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    const a = b.dataset.a, before = w0();
+    let m = '';
+    if (a === 'reset') { reset(); show('回到开头：一万股，每股利润一百元，股价一千五百元，你的一百股值十五万元。'); return; }
+    if (a === 'div') { const d = st.profit / 2 / st.shares; st.cashMe += d * st.mine; st.cashCo -= st.profit / 2; m = '每股分了 ' + d.toFixed(2) + ' 元，股价当天扣掉同样的数（除息）。你的财富没变，只是一部分变成了现金；以后要不要拿这笔现金再买回股票，是你的事。'; }
+    if (a === 'split') { st.shares *= 2; st.mine *= 2; m = '股数翻倍，股价减半（除权），你的财富一分没变：蛋糕还是那块，切成了两倍多块。'; }
+    if (a === 'cheap' || a === 'fair') {
+      const n = st.shares * 0.2, px = price() * (a === 'cheap' ? 0.7 : 1);
+      st.cashCo += n * px; st.shares += n;
+      m = a === 'cheap' ? '公司按市价七折卖了 20% 的新股给别人，新股东用七成的钱买到了和你一样的份额。你的股数没变，占比和财富都缩水了：这就是“摊薄”。' : '按市价增发，新股东付了公道价，钱进了公司账上。你的占比下降了，但每一股背后的东西没少，财富基本不变。增发好不好，要看这笔钱拿去干什么。';
+    }
+    if (a === 'buy') {
+      const n = st.shares * 0.1, px = price();
+      st.cashCo -= n * px; st.shares -= n;
+      m = '公司按市价买回 10% 的股份注销。你一股没卖，占比却变大了；按市价回购，财富基本不变。如果公司在股价偏低时回购，老股东就占了便宜，偏高时回购则相反。';
+    }
+    if (a === 'grow') { st.profit *= 1.1; m = '这一次蛋糕真的变大了：利润涨了 10%，在市盈率不变的假设下，股价和你的财富一起涨。上面所有按钮里，只有这一个让全体股东一起变富。'; }
+    const after = w0(), d = after - before;
+    show(m + '（这一步你的财富 ' + (Math.abs(d) < 1 ? '不变' : (d > 0 ? '多了 ' : '少了 ') + Math.abs(d).toFixed(0) + ' 元') + '。）');
+  });
+  show('回到开头：一万股，每股利润一百元，股价一千五百元，你的一百股值十五万元。');
+});
+
+
+/* ---------- 装置 3：集合竞价 ---------- */
+dev('#aucFig', fig => {
+  const BOOK = [['买', 10.05, 30], ['买', 10.02, 50], ['买', 10.00, 80], ['买', 9.98, 60], ['买', 9.95, 100],
+                ['卖', 9.94, 40], ['卖', 9.97, 50], ['卖', 10.00, 70], ['卖', 10.03, 60], ['卖', 10.06, 90]];
+  const tab = $('#aucTab'), kvb = $('#aucKv'), say = $('#aucSay');
+  let side = 0, ready = false;
+  btnRow($('#aucSide'), ['我要买', '我要卖'], 0, i => { side = i; go(); });
+  const gP = slider('aucP', v => v.toFixed(2) + ' 元', () => ready && go());
+  const gQ = slider('aucQ', v => v + ' 手', () => ready && go());
+  function match(orders){
+    const prices = [...new Set(orders.map(o => o[1]))].sort((a, b) => a - b);
+    let best = null;
+    prices.forEach(p => {
+      const bv = orders.filter(o => o[0] === '买' && o[1] >= p - 1e-9).reduce((s, o) => s + o[2], 0);
+      const sv = orders.filter(o => o[0] === '卖' && o[1] <= p + 1e-9).reduce((s, o) => s + o[2], 0);
+      const m = Math.min(bv, sv), im = Math.abs(bv - sv), d = Math.abs(p - 10);
+      if (!best || m > best.m || (m === best.m && (im < best.im || (im === best.im && d < best.d)))) best = {p, m, bv, sv, im, d};
+    });
+    return best;
+  }
+  function go(){
+    const myP = Math.round(gP() * 100) / 100, myQ = gQ(), S = side === 0 ? '买' : '卖';
+    const orders = BOOK.slice(); if (myQ > 0) orders.push([S, myP, myQ, 1]);
+    const r = match(orders), base = match(BOOK);
+    const rows = [...new Set(orders.map(o => o[1]))].sort((a, b) => b - a);
+    let h = '<thead><tr><th>价格</th><th>买单（手）</th><th>卖单（手）</th><th>此价可买</th><th>此价可卖</th><th>可成交</th></tr></thead><tbody>';
+    rows.forEach(p => {
+      const b = orders.filter(o => o[0] === '买' && Math.abs(o[1] - p) < 1e-9), s = orders.filter(o => o[0] === '卖' && Math.abs(o[1] - p) < 1e-9);
+      const cb = orders.filter(o => o[0] === '买' && o[1] >= p - 1e-9).reduce((t, o) => t + o[2], 0), cs = orders.filter(o => o[0] === '卖' && o[1] <= p + 1e-9).reduce((t, o) => t + o[2], 0);
+      const cell = arr => arr.map(o => o[3] ? '<b class="' + (o[0] === '买' ? 'up' : 'dn') + '">你 ' + o[2] + '</b>' : o[2]).join(' + ') || '';
+      const on = Math.abs(p - r.p) < 1e-9;
+      h += '<tr' + (on ? ' style="background:var(--hl)"' : '') + '><td>' + p.toFixed(2) + (on ? ' ◀ 开盘' : '') + '</td><td>' + cell(b) + '</td><td>' + cell(s) + '</td><td>' + cb + '</td><td>' + cs + '</td><td>' + Math.min(cb, cs) + '</td></tr>';
+    });
+    tab.innerHTML = h + '</tbody>';
+    let filled = 0;
+    if (myQ > 0) {
+      const ok = S === '买' ? myP >= r.p - 1e-9 : myP <= r.p + 1e-9;
+      if (ok) {
+        // 同价位按时间优先，你的单子最后到，排在别人后面
+        const better = orders.filter(o => o[0] === S && !o[3] && (S === '买' ? o[1] > myP + 1e-9 : o[1] < myP - 1e-9)).reduce((t, o) => t + o[2], 0);
+        const same = orders.filter(o => o[0] === S && !o[3] && Math.abs(o[1] - myP) < 1e-9).reduce((t, o) => t + o[2], 0);
+        filled = Math.max(0, Math.min(myQ, r.m - better - same));
+      }
+    }
+    kv(kvb, [['开盘价', r.p.toFixed(2) + ' 元'], ['成交', r.m + ' 手'], ['没有你时', base.p.toFixed(2) + ' 元 · ' + base.m + ' 手'], ['你成交了', filled + ' / ' + myQ + ' 手']]);
+    let s = '';
+    const dp = r.p - base.p;
+    if (myQ === 0) s = '你没有挂单。开盘价 ' + r.p.toFixed(2) + ' 元，是让最多股票能成交的那个价：比它便宜的卖单、比它贵的买单，全部按这一个价成交。';
+    else {
+      s = '你挂了一张' + (S === '买' ? '买' : '卖') + '单，' + myP.toFixed(2) + ' 元、' + myQ + ' 手。';
+      s += Math.abs(dp) < 1e-9 ? '开盘价没变，' : '开盘价被你' + (dp > 0 ? '推高' : '压低') + '了 ' + Math.abs(dp * 100).toFixed(0) + ' 分钱，';
+      s += filled === myQ ? '你的单子全部成交，而且成交价是开盘价，不是你挂的价。' : filled > 0 ? '你只成交了一部分：同价位的单子按先来后到，你排在后面。' : '你的单子没有成交，' + (S === '买' ? '出价低于开盘价' : '要价高于开盘价') + '，或者排在了同价位的队尾，会留到 9:30 以后继续排队。';
+      if (S === '买' && myP >= 10.06 && myQ >= 200) s += ' 挂这么大的高价买单，等于告诉所有人“我急着要”：这就是大资金能推动价格的原因，也是它们为什么要把大单拆成很多小单。';
+    }
+    say.textContent = s;
+  }
+  ready = true; go();
+});
+
+
+/* ---------- 装置 4：一只股票值多少 ---------- */
+dev('#dcfFig', fig => {
+  const svg = $('#dcSvg'), kvb = $('#dcKv'), say = $('#dcSay');
+  let ready = false;
+  function value(g1, g2, r){
+    let e = 1, v = 0; const pts = [];
+    for (let t = 1; t <= 100; t++) { e *= 1 + (t <= 10 ? g1 : g2); const pv = e / Math.pow(1 + r, t); v += pv; if (t <= 40) pts.push([t, pv]); }
+    return {v, pts};
+  }
+  function go(){
+    if (!ready) return;
+    const g1 = gG1() / 100, g2 = gG2() / 100, r = gR() / 100, P = gP();
+    const {v, pts} = value(g1, g2, r);
+    const lo = value(g1 - 0.05, g2, r).v, hi = value(g1 + 0.05, g2, r).v;
+    // 现价隐含的头十年增速
+    let a = -0.1, b = 0.8; for (let k = 0; k < 50; k++) { const m = (a + b) / 2; value(m, g2, r).v > P ? b = m : a = m; }
+    const ymax = Math.max(1.2, ...pts.map(p => p[1])) * 1.1;
+    lineChart(svg, [{name: '每年利润折回今天', color: 'var(--main)', pts, dots: false}], {xmin: 1, xmax: 40, ymin: 0, ymax, xt: [1, 10, 20, 30, 40], yt: [0, +(ymax / 2).toFixed(1), +ymax.toFixed(1)], xf: x => '第' + x + '年', yf: y => y.toFixed(1), marks: [[10, '增速换挡']], H: 200});
+    kv(kvb, [['算出来的价值', v.toFixed(1) + ' 元'], ['合理市盈率', v.toFixed(1) + ' 倍'], ['头十年增速 ±5 个点', lo.toFixed(1) + ' — ' + hi.toFixed(1) + ' 元'], ['现价 ' + P + ' 元隐含增速', (a * 100).toFixed(1) + '%/年']]);
+    let s = '按你的猜测，这只股票值 ' + v.toFixed(1) + ' 元，现在卖 ' + P + ' 元，' + (P > v * 1.15 ? '偏贵。' : P < v * 0.85 ? '偏便宜。' : '差不多。');
+    s += ' 头十年增速只要猜错正负五个点，价值就在 ' + lo.toFixed(1) + ' 到 ' + hi.toFixed(1) + ' 元之间摆动。反过来看，' + P + ' 元的价钱等于默认它头十年每年利润涨 ' + (a * 100).toFixed(1) + '%' + (a > 0.25 ? '，这是很少有公司能连续做到十年的速度。' : '。');
+    if (r - g2 < 0.04) s += ' 折现率和长期增速靠得太近，远期的利润几乎不打折，算出来的价值会被拉得很高：这正是泡沫时期常见的算法。';
+    say.textContent = s;
+  }
+  const gG1 = slider('dcG1', v => v + '%/年', go), gG2 = slider('dcG2', v => v + '%/年', go), gR = slider('dcR', v => v + '%', go), gP = slider('dcP', v => v + ' 元', go);
+  ready = true; go();
+});
+
+
+/* ---------- 装置 5：哪一张是真的 ---------- */
+dev('#walkFig', fig => {
+  const grid = $('#wkGrid6'), say = $('#wkSay2');
+  let seed = 20270104, fat = false, pick = -1, shown = false, charts = [];
+  function series(r){
+    const bars = []; let p = 10;
+    for (let i = 0; i < 120; i++) {
+      let z = gauss(r);
+      if (fat) { const u = r(); z = z / Math.sqrt(Math.max(0.15, -2 * Math.log(u) / 3)); z = clamp(z, -6, 6); }
+      const ret = z * 0.018, o = p, c = Math.max(0.5, o * (1 + ret));
+      const h = Math.max(o, c) * (1 + Math.abs(gauss(r)) * 0.006), l = Math.min(o, c) * (1 - Math.abs(gauss(r)) * 0.006);
+      bars.push({o, h, l, c}); p = c;
+    }
+    return bars;
+  }
+  // 粗糙的“形态识别”
+  function patterns(b){
+    const c = b.map(x => x.c), out = [];
+    const ma = (n, i) => { let s = 0; for (let k = i - n + 1; k <= i; k++) s += c[k]; return s / n; };
+    let cross = 0; for (let i = 21; i < c.length; i++) if (ma(5, i - 1) < ma(20, i - 1) && ma(5, i) >= ma(20, i)) cross++;
+    if (cross) out.push('金叉 ' + cross + ' 次');
+    // 双底：两个局部低点相差 3% 以内、间隔 15 天以上
+    const lows = []; for (let i = 5; i < c.length - 5; i++) { let m = true; for (let k = i - 5; k <= i + 5; k++) if (c[k] < c[i]) m = false; if (m) lows.push(i); }
+    for (let i = 0; i < lows.length; i++) for (let j = i + 1; j < lows.length; j++) if (lows[j] - lows[i] >= 15 && Math.abs(c[lows[j]] / c[lows[i]] - 1) < 0.03) { out.push('双底'); i = j = 1e9; }
+    const highs = []; for (let i = 5; i < c.length - 5; i++) { let m = true; for (let k = i - 5; k <= i + 5; k++) if (c[k] > c[i]) m = false; if (m) highs.push(i); }
+    for (let i = 0; i + 2 < highs.length; i++) { const a = c[highs[i]], h = c[highs[i + 1]], d = c[highs[i + 2]]; if (h > a * 1.03 && h > d * 1.03 && Math.abs(a / d - 1) < 0.04) { out.push('头肩顶'); break; } }
+    let run = 0, best = 0; for (let i = 1; i < c.length; i++) { run = c[i] > c[i - 1] ? run + 1 : 0; best = Math.max(best, run); }
+    if (best >= 6) out.push('连涨 ' + best + ' 天');
+    return out;
+  }
+  function make(){
+    const r = rng(seed); charts = [];
+    for (let k = 0; k < 6; k++) charts.push(series(r));
+    pick = -1; shown = false; draw();
+    say.textContent = fat ? '现在用的是“肥尾的硬币”：大部分日子很平静，偶尔一天暴涨暴跌。挑一张你觉得最像真股票的。' : '挑一张你觉得最像真股票、最有规律的。';
+  }
+  function draw(){
+    grid.innerHTML = charts.map((b, k) => '<div data-k="' + k + '"' + (k === pick ? ' class="pick"' : '') + '><small>' + String.fromCharCode(65 + k) + '</small><svg></svg><em>' + (shown ? (patterns(b).join(' · ') || '没找到形态') : '') + '</em></div>').join('');
+    $$('svg', grid).forEach((s, k) => candles(s, charts[k], {W: 300, H: 150}));
+  }
+  grid.addEventListener('click', e => { const d = e.target.closest('[data-k]'); if (!d) return; pick = +d.dataset.k; draw(); if (!shown) say.textContent = '你选了 ' + String.fromCharCode(65 + pick) + '。按“揭晓”。'; });
+  $('#wkShow').addEventListener('click', () => {
+    shown = true; draw();
+    const n = charts.reduce((s, b) => s + patterns(b).length, 0);
+    say.textContent = '六张全是假的：每一根 K 线都是抛硬币抛出来的，今天和昨天毫无关系。' + (pick >= 0 ? '你选的 ' + String.fromCharCode(65 + pick) + ' 也不例外。' : '') + ' 可是一个很粗糙的程序，在这六张图里一共找到了 ' + n + ' 个“形态”。人的眼睛更厉害，能找到更多。';
+  });
+  $('#wkNew').addEventListener('click', () => { seed += 7919; make(); });
+  $('#wkFat').addEventListener('click', e => { fat = !fat; e.target.textContent = fat ? '换回普通的硬币' : '换成肥尾的硬币'; make(); });
+  make();
+});
+
+
+/* ---------- 装置 6：消息到你手上之前 ---------- */
+dev('#newsFig', fig => {
+  const svg = $('#nwSvg'), kvb = $('#nwKv'), say = $('#nwSay');
+  const WHO = [['读新闻稿的程序', 0.002], ['机构交易员', 20], ['盯盘的人', 180], ['手机推送', 900], ['公众号和群聊', 7200], ['晚间新闻', 36000], ['亲戚聚会', 172800]];
+  let who = 3, ready = false;
+  const P0 = 10, P1 = 10.8;
+  // t 单位秒
+  function price(t, ov){
+    const reach = 1 - Math.exp(-t / 120); // 两分钟左右走完大半
+    const over = ov * (P1 - P0) * Math.exp(-t / 40000) * (1 - Math.exp(-t / 300));
+    return P0 + (P1 - P0) * reach + over;
+  }
+  function go(){
+    if (!ready) return;
+    const ov = gOv() / 100, pts = [];
+    for (let k = -3; k <= 5.4; k += 0.05) { const t = Math.pow(10, k); pts.push([k, price(t, ov)]); }
+    const t = WHO[who][1], my = price(t, ov), lx = Math.log10(t);
+    const ymax = Math.max(...pts.map(p => p[1])) + 0.1;
+    const g = lineChart(svg, [{name: '价格', color: 'var(--up)', pts}, {name: '合理价', color: 'var(--ink-3)', pts: [[-3, P1], [5.4, P1]], dash: '4 4', w: 1.2}], {xmin: -3, xmax: 5.4, ymin: 9.9, ymax, xt: [-3, 0, 1, 2, 3, 4, 5], xf: x => ({'-3': '1毫秒', 0: '1秒', 1: '10秒', 2: '1.7分', 3: '17分', 4: '2.8时', 5: '1.2天'})[x], yt: [10, 10.4, 10.8, +(ymax).toFixed(1)], yf: y => y.toFixed(1), H: 220});
+    svg.insertAdjacentHTML('beforeend', '<circle cx="' + g.X(lx) + '" cy="' + g.Y(my) + '" r="6" fill="var(--main)" stroke="var(--card)" stroke-width="2"/>' + txt(g.X(lx), g.Y(my) - 12, '你', {s: 13, w: true, c: 'var(--main)'}));
+    const left = (P1 - my) / my;
+    kv(kvb, [['你知道的时候', WHO[who][0]], ['你买进的价', my.toFixed(2) + ' 元'], ['消息总涨幅', '8.0%'], ['你还能赚', '<span class="' + (left >= 0 ? 'up' : 'dn') + '">' + pc(left) + '</span>']]);
+    let s = '';
+    if (who === 0) s = '你是第一排，几乎拿到了全部涨幅。可这一排坐的是花几亿美元买光缆、在交易所机房旁边租机位的公司。';
+    else if (left > 0.04) s = '你还能分到大半涨幅，但这一排坐的是专业交易员，他们以此为生。';
+    else if (left > 0) s = '剩下的涨幅只有 ' + (left * 100).toFixed(1) + '%，扣掉交易费所剩无几。';
+    else s = '你买在了“冲过头”的地方，等价格回落到合理价，你反而亏 ' + (-left * 100).toFixed(1) + '%。热门消息最常见的结局就是这样：最后一批听说的人，替前面的人接了货。';
+    if (ov === 0) s += '（你把过度反应调成了零：价格走到合理价就停，后来的人不亏，但也什么都赚不到。）';
+    say.textContent = s;
+  }
+  btnRow($('#nwWho'), WHO.map(w => w[0]), who, i => { who = i; go(); });
+  const gOv = slider('nwOv', v => v + '%', go);
+  ready = true; go();
+});
+
+
+/* ---------- 装置 7：三十五年和十二条政策 ---------- */
+dev('#polFig', fig => {
+  const svg = $('#polSvg'), say = $('#polSay');
+  const EX = [[1990.96, 100], [1992.39, 1429], [1992.88, 387], [1994.57, 326], [1994.70, 1053], [1996.95, 1258], [1999.38, 1059], [1999.49, 1756], [2001.45, 2245], [2005.43, 998], [2007.79, 6124], [2008.82, 1665], [2015.45, 5178], [2015.65, 2851], [2016.07, 2638], [2019.01, 2441], [2024.71, 2690], [2024.77, 3674]];
+  const pts = Object.keys(SH).map(y => [+y + 0.99, SH[y]]).concat(EX).sort((a, b) => a[0] - b[0]);
+  const EV = [
+    [1992.39, '1992.5 放开股价', '上交所取消涨跌幅限制。大盘一天从六百多点涨到一千二百多点，5 月 26 日一千四百多点，11 月跌到三百八十多点。'],
+    [1994.58, '1994.7 三大救市', '暂停新股、控制配股、扩大入市资金。上证从 7 月 29 日的三百二十多点，一个半月涨到 9 月 13 日的一千零五十多点，随后回落。'],
+    [1996.96, '1996.12 评论员文章', '12 月 16 日特约评论员文章与涨跌停制度同日开始，连续两天跌停，几天里跌了约三成。年底收于九百一十七点。'],
+    [1999.38, '1999.5 五一九', '网络股行情从一千零五十多点涨到 6 月底一千七百五十多点；6 月 15 日人民日报特约评论员文章打气。'],
+    [2001.45, '2001.6 国有股减持', '2001 年 6 月见顶二千二百四十五点。国有股减持方案引发抛售担忧，四年熊市，2005 年 6 月跌破一千点。'],
+    [2005.33, '2005.4 股权分置改革', '解决国有股、法人股不能流通的问题，被看作 2006—2007 年大牛市的起点之一。'],
+    [2007.41, '2007.5 半夜鸡叫', '印花税从千分之一提到千分之三，当天跌 6.5%，几天跌约 15%；之后又涨五个月到六千一百二十四点，再一年跌掉七成多。'],
+    [2008.72, '2008.9 印花税单边', '印花税改为只向卖方收、汇金增持，当天几乎全线涨停；10 月 28 日仍跌到一千六百六十四点。'],
+    [2015.52, '2015.7 救市', '券商出资、证金公司入市、暂停新股、限制减持、千股停牌。7 月初止跌于三千三百多点，8 月下旬又到二千八百多点。'],
+    [2016.01, '2016.1 熔断', '指数熔断实施四个交易日即暂停，1 月下旬跌到二千六百多点。'],
+    [2023.66, '2023.8 印花税减半', '印花税降到万分之五。当天高开约 5%，收盘只涨一个多点，两个月后跌到二千九百多点。'],
+    [2024.73, '2024.9 九二四', '降准降息和支持股市的新工具。从二千六百八十多点涨到 10 月 8 日开盘的三千六百七十四点；2025 年站上四千点，年末收于三千九百六十九点。']
+  ];
+  let cur = 6;
+  function draw(){
+    const L = (v) => Math.log10(v);
+    const g = lineChart(svg, [{name: '上证', color: 'var(--up)', pts: pts.map(p => [p[0], L(p[1])]), w: 2}], {xmin: 1990.8, xmax: 2026, ymin: L(90), ymax: L(7000), xt: [1991, 1995, 2000, 2005, 2010, 2015, 2020, 2025], yt: [L(100), L(300), L(1000), L(3000), L(6000)], yf: y => Math.round(Math.pow(10, y)), H: 280, L: 48});
+    let h = '';
+    EV.forEach((e, i) => {
+      const x = g.X(e[0]), on = i === cur;
+      h += '<line x1="' + x + '" x2="' + x + '" y1="' + g.T + '" y2="' + (g.H - g.B) + '" stroke="' + (on ? 'var(--main)' : 'var(--rule)') + '" stroke-width="' + (on ? 2 : 1) + '" stroke-dasharray="3 3"/>';
+      h += '<g data-i="' + i + '" style="cursor:pointer"><circle cx="' + x + '" cy="' + (g.T + 6 + (i % 2) * 16) + '" r="8" fill="' + (on ? 'var(--main)' : 'var(--card)') + '" stroke="var(--main)"/>' + txt(x, g.T + 10 + (i % 2) * 16, i + 1, {s: 10, c: on ? 'var(--paper)' : 'var(--main)', halo: false}) + '</g>';
+    });
+    svg.insertAdjacentHTML('beforeend', h);
+    $$('#polBtns button').forEach((b, i) => b.classList.toggle('on', i === cur));
+    say.innerHTML = '<b>' + (cur + 1) + '. ' + EV[cur][1] + '</b>　' + EV[cur][2];
+  }
+  btnRow($('#polBtns'), EV.map((e, i) => (i + 1) + ' ' + e[1].split(' ')[0]), cur, i => { cur = i; draw(); });
+  svg.addEventListener('click', e => { const gg = e.target.closest('[data-i]'); if (gg) { cur = +gg.dataset.i; draw(); } });
+  draw();
+});
+
+
+/* ---------- 装置 8：巴尔的摩的来信 ---------- */
+dev('#baltFig', fig => {
+  const box = $('#btBars'), kvb = $('#btKv'), say = $('#btSay');
+  let seed = 1933, ready = false;
+  function go(){
+    if (!ready) return;
+    const N = Math.round(Math.pow(10, gN())), W = gW(), S = gS() / 100, r = rng(seed);
+    // 每个人的最长连对从第一周起算：只算“从头到尾一次没错”的人数，以及高手
+    const streak = new Array(W + 1).fill(0); // streak[k] = 从第一周起连对至少 k 周的人数
+    let hits = new Array(N);
+    for (let i = 0; i < N; i++) { let k = 0; while (k < W && r() < 0.5) k++; for (let j = 0; j <= k; j++) streak[j]++; hits[i] = k; }
+    let pro = 0; while (pro < W && r() < S) pro++;
+    // 高手的总命中次数（不要求连续）
+    let proTot = 0; for (let w = 0; w < W; w++) if (r() < S) proTot++;
+    const rows = [];
+    for (let k = 1; k <= W; k++) if (k <= 6 || k === W || k % 2 === 0) rows.push(['连对 ' + k + ' 周', streak[k], '', k === W ? 'var(--main)' : '']);
+    bars(box, rows, Math.max(1, streak[1]), v => v.toLocaleString());
+    const allRight = streak[W];
+    kv(kvb, [['老师总数', N.toLocaleString()], [W + ' 周全对（纯运气）', allRight.toLocaleString() + ' 人'], ['理论值', (N / Math.pow(2, W)).toFixed(1) + ' 人'], ['高手', '从头连对 ' + pro + ' 周 · 共对 ' + proTot + '/' + W]]);
+    let s = N.toLocaleString() + ' 个毫无本事的人，连猜 ' + W + ' 周，有 ' + allRight + ' 个人一次都没错过。';
+    s += allRight > 0 ? ' 如果平台只把“全对”的人推给你，你看到的就是这 ' + allRight + ' 个“神人”。' : ' 这一次没有人全对，可只要把人数调大一点就会有。';
+    s += ' 而那个真有 ' + Math.round(S * 100) + '% 命中率的高手，从头连对了 ' + pro + ' 周' + (pro < W ? '，在“连对榜”上排不过运气好的人' : '') + '。<b>短期的成绩单分不出本事和运气，要很长、很完整的记录才行。</b>';
+    say.innerHTML = s;
+  }
+  const gN = slider('btN', v => Math.round(Math.pow(10, v)).toLocaleString() + ' 人', go);
+  const gW = slider('btW', v => v + ' 周', go);
+  const gS = slider('btS', v => v + '%', go);
+  $('#btGo').addEventListener('click', () => { seed += 101; go(); });
+  ready = true; go();
+});
+
+
+/* ---------- 装置 9：假账侦探 ---------- */
+dev('#fraudFig', fig => {
+  const tab = $('#frTab'), say = $('#frSay');
+  // [科目, 三年数字, 是否红灯, 解释]
+  const R = [
+    ['营业收入', '20 / 26 / 34', 0, '每年涨三成，单看是好事，本身不是红灯。'],
+    ['净利润', '3.0 / 4.2 / 5.9', 0, '利润涨得比收入还快，要结合下面几行看。'],
+    ['经营活动现金流净额', '2.8 / 1.5 / 0.6', 1, '利润从 3 亿涨到 5.9 亿，收进来的现金却从 2.8 亿掉到 0.6 亿：赚的“钱”没有变成现金。这是最重要的红灯。'],
+    ['应收账款', '4 / 8 / 15', 1, '收入涨了七成，应收账款涨了将近三倍：货“卖”出去了，钱没收回来。'],
+    ['存货', '5.0 / 5.5 / 6.0', 0, '随收入温和增长，正常。'],
+    ['货币资金 / 有息借款', '30·25 / 42·35 / 55·48', 1, '账上现金越来越多，借的钱也越来越多：“存贷双高”。真有五十五亿现金，为什么要借四十八亿付利息？康美的破绽就在这里。'],
+    ['毛利率（同行约 25%）', '46% / 48% / 51%', 1, '卖食品的同行毛利两成五，它五成，而且越卖越高：要么有独门绝技，要么数字有问题。'],
+    ['销售费用率', '8% / 8% / 8%', 0, '稳定，没什么可说的。'],
+    ['现金分红', '0.9 / 1.2 / 1.6', 0, '分红本身是好事，不是红灯；不过现金流这么少还分这么多，钱从哪来，值得再问一句。'],
+    ['会计师事务所', '甲所 / 乙所 / 丙所', 1, '三年换了三家审计机构，常见的原因是前一家不愿意签“标准无保留意见”。'],
+    ['大股东股权质押比例', '30% / 60% / 85%', 1, '大股东把八成五的股票押给了别人借钱：他很缺钱，股价一跌就可能被强平，有强烈的动机“维护”股价和利润。']
+  ];
+  function draw(show){
+    tab.innerHTML = '<thead><tr><th>可疑？</th><th>科目</th><th>三年（亿元）</th>' + (show ? '<th>揭晓</th>' : '') + '</tr></thead><tbody>' + R.map((r, i) => {
+      const ck = $('#fr' + i) ? $('#fr' + i).checked : false;
+      const mark = show ? (r[2] ? (ck ? '✔ 抓到了' : '✘ 漏了') : (ck ? '△ 冤枉了' : '')) : '';
+      return '<tr' + (show && r[2] ? ' style="background:var(--hl)"' : '') + '><td><input type="checkbox" id="fr' + i + '"' + (ck ? ' checked' : '') + (show ? ' disabled' : '') + '></td><td>' + r[0] + '</td><td style="font-family:var(--f-mono);white-space:nowrap">' + r[1] + '</td>' + (show ? '<td style="font-size:13.5px;line-height:1.6;min-width:14em"><b>' + mark + '</b> ' + r[3] + '</td>' : '') + '</tr>';
+    }).join('') + '</tbody>';
+  }
+  draw(false);
+  $('#frGo').addEventListener('click', () => {
+    const picks = R.map((r, i) => $('#fr' + i).checked);
+    const hit = R.filter((r, i) => r[2] && picks[i]).length, miss = R.filter((r, i) => r[2] && !picks[i]).length, fp = R.filter((r, i) => !r[2] && picks[i]).length, tot = R.filter(r => r[2]).length;
+    draw(true);
+    say.className = 'say ' + (hit >= 5 && fp <= 1 ? 'ok' : 'bad');
+    say.textContent = '六个红灯，你抓到 ' + hit + ' 个，漏了 ' + miss + ' 个，冤枉了 ' + fp + ' 个正常的科目。' + (hit === tot && fp === 0 ? '全对。真实的年报里，这些数字分散在几十页里，要自己去找、去对。' : '最关键的一行是“经营活动现金流”：利润可以做，现金很难做。') + ' 这家公司的所有数字放在一起，像极了几起真实的造假案；可单看利润表，它是一只完美的成长股。';
+  });
+  $('#frRe').addEventListener('click', () => { R.forEach((r, i) => { const c = $('#fr' + i); if (c) c.checked = false; }); draw(false); say.className = 'say'; say.textContent = ''; });
+});
+
+
+/* ---------- 装置 10：一千个散户的一年 ---------- */
+dev('#crowdFig', fig => {
+  const svg = $('#crSvg'), kvb = $('#crKv'), say = $('#crSay');
+  let seed = 2027, ready = false;
+  function go(){
+    if (!ready) return;
+    const M = gM() / 100, K = gK(), C = gC() / 100, r = rng(seed), N = 1000, vals = [];
+    for (let i = 0; i < N; i++) {
+      // 不交易的人拿到市场收益加一点个股差异；每次交易带来一个独立的随机“运气”
+      let x = M + gauss(r) * 0.12;
+      const luck = Math.sqrt(K) * 0.03 * gauss(r);
+      x += luck - K * C;
+      vals.push(Math.max(-0.95, x));
+    }
+    vals.sort((a, b) => a - b);
+    const beat = vals.filter(v => v > M).length, top = vals[N - 1], med = vals[N / 2], loss = vals.filter(v => v < 0).length;
+    const lo = Math.max(-1, Math.min(...vals, M) - 0.05), hi = Math.max(...vals, M) + 0.05, bins = 30, cnt = new Array(bins).fill(0);
+    vals.forEach(v => cnt[clamp(Math.floor((v - lo) / (hi - lo) * bins), 0, bins - 1)]++);
+    const W = 600, H = 220, L = 30, B = 28, mx = Math.max(...cnt), X = v => L + (v - lo) / (hi - lo) * (W - L - 10), bw = (W - L - 10) / bins;
+    let g = '';
+    cnt.forEach((c, i) => { const v = lo + (i + 0.5) / bins * (hi - lo); g += '<rect x="' + (L + i * bw + 1) + '" y="' + (H - B - c / mx * (H - B - 14)) + '" width="' + (bw - 2) + '" height="' + (c / mx * (H - B - 14)) + '" fill="' + (v >= M ? 'var(--up)' : 'var(--dn)') + '" opacity=".75"/>'; });
+    g += '<line x1="' + X(M) + '" x2="' + X(M) + '" y1="8" y2="' + (H - B) + '" stroke="var(--main)" stroke-width="2"/>' + txt(X(M) + 4, 18, '市场 ' + pc(M, 0), {s: 12, a: 'start', c: 'var(--main)', w: true});
+    g += '<line x1="' + L + '" x2="' + (W - 10) + '" y1="' + (H - B) + '" y2="' + (H - B) + '" stroke="var(--ink)"/>';
+    [lo, (lo + hi) / 2, hi].forEach(v => g += txt(X(v), H - 9, pc(v, 0), {s: 11, c: 'var(--ink-3)', halo: false}));
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+    kv(kvb, [['跑赢市场', beat + ' 人'], ['亏钱', loss + ' 人'], ['中位数', pc(med)], ['最好的那个人', '<span class="up">' + pc(top) + '</span>']]);
+    let s = '一千个毫无本事的人，' + beat + ' 个跑赢了市场。';
+    s += K > 0 ? ' 交易费用平均扣掉了 ' + (K * C * 100).toFixed(1) + ' 个百分点，所以中位数比市场低。' : ' 一次都不交易，大家只是拿着各自的股票，中位数接近市场。';
+    s += ' 最好的那个人赚了 ' + pc(top) + '：' + (K >= 40 ? '他交易得越多，运气的波动越大，第一名就越耀眼，可他和最后一名一样没有本事。' : '如果他去开一个直播间，会有很多人跟。');
+    say.textContent = s;
+  }
+  const gM = slider('crM', v => (v > 0 ? '+' : '') + v + '%', go), gK = slider('crK', v => v + ' 次', go), gC = slider('crC', v => v.toFixed(2) + '%', go);
+  $('#crRe').addEventListener('click', () => { seed += 17; go(); });
+  ready = true; go();
+});
+
+
+/* ---------- 装置 11：一个百分点的三十年 ---------- */
+dev('#feeFig', fig => {
+  const svg = $('#feSvg'), kvb = $('#feKv'), say = $('#feSay');
+  let ready = false;
+  function go(){
+    if (!ready) return;
+    const r = gR() / 100, a = gA() / 100, b = gB() / 100, gap = gG() / 100, P = 1e5;
+    const s0 = [], s1 = [], s2 = [], s3 = [];
+    for (let t = 0; t <= 30; t++) { s0.push([t, P * Math.pow(1 + r, t)]); s1.push([t, P * Math.pow(1 + r - a, t)]); s2.push([t, P * Math.pow(1 + r - b, t)]); s3.push([t, P * Math.pow(1 + r - b - gap, t)]); }
+    const ymax = s0[30][1] * 1.05;
+    lineChart(svg, [
+      {name: '不收费', color: 'var(--ink-3)', pts: s0, dash: '4 4', w: 1.4},
+      {name: '便宜', color: 'var(--up)', pts: s1},
+      {name: '贵', color: 'var(--och)', pts: s2},
+      {name: '贵+情绪', color: 'var(--dn)', pts: s3}
+    ], {xmin: 0, xmax: 30, ymin: 0, ymax, xt: [0, 10, 20, 30], xf: x => x + '年', yt: [0, ymax / 2, ymax].map(v => Math.round(v / 1e4) * 1e4), yf: v => fmt(v), H: 240, L: 52});
+    const A = s1[30][1], B = s2[30][1], G = s3[30][1], Z = s0[30][1];
+    kv(kvb, [['不收费', yuan(Z)], ['便宜的基金', '<span class="up">' + yuan(A) + '</span>'], ['贵的基金', yuan(B)], ['贵的 + 情绪缺口', '<span class="dn">' + yuan(G) + '</span>']]);
+    say.textContent = '三十年后，便宜的那只比贵的多出 ' + yuan(A - B) + '，贵的那只最后只有便宜那只的 ' + Math.round(B / A * 100) + '%。' + (gap > 0 ? ' 再加上每年 ' + (gap * 100).toFixed(2) + ' 个点的情绪缺口，只剩 ' + Math.round(G / A * 100) + '%。' : '') + ' 费用和情绪拿走的，都是复利里最后、最大的那几年。';
+  }
+  const gR = slider('feR', v => v + '%', go), gA = slider('feA', v => v.toFixed(2) + '%/年', go), gB = slider('feB', v => v.toFixed(1) + '%/年', go), gG = slider('feG', v => v.toFixed(2) + '%/年', go);
+  ready = true; go();
+});
+
+
+/* ---------- 装置 12：一次买进，还是每年买一点 ---------- */
+dev('#dcaFig', fig => {
+  const svg = $('#dcaSvg'), kvb = $('#dcaKv'), say = $('#dcaSay'), ck = $('#dcaDiv');
+  const DATA = [SH, SP], NAME = ['上证综指', '标普 500'];
+  let idx = 0, ready = false;
+  function go(){
+    if (!ready) return;
+    const d = DATA[idx], y0 = gY(), END = 2025, n = END - y0 + 1, div = ck.checked ? 0.02 : 0;
+    const total = n * 1; // 每份 1 万元，共 n 份
+    // 一次买进
+    let lump = total, sh = 0, units = 0, invested = 0;
+    const pL = [], pD = [], pI = [];
+    for (let y = y0; y <= END; y++) {
+      if (y === y0) sh = lump / d[y]; else sh *= 1 + div;
+      units = (y === y0 ? 0 : units * (1 + div)) + 1 / d[y]; invested += 1;
+      pL.push([y, sh * d[y]]); pD.push([y, units * d[y]]); pI.push([y, invested]);
+    }
+    const L = pL[pL.length - 1][1], D = pD[pD.length - 1][1];
+    const ymax = Math.max(...pL.map(p => p[1]), ...pD.map(p => p[1]), total) * 1.08;
+    lineChart(svg, [
+      {name: '投入', color: 'var(--ink-3)', pts: pI, dash: '3 3', w: 1.4},
+      {name: '一次买进', color: 'var(--och)', pts: pL},
+      {name: '每年一份', color: 'var(--up)', pts: pD}
+    ], {xmin: y0, xmax: END, ymin: 0, ymax, xt: [y0, Math.round((y0 + END) / 2), END], yt: [0, Math.round(ymax / 2), Math.round(ymax)], yf: v => v + '万', H: 230});
+    kv(kvb, [['总共投入', total + ' 万'], ['一次买进 → 2025', '<span class="' + (L >= total ? 'up' : 'dn') + '">' + L.toFixed(1) + ' 万</span>'], ['每年一份 → 2025', '<span class="' + (D >= total ? 'up' : 'dn') + '">' + D.toFixed(1) + ' 万</span>'], ['谁更多', L > D ? '一次买进' : '每年一份']]);
+    let s = NAME[idx] + '：' + y0 + ' 年底起，一共投入 ' + total + ' 万。一次买进，2025 年底剩 ' + L.toFixed(1) + ' 万；每年买一份，剩 ' + D.toFixed(1) + ' 万。';
+    s += L > D ? ' 这一段里市场整体在涨，越早把钱放进去越好，一次买进胜出：这是更常见的情况。' : ' 起点正好在高处，分批买进摊低了成本，胜出了。可这要事后才知道。';
+    say.textContent = s;
+  }
+  btnRow($('#dcaIdx'), NAME, 0, i => { idx = i; go(); });
+  const gY = slider('dcaY', v => v + ' 年', go);
+  ck.addEventListener('change', go);
+  ready = true; go();
+});
+
+
+/* ---------- 装置 13：你的损失厌恶 ---------- */
+dev('#laFig', fig => {
+  const box = $('#laQs'), say = $('#laSay');
+  const WIN = [100, 150, 200, 250, 300, 400];
+  function draw(){
+    box.innerHTML = WIN.map((w, i) => '<div class="ctl" style="grid-template-columns:minmax(0,1fr) auto"><span>反面输 100，正面赢 <b>' + w + '</b> 元</span><span class="btns" style="margin:0" data-i="' + i + '"><button class="btn" data-v="1">玩</button><button class="btn" data-v="0">不玩</button></span></div>').join('') +
+      '<div class="ctl" style="grid-template-columns:minmax(0,1fr)"><span>你急用一笔钱，要卖掉一只股票：A 比买入价涨了 30%，B 比买入价跌了 30%，两家公司的前景你判断差不多。卖哪只？</span><span class="btns" style="margin:0" data-i="s"><button class="btn" data-v="A">卖 A（赚的）</button><button class="btn" data-v="B">卖 B（亏的）</button></span></div>';
+  }
+  const ans = {};
+  box.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    const g = b.parentNode; ans[g.dataset.i] = b.dataset.v;
+    $$('button', g).forEach(x => x.classList.toggle('on', x === b));
+  });
+  $('#laGo').addEventListener('click', () => {
+    const n = WIN.filter((w, i) => ans[i] != null).length;
+    if (n < WIN.length) { say.className = 'say'; say.textContent = '还有 ' + (WIN.length - n) + ' 个赌局没选。'; return; }
+    const acc = WIN.filter((w, i) => ans[i] === '1');
+    let s;
+    if (!acc.length) s = '六个赌局你一个都没玩，连赢四百输一百都不玩：你的损失厌恶系数大于 4，或者你根本不想在这件事上冒险。对一笔输不起的钱，这完全合理。';
+    else {
+      const lam = Math.min(...acc) / 100;
+      s = '你最低在“赢 ' + Math.min(...acc) + '、输 100”时愿意玩，损失厌恶系数大约是 ' + lam.toFixed(1) + '。';
+      s += lam <= 1 ? ' 你几乎没有损失厌恶，在期望为零的赌局里也愿意玩：小心，这在股市里通常表现为交易太多。' : lam < 2 ? ' 比大多数人更能承受损失。' : lam <= 2.5 ? ' 和研究里大多数人差不多：特沃斯基和卡尼曼 1992 年估计的平均值约为 2.25。' : ' 比大多数人更怕亏。';
+      const incons = WIN.some((w, i) => ans[i] === '0' && w > Math.min(...acc));
+      if (incons) s += ' 另外，你在更划算的赌局里反而选了“不玩”：人在一连串选择里常常并不一致，这也是真实的。';
+    }
+    if (ans.s === 'A') s += ' 卖股票那道题你选了卖赚的：这正是处置效应。在“前景差不多”的前提下，两只股票的未来和你的买入价毫无关系，卖哪只本该无所谓，可大多数人会本能地先卖赚的、留着亏的“等回本”。';
+    else if (ans.s === 'B') s += ' 卖股票那道题你选了卖亏的：奥迪恩的研究里，被人们留下的亏钱股此后平均表现更差，所以这通常是更好的选择；可真到自己的账户里，大多数人做不到。';
+    say.className = 'say ok'; say.textContent = s;
+  });
+  $('#laRe').addEventListener('click', () => { Object.keys(ans).forEach(k => delete ans[k]); draw(); say.className = 'say'; say.textContent = ''; });
+  draw();
+});
+
+
+/* ---------- 装置 14：借来的钱能撑多久 ---------- */
+dev('#levFig', fig => {
+  const svg = $('#lvSvg'), kvb = $('#lvKv'), say = $('#lvSay');
+  let seed = 2015, ready = false;
+  function go(){
+    if (!ready) return;
+    const Lv = gL(), mu = gM() / 100, sig = gS() / 100, rb = gR() / 100, N = 1000, D = 250, r = rng(seed);
+    const dm = mu / D - sig * sig / (2 * D), ds = sig / Math.sqrt(D), MM = 0.15;
+    let dead = 0, finals = [], paths = [], noLev = [], deadLeft = 0, deadUp = 0;
+    for (let i = 0; i < N; i++) {
+      let P = 1, debt = Lv - 1, sh = Lv, eq = 1, out = -1; const pp = [[0, 1]];
+      for (let t = 1; t <= D; t++) {
+        P *= Math.exp(dm + ds * gauss(r));
+        if (out >= 0) continue;
+        debt *= 1 + rb / D;
+        eq = sh * P - debt;
+        if (Lv > 1 && eq < MM * sh * P) { out = t; eq = Math.max(0, eq); if (i < 30) pp.push([t, eq]); continue; }
+        if (i < 30 && t % 5 === 0) pp.push([t, eq]);
+      }
+      if (out >= 0) { dead++; deadLeft += eq; if (P > 1) deadUp++; }
+      finals.push(out >= 0 ? eq : eq);
+      noLev.push(P);
+      if (i < 30) paths.push({pp, out});
+    }
+    const ymax = Math.min(6, Math.max(2, pct(finals, 0.97) * 1.1));
+    const ser = paths.map(p => ({color: p.out >= 0 ? 'var(--dn)' : 'var(--up)', pts: p.pp.map(q => [q[0], Math.min(q[1], ymax)]), w: 1, dots: false}));
+    const g = lineChart(svg, ser, {xmin: 0, xmax: D, ymin: 0, ymax, xt: [0, 50, 100, 150, 200, 250], xf: x => x + '天', yt: [0, 1, 2, ymax > 3 ? Math.floor(ymax) : null].filter(v => v != null), yf: v => v === 1 ? '本金' : v + '倍', H: 230});
+    let h = '';
+    paths.forEach(p => { if (p.out >= 0) { const last = p.pp[p.pp.length - 1]; h += '<text x="' + g.X(last[0]) + '" y="' + (g.Y(Math.min(last[1], ymax)) + 4) + '" font-size="12" text-anchor="middle" fill="var(--dn)" font-weight="700">×</text>'; } });
+    h += '<line x1="' + g.L + '" x2="' + (g.W - g.R) + '" y1="' + g.Y(1) + '" y2="' + g.Y(1) + '" stroke="var(--ink-3)" stroke-dasharray="3 3"/>';
+    svg.insertAdjacentHTML('beforeend', h);
+    const med = pct(finals, 0.5), medNo = pct(noLev, 0.5), avgLeft = dead ? deadLeft / dead : 0;
+    kv(kvb, [['被强平', '<span class="dn">' + (dead / N * 100).toFixed(1) + '%</span>'], ['一年后中位数', (med * 100 - 100).toFixed(0) + '%'], ['不加杠杆的中位数', (medNo * 100 - 100).toFixed(0) + '%'], ['被强平的人平均剩下', dead ? (avgLeft * 100).toFixed(0) + '% 本金' : '—']]);
+    let s = Lv === 1 ? '不加杠杆：没有平仓线，一千种走势里没有人被强制出局，最差的情况也只是账面亏损，你可以选择等。' : Lv + ' 倍杠杆：一千种走势里，有 ' + dead + ' 种在一年之内被强制平仓。';
+    if (Lv > 1 && dead) s += ' 被平仓的 ' + dead + ' 种走势里，有 ' + deadUp + ' 种到年底市场其实是涨的：方向看对了，人已经不在场上。';
+    if (Lv > 1 && rb > 0) s += ' 借款利息每年吃掉约 ' + ((Lv - 1) * rb * 100).toFixed(1) + ' 个百分点的本金收益。';
+    say.textContent = s;
+  }
+  const gL = slider('lvL', v => v + ' 倍', go), gM = slider('lvM', v => (v > 0 ? '+' : '') + v + '%', go), gS = slider('lvS', v => v + '%', go), gR = slider('lvR', v => v + '%', go);
+  $('#lvRe').addEventListener('click', () => { seed += 31; go(); });
+  ready = true; go();
+});
+
+
+/* ---------- 装置 15：溢价和汇率吃掉多少 ---------- */
+dev('#qdFig', fig => {
+  const kvb = $('#qdKv'), say = $('#qdSay');
+  let ready = false;
+  function go(){
+    if (!ready) return;
+    const pb = gB() / 100, ps = gS() / 100, Y = gY(), r = gR() / 100, fx = gF() / 100, fee = 0.008;
+    const idx = Math.pow(1 + r, Y) - 1; // 指数本身（美元）
+    const nav = Math.pow(1 + r - fee, Y) * (1 - fx); // 人民币计的净值倍数
+    const mine = nav * (1 + ps) / (1 + pb) - 1;
+    const premLoss = (1 + ps) / (1 + pb) - 1;
+    // 溢价损失相当于几年的指数涨幅
+    const yrs = r > 0 ? Math.log(1 / (1 + premLoss)) / Math.log(1 + r) : null;
+    kv(kvb, [['指数本身（美元）', '<span class="' + (idx >= 0 ? 'up' : 'dn') + '">' + pc(idx) + '</span>'], ['溢价变化', '<span class="' + (premLoss >= 0 ? 'up' : 'dn') + '">' + pc(premLoss) + '</span>'], ['汇率', '<span class="' + (fx <= 0 ? 'up' : 'dn') + '">' + pc(-fx) + '</span>'], ['你的人民币收益', '<b style="font-size:inherit" class="' + (mine >= 0 ? 'up' : 'dn') + '">' + pc(mine) + '</b>']]);
+    let s = '指数 ' + Y + ' 年涨了 ' + pc(idx) + '，你最后拿到 ' + pc(mine) + '。';
+    if (premLoss < -0.005) s += ' 买进时 ' + Math.round(pb * 100) + '% 的溢价、卖出时只剩 ' + Math.round(ps * 100) + '%，这一项就让你亏 ' + pc(-premLoss).slice(1) + (yrs && yrs > 0 ? '，相当于指数大约 ' + yrs.toFixed(1) + ' 年的涨幅' : '') + '。';
+    if (premLoss > 0.005) s += ' 你卖出时的溢价比买进时还高，额外赚了一笔：这是运气，溢价不会一直扩大。';
+    if (fx > 0) s += ' 人民币升值了 ' + Math.round(fx * 100) + '%，美元资产换回来的人民币变少。';
+    if (fx < 0) s += ' 人民币贬值了 ' + Math.round(-fx * 100) + '%，美元资产换回来的人民币变多。';
+    say.textContent = s;
+  }
+  const gB = slider('qdB', v => v + '%', go), gS = slider('qdS', v => v + '%', go), gY = slider('qdY', v => v + ' 年', go), gR = slider('qdR', v => (v > 0 ? '+' : '') + v + '%', go), gF = slider('qdF', v => v === 0 ? '不变' : (v > 0 ? '升值 ' + v + '%' : '贬值 ' + (-v) + '%'), go);
+  ready = true; go();
+});
+
+
+/* ---------- 装置 16：一万个新币的一年 ---------- */
+dev('#coinFig', fig => {
+  const box = $('#cnBars'), kvb = $('#cnKv'), say = $('#cnSay');
+  let seed = 2008, ready = false;
+  function go(){
+    if (!ready) return;
+    const pd = gD() / 100, vol = gV() / 100, n = gN(), r = rng(seed), N = 10000;
+    const ms = vol / Math.sqrt(12), drift = -ms * ms / 2; // 平均不涨不跌的波动
+    const vals = [];
+    for (let i = 0; i < N; i++) {
+      let v = 1;
+      for (let m = 0; m < 12; m++) { if (r() < pd) { v = 0; break; } v *= Math.exp(drift + ms * gauss(r)); }
+      vals.push(v);
+    }
+    const dead = vals.filter(v => v === 0).length, x10 = vals.filter(v => v >= 10).length, x50 = vals.filter(v => v >= 50).length, half = vals.filter(v => v > 0 && v < 0.5).length, up = vals.filter(v => v >= 1).length;
+    const mine = []; for (let k = 0; k < n; k++) mine.push(vals[Math.floor(r() * N)]);
+    const myV = mine.reduce((a, b) => a + b, 0) / n;
+    bars(box, [['归零', dead, '项目跑路、没人交易', 'var(--ink-3)'], ['还在但跌了一半以上', half, '', 'var(--dn)'], ['回本或赚了', up, '', 'var(--up)'], ['翻了十倍以上', x10, '', 'var(--main)'], ['翻了五十倍以上', x50, '', 'var(--main)']], N, v => v.toLocaleString());
+    kv(kvb, [['一年后归零', (dead / N * 100).toFixed(0) + '%'], ['翻十倍以上', x10 + ' 个'], ['你买的 ' + n + ' 个', mine.map(v => v === 0 ? '0' : v.toFixed(1)).join(' · ')], ['你的本金变成', '<span class="' + (myV >= 1 ? 'up' : 'dn') + '">' + (myV * 100).toFixed(0) + '%</span>']]);
+    let s = '一万个新币，一年后 ' + dead.toLocaleString() + ' 个归零，' + x10 + ' 个翻了十倍以上。';
+    s += ' 你随机买了 ' + n + ' 个，最后剩下本金的 ' + (myV * 100).toFixed(0) + '%。';
+    s += x10 > 0 ? ' 那 ' + x10 + ' 个十倍币的持有者会写帖子、拍视频、劝室友进场；归零的那 ' + dead.toLocaleString() + ' 个，没有人讲。你在网上看到的，几乎全是前者。' : '';
+    say.textContent = s;
+  }
+  const gD = slider('cnD', v => v + '%', go), gV = slider('cnV', v => v + '%', go), gN = slider('cnN', v => v + ' 个', go);
+  $('#cnRe').addEventListener('click', () => { seed += 13; go(); });
+  ready = true; go();
+});
+
+
+/* ---------- 装置 17：本金、存钱和收益率 ---------- */
+dev('#learnFig', fig => {
+  const svg = $('#lnSvg'), kvb = $('#lnKv'), say = $('#lnSay');
+  let ready = false;
+  const fv = (P, S, r, Y) => { const m = r / 12; let v = P; const pts = [[0, v]]; for (let k = 1; k <= Y * 12; k++) { v = v * (1 + m) + S; if (k % 12 === 0) pts.push([k / 12, v]); } return pts; };
+  function go(){
+    if (!ready) return;
+    const P = gP() * 1e4, S = gS(), r = gR() / 100, Y = gY();
+    const base = fv(P, S, r, Y), hi = fv(P, S, r + 0.02, Y), more = fv(P, S + 1000, r, Y);
+    const B = base[Y][1], H = hi[Y][1], M = more[Y][1], put = P + S * 12 * Y;
+    const ymax = Math.max(H, M) * 1.08;
+    lineChart(svg, [
+      {name: '基准', color: 'var(--ink-2)', pts: base},
+      {name: '收益率+2点', color: 'var(--och)', pts: hi, dash: '5 3'},
+      {name: '每月多存一千', color: 'var(--up)', pts: more}
+    ], {xmin: 0, xmax: Y, ymin: 0, ymax, xt: [0, Math.round(Y / 2), Y], xf: x => x + '年', yt: [0, ymax / 2, ymax], yf: v => fmt(v), H: 220, L: 52});
+    kv(kvb, [['自己投进去的', yuan(put)], ['基准：' + Y + ' 年后', yuan(B)], ['收益率多 2 个点', '+' + yuan(H - B)], ['每月多存一千', '+' + yuan(M - B)]]);
+    const win = (M - B) > (H - B) ? '每月多存一千块' : '收益率多两个点';
+    let s = Y + ' 年后，' + win + '多出来的更多。';
+    s += ' 基准情况下，最后的 ' + yuan(B) + ' 里，' + Math.round(put / B * 100) + '% 是你自己存进去的，只有 ' + Math.round((B - put) / B * 100) + '% 是收益。';
+    s += (M - B) > (H - B) ? ' 本金小、时间短的时候，钱主要是“存”出来的，不是“赚”出来的；而多存一千块是你能做主的，多两个点收益率不是。' : ' 本金大、时间长以后，收益率的作用开始超过存钱：复利需要时间和本金一起才能发力。';
+    say.textContent = s;
+  }
+  const gP = slider('lnP', v => v + ' 万', go), gS = slider('lnS', v => v.toLocaleString() + ' 元', go), gR = slider('lnR', v => v + '%', go), gY = slider('lnY', v => v + ' 年', go);
+  ready = true; go();
+});
+
+})();
+
+</script>
+</body>
+</html>

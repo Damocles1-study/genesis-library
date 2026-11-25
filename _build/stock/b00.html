@@ -1,0 +1,54 @@
+
+<!-- ============ 封面 · 第二部 ============ -->
+<section class="hero" data-vol="第二部" id="top">
+  <div class="wide">
+    <div class="eyebrow">RED &amp; GREEN · 散 · 费 · 指 · 心 · 杠 · 外 · 币 · 学 · 投资创世记</div>
+    <h1>红与绿<span class="sm">投资创世记</span></h1>
+    <span class="part">第二部 · 手</span>
+    <p class="lead">第一部讲的是牌桌：价格怎样撮合，消息、政策和嘴怎样推着它走，庄家怎样让它走错。结论是，在“谁先知道”的比赛里，普通人不在前排。</p>
+    <p class="lead">第二部轮到你自己下场。先看清你坐在哪个位置：两亿五千万个账户里，散户整体是赚是亏，钱被谁拿走了（卷三 · 场）；再看几条具体的路：借钱炒股、去香港开户买美股、币圈，以及一个新手第一年到底该怎样交学费（卷四 · 路）。</p>
+    <p class="lead">这一部比第一部更“近”，也更要说清楚一句话：<em>书里只讲机制、规则和历史上的教训，不推荐任何股票、基金、平台或币种，不替任何人做决定</em>。方远在这一部里做的每一个选择，都只是一个虚构的人在那个处境下的选择。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig" id="gapFig">
+      <div class="fig-label">封面装置</div>
+      <h4>一年的收益，是怎样被一点一点拆掉的</h4>
+      <p class="how">假设市场整体一年涨了某个数。一个散户最后拿到手的，要先扣掉交易费用，再扣掉“追涨杀跌”的择时损失，选股则是一场扣完费用后平均为负的比赛。拖动滑块，看看从“市场赚的”到“你赚的”之间隔着什么。</p>
+      <div class="ctl"><span>市场一年涨</span><input type="range" id="gpM" min="-20" max="30" step="1" value="8"><output id="gpMO"></output></div>
+      <div class="ctl"><span>一年换手几遍</span><input type="range" id="gpT" min="0" max="30" step="0.5" value="5"><output id="gpTO"></output></div>
+      <div class="ctl"><span>每换一遍的成本</span><input type="range" id="gpC" min="0.05" max="1" step="0.05" value="0.3"><output id="gpCO"></output></div>
+      <div class="ctl"><span>追涨杀跌的程度</span><input type="range" id="gpB" min="0" max="10" step="1" value="4"><output id="gpBO"></output></div>
+      <svg id="gpSvg"></svg>
+      <div class="say" id="gpSay"></div>
+      <p class="figcap">示意模型：“换手一遍”指把全部持仓卖掉再买一遍；每遍成本含佣金、印花税和买卖价差、冲击成本，粗略取 0.1%—1%。“追涨杀跌的程度”每档按每年少赚约 0.5 个百分点粗算，研究里常见的“行为缺口”在每年零点几到两三个百分点之间（第十章、第十二章）。选股这一项只画了平均值：有人赚有人亏，平均起来扣完费用是负的。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>这一部回答的问题</h3>
+    <ul class="qmap">
+      <li>散户整体是赚是亏？“七亏二平一赚”是真的吗？<a href="#c9">散</a></li>
+      <li>交易越勤越好吗？谁赚走了我的钱？<a href="#c9">散</a></li>
+      <li>基金经理、基金的费用到底吃掉多少？主动基金值不值？<a href="#c10">费</a></li>
+      <li>为什么基金赚钱，基民不赚钱？<a href="#c10">费</a></li>
+      <li>指数基金是什么？定投真能“微笑”吗？<a href="#c11">指</a></li>
+      <li>上证指数为什么不能代表 A 股？<a href="#c11">指</a></li>
+      <li>为什么亏的拿着、赚的先卖？为什么总觉得自己比别人强？<a href="#c12">心</a></li>
+      <li>融资、配资、期货、期权：借钱炒股会怎样？<a href="#c13">杠</a></li>
+      <li>新手拿 A 股练手，还是办港卡买美股？现在还能开吗？<a href="#c14">外</a></li>
+      <li>纳指 ETF 为什么溢价？买美股要交什么税？<a href="#c14">外</a></li>
+      <li>虚拟币要不要碰？它在中国到底合不合法？<a href="#c15">币</a></li>
+      <li>第一笔本金多少合适？模拟盘有用吗？第一年该做什么？<a href="#c16">学</a></li>
+    </ul>
+
+    <div class="partnav">
+      <a href="./"><span class="k">第一部</span><b>盘</b><small>序幕 + 卷一 起 + 卷二 声 · 市场是怎么回事 · 九章</small></a>
+      <a href="two.html" class="on"><span class="k">第二部</span><b>手</b><small>卷三 场 + 卷四 路 · 自己下场 · 八章</small></a>
+      <a data-c="c17" href="three.html"><span class="k">第三部</span><b>花</b><small>卷五 序 + 卷六 苦与乐 + 尾声 · 钱拿来干什么 · 八章</small></a>
+    </div>
+
+    <h3>全书目录</h3>
+  </div>
+  <div class="wide"><ol class="toc" id="toc"></ol></div>
+</section>

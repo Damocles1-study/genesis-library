@@ -1645,7 +1645,7 @@ function slider(id, f, cb){ const r = $('#' + id), o = $('#' + id + 'O'); const 
 
 /* ---------- 全书目录（三个网页共用） ---------- */
 const PAGE = /three\.html/.test(location.pathname) ? 3 : /two\.html/.test(location.pathname) ? 2 : 1;
-const READY = 1; // 已经写好的部数
+const READY = 2; // 已经写好的部数
 const PURL = {1: './', 2: 'two.html', 3: 'three.html'};
 const TOC = [
   {p: 1, t: '第一部 · 盘 —— 市场是怎么回事'},
@@ -1829,6 +1829,44 @@ dev('#triFig', fig => {
   divCk.addEventListener('change', draw);
   svg.addEventListener('click', e => { const r = e.target.closest('rect'); if (!r) return; sel = [+r.dataset.a, +r.dataset.b]; draw(); });
   draw();
+});
+
+
+/* ---------- 第二部封面装置：一年的收益是怎样被拆掉的 ---------- */
+dev('#gapFig', fig => {
+  const svg = $('#gpSvg'), say = $('#gpSay');
+  let ready = false;
+  function go(){
+    if (!ready) return;
+    const M = gM(), T = gT(), C = gC(), B = gB();
+    const fee = T * C, beh = B * 0.5, pick = T * 0.15; // 选股：换手越多，与更快的对手交易越多，平均越吃亏（示意）
+    const steps = [['市场涨', M, 'm'], ['交易费用', -fee, 'd'], ['追涨杀跌', -beh, 'd'], ['选股（平均）', -pick, 'd'], ['你拿到', M - fee - beh - pick, 'm']];
+    const W = 600, H = 250, L = 40, R = 10, T0 = 16, B0 = 40;
+    const vals = [0, M, M - fee, M - fee - beh, M - fee - beh - pick];
+    const lo = Math.min(0, ...vals) - 2, hi = Math.max(0, ...vals) + 2;
+    const Y = v => T0 + (1 - (v - lo) / (hi - lo)) * (H - T0 - B0), bw = (W - L - R) / steps.length;
+    let g = '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + Y(0) + '" y2="' + Y(0) + '" stroke="var(--ink)" stroke-width="1.2"/>';
+    let run = 0;
+    steps.forEach((s, i) => {
+      const x = L + i * bw + bw * 0.15, w = bw * 0.7;
+      let a, b;
+      if (s[2] === 'm') { a = 0; b = s[1]; run = s[1]; } else { a = run; b = run + s[1]; run = b; }
+      const col = s[2] === 'm' ? (s[1] >= 0 ? 'var(--up)' : 'var(--dn)') : 'var(--ink-3)';
+      g += '<rect x="' + x + '" y="' + Math.min(Y(a), Y(b)) + '" width="' + w + '" height="' + Math.max(1.5, Math.abs(Y(a) - Y(b))) + '" fill="' + col + '" opacity="' + (s[2] === 'm' ? 1 : .55) + '"/>';
+      g += txt(x + w / 2, Math.min(Y(a), Y(b)) - 6, (s[1] > 0 ? '+' : '') + s[1].toFixed(1) + '%', {s: 12, w: true});
+      g += txt(x + w / 2, H - 18, s[0], {s: 12, c: 'var(--ink-2)', halo: false});
+    });
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+    const net = M - fee - beh - pick;
+    let t = '市场涨了 ' + M + '%，你拿到 ' + net.toFixed(1) + '%。';
+    t += ' 差出来的 ' + (M - net).toFixed(1) + ' 个百分点里，交易费用 ' + fee.toFixed(1) + '，追涨杀跌 ' + beh.toFixed(1) + '，选股平均 ' + pick.toFixed(1) + '。';
+    if (net < 0 && M > 0) t += ' 市场在涨，你却在亏：这正是很多人说的“赚了指数不赚钱”。';
+    if (T === 0 && B === 0) t += ' 一年不动、也不追涨杀跌，你几乎拿到了市场的全部收益：这是买下整个市场的思路（第十一章）。';
+    if (M < 0) t += ' 市场跌的年份，费用和情绪照样在扣，不会因为行情不好就打折。';
+    say.textContent = t;
+  }
+  const gM = slider('gpM', v => (v > 0 ? '+' : '') + v + '%', go), gT = slider('gpT', v => v + ' 遍', go), gC = slider('gpC', v => v.toFixed(2) + '%', go), gB = slider('gpB', v => ['不追', '很少', '偶尔', '有时', '常常', '经常', '很常', '非常', '极常', '每天', '上头'][v], go);
+  ready = true; go();
 });
 
 
@@ -2201,6 +2239,268 @@ dev('#fraudFig', fig => {
     say.textContent = '六个红灯，你抓到 ' + hit + ' 个，漏了 ' + miss + ' 个，冤枉了 ' + fp + ' 个正常的科目。' + (hit === tot && fp === 0 ? '全对。真实的年报里，这些数字分散在几十页里，要自己去找、去对。' : '最关键的一行是“经营活动现金流”：利润可以做，现金很难做。') + ' 这家公司的所有数字放在一起，像极了几起真实的造假案；可单看利润表，它是一只完美的成长股。';
   });
   $('#frRe').addEventListener('click', () => { R.forEach((r, i) => { const c = $('#fr' + i); if (c) c.checked = false; }); draw(false); say.className = 'say'; say.textContent = ''; });
+});
+
+
+/* ---------- 装置 10：一千个散户的一年 ---------- */
+dev('#crowdFig', fig => {
+  const svg = $('#crSvg'), kvb = $('#crKv'), say = $('#crSay');
+  let seed = 2027, ready = false;
+  function go(){
+    if (!ready) return;
+    const M = gM() / 100, K = gK(), C = gC() / 100, r = rng(seed), N = 1000, vals = [];
+    for (let i = 0; i < N; i++) {
+      // 不交易的人拿到市场收益加一点个股差异；每次交易带来一个独立的随机“运气”
+      let x = M + gauss(r) * 0.12;
+      const luck = Math.sqrt(K) * 0.03 * gauss(r);
+      x += luck - K * C;
+      vals.push(Math.max(-0.95, x));
+    }
+    vals.sort((a, b) => a - b);
+    const beat = vals.filter(v => v > M).length, top = vals[N - 1], med = vals[N / 2], loss = vals.filter(v => v < 0).length;
+    const lo = Math.max(-1, Math.min(...vals, M) - 0.05), hi = Math.max(...vals, M) + 0.05, bins = 30, cnt = new Array(bins).fill(0);
+    vals.forEach(v => cnt[clamp(Math.floor((v - lo) / (hi - lo) * bins), 0, bins - 1)]++);
+    const W = 600, H = 220, L = 30, B = 28, mx = Math.max(...cnt), X = v => L + (v - lo) / (hi - lo) * (W - L - 10), bw = (W - L - 10) / bins;
+    let g = '';
+    cnt.forEach((c, i) => { const v = lo + (i + 0.5) / bins * (hi - lo); g += '<rect x="' + (L + i * bw + 1) + '" y="' + (H - B - c / mx * (H - B - 14)) + '" width="' + (bw - 2) + '" height="' + (c / mx * (H - B - 14)) + '" fill="' + (v >= M ? 'var(--up)' : 'var(--dn)') + '" opacity=".75"/>'; });
+    g += '<line x1="' + X(M) + '" x2="' + X(M) + '" y1="8" y2="' + (H - B) + '" stroke="var(--main)" stroke-width="2"/>' + txt(X(M) + 4, 18, '市场 ' + pc(M, 0), {s: 12, a: 'start', c: 'var(--main)', w: true});
+    g += '<line x1="' + L + '" x2="' + (W - 10) + '" y1="' + (H - B) + '" y2="' + (H - B) + '" stroke="var(--ink)"/>';
+    [lo, (lo + hi) / 2, hi].forEach(v => g += txt(X(v), H - 9, pc(v, 0), {s: 11, c: 'var(--ink-3)', halo: false}));
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+    kv(kvb, [['跑赢市场', beat + ' 人'], ['亏钱', loss + ' 人'], ['中位数', pc(med)], ['最好的那个人', '<span class="up">' + pc(top) + '</span>']]);
+    let s = '一千个毫无本事的人，' + beat + ' 个跑赢了市场。';
+    s += K > 0 ? ' 交易费用平均扣掉了 ' + (K * C * 100).toFixed(1) + ' 个百分点，所以中位数比市场低。' : ' 一次都不交易，大家只是拿着各自的股票，中位数接近市场。';
+    s += ' 最好的那个人赚了 ' + pc(top) + '：' + (K >= 40 ? '他交易得越多，运气的波动越大，第一名就越耀眼，可他和最后一名一样没有本事。' : '如果他去开一个直播间，会有很多人跟。');
+    say.textContent = s;
+  }
+  const gM = slider('crM', v => (v > 0 ? '+' : '') + v + '%', go), gK = slider('crK', v => v + ' 次', go), gC = slider('crC', v => v.toFixed(2) + '%', go);
+  $('#crRe').addEventListener('click', () => { seed += 17; go(); });
+  ready = true; go();
+});
+
+
+/* ---------- 装置 11：一个百分点的三十年 ---------- */
+dev('#feeFig', fig => {
+  const svg = $('#feSvg'), kvb = $('#feKv'), say = $('#feSay');
+  let ready = false;
+  function go(){
+    if (!ready) return;
+    const r = gR() / 100, a = gA() / 100, b = gB() / 100, gap = gG() / 100, P = 1e5;
+    const s0 = [], s1 = [], s2 = [], s3 = [];
+    for (let t = 0; t <= 30; t++) { s0.push([t, P * Math.pow(1 + r, t)]); s1.push([t, P * Math.pow(1 + r - a, t)]); s2.push([t, P * Math.pow(1 + r - b, t)]); s3.push([t, P * Math.pow(1 + r - b - gap, t)]); }
+    const ymax = s0[30][1] * 1.05;
+    lineChart(svg, [
+      {name: '不收费', color: 'var(--ink-3)', pts: s0, dash: '4 4', w: 1.4},
+      {name: '便宜', color: 'var(--up)', pts: s1},
+      {name: '贵', color: 'var(--och)', pts: s2},
+      {name: '贵+情绪', color: 'var(--dn)', pts: s3}
+    ], {xmin: 0, xmax: 30, ymin: 0, ymax, xt: [0, 10, 20, 30], xf: x => x + '年', yt: [0, ymax / 2, ymax].map(v => Math.round(v / 1e4) * 1e4), yf: v => fmt(v), H: 240, L: 52});
+    const A = s1[30][1], B = s2[30][1], G = s3[30][1], Z = s0[30][1];
+    kv(kvb, [['不收费', yuan(Z)], ['便宜的基金', '<span class="up">' + yuan(A) + '</span>'], ['贵的基金', yuan(B)], ['贵的 + 情绪缺口', '<span class="dn">' + yuan(G) + '</span>']]);
+    say.textContent = '三十年后，便宜的那只比贵的多出 ' + yuan(A - B) + '，贵的那只最后只有便宜那只的 ' + Math.round(B / A * 100) + '%。' + (gap > 0 ? ' 再加上每年 ' + (gap * 100).toFixed(2) + ' 个点的情绪缺口，只剩 ' + Math.round(G / A * 100) + '%。' : '') + ' 费用和情绪拿走的，都是复利里最后、最大的那几年。';
+  }
+  const gR = slider('feR', v => v + '%', go), gA = slider('feA', v => v.toFixed(2) + '%/年', go), gB = slider('feB', v => v.toFixed(1) + '%/年', go), gG = slider('feG', v => v.toFixed(2) + '%/年', go);
+  ready = true; go();
+});
+
+
+/* ---------- 装置 12：一次买进，还是每年买一点 ---------- */
+dev('#dcaFig', fig => {
+  const svg = $('#dcaSvg'), kvb = $('#dcaKv'), say = $('#dcaSay'), ck = $('#dcaDiv');
+  const DATA = [SH, SP], NAME = ['上证综指', '标普 500'];
+  let idx = 0, ready = false;
+  function go(){
+    if (!ready) return;
+    const d = DATA[idx], y0 = gY(), END = 2025, n = END - y0 + 1, div = ck.checked ? 0.02 : 0;
+    const total = n * 1; // 每份 1 万元，共 n 份
+    // 一次买进
+    let lump = total, sh = 0, units = 0, invested = 0;
+    const pL = [], pD = [], pI = [];
+    for (let y = y0; y <= END; y++) {
+      if (y === y0) sh = lump / d[y]; else sh *= 1 + div;
+      units = (y === y0 ? 0 : units * (1 + div)) + 1 / d[y]; invested += 1;
+      pL.push([y, sh * d[y]]); pD.push([y, units * d[y]]); pI.push([y, invested]);
+    }
+    const L = pL[pL.length - 1][1], D = pD[pD.length - 1][1];
+    const ymax = Math.max(...pL.map(p => p[1]), ...pD.map(p => p[1]), total) * 1.08;
+    lineChart(svg, [
+      {name: '投入', color: 'var(--ink-3)', pts: pI, dash: '3 3', w: 1.4},
+      {name: '一次买进', color: 'var(--och)', pts: pL},
+      {name: '每年一份', color: 'var(--up)', pts: pD}
+    ], {xmin: y0, xmax: END, ymin: 0, ymax, xt: [y0, Math.round((y0 + END) / 2), END], yt: [0, Math.round(ymax / 2), Math.round(ymax)], yf: v => v + '万', H: 230});
+    kv(kvb, [['总共投入', total + ' 万'], ['一次买进 → 2025', '<span class="' + (L >= total ? 'up' : 'dn') + '">' + L.toFixed(1) + ' 万</span>'], ['每年一份 → 2025', '<span class="' + (D >= total ? 'up' : 'dn') + '">' + D.toFixed(1) + ' 万</span>'], ['谁更多', L > D ? '一次买进' : '每年一份']]);
+    let s = NAME[idx] + '：' + y0 + ' 年底起，一共投入 ' + total + ' 万。一次买进，2025 年底剩 ' + L.toFixed(1) + ' 万；每年买一份，剩 ' + D.toFixed(1) + ' 万。';
+    s += L > D ? ' 这一段里市场整体在涨，越早把钱放进去越好，一次买进胜出：这是更常见的情况。' : ' 起点正好在高处，分批买进摊低了成本，胜出了。可这要事后才知道。';
+    say.textContent = s;
+  }
+  btnRow($('#dcaIdx'), NAME, 0, i => { idx = i; go(); });
+  const gY = slider('dcaY', v => v + ' 年', go);
+  ck.addEventListener('change', go);
+  ready = true; go();
+});
+
+
+/* ---------- 装置 13：你的损失厌恶 ---------- */
+dev('#laFig', fig => {
+  const box = $('#laQs'), say = $('#laSay');
+  const WIN = [100, 150, 200, 250, 300, 400];
+  function draw(){
+    box.innerHTML = WIN.map((w, i) => '<div class="ctl" style="grid-template-columns:minmax(0,1fr) auto"><span>反面输 100，正面赢 <b>' + w + '</b> 元</span><span class="btns" style="margin:0" data-i="' + i + '"><button class="btn" data-v="1">玩</button><button class="btn" data-v="0">不玩</button></span></div>').join('') +
+      '<div class="ctl" style="grid-template-columns:minmax(0,1fr)"><span>你急用一笔钱，要卖掉一只股票：A 比买入价涨了 30%，B 比买入价跌了 30%，两家公司的前景你判断差不多。卖哪只？</span><span class="btns" style="margin:0" data-i="s"><button class="btn" data-v="A">卖 A（赚的）</button><button class="btn" data-v="B">卖 B（亏的）</button></span></div>';
+  }
+  const ans = {};
+  box.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    const g = b.parentNode; ans[g.dataset.i] = b.dataset.v;
+    $$('button', g).forEach(x => x.classList.toggle('on', x === b));
+  });
+  $('#laGo').addEventListener('click', () => {
+    const n = WIN.filter((w, i) => ans[i] != null).length;
+    if (n < WIN.length) { say.className = 'say'; say.textContent = '还有 ' + (WIN.length - n) + ' 个赌局没选。'; return; }
+    const acc = WIN.filter((w, i) => ans[i] === '1');
+    let s;
+    if (!acc.length) s = '六个赌局你一个都没玩，连赢四百输一百都不玩：你的损失厌恶系数大于 4，或者你根本不想在这件事上冒险。对一笔输不起的钱，这完全合理。';
+    else {
+      const lam = Math.min(...acc) / 100;
+      s = '你最低在“赢 ' + Math.min(...acc) + '、输 100”时愿意玩，损失厌恶系数大约是 ' + lam.toFixed(1) + '。';
+      s += lam <= 1 ? ' 你几乎没有损失厌恶，在期望为零的赌局里也愿意玩：小心，这在股市里通常表现为交易太多。' : lam < 2 ? ' 比大多数人更能承受损失。' : lam <= 2.5 ? ' 和研究里大多数人差不多：特沃斯基和卡尼曼 1992 年估计的平均值约为 2.25。' : ' 比大多数人更怕亏。';
+      const incons = WIN.some((w, i) => ans[i] === '0' && w > Math.min(...acc));
+      if (incons) s += ' 另外，你在更划算的赌局里反而选了“不玩”：人在一连串选择里常常并不一致，这也是真实的。';
+    }
+    if (ans.s === 'A') s += ' 卖股票那道题你选了卖赚的：这正是处置效应。在“前景差不多”的前提下，两只股票的未来和你的买入价毫无关系，卖哪只本该无所谓，可大多数人会本能地先卖赚的、留着亏的“等回本”。';
+    else if (ans.s === 'B') s += ' 卖股票那道题你选了卖亏的：奥迪恩的研究里，被人们留下的亏钱股此后平均表现更差，所以这通常是更好的选择；可真到自己的账户里，大多数人做不到。';
+    say.className = 'say ok'; say.textContent = s;
+  });
+  $('#laRe').addEventListener('click', () => { Object.keys(ans).forEach(k => delete ans[k]); draw(); say.className = 'say'; say.textContent = ''; });
+  draw();
+});
+
+
+/* ---------- 装置 14：借来的钱能撑多久 ---------- */
+dev('#levFig', fig => {
+  const svg = $('#lvSvg'), kvb = $('#lvKv'), say = $('#lvSay');
+  let seed = 2015, ready = false;
+  function go(){
+    if (!ready) return;
+    const Lv = gL(), mu = gM() / 100, sig = gS() / 100, rb = gR() / 100, N = 1000, D = 250, r = rng(seed);
+    const dm = mu / D - sig * sig / (2 * D), ds = sig / Math.sqrt(D), MM = 0.15;
+    let dead = 0, finals = [], paths = [], noLev = [], deadLeft = 0, deadUp = 0;
+    for (let i = 0; i < N; i++) {
+      let P = 1, debt = Lv - 1, sh = Lv, eq = 1, out = -1; const pp = [[0, 1]];
+      for (let t = 1; t <= D; t++) {
+        P *= Math.exp(dm + ds * gauss(r));
+        if (out >= 0) continue;
+        debt *= 1 + rb / D;
+        eq = sh * P - debt;
+        if (Lv > 1 && eq < MM * sh * P) { out = t; eq = Math.max(0, eq); if (i < 30) pp.push([t, eq]); continue; }
+        if (i < 30 && t % 5 === 0) pp.push([t, eq]);
+      }
+      if (out >= 0) { dead++; deadLeft += eq; if (P > 1) deadUp++; }
+      finals.push(out >= 0 ? eq : eq);
+      noLev.push(P);
+      if (i < 30) paths.push({pp, out});
+    }
+    const ymax = Math.min(6, Math.max(2, pct(finals, 0.97) * 1.1));
+    const ser = paths.map(p => ({color: p.out >= 0 ? 'var(--dn)' : 'var(--up)', pts: p.pp.map(q => [q[0], Math.min(q[1], ymax)]), w: 1, dots: false}));
+    const g = lineChart(svg, ser, {xmin: 0, xmax: D, ymin: 0, ymax, xt: [0, 50, 100, 150, 200, 250], xf: x => x + '天', yt: [0, 1, 2, ymax > 3 ? Math.floor(ymax) : null].filter(v => v != null), yf: v => v === 1 ? '本金' : v + '倍', H: 230});
+    let h = '';
+    paths.forEach(p => { if (p.out >= 0) { const last = p.pp[p.pp.length - 1]; h += '<text x="' + g.X(last[0]) + '" y="' + (g.Y(Math.min(last[1], ymax)) + 4) + '" font-size="12" text-anchor="middle" fill="var(--dn)" font-weight="700">×</text>'; } });
+    h += '<line x1="' + g.L + '" x2="' + (g.W - g.R) + '" y1="' + g.Y(1) + '" y2="' + g.Y(1) + '" stroke="var(--ink-3)" stroke-dasharray="3 3"/>';
+    svg.insertAdjacentHTML('beforeend', h);
+    const med = pct(finals, 0.5), medNo = pct(noLev, 0.5), avgLeft = dead ? deadLeft / dead : 0;
+    kv(kvb, [['被强平', '<span class="dn">' + (dead / N * 100).toFixed(1) + '%</span>'], ['一年后中位数', (med * 100 - 100).toFixed(0) + '%'], ['不加杠杆的中位数', (medNo * 100 - 100).toFixed(0) + '%'], ['被强平的人平均剩下', dead ? (avgLeft * 100).toFixed(0) + '% 本金' : '—']]);
+    let s = Lv === 1 ? '不加杠杆：没有平仓线，一千种走势里没有人被强制出局，最差的情况也只是账面亏损，你可以选择等。' : Lv + ' 倍杠杆：一千种走势里，有 ' + dead + ' 种在一年之内被强制平仓。';
+    if (Lv > 1 && dead) s += ' 被平仓的 ' + dead + ' 种走势里，有 ' + deadUp + ' 种到年底市场其实是涨的：方向看对了，人已经不在场上。';
+    if (Lv > 1 && rb > 0) s += ' 借款利息每年吃掉约 ' + ((Lv - 1) * rb * 100).toFixed(1) + ' 个百分点的本金收益。';
+    say.textContent = s;
+  }
+  const gL = slider('lvL', v => v + ' 倍', go), gM = slider('lvM', v => (v > 0 ? '+' : '') + v + '%', go), gS = slider('lvS', v => v + '%', go), gR = slider('lvR', v => v + '%', go);
+  $('#lvRe').addEventListener('click', () => { seed += 31; go(); });
+  ready = true; go();
+});
+
+
+/* ---------- 装置 15：溢价和汇率吃掉多少 ---------- */
+dev('#qdFig', fig => {
+  const kvb = $('#qdKv'), say = $('#qdSay');
+  let ready = false;
+  function go(){
+    if (!ready) return;
+    const pb = gB() / 100, ps = gS() / 100, Y = gY(), r = gR() / 100, fx = gF() / 100, fee = 0.008;
+    const idx = Math.pow(1 + r, Y) - 1; // 指数本身（美元）
+    const nav = Math.pow(1 + r - fee, Y) * (1 - fx); // 人民币计的净值倍数
+    const mine = nav * (1 + ps) / (1 + pb) - 1;
+    const premLoss = (1 + ps) / (1 + pb) - 1;
+    // 溢价损失相当于几年的指数涨幅
+    const yrs = r > 0 ? Math.log(1 / (1 + premLoss)) / Math.log(1 + r) : null;
+    kv(kvb, [['指数本身（美元）', '<span class="' + (idx >= 0 ? 'up' : 'dn') + '">' + pc(idx) + '</span>'], ['溢价变化', '<span class="' + (premLoss >= 0 ? 'up' : 'dn') + '">' + pc(premLoss) + '</span>'], ['汇率', '<span class="' + (fx <= 0 ? 'up' : 'dn') + '">' + pc(-fx) + '</span>'], ['你的人民币收益', '<b style="font-size:inherit" class="' + (mine >= 0 ? 'up' : 'dn') + '">' + pc(mine) + '</b>']]);
+    let s = '指数 ' + Y + ' 年涨了 ' + pc(idx) + '，你最后拿到 ' + pc(mine) + '。';
+    if (premLoss < -0.005) s += ' 买进时 ' + Math.round(pb * 100) + '% 的溢价、卖出时只剩 ' + Math.round(ps * 100) + '%，这一项就让你亏 ' + pc(-premLoss).slice(1) + (yrs && yrs > 0 ? '，相当于指数大约 ' + yrs.toFixed(1) + ' 年的涨幅' : '') + '。';
+    if (premLoss > 0.005) s += ' 你卖出时的溢价比买进时还高，额外赚了一笔：这是运气，溢价不会一直扩大。';
+    if (fx > 0) s += ' 人民币升值了 ' + Math.round(fx * 100) + '%，美元资产换回来的人民币变少。';
+    if (fx < 0) s += ' 人民币贬值了 ' + Math.round(-fx * 100) + '%，美元资产换回来的人民币变多。';
+    say.textContent = s;
+  }
+  const gB = slider('qdB', v => v + '%', go), gS = slider('qdS', v => v + '%', go), gY = slider('qdY', v => v + ' 年', go), gR = slider('qdR', v => (v > 0 ? '+' : '') + v + '%', go), gF = slider('qdF', v => v === 0 ? '不变' : (v > 0 ? '升值 ' + v + '%' : '贬值 ' + (-v) + '%'), go);
+  ready = true; go();
+});
+
+
+/* ---------- 装置 16：一万个新币的一年 ---------- */
+dev('#coinFig', fig => {
+  const box = $('#cnBars'), kvb = $('#cnKv'), say = $('#cnSay');
+  let seed = 2008, ready = false;
+  function go(){
+    if (!ready) return;
+    const pd = gD() / 100, vol = gV() / 100, n = gN(), r = rng(seed), N = 10000;
+    const ms = vol / Math.sqrt(12), drift = -ms * ms / 2; // 平均不涨不跌的波动
+    const vals = [];
+    for (let i = 0; i < N; i++) {
+      let v = 1;
+      for (let m = 0; m < 12; m++) { if (r() < pd) { v = 0; break; } v *= Math.exp(drift + ms * gauss(r)); }
+      vals.push(v);
+    }
+    const dead = vals.filter(v => v === 0).length, x10 = vals.filter(v => v >= 10).length, x50 = vals.filter(v => v >= 50).length, half = vals.filter(v => v > 0 && v < 0.5).length, up = vals.filter(v => v >= 1).length;
+    const mine = []; for (let k = 0; k < n; k++) mine.push(vals[Math.floor(r() * N)]);
+    const myV = mine.reduce((a, b) => a + b, 0) / n;
+    bars(box, [['归零', dead, '项目跑路、没人交易', 'var(--ink-3)'], ['还在但跌了一半以上', half, '', 'var(--dn)'], ['回本或赚了', up, '', 'var(--up)'], ['翻了十倍以上', x10, '', 'var(--main)'], ['翻了五十倍以上', x50, '', 'var(--main)']], N, v => v.toLocaleString());
+    kv(kvb, [['一年后归零', (dead / N * 100).toFixed(0) + '%'], ['翻十倍以上', x10 + ' 个'], ['你买的 ' + n + ' 个', mine.map(v => v === 0 ? '0' : v.toFixed(1)).join(' · ')], ['你的本金变成', '<span class="' + (myV >= 1 ? 'up' : 'dn') + '">' + (myV * 100).toFixed(0) + '%</span>']]);
+    let s = '一万个新币，一年后 ' + dead.toLocaleString() + ' 个归零，' + x10 + ' 个翻了十倍以上。';
+    s += ' 你随机买了 ' + n + ' 个，最后剩下本金的 ' + (myV * 100).toFixed(0) + '%。';
+    s += x10 > 0 ? ' 那 ' + x10 + ' 个十倍币的持有者会写帖子、拍视频、劝室友进场；归零的那 ' + dead.toLocaleString() + ' 个，没有人讲。你在网上看到的，几乎全是前者。' : '';
+    say.textContent = s;
+  }
+  const gD = slider('cnD', v => v + '%', go), gV = slider('cnV', v => v + '%', go), gN = slider('cnN', v => v + ' 个', go);
+  $('#cnRe').addEventListener('click', () => { seed += 13; go(); });
+  ready = true; go();
+});
+
+
+/* ---------- 装置 17：本金、存钱和收益率 ---------- */
+dev('#learnFig', fig => {
+  const svg = $('#lnSvg'), kvb = $('#lnKv'), say = $('#lnSay');
+  let ready = false;
+  const fv = (P, S, r, Y) => { const m = r / 12; let v = P; const pts = [[0, v]]; for (let k = 1; k <= Y * 12; k++) { v = v * (1 + m) + S; if (k % 12 === 0) pts.push([k / 12, v]); } return pts; };
+  function go(){
+    if (!ready) return;
+    const P = gP() * 1e4, S = gS(), r = gR() / 100, Y = gY();
+    const base = fv(P, S, r, Y), hi = fv(P, S, r + 0.02, Y), more = fv(P, S + 1000, r, Y);
+    const B = base[Y][1], H = hi[Y][1], M = more[Y][1], put = P + S * 12 * Y;
+    const ymax = Math.max(H, M) * 1.08;
+    lineChart(svg, [
+      {name: '基准', color: 'var(--ink-2)', pts: base},
+      {name: '收益率+2点', color: 'var(--och)', pts: hi, dash: '5 3'},
+      {name: '每月多存一千', color: 'var(--up)', pts: more}
+    ], {xmin: 0, xmax: Y, ymin: 0, ymax, xt: [0, Math.round(Y / 2), Y], xf: x => x + '年', yt: [0, ymax / 2, ymax], yf: v => fmt(v), H: 220, L: 52});
+    kv(kvb, [['自己投进去的', yuan(put)], ['基准：' + Y + ' 年后', yuan(B)], ['收益率多 2 个点', '+' + yuan(H - B)], ['每月多存一千', '+' + yuan(M - B)]]);
+    const win = (M - B) > (H - B) ? '每月多存一千块' : '收益率多两个点';
+    let s = Y + ' 年后，' + win + '多出来的更多。';
+    s += ' 基准情况下，最后的 ' + yuan(B) + ' 里，' + Math.round(put / B * 100) + '% 是你自己存进去的，只有 ' + Math.round((B - put) / B * 100) + '% 是收益。';
+    s += (M - B) > (H - B) ? ' 本金小、时间短的时候，钱主要是“存”出来的，不是“赚”出来的；而多存一千块是你能做主的，多两个点收益率不是。' : ' 本金大、时间长以后，收益率的作用开始超过存钱：复利需要时间和本金一起才能发力。';
+    say.textContent = s;
+  }
+  const gP = slider('lnP', v => v + ' 万', go), gS = slider('lnS', v => v.toLocaleString() + ' 元', go), gR = slider('lnR', v => v + '%', go), gY = slider('lnY', v => v + ' 年', go);
+  ready = true; go();
 });
 
 })();

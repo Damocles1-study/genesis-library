@@ -55,6 +55,7 @@ BOOKS = {
     # 《红与绿》分三部（盘 / 手 / 花），脚本拆在 _build/stock/js/*.js
     'stock1': ('stock', 'stock/index.html', ['top1.html', 'css.html', 'bar.html'] + ['a%02d.html' % i for i in range(11)]),
     'stock2': ('stock', 'stock/two.html', ['top2.html', 'css.html', 'bar.html'] + ['b%02d.html' % i for i in range(10)]),
+    'stock3': ('stock', 'stock/three.html', ['top3.html', 'css.html', 'bar.html'] + ['c%02d.html' % i for i in range(10)]),
 }
 DRAFT = '--draft' in sys.argv  # 写到一半时跳过缺失段落和锚点检查
 

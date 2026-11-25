@@ -1645,7 +1645,7 @@ function slider(id, f, cb){ const r = $('#' + id), o = $('#' + id + 'O'); const 
 
 /* ---------- 全书目录（三个网页共用） ---------- */
 const PAGE = /three\.html/.test(location.pathname) ? 3 : /two\.html/.test(location.pathname) ? 2 : 1;
-const READY = 2; // 已经写好的部数
+const READY = 3; // 已经写好的部数
 const PURL = {1: './', 2: 'two.html', 3: 'three.html'};
 const TOC = [
   {p: 1, t: '第一部 · 盘 —— 市场是怎么回事'},
@@ -1866,6 +1866,26 @@ dev('#gapFig', fig => {
     say.textContent = t;
   }
   const gM = slider('gpM', v => (v > 0 ? '+' : '') + v + '%', go), gT = slider('gpT', v => v + ' 遍', go), gC = slider('gpC', v => v.toFixed(2) + '%', go), gB = slider('gpB', v => ['不追', '很少', '偶尔', '有时', '常常', '经常', '很常', '非常', '极常', '每天', '上头'][v], go);
+  ready = true; go();
+});
+
+
+/* ---------- 第三部封面装置：一辈子挣的钱，分给了谁 ---------- */
+dev('#lifeFig', fig => {
+  const box = $('#lfBars'), say = $('#lfSay');
+  let ready = false;
+  function go(){
+    if (!ready) return;
+    const W = gW() * 12, g = gG() / 100, Y = gY(), H = gH() * 1e4, C = gC() * 1e4, E = gE() / 100;
+    let inc = 0, w = W; for (let y = 0; y < Y; y++) { inc += w; w *= 1 + g; }
+    const daily = inc * E, house = H * 1.3, car = C * Y, left = inc - daily - house - car;
+    bars(box, [['一辈子到手', inc, Y + ' 年', 'var(--ink-3)'], ['日常开销', daily, Math.round(E * 100) + '%', 'var(--och)'], ['一套房（含利息）', house, Math.round(house / inc * 100) + '%', 'var(--up)'], ['一辈子养车', car, Math.round(car / inc * 100) + '%', 'var(--blu)'], ['剩下', Math.max(0, left), left < 0 ? '不够' : Math.round(left / inc * 100) + '%', left < 0 ? 'var(--dn)' : 'var(--grn)']], inc, v => fmt(v));
+    let s = '按这组数，一辈子到手约 ' + yuan(inc) + '。一套房（加上利息）吃掉其中的 ' + Math.round(house / inc * 100) + '%，相当于 ' + (house / (W * 1)).toFixed(0) + ' 年的起始工资；一辈子养车吃掉 ' + Math.round(car / inc * 100) + '%。';
+    s += left >= 0 ? ' 剩下约 ' + yuan(left) + '，是你养老、看病、给孩子、去看世界、留给自己自由的全部本钱。' : ' 钱不够了：要么开销降下来，要么房和车选小一点，要么收入要涨得更快。这正是很多人觉得“压力大”的那笔账。';
+    s += ' 第三部要问的，就是剩下的那一截和前面几截之间，怎样分才不后悔。';
+    say.textContent = s;
+  }
+  const gW = slider('lfW', v => v.toLocaleString() + ' 元', go), gG = slider('lfG', v => v + '%', go), gY = slider('lfY', v => v + ' 年', go), gH = slider('lfH', v => v ? v + ' 万' : '不买', go), gC = slider('lfC', v => v ? v + ' 万' : '不养车', go), gE = slider('lfE', v => v + '%', go);
   ready = true; go();
 });
 
@@ -2501,6 +2521,297 @@ dev('#learnFig', fig => {
   }
   const gP = slider('lnP', v => v + ' 万', go), gS = slider('lnS', v => v.toLocaleString() + ' 元', go), gR = slider('lnR', v => v + '%', go), gY = slider('lnY', v => v + ' 年', go);
   ready = true; go();
+});
+
+
+/* ---------- 装置 18：一笔钱先放哪儿 ---------- */
+dev('#wfFig', fig => {
+  const box = $('#wfBars'), say = $('#wfSay'), ins = $('#wfI');
+  let ready = false;
+  function go(){
+    if (!ready) return;
+    const A = gA() * 1e4, M = gM(), E = gE(), D = gD() * 1e4, S = gS() / 100, insOk = ins.checked;
+    let left = A; const rows = [], notes = [];
+    const take = (name, need, note, col) => { const x = Math.max(0, Math.min(left, need)); left -= x; rows.push([name, x, note, col]); return x; };
+    if (!insOk) { take('先交基本医保', 400, '居民医保一年约四百元', 'var(--main)'); notes.push('医保没交，先交上：一年几百元，盖住的是可能几十万的住院费（第十八章）。'); }
+    const gap = Math.max(0, 3 - E) * M;
+    const e = take('补足应急钱', gap, '目标三个月生活费', 'var(--och)');
+    if (gap > 0) notes.push('应急钱从 ' + E + ' 个月补到 ' + (e >= gap ? '三个月' : (E + e / M).toFixed(1) + ' 个月') + '。');
+    const d = take('还高息债', D, D ? '年化十几到二十几' : '没有', 'var(--dn)');
+    if (D > 0) notes.push(d >= D ? '高息债全部还清，相当于拿到了一笔十几二十个点的稳赚收益。' : '高息债还了 ' + yuan(d) + '，还差 ' + yuan(D - d) + '，剩下的钱都该先给它。');
+    const self = left * S, rest = left - self;
+    rows.push(['投资自己', self, '学习、证书、做事的工具', 'var(--blu)']);
+    rows.push(['经历和长期投资', rest, '旅行、体验、指数基金……', 'var(--up)']);
+    bars(box, rows, A, v => yuan(v));
+    let s = notes.join(' ');
+    s += left > 0 ? ' 出局的坑都填上以后，还剩 ' + yuan(left) + '，这一截怎样分，就是第二十一章“旅游还是显卡”的问题，没有标准答案。' : ' 这笔钱全部用来填会让你出局的坑了。这不是坏事：它让你从此可以更从容地做别的选择。';
+    say.textContent = s;
+  }
+  const gA = slider('wfA', v => v + ' 万', go), gM = slider('wfM', v => v.toLocaleString() + ' 元', go), gE = slider('wfE', v => v + ' 个月', go), gD = slider('wfD', v => v ? v + ' 万' : '没有', go), gS = slider('wfS', v => v + '%', go);
+  ins.addEventListener('change', go);
+  ready = true; go();
+});
+
+
+/* ---------- 装置 19：一场大病的账 ---------- */
+dev('#illFig', fig => {
+  const box = $('#ilBars'), say = $('#ilSay');
+  const cB = $('#ilB'), cD = $('#ilD'), cH = $('#ilH'), cM = $('#ilM');
+  let ready = false;
+  function go(){
+    if (!ready) return;
+    const T = gT() * 1e4, out = T * gO() / 100, inS = T - out, rate = gR() / 100;
+    let basic = 0, big = 0, hui = 0, com = 0;
+    if (cB.checked) basic = Math.min(200000, Math.max(0, inS - 1000) * rate);
+    const selfIn = inS - basic; // 政策范围内自付
+    if (cB.checked && cD.checked) big = Math.max(0, selfIn - 15000) * 0.6;
+    let self = T - basic - big;
+    if (cH.checked) { hui = Math.max(0, self - 20000) * 0.7; self -= hui; }
+    if (cM.checked) { com = Math.max(0, self - 10000); self -= com; }
+    bars(box, [['总花费', T, '', 'var(--ink-3)'], ['基本医保', basic, '', 'var(--blu)'], ['大病保险', big, '', 'var(--grn)'], ['补充保险', hui, '', 'var(--och)'], ['商业医疗险', com, '', 'var(--pur)'], ['自己掏', self, Math.round(self / T * 100) + '%', 'var(--main)']], T, v => yuan(v));
+    let s = '一场 ' + yuan(T) + '的病，你自己要掏约 ' + yuan(self) + '，占 ' + Math.round(self / T * 100) + '%。';
+    if (!cB.checked) s += ' 没有基本医保，全部自己扛：这就是“一病花光”最常见的样子。';
+    else if (!cH.checked && !cM.checked && out > 0) s += ' 剩下的大头是目录外的 ' + yuan(out) + '：基本医保和大病保险都不管这一块，补充保险和商业医疗险主要补的就是它。';
+    if (cM.checked) s += ' 商业医疗险把免赔额以上的部分几乎都接住了，可它要看健康告知、年纪越大越贵，这是“年轻时买最便宜”的原因。';
+    say.textContent = s;
+  }
+  const gT = slider('ilT', v => v + ' 万', go), gO = slider('ilO', v => v + '%', go), gR = slider('ilR', v => v + '%', go);
+  [cB, cD, cH, cM].forEach(c => c.addEventListener('change', go));
+  ready = true; go();
+});
+
+
+/* ---------- 装置 20：买还是租 ---------- */
+dev('#rentFig', fig => {
+  const svg = $('#rtSvg'), kvb = $('#rtKv'), say = $('#rtSay');
+  let ready = false;
+  function sim(P, dp, ir, yld, g, rg, r, N){
+    const L = P * (1 - dp), mi = ir / 12, n = 360;
+    const pay = L > 0 ? (mi > 0 ? L * mi / (1 - Math.pow(1 + mi, -n)) : L / n) : 0;
+    let bal = L, price = P, rent = P * yld / 12, inv = P * dp + P * 0.03; // 租房者把首付和买入成本拿去投资
+    let buyerInv = 0; const rm = r / 12; const ptsB = [[0, P - L - P * 0.03]], ptsR = [[0, inv]];
+    for (let m = 1; m <= N * 12; m++) {
+      const interest = bal * mi; bal = Math.max(0, bal - (pay - interest));
+      price *= Math.pow(1 + g, 1 / 12);
+      const own = pay + price * 0.008 / 12;
+      inv *= 1 + rm; buyerInv *= 1 + rm;
+      const diff = own - rent;
+      if (diff > 0) inv += diff; else buyerInv += -diff;
+      if (m % 12 === 0) { rent *= 1 + rg; const y = m / 12; ptsB.push([y, price - bal + buyerInv - (y === N ? price * 0.03 : 0)]); ptsR.push([y, inv]); }
+    }
+    return {buy: ptsB[ptsB.length - 1][1], rent: ptsR[ptsR.length - 1][1], ptsB, ptsR, pay};
+  }
+  function go(){
+    if (!ready) return;
+    const P = gP() * 1e4, dp = gD() / 100, ir = gI() / 100, yld = gY() / 100, g = gG() / 100, rg = gRg() / 100, r = gR() / 100, N = gN();
+    const s0 = sim(P, dp, ir, yld, g, rg, r, N);
+    let lo = -0.1, hi = 0.2; for (let k = 0; k < 40; k++) { const m = (lo + hi) / 2, t = sim(P, dp, ir, yld, m, rg, r, N); (t.buy > t.rent) ? hi = m : lo = m; }
+    const all = s0.ptsB.concat(s0.ptsR).map(p => p[1]), ymin = Math.min(0, ...all), ymax = Math.max(...all) * 1.08;
+    lineChart(svg, [{name: '买', color: 'var(--up)', pts: s0.ptsB}, {name: '租', color: 'var(--blu)', pts: s0.ptsR}], {xmin: 0, xmax: N, ymin, ymax, xt: [0, Math.round(N / 2), N], xf: x => x + '年', yt: [ymin, (ymin + ymax) / 2, ymax].map(v => Math.round(v / 1e4) * 1e4), yf: v => fmt(v), H: 220, L: 56});
+    const d = s0.buy - s0.rent;
+    kv(kvb, [['月供', Math.round(s0.pay).toLocaleString() + ' 元'], ['买：' + N + ' 年后净资产', yuan(s0.buy)], ['租：' + N + ' 年后净资产', yuan(s0.rent)], ['房价每年要涨', (hi * 100).toFixed(1) + '% 才打平']]);
+    let s = '住 ' + N + ' 年，' + (d >= 0 ? '买房的一边多出 ' + yuan(d) : '租房的一边多出 ' + yuan(-d)) + '（只算钱）。';
+    s += ' 按这组假设，房价要每年涨约 ' + (hi * 100).toFixed(1) + '%，买房才和租房打平。';
+    if (yld < ir) s += ' 租金回报率 ' + (yld * 100).toFixed(1) + '% 低于房贷利率 ' + (ir * 100).toFixed(1) + '%，买房的人每年都在多付一截，要靠涨价补回来。';
+    if (N <= 4) s += ' 住得越短，买卖两头的交易成本越吃亏。';
+    s += ' 这张账里没有户口、学区、安稳和搬家的麻烦，它们要你自己加上去。';
+    say.textContent = s;
+  }
+  const gP = slider('rtP', v => v + ' 万', go), gD = slider('rtD', v => v + '%', go), gI = slider('rtI', v => v.toFixed(1) + '%', go), gY = slider('rtY', v => v.toFixed(1) + '%', go), gG = slider('rtG', v => (v > 0 ? '+' : '') + v + '%', go), gRg = slider('rtRg', v => (v > 0 ? '+' : '') + v + '%', go), gR = slider('rtR', v => v + '%', go), gN = slider('rtN', v => v + ' 年', go);
+  ready = true; go();
+});
+
+
+/* ---------- 装置 21：买车还是打车 ---------- */
+dev('#carFig', fig => {
+  const kvb = $('#crKv2'), box = $('#crBars'), say = $('#crSay2'), ev = $('#crE');
+  let ready = false;
+  function go(){
+    if (!ready) return;
+    const P = gP() * 1e4, Y = gY(), K = gK(), S = gS(), T = gT(), isEV = ev.checked;
+    const first = isEV ? 0.72 : 0.80, keep = isEV ? 0.80 : 0.85;
+    const resid = P * first * Math.pow(keep, Y - 1);
+    const dep = (P - resid) / Y, insr = P * 0.035, park = S * 12, misc = 3000, energy = K * (isEV ? 0.12 : 0.6);
+    const carY = dep + insr + park + misc + energy, taxiY = K * T;
+    const fixed = dep + insr + park + misc, perKmVar = (isEV ? 0.12 : 0.6);
+    const be = T > perKmVar ? fixed / (T - perKmVar) : Infinity;
+    kv(kvb, [['买车：一年', yuan(carY)], ['每公里', (carY / K).toFixed(2) + ' 元'], ['打车：一年', yuan(taxiY)], ['一年开过多少公里买车更省', isFinite(be) ? Math.round(be).toLocaleString() + ' 公里' : '永远不会']]);
+    bars(box, [['折旧', dep, '', 'var(--main)'], ['保险', insr, '', 'var(--och)'], ['停车', park, '', 'var(--blu)'], ['保养杂费', misc, '', 'var(--ink-3)'], ['油/电', energy, '', 'var(--grn)']], carY, v => yuan(v));
+    let s = '开 ' + Y + ' 年卖掉，车还值约 ' + yuan(resid) + '；平均每年折旧 ' + yuan(dep) + '，是最大的一笔。';
+    s += carY > taxiY ? ' 一年开 ' + K.toLocaleString() + ' 公里，买车比打车每年多花 ' + yuan(carY - taxiY) + '。这笔差价买的是方便和自由，值不值你自己定。' : ' 一年开 ' + K.toLocaleString() + ' 公里，买车反而每年省 ' + yuan(taxiY - carY) + '：开得够多，车就是划算的工具。';
+    say.textContent = s;
+  }
+  const gP = slider('crP', v => v + ' 万', go), gY = slider('crY', v => v + ' 年', go), gK = slider('crK', v => v.toLocaleString() + ' 公里', go), gS = slider('crS', v => v + ' 元', go), gT = slider('crT', v => v.toFixed(1) + ' 元', go);
+  ev.addEventListener('change', go);
+  ready = true; go();
+});
+
+
+/* ---------- 装置 22：记忆的利息 ---------- */
+dev('#memFig', fig => {
+  const svg = $('#mmSvg'), kvb = $('#mmKv'), say = $('#mmSay');
+  let ready = false;
+  function go(){
+    if (!ready) return;
+    const hA = gA() / 12, U = gU(), hM = gM(), r = gR() / 100, win = gW() / 100, Y = 15, dt = 1 / 12;
+    // 每种花法每个月的快乐流（单位任意），累计
+    const flows = {thing: [], use: [], trip: [], save: []};
+    const tripAt = 0.25, saveAt = 10, boost = Math.pow(1 + r, 10);
+    for (let i = 0; i <= Y * 12; i++) { const t = i * dt;
+      // 普通东西：一次性的高兴，指数衰减
+      flows.thing.push(1.0 * Math.exp(-t * Math.LN2 / hA) * 0.5);
+      // 体验型东西：同样有新鲜感，另外在能用的年头里每年带来稳定的小经历
+      flows.use.push(0.8 * Math.exp(-t * Math.LN2 / hA) * 0.5 + (t < U ? 0.18 : 0));
+      // 旅行：出发前期待，当下高峰，之后回味按半衰期衰减
+      let tr = 0; if (t < tripAt) tr = 0.6 * t / tripAt; else if (t < tripAt + dt - 1e-9) tr = 6; else tr = 0.35 * Math.exp(-(t - tripAt) * Math.LN2 / hM);
+      flows.trip.push(tr);
+      // 存起来：十年后变多再花一次（按旅行的形状），乘上窗口
+      let sv = 0; const ts = t - saveAt; if (ts >= -tripAt && ts < -1e-9) sv = 0.6 * (ts + tripAt) / tripAt; else if (ts >= -1e-9 && ts < dt - 1e-9) sv = 6; else if (ts >= dt - 1e-9) sv = 0.35 * Math.exp(-ts * Math.LN2 / hM);
+      flows.save.push(sv * boost * win);
+    }
+    const cum = arr => { let s = 0; return arr.map((v, i) => [i * dt, (s += v * dt)]); };
+    const C = {thing: cum(flows.thing), use: cum(flows.use), trip: cum(flows.trip), save: cum(flows.save)};
+    const fin = k => C[k][C[k].length - 1][1];
+    const ymax = Math.max(fin('thing'), fin('use'), fin('trip'), fin('save')) * 1.1;
+    lineChart(svg, [
+      {name: '普通东西', color: 'var(--ink-3)', pts: C.thing},
+      {name: '常用的东西', color: 'var(--blu)', pts: C.use},
+      {name: '旅行', color: 'var(--up)', pts: C.trip},
+      {name: '十年后再花', color: 'var(--och)', pts: C.save, dash: '5 3'}
+    ], {xmin: 0, xmax: Y, ymin: 0, ymax, xt: [0, 5, 10, 15], xf: x => x + '年', yt: [0, ymax / 2, ymax].map(v => +v.toFixed(1)), yf: v => v.toFixed(1), H: 220});
+    const names = {thing: '普通东西', use: '常用的“体验型东西”', trip: '一次旅行', save: '存起来十年后再花'};
+    const rank = Object.keys(names).sort((a, b) => fin(b) - fin(a));
+    kv(kvb, rank.map(k => [names[k], fin(k).toFixed(2)]));
+    let s = '按这组假设，十五年累计下来排第一的是“' + names[rank[0]] + '”。';
+    if (rank[0] === 'save') s += ' 你给了存起来的钱很高的收益、很宽的窗口：十年后的你还有时间、兴致和同伴，这笔交换就划算。';
+    else s += ' 存起来的钱十年后变成了 ' + boost.toFixed(2) + ' 倍，可乘上“窗口”（' + Math.round(win * 100) + '%）以后，再加上少收了十年的“记忆利息”，没能追上。';
+    s += ' 把“记忆留多久”调短、把“东西多久不新鲜”调长，排名就会变：这正是每个人的答案不同的原因。';
+    say.textContent = s;
+  }
+  const gA = slider('mmA', v => v + ' 个月', go), gU = slider('mmU', v => v + ' 年', go), gM = slider('mmM', v => v + ' 年', go), gR = slider('mmR', v => v + '%', go), gW = slider('mmW', v => v + '%', go);
+  ready = true; go();
+});
+
+
+/* ---------- 装置 23：存钱率和自由的年份 ---------- */
+dev('#fireFig', fig => {
+  const svg = $('#frSvg'), kvb = $('#frKv'), say = $('#frSay');
+  let ready = false;
+  const years = (s, r, w) => {
+    if (s <= 0) return Infinity;
+    const target = (1 - s) / w; let v = 0;
+    for (let y = 1; y <= 80; y++) { v = v * (1 + r) + s; if (v >= target) return y; }
+    return Infinity;
+  };
+  function go(){
+    if (!ready) return;
+    const S = gS() / 100, r = gR() / 100, w = gW() / 100;
+    const pts = []; for (let k = 5; k <= 90; k += 5) { const y = years(k / 100, r, w); pts.push([k, isFinite(y) ? Math.min(y, 60) : 60]); }
+    const my = years(S, r, w);
+    const g = lineChart(svg, [{name: '要工作的年数', color: 'var(--up)', pts, dots: true}], {xmin: 5, xmax: 90, ymin: 0, ymax: 62, xt: [10, 30, 50, 70, 90], xf: x => x + '%', yt: [0, 15, 30, 45, 60], yf: v => v + '年', H: 220});
+    if (isFinite(my) && my <= 60) svg.insertAdjacentHTML('beforeend', '<circle cx="' + g.X(S * 100) + '" cy="' + g.Y(my) + '" r="7" fill="none" stroke="var(--main)" stroke-width="2.5"/>' + txt(g.X(S * 100), g.Y(my) - 13, '你', {s: 13, w: true, c: 'var(--main)'}));
+    kv(kvb, [['你的存钱率', Math.round(S * 100) + '%'], ['要攒够', (1 / w).toFixed(0) + ' 倍年开销'], ['要工作', isFinite(my) ? my + ' 年' : '六十年以上'], ['每年开销占收入', Math.round((1 - S) * 100) + '%']]);
+    let s = '存下 ' + Math.round(S * 100) + '% 的收入，按实际年收益 ' + (r * 100).toFixed(1) + '%、取款率 ' + (w * 100).toFixed(1) + '%，' + (isFinite(my) ? '大约要工作 ' + my + ' 年才算“够了”。' : '六十年也攒不够。');
+    s += ' 曲线左边很陡：存钱率从一成提到三成，省下的年数比从五成提到七成多得多。';
+    if (w >= 0.04) s += ' 取款率 ' + (w * 100).toFixed(1) + '% 来自美国二十世纪的历史数据，在回报更低的地方未必稳妥，可以试试 3%。';
+    s += ' 这张图回答的是“能不能”，不回答“值不值”：后者取决于你在这些年里放弃了什么、换来了什么。';
+    say.textContent = s;
+  }
+  const gS = slider('frS', v => v + '%', go), gR = slider('frR', v => v + '%', go), gW = slider('frW', v => v + '%', go);
+  ready = true; go();
+});
+
+
+/* ---------- 装置 24：一辈子的三种花法 ---------- */
+dev('#lifeCycleFig', fig => {
+  const svg = $('#lcSvg'), kvb = $('#lcKv'), say = $('#lcSay'), ill = $('#lcIll'), ins = $('#lcIns');
+  const PATHS = ['先苦后甜', '细水长流', '先甜后苦'];
+  let path = 1;
+  const inc = a => a < 22 ? 0 : a <= 62 ? 6 + Math.min(1, (a - 22) / 20) * 6 : 0; // 万元/年
+  const pension = a => a > 62 ? 3 : 0;
+  function run(p, withIll, withIns){
+    const r = 0.02; let W = 0, util = 0, minW = 0; const pts = [];
+    // 细水长流：终身平均可支配；先苦后甜：工作期花得少、退休花得多；先甜后苦相反
+    let lifetime = 0; for (let a = 22; a <= 85; a++) lifetime += inc(a) + pension(a);
+    const avg = lifetime / 64;
+    for (let a = 22; a <= 85; a++) {
+      const I = inc(a) + pension(a);
+      let want = p === 1 ? avg : p === 0 ? (a <= 62 ? avg * 0.75 : avg * 1.55) : (a <= 45 ? avg * 1.3 : avg * 0.88);
+      let prem = withIns && a <= 75 ? I * 0.02 + (a > 62 ? 0.12 : 0) : 0;
+      W = W * (1 + r) + I - prem;
+      if (withIll && a === 70) { const cost = 36; W -= withIns ? cost * 0.3 : cost; }
+      const c = Math.max(0, Math.min(want, W + 0));
+      W -= c; util += Math.sqrt(Math.max(c, 0.01));
+      minW = Math.min(minW, W);
+      pts.push([a, W]);
+    }
+    return {pts, util, left: W};
+  }
+  function go(){
+    const res = PATHS.map((n, i) => run(i, ill.checked, ins.checked));
+    const all = res.flatMap(r => r.pts.map(p => p[1])), ymax = Math.max(...all) * 1.08, ymin = Math.min(0, ...all);
+    lineChart(svg, res.map((r, i) => ({name: PATHS[i], color: ['var(--blu)', 'var(--grn)', 'var(--och)'][i], pts: r.pts, w: i === path ? 3 : 1.4, dash: i === path ? '' : '4 3'})), {xmin: 22, xmax: 85, ymin, ymax, xt: [22, 40, 62, 70, 85], xf: x => x + '岁', yt: [0, Math.round(ymax / 2), Math.round(ymax)], yf: v => v + '万', marks: ill.checked ? [[70, '大病']] : [], H: 230});
+    const me = res[path];
+    kv(kvb, [['你选的', PATHS[path]], ['“过得好不好”总分', me.util.toFixed(1)], ['三种里最高', PATHS[res.map(r => r.util).indexOf(Math.max(...res.map(r => r.util)))]], ['八十五岁留下', me.left.toFixed(0) + ' 万']]);
+    let s = PATHS[path] + '：一辈子的“过得好”总分 ' + me.util.toFixed(1) + '，八十五岁时还剩 ' + me.left.toFixed(0) + ' 万。';
+    if (path === 0) s += ' 年轻时省下的钱，到了老年未必花得出去：剩下的越多，说明当年少享受的越多。';
+    if (path === 2) s += ' 年轻时多花，老了只能紧巴巴地过；如果再碰上大病，存款会见底。';
+    if (path === 1) s += ' 因为“多花一点的满足越往上越少”，把消费摊平，往往比忽多忽少的总分更高。';
+    if (ill.checked && !ins.checked) s += ' 没有保险时，七十岁那场病吃掉一大块存款，这正是老一辈“一病花光”的样子，也是他们拼命存钱的原因。';
+    if (ill.checked && ins.checked) s += ' 有了保险，每年交一点钱，那场病只吃掉一小块：保险让“为了怕而存的钱”可以少存一些。';
+    say.textContent = s;
+  }
+  btnRow($('#lcPath'), PATHS, path, i => { path = i; go(); });
+  ill.addEventListener('change', go); ins.addEventListener('change', go);
+  go();
+});
+
+
+/* ---------- 装置 25：全书的印章 ---------- */
+dev('#stampFig', fig => {
+  const tab = $('#stTab'), say = $('#stSay');
+  const N = [
+    ['c0', '2023-08-27', '证券交易印花税减半', '要看量级', '钱'],
+    ['c1', '2024-04-12', '“新国九条”：分红少的公司限制减持、风险警示', '值得深挖', '规则'],
+    ['c2', '1992-05-21', '上交所全面放开股价', '信号', '规则'],
+    ['c3', '2007-11-05', '“亚洲最赚钱的公司”回归 A 股，开盘 48.60 元', '噪音', '情绪'],
+    ['c4', '1987-10-19', '黑色星期一，道指一天跌 22.6%', '要看量级', '情绪'],
+    ['c5', '2008-08-08', '北京奥运会开幕', '早已计入', '日历'],
+    ['c6', '1996-12-05', '格林斯潘：“非理性繁荣”', '信号', '开关'],
+    ['c6', '2024-09-24', '降准降息和支持股市的新工具', '信号', '钱'],
+    ['c7', '2025-04-09', '“这是买入的好时机！！！”', '信号', '开关'],
+    ['c8', '2018-10-16', '质疑康美药业“存贷双高”', '值得深挖', '财报'],
+    ['c9', '2021-01', '散户逼空游戏驿站', '噪音', '情绪'],
+    ['c10', '2023-07-07', '公募基金费率改革', '信号', '钱'],
+    ['c11', '1976-08', '第一只散户指数基金募资远低于预期', '值得深挖', '规则'],
+    ['c12', '2024-10', '开户潮，单月新开户接近七百万', '噪音', '情绪'],
+    ['c13', '2015-06-12', '清理场外配资', '信号', '钱'],
+    ['c14', '2007-08-20', '“港股直通车”宣布试点', '要看量级', '预期'],
+    ['c15', '2024-01-10', '美国批准比特币现货 ETF', '要看量级', '别处的规则'],
+    ['c16', '2013-06-13', '余额宝上线', '信号', '利率'],
+    ['c17', '2023 起', '预定利率下调前的“停售”话术', '要看量级', '利率'],
+    ['c18', '2018-10', '十七种抗癌药谈判进医保', '值得深挖', '规则'],
+    ['c19', '2020-08-20', '房企融资“三道红线”', '值得深挖', '规则'],
+    ['c20', '2009-01', '小排量车购置税减半', '要看量级', '钱'],
+    ['c21', '2022-09-15', '以太坊合并，显卡不再挖矿', '要看量级', '供求'],
+    ['c22', '2024-09-13', '渐进式延迟法定退休年龄', '值得深挖', '规则'],
+    ['c23', '2025-05-20', '大行一年期定存利率降到 0.95%', '信号', '利率']
+  ];
+  const KINDS = ['全部', '噪音', '早已计入', '要看量级', '信号', '值得深挖'];
+  const COL = {'噪音': 'var(--ink-3)', '早已计入': 'var(--och)', '要看量级': 'var(--blu)', '信号': 'var(--main)', '值得深挖': 'var(--grn)'};
+  function draw(k){
+    const rows = N.filter(n => k === '全部' || n[3] === k);
+    tab.innerHTML = '<thead><tr><th>章</th><th>日期</th><th>消息</th><th>它改的是</th><th>印章</th></tr></thead><tbody>' + rows.map(n => {
+      const ch = TOC.find(x => x.id === n[0]);
+      return '<tr><td><a href="' + href(n[0]) + '">' + (ch ? ch.n : n[0]) + '</a></td><td style="font-family:var(--f-mono);white-space:nowrap">' + n[1] + '</td><td>' + n[2] + '</td><td>' + n[4] + '</td><td style="white-space:nowrap;color:' + COL[n[3]] + ';font-weight:700">' + n[3] + '</td></tr>';
+    }).join('') + '</tbody>';
+    const cnt = {}; N.forEach(n => cnt[n[3]] = (cnt[n[3]] || 0) + 1);
+    const deep = N.filter(n => n[3] === '值得深挖'), rule = deep.filter(n => n[4] === '规则' || n[4] === '财报').length;
+    say.textContent = k === '全部' ? '一共 ' + N.length + ' 条：噪音 ' + (cnt['噪音'] || 0) + '，早已计入 ' + (cnt['早已计入'] || 0) + '，要看量级 ' + (cnt['要看量级'] || 0) + '，信号 ' + (cnt['信号'] || 0) + '，值得深挖 ' + (cnt['值得深挖'] || 0) + '。“值得深挖”的 ' + deep.length + ' 条里，有 ' + rule + ' 条改的是规则或者是公司自己的账。'
+      : k === '值得深挖' ? '这 ' + rows.length + ' 条几乎都在改规则：它们出现时往往很冷清，影响的却是好几年。' : k === '噪音' || k === '早已计入' ? '这些多是关于情绪和日历的消息：你读到时，它已经在价格里了。' : k === '信号' ? '这些是真金白银和握着开关的人：是真的，可价格在你知道之前就动完了。' : '这些要看你自己：你借了多少钱、本来要不要这样东西、它落不落地。';
+  }
+  btnRow($('#stBtns'), KINDS, 0, i => draw(KINDS[i]));
+  draw('全部');
 });
 
 })();

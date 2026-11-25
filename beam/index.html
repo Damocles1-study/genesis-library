@@ -1742,7 +1742,7 @@ function slider(id, f, cb){ const r = $('#' + id), o = $('#' + id + 'O'); const 
 
 /* ---------- 全书目录（三个网页共用） ---------- */
 const PAGE = /three\.html/.test(location.pathname) ? 3 : /two\.html/.test(location.pathname) ? 2 : 1;
-const READY = 2; // 已经写好的部数
+const READY = 3; // 已经写好的部数
 const PURL = {1: './', 2: 'two.html', 3: 'three.html'};
 const TOC = [
   {p: 1, t: '第一部 · 土木 —— 四样家当，三种站法'},
@@ -1771,16 +1771,16 @@ const TOC = [
   {id: 'c16', n: '暖', t: '冷和热', s: '火炕、罗马的地暖、波斯的风塔、窑洞和冰屋：空调以前的房子', r: '约前 5000—1950'},
   {p: 3, t: '第三部 · 钢与玻璃 —— 新家当，往高处去'},
   {v: '卷五 · 新家当'},
-  {id: 'c17', n: '铁', t: '铁桥和水晶宫', s: '1779 年的铁桥；九个月盖起来的水晶宫；埃菲尔铁塔', r: '1779—1889'},
-  {id: 'c18', n: '灰', t: '水泥', s: '罗马混凝土为什么失传；斯米顿的灯塔；波特兰水泥；花匠发明的钢筋混凝土', r: '1756—1930'},
-  {id: 'c19', n: '窗', t: '玻璃窗', s: '窗户纸、皇冠玻璃、窗户税、浮法玻璃和玻璃幕墙', r: '100—1960'},
-  {id: 'c20', n: '管', t: '看不见的房子', s: '上下水、电灯、电梯、暖气和空调：墙里的东西', r: '1850—1960'},
+  {id: 'c17', n: '铁', t: '铁桥和水晶宫', s: '用木匠的榫卯拼起来的铁桥；铸铁怕拉；花匠九个月盖起来的水晶宫；二百五十万颗铆钉的铁塔', r: '1709—1890'},
+  {id: 'c18', n: '灰', t: '水泥', s: '罗马混凝土真的失传了吗；斯米顿的灯塔；砌砖匠的波特兰水泥；花匠莫尼耶的钢筋花盆', r: '前 200—1930'},
+  {id: 'c19', n: '窗', t: '玻璃窗', s: '窗户纸和明瓦；转出来的皇冠玻璃；窗户税和砌死的窗；漂在锡上的浮法玻璃；幕墙', r: '约 50—2015'},
+  {id: 'c20', n: '管', t: '墙里的房子', s: '存水弯和淘大花园；电灯；开电梯的人；屋顶上的水箱；开利的空调', r: '1775—今'},
   {v: '卷六 · 往高处去'},
-  {id: 'c21', n: '楼', t: '摩天楼', s: '奥的斯砍断绳子；芝加哥的钢骨；纽约的竞高；风比重量更难对付', r: '1853—今'},
-  {id: 'c22', n: '桥', t: '拉住的桥', s: '布鲁克林大桥、塔科马海峡桥、金门大桥、港珠澳大桥', r: '1883—今'},
-  {id: 'c23', n: '快', t: '一天盖一层', s: '预制板、莱维敦、赫鲁晓夫楼、筒子楼、商品房和“中国速度”', r: '1945—今'},
+  {id: 'c21', n: '楼', t: '摩天楼', s: '奥的斯砍断绳子；芝加哥的钢骨；纽约的竞高和藏在楼里的尖顶；大楼里挂着的摆', r: '1853—今'},
+  {id: 'c22', n: '桥', t: '拉住的桥', s: '布鲁克林大桥的父子和妻子；会跳舞的塔科马；金门的安全网；钱塘江大桥的八十九天；港珠澳', r: '1883—今'},
+  {id: 'c23', n: '快', t: '一天盖一层', s: '莱维敦的流水线；赫鲁晓夫楼；筒子楼和房改；深圳国贸“三天一层”；火神山', r: '1945—今'},
   {v: '尾声'},
-  {id: 'c24', n: '梁', t: '上梁', s: '拆和留、碳、三十年和一百年：你住的房子', r: '今—'}
+  {id: 'c24', n: '梁', t: '上梁', s: '拆和留；房子里的碳；五十年、七十年和你住的那栋楼；二十五张工牌', r: '今—'}
 ];
 const chapPage = {}; { let p = 1; TOC.forEach(x => { if (x.p) p = x.p; if (x.id) chapPage[x.id] = p; }); }
 const href = id => (chapPage[id] === PAGE ? '' : PURL[chapPage[id]]) + '#' + id;
@@ -2005,6 +2005,65 @@ dev('#gnFig', () => {
     $('#gnSay').innerHTML = cur === 2 ? '这 ' + long.length + ' 座房子，动工那天在场的工匠，没有一个能干到它完工。最长的科隆大教堂和至今没盖完的博韦、圣家堂，跨过了二十多代人。<b>盖这样的房子，要相信一件自己看不到结局的事</b>。' :
       cur === 1 ? '中国的大工程大多很快：木构可以先在地上做构件，几年就能立起来；紫禁城花在备料上的时间，比盖的时间还长。火神山医院十天建成，用的是预制的集装箱式病房，第三部讲。' :
       '从十天到八百年。工期长短，不只取决于房子有多大，更取决于用什么材料、钱是不是一直有、有没有人一直想把它盖完。中世纪大教堂的工期常常以“代”计算，现代的摩天楼以“月”计算。';
+  }
+  draw();
+});
+
+/* ---------- 第三部封面装置：一百多年，水泥和钢 ---------- */
+dev('#gtFig', () => {
+  /* 年产量，百万吨，取整约数 */
+  const YR = [1900, 1913, 1929, 1950, 1960, 1970, 1980, 1990, 2000, 2005, 2010, 2014, 2018, 2020, 2023];
+  const D = {
+    cem: {
+      w: [10, 40, 70, 133, 317, 572, 880, 1040, 1660, 2310, 3310, 4180, 4050, 4200, 4100],
+      c: [null, null, null, 1.4, 15.7, 25.8, 80, 210, 597, 1069, 1882, 2492, 2207, 2395, 2023],
+      u: [8, 15, 29, 39, 56, 67, 69, 71, 88, 99, 67, 83, 87, 89, 91]
+    },
+    st: {
+      w: [28, 76, 120, 189, 347, 595, 717, 770, 850, 1148, 1435, 1670, 1820, 1880, 1890],
+      c: [null, null, null, 0.6, 18.7, 17.8, 37, 66, 129, 355, 639, 823, 928, 1065, 1019],
+      u: [10, 32, 57, 88, 90, 119, 101, 90, 102, 95, 81, 88, 87, 73, 81]
+    }
+  };
+  const MODES = ['水泥', '钢', '中国占世界'];
+  let m = 0;
+  btnRow($('#gtBtns'), MODES, m, i => { m = i; draw(); });
+  const MARKS = [[1889, '埃菲尔铁塔'], [1931, '帝国大厦'], [1978, '改革开放'], [1998, '住房改革']];
+  function draw(){
+    const svg = $('#gtSvg');
+    let series, opt;
+    if (m < 2) {
+      const d = m === 0 ? D.cem : D.st;
+      const mx = m === 0 ? 4500 : 2000;
+      series = [
+        {name: '全世界', color: 'var(--ink-2)', pts: YR.map((y, i) => [y, d.w[i]]), dots: true},
+        {name: '中国', color: 'var(--ter)', pts: YR.map((y, i) => [y, d.c[i]]), dots: true, w: 3},
+        {name: '美国', color: 'var(--main)', pts: YR.map((y, i) => [y, d.u[i]]), dots: true, dash: '5 3'}
+      ];
+      opt = {xmin: 1885, xmax: 2026, ymin: 0, ymax: mx, xt: [1900, 1925, 1950, 1975, 2000, 2025], yt: m === 0 ? [0, 1000, 2000, 3000, 4000] : [0, 500, 1000, 1500, 2000], yf: v => v ? (v / 100) + ' 亿吨' : '0', marks: MARKS, L: 58};
+    } else {
+      const sh = k => YR.map((y, i) => [y, D[k].c[i] == null ? null : D[k].c[i] / D[k].w[i] * 100]);
+      const su = k => YR.map((y, i) => [y, D[k].u[i] / D[k].w[i] * 100]);
+      series = [
+        {name: '中国水泥', color: 'var(--ter)', pts: sh('cem'), dots: true, w: 3},
+        {name: '中国钢', color: 'var(--ter)', pts: sh('st'), dots: true, dash: '5 3'},
+        {name: '美国水泥', color: 'var(--main)', pts: su('cem'), dots: true, w: 3},
+        {name: '美国钢', color: 'var(--main)', pts: su('st'), dots: true, dash: '5 3'}
+      ];
+      opt = {xmin: 1885, xmax: 2026, ymin: 0, ymax: 100, xt: [1900, 1925, 1950, 1975, 2000, 2025], yt: [0, 25, 50, 75, 100], yf: v => v + '%', marks: MARKS, L: 46};
+    }
+    lineChart(svg, series, opt);
+    $('#gtLeg').innerHTML = series.map(s => '<span><i style="background:' + s.color + (s.dash ? ';opacity:.55' : '') + '"></i>' + s.name + (s.dash ? '（虚线）' : '') + '</span>').join('');
+    if (m < 2) {
+      const d = m === 0 ? D.cem : D.st, n = YR.length - 1;
+      kv($('#gtKv'), [['1900 年全世界', d.w[0] + ' 百万吨'], ['2023 年全世界', (d.w[n] / 100).toFixed(1) + ' 亿吨'], ['涨了', Math.round(d.w[n] / d.w[0]) + ' 倍'], ['2023 年中国占', Math.round(d.c[n] / d.w[n] * 100) + '%']]);
+      $('#gtSay').innerHTML = m === 0 ?
+        '1900 年全世界一年只产约一千万吨水泥，今天是四十亿吨上下，涨了四百倍。美国在二十世纪前半叶是最大的水泥国；九十年代以后，曲线几乎全被中国拉上去了，2014 年前后中国一国约占全世界的六成。<b>此后中国的产量开始回落</b>：房子盖得差不多了。' :
+        '钢比水泥早发力：1900 年前后美国一国就占全世界的三分之一以上，二战时更高。中国的钢产量在 2000 年以后几年翻一番，今天约占全世界的一半多。<b>其中很大一部分进了房子、桥和铁路</b>。';
+    } else {
+      kv($('#gtKv'), [['1950 年美国占水泥', Math.round(D.cem.u[3] / D.cem.w[3] * 100) + '%'], ['2014 年中国占水泥', Math.round(D.cem.c[11] / D.cem.w[11] * 100) + '%'], ['2023 年中国占钢', Math.round(D.st.c[14] / D.st.w[14] * 100) + '%']]);
+      $('#gtSay').innerHTML = '一百多年里，“世界工地”换了地方：二十世纪前半叶在美国，后半叶分散到欧洲、苏联和日本，二十一世纪初集中到了中国。<b>哪里在大规模盖房子、修路、架桥，哪里就在烧水泥、炼钢</b>。接下来的工地，也许在印度、东南亚和非洲。';
+    }
   }
   draw();
 });
@@ -2478,17 +2537,22 @@ dev('#tuFig', () => {
       for (let i = 0; i < 4; i++) E.push([c[i], c[(i + 1) % 4], 'r']);
       E.push([[rx0, top, d / 2], [rx1, top, d / 2], 'r'], [c[0], [rx0, top, d / 2], 'r'], [c[3], [rx0, top, d / 2], 'r'], [c[1], [rx1, top, d / 2], 'r'], [c[2], [rx1, top, d / 2], 'r']);
     }
-    const W = 600, Hs = 420;
-    const s = Math.min(250 / (L + 2 * e + 2 * oh), 150 / (top + 0.5), 150 / (d + 2 * e), 120 / (d + 2 * e));
-    const fx = 30, fy = 20 + top * s;              // 正立面原点：左下
+    const W = 600;
+    const s = Math.min(250 / (L + 2 * e + 2 * oh), 150 / (top + 0.5), 150 / (d + 2 * e));
+    const fx = 30, fy = 24 + top * s;              // 正立面原点：左下
     const px = fx, pz = fy + 30;                   // 平面：x 对齐正面，z 往下
     const sx = 330, sy = fy;                       // 侧立面：z 往右
-    const ix = 450, iy = 310;                      // 轴测
+    const Hs = Math.max(pz + (d + 2 * e) * s + 14, fy + 170);
+    const raw = p => [(p[0] - p[2]) * 0.866, -p[1] + (p[0] + p[2]) * 0.5];
+    let bx0 = 1e9, bx1 = -1e9, by0 = 1e9, by1 = -1e9;
+    E.forEach(ed => [ed[0], ed[1]].forEach(q => { const r = raw(q); bx0 = Math.min(bx0, r[0]); bx1 = Math.max(bx1, r[0]); by0 = Math.min(by0, r[1]); by1 = Math.max(by1, r[1]); }));
+    const iTop = fy + 22, si = Math.min(250 / (bx1 - bx0), (Hs - iTop - 8) / (by1 - by0));
+    const ix = 330 + (260 - (bx1 - bx0) * si) / 2;
     const views = {
       F: p => [fx + p[0] * s, fy - p[1] * s],
       P: p => [px + p[0] * s, pz + (p[2] + e) * s],
       S: p => [sx + (p[2] + e) * s, sy - p[1] * s],
-      I: p => [ix + (p[0] - p[2]) * Math.cos(Math.PI / 6) * s * .72, iy - p[1] * s * .72 + (p[0] + p[2]) * .5 * s * .72 - L * .5 * s * .72 * .5]
+      I: p => { const r = raw(p); return [ix + (r[0] - bx0) * si, iTop + (r[1] - by0) * si]; }
     };
     const col = t => t === 'r' ? 'var(--ter)' : t === 'c' ? 'var(--ink-3)' : 'var(--ink)';
     let g = '';
@@ -2498,7 +2562,7 @@ dev('#tuFig', () => {
     for (let i = 0; i <= n; i++) [0, d].forEach(z => { const q = views.P([i * bay, 0, z]); g += '<rect x="' + (q[0] - 2.5) + '" y="' + (q[1] - 2.5) + '" width="5" height="5" fill="var(--ink)"/>'; });
     for (let i = 0; i <= n; i++) { const a = views.F([i * bay, 0, 0]), b = views.P([i * bay, 0, 0]); g += '<line x1="' + a[0] + '" x2="' + b[0] + '" y1="' + a[1] + '" y2="' + b[1] + '" stroke="var(--blu)" stroke-opacity=".35" stroke-dasharray="2 3"/>'; }
     [top, ye, h].forEach(y => { const a = views.F([L + oh + e, y, 0]), b = views.S([0, y, -e]); g += '<line x1="' + a[0] + '" x2="' + b[0] + '" y1="' + a[1] + '" y2="' + b[1] + '" stroke="var(--blu)" stroke-opacity=".35" stroke-dasharray="2 3"/>'; });
-    g += txt(fx, 12, '正立面', {s: 11, a: 'start', c: 'var(--main)'}) + txt(px, pz - 8 + 0, '平面', {s: 11, a: 'start', c: 'var(--main)'}) + txt(sx, 12, '侧立面', {s: 11, a: 'start', c: 'var(--main)'}) + txt(ix - 120, iy - 120, '轴测', {s: 11, a: 'start', c: 'var(--main)'});
+    g += txt(fx, 12, '正立面', {s: 11, a: 'start', c: 'var(--main)'}) + txt(px, pz - 8 + 0, '平面', {s: 11, a: 'start', c: 'var(--main)'}) + txt(sx, 12, '侧立面', {s: 11, a: 'start', c: 'var(--main)'}) + txt(330, iTop - 4, '轴测', {s: 11, a: 'start', c: 'var(--main)'});
     const svg = $('#tuSvg'); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + Hs); svg.innerHTML = g;
     $('#tuSay').innerHTML = '面阔 ' + n + ' 间、约 ' + L.toFixed(1) + ' 米，进深 ' + d + ' 米，屋脊高约 ' + top.toFixed(1) + ' 米，' + RT[rt][0] + '顶。' +
       (kind === 'hip' ? '庑殿顶在正面看是梯形、侧面看是三角形，只看一张图分不出它和别的屋顶，' : '硬山和悬山的正面看起来差不多，只有在平面和侧面上才看得出屋顶有没有伸出山墙，') +
@@ -2659,7 +2723,7 @@ dev('#jzFig', () => {
   }
   function draw(){
     const H = 12 * R(), n = N(), P = fold(H, n), eave = 5;
-    const k = 38, cx = 300, base = 30 + (H + eave) * k;
+    const k = 27, cx = 220, base = 30 + (H + eave) * k;
     const X = x => cx + x * k, Y = y => base - (y + eave) * k;
     let g = '<line x1="20" x2="580" y1="' + base + '" y2="' + base + '" stroke="var(--ink)"/>';
     g += '<rect x="' + X(-6) + '" y="' + Y(0) + '" width="6" height="' + eave * k + '" fill="var(--ink-3)" fill-opacity=".4"/><rect x="' + (X(6) - 6) + '" y="' + Y(0) + '" width="6" height="' + eave * k + '" fill="var(--ink-3)" fill-opacity=".4"/>';
@@ -2700,7 +2764,7 @@ dev('#cnFig', () => {
   function draw(){
     const lat = C[c][1], dec = DAYS[d][1], alt = (90 - lat + dec) * Math.PI / 180, dep = D();
     const s = shade(alt, dep);
-    const k = 70, wx = 360, base = 210, X = x => wx - x * k, Y = y => base - y * k; // x 向左是屋里
+    const k = 66, wx = 360, base = 250, X = x => wx - x * k, Y = y => base - y * k; // x 向左是屋里
     let g = '<line x1="20" x2="580" y1="' + base + '" y2="' + base + '" stroke="var(--ink)"/>';
     g += '<rect x="' + wx + '" y="' + Y(EAVE + 0.1) + '" width="14" height="' + (EAVE + 0.1) * k + '" fill="var(--ink-3)" fill-opacity=".4"/>';
     g += '<rect x="' + wx + '" y="' + Y(TOP) + '" width="14" height="' + (TOP - SILL) * k + '" fill="var(--sea)" stroke="var(--blu)"/>';
@@ -2710,14 +2774,14 @@ dev('#cnFig', () => {
     for (let i = 0; i < 7; i++) {
       const yw = SILL + (TOP - SILL) * i / 6; // 打到窗面的高度
       const lit = yw <= EAVE - dep * t + 1e-9;
-      const sx = wx + 14 + 3 * cos * k, sy = Y(yw) - 3 * sin * k;
+      const Ls = Math.min(3, (Y(yw) - 6) / (sin * k), (580 - wx - 14) / (cos * k)), sx = wx + 14 + Ls * cos * k, sy = Y(yw) - Ls * sin * k;
       if (lit) { const fx = wx - yw / t * k; g += '<line x1="' + sx.toFixed(1) + '" y1="' + sy.toFixed(1) + '" x2="' + Math.max(20, fx).toFixed(1) + '" y2="' + (fx < 20 ? Y(yw - (wx - 20) / k * t) : base).toFixed(1) + '" stroke="var(--och)" stroke-width="1.6" stroke-opacity=".8"/>'; }
       else g += '<line x1="' + sx.toFixed(1) + '" y1="' + sy.toFixed(1) + '" x2="' + (wx + 14 + dep * k).toFixed(1) + '" y2="' + (Y(yw) - (dep) * k * t + 0).toFixed(1) + '" stroke="var(--och)" stroke-width="1" stroke-opacity=".35" stroke-dasharray="3 3"/>';
     }
     if (s.reach > 0) g += '<line x1="' + wx + '" x2="' + Math.max(20, X(s.reach)) + '" y1="' + (base - 2) + '" y2="' + (base - 2) + '" stroke="var(--och)" stroke-width="5" stroke-opacity=".6"/>';
-    g += txt(560, 30, '南 →', {s: 12, a: 'end', c: 'var(--ink-2)'}) + txt(40, 30, '← 屋里', {s: 12, a: 'start', c: 'var(--ink-2)'});
+    g += txt(560, 60, '南 →', {s: 12, a: 'end', c: 'var(--ink-2)'}) + txt(40, 60, '← 屋里', {s: 12, a: 'start', c: 'var(--ink-2)'});
     g += txt(wx + 40, Y(EAVE) - 10, '屋檐 ' + dep.toFixed(2) + ' 米', {s: 11, a: 'start', c: 'var(--ter)'});
-    const svg = $('#cnSvg'); svg.setAttribute('viewBox', '0 0 600 226'); svg.innerHTML = g;
+    const svg = $('#cnSvg'); svg.setAttribute('viewBox', '0 0 600 266'); svg.innerHTML = g;
     const aW = (90 - lat - 23.44) * Math.PI / 180, aS = (90 - lat + 23.44) * Math.PI / 180;
     const w = shade(aW, dep), su = shade(aS, dep);
     kv($('#cnKv'), [['正午太阳高度', ((90 - lat + dec)).toFixed(0) + '°'], ['这一天窗被遮住', Math.round(s.frac * 100) + '%'], ['冬至被遮', Math.round(w.frac * 100) + '%'], ['夏至被遮', Math.round(su.frac * 100) + '%'], ['阳光照进屋里', s.reach > 0 ? s.reach.toFixed(1) + ' 米' : '照不进']]);
@@ -2731,6 +2795,437 @@ dev('#cnFig', () => {
       (lat > 45 ? ' 纬度越高，冬天的太阳越低，屋檐稍微深一点就把它挡住了。' : '');
   }
   draw();
+});
+
+/* ---------- 装置 18：霍奇金森的梁 ---------- */
+dev('#tieFig', () => {
+  const MAT = [['铸铁', 110, 600], ['熟铁', 320, 230], ['软钢', 250, 250]]; // [名, 抗拉, 抗压] 兆帕
+  const H = 300, AF = 12000, AW = 800; // 截面高 mm，两翼缘合计面积，腹板面积 mm²
+  let k = 0;
+  btnRow($('#tieBtns'), MAT.map(x => x[0]), k, i => { k = i; draw(); });
+  const ratio = v => Math.pow(4, (v - 10) / 15);
+  const R = slider('tieR', v => { const r = ratio(v); return (r >= 1 ? r.toFixed(r < 10 ? 1 : 0) + ' : 1' : '1 : ' + (1 / r).toFixed(1)); }, () => draw());
+  function cap(r, mt){
+    const At = AF / (1 + r), Ab = AF - At, A = AF + AW;
+    const yb = (Ab * H + AW * H / 2) / A; // 中和轴到上缘的距离
+    const I = At * yb * yb + Ab * (H - yb) * (H - yb) + AW * H * H / 12 + AW * (H / 2 - yb) * (H / 2 - yb);
+    const Mc = mt[2] * I / yb, Mt = mt[1] * I / (H - yb);
+    return {At, Ab, yb, I, M: Math.min(Mc, Mt) / 1e6, by: Mc < Mt ? 'c' : 't', Mc: Mc / 1e6, Mt: Mt / 1e6};
+  }
+  function best(mt){ let b = {M: 0, v: 10}; for (let v = 0; v <= 40; v += 0.25) { const c = cap(ratio(v), mt); if (c.M > b.M) b = {M: c.M, v, r: ratio(v)}; } return b; }
+  function draw(){
+    const mt = MAT[k], r = ratio(R()), c = cap(r, mt), b = best(mt);
+    const W = 320, Hh = 220, cx = 80, top = 30, sc = 0.5;
+    const wt = 16 + c.At / AF * 110, wb = 16 + c.Ab / AF * 110;
+    const ft = 6 + c.At / AF * 8, fb = 6 + c.Ab / AF * 8;
+    let g = '';
+    g += '<rect x="' + (cx - wt / 2) + '" y="' + top + '" width="' + wt + '" height="' + ft + '" fill="var(--main)" opacity=".85"/>';
+    g += '<rect x="' + (cx - 4) + '" y="' + (top + ft) + '" width="8" height="' + (H * sc - ft - fb) + '" fill="var(--main)" opacity=".6"/>';
+    g += '<rect x="' + (cx - wb / 2) + '" y="' + (top + H * sc - fb) + '" width="' + wb + '" height="' + fb + '" fill="var(--main)" opacity=".85"/>';
+    const ny = top + c.yb * sc;
+    g += '<line x1="10" x2="150" y1="' + ny + '" y2="' + ny + '" stroke="var(--ink-3)" stroke-dasharray="3 3"/>' + txt(14, ny - 4, '中和轴', {s: 10, a: 'start', c: 'var(--ink-3)'});
+    g += txt(cx, top - 8, '截面', {s: 11, c: 'var(--ink-2)'});
+    /* 坏的那一刻的应力：上缘压，下缘拉，按直线分布 */
+    const M = c.M * 1e6, sTop = M * c.yb / c.I, sBot = M * (H - c.yb) / c.I;
+    const ax = 230, ssc = 60 / Math.max(mt[1], mt[2], 300);
+    g += '<line x1="' + ax + '" x2="' + ax + '" y1="' + top + '" y2="' + (top + H * sc) + '" stroke="var(--ink)" stroke-width="1.2"/>';
+    g += '<path d="M' + ax + ',' + top + 'L' + (ax - sTop * ssc) + ',' + top + 'L' + ax + ',' + ny + 'z" fill="var(--blu)" opacity=".45"/>';
+    g += '<path d="M' + ax + ',' + (top + H * sc) + 'L' + (ax + sBot * ssc) + ',' + (top + H * sc) + 'L' + ax + ',' + ny + 'z" fill="var(--red)" opacity=".45"/>';
+    g += '<line x1="' + (ax - mt[2] * ssc) + '" x2="' + (ax - mt[2] * ssc) + '" y1="' + (top - 6) + '" y2="' + (top + 10) + '" stroke="var(--blu)" stroke-width="2"/>';
+    g += '<line x1="' + (ax + mt[1] * ssc) + '" x2="' + (ax + mt[1] * ssc) + '" y1="' + (top + H * sc - 10) + '" y2="' + (top + H * sc + 6) + '" stroke="var(--red)" stroke-width="2"/>';
+    g += txt(ax - 4, top + 22, '压 ' + Math.round(sTop), {s: 10.5, a: 'end', c: 'var(--blu)'});
+    g += txt(ax + 4, top + H * sc - 14, '拉 ' + Math.round(sBot), {s: 10.5, a: 'start', c: 'var(--red)'});
+    g += txt(ax, top - 8, '坏的时候的应力（兆帕）', {s: 11, c: 'var(--ink-2)'});
+    g += txt(ax, top + H * sc + 22, '竖线是材料的强度', {s: 10, c: 'var(--ink-3)'});
+    const svg = $('#tieSvg'); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + Hh); svg.innerHTML = g;
+    const pct = c.M / b.M * 100;
+    kv($('#tieKv'), [['能扛的弯矩', c.M.toFixed(0) + ' 千牛·米'], ['是最好比例的', Math.round(pct) + '%'], ['先坏在', c.by === 'c' ? '上缘压碎' : '下缘拉断'], ['这种材料最好的比例', b.r >= 1 ? b.r.toFixed(1) + ' : 1' : '1 : ' + (1 / b.r).toFixed(1)]]);
+    const s = $('#tieSay');
+    s.className = 'say' + (pct > 97 ? ' ok' : pct < 70 ? ' bad' : '');
+    if (k === 0) s.innerHTML = pct > 97 ? '找到了：铸铁梁的下翼缘要做到上翼缘的六七倍，上缘和下缘差不多同时到极限，一点铁也不浪费。<b>这就是霍奇金森 1830 年前后试出来的形状</b>。' :
+      c.by === 't' ? '铸铁梁从下面拉断了，上面的铁还远没用上劲。把更多的铁挪到下翼缘去。' : '这回轮到上缘先压碎了：下翼缘给得太多。铸铁抗压很强，上翼缘不用很大，但也不能太小。';
+    else if (k === 1) s.innerHTML = '熟铁能拉，受压反而容易屈服、失稳，所以熟铁梁的最好比例和铸铁正好倒过来，上面要多一点。<b>材料不同，最好的形状就不同</b>。' + (pct > 97 ? '' : '试着往左拖。');
+    else s.innerHTML = '钢拉压一样强，最好的截面是上下对称的：就是今天随处可见的工字钢。' + (pct > 97 ? '<b>到了钢的年代，梁的形状不再偏心了</b>。' : '把比例拖回 1 : 1 附近试试。');
+  }
+  draw();
+});
+
+/* ---------- 装置 19：钢筋放在哪儿 ---------- */
+dev('#rcFig', () => {
+  const L = 6, B = 250, Hh = 500, D = 450, FC = 30, FT = 3, FY = 400, AB = 491, XIB = 0.518; // 25 毫米钢筋
+  const SELF = 0.25 * 0.5 * 25; // 自重 kN/m
+  const MODE = ['不放钢筋', '放在下面', '放在上面'];
+  let k = 1;
+  btnRow($('#rcBtns'), MODE, k, i => { k = i; draw(); });
+  const N = slider('rcN', v => v + ' 根', () => draw());
+  const Wl = slider('rcW', v => v + ' kN/m', () => draw());
+  function calc(){
+    const n = N(), w = Wl() + SELF, M = w * L * L / 8;
+    const Mcr = FT * B * Hh * Hh / 6 / 1e6;
+    let Mu = Mcr, brittle = false, over = false;
+    if (k === 1) {
+      const As = n * AB, x = As * FY / (0.85 * FC * B);
+      if (x / D > XIB) { over = true; const xb = XIB * D; Mu = 0.85 * FC * B * xb * (D - xb / 2) / 1e6; }
+      else Mu = As * FY * (D - x / 2) / 1e6;
+    }
+    if (k !== 1) brittle = true;
+    if (over) brittle = true;
+    return {n, w, M, Mcr, Mu, brittle, over};
+  }
+  function draw(){
+    const c = calc();
+    const W = 600, H = 230, x0 = 50, x1 = 550, yT = 90, bh = 46;
+    const state = c.M < c.Mcr ? 0 : c.M < c.Mu ? 1 : 2;
+    const sag = state === 0 ? c.M / c.Mcr * 2 : state === 1 ? 2 + (c.M - c.Mcr) / (c.Mu - c.Mcr) * 14 : 26;
+    let g = '';
+    /* 荷载箭头 */
+    const na = 11, al = 10 + Math.min(30, c.w / 3);
+    for (let i = 0; i < na; i++) { const x = x0 + 10 + i * (x1 - x0 - 20) / (na - 1); g += '<line x1="' + x + '" x2="' + x + '" y1="' + (yT - al - 6) + '" y2="' + (yT - 6) + '" stroke="var(--ink-3)"/><path d="M' + (x - 3) + ',' + (yT - 10) + 'l3,4 3,-4" fill="none" stroke="var(--ink-3)"/>'; }
+    g += txt(300, yT - al - 12, '均布荷载 ' + Math.round(c.w) + ' kN/m（含自重）', {s: 11.5, c: 'var(--ink-2)'});
+    /* 弯下去的梁：用二次曲线 */
+    const curve = dy => 'M' + x0 + ',' + (yT + dy) + 'Q300,' + (yT + dy + sag * 2) + ' ' + x1 + ',' + (yT + dy);
+    if (state < 2 || !c.brittle) {
+      g += '<path d="' + curve(0) + 'L' + x1 + ',' + (yT + bh) + 'Q300,' + (yT + bh + sag * 2) + ' ' + x0 + ',' + (yT + bh) + 'z" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.4"/>';
+    } else {
+      /* 脆断：从中间断成两截 */
+      g += '<path d="M' + x0 + ',' + yT + 'L296,' + (yT + 30) + 'L296,' + (yT + 30 + bh) + 'L' + x0 + ',' + (yT + bh) + 'z" fill="var(--paper-2)" stroke="var(--red)" stroke-width="1.4"/>';
+      g += '<path d="M' + x1 + ',' + yT + 'L304,' + (yT + 30) + 'L304,' + (yT + 30 + bh) + 'L' + x1 + ',' + (yT + bh) + 'z" fill="var(--paper-2)" stroke="var(--red)" stroke-width="1.4"/>';
+    }
+    /* 钢筋 */
+    if (k > 0 && !(state === 2 && c.brittle)) {
+      const dy = k === 1 ? bh - 7 : 7;
+      g += '<path d="' + curve(dy) + '" fill="none" stroke="var(--ter)" stroke-width="' + (1.5 + c.n * 0.5) + '"/>';
+    }
+    /* 裂缝 */
+    if (state >= 1 && !(state === 2 && c.brittle)) {
+      const nc = Math.min(15, 3 + Math.round((c.M - c.Mcr) / (c.Mu - c.Mcr + 1e-9) * 12));
+      for (let i = 0; i < nc; i++) {
+        const t = (i + 0.5) / nc, x = 300 + (t - 0.5) * (x1 - x0) * 0.75;
+        const yb = yT + bh + sag * 2 * (1 - Math.pow((x - 300) / 250, 2));
+        const len = 10 + 26 * (1 - Math.abs(t - 0.5) * 2) * Math.min(1, (c.M - c.Mcr) / (c.Mu - c.Mcr + 1e-9) + 0.3);
+        g += '<path d="M' + x + ',' + yb + 'l' + ((t - 0.5) * 6) + ',' + (-len) + '" stroke="var(--red)" stroke-width="1.2"/>';
+      }
+    }
+    if (state === 2 && !c.brittle) g += txt(300, yT + bh + sag * 2 + 22, '钢筋屈服，梁慢慢垂下来', {s: 12, c: 'var(--red)', w: 1});
+    if (state === 2 && c.brittle) g += txt(300, yT + bh + 60, c.over ? '上面的混凝土突然压碎' : '下缘一裂，整根断开', {s: 12, c: 'var(--red)', w: 1});
+    /* 支座 */
+    g += '<path d="M' + x0 + ',' + (yT + bh) + 'l-10,16h20z" fill="var(--ink-3)"/><path d="M' + x1 + ',' + (yT + bh) + 'l-10,16h20z" fill="var(--ink-3)"/>';
+    g += txt(300, H - 6, '跨度 6 米 · 截面 25 × 50 厘米', {s: 11, c: 'var(--ink-3)', halo: false});
+    const svg = $('#rcSvg'); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+    const wcr = c.Mcr * 8 / (L * L) - SELF, wu = c.Mu * 8 / (L * L) - SELF;
+    kv($('#rcKv'), [['开裂荷载', Math.max(0, wcr).toFixed(1) + ' kN/m'], ['破坏荷载', Math.max(0, wu).toFixed(1) + ' kN/m'], ['现在', ['完好', '开裂，还能扛', '坏了'][state]], ['破坏方式', k !== 1 ? '脆断' : c.over ? '压碎（突然）' : '钢筋屈服（有预兆）']]);
+    const s = $('#rcSay');
+    s.className = 'say' + (state === 2 ? ' bad' : state === 0 ? ' ok' : '');
+    if (k === 0) s.innerHTML = '素混凝土梁：开裂的那一刻就是断的那一刻，扣掉自重，它几乎扛不了什么东西。<b>混凝土能压不能拉，这和石梁、铸铁梁是一个毛病</b>。';
+    else if (k === 2) s.innerHTML = '钢筋放在上面，上面本来就是受压的，混凝土自己扛得住；拉开的是下面，那里没有钢筋。<b>放反了，和没放差不多</b>。悬挑阳台正好相反，它的钢筋要放在上面，装修时千万别凿。';
+    else if (c.over) s.innerHTML = '钢筋放得太多：还没等钢筋拉到屈服，上面的混凝土先被压碎了。这种破坏没有预兆，来得突然，<b>规范里专门规定了钢筋的上限，宁可让钢筋先“软”下来</b>。';
+    else s.innerHTML = state === 0 ? '荷载不大，混凝土还没裂。' + c.n + ' 根钢筋能让这根梁扛到约 ' + Math.round(wu) + ' kN/m，是素混凝土的 ' + Math.max(1, Math.round(wu / Math.max(0.5, wcr))) + ' 倍以上。' :
+      state === 1 ? '下面已经裂出一道道细缝，可拉力交给了钢筋，梁照样站着。<b>钢筋混凝土梁本来就是“带缝工作”的</b>，细到头发丝那么宽的裂缝是正常的。' :
+      '钢筋拉到屈服，梁会明显地弯下去、裂缝变宽，然后才断。这种破坏有预兆，人有时间跑。';
+  }
+  draw();
+});
+
+/* ---------- 装置 20：一扇窗的热账 ---------- */
+dev('#winFig', () => {
+  const GL = [['单层玻璃', 5.8], ['普通中空', 2.8], ['低辐射中空', 1.8], ['三层玻璃', 1.0]];
+  const CITY = [['哈尔滨', 5000], ['北京', 2700], ['上海', 1600], ['广州', 350]]; // 采暖度日数（18 °C），约数
+  const UW = 0.45, AREA = 15, PRICE = 0.55;
+  let g = 0, c = 1;
+  btnRow($('#winBtns'), GL.map(x => x[0]), g, i => { g = i; draw(); });
+  btnRow($('#winCity'), CITY.map(x => x[0]), c, i => { c = i; draw(); });
+  const R = slider('winR', v => v + '%', () => draw());
+  function loss(u, a){ return u * a * CITY[c][1] * 24 / 1000; } // 千瓦时
+  function draw(){
+    const r = R() / 100, Aw = AREA * r, Am = AREA - Aw;
+    const qw = loss(GL[g][1], Aw), qm = loss(UW, Am), q = qw + qm;
+    const q0 = loss(UW, AREA);
+    const W = 600, H = 200;
+    let s = '';
+    /* 墙：5 m × 3 m，按比例画 */
+    const wx = 20, wy = 20, ww = 250, wh = 150;
+    s += '<rect x="' + wx + '" y="' + wy + '" width="' + ww + '" height="' + wh + '" fill="var(--paper-2)" stroke="var(--ink-2)"/>';
+    const fw = ww * Math.sqrt(r) * 0.98, fh = wh * Math.sqrt(r) * 0.98;
+    const fx = wx + (ww - fw) / 2, fy = wy + (wh - fh) / 2;
+    s += '<rect x="' + fx + '" y="' + fy + '" width="' + fw + '" height="' + fh + '" fill="var(--sea)" stroke="var(--main)" stroke-width="2"/>';
+    for (let i = 1; i < 3; i++) s += '<line x1="' + (fx + fw * i / 3) + '" x2="' + (fx + fw * i / 3) + '" y1="' + fy + '" y2="' + (fy + fh) + '" stroke="var(--main)" stroke-width="' + (g + 1) + '"/>';
+    s += txt(wx + ww / 2, wy + wh + 20, '一面 5 × 3 米的外墙', {s: 11, c: 'var(--ink-3)', halo: false});
+    /* 热流横条 */
+    const bx = 310, bw = 270, mx = Math.max(loss(5.8, AREA * 0.95) + loss(UW, AREA * 0.05), 1);
+    const bar = (y, v, col, lab) => '<rect x="' + bx + '" y="' + y + '" width="' + Math.max(1, v / mx * bw) + '" height="22" rx="3" fill="' + col + '"/>' + txt(bx, y - 5, lab + '：' + Math.round(v) + ' 度', {s: 11.5, a: 'start', c: 'var(--ink-2)', halo: false});
+    s += bar(40, qw, 'var(--red)', '窗漏掉');
+    s += bar(95, qm, 'var(--och)', '墙漏掉');
+    s += bar(150, q0, 'var(--grn)', '如果整面都是墙');
+    const svg = $('#winSvg'); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = s;
+    kv($('#winKv'), [['一个冬天漏掉', Math.round(q) + ' 度'], ['窗占了', Math.round(qw / q * 100) + '%'], ['电暖器补，电费约', Math.round(q * PRICE) + ' 元'], ['空调热泵补，电费约', Math.round(q * PRICE / 3) + ' 元']]);
+    const say = $('#winSay');
+    say.className = 'say' + (qw / q > 0.8 ? ' bad' : qw / q < 0.5 ? ' ok' : '');
+    say.innerHTML = c === 3 ? '广州几乎不用采暖，冬天这笔账很小；那里的窗户要算的是夏天：大玻璃把太阳的热放进屋，空调得把它再搬出去。<b>南方的窗，遮阳比保温要紧</b>。' :
+      '窗只占这面墙的 ' + Math.round(r * 100) + '%，却漏掉了 ' + Math.round(qw / q * 100) + '% 的热。' +
+      (g === 0 ? '单层玻璃几乎不挡热，<b>同样面积的单层窗，漏热是保温墙的十几倍</b>。' : g === 3 ? '三层玻璃已经把窗的漏热压得很低，北欧和中国北方的超低能耗房子用的就是它。' : '换成更好的玻璃，或者把窗开小一点，都能省下一大截。') +
+      (r > 0.6 ? '整面玻璃的房子，冬天要靠更多的暖气来补。' : '');
+  }
+  draw();
+});
+
+/* ---------- 装置 21：水能送到几楼 ---------- */
+dev('#gsFig', () => {
+  const FH = 3, LOSS = 0.002, G = 0.0098, PMIN = 0.05, PMAX = 0.35;
+  const MODE = ['只靠城市管网', '加水泵分区', '加屋顶水箱'];
+  let k = 0;
+  btnRow($('#gsBtns'), MODE, k, i => { k = i; draw(); });
+  const P = slider('gsP', v => v.toFixed(2) + ' 兆帕', () => draw());
+  const N = slider('gsN', v => v + ' 层', () => draw());
+  function draw(){
+    const p0 = P(), n = N();
+    const tapH = i => (i - 1) * FH + 1; // 第 i 层龙头离地高度
+    const city = i => p0 - (G + LOSS) * tapH(i);
+    const pr = [], src = [];
+    let direct = 0; for (let i = 1; i <= n; i++) if (city(i) >= PMIN) direct = i;
+    for (let i = 1; i <= n; i++) {
+      if (k === 0 || i <= direct) { pr.push(city(i)); src.push(0); continue; }
+      if (k === 1) { // 每 10 层一个区，区顶压力 0.10
+        const z = Math.floor((i - direct - 1) / 10), top = Math.min(n, direct + (z + 1) * 10);
+        pr.push(0.10 + G * (tapH(top) - tapH(i))); src.push(1 + z);
+      } else { // 屋顶水箱，水面高出屋面 3 米
+        const ht = n * FH + 3;
+        pr.push((G - LOSS) * (ht - tapH(i))); src.push(9);
+      }
+    }
+    const W = 440, rowH = Math.max(4, Math.min(12, 330 / n)), H = 40 + n * rowH;
+    const bx = 150, sc = 250 / 0.6;
+    let g = '';
+    [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6].forEach(v => g += '<line x1="' + (bx + v * sc) + '" x2="' + (bx + v * sc) + '" y1="16" y2="' + (H - 18) + '" stroke="var(--rule)"/>' + txt(bx + v * sc, 12, v.toFixed(1), {s: 10, c: 'var(--ink-3)', halo: false}));
+    g += '<rect x="' + (bx + PMIN * sc) + '" y="16" width="' + ((PMAX - PMIN) * sc) + '" height="' + (H - 34) + '" fill="var(--grn)" opacity=".08"/>';
+    let low = 0, high = 0;
+    for (let i = 1; i <= n; i++) {
+      const y = H - 18 - i * rowH, p = pr[i - 1];
+      const col = p < PMIN ? 'var(--red)' : p > PMAX ? 'var(--och)' : 'var(--grn)';
+      if (p < PMIN) low++; if (p > PMAX) high++;
+      g += '<rect x="20" y="' + y + '" width="90" height="' + (rowH - 1) + '" fill="' + (src[i - 1] === 0 ? 'var(--main)' : src[i - 1] === 9 ? 'var(--kraft)' : 'var(--ter)') + '" opacity="' + (0.25 + (src[i - 1] % 2) * 0.2) + '"/>';
+      g += '<rect x="' + bx + '" y="' + y + '" width="' + Math.max(1, Math.max(0, p) * sc) + '" height="' + (rowH - 1) + '" fill="' + col + '"/>';
+      if (n <= 20 || i % 5 === 0 || i === 1) g += txt(116, y + rowH - 2, i + '', {s: 9.5, a: 'start', c: 'var(--ink-3)', halo: false});
+    }
+    if (k === 2) g += '<rect x="40" y="' + (H - 18 - n * rowH - 12) + '" width="40" height="10" fill="var(--kraft)"/>' + txt(60, H - 18 - n * rowH - 14, '水箱', {s: 10, c: 'var(--ink-2)'});
+    g += txt(65, H - 4, '楼（颜色是水从哪来）', {s: 10, c: 'var(--ink-3)', halo: false}) + txt(bx + 125, H - 4, '各层龙头的水压（兆帕），绿底是好用的范围', {s: 10, c: 'var(--ink-3)', halo: false});
+    const svg = $('#gsSvg'); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+    const pumps = k === 1 ? Math.max(0, Math.ceil((n - direct) / 10)) : k === 2 ? (n > direct ? 1 : 0) : 0;
+    kv($('#gsKv'), [['管网直接送到', direct + ' 层'], ['水压不够的楼层', low + ' 层'], ['水压太大的楼层', high + ' 层'], ['要几套水泵', pumps + ' 套']]);
+    const s = $('#gsSay');
+    s.className = 'say' + (low > 0 ? ' bad' : high > 0 ? '' : ' ok');
+    s.innerHTML = k === 0 ? (low ? '城市管网只能把水送到 ' + direct + ' 层，再往上龙头就没水了。<b>所以老城区五六层的楼不用水泵，再高就不行</b>。' : '这栋楼不高，城市管网的压力足够，每层都有水。') + (high ? '低层的压力偏大，要装减压阀，不然龙头一开就“炸”。' : '') :
+      k === 1 ? '低层直接用管网，往上每十层一个区，各有一套水泵，区顶留一点余压。<b>中国的高层住宅大多这样做</b>，地下室的泵房一停电，高区就没水。' + (high ? '区里最低的几层压力偏大，要靠减压阀。' : '') :
+      '水泵把水打到楼顶的水箱，再靠重力往下流：' + (low ? '<b>最上面几层离水面太近，水压不够</b>，纽约的老楼常常给顶层再加一台小泵。' : '每层都有水。') + (high ? '最底下的楼层压力太大，要减压。' : '') + '水箱的好处是停电了还能撑一阵。';
+  }
+  draw();
+});
+
+/* ---------- 装置 22：大楼里的摆 ---------- */
+dev('#tmdFig', () => {
+  const Z1 = 0.01;
+  /* 复数 */
+  const C = (re, im) => ({re, im});
+  const add = (a, b) => C(a.re + b.re, a.im + b.im), sub = (a, b) => C(a.re - b.re, a.im - b.im);
+  const mul = (a, b) => C(a.re * b.re - a.im * b.im, a.re * b.im + a.im * b.re);
+  const div = (a, b) => { const d = b.re * b.re + b.im * b.im; return C((a.re * b.re + a.im * b.im) / d, (a.im * b.re - a.re * b.im) / d); };
+  const abs = a => Math.hypot(a.re, a.im);
+  const Mu = slider('tmdM', v => v.toFixed(1) + '%', () => draw());
+  const Fq = slider('tmdF', v => v.toFixed(3), () => draw());
+  $('#tmdBtns').innerHTML = '<button class="btn" data-a="opt">调到最优节奏</button><button class="btn" data-a="none">去掉摆</button><button class="btn" data-a="off">节奏调歪</button>';
+  $('#tmdBtns').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    const m = $('#tmdM'), f = $('#tmdF');
+    if (b.dataset.a === 'none') m.value = 0;
+    if (b.dataset.a === 'opt') { if (+m.value === 0) m.value = 1.5; f.value = (1 / (1 + m.value / 100)).toFixed(3); }
+    if (b.dataset.a === 'off') { if (+m.value === 0) m.value = 1.5; f.value = 1.12; }
+    m.dispatchEvent(new Event('input')); f.dispatchEvent(new Event('input'));
+  });
+  function resp(r, mu, f){
+    if (mu <= 0) return {x1: 1 / abs(C(1 - r * r, 2 * Z1 * r)), rel: 0};
+    const za = Math.sqrt(3 * mu / (8 * Math.pow(1 + mu, 3)));
+    const Z = C(mu * f * f, 2 * mu * f * za * r);
+    const den2 = sub(Z, C(mu * r * r, 0));
+    const D = sub(add(C(1 - r * r, 2 * Z1 * r), Z), div(mul(Z, Z), den2));
+    const X1 = div(C(1, 0), D), X2 = div(mul(Z, X1), den2);
+    return {x1: abs(X1), rel: abs(sub(X2, X1))};
+  }
+  function draw(){
+    const mu = Mu() / 100, f = Fq();
+    const rs = []; for (let r = 0.7; r <= 1.3001; r += 0.002) rs.push(r);
+    const base = rs.map(r => [r, resp(r, 0, 1).x1]);
+    const tm = rs.map(r => resp(r, mu, f));
+    const pk0 = Math.max(...base.map(p => p[1]));
+    let pk = 0, pr = 0, rel = 0; tm.forEach((v, i) => { if (v.x1 > pk) { pk = v.x1; pr = rs[i]; rel = v.rel; } });
+    const ser = [{name: '没有摆', color: 'var(--ink-3)', pts: base, w: 1.8, dash: '4 3'}];
+    if (mu > 0) ser.push({name: '挂了摆', color: 'var(--ter)', pts: rs.map((r, i) => [r, tm[i].x1]), w: 2.8});
+    lineChart($('#tmdSvg'), ser, {xmin: 0.7, xmax: 1.3, ymin: 0, ymax: 55, xt: [0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3], xf: v => v === 1 ? '对上了' : v.toFixed(1), yt: [0, 10, 20, 30, 40, 50], yf: v => v + '×', H: 240});
+    const red = mu > 0 ? (1 - pk / pk0) * 100 : 0;
+    kv($('#tmdKv'), [['没有摆的最大放大', Math.round(pk0) + ' 倍'], ['现在的最大放大', Math.round(mu > 0 ? pk : pk0) + ' 倍'], ['晃动减少', Math.round(red) + '%'], ['摆自己荡的幅度', mu > 0 ? '楼的 ' + (rel / pk).toFixed(1) + ' 倍' : '—']]);
+    const fo = 1 / (1 + mu), s = $('#tmdSay');
+    s.className = 'say' + (red > 75 ? ' ok' : mu > 0 && red < 40 ? ' bad' : '');
+    s.innerHTML = mu === 0 ? '没有阻尼器的楼，自身阻尼很小，风推的节奏一旦和它晃的节奏对上，晃动会被放大五十倍左右。<b>高楼不怕一阵大风，怕的是一阵一阵、节奏刚好对上的风</b>。' :
+      Math.abs(f - fo) > 0.04 ? '摆的节奏没调准，尖峰只是挪了个地方，没压下去多少。<b>“调谐”两个字是关键</b>：摆要和大楼合拍，才能在大楼想往左的时候把它往右拽。试试“调到最优节奏”。' :
+      '一个只占振型质量 ' + Mu().toFixed(1) + '% 的摆，把最大晃动压掉了 ' + Math.round(red) + '%，原来的一个尖峰变成了两个矮得多的小峰。代价是摆自己要荡得比楼厉害好几倍，所以台北 101 的钢球旁边留着很大的空间，还装了限位的缓冲器。' + (mu > 0.03 ? '摆越重效果越好，但楼要专门为它多扛几百上千吨。' : '');
+  }
+  draw();
+});
+
+/* ---------- 装置 23：一根缆能拉多远 ---------- */
+dev('#cabFig', () => {
+  const Q = 200e3; // 桥面荷载 N/m（两根缆合计）
+  /* [名字, 容许应力 Pa, 重度 N/m³] */
+  const MT = [['现代高强钢丝', 800e6, 78.5e3], ['布鲁克林时代的钢丝', 180e6, 78.5e3], ['设想：碳纤维缆', 1000e6, 16e3]];
+  let k = 0;
+  btnRow($('#cabBtns'), MT.map(x => x[0]), k, i => { k = i; draw(); });
+  const Lr = slider('cabL', v => v.toLocaleString() + ' 米', () => draw());
+  const Nr = slider('cabN', v => '1 / ' + (1 / v).toFixed(1), () => draw());
+  const cf = (L, n) => L * Math.sqrt(1 + 16 * n * n) / (8 * n);
+  function cab(L, n, m){ const c = cf(L, n), den = m[1] - c * m[2]; if (den <= 0) return null; const A = c * Q / den; return {A, frac: m[2] * A / (Q + m[2] * A)}; }
+  const BR = [[486, '布鲁克林'], [853, '塔科马'], [1280, '金门'], [1991, '明石'], [2023, '恰纳卡莱']];
+  function draw(){
+    const L = Lr(), n = Nr(), m = MT[k], c = cab(L, n, m);
+    const Lmax = 8 * n * m[1] / (m[2] * Math.sqrt(1 + 16 * n * n));
+    const pts = []; for (let x = 100; x <= 6000; x += 25) { const r = cab(x, n, m); pts.push([x, r ? r.frac * 100 : null]); }
+    const geo = lineChart($('#cabSvg'), [{name: '自重占比', color: 'var(--ter)', pts, w: 2.6}], {xmin: 0, xmax: 6000, ymin: 0, ymax: 100, xt: [0, 1000, 2000, 3000, 4000, 5000, 6000], xf: v => v ? (v / 1000) + ' 千米' : '0', yt: [0, 25, 50, 75, 100], yf: v => v + '%', marks: BR.map(b => [b[0], b[1]]), H: 250, L: 44});
+    let extra = '';
+    if (c) extra += '<circle cx="' + geo.X(L) + '" cy="' + geo.Y(c.frac * 100) + '" r="6" fill="var(--main)" stroke="var(--card)" stroke-width="2"/>';
+    if (Lmax < 6000) extra += '<line x1="' + geo.X(Lmax) + '" x2="' + geo.X(Lmax) + '" y1="' + geo.T + '" y2="' + (geo.H - geo.B) + '" stroke="var(--red)" stroke-width="2"/>' + txt(geo.X(Lmax) - 4, geo.H - geo.B - 8, '缆只能吊住自己', {s: 11, a: 'end', c: 'var(--red)'});
+    $('#cabSvg').insertAdjacentHTML('beforeend', extra);
+    if (c) {
+      const each = c.A / 2, d = Math.sqrt(each / 0.8 * 4 / Math.PI);
+      const len = L * (1 + 8 / 3 * n * n) * 2;
+      const tons = m[2] * c.A * len / 9.81 / 1000;
+      kv($('#cabKv'), [['每根大缆直径约', d < 1 ? Math.round(d * 100) + ' 厘米' : d.toFixed(2) + ' 米'], ['主跨里缆的重量约', tons >= 10000 ? (tons / 10000).toFixed(1) + ' 万吨' : Math.round(tons).toLocaleString() + ' 吨'], ['力气花在吊自己上', Math.round(c.frac * 100) + '%'], ['这种缆的极限跨度', Math.round(Lmax).toLocaleString() + ' 米']]);
+    } else kv($('#cabKv'), [['每根大缆直径', '无穷大'], ['力气花在吊自己上', '100%'], ['这种缆的极限跨度', Math.round(Lmax).toLocaleString() + ' 米']]);
+    const s = $('#cabSay');
+    s.className = 'say' + (!c || c.frac > 0.6 ? ' bad' : c.frac < 0.3 ? ' ok' : '');
+    s.innerHTML = !c ? '跨度超过了这种缆的极限：缆光是吊住自己就已经拉到了容许应力，再加多少钢丝都没用，加上去的钢丝只会让缆更重。<b>这是悬索桥跨度的天花板</b>。' :
+      k === 1 ? '十九世纪的钢丝强度低，又要留很大的安全系数（布鲁克林大桥按六倍设计），所以跨度一过一千多米，缆的力气大半都花在吊自己上了。' :
+      k === 2 ? '碳纤维又轻又强，理论上能把跨度推到很远，可是它贵、怕剪、接头难做，耐久性也还在研究，今天还没有用它做主缆的大桥。' :
+      '跨度 ' + L.toLocaleString() + ' 米时，大缆约 ' + Math.round(c.frac * 100) + '% 的力气用来吊住它自己。' + (c.frac > 0.5 ? '<b>跨度越大，缆越像在给自己打工</b>，这也是世界最长的悬索桥停在两千米出头的原因之一（另一些原因是风、造价和锚碇）。' : '垂度大一点，缆的拉力就小一点，可是塔得更高。');
+  }
+  draw();
+});
+
+/* ---------- 装置 24：流水线上的房子 ---------- */
+dev('#lvFig', () => {
+  const ST = [['地基', 2], ['墙架', 1.5], ['屋面', 2], ['门窗', 1], ['水电', 2], ['墙板', 2.5], ['地板', 1], ['油漆', 1.5]];
+  const COL = ['var(--kraft)', 'var(--main)', 'var(--ter)', 'var(--blu)', 'var(--och)', 'var(--grn)', 'var(--pur)', 'var(--red)'];
+  const K = ST.length;
+  const MODE = ['一个班组包一栋', '一个班组只干一道'];
+  let m = 1;
+  btnRow($('#lvBtns'), MODE, m, i => { m = i; draw(); });
+  const Hn = slider('lvH', v => v + ' 栋', () => draw());
+  const Lr = slider('lvL', v => v + '%', () => draw());
+  const dur = (base, rep, l) => base * Math.max(0.45, Math.pow(1 - l, Math.log2(rep))); // 第 rep 次干同样的活
+  function sim(n, l, mode){
+    const seg = []; // [house, step, start, end]
+    if (mode === 0) {
+      const free = new Array(K).fill(0), cnt = new Array(K).fill(0);
+      for (let h = 0; h < n; h++) {
+        const c = h % K; cnt[c]++; let t = free[c];
+        for (let s = 0; s < K; s++) { const d = dur(ST[s][1] * 1.25, cnt[c], l) + 0.3; seg.push([h, s, t, t + d]); t += d; } // 样样都干的人慢一点，每换一道活要收拾工具、等料
+        free[c] = t;
+      }
+    } else {
+      const free = new Array(K).fill(0), done = new Array(n).fill(0);
+      for (let h = 0; h < n; h++) for (let s = 0; s < K; s++) {
+        const st = Math.max(free[s], done[h]), d = dur(ST[s][1], h + 1, l);
+        seg.push([h, s, st, st + d]); free[s] = st + d; done[h] = st + d;
+      }
+    }
+    const end = Math.max(...seg.map(x => x[3]));
+    const busy = seg.reduce((a, x) => a + x[3] - x[2], 0);
+    return {seg, end, busy};
+  }
+  function draw(){
+    const n = Hn(), l = Lr() / 100, r = sim(n, l, m), o = sim(n, l, 1 - m);
+    const W = 600, L = 50, R = 12, rowH = Math.max(3, Math.min(10, 300 / n)), H = 30 + n * rowH;
+    const span = Math.max(r.end, o.end) * 1.02;
+    const X = t => L + t / span * (W - L - R);
+    let g = '';
+    const step = span > 80 ? 20 : span > 40 ? 10 : 5;
+    for (let t = 0; t <= span; t += step) g += '<line x1="' + X(t) + '" x2="' + X(t) + '" y1="4" y2="' + (H - 20) + '" stroke="var(--rule)"/>' + txt(X(t), H - 6, t + ' 天', {s: 10, c: 'var(--ink-3)', halo: false});
+    r.seg.forEach(x => g += '<rect x="' + X(x[2]).toFixed(1) + '" y="' + (6 + x[0] * rowH) + '" width="' + Math.max(0.6, X(x[3]) - X(x[2])).toFixed(1) + '" height="' + Math.max(2, rowH - 1) + '" fill="' + COL[x[1]] + '" opacity=".85"/>');
+    g += txt(L - 6, 14, '第 1 栋', {s: 10, a: 'end', c: 'var(--ink-3)', halo: false}) + txt(L - 6, 6 + n * rowH, '第 ' + n + ' 栋', {s: 10, a: 'end', c: 'var(--ink-3)', halo: false});
+    g += '<line x1="' + X(o.end) + '" x2="' + X(o.end) + '" y1="4" y2="' + (H - 20) + '" stroke="var(--ink-2)" stroke-dasharray="4 3"/>' + txt(X(o.end) - 3, H - 24, '另一种办法', {s: 10, a: 'end', c: 'var(--ink-2)'});
+    const svg = $('#lvSvg'); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g + '';
+    const leg = ST.map((s, i) => '<span><i style="background:' + COL[i] + '"></i>' + s[0] + '</span>').join('');
+    let lg = $('#lvLeg'); if (!lg) { $('#lvSvg').parentNode.insertAdjacentHTML('afterend', '<div class="legend" id="lvLeg"></div>'); lg = $('#lvLeg'); } lg.innerHTML = leg;
+    const ends = r.seg.filter(x => x[1] === K - 1).map(x => x[3]).sort((a, b) => a - b);
+    const tail = ends.slice(Math.floor(n / 2));
+    const rate = tail.length > 1 ? (tail.length - 1) / (tail[tail.length - 1] - tail[0]) : 0;
+    const idle = 1 - r.busy / (K * r.end);
+    kv($('#lvKv'), [['全部盖完', r.end.toFixed(0) + ' 天'], ['后半程每天交', rate.toFixed(2) + ' 栋'], ['班组闲着的时间', Math.round(idle * 100) + '%'], ['另一种办法', o.end.toFixed(0) + ' 天']]);
+    const s = $('#lvSay'), faster = r.end < o.end;
+    s.className = 'say' + (faster ? ' ok' : '');
+    s.innerHTML = m === 1 ? '每个班组只干一道活，一栋接一栋往前推，图上斜斜的一条条色带就是“流水”。' + (l > 0 ? '同样的活干了几十遍，班组越干越快，' : '') + (faster ? '<b>比“一个班组包一栋”早 ' + Math.round(o.end - r.end) + ' 天盖完</b>。' : '房子太少，流水线还没“热”起来，优势不明显。') + '代价是：最慢的那一道工序决定了整条线的速度，其他班组得等它（闲着的时间就是这么来的）。' :
+      '每个班组从地基干到油漆，八个班组各盖各的。' + (faster ? '房子不多的时候，这样反而快。' : '每个人什么都得会，同样的活一年只干几遍，熟练得慢，' + '<b>比流水线晚 ' + Math.round(r.end - o.end) + ' 天</b>。') + '老式的营造厂和农村盖房子，多是这个办法。';
+  }
+  draw();
+});
+
+/* ---------- 装置 25：你住的房子：一张时间表 ---------- */
+dev('#yhFig', () => {
+  /* [名字, 保护层 mm, 碳化系数倍数, 隐含碳 t/m²] */
+  const ST = [['钢筋混凝土', 25, 1, 0.45], ['砖混（砖墙加预制板）', 20, 1.2, 0.35], ['钢结构', 0, 0, 0.55], ['木结构', 0, 0, 0.25]];
+  const CARE = [['维护得好', 2.5, 30], ['一般', 3.5, 20], ['差：漏水、乱改', 5, 10]]; // [名, 碳化系数 mm/√年, 锈到开裂的年数]
+  const NOW = 2026, PERCAP = 8; // 中国人均年排放约 8 吨，约数
+  let st = 0, care = 1;
+  btnRow($('#yhBtns'), ST.map(x => x[0]), st, i => { st = i; draw(); });
+  btnRow($('#yhCare'), CARE.map(x => x[0]), care, i => { care = i; draw(); });
+  const Y = slider('yhY', v => v + ' 年', () => draw());
+  const A = slider('yhA', v => v + ' 平方米', () => draw());
+  function draw(){
+    const y = Y(), a = A(), s = ST[st], c = CARE[care];
+    const age = NOW - y;
+    const ev = [];
+    ev.push([y, '建成', 'var(--ink)']);
+    ev.push([y + 30, '很多房子在这个岁数被拆', 'var(--ink-3)']);
+    ev.push([y + 50, '设计使用年限到', 'var(--main)']);
+    const land = y >= 1992 ? y - 2 + 70 : null;
+    if (land) ev.push([land, '土地使用权到期，自动续期', 'var(--kraft)']);
+    let rust = null, crack = null;
+    if (s[1]) { const k = c[1] * s[2]; rust = Math.round(y + Math.pow(s[1] / k, 2)); crack = rust + c[2]; ev.push([rust, '碳化到钢筋，开始有锈的风险', 'var(--och)']); ev.push([crack, '可能开裂、剥落', 'var(--red)']); }
+    ev.push([NOW, '今天', 'var(--ter)']);
+    const x0 = 1950, x1 = 2160, W = 600, L = 20, R = 20;
+    const X = t => L + (t - x0) / (x1 - x0) * (W - L - R);
+    const sorted = ev.slice().sort((p, q) => p[0] - q[0]);
+    const H = 70 + sorted.length * 22;
+    let g = '';
+    for (let t = 1950; t <= 2150; t += 25) g += '<line x1="' + X(t) + '" x2="' + X(t) + '" y1="26" y2="' + (H - 4) + '" stroke="var(--rule)"/>' + txt(X(t), 18, t, {s: 10.5, c: 'var(--ink-3)', halo: false});
+    g += '<rect x="' + X(y) + '" y="32" width="' + (X(Math.min(x1, Math.max(crack || 0, land || 0, y + 80))) - X(y)) + '" height="16" rx="3" fill="var(--main)" opacity=".12"/>';
+    g += '<rect x="' + X(y) + '" y="32" width="' + Math.max(2, X(NOW) - X(y)) + '" height="16" rx="3" fill="var(--main)" opacity=".5"/>';
+    sorted.forEach((e, i) => {
+      const yy = 66 + i * 22, xx = X(Math.min(x1, e[0]));
+      g += '<line x1="' + xx + '" x2="' + xx + '" y1="40" y2="' + (yy - 4) + '" stroke="' + e[2] + '" stroke-width="1.4" stroke-dasharray="' + (e[1] === '今天' ? '0' : '3 2') + '"/>';
+      g += '<circle cx="' + xx + '" cy="40" r="4" fill="' + e[2] + '"/>';
+      const right = xx < W * 0.62;
+      g += txt(xx + (right ? 6 : -6), yy, e[0] + ' · ' + e[1], {s: 11.5, a: right ? 'start' : 'end', c: e[2]});
+    });
+    const svg = $('#yhSvg'); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+    const co2 = a * s[3];
+    kv($('#yhKv'), [['楼龄', age + ' 年'], ['设计年限', age < 50 ? '还剩 ' + (50 - age) + ' 年' : '已过 ' + (age - 50) + ' 年'], ['你家盖出来约排放', co2.toFixed(0) + ' 吨 CO₂'], ['相当于中国人均', (co2 / PERCAP).toFixed(1) + ' 年的排放']]);
+    const say = $('#yhSay');
+    let t = '';
+    if (st === 2) t = '钢结构不怕碳化，怕锈：外露的钢构件要定期重刷防腐涂料，大约十几二十年一次；防火涂层也要保持完好。<b>钢结构的寿命，基本就是它的油漆被照顾得怎么样</b>。';
+    else if (st === 3) t = '木结构最怕水和白蚁。保持干燥、通风，木房子能用几百年，第一部第二章讲过的法隆寺已经一千三百多年；一旦长期漏水，几年就能烂掉一根梁。';
+    else t = (rust <= NOW ? '按这个粗略的估算，钢筋那一层大约在 ' + rust + ' 年前后就已经被碳化走到了。' : '按这个粗略的估算，碳化大约要到 ' + rust + ' 年前后才走到钢筋。') +
+      (care === 2 ? '漏水、乱凿保护层，会让一栋楼老得快得多。' : care === 0 ? '<b>维护得好，一栋钢筋混凝土楼过了五十年设计年限，照样可以安全地用下去</b>，只要定期检查、该修就修。' : '室内干燥的地方即使碳化到了钢筋，也锈得很慢；要盯紧的是阳台、外墙、卫生间和地下室。') +
+      (st === 1 ? '砖混楼的预制板保护层薄，老楼里常见板底露筋。' : '');
+    say.className = 'say' + (care === 2 ? ' bad' : care === 0 ? ' ok' : '');
+    say.innerHTML = t + (land ? '' : ' 这栋楼建于九十年代以前，多半是公房或房改房，土地使用权的情况要看当时的政策，图上没画。');
+  }
+  draw();
+});
+
+/* 工牌总表：按章节 / 按年代 */
+dev('#bgTable', tb => {
+  const body = $('tbody', tb), rows = $$('tr', body);
+  btnRow($('#bgBtns'), ['按章节排', '按年代排'], 0, i => {
+    const list = i ? rows.slice().sort((a, b) => +a.dataset.y - +b.dataset.y) : rows;
+    list.forEach(r => body.appendChild(r));
+  });
 });
 
 })();

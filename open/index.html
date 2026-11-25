@@ -1936,7 +1936,7 @@ function slider(id, f, cb){ const r = $('#' + id), o = $('#' + id + 'O'); const 
 
 /* ---------- 全书目录（三个网页共用） ---------- */
 const PAGE = /three\.html/.test(location.pathname) ? 3 : /two\.html/.test(location.pathname) ? 2 : 1;
-const READY = 1; // 已经写好的部数
+const READY = 2; // 已经写好的部数
 const PURL = {1: './', 2: 'two.html', 3: 'three.html'};
 const TOC = [
   {p: 1, t: '第一部 · 摊 —— 普通人怎样做生意'},
@@ -1954,15 +1954,15 @@ const TOC = [
   {id: 'c8', n: '伙', t: '几个人凑钱', s: '富兰克林的酒鬼合伙人和一位寡妇、无限连带、五五开的僵局、肉夹馍；分股权', r: '1728—2014'},
   {p: 2, t: '第二部 · 路 —— AI 时代一个毕业生的岔路'},
   {v: '卷三 · 器 —— 新工具'},
-  {id: 'c9', n: '器', t: '一个人干一个组的活', s: '印刷机、电子表格和会计；AI 改变了什么、没改变什么', r: '1450—2026'},
-  {id: 'c10', n: '单', t: '一个人的公司', s: '十二个月十二个项目、六个月卖掉的一人公司、不拿风投的公司；超级个体的另一面', r: '2009—2026'},
-  {id: 'c11', n: '卖', t: '第一个付钱的人', s: '拍鞋店的照片、一段演示视频、做不能规模化的事；有人付钱之前什么都不算', r: '1999—2026'},
-  {id: 'c12', n: '坑', t: 'AI 时代的坑', s: '卖课、套壳、刷单、爬数据、借卡；不碰的清单', r: '2016—2026'},
+  {id: 'c9', n: '器', t: '一个人干一个组的活', s: '一百美元的电子表格、记账员和会计师、快了一半也慢了五分之一；阿姆达尔定律', r: '1967—2027'},
+  {id: 'c10', n: '单', t: '一个人的公司', s: '半年卖掉的一人公司、十二个月十二个产品、收入的长尾、在中国要过的几道门；订阅的天花板', r: '2009—2027'},
+  {id: 'c11', n: '卖', t: '第一个付钱的人', s: '到鞋店里拍鞋、一段演示视频、做不能规模化的事、别问“你会不会买”；一个漏斗', r: '1999—2027'},
+  {id: 'c12', n: '坑', t: 'AI 时代的坑', s: '一百九十九元的 AI 课、借卡和帮信罪、刷单、爬数据、套壳、换脸、AI 代写；红灯还是绿灯', r: '2015—2027'},
   {v: '卷四 · 岔 —— 都没上怎么办'},
-  {id: 'c13', n: '岔', t: '读研、考编、上岸', s: '应届生身份和择业期、年龄线、在编的人能不能做生意', r: '今'},
-  {id: 'c14', n: '无', t: '三无的时候', s: '没工作、没积蓄、没门路：灵活就业、自己交社保、回家乡、学一门手艺', r: '今'},
-  {id: 'c15', n: '步', t: '第一步', s: '不辞职、零库存、先卖后做、止损线；一张第一步的计划', r: '今'},
-  {id: 'c16', n: '身', t: '一个人扛', s: '孤独、家人、身体和面子；什么时候回去上班', r: '今'},
+  {id: 'c13', n: '岔', t: '读研、考编、上岸', s: '停薪留职、应届生身份和择业期、年龄线、四种身份各能做什么；两个版本的计划', r: '1983—2027'},
+  {id: 'c14', n: '无', t: '三无的时候', s: '街角的苹果、先保住的四样、自己交社保、见习和补贴；三无的底线账', r: '1930—2027'},
+  {id: 'c15', n: '步', t: '第一步', s: '邮购的少年、从手里有的出发、可承受损失、第一步的八条、什么时候办执照；一页纸的计划', r: '1943—2027'},
+  {id: 'c16', n: '身', t: '一个人扛', s: '早睡早起的历书、创业者的心理健康、怎样跟爸妈说、面子；该不该回去上班', r: '1732—2027'},
   {p: 3, t: '第三部 · 账 —— 和钱搭上边'},
   {v: '卷五 · 钱'},
   {id: 'c17', n: '流', t: '赚钱了，钱呢', s: '利润和现金流、账期、库存；公私分开', r: '1494—2026'},
@@ -2108,6 +2108,46 @@ dev('#forkFig', fig => {
   }
   qs.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; const i = +b.dataset.i, j = +b.dataset.j; path = path.slice(0, i); path[i] = j; render(); });
   render();
+});
+
+/* ---------- 第二部封面装置：一周一百六十八小时 ---------- */
+dev('#weekFig', fig => {
+  const svg = $('#wkSvg'), kvb = $('#wkKv'), say = $('#wkSay');
+  const PRE = [['全职备考', 7.5, 2.5, 60, 14], ['上班', 7.5, 3, 45, 14], ['读研', 7.5, 2.5, 48, 14], ['三无，在家', 8, 2, 25, 16]];
+  const ids = ['wkS', 'wkE', 'wkM', 'wkR'];
+  const g = {}; let ready = false, mode = 0;
+  function draw(){
+    if (!ready) return;
+    const sleep = g.s * 7, eat = g.e * 7, main = g.m, rest = g.r;
+    const left = 168 - sleep - eat - main - rest;
+    const parts = [['睡觉', sleep, 'var(--ink-3)'], ['吃饭洗漱通勤', eat, 'var(--rule)'], ['主线', main, 'var(--ter)'], ['休息运动陪人', rest, 'var(--och)'], ['剩下的', Math.max(0, left), 'var(--main)']];
+    const W = 600, H = 92, L = 4, R = 4; let x = L, gg = '';
+    const tot = parts.reduce((a, p) => a + p[1], 0);
+    const scale = (W - L - R) / Math.max(168, tot);
+    parts.forEach(p => { const w = p[1] * scale; if (w > 0) { gg += '<rect x="' + x.toFixed(1) + '" y="10" width="' + w.toFixed(1) + '" height="40" fill="' + p[2] + '" stroke="var(--card)" stroke-width="1.5"/>'; if (w > 46) gg += txt(x + w / 2, 35, p[0].slice(0, 4), {s: 12, c: 'var(--ink)'}); } x += w; });
+    gg += '<line x1="' + (L + 168 * scale) + '" x2="' + (L + 168 * scale) + '" y1="4" y2="58" stroke="var(--ink)" stroke-width="1.5"/>' + txt(L + 168 * scale - 2, 74, '168 小时', {s: 12, a: 'end', c: 'var(--ink-2)'});
+    if (left < 0) gg += txt(W / 2, 88, '超出了 ' + (-left).toFixed(1) + ' 小时：这一周排不下', {s: 12, c: 'var(--main)', w: 1});
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = gg;
+    kv(kvb, [['睡觉', sleep.toFixed(1) + ' 小时'], ['主线', main + ' 小时'], ['剩下的', '<b class="' + (left >= 8 ? 'pos' : 'neg') + '">' + Math.max(0, left).toFixed(1) + ' 小时</b>'], ['平均每天', (Math.max(0, left) / 7).toFixed(1) + ' 小时']]);
+    let s;
+    if (left < 0) s = '这一周已经排不下了。最先被挤掉的通常是睡觉和运动，可它们是撑住主线的东西。';
+    else if (g.m >= 55 && mode === 0) s = '全职备考的一周，剩下 ' + left.toFixed(1) + ' 小时。看上去还有一点，可备考要的不只是小时数，还有整块的、不被打断的心思。这一年最好的生意，是把考试考好。';
+    else if (left < 8) s = '剩下不到八小时，一门小生意很难持续：接一个活，回客户消息、改需求，就能把这点时间吃光。先别开张，或者只做一件很小、随时能停的事。';
+    else if (left < 20) s = '剩下 ' + left.toFixed(1) + ' 小时，大约每天一两个小时。够做一件小事：接一两个活、维护一个小工具、每周写一篇东西。要选能被打断、随时能停的。';
+    else s = '剩下 ' + left.toFixed(1) + ' 小时，相当于半份工作。时间是够的，难的是把它用在“有人付钱”的事情上，而不是用在准备上（第十一章）。';
+    say.textContent = s;
+  }
+  const go = () => { if (ready) draw(); };
+  slider('wkS', v => { g.s = v; return v + ' 小时'; }, go);
+  slider('wkE', v => { g.e = v; return v + ' 小时'; }, go);
+  slider('wkM', v => { g.m = v; return v + ' 小时'; }, go);
+  slider('wkR', v => { g.r = v; return v + ' 小时'; }, go);
+  btnRow($('#wkPre'), PRE.map(p => p[0]), 0, i => {
+    mode = i; ready = false;
+    ids.forEach((id, k) => { const r = $('#' + id); r.value = PRE[i][k + 1]; r.dispatchEvent(new Event('input')); });
+    ready = true; draw();
+  });
+  ready = true; draw();
 });
 
 /* ---------- 装置 1：能撑几个月 ---------- */
@@ -2450,6 +2490,255 @@ dev('#eqFig', fig => {
   slider('eqT', v => { g.t = v; return '第 ' + v + ' 个月'; }, go);
   btnRow($('#eqWho'), NM.map(n => n + '离开'), 2, i => { g.who = i; draw(); });
   vest.addEventListener('change', go);
+  ready = true; draw();
+});
+
+/* ---------- 装置 10：阿姆达尔的账 ---------- */
+dev('#amdFig', fig => {
+  const rowsBox = $('#amdRows'), svg = $('#amdSvg'), kvb = $('#amdKv'), say = $('#amdSay');
+  // [名字, 原来的小时, AI 默认快几倍, 最大倍数]
+  const T = [['弄清店主要什么', 6, 1, 3], ['设计页面', 6, 3, 10], ['写代码', 30, 5, 20], ['测试和改错', 10, 2, 10], ['上线、接支付、资质', 8, 1, 3], ['找到愿意付钱的店', 12, 1, 3], ['教店主用、售后、催款', 10, 1.2, 3]];
+  rowsBox.innerHTML = T.map((t, i) => '<div class="ctl"><span>' + t[0] + '<br><small style="color:var(--ink-3)">原来 ' + t[1] + ' 小时</small></span><input type="range" id="am' + i + '" min="1" max="' + t[3] + '" step="0.5" value="' + t[2] + '"><output id="am' + i + 'O"></output></div>').join('');
+  const sp = T.map(t => t[2]); let ready = false;
+  function draw(){
+    if (!ready) return;
+    const before = T.reduce((a, t) => a + t[1], 0);
+    const after = T.map((t, i) => t[1] / sp[i]);
+    const tot = after.reduce((a, b) => a + b, 0);
+    const W = 600, rowH = 26, L = 150, H = T.length * rowH + 30, max = Math.max(...T.map(t => t[1]));
+    const X = v => L + v / max * (W - L - 50);
+    let g = '';
+    T.forEach((t, i) => {
+      const y = 8 + i * rowH;
+      g += txt(L - 8, y + 15, t[0], {s: 12, a: 'end', c: 'var(--ink-2)', halo: false});
+      g += '<rect x="' + L + '" y="' + (y + 3) + '" width="' + (X(t[1]) - L).toFixed(1) + '" height="16" fill="var(--rule)"/>';
+      g += '<rect x="' + L + '" y="' + (y + 3) + '" width="' + Math.max(1, X(after[i]) - L).toFixed(1) + '" height="16" fill="' + (sp[i] <= 1.2 ? 'var(--main)' : 'var(--ter)') + '"/>';
+      g += txt(X(t[1]) + 4, y + 16, after[i].toFixed(1) + 'h', {s: 11, a: 'start', c: 'var(--ink-2)', halo: false});
+    });
+    g += txt(L, H - 6, '灰色：原来的小时　青色：AI 加速后　红色：几乎没被加速', {s: 11, a: 'start', c: 'var(--ink-3)', halo: false});
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+    // 卡脖子的一截
+    let k = 0; after.forEach((v, i) => { if (v > after[k]) k = i; });
+    const slow = T.reduce((a, t, i) => a + (sp[i] <= 1.2 ? after[i] : 0), 0);
+    const limit = before / slow;
+    kv(kvb, [['原来一共', before + ' 小时'], ['用 AI 以后', tot.toFixed(1) + ' 小时'], ['整体快了', (before / tot).toFixed(2) + ' 倍'], ['最慢的一截', T[k][0]], ['就算 AI 无限快', isFinite(limit) ? '最多 ' + limit.toFixed(1) + ' 倍' : '—']]);
+    say.textContent = '写代码快了 ' + sp[2] + ' 倍，整件事只快了 ' + (before / tot).toFixed(1) + ' 倍。现在最费时间的是“' + T[k][0] + '”，花了 ' + after[k].toFixed(1) + ' 小时。' + (isFinite(limit) ? '只要那几截见人、等人、担责任的活还是原样，就算能加速的部分快到无穷，整件事也最多快 ' + limit.toFixed(1) + ' 倍。这就是阿姆达尔定律。' : '');
+  }
+  T.forEach((t, i) => slider('am' + i, v => { sp[i] = v; return v <= 1 ? '帮不上' : '快 ' + v + ' 倍'; }, () => { if (ready) draw(); }));
+  ready = true; draw();
+});
+
+/* ---------- 装置 11：订阅的天花板 ---------- */
+dev('#subFig', fig => {
+  const svg = $('#sbSvg'), kvb = $('#sbKv'), say = $('#sbSay');
+  const g = {}; let ready = false;
+  function draw(){
+    if (!ready) return;
+    const c = g.c / 100, net = g.p * (1 - g.k / 100);
+    let u = 0; const pts = [[0, 0]];
+    for (let m = 1; m <= 36; m++) { u = u * (1 - c) + g.n; pts.push([m, u]); }
+    const cap = g.n / c;
+    const ymax = Math.max(cap, u) * 1.1;
+    const step = ymax > 2000 ? 1000 : ymax > 800 ? 200 : ymax > 200 ? 100 : 20;
+    const yt = []; for (let v = 0; v <= ymax; v += step) yt.push(v);
+    const ch = lineChart(svg, [{pts: pts, color: 'var(--ter)', w: 2.6}], {xmin: 0, xmax: 36, ymin: 0, ymax: ymax, xt: [0, 6, 12, 18, 24, 30, 36], xf: v => v + ' 月', yt: yt, yf: v => v + ' 人', H: 240, L: 54});
+    svg.insertAdjacentHTML('beforeend', '<line x1="' + ch.L + '" x2="' + (ch.W - ch.R) + '" y1="' + ch.Y(cap) + '" y2="' + ch.Y(cap) + '" stroke="var(--main)" stroke-dasharray="5 4" stroke-width="1.5"/>' + txt(ch.W - ch.R - 4, ch.Y(cap) - 6, '天花板 ' + Math.round(cap) + ' 人', {s: 12, a: 'end', c: 'var(--main)'}));
+    const u12 = pts[12][1], u36 = pts[36][1];
+    kv(kvb, [['第 12 个月', Math.round(u12) + ' 人 · ' + yuan(u12 * net) + ' / 月'], ['第 36 个月', Math.round(u36) + ' 人 · ' + yuan(u36 * net) + ' / 月'], ['天花板', Math.round(cap) + ' 人 · ' + yuan(cap * net) + ' / 月'], ['用户平均待', (1 / c).toFixed(1) + ' 个月']]);
+    let s = '每月新来 ' + g.n + ' 人、走掉 ' + g.c + '%，付费用户最后会停在约 ' + Math.round(cap) + ' 人，月收入约 ' + yuan(cap * net) + '。';
+    s += c >= 0.15 ? ' 流失这么快，说明很多人试了就走：先别急着拉新，弄清楚他们为什么走。' : ' 把流失率从 ' + g.c + '% 降到一半，天花板就翻一倍，这常常比多拉一倍新用户便宜。';
+    say.textContent = s;
+  }
+  const go = () => { if (ready) draw(); };
+  slider('sbN', v => { g.n = v; return v + ' 人'; }, go);
+  slider('sbC', v => { g.c = v; return v + '%'; }, go);
+  slider('sbP', v => { g.p = v; return v + ' 元'; }, go);
+  slider('sbK', v => { g.k = v; return v + '%'; }, go);
+  ready = true; draw();
+});
+
+/* ---------- 装置 12：第一个付钱的人在漏斗的哪一层 ---------- */
+dev('#funFig', fig => {
+  const box = $('#fuBars'), kvb = $('#fuKv'), say = $('#fuSay');
+  const PRE = [['上门和熟人', 10, 60, 30, 35], ['在群里和二手平台发帖', 300, 5, 20, 15], ['花钱投放', 2000, 1.5, 15, 10]];
+  const ids = ['fuR', 'fuA', 'fuB', 'fuC'];
+  const g = {}; let ready = false, mode = 0;
+  function draw(){
+    if (!ready) return;
+    const a = g.r * g.a / 100, b = a * g.b / 100, c = b * g.c / 100;
+    bars(box, [['每周接触', g.r, '', 'var(--ink-3)'], ['愿意聊', a, '', 'var(--och)'], ['愿意试', b, '', 'var(--ter)'], ['付钱', c, '', 'var(--main)']].map(r => [r[0], Math.log10(1 + r[1]), r[1] < 10 ? r[1].toFixed(2) + ' 人' : Math.round(r[1]) + ' 人', r[3]]), Math.log10(1 + Math.max(g.r, 10)), v => '');
+    const w1 = c > 0 ? Math.ceil(1 / c) : Infinity, w10 = c > 0 ? Math.ceil(10 / c) : Infinity;
+    kv(kvb, [['每周大约付钱', c.toFixed(2) + ' 人'], ['第一个付钱的', w1 === Infinity ? '—' : '约第 ' + w1 + ' 周'], ['第十个', w10 === Infinity ? '—' : '约第 ' + w10 + ' 周'], ['一百个接触里付钱的', (g.a * g.b * g.c / 1e4).toFixed(1) + ' 人']]);
+    let s;
+    if (mode === 0) s = '上门和熟人接触的人少，可每一层留下的多：一周十个人，大约 ' + w1 + ' 周能有第一个付钱的。慢，但每一个都是真的，还能顺便听到他真正的麻烦。';
+    else if (mode === 2) s = '花钱投放接触的人最多，漏得也最多。还没算投放本身的花费：如果每接触一个人要几毛钱，第一个付钱的客人可能已经花掉了好几百。早期没验证过需求就投钱，是最快的亏法。';
+    else s = '发帖接触的人多，可每一层都漏得厉害。要紧的是“愿意试”到“付钱”那一层：它说明东西本身有没有用。';
+    say.textContent = s;
+  }
+  const go = () => { if (ready) draw(); };
+  slider('fuR', v => { g.r = v; return v + ' 人'; }, go);
+  slider('fuA', v => { g.a = v; return v + '%'; }, go);
+  slider('fuB', v => { g.b = v; return v + '%'; }, go);
+  slider('fuC', v => { g.c = v; return v + '%'; }, go);
+  btnRow($('#fnPre'), PRE.map(p => p[0]), 0, i => {
+    mode = i; ready = false;
+    ids.forEach((id, k) => { const r = $('#' + id); r.value = PRE[i][k + 1]; r.dispatchEvent(new Event('input')); });
+    ready = true; draw();
+  });
+  ready = true; draw();
+});
+
+/* ---------- 装置 13：红灯还是绿灯 ---------- */
+dev('#redFig', fig => {
+  const box = $('#redQs'), say = $('#redSay');
+  const OPT = ['可以做', '别做', '先弄清规定'];
+  // [情境, 答案序号, 理由]
+  const Q = [
+    ['朋友说借你的银行卡“走几天流水”，你不用操作，给你五百块。', 1, '这是帮信罪最常见的样子。即使没被判刑，账户也可能五年不能用手机支付和网上转账。'],
+    ['用 AI 帮学校周边的小店写菜单文案和活动海报，按次收费。', 0, '正常的服务。东西要自己看过，别用别人的商标和明星的脸。'],
+    ['同学出八百块，让你用 AI 替他写毕业论文。', 1, '《学位法》规定利用人工智能代写属于学术不端，可以不授予或撤销学位；替人代写的在校生同样可能受处分。'],
+    ['写一个爬虫，把某个平台上商家的手机号抓下来，卖给做推广的人。', 1, '抓取、出售个人信息可能构成侵犯公民个人信息罪；绕过防护抓数据还可能构成非法获取计算机信息系统数据罪。'],
+    ['买几个境外大模型的账号，自己搭个网站，转卖给国内用户使用。', 1, '私自搭建跨境通道、转卖服务，会碰到网络管理、数据出境和生成式 AI 服务备案方面的规定，风险高、说不清。'],
+    ['给自己的网店刷几十条好评，让新店看起来热闹一点。', 1, '《电子商务法》禁止编造用户评价，平台查到会降权、扣保证金甚至封店。'],
+    ['用 AI 生成一位明星的脸和声音，给一家店拍带货视频。', 1, '没有授权，侵犯肖像权和声音权益；合成内容还要按规定标识。'],
+    ['做一个 AI 画图小工具，对全网开放、按次收费。', 2, '向公众提供生成式 AI 服务有安全评估、备案和内容标识的要求；收钱还需要合适的经营主体和支付渠道。先弄清楚再上线。'],
+    ['在二手平台上卖掉自己用过的旧显卡。', 0, '个人卖自己的闲置物品是正常的。如实描述成色，别卖来路不明的东西。'],
+    ['花一千九百八十元报名“AI 副业训练营”，号称二十一天月入过万、不回本全退。', 1, '一般不违法，但多半是坑。看清退款条件，问一句：老师的钱是靠做这件事赚的，还是靠教这件事赚的？'],
+    ['用 AI 帮人改简历、做求职用的 PPT，收几十块。', 0, '正常的服务。别编造对方的经历。'],
+    ['你考上了事业编，晚上给朋友的公司写代码，按月拿报酬。', 2, '多数事业单位不允许违规兼职取酬，有的岗位可以按规定兼职。先看单位的规定，问清楚再说（第十三章）。']
+  ];
+  const ans = Q.map(() => null);
+  box.innerHTML = Q.map((q, i) => '<div class="qa" data-i="' + i + '"><p style="margin:.6em 0 .2em;text-indent:0"><b>' + (i + 1) + '.</b> ' + q[0] + '</p><div class="btns">' + OPT.map((o, j) => '<button class="btn" data-j="' + j + '">' + o + '</button>').join('') + '</div><p class="why" style="display:none;margin:.3em 0 .6em;font-size:14.5px;color:var(--ink-2);text-indent:0"></p></div>').join('');
+  box.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    const wrap = b.closest('.qa'), i = +wrap.dataset.i, j = +b.dataset.j;
+    ans[i] = j;
+    $$('button', wrap).forEach(x => { const k = +x.dataset.j; x.classList.toggle('on', k === j); x.style.borderColor = k === Q[i][1] ? 'var(--ter)' : (k === j ? 'var(--main)' : ''); });
+    const w = $('.why', wrap); w.style.display = 'block';
+    w.innerHTML = (j === Q[i][1] ? '<b class="pos">对。</b>' : '<b class="neg">答案是“' + OPT[Q[i][1]] + '”。</b>') + Q[i][2];
+    const done = ans.filter(a => a != null).length, right = ans.filter((a, k) => a === Q[k][1]).length;
+    say.textContent = done < Q.length ? '已答 ' + done + ' 题，答对 ' + right + ' 题。' : '十二题答对 ' + right + ' 题。' + (right >= 10 ? '你对坑的嗅觉不错。最危险的那几个，都长着“只赚不亏的小钱”的样子。' : '没关系，记住最要紧的一条：钱从哪里来、为什么给你，说不清的不碰。');
+  });
+});
+
+/* ---------- 装置 14：这个身份能不能做 ---------- */
+dev('#idFig', fig => {
+  const tbl = $('#idTbl'), say = $('#idSay');
+  const COLS = ['在读研究生', '事业编', '公务员', '公司职员', '择业期，还没工作'];
+  const L = {y: ['一般可以', 'var(--ter)'], m: ['看规定', 'var(--och)'], n: ['一般不行', 'var(--main)']};
+  // 每行：[事情, [五种身份的 [等级, 说明]]]
+  const R = [
+    ['买卖上市公司股票、基金', [['y', '一般可以，注意别借钱、别影响学业。'], ['y', '一般允许，按规定不能利用职务便利和内幕信息；个别岗位有额外限制。'], ['y', '在规定范围内一般允许；有的岗位、有的情况要申报或回避。'], ['y', '一般可以；证券、基金等金融行业的员工有专门的限制。'], ['y', '可以。只用闲钱，别借钱。']]],
+    ['在二手平台卖自己的闲置', [['y', '可以。'], ['y', '个人处理自己的物品，一般可以。'], ['y', '个人处理自己的物品，一般可以。'], ['y', '可以。'], ['y', '可以。']]],
+    ['业余写作、做自媒体拿稿费', [['y', '一般可以，别占用科研时间。'], ['m', '业余写作一般可以；靠它持续经营、接广告带货，就可能算营利性活动，看单位规定。'], ['m', '有严格规定，不能利用职务影响，接商业广告、带货一般不行。'], ['y', '一般可以，注意别泄露公司信息、看合同约定。'], ['y', '可以。']]],
+    ['接外包活，按次收费', [['m', '看学校和导师的规定，别耽误学业和毕业。'], ['m', '多数单位不允许兼职取酬；部分专业技术岗位经批准可以兼职。'], ['n', '属于从事营利性活动，一般不行。'], ['m', '看劳动合同、公司规章和竞业约定；不能用公司的资源和客户。'], ['y', '可以，是零成本起步的好办法。注意先收定金。']]],
+    ['开网店', [['m', '个人零星小额的可以；做大了要登记，看学校规定。'], ['n', '属于经商，一般不行。'], ['n', '属于经商，不行。'], ['m', '看合同和公司规定，别与本职有利益冲突。'], ['y', '可以，零库存起步。']]],
+    ['注册个体户或公司', [['m', '学生可以注册；可申请休学创业，按学校的办法。'], ['n', '经商办企业，一般不行（离岗创业另有规定，须单位批准）。'], ['n', '不行。'], ['m', '法律不禁止，但看合同、竞业约定和公司规定。'], ['m', '可以注册，但有的考试在认定应届生身份时会看营业执照、股东身份，注册前先看公告。']]],
+    ['入股朋友的公司', [['m', '一般可以，看学校规定，别承担担保责任。'], ['n', '一般不行。'], ['n', '一般不行。'], ['m', '看竞业约定和利益冲突规定。'], ['m', '可以，但可能影响应届生身份认定，先看公告；别签个人担保。']]],
+    ['在企业兼职拿工资', [['m', '看学校规定；实习、助教另算。'], ['m', '多数不允许；部分专业技术人员经批准可以兼职。'], ['n', '在企业兼任职务，不行。'], ['m', '看劳动合同和公司规定，有的明令禁止。'], ['m', '可以，但签劳动合同、以单位名义交社保，可能影响“未落实工作单位”的认定，先看公告。']]]
+  ];
+  tbl.innerHTML = '<tr><th></th>' + COLS.map(c => '<th>' + c + '</th>').join('') + '</tr>' +
+    R.map((r, i) => '<tr><td><b>' + r[0] + '</b></td>' + r[1].map((c, j) => '<td data-i="' + i + '" data-j="' + j + '" style="cursor:pointer;color:' + L[c[0]][1] + ';font-weight:600;white-space:nowrap">' + (c[0] === 'y' ? '●' : c[0] === 'm' ? '◐' : '○') + ' ' + L[c[0]][0] + '</td>').join('') + '</tr>').join('');
+  tbl.addEventListener('click', e => {
+    const td = e.target.closest('td[data-i]'); if (!td) return;
+    $$('td[data-i]', tbl).forEach(x => x.style.outline = '');
+    td.style.outline = '2px solid var(--ink-2)';
+    const r = R[+td.dataset.i], c = r[1][+td.dataset.j];
+    say.innerHTML = '<b>' + COLS[+td.dataset.j] + ' · ' + r[0] + '：' + L[c[0]][0] + '。</b>' + c[1];
+  });
+});
+
+/* ---------- 装置 15：三无的底线账 ---------- */
+dev('#nilFig', fig => {
+  const kvb = $('#nlKv'), say = $('#nlSay');
+  const g = {}; let ready = false;
+  const FREE = 70; // 一周可用小时
+  function draw(){
+    if (!ready) return;
+    const need = g.h + g.f + g.m + g.p + g.x;
+    const gap = Math.max(0, need - g.j);
+    const hrsMonth = gap / g.w, hrsWeek = hrsMonth / 4.33;
+    const left = FREE - hrsWeek;
+    kv(kvb, [['每月最少要', yuan(need)], ['接活能补', yuan(g.j)], ['还差', yuan(gap)], ['每周要打零工', hrsWeek.toFixed(1) + ' 小时'], ['留给手艺和考试', '<span class="' + (left >= 30 ? 'pos' : 'neg') + '">' + Math.max(0, left).toFixed(1) + ' 小时 / 周</span>']]);
+    let s;
+    if (left < 20) s = '零工吃掉了大部分时间，留给手艺和考试的不到二十小时。最大的一项通常是房租：试着把“住”拖到零，看看差多少。';
+    else if (g.h === 0) s = '住在家里，一个月最少 ' + yuan(need) + '，每周打 ' + hrsWeek.toFixed(0) + ' 小时零工就能打平，还剩 ' + left.toFixed(0) + ' 小时。面子上不好看，可它买到的是时间：一门手艺、一次更好的考试。';
+    else s = '一个月最少 ' + yuan(need) + '，每周要打 ' + hrsWeek.toFixed(0) + ' 小时零工，还剩 ' + left.toFixed(0) + ' 小时。接活的收入每多一千，每周就能少打约 ' + (1000 / g.w / 4.33).toFixed(0) + ' 小时零工：这就是一门手艺在三无时的价值。';
+    say.textContent = s;
+  }
+  const go = () => { if (ready) draw(); };
+  slider('nlH', v => { g.h = v; return v ? yuan(v) : '住家里'; }, go);
+  slider('nlF', v => { g.f = v; return yuan(v); }, go);
+  slider('nlM', v => { g.m = v; return yuan(v); }, go);
+  slider('nlP', v => { g.p = v; return v ? yuan(v) : '先不交'; }, go);
+  slider('nlX', v => { g.x = v; return yuan(v); }, go);
+  slider('nlW', v => { g.w = v; return v + ' 元 / 小时'; }, go);
+  slider('nlJ', v => { g.j = v; return yuan(v); }, go);
+  ready = true; draw();
+});
+
+/* ---------- 装置 16：写一张第一步的计划（只存在本机浏览器） ---------- */
+dev('#planFig', fig => {
+  const KEY = 'genesis-open-plan';
+  const card = $('#plCard');
+  const T = ['plWhat', 'plWho', 'plGo', 'plStop'];
+  const g = {}; let ready = false;
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { saved = {}; }
+  T.forEach(id => { if (saved[id]) $('#' + id).value = saved[id]; });
+  ['plH', 'plM', 'plW'].forEach(id => { if (saved[id] != null) $('#' + id).value = saved[id]; });
+  const val = id => esc(($('#' + id).value || '').trim()) || '<span style="color:var(--ink-3)">（还没写）</span>';
+  function draw(){
+    if (!ready) return;
+    const d = new Date(); d.setDate(d.getDate() + g.w * 7);
+    const ds = d.getFullYear() + ' 年 ' + (d.getMonth() + 1) + ' 月 ' + d.getDate() + ' 日';
+    card.innerHTML = '<span class="stampv">第一步</span><div class="who"><b>我的第一步</b>一页纸</div><dl>' +
+      '<dt>做什么</dt><dd>' + val('plWhat') + '</dd>' +
+      '<dt>卖给谁</dt><dd>' + val('plWho') + '</dd>' +
+      '<dt>时间</dt><dd>每周最多 ' + g.h + ' 小时，到点就停</dd>' +
+      '<dt>最多亏</dt><dd>' + (g.m ? yuan(g.m) : '一分钱也不亏') + '，不借钱，不囤货</dd>' +
+      '<dt>检查日</dt><dd>' + ds + '（' + g.w + ' 周后）</dd>' +
+      '<dt>继续</dt><dd>' + val('plGo') + '</dd>' +
+      '<dt>立刻停</dt><dd>' + val('plStop') + '</dd></dl>';
+    const o = {plH: g.h, plM: g.m, plW: g.w}; T.forEach(id => o[id] = $('#' + id).value);
+    try { localStorage.setItem(KEY, JSON.stringify(o)); } catch (e) {}
+  }
+  const go = () => { if (ready) draw(); };
+  slider('plH', v => { g.h = v; return v + ' 小时'; }, go);
+  slider('plM', v => { g.m = v; return v ? yuan(v) : '零'; }, go);
+  slider('plW', v => { g.w = v; return v + ' 周'; }, go);
+  T.forEach(id => $('#' + id).addEventListener('input', go));
+  $('#plClear').addEventListener('click', () => { T.forEach(id => $('#' + id).value = ''); try { localStorage.removeItem(KEY); } catch (e) {} draw(); });
+  ready = true; draw();
+});
+
+/* ---------- 装置 17：该不该回去上班 ---------- */
+dev('#backFig', fig => {
+  const out = $('#bkOut');
+  const g = {}; let ready = false;
+  const CK = [['bkM', '主线被拖累了：这是最先该停的信号，小生意本来是长在主线旁边的。'], ['bkB', '想借钱来撑：这是红线。第零章说过，借来的钱会把“有上限的亏”变成“没有上限的亏”。'], ['bkP', '计划里写好的停止条件已经出现：按计划执行，这正是当初写它的原因。'], ['bkH', '身体或情绪出了持续的问题：先去看医生，生意可以停，身体不能透支。']];
+  function draw(){
+    if (!ready) return;
+    const red = [], yel = [];
+    if (g.s < 3) red.push('存款只够 ' + g.s + ' 个月，已经碰到了止损线。');
+    else if (g.s < 6) yel.push('存款还够 ' + g.s + ' 个月，离止损线不远了。');
+    if (g.l >= 6) red.push('连续 ' + g.l + ' 个月入不敷出。');
+    else if (g.l >= 3) yel.push('连续 ' + g.l + ' 个月入不敷出，到检查点了。');
+    if (g.z < 5.5) red.push('平均每晚只睡 ' + g.z + ' 小时。');
+    else if (g.z < 6.5) yel.push('睡眠偏少。');
+    CK.forEach(c => { if ($('#' + c[0]).checked) (c[0] === 'bkM' ? yel : red).push(c[1]); });
+    let light, col, head;
+    if (red.length) { light = '红灯'; col = 'var(--main)'; head = '该停下来，按计划回去上班或者回到主线。'; }
+    else if (yel.length) { light = '黄灯'; col = 'var(--och)'; head = '到了该认真检查的时候：回去看你的计划，把这几样摆到桌上，和一个信得过的人说一说。'; }
+    else { light = '绿灯'; col = 'var(--ter)'; head = '暂时没有危险信号。继续按计划走，到检查日再看。'; }
+    out.style.borderColor = col;
+    out.innerHTML = '<h5 style="color:' + col + '">' + light + '</h5><p style="margin:0 0 .4em;text-indent:0">' + head + '</p>' + (red.concat(yel).length ? '<ul class="plain" style="margin:0 0 .4em">' + red.map(x => '<li><b class="neg">●</b> ' + x + '</li>').join('') + yel.map(x => '<li><b style="color:var(--och)">●</b> ' + x + '</li>').join('') + '</ul>' : '');
+  }
+  const go = () => { if (ready) draw(); };
+  slider('bkS', v => { g.s = v; return v + ' 个月'; }, go);
+  slider('bkL', v => { g.l = v; return v ? v + ' 个月' : '没有'; }, go);
+  slider('bkZ', v => { g.z = v; return v + ' 小时'; }, go);
+  CK.forEach(c => $('#' + c[0]).addEventListener('change', go));
   ready = true; draw();
 });
 

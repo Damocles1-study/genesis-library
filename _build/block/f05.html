@@ -1,0 +1,172 @@
+<!-- ============ 第四十五章 · 给 ============ -->
+<section class="chap" id="c45" data-vol="卷十四 · 给">
+  <div class="chead">
+    <div class="big">给</div>
+    <div>
+      <div class="no">第四十五章</div>
+      <h2>/give：给东西</h2>
+      <dl><dt>讲什么</dt><dd>物品 ID 就是英文单词；小写和下划线；一组 64、16 和 1；物品栏是 36 个编了号的格子，从 0 数起；有余数的除法；/clear 清东西</dd><dt>本章装置</dt><dd>物品栏练习台 · 装几格</dd></dl>
+      <div class="sub" data-s="令 英 数 程"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第十三天</b><span class="pix">WORLD · lab</span><span>创造模式</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>我打 <code>/give @s 钻石剑</code>，它说不认识。</span></div>
+      <div class="l"><i class="j">舅</i><span>游戏心里，每样东西都有一个英文的“身份证号”，叫 ID。钻石剑的 ID 是 diamond_sword。</span></div>
+      <div class="l"><i class="g">格</i><span>diamond 是钻石，sword 是……剑？那铁镐是不是 iron_pickaxe？</span></div>
+      <div class="l"><i class="j">舅</i><span>对了！你已经会猜了。这就是用英文 ID 的好处：认识几个词，就能拼出几百样东西。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★</span><span class="dim">★★★</span></div><div><b>大约多久</b>40 分钟</div><div><b>要准备</b>练习台；实验世界</div><div><b>大人</b>不用</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>写出 <code>/give 目标 物品 数量</code>，给自己或别人东西。</li>
+      <li>猜出、查到物品的英文 ID，知道它为什么全是小写和下划线。</li>
+      <li>算出 200 个石头要占几格：200 ÷ 64 = 3 余 8。</li>
+      <li>说出物品栏的格子是怎样编号的，为什么从 0 开始。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>写法</h3>
+    <pre class="py">/give @s diamond_sword
+/give @s stone 64
+/give doudou bread 5</pre>
+    <p><code>give</code> 是“给”，后面三样：<b>给谁</b>（<code>@s</code> 是你自己，下一卷细讲；也可以写玩家名字）、<b>给什么</b>（物品 ID）、<b>给几个</b>（不写就是 1 个）。翻成英文句子就是 “Give me a diamond sword.”——命令就是一句祈使句。</p>
+  </div>
+
+  <div class="col">
+    <h3>物品 ID：英文的身份证</h3>
+    <p>每样东西的 ID 都是英文，规矩有三条：</p>
+    <ul class="plain">
+      <li><b>全小写</b>：<code>stone</code>，不是 <code>Stone</code>。</li>
+      <li><b>空格换成下划线</b>：“diamond sword” 写成 <code>diamond_sword</code>，“light blue wool”（淡蓝色羊毛）写成 <code>light_blue_wool</code>。这种写法叫<b>蛇形写法</b>（上一章说过）。</li>
+      <li><b>前面可以加 <code>minecraft:</code></b>：<code>minecraft:diamond_sword</code> 是完整的写法，冒号前面是“名字空间”，说明这是游戏自带的东西（第二十五章做数据包时，你用过自己的名字空间）。不写，游戏默认就是 minecraft。</li>
+    </ul>
+    <p>不知道 ID 怎么办？三个办法：① 在游戏里按 F3 + H（Mac：fn + F3 + H），鼠标停在物品上就能看到；② 在聊天框打 <code>/give @s dia</code> 然后按 tab，游戏会列出所有 dia 开头的；③ 查社区维基。</p>
+  </div>
+
+  <div class="corner" data-k="英">
+    <h5>ID 是拼起来的</h5>
+    <p>看看这些 ID，你会发现它们像积木：<b>材料 + 工具</b>。</p>
+    <ul>
+      <li>材料：<span class="en" data-say="wooden">wooden</span> 木头的，<span class="en" data-say="stone">stone</span> 石头，<span class="en" data-say="iron">iron</span> 铁，<span class="en" data-say="golden">golden</span> 金的，<span class="en" data-say="diamond">diamond</span> 钻石，<span class="en" data-say="netherite">netherite</span> 下界合金。</li>
+      <li>工具：<span class="en" data-say="sword">sword</span> 剑，<span class="en" data-say="pickaxe">pickaxe</span> 镐，<span class="en" data-say="axe">axe</span> 斧，<span class="en" data-say="shovel">shovel</span> 锹，<span class="en" data-say="hoe">hoe</span> 锄。</li>
+      <li>盔甲：<span class="en" data-say="helmet">helmet</span> 头盔，<span class="en" data-say="chestplate">chestplate</span> 胸甲（胸 + 板），<span class="en" data-say="leggings">leggings</span> 护腿，<span class="en" data-say="boots">boots</span> 靴子。</li>
+    </ul>
+    <p>6 种材料 × 5 种工具，最多能拼出 30 个 ID：<code>stone_axe</code>、<code>golden_hoe</code>、<code>iron_shovel</code>……注意木头是 wooden、金是 golden（“……做的”），而 stone、iron、diamond 直接用名词。</p>
+    <p>pickaxe 自己也是拼起来的：pick（啄、挖）+ axe（斧子）。</p>
+  </div>
+
+  <div class="col">
+    <h3>一组是多少</h3>
+    <p>同一种东西，一格里能叠好几个，叠满叫“一组”（英文 <span class="en" data-say="stack">stack</span>，一摞）。一组有多少，看是什么东西：</p>
+    <ul class="plain">
+      <li><b>64</b>：大多数方块和材料（石头、木板、钻石、火把……）。</li>
+      <li><b>16</b>：鸡蛋、雪球、末影珍珠、空桶、告示牌、旗帜……</li>
+      <li><b>1</b>：工具、武器、盔甲、装了水或岩浆的桶、药水……不能叠。</li>
+    </ul>
+    <p>所以 <code>/give @s stone 200</code> 会占几格？</p>
+  </div>
+
+  <div class="corner" data-k="数">
+    <h5>有余数的除法<span class="gr">学过 · 二年级下 / 三年级</span></h5>
+    <p>200 个石头，每格 64 个：200 ÷ 64 = <b>3 余 8</b>。三格装满（3 × 64 = 192），还剩 8 个，要再占一格。一共 <b>4 格</b>。</p>
+    <p>规律：余数不是 0，格子数就要“商 + 1”。数学上这叫“向上取整”，和第三十八章的“向下取整”正好相反。生活里也一样：37 个同学坐车，每辆车坐 10 个，要 4 辆车，不是 3 辆。</p>
+    <p>编程语言里，除法分两种：<code>200 // 64</code> 得 3（商），<code>200 % 64</code> 得 8（余数）。Python 就是这样写的，第五十章的计分板也会用到 <code>%</code>。</p>
+  </div>
+
+  <div class="fig" id="stackFig">
+    <div class="fig-label">装置 · 第四十五章 · 一</div>
+    <h4>装几格</h4>
+    <p class="how">选一种东西，拖动数量，看看它占几格、几个箱子（一个箱子 27 格，大箱子 54 格）。</p>
+    <div class="btns" id="stackKind"></div>
+    <div class="ctl"><span>数量</span><input type="range" id="stackN" min="1" max="2000" value="200"><output id="stackNO"></output></div>
+    <div class="kv" id="stackKv"></div>
+    <div class="say" id="stackSay"></div>
+  </div>
+
+  <div class="col">
+    <h3>物品栏是一排编了号的格子</h3>
+    <p>你的物品栏一共 36 格（不算盔甲和副手）：屏幕下面的<b>快捷栏</b> 9 格，按 E 打开的上面 27 格。游戏心里给它们编了号：<b>快捷栏是 0 到 8 号，上面是 9 到 35 号</b>。</p>
+    <p>为什么从 0 开始，不从 1 开始？因为对电脑来说，“编号”是“离第一格有多远”：第一格离自己 0 格远，所以是 0 号。几乎所有编程语言都这样数。你在按键盘的时候按的是 1—9，游戏心里记的是 0—8。</p>
+    <p>高级用法：<code>/item replace entity @s hotbar.0 with diamond_sword</code>，把一样东西直接放进快捷栏的 0 号格（写法以维基为准）。</p>
+  </div>
+
+  <div class="corner" data-k="程">
+    <h5>数组：一排编了号的格子<span class="gr later">以后学 · 编程</span></h5>
+    <p>一排格子、每格放一样东西、按编号找，程序员叫它<b>数组</b>或<b>列表</b>（<span class="en" data-say="array">array</span>、<span class="en" data-say="list">list</span>）。物品栏就是一个长 36 的数组：<code>inventory[0]</code> 是快捷栏第一格，<code>inventory[35]</code> 是最后一格。</p>
+    <p>写程序时最常犯的错，就是忘了从 0 数：以为 36 格的最后一格是 36 号，其实是 35 号。第七十六章会专门讲列表。</p>
+  </div>
+
+  <div class="col">
+    <h3>/clear：清东西</h3>
+    <ul class="plain">
+      <li><code>/clear</code>：清空你的整个物品栏。<b>小心</b>，没有撤销。</li>
+      <li><code>/clear @s stone</code>：只清石头。</li>
+      <li><code>/clear @s stone 10</code>：最多清 10 个石头。</li>
+    </ul>
+  </div>
+
+  <div class="fig" id="giveFig">
+    <div class="fig-label">装置 · 第四十五章 · 二</div>
+    <h4>物品栏练习台</h4>
+    <p class="how">下面是你的物品栏：上面三行是 9—35 号，最下面一行是快捷栏 0—8 号（格子左上角的小字是编号）。鼠标停在格子上能看到名字和 ID。打 /give 和 /clear，看格子怎么填。</p>
+    <div id="giveSim"></div>
+  </div>
+
+  <div class="task" data-id="t45a">
+    <div class="th"><b>一身钻石装备</b><span class="xp">★★</span></div>
+    <div class="tb">
+      <ol>
+        <li>在实验世界里，不打开物品栏，只用 /give 给自己一整套钻石装备：头盔、胸甲、护腿、靴子、剑、镐。猜不出的 ID，用 tab 补全。</li>
+        <li>按 F3 + H，把鼠标停在每样东西上，核对 ID。</li>
+        <li>给自己 100 个火把，猜猜占几格，再打开物品栏数一数。</li>
+        <li>用 <code>/clear @s torch</code> 清掉火把。</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="err">
+    <h5>出错了怎么办</h5>
+    <dl>
+      <dt>未知的物品</dt><dd>ID 拼错了，或者用了大写、空格、中文。用 tab 补全最保险。</dd>
+      <dt>东西没进物品栏</dt><dd>物品栏满了，多出来的会掉在脚下。</dd>
+      <dt>给别人东西，说找不到玩家</dt><dd>名字拼错了，或者他不在线。</dd>
+      <dt>想给附魔的剑</dt><dd>新版本在 ID 后面用方括号加“组件”，比如 <code>diamond_sword[enchantments={sharpness:5}]</code>，这几年改过好几次写法，以维基为准。</dd>
+    </dl>
+  </div>
+
+  <div class="pass" data-id="q45">
+    <div class="qq" data-in="iron_pickaxe|minecraft:iron_pickaxe"><p>铁镐的 ID 是什么？</p><p class="ex">iron_pickaxe：iron 铁 + pickaxe 镐，中间是下划线。</p></div>
+    <div class="qq" data-in="4"><p><code>/give @s stone 200</code> 会占几格？</p><p class="ex">200 ÷ 64 = 3 余 8，余数不是 0，要 3 + 1 = 4 格。</p></div>
+    <div class="qq" data-a="2"><p>20 个鸡蛋会占几格？</p><ol><li>1 格</li><li>20 格</li><li>2 格</li></ol><p class="ex">鸡蛋一组 16 个：20 ÷ 16 = 1 余 4，要 2 格。</p></div>
+    <div class="qq" data-a="1"><p>快捷栏最左边那一格，游戏心里的编号是？</p><ol><li>1</li><li>0</li><li>9</li></ol><p class="ex">快捷栏是 0—8 号，从 0 开始数。</p></div>
+    <div class="qq" data-a="0"><p>为什么 ID 写成 light_blue_wool，而不是 Light Blue Wool？</p><ol><li>ID 规定全小写，空格换成下划线</li><li>因为这样好看</li><li>写成后者也行</li></ol><p class="ex">命令里空格是用来分开参数的，所以名字里不能有空格；ID 统一小写，免得大小写弄混。</p></div>
+    <div class="qq" data-in="golden_hoe|minecraft:golden_hoe"><p>金锄的 ID？（提示：金是“……做的”那个词）</p><p class="ex">golden_hoe。木头是 wooden，金是 golden。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>物品 ID <span class="en" data-say="item ID">item ID</span></b>每样东西的英文身份证号。</div>
+    <div><b>一组 <span class="en" data-say="stack">stack</span></b>一格里能叠的最多个数：64、16 或 1。</div>
+    <div><b>余数 <span class="en" data-say="remainder">remainder</span></b>除不尽剩下的那一点。</div>
+    <div><b>数组 <span class="en" data-say="array">array</span></b>一排编了号的格子，编号从 0 开始。</div>
+    <div><b>名字空间 <span class="en" data-say="namespace">namespace</span></b>ID 冒号前面那段，minecraft 是游戏自带的。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>/give 语法、物品 ID 命名、堆叠上限（64 / 16 / 1）、物品栏槽位编号（container.0—35，hotbar.0—8 对应 0—8），见社区维基“/give”“物品”“物品栏”“/item”条目。Java 版 1.20.5 起物品附加数据由 NBT 改为“数据组件”，附魔写法此后又有调整，书中只作提示。有余数的除法在人教版二年级下册，向上取整的实际问题常见于三年级。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i><code>/give 谁 什么 几个</code>。ID 全小写、空格变下划线；不会拼就按 tab。一组 64、16 或 1。快捷栏是 0—8 号。</div>
+    <div><i>脑袋<small>带走一样</small></i>除不尽的时候，看清楚问的是“装满几个”还是“一共要几个”：前一个取商，后一个商加一。</div>
+  </div>
+</section>

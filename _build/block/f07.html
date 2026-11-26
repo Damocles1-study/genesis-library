@@ -1,0 +1,163 @@
+<!-- ============ 第四十七章 · 填 ============ -->
+<section class="chap" id="c47" data-vol="卷十四 · 填">
+  <div class="chead">
+    <div class="big">填</div>
+    <div>
+      <div class="no">第四十七章</div>
+      <h2>/setblock 和 /fill</h2>
+      <dl><dt>讲什么</dt><dd>放一块；用两个角填满一个长方体；长方体的体积和“两头都算”；空心、外壳、只填空的、只换某一种；一次最多 32768 格；方块的“状态”</dd><dt>本章装置</dt><dd>填方块练习台 · 体积计算器</dd></dl>
+      <div class="sub" data-s="令 数 英"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第十五天</b><span class="pix">WORLD · lab</span><span>创造模式</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>我想盖一个玻璃房，10 格宽、10 格长、5 格高。一块一块放要放好久。</span></div>
+      <div class="l"><i class="j">舅</i><span>用 /fill，只要告诉它两个对角在哪儿。不过先猜猜：一个实心的 10 × 10 × 5，要多少块玻璃？</span></div>
+      <div class="l"><i class="g">格</i><span>10 乘 10 乘 5……500 块！</span></div>
+      <div class="l"><i class="j">舅</i><span>对。可是房子是空心的，你住在里面。那要多少块？这一章最后你会算出来。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★</span><span class="dim">★★</span></div><div><b>大约多久</b>50 分钟</div><div><b>要准备</b>练习台；实验世界（大改之前备份）</div><div><b>大人</b>不用</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>用 /setblock 放一块，用 /fill 填一个长方体。</li>
+      <li>由两个角的坐标算出长、宽、高和体积，记得“两头都算要加一”。</li>
+      <li>用 hollow、outline、keep、replace 盖空心房子、换材料。</li>
+      <li>知道一次最多填 32768 格，太大了就分几次。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>/setblock：放一块</h3>
+    <pre class="py">/setblock 0 -60 0 gold_block
+/setblock ~ ~-1 ~ diamond_block
+/setblock 0 -60 0 air</pre>
+    <p>三个坐标加一个方块 ID。放 <code>air</code>（空气）就是把那一块挖掉。第二行是“把我脚下那一块换成钻石块”：<code>~-1</code> 是我的 y 减 1。</p>
+  </div>
+
+  <div class="col">
+    <h3>/fill：两个角，一个盒子</h3>
+    <pre class="py">/fill 0 -60 0 9 -56 9 glass</pre>
+    <p>前三个数是一个角，后三个数是<b>对面那个角</b>，最后是方块。游戏会把这两个角之间的整个<b>长方体</b>全填满。两个角谁先谁后都行。</p>
+    <p>这个盒子有多大？x 从 0 到 9，<b>一共 10 格</b>（0、1、2……9，两头都算，9 − 0 + 1 = 10）；y 从 −60 到 −56，一共 −56 − (−60) + 1 = 5 格；z 也是 10 格。体积是 10 × 5 × 10 = <b>500</b> 格。</p>
+  </div>
+
+  <div class="corner" data-k="数">
+    <h5>长方体的体积<span class="gr">学过 · 五年级下 长方体和正方体</span></h5>
+    <p>体积 = 长 × 宽 × 高。在方块世界里，长宽高要从坐标算：<b>大的减小的，再加 1</b>。这个“加 1”是最容易忘的，第四十一章叫它“差一错误”。</p>
+    <p>为什么要加 1？想想围栏：在 0 号和 9 号位置之间插桩子，每一格插一根，一共是 10 根，不是 9 根。坐标说的是“第几格”，不是“隔了多远”。</p>
+  </div>
+
+  <div class="col">
+    <h3>五种填法</h3>
+    <p>在方块 ID 后面，还能加一个词，告诉它怎么填：</p>
+  </div>
+  <div class="wide tbl">
+    <table class="t kt">
+      <tr><th>写法</th><th>做什么</th><th>英文意思</th></tr>
+      <tr><td><code>… glass</code>（不写）</td><td>全部换成玻璃，原来有什么都被替换</td><td><span class="en" data-say="replace">replace</span>：替换（默认）</td></tr>
+      <tr><td><code>… glass hollow</code></td><td>只有外面一层是玻璃，<b>里面全挖空</b>：一下子盖好一间空房子</td><td><span class="en" data-say="hollow">hollow</span>：空心的</td></tr>
+      <tr><td><code>… glass outline</code></td><td>只有外面一层是玻璃，<b>里面原来是什么还是什么</b></td><td><span class="en" data-say="outline">outline</span>：轮廓、外框</td></tr>
+      <tr><td><code>… glass keep</code></td><td>只往<b>空气</b>里填，已经有方块的地方不动</td><td><span class="en" data-say="keep">keep</span>：保留</td></tr>
+      <tr><td><code>… white_wool replace glass</code></td><td>只把范围里的<b>玻璃</b>换成白羊毛，别的不动</td><td>replace … 换掉……</td></tr>
+      <tr><td><code>… air destroy</code></td><td>像用手挖一样，挖掉的方块会掉出来</td><td><span class="en" data-say="destroy">destroy</span>：破坏</td></tr>
+    </table>
+  </div>
+
+  <div class="col">
+    <h3>一次最多 32768 格</h3>
+    <p>为了不把电脑累坏，一条 /fill 最多改 <b>32768</b> 格。这个数是 32 × 32 × 32，也是 2 的 15 次方（第六十一章讲 2 的幂）。超过了，游戏会说“太多方块”，什么也不做。办法是：<b>分成几块填</b>，或者把范围改小。第四十章的问题卡例子，就是这个错误。</p>
+  </div>
+
+  <div class="fig" id="volFig">
+    <div class="fig-label">装置 · 第四十七章 · 一</div>
+    <h4>体积计算器</h4>
+    <p class="how">拖动长、宽、高，看看实心、空心各要多少块，能不能一次填完。</p>
+    <div class="ctl"><span>长（x）</span><input type="range" id="volA" min="1" max="64" value="10"><output id="volAO"></output></div>
+    <div class="ctl"><span>宽（z）</span><input type="range" id="volB" min="1" max="64" value="10"><output id="volBO"></output></div>
+    <div class="ctl"><span>高（y）</span><input type="range" id="volC" min="1" max="64" value="5"><output id="volCO"></output></div>
+    <div class="kv" id="volKv"></div>
+    <div class="say" id="volSay"></div>
+  </div>
+
+  <div class="corner" data-k="数">
+    <h5>空心盒子要几块<span class="gr later">以后学 · 五年级 / 竞赛常见题</span></h5>
+    <p>空心的 = 实心的 − 里面挖掉的。里面那个小长方体，每一边都比外面少 2（两边各去掉一层墙）：</p>
+    <p class="ni" style="text-align:center">10 × 10 × 5 − 8 × 8 × 3 = 500 − 192 = <b>308</b></p>
+    <p>小格的玻璃房要 308 块玻璃，比实心省了将近一半。这种“大的减去小的”的想法，数学课上算“组合图形”的面积时天天用。（如果哪一边只有 1 或 2 格，里面就挖不出东西了，空心和实心一样多。）</p>
+  </div>
+
+  <div class="col">
+    <h3>方块的“状态”</h3>
+    <p>有些方块有朝向、有开关。在 ID 后面用方括号写它的<b>状态</b>：</p>
+    <ul class="plain">
+      <li><code>oak_stairs[facing=north]</code>：朝北的橡木楼梯。</li>
+      <li><code>oak_log[axis=x]</code>：横着放、沿 x 方向的原木。</li>
+      <li><code>lever[powered=true]</code>：拉下来的拉杆。</li>
+    </ul>
+    <p>方括号里是“名字=值”，和第三十八章 options.txt 里的“名字:值”是一样的东西。按 F3 时，看着一块方块，右边会列出它的状态。</p>
+    <p>还有一个兄弟命令 <code>/clone</code>：把一个长方体里的东西<b>复制</b>到别处。写法是两个角加一个目的地，详见维基。</p>
+  </div>
+
+  <div class="fig" id="fillFig">
+    <div class="fig-label">装置 · 第四十七章 · 二</div>
+    <h4>填方块练习台</h4>
+    <p class="how">这是超平坦世界里 x 从 0 到 9、z 从 0 到 9 的一块地。草地是 y = −61 那一层，往上 y = −60 到 −53 是空的。打 /setblock 和 /fill 试试（这里认识的方块有 stone、glass、oak_planks、oak_log、white_wool 等各色羊毛、gold_block、air……）。</p>
+    <div id="fillSim"></div>
+  </div>
+
+  <div class="task" data-id="t47a">
+    <div class="th"><b>一分钟盖好玻璃房</b><span class="xp">★★★</span></div>
+    <div class="tb">
+      <ol>
+        <li>在实验世界里站到一块空地上，看 F3 的 Block 坐标，记下来（比如 20 −60 20）。</li>
+        <li>算好对角：往东 9、往上 4、往南 9，也就是 29 −56 29。</li>
+        <li>打 <code>/fill 20 -60 20 29 -56 29 glass hollow</code>。你被关在玻璃房里了！</li>
+        <li>开一扇门：<code>/fill 24 -60 20 25 -59 20 air</code>。</li>
+        <li>把地板换成木板：<code>/fill 21 -61 21 28 -61 28 oak_planks</code>。</li>
+        <li>算一算你一共用了多少块玻璃，再和体积计算器对一对。</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="err">
+    <h5>出错了怎么办</h5>
+    <dl>
+      <dt>说方块太多</dt><dd>超过了 32768 格，分开填。</dd>
+      <dt>说“没有方块被改变”</dt><dd>那片地方本来就是这种方块了，或者 keep、replace 条件下没有可以改的。</dd>
+      <dt>一行 /fill 把房子填成了石头</dt><dd>马上 ⌘Z 没用。只能用备份换回来（第三十八章）。所以大改之前先备份，或者先在实验世界里试。</dd>
+    </dl>
+  </div>
+
+  <div class="pass" data-id="q47">
+    <div class="qq" data-in="10"><p>x 从 3 到 12，一共有几格？</p><p class="ex">12 − 3 + 1 = 10。两头都算要加一。</p></div>
+    <div class="qq" data-in="27"><p><code>/fill 0 0 0 2 2 2 stone</code> 一共填了几格？</p><p class="ex">每一边都是 2 − 0 + 1 = 3 格，3 × 3 × 3 = 27。</p></div>
+    <div class="qq" data-a="1"><p>想一下子盖好一间里面是空的房子，用哪个词？</p><ol><li>outline</li><li>hollow</li><li>keep</li></ol><p class="ex">hollow 外面一层、里面挖空。outline 只盖外壳，里面原来是什么还是什么。</p></div>
+    <div class="qq" data-in="26"><p>一个 3 × 3 × 3 的空心盒子，要几块？</p><p class="ex">27 − 1 × 1 × 1 = 26。里面只挖掉正中间那一块。</p></div>
+    <div class="qq" data-a="2"><p>32768 等于什么？</p><ol><li>100 × 100 × 3</li><li>64 × 64 × 64</li><li>32 × 32 × 32</li></ol><p class="ex">32 × 32 × 32 = 32768，也是 2 的 15 次方。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>长方体 <span class="en" data-say="cuboid">cuboid</span></b>六个面都是长方形的盒子。</div>
+    <div><b>体积 <span class="en" data-say="volume">volume</span></b>占了多大的地方，长 × 宽 × 高。</div>
+    <div><b>空心的 <span class="en" data-say="hollow">hollow</span></b>外面有壳，里面是空的。</div>
+    <div><b>方块状态 <span class="en" data-say="block state">block state</span></b>方块的朝向、开关等，写在方括号里。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>/setblock 与 /fill 的模式（replace、destroy、hollow、outline、keep）、单次上限 32768 格、方块状态写法，见社区维基“/fill”“/setblock”“方块状态”条目（Java 版；新版本对上限有可配置的游戏规则，以维基为准）。长方体体积在人教版五年级下册。</p>
+    <p>建议：空心盒子的计数题是很好的“想一想”题，可以让孩子先在练习台里填出来，再看计数，最后自己推出公式。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i><code>/fill 角一 角二 方块 [hollow|outline|keep|replace 旧方块]</code>。一次最多 32768 格。放 air 就是挖。</div>
+    <div><i>脑袋<small>带走一样</small></i>数格子时“两头都算”，从 a 到 b 一共 b − a + 1 个。空心 = 大的 − 里面的。</div>
+  </div>
+</section>

@@ -1,0 +1,161 @@
+<!-- ============ 第四十一章 · 系 ============ -->
+<section class="chap" id="c41" data-vol="卷十三 · 系">
+  <div class="chead">
+    <div class="big">系</div>
+    <div>
+      <div class="no">第四十一章</div>
+      <h2>x、y、z</h2>
+      <dl><dt>讲什么</dt><dd>三根轴各指向哪儿；东西南北；为什么 z 越大越往南；正数和负数；世界从多低到多高；带小数的位置和整数的方块坐标</dd><dt>本章装置</dt><dd>坐标点点乐 · 高度尺</dd></dl>
+      <div class="sub" data-s="令 数 英"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第九天</b><span class="pix">WORLD · lab · 超平坦</span><span>创造模式 · 允许作弊</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>F3 上写着我在 y = −60。负的？我在地底下吗？</span></div>
+      <div class="l"><i class="j">舅</i><span>你站在地上。只是这个世界的“0”不在地面，在很深的地下某一层。比 0 高的是正数，比 0 低的就是负数。</span></div>
+      <div class="l"><i class="g">格</i><span>那 x 和 z 呢？我往前走，x 变了；转个身再走，z 又变了。</span></div>
+      <div class="l"><i class="j">舅</i><span>它们是两把横着放的尺子，一把管东西，一把管南北。我们在地上画个十字，你就明白了。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★</span><span class="dim">★★★</span></div><div><b>大约多久</b>40 分钟</div><div><b>要准备</b>超平坦实验世界</div><div><b>大人</b>不用</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>说出 x、y、z 各管哪个方向，哪边是正、哪边是负。</li>
+      <li>在网格上找出 (3, −5) 这样的点，也能读出一个点的坐标。</li>
+      <li>说出世界的最低点、海平面、最高点大概在哪个 y。</li>
+      <li>把 F3 上带小数的位置，换成整数的方块坐标（包括负数）。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>三把尺子</h3>
+    <p>想象你站在一大片平地的正中间。地上画着两条线，交成一个十字；头顶上还竖着一根杆子。这三条线就是三根<b>轴</b>（<span class="en" data-say="axis">axis</span>）：</p>
+    <ul class="plain">
+      <li><b>x 轴</b>：东西方向。往<b>东</b>走，x 变大；往西走，x 变小。</li>
+      <li><b>z 轴</b>：南北方向。往<b>南</b>走，z 变大；往北走，z 变小。</li>
+      <li><b>y 轴</b>：上下方向，也就是高度。往上爬，y 变大；往下挖，y 变小。</li>
+    </ul>
+    <p>三条线交叉的那一点，三个数都是 0，叫<b>原点</b>（<span class="en" data-say="origin">origin</span>）。世界上任何一个地方，都能用三个数说清楚：从原点出发，往东（或西）几格，往上（或下）几格，往南（或北）几格。写的时候按 <b>x、y、z</b> 的顺序，中间用逗号或空格隔开，比如 <code>(120, 70, −35)</code>。</p>
+  </div>
+
+  <div class="corner" data-k="数">
+    <h5>为什么 z 往南是“正”<span class="gr">学过 · 六年级 位置与方向</span></h5>
+    <p>数学课和地图上，一般是<b>上北下南</b>，往北是正。游戏里偏偏反过来：往南 z 变大。原因是游戏用的是电脑画图的习惯：屏幕的坐标是从左上角开始，往右 x 变大，<b>往下</b>变大。把这张“屏幕”平放在地上，往“下”就成了往南。</p>
+    <p>所以记住一句：<b>东 +x，南 +z</b>。从天上往下看，东在右边、南在下边，正好是一张屏幕的样子。</p>
+  </div>
+
+  <div class="fig" id="xyzFig">
+    <div class="fig-label">装置 · 第四十一章 · 一</div>
+    <h4>坐标点点乐</h4>
+    <p class="how">从天上往下看一块 21 × 21 格的地，中间那一点是原点 (0, 0)。红线是 x 轴（往右是东），蓝线是 z 轴（往下是南）。“找点”：照题目点出那一格；“读点”：看红方块在哪儿，把它的 x 和 z 填进去。连对十题算过关。</p>
+    <div class="btns" id="xyzMode"></div>
+    <svg id="xyzSvg" style="max-width:380px;display:block;margin:6px auto" role="img" aria-label="一张坐标网格"></svg>
+    <div id="xyzAsk" class="say"></div>
+    <div class="inrow" id="xyzIn" style="display:none;gap:6px;flex-wrap:wrap;align-items:center"><label>x = <input type="text" inputmode="numeric" id="xyzX" style="width:5em;display:inline-block"></label><label>z = <input type="text" inputmode="numeric" id="xyzZ" style="width:5em;display:inline-block"></label><button class="btn pri" id="xyzGo">对答案</button></div>
+    <div class="kv" id="xyzKv"></div>
+  </div>
+
+  <div class="col">
+    <h3>负数：比 0 还小</h3>
+    <p>原点往东是正数：1、2、3……往西呢？比 0 还小，就写成 <b>−1、−2、−3</b>，读作“负一、负二、负三”。前面那一小横叫<b>负号</b>。往西走得越远，负数越“大”（−100 比 −10 离原点远），可是它表示的数越小。</p>
+    <p>在纸上画一条横线，中间写 0，右边写 1、2、3，左边写 −1、−2、−3：这叫<b>数轴</b>。游戏的每一根轴，都是一条数轴。</p>
+    <p>小心第三十四章说过的坑：负号要用键盘上的<b>减号</b> <kbd>-</kbd>（0 右边那个），在英文输入法里打。中文输入法会打出长横 <code>—</code> 或别的字，命令不认识。</p>
+  </div>
+
+  <div class="corner" data-k="数">
+    <h5>负数在哪儿见过<span class="gr later">以后学 · 六年级下 负数 / 七年级 有理数</span></h5>
+    <p>冬天天气预报说“零下五度”，写成 −5 ℃；电梯里地下二层，按钮上写 B2 或者 −2；海平面以下的地方（比如死海湖面）高度是负的。它们和游戏里的 y 一样：<b>先定一个“0”，比它高是正，比它低是负</b>。</p>
+    <p>小学六年级下册会正式学负数，初一（七年级）会学负数的加减。你现在在游戏里天天看着它们，到时候一定觉得很简单。</p>
+  </div>
+
+  <div class="col">
+    <h3>世界有多高、多深</h3>
+    <p>y 管高度。2021 年的 1.18 版本把世界加高、加深以后，Java 版的世界是这样的（以社区维基为准）：</p>
+  </div>
+
+  <div class="fig" id="yFig">
+    <div class="fig-label">装置 · 第四十一章 · 二</div>
+    <h4>高度尺</h4>
+    <p class="how">拖动滑块，把小人放到不同的高度，看看那里是什么。</p>
+    <div class="ctl"><span>你的 y</span><input type="range" id="yR" min="-64" max="319" value="-60"><output id="yRO"></output></div>
+    <svg id="ySvg" style="max-width:460px;display:block;margin:0 auto" role="img" aria-label="世界的高度尺：从 y −64 到 319"></svg>
+    <div class="say" id="ySay"></div>
+  </div>
+
+  <div class="col">
+    <p>一共从 −64 到 319，是多少层？不能直接 319 − (−64) = 383，因为两头都算：要再加 1，<b>一共 384 层</b>。这个“两头都算要加一”的坑，以后数楼梯、数日子、写程序都会碰到，程序员管它叫“差一错误”。</p>
+    <p>往东西南北能走多远？世界边上有一道“世界边界”，大约在 x 或 z 等于正负三千万（29,999,984）的地方。第一部第零章讲过：从原点走到边上，要走好几天好几夜。</p>
+  </div>
+
+  <div class="col">
+    <h3>小数和方块坐标</h3>
+    <p>F3 屏幕上有两行坐标：</p>
+    <ul class="plain">
+      <li><code>XYZ: 12.734 / -60.00000 / -3.412</code>：你<b>精确</b>的位置，带小数。人可以站在一格方块的任何地方，不一定在正中间。</li>
+      <li><code>Block: 12 -60 -4</code>：你脚下那一格<b>方块</b>的坐标，全是整数。</li>
+    </ul>
+    <p>从精确位置换成方块坐标，规则是<b>往小的方向取整</b>（第三十八章讲过，叫向下取整）：12.734 往小取是 12；−3.412 在 −4 和 −3 之间，往小取是 <b>−4</b>，不是 −3。所以在负数那一边，方块坐标总比你“直接去掉小数”多一个负的。</p>
+    <p>一格方块从 12.0 占到 12.999…，它的正中间是 <b>12.5</b>。下一章你会看到：用 <code>/tp</code> 传送到整数坐标时，游戏会自动帮你加上 0.5，让你站在方块正中间。</p>
+  </div>
+
+  <div class="task" data-id="t41a">
+    <div class="th"><b>在超平坦世界里画十字</b><span class="xp">★★</span></div>
+    <div class="tb">
+      <ol>
+        <li>打开 F3，一边走一边看 <code>Block</code> 那一行，找到 x = 0、z = 0 的那一格（原点）。在那儿放一块金块（创造模式物品栏里找“金块”）。</li>
+        <li>从原点往东走 10 格（x 变成 10），放一块红色羊毛；往西 10 格放一块蓝色羊毛。</li>
+        <li>回到原点，往南 10 格放黄色羊毛，往北 10 格放绿色羊毛。</li>
+        <li>站到金块上往上看：四块羊毛就是两根轴的两头。用红色羊毛记住“东 +x”，用黄色羊毛记住“南 +z”。</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="corner" data-k="英">
+    <h5>方向和位置的单词</h5>
+    <p><span class="en" data-say="north">north</span> 北，<span class="en" data-say="south">south</span> 南，<span class="en" data-say="east">east</span> 东，<span class="en" data-say="west">west</span> 西（四个词的头一个字母 N S E W，就是指南针上的字母）。<span class="en" data-say="up">up</span> 上，<span class="en" data-say="down">down</span> 下。<span class="en" data-say="positive">positive</span> 正的，<span class="en" data-say="negative">negative</span> 负的。F3 上的 <code>Towards negative Z</code> 就是“朝着 z 负的方向”。</p>
+    <p>小窍门：英文说方向，顺序和中文不一样。中文说“东北”，英文说 <span class="en" data-say="northeast">northeast</span>（北东）；中文“西南”，英文 <span class="en" data-say="southwest">southwest</span>。英文总是南北在前。</p>
+  </div>
+
+  <div class="err">
+    <h5>出错了怎么办</h5>
+    <dl>
+      <dt>F3 打不开</dt><dd>Mac 上要按 fn + F3（第三十五章）。</dd>
+      <dt>我往“前”走，x 和 z 一起变了</dt><dd>你不是正对着东西南北，是斜着走的。看 F3 的 <code>Facing</code> 那一行，转到正好写着 north、south、east 或 west 再走。</dd>
+      <dt>在别的世界里 y 不是 −60</dt><dd>只有超平坦世界的地面那么低。普通世界的地面一般在 y = 63 到 100 多之间，看地形。</dd>
+    </dl>
+  </div>
+
+  <div class="pass" data-id="q41">
+    <div class="qq" data-a="1"><p>往南走，哪个数变大？</p><ol><li>x</li><li>z</li><li>y</li></ol><p class="ex">东 +x，南 +z。y 是高度。</p></div>
+    <div class="qq" data-a="2"><p>坐标 (−20, 70, 15) 在原点的哪个方向？</p><ol><li>东北，比原点高</li><li>西北，比原点低</li><li>西南，比原点高</li></ol><p class="ex">x = −20 是往西，z = 15 是往南，y = 70 比 0 高。</p></div>
+    <div class="qq" data-in="384"><p>Java 版的世界从 y = −64 到 y = 319，一共有几层？</p><p class="ex">319 − (−64) = 383，两头都算再加 1，一共 384 层。</p></div>
+    <div class="qq" data-in="-8"><p>F3 上写 <code>XYZ: -7.25 / ...</code>，你脚下方块的 x 是多少？</p><p class="ex">−7.25 夹在 −8 和 −7 之间，往小的方向取整，是 −8。</p></div>
+    <div class="qq" data-a="0"><p>为什么游戏里往南 z 变大，和地图上北边是“正”相反？</p><ol><li>游戏用的是电脑屏幕的习惯：往下（往南）变大</li><li>因为瑞典在南半球</li><li>写错了，一直没改</li></ol><p class="ex">电脑屏幕的坐标从左上角开始，往右往下变大。平放在地上，往下就是往南。</p></div>
+    <div class="qq" data-in="southeast|south east|south-east"><p>“东南”的英文是什么？（提示：英文南北在前）</p><p class="ex">southeast。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>轴 <span class="en" data-say="axis">axis</span></b>一条带刻度的线。游戏里有 x、y、z 三根。</div>
+    <div><b>原点 <span class="en" data-say="origin">origin</span></b>三根轴交叉的那一点，坐标是 (0, 0, 0)。</div>
+    <div><b>负数 <span class="en" data-say="negative number">negative number</span></b>比 0 小的数，前面有负号。</div>
+    <div><b>数轴 <span class="en" data-say="number line">number line</span></b>中间是 0、往右正往左负的一条线。</div>
+    <div><b>差一错误 <span class="en" data-say="off-by-one error">off-by-one error</span></b>数的时候少算或多算了一个，最常见的是忘了“两头都算要加一”。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>坐标方向（东 +X、南 +Z、上 +Y）、F3 屏幕 XYZ 与 Block 两行、1.18 起主世界高度 −64 到 319、世界边界 29,999,984，见 Minecraft 社区维基“坐标”“调试屏幕”“世界边界”“主世界”条目。超平坦默认预设的地面草方块在 y = −61，玩家脚在 −60。负数在人教版教材中六年级下册入门，七年级系统学习有理数运算；直角坐标系是八年级内容，四象限的写法这里没有展开。</p>
+    <p>建议：和孩子玩“报坐标找人”的游戏：一个人报自己的 Block 坐标，另一个人只看 F3 走过去。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>东 +x，南 +z，上 +y。超平坦的地面是 y = −60。方块坐标是精确位置往小的方向取整。</div>
+    <div><i>脑袋<small>带走一样</small></i>先定一个 0，比它多是正，比它少是负。数“从几到几一共多少个”，记得两头都算。</div>
+  </div>
+</section>

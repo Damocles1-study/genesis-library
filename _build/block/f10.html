@@ -1,0 +1,168 @@
+<!-- ============ 第五十章 · 若 ============ -->
+<section class="chap" id="c50" data-vol="卷十五 · 若">
+  <div class="chead">
+    <div class="big">若</div>
+    <div>
+      <div class="no">第五十章</div>
+      <h2>/execute：如果……就……</h2>
+      <dl><dt>讲什么</dt><dd>execute 是一句长长的英文句子：as（以谁的身份）、at（在谁那儿）、if / unless（如果 / 除非）、run（就做）；三种命令方块；做一个三十秒的计时小游戏</dd><dt>本章装置</dt><dd>条件和循环练习台</dd></dl>
+      <div class="sub" data-s="令 程 英 数"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第十八天</b><span class="pix">WORLD · lab</span><span>创造模式</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>捡金币的游戏，我想加一个倒计时：三十秒一到，就喊“时间到”。</span></div>
+      <div class="l"><i class="j">舅</i><span>那要两样东西：一个每一刻都会动的命令方块，让时间减一；一句“如果时间是 1，就喊时间到”。第二样，就是 execute if。</span></div>
+      <div class="l"><i class="g">格</i><span>“如果……就……”，这不是造句吗？</span></div>
+      <div class="l"><i class="j">舅</i><span>没错。execute 读起来就像一句英文：as 谁、at 哪儿、if 什么、run 做什么。会造句，就会写它。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★★</span><span class="dim">★</span></div><div><b>大约多久</b>一个下午（分两次做也行）</div><div><b>要准备</b>练习台；实验世界；前两章的记分板</div><div><b>大人</b>第一次做小游戏时可以陪着</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>读懂、写出 <code>execute as … at … if … run …</code>。</li>
+      <li>用 if 和 unless 根据分数、实体、方块做判断。</li>
+      <li>说出三种命令方块的区别，用循环型命令方块让命令“每一刻都执行”。</li>
+      <li>做出一个三十秒倒计时，并把它翻成“如果……就……”的程序。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>一句长长的命令</h3>
+    <p><code>execute</code> 是“执行”。它后面可以接好几段，每一段改一件事，最后用 <code>run</code> 接一条真正要做的命令：</p>
+  </div>
+  <div class="wide tbl">
+    <table class="t kt">
+      <tr><th>那一段</th><th>改了什么</th><th>像英文句子里的</th></tr>
+      <tr><td><code>as @e[type=pig]</code></td><td><b>以谁的身份</b>：后面的 <code>@s</code> 变成每一头猪</td><td><span class="en" data-say="as">as</span>：作为</td></tr>
+      <tr><td><code>at @s</code></td><td><b>在哪儿</b>：后面的 <code>~</code> 变成那个实体的位置</td><td><span class="en" data-say="at">at</span>：在</td></tr>
+      <tr><td><code>positioned 0 -60 0</code></td><td>换一个位置</td><td><span class="en" data-say="positioned">positioned</span>：放在</td></tr>
+      <tr><td><code>if …</code></td><td><b>如果</b>条件成立，才往下走</td><td><span class="en" data-say="if">if</span>：如果</td></tr>
+      <tr><td><code>unless …</code></td><td><b>除非</b>：条件<b>不</b>成立，才往下走</td><td><span class="en" data-say="unless">unless</span>：除非</td></tr>
+      <tr><td><code>run …</code></td><td>就做这件事</td><td><span class="en" data-say="run">run</span>：运行</td></tr>
+    </table>
+  </div>
+  <div class="col">
+    <p>几个例子，每个都先读成一句话：</p>
+    <ul class="plain">
+      <li><code>/execute at @e[type=pig] run setblock ~ ~-1 ~ gold_block</code><br>“<b>在</b>每一头猪那儿，<b>都</b>把它脚下那一块换成金块。”</li>
+      <li><code>/execute as @a at @s run summon chicken ~ ~3 ~</code><br>“<b>作为</b>每一个玩家，<b>在</b>他自己那儿，在头顶三格召唤一只鸡。”</li>
+      <li><code>/execute if entity @e[type=zombie,distance=..8] run say 小心！</code><br>“<b>如果</b> 8 格以内有僵尸，就喊‘小心！’”</li>
+      <li><code>/execute unless entity @e[type=zombie] run say 安全了</code><br>“<b>除非</b>有僵尸……也就是：一只僵尸都没有，就喊‘安全了’。”</li>
+      <li><code>/execute if score @s coins matches 10.. run say 我有十个金币了</code><br>“<b>如果</b>我的金币大于等于 10，就喊一声。”</li>
+      <li><code>/execute if block ~ ~-1 ~ gold_block run effect give @s speed 5</code><br>“<b>如果</b>我脚下是金块，就给我 5 秒速度。”</li>
+    </ul>
+  </div>
+
+  <div class="corner" data-k="程">
+    <h5>if：程序会“选路”了<span class="gr later">以后学 · 编程的第二个核心</span></h5>
+    <p>上一章的变量让程序“记住”东西；这一章的 if 让程序会<b>根据情况选不同的路</b>。几乎所有的游戏、App、机器人，都是由这两样（加上下一节的“循环”）搭起来的。同一件事，用 Python 写是这样：</p>
+    <pre class="py">if coins &gt;= 10:
+    print("我有十个金币了")</pre>
+    <p>if 后面的那个条件，算出来只有两种结果：成立（true）或不成立（false）——第四十四章的布尔值。unless 就是 “if not”。</p>
+  </div>
+
+  <div class="corner" data-k="英">
+    <h5>if 和 unless 的英文句子</h5>
+    <p>“<b>If</b> it rains, I will stay at home.”（如果下雨，我就待在家。）“I will go out <b>unless</b> it rains.”（我会出门，除非下雨。）两句说的是一回事，一个从“会发生”说起，一个从“不会发生”说起。execute 也是这样：<code>if</code> 和 <code>unless</code> 正好相反。</p>
+  </div>
+
+  <div class="col">
+    <h3>三种命令方块</h3>
+    <p>第十五章认识了命令方块（<code>/give @p command_block</code> 拿到）。右键打开它，左上角的按钮能换三种类型：</p>
+  </div>
+  <div class="wide tbl">
+    <table class="t kt">
+      <tr><th>类型</th><th>颜色</th><th>什么时候执行</th><th>编程里像</th></tr>
+      <tr><td>脉冲型</td><td>橙色</td><td>收到一次红石信号，执行一次</td><td>按一下按钮，做一件事</td></tr>
+      <tr><td>连锁型</td><td>绿色</td><td>前面那个命令方块执行完，接着执行</td><td>一行接一行</td></tr>
+      <tr><td>循环型</td><td>紫色</td><td><b>每一刻</b>都执行一次（一秒 20 次）</td><td>一直转的<b>循环</b></td></tr>
+    </table>
+  </div>
+  <div class="col">
+    <p>循环型命令方块要设成“<b>始终活动</b>”（不需要红石），它才会一直转。连锁型命令方块要摆在循环型的箭头指向的地方，一个接一个排成一串，形成一个每刻都跑一遍的“小程序”。</p>
+    <p>还有一个“条件制约”选项：打开它，这个方块只在<b>前一个方块执行成功</b>时才执行。这也是一种 if。</p>
+  </div>
+
+  <div class="col">
+    <h3>项目：三十秒倒计时</h3>
+    <p>想法是：用一个变量 <code>time</code> 记住“还剩几刻”。开始时设成 600（30 秒 × 20 刻，第四十三章算过）；循环型命令方块每一刻把它减 1；减到 1 的时候喊“时间到”。再用除法算出“还剩几秒”显示在右边栏。</p>
+    <p><b>准备</b>（在聊天框里打一次就行）：</p>
+    <pre class="py">/scoreboard objectives add time dummy "剩余刻"
+/scoreboard objectives add sec dummy "剩余秒"
+/scoreboard objectives add const dummy
+/scoreboard players set #20 const 20
+/scoreboard objectives setdisplay sidebar sec</pre>
+    <p><b>开始按钮</b>：一个脉冲型命令方块 + 一个按钮，里面写：</p>
+    <pre class="py">scoreboard players set @p time 600</pre>
+    <p><b>每一刻要做的事</b>：一个循环型（始终活动）后面接三个连锁型，依次写：</p>
+    <pre class="py">execute if score @p time matches 1 run title @p title "时间到"
+execute if score @p time matches 1.. run scoreboard players remove @p time 1
+scoreboard players operation @p sec = @p time
+scoreboard players operation @p sec /= #20 const</pre>
+    <p>读一读这四行：<b>如果</b>只剩 1 刻，就打出大字“时间到”；<b>如果</b>还剩 1 刻以上，就减 1；把 time 抄给 sec；sec 除以 20，变成秒。为什么喊“时间到”要放在第一行？想一想：如果先减，time 从 1 变成 0，第一行就永远等不到“正好是 1”了。<b>顺序很要紧</b>，这也是编程最常出错的地方之一。</p>
+  </div>
+
+  <div class="fig" id="exFig">
+    <div class="fig-label">装置 · 第五十章</div>
+    <h4>条件和循环练习台</h4>
+    <p class="how">这一次练习台多了一个紫色框：它就是<b>循环型命令方块</b>，每走一刻，就把框里每一行执行一遍（你可以改里面的命令）。准备那几行已经替你打好了。先在黑框里打开始的命令，再点“走 1 秒”“走 10 秒”看右边栏怎么变。地图上的猪是给 execute at 练习用的。</p>
+    <div id="exSim"></div>
+  </div>
+
+  <div class="task" data-id="t50a">
+    <div class="th"><b>捡金币小游戏</b><span class="xp">★★★</span></div>
+    <div class="tb">
+      <ol>
+        <li>在实验世界里照上面的“准备”“开始按钮”“每一刻要做的事”搭好倒计时，按按钮试一次。</li>
+        <li>加一个记分项 <code>coins</code>。在场地里放几块金块，旁边各放一个压力板，压力板下面接一个脉冲型命令方块：<code>scoreboard players add @p coins 1</code>，再接一个连锁型：<code>setblock ~ ~2 ~ air</code>（踩完把金块拿走，坐标按你的摆法改）。</li>
+        <li>在“时间到”那一行后面，再加一个连锁型：<code>execute if score @p coins matches 5.. run say 你赢了！</code>。</li>
+        <li>请豆子来玩一次。玩完一起想：还能加什么规则？</li>
+      </ol>
+      <p>做不出来很正常。照第四十章的办法：读报错、一样一样排除、记下来。做出来了，你就写了人生第一个“程序”。</p>
+    </div>
+  </div>
+
+  <div class="err">
+    <h5>出错了怎么办</h5>
+    <dl>
+      <dt>循环型命令方块不动</dt><dd>没有设成“始终活动”，或者旁边没有红石信号。</dd>
+      <dt>时间一下子没了</dt><dd>两个循环型命令方块都在减，或者忘了 <code>matches 1..</code>，减成了负数。</dd>
+      <dt>“时间到”一直在喊</dt><dd>条件写成了 <code>matches ..1</code>（小于等于 1），time 停在 0 时每一刻都成立。</dd>
+      <dt>@p 选错了人</dt><dd>命令方块里的 @p 是离<b>命令方块</b>最近的玩家。</dd>
+    </dl>
+  </div>
+
+  <div class="pass" data-id="q50">
+    <div class="qq" data-a="1"><p><code>execute at @e[type=pig] run setblock ~ ~-1 ~ gold_block</code> 做了什么？</p><ol><li>在你脚下放一块金块</li><li>在每一头猪的脚下放一块金块</li><li>把猪变成金块</li></ol><p class="ex">at 把位置换成每一头猪的位置，~ 就从猪那儿算。</p></div>
+    <div class="qq" data-a="2"><p>“一只僵尸都没有，就说安全了”，用哪个？</p><ol><li>execute if entity @e[type=zombie] run say 安全了</li><li>execute as @e[type=zombie] run say 安全了</li><li>execute unless entity @e[type=zombie] run say 安全了</li></ol><p class="ex">unless：条件不成立才执行。没有僵尸，“有僵尸”就不成立。</p></div>
+    <div class="qq" data-a="0"><p>哪种命令方块每一刻都执行？</p><ol><li>循环型（紫色）</li><li>脉冲型（橙色）</li><li>连锁型（绿色）</li></ol><p class="ex">循环型，一秒 20 次。</p></div>
+    <div class="qq" data-in="600"><p>倒计时 30 秒，time 一开始要设成多少刻？</p><p class="ex">30 × 20 = 600。</p></div>
+    <div class="qq" data-in="29"><p>time 是 599 的时候，sec = time ÷ 20（只留商）是多少？</p><p class="ex">599 ÷ 20 = 29 余 19，只留商 29。</p></div>
+    <div class="qq" data-a="1"><p>为什么“喊时间到”那一行要放在“减 1”那一行前面？</p><ol><li>放哪儿都一样</li><li>如果先减，time 从 1 变成 0，后面的“等于 1”就永远等不到了</li><li>因为命令方块只能读第一行</li></ol><p class="ex">同一刻里，命令按顺序执行。顺序变了，结果就变了。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>条件 <span class="en" data-say="condition">condition</span></b>成立或不成立的一个判断。</div>
+    <div><b>执行 <span class="en" data-say="execute">execute</span></b>运行一条命令。</div>
+    <div><b>循环 <span class="en" data-say="loop">loop</span></b>一遍一遍反复做。</div>
+    <div><b>顺序 <span class="en" data-say="order">order</span></b>先做什么、后做什么。程序里顺序很要紧。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>/execute 的子命令（as、at、positioned、if/unless entity/block/score、run 等）与命令方块的三种类型、“始终活动”“条件制约”，见社区维基“/execute”“命令方块”条目。计时器的写法是常见做法之一（也可以用数据包的 tick 函数，第二十五章）。命令方块在单人世界开作弊即可用；服务器需要 enable-command-block。</p>
+    <p>第四十八到五十章，其实就是编程入门的三件事：筛选数据、变量、条件和循环。孩子做出倒计时以后，可以请他用自己的话讲一遍“每一刻发生了什么”，能讲清楚，就真的懂了。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i><code>execute as 谁 at 哪儿 if/unless 条件 run 命令</code>。循环型命令方块每刻执行一次。同一刻里，命令按顺序执行。</div>
+    <div><i>脑袋<small>带走一样</small></i>变量记住事情，if 选路，循环一遍遍地做：会这三样，你就能写出一个小游戏。</div>
+  </div>
+</section>

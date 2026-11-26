@@ -1,0 +1,158 @@
+<div class="volhead" data-vol="卷十五 · 逻辑">
+  <div class="num">VOLUME FIFTEEN · 第六部 · 卷十五</div>
+  <h2>逻<small>选谁、记住、如果</small></h2>
+  <p class="lede">前面的命令，都是“对一个人做一件事”。这一卷让命令变聪明：先从一大群里挑出符合条件的，再把数记在变量里，最后学会“如果……就……”。学完这三样，你已经在用编程最核心的三个想法了。</p>
+  <svg class="row" aria-hidden="true"></svg>
+</div>
+
+<!-- ============ 第四十八章 · 选 ============ -->
+<section class="chap" id="c48" data-vol="卷十五 · 选">
+  <div class="chead">
+    <div class="big">选</div>
+    <div>
+      <div class="no">第四十八章</div>
+      <h2>目标选择器</h2>
+      <dl><dt>讲什么</dt><dd>@p @a @s @e @r @n 六个；方括号里的筛选条件：type、distance、limit、sort、tag、name；“..5”是什么意思；几个条件要同时满足；感叹号是“不是”</dd><dt>本章装置</dt><dd>选择器练习台（带预览）</dd></dl>
+      <div class="sub" data-s="令 数 程 英"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第十六天</b><span class="pix">WORLD · lab</span><span>创造模式</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>我的农场里有十几头猪，还混进来两只僵尸。我想只消灭僵尸。</span></div>
+      <div class="l"><i class="j">舅</i><span>那就在 @e 后面加一个“筛子”：<code>@e[type=zombie]</code>。方括号里写条件，只有符合条件的才会被选中。</span></div>
+      <div class="l"><i class="g">格</i><span>如果我只想选离我最近的那头猪呢？</span></div>
+      <div class="l"><i class="j">舅</i><span>再加两个条件：按距离排好队，只要第一个。<code>@e[type=pig,sort=nearest,limit=1]</code>。你已经在写“查询”了。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★</span><span class="dim">★★</span></div><div><b>大约多久</b>45 分钟</div><div><b>要准备</b>练习台；实验世界</div><div><b>大人</b>不用</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>说出六个选择器各选中谁。</li>
+      <li>用 type、distance、limit、sort、tag、name 筛选，用 ! 表示“不是”。</li>
+      <li>读懂 <code>..5</code>、<code>5..</code>、<code>2..8</code> 这种范围。</li>
+      <li>先用 say 或预览看清选中了谁，再动手。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>六个选择器</h3>
+  </div>
+  <div class="wide tbl">
+    <table class="t kt">
+      <tr><th>写法</th><th>选中谁</th><th>来自哪个英文词</th></tr>
+      <tr><td><code>@p</code></td><td>离（执行命令的位置）最近的<b>一个玩家</b></td><td><span class="en" data-say="player">player</span>（最近的玩家）</td></tr>
+      <tr><td><code>@a</code></td><td><b>所有玩家</b></td><td><span class="en" data-say="all">all</span></td></tr>
+      <tr><td><code>@s</code></td><td><b>执行这条命令的那一个</b>：在聊天框里打，就是你自己</td><td><span class="en" data-say="self">self</span>：自己</td></tr>
+      <tr><td><code>@e</code></td><td><b>所有实体</b>：玩家、动物、怪物、掉在地上的东西、矿车……</td><td><span class="en" data-say="entity">entity</span></td></tr>
+      <tr><td><code>@r</code></td><td><b>随机</b>一个玩家</td><td><span class="en" data-say="random">random</span></td></tr>
+      <tr><td><code>@n</code></td><td>离得最近的<b>一个实体</b>（不管是不是玩家，1.21 新加的）</td><td><span class="en" data-say="nearest">nearest</span></td></tr>
+    </table>
+  </div>
+  <div class="col">
+    <p>基岩版和中国版还有一个 <code>@initiator</code>（和村民说话的那个人），用得少。</p>
+  </div>
+
+  <div class="col">
+    <h3>方括号：筛子</h3>
+    <p>在选择器后面加方括号，里面写<b>条件</b>，几个条件用逗号隔开，<b>逗号和等号两边都不要加空格</b>：</p>
+  </div>
+  <div class="wide tbl">
+    <table class="t kt">
+      <tr><th>条件</th><th>例子</th><th>意思</th></tr>
+      <tr><td><code>type</code> 种类</td><td><code>@e[type=pig]</code></td><td>所有的猪</td></tr>
+      <tr><td><code>distance</code> 距离</td><td><code>@e[distance=..5]</code></td><td>离我 5 格以内的所有实体</td></tr>
+      <tr><td><code>limit</code> 最多几个</td><td><code>@e[type=cow,limit=3]</code></td><td>最多 3 头牛</td></tr>
+      <tr><td><code>sort</code> 排序</td><td><code>sort=nearest</code> / <code>furthest</code> / <code>random</code></td><td>由近到远 / 由远到近 / 随机</td></tr>
+      <tr><td><code>tag</code> 标签</td><td><code>@e[tag=pet]</code></td><td>贴了 pet 标签的（用 <code>/tag</code> 贴）</td></tr>
+      <tr><td><code>name</code> 名字</td><td><code>@e[name="小花"]</code></td><td>名字叫“小花”的</td></tr>
+      <tr><td><code>gamemode</code></td><td><code>@a[gamemode=survival]</code></td><td>所有生存模式的玩家</td></tr>
+      <tr><td><code>!</code> 不是</td><td><code>@e[type=!player]</code></td><td>所有<b>不是</b>玩家的实体</td></tr>
+    </table>
+  </div>
+  <div class="col">
+    <p>好几个条件写在一起，要<b>同时满足</b>才被选中：<code>@e[type=pig,distance=..10,limit=2,sort=nearest]</code> 是“10 格以内的猪里，最近的两头”。</p>
+    <p>贴标签很有用：<code>/tag @e[type=cat,limit=1,sort=nearest] add pet</code> 给最近的猫贴上 pet，以后 <code>@e[tag=pet]</code> 就只选它，<code>@e[type=cat,tag=!pet]</code> 就是“除了宠物以外的猫”。</p>
+  </div>
+
+  <div class="corner" data-k="数">
+    <h5>两个点：范围<span class="gr later">以后学 · 七年级下 不等式</span></h5>
+    <p><code>distance=..5</code> 里的两个点，意思是“到”。一边不写，就是那一边没有限制：</p>
+    <ul>
+      <li><code>..5</code>：小于或等于 5，数学写成 <b>d ≤ 5</b></li>
+      <li><code>5..</code>：大于或等于 5，<b>d ≥ 5</b></li>
+      <li><code>2..8</code>：在 2 和 8 之间（包括 2 和 8），<b>2 ≤ d ≤ 8</b></li>
+      <li><code>5</code>：正好等于 5</li>
+    </ul>
+    <p>在数轴上画出来，就是一段线。初一下学期学“不等式”时，课本上画的就是这样的线段。第四十九、五十章判断分数时，<code>matches 1..</code> 也是这种写法。</p>
+  </div>
+
+  <div class="corner" data-k="程">
+    <h5>筛选：程序最常干的活<span class="gr later">以后学 · 编程</span></h5>
+    <p>从一大堆东西里，挑出符合条件的，再排序、取前几个，程序员几乎每天都在写这件事：挑出全班数学 90 分以上的、按身高排队取前三个、找出离你最近的公交车站。写法换了，想法完全一样：</p>
+    <pre class="py">选中 = [e for e in 所有实体 if e.种类 == "猪" and 距离(e) &lt;= 10]
+选中.sort(按距离)
+选中 = 选中[:2]</pre>
+    <p>“几个条件同时满足”，叫<b>与</b>（<span class="en" data-say="and">and</span>）；感叹号“不是”，叫<b>非</b>（<span class="en" data-say="not">not</span>）。第二部第十章的红石“与门”“非门”，就是这两个。</p>
+  </div>
+
+  <div class="fig" id="selFig">
+    <div class="fig-label">装置 · 第四十八章</div>
+    <h4>选择器练习台</h4>
+    <p class="how">地图上有一群动物（黄色）、几只怪（红色）和豆子。上面那个红框是<b>选择器预览</b>：在里面打一个选择器，被选中的会在地图上画红圈，不会真的做任何事。看清楚了，再到下面的黑框里打命令。</p>
+    <div id="selSim"></div>
+  </div>
+
+  <div class="task" data-id="t48a">
+    <div class="th"><b>给宠物上保险</b><span class="xp">★★</span></div>
+    <div class="tb">
+      <ol>
+        <li>在实验世界里召唤一只狗（wolf）和三头猪。</li>
+        <li>给狗贴标签：<code>/tag @e[type=wolf,limit=1,sort=nearest] add pet</code>。</li>
+        <li>先用 <code>/say @e[type=!player,tag=!pet]</code> 看看会选中谁。</li>
+        <li>确认狗不在里面，再把 say 换成 kill。</li>
+      </ol>
+      <p>这就是专业的做法：<b>先预览，再动手</b>。</p>
+    </div>
+  </div>
+
+  <div class="err">
+    <h5>出错了怎么办</h5>
+    <dl>
+      <dt>说“不认识参数”</dt><dd>拼错了条件名，或者等号、逗号旁边加了空格。</dd>
+      <dt>@p 选中的不是我</dt><dd>@p 是离“执行位置”最近的玩家。命令方块里执行时，执行位置是命令方块，不是你。</dd>
+      <dt>一下子选中了好多东西</dt><dd>@e 会选中所有实体，包括掉在地上的物品。加上 type 筛一筛。</dd>
+    </dl>
+  </div>
+
+  <div class="pass" data-id="q48">
+    <div class="qq" data-a="3"><p>哪个选择器会选中“所有实体”，包括动物和掉落物？</p><ol><li>@a</li><li>@p</li><li>@s</li><li>@e</li></ol><p class="ex">@a 只是所有玩家，@e 是所有实体。</p></div>
+    <div class="qq" data-a="1"><p><code>distance=..5</code> 是什么意思？</p><ol><li>正好 5 格远</li><li>5 格以内（≤ 5）</li><li>5 格以外</li></ol><p class="ex">左边不写，就是“从多近都行，到 5 为止”。</p></div>
+    <div class="qq" data-in="@e[type=!player]"><p>写一个选择器：所有不是玩家的实体。</p><p class="ex">@e[type=!player]。感叹号是“不是”。</p></div>
+    <div class="qq" data-a="0"><p><code>@e[type=pig,limit=1,sort=nearest]</code> 选中几个？</p><ol><li>最多 1 个：最近的那头猪</li><li>所有的猪</li><li>1 个随机的实体</li></ol><p class="ex">先筛出猪，按由近到远排，只取第一个。</p></div>
+    <div class="qq" data-a="2"><p>在聊天框里打命令时，<code>@s</code> 是谁？</p><ol><li>离你最近的人</li><li>所有人</li><li>你自己</li></ol><p class="ex">@s 是执行命令的那一个。在聊天框里打，就是你。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>选择器 <span class="en" data-say="selector">selector</span></b>@ 开头、用来挑出目标的写法。</div>
+    <div><b>筛选 <span class="en" data-say="filter">filter</span></b>只留下符合条件的。</div>
+    <div><b>排序 <span class="en" data-say="sort">sort</span></b>按某个规矩排好队。</div>
+    <div><b>标签 <span class="en" data-say="tag">tag</span></b>贴在实体身上的名字，方便以后挑出来。</div>
+    <div><b>范围 <span class="en" data-say="range">range</span></b>从几到几，用两个点写。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>目标选择器与参数（type、distance、limit、sort、tag、name、gamemode、scores 等）、范围写法、@n（Java 版 1.21 新增）见社区维基“目标选择器”条目；基岩版另有 @initiator。练习台的预览只计算选中的实体，不执行任何操作。不等式在人教版七年级下册。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>@p 最近的玩家、@a 所有玩家、@s 自己、@e 所有实体、@r 随机、@n 最近的实体。方括号里的条件要同时满足，! 是“不是”。先 say，再 kill。</div>
+    <div><i>脑袋<small>带走一样</small></i>挑东西的时候，把条件一条一条写清楚：哪一种、多远、几个、按什么排。写清楚了，电脑和人都不会挑错。</div>
+  </div>
+</section>

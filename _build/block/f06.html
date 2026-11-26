@@ -1,0 +1,154 @@
+<!-- ============ 第四十六章 · 召 ============ -->
+<section class="chap" id="c46" data-vol="卷十四 · 召">
+  <div class="chead">
+    <div class="big">召</div>
+    <div>
+      <div class="no">第四十六章</div>
+      <h2>/summon 和 /effect</h2>
+      <dl><dt>讲什么</dt><dd>召唤生物到一个位置；给它起名字；状态效果：速度、跳跃、夜视、飘浮；等级为什么从 0 数起；可写可不写的参数；/kill 的危险</dd><dt>本章装置</dt><dd>召唤练习台</dd></dl>
+      <div class="sub" data-s="令 英 程"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第十四天</b><span class="pix">WORLD · lab</span><span>创造模式</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>我想要一只叫“小花”的猫，还想跳得像袋鼠那么高。</span></div>
+      <div class="l"><i class="j">舅</i><span>两条命令：一条叫 summon，召唤；一条叫 effect，效果。不过跳跃那个，你说要“二级”，命令里要写 1。</span></div>
+      <div class="l"><i class="g">格</i><span>为什么二级写 1？</span></div>
+      <div class="l"><i class="j">舅</i><span>因为电脑从 0 开始数。上一章的格子编号也是这样。这件事你以后会遇到一百次。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★</span><span class="dim">★★</span></div><div><b>大约多久</b>40 分钟</div><div><b>要准备</b>练习台；实验世界</div><div><b>大人</b>不用</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>用 /summon 在指定的位置召唤生物，给它起名字。</li>
+      <li>用 /effect give 给自己加效果，用 /effect clear 去掉。</li>
+      <li>说出“等级 0 就是一级”的道理，算对效果的等级。</li>
+      <li>只消灭某一种生物，而不是把世界里的东西全清掉。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>/summon：召唤</h3>
+    <pre class="py">/summon pig
+/summon cow ~3 ~ ~
+/summon cat ~ ~ ~ {CustomName:"小花"}</pre>
+    <ul class="plain">
+      <li>只写生物 ID：召唤在你脚下。</li>
+      <li>后面写坐标：召唤到那个位置，上一章的 <code>~</code> 和 <code>^</code> 都能用。<code>~3 ~ ~</code> 是你东边 3 格。</li>
+      <li>最后的大括号 <code>{…}</code> 是给它的“附加数据”，<code>CustomName</code> 是自己起的名字。这一段的写法这几年改过（老版本要写成 <code>{CustomName:'"小花"'}</code>），<b>以维基为准</b>。</li>
+    </ul>
+    <p>生物的 ID 也是英文：<span class="en" data-say="pig">pig</span> 猪，<span class="en" data-say="cow">cow</span> 牛，<span class="en" data-say="sheep">sheep</span> 羊，<span class="en" data-say="chicken">chicken</span> 鸡，<span class="en" data-say="horse">horse</span> 马，<span class="en" data-say="wolf">wolf</span> 狼，<span class="en" data-say="cat">cat</span> 猫，<span class="en" data-say="fox">fox</span> 狐狸，<span class="en" data-say="bee">bee</span> 蜜蜂，<span class="en" data-say="villager">villager</span> 村民（village 村子 + -er 人），<span class="en" data-say="iron golem">iron_golem</span> 铁傀儡，<span class="en" data-say="zombie">zombie</span> 僵尸，<span class="en" data-say="skeleton">skeleton</span> 骷髅，<span class="en" data-say="spider">spider</span> 蜘蛛。第五十五章有全部生物的词卡。</p>
+    <p>在和平难度里召唤怪物，它会马上消失。还有一个特别的：<code>/summon lightning_bolt</code> 召唤一道闪电。<b>别在木房子旁边试</b>：闪电会点着东西。</p>
+  </div>
+
+  <div class="col">
+    <h3>/effect：状态效果</h3>
+    <pre class="py">/effect give @s speed 60 1
+/effect give @s night_vision infinite
+/effect clear @s</pre>
+    <p><code>/effect give</code> 后面四样：<b>给谁、什么效果、多少秒、等级</b>。秒数不写是 30 秒；写 <code>infinite</code> 就一直有效。</p>
+  </div>
+  <div class="wide tbl">
+    <table class="t kt">
+      <tr><th>效果 ID</th><th>中文</th><th>做什么</th></tr>
+      <tr><td><code>speed</code></td><td>速度</td><td>走得快</td></tr>
+      <tr><td><code>slowness</code></td><td>缓慢</td><td>走得慢</td></tr>
+      <tr><td><code>jump_boost</code></td><td>跳跃提升</td><td>跳得高（boost：推一把）</td></tr>
+      <tr><td><code>night_vision</code></td><td>夜视</td><td>黑的地方也看得清（night 夜 + vision 视力）</td></tr>
+      <tr><td><code>invisibility</code></td><td>隐身</td><td>别人看不见你（in- 不 + visible 看得见的）</td></tr>
+      <tr><td><code>levitation</code></td><td>飘浮</td><td>慢慢往天上飘（levitate：飘起来）</td></tr>
+      <tr><td><code>slow_falling</code></td><td>缓降</td><td>像羽毛一样慢慢落下，不摔伤</td></tr>
+      <tr><td><code>water_breathing</code></td><td>水下呼吸</td><td>在水里不会憋气</td></tr>
+      <tr><td><code>regeneration</code></td><td>生命恢复</td><td>血慢慢回来</td></tr>
+      <tr><td><code>glowing</code></td><td>发光</td><td>隔着墙也能看见轮廓</td></tr>
+    </table>
+  </div>
+
+  <div class="corner" data-k="程">
+    <h5>等级 0 就是一级<span class="gr later">以后学 · 编程</span></h5>
+    <p>命令里的“等级”那个数，英文叫 <span class="en" data-say="amplifier">amplifier</span>（放大器）：它说的是“比最低一级多放大几次”。所以：</p>
+    <ul>
+      <li>写 0（或者不写）→ 1 级，显示成“速度 I”</li>
+      <li>写 1 → 2 级，“速度 II”</li>
+      <li>写 4 → 5 级，“速度 V”</li>
+    </ul>
+    <p>规律：<b>显示的等级 = 写的数 + 1</b>。和上一章“快捷栏从 0 号开始”是同一种思路。写程序的人每天都在和这个“+1 还是不 +1”打交道。</p>
+    <p>还有一个编程的概念藏在这里：秒数和等级可以不写，不写就用<b>默认值</b>（30 秒、0）。程序里的函数也常常这样：有些参数必须写，有些可以省，省了就用默认的。</p>
+  </div>
+
+  <div class="corner" data-k="英">
+    <h5>罗马数字</h5>
+    <p>游戏里显示效果等级用的是<b>罗马数字</b>：I = 1，II = 2，III = 3，IV = 4（5 减 1），V = 5。钟表上、书的章节号上也常见。附魔书上的“锋利 V”，就是锋利 5 级。</p>
+  </div>
+
+  <div class="col">
+    <h3>/kill：小心</h3>
+    <ul class="plain">
+      <li><code>/kill @e[type=pig]</code>：只消灭所有的猪。方括号里是<b>筛选条件</b>，下一卷细讲。</li>
+      <li><code>/kill @s</code>：消灭自己（你会在出生点复活）。</li>
+      <li><code>/kill @e</code>：<b>消灭世界里所有的实体</b>，包括你自己、所有动物、你的狗、掉在地上的东西、盔甲架、矿车……<b>千万别在有宠物的世界里打这一行。</b></li>
+    </ul>
+    <p>一个好习惯：打 /kill 之前，先把 kill 换成 <code>say</code> 试一下，比如 <code>/say @e[type=pig]</code>，聊天框会列出它选中了谁。看清楚了再 kill。下一卷的练习台有一个“选择器预览”，就是干这个的。</p>
+  </div>
+
+  <div class="fig" id="sumFig">
+    <div class="fig-label">装置 · 第四十六章</div>
+    <h4>召唤练习台</h4>
+    <p class="how">地图上黄色方块是动物，红色是怪物；下面的物品栏底部会显示你身上的效果。照着单子做。</p>
+    <div id="sumSim"></div>
+  </div>
+
+  <div class="task" data-id="t46a">
+    <div class="th"><b>袋鼠和小花</b><span class="xp">★★</span></div>
+    <div class="tb">
+      <ol>
+        <li>在实验世界里召唤一只名叫“小花”的猫。</li>
+        <li>给自己 <code>jump_boost</code> 2 级（命令里写几？），60 秒。在超平坦地上跳一跳，比比能跳几格高。</li>
+        <li>再加 <code>slow_falling</code>，然后 <code>/tp ~ ~30 ~</code>，看看自己怎样像羽毛一样落下来。</li>
+        <li>用 <code>/effect clear @s</code> 去掉所有效果。</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="err">
+    <h5>出错了怎么办</h5>
+    <dl>
+      <dt>/effect speed @s 报错</dt><dd>那是老写法（基岩版现在还用）。Java 版要先写 give：<code>/effect give @s speed</code>。</dd>
+      <dt>召唤的僵尸一出来就没了</dt><dd>难度是和平。</dd>
+      <dt>名字没显示出来</dt><dd>大括号的写法随版本变，去维基查你版本的“CustomName”。</dd>
+    </dl>
+  </div>
+
+  <div class="pass" data-id="q46">
+    <div class="qq" data-in="2"><p>想要“跳跃提升 III”（3 级），命令里的等级写几？</p><p class="ex">显示的等级 = 写的数 + 1，所以写 2。</p></div>
+    <div class="qq" data-a="1"><p><code>/effect give @s speed</code> 后面什么都不写，效果持续多久？</p><ol><li>一直有效</li><li>30 秒</li><li>1 秒</li></ol><p class="ex">秒数的默认值是 30。</p></div>
+    <div class="qq" data-a="2"><p>哪一条命令最危险？</p><ol><li><code>/kill @e[type=pig]</code></li><li><code>/kill @s</code></li><li><code>/kill @e</code></li></ol><p class="ex">@e 是所有实体，包括你、宠物、掉落物。</p></div>
+    <div class="qq" data-in="invisible"><p>invisibility 是“隐身”。去掉 in-（不）以后，“看得见的”是哪个词？（以 -ible 结尾）</p><p class="ex">visible，看得见的。in + visible = 看不见的。</p></div>
+    <div class="qq" data-a="0"><p><code>/summon cow ~3 ~ ~</code> 会把牛召唤到哪儿？</p><ol><li>你东边 3 格</li><li>原点东边 3 格</li><li>你头顶 3 格</li></ol><p class="ex">~ 是从你的位置算，第一个是 x，x 加 3 是往东。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>召唤 <span class="en" data-say="summon">summon</span></b>让一个生物出现在某个位置。</div>
+    <div><b>实体 <span class="en" data-say="entity">entity</span></b>会动的东西：生物、玩家、掉落物、矿车……方块不算。</div>
+    <div><b>效果 <span class="en" data-say="effect">effect</span></b>加在身上、过一会儿消失的“状态”。</div>
+    <div><b>默认值 <span class="en" data-say="default">default</span></b>不写的时候，电脑自动用的那个值。</div>
+    <div><b>罗马数字 <span class="en" data-say="Roman numerals">Roman numerals</span></b>I V X 这样写的数。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>/summon、/effect（give/clear，默认 30 秒、放大器 0、infinite）与 /kill 的 Java 版语法见社区维基对应条目；1.21.5 起 SNBT 中的文本组件写法改变，CustomName 写法以维基为准。和平难度下召唤的敌对生物会立即消失。基岩版 /effect 写法为 <code>/effect 目标 效果 秒 等级</code>。</p>
+    <p>建议：/kill @e 是孩子最容易闯祸的一条。可以和孩子一起在练习台里用“选择器预览”看看 @e 到底选中了多少东西。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i><code>/summon 生物 x y z</code>；<code>/effect give 谁 效果 秒 等级</code>，等级写 0 是一级；kill 之前先用 say 看看选中了谁。</div>
+    <div><i>脑袋<small>带走一样</small></i>“第一个”在电脑那里常常是 0 号。遇到编号，先问一句：从 0 数还是从 1 数？</div>
+  </div>
+</section>

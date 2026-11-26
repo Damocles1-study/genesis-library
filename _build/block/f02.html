@@ -1,0 +1,181 @@
+<!-- ============ 第四十二章 · 移 ============ -->
+<section class="chap" id="c42" data-vol="卷十三 · 移">
+  <div class="chead">
+    <div class="big">移</div>
+    <div>
+      <div class="no">第四十二章</div>
+      <h2>/tp：瞬移</h2>
+      <dl><dt>讲什么</dt><dd>传送到一个坐标；~ 从我这儿算；^ 按我脸朝的方向算；转身和抬头的角度；传送到别人身边、把别人叫过来；出生点</dd><dt>本章装置</dt><dd>瞬移练习台</dd></dl>
+      <div class="sub" data-s="令 数 英"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第十天</b><span class="pix">WORLD · lab</span><span>创造模式 · 允许作弊</span></div>
+    <div class="bd">
+      <div class="l"><i class="d">豆</i><span>（在电话里）我家在 x = 300、z = −120，你飞过来要好久吧？</span></div>
+      <div class="l"><i class="g">格</i><span>舅舅说有一条命令，一眨眼就到。</span></div>
+      <div class="l act">小格打了 <code>/tp 300 -60 -120</code>，回车。眼前一黑，再亮的时候，豆子的小木屋就在面前。</div>
+      <div class="l"><i class="g">格</i><span>到了！不过我脸朝着墙。</span></div>
+      <div class="l"><i class="j">舅</i><span>/tp 还能顺便帮你转身。这一章，我们把它的三种写法都学会：去一个地方、从我这儿走几步、往我脸朝的方向走几步。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★</span><span class="dim">★★</span></div><div><b>大约多久</b>45 分钟</div><div><b>要准备</b>先用练习台，再去实验世界</div><div><b>大人</b>不用</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>用 <code>/tp x y z</code> 传送到任何一个坐标。</li>
+      <li>用 <code>~</code> 从现在的位置往东西南北上下挪几格。</li>
+      <li>用 <code>^</code> 往自己脸朝的方向走几格。</li>
+      <li>传送时顺便转身，说出 0°、90°、180°、−90° 各朝哪儿。</li>
+      <li>把自己传到朋友身边，或者把朋友叫过来。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>写法一：去一个地方</h3>
+    <pre class="py">/tp 300 -60 -120</pre>
+    <p><code>tp</code> 是 <span class="en" data-say="teleport">teleport</span>（传送）的缩写，后面三个数就是 x、y、z。也可以写全称 <code>/teleport</code>，效果一样。</p>
+    <p>有一个小秘密：x 和 z 是整数的时候，游戏会自动加上 0.5，把你放在那一格的<b>正中间</b>。所以传送完一看 F3，写的是 <code>300.5 / -60 / -120.5</code>。y 不加，因为你要站在方块的“上面”，不是“中间”。</p>
+    <p><b>小心 y</b>：y 写得太低，你会被传进石头里（会窒息受伤）；写得太高，在生存模式里会摔死。不确定的时候，先切到创造模式再传。</p>
+  </div>
+
+  <div class="corner" data-k="英">
+    <h5>tele 是“远”<span class="gr later">以后学 · 词根</span></h5>
+    <p><span class="en" data-say="teleport">teleport</span> = <b>tele</b>（远）+ <b>port</b>（运送）：把人运到远处。同一个 tele 还在这些词里：<span class="en" data-say="telephone">telephone</span> 电话（远 + 声音），<span class="en" data-say="television">television</span> 电视（远 + 看见），<span class="en" data-say="telescope">telescope</span> 望远镜（远 + 看）。port 也在 <span class="en" data-say="transport">transport</span>（运输）、<span class="en" data-say="airport">airport</span>（机场：空中的港口）里。认识一个词根，一下子认识一串词。</p>
+  </div>
+
+  <div class="col">
+    <h3>写法二：~ 从我这儿算</h3>
+    <p>波浪号 <code>~</code> 的意思是“<b>我现在的位置</b>”。后面跟一个数，就是在我的位置上加几：</p>
+  </div>
+  <div class="wide tbl">
+    <table class="t kt">
+      <tr><th>命令</th><th>意思</th><th>算式</th></tr>
+      <tr><td><code>/tp ~ ~ ~</code></td><td>原地不动</td><td>x+0, y+0, z+0</td></tr>
+      <tr><td><code>/tp ~ ~10 ~</code></td><td>往上 10 格（飞到空中）</td><td>y + 10</td></tr>
+      <tr><td><code>/tp ~5 ~ ~</code></td><td>往东 5 格</td><td>x + 5</td></tr>
+      <tr><td><code>/tp ~-5 ~ ~</code></td><td>往西 5 格</td><td>x + (−5)，也就是 x − 5</td></tr>
+      <tr><td><code>/tp ~ ~ ~-20</code></td><td>往北 20 格</td><td>z − 20</td></tr>
+      <tr><td><code>/tp ~3 ~ ~3</code></td><td>往东南斜着挪</td><td>x + 3，z + 3</td></tr>
+    </table>
+  </div>
+  <div class="col">
+    <p>第三十七章讲过：这叫<b>相对坐标</b>，和路径里的“相对路径”是同一个想法。不管你在哪儿，<code>/tp ~ ~10 ~</code> 都是“往上 10 格”；而 <code>/tp 0 -50 0</code> 永远是同一个地方，叫<b>绝对坐标</b>。三个数里可以混着用：<code>/tp ~ -60 ~</code> 是“x、z 不动，高度回到 −60”。</p>
+  </div>
+
+  <div class="corner" data-k="数">
+    <h5>加一个负数，就是减<span class="gr later">以后学 · 七年级 有理数加减</span></h5>
+    <p><code>~-5</code> 的意思是“在现在的 x 上加 −5”。加一个负数，等于减去它：12 + (−5) = 7。如果你现在在 x = 2，<code>~-5</code> 会把你送到 2 + (−5) = −3：越过原点，到了负数那一边。</p>
+    <p>在数轴上想就很简单：加正数往右走，加负数往左走。初一的数学课会花好几节课讲这件事，你在游戏里已经用上了。</p>
+  </div>
+
+  <div class="col">
+    <h3>写法三：^ 按我脸朝的方向算</h3>
+    <p>尖号 <code>^</code>（shift + 6）也是“从我这儿算”，可是它不管东西南北，只管<b>我脸朝哪儿</b>。三个 ^ 的顺序是：<b>左右、上下、前后</b>。</p>
+    <ul class="plain">
+      <li><code>/tp ^ ^ ^5</code>：往<b>前</b>走 5 格，不管你朝着哪个方向。</li>
+      <li><code>/tp ^2 ^ ^</code>：往<b>左</b>挪 2 格；<code>^-2</code> 是往右。</li>
+      <li><code>/tp ^ ^ ^-3</code>：往后退 3 格。</li>
+    </ul>
+    <p>规矩：<b>^ 不能和数字、~ 混着用</b>，要么三个都是 ^，要么一个都不是。</p>
+    <p>你抬着头的时候，“前”是斜着往天上的：<code>/tp ^ ^ ^10</code> 会把你送到空中。这正是 ^ 好玩的地方：它让你变成一枚“往哪儿看就往哪儿飞”的火箭。</p>
+  </div>
+
+  <div class="col">
+    <h3>转身：两个角度</h3>
+    <p>在坐标后面再写两个数，可以顺便转身：</p>
+    <pre class="py">/tp 0 -60 0 180 0</pre>
+    <p>第一个数叫<b>水平角度</b>（左右转多少度），第二个叫<b>垂直角度</b>（抬头低头多少度）。F3 上 <code>Facing</code> 那一行最后括号里的两个数，就是它们。</p>
+  </div>
+  <div class="wide tbl">
+    <table class="t kt">
+      <tr><th>水平角度</th><th>朝向</th><th>F3 上写</th></tr>
+      <tr><td><code>0</code></td><td>南</td><td><code>south (Towards positive Z)</code></td></tr>
+      <tr><td><code>90</code></td><td>西</td><td><code>west (Towards negative X)</code></td></tr>
+      <tr><td><code>180</code> 或 <code>-180</code></td><td>北</td><td><code>north (Towards negative Z)</code></td></tr>
+      <tr><td><code>-90</code></td><td>东</td><td><code>east (Towards positive X)</code></td></tr>
+      <tr><th>垂直角度</th><th>看哪儿</th><th></th></tr>
+      <tr><td><code>0</code></td><td>平视</td><td></td></tr>
+      <tr><td><code>-90</code></td><td>抬头看正上方</td><td></td></tr>
+      <tr><td><code>90</code></td><td>低头看脚下</td><td></td></tr>
+    </table>
+  </div>
+  <div class="col">
+    <p>转一整圈是 360 度。从南（0）开始，往右手边转是西（90）、北（180）……水平角度在 −180 到 180 之间。角度也能用 ~：<code>/tp ~ ~ ~ ~90 ~</code> 是“原地向右转 90 度”。第六十四章会专门讲角度和量角器。</p>
+    <p>还有一个省事的写法：<code>/tp ~ ~ ~ facing 0 -60 0</code>，意思是“原地不动，转过去<b>看着</b>原点”。电脑会替你算出角度。</p>
+  </div>
+
+  <div class="col">
+    <h3>传送到人身边</h3>
+    <ul class="plain">
+      <li><code>/tp doudou</code>：把自己传到 doudou 身边。</li>
+      <li><code>/tp doudou xiaoge</code>：把 doudou 传到 xiaoge 身边。格式是“谁 → 去谁那儿”。</li>
+      <li><code>/tp doudou ~ ~ ~</code>：把 doudou 传到“<b>我</b>现在的位置”。</li>
+      <li><code>/tp @a ~ ~ ~</code>：把所有玩家都叫过来（下一卷讲 <code>@a</code>）。</li>
+    </ul>
+    <p>联机的时候，<b>先问别人愿不愿意</b>再传送他。突然把别人从他正在盖的房子里拽走，挺没礼貌的。</p>
+    <p>顺便认识一个兄弟命令：<code>/spawnpoint</code>，把你的复活点设在你现在站的地方。在实验世界里练传送时，先在原点打一次，以后死了就回原点。</p>
+  </div>
+
+  <div class="fig" id="tpFig">
+    <div class="fig-label">装置 · 第四十二章</div>
+    <h4>瞬移练习台</h4>
+    <p class="how">左边是从天上往下看的地图（绿色圆点是你，短线是你脸朝的方向；棕色的是豆子），右边是你的 F3。在黑框里打命令，按回车。下面的七件事一件一件做。按 ↑ 能找回上一条命令。</p>
+    <div id="tpSim"></div>
+  </div>
+
+  <div class="task" data-id="t42a">
+    <div class="th"><b>在实验世界里瞬移</b><span class="xp">★★</span></div>
+    <div class="tb">
+      <ol>
+        <li>站在原点，打 <code>/spawnpoint</code>。</li>
+        <li><code>/tp 100 -60 100</code>，再用 F3 看看是不是 100.5 和 100.5。</li>
+        <li><code>/tp ~ ~30 ~</code> 飞到空中（创造模式不会摔），再 <code>/tp ~ -60 ~</code> 落回地面。</li>
+        <li>看着远处，打 <code>/tp ^ ^ ^10</code>；转个身，再打一次，找回 ↑ 就不用重打。</li>
+        <li>打 <code>/tp ~ ~ ~ facing 0 -60 0</code>，你会转过去面朝原点。</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="err">
+    <h5>出错了怎么办</h5>
+    <dl>
+      <dt>说“未知或不完整的命令”</dt><dd>检查拼写和空格；看看是不是用了中文标点、全角空格，或者把负号打成了长横。</dd>
+      <dt>说“不能混合世界坐标和局部坐标”</dt><dd>^ 和 ~、数字混在一起了。要么三个都是 ^，要么都不是。</dd>
+      <dt>传送以后卡在石头里，一直掉血</dt><dd>y 写低了。马上 <code>/tp ~ ~5 ~</code> 往上挪。</dd>
+      <dt>说找不到玩家</dt><dd>名字拼错了，或者他不在线。按 tab 能补全在线玩家的名字。</dd>
+    </dl>
+  </div>
+
+  <div class="pass" data-id="q42">
+    <div class="qq" data-a="1"><p>你在 x = 4，打 <code>/tp ~-10 ~ ~</code> 以后，x 是多少（方块坐标）？</p><ol><li>14</li><li>−6</li><li>−10</li></ol><p class="ex">4 + (−10) = −6。加一个负数就是减。</p></div>
+    <div class="qq" data-a="0"><p><code>/tp ^ ^ ^5</code> 是什么意思？</p><ol><li>往脸朝的方向走 5 格</li><li>往东走 5 格</li><li>往上飞 5 格</li></ol><p class="ex">^ 的顺序是左右、上下、前后。第三个是“前”。</p></div>
+    <div class="qq" data-a="2"><p>水平角度 180 是朝哪个方向？</p><ol><li>南</li><li>东</li><li>北</li></ol><p class="ex">0 南、90 西、180 北、−90 东。</p></div>
+    <div class="qq" data-a="1"><p><code>/tp 10 -60 10</code> 以后，F3 上的精确位置是？</p><ol><li>10 / −60 / 10</li><li>10.5 / −60 / 10.5</li><li>11 / −60 / 11</li></ol><p class="ex">整数的 x 和 z 会自动加 0.5，让你站在方块正中间。</p></div>
+    <div class="qq" data-a="2"><p>哪一行是错的？</p><ol><li><code>/tp ~ ~ ~5</code></li><li><code>/tp ^ ^ ^5</code></li><li><code>/tp ^ ~ 5</code></li></ol><p class="ex">^ 不能和 ~、数字混着写。</p></div>
+    <div class="qq" data-in="telephone|television|telescope"><p>tele 是“远”的意思。写一个带 tele 的英文单词（teleport 以外）。</p><p class="ex">telephone 电话、television 电视、telescope 望远镜，都可以。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>传送 <span class="en" data-say="teleport">teleport</span></b>一下子把人或东西送到别的地方。</div>
+    <div><b>相对坐标 <span class="en" data-say="relative">relative</span> ~</b>从我现在的位置算。</div>
+    <div><b>局部坐标 <span class="en" data-say="local">local</span> ^</b>按我脸朝的方向算：左右、上下、前后。</div>
+    <div><b>角度 <span class="en" data-say="angle">angle</span></b>转了多少。一整圈是 360 度。</div>
+    <div><b>出生点 <span class="en" data-say="spawn point">spawn point</span></b>死了以后复活的地方。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>/teleport（别名 /tp）的语法、整数坐标居中（加 0.5）、局部坐标 ^左 ^上 ^前、旋转（偏航角 yaw 0 = 南、90 = 西、±180 = 北、−90 = 东；俯仰角 pitch −90 向上、90 向下）、facing 子命令，见 Minecraft 社区维基“/teleport”“坐标”“实体格式”条目（Java 版）。基岩版语法大体相同，细节有差异。网页练习台按 Java 版行为模拟，未模拟碰撞与窒息。</p>
+    <p>负数加减是初一内容，局部坐标背后是向量（高中）。不需要讲公式，让孩子在练习台里多试几次 ~ 和 ^，感受“同一条命令、换个位置结果不同”就够了。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i><code>/tp x y z</code> 去一个地方；<code>~</code> 从我这儿算；<code>^</code> 按脸朝的方向算（左右、上下、前后）。0 南、90 西、180 北、−90 东。</div>
+    <div><i>脑袋<small>带走一样</small></i>同一句“往前走五步”，站在不同的地方、朝着不同的方向，走到的地方就不同。说位置之前，先说清楚“从哪儿算”。</div>
+  </div>
+</section>

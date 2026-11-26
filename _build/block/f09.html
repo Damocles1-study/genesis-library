@@ -1,0 +1,162 @@
+<!-- ============ 第四十九章 · 分 ============ -->
+<section class="chap" id="c49" data-vol="卷十五 · 分">
+  <div class="chead">
+    <div class="big">分</div>
+    <div>
+      <div class="no">第四十九章</div>
+      <h2>/scoreboard：变量</h2>
+      <dl><dt>讲什么</dt><dd>记分项就是一个“变量”；新建、设成、加、减、查；显示在右边栏；用分数做加减乘除和求余数；只能是整数；“#”开头的假玩家；和 Python 对照</dd><dt>本章装置</dt><dd>计分板练习台</dd></dl>
+      <div class="sub" data-s="令 程 数 英"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第十七天</b><span class="pix">WORLD · lab</span><span>创造模式</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>我想做一个捡金币的游戏，捡一个加一分，右边显示分数。游戏能“记住”数吗？</span></div>
+      <div class="l"><i class="j">舅</i><span>能。计分板就是游戏的记事本：你起一个名字，比如 coins，它就替每个人记一个数。程序员管这种“有名字、能变的数”叫变量。</span></div>
+      <div class="l"><i class="g">格</i><span>变量……数学课上的 x 也叫变量吗？</span></div>
+      <div class="l"><i class="j">舅</i><span>差不多是一个意思：一个名字，代表一个会变的数。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★★</span><span class="dim">★</span></div><div><b>大约多久</b>50 分钟</div><div><b>要准备</b>练习台；实验世界</div><div><b>大人</b>不用</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>新建一个记分项，把它显示在屏幕右边。</li>
+      <li>用 set、add、remove、get 改分数、查分数。</li>
+      <li>用 operation 做加减乘除和求余数，说出 17 ÷ 5 的商和余数。</li>
+      <li>说出“变量”是什么，把一行计分板命令翻成 Python。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>第一步：建一个变量</h3>
+    <pre class="py">/scoreboard objectives add coins dummy "金币"
+/scoreboard objectives setdisplay sidebar coins</pre>
+    <p>第一行新建一个<b>记分项</b>（<span class="en" data-say="objective">objective</span>，“目标”）：名字叫 <code>coins</code>，类型是 <code>dummy</code>，显示出来叫“金币”。名字只能用英文字母、数字和下划线这些。</p>
+    <p><code>dummy</code> 的意思是“假的、摆设”：这个分数游戏自己不会去改，<b>只有命令能改它</b>。游戏还有一些会自己记数的类型，比如 <code>deathCount</code>（死了几次）、<code>minecraft.custom:minecraft.jump</code>（跳了几次）；做小游戏，最常用的是 dummy。</p>
+    <p>第二行让它显示在屏幕<b>右边栏</b>（<span class="en" data-say="sidebar">sidebar</span>）上。</p>
+  </div>
+
+  <div class="col">
+    <h3>第二步：改分数</h3>
+  </div>
+  <div class="wide tbl">
+    <table class="t kt">
+      <tr><th>命令</th><th>做什么</th><th>Python 里大概是</th></tr>
+      <tr><td><code>/scoreboard players set @s coins 10</code></td><td>把你的 coins 设成 10</td><td><code>coins = 10</code></td></tr>
+      <tr><td><code>/scoreboard players add @s coins 5</code></td><td>加 5</td><td><code>coins = coins + 5</code></td></tr>
+      <tr><td><code>/scoreboard players remove @s coins 3</code></td><td>减 3</td><td><code>coins = coins - 3</code></td></tr>
+      <tr><td><code>/scoreboard players get @s coins</code></td><td>查：现在是多少</td><td><code>print(coins)</code></td></tr>
+      <tr><td><code>/scoreboard players reset @s coins</code></td><td>清掉这个人的分数</td><td><code>del coins</code></td></tr>
+    </table>
+  </div>
+  <div class="col">
+    <p>注意一个不同：Python 里一个变量就是一个数；计分板的一个记分项，是<b>每个人一个数</b>：你的 coins 是 15，豆子的 coins 可以是 3。在后面换成 <code>@a</code>，就是所有人一起改。</p>
+    <p>分数<b>只能是整数</b>，没有小数，最大二十一亿多（2147483647，和第六十一章的 2 的幂有关）。</p>
+  </div>
+
+  <div class="corner" data-k="程">
+    <h5>变量：有名字的盒子<span class="gr later">以后学 · 编程第一课</span></h5>
+    <p>变量（<span class="en" data-say="variable">variable</span>，“会变的”）就像一个贴了名字的盒子：盒子里放一个数，你可以看、可以换。几乎每一个程序都从“建一个变量”开始：</p>
+    <ul>
+      <li>起名字（coins）</li>
+      <li>放进去一个值（10）</li>
+      <li>用旧的值算出新的值（10 + 5 = 15，放回去）</li>
+    </ul>
+    <p>数学课上的 x 和程序里的变量很像，也有一点不同：数学里 x 是“一个不知道的数”，等你算出来；程序里的 coins 是“一个随时会变的数”，等你去改。第七十二章会在 Python 里把这件事做一遍。</p>
+  </div>
+
+  <div class="col">
+    <h3>第三步：用分数做算术</h3>
+    <p><code>operation</code> 让两个分数互相算：</p>
+    <pre class="py">/scoreboard players operation @s coins += doudou coins</pre>
+    <p>意思是“我的 coins 加上豆子的 coins，结果放回我的 coins”。中间的运算符号有这些：</p>
+  </div>
+  <div class="wide tbl">
+    <table class="t kt">
+      <tr><th>符号</th><th>意思</th><th>例子（a 原来是 17，b 是 5）</th></tr>
+      <tr><td><code>=</code></td><td>a 变成 b</td><td>a = 5</td></tr>
+      <tr><td><code>+=</code></td><td>a 加上 b</td><td>a = 22</td></tr>
+      <tr><td><code>-=</code></td><td>a 减去 b</td><td>a = 12</td></tr>
+      <tr><td><code>*=</code></td><td>a 乘以 b</td><td>a = 85</td></tr>
+      <tr><td><code>/=</code></td><td>a 除以 b，只留下商，扔掉余数</td><td>a = 3</td></tr>
+      <tr><td><code>%=</code></td><td>a 除以 b，只留下<b>余数</b></td><td>a = 2</td></tr>
+      <tr><td><code>&lt;</code> / <code>&gt;</code></td><td>a 和 b 里取小的 / 取大的</td><td>a = 5 / a = 17</td></tr>
+    </table>
+  </div>
+  <div class="col">
+    <p>想乘以一个固定的数（比如 2），要先把 2 存在一个“假玩家”身上：名字以 <code>#</code> 开头的，不是真的人，只是用来放数的。</p>
+    <pre class="py">/scoreboard objectives add const dummy
+/scoreboard players set #two const 2
+/scoreboard players operation @s coins *= #two const</pre>
+    <p>“#” 开头的假玩家不会显示在右边栏上，专门用来放常数。</p>
+  </div>
+
+  <div class="corner" data-k="数">
+    <h5>商和余数，两个符号<span class="gr">学过 · 二年级下 有余数的除法</span></h5>
+    <p>17 ÷ 5 = 3 …… 2。计分板把这两部分拆开给你：<code>/=</code> 拿商（3），<code>%=</code> 拿余数（2）。Python 里一模一样：<code>17 // 5</code> 是 3，<code>17 % 5</code> 是 2。</p>
+    <p>余数特别有用：<b>余数是 0，说明能整除</b>。判断一个数是不是偶数，就看它 % 2 是不是 0。第五十章做计时器时，“每 20 刻是一秒”也要用到它。</p>
+  </div>
+
+  <div class="fig" id="sbFig">
+    <div class="fig-label">装置 · 第四十九章</div>
+    <h4>计分板练习台</h4>
+    <p class="how">右上角是游戏里的右边栏（setdisplay 以后才显示），下面列出所有记分项和每个人的分数。照着单子一步一步做，每一步先想一想：做完以后分数应该是多少？</p>
+    <div id="sbSim"></div>
+  </div>
+
+  <div class="task" data-id="t49a">
+    <div class="th"><b>数一数自己跳了几下</b><span class="xp">★★</span></div>
+    <div class="tb">
+      <ol>
+        <li>在实验世界里：<code>/scoreboard objectives add jumps minecraft.custom:minecraft.jump "跳了几下"</code>（这种类型游戏会自己数）。</li>
+        <li><code>/scoreboard objectives setdisplay sidebar jumps</code>。</li>
+        <li>跳十下，看右边。</li>
+        <li>再建一个 dummy 类型的 coins，自己 set、add，看看它和 jumps 有什么不同：一个靠游戏数，一个靠你改。</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="err">
+    <h5>出错了怎么办</h5>
+    <dl>
+      <dt>说“没有这个记分项”</dt><dd>先用 objectives add 建；或者名字拼错了、大小写不一样。</dd>
+      <dt>右边栏不显示</dt><dd>要 setdisplay sidebar。一次只能显示一个记分项。</dd>
+      <dt>get 说“还没有分数”</dt><dd>这个人还没被 set 过。没有分数和分数是 0 不一样。</dd>
+      <dt>除出来不对</dt><dd>/= 会扔掉余数，7 /= 2 得 3，不是 3.5。分数只有整数。</dd>
+    </dl>
+  </div>
+
+  <div class="pass" data-id="q49">
+    <div class="qq" data-a="1"><p>dummy 类型的记分项，分数怎样才会变？</p><ol><li>游戏自己数</li><li>只有命令能改</li><li>永远不变</li></ol><p class="ex">dummy 是“摆设”，游戏不碰它，全靠命令。</p></div>
+    <div class="qq" data-in="12"><p>你的 coins 是 10，执行 <code>add @s coins 5</code> 再执行 <code>remove @s coins 3</code>，现在是多少？</p><p class="ex">10 + 5 − 3 = 12。</p></div>
+    <div class="qq" data-in="2"><p>a 是 17，b 是 5，<code>a %= b</code> 以后 a 是多少？</p><p class="ex">17 ÷ 5 = 3 余 2，%= 留下余数 2。</p></div>
+    <div class="qq" data-in="3"><p>a 是 7，b 是 2，<code>a /= b</code> 以后 a 是多少？</p><p class="ex">7 ÷ 2 = 3 余 1，/= 只留商 3。分数没有小数。</p></div>
+    <div class="qq" data-a="2"><p>名字以 # 开头的“玩家”是什么？</p><ol><li>管理员</li><li>机器人</li><li>假玩家，只用来存数，不显示在右边栏</li></ol><p class="ex">比如 #two 用来存常数 2。</p></div>
+    <div class="qq" data-in="coins = coins + 5|coins=coins+5|coins += 5|coins+=5"><p>把 <code>/scoreboard players add @s coins 5</code> 翻成 Python。</p><p class="ex">coins = coins + 5，或者简写成 coins += 5。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>变量 <span class="en" data-say="variable">variable</span></b>有名字、能改的一个数。</div>
+    <div><b>记分项 <span class="en" data-say="objective">objective</span></b>计分板里的一个变量，每个人一个数。</div>
+    <div><b>运算符 <span class="en" data-say="operator">operator</span></b>+= −= *= /= %= 这些算式符号。</div>
+    <div><b>常数 <span class="en" data-say="constant">constant</span></b>不会变的数，比如 2、20。</div>
+    <div><b>整数 <span class="en" data-say="integer">integer</span></b>没有小数的数。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>/scoreboard 的 objectives 与 players 子命令、准则（dummy、deathCount、minecraft.custom:minecraft.jump 等）、operation 运算符（= += -= *= /= %= &lt; &gt; &gt;&lt;）、分数为 32 位整数，见社区维基“/scoreboard”“记分板”条目。/= 为向下取整的整数除法。</p>
+    <p>计分板是孩子第一次接触“变量”的绝佳入口：它看得见（右边栏）、改得动、结果马上出来。可以让孩子先口算“做完这一步应该是几”，再执行验证。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>objectives add 名字 dummy 建变量，setdisplay sidebar 显示；players set/add/remove/get 改和查；operation 做 += -= *= /= %=。</div>
+    <div><i>脑袋<small>带走一样</small></i>变量就是贴了名字的盒子：取出来、算一算、放回去。除法有两个答案：商和余数。</div>
+  </div>
+</section>

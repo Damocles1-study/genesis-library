@@ -1,0 +1,174 @@
+<div class="volhead" data-vol="卷十四 · 世界">
+  <div class="num">VOLUME FOURTEEN · 第六部 · 卷十四</div>
+  <h2>世<small>改天换地，给东西，召唤</small></h2>
+  <p class="lede">这一卷的命令，改的是世界本身：几点了、下不下雨、你是什么模式、手里有什么、身边有谁、地上有哪些方块。每一条都很短，每一条都藏着一个数学或编程的道理。</p>
+  <svg class="row" aria-hidden="true"></svg>
+</div>
+
+<!-- ============ 第四十三章 · 天 ============ -->
+<section class="chap" id="c43" data-vol="卷十四 · 天">
+  <div class="chead">
+    <div class="big">天</div>
+    <div>
+      <div class="no">第四十三章</div>
+      <h2>/time 和 /weather</h2>
+      <dl><dt>讲什么</dt><dd>一秒二十刻、一天两万四千刻；day、noon、night、midnight；往前拨时间、问现在几点；让时间停住；晴、雨、雷雨和雪；天气和时间的英文</dd><dt>本章装置</dt><dd>天空练习台 · 刻和钟点</dd></dl>
+      <div class="sub" data-s="令 数 英 理"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第十一天</b><span class="pix">WORLD · lab</span><span>创造模式</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>我知道 <code>/time set day</code>。可是“day”到底是几点？为什么我设完以后，过一会儿又黑了？</span></div>
+      <div class="l"><i class="j">舅</i><span>游戏的钟不是按小时走的，是按“刻”走的。day 就是第 1000 刻。钟一直在走，所以又会黑。</span></div>
+      <div class="l"><i class="g">格</i><span>能不能让它别走了？我想一直是中午。</span></div>
+      <div class="l"><i class="j">舅</i><span>能，有一条“游戏规则”管这件事。我们先把这个钟弄明白。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★</span><span class="dim">★★★</span></div><div><b>大约多久</b>40 分钟</div><div><b>要准备</b>练习台；实验世界</div><div><b>大人</b>不用</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>说出一秒有几刻、一天有几刻、游戏里一天是现实里多久。</li>
+      <li>用 day、noon、night、midnight 和数字设置时间，用 add 往前拨，用 query 查时间。</li>
+      <li>让时间停住，让天气不变。</li>
+      <li>用英文说出晴、雨、雷雨、雪和一天里的几个时候。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>游戏的钟：刻</h3>
+    <p>第十三章讲过，游戏每秒钟“打”20 下拍子，每一下叫一<b>刻</b>（<span class="en" data-say="tick">tick</span>，本来是钟表“嘀嗒”的那一声）。白天黑夜一轮，是 <b>24000 刻</b>。</p>
+    <ul class="plain">
+      <li>24000 刻 ÷ 每秒 20 刻 = <b>1200 秒 = 20 分钟</b>。游戏里过一整天，现实里只过 20 分钟。</li>
+      <li>游戏里的 1 小时 = 24000 ÷ 24 = <b>1000 刻</b> = 50 秒。</li>
+      <li>第 0 刻是早上 6 点左右，太阳刚升起。所以 1000 刻是 7 点，6000 刻是正午 12 点，18000 刻是半夜 12 点。</li>
+    </ul>
+  </div>
+
+  <div class="fig" id="tickFig">
+    <div class="fig-label">装置 · 第四十三章 · 一</div>
+    <h4>刻和钟点</h4>
+    <p class="how">拖动滑块，看看一天里的每一刻对应几点、天是什么样、离太阳升起过了现实里几秒。</p>
+    <div class="ctl"><span>第几刻</span><input type="range" id="tickR" min="0" max="23999" step="50" value="6000"><output id="tickRO"></output></div>
+    <div class="kv" id="tickKv"></div>
+    <div class="say" id="tickSay"></div>
+  </div>
+
+  <div class="corner" data-k="数">
+    <h5>单位换算<span class="gr">学过 · 三四年级 时间单位</span></h5>
+    <p>1 分 = 60 秒，1 秒 = 20 刻，所以 1 分 = 60 × 20 = 1200 刻。游戏一天 = 24000 刻 = 24000 ÷ 1200 = 20 分。这种“一层一层乘过去”的换算，和“1 元 = 10 角 = 100 分”是一个道理。</p>
+    <p>试试：一场 30 秒的小游戏是多少刻？（30 × 20 = 600。第五十章的计时器会用到这个数。）</p>
+  </div>
+
+  <div class="col">
+    <h3>/time 的三种用法</h3>
+  </div>
+  <div class="wide tbl">
+    <table class="t kt">
+      <tr><th>命令</th><th>做什么</th></tr>
+      <tr><td><code>/time set day</code></td><td>设成白天：第 1000 刻（早上 7 点）</td></tr>
+      <tr><td><code>/time set noon</code></td><td>正午：第 6000 刻</td></tr>
+      <tr><td><code>/time set night</code></td><td>晚上：第 13000 刻（天刚黑，怪开始出来）</td></tr>
+      <tr><td><code>/time set midnight</code></td><td>半夜：第 18000 刻，月亮在头顶</td></tr>
+      <tr><td><code>/time set 23000</code></td><td>直接写数：快天亮的时候</td></tr>
+      <tr><td><code>/time add 1000</code></td><td>往前拨 1000 刻（一个游戏小时）。也能写 <code>/time add 30s</code>（30 秒）、<code>/time add 1d</code>（一天）</td></tr>
+      <tr><td><code>/time query daytime</code></td><td>问：现在是一天里的第几刻？</td></tr>
+      <tr><td><code>/time query day</code></td><td>问：今天是第几天？</td></tr>
+      <tr><td><code>/time query gametime</code></td><td>问：这个世界从创建到现在一共走了多少刻？</td></tr>
+    </table>
+  </div>
+  <div class="col">
+    <p>注意 set 和 add 的区别：<b>set 是“改成”</b>，不管现在几点，改成 6000 就是 6000；<b>add 是“加上”</b>，在现在的基础上往后拨。时间只能往前拨，不能倒回去（不能 add 负数）。这和上一章的“绝对坐标、相对坐标”又是同一个想法。</p>
+  </div>
+
+  <div class="col">
+    <h3>/weather：晴、雨、雷雨</h3>
+    <ul class="plain">
+      <li><code>/weather clear</code>：天晴。</li>
+      <li><code>/weather rain</code>：下雨。在冷的地方（雪原、高山）会变成下雪，在沙漠里什么也不下。</li>
+      <li><code>/weather thunder</code>：雷雨。天很暗，会打闪电，怪物白天也可能出来。</li>
+      <li>后面可以加持续时间：<code>/weather rain 600</code> 下 600 刻，也就是 30 秒；新版本也认 <code>/weather rain 30s</code> 这种带单位的写法（以维基为准）。不写的话，持续多久由游戏随机决定。</li>
+    </ul>
+    <p>在床上睡觉，能跳过黑夜，也能结束雷雨。</p>
+  </div>
+
+  <div class="col">
+    <h3>让时间停住</h3>
+    <p>想一直是中午，要改一条<b>游戏规则</b>：</p>
+    <pre class="py">/time set noon
+/gamerule doDaylightCycle false</pre>
+    <p><code>doDaylightCycle</code> 是“让白天黑夜轮换”，设成 <code>false</code>（否）就停了。想让它接着走，改回 <code>true</code>（是）。同样，<code>/gamerule doWeatherCycle false</code> 让天气不再自己变。下一章细讲游戏规则。</p>
+    <p>（据社区维基，较新的版本把游戏规则的名字改成了小写加下划线的样子，比如 <code>keepInventory</code> 变成 <code>keep_inventory</code>，也有的规则干脆换了名字（以维基为准）。如果老写法报错，在聊天框里打 <code>/gamerule </code> 加一个空格，按 tab 看看你的版本里叫什么。）</p>
+  </div>
+
+  <div class="fig" id="skyFig">
+    <div class="fig-label">装置 · 第四十三章 · 二</div>
+    <h4>天空练习台</h4>
+    <p class="how">上面是天空：太阳和月亮在一个大圆上转，左边是东，右边是西。在黑框里打 /time 和 /weather 命令，看看天怎么变。</p>
+    <div id="skySim"></div>
+  </div>
+
+  <div class="corner" data-k="理">
+    <h5>真的一天为什么是 24 小时<span class="gr later">以后学 · 五年级科学 / 初中地理</span></h5>
+    <p>游戏里是太阳绕着方块世界转。真实的世界反过来：是<b>地球自己在转</b>，转一圈大约 24 小时。转到对着太阳的那一面就是白天，背着太阳的那一面就是黑夜。太阳“从东边升起”，是因为地球从西往东转。第七十一章会讲这件事，还有游戏里的八种月亮。</p>
+  </div>
+
+  <div class="corner" data-k="英">
+    <h5>天气和一天里的时候</h5>
+    <p>天气：<span class="en" data-say="weather">weather</span> 天气，<span class="en" data-say="clear">clear</span> 晴朗，<span class="en" data-say="sunny">sunny</span> 阳光好的，<span class="en" data-say="cloudy">cloudy</span> 多云的，<span class="en" data-say="rain">rain</span> 雨 / <span class="en" data-say="rainy">rainy</span> 下雨的，<span class="en" data-say="snow">snow</span> 雪 / <span class="en" data-say="snowy">snowy</span>，<span class="en" data-say="thunder">thunder</span> 雷声，<span class="en" data-say="lightning">lightning</span> 闪电，<span class="en" data-say="storm">storm</span> 暴风雨。</p>
+    <p>你会发现：名词后面加 <b>-y</b>，常常变成“……的”：sun → sunny，cloud → cloudy，rain → rainy，snow → snowy，wind → windy。</p>
+    <p>一天：<span class="en" data-say="sunrise">sunrise</span> 日出（太阳 + 升起），<span class="en" data-say="morning">morning</span> 早上，<span class="en" data-say="noon">noon</span> 正午，<span class="en" data-say="afternoon">afternoon</span> 下午（after 之后 + noon），<span class="en" data-say="sunset">sunset</span> 日落，<span class="en" data-say="evening">evening</span> 傍晚，<span class="en" data-say="night">night</span> 夜，<span class="en" data-say="midnight">midnight</span> 半夜（mid 中间 + night）。</p>
+  </div>
+
+  <div class="task" data-id="t43a">
+    <div class="th"><b>一个永远的黄昏</b><span class="xp">★★</span></div>
+    <div class="tb">
+      <ol>
+        <li>在实验世界里打 <code>/time set 12000</code>，看看天是什么颜色。</li>
+        <li>用 <code>/time add 500</code> 一点一点往后拨，找一个你觉得最好看的时刻，记下它是第几刻（用 <code>/time query daytime</code> 查）。</li>
+        <li>用 <code>/gamerule doDaylightCycle false</code> 让它停在那儿，按 fn + F1 藏起界面，fn + F2 拍一张照片。</li>
+        <li>拍完记得改回 <code>true</code>。</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="err">
+    <h5>出错了怎么办</h5>
+    <dl>
+      <dt><code>/time set Day</code> 报错</dt><dd>命令里的英文要小写。</dd>
+      <dt>设完时间，没过多久又变了</dt><dd>钟一直在走。要停住，用 doDaylightCycle。</dd>
+      <dt>下雨了但我这儿没下</dt><dd>你在沙漠、热带草原这种干燥的地方，那里不下雨。走到别的地方看看。</dd>
+    </dl>
+  </div>
+
+  <div class="pass" data-id="q43">
+    <div class="qq" data-in="20"><p>游戏里一秒钟有几刻？</p><p class="ex">20 刻。</p></div>
+    <div class="qq" data-in="6000"><p><code>/time set noon</code> 把时间设成第几刻？</p><p class="ex">正午是 6000 刻。0 刻大约早上 6 点，每 1000 刻是一小时，6000 刻就是 12 点。</p></div>
+    <div class="qq" data-a="2"><p>游戏里的一整天，是现实里多长时间？</p><ol><li>24 小时</li><li>1 小时</li><li>20 分钟</li></ol><p class="ex">24000 ÷ 20 = 1200 秒 = 20 分钟。</p></div>
+    <div class="qq" data-a="0"><p><code>/time set 1000</code> 和 <code>/time add 1000</code> 有什么不同？</p><ol><li>set 是改成 1000；add 是在现在的时间上再加 1000</li><li>一样</li><li>add 是倒回去 1000</li></ol><p class="ex">set 是“改成”，add 是“加上”。</p></div>
+    <div class="qq" data-in="600"><p>一场 30 秒的小游戏，是多少刻？</p><p class="ex">30 × 20 = 600 刻。</p></div>
+    <div class="qq" data-in="cloudy"><p>cloud 是云，“多云的”英文怎么写？</p><p class="ex">cloudy。名词加 -y 变成“……的”。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>刻 <span class="en" data-say="tick">tick</span></b>游戏的一拍，一秒 20 刻。</div>
+    <div><b>查询 <span class="en" data-say="query">query</span></b>问电脑一个值是多少。</div>
+    <div><b>游戏规则 <span class="en" data-say="game rule">game rule</span></b>世界的开关：时间走不走、天气变不变……</div>
+    <div><b>换算 <span class="en" data-say="convert">convert</span></b>把一种单位变成另一种单位。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>/time 的 day=1000、noon=6000、night=13000、midnight=18000，time add/query（daytime、gametime、day），时间单位 t、s、d，/weather clear/rain/thunder 与持续时间，见 Minecraft 社区维基“/time”“/weather”“日夜更替”“天气”条目（Java 版）。游戏规则在 2025 年起的版本中有改名，书中保留常见的老名字并提示用 tab 补全查当前名称；网页练习台两种写法都认（keepInventory 或 keep_inventory 这类）。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>一秒 20 刻，一天 24000 刻 = 20 分钟。day 1000、noon 6000、night 13000、midnight 18000。set 改成，add 加上。</div>
+    <div><i>脑袋<small>带走一样</small></i>换算单位就是一层一层地乘：秒 → 刻，分 → 秒。先想清楚“一个大单位等于几个小单位”。</div>
+  </div>
+</section>

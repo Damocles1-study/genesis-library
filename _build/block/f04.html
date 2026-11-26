@@ -1,0 +1,158 @@
+<!-- ============ 第四十四章 · 模 ============ -->
+<section class="chap" id="c44" data-vol="卷十四 · 模">
+  <div class="chead">
+    <div class="big">模</div>
+    <div>
+      <div class="no">第四十四章</div>
+      <h2>/gamemode 和游戏规则</h2>
+      <dl><dt>讲什么</dt><dd>四种游戏模式和它们的英文；四种难度；游戏规则：只有“是”和“否”的开关，和能填数的旋钮；死了不掉东西；一个一百多年前的英国数学家</dd><dt>本章装置</dt><dd>模式和规则练习台</dd></dl>
+      <div class="sub" data-s="令 英 程"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第十二天</b><span class="pix">WORLD · lab</span><span>生存模式 · 困难</span></div>
+    <div class="bd">
+      <div class="l act">小格在实验世界里开了困难模式，想试试自己能活几天。第一晚就被一群僵尸围住了，背包里的东西撒了一地。</div>
+      <div class="l"><i class="g">格</i><span>我的钻石！全掉在岩浆边上了！</span></div>
+      <div class="l"><i class="j">舅</i><span>练习的世界里，可以打开一个开关：死了也不掉东西。游戏里有几十个这样的开关，叫游戏规则。</span></div>
+      <div class="l"><i class="g">格</i><span>那我能不能先变成那种穿墙的模式，去把钻石看一眼？</span></div>
+      <div class="l"><i class="j">舅</i><span>能，那叫旁观模式。去吧，看完记得变回来。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★</span><span class="dim">★★★</span></div><div><b>大约多久</b>35 分钟</div><div><b>要准备</b>练习台；实验世界</div><div><b>大人</b>不用</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>用 /gamemode 在四种模式之间切换，说出它们的英文和不同。</li>
+      <li>用 /difficulty 改难度，知道和平模式会让怪物消失。</li>
+      <li>用 /gamerule 打开、关上开关，查一个规则现在是什么。</li>
+      <li>说出“布尔值”是什么：只有 true 和 false 两种的值。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>四种游戏模式</h3>
+  </div>
+  <div class="wide tbl">
+    <table class="t kt">
+      <tr><th>命令</th><th>模式</th><th>能做什么</th><th>英文是什么意思</th></tr>
+      <tr><td><code>/gamemode survival</code></td><td>生存</td><td>要挖、要吃、会受伤、会死</td><td><span class="en" data-say="survival">survival</span>：活下来（survive 活下来 + -al）</td></tr>
+      <tr><td><code>/gamemode creative</code></td><td>创造</td><td>东西无限、能飞、不会受伤</td><td><span class="en" data-say="creative">creative</span>：有创造力的（create 创造）</td></tr>
+      <tr><td><code>/gamemode adventure</code></td><td>冒险</td><td>不能随便挖和放方块，给别人玩你做的地图时用</td><td><span class="en" data-say="adventure">adventure</span>：冒险</td></tr>
+      <tr><td><code>/gamemode spectator</code></td><td>旁观</td><td>能穿过墙飞来飞去，别人看不见你，什么也碰不了</td><td><span class="en" data-say="spectator">spectator</span>：看热闹的人、观众</td></tr>
+    </table>
+  </div>
+  <div class="col">
+    <p>后面可以加一个玩家：<code>/gamemode adventure doudou</code> 把豆子变成冒险模式。不写就是改你自己。</p>
+    <p>Java 版从 2018 年起只认英文单词；以前能写数字（0 生存、1 创造……），现在不行了。基岩版和中国版还认数字和字母，以它们的说明为准。</p>
+    <p>第三十五章讲过一个快捷键：按住 F3 再点 F4（Mac 上先按住 fn），会弹出一个模式切换器。“极限模式”不是一种 gamemode，而是创建世界时的一个选项：困难难度，死了就不能复活。</p>
+  </div>
+
+  <div class="corner" data-k="英">
+    <h5>spect 是“看”</h5>
+    <p><span class="en" data-say="spectator">spectator</span> 里的 spect 是“看”：<span class="en" data-say="inspect">inspect</span> 检查（往里看），<span class="en" data-say="respect">respect</span> 尊重（再看一眼，看重），<span class="en" data-say="spectacles">spectacles</span> 眼镜。后面的 -or 是“……的人”：<span class="en" data-say="actor">actor</span> 演员，<span class="en" data-say="visitor">visitor</span> 访客，<span class="en" data-say="creator">creator</span> 创造者。</p>
+    <p>creative 和 creator 都来自 <span class="en" data-say="create">create</span>（创造）。词尾 -ive 是“……样的”，-or 是“……的人”：一个词根，几种身份。</p>
+  </div>
+
+  <div class="col">
+    <h3>四种难度</h3>
+    <ul class="plain">
+      <li><code>/difficulty peaceful</code>：<b>和平</b>。不会生成怪物，已经有的怪物也会马上消失；血会自己回，不会饿。</li>
+      <li><code>/difficulty easy</code>：简单。有怪，怪打人不太疼。</li>
+      <li><code>/difficulty normal</code>：普通。默认的难度。</li>
+      <li><code>/difficulty hard</code>：困难。怪更凶，饿肚子能饿死。</li>
+    </ul>
+    <p>只打 <code>/difficulty</code>，后面什么都不写，是问“现在是什么难度”。</p>
+    <p>英文：<span class="en" data-say="peaceful">peaceful</span> = peace（和平）+ -ful（充满……的）。同样的还有 <span class="en" data-say="colorful">colorful</span> 五颜六色的、<span class="en" data-say="helpful">helpful</span> 有帮助的、<span class="en" data-say="beautiful">beautiful</span> 美丽的。</p>
+  </div>
+
+  <div class="col">
+    <h3>游戏规则：世界的开关</h3>
+    <p><code>/gamerule</code> 能改世界的规矩。大多数规则只有两种值：<code>true</code>（是、开）和 <code>false</code>（否、关）。几条最常用的：</p>
+  </div>
+  <div class="wide tbl">
+    <table class="t kt">
+      <tr><th>规则</th><th>开着（true）的意思</th><th>本来是</th></tr>
+      <tr><td><code>keepInventory</code></td><td>死了以后，物品栏里的东西还在</td><td>false</td></tr>
+      <tr><td><code>doDaylightCycle</code></td><td>白天黑夜轮换（时间在走）</td><td>true</td></tr>
+      <tr><td><code>doWeatherCycle</code></td><td>天气自己变</td><td>true</td></tr>
+      <tr><td><code>doMobSpawning</code></td><td>生物自己生成</td><td>true</td></tr>
+      <tr><td><code>mobGriefing</code></td><td>生物能破坏方块：苦力怕炸坑、末影人搬方块</td><td>true</td></tr>
+      <tr><td><code>doFireTick</code></td><td>火会蔓延</td><td>true</td></tr>
+      <tr><td><code>doInsomnia</code></td><td>好几天不睡觉，会有幻翼来抓你</td><td>true</td></tr>
+    </table>
+  </div>
+  <div class="col">
+    <p>还有几条规则要填<b>数</b>，像一个旋钮：<code>randomTickSpeed</code>（默认 3）管庄稼、树苗长得多快，调到 100，你能看着麦子“唰”地长出来；<code>playersSleepingPercentage</code>（默认 100）是百分之几的玩家睡觉就能跳过黑夜。</p>
+    <ul class="plain">
+      <li>改：<code>/gamerule keepInventory true</code></li>
+      <li>查：<code>/gamerule keepInventory</code>（后面不写值，游戏会告诉你现在是什么）</li>
+    </ul>
+    <p>规则的名字是<b>驼峰写法</b>：几个词连在一起，第一个词小写，后面每个词的头一个字母大写，像骆驼的驼峰：keep + Inventory，do + Daylight + Cycle。上一章说过，较新的版本把一部分名字改成了小写加下划线（以维基为准），打 <code>/gamerule</code> 加一个空格再按 tab 就能看到你的版本里有哪些。</p>
+  </div>
+
+  <div class="corner" data-k="程">
+    <h5>布尔值：只有是和否<span class="gr later">以后学 · 信息课 / 编程</span></h5>
+    <p>只有 true 和 false 两种值的东西，程序员叫它<b>布尔值</b>（<span class="en" data-say="Boolean">Boolean</span>），名字来自英国数学家乔治·布尔。第二部第十章讲过他：1847 年，他想出了用“是”和“否”做算术的办法，九十年后被用来设计电路。</p>
+    <p>红石灯的亮和灭、拉杆的开和关、游戏规则的 true 和 false、Python 里的 <code>True</code> 和 <code>False</code>，都是布尔值。下一卷的“如果……就……”，判断出来的结果也是一个布尔值。</p>
+    <p>程序里的名字也常用驼峰写法：<code>keepInventory</code>、<code>playerCount</code>。Python 喜欢另一种：全小写加下划线，<code>player_count</code>，叫“蛇形”写法，因为它像一条贴着地爬的蛇。</p>
+  </div>
+
+  <div class="fig" id="gmFig">
+    <div class="fig-label">装置 · 第四十四章</div>
+    <h4>模式和规则练习台</h4>
+    <p class="how">地图上除了你和豆子，还有两只怪（红色）和一头猪（黄色）。下面是你的物品栏。照着单子做。</p>
+    <div id="gmSim"></div>
+  </div>
+
+  <div class="task" data-id="t44a">
+    <div class="th"><b>看一眼麦子长大</b><span class="xp">★★</span></div>
+    <div class="tb">
+      <ol>
+        <li>在实验世界里，用锄头锄一小块地，旁边放水，种上小麦种子（创造模式物品栏里搜“种子”）。</li>
+        <li>打 <code>/gamerule randomTickSpeed 100</code>，站在旁边看。</li>
+        <li>看够了改回 3。<b>别调得太大</b>（比如几千），电脑会很卡。</li>
+        <li>再试试 <code>/gamerule keepInventory true</code>，然后跳进岩浆（反正是实验世界），看看复活以后东西还在不在。</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="err">
+    <h5>出错了怎么办</h5>
+    <dl>
+      <dt><code>/gamemode 1</code> 报错</dt><dd>Java 版只认英文单词：creative。</dd>
+      <dt>规则名字打对了还说不认识</dt><dd>大小写不对（keepinventory 不行，要 keepInventory），或者你的版本把它改名了。打 <code>/gamerule</code> 加空格按 tab 看列表。</dd>
+      <dt>旁观模式里卡在墙里出不来</dt><dd>旁观模式本来就能穿墙。按 F3 + F4 或者打 <code>/gamemode creative</code> 变回来以前，先飞到空地上。</dd>
+    </dl>
+  </div>
+
+  <div class="pass" data-id="q44">
+    <div class="qq" data-a="3"><p>哪种模式能穿过墙、别人看不见你？</p><ol><li>survival</li><li>creative</li><li>adventure</li><li>spectator</li></ol><p class="ex">旁观模式 spectator：看热闹的人，只能看。</p></div>
+    <div class="qq" data-a="0"><p>把难度改成 peaceful，已经在世界里的僵尸会怎样？</p><ol><li>马上消失</li><li>变成猪</li><li>留着，但不打人</li></ol><p class="ex">和平模式不允许怪物存在，它们会马上消失。</p></div>
+    <div class="qq" data-in="/gamerule keepInventory true|gamerule keepInventory true"><p>写出让“死了不掉东西”的那条命令。</p><p class="ex">/gamerule keepInventory true。注意大写的 I。</p></div>
+    <div class="qq" data-a="1"><p>布尔值有几种可能的值？</p><ol><li>一种</li><li>两种：true 和 false</li><li>无数种</li></ol><p class="ex">布尔值只有是和否两种。</p></div>
+    <div class="qq" data-in="peaceful"><p>peace 是“和平”，加上 -ful（充满……的），“和平的”怎么写？</p><p class="ex">peaceful。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>游戏模式 <span class="en" data-say="game mode">game mode</span></b>生存、创造、冒险、旁观四种。</div>
+    <div><b>难度 <span class="en" data-say="difficulty">difficulty</span></b>和平、简单、普通、困难。</div>
+    <div><b>布尔值 <span class="en" data-say="Boolean">Boolean</span></b>只有 true 和 false 的值。</div>
+    <div><b>驼峰写法 <span class="en" data-say="camel case">camelCase</span></b>几个词连写，后面的词首字母大写。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>四种游戏模式、Java 版自 1.13 起不再接受数字模式、和平难度清除敌对生物，见社区维基“游戏模式”“难度”条目。游戏规则列表与默认值见维基“游戏规则”条目；2025 年起的 Java 版本对部分规则进行了改名，请以游戏内 tab 补全为准。乔治·布尔《逻辑的数学分析》出版于 1847 年。</p>
+    <p>建议：实验世界里打开 keepInventory，可以大大减少孩子因为“东西掉光了”产生的挫败感，让他敢于尝试。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>survival、creative、adventure、spectator；peaceful 让怪消失；<code>/gamerule 名字 true/false</code> 开关世界的规矩，不写值就是查。</div>
+    <div><i>脑袋<small>带走一样</small></i>很多复杂的东西，拆到最底下，都是一个个“是或否”的开关。</div>
+  </div>
+</section>

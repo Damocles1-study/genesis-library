@@ -1,0 +1,127 @@
+<!-- ============ 第八十一章 · 错 ============ -->
+<section class="chap" id="c81" data-vol="卷二十三 · 错">
+  <div class="chead">
+    <div class="big">错</div>
+    <div>
+      <div class="no">第八十一章</div>
+      <h2>调试和错题本</h2>
+      <dl><dt>讲什么</dt><dd>“虫子”的故事；读懂报错的三行；七种常见的错；用 print 偷看；砍一半找错；最小的例子；一本自己的错题本</dd><dt>本章装置</dt><dd>捉虫 · 我的错题本</dd></dl>
+      <div class="sub" data-s="程 英"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第四十九天</b><span class="pix">PYTHON · 小蟒</span><span>又出错了</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>我的程序又红了。我是不是不适合编程？</span></div>
+      <div class="l"><i class="j">舅</i><span>我昨天写的程序，红了十一次。全世界最厉害的程序员，每天也在出错。会编程的人不是不出错，是<b>找错找得快</b>。今天就学怎样找得快。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★★</span><span class="dim">★</span></div><div><b>大约多久</b>50 分钟</div><div><b>要准备</b>小蟒</div><div><b>大人</b>不用</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>读懂 Python 报错的三部分：在哪一行、什么错、为什么。</li>
+      <li>认出七种最常见的错，知道各从哪儿下手。</li>
+      <li>用 print 偷看变量、用“砍一半”缩小范围，修好五个有虫子的程序。</li>
+      <li>坚持写自己的错题本。</li>
+    </ul>
+  </div>
+
+  <div class="real">
+    <h5>真的虫子</h5>
+    <p>程序里的错误，英文叫 <span class="en" data-say="bug">bug</span>（虫子），找错叫 <span class="en" data-say="debug">debug</span>（除虫）。有一个著名的故事：1947 年，美国哈佛大学的一台马克二号电脑出了故障，工作人员在一个继电器里发现了一只飞蛾，把它粘在了工作日志上，旁边写着“第一次找到真的虫子”。这张日志现在还保存在美国的博物馆里。电脑先驱格蕾丝·霍珀（第四部讲过她）很爱讲这个故事。其实 bug 这个说法在那以前就有了，这只飞蛾只是让它变得有名。</p>
+  </div>
+
+  <div class="col">
+    <h3>读懂报错</h3>
+    <pre class="py">File "main.py", line 3
+TypeError: can only concatenate str (not "int") to str</pre>
+    <ul class="plain">
+      <li><b>第一行：在哪儿</b>。line 3，第 3 行。先去看那一行（有时候错在它的上一行）。</li>
+      <li><b>第二行冒号前：什么错</b>。TypeError，类型错误。</li>
+      <li><b>冒号后：为什么</b>。只能把字符串和字符串拼起来，不能拼一个 int。</li>
+    </ul>
+    <p>英文看不懂？抄下关键的几个词，查一查，或者在大人陪着时问 AI（第四十章）。小蟒还会在下面加一句中文解释。</p>
+  </div>
+  <div class="wide tbl">
+    <table class="t kt">
+      <tr><th>报错</th><th>一般是因为</th><th>先查什么</th></tr>
+      <tr><td><code>SyntaxError</code></td><td>写法错了</td><td>冒号、括号、引号配对；有没有中文标点</td></tr>
+      <tr><td><code>IndentationError</code></td><td>缩进不对</td><td>冒号下面缩进了没有；同一层对齐了没有</td></tr>
+      <tr><td><code>NameError</code></td><td>名字没定义</td><td>拼写、大小写；是不是在定义之前就用了</td></tr>
+      <tr><td><code>TypeError</code></td><td>类型不对</td><td>数和字相加；函数给的参数个数不对</td></tr>
+      <tr><td><code>IndexError</code></td><td>下标超出范围</td><td>是不是忘了从 0 数；循环多走了一圈</td></tr>
+      <tr><td><code>KeyError</code></td><td>字典里没有这个键</td><td>键拼对了吗；用 .get 试试</td></tr>
+      <tr><td><code>ZeroDivisionError</code></td><td>除以 0</td><td>除数是从哪来的，会不会是 0</td></tr>
+    </table>
+  </div>
+  <div class="col">
+    <p>最难的错，是<b>不报错、但结果不对</b>的错。比如本该加 100 次却加了 99 次（第四十一章的“差一错误”）。这时候要用下面的办法。</p>
+  </div>
+
+  <div class="col">
+    <h3>四个找错的办法</h3>
+    <ol class="steps">
+      <li><b>偷看</b>：在怀疑的地方加一行 <code>print("这里", x)</code>，看看变量到底是多少。或者用小蟒的“一步一步”。</li>
+      <li><b>砍一半</b>：程序很长、不知道错在哪？把后一半先注释掉（行首加 #），看前一半对不对。对，错就在后一半；不对，错在前一半。再砍一半……第七十九章的二分查找，用来找错也一样好用。</li>
+      <li><b>最小的例子</b>：把问题缩到最小：一大段程序里出错，就新写三行只做那一件事，看能不能重现。</li>
+      <li><b>讲给鸭子听</b>：第四十章的小黄鸭，一行一行讲“这一行在干什么”，讲到不对的地方，你自己就会停住。</li>
+    </ol>
+  </div>
+
+  <div class="fig" id="bugFig">
+    <div class="fig-label">装置 · 第八十一章 · 一</div>
+    <h4>捉虫</h4>
+    <p class="how">上面的按钮是五个有虫子的程序，每个都写着它“应该”打出什么。先运行，读报错（或者看结果哪里不对），找到虫子、修好它。修好了任务单会打勾。</p>
+    <div class="pyhost"></div>
+  </div>
+
+  <div class="col">
+    <h3>错题本</h3>
+    <p>每捉到一只虫子，花一分钟记下来：<b>出了什么事、为什么、怎样修好的、学到了什么</b>。一个月以后翻一翻，你会发现自己总在同几个地方摔跤，这就是你最该练的地方。数学、英语的错题也可以这样记。</p>
+  </div>
+
+  <div class="fig" id="bookFig">
+    <div class="fig-label">装置 · 第八十一章 · 二</div>
+    <h4>我的错题本</h4>
+    <p class="how">记在这台电脑的浏览器里，只有你看得到。可以记编程的错，也可以记数学、英语、游戏里的错。</p>
+    <div class="bkform">
+      <label>哪一类<select id="bkKind"><option>编程</option><option>命令</option><option>Mac</option><option>数学</option><option>英语</option><option>别的</option></select></label>
+      <label>出了什么事<textarea id="bkWhat" rows="2"></textarea></label>
+      <label>为什么<textarea id="bkWhy" rows="2"></textarea></label>
+      <label>怎样修好的<textarea id="bkFix" rows="2"></textarea></label>
+      <label>学到了什么<input type="text" id="bkLearn"></label>
+    </div>
+    <div class="btns"><button class="btn pri" id="bkAdd">记下来</button><button class="btn" id="bkEx">填一个例子</button></div>
+    <div class="say" id="bkSay"></div>
+    <div class="bklist" id="bkList"></div>
+  </div>
+
+  <div class="pass" data-id="q81">
+    <div class="qq" data-a="2"><p>报错写着 <code>NameError: name 'Coins' is not defined</code>，可是你明明写了 <code>coins = 10</code>。最可能是？</p><ol><li>电脑坏了</li><li>10 太大</li><li>大小写不一样：Coins 和 coins</li></ol><p class="ex">名字大小写不同就是两个名字。</p></div>
+    <div class="qq" data-a="0"><p>一段 100 行的程序结果不对，又不报错，用什么办法最快缩小范围？</p><ol><li>砍一半：先看前 50 行的结果对不对</li><li>从头重写</li><li>一行一行删</li></ol><p class="ex">像二分查找一样找虫子。</p></div>
+    <div class="qq" data-in="debug"><p>“找错、除虫”的英文是哪个词？</p><p class="ex">debug。</p></div>
+    <div class="qq" data-a="1"><p>报错的第一行 <code>line 7</code> 告诉你什么？</p><ol><li>一共有 7 个错</li><li>错误在第 7 行附近</li><li>要等 7 秒</li></ol><p class="ex">先去看第 7 行，有时候错在它上一行。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>虫子 <span class="en" data-say="bug">bug</span></b>程序里的错误。</div>
+    <div><b>调试 <span class="en" data-say="debug">debug</span></b>找到并修好错误。</div>
+    <div><b>注释 <span class="en" data-say="comment">comment</span></b># 后面的字，电脑不执行，写给人看。</div>
+    <div><b>重现 <span class="en" data-say="reproduce">reproduce</span></b>让错误再出现一次，才好找原因。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>1947 年 9 月 9 日哈佛马克二号工作日志上粘着飞蛾的那一页，现藏于美国史密森学会国家美国历史博物馆；“bug”一词在此之前已在工程领域使用（爱迪生的信件中就有）。孩子的错题本只存在浏览器本地；如果想长期保存，可以让孩子定期抄到纸质本子上。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>命令报红字、数据包读不进来，都用同样的办法找：读报错、偷看、砍一半。</div>
+    <div><i>脑袋<small>带走一样</small></i>出错不丢人，找错是本事；记下错，下次就不再摔同一跤。</div>
+  </div>
+</section>

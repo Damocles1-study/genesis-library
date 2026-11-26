@@ -1,0 +1,92 @@
+<!-- ============ 第七十五章 · 函 ============ -->
+<section class="chap" id="c75" data-vol="卷二十一 · 函">
+  <div class="chead">
+    <div class="big">函</div>
+    <div>
+      <div class="no">第七十五章</div>
+      <h2>函数</h2>
+      <dl><dt>讲什么</dt><dd>自己发明一个命令：def；参数；return 交回一个结果；函数里的变量只在函数里；为什么要把程序拆成函数</dd><dt>本章装置</dt><dd>小蟒 · 函数</dd></dl>
+      <div class="sub" data-s="程 数 英"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第四十三天</b><span class="pix">PYTHON · 小蟒</span><span>盖村子</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>我想盖五座一样的塔，放在不同地方。把那三行代码抄五遍？</span></div>
+      <div class="l"><i class="j">舅</i><span>给这三行起个名字，叫 tower。以后要盖塔，只要说一声 <code>tower(2, 3)</code>。你就发明了一个自己的命令。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★★</span><span class="dim">★</span></div><div><b>大约多久</b>50 分钟</div><div><b>要准备</b>小蟒</div><div><b>大人</b>不用</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>用 def 定义一个函数，用参数让它每次做得不一样。</li>
+      <li>用 return 让函数交回一个结果。</li>
+      <li>说出“函数里的变量只在函数里有”是什么意思。</li>
+      <li>把一个长程序拆成几个有名字的函数。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>def：发明一个命令</h3>
+    <pre class="py">def tower(x, z, height):
+    for y in range(height):
+        setblock(x, y, z, "stone")
+
+tower(1, 1, 3)
+tower(5, 2, 6)</pre>
+    <p><code>def</code> 是 define（定义）的缩写。第一行说：我要发明一个叫 tower 的命令，用它的时候要给三个东西：x、z、高度。这三个叫<b>参数</b>（第三十九章说过，命令后面跟着的就是参数）。冒号下面缩进的几行，是这个命令要做的事。</p>
+    <p><b>定义的时候不会执行</b>，只是“记下来”。下面写 <code>tower(1, 1, 3)</code> 时，才真的去做，而且 x 是 1、z 是 1、height 是 3；第二次 x 是 5……同一段代码，不同的参数，盖出不同的塔。</p>
+  </div>
+
+  <div class="col">
+    <h3>return：交回一个结果</h3>
+    <pre class="py">def volume(a, b, c):
+    return a * b * c
+
+v = volume(10, 10, 5)
+print(v)</pre>
+    <p>有的函数是“做事”（盖塔、打印），有的函数是“算一个结果交回来”。<code>return</code> 就是交回。<code>volume(10, 10, 5)</code> 算出 500，放进 v。像不像数学里的“函数”？给一个（或几个）数，得到一个数。初二会学的“函数”正是这个意思。</p>
+    <p>还有一个细节：函数里面新建的变量（比如上面 tower 里的 y），只在函数里面有，函数做完就扔掉了，外面看不见。这叫<b>局部变量</b>。这样，不同函数里都叫 y 的变量，不会互相打架。</p>
+  </div>
+
+  <div class="corner" data-k="程">
+    <h5>为什么要用函数<span class="gr later">以后学 · 编程的第三根骨头</span></h5>
+    <ul>
+      <li><b>不用抄</b>：写一次，用一百次。要改，只改一个地方。</li>
+      <li><b>有名字</b>：<code>build_house()</code> 一看就懂，比二十行 setblock 好读。</li>
+      <li><b>能拆开</b>：大问题拆成小问题，一个函数解决一个小问题。第二十五章的数据包，每个 .mcfunction 文件就是一个函数。</li>
+    </ul>
+    <p>你一直在用别人写好的函数：<code>print</code>、<code>len</code>、<code>range</code>。现在你也会写了。</p>
+  </div>
+
+  <div class="fig" id="py75">
+    <div class="fig-label">装置 · 第七十五章</div>
+    <h4>小蟒 · 函数</h4>
+    <p class="how">照任务单写函数。点“一步一步”：def 那一步只是“记下来”，小地上什么也没有；走到 tower(…) 那一句，塔一下子就盖好了，函数里面的几行在这一步里全做完。运行完以后看看变量表：函数里的 y 不在里面，它是局部变量。</p>
+    <div class="pyhost"></div>
+  </div>
+
+  <div class="pass" data-id="q75">
+    <div class="qq" data-a="1"><p>写了 <code>def tower(x, z, h): …</code> 以后，塔什么时候盖出来？</p><ol><li>写完 def 那一刻</li><li>写 tower(…) 调用它的时候</li><li>永远不会</li></ol><p class="ex">定义只是记下来，调用时才执行。</p></div>
+    <div class="qq" data-in="24"><p><code>def area(a, b): return a * b</code>，<code>area(6, 4)</code> 是多少？</p><p class="ex">6 × 4 = 24。</p></div>
+    <div class="qq" data-a="0"><p>函数里新建的变量，函数外面能用吗？</p><ol><li>不能，它是局部变量</li><li>能</li></ol><p class="ex">函数做完就扔掉了。</p></div>
+    <div class="qq" data-in="def|define"><p>定义函数用哪个词开头？</p><p class="ex">def，define 的缩写。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>函数 <span class="en" data-say="function">function</span></b>有名字、能反复用的一段代码。</div>
+    <div><b>参数 <span class="en" data-say="parameter">parameter</span></b>调用函数时交给它的东西。</div>
+    <div><b>返回 <span class="en" data-say="return">return</span></b>函数交回的结果。</div>
+    <div><b>局部变量 <span class="en" data-say="local variable">local variable</span></b>只在函数里有的变量。</div>
+  </div>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>数据包里的 .mcfunction 就是函数；/function 就是调用它。</div>
+    <div><i>脑袋<small>带走一样</small></i>大问题拆成有名字的小问题，一个一个解决。</div>
+  </div>
+</section>

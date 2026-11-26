@@ -1,0 +1,104 @@
+<!-- ============ 第七十七章 · 典 ============ -->
+<section class="chap" id="c77" data-vol="卷二十二 · 典">
+  <div class="chead">
+    <div class="big">典</div>
+    <div>
+      <div class="no">第七十七章</div>
+      <h2>字典和树</h2>
+      <dl><dt>讲什么</dt><dd>字典：用名字找值；ID 对中文名；数一数每种东西有几个；树：文件夹、进度、家谱；字典里套字典就是一棵树</dd><dt>本章装置</dt><dd>一棵树 · 小蟒 · 字典</dd></dl>
+      <div class="sub" data-s="程 英"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第四十五天</b><span class="pix">PYTHON · 小蟒</span><span>做翻译机</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>我想做一个“方块翻译机”：输入 stone，打出“石头”。用列表要一个一个找，好慢。</span></div>
+      <div class="l"><i class="j">舅</i><span>用字典。像查真的字典一样：知道“字”（键），一下子翻到“解释”（值），不用从第一页翻起。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★★</span><span class="dim">★</span></div><div><b>大约多久</b>50 分钟</div><div><b>要准备</b>小蟒</div><div><b>大人</b>不用</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>建一个字典，用键取值、加新的键、改值。</li>
+      <li>用 for 和 .items() 把字典走一遍。</li>
+      <li>用字典数出一个列表里每种东西各有几个。</li>
+      <li>说出树的根、节点、叶子，认出生活里的树。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>字典：用名字找</h3>
+    <pre class="py">zh = {"stone": "石头", "dirt": "泥土", "sand": "沙子"}
+print(zh["stone"])        # 石头
+zh["glass"] = "玻璃"      # 加一个
+print("dirt" in zh)       # True
+print(zh.get("lava", "不认识"))</pre>
+    <p>字典用大括号，里面是一对一对的 <b>键: 值</b>（第三十八章 options.txt 里的“名字:值”）。列表用<b>编号</b>找，字典用<b>名字</b>找。用一个不存在的键会报 KeyError；不想报错，用 <code>.get(键, 没有时给什么)</code>。</p>
+    <p>走一遍：<code>for k, v in zh.items():</code>，每一圈 k 是键、v 是值。</p>
+  </div>
+
+  <div class="col">
+    <h3>数一数每种有几个</h3>
+    <pre class="py">chest = ["stone", "dirt", "stone", "torch", "stone", "dirt"]
+count = {}
+for item in chest:
+    if item in count:
+        count[item] += 1
+    else:
+        count[item] = 1
+print(count)   # {'stone': 3, 'dirt': 2, 'torch': 1}</pre>
+    <p>这是程序员最常写的几行代码之一：投票统计、成绩分段、单词出现了几次，都是它。第六十五章算“众数”，也可以这样做。</p>
+  </div>
+
+  <div class="col">
+    <h3>树</h3>
+    <p>第三十六章说，文件夹是一棵倒着长的<b>树</b>。如果字典的值又是一个字典，就能表示一棵树：</p>
+    <pre class="py">home = {"Desktop": {}, "Documents": {"编程课": {"小海龟.py": None}},
+        "Library": {"Application Support": {"minecraft": {"saves": {}}}}}</pre>
+    <p>游戏里按 L 打开的<b>进度</b>（成就）也是一棵树：根是“我的世界”，往下分出“获得木头”“石器时代”……每一个都要先完成它上面那个，才能解锁。家谱、学校的年级和班级、生物的分类（界门纲目科属种），也都是树。</p>
+  </div>
+
+  <div class="fig" id="treeFig2">
+    <div class="fig-label">装置 · 第七十七章 · 一</div>
+    <h4>一棵树</h4>
+    <p class="how">这是第三十六章小格电脑里的文件夹，画成一棵可以展开的树。点有箭头的节点展开、收起。右边写着：从根走到它的路径（第三十七章）、它在第几层、它是不是叶子。</p>
+    <div class="tview" id="tvTree"></div>
+    <div class="say" id="tvSay2"></div>
+  </div>
+
+  <div class="corner" data-k="程">
+    <h5>树和递归<span class="gr later">以后学 · 第八十章</span></h5>
+    <p>想把整棵树都打印出来，该怎么写？每个文件夹里面又是文件夹，层数不知道有多少，用几层 for 都不够。办法是让一个函数“打印一个文件夹，再对它里面的每个文件夹，调用自己”。这叫<b>递归</b>，第八十章细讲。</p>
+  </div>
+
+  <div class="fig" id="py77">
+    <div class="fig-label">装置 · 第七十七章 · 二</div>
+    <h4>小蟒 · 字典</h4>
+    <p class="how">照任务单写。</p>
+    <div class="pyhost"></div>
+  </div>
+
+  <div class="pass" data-id="q77">
+    <div class="qq" data-in="泥土"><p><code>zh = {"stone": "石头", "dirt": "泥土"}</code>，<code>zh["dirt"]</code> 是？</p><p class="ex">用键 dirt 找到值“泥土”。</p></div>
+    <div class="qq" data-a="1"><p>列表和字典最大的不同是？</p><ol><li>列表能放字，字典不能</li><li>列表用编号找，字典用名字（键）找</li><li>没有不同</li></ol><p class="ex">一个按编号，一个按名字。</p></div>
+    <div class="qq" data-a="2"><p>字典里没有 "lava"，<code>zh["lava"]</code> 会怎样？</p><ol><li>得到 None</li><li>自动加上</li><li>KeyError</li></ol><p class="ex">用 .get 就不会报错。</p></div>
+    <div class="qq" data-a="0"><p>下面哪个不是树？</p><ol><li>一排快捷栏</li><li>文件夹</li><li>游戏的进度</li></ol><p class="ex">快捷栏是一排（列表），没有分叉。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>字典 <span class="en" data-say="dictionary">dictionary</span></b>一对一对的键和值。</div>
+    <div><b>键 <span class="en" data-say="key">key</span></b>用来找的那个名字。</div>
+    <div><b>值 <span class="en" data-say="value">value</span></b>找到的东西。</div>
+    <div><b>树 <span class="en" data-say="tree">tree</span></b>一个分成好几个、每个再分的结构。</div>
+  </div>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>ID → 中文名就是字典；进度和文件夹都是树。</div>
+    <div><i>脑袋<small>带走一样</small></i>按编号找用列表，按名字找用字典，有分叉用树。</div>
+  </div>
+</section>

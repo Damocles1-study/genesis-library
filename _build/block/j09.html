@@ -1,0 +1,105 @@
+<!-- ============ 第八十章 · 归 ============ -->
+<section class="chap" id="c80" data-vol="卷二十三 · 归">
+  <div class="chead">
+    <div class="big">归</div>
+    <div>
+      <div class="no">第八十章</div>
+      <h2>递归</h2>
+      <dl><dt>讲什么</dt><dd>函数自己调用自己；一定要有“停下来”的条件；5 的阶乘一层一层算；汉诺塔和 2 的幂；越分越细的树</dd><dt>本章装置</dt><dd>一层一层 · 汉诺塔 · 分叉的树 · 小蟒 · 递归</dd></dl>
+      <div class="sub" data-s="程 数"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第四十八天</b><span class="pix">PYTHON · 小蟒</span><span>镜子里的镜子</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>两面镜子对着放，里面有无数个我。函数能不能也这样，自己调用自己？</span></div>
+      <div class="l"><i class="j">舅</i><span>能，这叫递归。不过要小心：镜子能无限，程序不行。一定要有一层说“到这里为止”。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★★★</span></div><div><b>大约多久</b>60 分钟</div><div><b>要准备</b>小蟒；三个大小不同的碗（做汉诺塔）</div><div><b>大人</b>可以一起玩汉诺塔</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>写一个自己调用自己的函数，并且给它一个“停下来”的条件。</li>
+      <li>一层一层地说出 fact(5) 是怎样算出来的。</li>
+      <li>解出 3 个盘子的汉诺塔，说出 n 个盘子要走 2ⁿ − 1 步。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>自己调用自己</h3>
+    <pre class="py">def fact(n):
+    if n == 1:          # 停下来的条件
+        return 1
+    return n * fact(n - 1)
+
+print(fact(5))   # 120</pre>
+    <p>5 的阶乘是 5 × 4 × 3 × 2 × 1 = 120。fact 的想法是：<b>5 的阶乘 = 5 × （4 的阶乘）</b>。4 的阶乘它也不会算，就再问 3 的阶乘……一直问到 1，1 的阶乘就是 1，不用再问了：这一句叫<b>停止条件</b>。然后答案一层一层往回传：1 → 2 → 6 → 24 → 120。</p>
+    <p>没有停止条件，函数会一直调用自己，像对着的两面镜子，最后报错 RecursionError（递归太深）。</p>
+  </div>
+
+  <div class="fig" id="fkFig">
+    <div class="fig-label">装置 · 第八十章 · 一</div>
+    <h4>一层一层</h4>
+    <p class="how">点“走一步”，看 fact(5) 怎样一层一层往下问（叠起来），问到底以后，答案怎样一层一层往回传（拆掉）。这一叠，就是第七十八章的“栈”。</p>
+    <div class="ctl"><span>n</span><input type="range" id="fkN" min="1" max="7" value="5"><output id="fkNO"></output></div>
+    <div class="fstack" id="fkStack"></div>
+    <div class="btns"><button class="btn pri" id="fkStep">走一步</button><button class="btn" id="fkReset">重来</button></div>
+    <div class="say" id="fkSay"></div>
+  </div>
+
+  <div class="col">
+    <h3>汉诺塔</h3>
+    <p>有三根柱子，第一根上从大到小套着几个盘子。要把它们全部挪到第三根上，规矩是：一次只能挪一个；大盘子不能压在小盘子上。</p>
+    <p>用递归想就很简单：要挪 n 个盘子，① 先把上面 n − 1 个挪到中间柱子（这是一个小一号的同样问题），② 把最大的挪到第三根，③ 再把那 n − 1 个从中间挪到第三根。1 个盘子 1 步，2 个 3 步，3 个 7 步，4 个 15 步……<b>n 个盘子要 2ⁿ − 1 步</b>（第六十一章的 2 的幂又出现了）。有一个传说：寺庙里 64 个金盘挪完的那天，就是世界末日。2⁶⁴ − 1 步，一秒一步，要五千多亿年（传说是十九世纪发明这个游戏的人编的）。</p>
+  </div>
+
+  <div class="fig" id="hanoiFig">
+    <div class="fig-label">装置 · 第八十章 · 二</div>
+    <h4>汉诺塔</h4>
+    <p class="how">点一根柱子拿起最上面的盘子，再点另一根放下。或者点“看电脑解”，它用递归的办法一步一步地解。</p>
+    <div class="ctl"><span>盘子</span><input type="range" id="hnN" min="2" max="7" value="3"><output id="hnNO"></output></div>
+    <svg id="hnSvg" style="max-width:520px;display:block;margin:0 auto;cursor:pointer" role="img" aria-label="三根柱子和几个盘子"></svg>
+    <div class="btns"><button class="btn" id="hnAuto">看电脑解</button><button class="btn" id="hnReset">重来</button></div>
+    <div class="say" id="hnSay"></div>
+  </div>
+
+  <div class="fig" id="ftreeFig">
+    <div class="fig-label">装置 · 第八十章 · 三</div>
+    <h4>分叉的树</h4>
+    <p class="how">“画一根树枝，然后在它的头上，画两根小一点的树枝”，这一句话自己调用自己，就长出一棵树。拖动“层数”，看它越分越细。这种每一小块都像整体的图形，叫<b>分形</b>：蕨类的叶子、雪花、海岸线、西兰花都有点像。</p>
+    <div class="ctl"><span>层数</span><input type="range" id="ftN" min="1" max="10" value="6"><output id="ftNO"></output></div>
+    <div class="ctl"><span>分叉角度</span><input type="range" id="ftA" min="10" max="60" value="25"><output id="ftAO"></output></div>
+    <svg id="ftSvg" style="max-width:440px;display:block;margin:0 auto" role="img" aria-label="一棵用递归画出的树"></svg>
+  </div>
+
+  <div class="fig" id="py80">
+    <div class="fig-label">装置 · 第八十章 · 四</div>
+    <h4>小蟒 · 递归</h4>
+    <p class="how">照任务单写。</p>
+    <div class="pyhost"></div>
+  </div>
+
+  <div class="pass" data-id="q80">
+    <div class="qq" data-a="1"><p>递归函数一定要有什么？</p><ol><li>for 循环</li><li>停下来的条件</li><li>print</li></ol><p class="ex">不然会一直调用自己，最后 RecursionError。</p></div>
+    <div class="qq" data-in="24"><p>fact(4) 是多少？</p><p class="ex">4 × 3 × 2 × 1 = 24。</p></div>
+    <div class="qq" data-in="15"><p>4 个盘子的汉诺塔，最少几步？</p><p class="ex">2⁴ − 1 = 15。</p></div>
+    <div class="qq" data-a="0"><p>递归一层一层往下问、再一层一层往回传，像第七十八章的哪一种？</p><ol><li>栈</li><li>队列</li></ol><p class="ex">后进先出：最后问的最先回答。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>递归 <span class="en" data-say="recursion">recursion</span></b>函数自己调用自己。</div>
+    <div><b>停止条件 <span class="en" data-say="base case">base case</span></b>不再往下调用的那一层。</div>
+    <div><b>阶乘 <span class="en" data-say="factorial">factorial</span></b>n × (n−1) × … × 1。</div>
+    <div><b>分形 <span class="en" data-say="fractal">fractal</span></b>每一小块都像整体的图形。</div>
+  </div>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>文件夹里套文件夹，就要用递归去走一遍。</div>
+    <div><i>脑袋<small>带走一样</small></i>大问题 = 一小步 + 小一号的同样问题；最小的那个直接答。</div>
+  </div>
+</section>

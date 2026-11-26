@@ -1,0 +1,101 @@
+<div class="volhead" data-vol="卷二十三 · 算法">
+  <div class="num">VOLUME TWENTY-THREE · 第十部 · 卷二十三</div>
+  <h2>法<small>查找、排序、递归、找错、自学</small></h2>
+  <p class="lede">同一件事，有笨办法也有聪明办法。聪明的办法叫<b>算法</b>。这一卷看三种经典算法，再学两样一辈子用得上的本事：找错和自学。</p>
+  <svg class="row" aria-hidden="true"></svg>
+</div>
+
+<!-- ============ 第七十九章 · 找 ============ -->
+<section class="chap" id="c79" data-vol="卷二十三 · 找">
+  <div class="chead">
+    <div class="big">找</div>
+    <div>
+      <div class="no">第七十九章</div>
+      <h2>查找和排序</h2>
+      <dl><dt>讲什么</dt><dd>一个一个找；猜数游戏和“每次砍一半”；为什么一百个数最多猜 7 次；三种排序：冒泡、选择、插入；比一比谁更快</dd><dt>本章装置</dt><dd>猜数 · 排序 · 小蟒 · 查找和排序</dd></dl>
+      <div class="sub" data-s="程 数"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第四十七天</b><span class="pix">WORLD · 我的第一个家</span><span>整理箱子</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>二十个箱子，我要找钻石，只能一个一个打开。</span></div>
+      <div class="l"><i class="j">舅</i><span>要是箱子按名字排好了，你就能像查字典那样，先翻中间，再翻一半的一半。排好序，找起来就快多了。今天讲找，也讲排。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★★</span><span class="dim">★</span></div><div><b>大约多久</b>50 分钟</div><div><b>要准备</b>小蟒；一副扑克牌（可以没有）</div><div><b>大人</b>不用</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>写出“一个一个找”的程序。</li>
+      <li>用“每次砍一半”在 7 次以内猜中 1 到 100 之间的数，说出为什么。</li>
+      <li>说出冒泡、选择、插入三种排序是怎样做的。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>一个一个找，和每次砍一半</h3>
+    <p><b>顺序查找</b>：从第一个开始，一个一个看，直到找到。最坏要看完全部。东西没排好序时，只能这样。</p>
+    <p><b>二分查找</b>：东西排好序时，先看正中间那个。要找的比它小，就只看左边一半；比它大，只看右边一半。每看一次，剩下的就少一半。1 到 100 的猜数：100 → 50 → 25 → 13 → 7 → 4 → 2 → 1，<b>最多 7 次</b>。因为 2⁷ = 128 比 100 大（第六十一章的 2 的幂）。一百万个数，最多也只要 20 次！</p>
+  </div>
+
+  <div class="fig" id="guessFig">
+    <div class="fig-label">装置 · 第七十九章 · 一</div>
+    <h4>猜数</h4>
+    <p class="how">电脑想好了一个 1 到 100 的数。你猜，它告诉你“大了”还是“小了”。能在 7 次以内猜中吗？下面的条是“还可能是哪些数”，看它每次缩短多少。</p>
+    <div class="inrow" style="display:flex;gap:6px;flex-wrap:wrap"><input type="text" id="gsIn" inputmode="numeric" style="width:6em;font-family:var(--f-mono);font-size:18px" aria-label="你猜的数"><button class="btn pri" id="gsGo">猜</button><button class="btn" id="gsNew">再来一局</button><button class="btn" id="gsAuto">看电脑怎么猜</button></div>
+    <div class="gsbar" id="gsBar"></div>
+    <div class="say" id="gsSay"></div>
+  </div>
+
+  <div class="col">
+    <h3>三种排序</h3>
+    <p>把一堆数从小到大排好，方法有很多。三种最容易懂的（拿一副扑克牌试试）：</p>
+    <ul class="plain">
+      <li><b>冒泡排序</b>：从头到尾，两个两个比，前面的大就交换。走一遍，最大的就“冒”到了最后。再走一遍，第二大的冒到倒数第二……</li>
+      <li><b>选择排序</b>：在没排好的里面<b>挑出最小的</b>，放到最前面。再在剩下的里挑最小的……</li>
+      <li><b>插入排序</b>：像打扑克抓牌：一张一张拿起来，<b>插到手里已经排好的牌中间合适的位置</b>。</li>
+    </ul>
+    <p>它们都要比很多次：n 个数大约要比 n × n ÷ 2 次。还有更快的排序（快速排序、归并排序），大学会学；Python 的 <code>sorted()</code> 用的就是一种很快的方法。</p>
+  </div>
+
+  <div class="fig" id="sortFig">
+    <div class="fig-label">装置 · 第七十九章 · 二</div>
+    <h4>排序</h4>
+    <p class="how">每根柱子是一个箱子里的方块数。选一种排序，点“走一步”看它比哪两个（黄色）、换哪两个（红色），或者点“一直走”。右边数着比了几次、换了几次。三种都试试，比一比。</p>
+    <div class="btns" id="soAlg"></div>
+    <svg id="soSvg" role="img" aria-label="一排高低不同的柱子"></svg>
+    <div class="btns"><button class="btn pri" id="soStep">走一步</button><button class="btn" id="soRun">一直走</button><button class="btn" id="soNew">打乱</button></div>
+    <div class="kv" id="soKv"></div>
+  </div>
+
+  <div class="fig" id="py79">
+    <div class="fig-label">装置 · 第七十九章 · 三</div>
+    <h4>小蟒 · 查找和排序</h4>
+    <p class="how">照任务单写。</p>
+    <div class="pyhost"></div>
+  </div>
+
+  <div class="pass" data-id="q79">
+    <div class="qq" data-in="7"><p>用“每次砍一半”猜 1 到 100 之间的数，最多猜几次？</p><p class="ex">2⁷ = 128 ≥ 100，最多 7 次。</p></div>
+    <div class="qq" data-a="1"><p>二分查找有一个前提，是什么？</p><ol><li>数要很小</li><li>东西要先排好序</li><li>只能找数字</li></ol><p class="ex">没排序就不知道该往左还是往右。</p></div>
+    <div class="qq" data-a="2"><p>“在没排好的里面挑出最小的放到前面”，是哪种排序？</p><ol><li>冒泡</li><li>插入</li><li>选择</li></ol><p class="ex">选择排序。</p></div>
+    <div class="qq" data-in="20"><p>一百万（约 2²⁰）个排好序的数，二分查找最多看几次？</p><p class="ex">每次砍一半，大约 20 次。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>算法 <span class="en" data-say="algorithm">algorithm</span></b>做一件事的一步一步的办法。</div>
+    <div><b>二分查找 <span class="en" data-say="binary search">binary search</span></b>每次砍一半地找。</div>
+    <div><b>排序 <span class="en" data-say="sort">sort</span></b>按大小排好。</div>
+    <div><b>交换 <span class="en" data-say="swap">swap</span></b>两个换位置：a, b = b, a。</div>
+  </div>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>箱子按名字排好，找东西就快。</div>
+    <div><i>脑袋<small>带走一样</small></i>每次砍掉一半，再大的范围也很快能找到。</div>
+  </div>
+</section>

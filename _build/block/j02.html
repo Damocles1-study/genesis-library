@@ -1,0 +1,91 @@
+<!-- ============ 第七十三章 · 若 ============ -->
+<section class="chap" id="c73" data-vol="卷二十一 · 判">
+  <div class="chead">
+    <div class="big">判</div>
+    <div>
+      <div class="no">第七十三章</div>
+      <h2>条件</h2>
+      <dl><dt>讲什么</dt><dd>if、elif、else；冒号和缩进；六种比较；and、or、not；真值表；用 % 判断能不能整除</dd><dt>本章装置</dt><dd>小蟒 · 条件 · 真值表</dd></dl>
+      <div class="sub" data-s="程 数"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第四十一天</b><span class="pix">PYTHON · 小蟒</span><span>第二天</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>第五十章的 execute if，Python 里怎么写？</span></div>
+      <div class="l"><i class="j">舅</i><span>就是 if。不过 Python 很在意“缩进”：if 下面要做的事，都往里缩四格。缩进就是 Python 的括号。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★</span><span class="dim">★★</span></div><div><b>大约多久</b>40 分钟</div><div><b>要准备</b>小蟒</div><div><b>大人</b>不用</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>写出 if / elif / else，让程序根据情况走不同的路。</li>
+      <li>用 == != &lt; &gt; &lt;= &gt;= 比较，用 and or not 组合条件。</li>
+      <li>读懂真值表，用 % 判断一个数能不能被整除。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>if、elif、else</h3>
+    <pre class="py">time = 14000
+if time &lt; 12000:
+    print("白天")
+elif time &lt; 13000:
+    print("傍晚")
+else:
+    print("晚上，小心怪物")</pre>
+    <p>读法：<b>如果</b> time 小于 12000，打“白天”；<b>不然如果</b>小于 13000，打“傍晚”；<b>都不是</b>，打“晚上”。三条路只走一条，从上往下，碰到第一个成立的就走它，后面的不看了。</p>
+    <p>两个规矩：每个 if、elif、else 这一行最后都有一个<b>冒号</b>；冒号下面要做的事，<b>往里缩进四格</b>（按 tab）。缩进回来，就是 if 管完了。</p>
+  </div>
+
+  <div class="col">
+    <h3>比较和组合</h3>
+    <ul class="plain">
+      <li><code>==</code> 等于、<code>!=</code> 不等于、<code>&lt;</code> 小于、<code>&gt;</code> 大于、<code>&lt;=</code> 小于等于、<code>&gt;=</code> 大于等于。比出来的结果是 True 或 False。</li>
+      <li><code>and</code>：两个都成立才成立。<code>light == 0 and time &gt; 13000</code>：又黑又是晚上。</li>
+      <li><code>or</code>：有一个成立就成立。</li>
+      <li><code>not</code>：反过来。</li>
+    </ul>
+    <p>判断能不能整除，用余数（第四十九章）：<code>n % 2 == 0</code> 就是“n 是偶数”。</p>
+  </div>
+
+  <div class="fig" id="truthFig">
+    <div class="fig-label">装置 · 第七十三章 · 一</div>
+    <h4>真值表</h4>
+    <p class="how">点上面两个开关（像两根拉杆），看 and、or、not 各给出什么。下面的表把四种情况都列出来了。这和第十章的红石逻辑门是同一回事。</p>
+    <div class="btns"><button class="btn" id="tvA">A = False</button><button class="btn" id="tvB">B = False</button></div>
+    <div class="kv" id="tvKv"></div>
+    <table class="t tt" id="tvTab"></table>
+  </div>
+
+  <div class="fig" id="py73">
+    <div class="fig-label">装置 · 第七十三章 · 二</div>
+    <h4>小蟒 · 条件</h4>
+    <p class="how">照任务单写。改一改变量的值，再运行，看看走了哪条路。</p>
+    <div class="pyhost"></div>
+  </div>
+
+  <div class="pass" data-id="q73">
+    <div class="qq" data-a="1"><p><code>x = 5</code>，下面程序打出什么？<br><code>if x &gt; 10: print("大")</code><br><code>elif x &gt; 3: print("中")</code><br><code>else: print("小")</code></p><ol><li>大</li><li>中</li><li>小</li></ol><p class="ex">5 &gt; 10 不成立，5 &gt; 3 成立，走第二条路。</p></div>
+    <div class="qq" data-a="0"><p><code>True and False</code> 是？</p><ol><li>False</li><li>True</li></ol><p class="ex">and 要两个都 True。</p></div>
+    <div class="qq" data-a="1"><p><code>True or False</code> 是？</p><ol><li>False</li><li>True</li></ol><p class="ex">or 有一个 True 就行。</p></div>
+    <div class="qq" data-in="n % 2 == 0|n%2==0|n % 2==0"><p>写一个条件：n 是偶数（用 %）。</p><p class="ex">n % 2 == 0。</p></div>
+    <div class="qq" data-a="2"><p>if 那一行最后忘了写冒号，会出什么错？</p><ol><li>NameError</li><li>IndexError</li><li>SyntaxError</li></ol><p class="ex">写法不对是 SyntaxError。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>条件 <span class="en" data-say="condition">condition</span></b>算出来是 True 或 False 的式子。</div>
+    <div><b>缩进 <span class="en" data-say="indentation">indentation</span></b>往里缩的空格，Python 用它分清谁管谁。</div>
+    <div><b>真值表 <span class="en" data-say="truth table">truth table</span></b>把所有真假组合都列出来的表。</div>
+  </div>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>execute if 就是 if；unless 就是 if not。</div>
+    <div><i>脑袋<small>带走一样</small></i>从上往下，碰到第一条成立的路就走；冒号后面缩进。</div>
+  </div>
+</section>

@@ -1,0 +1,111 @@
+<!-- ============ 第七十二章 · 量 ============ -->
+<section class="chap" id="c72" data-vol="卷二十一 · 量">
+  <div class="chead">
+    <div class="big">量</div>
+    <div>
+      <div class="no">第七十二章</div>
+      <h2>变量</h2>
+      <dl><dt>讲什么</dt><dd>变量是贴了名字的盒子；等号不是“等于”；数、小数、字符串、真假四种东西；名字怎么起；数和字不能直接相加；f"…" 把变量塞进句子里</dd><dt>本章装置</dt><dd>小蟒 · 变量</dd></dl>
+      <div class="sub" data-s="程 数 英"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第四十天</b><span class="pix">PYTHON · 小蟒</span><span>第一次写 Python</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>第四十九章的计分板，就是变量。那 Python 里的变量长什么样？</span></div>
+      <div class="l"><i class="j">舅</i><span>更简单。<code>coins = 10</code>，就建好了一个叫 coins 的盒子，里面放着 10。不用说它是什么类型，Python 自己看得出来。</span></div>
+      <div class="l"><i class="g">格</i><span>可是数学课上，等号是“等于”的意思啊。<code>coins = coins + 5</code> 怎么可能成立？</span></div>
+      <div class="l"><i class="j">舅</i><span>好问题！这正是今天要讲清楚的第一件事。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★</span><span class="dim">★★★</span></div><div><b>大约多久</b>40 分钟</div><div><b>要准备</b>网页里的小蟒（或者 Mac 上的 Python）</div><div><b>大人</b>不用</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>建变量、改变量、用 print 把它打出来。</li>
+      <li>说出程序里的 <code>=</code> 和数学里的 <code>=</code> 有什么不同。</li>
+      <li>认出四种值：整数、小数、字符串、布尔值，用 str() 和 int() 互相转换。</li>
+      <li>用 f"…{变量}…" 把变量放进一句话里。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>贴了名字的盒子</h3>
+    <pre class="py">coins = 10
+print(coins)
+coins = coins + 5
+print(coins)</pre>
+    <p>第一行：拿一个盒子，贴上名字 <code>coins</code>，放进 10。第二行把它打出来。第三行最重要，<b>从右往左读</b>：先算右边 <code>coins + 5</code>，也就是 10 + 5 = 15，再把 15 放回 coins 这个盒子里。所以第四行打出 15。</p>
+    <p>程序里的 <code>=</code> 不是“等于”，而是“<b>放进去</b>”（叫<b>赋值</b>）。想问“是不是等于”，要写两个等号 <code>==</code>（下一章用）。<code>coins = coins + 5</code> 也可以简写成 <code>coins += 5</code>，和第四十九章的 <code>add</code> 一模一样。</p>
+  </div>
+
+  <div class="corner" data-k="数">
+    <h5>两种等号<span class="gr later">以后学 · 五年级上 简易方程</span></h5>
+    <p>数学里 <code>x + 5 = 15</code> 是一个<b>方程</b>，意思是“左边和右边相等”，要你去求 x。程序里 <code>x = x + 5</code> 是一个<b>命令</b>，意思是“把 x 加 5 再放回去”。同一个符号，两个意思。很多语言为了不混淆，赋值用别的符号，比如 <code>:=</code> 或者 <code>←</code>。记住：<b>程序里一个等号是放，两个等号是问</b>。</p>
+  </div>
+
+  <div class="col">
+    <h3>四种东西</h3>
+  </div>
+  <div class="wide tbl">
+    <table class="t kt">
+      <tr><th>种类</th><th>英文名</th><th>例子</th><th>游戏里的</th></tr>
+      <tr><td>整数</td><td><code>int</code>（<span class="en" data-say="integer">integer</span>）</td><td><code>64</code>、<code>-60</code></td><td>一组、坐标</td></tr>
+      <tr><td>小数</td><td><code>float</code>（浮点数）</td><td><code>4.317</code>、<code>12.5</code></td><td>走路的速度、F3 上的 XYZ</td></tr>
+      <tr><td>字符串</td><td><code>str</code>（<span class="en" data-say="string">string</span>，一串字）</td><td><code>"stone"</code>、<code>'小格'</code></td><td>方块的 ID、玩家的名字</td></tr>
+      <tr><td>布尔值</td><td><code>bool</code></td><td><code>True</code>、<code>False</code></td><td>游戏规则的开和关</td></tr>
+    </table>
+  </div>
+  <div class="col">
+    <p>字符串要用引号包起来，单引号双引号都行，但要配对、要用英文引号。<code>7 / 2</code> 得 3.5（小数）；<code>6 / 2</code> 得 3.0，也是小数；只想要整数的商，用 <code>//</code>（第四十九章的 <code>/=</code>）。</p>
+    <p><b>数和字不能直接相加</b>：<code>"我有" + 10</code> 会报错（TypeError），因为电脑不知道你想做算术还是拼字。要先把 10 变成字：<code>"我有" + str(10)</code>。反过来，<code>int("64")</code> 把字符串 "64" 变成数 64。最方便的办法是 <b>f 字符串</b>：在引号前面写一个 f，大括号里写变量：<code>f"我有 {coins} 个金币"</code>。</p>
+  </div>
+
+  <div class="col">
+    <h3>名字怎么起</h3>
+    <ul class="plain">
+      <li>只用英文字母、数字和下划线，<b>不能用数字开头</b>：<code>block2</code> 可以，<code>2block</code> 不行。</li>
+      <li>大小写不一样：<code>Coins</code> 和 <code>coins</code> 是两个盒子。</li>
+      <li>起有意思的名字：<code>diamond_count</code> 比 <code>a</code> 好懂。多个词用下划线连（第四十四章的蛇形写法）。</li>
+      <li>不能用 Python 自己的词：<code>if</code>、<code>for</code>、<code>print</code>（print 能用，但用了以后就不能打印了）。</li>
+    </ul>
+  </div>
+
+  <div class="fig" id="py72">
+    <div class="fig-label">装置 · 第七十二章</div>
+    <h4>小蟒 · 变量</h4>
+    <p class="how">照着任务单改代码，点“运行”。点“一步一步”，看下面的变量一个一个出现、变化。</p>
+    <div class="pyhost"></div>
+  </div>
+
+  <div class="task" data-id="t72a">
+    <div class="th"><b>在真的 Python 里</b><span class="xp">★★</span></div>
+    <div class="tb">
+      <p>如果你照第二十六章装好了 Python：打开 IDLE，在 <code>&gt;&gt;&gt;</code> 后面一行一行打：<code>coins = 10</code>、<code>coins += 5</code>、<code>coins</code>（直接打名字回车，就能看到值）、<code>type(coins)</code>、<code>type(4.3)</code>、<code>type("stone")</code>。看看真的 Python 怎样告诉你“这是什么类型”。</p>
+    </div>
+  </div>
+
+  <div class="pass" data-id="q72">
+    <div class="qq" data-in="15"><p><code>x = 10</code>，然后 <code>x = x + 5</code>，x 现在是多少？</p><p class="ex">先算右边 10 + 5，再放回 x。</p></div>
+    <div class="qq" data-a="1"><p>程序里一个等号 <code>=</code> 是什么意思？</p><ol><li>问两边是不是相等</li><li>把右边的值放进左边的变量</li><li>画一条线</li></ol><p class="ex">一个等号是放（赋值），两个等号是问。</p></div>
+    <div class="qq" data-in="3.5"><p><code>print(7 / 2)</code> 打出什么？</p><p class="ex">3.5。一个斜杠的除法结果是小数。</p></div>
+    <div class="qq" data-a="2"><p>下面哪个名字不能用？</p><ol><li>diamond_count</li><li>block2</li><li>2block</li></ol><p class="ex">不能用数字开头。</p></div>
+    <div class="qq" data-a="0"><p><code>"我有" + 10</code> 为什么报错？</p><ol><li>字符串和数不能直接相加</li><li>"我有" 太短</li><li>10 太大</li></ol><p class="ex">要先用 str(10) 变成字，或者用 f"我有{10}"。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>变量 <span class="en" data-say="variable">variable</span></b>贴了名字、放着一个值的盒子。</div>
+    <div><b>赋值 <span class="en" data-say="assignment">assignment</span></b>用 = 把值放进变量。</div>
+    <div><b>字符串 <span class="en" data-say="string">string</span></b>用引号包起来的一串字。</div>
+    <div><b>类型 <span class="en" data-say="type">type</span></b>值是哪一种：int、float、str、bool。</div>
+  </div>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>计分板的记分项就是变量；<code>coins += 5</code> 就是 add 5。</div>
+    <div><i>脑袋<small>带走一样</small></i>程序里一个等号是“放”，从右往左读。</div>
+  </div>
+</section>

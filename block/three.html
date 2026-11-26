@@ -935,6 +935,61 @@ table.t.tooltab{min-width:480px}
 .phases small{display:block;font-size:11px;line-height:1.4;color:var(--ink-2)}
 .phases svg{margin:0 auto}
 @media (max-width:560px){.phases{grid-template-columns:repeat(4,minmax(0,1fr))}}
+/* 小蟒 */
+.pyed{display:grid;grid-template-columns:2.4em minmax(0,1fr);border:3px solid var(--ink-2);border-radius:4px;background:#1d1f1b;overflow:hidden}
+.pyln{font-family:var(--f-mono);font-size:14px;line-height:1.6;color:#6d6b62;text-align:right;padding:8px 6px 8px 0;overflow:hidden;user-select:none;-webkit-user-select:none}
+.pyln span{display:block}.pyln span.on{color:#1d1f1b;background:#9ccf74}
+.pybox textarea{font-family:var(--f-mono);font-size:14px;line-height:1.6;background:transparent;color:#e9e6d8;border:0;outline:0;resize:vertical;padding:8px 8px 8px 6px;white-space:pre;overflow-x:auto;min-width:0;width:100%;caret-color:#9ccf74;tab-size:4}
+.fig .pybox textarea{display:block;margin:0}
+.pyout{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;margin-top:6px}
+.pybox .pyw{max-width:340px;margin:0 auto}
+.pyo{font-family:var(--f-mono);font-size:13.5px;line-height:1.55;background:var(--paper);border:2px solid var(--rule);border-radius:4px;padding:6px 10px;max-height:16em;overflow:auto;white-space:pre-wrap;word-break:break-word;min-height:2.4em}
+.pyo .dim{color:var(--ink-3)}
+.pyerr{color:var(--zhu);white-space:pre-wrap}
+.pyerr small{display:block;font-family:var(--f-sans);color:var(--ink-2);margin-top:2px}
+.pyvars{display:flex;flex-wrap:wrap;gap:4px 8px;margin:6px 0;font-size:13px;align-items:baseline}
+.pyvars b{font-weight:400;color:var(--ink-3)}
+.pyvars span{background:var(--paper);border:1px solid var(--rule);border-radius:3px;padding:1px 6px}
+.pyvars small{color:var(--ink-3);margin-left:4px;font-size:11px}
+.pystat code{font-size:12.5px}
+table.t.pytr{min-width:0;font-size:12.5px}
+table.t.pytr td{padding:3px 6px}
+.hbar{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:3px;border:2px solid var(--ink-3);padding:3px;border-radius:3px}
+.hbar .slot.nil{opacity:.45}
+.hbar .nm2{position:absolute;bottom:1px;left:0;right:0;font-size:8px;text-align:center;color:var(--ink-2);overflow:hidden;white-space:nowrap}
+.bfsq{font-family:var(--f-mono);font-size:12.5px;margin:6px 0;word-break:break-all;line-height:1.8}
+.bfsq span{background:color-mix(in srgb,var(--water) 25%,var(--paper));border:1px solid var(--water);border-radius:3px;padding:0 4px;margin-right:3px}
+.gsbar{position:relative;height:30px;background:var(--paper-2);border-radius:4px;margin:8px 0;overflow:hidden}
+.gsbar div{position:absolute;top:0;bottom:0;background:var(--main);opacity:.55;transition:all .3s}
+.gsbar span{position:absolute;left:8px;top:4px;font-size:13px;color:var(--ink)}
+.fstack{display:flex;flex-direction:column;gap:3px;margin:8px 0;min-height:3em}
+.fstack div{background:var(--paper);border:2px solid var(--pur);border-radius:3px;padding:3px 10px;font-size:14px}
+.fstack .dim{border-style:dashed;color:var(--ink-3)}
+.tview{font-size:14px;line-height:1.7;background:var(--paper);border:1.5px solid var(--rule);border-radius:4px;padding:6px 8px;max-height:22em;overflow:auto}
+.tview .tn{cursor:pointer;white-space:nowrap}
+.tview .tn:hover{background:var(--hl)}
+.tview .ar{display:inline-block;width:1.1em;color:var(--ink-3)}
+.tview small{color:var(--ink-3);margin-left:4px}
+.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(9em,1fr));gap:6px}
+.wall a{display:block;text-decoration:none;background:var(--paper);border:2px solid var(--rule);border-radius:4px;padding:6px 10px;line-height:1.5}
+.wall a b{font-family:var(--f-display);font-weight:400;font-size:22px;color:var(--main);margin-right:6px}
+.wall small{color:var(--ink-3);font-size:12px}
+.pbar{display:block;height:8px;background:var(--paper-2);border-radius:4px;overflow:hidden;margin:4px 0}
+.pbar i{display:block;height:100%;background:var(--main)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(8.5em,1fr));gap:6px;margin-top:10px}
+.badges .bd{border:2px dashed var(--rule);border-radius:6px;padding:6px 8px;text-align:center;opacity:.55;line-height:1.4}
+.badges .bd span{display:block;font-size:22px;font-family:var(--f-mono)}
+.badges .bd b{display:block;font-size:14px}
+.badges .bd small{font-size:11px;color:var(--ink-3)}
+.badges .bd.on{opacity:1;border-style:solid;border-color:var(--gold);background:color-mix(in srgb,var(--gold) 12%,var(--card))}
+.bkform{display:grid;gap:6px}
+.bkform label{display:grid;gap:2px;font-size:13.5px;color:var(--ink-2)}
+.fig .bkform input[type=text],.fig .bkform select,.fig .bkform textarea{margin:0;font-size:15px;padding:4px 8px;border:2px solid var(--rule);border-radius:3px;background:var(--paper);color:var(--ink);font-family:inherit}
+.bklist{display:grid;gap:6px;margin-top:8px}
+.bk{background:var(--paper);border:1.5px solid var(--rule);border-left:4px solid var(--zhu);border-radius:3px;padding:6px 10px;font-size:14px}
+.bk b{margin-right:8px}.bk small{color:var(--ink-3)}
+.bk .btn{float:right;font-size:12px;padding:0 8px}
+.bk p{margin:.2em 0}.bk p i{font-style:normal;color:var(--ink-3);margin-right:6px;font-size:12px}
 </style>
 </head>
 <body>
@@ -2130,7 +2185,7 @@ function slider(id, f, cb){ const r = $('#' + id), o = $('#' + id + 'O'); const 
 /* ---------- 全书目录（三个网页共用） ---------- */
 const PFILE = ['index', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
 const PAGE = (() => { const m = location.pathname.match(/\/(two|three|four|five|six|seven|eight|nine|ten)\.html/); return m ? PFILE.indexOf(m[1]) + 1 : 1; })();
-const READY = 9; // 已经写好的部数
+const READY = 10; // 已经写好的部数
 const PURL = {}; PFILE.forEach((f, i) => PURL[i + 1] = i ? f + '.html' : './');
 /* 十部：前四部是故事，后六部是指南 */
 const PARTS = [
@@ -2246,17 +2301,17 @@ const TOC = [
   {id: 'c70', n: '动', t: '简单机械和水', s: '杠杆、活塞、水流', r: '指南'},
   {id: 'c71', n: '转', t: '昼夜、月亮、指南针', s: '地球自转、八种月相、磁场', r: '指南'},
   {p: 10, t: '第十部 · 程 —— 编程（指南）'},
-  {id: 'c72', n: '量', t: '变量', s: '起名字、数和字', r: '指南'},
-  {id: 'c73', n: '若', t: '条件', s: 'if、else、真和假', r: '指南'},
-  {id: 'c74', n: '环', t: '循环', s: 'for、while', r: '指南'},
-  {id: 'c75', n: '函', t: '函数', s: '自己发明命令', r: '指南'},
-  {id: 'c76', n: '组', t: '列表', s: '快捷栏 0—8 号格', r: '指南'},
-  {id: 'c77', n: '典', t: '字典和树', s: 'ID 对名字、文件夹树', r: '指南'},
-  {id: 'c78', n: '队', t: '队列和广度优先', s: '水怎样流、红石信号怎样传', r: '指南'},
-  {id: 'c79', n: '找', t: '查找和排序', s: '猜数游戏、整理箱子', r: '指南'},
-  {id: 'c80', n: '归', t: '递归', s: '自己调用自己', r: '指南'},
-  {id: 'c81', n: '错', t: '调试和错题本', s: '读报错、一样一样排除', r: '指南'},
-  {id: 'c82', n: '学', t: '怎样自学', s: '五步、成就墙', r: '指南'}
+  {id: 'c72', n: '量', t: '变量', s: '贴了名字的盒子、两种等号、四种值、f 字符串；小蟒', r: '指南'},
+  {id: 'c73', n: '判', t: '条件', s: 'if elif else、冒号和缩进、and or not、真值表', r: '指南'},
+  {id: 'c74', n: '环', t: '循环', s: 'for 和 range、两层循环盖墙、1 加到 100、while、跟踪表', r: '指南'},
+  {id: 'c75', n: '函', t: '函数', s: 'def、参数、return、局部变量；自己发明命令', r: '指南'},
+  {id: 'c76', n: '组', t: '列表', s: '快捷栏 0—8 号、负数下标、append pop insert、二维列表', r: '指南'},
+  {id: 'c77', n: '典', t: '字典和树', s: 'ID 对中文名、数一数每种几个、文件夹和进度都是树', r: '指南'},
+  {id: 'c78', n: '队', t: '队列和广度优先', s: '先进先出和后进先出、一圈一圈往外找、迷宫最短路', r: '指南'},
+  {id: 'c79', n: '找', t: '查找和排序', s: '猜数 7 次以内、二分查找、冒泡选择插入', r: '指南'},
+  {id: 'c80', n: '归', t: '递归', s: '停止条件、阶乘一层一层、汉诺塔 2ⁿ − 1、分形树', r: '指南'},
+  {id: 'c81', n: '错', t: '调试和错题本', s: '1947 年的飞蛾、读报错、砍一半找错、五只虫子、错题本', r: '指南'},
+  {id: 'c82', n: '学', t: '怎样自学', s: '问查试记讲、小计划、和 AI 一起学的规矩、成就墙；尾声', r: '指南'}
 ];
 const chapPage = {}; { let p = 1; TOC.forEach(x => { if (x.p) p = x.p; if (x.id) chapPage[x.id] = p; }); }
 const href = id => (chapPage[id] === PAGE ? '' : PURL[chapPage[id]]) + '#' + id;
@@ -3655,6 +3710,322 @@ function mcSim(box, o){
   if (o.start) inp.value = o.start.replace(/^\//, '');
   draw();
   return {w, exec, draw};
+}
+
+/* ================= 小蟒：网页里的一个迷你 Python（第十部用） =================
+   只实现 Python 的一小部分：数、字符串、True/False/None、列表、元组、字典、
+   + - * / // % **、比较、and or not、in、if/elif/else、while、for、break、continue、
+   def/return（可递归）、print、len、range、str、int、float、abs、min、max、sum、sorted、
+   list、round、random.randint/choice、f"..."；还有 setblock(x, y, z, "stone") 在小地上放方块。
+   一步一步运行：语句用生成器写，每执行一句 yield 一次。 */
+class PyFloat { constructor(v){ this.v = v; } }
+class PyTuple { constructor(a){ this.a = a; } }
+class PyDict { constructor(){ this.m = new Map(); } key(k){ return (typeof k) + ':' + pyRepr(k); } get(k){ const e = this.m.get(this.key(k)); return e ? e[1] : undefined; } set(k, v){ this.m.set(this.key(k), [k, v]); } has(k){ return this.m.has(this.key(k)); } del(k){ this.m.delete(this.key(k)); } keys(){ return [...this.m.values()].map(e => e[0]); } vals(){ return [...this.m.values()].map(e => e[1]); } }
+class PyFn { constructor(name, params, defs, body, g){ Object.assign(this, {name, params, defs, body, g}); } }
+class PyErr extends Error { constructor(type, msg, line){ super(msg); this.type = type; this.line = line; } }
+const ERRZH = {NameError: '用了一个还没有定义（赋值）过的名字。拼对了吗？大小写对吗？', SyntaxError: '写法不对：少了冒号、括号没配对、缩进不对，或者有中文标点。', IndentationError: '缩进不对：同一层的代码要对齐，冒号后面的那几行要往里缩 4 个空格。', TypeError: '类型不对：比如把数字和字符串直接相加，要先用 str() 或 int() 转一下。', IndexError: '下标超出范围：列表有 n 个，下标只能是 0 到 n − 1。', KeyError: '字典里没有这个键。', ZeroDivisionError: '除以 0 了。', ValueError: '值不对：比如 int("abc")。', RecursionError: '递归太深了：函数一直调用自己，没有停下来的条件。', TimeoutError: '运行了太多步还没结束，可能是死循环（while 的条件一直成立）。', AttributeError: '这个东西没有这个方法。'};
+const isF = x => x instanceof PyFloat, nv = x => isF(x) ? x.v : x === true ? 1 : x === false ? 0 : x;
+const isNum = x => typeof x === 'number' || isF(x) || typeof x === 'boolean';
+function pyRepr(x, inner){
+  if (x === null || x === undefined) return 'None';
+  if (x === true) return 'True'; if (x === false) return 'False';
+  if (typeof x === 'number') return String(x);
+  if (isF(x)) { const v = x.v; if (!isFinite(v)) return v > 0 ? 'inf' : '-inf'; if (Number.isInteger(v) && Math.abs(v) < 1e16) return v + '.0'; return String(+v.toPrecision(15)); }
+  if (typeof x === 'string') return inner ? "'" + x.replace(/\\/g, '\\\\').replace(/'/g, "\\'") + "'" : x;
+  if (Array.isArray(x)) return '[' + x.map(v => pyRepr(v, 1)).join(', ') + ']';
+  if (x instanceof PyTuple) return '(' + x.a.map(v => pyRepr(v, 1)).join(', ') + (x.a.length === 1 ? ',' : '') + ')';
+  if (x instanceof PyDict) return '{' + [...x.m.values()].map(e => pyRepr(e[0], 1) + ': ' + pyRepr(e[1], 1)).join(', ') + '}';
+  if (x instanceof PyFn) return '<function ' + x.name + '>';
+  if (typeof x === 'function') return '<built-in function ' + (x.pyname || 'f') + '>';
+  if (x && x.__mod) return '<module ' + x.__mod + '>';
+  return String(x);
+}
+const pyType = x => x === null ? 'NoneType' : typeof x === 'boolean' ? 'bool' : typeof x === 'number' ? 'int' : isF(x) ? 'float' : typeof x === 'string' ? 'str' : Array.isArray(x) ? 'list' : x instanceof PyTuple ? 'tuple' : x instanceof PyDict ? 'dict' : x instanceof PyFn || typeof x === 'function' ? 'function' : 'object';
+const truthy = x => !(x === null || x === false || x === 0 || x === '' || (isF(x) && x.v === 0) || (Array.isArray(x) && !x.length) || (x instanceof PyTuple && !x.a.length) || (x instanceof PyDict && !x.m.size));
+
+/* ---------- 词法 ---------- */
+function pyLex(src){
+  const T = [], lines = src.replace(/\r/g, '').replace(/\t/g, '    ').split('\n'); const ind = [0]; let depth = 0;
+  const KW = new Set(['if', 'elif', 'else', 'while', 'for', 'in', 'def', 'return', 'break', 'continue', 'pass', 'and', 'or', 'not', 'True', 'False', 'None', 'import', 'from', 'is', 'global', 'del']);
+  lines.forEach((ln, li) => {
+    const line = li + 1;
+    if (depth === 0) {
+      if (/^\s*(#.*)?$/.test(ln)) return;
+      const sp = ln.match(/^ */)[0].length;
+      if (sp > ind[ind.length - 1]) { ind.push(sp); T.push({t: 'INDENT', line}); }
+      while (sp < ind[ind.length - 1]) { ind.pop(); T.push({t: 'DEDENT', line}); }
+      if (sp !== ind[ind.length - 1]) throw new PyErr('IndentationError', 'unindent does not match any outer indentation level', line);
+    }
+    let i = depth ? 0 : ln.match(/^ */)[0].length;
+    while (i < ln.length) {
+      const c = ln[i];
+      if (c === ' ') { i++; continue; }
+      if (c === '#') break;
+      if (/[　，。：；（）“”‘’【】]/.test(c)) throw new PyErr('SyntaxError', 'invalid character \'' + c + '\' (U+' + c.codePointAt(0).toString(16).toUpperCase() + ')', line);
+      let m;
+      if ((m = ln.slice(i).match(/^(\d+\.\d*|\.\d+|\d+)/))) { T.push({t: 'NUM', v: m[0].includes('.') ? new PyFloat(+m[0]) : +m[0], line}); i += m[0].length; continue; }
+      if ((m = ln.slice(i).match(/^([fF]?)(['"])/))) {
+        const q = m[2], f = !!m[1]; let j = i + m[0].length, s = '';
+        while (j < ln.length && ln[j] !== q) { if (ln[j] === '\\' && j + 1 < ln.length) { const n = ln[j + 1]; s += n === 'n' ? '\n' : n === 't' ? '\t' : n; j += 2; } else s += ln[j++]; }
+        if (j >= ln.length) throw new PyErr('SyntaxError', 'unterminated string literal（引号没有配对）', line);
+        T.push({t: f ? 'FSTR' : 'STR', v: s, line}); i = j + 1; continue;
+      }
+      if ((m = ln.slice(i).match(/^[A-Za-z_一-鿿][A-Za-z0-9_一-鿿]*/))) { T.push({t: KW.has(m[0]) ? m[0] : 'NAME', v: m[0], line}); i += m[0].length; continue; }
+      if ((m = ln.slice(i).match(/^(\*\*=|\/\/=|\*\*|\/\/|==|!=|<=|>=|\+=|-=|\*=|\/=|%=|[-+*/%<>=()[\]{}:,.])/))) { const o = m[0]; if ('([{'.includes(o)) depth++; if (')]}'.includes(o)) depth = Math.max(0, depth - 1); T.push({t: o, line}); i += o.length; continue; }
+      throw new PyErr('SyntaxError', 'invalid syntax：不认识“' + c + '”', line);
+    }
+    if (depth === 0) T.push({t: 'NL', line});
+  });
+  while (ind.length > 1) { ind.pop(); T.push({t: 'DEDENT', line: lines.length}); }
+  T.push({t: 'EOF', line: lines.length});
+  return T;
+}
+/* ---------- 语法 ---------- */
+function pyParse(src){
+  const T = pyLex(src); let p = 0;
+  const peek = (o) => T[p + (o || 0)], at = t => T[p].t === t, eat = t => { if (T[p].t !== t) throw new PyErr('SyntaxError', 'expected \'' + t + '\'' + (t === ':' ? '（这一行最后是不是少了冒号？）' : '') + '，got ' + (T[p].t === 'NL' ? '行尾' : T[p].t === 'EOF' ? '文件结尾' : '\'' + (T[p].v || T[p].t) + '\''), T[p].line); return T[p++]; }, opt = t => at(t) ? T[p++] : null;
+  function block(){ eat(':'); if (!at('NL')) { const s = simple(); return [s]; } eat('NL'); if (!at('INDENT')) throw new PyErr('IndentationError', 'expected an indented block（冒号后面那几行要往里缩进）', T[p].line); eat('INDENT'); const b = []; while (!at('DEDENT') && !at('EOF')) b.push(stmt()); opt('DEDENT'); return b; }
+  function stmt(){
+    const tk = T[p], line = tk.line;
+    if (tk.t === 'if') { p++; const br = [[expr(), block()]]; let els = null; while (at('elif')) { p++; br.push([expr(), block()]); } if (at('else')) { p++; els = block(); } return {k: 'if', br, els, line}; }
+    if (tk.t === 'while') { p++; const c = expr(); return {k: 'while', c, body: block(), line}; }
+    if (tk.t === 'for') { p++; const tgt = targets(); eat('in'); const it = expr(); return {k: 'for', tgt, it, body: block(), line}; }
+    if (tk.t === 'def') { p++; const name = eat('NAME').v; eat('('); const params = [], defs = []; while (!at(')')) { params.push(eat('NAME').v); if (opt('=')) defs.push(expr()); else defs.push(undefined); if (!opt(',')) break; } eat(')'); return {k: 'def', name, params, defs, body: block(), line}; }
+    const s = simple(); return s;
+  }
+  function simple(){
+    const tk = T[p], line = tk.line; let s;
+    if (tk.t === 'return') { p++; s = {k: 'return', e: at('NL') ? null : exprList(), line}; }
+    else if (tk.t === 'break' || tk.t === 'continue' || tk.t === 'pass') { p++; s = {k: tk.t, line}; }
+    else if (tk.t === 'import') { p++; const n = eat('NAME').v; s = {k: 'import', n, line}; }
+    else if (tk.t === 'from') { p++; const n = eat('NAME').v; eat('import'); const names = []; if (opt('*')) names.push('*'); else { names.push(eat('NAME').v); while (opt(',')) names.push(eat('NAME').v); } s = {k: 'from', n, names, line}; }
+    else if (tk.t === 'global') { p++; eat('NAME'); while (opt(',')) eat('NAME'); s = {k: 'pass', line}; }
+    else if (tk.t === 'del') { p++; s = {k: 'del', e: expr(), line}; }
+    else {
+      const e = exprList();
+      if (at('=')) { const tg = [e]; let v; while (opt('=')) { v = exprList(); tg.push(v); } v = tg.pop(); s = {k: 'assign', tg, v, line}; }
+      else if (['+=', '-=', '*=', '/=', '//=', '%=', '**='].includes(T[p].t)) { const op = T[p++].t.slice(0, -1); s = {k: 'aug', tg: e, op, v: expr(), line}; }
+      else s = {k: 'expr', e, line};
+    }
+    if (!at('EOF')) { if (at('DEDENT')) return s; eat('NL'); }
+    return s;
+  }
+  function targets(){ const a = [primary()]; while (opt(',')) a.push(primary()); return a.length > 1 ? {k: 'tuple', a} : a[0]; }
+  function exprList(){ const a = [expr()]; if (!at(',')) return a[0]; while (opt(',')) { if (at('NL') || at('=') || at(')')) break; a.push(expr()); } return {k: 'tuple', a}; }
+  function expr(){ return orE(); }
+  function orE(){ let l = andE(); while (at('or')) { p++; l = {k: 'or', l, r: andE()}; } return l; }
+  function andE(){ let l = notE(); while (at('and')) { p++; l = {k: 'and', l, r: notE()}; } return l; }
+  function notE(){ if (at('not')) { p++; return {k: 'not', e: notE()}; } return cmp(); }
+  function cmp(){ let l = add(); const ops = [], rs = []; for (;;) { let op = null; if (['==', '!=', '<', '>', '<=', '>='].includes(T[p].t)) op = T[p++].t; else if (at('in')) { p++; op = 'in'; } else if (at('not') && peek(1).t === 'in') { p += 2; op = 'not in'; } else if (at('is')) { p++; op = opt('not') ? 'is not' : 'is'; } if (!op) break; ops.push(op); rs.push(add()); } return ops.length ? {k: 'cmp', l, ops, rs} : l; }
+  function add(){ let l = mul(); while (at('+') || at('-')) { const op = T[p++].t; l = {k: 'bin', op, l, r: mul()}; } return l; }
+  function mul(){ let l = unary(); while (at('*') || at('/') || at('//') || at('%')) { const op = T[p++].t; l = {k: 'bin', op, l, r: unary()}; } return l; }
+  function unary(){ if (at('-') || at('+')) { const op = T[p++].t; return {k: 'neg', op, e: unary()}; } return pow(); }
+  function pow(){ const b = primary(); if (at('**')) { p++; return {k: 'bin', op: '**', l: b, r: unary()}; } return b; }
+  function primary(){
+    let e = atom();
+    for (;;) {
+      if (at('(')) { const line = T[p].line; p++; const args = []; while (!at(')')) { args.push(expr()); if (!opt(',')) break; } eat(')'); e = {k: 'call', f: e, args, line}; }
+      else if (at('[')) { p++; let a = null, b = null, sl = false; if (!at(':')) a = expr(); if (opt(':')) { sl = true; if (!at(']')) b = expr(); } eat(']'); e = sl ? {k: 'slice', e, a, b} : {k: 'idx', e, i: a}; }
+      else if (at('.')) { p++; e = {k: 'attr', e, n: eat('NAME').v}; }
+      else return e;
+    }
+  }
+  function atom(){
+    const tk = T[p];
+    if (tk.t === 'NUM') { p++; return {k: 'lit', v: tk.v}; }
+    if (tk.t === 'STR') { p++; let v = tk.v; while (at('STR')) v += T[p++].v; return {k: 'lit', v}; }
+    if (tk.t === 'FSTR') { p++; return {k: 'fstr', s: tk.v, line: tk.line}; }
+    if (tk.t === 'True' || tk.t === 'False') { p++; return {k: 'lit', v: tk.t === 'True'}; }
+    if (tk.t === 'None') { p++; return {k: 'lit', v: null}; }
+    if (tk.t === 'NAME') { p++; return {k: 'name', n: tk.v, line: tk.line}; }
+    if (tk.t === '(') { p++; if (opt(')')) return {k: 'tuple', a: []}; const e = expr(); if (at(',')) { const a = [e]; while (opt(',')) { if (at(')')) break; a.push(expr()); } eat(')'); return {k: 'tuple', a}; } eat(')'); return e; }
+    if (tk.t === '[') { p++; const a = []; while (!at(']')) { a.push(expr()); if (!opt(',')) break; } eat(']'); return {k: 'list', a}; }
+    if (tk.t === '{') { p++; const a = []; while (!at('}')) { const k = expr(); eat(':'); a.push([k, expr()]); if (!opt(',')) break; } eat('}'); return {k: 'dict', a}; }
+    throw new PyErr('SyntaxError', 'invalid syntax：这里不该出现“' + (tk.v || tk.t) + '”', tk.line);
+  }
+  const prog = []; while (!at('EOF')) { if (opt('NL')) continue; prog.push(stmt()); }
+  return prog;
+}
+/* ---------- 运行 ---------- */
+class BreakSig {} class ContSig {} class RetSig { constructor(v){ this.v = v; } }
+function pyRun(src, io){
+  io = io || {};
+  const out = io.out || (() => {}), G = new Map();
+  let steps = 0, depth = 0, curLine = 0; const LIMIT = io.limit || 300000;
+  const err = (t, m) => { throw new PyErr(t, m, curLine); };
+  const num = (x, op) => { if (!isNum(x)) err('TypeError', "unsupported operand type(s) for " + op + ": '" + pyType(x) + "'"); return nv(x); };
+  const mk = (v, flt) => flt ? new PyFloat(v) : v;
+  function binop(op, a, b){
+    if (op === '+') { if (typeof a === 'string' && typeof b === 'string') return a + b; if (Array.isArray(a) && Array.isArray(b)) return a.concat(b); if (typeof a === 'string' || typeof b === 'string') err('TypeError', 'can only concatenate str (not "' + pyType(typeof a === 'string' ? b : a) + '") to str（数字和字符串不能直接相加，用 str() 转一下）'); }
+    if (op === '*') { if (typeof a === 'string' && typeof b === 'number') return a.repeat(Math.max(0, b)); if (typeof b === 'string' && typeof a === 'number') return b.repeat(Math.max(0, a)); if (Array.isArray(a) && typeof b === 'number') { let r = []; for (let i = 0; i < b; i++) r = r.concat(a); return r; } }
+    if (op === '%' && typeof a === 'string') err('TypeError', '这个小蟒不支持用 % 格式化字符串，请用 f"..."');
+    const x = num(a, op), y = num(b, op), fl = isF(a) || isF(b);
+    switch (op) {
+      case '+': return mk(x + y, fl); case '-': return mk(x - y, fl); case '*': return mk(x * y, fl);
+      case '/': if (y === 0) err('ZeroDivisionError', 'division by zero'); return new PyFloat(x / y);
+      case '//': if (y === 0) err('ZeroDivisionError', 'integer division or modulo by zero'); return mk(Math.floor(x / y), fl);
+      case '%': if (y === 0) err('ZeroDivisionError', 'integer modulo by zero'); return mk(((x % y) + y) % y, fl);
+      case '**': return mk(Math.pow(x, y), fl || y < 0);
+    }
+  }
+  function eq(a, b){ if (isNum(a) && isNum(b)) return nv(a) === nv(b); if (Array.isArray(a) && Array.isArray(b)) return a.length === b.length && a.every((v, i) => eq(v, b[i])); if (a instanceof PyTuple && b instanceof PyTuple) return eq(a.a, b.a); return a === b; }
+  function compare(op, a, b){
+    if (op === '==') return eq(a, b); if (op === '!=') return !eq(a, b);
+    if (op === 'in' || op === 'not in') { let r; if (typeof b === 'string') { if (typeof a !== 'string') err('TypeError', "'in <string>' requires string as left operand"); r = b.includes(a); } else if (Array.isArray(b)) r = b.some(v => eq(v, a)); else if (b instanceof PyTuple) r = b.a.some(v => eq(v, a)); else if (b instanceof PyDict) r = b.has(a); else err('TypeError', "argument of type '" + pyType(b) + "' is not iterable"); return op === 'in' ? r : !r; }
+    if (op === 'is') return a === b; if (op === 'is not') return a !== b;
+    let x, y; if (typeof a === 'string' && typeof b === 'string') { x = a; y = b; } else if (isNum(a) && isNum(b)) { x = nv(a); y = nv(b); } else err('TypeError', "'" + op + "' not supported between instances of '" + pyType(a) + "' and '" + pyType(b) + "'");
+    return op === '<' ? x < y : op === '>' ? x > y : op === '<=' ? x <= y : x >= y;
+  }
+  const iter = x => { if (Array.isArray(x)) return x.slice(); if (x instanceof PyTuple) return x.a.slice(); if (typeof x === 'string') return [...x]; if (x instanceof PyDict) return x.keys(); err('TypeError', "'" + pyType(x) + "' object is not iterable"); };
+  const idxN = (n, len) => { if (typeof n !== 'number') err('TypeError', 'list indices must be integers, not ' + pyType(n)); const i = n < 0 ? len + n : n; if (i < 0 || i >= len) err('IndexError', 'list index out of range（下标 ' + n + '，可是只有 ' + len + ' 个，下标是 0 到 ' + (len - 1) + '）'); return i; };
+  /* 内置函数 */
+  const B = new Map(); const bf = (n, f) => { f.pyname = n; B.set(n, f); };
+  bf('print', (...a) => { out(a.map(v => pyRepr(v)).join(' ')); return null; });
+  bf('len', x => { if (typeof x === 'string' || Array.isArray(x)) return x.length; if (x instanceof PyTuple) return x.a.length; if (x instanceof PyDict) return x.m.size; err('TypeError', "object of type '" + pyType(x) + "' has no len()"); });
+  bf('range', (a, b, c) => { let s = 0, e = a, st = 1; if (b !== undefined) { s = a; e = b; } if (c !== undefined) st = c; if ([s, e, st].some(v => typeof v !== 'number')) err('TypeError', 'range() 里只能写整数'); if (st === 0) err('ValueError', 'range() arg 3 must not be zero'); const r = []; for (let i = s; st > 0 ? i < e : i > e; i += st) { r.push(i); if (r.length > 100000) err('ValueError', 'range 太大了'); } return r; });
+  bf('str', x => x === undefined ? '' : pyRepr(x));
+  bf('int', x => { if (typeof x === 'string') { if (!/^\s*[-+]?\d+\s*$/.test(x)) err('ValueError', "invalid literal for int() with base 10: '" + x + "'"); return parseInt(x, 10); } return Math.trunc(num(x, 'int')); });
+  bf('float', x => { if (typeof x === 'string') { const v = parseFloat(x); if (isNaN(v)) err('ValueError', "could not convert string to float: '" + x + "'"); return new PyFloat(v); } return new PyFloat(num(x, 'float')); });
+  bf('abs', x => isF(x) ? new PyFloat(Math.abs(x.v)) : Math.abs(num(x, 'abs')));
+  bf('round', (x, n) => n === undefined ? Math.round(num(x, 'round')) : new PyFloat(Math.round(num(x, 'round') * 10 ** n) / 10 ** n));
+  const mm = (f, n) => (...a) => { const xs = a.length === 1 ? iter(a[0]) : a; if (!xs.length) err('ValueError', n + '() arg is an empty sequence'); return xs.reduce((m, v) => compare(f, v, m) ? v : m); };
+  bf('min', mm('<', 'min')); bf('max', mm('>', 'max'));
+  bf('sum', x => { const xs = iter(x); let s = 0; xs.forEach(v => s = binop('+', s, v)); return s; });
+  bf('sorted', (x, rev) => { const a = iter(x).slice().sort((p, q) => compare('<', p, q) ? -1 : compare('>', p, q) ? 1 : 0); return rev === true ? a.reverse() : a; });
+  bf('list', x => x === undefined ? [] : iter(x)); bf('tuple', x => new PyTuple(x === undefined ? [] : iter(x)));
+  bf('dict', () => new PyDict()); bf('type', x => "<class '" + pyType(x) + "'>");
+  bf('input', q => { const v = (typeof window !== 'undefined' && window.prompt) ? window.prompt(q === undefined ? '' : pyRepr(q)) : ''; return v === null ? '' : v; });
+  bf('enumerate', x => iter(x).map((v, i) => new PyTuple([i, v])));
+  if (io.setblock) bf('setblock', (x, y, z, b) => { io.setblock(nv(x), nv(y), nv(z), b === undefined ? 'stone' : b); return null; });
+  if (io.extra) Object.keys(io.extra).forEach(k => bf(k, io.extra[k]));
+  const RND = {__mod: 'random', randint: (a, b) => a + Math.floor(Math.random() * (b - a + 1)), choice: a => { const xs = iter(a); return xs[Math.floor(Math.random() * xs.length)]; }, random: () => new PyFloat(Math.random()), shuffle: a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return null; }};
+  const MATH = {__mod: 'math', sqrt: x => new PyFloat(Math.sqrt(nv(x))), floor: x => Math.floor(nv(x)), ceil: x => Math.ceil(nv(x)), pi: new PyFloat(Math.PI)};
+  const MODS = {random: RND, math: MATH};
+  /* 方法 */
+  function method(o, n){
+    if (Array.isArray(o)) { const M = {append: v => { o.push(v); return null; }, pop: i => { if (!o.length) err('IndexError', 'pop from empty list'); return i === undefined ? o.pop() : o.splice(idxN(i, o.length), 1)[0]; }, insert: (i, v) => { o.splice(i < 0 ? Math.max(0, o.length + i) : Math.min(i, o.length), 0, v); return null; }, remove: v => { const i = o.findIndex(x => eq(x, v)); if (i < 0) err('ValueError', 'list.remove(x): x not in list'); o.splice(i, 1); return null; }, index: v => { const i = o.findIndex(x => eq(x, v)); if (i < 0) err('ValueError', pyRepr(v, 1) + ' is not in list'); return i; }, count: v => o.filter(x => eq(x, v)).length, sort: () => { o.sort((p, q) => compare('<', p, q) ? -1 : compare('>', p, q) ? 1 : 0); return null; }, reverse: () => { o.reverse(); return null; }, copy: () => o.slice(), clear: () => { o.length = 0; return null; }}; if (M[n]) return M[n]; }
+    if (typeof o === 'string') { const M = {upper: () => o.toUpperCase(), lower: () => o.toLowerCase(), strip: () => o.trim(), split: s => s === undefined ? o.trim().split(/\s+/).filter(Boolean) : o.split(s), join: a => iter(a).map(v => { if (typeof v !== 'string') err('TypeError', 'join 里每一项都要是字符串'); return v; }).join(o), replace: (a, b) => o.split(a).join(b), startswith: s => o.startsWith(s), endswith: s => o.endsWith(s), count: s => o.split(s).length - 1, find: s => o.indexOf(s), isdigit: () => /^\d+$/.test(o)}; if (M[n]) return M[n]; }
+    if (o instanceof PyDict) { const M = {keys: () => o.keys(), values: () => o.vals(), items: () => [...o.m.values()].map(e => new PyTuple([e[0], e[1]])), get: (k, d) => o.has(k) ? o.get(k) : (d === undefined ? null : d), pop: k => { if (!o.has(k)) err('KeyError', pyRepr(k, 1)); const v = o.get(k); o.del(k); return v; }}; if (M[n]) return M[n]; }
+    if (o && o.__mod) { if (n in o) return o[n]; err('AttributeError', "module '" + o.__mod + "' has no attribute '" + n + "'"); }
+    err('AttributeError', "'" + pyType(o) + "' object has no attribute '" + n + "'");
+  }
+  /* 求值 */
+  function lookup(n, env){ if (env.l && env.l.has(n)) return env.l.get(n); if (G.has(n)) return G.get(n); if (B.has(n)) return B.get(n); err('NameError', "name '" + n + "' is not defined"); }
+  function ev(e, env){
+    switch (e.k) {
+      case 'lit': return e.v;
+      case 'name': return lookup(e.n, env);
+      case 'fstr': return e.s.replace(/\{\{|\}\}|\{([^}]*)\}/g, (m, x) => m === '{{' ? '{' : m === '}}' ? '}' : pyRepr(ev(pyParse(x.replace(/:.*$/, ''))[0].e, env)));
+      case 'list': return e.a.map(x => ev(x, env));
+      case 'tuple': return new PyTuple(e.a.map(x => ev(x, env)));
+      case 'dict': { const d = new PyDict(); e.a.forEach(([k, v]) => d.set(ev(k, env), ev(v, env))); return d; }
+      case 'or': { const l = ev(e.l, env); return truthy(l) ? l : ev(e.r, env); }
+      case 'and': { const l = ev(e.l, env); return truthy(l) ? ev(e.r, env) : l; }
+      case 'not': return !truthy(ev(e.e, env));
+      case 'neg': { const v = ev(e.e, env); if (e.op === '+') return v; return isF(v) ? new PyFloat(-v.v) : -num(v, '-'); }
+      case 'bin': return binop(e.op, ev(e.l, env), ev(e.r, env));
+      case 'cmp': { let l = ev(e.l, env); for (let i = 0; i < e.ops.length; i++) { const r = ev(e.rs[i], env); if (!compare(e.ops[i], l, r)) return false; l = r; } return true; }
+      case 'idx': { const o = ev(e.e, env), i = ev(e.i, env); if (Array.isArray(o) || typeof o === 'string') return o[idxN(i, o.length)]; if (o instanceof PyTuple) return o.a[idxN(i, o.a.length)]; if (o instanceof PyDict) { if (!o.has(i)) err('KeyError', pyRepr(i, 1) + '（字典里没有这个键）'); return o.get(i); } err('TypeError', "'" + pyType(o) + "' object is not subscriptable"); }
+      case 'slice': { const o = ev(e.e, env), L = (Array.isArray(o) || typeof o === 'string') ? o.length : 0; let a = e.a ? ev(e.a, env) : 0, b = e.b ? ev(e.b, env) : L; if (a < 0) a += L; if (b < 0) b += L; return o.slice(a, b); }
+      case 'attr': { const o = ev(e.e, env); return method(o, e.n); }
+      case 'call': { curLine = e.line || curLine; const f = ev(e.f, env), args = e.args.map(x => ev(x, env)); return call(f, args); }
+    }
+    err('SyntaxError', '不支持的写法');
+  }
+  function call(f, args){
+    if (typeof f === 'function') return f(...args) ?? null;
+    if (f instanceof PyFn) {
+      if (args.length > f.params.length) err('TypeError', f.name + '() takes ' + f.params.length + ' positional arguments but ' + args.length + ' were given');
+      const l = new Map(); f.params.forEach((pn, i) => { if (i < args.length) l.set(pn, args[i]); else if (f.defs[i] !== undefined) l.set(pn, ev(f.defs[i], {l: null})); else err('TypeError', f.name + "() missing required argument: '" + pn + "'"); });
+      if (++depth > 200) { depth = 0; err('RecursionError', 'maximum recursion depth exceeded'); }
+      const env = {l, fn: f.name}; const saved = curLine;
+      try { const g = execBlock(f.body, env); for (let r = g.next(); !r.done; r = g.next()) {} } catch (s) { if (s instanceof RetSig) { depth--; curLine = saved; return s.v; } depth--; throw s; }
+      depth--; curLine = saved; return null;
+    }
+    err('TypeError', "'" + pyType(f) + "' object is not callable");
+  }
+  function assign(t, v, env){
+    if (t.k === 'name') { (env.l || G).set(t.n, v); return; }
+    if (t.k === 'tuple' || t.k === 'list') { const vs = iter(v); if (vs.length !== t.a.length) err('ValueError', '要拆成 ' + t.a.length + ' 个，可是有 ' + vs.length + ' 个'); t.a.forEach((x, i) => assign(x, vs[i], env)); return; }
+    if (t.k === 'idx') { const o = ev(t.e, env), i = ev(t.i, env); if (Array.isArray(o)) { o[idxN(i, o.length)] = v; return; } if (o instanceof PyDict) { o.set(i, v); return; } err('TypeError', "'" + pyType(o) + "' object does not support item assignment"); }
+    err('SyntaxError', 'cannot assign to expression（等号左边只能是名字、下标）');
+  }
+  function* execBlock(body, env){ for (const s of body) yield* exec(s, env); }
+  function* exec(s, env){
+    curLine = s.line; if (++steps > LIMIT) err('TimeoutError', '运行了 ' + LIMIT + ' 步还没停');
+    if (io.step) yield {line: s.line, env};
+    switch (s.k) {
+      case 'expr': ev(s.e, env); return;
+      case 'assign': { const v = ev(s.v, env); s.tg.forEach(t => assign(t, v, env)); return; }
+      case 'aug': { const cur = ev(s.tg, env); assign(s.tg, binop(s.op, cur, ev(s.v, env)), env); return; }
+      case 'if': { for (const [c, b] of s.br) if (truthy(ev(c, env))) { yield* execBlock(b, env); return; } if (s.els) yield* execBlock(s.els, env); return; }
+      case 'while': while (truthy(ev(s.c, env))) { try { yield* execBlock(s.body, env); } catch (x) { if (x instanceof BreakSig) break; if (x instanceof ContSig) continue; throw x; } curLine = s.line; if (++steps > LIMIT) err('TimeoutError', '运行了 ' + LIMIT + ' 步还没停'); } return;
+      case 'for': { const xs = iter(ev(s.it, env)); for (const x of xs) { assign(s.tgt, x, env); try { yield* execBlock(s.body, env); } catch (q) { if (q instanceof BreakSig) break; if (q instanceof ContSig) continue; throw q; } } return; }
+      case 'def': (env.l || G).set(s.name, new PyFn(s.name, s.params, s.defs, s.body)); return;
+      case 'return': throw new RetSig(s.e ? ev(s.e, env) : null);
+      case 'break': throw new BreakSig(); case 'continue': throw new ContSig(); case 'pass': return;
+      case 'import': if (!MODS[s.n]) err('ModuleNotFoundError', "No module named '" + s.n + "'（这个小蟒只有 random 和 math）"); (env.l || G).set(s.n, MODS[s.n]); return;
+      case 'from': { const m = MODS[s.n]; if (!m) err('ModuleNotFoundError', "No module named '" + s.n + "'"); (s.names[0] === '*' ? Object.keys(m).filter(k => k !== '__mod') : s.names).forEach(n => (env.l || G).set(n, method(m, n))); return; }
+      case 'del': { const t = s.e; if (t.k === 'idx') { const o = ev(t.e, env), i = ev(t.i, env); if (Array.isArray(o)) o.splice(idxN(i, o.length), 1); else if (o instanceof PyDict) o.del(i); } else if (t.k === 'name') (env.l || G).delete(t.n); return; }
+    }
+  }
+  let prog;
+  try { prog = pyParse(src); } catch (e) { return {gen: null, error: e, G}; }
+  const top = {l: null};
+  const gen = (function* (){ try { yield* execBlock(prog, top); } catch (e) { if (e instanceof RetSig) throw new PyErr('SyntaxError', "'return' outside function", curLine); if (e instanceof BreakSig || e instanceof ContSig) throw new PyErr('SyntaxError', "'break' outside loop", curLine); throw e; } })();
+  return {gen, G, line: () => curLine, steps: () => steps};
+}
+const pyVars = G => [...G.entries()].filter(([k, v]) => !(v instanceof PyFn) && typeof v !== 'function' && !(v && v.__mod));
+
+/* ---------- 编辑和运行的外框 ----------
+   pyBox(box, {code, world, trace, tasks:[{t, ok(o)}]（o = {out, vars, world, err}）, ex:[[名字, 代码]], extra}) */
+function pyBox(box, o){
+  o = o || {};
+  box.classList.add('pybox');
+  box.innerHTML = (o.ex ? '<div class="btns pyex">' + o.ex.map((e, i) => '<button class="btn" data-i="' + i + '">' + e[0] + '</button>').join('') + '</div>' : '') +
+    '<div class="pyed"><div class="pyln" aria-hidden="true"></div><textarea spellcheck="false" autocomplete="off" autocapitalize="off" aria-label="Python 代码"></textarea></div>' +
+    '<div class="btns"><button class="btn pri" data-a="run">▶ 运行</button><button class="btn" data-a="step">一步一步</button><button class="btn" data-a="reset">还原</button><span class="lab pystat"></span></div>' +
+    '<div class="pyout"><div class="pyo" aria-live="polite"></div>' + (o.world ? '<svg class="pyw" role="img" aria-label="小地上的方块"></svg>' : '') + '</div>' +
+    '<div class="pyvars"></div>' + (o.trace ? '<div class="scroll-x"><table class="t pytr"></table></div>' : '') + (o.tasks ? '<ul class="goals"></ul>' : '');
+  const ta = $('textarea', box), ln = $('.pyln', box), outEl = $('.pyo', box), vars = $('.pyvars', box), stat = $('.pystat', box), goals = $('.goals', box), tr = $('.pytr', box);
+  const done = new Set(); let stepper = null, world = null, outLines = [], trace = [];
+  ta.value = o.code || '';
+  const lines = () => { const n = ta.value.split('\n').length; ln.innerHTML = Array.from({length: n}, (_, i) => '<span>' + (i + 1) + '</span>').join(''); ta.rows = Math.max(4, Math.min(22, n + 1)); };
+  ta.addEventListener('input', () => { lines(); stepper = null; stat.textContent = ''; });
+  ta.addEventListener('scroll', () => ln.scrollTop = ta.scrollTop);
+  ta.addEventListener('keydown', e => {
+    if (e.key === 'Tab') { e.preventDefault(); const s = ta.selectionStart; ta.setRangeText('    ', s, ta.selectionEnd, 'end'); lines(); }
+    if (e.key === 'Enter') { const s = ta.selectionStart, before = ta.value.slice(0, s), cur = before.split('\n').pop(), ind = cur.match(/^ */)[0] + (/:\s*$/.test(cur) ? '    ' : ''); e.preventDefault(); ta.setRangeText('\n' + ind, s, ta.selectionEnd, 'end'); lines(); }
+    if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); runAll(); }
+  });
+  const newWorld = () => { world = o.world ? mcWorld() : null; if (world) world.ents = []; };
+  const drawWorld = () => { if (!world) return; const sv = $('.pyw', box); mcDrawIso(world, sv); sv.innerHTML = sv.innerHTML.replace('(0, −60, 0)', '(0, 0, 0)'); };
+  const io = () => ({out: s => { outLines.push(s); }, setblock: o.world ? (x, y, z, b) => { const id = String(b).replace(/^minecraft:/, ''); if (!ITEMS[id] && id !== 'air') throw new PyErr('ValueError', "不认识方块 '" + b + "'（试试 stone、glass、oak_planks、gold_block、red_wool）", 0); world.blocks.set(Math.floor(x) + ',' + (Math.floor(y) - 60) + ',' + Math.floor(z), id); } : null, extra: o.extra});
+  const showOut = err => { outEl.innerHTML = outLines.slice(-200).map(s => '<div>' + esc(s) + '</div>').join('') + (err ? '<div class="pyerr">' + esc((err.line ? 'File "main.py", line ' + err.line + '\n' : '') + (err.type || 'Error') + ': ' + err.message) + '<small>' + (ERRZH[err.type] || '') + (err.line ? ' 看看第 ' + err.line + ' 行。' : '') + '</small></div>' : '') || '<div class="dim">（没有输出）</div>'; outEl.scrollTop = outEl.scrollHeight; };
+  const showVars = (G, env) => { const vs = pyVars(G).concat(env && env.l ? [...env.l.entries()].map(([k, v]) => [k + '（' + env.fn + ' 里的）', v]) : []); vars.innerHTML = vs.length ? '<b>变量</b>' + vs.map(([k, v]) => '<span><code>' + esc(k) + '</code> = <code>' + esc(pyRepr(v, 1)).slice(0, 120) + '</code><small>' + pyType(v) + '</small></span>').join('') : ''; };
+  const check = (G, err) => { if (!o.tasks) return; const ob = {out: outLines, vars: G ? Object.fromEntries(pyVars(G)) : {}, world, err, code: ta.value}; o.tasks.forEach((t, i) => { try { if (!done.has(i) && t.ok(ob)) done.add(i); } catch (e) {} }); goals.innerHTML = o.tasks.map((t, i) => '<li' + (done.has(i) ? ' class="ok"' : '') + '>' + t.t + '</li>').join(''); };
+  function runAll(){
+    stepper = null; outLines = []; newWorld(); trace = [];
+    const r = pyRun(ta.value, io()); let err = r.error || null;
+    if (!err) { try { for (let x = r.gen.next(); !x.done; x = r.gen.next()) {} } catch (e) { err = e instanceof PyErr ? e : new PyErr('Error', e.message, r.line()); } }
+    showOut(err); showVars(r.G); drawWorld(); stat.textContent = err ? '出错了' : '运行完了' + (r.steps ? '，一共 ' + r.steps() + ' 步' : ''); if (tr) tr.innerHTML = ''; check(r.G, err);
+  }
+  function step(){
+    if (!stepper) { outLines = []; newWorld(); trace = []; const r = pyRun(ta.value, Object.assign(io(), {step: true})); if (r.error) { showOut(r.error); stat.textContent = '出错了'; return; } stepper = r; }
+    let x; try { x = stepper.gen.next(); } catch (e) { const err = e instanceof PyErr ? e : new PyErr('Error', e.message, stepper.line()); showOut(err); showVars(stepper.G); stepper = null; stat.textContent = '出错了'; return; }
+    if (x.done) { showOut(); showVars(stepper.G); drawWorld(); stat.textContent = '运行完了'; check(stepper.G, null); stepper = null; return; }
+    const L = x.value.line, code = ta.value.split('\n')[L - 1] || '';
+    stat.innerHTML = '下一句：第 ' + L + ' 行 <code>' + esc(code.trim()) + '</code>';
+    [...ln.children].forEach((c, i) => c.classList.toggle('on', i === L - 1));
+    showOut(); showVars(stepper.G, x.value.env); drawWorld();
+    if (tr) { const vs = pyVars(stepper.G).concat(x.value.env && x.value.env.l ? [...x.value.env.l.entries()] : []); trace.push([L, vs.map(([k, v]) => k + '=' + pyRepr(v, 1)).join('　'), outLines.length ? outLines[outLines.length - 1] : '']); tr.innerHTML = '<tr><th>第几步</th><th>行</th><th>这时的变量</th><th>最后一行输出</th></tr>' + trace.slice(-40).map((t, i) => '<tr><td>' + (trace.length > 40 ? trace.length - 40 + i + 1 : i + 1) + '</td><td>' + t[0] + '</td><td><code>' + esc(t[1]) + '</code></td><td>' + esc(t[2]) + '</td></tr>').join(''); }
+  }
+  box.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.a === 'run') runAll(); if (b.dataset.a === 'step') step();
+    if (b.dataset.a === 'reset') { ta.value = o.code || ''; lines(); stepper = null; outEl.innerHTML = ''; vars.innerHTML = ''; stat.textContent = ''; newWorld(); drawWorld(); [...ln.children].forEach(c => c.classList.remove('on')); }
+    if (b.dataset.i !== undefined && b.closest('.pyex')) { ta.value = o.ex[+b.dataset.i][1]; lines(); stepper = null; runAll(); } });
+  lines(); newWorld(); drawWorld(); if (goals) check(null, null);
+  return {run: runAll, ta};
 }
 
 
@@ -5864,6 +6235,277 @@ dev('#cmpsFig', () => {
   svg.addEventListener('click', e => { const r = svg.getBoundingClientRect(), k = W / r.width, x = Math.floor((e.clientX - r.left) * k / S) - R, z = Math.floor((e.clientY - r.top) * k / S) - R; if (z > R) return; if (mode) { sp = [x, z]; mode = 0; } else me = [x, z]; draw(); });
   $('#csSpawn').addEventListener('click', () => { mode = 1; draw(); });
   draw();
+});
+
+/* ================= 第十部 · 程：各章装置 ================= */
+const out1 = o => o.out.join('\n');
+const hasOut = (o, s) => o.out.some(l => l.includes(s));
+const noErr = o => !o.err;
+dev('#playBox', box => pyBox(box, {world: true, code: '# 在小地上盖一座塔\nfor y in range(6):\n    setblock(4, y, 4, "stone")\nsetblock(4, 6, 4, "gold_block")\nprint("塔盖好了，一共", 7, "层")', ex: [
+  ['你好', 'name = "小格"\nprint("你好，" + name)\nprint(f"{name} 今年 10 岁，明年 {10 + 1} 岁")'],
+  ['一座塔', 'for y in range(6):\n    setblock(4, y, 4, "stone")\nsetblock(4, 6, 4, "gold_block")'],
+  ['一面墙', 'for x in range(10):\n    for y in range(4):\n        setblock(x, y, 0, "oak_planks")'],
+  ['彩虹', 'colors = ["red", "orange", "yellow", "lime", "light_blue", "blue", "purple"]\nfor i in range(len(colors)):\n    for x in range(10):\n        setblock(x, i, 9 - i, colors[i] + "_wool")'],
+  ['金字塔', 'for level in range(5):\n    for x in range(level, 9 - level):\n        for z in range(level, 9 - level):\n            setblock(x, level, z, "sand")'],
+  ['猜数', 'import random\nsecret = random.randint(1, 100)\nprint("我想好了一个 1 到 100 的数")\nlow, high = 1, 100\ntries = 0\nwhile True:\n    guess = (low + high) // 2\n    tries += 1\n    print("猜", guess)\n    if guess == secret:\n        break\n    elif guess < secret:\n        low = guess + 1\n    else:\n        high = guess - 1\nprint(f"猜中了！是 {secret}，一共猜了 {tries} 次")'],
+  ['乘法表', 'for a in range(1, 10):\n    line = ""\n    for b in range(1, a + 1):\n        line = line + f"{b}×{a}={a*b} "\n    print(line)']
+]}));
+const host = (id, o) => dev(id, f => pyBox($('.pyhost', f), o));
+const colCount = w => { let n = 0; w.blocks.forEach((v, k) => { if (v !== 'air' && k.startsWith('4,') && k.endsWith(',4')) n++; }); return n; };
+const blkCount = w => { let n = 0; w.blocks.forEach(v => { if (v !== 'air') n++; }); return n; };
+
+host('#py72', {code: 'coins = 10\nprint(coins)\ncoins = coins + 5\nprint(coins)\nname = "小格"\nprint(f"{name} 有 {coins} 个金币")', tasks: [
+  {t: '建一个变量 <code>diamonds</code>，让它等于 3', ok: o => o.vars.diamonds === 3},
+  {t: '让 <code>coins</code> 最后变成 100（用加法或者 +=）', ok: o => o.vars.coins === 100},
+  {t: '算出 6 × 4，放进变量 <code>area</code>', ok: o => o.vars.area === 24},
+  {t: '用 <code>int("64")</code> 把字符串变成数，乘以 9，打出 576', ok: o => hasOut(o, '576') && /int\(/.test(o.code)},
+  {t: '用 f 字符串打出“我有 3 颗钻石”（3 要用变量 diamonds）', ok: o => /\{\s*diamonds\s*\}/.test(o.code) && o.out.some(l => /我有\s*3\s*颗钻石/.test(l))}
+]});
+host('#py73', {code: 'time = 14000\nif time < 12000:\n    print("白天")\nelif time < 13000:\n    print("傍晚")\nelse:\n    print("晚上，小心怪物")', tasks: [
+  {t: '只改 time 的值，让它打出“白天”', ok: o => hasOut(o, '白天')},
+  {t: '让它打出“傍晚”', ok: o => hasOut(o, '傍晚')},
+  {t: '加一个变量 <code>light = 0</code>，如果 light 等于 0 就打出“会刷怪”', ok: o => hasOut(o, '会刷怪') && /==/.test(o.code)},
+  {t: '<code>n = 64</code>，用 % 判断它是不是偶数，是就打出“偶数”', ok: o => hasOut(o, '偶数') && /%/.test(o.code)},
+  {t: '用 and：晚上（time &gt; 13000）而且 light 是 0，打出“危险”', ok: o => hasOut(o, '危险') && /\band\b/.test(o.code)}
+]});
+host('#py74', {world: true, trace: true, code: 'for y in range(6):\n    setblock(4, y, 4, "stone")', tasks: [
+  {t: '盖一座 8 层高的塔（小地最高 8 层）', ok: o => o.world && colCount(o.world) >= 8},
+  {t: '用两层循环盖一面 10 宽、4 高的墙', ok: o => o.world && blkCount(o.world) >= 40 && (o.code.match(/\bfor\b/g) || []).length >= 2},
+  {t: '把 1 到 100 加起来，打出 5050', ok: o => hasOut(o, '5050')},
+  {t: '用 while 打出 0、10、20……60', ok: o => /\bwhile\b/.test(o.code) && hasOut(o, '60') && hasOut(o, '30')}
+]});
+host('#py75', {world: true, code: 'def tower(x, z, height):\n    for y in range(height):\n        setblock(x, y, z, "stone")\n\ntower(1, 1, 3)\ntower(5, 2, 6)', tasks: [
+  {t: '再调用一次 tower，一共盖三座不同高度的塔', ok: o => (o.code.match(/\btower\(/g) || []).length >= 4 && noErr(o)},
+  {t: '给 tower 加一个参数 block，让每座塔用不同的方块', ok: o => /def\s+tower\s*\([^)]*,[^)]*,[^)]*,[^)]*\)/.test(o.code) && noErr(o)},
+  {t: '写 <code>def area(a, b)</code>，用 return 交回面积，打出 area(6, 4) 是 24', ok: o => /def\s+area/.test(o.code) && /return/.test(o.code) && hasOut(o, '24')},
+  {t: '写 <code>def is_night(t)</code>：t ≥ 13000 时交回 True，打出 is_night(18000)', ok: o => /def\s+is_night/.test(o.code) && hasOut(o, 'True')}
+]});
+host('#py76', {code: 'hotbar = ["diamond_sword", "iron_pickaxe", "torch", "bread"]\nprint(hotbar[0])\nprint(len(hotbar))', tasks: [
+  {t: '用负数下标打出最后一样东西', ok: o => /\[\s*-1\s*\]/.test(o.code) && hasOut(o, 'bread')},
+  {t: '用 append 加上 "water_bucket"，让列表变成 5 样', ok: o => Array.isArray(o.vars.hotbar) && o.vars.hotbar.length === 5 && /append/.test(o.code)},
+  {t: '用 for 把每一样都打出来，前面带编号（提示：range(len(hotbar))）', ok: o => /\bfor\b/.test(o.code) && o.out.some(l => /\b2\b.*torch|torch.*\b2\b/.test(l))},
+  {t: '数一数 ["stone", "dirt", "stone", "stone"] 里有几个 stone，打出 3', ok: o => hasOut(o, '3') && /stone/.test(o.code) && (/count/.test(o.code) || /\bfor\b/.test(o.code))}
+]});
+host('#py77', {code: 'zh = {"stone": "石头", "dirt": "泥土", "sand": "沙子"}\nprint(zh["stone"])\nprint(len(zh))', tasks: [
+  {t: '加上 "glass": "玻璃"，打出 zh["glass"]', ok: o => hasOut(o, '玻璃')},
+  {t: '用 <code>for k, v in zh.items():</code> 打出每一对', ok: o => /\.items\(\)/.test(o.code) && hasOut(o, '泥土')},
+  {t: '用 .get 查一个不存在的键，让它打出“不认识”', ok: o => /\.get\(/.test(o.code) && hasOut(o, '不认识')},
+  {t: '用字典数出 <code>["stone", "dirt", "stone", "torch", "stone", "dirt"]</code> 里每种各几个', ok: o => o.out.some(l => l.includes("'stone': 3") && l.includes("'dirt': 2"))}
+]});
+const MAZE = 'maze = [\n    [0, 0, 0, 1, 0],\n    [1, 1, 0, 1, 0],\n    [0, 0, 0, 0, 0],\n    [0, 1, 1, 1, 0],\n    [0, 0, 0, 1, 0]]';
+host('#py78', {code: '# 队列：先进先出\nq = []\nq.append("小格")\nq.append("豆子")\nq.append("妈妈")\nprint("队列先出来的：", q.pop(0))\n# 栈：后进先出\ns = ["第一步", "第二步", "第三步"]\nprint("撤销的是：", s.pop())\n\n# 广度优先：每一格要走几步（1 是墙）\n' + MAZE + '\ndist = []\nfor r in range(5):\n    dist.append([-1, -1, -1, -1, -1])\ndist[0][0] = 0\nqueue = [(0, 0)]\nwhile len(queue) > 0:\n    r, c = queue.pop(0)\n    for dr, dc in [(1, 0), (-1, 0), (0, 1), (0, -1)]:\n        nr, nc = r + dr, c + dc\n        if 0 <= nr < 5 and 0 <= nc < 5 and maze[nr][nc] == 0 and dist[nr][nc] == -1:\n            dist[nr][nc] = dist[r][c] + 1\n            queue.append((nr, nc))\nfor row in dist:\n    print(row)\nprint("走到右下角要", dist[4][4], "步")', tasks: [
+  {t: '运行，看懂队列和栈各先出来哪一个', ok: o => hasOut(o, '小格') && hasOut(o, '第三步')},
+  {t: '在迷宫里加一堵墙（把某个 0 改成 1），看看到右下角的步数变了没有', ok: o => noErr(o) && !o.code.includes(MAZE) && hasOut(o, '步')},
+  {t: '把起点改到右下角 (4, 4)，算出每一格到右下角的步数', ok: o => noErr(o) && /dist\[4\]\[4\]\s*=\s*0/.test(o.code)}
+]});
+host('#py79', {code: 'def find(a, x):\n    for i in range(len(a)):\n        if a[i] == x:\n            return i\n    return -1\n\nprint(find([5, 3, 8], 3))', tasks: [
+  {t: '打出 find([5, 3, 8], 8)，应该是 2', ok: o => o.out.includes('2')},
+  {t: '找一个不在里面的数，看它交回 -1', ok: o => o.out.includes('-1')},
+  {t: '写冒泡排序，把 [5, 2, 9, 1, 7] 排成 [1, 2, 5, 7, 9]（不许用 sort）', ok: o => hasOut(o, '[1, 2, 5, 7, 9]') && !/sort/.test(o.code)},
+  {t: '数一数你的冒泡排序一共比较了几次，打出来', ok: o => /\+=\s*1/.test(o.code) && !/sort/.test(o.code) && hasOut(o, '[1, 2, 5, 7, 9]') && o.out.length >= 2}
+]});
+host('#py80', {code: 'def fact(n):\n    if n == 1:\n        return 1\n    return n * fact(n - 1)\n\nprint(fact(5))', tasks: [
+  {t: '打出 fact(6)，应该是 720', ok: o => hasOut(o, '720')},
+  {t: '写 countdown(n)：打出 n、n−1……1，最后打出“发射！”，要用递归（自己调用自己）', ok: o => /def\s+countdown/.test(o.code) && (o.code.match(/countdown\(/g) || []).length >= 3 && hasOut(o, '发射')},
+  {t: '写 fib(n)：fib(1) = fib(2) = 1，后面每个是前两个之和；打出 fib(10) = 55', ok: o => /def\s+fib/.test(o.code) && hasOut(o, '55')},
+  {t: '故意去掉停止条件，看看 RecursionError 长什么样', ok: o => o.err && o.err.type === 'RecursionError'}
+]});
+host('#bugFig', {code: '# 点上面的按钮，选一个有虫子的程序', ex: [
+  ['虫子 1：for', '# 应该打出 0、1、2 三行\nfor i in range(3)\n    print(i)'],
+  ['虫子 2：名字', '# 应该打出 15\ncoins = 10\nprint(Coins + 5)'],
+  ['虫子 3：拼字', '# 应该打出：我有5个钻石\nn = 5\nprint("我有" + n + "个钻石")'],
+  ['虫子 4：下标', '# 应该打出 a、b、c 三行\nhotbar = ["a", "b", "c"]\nfor i in range(1, 4):\n    print(hotbar[i])'],
+  ['虫子 5：差一', '# 应该打出 5050（1 加到 100）\ntotal = 0\nfor i in range(1, 100):\n    total += i\nprint(total)']
+], tasks: [
+  {t: '修好虫子 1（打出 0、1、2）', ok: o => noErr(o) && out1(o) === '0\n1\n2'},
+  {t: '修好虫子 2（打出 15）', ok: o => noErr(o) && out1(o) === '15'},
+  {t: '修好虫子 3（打出 我有5个钻石）', ok: o => noErr(o) && out1(o) === '我有5个钻石'},
+  {t: '修好虫子 4（打出 a、b、c）', ok: o => noErr(o) && out1(o) === 'a\nb\nc'},
+  {t: '修好虫子 5（打出 5050）', ok: o => noErr(o) && out1(o) === '5050'}
+]});
+
+/* 第七十三章：真值表 */
+dev('#truthFig', () => {
+  let A = false, B = false; const T = v => v ? 'True' : 'False';
+  const draw = () => { $('#tvA').textContent = 'A = ' + T(A); $('#tvB').textContent = 'B = ' + T(B); $('#tvA').classList.toggle('on', A); $('#tvB').classList.toggle('on', B);
+    kv($('#tvKv'), [['A and B', T(A && B)], ['A or B', T(A || B)], ['not A', T(!A)]]);
+    $('#tvTab').innerHTML = '<tr><th>A</th><th>B</th><th>A and B</th><th>A or B</th></tr>' + [[false, false], [false, true], [true, false], [true, true]].map(([a, b]) => '<tr' + (a === A && b === B ? ' style="background:var(--hl)"' : '') + '><td>' + T(a) + '</td><td>' + T(b) + '</td><td>' + T(a && b) + '</td><td>' + T(a || b) + '</td></tr>').join(''); };
+  $('#tvA').addEventListener('click', () => { A = !A; draw(); }); $('#tvB').addEventListener('click', () => { B = !B; draw(); }); draw();
+});
+
+/* 第七十六章：快捷栏列表 */
+dev('#hbFig', () => {
+  let a = ['diamond_sword', 'iron_pickaxe', 'torch', 'bread'];
+  const POOL = ['stone', 'water_bucket', 'apple', 'bow', 'oak_planks', 'compass', 'shield'];
+  const draw = () => { $('#hbBar').innerHTML = Array.from({length: 9}, (_, i) => '<div class="slot' + (i < a.length ? '' : ' nil') + '"><i>' + i + '</i>' + (a[i] ? itemIcon(a[i]) + '<span class="nm2">' + a[i] + '</span>' : '') + '</div>').join(''); };
+  const OPS = [['append', () => { if (a.length >= 9) return ['# 快捷栏只有 9 格，满了', '']; const x = pick(POOL); a.push(x); return ['hotbar.append("' + x + '")', '加在最后，下标是 ' + (a.length - 1)]; }],
+    ['pop()', () => { if (!a.length) return ['hotbar.pop()  # IndexError: pop from empty list', '空的，拿不出来']; const x = a.pop(); return ['hotbar.pop()   # 交回 "' + x + '"', '拿走最后一个']; }],
+    ['pop(0)', () => { if (!a.length) return ['hotbar.pop(0)  # IndexError', '空的']; const x = a.shift(); return ['hotbar.pop(0)  # 交回 "' + x + '"', '拿走第 0 个，后面的都往前挪了一格，编号全变了']; }],
+    ['insert(1, …)', () => { if (a.length >= 9) return ['# 满了', '']; const x = pick(POOL); a.splice(1, 0, x); return ['hotbar.insert(1, "' + x + '")', '插在 1 号，原来 1 号以后的都往后挪了一格']; }],
+    ['hotbar[0]', () => a.length ? ['print(hotbar[0])   # ' + a[0], '取第 0 个，列表不变'] : ['print(hotbar[0])  # IndexError', '空的']],
+    ['hotbar[-1]', () => a.length ? ['print(hotbar[-1])  # ' + a[a.length - 1], '−1 是最后一个'] : ['# IndexError', '']],
+    ['len', () => ['print(len(hotbar))  # ' + a.length, '一共几样']],
+    ['"torch" in', () => ['print("torch" in hotbar)  # ' + (a.includes('torch') ? 'True' : 'False'), '问：里面有没有']],
+    ['sort', () => { a.sort(); return ['hotbar.sort()', '按字母顺序排好了']; }]];
+  $('#hbOps').innerHTML = OPS.map((x, i) => '<button class="btn" data-i="' + i + '">' + x[0] + '</button>').join('') + '<button class="btn" data-r>还原</button>';
+  $('#hbOps').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; if (b.hasAttribute('data-r')) { a = ['diamond_sword', 'iron_pickaxe', 'torch', 'bread']; $('#hbCode').textContent = 'hotbar = ' + pyRepr(a); $('#hbSay').textContent = ''; draw(); return; } const r = OPS[+b.dataset.i][1](); $('#hbCode').textContent = r[0] + '\n# 现在 hotbar = ' + pyRepr(a); $('#hbSay').textContent = r[1]; draw(); });
+  $('#hbCode').textContent = 'hotbar = ' + pyRepr(a); draw();
+});
+
+/* 第七十七章：一棵树 */
+dev('#treeFig2', () => {
+  const root = makeFS(), open = new Set(['/', '/Users', HOME]); const box = $('#tvTree');
+  const walk = (n, path, d) => { const kids = n.k === 'd' ? n.c.filter(x => !x.hide || open.has(HOME + '/Library')) : []; const isOpen = open.has(path);
+    let h = '<div class="tn" style="padding-left:' + d * 18 + 'px" data-p="' + esc(path) + '"><span class="ar">' + (n.k === 'd' ? (kids.length ? (isOpen ? '▾' : '▸') : '·') : ' ') + '</span>' + (n.k === 'd' ? '▤ ' : '▢ ') + esc(n.root ? '/' : n.n) + (n.zh ? '<small>（' + n.zh + '）</small>' : '') + '</div>';
+    if (isOpen) kids.forEach(c => h += walk(c, (path === '/' ? '' : path) + '/' + c.n, d + 1)); return h; };
+  const draw = () => box.innerHTML = walk(root, '/', 0);
+  box.addEventListener('click', e => { const t = e.target.closest('.tn'); if (!t) return; const p = t.dataset.p; const r = resolvePath(root, '/', p); if (r.node.k === 'd') { if (open.has(p)) open.delete(p); else open.add(p); draw(); }
+    const depth = p === '/' ? 0 : p.split('/').length - 1, leaf = r.node.k !== 'd' || !r.node.c.length;
+    $('#tvSay2').innerHTML = '路径 <code>' + esc(p) + '</code>　第 ' + depth + ' 层　' + (p === '/' ? '这是<b>根</b>' : leaf ? '这是一片<b>叶子</b>（没有孩子）' : '这是一个<b>节点</b>，有 ' + r.node.c.length + ' 个孩子') + (p !== '/' ? '，它的父亲是 <code>' + esc(p.slice(0, p.lastIndexOf('/')) || '/') + '</code>' : ''); });
+  draw(); $('#tvSay2').textContent = '点一个节点试试。';
+});
+
+/* 第七十八章：迷宫里的广度优先 */
+dev('#bfsFig', () => {
+  const W = 11, H = 9, S = 36, svg = $('#bfsSvg'); let wall, dist, par, q, done, cur;
+  const MAZES = [['00010000000', '11010111110', '00000100010', '01111101010', '00000001010', '11111011010', '00001000010', '01101111110', '01000000000'], ['00000000000', '01111111110', '00000000010', '11111111010', '00000000010', '01111111110', '00000000000', '01111111111', '00000000000']];
+  let mi = 0;
+  const reset = () => { if (!wall) wall = MAZES[mi].map(r => [...r].map(c => c === '1')); dist = Array.from({length: H}, () => new Array(W).fill(-1)); par = {}; dist[0][0] = 0; q = [[0, 0]]; done = false; cur = null; draw(); $('#bfsSay').textContent = '起点放进了队列。点“走一步”。'; };
+  const draw = () => { let g = '';
+    const path = new Set(); if (done && dist[H - 1][W - 1] >= 0) { let k = (W - 1) + ',' + (H - 1); while (k) { path.add(k); k = par[k]; } }
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { const k = x + ',' + y, d = dist[y][x], inq = q.some(p => p[0] === x && p[1] === y);
+      const fill = wall[y][x] ? 'var(--stn-2)' : path.has(k) ? 'var(--zhu)' : cur && cur[0] === x && cur[1] === y ? 'var(--gold)' : inq ? 'var(--water)' : d >= 0 ? 'var(--grass)' : 'var(--paper)';
+      g += '<rect x="' + x * S + '" y="' + y * S + '" width="' + (S - 2) + '" height="' + (S - 2) + '" fill="' + fill + '" opacity="' + (d >= 0 && !path.has(k) && !inq ? .55 : 1) + '" data-x="' + x + '" data-y="' + y + '" style="cursor:pointer"/>';
+      if (d >= 0) g += txt(x * S + S / 2 - 1, y * S + S / 2 + 4, d, {s: 12, c: path.has(k) ? '#fff' : 'var(--ink)', halo: false}); }
+    g += txt(S / 2, S / 2 - 8, '起', {s: 10, w: true}) + txt((W - .5) * S, (H - .5) * S - 8, '终', {s: 10, w: true});
+    svg.setAttribute('viewBox', '0 0 ' + W * S + ' ' + H * S); svg.innerHTML = g;
+    $('#bfsQ').innerHTML = '队列（左边是队头）：' + (q.length ? q.map(p => '<span>(' + p[0] + ',' + p[1] + ')</span>').join('') : '<i>空</i>'); };
+  const step = () => { if (done) return false; if (!q.length) { done = true; $('#bfsSay').textContent = '队列空了，终点走不到。'; draw(); return false; }
+    cur = q.shift(); const [x, y] = cur; let added = [];
+    [[1, 0], [0, 1], [-1, 0], [0, -1]].forEach(([dx, dy]) => { const nx = x + dx, ny = y + dy; if (nx < 0 || ny < 0 || nx >= W || ny >= H || wall[ny][nx] || dist[ny][nx] >= 0) return; dist[ny][nx] = dist[y][x] + 1; par[nx + ',' + ny] = x + ',' + y; q.push([nx, ny]); added.push('(' + nx + ',' + ny + ')'); });
+    if (x === W - 1 && y === H - 1) { done = true; $('#bfsSay').innerHTML = '拿出了终点！最短的路要走 <b>' + dist[y][x] + '</b> 步，红线就是它。'; draw(); return false; }
+    $('#bfsSay').textContent = '从队头拿出 (' + x + ',' + y + ')，它走了 ' + dist[y][x] + ' 步。' + (added.length ? '把邻居 ' + added.join(' ') + ' 放进队尾，标上 ' + (dist[y][x] + 1) + ' 步。' : '它没有新的邻居。'); draw(); return true; };
+  let timer = null;
+  $('#bfsStep').addEventListener('click', step);
+  $('#bfsRun').addEventListener('click', () => { clearInterval(timer); timer = setInterval(() => { if (!step()) clearInterval(timer); }, 120); });
+  $('#bfsReset').addEventListener('click', () => { clearInterval(timer); reset(); });
+  $('#bfsMaze').addEventListener('click', () => { clearInterval(timer); mi = (mi + 1) % MAZES.length; wall = null; reset(); });
+  svg.addEventListener('click', e => { const t = e.target.closest('rect[data-x]'); if (!t) return; const x = +t.dataset.x, y = +t.dataset.y; if ((x === 0 && y === 0) || (x === W - 1 && y === H - 1)) return; clearInterval(timer); wall[y][x] = !wall[y][x]; reset(); });
+  reset();
+});
+
+/* 第七十九章：猜数 */
+dev('#guessFig', () => {
+  let secret, lo, hi, n, over;
+  const bar = () => { $('#gsBar').innerHTML = '<div style="margin-left:' + (lo - 1) + '%;width:' + (hi - lo + 1) + '%"></div><span>还可能是 ' + lo + ' 到 ' + hi + '，一共 ' + (hi - lo + 1) + ' 个</span>'; };
+  const start = () => { secret = 1 + Math.floor(Math.random() * 100); lo = 1; hi = 100; n = 0; over = false; bar(); $('#gsSay').className = 'say'; $('#gsSay').textContent = '想好了。猜吧！'; $('#gsIn').value = ''; };
+  const guess = g => { if (over || isNaN(g)) return; n++; let msg;
+    if (g === secret) { over = true; msg = '猜中了！是 ' + secret + '，你用了 ' + n + ' 次。' + (n <= 7 ? '在 7 次以内，漂亮！' : '每次猜正中间，7 次以内一定能猜中。'); lo = hi = g; }
+    else if (g < secret) { lo = Math.max(lo, g + 1); msg = g + ' 小了。'; } else { hi = Math.min(hi, g - 1); msg = g + ' 大了。'; }
+    bar(); $('#gsSay').className = 'say' + (over ? ' ok' : ''); $('#gsSay').textContent = '第 ' + n + ' 次：' + msg + (over ? '' : ' 正中间是 ' + Math.floor((lo + hi) / 2) + '。'); };
+  const go = () => guess(parseInt($('#gsIn').value, 10));
+  $('#gsGo').addEventListener('click', go); $('#gsIn').addEventListener('keydown', e => { if (e.key === 'Enter') go(); });
+  $('#gsNew').addEventListener('click', start);
+  $('#gsAuto').addEventListener('click', () => { start(); const t = setInterval(() => { if (over) { clearInterval(t); return; } guess(Math.floor((lo + hi) / 2)); }, 700); });
+  start();
+});
+
+/* 第七十九章：排序 */
+dev('#sortFig', () => {
+  const svg = $('#soSvg'); let a, gen, st, cmp = 0, swp = 0, alg = 0, timer;
+  function* bubble(a){ for (let i = 0; i < a.length - 1; i++) for (let j = 0; j < a.length - 1 - i; j++) { cmp++; yield {c: [j, j + 1]}; if (a[j] > a[j + 1]) { [a[j], a[j + 1]] = [a[j + 1], a[j]]; swp++; yield {s: [j, j + 1]}; } } }
+  function* selection(a){ for (let i = 0; i < a.length - 1; i++) { let m = i; for (let j = i + 1; j < a.length; j++) { cmp++; yield {c: [m, j]}; if (a[j] < a[m]) m = j; } if (m !== i) { [a[i], a[m]] = [a[m], a[i]]; swp++; yield {s: [i, m]}; } } }
+  function* insertion(a){ for (let i = 1; i < a.length; i++) { let j = i; while (j > 0) { cmp++; yield {c: [j - 1, j]}; if (a[j - 1] > a[j]) { [a[j - 1], a[j]] = [a[j], a[j - 1]]; swp++; yield {s: [j - 1, j]}; j--; } else break; } } }
+  const ALG = [['冒泡', bubble], ['选择', selection], ['插入', insertion]];
+  const draw = () => { const n = a.length, W = 600, H = 200, bw = W / n; let g = '';
+    a.forEach((v, i) => { const hi = st && st.c && st.c.includes(i) ? 'var(--gold)' : st && st.s && st.s.includes(i) ? 'var(--zhu)' : 'var(--main)'; g += '<rect x="' + (i * bw + 2) + '" y="' + (H - 18 - v * 2.6) + '" width="' + (bw - 4) + '" height="' + v * 2.6 + '" fill="' + hi + '"/>' + txt(i * bw + bw / 2, H - 4, v, {s: 11, c: 'var(--ink-2)', halo: false}); });
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g; kv($('#soKv'), [['算法', ALG[alg][0] + '排序'], ['比较了', cmp + ' 次'], ['交换了', swp + ' 次']]); };
+  const fresh = () => { clearInterval(timer); a = Array.from({length: 12}, () => 4 + Math.floor(Math.random() * 60)); window._stOrig = a.slice(); restart(); };
+  const restart = () => { clearInterval(timer); cmp = 0; swp = 0; st = null; gen = ALG[alg][1](a); draw(); };
+  const step = () => { const r = gen.next(); if (r.done) { st = null; draw(); return false; } st = r.value; draw(); return true; };
+  btnRow($('#soAlg'), ALG.map(x => x[0] + '排序'), 0, i => { alg = i; a = window._stOrig.slice(); restart(); });
+  $('#soStep').addEventListener('click', step);
+  $('#soRun').addEventListener('click', () => { clearInterval(timer); timer = setInterval(() => { if (!step()) clearInterval(timer); }, 60); });
+  $('#soNew').addEventListener('click', fresh);
+  fresh();
+});
+
+/* 第八十章：一层一层 */
+dev('#fkFig', () => {
+  let ev = [], k = 0;
+  const build = n => { ev = []; for (let i = n; i >= 1; i--) ev.push(['call', i]); let v = 1; for (let i = 1; i <= n; i++) { v = i === 1 ? 1 : v * i; ev.push(['ret', i, v]); } k = 0; };
+  const draw = () => { const n = +$('#fkN').value, frames = []; let say = '点“走一步”开始：先调用 fact(' + n + ')。';
+    for (let i = 0; i < k; i++) { const e = ev[i]; if (e[0] === 'call') frames.push({n: e[1], v: null}); else { frames.pop(); if (frames.length) frames[frames.length - 1].got = e[2]; } }
+    if (k > 0) { const e = ev[k - 1]; say = e[0] === 'call' ? (e[1] === 1 ? 'fact(1)：停止条件！直接交回 1，不再往下问。' : 'fact(' + e[1] + ') 不会直接算，它要先问 fact(' + (e[1] - 1) + ')。叠上一层。') : 'fact(' + e[1] + ') 算出来了：' + e[2] + '，交给下面那一层，拆掉这一层。'; }
+    if (k >= ev.length) say = '全部算完：fact(' + n + ') = <b>' + ev[ev.length - 1][2] + '</b>。最后叫的 fact(1) 最先算完，这就是“栈”：后进先出。';
+    $('#fkStack').innerHTML = frames.slice().reverse().map(f => '<div><code>fact(' + f.n + ')</code>' + (f.n === 1 ? ' → 1' : f.got ? ' = ' + f.n + ' × ' + f.got + ' = <b>' + f.n * f.got + '</b>' : ' = ' + f.n + ' × fact(' + (f.n - 1) + ') = ' + f.n + ' × ？') + '</div>').join('') || '<div class="dim">（栈是空的）</div>';
+    $('#fkSay').innerHTML = say; };
+  slider('fkN', v => v, n => { build(n); draw(); });
+  $('#fkStep').addEventListener('click', () => { if (k < ev.length) k++; draw(); });
+  $('#fkReset').addEventListener('click', () => { k = 0; draw(); });
+});
+
+/* 第八十章：汉诺塔 */
+dev('#hanoiFig', () => {
+  const svg = $('#hnSvg'); let P, n, sel = null, moves = 0, timer = null;
+  const reset = () => { clearInterval(timer); n = +$('#hnN').value; P = [Array.from({length: n}, (_, i) => n - i), [], []]; sel = null; moves = 0; draw(); };
+  const draw = () => { const W = 540, H = 200, PX = [90, 270, 450]; let g = '<rect y="' + (H - 14) + '" width="' + W + '" height="14" fill="var(--wood-2)"/>';
+    PX.forEach((x, i) => { g += '<rect x="' + (x - 4) + '" y="30" width="8" height="' + (H - 44) + '" fill="var(--wood)"/><rect x="' + (x - 88) + '" y="20" width="176" height="' + (H - 20) + '" fill="transparent" data-p="' + i + '"/>';
+      P[i].forEach((d, j) => { const w = 30 + d * 20, top = sel === i && j === P[i].length - 1; g += '<rect x="' + (x - w / 2) + '" y="' + (top ? 8 : H - 14 - (j + 1) * 18) + '" width="' + w + '" height="16" rx="4" fill="' + WCOL[WOOLC[(d * 3) % 16]] + '" stroke="var(--ink-2)" pointer-events="none"/>'; }); });
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+    const best = 2 ** n - 1, win = P[2].length === n; $('#hnSay').className = 'say' + (win ? ' ok' : ''); $('#hnSay').innerHTML = '走了 ' + moves + ' 步，最少要 2<sup>' + n + '</sup> − 1 = <b>' + best + '</b> 步。' + (win ? (moves === best ? ' 完美！' : ' 完成了！能不能更少？') : sel !== null ? ' 拿起了一个盘子，点另一根柱子放下。' : ''); };
+  const move = (a, b) => { if (!P[a].length) return false; const d = P[a][P[a].length - 1]; if (P[b].length && P[b][P[b].length - 1] < d) return false; P[b].push(P[a].pop()); moves++; return true; };
+  svg.addEventListener('click', e => { const t = e.target.closest('[data-p]'); if (!t) return; const p = +t.dataset.p; if (sel === null) { if (P[p].length) sel = p; } else { if (p !== sel && !move(sel, p)) $('#hnSay').textContent = '大盘子不能压在小盘子上。'; sel = null; } draw(); });
+  slider('hnN', v => v + ' 个', () => reset());
+  $('#hnReset').addEventListener('click', reset);
+  $('#hnAuto').addEventListener('click', () => { reset(); const ms = []; const solve = (k, a, b, c) => { if (k === 0) return; solve(k - 1, a, c, b); ms.push([a, c]); solve(k - 1, b, a, c); }; solve(n, 0, 1, 2); let i = 0; timer = setInterval(() => { if (i >= ms.length) { clearInterval(timer); return; } move(ms[i][0], ms[i][1]); i++; draw(); }, Math.max(60, 500 - n * 60)); });
+});
+
+/* 第八十章：分叉的树 */
+dev('#ftreeFig', () => {
+  const svg = $('#ftSvg');
+  const draw = () => { const N = +$('#ftN').value, A = +$('#ftA').value * DEG; let g = '', cnt = 0;
+    const br = (x, y, ang, len, d) => { if (d === 0) return; const x2 = x + Math.sin(ang) * len, y2 = y - Math.cos(ang) * len; cnt++; g += '<line x1="' + x.toFixed(1) + '" y1="' + y.toFixed(1) + '" x2="' + x2.toFixed(1) + '" y2="' + y2.toFixed(1) + '" stroke="' + (d <= 2 ? 'var(--leaf)' : 'var(--wood-2)') + '" stroke-width="' + Math.max(1, d * 1.1) + '" stroke-linecap="round"/>'; br(x2, y2, ang - A, len * .74, d - 1); br(x2, y2, ang + A, len * .74, d - 1); };
+    br(220, 330, 0, 80, N); svg.setAttribute('viewBox', '0 0 440 340'); svg.innerHTML = g;
+    $('#ftNO').textContent = N + ' 层，' + cnt + ' 根'; };
+  slider('ftN', v => v + ' 层', () => { if ($('#ftA')) draw(); });
+  slider('ftA', v => v + '°', () => draw());
+});
+
+/* 第八十一章：错题本 */
+dev('#bookFig', () => {
+  const list = $('#bkList'), say = $('#bkSay');
+  const draw = () => { list.innerHTML = G.d.bug.length ? G.d.bug.slice().reverse().map((b, ri) => { const i = G.d.bug.length - 1 - ri; return '<div class="bk"><b>' + esc(b.kind) + '</b><small>' + esc(b.date) + '</small><button class="btn" data-del="' + i + '">删掉</button><p><i>出了什么事</i>' + esc(b.what) + '</p><p><i>为什么</i>' + esc(b.why) + '</p><p><i>怎样修好</i>' + esc(b.fix) + '</p><p><i>学到了</i>' + esc(b.learn) + '</p></div>'; }).join('') : '<p class="dim">还没有记录。</p>'; };
+  $('#bkAdd').addEventListener('click', () => { const b = {kind: $('#bkKind').value, what: $('#bkWhat').value.trim(), why: $('#bkWhy').value.trim(), fix: $('#bkFix').value.trim(), learn: $('#bkLearn').value.trim(), date: new Date().toLocaleDateString('zh-CN')};
+    if (!b.what) { say.className = 'say bad'; say.textContent = '至少写一下“出了什么事”。'; return; } G.d.bug.push(b); G.save(); ['#bkWhat', '#bkWhy', '#bkFix', '#bkLearn'].forEach(s => $(s).value = ''); say.className = 'say ok'; say.textContent = '记下了。现在一共 ' + G.d.bug.length + ' 条。'; draw(); });
+  $('#bkEx').addEventListener('click', () => { $('#bkKind').value = '编程'; $('#bkWhat').value = '打 print("我有" + n + "个") 出了 TypeError'; $('#bkWhy').value = 'n 是数，不能直接和字符串相加'; $('#bkFix').value = '改成 str(n)，或者用 f"我有{n}个"'; $('#bkLearn').value = '数和字要先转成同一种'; });
+  list.addEventListener('click', e => { const b = e.target.closest('[data-del]'); if (!b) return; G.d.bug.splice(+b.dataset.del, 1); G.save(); draw(); });
+  draw();
+});
+
+/* 第八十二章：成就墙 */
+dev('#wallFig', () => {
+  /* 每一部的任务和闯关个数（写书时数好的） */
+  const TOT = {5: [9, 8], 6: [10, 10], 7: [8, 8], 8: [8, 8], 9: [5, 5], 10: [0, 11]};
+  const partOf = id => { const m = id.match(/^[tq](\d+)/); return m ? chapPage['c' + m[1]] : null; };
+  const cntT = {}, cntQ = {};
+  Object.keys(G.d.task).forEach(k => { const p = partOf(k); if (p) cntT[p] = (cntT[p] || 0) + 1; });
+  Object.keys(G.d.quiz).forEach(k => { const p = partOf(k); if (p) cntQ[p] = (cntQ[p] || 0) + 1; });
+  $('#wlParts').innerHTML = [5, 6, 7, 8, 9, 10].map(p => { const [tt, tq] = TOT[p], dt = cntT[p] || 0, dq = cntQ[p] || 0, pct = Math.round((dt + dq) / Math.max(1, tt + tq) * 100);
+    return '<a href="' + PURL[p] + '"><b>' + PARTS[p - 1].k + '</b><small>第' + CN[p - 1] + '部</small><span class="pbar"><i style="width:' + pct + '%"></i></span><small>' + (tt ? '任务 ' + dt + '/' + tt + ' · ' : '') + '闯关 ' + dq + '/' + tq + '</small></a>'; }).join('');
+  const q = id => !!G.d.quiz[id], qs = (a, b) => { for (let i = a; i <= b; i++) if (!G.d.quiz['q' + i]) return false; return true; };
+  const sure = Object.values(G.d.srs).filter(x => x.b >= 4).length, mapN = Object.keys(G.d.flag).filter(k => /^m\d+$/.test(k)).length;
+  const B = [['⌘', '键盘手', '过了第 33、35 章的关', q('q33') && q('q35')], ['▤', '文件侦探', '过了第 36—38 章的关', qs(36, 38)], ['%', '终端新手', '过了第 39 章的关', q('q39')], ['✛', '坐标通', '坐标点点乐连对十题', !!G.d.flag.xyz], ['/', '命令师', '第六部十关全过', qs(41, 50)],
+    ['A', '单词 50', '复习台里记牢 50 个词', sure >= 50], ['B', '单词 150', '记牢 150 个词', sure >= 150], ['∑', '数学地图', '在数学地图上打了 20 个勾', mapN >= 20], ['∠', '数学家', '第八部八关全过', qs(59, 66)], ['☼', '观察员', '第九部五关全过', qs(67, 71)],
+    ['ƒ', '程序员', '过了第 72—75 章的关', qs(72, 75)], ['⇅', '算法', '过了第 79、80 章的关', q('q79') && q('q80')], ['✎', '捉虫人', '错题本里记了 3 条', G.d.bug.length >= 3], ['★', '自学者', '写下了下一个月的计划', !!G.d.flag.plan]];
+  $('#wlBadges').innerHTML = B.map(b => '<div class="bd' + (b[3] ? ' on' : '') + '"><span>' + b[0] + '</span><b>' + b[1] + '</b><small>' + b[2] + '</small></div>').join('');
+});
+dev('#planFig', () => {
+  const ids = ['mp1', 'mp2', 'mp3', 'mp4'], p = G.d.flag.plan || {};
+  ids.forEach(i => { if (p[i]) $('#' + i).value = p[i]; });
+  const text = () => '我的下一个月\n' + ids.slice(0, 3).map((i, k) => (k + 1) + '. ' + ($('#' + i).value || '……')).join('\n') + '\n怎样检查：' + ($('#mp4').value || '……');
+  $('#mpSave').addEventListener('click', () => { const o = {}; ids.forEach(i => o[i] = $('#' + i).value.trim()); if (!o.mp1) { $('#mpSay').className = 'say bad'; $('#mpSay').textContent = '至少写一个目标。'; return; } G.d.flag.plan = o; G.save(); $('#mpSay').className = 'say ok'; $('#mpSay').textContent = '存好了。成就墙上的“自学者”亮了（刷新页面能看到）。'; });
+  $('#mpCopy').addEventListener('click', () => { const t = text(); const ok = () => { $('#mpSay').className = 'say ok'; $('#mpSay').textContent = '拷贝好了，可以 ⌘V 粘贴到备忘录。'; }; if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(t).then(ok, () => { $('#mpSay').textContent = t; }); else $('#mpSay').textContent = t; });
 });
 
 })();

@@ -1,0 +1,110 @@
+<div class="volhead" data-vol="卷二十二 · 数据">
+  <div class="num">VOLUME TWENTY-TWO · 第十部 · 卷二十二</div>
+  <h2>组<small>列表、字典、队列</small></h2>
+  <p class="lede">一个变量只能放一样东西。游戏里却到处是“一堆东西”：物品栏的 36 格、几百种方块的名字、文件夹套文件夹、一排等着被处理的格子。这一卷讲三种装“一堆东西”的办法，程序员叫它们<b>数据结构</b>。</p>
+  <svg class="row" aria-hidden="true"></svg>
+</div>
+
+<!-- ============ 第七十六章 · 组 ============ -->
+<section class="chap" id="c76" data-vol="卷二十二 · 组">
+  <div class="chead">
+    <div class="big">组</div>
+    <div>
+      <div class="no">第七十六章</div>
+      <h2>列表</h2>
+      <dl><dt>讲什么</dt><dd>快捷栏就是一个列表；下标从 0 开始，−1 是最后一个；append、pop、insert、remove；用 for 走一遍；切片；列表里套列表：地图和世界</dd><dt>本章装置</dt><dd>快捷栏列表 · 小蟒 · 列表</dd></dl>
+      <div class="sub" data-s="程 数"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第四十四天</b><span class="pix">PYTHON · 小蟒</span><span>整理物品栏</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>第四十五章说物品栏是“数组”。Python 里也有吗？</span></div>
+      <div class="l"><i class="j">舅</i><span>有，叫列表。方括号括起来，用逗号隔开：<code>hotbar = ["sword", "pickaxe", "torch"]</code>。<code>hotbar[0]</code> 就是第 0 格。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★</span><span class="dim">★★</span></div><div><b>大约多久</b>50 分钟</div><div><b>要准备</b>小蟒</div><div><b>大人</b>不用</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>建一个列表，用下标取出、改掉其中一格。</li>
+      <li>用 append、pop、insert、remove 加东西、拿东西。</li>
+      <li>用 for 把列表里每一样都走一遍，数一数、找一找。</li>
+      <li>用“列表里套列表”表示一张平面地图。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>一排编了号的格子</h3>
+    <pre class="py">hotbar = ["diamond_sword", "iron_pickaxe", "torch", "bread"]
+print(hotbar[0])      # diamond_sword
+print(hotbar[-1])     # bread：−1 是最后一个
+print(len(hotbar))    # 4
+hotbar[2] = "water_bucket"</pre>
+    <p>列表的下标（编号）<b>从 0 开始</b>，最后一个是 <code>len − 1</code>。负数下标从后往前数：−1 是最后一个，−2 是倒数第二个。下标超出范围会报 IndexError（第八十一章会专门找这种错）。</p>
+  </div>
+  <div class="wide tbl">
+    <table class="t kt">
+      <tr><th>写法</th><th>做什么</th></tr>
+      <tr><td><code>a.append(x)</code></td><td>在最后加一个（append：附加）</td></tr>
+      <tr><td><code>a.pop()</code></td><td>拿走最后一个，并把它交回来</td></tr>
+      <tr><td><code>a.pop(0)</code></td><td>拿走第 0 个（后面的都往前挪一格）</td></tr>
+      <tr><td><code>a.insert(1, x)</code></td><td>在 1 号的位置插进去（后面的往后挪）</td></tr>
+      <tr><td><code>a.remove(x)</code></td><td>找到第一个 x，删掉它</td></tr>
+      <tr><td><code>x in a</code></td><td>问：a 里有没有 x？</td></tr>
+      <tr><td><code>a.index(x)</code></td><td>x 在第几号</td></tr>
+      <tr><td><code>a[1:3]</code></td><td>切片：1 号和 2 号（不包括 3），和 range 一样</td></tr>
+      <tr><td><code>a.sort()</code></td><td>从小到大排好（第七十九章讲排序是怎么做到的）</td></tr>
+    </table>
+  </div>
+
+  <div class="fig" id="hbFig">
+    <div class="fig-label">装置 · 第七十六章 · 一</div>
+    <h4>快捷栏列表</h4>
+    <p class="how">上面是一个列表，画成快捷栏的样子，格子左上角是下标。点下面的按钮做操作，旁边会写出对应的 Python。看看 pop(0) 和 insert 以后，后面的格子编号怎样变。</p>
+    <div class="hbar" id="hbBar"></div>
+    <div class="btns" id="hbOps"></div>
+    <pre class="py" id="hbCode"></pre>
+    <div class="say" id="hbSay"></div>
+  </div>
+
+  <div class="col">
+    <h3>列表里套列表</h3>
+    <pre class="py">grid = [[0, 0, 1],
+        [0, 1, 1],
+        [1, 1, 1]]
+print(grid[1][2])   # 第 1 行、第 2 列</pre>
+    <p>一个列表，每一格又是一个列表，就成了一张<b>表格</b>（二维列表）：先选第几行，再选第几列。一张平面地图、一块像素画、一张棋盘都能这样存。再套一层，就是三维：<code>world[x][y][z]</code>，整个方块世界就是一个巨大的三维列表（游戏实际存的时候分成区块、压缩过，第三十八章）。</p>
+  </div>
+
+  <div class="fig" id="py76">
+    <div class="fig-label">装置 · 第七十六章 · 二</div>
+    <h4>小蟒 · 列表</h4>
+    <p class="how">照任务单写。</p>
+    <div class="pyhost"></div>
+  </div>
+
+  <div class="pass" data-id="q76">
+    <div class="qq" data-in="torch|'torch'|&quot;torch&quot;"><p><code>a = ["sword", "pickaxe", "torch"]</code>，<code>a[2]</code> 是什么？</p><p class="ex">下标从 0 开始：0 sword、1 pickaxe、2 torch。</p></div>
+    <div class="qq" data-in="pickaxe|'pickaxe'"><p>同一个 a，<code>a[-2]</code> 是什么？</p><p class="ex">−1 是 torch，−2 是 pickaxe。</p></div>
+    <div class="qq" data-a="2"><p><code>a</code> 有 3 个东西，<code>a[3]</code> 会怎样？</p><ol><li>得到第 3 个</li><li>得到 None</li><li>IndexError</li></ol><p class="ex">下标只能是 0 到 2。</p></div>
+    <div class="qq" data-in="4"><p><code>a = [1, 2, 3]</code>，<code>a.append(9)</code> 以后 <code>len(a)</code> 是几？</p><p class="ex">4。</p></div>
+    <div class="qq" data-a="0"><p><code>grid[1][2]</code> 是什么意思？</p><ol><li>第 1 行、第 2 列</li><li>第 2 行、第 1 列</li><li>1 乘 2</li></ol><p class="ex">先行后列。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>列表 <span class="en" data-say="list">list</span></b>一排编了号的格子。</div>
+    <div><b>下标 <span class="en" data-say="index">index</span></b>格子的编号，从 0 开始。</div>
+    <div><b>切片 <span class="en" data-say="slice">slice</span></b>切出一段：a[1:3]。</div>
+    <div><b>二维列表 <span class="en" data-say="two-dimensional list">2D list</span></b>列表里套列表，像一张表格。</div>
+  </div>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>快捷栏是 0—8 号，物品栏是长 36 的列表；世界是一个三维列表。</div>
+    <div><i>脑袋<small>带走一样</small></i>很多东西排成一排，就用编号去找；编号从 0 开始。</div>
+  </div>
+</section>

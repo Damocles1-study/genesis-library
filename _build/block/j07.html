@@ -1,0 +1,88 @@
+<!-- ============ 第七十八章 · 队 ============ -->
+<section class="chap" id="c78" data-vol="卷二十二 · 队">
+  <div class="chead">
+    <div class="big">队</div>
+    <div>
+      <div class="no">第七十八章</div>
+      <h2>队列和广度优先</h2>
+      <dl><dt>讲什么</dt><dd>排队：先来的先走；一摞盘子：后放的先拿；一圈一圈往外找；水和光是怎样传开的；走迷宫的最短路</dd><dt>本章装置</dt><dd>迷宫里的广度优先 · 小蟒 · 队列</dd></dl>
+      <div class="sub" data-s="程 理"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第四十六天</b><span class="pix">WORLD · 迷宫</span><span>冒险模式</span></div>
+    <div class="bd">
+      <div class="l"><i class="d">豆</i><span>我做了一个迷宫，你能找到最短的路吗？</span></div>
+      <div class="l"><i class="g">格</i><span>我一般是一直贴着右边的墙走……可那不一定最短。</span></div>
+      <div class="l"><i class="j">舅</i><span>还记得第六十八章算火把亮度、第七十章算水流吗？从起点开始，一圈一圈往外找，先到终点的那一圈，就是最短的路。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★★</span><span class="dim">★</span></div><div><b>大约多久</b>50 分钟</div><div><b>要准备</b>小蟒</div><div><b>大人</b>不用</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>说出队列（先进先出）和栈（后进先出）的区别。</li>
+      <li>看懂广度优先搜索一圈一圈往外找的过程。</li>
+      <li>说出为什么它找到的路一定是最短的。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>排队和一摞盘子</h3>
+    <ul class="plain">
+      <li><b>队列</b>（<span class="en" data-say="queue">queue</span>）：像食堂排队，<b>先来的先走</b>。新来的站到队尾（<code>q.append(x)</code>），从队头拿（<code>q.pop(0)</code>）。</li>
+      <li><b>栈</b>（<span class="en" data-say="stack">stack</span>）：像一摞盘子，<b>后放的先拿</b>。往顶上放（<code>s.append(x)</code>），从顶上拿（<code>s.pop()</code>）。⌘Z 撤销就是一个栈：最后做的那一步最先被撤销。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>广度优先：一圈一圈往外找</h3>
+    <ol class="steps">
+      <li>把起点放进队列，标上“走 0 步”。</li>
+      <li>从队头拿出一格。看它的上下左右四个邻居：不是墙、还没来过的，标上“比我多走 1 步”，放进队尾。</li>
+      <li>重复第 2 步，直到拿出来的是终点，或者队列空了（走不到）。</li>
+    </ol>
+    <p>因为队列先来先走，所以总是先把“走 1 步能到的”全部看完，再看“走 2 步能到的”……像往水里扔一颗石头，水波一圈一圈往外扩。<b>终点第一次被碰到时，用的步数一定最少</b>。这个办法叫<b>广度优先搜索</b>（<span class="en" data-say="breadth-first search">breadth-first search</span>，常简称 BFS）。</p>
+    <p>第六十八章的火把：每一圈亮度少 1；第七十章的水：每一圈水位少 1；第九章的红石信号：每一格少 1。它们都是“一圈一圈往外”。地图软件给你找路，背后也有它的影子（真正的导航用的是它的升级版）。</p>
+  </div>
+
+  <div class="fig" id="bfsFig">
+    <div class="fig-label">装置 · 第七十八章 · 一</div>
+    <h4>迷宫里的广度优先</h4>
+    <p class="how">绿色是起点，金色是终点，灰色是墙（点格子可以加墙、拆墙）。点“走一步”，看电脑从队列里拿出一格、把邻居放进队尾；格子里的数是“走几步能到”。下面一行是现在的队列。找到终点以后，红线就是最短的路。</p>
+    <svg id="bfsSvg" style="max-width:440px;display:block;margin:0 auto" role="img" aria-label="一个迷宫"></svg>
+    <div class="bfsq" id="bfsQ"></div>
+    <div class="btns"><button class="btn pri" id="bfsStep">走一步</button><button class="btn" id="bfsRun">一直走</button><button class="btn" id="bfsReset">重来</button><button class="btn" id="bfsMaze">换一个迷宫</button></div>
+    <div class="say" id="bfsSay"></div>
+  </div>
+
+  <div class="fig" id="py78">
+    <div class="fig-label">装置 · 第七十八章 · 二</div>
+    <h4>小蟒 · 队列</h4>
+    <p class="how">先运行看看队列和栈的不同，再看下面那段广度优先的代码：它在一个小迷宫里算出了每一格要走几步。</p>
+    <div class="pyhost"></div>
+  </div>
+
+  <div class="pass" data-id="q78">
+    <div class="qq" data-a="0"><p>食堂排队是哪一种？</p><ol><li>队列：先来先走</li><li>栈：后来先走</li></ol><p class="ex">先进先出。</p></div>
+    <div class="qq" data-a="1"><p>⌘Z 撤销是哪一种？</p><ol><li>队列</li><li>栈</li></ol><p class="ex">最后做的最先撤销：后进先出。</p></div>
+    <div class="qq" data-a="2"><p>为什么广度优先找到的路一定最短？</p><ol><li>它运气好</li><li>它贴着墙走</li><li>它先看完所有 1 步能到的，再看 2 步能到的……</li></ol><p class="ex">一圈一圈往外，第一次碰到终点时步数最少。</p></div>
+    <div class="qq" data-in="b|'b'"><p><code>q = ["a"]</code>，<code>q.append("b")</code>，<code>q.pop(0)</code>，现在 q 里剩下什么？</p><p class="ex">先进的 a 先出，剩下 b。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>队列 <span class="en" data-say="queue">queue</span></b>先进先出。</div>
+    <div><b>栈 <span class="en" data-say="stack">stack</span></b>后进先出。（一组物品也叫 stack！）</div>
+    <div><b>广度优先搜索 <span class="en" data-say="BFS">BFS</span></b>一圈一圈往外找。</div>
+    <div><b>最短路 <span class="en" data-say="shortest path">shortest path</span></b>步数最少的那条路。</div>
+  </div>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>光、水、红石信号都是一圈一圈传开的。</div>
+    <div><i>脑袋<small>带走一样</small></i>找最近的东西，先看近的，再看远的。</div>
+  </div>
+</section>

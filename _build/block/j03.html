@@ -1,0 +1,101 @@
+<!-- ============ 第七十四章 · 环 ============ -->
+<section class="chap" id="c74" data-vol="卷二十一 · 环">
+  <div class="chead">
+    <div class="big">环</div>
+    <div>
+      <div class="no">第七十四章</div>
+      <h2>循环</h2>
+      <dl><dt>讲什么</dt><dd>for 和 range；range 从 0 开始、不包括最后一个；循环里套循环；把东西加起来；while 和死循环；break 和 continue；跟踪表</dd><dt>本章装置</dt><dd>小蟒 · 循环（带跟踪表）</dd></dl>
+      <div class="sub" data-s="程 数"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第四十二天</b><span class="pix">PYTHON · 小蟒</span><span>盖楼</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>我想盖一座 6 层的塔，就写了 6 行 setblock。要是 100 层呢？</span></div>
+      <div class="l"><i class="j">舅</i><span>那就让电脑重复。告诉它“这件事做 100 遍，每遍 y 加 1”。这叫循环，电脑最擅长，一点都不嫌烦。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★</span><span class="dim">★★</span></div><div><b>大约多久</b>50 分钟</div><div><b>要准备</b>小蟒</div><div><b>大人</b>不用</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>用 for 和 range 让一件事重复很多遍。</li>
+      <li>说出 <code>range(5)</code> 是 0、1、2、3、4，为什么没有 5。</li>
+      <li>用两层循环盖一面墙、铺一块地。</li>
+      <li>用 while 写一个“直到……才停”的循环，知道怎样不写出死循环。</li>
+      <li>用“一步一步”和跟踪表，看清循环每一圈发生了什么。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>for 和 range</h3>
+    <pre class="py">for y in range(6):
+    setblock(4, y, 4, "stone")</pre>
+    <p>读法：“对于 range(6) 里的每一个 y，都放一块石头。”<code>range(6)</code> 是 0、1、2、3、4、5，一共 6 个，<b>从 0 开始，不包括 6</b>。为什么不包括 6？因为这样“range(6)”正好是 6 个，和第四十五章“快捷栏 0—8 号一共 9 格”是一个道理。</p>
+    <p>range 还有两种写法：<code>range(1, 11)</code> 是 1 到 10；<code>range(0, 20, 2)</code> 是 0、2、4……18，每次跳 2。</p>
+  </div>
+
+  <div class="col">
+    <h3>循环里套循环</h3>
+    <pre class="py">for x in range(10):
+    for y in range(4):
+        setblock(x, y, 0, "oak_planks")</pre>
+    <p>外面的循环走一步（x 换一个），里面的循环就要从头走一遍（y 从 0 到 3）。所以一共放了 10 × 4 = 40 块：一面 10 宽 4 高的墙。再套一层 z，就是第四十七章的 /fill。</p>
+  </div>
+
+  <div class="col">
+    <h3>把东西加起来</h3>
+    <pre class="py">total = 0
+for i in range(1, 101):
+    total += i
+print(total)</pre>
+    <p>从 1 加到 100，答案是 5050。有一个有名的故事：数学家高斯小时候，老师让全班从 1 加到 100，他很快就说出了 5050：1 + 100、2 + 99……每对都是 101，一共 50 对（故事的细节有好几个版本，存疑）。电脑不用想巧办法，老老实实加 100 次，一眨眼就完。</p>
+  </div>
+
+  <div class="col">
+    <h3>while：直到……才停</h3>
+    <pre class="py">coins = 0
+while coins &lt; 64:
+    coins += 10
+print(coins)</pre>
+    <p>“当 coins 小于 64 的时候，一直加 10”。到 70 时条件不成立了，循环停下。<b>小心死循环</b>：如果条件永远成立（比如忘了让 coins 变），程序永远停不下来。小蟒数到三十万步会帮你喊停；真的 Python 里按 control + C（第三十九章）。</p>
+    <p>两个开关：<code>break</code> 立刻跳出循环；<code>continue</code> 跳过这一圈剩下的，直接开始下一圈。</p>
+  </div>
+
+  <div class="fig" id="py74">
+    <div class="fig-label">装置 · 第七十四章</div>
+    <h4>小蟒 · 循环</h4>
+    <p class="how">点“一步一步”，每点一下走一句，下面的跟踪表会记下每一步时的变量。看懂一个循环最好的办法，就是自己当一回电脑，一步一步跟着走。</p>
+    <div class="pyhost"></div>
+  </div>
+
+  <div class="corner" data-k="学">
+    <h5>跟踪表：自己当一回电脑</h5>
+    <p>看不懂一段程序时，拿一张纸，画一张表：第一列写“第几步”，后面每个变量一列。一句一句往下走，变量变了就在表里写下新的值。这叫<b>跟踪表</b>（<span class="en" data-say="trace table">trace table</span>），是程序员从古到今的老办法，信息学竞赛的选手也天天用它。</p>
+  </div>
+
+  <div class="pass" data-id="q74">
+    <div class="qq" data-in="0, 1, 2, 3|0,1,2,3|0 1 2 3"><p><code>range(4)</code> 是哪几个数？（用逗号隔开）</p><p class="ex">0, 1, 2, 3。从 0 开始，不包括 4。</p></div>
+    <div class="qq" data-in="12"><p>外面循环 3 次、里面循环 4 次，里面那句一共执行几次？</p><p class="ex">3 × 4 = 12。</p></div>
+    <div class="qq" data-in="5050"><p>从 1 加到 100 是多少？</p><p class="ex">5050。</p></div>
+    <div class="qq" data-in="70"><p><code>coins = 0</code>，<code>while coins &lt; 64: coins += 10</code>，最后 coins 是多少？</p><p class="ex">0、10、20……60 都小于 64 继续加，加到 70 停。</p></div>
+    <div class="qq" data-a="1"><p>想让循环立刻停下、不再继续，用哪个？</p><ol><li>continue</li><li>break</li><li>pass</li></ol><p class="ex">break 跳出循环。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>循环 <span class="en" data-say="loop">loop</span></b>让一段代码重复很多遍。</div>
+    <div><b>死循环 <span class="en" data-say="infinite loop">infinite loop</span></b>永远停不下来的循环。</div>
+    <div><b>累加 <span class="en" data-say="accumulate">accumulate</span></b>一个一个加到一个变量里。</div>
+    <div><b>跟踪表 <span class="en" data-say="trace table">trace table</span></b>记下每一步变量的表。</div>
+  </div>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>循环型命令方块就是一个一直转的 while True。</div>
+    <div><i>脑袋<small>带走一样</small></i>range(n) 是 0 到 n − 1；循环停不下来，就看条件里的变量变没变。</div>
+  </div>
+</section>

@@ -23,6 +23,7 @@
 | 上梁 · 建造创世记（三部，三个网页） | `beam/index.html`、`beam/two.html`、`beam/three.html` |
 | 红与绿 · 投资创世记（三部，三个网页） | `stock/index.html`、`stock/two.html`、`stock/three.html` |
 | 开张 · 一个人的生意创世记（三部，三个网页） | `open/index.html`、`open/two.html`、`open/three.html` |
+| 能不能 · 常识创世记（三部，写作中：第一部《一起》已上架） | `can/index.html` |
 
 ## 改书
 

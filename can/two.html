@@ -1733,7 +1733,7 @@ function slider(id, f, cb){ const r = $('#' + id), o = $('#' + id + 'O'); const 
 
 /* ---------- 全书目录（三个网页共用） ---------- */
 const PAGE = /three\.html/.test(location.pathname) ? 3 : /two\.html/.test(location.pathname) ? 2 : 1;
-const READY = 2; // 已经写好的部数
+const READY = 3; // 已经写好的部数
 const PURL = {1: './', 2: 'two.html', 3: 'three.html'};
 const TOC = [
   {p: 1, t: '第一部 · 一起 —— 什么不能一起吃、一起服'},
@@ -1762,16 +1762,15 @@ const TOC = [
   {id: 'c16', n: '后', t: '做完这件事以后', s: '吃了药开车、沉箱病和潜水后坐飞机、拔完牙、献完血、打完针、全麻醒来；潜水以后多久能飞', r: '1870—今'},
   {p: 3, t: '第三部 · 混用 —— 什么和什么不能混'},
   {v: '卷五 · 瓶子'},
-  {id: 'c17', n: '氯', t: '八四和洁厕灵', s: '伊普尔的绿雾、1984 年的一瓶消毒液、漂白水和氨水', r: '1789—今'},
-  {id: 'c18', n: '碱', t: '酸和碱', s: '两瓶疏通剂、醋配小苏打、双氧水和醋', r: '1900—今'},
-  {id: 'c19', n: '锅', t: '锅碗和炉子', s: '微波炉里的勺子和鸡蛋、空烧的不粘锅和一只鸟、塑料盒', r: '1945—今'},
-  {v: '卷六 · 电与火'},
-  {id: 'c20', n: '电', t: '插座和电池', s: '插排串插排、湿手、楼道里充电的电动车', r: '1880—今'},
-  {id: 'c21', n: '火', t: '着火的时候', s: '油锅泼水、灭火器的字母、别坐电梯、要命的是烟', r: '1666—今'},
-  {id: 'c22', n: '气', t: '看不见的气', s: '一所学校的爆炸和煤气的臭味、一氧化碳、漏气了别开灯', r: '1937—今'},
-  {id: 'c23', n: '救', t: '急救的错招', s: '流鼻血仰头、烫伤抹牙膏、鱼刺吞饭团、拍背还是抱腹', r: '1974—今'},
+  {id: 'c17', n: '氯', t: '八四和洁厕灵', s: '一位瑞典药剂师的绿气、伊普尔的绿雾、1984 年的一瓶肝炎洗消液、漂白水和氨、八四配酒精；瓶子里的氯', r: '1774—今'},
+  {id: 'c18', n: '碱', t: '酸和碱', s: '巴比伦的肥皂、一位喉科医生收集的东西、两瓶疏通剂、醋配小苏打、双氧水和醋、“酸性体质”；两样倒在一起', r: '前 2800—今'},
+  {id: 'c19', n: '锅', t: '锅碗和炉子', s: '口袋里化掉的巧克力、微波炉里的勺子和鸡蛋、空烧的不粘锅和一只鹦鹉、塑料盒底下的数字；空锅开大火', r: '1938—今'},
+  {id: 'c20', n: '电', t: '插座和电池', s: '珍珠街的电灯、湿手和三十毫安、插排串插排、楼道里的电动车；一个插排上插了什么', r: '1882—今'},
+  {id: 'c21', n: '火', t: '着火的时候', s: '伦敦大火和一位上尉的灭火器、油锅里的一瓢水、灭火器上的字母、别坐电梯、关上门；火怎么灭', r: '1666—今'},
+  {id: 'c22', n: '气', t: '看不见的气', s: '矿井里的金丝雀、一所学校的爆炸和煤气的臭味、炉子边的一盆水、漏气了别开灯；一间关着窗的屋子', r: '1896—今'},
+  {id: 'c23', n: '救', t: '急救的错招', s: '流鼻血仰头、烫伤抹牙膏、鱼刺吞饭团、往嘴里塞筷子、拍背还是抱腹；先看清楚再动手', r: '1963—今'},
   {v: '尾声'},
-  {id: 'c24', n: '贴', t: '一张冰箱贴', s: '常识怎样变成常识、全书判词、写一张自己的冰箱贴', r: '今'}
+  {id: 'c24', n: '贴', t: '一张冰箱贴', s: '用血写成的规矩、规矩太多以后、全书判词、押韵清单；写一张自己的冰箱贴', r: '1927—今'}
 ];
 const chapPage = {}; { let p = 1; TOC.forEach(x => { if (x.p) p = x.p; if (x.id) chapPage[x.id] = p; }); }
 const href = id => (chapPage[id] === PAGE ? '' : PURL[chapPage[id]]) + '#' + id;
@@ -1984,6 +1983,94 @@ dev('#waitFig', fig => {
     out.innerHTML = '<div class="top"><b>' + r[0] + '：' + t + '</b><i class="st" data-v="' + r[4] + '">' + r[4] + '</i></div><p>' + r[5] + '</p><p style="font-size:13.5px;color:var(--ink-3)">详见 ' + lk + '</p>';
   });
   draw();
+});
+
+
+/* ---------- 第三部封面装置：混一混，家里的十个瓶子 ---------- */
+dev('#mixFig', fig => {
+  const A = $('#mixA'), B = $('#mixB'), out = $('#mixOut'), svg = $('#mixSvg');
+  const IT = [
+    ['八四', '次氯酸钠，偏碱'], ['洁厕灵', '多数含盐酸'], ['白醋', '醋酸'], ['酒精', '75% 乙醇'], ['玻璃水', '有的含氨'],
+    ['双氧水', '3% 过氧化氢'], ['碱性疏通剂', '氢氧化钠'], ['强酸疏通剂', '浓硫酸'], ['小苏打', '碳酸氢钠'], ['洗洁精', '表面活性剂']
+  ];
+  /* 危险等级：3 别碰 / 2 当心 / 1 白费 / 0 没事；[等级, 一句话, 章] */
+  const P = {
+    '0-1': [3, '放出氯气。次氯酸钠遇到盐酸，一下子变回一百多年前从战壕里飘过来的那种黄绿色气体。卫生间小、不通风，最容易出事。', 'c17'],
+    '0-2': [3, '也放氯气，只是醋酸比盐酸弱，放得慢一些、少一些。“兑点醋消毒更强”是网上流传的偏方，别试。', 'c17'],
+    '0-3': [2, '会慢慢生成三氯甲烷（氯仿）等含氯的东西，刺激眼睛和呼吸道，消毒效果也互相抵消。2020 年不少人这样兑过。', 'c17'],
+    '0-4': [3, '生成氯胺，一种刺激性很强的气体，浓了会伤肺。拿漂白水刷完马桶、再用含氨的清洁剂擦，也会在空气里相遇。', 'c17'],
+    '0-5': [2, '两样互相“吃掉”，冒出大量氧气泡、发热，可能溅出来，消毒效果一样也不剩。不产生毒气，但纯属白费、还容易溅到眼睛。', 'c17'],
+    '0-6': [1, '没有危险的反应，八四本来就靠碱稳住。可两样都伤皮肤、伤眼睛，混在一起只是更难冲干净。', 'c18'],
+    '0-7': [3, '最糟的一种：浓酸一碰到次氯酸钠，又放热又放氯气。', 'c17'],
+    '0-8': [1, '小苏打让溶液的碱性弱一点，氯更容易跑掉，基本没危险，也没好处。', 'c17'],
+    '0-9': [1, '多数洗洁精和八四混了没事，但有的清洁剂里有氨或酸，看清成分。最省心的办法是分开用。', 'c17'],
+    '1-2': [0, '酸加酸，没有危险的反应，只是更酸。', 'c18'],
+    '1-3': [0, '常温下几乎不反应。', 'c18'],
+    '1-4': [2, '酸碱中和，冒出氯化铵的白烟、发热，白烟刺激呼吸道。', 'c18'],
+    '1-5': [1, '家用的浓度下反应很慢；浓的时候可能放出少量氯气。没有理由混。', 'c18'],
+    '1-6': [3, '强酸遇上强碱，剧烈中和、放热，管子里的水可能沸腾，连带着把酸和碱一起喷出来。', 'c18'],
+    '1-7': [2, '浓硫酸会把盐酸里的氯化氢“赶”出来，冒出刺鼻的酸雾。', 'c18'],
+    '1-8': [1, '冒一阵二氧化碳的泡，酸被中和掉一部分。不危险，纯属白费。', 'c18'],
+    '1-9': [1, '不危险，但酸会让一些洗涤成分失效。', 'c18'],
+    '2-3': [0, '没事。理论上能慢慢生成一点有香味的乙酸乙酯，厨房里等不到。', 'c18'],
+    '2-4': [1, '中和，互相抵消。', 'c18'],
+    '2-5': [2, '放久了会生成过氧乙酸，腐蚀性和刺激性都比两样各自强。分开用可以，别装进同一个瓶子。', 'c18'],
+    '2-6': [1, '中和、微微发热，碱性疏通剂的劲也没了。', 'c18'],
+    '2-7': [2, '浓硫酸遇到醋里的水，猛烈放热、可能飞溅。', 'c18'],
+    '2-8': [1, '小学科学课的“火山”：哗啦啦冒泡，冒完剩下的是一点醋酸钠和水。看着热闹，去污的本事互相抵消了。', 'c18'],
+    '2-9': [0, '没什么反应。', 'c18'],
+    '3-4': [0, '没什么反应。', 'c17'],
+    '3-5': [0, '两样都是消毒用的，常温下不怎么反应。', 'c17'],
+    '3-6': [1, '没有危险的反应，可是都伤皮肤，而且酒精会挥发、遇火能烧。', 'c18'],
+    '3-7': [2, '浓硫酸遇酒精猛烈放热，酒精蒸气又能烧，别让它们见面。', 'c18'],
+    '3-8': [0, '没事。', 'c18'],
+    '3-9': [0, '没事。', 'c18'],
+    '4-5': [0, '没什么危险的反应。', 'c18'],
+    '4-6': [1, '强碱会把氨“赶”出来，气味更冲，刺激眼睛和鼻子。', 'c18'],
+    '4-7': [3, '浓酸遇氨，剧烈中和放热，又冒白烟又可能飞溅。', 'c18'],
+    '4-8': [0, '没事。', 'c18'],
+    '4-9': [0, '没事。', 'c18'],
+    '5-6': [1, '碱让双氧水分解得更快，冒氧气泡、发热，没毒，但会溅。', 'c18'],
+    '5-7': [2, '浓硫酸加双氧水是实验室里有名的强氧化性混合物（浓的那种叫“食人鱼溶液”），家用双氧水很稀，也别试。', 'c18'],
+    '5-8': [0, '没事，偶尔有人一起用来擦东西。', 'c18'],
+    '5-9': [0, '没事。', 'c18'],
+    '6-7': [3, '两瓶疏通剂一起倒，这一部第十八章开头的那个电话就是为这个打的：剧烈放热、沸腾、喷溅。', 'c18'],
+    '6-8': [0, '没什么反应。', 'c18'],
+    '6-9': [0, '没事，只是伤手。', 'c18'],
+    '7-8': [2, '浓酸碰到小苏打，猛冒泡、放热，泡沫会把酸带出来。', 'c18'],
+    '7-9': [2, '任何带水的东西倒进浓硫酸，都可能猛烈放热、沸腾飞溅。实验室的老规矩是“酸入水”，不是“水入酸”。', 'c18'],
+    '8-9': [0, '没事，有人拿它俩一起刷锅。', 'c18']
+  };
+  const LV = [['没事', 'var(--grn)', .18], ['白费', 'var(--ink-3)', .35], ['当心', 'var(--main)', .7], ['别碰', 'var(--red)', 1]];
+  let a = 0, b = 1;
+  const chips = (box, cur) => { box.innerHTML = IT.map((t, i) => '<button data-i="' + i + '" class="' + (i === cur ? (box === A ? 'on' : 'on2') : '') + '">' + t[0] + '</button>').join(''); };
+  function show(){
+    chips(A, a); chips(B, b);
+    if (a === b) { out.innerHTML = '<p>同一样东西，自己和自己混不出事。换一样。</p>'; grid(); return; }
+    const k = Math.min(a, b) + '-' + Math.max(a, b), r = P[k], lv = LV[r[0]];
+    const id = r[2], t = TOC.find(x => x.id === id);
+    out.innerHTML = '<div class="top"><b>' + IT[a][0] + ' + ' + IT[b][0] + '</b><span class="chip" style="background:' + lv[1] + ';color:var(--paper);border-radius:4px;padding:0 8px;font-size:14px">' + lv[0] + '</span></div>' +
+      '<p style="font-size:13.5px;color:var(--ink-3)">' + IT[a][0] + '：' + IT[a][1] + '；' + IT[b][0] + '：' + IT[b][1] + '</p><p>' + r[1] + '</p><p style="font-size:13.5px;color:var(--ink-3)">详见 <a href="' + href(id) + '">' + t.n + ' · ' + t.t + '</a></p>';
+    grid();
+  }
+  function grid(){
+    const n = IT.length, L = 92, T = 8, c = 31, W = L + n * c + 8, H = T + n * c + 70;
+    let g = '';
+    for (let i = 1; i < n; i++) {
+      g += txt(L - 6, T + (i - 1) * c + c / 2 + 4, IT[i][0], {s: 11.5, a: 'end', c: 'var(--ink-2)', halo: false});
+      for (let j = 0; j < i; j++) {
+        const r = P[j + '-' + i], lv = LV[r[0]], on = (Math.min(a, b) === j && Math.max(a, b) === i);
+        g += '<rect data-j="' + j + '" data-i="' + i + '" x="' + (L + j * c + 1.5) + '" y="' + (T + (i - 1) * c + 1.5) + '" width="' + (c - 3) + '" height="' + (c - 3) + '" rx="4" fill="' + lv[1] + '" opacity="' + lv[2] + '" style="cursor:pointer"' + (on ? ' stroke="var(--ink)" stroke-width="2.5"' : '') + '/>';
+      }
+    }
+    for (let j = 0; j < n - 1; j++) g += '<text x="' + (L + j * c + c / 2) + '" y="' + (T + (n - 1) * c + 8) + '" font-size="11.5" fill="var(--ink-2)" transform="rotate(50 ' + (L + j * c + c / 2) + ' ' + (T + (n - 1) * c + 8) + ')">' + IT[j][0] + '</text>';
+    LV.forEach((lv, k) => { const x = L + 5 * c + 6, y = T + 16 + k * 20; g += '<rect x="' + x + '" y="' + (y - 10) + '" width="12" height="12" rx="3" fill="' + lv[1] + '" opacity="' + lv[2] + '"/>' + txt(x + 16, y, lv[0], {s: 11.5, a: 'start', c: 'var(--ink-2)', halo: false}); });
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+  }
+  A.addEventListener('click', e => { const x = e.target.closest('button'); if (!x) return; a = +x.dataset.i; show(); });
+  B.addEventListener('click', e => { const x = e.target.closest('button'); if (!x) return; b = +x.dataset.i; show(); });
+  svg.addEventListener('click', e => { const r = e.target.closest('rect[data-i]'); if (!r) return; a = +r.dataset.j; b = +r.dataset.i; show(); });
+  show();
 });
 
 
@@ -2467,7 +2554,8 @@ dev('#tallyFig', fig => {
   box.addEventListener('click', e => { const d = e.target.closest('i'); if (!d) return; const x = items[+d.dataset.i]; out.innerHTML = '<i class="st sm" data-v="' + x.v + '">' + x.v + '</i> <b>' + esc(x.t) + '</b>　' + esc(x.p) + ' <a href="#' + x.id + '">' + esc(x.ch) + ' ↑</a>'; });
   const pct = v => Math.round((n[v] || 0) / items.length * 100);
   const tail = PAGE === 1 ? '第一卷里盖“真”的，不是柿子就是生熟，再就是指向药箱的两条，没有一条是挂图上的“相克”。'
-    : PAGE === 2 ? '盖“假”的多半是“这样能解决”的偏方：泡澡醒酒、浓茶解酒、热透了就安全、冷冻能杀菌；盖“真”的多半是“要等”和“要有人看着”。' : '';
+    : PAGE === 2 ? '盖“假”的多半是“这样能解决”的偏方：泡澡醒酒、浓茶解酒、热透了就安全、冷冻能杀菌；盖“真”的多半是“要等”和“要有人看着”。'
+    : '这一部盖“真”的多半是“别混”和“别乱动”：八四别配酸、疏通剂别叠、插排别串、漏气别开灯；盖“假”的多半是“这样能救急”的老办法：泼水、仰头、抹牙膏、吞饭团、放一盆水。';
   out.innerHTML = '这一部一共 ' + items.length + ' 条判词：<b>假</b>占 ' + pct('假') + '%，<b>真</b>占 ' + pct('真') + '%，其余是看量、看人和半真。' + tail + '点一格看看。';
 });
 
@@ -2825,6 +2913,451 @@ dev('#diveFig', fig => {
   slider('dvT', v => { g.t = v; return v + ' 分钟'; }, draw);
   slider('dvN', v => { g.n = v; return v + ' 次'; }, draw);
   slider('dvS', v => { g.s = v; return v + ' 小时'; }, draw);
+});
+
+
+/* ---------- 装置 18：瓶子里的氯 ---------- */
+dev('#clFig', fig => {
+  const svg = $('#clSvg'), kvb = $('#clKv'), say = $('#clSay');
+  const BASE = [['八四原液 100 毫升', 1], ['兑好的消毒水 100 毫升（约 1:100）', 1 / 101]];
+  const ADD = [['洁厕灵（盐酸）', 'hcl'], ['白醋（醋酸）', 'hac'], ['清水', 'w']];
+  let bi = 0, ai = 0, vol = 50;
+  const K1 = 4e-4, KA = Math.pow(10, -7.53), KAC = Math.pow(10, -4.76), KW = 1e-14;
+  function solve(){
+    const d = BASE[bi][1], V1 = 0.1, V2 = vol / 1000, Vt = V1 + V2;
+    const T = 0.7 * d * V1 / Vt, Na = (0.7 + 0.7 + 0.05) * d * V1 / Vt;
+    const clT = (0.7 * d * V1 + (ADD[ai][1] === 'hcl' ? 2.6 * V2 : 0)) / Vt;
+    const acT = (ADD[ai][1] === 'hac' ? 0.67 * V2 : 0) / Vt;
+    function sp(h){
+      let cl = clT, hocl = 0, cl2 = 0, ocl = 0;
+      for (let k = 0; k < 8; k++) { const r = h * cl / K1, s = KA / h; hocl = T / (1 + r + s); cl2 = r * hocl; ocl = s * hocl; cl = Math.max(1e-9, clT - cl2); }
+      return {hocl, cl2, ocl, cl};
+    }
+    const f = pH => { const h = Math.pow(10, -pH), x = sp(h); return Na + h - KW / h - x.ocl - x.cl - acT * KAC / (KAC + h); };
+    let lo = -1, hi = 14.5;
+    for (let k = 0; k < 60; k++) { const m = (lo + hi) / 2; if (f(m) > 0) lo = m; else hi = m; }
+    const pH = (lo + hi) / 2, x = sp(Math.pow(10, -pH));
+    const tot = x.hocl + x.cl2 + x.ocl || 1;
+    const molCl2 = x.cl2 * Vt;                      // 此刻以氯气形式存在的
+    const ppm = molCl2 * 24.5 / 5000 * 1e6;          // 5 立方米的小卫生间
+    return {pH, fo: x.ocl / tot, fh: x.hocl / tot, fc: x.cl2 / tot, molCl2, ppm, g: molCl2 * 70.9};
+  }
+  const TH = [[0.3, '闻得到'], [3, '眼鼻刺痛'], [10, '“立即危及生命或健康”线'], [30, '剧烈咳嗽、胸闷'], [400, '半小时可能致命']];
+  function draw(){
+    const r = solve();
+    const W = 600, H = 210, L = 20, R = 20;
+    let g = txt(L, 18, '桶里的有效氯变成了什么', {s: 12, a: 'start', c: 'var(--ink-3)'});
+    const segs = [[r.fo, '次氯酸根（在瓶里很安稳）', 'var(--ter)'], [r.fh, '次氯酸（消毒的主力）', 'var(--grn)'], [r.fc, '氯气', 'var(--red)']];
+    let x = L; const bw = W - L - R;
+    segs.forEach(s => { const w = s[0] * bw; if (w > 0.4) g += '<rect x="' + x.toFixed(1) + '" y="28" width="' + w.toFixed(1) + '" height="26" fill="' + s[2] + '" opacity=".8"/>'; if (w > 70) g += txt(x + w / 2, 46, Math.round(s[0] * 100) + '%', {s: 12, c: 'var(--paper)', halo: false, w: 1}); x += w; });
+    segs.forEach((s, k) => { g += '<rect x="' + (L + k * 196) + '" y="62" width="11" height="11" fill="' + s[2] + '" opacity=".8"/>' + txt(L + 15 + k * 196, 72, s[1], {s: 11.5, a: 'start', c: 'var(--ink-2)', halo: false}); });
+    /* ppm 对数尺 */
+    const y0 = 150, X = p => L + (Math.log10(Math.max(p, 0.01)) + 2) / 5 * bw;
+    g += txt(L, 104, '如果这些氯气全跑进一个约 5 立方米的小卫生间（对数刻度，ppm）', {s: 12, a: 'start', c: 'var(--ink-3)'});
+    g += '<rect x="' + L + '" y="' + (y0 - 8) + '" width="' + bw + '" height="16" rx="8" fill="var(--paper-2)"/>';
+    TH.forEach((t, k) => { const xx = X(t[0]); g += '<line x1="' + xx + '" x2="' + xx + '" y1="' + (y0 - 14) + '" y2="' + (y0 + 14) + '" stroke="var(--red)" stroke-dasharray="2 2"/>' + txt(xx, k % 2 ? y0 + 30 : y0 - 20, t[1], {s: 10.5, c: 'var(--red)'}); });
+    [0.01, 0.1, 1, 10, 100, 1000].forEach(p => g += txt(X(p), y0 + 46, p >= 1 ? p : String(p), {s: 10.5, c: 'var(--ink-3)', halo: false}));
+    const xp = X(r.ppm);
+    g += '<rect x="' + L + '" y="' + (y0 - 8) + '" width="' + Math.max(0, xp - L) + '" height="16" rx="8" fill="var(--red)" opacity="' + (r.ppm > 0.3 ? .75 : .3) + '"/><circle cx="' + xp + '" cy="' + y0 + '" r="8" fill="var(--card)" stroke="var(--red)" stroke-width="3"/>';
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+    const fp = p => p < 0.01 ? '不到 0.01' : p < 1 ? p.toFixed(2) : p < 100 ? p.toFixed(1) : Math.round(p).toLocaleString();
+    kv(kvb, [['桶里的酸碱度', 'pH ' + r.pH.toFixed(1)], ['此刻以氯气形式存在', r.g < 0.01 ? '不到 0.01 克' : r.g.toFixed(2) + ' 克'], ['全跑出来的浓度', fp(r.ppm) + ' ppm']]);
+    let s;
+    if (vol === 0) s = '只有八四，碱性很强（pH 十二三），次氯酸钠几乎全以次氯酸根的形式安安稳稳地待着。拖地、擦桌子，按说明书兑好单独用就行。';
+    else if (ADD[ai][1] === 'w') s = '兑清水只是变稀，碱性略降，氯还安稳。这就是说明书让你做的事。';
+    else if (r.pH > 9) s = '倒进去的酸还不够把碱中和完，桶里还是碱性，暂时没放出多少氯气。可再多倒一点，或者局部没搅匀，酸碰到的那一小片就会冒气。';
+    else if (r.ppm < 1) s = '酸性变强，次氯酸多了，氯气也开始出现了，量还小，但已经能闻到。这正是“兑点醋消毒更强”的偏方：消毒没强多少，先呛着自己。';
+    else if (r.ppm < 30) s = '已经到了让眼睛、嗓子刺痛的程度，而且这只是全屋平均，弯腰凑在桶口的人吸到的要浓得多。转身出去，开窗。';
+    else s = '<b>大部分有效氯变成了氯气</b>，全跑出来能到几十上百 ppm，足以伤肺。这就是每年都有人进医院的那种混法。人先出去，门带上，别回头收拾。';
+    if (ADD[ai][1] === 'hac' && vol > 0) s += ' 和洁厕灵比一比：同样的量，白醋放的氯气少得多，因为醋酸是弱酸，pH 降不到那么低；少，但不是没有。';
+    say.innerHTML = s;
+  }
+  btnRow($('#clBase'), BASE.map(b => b[0]), 0, i => { bi = i; draw(); });
+  btnRow($('#clAdd'), ADD.map(b => '加' + b[0]), 0, i => { ai = i; draw(); });
+  slider('clV', v => { vol = v; return v + ' 毫升'; }, draw);
+});
+
+
+/* ---------- 装置 19：两样倒在一起 ---------- */
+dev('#abFig', fig => {
+  const svg = $('#abSvg'), say = $('#abSay'), rx = $('#abX'), ry = $('#abY'), rz = $('#abZ'), row3 = $('#abRow3');
+  let tab = 0, X = 100, Y = 30, Z = 300;
+  const CFG = [
+    {l1: '白醋', l2: '小苏打', x: [0, 200, 5, 100], y: [0, 30, 1, 10], fx: v => v + ' 毫升', fy: v => v + ' 克'},
+    {l1: '碱性疏通剂', l2: '强酸疏通剂', x: [0, 200, 5, 100], y: [0, 100, 1, 30], fx: v => v + ' 毫升', fy: v => v + ' 毫升'}
+  ];
+  function setTab(t){
+    tab = t; const c = CFG[t];
+    $('#abL1').textContent = c.l1; $('#abL2').textContent = c.l2;
+    [[rx, c.x], [ry, c.y]].forEach(p => { p[0].min = p[1][0]; p[0].max = p[1][1]; p[0].step = p[1][2]; p[0].value = p[1][3]; });
+    row3.style.display = t ? '' : 'none';
+    rx.dispatchEvent(new Event('input')); ry.dispatchEvent(new Event('input'));
+  }
+  function bar(x, y, w, h, frac, col, label, val){
+    return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="4" fill="var(--paper-2)"/><rect x="' + x + '" y="' + y + '" width="' + (w * Math.max(0, Math.min(1, frac))).toFixed(1) + '" height="' + h + '" rx="4" fill="' + col + '" opacity=".8"/>' +
+      txt(x, y - 6, label, {s: 12, a: 'start', c: 'var(--ink-2)', halo: false}) + txt(x + w, y - 6, val, {s: 12, a: 'end', c: 'var(--ink)', halo: false});
+  }
+  function draw(){
+    let g = '', s = '';
+    const W = 600;
+    if (tab === 0) {
+      const ac = X * 0.00067, ba = Y / 84, re = Math.min(ac, ba), co2 = re * 24.5;
+      const left = ac - re, leftB = ba - re, mx = Math.max(ac, ba, 0.01);
+      g += txt(20, 22, '倒之前', {s: 13, a: 'start', c: 'var(--ink-3)', w: 1}) + txt(310, 22, '倒在一起以后', {s: 13, a: 'start', c: 'var(--ink-3)', w: 1});
+      g += bar(20, 50, 250, 16, ac / mx, 'var(--main)', '去水垢的酸（醋酸）', Math.round(ac * 1000) + ' 毫摩尔');
+      g += bar(20, 100, 250, 16, ba / mx, 'var(--ter)', '去油的碱（小苏打）', Math.round(ba * 1000) + ' 毫摩尔');
+      g += bar(310, 50, 270, 16, left / mx, 'var(--main)', '还剩的酸', Math.round(left * 1000) + ' 毫摩尔');
+      g += bar(310, 100, 270, 16, leftB / mx, 'var(--ter)', '还剩的碱', Math.round(leftB * 1000) + ' 毫摩尔');
+      const r = Math.sqrt(co2) * 22;
+      g += '<circle cx="440" cy="' + (175 + Math.min(r, 40)) + '" r="' + Math.min(r, 60).toFixed(1) + '" fill="var(--grn)" opacity=".18" stroke="var(--grn)"/>' + txt(440, 180 + Math.min(r, 40), '二氧化碳约 ' + co2.toFixed(1) + ' 升', {s: 12.5, c: 'var(--grn)', w: 1});
+      g += txt(20, 170, '冒泡冒走的，是两样东西互相抵消掉的那部分。', {s: 12, a: 'start', c: 'var(--ink-3)', halo: false});
+      g += txt(20, 190, '剩下的是醋酸钠水，去污的本事比单独一样都弱。', {s: 12, a: 'start', c: 'var(--ink-3)', halo: false});
+      svg.setAttribute('viewBox', '0 0 ' + W + ' 260');
+      if (!X || !Y) s = '只有一样，就没有反应。单独的白醋能对付水垢，单独的小苏打水能对付一点油污，各有各的用处。';
+      else s = '冒了约 ' + co2.toFixed(1) + ' 升气泡。' + (left > 0.002 ? '小苏打用完了，剩下一些醋。' : leftB > 0.002 ? '醋用完了，剩下一些小苏打。' : '两样差不多正好抵消，剩下的几乎只有醋酸钠和水。') + '泡沫看着很猛，可它是酸和碱“同归于尽”的声音。要是倒在一个拧紧了盖子的瓶子里，这些气没处去，瓶子就会被顶开。';
+    } else {
+      const nb = X * 1.1 * 0.10 / 40, na = Y * 1.83 * 0.93 / 98;
+      const Qn = 57 * Math.min(nb, 2 * na), Qd = 70 * na;
+      const mC = X * 1.1 + Y * 1.83, mA = Z + Y * 1.83, mM = Z + mC;
+      const tC = mC ? 20 + (Qn + Qd) * 1000 / (mC * 4) : 20, tA = mA ? 20 + Qd * 1000 / (mA * 4) : 20, tM = mM ? 20 + (Qn + Qd) * 1000 / (mM * 4) : 20;
+      const rows = [['只倒强酸，混进积水里', tA], ['两瓶刚碰上的那一层（只有两瓶自己的水）', tC], ['两瓶加积水，全部搅匀', tM]];
+      const X0 = 20, bw = 520, sc = t => (Math.min(t, 160) - 0) / 160 * bw;
+      g += txt(X0, 18, '温度（摄氏度）', {s: 12, a: 'start', c: 'var(--ink-3)'});
+      rows.forEach((r, k) => {
+        const y = 52 + k * 58;
+        g += '<rect x="' + X0 + '" y="' + y + '" width="' + bw + '" height="18" rx="9" fill="var(--paper-2)"/><rect x="' + X0 + '" y="' + y + '" width="' + sc(r[1]).toFixed(1) + '" height="18" rx="9" fill="' + (r[1] >= 100 ? 'var(--red)' : r[1] >= 60 ? 'var(--main)' : 'var(--ter)') + '" opacity=".8"/>';
+        g += txt(X0, y - 7, r[0], {s: 12, a: 'start', c: 'var(--ink-2)', halo: false}) + txt(X0 + sc(r[1]) + 6, y + 14, r[1] >= 100 ? '沸腾' : Math.round(r[1]) + '°', {s: 12.5, a: 'start', c: r[1] >= 100 ? 'var(--red)' : 'var(--ink)', w: 1});
+      });
+      g += '<line x1="' + (X0 + sc(100)) + '" x2="' + (X0 + sc(100)) + '" y1="36" y2="220" stroke="var(--red)" stroke-dasharray="4 3"/>' + txt(X0 + sc(100), 236, '100 度：开始沸腾、喷溅', {s: 11.5, c: 'var(--red)'});
+      svg.setAttribute('viewBox', '0 0 ' + W + ' 250');
+      if (!X && !Y) s = '什么都没倒。';
+      else if (!Y) s = '只有碱性疏通剂，按说明书等够时间、用水冲，它不会自己发烫。';
+      else if (!X) s = '强酸疏通剂自己遇水就会放热，这就是说明书要你慢慢倒、别凑近的原因，也是“酸入水”那条口诀的道理。';
+      else s = (tC >= 100 ? '<b>两瓶刚碰上的那一层冲过了一百度</b>：那里的水会瞬间沸腾，把还没反应完的酸和碱一起顶出下水口。' : '刚碰上的那一层已经到了 ' + Math.round(tC) + ' 度，再多倒一点就会沸腾。') + '全部搅匀以后的平均温度（' + Math.round(tM) + ' 度）看起来没那么吓人，可管子堵着，偏偏搅不匀，人又常常正弯着腰往下看。';
+    }
+    svg.innerHTML = g; say.innerHTML = s;
+  }
+  slider('abX', v => { X = v; return CFG[tab].fx(v); }, draw);
+  slider('abY', v => { Y = v; return CFG[tab].fy(v); }, draw);
+  slider('abZ', v => { Z = v; return v + ' 毫升'; }, draw);
+  btnRow($('#abTab'), ['醋配小苏打', '两瓶疏通剂'], 0, setTab);
+  setTab(0);
+});
+
+
+/* ---------- 装置 20：空锅开大火 ---------- */
+dev('#panFig', fig => {
+  const svg = $('#panSvg'), say = $('#panSay');
+  const FIRE = [['小火', 400], ['中火', 800], ['大火', 1500]];
+  const IN = [['空锅', 0, 0], ['一勺油', 54, 0], ['一锅菜（约三百克）', 54 + 900, 300]];   // [名, 额外热容 J/K, 水 g]
+  let fi = 2, ii = 0, tm = 3;
+  const C0 = 540, k = 3.1, T0 = 25, LH = 2260;
+  function run(){
+    const P = FIRE[fi][1], C = C0 + IN[ii][1];
+    let T = T0, water = IN[ii][2];
+    const pts = [[0, T]]; let tSmoke = null, t260 = null, t350 = null, tDry = null;
+    for (let s = 1; s <= 600; s++) {
+      const net = P - k * (T - T0);
+      if (water > 0 && T >= 100) { water -= Math.max(0, net) / LH; T = 100; if (water <= 0) { water = 0; tDry = s; } }
+      else T += net / (C + water * 4.18);
+      if (ii === 1 && tSmoke == null && T >= 200) tSmoke = s;
+      if (t260 == null && T >= 260) t260 = s; if (t350 == null && T >= 350) t350 = s;
+      if (s % 5 === 0) pts.push([s / 60, T]);
+    }
+    return {pts, tSmoke, t260, t350, tDry};
+  }
+  const mm = s => s == null ? null : (s < 60 ? s + ' 秒' : (s / 60).toFixed(1).replace(/\.0$/, '') + ' 分钟');
+  function draw(){
+    const r = run();
+    const c = lineChart(svg, [{pts: r.pts.filter(p => p[0] <= tm + 1e-9), color: 'var(--red)', w: 2.8}, {pts: r.pts.filter(p => p[0] >= tm - 1e-9), color: 'var(--rule)', w: 1.6, dash: '3 3'}], {xmin: 0, xmax: 10, ymin: 0, ymax: 520, xt: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], xf: v => v + ' 分', yt: [0, 100, 200, 300, 400, 500], yf: v => v + '°', H: 260});
+    let ex = '';
+    [[100, '水开', 'var(--ter)'], [200, '油开始冒烟（约）', 'var(--main)'], [260, '涂层开始分解（约）', 'var(--red)'], [350, '明显分解，鸟有危险', 'var(--red)']].forEach(l => {
+      ex += '<line x1="' + c.L + '" x2="' + (c.W - c.R) + '" y1="' + c.Y(l[0]) + '" y2="' + c.Y(l[0]) + '" stroke="' + l[2] + '" stroke-dasharray="5 4" opacity=".75"/>' + txt(c.W - c.R - 4, c.Y(l[0]) - 4, l[1], {s: 11, a: 'end', c: l[2]});
+    });
+    const cur = r.pts.reduce((a, p) => Math.abs(p[0] - tm) < Math.abs(a[0] - tm) ? p : a, r.pts[0]);
+    ex += '<circle cx="' + c.X(cur[0]) + '" cy="' + c.Y(cur[1]) + '" r="6" fill="var(--red)"/>' + txt(c.X(cur[0]) + 8, c.Y(cur[1]) + 16, Math.round(cur[1]) + '°', {s: 12.5, a: 'start', c: 'var(--red)', w: 1});
+    ex += txt(c.L + 4, c.T + 10, '锅底温度', {s: 11, a: 'start', c: 'var(--ink-3)'});
+    svg.insertAdjacentHTML('beforeend', ex);
+    let s = FIRE[fi][0] + '、' + IN[ii][0] + '，开了 ' + mm(Math.round(tm * 60)) + '，锅底约 <b>' + Math.round(cur[1]) + ' 度</b>。';
+    if (ii === 2) s += r.tDry && r.tDry <= 600 ? '菜里的水分把锅按在一百度上下，直到 ' + mm(r.tDry) + ' 左右烧干，之后温度又开始往上蹿：煳锅就是这样来的。' : '菜里的水分一直把锅按在一百度上下，这就是正常炒菜时涂层很安全的原因。';
+    else if (r.t260 == null) s += '这个火力下，锅底到不了涂层开始分解的温度。';
+    else s += (ii === 1 && r.tSmoke ? '油在 ' + mm(r.tSmoke) + ' 左右开始冒烟，这是个警报；' : '') + '锅底在约 <b>' + mm(r.t260) + '</b> 碰到涂层开始分解的那条线' + (r.t350 ? '，约 ' + mm(r.t350) + ' 过了三百五十度' : '') + '。接一个电话、回一条消息，就够了。' + (ii === 1 ? '一勺油几乎拖不慢它。' : '');
+    say.innerHTML = s;
+  }
+  btnRow($('#panFire'), FIRE.map(f => f[0]), 2, i => { fi = i; draw(); });
+  btnRow($('#panIn'), IN.map(f => f[0]), 0, i => { ii = i; draw(); });
+  slider('panT', v => { tm = v; return v + ' 分钟'; }, draw);
+});
+
+
+/* ---------- 装置 21：一个插排上插了什么 ---------- */
+dev('#plugFig', fig => {
+  const box = $('#plugApp'), svg = $('#plugSvg'), say = $('#plugSay');
+  const AP = [['电暖器', 2000], ['电水壶', 1800], ['电磁炉', 2100], ['电吹风', 1200], ['电饭煲', 800], ['电脑', 150], ['电视', 100], ['手机充电', 20], ['台灯', 10], ['路由器', 10]];
+  const on = new Set([5, 7, 8]);
+  let chain = 0;
+  box.innerHTML = AP.map((a, i) => '<button data-i="' + i + '">' + a[0] + '<small style="opacity:.7"> ' + a[1] + 'W</small></button>').join('');
+  box.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; const i = +b.dataset.i; on.has(i) ? on.delete(i) : on.add(i); draw(); });
+  function draw(){
+    $$('button', box).forEach(b => b.classList.toggle('on', on.has(+b.dataset.i)));
+    const list = [...on].sort((a, b) => AP[b][1] - AP[a][1]);
+    const Wt = list.reduce((s, i) => s + AP[i][1], 0), I = Wt / 220, ra = I / 10;
+    const heat = ra * ra * (chain ? 1.35 : 1);
+    const need = list.length > 4;
+    let g = '';
+    /* 插排的样子 */
+    const strips = chain || need ? 2 : 1;
+    for (let k = 0; k < strips; k++) {
+      const x0 = 30 + k * 290, y0 = 28;
+      g += '<rect x="' + x0 + '" y="' + y0 + '" width="250" height="54" rx="10" fill="var(--card)" stroke="var(--ink)" stroke-width="1.6"/>';
+      for (let j = 0; j < 4; j++) {
+        const idx = list[k * 4 + j], cx = x0 + 34 + j * 60;
+        g += '<rect x="' + (cx - 20) + '" y="' + (y0 + 10) + '" width="40" height="34" rx="6" fill="' + (idx != null ? (AP[idx][1] >= 1000 ? 'var(--red)' : 'var(--ter)') : 'var(--paper-2)') + '" opacity="' + (idx != null ? .8 : 1) + '"/>';
+        if (idx != null) g += txt(cx, y0 + 32, AP[idx][0].slice(0, 2), {s: 11.5, c: 'var(--paper)', halo: false, w: 1});
+      }
+      if (k === 0) g += '<path d="M' + x0 + ' ' + (y0 + 27) + 'h-20" stroke="var(--ink)" stroke-width="3"/>' + txt(x0 - 10, y0 + 70, '墙上', {s: 11, c: 'var(--ink-3)', halo: false});
+      else g += '<path d="M' + (x0 - 40) + ' ' + (y0 + 27) + 'h40" stroke="var(--red)" stroke-width="3" stroke-dasharray="5 3"/>' + txt(x0 - 20, y0 + 70, '串接', {s: 11, c: 'var(--red)', halo: false});
+    }
+    /* 电流条和发热条 */
+    const X0 = 30, bw = 540, mx = 3;
+    const bar = (y, v, lab, val, col) => '<rect x="' + X0 + '" y="' + y + '" width="' + bw + '" height="16" rx="8" fill="var(--paper-2)"/><rect x="' + X0 + '" y="' + y + '" width="' + (Math.min(v, mx) / mx * bw).toFixed(1) + '" height="16" rx="8" fill="' + col + '" opacity=".8"/>' + txt(X0, y - 7, lab, {s: 12, a: 'start', c: 'var(--ink-2)', halo: false}) + txt(X0 + bw, y - 7, val, {s: 12.5, a: 'end', c: 'var(--ink)', halo: false, w: 1});
+    const col = v => v > 1.5 ? 'var(--red)' : v > 1 ? 'var(--main)' : 'var(--grn)';
+    g += bar(128, ra, '总电流 ÷ 额定 10 安', I.toFixed(1) + ' 安（' + Wt + ' 瓦）', col(ra));
+    g += bar(180, heat, '第一个插头的发热 ÷ 额定时的发热', '× ' + heat.toFixed(1), col(heat));
+    g += '<line x1="' + (X0 + bw / mx) + '" x2="' + (X0 + bw / mx) + '" y1="112" y2="204" stroke="var(--ink)" stroke-dasharray="3 3"/>' + txt(X0 + bw / mx, 222, '额定', {s: 11.5, c: 'var(--ink-2)', halo: false});
+    svg.setAttribute('viewBox', '0 0 600 232'); svg.innerHTML = g;
+    let s;
+    if (!list.length) s = '什么都没插。';
+    else if (ra <= 0.5) s = '一共 ' + Wt + ' 瓦，不到额定的一半，这样用很宽裕。';
+    else if (ra <= 1) s = '一共 ' + Wt + ' 瓦，在额定之内，但已经不少了。插头要插紧，长时间用的时候摸一摸别发烫。';
+    else if (ra <= 1.5) s = '<b>超了</b>：' + Wt + ' 瓦，电流约 ' + I.toFixed(1) + ' 安，插头的发热是额定时的 ' + heat.toFixed(1) + ' 倍。不一定马上出事，但插头、插座会被一点点烤坏。大功率的那一样，单独插墙上。';
+    else s = '<b>超得很多</b>：电流约 ' + I.toFixed(1) + ' 安，插头发热是额定的 ' + heat.toFixed(1) + ' 倍。' + (on.has(0) && on.has(1) ? '来电的那位姑娘就在这一格：电暖器加电水壶。' : '');
+    if (need && !chain) s += ' 另外，一个插排只有四个孔，插这么多只能再串一个。';
+    if (chain) s += ' 串接以后，所有电流仍然挤过第一个插头，中间又多了一处接触点在发热。';
+    say.innerHTML = s;
+  }
+  btnRow($('#plugChain'), ['只用一个插排', '再串一个插排'], 0, i => { chain = i; draw(); });
+  draw();
+});
+
+
+/* ---------- 装置 22：火怎么灭 ---------- */
+dev('#fireFig', fig => {
+  const kind = $('#fireKind'), list = $('#fireList');
+  const M = ['泼水', '盖住（锅盖、灭火毯、湿布）', 'ABC 干粉灭火器', '先断电、关阀门', '出门、关门、打 119'];
+  /* 每种火：五种办法的 [评价 2=对 1=可以/有条件 0=不行 3=最先做, 说明] */
+  const F = [
+    ['油锅着火', [[0, '最糟的一种。水沉到油底下变成蒸汽，把着火的油炸成一团火球。'], [2, '最好的办法：锅盖从侧面盖上去，或者盖灭火毯，别急着掀。'], [1, '能用，但干粉可能把热油冲溅出来，要站远一点从侧面喷。专门对付油脂的是 F 类的灭火器。'], [3, '够得着就先关火。关火本身灭不了已经着起来的油，但能让它别越烧越热。'], [1, '火蹿上了抽油烟机、橱柜，就别再扑了。']]],
+    ['电器、插排冒火', [[0, '带电泼水可能触电，也可能让短路更厉害。'], [1, '断了电以后，小火可以用灭火毯盖住。'], [2, 'ABC 干粉能扑带电设备的初起火灾（标签上会写）。'], [3, '第一步：拉下电闸或者空气开关，断了电再处理。'], [1, '电视、空调这类大件冒出浓烟，别凑上去，出门打 119。']]],
+    ['窗帘、纸箱、被子', [[2, '这是水最擅长的一类火（A 类）。一盆水、一个水龙头就能对付刚起来的小火。'], [2, '用湿布、毯子捂住也行。'], [2, 'ABC 干粉可以。'], [1, '旁边有插排、电线的话，先断电再泼水。'], [1, '窗帘一烧就往上蹿，蹿上天花板就撤。']]],
+    ['燃气灶软管接口着火', [[0, '水灭不了往外冒的燃气，火灭了气还在漏，更危险。'], [1, '火很小的时候可以用湿布裹住接口，但前提是先关阀门。'], [1, '干粉能把火扑掉，可气还在漏，扑灭以后屋里积满燃气，一个火星就会爆。'], [3, '第一步：关掉灶前或表前的燃气阀门，气断了，火自己就灭了。'], [2, '阀门够不着、火已经蹿起来，马上出门，到室外打 119 和燃气抢修电话。']]],
+    ['洒出来的酒精着火', [[0, '酒精能和水混，泼水可能让着火的酒精流得更开；量很少时大量的水能稀释，但别冒这个险。'], [2, '小摊的酒精火用湿布、毯子盖住最快。'], [2, 'ABC 干粉能扑液体火（B 类）。'], [1, '先把酒精瓶子拿远，别让火烧到瓶口。'], [1, '烧到了别的东西就撤。据报道，2020 年不少人在灶台边喷酒精消毒时出过事。']]],
+    ['衣服着火（人身上）', [[2, '可以浇水。'], [2, '用毯子、外衣把人裹住，压灭火苗。'], [1, '紧急时可以用，但别对着脸喷。'], [4, '这一格用不上。'], [1, '先灭身上的火，烧伤了再打 120。口诀是“停、躺、滚”：别跑，躺下，捂住脸，打滚。']]]
+  ];
+  const IC = [['✗', 'var(--red)', '不行'], ['△', 'var(--main)', '可以，有条件'], ['✓', 'var(--grn)', '对'], ['①', 'var(--ter)', '最先做'], ['—', 'var(--ink-3)', '用不上']];
+  let cur = 0;
+  function draw(){
+    kind.innerHTML = F.map((f, i) => '<button data-i="' + i + '" class="' + (i === cur ? 'on' : '') + '">' + f[0] + '</button>').join('');
+    list.innerHTML = '<div class="stlist">' + F[cur][1].map((r, k) => '<div style="border-left:4px solid ' + IC[r[0]][1] + '"><b style="color:' + IC[r[0]][1] + ';font-size:17px;margin-right:6px">' + IC[r[0]][0] + '</b><b>' + M[k] + '</b><small style="color:var(--ink-3);margin-left:6px">' + IC[r[0]][2] + '</small><br>' + r[1] + '</div>').join('') + '</div>';
+  }
+  kind.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; cur = +b.dataset.i; draw(); });
+  draw();
+});
+
+
+/* ---------- 装置 23：一间关着窗的屋子 ---------- */
+dev('#coFig', fig => {
+  const svg = $('#coSvg'), kvb = $('#coKv'), say = $('#coSay');
+  /* [名称, 放出 L/h, 持续 h, 屋子 m³, 屋子说明] */
+  const SRC = [['卧室里一盆炭火', 18, 4, 30, '约十二平方米的卧室'], ['没封好的煤炉，整夜', 5, 10, 30, '约十二平方米的卧室'], ['浴室里烧得不好的燃气热水器', 40, 0.5, 6, '约三平方米的小浴室']];
+  const VEN = [['门窗紧闭', 0.3], ['开一条窗缝', 1.5], ['开着窗', 6]];
+  let si = 0, vi = 0, tm = 3;
+  const BANDS = [[0, 10, '一般没感觉'], [10, 20, '头疼'], [20, 30, '头晕、恶心、没劲'], [30, 40, '迷糊、腿软站不起来'], [40, 60, '昏迷'], [60, 80, '可能致命']];
+  function run(){
+    const s = SRC[si], a = VEN[vi][1], dt = 1 / 120;
+    let C = 0, H = 0.5; const pc = [[0, 0]], ph = [[0, H]]; let t20 = null, t40 = null, peakC = 0;
+    for (let k = 1; k <= 8 * 120; k++) {
+      const t = k * dt, src = t <= s[2] ? 1000 * s[1] / s[3] : 0;
+      C += (src - a * C) * dt; if (C > peakC) peakC = C;
+      H += (0.16 * C - H) / 2.5 * dt; H = Math.max(0.5, Math.min(80, H));
+      if (t20 == null && H >= 20) t20 = t; if (t40 == null && H >= 40) t40 = t;
+      if (k % 5 === 0) { pc.push([t, C]); ph.push([t, H]); }
+    }
+    return {pc, ph, t20, t40, peakC};
+  }
+  const hm = h => h == null ? '' : h < 1 ? Math.round(h * 60) + ' 分钟' : (Math.round(h * 4) / 4) + ' 小时';
+  function draw(){
+    const r = run();
+    const c = lineChart(svg, [{pts: r.ph.filter(p => p[0] <= tm + 1e-9), color: 'var(--red)', w: 2.8}, {pts: r.ph.filter(p => p[0] >= tm - 1e-9), color: 'var(--rule)', w: 1.6, dash: '3 3'}], {xmin: 0, xmax: 8, ymin: 0, ymax: 80, xt: [0, 1, 2, 3, 4, 5, 6, 7, 8], xf: v => v + ' 时', yt: [0, 20, 40, 60, 80], yf: v => v + '%', H: 270, L: 40});
+    let ex = '';
+    BANDS.forEach((b, k) => { ex += '<rect x="' + c.L + '" y="' + c.Y(b[1]) + '" width="' + (c.W - c.L - c.R) + '" height="' + (c.Y(b[0]) - c.Y(b[1])) + '" fill="var(--red)" opacity="' + (0.02 + k * 0.035) + '"/>' + txt(c.W - c.R - 4, c.Y(b[1]) + 13, b[2], {s: 10.5, a: 'end', c: 'var(--ink-2)'}); });
+    svg.insertAdjacentHTML('afterbegin', ex);
+    const cur = r.ph.reduce((a, p) => Math.abs(p[0] - tm) < Math.abs(a[0] - tm) ? p : a, r.ph[0]);
+    const cc = r.pc.reduce((a, p) => Math.abs(p[0] - tm) < Math.abs(a[0] - tm) ? p : a, r.pc[0]);
+    svg.insertAdjacentHTML('beforeend', '<circle cx="' + c.X(cur[0]) + '" cy="' + c.Y(cur[1]) + '" r="6" fill="var(--red)"/>' + txt(c.L + 4, c.T + 10, '血液里的碳氧血红蛋白', {s: 11, a: 'start', c: 'var(--ink-3)'}) + (SRC[si][2] < 8 ? '<line x1="' + c.X(SRC[si][2]) + '" x2="' + c.X(SRC[si][2]) + '" y1="' + c.T + '" y2="' + (c.H - c.B) + '" stroke="var(--ink-3)" stroke-dasharray="2 3"/>' + txt(c.X(SRC[si][2]) + 3, c.H - c.B - 6, '火源灭了', {s: 10.5, a: 'start', c: 'var(--ink-3)'}) : ''));
+    const band = BANDS.find(b => cur[1] < b[1]) || BANDS[BANDS.length - 1];
+    kv(kvb, [['屋里的一氧化碳', Math.round(cc[1]).toLocaleString() + ' ppm'], ['碳氧血红蛋白', Math.round(cur[1]) + '%'], ['大概的状态', band[2]]]);
+    let s = SRC[si][0] + '，' + SRC[si][4] + '，' + VEN[vi][0] + '。';
+    if (r.t40 != null) s += '约 <b>' + hm(r.t20) + '</b> 后开始头晕恶心，约 <b>' + hm(r.t40) + '</b> 后可能昏迷。' + (si === 2 ? '这就是有人在浴室里洗着洗着就倒下的原因：浴室小，热水器烧得不好，二三十分钟就够了。' : '人要是睡着了，头疼头晕根本不会把他叫醒。');
+    else if (r.t20 != null) s += '约 ' + hm(r.t20) + ' 后会开始头晕、恶心、没劲，像感冒。这时候最要紧的是意识到“不是感冒”，开窗出门。';
+    else s += '换气够快，屋里的一氧化碳积不起来，碳氧血红蛋白一直没上到让人难受的程度。可这只是模型：风向一变、窗被关上，结果就完全不同。';
+    if (vi === 0) s += ' 试试“开一条窗缝”或者“开着窗”。';
+    say.innerHTML = s;
+  }
+  btnRow($('#coSrc'), SRC.map(x => x[0]), 0, i => { si = i; draw(); });
+  btnRow($('#coVen'), VEN.map(x => x[0]), 0, i => { vi = i; draw(); });
+  slider('coT', v => { tm = v; return v < 1 ? Math.round(v * 60) + ' 分钟' : v + ' 小时'; }, draw);
+});
+
+
+/* ---------- 装置 24：先看清楚再动手 ---------- */
+dev('#aidFig', fig => {
+  const box = $('#aidBox');
+  /* 节点：{q, o:[[答, 下一个节点]]} 或 {do:[], dont:[], call:''} */
+  const CPR = {do: ['让旁边的人打 120，再找一个人去拿附近的 AED（自动体外除颤器）。', '把他平放在硬的地上，在胸口正中用力、快速地按压，每分钟一百到一百二十次，按下去五到六厘米，让胸口完全弹回来。', '电话里的调度员会教你；AED 拿来了，打开它，照着语音提示做。'], dont: ['别停下来等“缓过来”。', '别怕压断肋骨。'], call: '马上打 120。'};
+  const T = [
+    ['噎住了', {q: '噎住的是谁？', o: [
+      ['成人或大孩子', {q: '他还能大声咳嗽、说话吗？', o: [
+        ['能咳，能出声', {do: ['鼓励他用力咳。', '在旁边看着他，咳不出来了再动手。'], dont: ['别拍背、别抠他的嘴：气道没有完全堵住，咳嗽是最有效的。'], call: '一直咳不出来、越来越喘，打 120。'}],
+        ['咳不出声、说不出话、脸发紫', {do: ['指着一个人让他打 120。', '站到他身后，双臂环抱他的腰，一手握拳，拳眼抵在肚脐上方、肋骨下方，另一手包住拳头，快速向内、向上冲击，直到东西吐出来。', '英国和欧洲的指南是先在两肩胛之间用掌根拍背五下，再冲击五下，交替进行；美国心脏协会教的是直接腹部冲击。'], dont: ['别用手指盲目地去嘴里抠，可能把东西推得更深。'], call: '同时打 120。他昏过去了，就平放、开始胸外按压。'}],
+        ['已经没反应了', CPR]
+      ]}],
+      ['一岁以下的婴儿', {q: '宝宝还能哭出声、咳嗽吗？', o: [
+        ['能哭、能咳', {do: ['让他咳，抱着他看着。'], dont: ['别把他倒提起来拍。'], call: '咳不出来、发紫，马上打 120。'}],
+        ['哭不出声、咳不出来', {do: ['让人打 120。', '让宝宝脸朝下趴在你的前臂上，托住下巴，头低于身体，用掌根在两肩胛之间拍背五下。', '翻过来脸朝上，两根手指放在胸骨中间（两乳头连线下方），用力压五下。', '拍背五下、压胸五下交替，直到东西出来或者他哭出声。'], dont: ['一岁以下不做腹部冲击。', '看不见东西别用手指去抠。'], call: '同时打 120。没反应了就开始婴儿心肺复苏。'}]
+      ]}],
+      ['孕妇或很胖的人', {do: ['让人打 120。', '改做胸部冲击：从后面环抱，拳头放在胸骨中间（比腹部冲击的位置高），向后快速冲击。', '咳得出声就先让她（他）咳。'], dont: ['孕妇别做腹部冲击。'], call: '同时打 120。'}],
+      ['我自己一个人', {do: ['拳头抵在自己肚脐上方，另一只手包住，快速往里往上顶。', '或者把上腹压在椅背、桌沿上，猛地往下压。', '想办法引起旁人注意，拨 120（说不出话也别挂断）。'], dont: ['别躲进厕所里自己处理：去人多的地方。'], call: '能拨就拨 120。'}]
+    ]}],
+    ['流鼻血', {q: '怎么流的？', o: [
+      ['自己流的（干燥、挖鼻子、擤鼻涕）', {do: ['坐直，身体稍微前倾，低一点头。', '用拇指和食指捏住鼻子前面软的那块（不是鼻梁骨），用嘴呼吸。', '捏十到十五分钟，中途别松手看。', '嘴里的血吐出来，别咽；鼻梁上可以敷一块凉毛巾。'], dont: ['别仰头、别躺下。', '别拍脑门、别往鼻子里塞得很深。'], call: '捏够二十分钟还止不住、流得很猛、脸色发白发晕，去医院。'}],
+      ['撞了头以后', {do: ['让他坐着或者半躺着别乱动，看他清不清醒。'], dont: ['别使劲捏鼻子去堵流出来的清水样液体。'], call: '撞头后流鼻血，尤其流出清水样的东西、耳朵出血、迷糊、呕吐，打 120。'}],
+      ['在吃华法林等抗凝药', {do: ['照样坐直前倾、捏住鼻翼。'], dont: ['别自己停药或者加药。'], call: '抗凝药让血更难止住，超过二十分钟或者反复出血，去医院，带上药名（第八章）。'}]
+    ]}],
+    ['烫伤', {q: '什么烫的？', o: [
+      ['热水、热油、蒸汽', {q: '有多大、在哪儿？', o: [
+        ['比手掌小，没有大泡', {do: ['冲：用凉的流动的自来水冲二十分钟。', '脱：边冲边小心脱掉衣物，摘下戒指手表；粘在皮肤上的别硬撕。', '盖：冲完用干净的保鲜膜或纱布松松地盖上。'], dont: ['别抹牙膏、酱油、黄油、蛋清、紫药水。', '别敷冰块。', '别挑破水疱。'], call: '红肿起泡越来越重、感染化脓，去医院。'}],
+        ['比手掌大，或者在脸、手、脚、会阴、关节，或者是孩子、老人', {do: ['照样冲、脱，同时打 120 或马上去医院。', '大面积烫伤冲水时注意保暖，别让人（尤其孩子）冻着。'], dont: ['别涂任何东西。', '别挑破水疱。'], call: '打 120 或马上去医院。声音变哑、咳黑痰（吸进热烟）马上打 120。'}]
+      ]}],
+      ['化学品（酸、碱、八四、疏通剂）', {do: ['立刻用大量流动的水冲，至少二十分钟，碱要更久。', '脱掉沾了药的衣服。', '溅进眼睛，扒开眼皮冲，边冲边去医院。'], dont: ['别用醋、小苏打去“中和”。'], call: '冲完带着瓶子去医院（第十八章）。'}],
+      ['电', {do: ['先断电，再碰人。', '人没有呼吸，就开始胸外按压。'], dont: ['别直接伸手拉还连着电的人。'], call: '电烧伤外面看着小、里面可能很深，还可能影响心跳，一律去医院；没呼吸打 120。'}]
+    ]}],
+    ['抽搐', {q: '现在还在抽吗？', o: [
+      ['还在抽', {do: ['看一眼表，记下开始的时间。', '把周围硬的、尖的东西挪开，头下面垫点软的。', '解开领口，让他侧过来更好。'], dont: ['别往嘴里塞筷子、勺子、毛巾、手指。', '别按住他的手脚。', '别掐人中、别泼水。'], call: '抽超过五分钟、一次接一次、在水里、孕妇、第一次抽、受了伤，打 120。'}],
+      ['停下来了', {do: ['把他翻成侧卧，让口水流出来。', '看他有没有正常呼吸，陪着他直到完全清醒。', '告诉他刚才发生了什么、抽了多久。'], dont: ['别马上喂水喂药。'], call: '抽完一直叫不醒、呼吸不正常，打 120；第一次抽搐也要去医院查原因。'}]
+    ]}]
+  ];
+  let tab = 0, path = [];
+  function draw(){
+    let n = T[tab][1], crumbs = [];
+    path.forEach(i => { crumbs.push(n.o[i][0]); n = n.o[i][1]; });
+    let h = crumbs.length ? '<p style="font-size:13.5px;color:var(--ink-3)">' + crumbs.map(esc).join(' → ') + '</p>' : '';
+    if (n.q) h += '<div class="top"><b>' + n.q + '</b></div><div class="btns">' + n.o.map((o, i) => '<button class="btn" data-i="' + i + '">' + o[0] + '</button>').join('') + '</div>';
+    else {
+      h += '<p style="margin-top:.4em"><b style="color:var(--grn)">做</b></p><ol style="margin:0 0 .5em;padding-left:1.3em;font-size:15px;line-height:1.75">' + n.do.map(x => '<li>' + x + '</li>').join('') + '</ol>';
+      h += '<p><b style="color:var(--red)">别做</b></p><ul style="margin:0 0 .5em;padding-left:1.3em;font-size:15px;line-height:1.75">' + n.dont.map(x => '<li>' + x + '</li>').join('') + '</ul>';
+      h += '<p style="border-top:1px dashed var(--rule);padding-top:6px"><b style="color:var(--main)">什么时候打电话</b>　' + n.call + '</p>';
+    }
+    if (path.length) h += '<div class="btns"><button class="btn" data-back="1">← 上一步</button><button class="btn" data-reset="1">重来</button></div>';
+    box.innerHTML = h;
+  }
+  box.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.back) path.pop(); else if (b.dataset.reset) path = []; else path.push(+b.dataset.i);
+    draw();
+  });
+  btnRow($('#aidTab'), T.map(t => t[0]), 0, i => { tab = i; path = []; draw(); });
+  draw();
+});
+
+
+/* ---------- 第一、二部的判词（由 _build/can/vds.py 生成，别手改） ---------- */
+/* @@VDS */
+const ALLV = [[1,"c0","量","半真","是药三分毒","所有的药都有副作用，这没错；可“毒”取决于剂量和人。按说明书吃对症的药，好处通常大过风险；因为怕“三分毒”而不吃该吃的药，也是一种风险。"],[1,"c0","量","假","天然的东西就没有毒","发绿发芽的土豆、生的苦杏仁、野蘑菇、没煮熟的四季豆、附子乌头，都是天然的。毒不毒，看的是成分和剂量，不看是不是“纯天然”。"],[1,"c0","量","看量","维生素多吃没坏处","水溶性的维生素多了大多随尿排掉；维生素 A、D 这类脂溶性的会在体内积累，长期大量吃会中毒。含铁的补充剂对小孩子尤其危险。"],[1,"c0","量","看量","水怎么喝都不会中毒","平常喝水不用担心。几个小时里猛灌好几升，或者大量出汗以后只喝白水，会把血里的钠冲淡，严重的会死。"],[1,"c0","量","看人","蚕豆人人都能吃","大多数人能。缺 G6PD 酶的人（蚕豆病）吃了可能急性溶血，要一辈子避开蚕豆和某些药。"],[1,"c0","量","看人","一点点不要紧","对大多数东西是对的；对严重过敏的人，花生、虾、坚果，一点点就够。“一点点”这个量，因人而异。"],[1,"c1","克","半真","螃蟹配柿子会中毒","不会中毒。可柿子空腹吃得多，可能结胃石（第二章）；螃蟹不新鲜、没蒸透才是吃螃蟹出事的常见原因。"],[1,"c1","克","假","虾配维生素 C 变砒霜","海鲜里的砷几乎都是无毒的有机砷；就算全部往最坏里算，也要吃一百多公斤虾。"],[1,"c1","克","假","菠菜配豆腐会结石","正好相反，一起吃，草酸在肠子里先和钙结合排掉，进到血里的草酸更少（第二章）。"],[1,"c1","克","假","牛奶配橙汁会中毒","牛奶遇到酸会结块，这是酪蛋白凝固，和做奶酪一个道理；胃里本来就是酸的，牛奶进胃一样结块。"],[1,"c1","克","假","葱配蜂蜜会中毒","郑集 1935 年试过的组合之一，没有发现问题。"],[1,"c1","克","假","土豆配西红柿","2008 年志愿者实验里的一组，体检无异常。番茄炖土豆是很多人家的家常菜。"],[1,"c1","克","假","花生配黄瓜会拉肚子","两次实验里都有。个别人一次吃多了生冷的东西会不舒服，但谈不上“相克”。"],[1,"c1","克","假","鸡蛋配豆浆不消化","生豆浆里有抑制消化酶的成分，可它在煮沸后会被破坏。要当心的是没煮透的“假沸”豆浆本身，不是鸡蛋。"],[1,"c1","克","看人","海鲜配啤酒会痛风","海鲜和啤酒的嘌呤都不低，酒精还会妨碍尿酸排出。对尿酸高、痛风的人，这是一种真实的风险；对尿酸正常的人，一顿不会怎样。"],[1,"c1","克","看人","喝茶影响补铁","茶里的多酚会减少植物性食物中铁的吸收。对贫血、孕妇、吃素的人值得注意，吃饭时别喝浓茶；对别人没多大关系（第二章）。"],[1,"c1","克","真","吃了头孢不能喝酒","这一条不在饭店的挂图上，可它是真的“相克”，会要命（第四章）。"],[1,"c1","克","真","吃某些降压药不能吃西柚","也不在挂图上，也是真的（第五章）。"],[1,"c2","石","真","空腹：胃里没别的东西，胃酸浓，柿子直接和胃酸接触。\n      多：一次吃好几个，连着几天吃。\n      生：没熟透的，带皮吃的，鞣酸更多。\n      胃不好：胃做过手术、胃动力差（比如糖尿病多年的人）、牙口不好嚼不碎的老人，食物在胃里停得久，最容易结石。\n    \n    柿石能堵住胃的出口或者小肠，引起胀、痛、吐，时间长了还会把胃壁磨出溃疡。治疗靠胃镜把它弄碎取出，取不出来的要开刀。和柿子同属一类的黑枣（君迁子），也有同样的问题；山楂吃多了也有报告。\n    所以，挂图上那句“柿子和螃蟹不能一起吃”，如果改成“别空腹吃很多柿子，尤其是没熟的、带皮的；胃做过手术的老人要格外小心”，就对了。螃蟹是被冤枉的：它只是常常和柿子在同一个季节上桌。\n\n    可乐和胃镜2002\n    2002 年，希腊的医生报告了一件怪事：他们给胃石病人灌可口可乐，胃石居然变软、变小，有的完全化掉了。后来亚洲的医生也试，尤其是柿石多的韩国和日本。2012 年有人把几十年里几十篇病例报告汇总起来，算下来单用可乐，大约一半的胃石能化掉，配合胃镜成功率更高。可乐为什么管用，还没完全弄清，可能和它的酸度和气泡有关。\n    这是一个真实而有趣的发现，但它不是“家庭偏方”：柿石往往特别硬，单靠可乐化不掉的不少；病人在家里自己猛灌可乐，可能耽误了真正需要的处理。医生用它，是在胃镜看过以后、在医院里用的。\n\n    菠菜配豆腐：一个被讲反了的故事\n    挂图上另一条“名言”是：菠菜和豆腐一起吃会得结石。这一条有点意思，因为它碰到了真东西，然后把结论讲反了。\n    真东西是这样的：菠菜是草酸最多的蔬菜之一；豆腐（尤其是用卤水、石膏点的）含钙。草酸遇到钙，会结合成草酸钙，一种不溶于水的东西。而人最常见的一种肾结石，成分正是草酸钙。\n    于是就有人推：菠菜加豆腐，等于草酸加钙，等于草酸钙，等于结石。漏掉的是一件事：它们在哪里相遇。\n    一起吃的时候，草酸和钙是在肠子里相遇的。它们在那里结合成草酸钙，不被吸收，跟着大便排出去了。没结合上的游离草酸，才会被吸收进血液，最后经过肾、从尿里排出，在肾里和尿里的钙相遇，那才是结石形成的地方。所以，一起吃反而让进到血里的草酸变少了。\n    医学研究也站在这一边。1993 年，哈佛的研究者跟踪了四万多名男性，发现饮食里钙吃得多的人，得肾结石的反而更少。今天很多治疗肾结石的指南都说：不要刻意少吃钙，吃草酸多的东西时，最好配着含钙的食物一起吃。真正让人长结石的，是水喝得太少、盐吃得太多、肉吃得太多、太胖，以及遗传。\n    至于菠菜，下锅前先在开水里焯一下，能去掉相当一部分草酸，顺便去掉涩味，这是一条很好的老经验。\n\n    茶和铁\n    还有一条是真的，只是没那么吓人：喝茶会影响补铁。\n    茶里的多酚（也是让茶发涩的东西）会在肠子里和铁结合，让铁吸收得更少。几十年来不少实验都测过：吃饭时喝一杯浓茶，同一顿饭里植物性食物的铁，单次实验里能少吸收一半甚至更多；咖啡也有类似的作用，弱一些。肉里的那种铁（血红素铁）受的影响小得多，维生素 C（比如饭后吃个橙子）能抵消一部分。\n    这对谁要紧？对缺铁性贫血的人、孕妇、经期出血多的女性、吃素的人，值得注意：喝茶和吃饭、吃铁剂隔开一两个小时。对铁本来就够的普通人，大规模的调查没发现爱喝茶的人更容易贫血。所以它盖的章是看人。\n  \n\n  \n    \n      注意柿子礼盒\n      请勿空腹食用；一次不宜过多；未完全软熟的柿子请放软后再吃。胃部手术后、胃动力差者慎食。\n      这一行字的来历这是仿写，市面上的柿子包装未必都印。它的内容来自消化科医生每年秋天的提醒：柿石在中国、日本、韩国的胃石里占了很大一部分，病人多在柿子上市的季节来，很多有胃手术史。\n    \n  \n\n  \n    \n      判词在胃里相遇的七条\n      \n        空腹大量吃柿子会长胃石","空腹、量大、没熟透、带皮、胃做过手术，几样凑在一起风险最高。"],[1,"c2","石","假","柿子配螃蟹、配酸奶、配海带会中毒","出问题的是柿子本身吃得多、吃得空，不是和谁配。"],[1,"c2","石","半真","喝可乐能化掉胃石","医生确实用过，大约一半有效；柿石往往化不掉，在家自己灌可乐可能耽误治疗。"],[1,"c2","石","假","菠菜配豆腐会结石","一起吃，草酸在肠子里就和钙结合排掉了，进到血里的反而少。"],[1,"c2","石","假","容易长结石的人要少吃钙","研究发现钙吃得多的人结石更少。真正的风险是水少、盐多、肉多。具体听泌尿科医生的。"],[1,"c2","石","看人","菠菜要先焯水","能去掉相当一部分草酸和涩味。对有草酸钙结石的人更值得做，对别人是口味问题。"],[1,"c2","石","看人","喝茶影响补铁","对贫血、孕妇、素食者，吃饭和吃铁剂时别喝浓茶；对铁够的人影响不大。"],[1,"c3","生","真","切过生肉的刀和板，冲一下就能切凉菜","这是一条真风险：冲水去不掉多少细菌，凉菜不再加热。要么分开两块板，要么用洗洁精和热水刷干净。"],[1,"c3","生","假","生鸡洗一洗更干净","洗不掉细菌，反而溅得到处都是。烧熟、焯水才杀菌。"],[1,"c3","生","假","生鱼片蘸芥末能杀菌","那一点芥末、那几秒钟，杀不死细菌和寄生虫。"],[1,"c3","生","假","白酒泡醉虾能杀死寄生虫","虾醉了，虫没醉。生吃淡水鱼虾蟹的风险是寄生虫，只有烧熟或深度冷冻能对付。"],[1,"c3","生","半真","火锅一双筷子夹到底","涮熟的东西没事，风险在夹生肉的筷子直接进嘴。不大，但一桌有老人孩子孕妇时备双公筷。"],[1,"c3","生","真","冰箱里生肉放下层","生肉会滴水，水往下流。熟的、直接吃的放上层。"],[1,"c3","生","看人","生鸡蛋、溏心蛋有风险","鸡蛋可能带沙门氏菌。对健康的大人风险很低；孕妇、婴幼儿、老人和免疫力差的人最好吃全熟的。"],[1,"c3","生","半真","木头砧板比塑料的脏","两种说法都有实验支持，结论不一。比材质更要紧的是：生熟分开，用完刷干净、晾干，划痕太深就换。"],[1,"c4","酒","真","第一步：乙醇脱氢酶把乙醇变成乙醛。乙醛是个坏东西，毒性比酒精大得多，能让血管扩张、脸红、心跳加快、恶心头痛，世界卫生组织下属的癌症研究机构把喝酒产生的乙醛列为致癌物。\n      第二步：乙醛脱氢酶把乙醛变成无害的乙酸（醋的主要成分），最后变成水和二氧化碳。\n    \n    正常情况下，第二步很快，乙醛刚产生就被拆掉，不会堆起来。戒酒硫做的事情，就是把第二步卡住：乙醛拆不掉，越积越多，人就难受得要命。严重的时候血压骤降、呼吸困难、心律失常，可以致死。\n    后来人们发现，好几种药都能或多或少地卡住第二步，这种反应因此有了一个名字：“双硫仑样反应”（戒酒硫的学名叫双硫仑）。最常见的嫌疑犯，就是一部分头孢类抗生素，尤其是分子上带某种特定侧链的那几种；此外还有甲硝唑、替硝唑、呋喃唑酮这些常用的抗菌药，以及某几种降糖药、抗真菌药。中国的很多头孢类药品说明书上都写着：用药期间和停药后一段时间（常见的写法是七天）内，不要喝酒和含酒精的饮料。\n  \n\n  \n    \n      注意药品说明书\n      用药期间及停药后 7 日内，避免饮酒或服用含乙醇的药物、食物和饮料，以免发生双硫仑样反应。\n      这一行字的来历这是国内头孢类抗生素说明书上常见的写法（大意，各药不尽相同，以手上那盒为准）。它背后是 1937 年的橡胶厂、1948 年的戒酒硫，和后来几十年里一份一份“吃了头孢喝了酒送进急诊”的病例报告。\n    \n  \n\n  \n    为什么有的人一杯就脸红\n    说到这里，很多东亚人会觉得这些症状很眼熟：脸红、心跳快、头晕，自己不吃头孢、喝一杯啤酒也是这样。\n    这不是巧合。中国、日本、韩国有相当多的人（各地比例不同，常见的估计在三成到四成）带着一个变异的乙醛脱氢酶基因，第二步天生就慢。他们喝酒，乙醛天然会堆起来，于是脸红，这在国外甚至有个名字叫“亚洲红脸”。所以：\n    \n      喝酒脸红不是“酒量好”“能喝”的意思，正相反，是身体在拆乙醛这一步上卡住了。\n      带这个基因的人如果长期喝酒，乙醛长期泡着食管，食管癌的风险比不带的人高出不少，这是流行病学研究反复看到的。\n      这种人吃了头孢再喝酒，等于在一个本来就慢的第二步上再踩一脚刹车。\n    \n\n    藏在药水里的酒\n    那个烧烤摊上的人是自己喝了酒，好认。更麻烦的是那些不知道自己“喝了酒”的人。\n    夏天常用的藿香正气水，是一种酊剂，里面的乙醇含量可以高达四成到五成，差不多就是一口白酒。吃着头孢、又喝了一支藿香正气水，就可能出事；喝完马上开车，被查酒驾的报道也有过不少。同样含乙醇的还有十滴水、一些止咳糖浆和外用的药酒。食物里，酒心巧克力、醪糟、醉蟹醉虾，都有酒。做菜用的料酒，烧的时候会挥发掉一部分，但不一定全部挥发，焖、炖时间短的菜留得更多。\n    反过来也一样：正在吃头孢的人，问一句“这里面有没有酒”，比问“这个菜相不相克”有用得多。\n\n    酒的另外几个“一起”\n    头孢配酒最出名，可酒和药的麻烦远不止这一种：\n    \n      安眠药、镇静药、某些止痛药：酒和它们都会抑制大脑的呼吸中枢，两样加在一起不是一加一，可能让人在睡梦中停止呼吸。很多“喝了酒吃了几片安眠药，第二天没醒过来”的悲剧，都是这样。\n      对乙酰氨基酚（扑热息痛）：长期大量喝酒的人，肝脏处理这种退烧药的方式会变，同样的剂量更伤肝。美国从 1998 年起要求这类非处方止痛药写上：每天喝三杯以上酒的人，用药前先问医生。（第七章还会讲它。）\n      降糖药：酒精会妨碍肝脏释放糖，空腹喝酒的糖尿病人用着胰岛素或某些降糖药，可能发生严重的低血糖，看上去像喝醉了，旁人不会想到要救。\n      感冒药、抗过敏药：很多含有让人犯困的成分，加上酒，困上加困，开车更危险。\n      阿司匹林、布洛芬这类止痛药：和酒一起都伤胃，可能引起胃出血。\n    \n    这一章所有的判词，其实可以合成一句话：吃药的那几天，最好不喝酒；实在要喝，先看说明书，问药师。\n  \n\n  \n    \n      判词酒和药的八条\n      \n        吃了头孢不能喝酒","部分头孢会卡住拆乙醛的那一步，严重的会休克甚至死亡。用药期间和停药后几天（常见的说法是七天）都别喝。"],[1,"c4","酒","假","只有头孢怕酒","甲硝唑、替硝唑、呋喃唑酮等抗菌药，某些降糖药、抗真菌药也会；安眠药、镇静药加酒会抑制呼吸，危险更大。"],[1,"c4","酒","真","藿香正气水也算喝酒","酊剂含大量乙醇，和头孢一起可能出事，喝完开车可能测出酒精。"],[1,"c4","酒","假","喝酒脸红说明酒量好","说明拆乙醛的酶天生慢，乙醛在身体里堆积。长期喝酒，食管癌风险更高。"],[1,"c4","酒","看人","停药三天就能喝了","不同的药在身体里待的时间不同，肝肾不好的人更久。说明书常写七天，宁可多等。"],[1,"c4","酒","看量","喝了酒吃一片退烧药没事","偶尔一次正常剂量问题不大；长期大量喝酒的人用对乙酰氨基酚更伤肝，要问医生。"],[1,"c4","酒","假","出现反应，吃点解酒药、喝浓茶就好","没有家里能用的解药。脸红、心慌、胸闷、喘不上气、头晕，马上打 120。"],[1,"c4","酒","半真","菜里的料酒都挥发了","挥发掉一部分，留下多少看做法和时间。对吃头孢的人，少一事不如不吃。"],[1,"c5","柚","真","一杯就够：一杯正常大小的西柚汁，作用就能持续一天以上。\n      隔几个小时没用：早上喝汁、晚上吃药，门照样是坏的。\n      天天喝会叠加：每天一杯，门一直修不好，作用越来越强。\n    \n    这也是为什么说明书不说“隔开两小时”，而是说“服药期间避免”。\n\n    从十七种到八十五种2012\n    贝利后来把一辈子都花在这件事上。2012 年，他和同事在加拿大医学会的杂志上发表了一份清单：已知和西柚有相互作用的药超过八十五种，其中四十多种可能引起严重后果；而 2008 年时，这样“可能严重”的药只有十七种。增加的原因是新药越来越多，其中不少都要过 CYP3A4 这道门。\n    他特别提醒：最危险的是老年人。他们吃的药多，买西柚汁的也多（很多人觉得它健康、能减肥），身体处理药的能力又在下降。\n\n    柚子也算，橙子不算\n    对中国读者来说，最要紧的一句是：不只是西柚。\n    \n      柚子（包括常见的文旦柚、沙田柚、红心蜜柚这一类）也含有呋喃香豆素，有研究和病例报告显示它也能引起类似的相互作用。中秋前后吃柚子的人多，正在吃这类药的人要当心。\n      苦橙（塞维利亚酸橙，常用来做橘子酱）和某些杂交柑橘也有。\n      普通的甜橙、橘子、柠檬基本不含，或含得很少，一般认为没有这个问题。\n    \n    受影响的也不是所有药，而是某些降压药（主要是一部分钙通道阻滞剂，比如非洛地平、硝苯地平）、某些他汀（比如辛伐他汀、洛伐他汀，阿托伐他汀影响较小）、某些抗排异药、抗心律失常药、镇静药等。同一类药里，有的受影响，有的不受。判断的办法只有一个：看说明书，问医生或药师。\n  \n\n  \n    \n      注意药品说明书\n      服用本品期间，避免食用葡萄柚（西柚）或饮用葡萄柚汁。\n      这一行字的来历这是部分降压药、降脂药说明书上的写法（大意）。它起源于 1989 年一个想遮住酒味的实验和 1991 年《柳叶刀》上的一篇论文。在那之前，没有人想到早餐桌上的一杯果汁能让一片药变成好几片。\n    \n  \n\n  \n    \n      判词西柚和药的六条\n      \n        吃某些降压药、降脂药不能吃西柚","西柚会弄坏肠壁上拆药的酶，药进血太多。受影响的药有八十多种，看说明书。"],[1,"c5","柚","假","和药隔开几个小时就行","被弄坏的酶要一天以上才能补回来，隔开几个小时没用。"],[1,"c5","柚","假","柚子没事，只有西柚有事","柚子也含同类物质，正在吃这类药的人也要避开。"],[1,"c5","柚","假","橙子、橘子也不能吃","普通的甜橙、橘子基本没有这个问题。苦橙另说。"],[1,"c5","柚","假","所有药都怕西柚","只影响要过 CYP3A4 这道门的那一部分药，同一类药里也有不受影响的。"],[1,"c5","柚","假","西柚能减肥","“西柚减肥法”二十世纪三十年代就在美国流行过，没有可靠证据。正在吃药的老人为了减肥天天喝，是最危险的组合。"],[1,"c6","奶","真","牛奶、酸奶：钙会抓住某些抗生素；牛奶还会让一些肠溶片提前在胃里溶开。\n      茶：茶多酚会和含铁、含某些生物碱的药结合；茶里的咖啡因还会和某些药“叠加”。\n      咖啡：影响左甲状腺素等药的吸收，和某些药的咖啡因成分叠加。\n      果汁：西柚汁和柚子汁的问题见上一章；有研究发现橙汁、苹果汁会让个别药吸收变差。\n      酒：见第四章。\n      一小口水或者干吞：药片容易卡在食管里。\n    \n    温开水也不是越热越好：太烫的水会破坏某些活菌制剂（比如益生菌）和酶制剂。\n  \n\n  \n    \n      注意药品说明书\n      本品不宜与含钙、镁、铝、铁、锌的药物或食物同时服用；如需合用，应间隔 2 小时以上。服药时请用足量水送服，服药后不要立即躺下。\n      这一行字的来历这是四环素类、喹诺酮类抗生素说明书上常见的写法（大意，各药要求的间隔不同）。前半句来自几十年里对“螯合”的测量，后半句来自一份份药物性食管炎的病例。黄牙那一代人，比说明书更早知道四环素爱钙。\n    \n  \n\n  \n    \n      判词送药的七条\n      \n        不能用牛奶送四环素、沙星类抗生素","钙会抓住药，吸收变少。牛奶、钙片、补铁片、含铝镁的胃药都要隔开。"],[1,"c6","奶","假","所有的药都不能用牛奶送","大多数药和牛奶没关系，有的药说明书还写了可以随奶随餐吃。只有一部分怕钙。"],[1,"c6","奶","半真","补钙和补铁一起吃","钙会妨碍铁的吸收。都要补的话，分开时间吃更好。"],[1,"c6","奶","假","用咖啡送甲状腺素没关系","咖啡、早饭、钙铁都会让它吸收变差。常见的做法是白开水吞药，半小时到一小时后再吃喝。"],[1,"c6","奶","真","干吞药片、吃完就躺","药片可能卡在食管里烧出溃疡。一满杯水，吃完坐直至少半小时。"],[1,"c6","奶","半真","“饭后吃”就是吃完饭随便什么时候","一般指饭后十五到三十分钟，胃里还有东西垫着。隔了三四个小时再吃，就接近空腹了。"],[1,"c6","奶","看人","胶囊太大，掰开倒出来吃","有的可以，有的绝对不行：缓释、控释、肠溶的药掰开，可能一下子放出太多药或者在胃里被破坏。看说明书或问药师。"],[1,"c7","叠","假","布洛芬、双氯芬酸、萘普生、阿司匹林这一类止痛药（非甾体抗炎药），两种一起吃并不会更止痛，却会让胃出血、伤肾的风险叠加。正在吃小剂量阿司匹林保护心脏的人，同时吃布洛芬，还可能削弱阿司匹林的作用。\n      氯苯那敏、苯海拉明这些抗过敏成分，好几种感冒药里都有，叠起来困得更厉害，第二天开车更危险。\n      伪麻黄碱叠起来，心跳快、血压高，高血压的人尤其要当心。\n    \n    孩子更要小心：大人的复方感冒药不能掰一半给孩子吃，孩子的药要按体重算；很多国家建议两岁以下的孩子不要用非处方的感冒止咳药。\n  \n\n  \n    \n      注意药品说明书\n      本品含对乙酰氨基酚。服用本品期间，不得同时服用其他含有对乙酰氨基酚或解热镇痛药的药品（如某些复方抗感冒药）。用量不得超过说明书规定。\n      这一行字的来历这是国内含对乙酰氨基酚的非处方药说明书上常见的写法（大意）。它背后是几十年来英美急性肝衰竭的统计、英国 1998 年的“十六片”规定和美国 2011 年的警告。它要防的，正是“名字不同、成分相同”的那一次误会。\n    \n  \n\n  \n    \n      药瓶口那层封口是怎么来的\n      1982 年秋天，美国芝加哥一带接连有七个人在吃了一种对乙酰氨基酚胶囊后突然死去。调查发现，有人把药店货架上的胶囊打开，掺了氰化物，再放回去。这和药本身没有关系，是一桩投毒案，凶手至今没有定论。\n      药厂召回了全国三千多万瓶药。此后，美国立法把在商品里投毒定为联邦重罪，药厂开始给药瓶加上一层又一层“拆开过就看得出来”的封口：瓶口的铝箔、外盒的封条、收缩膜。很多胶囊也改成了不容易被打开的胶囊型药片。今天你拧开一瓶药，先要撕掉的那层薄膜，就是那七个人留下的。\n      所以，封口破了的药，不管多贵，都别吃：这一条盖“真”。\n    \n\n    \n      判词药箱里的七条\n      \n        感冒药和退烧药是两回事，可以一起吃","大多数复方感冒药里本来就有退烧成分，常常就是对乙酰氨基酚。再加退烧药，就是同一种药吃了两遍。"],[1,"c7","叠","真","一种不退，再换一种叠上去","这是最常见的过量方式。叠之前先念成分。"],[1,"c7","叠","看量","对乙酰氨基酚很安全","按说明书吃很安全；超量会伤肝，而且头一两天常常没感觉。长期大量喝酒的人更要当心。"],[1,"c7","叠","假","吃多了没感觉就是没事","肝损伤要一两天才显出来，解药越早用越好。吃多了就去医院，带上药盒。"],[1,"c7","叠","半真","名字里有“酚”就有对乙酰氨基酚","复方感冒药的通用名里常常如此，是个好用的窍门；但中成药、外国药不按这个规矩起名，最终看成分表。"],[1,"c7","叠","假","两种止痛药一起吃更止痛","布洛芬、阿司匹林这类叠在一起不会更止痛，只会更伤胃伤肾。"],[1,"c7","叠","真","封口破了的药别吃","那层封口就是为了让你看出药被动过。"],[1,"c8","怪","半真","吃华法林不能吃绿叶菜","菜和药确实有关系，但办法是吃得稳定，不是不吃。突然全停可能更危险。"],[1,"c8","怪","假","吃华法林可以随便加保健品、草药","很多药、保健品和草药都会搅动它的作用，加之前问医生。"],[1,"c8","怪","看人","吃某些抗抑郁药不能吃陈年奶酪、腌肉","只对吃单胺氧化酶抑制剂和少数几种药的人成立，那一类人要严格遵守。"],[1,"c8","怪","看量","甘草糖、甘草吃多了伤心脏","偶尔吃没事；长期大量吃会低钾、高血压、心律失常，心脏不好的人更要注意。"],[1,"c8","怪","假","草药和西药不会冲突","圣约翰草会让很多药失效；丹参、当归、银杏可能增强抗凝药的作用。"],[1,"c8","怪","看人","低钠盐人人都该吃","对大多数血压偏高的人是好事，有大型试验支持；肾功能不全、高血钾、吃保钾药的人要先问医生。"],[1,"c8","怪","看人","吃降压药不能吃香蕉","对大多数人是假的；对肾不好、又在吃某几类留钾的降压药的人，要控制高钾的东西。"],[2,"c9","饭","假","吃完饭马上游泳，会抽筋淹死","查不到可靠病例，红十字会复查后也没找到证据。吃太撑去猛游会不舒服，但和溺水无关。"],[2,"c9","饭","真","喝了酒不能游泳","成年人溺水里很大一部分喝过酒。这才是该守的“等一等”：喝了就别下水。"],[2,"c9","饭","真","孩子游泳要大人一直看着","孩子溺水往往很安静，几十秒就沉下去。看护比什么规矩都要紧。"],[2,"c9","饭","看人","吃完马上躺下","对有反流的人，睡前两三个小时别吃东西、别吃太饱；胃好的人靠一会儿不要紧。"],[2,"c9","饭","看人","吃完饭不能马上洗澡","年轻人没什么证据；老人、低血压和吃降压药的人，饭后泡热水澡可能晕倒，歇一会儿、水别太烫。"],[2,"c9","饭","真","饭后百步走","饭后散步能让血糖峰值低一些，几分钟也有用。散步，别跑。"],[2,"c9","饭","半真","吃完酸的东西马上刷牙","酸会让釉质暂时变软，先漱口、等半小时到一小时再刷，是常见的建议；影响有多大还有争论。"],[2,"c10","醉","假","咖啡和浓茶里的咖啡因让人精神一点，可血里的酒精一点没少，只是变成了一个“清醒的醉汉”，更容易高估自己去开车。咖啡因和酒精一起，还会加重心跳快。\n      解酒药和各种“护肝饮料”，目前没有哪一种被可靠地证明能明显加快酒精的代谢。\n      喝前吃点东西倒是真的有用：胃里有食物，酒进血的速度慢一些，峰值低一些。但它只是让曲线变平，总量一点没少。\n      抠喉咙催吐：刚喝下去不久的酒能少吸收一点，可醉的人催吐容易呛着，也伤食管，不推荐。\n    \n    所以只剩下维德马克那条朴素的结论：只有时间能解酒。\n\n    第二天早上\n    最容易被忽略的，是“隔夜酒”。很多人以为睡一觉就没事了，第二天一早开车上班，结果被查出酒驾。按每小时降十几毫克的速度算，前一晚喝到半夜、喝得多的人，第二天上午血里很可能还在 20 毫克以上，人自己却觉得已经清醒了。本章的装置可以算一算，可它给的是一个范围，人和人差得很远。最稳妥的规矩只有一条：头天晚上喝了很多，第二天上午别开车；喝了酒，就别开车。\n  \n\n  \n    \n      判词喝完以后的八条\n      \n        喝多了泡个热水澡、蒸个桑拿能醒酒","出汗排不掉多少酒，反而可能血压骤降、晕倒、溺在浴缸里。芬兰和日本的统计里都有喝过酒的死者。"],[2,"c10","醉","真","喝醉的人要侧着躺，有人守着","仰着吐容易呛进气管；喝完以后酒还在进血，人可能睡着睡着呼吸变慢。"],[2,"c10","醉","假","浓茶、咖啡能解酒","人精神了，血里的酒精一点没少，更容易误以为自己能开车。"],[2,"c10","醉","半真","喝酒前吃点东西不容易醉","能让酒进血慢一些、峰值低一些，总量不变，该等的时间一样要等。"],[2,"c10","醉","看量","睡一觉第二天就能开车","喝得少、睡得长也许没事；喝得多，第二天上午很可能还超过 20 毫克。"],[2,"c10","醉","假","啤酒度数低，喝一两瓶不算酒驾","一瓶啤酒就可能让血液酒精超过 20 毫克每百毫升。"],[2,"c10","醉","假","女生和男生喝一样多，醉得一样","体重和体内水分比例不同，同样的酒，女性和体重轻的人血液浓度通常更高。"],[2,"c10","醉","真","叫不醒、呼吸慢、嘴唇发紫就打 120","这是急性酒精中毒的危险信号，别等“睡一觉就好”。"],[2,"c11","跑","半真","跑完马上停下、坐下","容易因为血淤在腿上而头晕晕倒。不危险的多，但最好慢走几分钟再停。"],[2,"c11","跑","假","运动后不能喝冰水","没有可靠证据说会伤心肺；热天喝凉的反而帮助降温。别一口灌一大瓶就行。"],[2,"c11","跑","看量","运动时水喝得越多越好","喝太多会低钠，严重的会死。按口渴喝；跑完比跑前还重，就是喝多了。"],[2,"c11","跑","真","新手第一次就练到极限","可能横纹肌溶解。肌肉肿痛得厉害、尿像酱油，马上去医院。"],[2,"c11","跑","半真","中暑了赶紧送医院，路上再说","要送，也要打 120；但热射病现场第一件事是马上降温，别干等救护车。"],[2,"c11","跑","假","跑步途中晕倒歇歇就好","途中倒下、倒前胸痛心慌、倒下没有呼吸脉搏，可能是心脏骤停，马上心肺复苏、找 AED、打 120。"],[2,"c11","跑","半真","运动完马上洗热水澡","血管还开着，热水再一冲，容易头晕。缓一缓、心跳平下来再洗，水别太烫。"],[2,"c11","跑","真","吃完小龙虾肌肉疼要当心","可能是横纹肌溶解，原因至今不明，但症状是真的，要就医。"],[2,"c12","夜","真","熬了一夜，开车跟喝醉了差不多","连续清醒十七个小时左右，表现约等于血液酒精 50 毫克每百毫升；二十四小时约等于 100 毫克。"],[2,"c12","夜","假","喝两杯咖啡就能顶住","咖啡因能救急一阵，填不上一整夜的窟窿。熬了通宵就别开车。"],[2,"c12","夜","假","犯困摇下车窗、放大音乐","只管几分钟。停车，喝杯咖啡，小睡十五到二十分钟，才有用。"],[2,"c12","夜","真","连续开车四小时要歇二十分钟","这是法规里的硬性规定，也是疲劳驾驶研究的结论。"],[2,"c12","夜","看人","起床别猛地站起来","对老人、吃降压药、脱水发烧的人尤其重要；“三个半分钟”的具体时间没有严格依据，慢慢起来就对了。"],[2,"c12","夜","半真","周末补觉能把一周的觉还清","偶尔熬一夜，补觉能恢复不少；长期平时少睡，周末补不回来。"],[2,"c12","夜","假","湿着头发睡觉会面瘫","最常见的面瘫一般认为和病毒有关，受凉的关系没有被证实（见“再查一遍”）。湿着头发睡不舒服，是另一回事。"],[2,"c13","剩","看量","隔夜菜都会致癌，一口都不能吃","冷藏得当的剩菜，亚硝酸盐远不到出事的量。问题是室温下放了一夜，那时候主要是细菌。"],[2,"c13","剩","假","剩饭在桌上放一下午，热透了就安全","蜡样芽孢杆菌的毒素耐热，热透了也会吐。"],[2,"c13","剩","真","熟食室温别超过两小时","世界卫生组织的建议。天热时更短。"],[2,"c13","剩","假","剩菜要等凉透再放冰箱","分装成浅盒，稍散热气，两小时内进冰箱。凉透要好几个小时，正好泡在危险温度区里。"],[2,"c13","剩","真","剩菜反复加热、反复放回去","每一次都要穿过危险温度区。拿多少热多少。"],[2,"c13","剩","真","腌菜要腌够日子再吃","头几天到一个多礼拜是亚硝酸盐的高峰，常见的建议是二十天以后再吃。"],[2,"c13","剩","假","千滚水会致癌","浓缩出来的亚硝酸盐少得可以忽略。"],[2,"c13","剩","看人","放进冰箱就保险","冷藏三四天内吃完一般没问题；李斯特菌能在冰箱里长，对孕妇、老人、新生儿尤其要当心。"],[2,"c14","泡","假","耐热：煮、蒸、炒都破坏不了它。\n      无色无味：吃的时候看不出、闻不出、尝不出。\n      没有特效解药：它会卡住细胞制造能量的机器，肝、肾、脑先受伤，只能靠医院的支持治疗。\n      死亡率很高：各地报告的病死率差别很大，高的超过一半。\n    \n    据报道，印尼后来禁止了这种豆饼的生产。可产毒的细菌并不只待在爪哇。\n\n    一锅冻了一年的酸汤子2020\n    中国东北和北方一些地方，有用玉米、高粱泡水发酵磨成面的传统吃食，叫“臭米面”“酵米面”，做成面条就是“酸汤子”。二十世纪五十年代起，这一带就有不明原因的“臭米面中毒”，病死率很高；后来中国的研究者从发酵的米面里分离出了产毒的细菌，查明毒素也是米酵菌酸。\n    2020 年 10 月，黑龙江鸡西市一户人家聚餐，吃了自己做的酸汤子，那面是一年前发酵、一直冻在冰箱里的。九个人先后死亡。这件事让很多人第一次听说了“米酵菌酸”这个名字。2024 年 3 月，台北一家餐厅的炒粿条（一种米粉）也查出米酵菌酸，造成多人死亡。\n    这些事有一个共同的模式：淀粉多的东西，在潮湿、温暖的环境里泡着或放着，时间一长，被那种细菌占了。发酵的玉米面、泡久的米粉河粉、变质的银耳，还有每家每户都会泡的东西：木耳。\n\n    泡了两天的木耳\n    干木耳本身没有毒，干燥的时候细菌也长不起来。问题出在泡发：一盆水，二三十度的室温，泡一夜、泡两天，水里和木耳表面的细菌就有了足够的时间和温度去繁殖。如果恰好有那种产毒的细菌混了进去，毒素就会积累起来，而它不会因为后来下锅煮了一遍而消失。\n    这些年各地都报道过泡发过久的木耳、银耳引起的中毒。监管部门和疾控机构给出的提醒大同小异：\n    \n      用凉水泡，天热放进冰箱里泡；\n      泡开就做，别泡一整夜，更别泡几天（干木耳在凉水里一两个小时就能泡开）；\n      泡发好的当天吃完；\n      发粘、有异味、颜色不对，整盆扔掉，别洗洗再吃；\n      不吃自己发酵的、放了很久的米面制品。\n    \n    那位阿姨“闻了闻没什么味，就是有点滑”，恰好碰到了最危险的情况：米酵菌酸本身闻不出来，发粘已经是警告。\n\n    反过来要泡的：鲜黄花菜\n    “泡”也有反过来的情况。新鲜的黄花菜（金针菜）里含有秋水仙碱，进了身体会变成毒性更强的东西，吃多了会恶心、呕吐、腹泻。所以鲜黄花菜要先在开水里焯透，再用清水泡上一两个小时，才能炒着吃。市场上卖的干黄花菜，在晒干和加工的过程中已经把这东西去掉了大半，正常泡发煮熟就没问题。同一个“泡”字，木耳是泡久了出毒，鲜黄花菜是泡够了去毒。\n  \n\n  \n    \n      提示消费提醒\n      木耳、银耳等干货泡发时间不宜过长，天热宜冷藏泡发，泡发后尽快食用；发现发粘、有异味应丢弃。不制作、不食用长时间发酵或存放的米面制品。\n      这一行字的来历这是近年各地市场监管和疾控部门发布的消费提醒的常见内容（大意）。它的源头是爪哇的椰子豆饼、东北的臭米面，和 2020 年那锅冻了一年的酸汤子。\n    \n  \n\n  \n    十万只火鸡1960\n    “放久了”的另一种形态是发霉。1960 年，英格兰东南部的养殖场里，十万只左右的小火鸡在几个月里接连死去，病因不明，人们干脆叫它“火鸡 X 病”。调查发现，它们吃的饲料里都有一批从巴西进口的花生粕，花生发了霉。\n    研究者从霉里提出了一种毒素，因为产毒的霉菌叫黄曲霉，就叫它黄曲霉毒素。后来发现，它是已知最强的天然致癌物之一，主要伤肝，长期吃少量就会大大增加肝癌的风险，和乙肝病毒加在一起风险更高。江苏启东一度是肝癌高发区，研究者在那里做了几十年的工作，发现当地玉米里的黄曲霉毒素是重要原因之一；后来改变饮食和粮食储存方式，加上乙肝疫苗，当地的肝癌发病率明显下降。\n    黄曲霉毒素也很耐热，平常的炒、煮去不掉它。所以：发霉的花生、玉米、坚果，吃到一颗发苦发霉的，吐掉、漱口；一包里有明显霉味的，整包扔掉；自己家储存粮食和花生，要放干燥、阴凉的地方。\n\n    发芽和发霉是两回事\n    很多人把“发芽”和“发霉”混在一起，觉得“长了东西”就是坏了。其实不是：\n    \n      发芽本身大多没毒：豆芽、花生芽、蒜苗本来就是拿来吃的。例外是土豆，发芽发绿的部分龙葵素会大增（第一部序幕），要挖掉，发得多就别吃。\n      发霉才是问题：霉菌的毒素看不见、去不掉。花生、玉米、大米、坚果、甘蔗发了霉，都别吃。\n    \n    说到甘蔗：北方冬天和早春卖的甘蔗，从南方运来、储存时间长，有的会长一种霉菌，产生一种叫 3-硝基丙酸的毒素，主要伤脑，孩子吃了可能抽搐、昏迷，留下后遗症。甘蔗切开以后，心是红褐色的、有酒糟味或者霉味，就别吃。\n  \n\n  \n    \n      判词泡发和发霉的八条\n      \n        木耳、银耳泡一两天也没事","室温下泡久了可能产生米酵菌酸，没有解药。凉水泡、天热冷藏、泡开就做、当天吃完。"],[2,"c14","泡","假","泡发的木耳有点发粘，洗洗还能吃","发粘就是警告，整盆扔掉。毒素闻不出来，也洗不掉。"],[2,"c14","泡","假","米酵菌酸煮熟了就没毒","它非常耐热，煮、蒸、炒都破坏不了。"],[2,"c14","泡","真","自己发酵、冻了很久的米面要当心","东北的臭米面、酸汤子中毒，查出的都是米酵菌酸。"],[2,"c14","泡","假","鲜黄花菜可以直接炒","新鲜的含秋水仙碱，要焯透、泡一两个小时。干的黄花菜正常泡发煮熟即可。"],[2,"c14","泡","半真","发霉的花生挑掉霉的那几颗就行","挑掉明显霉坏的能减少不少；一包里有霉味的整包扔。吃到一颗发苦的，吐掉、漱口。"],[2,"c14","泡","假","发了芽的东西都有毒","发芽大多没事，土豆例外；发霉才是问题。"],[2,"c14","泡","真","红心、有酒糟味的甘蔗别吃","可能长了产生 3-硝基丙酸的霉菌，伤脑，孩子尤其危险。"],[2,"c15","冻","假","放冷藏室：最安全，最慢，一公斤左右的肉大约要大半天到一天。头天晚上从冷冻挪到冷藏，第二天做。\n      冷水泡：肉装进不漏水的袋子，泡在冷水里，每半个小时换一次水，一公斤大约两个小时上下。化好马上做。\n      微波炉解冻：最快，但边缘可能已经被烫熟一点，化好要马上做。\n    \n    热水泡化冻看上去更快，可表面一下子就到了四五十度，正是细菌最爱的温度，里面却还冻着，这是最糟糕的一种。\n\n    化了能不能再冻\n    “化了的肉不能再冻回去”，是另一条一半对一半错的规矩。\n    从安全上说，要看它是怎么化的：在冷藏室里化的、一直没离开过冰箱温度的，可以再冻回去，只是每冻一次，冰晶就再扎一遍细胞，化开以后更出水、更柴，口感变差。用冷水或微波炉化的，表面已经暖过，应该先做熟，做熟以后的菜可以再冻。在室温下放了很久的，就像那块五花肉，冻回去也冻不死已经长起来的细菌，别冻，也别吃。\n    所以，与其记“能不能再冻”，不如在冻的时候就分好小份，一次化一顿的量。\n\n    冻多久都不坏吗\n    从安全上说，在稳定的零下十八度以下，细菌不长，食物理论上可以一直放下去。可它会慢慢“变干变老”：表面的水分升华跑掉，留下发白发干的一块块，叫“冻伤”；脂肪也会慢慢氧化，有一股哈喇味。这些不会让人生病，只是不好吃了。所以冷冻的肉、鱼、包子饺子，一般建议几个月到一年内吃完，用保鲜袋把空气挤干净、贴上日期。\n    冰箱本身也要看一眼温度：冷藏室最好在四度左右或更低，冷冻室在零下十八度以下。冰箱门上那几格开门时最先变暖，温度波动最大，适合放酱料、饮料，不太适合放牛奶、鸡蛋和剩菜。\n  \n\n  \n    \n      贮存速冻食品包装\n      请于 -18℃ 以下冷冻保存。解冻后请尽快食用，不宜再次冷冻。\n      这一行字的来历这是速冻饺子、汤圆、冷冻肉类包装上常见的写法（仿写）。零下十八度是国际上通行的冷冻标准，在这个温度下细菌几乎不长；“不宜再次冷冻”一半是为了口感（冰晶反复扎破细胞），一半是因为厂家不知道你是怎么化的。\n    \n  \n\n  \n    \n      判词冻和化的八条\n      \n        冻肉在台面上化一整天没关系","表面早早进了危险温度区，中心还没化开。冷藏室化、冷水换水化或微波炉化。"],[2,"c15","冻","半真","化了的肉不能再冻","冷藏室里化的可以再冻，只是口感变差；冷水、微波化的先做熟再冻；室温放久的别冻也别吃。"],[2,"c15","冻","假","冷冻能杀死细菌","大多只是暂停，化开以后接着长。"],[2,"c15","冻","看量","冷冻能杀死寄生虫","要足够低的温度、足够长的时间，比如零下二十度冻上一天到一周。家用冷冻室未必够。"],[2,"c15","冻","假","用热水泡化最快最好","表面一下子到了细菌最爱的温度，里面还冻着。"],[2,"c15","冻","半真","冻上就永远不会坏","稳定的零下十八度下不会让人生病，但会冻伤、发干、有哈喇味。几个月到一年内吃完。"],[2,"c15","冻","真","冷藏室要在四度左右或更低","放个冰箱温度计看一眼。冷冻室在零下十八度以下。"],[2,"c15","冻","半真","牛奶鸡蛋放冰箱门上","门上温度波动最大。牛奶、鸡蛋、剩菜放里面更稳；门上放酱料饮料。"],[2,"c16","后","看量","安眠药、镇静药、抗焦虑药：有的第二天上午还有作用，自己却觉得已经醒了。\n      某些止痛药、含可待因的止咳药：让人迟钝、犯困。\n      某些降糖药和胰岛素：本身不让人困，可开车途中低血糖，人会突然糊涂、手抖、出冷汗。\n      某些抗抑郁药、抗癫痫药：刚开始吃或者调剂量的那几天，反应可能变慢。\n      散瞳的眼药水：配眼镜验光、查眼底时常用。散瞳以后瞳孔放大、怕光、看近处模糊，常见的短效散瞳药要四到六个小时才恢复，有的更久。所以医院会提醒：散瞳当天别自己开车回家。\n    \n    和第一部一样，办法还是看说明书，问医生药师。说明书上写了“服药期间不得驾驶”，那就是法律意义上的“不得”。\n\n    拔完牙\n    拔完牙以后，牙槽窝里会凝成一个血块。它不只是止血，还是伤口愈合的“脚手架”：新的肉和骨头要沿着它长出来。这个血块被冲掉、吸掉，骨头就露在外面，两三天后剧痛难忍，这叫“干槽症”，下牙的智齿最容易发生。\n    所以拔牙后的规矩几乎都是为了保住这个血块：纱布咬半小时到四十分钟；当天别漱口、别刷伤口那一侧、别用力吐口水、别用吸管（吸管会在嘴里形成负压）；别抽烟、别喝酒；吃温凉的软东西，用另一侧嚼。第一两天可以冷敷消肿。\n\n    献完血\n    中国的国家标准规定，献全血以后，要隔至少六个月才能再献全血；献血小板这种单采成分，间隔要至少两周。这是为了让身体有足够的时间把丢掉的血、尤其是铁补回来。\n    献完血的当天，常见的提醒是：在献血点歇一会儿、喝点水再走，当天别做剧烈运动和重体力活，针眼按压一会儿、保持干净。至于“献完血要大补”，并不需要：正常吃饭，多吃点含铁的肉、蛋、豆、绿叶菜就够了。\n\n    打完疫苗\n    打完疫苗，接种点会让你坐下等三十分钟再走。这是中国预防接种工作规范的要求，原因是最严重的过敏反应（过敏性休克）虽然极少见，但大多发生在接种后几分钟到半小时之内，在接种点，医生手边有肾上腺素，能马上处理。这三十分钟别省。\n\n    全麻醒来\n    做完全身麻醉或者“无痛胃镜”这类静脉麻醉，人醒过来了，可麻醉药的余威还在：判断力、反应速度和记忆可能好几个小时都不在状态，自己却觉得没事。所以医院一般要求：麻醉后二十四小时内不开车、不操作机器、不喝酒、不签重要的文件，最好有一个大人陪着回家。很多医院不允许做完无痛胃镜的病人自己一个人离开，就是这个原因。\n  \n\n  \n    \n      判词做完以后的八条\n      \n        潜完水第二天一早就能坐飞机","只潜一次，等够 12 小时一般可以；潜了好几次、好几天，至少 18 小时；减压潜水更久。"],[2,"c16","后","假","感冒药都不影响开车","很多含有让人犯困的成分，说明书写着“不得驾驶”。"],[2,"c16","后","假","验光散瞳以后可以自己开车回家","常见的散瞳药要几个小时才恢复，当天别开车。"],[2,"c16","后","假","拔完牙多漱口更干净","会把伤口里的血块冲掉，引起干槽症。当天别漱口、别吐、别用吸管。"],[2,"c16","后","假","献完血要大补","正常吃饭、多吃含铁的东西就够；全血要隔至少六个月再献。"],[2,"c16","后","真","打完疫苗要留观半小时","最严重的过敏反应多在半小时内，接种点能马上处理。"],[2,"c16","后","半真","打完疫苗 24 小时不能洗澡","保持针眼干净即可，洗澡别使劲搓那一块。见“再查一遍”。"],[2,"c16","后","假","全麻醒了就能开车、签合同","二十四小时内判断和反应都可能不在状态，要有人陪着回家。"]];
+/* @@END */
+
+/* ---------- 装置 25：全书的章 ---------- */
+dev('#allFig', fig => {
+  const COL = {'真': 'var(--red)', '看量': 'var(--main)', '看人': 'var(--blu)', '半真': 'var(--pur)', '假': 'var(--ink-3)'};
+  const items = ALLV.map(r => ({part: r[0], id: r[1], ch: r[2], v: r[3], t: r[4], p: r[5]}));
+  $$('.vds li').forEach(li => {
+    const st = li.querySelector('.st'), sec = li.closest('section.chap');
+    if (!st || !sec || !COL[st.dataset.v]) return;
+    items.push({part: 3, id: sec.id, ch: sec.querySelector('.chead .big').textContent, v: st.dataset.v, t: (li.querySelector('b') || {}).textContent || '', p: (li.querySelector('p') || {}).textContent || ''});
+  });
+  const box = $('#alDots'), out = $('#alSay'), bsvg = $('#alBars');
+  let fp = 0, fv = '';
+  const PN = ['全书', '第一部 · 一起', '第二部 · 接着', '第三部 · 混用'];
+  btnRow($('#alPart'), PN, 0, i => { fp = i; paint(); });
+  const n = {}; items.forEach(x => n[x.v] = (n[x.v] || 0) + 1);
+  const sb = $('#alSt');
+  sb.innerHTML = '<button class="btn on" data-v="">每种章</button>' + STV.map(v => '<button class="btn" data-v="' + v + '">' + v + '</button>').join('');
+  sb.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; fv = b.dataset.v; $$('button', sb).forEach(x => x.classList.toggle('on', x === b)); paint(); });
+  box.innerHTML = items.map((x, i) => '<i data-i="' + i + '" title="' + esc(x.t) + '" style="cursor:pointer;border-radius:4px;background:' + COL[x.v] + '"></i>').join('');
+  /* 三部各自的比例条 */
+  (function(){
+    const W = 600, L = 108, R = 12, rh = 30;
+    let g = '';
+    [1, 2, 3].forEach((p, k) => {
+      const its = items.filter(x => x.part === p), tot = its.length || 1, y = 10 + k * rh;
+      let x = L;
+      g += txt(L - 8, y + 15, PN[p].replace(/ · .*/, '') + '（' + its.length + '）', {s: 12, a: 'end', c: 'var(--ink-2)', halo: false});
+      STV.forEach(v => { const c = its.filter(i => i.v === v).length, w = c / tot * (W - L - R); if (!c) return; g += '<rect x="' + x.toFixed(1) + '" y="' + y + '" width="' + w.toFixed(1) + '" height="20" fill="' + COL[v] + '" opacity=".8"/>'; if (w > 26) g += txt(x + w / 2, y + 14.5, c, {s: 11, c: 'var(--paper)', halo: false, w: 1}); x += w; });
+    });
+    STV.forEach((v, k) => { const x = L + k * 80, y = 10 + 3 * rh + 14; g += '<rect x="' + x + '" y="' + (y - 10) + '" width="12" height="12" rx="2" fill="' + COL[v] + '" opacity=".8"/>' + txt(x + 16, y, v + ' ' + (n[v] || 0), {s: 11.5, a: 'start', c: 'var(--ink-2)', halo: false}); });
+    bsvg.setAttribute('viewBox', '0 0 ' + W + ' ' + (10 + 3 * rh + 26)); bsvg.innerHTML = g;
+  })();
+  function paint(){
+    let shown = 0;
+    $$('i', box).forEach((d, i) => { const x = items[i], ok = (!fp || x.part === fp) && (!fv || x.v === fv); d.style.display = (!fp || x.part === fp) ? '' : 'none'; d.style.opacity = ok ? 1 : 0.12; if (ok) shown++; });
+    const pool = items.filter(x => !fp || x.part === fp), pz = pool.length || 1;
+    const pct = v => Math.round(pool.filter(x => x.v === v).length / pz * 100);
+    out.innerHTML = PN[fp] + '一共 <b>' + pool.length + '</b> 条判词：真 ' + pct('真') + '%，看量 ' + pct('看量') + '%，看人 ' + pct('看人') + '%，半真 ' + pct('半真') + '%，假 ' + pct('假') + '%。' + (fv ? '现在亮着的“' + fv + '”有 ' + shown + ' 条。' : '') + '点一格看看。';
+  }
+  box.addEventListener('click', e => {
+    const d = e.target.closest('i'); if (!d) return; const x = items[+d.dataset.i];
+    const t = TOC.find(y => y.id === x.id);
+    out.innerHTML = '<i class="st sm" data-v="' + x.v + '">' + x.v + '</i> <b>' + esc(x.t) + '</b>　' + esc(x.p) + ' <a href="' + href(x.id) + '">' + esc(x.ch) + (t ? ' · ' + t.t : '') + '</a>';
+  });
+  paint();
+});
+
+/* ---------- 装置 26：你的冰箱贴 ---------- */
+dev('#fridgeFig', fig => {
+  const KEY = 'genesis-can-fridge', MAX = 6;
+  const L = [
+    ['八四不配洁厕灵、白醋、酒精', 'c17'], ['两瓶疏通剂不叠着用', 'c18'], ['带壳鸡蛋不进微波炉', 'c19'], ['不粘锅不空锅开大火', 'c19'],
+    ['大功率电器不挤一个插排，插排不串插排', 'c20'], ['电动车不进楼、不在楼道里充电', 'c20'], ['油锅着火：关火，盖锅盖，不泼水', 'c21'], ['睡觉关上卧室门', 'c21'],
+    ['闻到燃气：不开灯，关阀开窗，出门再打电话', 'c22'], ['一家人一起头疼：开窗、出门、打 120', 'c22'], ['流鼻血：坐直前倾，捏鼻翼十分钟', 'c23'], ['烫伤：凉的流水冲二十分钟', 'c23'],
+    ['噎住了咳不出声：腹部冲击，打 120', 'c23'], ['剩菜两小时内进冰箱', 'c13'], ['木耳泡开就做，别泡一夜', 'c14'], ['冻肉放冷藏室化，不放台面上', 'c15'],
+    ['喝了酒、熬了夜，都不开车', 'c10'], ['吃头孢，停药七天内不喝酒', 'c4'], ['感冒药先念成分，别叠着吃', 'c7'], ['吃药前问一句能不能喝西柚汁', 'c5']
+  ];
+  let st = {pick: [6, 9, 11, 0], own: ''};
+  try { const s = JSON.parse(localStorage.getItem(KEY) || 'null'); if (s && Array.isArray(s.pick)) st = {pick: s.pick.filter(i => L[i]).slice(0, MAX), own: String(s.own || '').slice(0, 40)}; } catch (e) {}
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} };
+  const pick = $('#frPick'), own = $('#frOwn'), card = $('#frCard'), say = $('#frSay');
+  own.value = st.own;
+  function draw(){
+    pick.innerHTML = L.map((x, i) => '<button data-i="' + i + '" class="' + (st.pick.includes(i) ? 'on2' : '') + '">' + x[0] + '</button>').join('');
+    const lines = st.pick.map(i => L[i]);
+    card.innerHTML = '<div class="label" style="margin:14px auto"><div class="in" style="display:block"><h6>我家冰箱上的几条<small>' + (lines.length + (st.own ? 1 : 0)) + ' 条</small></h6>' +
+      '<ol style="margin:.4em 0 0;padding-left:1.4em;font-weight:700;font-size:15.5px;line-height:1.75">' + lines.map(x => '<li>' + x[0] + ' <a href="' + href(x[1]) + '" style="font-weight:500;font-size:12px;color:inherit;opacity:.75">' + TOC.find(t => t.id === x[1]).n + '</a></li>').join('') + (st.own ? '<li>' + esc(st.own) + '</li>' : '') + '</ol>' +
+      '<div class="why" style="margin-top:8px">出了事先打电话：着火、漏气 119；有人受伤、中毒 120。</div></div></div>';
+    say.textContent = st.pick.length >= MAX ? '已经挑满六条了。冰箱贴要短，短了才有人看；想换一条，先点掉一条。' : '还能再挑 ' + (MAX - st.pick.length) + ' 条。';
+  }
+  pick.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return; const i = +b.dataset.i, k = st.pick.indexOf(i);
+    if (k >= 0) st.pick.splice(k, 1); else if (st.pick.length < MAX) st.pick.push(i); else { say.textContent = '最多六条。先点掉一条再换。'; return; }
+    save(); draw();
+  });
+  own.addEventListener('input', () => { st.own = own.value.slice(0, 40); save(); draw(); });
+  $('#frClear').addEventListener('click', () => { st = {pick: [], own: ''}; own.value = ''; save(); draw(); });
+  $('#frCopy').addEventListener('click', () => {
+    const text = '我家冰箱上的几条\n' + st.pick.map((i, k) => (k + 1) + '. ' + L[i][0]).join('\n') + (st.own ? '\n' + (st.pick.length + 1) + '. ' + st.own : '') + '\n出了事先打电话：119、120';
+    try { navigator.clipboard.writeText(text).then(() => { say.textContent = '复制好了，可以贴到家族群里，替换掉那张相克挂图。'; }, () => { say.textContent = '这个浏览器不让复制，可以长按上面的贴纸手动复制。'; }); }
+    catch (e) { say.textContent = '这个浏览器不让复制，可以长按上面的贴纸手动复制。'; }
+  });
+  draw();
 });
 
 })();

@@ -1,0 +1,198 @@
+<!-- ============ 第三十八章 · 存 ============ -->
+<section class="chap" id="c38" data-vol="卷十一 · 存">
+  <div class="chead">
+    <div class="big">存</div>
+    <div>
+      <div class="no">第三十八章</div>
+      <h2>游戏的东西都在哪儿</h2>
+      <dl><dt>讲什么</dt><dd>minecraft 文件夹的地图；一个世界里有哪些文件；从游戏里一键打开文件夹；截图、日志、设置文件；三种备份；一块地存在哪个 region 文件里</dd><dt>本章装置</dt><dd>游戏文件夹寻宝 · 这块地在哪个文件里</dd></dl>
+      <div class="sub" data-s="机 英 数"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第六天</b><span class="pix">WORLD · 我的第一个家</span><span>生存模式 · 第 412 天</span></div>
+    <div class="bd">
+      <div class="l act">小格想在老世界里用 /fill 挖一个大地下室。手指已经放在回车键上了。</div>
+      <div class="l"><i class="j">舅</i><span>等一下。这一行要是写错一个数，你的房子就没了。这个世界你玩了一年多吧？</span></div>
+      <div class="l"><i class="g">格</i><span>……那怎么办？</span></div>
+      <div class="l"><i class="j">舅</i><span>先存一份“后悔药”。备份好了，随便折腾，弄坏了就拿备份换回来。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★</span><span class="dim">★★</span></div><div><b>大约多久</b>40 分钟</div><div><b>要准备</b>Java 版；做 U 盘备份要一个 U 盘</div><div><b>大人</b>第一次备份最好陪着</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>说出 minecraft 文件夹里 saves、screenshots、logs、options.txt 各是什么。</li>
+      <li>从游戏里直接打开世界文件夹和截图文件夹。</li>
+      <li>用三种办法备份一个世界，并且知道怎样换回来。</li>
+      <li>算出一块地存在哪个 region 文件里。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>minecraft 文件夹的地图</h3>
+    <p>上一章找到的 <code>~/Library/Application Support/minecraft</code>，就是 Java 版的<b>游戏目录</b>。里面最重要的几样：</p>
+  </div>
+  <div class="wide tbl">
+    <table class="t kt">
+      <tr><th>名字</th><th>是什么</th><th>英文意思</th></tr>
+      <tr><td><code>saves/</code></td><td>所有的世界。一个世界一个文件夹</td><td><span class="en" data-say="saves">saves</span>：存下来的东西</td></tr>
+      <tr><td><code>screenshots/</code></td><td>游戏里按 fn + F2 截的图</td><td><span class="en" data-say="screenshots">screenshots</span>：屏幕的照片</td></tr>
+      <tr><td><code>backups/</code></td><td>游戏里“制作备份”做出来的压缩包</td><td><span class="en" data-say="backups">backups</span>：备份</td></tr>
+      <tr><td><code>resourcepacks/</code></td><td>资源包：换方块的样子、换声音</td><td><span class="en" data-say="resource packs">resource packs</span></td></tr>
+      <tr><td><code>logs/latest.log</code></td><td>日志：游戏一边运行一边写的“日记”，出错时很有用</td><td><span class="en" data-say="log">log</span>：航海日志</td></tr>
+      <tr><td><code>crash-reports/</code></td><td>游戏崩溃（突然退出）时写的报告</td><td><span class="en" data-say="crash report">crash report</span></td></tr>
+      <tr><td><code>options.txt</code></td><td>你在“选项”里调的所有设置，包括按键</td><td><span class="en" data-say="options">options</span>：选项</td></tr>
+      <tr><td><code>versions/</code></td><td>下载过的游戏版本</td><td><span class="en" data-say="versions">versions</span></td></tr>
+    </table>
+  </div>
+
+  <div class="col">
+    <p>打开 <code>saves</code> 里的一个世界，又能看到：</p>
+  </div>
+  <div class="wide tbl">
+    <table class="t kt">
+      <tr><th>名字</th><th>是什么</th></tr>
+      <tr><td><code>level.dat</code></td><td>这个世界的“总设置”：名字、种子、游戏规则、现在几点</td></tr>
+      <tr><td><code>region/</code></td><td>主世界的地形和方块，切成很多个 <code>r.x.z.mca</code> 文件</td></tr>
+      <tr><td><code>playerdata/</code></td><td>每个玩家站在哪儿、背包里有什么</td></tr>
+      <tr><td><code>datapacks/</code></td><td>这个世界的数据包（第二十五章）</td></tr>
+      <tr><td><code>advancements/</code> <code>stats/</code></td><td>进度和统计</td></tr>
+      <tr><td><code>icon.png</code></td><td>选择世界时那张小图</td></tr>
+      <tr><td><code>DIM-1/</code> <code>DIM1/</code></td><td>下界和末地（新版本里这些文件夹的安排可能变，以维基为准）</td></tr>
+    </table>
+  </div>
+
+  <div class="corner" data-k="英">
+    <h5>DIM 是什么</h5>
+    <p>DIM 是 <span class="en" data-say="dimension">dimension</span> 的头三个字母，意思是“维度”，游戏里指下界、末地这样的“另一个世界”。<code>DIM-1</code> 是下界（−1），<code>DIM1</code> 是末地（1），主世界是 0。用数字给世界编号，一个往“下”、一个往“上”，正好用上了负数。</p>
+  </div>
+
+  <div class="col">
+    <h3>不用找路，游戏帮你打开</h3>
+    <p>其实很多时候，<b>根本不用记路径</b>，游戏里就有按钮：</p>
+    <ul class="plain">
+      <li><b>世界文件夹</b>：“单人游戏”→ 选中一个世界 →“编辑”→“打开世界文件夹”。</li>
+      <li><b>截图</b>：按 fn + F2 截图后，聊天框里会出现一行“已将截图保存为……”，<b>点那个文件名</b>就能打开。</li>
+      <li><b>资源包文件夹</b>：“选项”→“资源包”→“打开包文件夹”。</li>
+      <li><b>备份文件夹</b>：“编辑”世界的那一页里，有“打开备份文件夹”。</li>
+    </ul>
+    <p>按钮的名字和位置可能随版本变一点，找找就有。</p>
+  </div>
+
+  <div class="fig" id="fd3Fig">
+    <div class="fig-label">装置 · 第三十八章 · 一</div>
+    <h4>游戏文件夹寻宝</h4>
+    <p class="how">模拟访达已经打开在 minecraft 文件夹里。按下面的单子一样一样找。点到文本文件（.txt、.log、.mcfunction、.mcmeta），右边能看到里面写着什么。</p>
+    <div id="fd3"></div>
+  </div>
+
+  <div class="col">
+    <h3>options.txt：所有设置写在一张纸上</h3>
+    <p>用“文本编辑”打开 <code>options.txt</code>（要先<b>关掉游戏</b>），你会看到几百行这样的字：</p>
+    <pre class="py">renderDistance:8
+maxFps:60
+lang:zh_cn
+key_key.inventory:key.keyboard.e</pre>
+    <p>冒号左边是设置的名字，右边是它的值。<code>renderDistance</code> 是视野距离，<code>lang:zh_cn</code> 是语言“简体中文”。这种“名字:值”的写法，程序员叫<b>键值对</b>，第七十七章的“字典”就是它。</p>
+    <p>可以看，<b>先别改</b>。改错了游戏可能读不懂。在游戏的“选项”里调，效果一样，还不会出错。</p>
+  </div>
+
+  <div class="col">
+    <h3>三种备份</h3>
+    <p>备份就是把重要的东西多存一份，放在别的地方。做法从简单到稳妥：</p>
+  </div>
+  <div class="col">
+    <ol class="steps">
+      <li><b>游戏里一键备份</b>：“单人游戏”→ 选中世界 →“编辑”→“制作备份”。游戏会把整个世界打成一个 <code>.zip</code> 压缩包，放进 <code>backups</code> 文件夹。最省事，可是它和游戏放在同一台电脑上，电脑坏了就一起没了。</li>
+      <li><b>复制一份文件夹</b>：<b>先退出这个世界</b>（回到标题画面），打开 <code>saves</code>，选中世界文件夹，按住 option 拖到“文稿”里的 <code>mc</code> 文件夹，或者右键 →“压缩”，做成一个 zip 再放过去。名字后面加上日期，比如 <code>我的第一个家_2027-01-20.zip</code>。</li>
+      <li><b>放到电脑外面</b>：把上一步的 zip 拷到 U 盘或者移动硬盘上。这台 MacBook 只有 USB-C 口，U 盘也许要转接头。大人如果开了“时间机器”，电脑会自己定时备份到外接硬盘。</li>
+    </ol>
+    <p><b>换回来</b>：退出游戏，把坏掉的那个世界文件夹拖进废纸篓（或者改名留着），把备份的 zip 双击解压，把解压出来的文件夹放回 <code>saves</code>。重新打开游戏，世界就回到备份那一刻了。</p>
+  </div>
+
+  <div class="corner" data-k="学">
+    <h5>为什么要先退出世界再复制</h5>
+    <p>世界开着的时候，游戏随时在往文件里写东西。你复制到一半，它正好写了一半，复制出来的就可能是“半截”的，打不开。就像别人还在写作业，你就把作业本拿去复印。<b>先关，再拷。</b>这个道理以后备份任何东西都适用。</p>
+  </div>
+
+  <div class="task" data-id="t38a">
+    <div class="th"><b>给老世界存一份后悔药</b><span class="xp">★★</span></div>
+    <div class="tb">
+      <ol>
+        <li>用游戏里的“制作备份”给你最重要的世界做一个备份，再点“打开备份文件夹”看看它。</li>
+        <li>用第二种办法再做一份，放进 <code>~/Documents/mc</code>，名字加上今天的日期。</li>
+        <li>在游戏里按 fn + F2 截一张图，点聊天框里的文件名打开它。</li>
+        <li>（大人在的时候）把 zip 拷到 U 盘上。</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>一块地存在哪个文件里</h3>
+    <p><code>region</code> 文件夹里的文件名字很怪：<code>r.0.0.mca</code>、<code>r.-1.0.mca</code>……其实这是在说“这一大片地在哪儿”。规则是这样的：</p>
+    <ul class="plain">
+      <li>世界切成 16 × 16 格的<b>区块</b>。</li>
+      <li>32 × 32 个区块，组成一个<b>区域</b>，存成一个 <code>.mca</code> 文件。一个区域是 16 × 32 = <b>512</b> 格见方。</li>
+      <li>文件名里的两个数，是区域在 x 方向和 z 方向的编号。<code>r.0.0</code> 管 x 从 0 到 511、z 从 0 到 511 的那一大片；<code>r.-1.0</code> 管 x 从 −512 到 −1。</li>
+    </ul>
+    <p>算法是：<b>坐标除以 512，再“往小的方向”取整</b>。x = 700，700 ÷ 512 ≈ 1.37，往小取是 1。x = −20，−20 ÷ 512 ≈ −0.04，往小取是 −1（不是 0！）。</p>
+  </div>
+
+  <div class="fig" id="regFig">
+    <div class="fig-label">装置 · 第三十八章 · 二</div>
+    <h4>这块地在哪个文件里</h4>
+    <p class="how">拖动滑块，或者直接点下面的小地图，选一个 x 和 z。装置会告诉你：这块地在第几个区块里、存在哪个 region 文件里。</p>
+    <div class="ctl"><span>x</span><input type="range" id="regX" min="-1200" max="1200" value="700"><output id="regXO"></output></div>
+    <div class="ctl"><span>z</span><input type="range" id="regZ" min="-1200" max="1200" value="-20"><output id="regZO"></output></div>
+    <svg id="regSvg" style="max-width:360px;display:block;margin:6px auto" role="img" aria-label="区域文件的小地图"></svg>
+    <div class="kv" id="regKv"></div>
+    <div class="say" id="regSay"></div>
+  </div>
+
+  <div class="corner" data-k="数">
+    <h5>“往小的方向取整”<span class="gr later">以后学 · 七年级 负数 / 高中 取整函数</span></h5>
+    <p>正数除完去掉小数，大家都会：1.37 变成 1。负数要小心：−0.04 在数轴上夹在 −1 和 0 之间，<b>“往小的方向”是往左</b>，所以是 −1。数学里把它写成 ⌊−0.04⌋ = −1，叫“向下取整”，英文 <span class="en" data-say="floor">floor</span>（地板）：不管你飘在哪儿，都掉到下面那块地板上。编程语言里都有这个功能，Python 里叫 <code>math.floor</code>。</p>
+    <p>为什么不能直接去掉小数？因为那样的话，x = −20 和 x = 20 会算进同一个文件 <code>r.0.…</code>，可它们明明一个在 0 的左边，一个在右边。</p>
+  </div>
+
+  <div class="err">
+    <h5>出错了怎么办</h5>
+    <dl>
+      <dt>备份的世界打开后是空的，或者打不开</dt><dd>可能是世界开着的时候复制的。再用游戏里的“制作备份”做一次。</dd>
+      <dt>放回 saves 后，世界列表里没有它</dt><dd>解压以后可能多了一层文件夹：saves/我的世界/我的世界/level.dat。要让 level.dat 正好在 saves 下面第一层的那个文件夹里。</dd>
+      <dt>游戏崩溃了</dt><dd>去 crash-reports 里找最新的那个报告，第四十章教你怎样拿着它去求助。</dd>
+    </dl>
+  </div>
+
+  <div class="pass" data-id="q38">
+    <div class="qq" data-a="1"><p>游戏里按 fn + F2 截的图在哪个文件夹里？</p><ol><li>桌面</li><li>minecraft/screenshots</li><li>minecraft/saves</li></ol><p class="ex">游戏自己的截图放在 screenshots。⇧⌘3 这种系统截图才放在桌面。</p></div>
+    <div class="qq" data-a="2"><p>复制世界文件夹做备份之前，最重要的一步是什么？</p><ol><li>把电脑音量关掉</li><li>把世界改成英文名字</li><li>先退出这个世界</li></ol><p class="ex">世界开着时游戏一直在写文件，复制到一半可能是坏的。先关，再拷。</p></div>
+    <div class="qq" data-in="1"><p>x = 600，它在 region 文件名的 x 编号是多少？（600 ÷ 512，往小取整）</p><p class="ex">600 ÷ 512 ≈ 1.17，往小取整是 1，所以在 r.1.?.mca 里。</p></div>
+    <div class="qq" data-in="-1"><p>x = −5，region 文件名的 x 编号是多少？</p><p class="ex">−5 ÷ 512 ≈ −0.01，在数轴上 −1 和 0 之间，往小的方向取是 −1。</p></div>
+    <div class="qq" data-a="0"><p>options.txt 里的 <code>lang:zh_cn</code> 这种“名字:值”的写法，叫什么？</p><ol><li>键值对</li><li>快捷键</li><li>后缀名</li></ol><p class="ex">冒号左边是“键”（名字），右边是“值”。第七十七章的字典就是一大堆键值对。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>游戏目录 <span class="en" data-say="game directory">game directory</span></b>游戏放所有文件的那个文件夹。directory 也是“文件夹”的意思。</div>
+    <div><b>日志 <span class="en" data-say="log">log</span></b>程序一边运行一边写下来的记录，查错用。</div>
+    <div><b>压缩包 <span class="en" data-say="zip">zip</span></b>把很多文件打成一个，通常还更小。双击就能解开。</div>
+    <div><b>区域 <span class="en" data-say="region">region</span></b>32 × 32 个区块，512 格见方，存成一个 .mca 文件。</div>
+    <div><b>向下取整 <span class="en" data-say="floor">floor</span></b>往数轴左边那个整数取。−0.04 取成 −1。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>游戏目录结构依据 Minecraft 社区维基“.minecraft”“Java 版世界格式”“区域文件格式”条目：区域文件为 32×32 区块，文件名 r.⌊x/512⌋.⌊z/512⌋.mca；下界与末地数据传统上位于 DIM-1、DIM1。“编辑世界 → 制作备份”会在 backups 文件夹生成 zip。点击聊天中的截图文件名可打开图片，是 Java 版的既有行为。新版本存档结构可能调整，以维基为准。</p>
+    <p>建议：帮孩子建立“大改之前先备份”的习惯；有外接硬盘的话开启“时间机器”。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>手指头<small>带走一样</small></i>saves 是世界，screenshots 是截图，logs 是日志，options.txt 是设置。大改之前先“制作备份”。先关世界，再复制。</div>
+    <div><i>脑袋<small>带走一样</small></i>敢折腾，是因为有后悔药。做任何重要的事之前，先想好“弄坏了怎么回去”。</div>
+  </div>
+</section>

@@ -1,0 +1,185 @@
+<div class="volhead" data-vol="卷十二 · 问">
+  <div class="num">VOLUME TWELVE · 第五部 · 卷十二</div>
+  <h2>问<small>打字说话，卡住了自己找路</small></h2>
+  <p class="lede">用鼠标点，是“指给电脑看”；在终端里打字，是“说给电脑听”。这一卷先学会用打字跟电脑说话，再学一样更重要的本事：卡住了，怎样自己把问题弄明白。</p>
+  <svg class="row" aria-hidden="true"></svg>
+</div>
+
+<!-- ============ 第三十九章 · 终 ============ -->
+<section class="chap" id="c39" data-vol="卷十二 · 终">
+  <div class="chead">
+    <div class="big">终</div>
+    <div>
+      <div class="no">第三十九章</div>
+      <h2>终端：和电脑打字说话</h2>
+      <dl><dt>讲什么</dt><dd>终端和提示符；pwd、ls、cd、open、cat、clear；tab 补全和 ↑；名字里有空格怎么办；control + C；哪些命令不能乱打</dd><dt>本章装置</dt><dd>一个模拟的终端</dd></dl>
+      <div class="sub" data-s="机 英 程"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第七天</b><span class="pix">TERMINAL · 终端</span><span>黑底白字</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>第二十九章开服务器的时候，你在一个黑框框里打了一行字。电影里的黑客也是那样打字的。我也想学！</span></div>
+      <div class="l"><i class="j">舅</i><span>那个叫终端。它不神秘：它就是另一个访达，只不过你不用点，要用打字告诉它“去哪儿”“看看有什么”。</span></div>
+      <div class="l"><i class="g">格</i><span>会不会打错一个字，电脑就炸了？</span></div>
+      <div class="l"><i class="j">舅</i><span>今天学的这几个命令，都只是“看”和“走”，打错了它只会说“没这个”。真正危险的几个，我会告诉你，那几个没有大人在旁边不碰。我们先在网页里的假终端练，练熟了再开真的。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★</span><span class="dim">★★</span></div><div><b>大约多久</b>45 分钟</div><div><b>要准备</b>先用网页里的模拟终端；再用 Mac 自带的“终端”</div><div><b>大人</b>开真终端时要大人在旁边</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>打开终端，读懂提示符 <code>xiaoge@MacBook-Air ~ %</code>。</li>
+      <li>用 pwd、ls、cd、open、cat 在文件夹之间走来走去、看文件。</li>
+      <li>用 tab 补全名字，用 ↑ 找回上一条命令，用 control + C 停下。</li>
+      <li>说出为什么 rm、sudo 和网上抄来的命令不能乱打。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>终端是什么</h3>
+    <p>在电脑还没有窗口、没有鼠标的年代（第二部讲过），人们用电脑就是打一行字、按回车、看它回一行字。今天的 Mac 把这种方式留了下来，装在一个程序里，叫<b>终端</b>（<span class="en" data-say="Terminal">Terminal</span>）。按 ⌘空格，打“终端”，回车，就打开了。</p>
+    <p>打开以后，你会看到一行字，最后面有一个闪烁的小方块：</p>
+    <p class="ni" style="text-align:center"><code style="font-size:16px">xiaoge@MacBook-Air ~ %</code></p>
+    <p>这一行叫<b>提示符</b>（<span class="en" data-say="prompt">prompt</span>），意思是“我准备好了，请说”。它告诉你三件事：</p>
+    <ul class="plain">
+      <li><code>xiaoge</code>：现在是谁在用。</li>
+      <li><code>MacBook-Air</code>：这台电脑的名字。</li>
+      <li><code>~</code>：你现在<b>站在哪个文件夹里</b>。<code>~</code> 是家（第三十七章）。走到别处，这里会变。</li>
+    </ul>
+    <p>最后的 <code>%</code> 只是一个记号，表示“该你了”。你打的字跟在它后面。</p>
+  </div>
+
+  <div class="col">
+    <h3>六个命令</h3>
+    <p>终端里的命令和游戏里的命令很像：<b>先写做什么（命令），再写对谁做（参数）</b>，中间用空格隔开。这六个命令都只是“看”和“走”，很安全：</p>
+  </div>
+  <div class="wide tbl">
+    <table class="t kt">
+      <tr><th>命令</th><th>做什么</th><th>名字从哪儿来</th><th>例子</th></tr>
+      <tr><td><code>pwd</code></td><td>我现在在哪个文件夹？</td><td><span class="en" data-say="print working directory">print working directory</span>：打出工作文件夹</td><td><code>pwd</code></td></tr>
+      <tr><td><code>ls</code></td><td>这里有什么？</td><td><span class="en" data-say="list">list</span>：列出来</td><td><code>ls</code>、<code>ls Desktop</code></td></tr>
+      <tr><td><code>cd</code></td><td>走到另一个文件夹</td><td><span class="en" data-say="change directory">change directory</span>：换文件夹</td><td><code>cd Documents</code>、<code>cd ..</code>、<code>cd ~</code></td></tr>
+      <tr><td><code>open</code></td><td>用访达或者默认程序打开它</td><td><span class="en" data-say="open">open</span>：打开</td><td><code>open .</code>（在访达里打开“这里”）</td></tr>
+      <tr><td><code>cat</code></td><td>把一个文本文件的内容打出来看</td><td><span class="en" data-say="concatenate">concatenate</span>：连起来（不是猫）</td><td><code>cat options.txt</code></td></tr>
+      <tr><td><code>clear</code></td><td>把屏幕擦干净</td><td><span class="en" data-say="clear">clear</span>：清除</td><td><code>clear</code></td></tr>
+    </table>
+  </div>
+  <div class="col">
+    <p>还有几个小窍门，会让你像高手一样快：</p>
+    <ul class="plain">
+      <li><kbd>tab</kbd> <b>补全</b>：打名字的头几个字母，按 tab，终端会帮你补完。补不出来，说明有好几个名字开头一样，或者根本没有这个名字。<b>多按 tab，少打错。</b></li>
+      <li><kbd>↑</kbd> <b>上一条</b>：按向上的箭头，刚才打过的命令又出来了，改一改再用。</li>
+      <li><kbd class="sym">⌃</kbd><kbd>C</kbd> <b>停下</b>：一个命令跑个不停（比如服务器），按 control + C 让它停。注意是 control，不是 command。</li>
+      <li><code>ls -a</code>：后面加 <code>-a</code>（<span class="en" data-say="all">all</span>），连藏起来的、以点开头的文件也列出来。这种以减号开头的叫<b>选项</b>。</li>
+    </ul>
+  </div>
+
+  <div class="fig" id="termFig">
+    <div class="fig-label">装置 · 第三十九章</div>
+    <h4>一个模拟的终端</h4>
+    <p class="how">这是一个假的终端，里面装着第三十六章那台“小格的电脑”。点一下黑框，开始打字，按回车执行。照着下面的单子一件一件做。打 <code>help</code> 能看到它认识哪些命令。</p>
+    <div id="term1"></div>
+    <p class="figcap">提示：路径里有空格的文件夹（Application Support），要写成 <code>Application\ Support</code>（反斜杠加空格），或者用引号包起来 <code>"Application Support"</code>。最省事的办法：打 <code>Appl</code> 然后按 tab。</p>
+  </div>
+
+  <div class="col">
+    <h3>名字里的空格</h3>
+    <p>终端用<b>空格</b>来分开命令和参数。所以 <code>cd Application Support</code> 在它看来是“走到 Application，然后还有一个多余的 Support”，就出错了。两个办法告诉它“这个空格是名字的一部分”：</p>
+    <ul class="plain">
+      <li>在空格前面加一个反斜杠 <code>\</code>：<code>cd Application\ Support</code>。反斜杠在 return 上面那个键。</li>
+      <li>用英文引号把整个名字包起来：<code>cd "Application Support"</code>。</li>
+    </ul>
+    <p>这就是第三十六章说“文件名别用空格”的原因。中文名字在终端里能用，可是打起来要切输入法，也容易混进中文标点，所以<b>自己起名字，尽量用英文、拼音和下划线</b>。</p>
+  </div>
+
+  <div class="corner" data-k="程">
+    <h5>命令 + 参数 = 函数调用<span class="gr later">以后学 · 编程</span></h5>
+    <p>你已经见过三种长得很像的东西：</p>
+    <ul>
+      <li>游戏里：<code>/give @p diamond 3</code></li>
+      <li>终端里：<code>cd Documents</code></li>
+      <li>Python 里：<code>print("你好")</code></li>
+    </ul>
+    <p>它们都是“<b>做什么</b> + <b>对谁、怎么做</b>”。前面那个叫命令或函数，后面那些叫参数（<span class="en" data-say="argument">argument</span>）。第七十五章会讲：你还可以自己发明新的命令，这就是写函数。</p>
+  </div>
+
+  <div class="corner" data-k="安">
+    <h5>这几样，没有大人在旁边别碰</h5>
+    <ul>
+      <li><code>rm</code>：删除。它<b>不进废纸篓</b>，删了就没了。打错一个路径，可能删掉一整个文件夹。</li>
+      <li><code>sudo</code>：用管理员的权限做事。它会要密码，有了密码，电脑什么都听，包括把系统弄坏。</li>
+      <li><b>网上、视频里、陌生人发给你的命令</b>：哪怕说是“加速”“免费皮肤”“修复”，也不要复制粘贴进终端。有些看起来很短的命令，会下载并运行坏程序。第三十一章说过，AI 给的命令也要大人先看。</li>
+    </ul>
+    <p>规矩很简单：<b>看不懂的命令不运行</b>。</p>
+  </div>
+
+  <div class="task" data-id="t39a">
+    <div class="th"><b>在真终端里走一圈</b><span class="xp">★★</span></div>
+    <div class="tb">
+      <p>请大人坐在旁边。按 ⌘空格，打“终端”，回车。然后一行一行打（每行打完按回车）：</p>
+      <ol>
+        <li><code>pwd</code>　看看你在哪儿。</li>
+        <li><code>ls</code>　看看家里有什么。和访达里的对一对。</li>
+        <li><code>cd Desktop</code>　走进桌面，再 <code>ls</code>。</li>
+        <li><code>open .</code>　访达会打开桌面这个文件夹。</li>
+        <li><code>cd ~/Library/Appl</code> 然后按 tab，再打 <code>min</code> 按 tab，回车。你进了游戏目录。</li>
+        <li><code>ls saves</code>　列出你所有的世界。</li>
+        <li><code>cd ~</code>　回家。然后输入 <code>exit</code> 或者按 ⌘Q 关掉终端。</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="corner" data-k="英">
+    <h5>终端里的英文</h5>
+    <p>报错的时候，终端说的是英文，其实就那么几句：</p>
+    <ul>
+      <li><code>command not found</code>：没有这个命令（多半拼错了）。<span class="en" data-say="found">found</span> 是 find 的过去式：没找到。</li>
+      <li><code>No such file or directory</code>：没有这个文件或文件夹。<span class="en" data-say="such">such</span>：这样的。</li>
+      <li><code>Permission denied</code>：权限不够，不让你做。<span class="en" data-say="permission">permission</span> 许可，<span class="en" data-say="denied">denied</span> 被拒绝。</li>
+      <li><code>Is a directory</code> / <code>Not a directory</code>：这是一个文件夹 / 这不是文件夹。</li>
+    </ul>
+  </div>
+
+  <div class="err">
+    <h5>出错了怎么办</h5>
+    <dl>
+      <dt>command not found</dt><dd>命令拼错了，或者大小写错了（终端里的命令一般全是小写）。也可能你在中文输入法里。</dd>
+      <dt>No such file or directory</dt><dd>先 <code>pwd</code> 看看自己在哪儿，再 <code>ls</code> 看看这里有什么。名字里有空格吗？用 tab 补全最保险。</dd>
+      <dt>终端一直在跑，不出提示符</dt><dd>按 control + C。</dd>
+      <dt>打错了一长串还没按回车</dt><dd>按 control + C 整行作废，或者 control + U 删掉整行。</dd>
+    </dl>
+  </div>
+
+  <div class="pass" data-id="q39">
+    <div class="qq" data-in="pwd"><p>想知道自己现在在哪个文件夹，打哪个命令？</p><p class="ex">pwd，print working directory。</p></div>
+    <div class="qq" data-a="1"><p>提示符 <code>xiaoge@MacBook-Air Desktop %</code> 说明你现在在哪儿？</p><ol><li>家里</li><li>桌面文件夹里</li><li>游戏里</li></ol><p class="ex">% 前面那个词就是你现在站的文件夹：Desktop，桌面。</p></div>
+    <div class="qq" data-a="2"><p>下面哪一行能走进 Application Support 文件夹？</p><ol><li><code>cd Application Support</code></li><li><code>cd Application,Support</code></li><li><code>cd Application\ Support</code></li></ol><p class="ex">空格是分隔符。要么在空格前加反斜杠，要么用引号把名字包起来。</p></div>
+    <div class="qq" data-a="0"><p>终端里一个程序停不下来，按什么？</p><ol><li>control + C</li><li>command + C</li><li>esc</li></ol><p class="ex">终端里是 control + C（中断）。command + C 是拷贝。</p></div>
+    <div class="qq" data-a="1"><p>视频里有人说“把这行命令粘贴进终端，就能免费拿到皮肤”。你该怎么办？</p><ol><li>试一下，反正不会怎样</li><li>不运行，告诉大人</li><li>先改几个字再运行</li></ol><p class="ex">看不懂的命令不运行，尤其是陌生人给的。这正是坏人常用的骗法。</p></div>
+    <div class="qq" data-in="ls -a|ls-a"><p>想把藏起来的文件也列出来，打什么？（命令加选项）</p><p class="ex">ls -a。-a 是 all，全部。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>终端 <span class="en" data-say="Terminal">Terminal</span></b>用打字和电脑说话的程序。</div>
+    <div><b>提示符 <span class="en" data-say="prompt">prompt</span></b>“我准备好了，请说”那一行，写着你在哪个文件夹。</div>
+    <div><b>参数 <span class="en" data-say="argument">argument</span></b>命令后面跟着的那些词，说清“对谁、怎么做”。</div>
+    <div><b>补全 <span class="en" data-say="tab completion">tab completion</span></b>打一半按 tab，让电脑帮你补完。</div>
+    <div><b>工作文件夹 <span class="en" data-say="working directory">working directory</span></b>你现在“站”在的那个文件夹，相对路径从它算起。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>macOS 自 Catalina（10.15）起默认 shell 为 zsh，默认提示符形如 <code>用户名@电脑名 当前目录 %</code>。书中命令 pwd、ls、ls -a、cd、open、cat、clear、exit 均为 macOS 自带的标准命令；control + C 中断、control + U 删除整行是 zsh 的默认行为。网页上的终端是模拟的，不会接触真实文件，不支持 rm、sudo。</p>
+    <p>建议：第一次打开真终端时陪在旁边。可以和孩子约定“三不”：不打 rm，不打 sudo，不粘贴看不懂的命令。终端用熟了，第二十九章开服务器、第十部写 Python 都会顺很多。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>手指头<small>带走一样</small></i>pwd 我在哪，ls 有什么，cd 走过去，cd .. 退一层，open . 用访达打开。tab 补全，↑ 上一条，control + C 停。</div>
+    <div><i>脑袋<small>带走一样</small></i>越强大的工具，越要有规矩：看不懂的命令不运行，删除之前想三遍。</div>
+  </div>
+</section>

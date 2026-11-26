@@ -13,7 +13,8 @@
     python3 _build/build.py stock1 stock2 stock3      # 《红与绿》三部
     python3 _build/build.py open1 open2 open3         # 《开张》三部
     python3 _build/build.py can1 can2 can3            # 《能不能》三部
-    python3 _build/build.py block1 block2 block3 block4      # 《一块一块》四部
+    python3 _build/build.py block1 block2 block3 block4      # 《一块一块》故事四部
+    python3 _build/build.py block5 block6 block7 block8 block9 block10   # 《一块一块》指南六部
 """
 import os, re, sys
 
@@ -72,6 +73,13 @@ BOOKS = {
     'block2': ('block', 'block/two.html', ['top2.html', 'css.html', 'bar.html'] + ['b%02d.html' % i for i in range(10)]),
     'block3': ('block', 'block/three.html', ['top3.html', 'css.html', 'bar.html'] + ['c%02d.html' % i for i in range(10)]),
     'block4': ('block', 'block/four.html', ['top4.html', 'css.html', 'bar.html'] + ['d%02d.html' % i for i in range(10)]),
+    # 第五部起是“指南”（手 / 令 / 词 / 数 / 理 / 程）
+    'block5': ('block', 'block/five.html', ['top5.html', 'css.html', 'bar.html'] + ['e%02d.html' % i for i in range(10)]),
+    'block6': ('block', 'block/six.html', ['top6.html', 'css.html', 'bar.html'] + ['f%02d.html' % i for i in range(12)]),
+    'block7': ('block', 'block/seven.html', ['top7.html', 'css.html', 'bar.html'] + ['g%02d.html' % i for i in range(10)]),
+    'block8': ('block', 'block/eight.html', ['top8.html', 'css.html', 'bar.html'] + ['h%02d.html' % i for i in range(10)]),
+    'block9': ('block', 'block/nine.html', ['top9.html', 'css.html', 'bar.html'] + ['i%02d.html' % i for i in range(7)]),
+    'block10': ('block', 'block/ten.html', ['top10.html', 'css.html', 'bar.html'] + ['j%02d.html' % i for i in range(13)]),
 }
 DRAFT = '--draft' in sys.argv  # 写到一半时跳过缺失段落和锚点检查
 

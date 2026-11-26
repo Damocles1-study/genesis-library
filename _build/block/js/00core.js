@@ -18,9 +18,24 @@ function txt(x, y, t, o){ o = o || {}; return '<text x="' + x + '" y="' + y + '"
 function slider(id, f, cb){ const r = $('#' + id), o = $('#' + id + 'O'); const go = () => { if (o) o.textContent = f ? f(+r.value) : r.value; if (cb) cb(+r.value); }; r.addEventListener('input', go); go(); return () => +r.value; }
 
 /* ---------- 全书目录（三个网页共用） ---------- */
-const PAGE = /four\.html/.test(location.pathname) ? 4 : /three\.html/.test(location.pathname) ? 3 : /two\.html/.test(location.pathname) ? 2 : 1;
-const READY = 4; // 已经写好的部数
-const PURL = {1: './', 2: 'two.html', 3: 'three.html', 4: 'four.html'};
+const PFILE = ['index', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+const PAGE = (() => { const m = location.pathname.match(/\/(two|three|four|five|six|seven|eight|nine|ten)\.html/); return m ? PFILE.indexOf(m[1]) + 1 : 1; })();
+const READY = 5; // 已经写好的部数
+const PURL = {}; PFILE.forEach((f, i) => PURL[i + 1] = i ? f + '.html' : './');
+/* 十部：前四部是故事，后六部是指南 */
+const PARTS = [
+  {k: '土', g: '故事', s: '一块方块从哪里来 · 九章'},
+  {k: '电', g: '故事', s: '红线怎样变成电脑 · 八章'},
+  {k: '门', g: '故事', s: '走出游戏 · 八章'},
+  {k: '工', g: '故事', s: '动手的工坊 · 八章'},
+  {k: '手', g: '指南', s: '把 Mac 摸熟：键盘、文件、终端 · 八章'},
+  {k: '令', g: '指南', s: '指令大全：坐标、天气、给东西、变量和条件 · 十章'},
+  {k: '词', g: '指南', s: '游戏里的英语：听、拼、词卡、复习台 · 八章'},
+  {k: '数', g: '指南', s: '方块里的数学：负数到勾股定理 · 八章'},
+  {k: '理', g: '指南', s: '方块里的物理：下落、光、声音、机械、天 · 五章'},
+  {k: '程', g: '指南', s: '编程：变量到递归、调试、自学 · 十一章'}
+];
+const CN = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
 const TOC = [
   {p: 1, t: '第一部 · 土 —— 一块方块从哪里来'},
   {v: '序幕'},
@@ -69,11 +84,79 @@ const TOC = [
   {v: '卷九 · 脑'},
   {id: 'c30', n: '算', t: '方块里的数学和物理', s: '下界的一比八、量一量走路多快、方块掉下去和石头掉下去、火把的光、五十块沙砾；掉下去要多久', r: '1590—今'},
   {id: 'c31', n: '问', t: '和 AI 一起学', s: '几岁能用、在大人的账号下、它会说错、让它讲道理而不是替你做、一起检查一段 AI 写的代码；怎样问 AI', r: '2022—今'},
-  {id: 'c32', n: '路', t: '一张自学地图', s: '从现在到高中、免费的好地方、游戏外的创意、小格的局域网派对；我的技能树', r: '今天'}
+  {id: 'c32', n: '路', t: '一张自学地图', s: '从现在到高中、免费的好地方、游戏外的创意、小格的局域网派对；我的技能树', r: '今天'},
+  {p: 5, t: '第五部 · 手 —— 把 Mac 摸熟（指南）'},
+  {v: '卷十 · 键'},
+  {id: 'c33', n: '键', t: '键盘上的怪符号', s: '⌘ ⌥ ⌃ ⇧ fn、快捷键怎么读、三种截图、聚焦搜索当计算器、强制退出；MacBook Air 的键盘', r: '指南'},
+  {id: 'c34', n: '指', t: '触控板、鼠标和输入法', s: '几根手指几种意思、接鼠标、中英文切换、中文标点让命令失败、每个字都是一个数；标点侦探', r: '指南'},
+  {id: 'c35', n: '位', t: '游戏里的每一个键', s: '默认按键全表、改键、Mac 上的 fn、F3 调试屏幕和组合键；按键反应', r: '指南'},
+  {v: '卷十一 · 树'},
+  {id: 'c36', n: '树', t: '访达：文件夹就是一棵树', s: '边栏、四种看法、新建改名移动拷贝删除、后缀名；模拟访达', r: '指南'},
+  {id: 'c37', n: '径', t: '路径：一串地址', s: '斜杠、中文名和真名、波浪号、藏起来的资源库、前往文件夹、绝对和相对；读路径', r: '指南'},
+  {id: 'c38', n: '存', t: '游戏的东西都在哪儿', s: 'minecraft 文件夹地图、截图日志设置、三种备份、region 文件和向下取整', r: '指南'},
+  {v: '卷十二 · 问'},
+  {id: 'c39', n: '终', t: '终端：和电脑打字说话', s: '提示符、pwd ls cd open cat、tab 补全、空格和反斜杠、不能乱打的命令；模拟终端', r: '指南'},
+  {id: 'c40', n: '问', t: '卡住了怎么办', s: '读试查问记、查版本、把问题说清楚、在维基上搜、和 AI 一起把 Mac 冷门变成优势；问题卡', r: '指南'},
+  {p: 6, t: '第六部 · 令 —— 指令大全（指南）'},
+  {v: '卷十三 · 位置'},
+  {id: 'c41', n: '系', t: 'x、y、z', s: '三根轴、东西南北、正数负数、方块坐标和精确坐标', r: '指南'},
+  {id: 'c42', n: '移', t: '/tp：瞬移', s: '绝对坐标、~ 相对坐标、^ 局部坐标、朝向和角度', r: '指南'},
+  {v: '卷十四 · 世界'},
+  {id: 'c43', n: '天', t: '/time 和 /weather', s: '游戏刻、一天 24000 刻、晴雨雷、天气的英文', r: '指南'},
+  {id: 'c44', n: '模', t: '/gamemode 和游戏规则', s: '四种模式、难度、gamerule 的“是和否”', r: '指南'},
+  {id: 'c45', n: '给', t: '/give：给东西', s: '物品 ID 就是英文单词、一组 64 个、物品栏是一排编号的格子', r: '指南'},
+  {id: 'c46', n: '召', t: '/summon 和 /effect', s: '召唤生物、状态效果、等级从 0 数起', r: '指南'},
+  {id: 'c47', n: '填', t: '/setblock 和 /fill', s: '长方体、体积、空心和外壳、方块状态', r: '指南'},
+  {v: '卷十五 · 逻辑'},
+  {id: 'c48', n: '选', t: '目标选择器', s: '@p @a @s @e @r、参数就是筛选条件', r: '指南'},
+  {id: 'c49', n: '分', t: '/scoreboard：变量', s: '记分项、加减乘除、侧边栏', r: '指南'},
+  {id: 'c50', n: '若', t: '/execute：如果……就……', s: '条件判断、以谁的身份在哪儿、做一个计时小游戏', r: '指南'},
+  {p: 7, t: '第七部 · 词 —— 游戏里的英语（指南）'},
+  {id: 'c51', n: '听', t: '怎样学单词', s: '把游戏换成英文、听和说、间隔重复', r: '指南'},
+  {id: 'c52', n: '拼', t: '单词是拼起来的', s: '复合词、前缀后缀、命令就是祈使句', r: '指南'},
+  {id: 'c53', n: '料', t: '方块和材料', s: '词卡', r: '指南'},
+  {id: 'c54', n: '器', t: '物品和工具', s: '词卡', r: '指南'},
+  {id: 'c55', n: '生', t: '生物', s: '词卡', r: '指南'},
+  {id: 'c56', n: '色', t: '颜色和群系', s: '十六色羊毛、平原森林沙漠', r: '指南'},
+  {id: 'c57', n: '方', t: '方向、数字、时间、天气', s: '词卡', r: '指南'},
+  {id: 'c58', n: '复', t: '复习台', s: '间隔重复、自己出题', r: '指南'},
+  {p: 8, t: '第八部 · 数 —— 方块里的数学（指南）'},
+  {id: 'c59', n: '图', t: '学过的和要学的', s: '小学到初中的数学地图', r: '指南'},
+  {id: 'c60', n: '负', t: '负数', s: 'y 坐标、海平面、数轴', r: '指南'},
+  {id: 'c61', n: '乘', t: '乘法和 2 的幂', s: '一组 64、箱子 27 格、二进制', r: '指南'},
+  {id: 'c62', n: '比', t: '分数和比例', s: '下界一比八、合成配方、地图比例尺', r: '指南'},
+  {id: 'c63', n: '形', t: '面积、周长、体积', s: '盖房子要多少块', r: '指南'},
+  {id: 'c64', n: '角', t: '角度和朝向', s: '一圈 360 度、量角器', r: '指南'},
+  {id: 'c65', n: '率', t: '概率和统计', s: '掉落几率、平均数和中位数、统计图', r: '指南'},
+  {id: 'c66', n: '速', t: '速度和勾股定理', s: '走、跑、矿车、直线距离', r: '指南'},
+  {p: 9, t: '第九部 · 理 —— 方块里的物理（指南）'},
+  {id: 'c67', n: '落', t: '重力和下落', s: '越掉越快、摔落伤害', r: '指南'},
+  {id: 'c68', n: '光', t: '光', s: '一格暗一级、平方反比', r: '指南'},
+  {id: 'c69', n: '音', t: '声音和音调', s: '音符盒、频率、八度', r: '指南'},
+  {id: 'c70', n: '动', t: '简单机械和水', s: '杠杆、活塞、水流', r: '指南'},
+  {id: 'c71', n: '转', t: '昼夜、月亮、指南针', s: '地球自转、八种月相、磁场', r: '指南'},
+  {p: 10, t: '第十部 · 程 —— 编程（指南）'},
+  {id: 'c72', n: '量', t: '变量', s: '起名字、数和字', r: '指南'},
+  {id: 'c73', n: '若', t: '条件', s: 'if、else、真和假', r: '指南'},
+  {id: 'c74', n: '环', t: '循环', s: 'for、while', r: '指南'},
+  {id: 'c75', n: '函', t: '函数', s: '自己发明命令', r: '指南'},
+  {id: 'c76', n: '组', t: '列表', s: '快捷栏 0—8 号格', r: '指南'},
+  {id: 'c77', n: '典', t: '字典和树', s: 'ID 对名字、文件夹树', r: '指南'},
+  {id: 'c78', n: '队', t: '队列和广度优先', s: '水怎样流、红石信号怎样传', r: '指南'},
+  {id: 'c79', n: '找', t: '查找和排序', s: '猜数游戏、整理箱子', r: '指南'},
+  {id: 'c80', n: '归', t: '递归', s: '自己调用自己', r: '指南'},
+  {id: 'c81', n: '错', t: '调试和错题本', s: '读报错、一样一样排除', r: '指南'},
+  {id: 'c82', n: '学', t: '怎样自学', s: '五步、成就墙', r: '指南'}
 ];
 const chapPage = {}; { let p = 1; TOC.forEach(x => { if (x.p) p = x.p; if (x.id) chapPage[x.id] = p; }); }
 const href = id => (chapPage[id] === PAGE ? '' : PURL[chapPage[id]]) + '#' + id;
-$$('.bar .parts a').forEach(a => { const p = +a.dataset.p; a.classList.toggle('on', p === PAGE); if (p > READY) { a.removeAttribute('href'); a.style.opacity = .4; a.title = '写作中'; } });
+dev('.bar .parts', nav => { nav.innerHTML = PARTS.map((x, i) => (i === 4 ? '<span class="gsep" aria-hidden="true"></span>' : '') + '<a href="' + PURL[i + 1] + '" data-p="' + (i + 1) + '" title="第' + CN[i] + '部 · ' + x.k + '（' + x.g + '）">' + x.k + '</a>').join('');
+  $$('a', nav).forEach(a => { const p = +a.dataset.p; a.classList.toggle('on', p === PAGE); if (p > READY) { a.removeAttribute('href'); a.style.opacity = .4; a.title = '写作中'; } });
+  const on = $('a.on', nav); if (on) nav.scrollLeft = Math.max(0, on.offsetLeft - nav.clientWidth / 2); });
+/* 封面的“十部”导航 */
+$$('.partnav').forEach(box => { box.classList.add('ten'); box.innerHTML = ['故事', '指南'].map(g => '<div class="pg"><span class="pgh">' + (g === '故事' ? '故事 · 第一到四部' : '指南 · 第五到十部 · 照着做、能自测') + '</span>' + PARTS.map((x, i) => x.g !== g ? '' :
+  '<a ' + (i + 1 > READY ? 'class="soon"' : 'href="' + PURL[i + 1] + '"' + (i + 1 === PAGE ? ' class="on"' : '')) + '><span class="k">第' + CN[i] + '部</span><b>' + x.k + '</b><small>' + x.s + (i + 1 > READY ? ' · 写作中' : '') + '</small></a>').join('') + '</div>').join(''); });
+
 $('#drawerList').innerHTML = TOC.map(x => x.p ? '<li class="ph">' + x.t + '</li>' : x.v ? '<li class="vh">' + x.v + '</li>' :
   chapPage[x.id] > READY ? '<li><a style="opacity:.5;pointer-events:none"><span class="n">' + x.n + '</span><span>' + x.t + '<small>写作中</small></span></a></li>' :
   '<li><a href="' + href(x.id) + '"' + (chapPage[x.id] === PAGE ? ' class="here"' : '') + '><span class="n">' + x.n + '</span><span>' + x.t + '<small>' + x.s + '</small></span></a></li>').join('');

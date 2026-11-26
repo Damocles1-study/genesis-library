@@ -601,6 +601,231 @@ table.t.exp td,table.t.exp th{text-align:center}
 .ckrow{display:flex;flex-wrap:wrap;gap:6px 14px;margin:8px 0}
 @media (max-width:640px){.lvl{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .code>div,.cmd>div,.code>svg,.cmd>svg{min-width:0}
+
+/* ============ 指南（第五部起）新增 ============ */
+.bar .parts{overflow-x:auto;min-width:0;flex:0 1 auto;scrollbar-width:none;align-items:center}
+.bar .parts::-webkit-scrollbar{display:none}
+.bar .parts .gsep{flex:none;width:1px;height:14px;background:var(--rule);margin:0 4px}
+.partnav.ten{display:block}
+.partnav .pg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:0 0 14px}
+.partnav .pg+.pg{grid-template-columns:repeat(3,minmax(0,1fr))}
+.partnav .pgh{grid-column:1 / -1;font-family:var(--f-mono);font-size:11.5px;letter-spacing:.14em;color:var(--ink-3)}
+.partnav a.soon{opacity:.5}
+@media (max-width:700px){.partnav .pg,.partnav .pg+.pg{grid-template-columns:repeat(2,minmax(0,1fr))}}
+kbd{font-family:var(--f-mono);font-size:.82em;background:var(--paper-2);border:1px solid var(--ink-3);border-bottom-width:2.5px;border-radius:4px;padding:0 .4em;white-space:nowrap;line-height:1.5;display:inline-block}
+kbd.sym{font-family:var(--f-sans);min-width:1.7em;text-align:center}
+code{font-family:var(--f-mono);font-size:.86em;background:color-mix(in srgb,var(--ink) 7%,transparent);border-radius:3px;padding:0 .3em;word-break:break-all}
+pre.py code{background:none;padding:0}
+
+/* 章首：这一章能学到的科目 */
+.sub{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.sub span{font-size:12px;line-height:1.5;padding:1px 7px;border:1.5px solid var(--rule);border-radius:3px;color:var(--ink-3)}
+.sub span b{font-family:var(--f-display);font-weight:400;font-size:14px;margin-right:3px}
+.sub span.on{border-color:var(--c,var(--main));color:var(--c,var(--main));background:color-mix(in srgb,var(--c,var(--main)) 9%,transparent)}
+
+/* 学完这一章，你能…… */
+.goal{margin:1.6em 0;padding:12px 16px 8px;border:2px solid var(--gold);border-radius:4px;background:color-mix(in srgb,var(--gold) 7%,var(--paper));max-width:38rem}
+.goal h5{margin:0 0 .3em;font-family:var(--f-display);font-weight:400;font-size:19px;color:var(--gold)}
+.goal ul{margin:0;padding-left:1.3em;font-size:16px;line-height:1.8}
+
+/* 各科小角落：英语角 数学角 编程角 物理角 游戏里的用处 */
+.corner{margin:1.4em 0;padding:10px 14px 6px;border-left:5px solid var(--c);background:color-mix(in srgb,var(--c) 7%,var(--card));border-radius:0 4px 4px 0;font-size:15.5px;line-height:1.8}
+.corner h5{margin:0 0 .25em;font-family:var(--f-display);font-weight:400;font-size:18px;color:var(--c);display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.corner h5 .gr{font-family:var(--f-sans);font-size:11.5px;letter-spacing:.06em;border:1px solid currentColor;border-radius:999px;padding:0 7px}
+.corner h5 .gr.later{border-style:dashed}
+.corner p{margin:0 0 .6em}
+.corner ul,.corner ol{margin:0 0 .6em;padding-left:1.3em}
+.corner[data-k="英"]{--c:var(--blu)}.corner[data-k="数"]{--c:var(--ter)}.corner[data-k="程"]{--c:var(--pur)}.corner[data-k="理"]{--c:var(--dia)}.corner[data-k="用"]{--c:var(--main)}.corner[data-k="机"]{--c:var(--stone)}.corner[data-k="学"]{--c:var(--gold)}.corner[data-k="安"]{--c:var(--zhu)}
+.corner[data-k="英"] h5::before{content:"英语角"}.corner[data-k="数"] h5::before{content:"数学角"}.corner[data-k="程"] h5::before{content:"编程角"}.corner[data-k="理"] h5::before{content:"物理角"}.corner[data-k="用"] h5::before{content:"游戏里的用处"}.corner[data-k="机"] h5::before{content:"Mac 小知识"}.corner[data-k="学"] h5::before{content:"自学的本事"}.corner[data-k="安"] h5::before{content:"安全"}
+.corner h5::before{font-family:var(--f-sans);font-size:11.5px;letter-spacing:.12em;color:var(--paper);background:var(--c);border-radius:2px;padding:1px 6px}
+
+/* 发音：点一下就念 */
+[data-say]{cursor:pointer;text-decoration:underline dotted var(--blu);text-underline-offset:4px;text-decoration-thickness:1.5px}
+[data-say]::after{content:"";display:inline-block;width:.85em;height:.85em;margin-left:.18em;vertical-align:-.05em;background:var(--blu);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2 6h3l4-3v10l-4-3H2z'/%3E%3Cpath d='M11 5.5q2 2.5 0 5M12.8 3.8q3.6 4.2 0 8.4' fill='none' stroke='%23000' stroke-width='1.4'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2 6h3l4-3v10l-4-3H2z'/%3E%3Cpath d='M11 5.5q2 2.5 0 5M12.8 3.8q3.6 4.2 0 8.4' fill='none' stroke='%23000' stroke-width='1.4'/%3E%3C/svg%3E") center/contain no-repeat}
+[data-say].speaking{background:color-mix(in srgb,var(--blu) 16%,transparent);border-radius:3px}
+.en{font-family:var(--f-mono);font-size:.92em}
+
+/* 任务卡 */
+.task{margin:1.8em 0;border:3px solid var(--ink-2);border-radius:3px;background:var(--card);box-shadow:4px 4px 0 var(--rule);max-width:38rem}
+.task .th{display:flex;gap:10px;align-items:baseline;background:color-mix(in srgb,var(--gold) 20%,var(--card));border-bottom:2px dashed var(--rule);padding:6px 14px}
+.task .th b{font-family:var(--f-display);font-weight:400;font-size:19px}
+.task .th::before{content:"任务";font-size:11.5px;letter-spacing:.14em;color:var(--paper);background:var(--gold);border-radius:2px;padding:1px 6px;flex:none}
+.task .th .xp{margin-left:auto;font-family:var(--f-pix);font-size:12px;color:var(--gold);white-space:nowrap}
+.task .tb{padding:10px 14px 4px;font-size:15.5px;line-height:1.8}
+.task .tb ol,.task .tb ul{margin:0 0 .6em;padding-left:1.3em}
+.task .tb p{margin:0 0 .6em}
+.task .tf{display:flex;gap:10px;align-items:center;padding:6px 14px 10px;flex-wrap:wrap}
+.task .tf .btn.done{background:var(--main);border-color:var(--main);color:var(--paper)}
+.task .tf small{color:var(--ink-3);font-size:12.5px}
+.task.isdone{border-color:var(--main)}
+.task.isdone .th{background:color-mix(in srgb,var(--main) 16%,var(--card))}
+
+/* 闯关自测 */
+.pass{margin:2em 0;border:3px solid var(--main);border-radius:3px;background:var(--card);max-width:38rem}
+.pass .ph{display:flex;gap:10px;align-items:center;background:var(--main);color:var(--paper);padding:5px 14px;font-family:var(--f-display);font-size:19px}
+.pass .ph .sc{margin-left:auto;font-family:var(--f-pix);font-size:12px}
+.pass .pb{padding:10px 14px 6px}
+.pass .qq{border-bottom:1px dashed var(--rule);padding:6px 0 10px;margin-bottom:6px}
+.pass .qq:last-child{border-bottom:0}
+.pass .qq>p{margin:0 0 .4em;font-size:16px;line-height:1.75}
+.pass .qq>p b.n{font-family:var(--f-pix);font-size:12px;color:var(--main);margin-right:6px;font-weight:400}
+.pass .ops{display:flex;flex-wrap:wrap;gap:6px}
+.pass .ops button{border:2px solid var(--rule);background:var(--paper);border-radius:4px;padding:3px 12px;font-size:15px;cursor:pointer;line-height:1.6;text-align:left}
+.pass .ops button:hover{border-color:var(--ink-3)}
+.pass .ops button.right{border-color:var(--main);background:color-mix(in srgb,var(--main) 15%,var(--paper))}
+.pass .ops button.wrong{border-color:var(--zhu);background:color-mix(in srgb,var(--zhu) 10%,var(--paper));text-decoration:line-through}
+.pass .inrow{display:flex;gap:6px;flex-wrap:wrap}
+.pass .inrow input{flex:1 1 10em;min-width:0;font-family:var(--f-mono);font-size:15px;padding:4px 8px;border:2px solid var(--rule);border-radius:4px;background:var(--paper)}
+.pass .inrow input.right{border-color:var(--main)}.pass .inrow input.wrong{border-color:var(--zhu)}
+.pass .ex{display:none;font-size:14.5px;line-height:1.75;color:var(--ink-2);margin:.5em 0 0;padding:6px 10px;background:var(--paper);border-radius:3px}
+.pass .qq.shown .ex{display:block}
+.pass .pf{padding:4px 14px 12px;font-size:14.5px;color:var(--ink-2)}
+.pass.ok{border-color:var(--gold)}
+.pass.ok .ph{background:var(--gold)}
+
+/* 成就小条（封面和每部末尾） */
+.achv{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.achv div{flex:1 1 7em;background:var(--card);border:2px solid var(--rule);border-radius:4px;padding:6px 10px;font-size:12.5px;color:var(--ink-3);line-height:1.5}
+.achv b{display:block;font-family:var(--f-pix);font-weight:400;font-size:20px;color:var(--ink)}
+
+/* 出错了怎么办 */
+.err{margin:1.6em 0;border:2px solid var(--zhu);border-radius:3px;background:var(--card);max-width:38rem}
+.err h5{margin:0;padding:5px 14px;font-family:var(--f-display);font-weight:400;font-size:18px;color:var(--zhu);border-bottom:2px dashed var(--rule)}
+.err dl{margin:0;padding:8px 14px 4px;font-size:15px;line-height:1.75}
+.err dt{font-weight:700;margin-top:.4em}
+.err dt::before{content:"✗ ";color:var(--zhu)}
+.err dd{margin:0 0 .4em 1.2em;color:var(--ink-2)}
+
+/* 一张表：键、符号、名字 */
+table.t.kt{min-width:0}
+table.t.kt td:first-child{white-space:nowrap}
+.tbl{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1em 0}
+
+/* 漫画格 */
+.strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:1.6em 0}
+.strip figure{margin:0;border:2.5px solid var(--ink-2);border-radius:2px;background:var(--card);position:relative;overflow:hidden}
+.strip svg{width:100%;display:block}
+.strip figcaption{font-size:13px;line-height:1.55;padding:5px 8px 7px;border-top:2px solid var(--ink-2);min-height:4.6em}
+.strip figcaption b{font-family:var(--f-display);font-weight:400;color:var(--main)}
+@media (max-width:640px){.strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* 词卡 */
+.wtools{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:6px 0 10px}
+.wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(9.6em,1fr));gap:8px}
+.wc{position:relative;background:var(--paper);border:2px solid var(--rule);border-radius:4px;padding:8px 10px 6px;line-height:1.45;min-height:6.4em;display:flex;flex-direction:column;gap:2px}
+.wc .ic{position:absolute;right:6px;top:6px;width:26px;height:26px}
+.wc .w{font-family:var(--f-mono);font-size:16.5px;font-weight:500;color:var(--ink);padding-right:28px;word-break:break-word}
+.wc .zh{font-size:14px;color:var(--ink-2)}
+.wc .nt{font-size:11.5px;color:var(--ink-3);line-height:1.45}
+.wc .ac{margin-top:auto;display:flex;gap:4px;padding-top:4px}
+.wc .ac button{border:1px solid var(--rule);background:var(--card);border-radius:3px;font-size:11.5px;padding:0 6px;cursor:pointer;line-height:1.7}
+.wc .ac button.on{background:var(--blu);border-color:var(--blu);color:var(--paper)}
+.wgrid.hidezh .wc .zh,.wgrid.hidezh .wc .nt{filter:blur(6px);transition:filter .2s}
+.wgrid.hidezh .wc:hover .zh,.wgrid.hidezh .wc:hover .nt,.wgrid.hidezh .wc.peek .zh,.wgrid.hidezh .wc.peek .nt{filter:none}
+.wgrid.hideen .wc .w{filter:blur(6px)}
+.wgrid.hideen .wc.peek .w{filter:none}
+.swatch{display:inline-block;width:1em;height:1em;border-radius:2px;border:1px solid var(--ink-3);vertical-align:-.12em}
+
+/* 复习台 */
+.srs{display:grid;gap:10px}
+.srs .card{background:var(--paper);border:3px solid var(--ink-2);border-radius:4px;padding:18px 16px;text-align:center;min-height:12em;display:flex;flex-direction:column;justify-content:center;gap:6px}
+.srs .card .w{font-family:var(--f-mono);font-size:30px;font-weight:500}
+.srs .card .zh{font-size:20px;color:var(--ink-2)}
+.srs .card .nt{font-size:13.5px;color:var(--ink-3)}
+.srs .boxes{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px;font-size:11.5px;text-align:center;color:var(--ink-3)}
+.srs .boxes div{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:3px 0}
+.srs .boxes b{display:block;font-family:var(--f-pix);font-weight:400;font-size:16px;color:var(--ink)}
+
+/* 模拟器的公共外框 */
+.sim{border:3px solid var(--ink-2);border-radius:4px;overflow:hidden;background:var(--paper)}
+.sim .sh{display:flex;gap:8px;align-items:center;background:var(--ink-2);color:var(--paper);font-size:12.5px;padding:4px 10px}
+.sim .sh i{width:10px;height:10px;border-radius:50%;background:#e0574a;display:inline-block}
+.sim .sh i+i{background:#e0b84a}.sim .sh i+i+i{background:#5bb45b}
+.sim .sh span{margin-left:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .sim .sh{background:#2b2e27;color:var(--ink)}}
+:root[data-theme="dark"] .sim .sh{background:#2b2e27;color:var(--ink)}
+.goals{list-style:none;padding:0;margin:8px 0;display:grid;gap:4px;font-size:14px}
+.goals li{padding:3px 8px 3px 30px;position:relative;background:var(--card);border:1px solid var(--rule);border-radius:3px;line-height:1.6}
+.goals li::before{content:"";position:absolute;left:8px;top:.5em;width:13px;height:13px;border:2px solid var(--ink-3);border-radius:2px}
+.goals li.ok{border-color:var(--main)}
+.goals li.ok::before{background:var(--main);border-color:var(--main)}
+.goals li code{font-size:12.5px}
+/* 访达（模拟） */
+.fdr .ftb{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:6px 8px;border-bottom:1px solid var(--rule);background:var(--paper-2)}
+.fdr .ftb .btn{padding:1px 10px;font-size:13px}
+.fdr .gobox{display:flex;gap:4px;flex:1 1 14em;min-width:0}
+.fdr .gobox input{flex:1;min-width:0;font-family:var(--f-mono);font-size:13px;padding:2px 8px;border:1.5px solid var(--rule);border-radius:4px;background:var(--card)}
+.fdr .fwin{display:grid;grid-template-columns:8.5em minmax(0,1fr);min-height:15em}
+.fdr .fside{background:var(--paper-2);border-right:1px solid var(--rule);padding:6px 0;font-size:13.5px;line-height:1.5}
+.fdr .fside b{display:block;font-weight:400;font-size:11px;color:var(--ink-3);padding:0 10px 2px}
+.fdr .fside a{display:block;padding:2px 10px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fdr .fside a.on{background:color-mix(in srgb,var(--blu) 20%,transparent)}
+.fdr .fcols{display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.fdr .fcol{list-style:none;margin:0;padding:4px 0;min-width:11em;max-width:13em;border-right:1px solid var(--rule);font-size:13.5px;line-height:1.55;flex:none}
+.fdr .fcol li{display:flex;gap:5px;align-items:center;padding:2px 8px;cursor:pointer;white-space:nowrap;overflow:hidden}
+.fdr .fcol li .ico{color:var(--blu);font-size:11px;flex:none}
+.fdr .fcol li.file .ico{color:var(--ink-3)}
+.fdr .fcol li .ar{margin-left:auto;color:var(--ink-3)}
+.fdr .fcol li.on{background:var(--blu);color:var(--paper)}
+.fdr .fcol li.on .ico,.fdr .fcol li.on .ar{color:var(--paper)}
+.fdr .fcol li.hid{opacity:.55}
+.fdr .fcol li.empty{color:var(--ink-3);cursor:default}
+.fdr .fprev{flex:none;width:13em;padding:8px 10px;font-size:13px;line-height:1.55;display:flex;flex-direction:column;gap:4px}
+.fdr .fprev b{font-size:14px;word-break:break-all}
+.fdr .fprev span{color:var(--ink-3)}
+.fdr .fprev pre{font-family:var(--f-mono);font-size:11.5px;white-space:pre-wrap;background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:6px;margin:0;max-height:12em;overflow:auto}
+.fdr .fpath{display:flex;flex-wrap:wrap;gap:2px 4px;align-items:center;padding:4px 10px;border-top:1px solid var(--rule);background:var(--paper-2);font-size:12.5px}
+.fdr .fpath a{cursor:pointer;white-space:nowrap}
+.fdr .fpath span{color:var(--ink-3)}
+.fdr .finfo{margin:0;border-left-width:0;border-top:1px solid var(--rule);font-size:13.5px;min-height:0}
+.fdr .goals{padding:0 8px 8px}
+@media (max-width:560px){.fdr .fwin{grid-template-columns:minmax(0,1fr)}.fdr .fside{display:flex;flex-wrap:wrap;gap:2px;border-right:0;border-bottom:1px solid var(--rule);padding:4px}.fdr .fside b{display:none}.fdr .fside a{border:1px solid var(--rule);border-radius:999px;padding:0 8px;font-size:12.5px}}
+/* 终端（模拟） */
+.term{background:#1d1f1b;color:#e2e0d4;border-color:#3a3d36}
+.term .tout{font-family:var(--f-mono);font-size:13px;line-height:1.6;padding:8px 10px 0;max-height:20em;min-height:9em;overflow-y:auto;white-space:pre-wrap;word-break:break-all}
+.term .tout pre{margin:0;font:inherit;white-space:pre-wrap;color:#cfe6b8}
+.term .tout b{color:#8fc7ff;font-weight:500}
+.term .tout .er{color:#ff9b8a}.term .tout .ok{color:#a8e08c}.term .tout .dim{color:#8b8a80}
+.term .pr{color:#9ccf74}
+.term .tin{display:flex;gap:6px;align-items:center;padding:2px 10px 10px;font-family:var(--f-mono);font-size:13px}
+.term .tin .pr{flex:none}
+.term .tin input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:#fff;font-family:var(--f-mono);font-size:14px;caret-color:#9ccf74;padding:2px 0}
+.term .tin:focus-within{background:rgba(255,255,255,.04)}
+.term .goals{padding:0 10px 10px}
+.term .goals li{background:#262923;border-color:#3a3d36;color:#e2e0d4}
+.term .goals li.ok{border-color:#6f9a3a}
+.term .goals li code{background:rgba(255,255,255,.08)}
+/* 键盘 */
+.kb{display:flex;flex-direction:column;gap:3px;background:var(--paper-2);border:2px solid var(--rule);border-radius:8px;padding:6px;user-select:none;-webkit-user-select:none}
+.kr{display:flex;gap:3px}
+.kr.fr .k{min-height:24px;font-size:10px}
+.k{position:relative;min-width:0;min-height:36px;border:1px solid var(--ink-3);border-bottom-width:2.5px;border-radius:5px;background:var(--card);color:var(--ink);font-family:var(--f-sans);font-size:12px;line-height:1.1;padding:2px 1px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;white-space:nowrap}
+.k small{font-size:13px;line-height:1}
+.k span{overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.kbwrap[data-mode="1"] .k.m{background:color-mix(in srgb,var(--stone) 26%,var(--card));border-color:var(--stone)}
+.kbwrap[data-mode="2"] .k.g{background:color-mix(in srgb,var(--main) 26%,var(--card));border-color:var(--main)}
+.kbwrap[data-mode="1"] .k:not(.m),.kbwrap[data-mode="2"] .k:not(.g){opacity:.55}
+.k.sel{outline:2.5px solid var(--zhu);outline-offset:1px;opacity:1!important}
+.k.down{transform:translateY(2px);background:var(--gold)!important;color:var(--paper)}
+@media (max-width:520px){.k{font-size:9.5px;min-height:30px}.k small{font-size:11px}.kr.fr .k{font-size:8px}.kb{padding:4px;gap:2px}.kr{gap:2px}}
+/* 手势练习板、标点侦探 */
+.pad{height:170px;border:2px dashed var(--ink-3);border-radius:14px;background:var(--paper-2);display:flex;align-items:center;justify-content:center;text-align:center;font-size:15px;color:var(--ink-2);padding:10px;touch-action:none;user-select:none;-webkit-user-select:none;overflow:hidden}
+.pad.hit{background:color-mix(in srgb,var(--main) 18%,var(--paper-2))}
+.punct{font-family:var(--f-mono);font-size:16px;line-height:2;background:var(--paper);border:2px solid var(--rule);border-radius:4px;padding:6px 10px;word-break:break-all;min-height:2.6em}
+.punct mark{background:color-mix(in srgb,var(--zhu) 30%,transparent);color:inherit;border-bottom:2px solid var(--zhu);border-radius:2px;padding:0 1px}
+.punct mark.sp{display:inline-block;min-width:1em}
+.fig textarea{display:block;width:100%;font-family:var(--f-mono);font-size:15px;padding:6px 8px;border:2px solid var(--rule);border-radius:3px;background:var(--paper);color:var(--ink);resize:vertical}
+.want{display:grid;grid-template-columns:repeat(auto-fill,minmax(15em,1fr));gap:6px}
+.want div{background:var(--paper);border:1.5px solid var(--rule);border-radius:4px;padding:6px 10px;font-size:14px;line-height:1.6}
+.want b{display:block;font-weight:600;font-size:15px}
+.want a{font-size:13px;color:var(--main);margin-right:6px}
+.want a.soon{color:var(--ink-3)}
+.crumbs{display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin:10px 0;font-family:var(--f-mono);font-size:13.5px}
+.crumbs .cb{display:inline-flex;flex-direction:column;border:2px solid var(--rule);border-radius:4px;padding:2px 8px;background:var(--paper);line-height:1.4}
+.crumbs .cb small{font-family:var(--f-sans);font-size:11px;color:var(--ink-3)}
+.crumbs .cb.d{border-color:var(--blu)}.crumbs .cb.f{border-color:var(--main);background:color-mix(in srgb,var(--main) 10%,var(--paper))}
+.crumbs .cb.h{border-style:dashed}.crumbs .cb.no{border-color:var(--zhu);color:var(--zhu)}.crumbs .cb.root{border-color:var(--ink-2)}.crumbs .cb.dot{border-color:var(--gold)}
+.crumbs .sep{color:var(--ink-3)}
 </style>
 </head>
 <body>
@@ -608,7 +833,7 @@ table.t.exp td,table.t.exp th{text-align:center}
   <div class="bar-in g">
     <a class="home" href="../" title="回创世书房">书房</a>
     <a class="name" href="./">一块一块</a>
-    <nav class="parts" aria-label="三部">
+    <nav class="parts" aria-label="十部">
       <a href="./" data-p="1">土</a><a href="two.html" data-p="2">电</a><a href="three.html" data-p="3">门</a><a href="four.html" data-p="4">工</a>
     </nav>
     <span class="vol" id="barVol">序</span>
@@ -678,12 +903,7 @@ table.t.exp td,table.t.exp th{text-align:center}
       </ul>
     </div>
 
-    <div class="partnav">
-      <a href="./"><span class="k">第一部</span><b>土</b><small>序幕 + 卷一 来历 + 卷二 长大 · 一块方块从哪里来 · 九章</small></a>
-      <a href="two.html"><span class="k">第二部</span><b>电</b><small>卷三 红石 + 卷四 机器和代码 · 红线怎样变成电脑 · 八章</small></a>
-      <a href="three.html" class="on"><span class="k">第三部</span><b>门</b><small>卷五 动手 + 卷六 长大以后 + 尾声 · 走出游戏 · 八章</small></a>
-      <a href="four.html"><span class="k">第四部</span><b>工</b><small>卷七 码 + 卷八 机 + 卷九 脑 · 动手的工坊 · 八章</small></a>
-    </div>
+    <div class="partnav"></div>
 
     <h3>全书目录</h3>
   </div>
@@ -1799,9 +2019,24 @@ function txt(x, y, t, o){ o = o || {}; return '<text x="' + x + '" y="' + y + '"
 function slider(id, f, cb){ const r = $('#' + id), o = $('#' + id + 'O'); const go = () => { if (o) o.textContent = f ? f(+r.value) : r.value; if (cb) cb(+r.value); }; r.addEventListener('input', go); go(); return () => +r.value; }
 
 /* ---------- 全书目录（三个网页共用） ---------- */
-const PAGE = /four\.html/.test(location.pathname) ? 4 : /three\.html/.test(location.pathname) ? 3 : /two\.html/.test(location.pathname) ? 2 : 1;
-const READY = 4; // 已经写好的部数
-const PURL = {1: './', 2: 'two.html', 3: 'three.html', 4: 'four.html'};
+const PFILE = ['index', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+const PAGE = (() => { const m = location.pathname.match(/\/(two|three|four|five|six|seven|eight|nine|ten)\.html/); return m ? PFILE.indexOf(m[1]) + 1 : 1; })();
+const READY = 5; // 已经写好的部数
+const PURL = {}; PFILE.forEach((f, i) => PURL[i + 1] = i ? f + '.html' : './');
+/* 十部：前四部是故事，后六部是指南 */
+const PARTS = [
+  {k: '土', g: '故事', s: '一块方块从哪里来 · 九章'},
+  {k: '电', g: '故事', s: '红线怎样变成电脑 · 八章'},
+  {k: '门', g: '故事', s: '走出游戏 · 八章'},
+  {k: '工', g: '故事', s: '动手的工坊 · 八章'},
+  {k: '手', g: '指南', s: '把 Mac 摸熟：键盘、文件、终端 · 八章'},
+  {k: '令', g: '指南', s: '指令大全：坐标、天气、给东西、变量和条件 · 十章'},
+  {k: '词', g: '指南', s: '游戏里的英语：听、拼、词卡、复习台 · 八章'},
+  {k: '数', g: '指南', s: '方块里的数学：负数到勾股定理 · 八章'},
+  {k: '理', g: '指南', s: '方块里的物理：下落、光、声音、机械、天 · 五章'},
+  {k: '程', g: '指南', s: '编程：变量到递归、调试、自学 · 十一章'}
+];
+const CN = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
 const TOC = [
   {p: 1, t: '第一部 · 土 —— 一块方块从哪里来'},
   {v: '序幕'},
@@ -1850,11 +2085,79 @@ const TOC = [
   {v: '卷九 · 脑'},
   {id: 'c30', n: '算', t: '方块里的数学和物理', s: '下界的一比八、量一量走路多快、方块掉下去和石头掉下去、火把的光、五十块沙砾；掉下去要多久', r: '1590—今'},
   {id: 'c31', n: '问', t: '和 AI 一起学', s: '几岁能用、在大人的账号下、它会说错、让它讲道理而不是替你做、一起检查一段 AI 写的代码；怎样问 AI', r: '2022—今'},
-  {id: 'c32', n: '路', t: '一张自学地图', s: '从现在到高中、免费的好地方、游戏外的创意、小格的局域网派对；我的技能树', r: '今天'}
+  {id: 'c32', n: '路', t: '一张自学地图', s: '从现在到高中、免费的好地方、游戏外的创意、小格的局域网派对；我的技能树', r: '今天'},
+  {p: 5, t: '第五部 · 手 —— 把 Mac 摸熟（指南）'},
+  {v: '卷十 · 键'},
+  {id: 'c33', n: '键', t: '键盘上的怪符号', s: '⌘ ⌥ ⌃ ⇧ fn、快捷键怎么读、三种截图、聚焦搜索当计算器、强制退出；MacBook Air 的键盘', r: '指南'},
+  {id: 'c34', n: '指', t: '触控板、鼠标和输入法', s: '几根手指几种意思、接鼠标、中英文切换、中文标点让命令失败、每个字都是一个数；标点侦探', r: '指南'},
+  {id: 'c35', n: '位', t: '游戏里的每一个键', s: '默认按键全表、改键、Mac 上的 fn、F3 调试屏幕和组合键；按键反应', r: '指南'},
+  {v: '卷十一 · 树'},
+  {id: 'c36', n: '树', t: '访达：文件夹就是一棵树', s: '边栏、四种看法、新建改名移动拷贝删除、后缀名；模拟访达', r: '指南'},
+  {id: 'c37', n: '径', t: '路径：一串地址', s: '斜杠、中文名和真名、波浪号、藏起来的资源库、前往文件夹、绝对和相对；读路径', r: '指南'},
+  {id: 'c38', n: '存', t: '游戏的东西都在哪儿', s: 'minecraft 文件夹地图、截图日志设置、三种备份、region 文件和向下取整', r: '指南'},
+  {v: '卷十二 · 问'},
+  {id: 'c39', n: '终', t: '终端：和电脑打字说话', s: '提示符、pwd ls cd open cat、tab 补全、空格和反斜杠、不能乱打的命令；模拟终端', r: '指南'},
+  {id: 'c40', n: '问', t: '卡住了怎么办', s: '读试查问记、查版本、把问题说清楚、在维基上搜、和 AI 一起把 Mac 冷门变成优势；问题卡', r: '指南'},
+  {p: 6, t: '第六部 · 令 —— 指令大全（指南）'},
+  {v: '卷十三 · 位置'},
+  {id: 'c41', n: '系', t: 'x、y、z', s: '三根轴、东西南北、正数负数、方块坐标和精确坐标', r: '指南'},
+  {id: 'c42', n: '移', t: '/tp：瞬移', s: '绝对坐标、~ 相对坐标、^ 局部坐标、朝向和角度', r: '指南'},
+  {v: '卷十四 · 世界'},
+  {id: 'c43', n: '天', t: '/time 和 /weather', s: '游戏刻、一天 24000 刻、晴雨雷、天气的英文', r: '指南'},
+  {id: 'c44', n: '模', t: '/gamemode 和游戏规则', s: '四种模式、难度、gamerule 的“是和否”', r: '指南'},
+  {id: 'c45', n: '给', t: '/give：给东西', s: '物品 ID 就是英文单词、一组 64 个、物品栏是一排编号的格子', r: '指南'},
+  {id: 'c46', n: '召', t: '/summon 和 /effect', s: '召唤生物、状态效果、等级从 0 数起', r: '指南'},
+  {id: 'c47', n: '填', t: '/setblock 和 /fill', s: '长方体、体积、空心和外壳、方块状态', r: '指南'},
+  {v: '卷十五 · 逻辑'},
+  {id: 'c48', n: '选', t: '目标选择器', s: '@p @a @s @e @r、参数就是筛选条件', r: '指南'},
+  {id: 'c49', n: '分', t: '/scoreboard：变量', s: '记分项、加减乘除、侧边栏', r: '指南'},
+  {id: 'c50', n: '若', t: '/execute：如果……就……', s: '条件判断、以谁的身份在哪儿、做一个计时小游戏', r: '指南'},
+  {p: 7, t: '第七部 · 词 —— 游戏里的英语（指南）'},
+  {id: 'c51', n: '听', t: '怎样学单词', s: '把游戏换成英文、听和说、间隔重复', r: '指南'},
+  {id: 'c52', n: '拼', t: '单词是拼起来的', s: '复合词、前缀后缀、命令就是祈使句', r: '指南'},
+  {id: 'c53', n: '料', t: '方块和材料', s: '词卡', r: '指南'},
+  {id: 'c54', n: '器', t: '物品和工具', s: '词卡', r: '指南'},
+  {id: 'c55', n: '生', t: '生物', s: '词卡', r: '指南'},
+  {id: 'c56', n: '色', t: '颜色和群系', s: '十六色羊毛、平原森林沙漠', r: '指南'},
+  {id: 'c57', n: '方', t: '方向、数字、时间、天气', s: '词卡', r: '指南'},
+  {id: 'c58', n: '复', t: '复习台', s: '间隔重复、自己出题', r: '指南'},
+  {p: 8, t: '第八部 · 数 —— 方块里的数学（指南）'},
+  {id: 'c59', n: '图', t: '学过的和要学的', s: '小学到初中的数学地图', r: '指南'},
+  {id: 'c60', n: '负', t: '负数', s: 'y 坐标、海平面、数轴', r: '指南'},
+  {id: 'c61', n: '乘', t: '乘法和 2 的幂', s: '一组 64、箱子 27 格、二进制', r: '指南'},
+  {id: 'c62', n: '比', t: '分数和比例', s: '下界一比八、合成配方、地图比例尺', r: '指南'},
+  {id: 'c63', n: '形', t: '面积、周长、体积', s: '盖房子要多少块', r: '指南'},
+  {id: 'c64', n: '角', t: '角度和朝向', s: '一圈 360 度、量角器', r: '指南'},
+  {id: 'c65', n: '率', t: '概率和统计', s: '掉落几率、平均数和中位数、统计图', r: '指南'},
+  {id: 'c66', n: '速', t: '速度和勾股定理', s: '走、跑、矿车、直线距离', r: '指南'},
+  {p: 9, t: '第九部 · 理 —— 方块里的物理（指南）'},
+  {id: 'c67', n: '落', t: '重力和下落', s: '越掉越快、摔落伤害', r: '指南'},
+  {id: 'c68', n: '光', t: '光', s: '一格暗一级、平方反比', r: '指南'},
+  {id: 'c69', n: '音', t: '声音和音调', s: '音符盒、频率、八度', r: '指南'},
+  {id: 'c70', n: '动', t: '简单机械和水', s: '杠杆、活塞、水流', r: '指南'},
+  {id: 'c71', n: '转', t: '昼夜、月亮、指南针', s: '地球自转、八种月相、磁场', r: '指南'},
+  {p: 10, t: '第十部 · 程 —— 编程（指南）'},
+  {id: 'c72', n: '量', t: '变量', s: '起名字、数和字', r: '指南'},
+  {id: 'c73', n: '若', t: '条件', s: 'if、else、真和假', r: '指南'},
+  {id: 'c74', n: '环', t: '循环', s: 'for、while', r: '指南'},
+  {id: 'c75', n: '函', t: '函数', s: '自己发明命令', r: '指南'},
+  {id: 'c76', n: '组', t: '列表', s: '快捷栏 0—8 号格', r: '指南'},
+  {id: 'c77', n: '典', t: '字典和树', s: 'ID 对名字、文件夹树', r: '指南'},
+  {id: 'c78', n: '队', t: '队列和广度优先', s: '水怎样流、红石信号怎样传', r: '指南'},
+  {id: 'c79', n: '找', t: '查找和排序', s: '猜数游戏、整理箱子', r: '指南'},
+  {id: 'c80', n: '归', t: '递归', s: '自己调用自己', r: '指南'},
+  {id: 'c81', n: '错', t: '调试和错题本', s: '读报错、一样一样排除', r: '指南'},
+  {id: 'c82', n: '学', t: '怎样自学', s: '五步、成就墙', r: '指南'}
 ];
 const chapPage = {}; { let p = 1; TOC.forEach(x => { if (x.p) p = x.p; if (x.id) chapPage[x.id] = p; }); }
 const href = id => (chapPage[id] === PAGE ? '' : PURL[chapPage[id]]) + '#' + id;
-$$('.bar .parts a').forEach(a => { const p = +a.dataset.p; a.classList.toggle('on', p === PAGE); if (p > READY) { a.removeAttribute('href'); a.style.opacity = .4; a.title = '写作中'; } });
+dev('.bar .parts', nav => { nav.innerHTML = PARTS.map((x, i) => (i === 4 ? '<span class="gsep" aria-hidden="true"></span>' : '') + '<a href="' + PURL[i + 1] + '" data-p="' + (i + 1) + '" title="第' + CN[i] + '部 · ' + x.k + '（' + x.g + '）">' + x.k + '</a>').join('');
+  $$('a', nav).forEach(a => { const p = +a.dataset.p; a.classList.toggle('on', p === PAGE); if (p > READY) { a.removeAttribute('href'); a.style.opacity = .4; a.title = '写作中'; } });
+  const on = $('a.on', nav); if (on) nav.scrollLeft = Math.max(0, on.offsetLeft - nav.clientWidth / 2); });
+/* 封面的“十部”导航 */
+$$('.partnav').forEach(box => { box.classList.add('ten'); box.innerHTML = ['故事', '指南'].map(g => '<div class="pg"><span class="pgh">' + (g === '故事' ? '故事 · 第一到四部' : '指南 · 第五到十部 · 照着做、能自测') + '</span>' + PARTS.map((x, i) => x.g !== g ? '' :
+  '<a ' + (i + 1 > READY ? 'class="soon"' : 'href="' + PURL[i + 1] + '"' + (i + 1 === PAGE ? ' class="on"' : '')) + '><span class="k">第' + CN[i] + '部</span><b>' + x.k + '</b><small>' + x.s + (i + 1 > READY ? ' · 写作中' : '') + '</small></a>').join('') + '</div>').join(''); });
+
 $('#drawerList').innerHTML = TOC.map(x => x.p ? '<li class="ph">' + x.t + '</li>' : x.v ? '<li class="vh">' + x.v + '</li>' :
   chapPage[x.id] > READY ? '<li><a style="opacity:.5;pointer-events:none"><span class="n">' + x.n + '</span><span>' + x.t + '<small>写作中</small></span></a></li>' :
   '<li><a href="' + href(x.id) + '"' + (chapPage[x.id] === PAGE ? ' class="here"' : '') + '><span class="n">' + x.n + '</span><span>' + x.t + '<small>' + x.s + '</small></span></a></li>').join('');
@@ -2283,6 +2586,438 @@ dev('#shopFig', () => {
   draw();
 });
 
+/* 词表在第七部写，先占位 */
+const WORDS = [];
+
+/* ================= 指南公共件（第五部起）=================
+   G：本机记录（任务、闯关、复习卡、错题本），只存在这台电脑的浏览器里
+   speak()：用浏览器自带的声音念英文
+   .sub 科目条、.task 任务卡、.pass 闯关自测、.achv 成就条、.wgrid 词卡、.srsbox 复习台 */
+const GKEY = 'genesis-block-guide';
+const G = (() => {
+  let d = {};
+  try { d = JSON.parse(localStorage.getItem(GKEY) || '{}') || {}; } catch (e) { d = {}; }
+  ['task', 'quiz', 'srs', 'flag'].forEach(k => { if (!d[k] || typeof d[k] !== 'object' || Array.isArray(d[k])) d[k] = {}; });
+  if (!Array.isArray(d.bug)) d.bug = [];
+  const save = () => { try { localStorage.setItem(GKEY, JSON.stringify(d)); } catch (e) {} refreshAchv(); };
+  return {d, save};
+})();
+const TODAY = () => Math.floor((Date.now() - new Date().getTimezoneOffset() * 6e4) / 864e5);
+
+/* ---------- 念英文 ---------- */
+let enVoice = null;
+const hasTTS = 'speechSynthesis' in window;
+function pickVoice(){
+  if (!hasTTS) return;
+  const vs = speechSynthesis.getVoices();
+  enVoice = vs.find(v => /en[-_]US/i.test(v.lang) && /Samantha|Google US|Aaron|Nicky/i.test(v.name)) || vs.find(v => /en[-_]US/i.test(v.lang)) || vs.find(v => /^en/i.test(v.lang)) || null;
+}
+if (hasTTS) { pickVoice(); try { speechSynthesis.addEventListener('voiceschanged', pickVoice); } catch (e) {} }
+const sayText = t => String(t).replace(/^minecraft:/, '').replace(/[_]/g, ' ').replace(/^\//, '').replace(/[~^@]/g, ' ');
+function speak(text, el, rate){
+  if (!hasTTS) { if (el) { el.title = '这个浏览器不会念，换 Safari 或 Chrome 试试'; } return; }
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(sayText(text));
+  u.lang = 'en-US'; if (enVoice) u.voice = enVoice; u.rate = rate || .82;
+  if (el) { el.classList.add('speaking'); u.onend = u.onerror = () => el.classList.remove('speaking'); }
+  speechSynthesis.speak(u);
+}
+document.addEventListener('click', e => { const el = e.target.closest('[data-say]'); if (!el) return; e.preventDefault(); speak(el.dataset.say || el.textContent.trim(), el); });
+
+/* ---------- 章首科目条 ---------- */
+const SUBJ = [['机', 'Mac', '--stone'], ['令', '指令', '--main'], ['英', '英语', '--blu'], ['数', '数学', '--ter'], ['理', '物理', '--dia'], ['程', '编程', '--pur']];
+$$('.sub').forEach(w => { const on = (w.dataset.s || '').split(/\s+/); w.innerHTML = SUBJ.map(f => '<span' + (on.includes(f[0]) ? ' class="on" style="--c:var(' + f[2] + ')"' : '') + '><b>' + f[0] + '</b>' + f[1] + '</span>').join(''); w.setAttribute('aria-label', '这一章能学到：' + SUBJ.filter(f => on.includes(f[0])).map(f => f[1]).join('、')); });
+
+/* ---------- 任务卡 ---------- */
+$$('.task[data-id]').forEach(t => {
+  const id = t.dataset.id, f = document.createElement('div'); f.className = 'tf';
+  f.innerHTML = '<button class="btn">我做完了</button><small></small>';
+  t.appendChild(f);
+  const b = $('button', f), sm = $('small', f);
+  const show = () => { const on = !!G.d.task[id]; t.classList.toggle('isdone', on); b.classList.toggle('done', on); b.textContent = on ? '✓ 做完了' : '我做完了'; sm.textContent = on ? '记在这台电脑的浏览器里。再点一下可以取消。' : '真的在电脑上做完了再点。'; };
+  b.addEventListener('click', () => { if (G.d.task[id]) delete G.d.task[id]; else G.d.task[id] = TODAY(); G.save(); show(); });
+  show();
+});
+
+/* ---------- 闯关自测 ----------
+   <div class="pass" data-id="q33">
+     <div class="qq" data-a="1"><p>题目</p><ol><li>选项0</li><li>选项1</li></ol><p class="ex">讲解</p></div>
+     <div class="qq" data-in="答案|另一种写法"><p>填空题</p><p class="ex">讲解</p></div>
+   </div> */
+const norm = s => String(s).trim().toLowerCase().replace(/\s+/g, ' ').replace(/[，]/g, ',').replace(/[（]/g, '(').replace(/[）]/g, ')');
+$$('.pass[data-id]').forEach(box => {
+  const id = box.dataset.id, qs = $$('.qq', box);
+  const body = document.createElement('div'); body.className = 'pb';
+  qs.forEach(q => body.appendChild(q));
+  box.innerHTML = '<div class="ph">闯关自测<span class="sc"></span></div>';
+  box.appendChild(body);
+  const foot = document.createElement('div'); foot.className = 'pf'; box.appendChild(foot);
+  const st = qs.map(() => ({done: false, first: null}));
+  const upd = () => {
+    const done = st.filter(x => x.done).length, first = st.filter(x => x.first === true).length;
+    $('.sc', box).textContent = done + ' / ' + qs.length;
+    if (done === qs.length) {
+      const best = Math.max(first, (G.d.quiz[id] || {}).f || 0);
+      if (!G.d.quiz[id] || (G.d.quiz[id].f || 0) < first) { G.d.quiz[id] = {n: qs.length, f: best, d: TODAY()}; G.save(); }
+      box.classList.add('ok');
+      foot.innerHTML = '过关！第一次就答对 <b>' + first + '</b> 题，共 ' + qs.length + ' 题。' + (first === qs.length ? '全对，太厉害了。' : '答错的那几题，回到正文找一找，过几天再来做一遍。') + ' <button class="btn" data-re>再做一遍</button>';
+    } else foot.innerHTML = (G.d.quiz[id] ? '以前过过这一关（第一次答对 ' + G.d.quiz[id].f + ' / ' + G.d.quiz[id].n + '）。' : '') + '答错了没关系，看讲解，再选一次。';
+  };
+  qs.forEach((q, i) => {
+    const p = $('p', q); if (p) p.insertAdjacentHTML('afterbegin', '<b class="n">Q' + (i + 1) + '</b>');
+    const ex = $('.ex', q);
+    const finish = ok => { if (st[i].first === null) st[i].first = ok; if (ok) { st[i].done = true; } q.classList.add('shown'); upd(); };
+    if (q.dataset.in !== undefined) {
+      const ans = q.dataset.in.split('|').map(norm);
+      const row = document.createElement('div'); row.className = 'inrow';
+      row.innerHTML = '<input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="在这里填答案"><button class="btn">对答案</button>';
+      q.insertBefore(row, ex);
+      const inp = $('input', row);
+      const check = () => { if (st[i].done || !inp.value.trim()) return; const ok = ans.includes(norm(inp.value)); inp.classList.toggle('right', ok); inp.classList.toggle('wrong', !ok); finish(ok); if (!ok && ex && !ex.dataset.t) { ex.dataset.t = 1; } };
+      $('button', row).addEventListener('click', check);
+      inp.addEventListener('keydown', e => { if (e.key === 'Enter') check(); });
+    } else {
+      const ol = $('ol', q), a = +q.dataset.a;
+      const ops = document.createElement('div'); ops.className = 'ops';
+      $$('li', ol).forEach((li, k) => { const b = document.createElement('button'); b.innerHTML = li.innerHTML; b.dataset.k = k; ops.appendChild(b); });
+      ol.replaceWith(ops);
+      ops.addEventListener('click', e => { const b = e.target.closest('button'); if (!b || st[i].done || b.classList.contains('wrong')) return; const ok = +b.dataset.k === a; b.classList.add(ok ? 'right' : 'wrong'); finish(ok); });
+    }
+  });
+  foot.addEventListener('click', e => { if (!e.target.closest('[data-re]')) return; st.forEach(x => { x.done = false; x.first = null; }); qs.forEach(q => { q.classList.remove('shown'); $$('.ops button', q).forEach(b => b.classList.remove('right', 'wrong')); const inp = $('input', q); if (inp) { inp.value = ''; inp.classList.remove('right', 'wrong'); } }); box.classList.remove('ok'); upd(); });
+  upd();
+});
+
+/* ---------- 成就条 ---------- */
+function refreshAchv(){
+  $$('.achv').forEach(box => {
+    const tk = $$('.task[data-id]'), qz = $$('.pass[data-id]');
+    const srs = Object.values(G.d.srs), sure = srs.filter(x => x.b >= 4).length;
+    const pageT = tk.filter(t => G.d.task[t.dataset.id]).length, pageQ = qz.filter(q => G.d.quiz[q.dataset.id]).length;
+    box.innerHTML = (tk.length ? '<div><b>' + pageT + ' / ' + tk.length + '</b>这一部做完的任务</div>' : '') + (qz.length ? '<div><b>' + pageQ + ' / ' + qz.length + '</b>这一部过的关</div>' : '') +
+      '<div><b>' + Object.keys(G.d.task).length + '</b>全书做完的任务</div><div><b>' + Object.keys(G.d.quiz).length + '</b>全书过的关</div><div><b>' + srs.length + '</b>复习台里的单词</div><div><b>' + sure + '</b>记牢的单词</div>';
+  });
+}
+refreshAchv();
+
+/* ---------- 词卡 ----------
+   WORDS 在 05words.js：[英文, 中文, 类别, 小字说明]
+   <div class="wgrid" data-cat="block"></div>，前面可放 <div class="wtools" data-for="..."></div> */
+const BTMAP = {grass_block: 'grass', dirt: 'dirt', stone: 'stone', oak_log: 'log', oak_planks: 'plank', oak_leaves: 'leaf', sand: 'sand', water: 'water', glass: 'glass', redstone_ore: 'rs', diamond_ore: 'dia'};
+const WCOL = {white: '#e9ecec', orange: '#f07613', magenta: '#bd44b3', light_blue: '#3aafd9', yellow: '#f8c627', lime: '#70b919', pink: '#ed8dac', gray: '#3e4447', light_gray: '#8e8e86', cyan: '#158991', purple: '#792aac', blue: '#35399d', brown: '#724728', green: '#546d1b', red: '#a12722', black: '#141519'};
+function inSRS(en){ return !!G.d.srs[en]; }
+function addSRS(en, on){ if (on) { if (!G.d.srs[en]) G.d.srs[en] = {b: 0, due: TODAY()}; } else delete G.d.srs[en]; }
+function wordCard(w){
+  const en = w[0], col = WCOL[en.replace(/_(wool|dye|concrete)$/, '')];
+  const ic = BTMAP[en] ? '<span class="ic">' + blockIcon(BTMAP[en], 26) + '</span>' : col && /_wool$|^[a-z_]+$/.test(en) && WCOL[en] ? '<span class="ic"><span class="swatch" style="background:' + col + ';width:22px;height:22px"></span></span>' : col ? '<span class="ic"><span class="swatch" style="background:' + col + ';width:22px;height:22px"></span></span>' : '';
+  return '<div class="wc" data-en="' + esc(en) + '">' + ic + '<span class="w" data-say="' + esc(en) + '">' + esc(en) + '</span><span class="zh">' + w[1] + '</span>' + (w[3] ? '<span class="nt">' + w[3] + '</span>' : '') +
+    '<span class="ac"><button data-srs class="' + (inSRS(en) ? 'on' : '') + '">' + (inSRS(en) ? '✓ 在复习台' : '+ 复习') + '</button></span></div>';
+}
+$$('.wgrid[data-cat]').forEach(g => {
+  const cats = g.dataset.cat.split(/\s+/);
+  const list = (typeof WORDS !== 'undefined' ? WORDS : []).filter(w => cats.includes(w[2]));
+  g.innerHTML = list.map(wordCard).join('');
+  g.addEventListener('click', e => {
+    const b = e.target.closest('button[data-srs]');
+    if (b) { const en = b.closest('.wc').dataset.en, on = !inSRS(en); addSRS(en, on); G.save(); b.classList.toggle('on', on); b.textContent = on ? '✓ 在复习台' : '+ 复习'; return; }
+    const c = e.target.closest('.wc'); if (c && !e.target.closest('[data-say]')) c.classList.toggle('peek');
+  });
+  const tools = g.previousElementSibling && g.previousElementSibling.classList.contains('wtools') ? g.previousElementSibling : null;
+  if (tools) {
+    tools.innerHTML = '<span class="lab">共 ' + list.length + ' 个</span><button class="btn" data-t="read">从头念一遍</button><button class="btn" data-t="zh">遮住中文</button><button class="btn" data-t="en">遮住英文</button><button class="btn" data-t="all">全部放进复习台</button>';
+    let reading = false;
+    tools.addEventListener('click', e => {
+      const b = e.target.closest('button'); if (!b) return; const t = b.dataset.t;
+      if (t === 'zh' || t === 'en') { const cls = t === 'zh' ? 'hidezh' : 'hideen'; const on = !g.classList.contains(cls); g.classList.toggle(cls, on); b.classList.toggle('on', on); b.textContent = (on ? '露出' : '遮住') + (t === 'zh' ? '中文' : '英文'); }
+      if (t === 'all') { list.forEach(w => addSRS(w[0], true)); G.save(); $$('button[data-srs]', g).forEach(x => { x.classList.add('on'); x.textContent = '✓ 在复习台'; }); b.textContent = '都放进去了'; }
+      if (t === 'read') {
+        if (!hasTTS) { b.textContent = '这个浏览器不会念'; return; }
+        if (reading) { reading = false; speechSynthesis.cancel(); b.textContent = '从头念一遍'; return; }
+        reading = true; b.textContent = '停'; let k = 0; const els = $$('.w', g);
+        const next = () => { if (!reading || k >= els.length) { reading = false; b.textContent = '从头念一遍'; return; } const el = els[k++]; el.scrollIntoView({block: 'nearest'}); const u = new SpeechSynthesisUtterance(sayText(el.dataset.say)); u.lang = 'en-US'; if (enVoice) u.voice = enVoice; u.rate = .8; el.classList.add('speaking'); u.onend = u.onerror = () => { el.classList.remove('speaking'); setTimeout(next, 450); }; speechSynthesis.speak(u); };
+        speechSynthesis.cancel(); next();
+      }
+    });
+  }
+});
+
+/* ---------- 复习台（间隔重复）----------
+   一个词答对一次，就往右挪一格；第 0 格今天再看，第 1 格隔 1 天，第 2 格隔 2 天，然后 4、8、16 天。答错回到第 0 格。 */
+const SRS_GAP = [0, 1, 2, 4, 8, 16];
+function srsBox(box){
+  const W = {}; (typeof WORDS !== 'undefined' ? WORDS : []).forEach(w => W[w[0]] = w);
+  let mode = 0, cur = null, shown = false;
+  box.innerHTML = '<div class="btns" data-m></div><div class="srs"><div class="boxes"></div><div class="card"></div><div class="btns" data-b style="justify-content:center"></div><div class="say"></div></div>';
+  const card = $('.card', box), bts = $('[data-b]', box), sayEl = $('.say', box), boxes = $('.boxes', box);
+  btnRow($('[data-m]', box), ['看英文，想中文', '听声音，想中文', '看中文，拼英文'], 0, i => { mode = i; next(); });
+  function due(){ const t = TODAY(); return Object.keys(G.d.srs).filter(k => W[k] && G.d.srs[k].due <= t); }
+  function drawBoxes(){ const c = [0, 0, 0, 0, 0, 0]; Object.keys(G.d.srs).forEach(k => { if (W[k]) c[Math.min(5, G.d.srs[k].b)]++; }); boxes.innerHTML = c.map((n, i) => '<div><b>' + n + '</b>第 ' + i + ' 格' + (i ? '<br>隔 ' + SRS_GAP[i] + ' 天' : '<br>今天') + '</div>').join(''); }
+  function next(){
+    drawBoxes(); shown = false;
+    const q = due();
+    if (!Object.keys(G.d.srs).length) { cur = null; card.innerHTML = '<div class="zh">复习台还是空的</div><div class="nt">去第七部的词卡上点“+ 复习”，或者点下面的按钮，先放进二十个最常用的词。</div>'; bts.innerHTML = '<button class="btn pri" data-x="starter">放进二十个常用词</button>'; return; }
+    if (!q.length) { cur = null; card.innerHTML = '<div class="zh">今天的都复习完了</div><div class="nt">一共 ' + Object.keys(G.d.srs).length + ' 个词在复习台里。明天再来，到时候会有该复习的词。</div>'; bts.innerHTML = '<button class="btn" data-x="more">不过瘾？再加十个新词</button>'; return; }
+    cur = q[Math.floor(Math.random() * q.length)];
+    const w = W[cur];
+    sayEl.textContent = '今天还剩 ' + q.length + ' 个。';
+    if (mode === 0) { card.innerHTML = '<div class="w" data-say="' + esc(cur) + '">' + esc(cur) + '</div><div class="nt">想一想它是什么意思，再点“翻过来”。</div>'; bts.innerHTML = '<button class="btn pri" data-x="flip">翻过来</button>'; }
+    if (mode === 1) { card.innerHTML = '<div class="w" style="font-size:22px"><button class="btn pri" data-say="' + esc(cur) + '">听</button></div><div class="nt">听不清就多点几下。想好了再翻过来。</div>'; bts.innerHTML = '<button class="btn pri" data-x="flip">翻过来</button>'; setTimeout(() => speak(cur), 200); }
+    if (mode === 2) { card.innerHTML = '<div class="zh">' + w[1] + '</div><div class="nt">' + (w[3] || '') + '</div><div class="inrow" style="display:flex;gap:6px;justify-content:center"><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" style="font-family:var(--f-mono);font-size:18px;padding:4px 8px;border:2px solid var(--rule);border-radius:4px;background:var(--card);max-width:14em;width:100%" aria-label="拼出英文"></div><div class="nt">写游戏里的英文名，空格写成下划线 _ 也行。</div>'; bts.innerHTML = '<button class="btn pri" data-x="check">对答案</button>'; const inp = $('input', card); inp.focus({preventScroll: true}); inp.addEventListener('keydown', e => { if (e.key === 'Enter') check(); }); }
+  }
+  function flip(){ const w = W[cur]; shown = true; card.innerHTML = '<div class="w" data-say="' + esc(cur) + '">' + esc(cur) + '</div><div class="zh">' + w[1] + '</div><div class="nt">' + (w[3] || '') + '</div>'; speak(cur); bts.innerHTML = '<button class="btn" data-x="no">忘了</button><button class="btn" data-x="soso">模糊</button><button class="btn pri" data-x="yes">记得</button>'; }
+  function check(){ const inp = $('input', card); if (!inp) return; const v = norm(inp.value).replace(/ /g, '_'), ok = v === cur || v === cur.replace(/_/g, ''); grade(ok ? 'yes' : 'no', ok ? '对了！' : '正确的拼法是 ' + cur + '。'); if (!ok) { flip(); bts.innerHTML = '<button class="btn pri" data-x="next">下一个</button>'; } }
+  function grade(k, msg){ const r = G.d.srs[cur]; if (!r) return; const t = TODAY(); if (k === 'yes') { r.b = Math.min(5, r.b + 1); r.due = t + SRS_GAP[r.b]; } else if (k === 'soso') { r.due = t + 1; } else { r.b = 0; r.due = t; } G.save(); sayEl.textContent = (msg || '') + ' 这个词现在在第 ' + r.b + ' 格，' + (r.due > t ? (r.due - t) + ' 天后再见。' : '今天还会再出现。'); if (k !== 'no' || mode !== 2) setTimeout(next, msg ? 900 : 300); }
+  bts.addEventListener('click', e => { const b = e.target.closest('button[data-x]'); if (!b) return; const x = b.dataset.x;
+    if (x === 'flip') flip(); else if (x === 'check') check(); else if (x === 'next') next();
+    else if (x === 'yes' || x === 'soso' || x === 'no') grade(x);
+    else if (x === 'starter' || x === 'more') { const pool = (typeof WORDS !== 'undefined' ? WORDS : []).filter(w => w[4] === 1 && !G.d.srs[w[0]]); const more = pool.length ? pool : WORDS.filter(w => !G.d.srs[w[0]]); more.slice(0, x === 'starter' ? 20 : 10).forEach(w => addSRS(w[0], true)); G.save(); next(); } });
+  next();
+}
+$$('.srsbox').forEach(srsBox);
+
+/* ================= 一张 MacBook Air 的键盘 =================
+   每个键：[显示的字, e.code, 宽度, Mac 里, 游戏里, 读音/英文名] */
+const KB = [
+  [['esc', 'Escape', 1.5, '取消；退出全屏', '暂停、打开菜单；关掉物品栏', 'escape'], ['F1', 'F1', 1, '调暗屏幕（按住 fn 才是 F1）', '隐藏界面，拍干净的风景照', ''], ['F2', 'F2', 1, '调亮屏幕', '截图（存在 screenshots 文件夹）', ''], ['F3', 'F3', 1, '调度中心：看所有窗口', '调试屏幕：坐标、朝向、帧数', ''], ['F4', 'F4', 1, '聚焦搜索', '', ''], ['F5', 'F5', 1, '听写（说话打字）', '换视角：第一人称 → 背后 → 前面', ''], ['F6', 'F6', 1, '勿扰模式', '', ''], ['F7', 'F7', 1, '上一首', '', ''], ['F8', 'F8', 1, '播放 / 暂停', '', ''], ['F9', 'F9', 1, '下一首', '', ''], ['F10', 'F10', 1, '静音', '', ''], ['F11', 'F11', 1, '调小音量', '全屏 / 退出全屏', ''], ['F12', 'F12', 1, '调大音量', '', ''], ['指纹', '', 1, '触控 ID：按一下锁屏，手指放上去解锁', '', 'Touch ID']],
+  [['`', 'Backquote', 1, '反引号；按住 ⌘ 时在同一个程序的窗口之间切换', '', 'backquote'], ['1', 'Digit1', 1, '', '快捷栏第 1 格', 'one'], ['2', 'Digit2', 1, '', '快捷栏第 2 格', 'two'], ['3', 'Digit3', 1, '⇧⌘3 截整个屏幕', '快捷栏第 3 格', 'three'], ['4', 'Digit4', 1, '⇧⌘4 截一块地方', '快捷栏第 4 格', 'four'], ['5', 'Digit5', 1, '⇧⌘5 截图和录屏工具', '快捷栏第 5 格', 'five'], ['6', 'Digit6', 1, '', '快捷栏第 6 格', 'six'], ['7', 'Digit7', 1, '', '快捷栏第 7 格', 'seven'], ['8', 'Digit8', 1, '', '快捷栏第 8 格', 'eight'], ['9', 'Digit9', 1, '', '快捷栏第 9 格', 'nine'], ['0', 'Digit0', 1, '', '', 'zero'], ['-', 'Minus', 1, '⌘- 缩小', '', 'minus'], ['=', 'Equal', 1, '⌘= 放大（其实是 ⌘+）', '', 'equals'], ['delete', 'Backspace', 1.5, '删掉光标前面的一个字；⌘delete 把文件移到废纸篓', '', 'delete']],
+  [['tab', 'Tab', 1.5, '跳到下一个格子；⌘tab 切换程序', '联机时看在线玩家；打命令时补全', 'tab'], ['Q', 'KeyQ', 1, '⌘Q 退出程序（小心！）', '扔掉手里的一个东西', 'Q'], ['W', 'KeyW', 1, '⌘W 关掉窗口或网页', '往前走；连按两下跑', 'W'], ['E', 'KeyE', 1, '', '打开物品栏', 'E'], ['R', 'KeyR', 1, '⌘R 刷新网页', '', 'R'], ['T', 'KeyT', 1, '⌘T 新标签页', '打开聊天框', 'T'], ['Y', 'KeyY', 1, '', '', 'Y'], ['U', 'KeyU', 1, '', '', 'U'], ['I', 'KeyI', 1, '⌘I 显示简介', '', 'I'], ['O', 'KeyO', 1, '⌘O 打开', '', 'O'], ['P', 'KeyP', 1, '⌘P 打印', '社交互动（联机时屏蔽别人）', 'P'], ['[', 'BracketLeft', 1, '⌘[ 后退', '', 'left bracket'], [']', 'BracketRight', 1, '⌘] 前进', '', 'right bracket'], ['\\', 'Backslash', 1, '反斜杠：终端里给空格“开路”', '', 'backslash']],
+  [['中/英', 'CapsLock', 1.8, '中文 Mac 上：切换中文和英文（拼音输入法）；长按是大写锁定', '', 'caps lock'], ['A', 'KeyA', 1, '⌘A 全选', '往左走', 'A'], ['S', 'KeyS', 1, '⌘S 存储', '往后退', 'S'], ['D', 'KeyD', 1, '', '往右走', 'D'], ['F', 'KeyF', 1, '⌘F 查找', '把手里的东西换到另一只手', 'F'], ['G', 'KeyG', 1, '⇧⌘G 前往文件夹（在访达里）', '', 'G'], ['H', 'KeyH', 1, '⌘H 隐藏这个程序', '', 'H'], ['J', 'KeyJ', 1, '', '', 'J'], ['K', 'KeyK', 1, '', '', 'K'], ['L', 'KeyL', 1, '', '打开进度（成就树）', 'L'], [';', 'Semicolon', 1, '分号', '', 'semicolon'], ["'", 'Quote', 1, '单引号', '', 'quote'], ['return', 'Enter', 1.8, '换行；确定', '发送聊天、执行命令', 'return']],
+  [['shift', 'ShiftLeft', 2.3, '按住打大写字母和上面那排符号', '潜行：走到边上不掉下去', 'shift'], ['Z', 'KeyZ', 1, '⌘Z 撤销，⇧⌘Z 重做', '', 'Z'], ['X', 'KeyX', 1, '⌘X 剪切', '创造模式：X + 数字 读出存好的快捷栏', 'X'], ['C', 'KeyC', 1, '⌘C 拷贝', '创造模式：C + 数字 存下快捷栏', 'C'], ['V', 'KeyV', 1, '⌘V 粘贴', '', 'V'], ['B', 'KeyB', 1, '', '', 'B'], ['N', 'KeyN', 1, '⌘N 新建', '', 'N'], ['M', 'KeyM', 1, '⌘M 把窗口缩到程序坞', '', 'M'], [',', 'Comma', 1, '⌘, 打开这个程序的设置', '', 'comma'], ['.', 'Period', 1, '⇧⌘. 显示隐藏文件（在访达里）', '', 'period'], ['/', 'Slash', 1, '斜杠：路径里分开每一层文件夹', '直接打开命令框，自带一个 /', 'slash'], ['shift', 'ShiftRight', 2.3, '和左边的 shift 一样', '', 'shift']],
+  [['fn 🌐', '', 1, '按住它，最上面一排才变成 F1—F12；单按可以切换输入法（看设置）', '（游戏收不到它，它是给 Mac 用的）', 'function'], ['control', 'ControlLeft', 1.1, '⌃ 控制键。control + 点 = 右键；control + 空格 = 换输入法', '按住跑步', 'control'], ['option', 'AltLeft', 1.1, '⌥ 选项键：打特殊符号；按住它看菜单里藏着的命令', '', 'option'], ['command', 'MetaLeft', 1.4, '⌘ 命令键：Mac 上最常用的“快捷键键”', '', 'command'], ['', 'Space', 5, '空格；⌘空格 = 聚焦搜索；在访达里选中文件按空格 = 快速看一眼', '跳；创造模式连按两下 = 飞', 'space'], ['command', 'MetaRight', 1.4, '和左边的 ⌘ 一样', '', 'command'], ['option', 'AltRight', 1.1, '和左边的 ⌥ 一样', '', 'option'], ['←', 'ArrowLeft', 1, '光标往左；⌘← 跳到行首', '', 'left arrow'], ['↑↓', 'ArrowUp', 1, '光标上下；在终端里 ↑ 是上一条命令', '聊天框里 ↑ 找回上一条命令', 'up arrow'], ['→', 'ArrowRight', 1, '光标往右；⌘→ 跳到行尾', '', 'right arrow']]
+];
+const MODSYM = {command: '⌘', option: '⌥', control: '⌃', shift: '⇧', 'fn 🌐': 'fn'};
+function keyboard(box, opts){
+  opts = opts || {};
+  let mode = opts.mode || 0; // 0 全部 1 Mac 2 游戏
+  box.classList.add('kbwrap');
+  box.innerHTML = '<div class="btns kbm"></div><div class="kb" role="group" aria-label="MacBook Air 键盘"></div><div class="say kbsay">点一个键，看看它是干什么的。' + (opts.live ? '也可以点“用真键盘”，然后按你电脑上的键。' : '') + '</div>' + (opts.live ? '<div class="btns"><button class="btn" data-live>用真键盘</button><span class="lab" style="align-self:center" data-mods></span></div>' : '') + (opts.goals ? '<ul class="goals"></ul>' : '');
+  const kb = $('.kb', box), say = $('.kbsay', box), goals = $('.goals', box);
+  const all = [];
+  kb.innerHTML = KB.map((row, r) => '<div class="kr' + (r === 0 ? ' fr' : '') + '">' + row.map(k => { all.push(k); const i = all.length - 1; const sym = MODSYM[k[0]]; return '<button class="k' + (k[3] ? ' m' : '') + (k[4] ? ' g' : '') + (sym ? ' mod' : '') + '" style="flex:' + k[2] + ' 1 0" data-i="' + i + '" data-code="' + k[1] + '">' + (sym && sym !== 'fn' ? '<small>' + sym + '</small>' : '') + '<span>' + esc(k[0] || '空格') + '</span></button>'; }).join('') + '</div>').join('');
+  const setMode = m => { mode = m; box.dataset.mode = m; };
+  btnRow($('.kbm', box), ['全部', 'Mac 里的用处', '游戏里的用处'], mode, setMode); setMode(mode);
+  function show(k){
+    const sym = MODSYM[k[0]];
+    say.innerHTML = '<b>' + esc(k[0] || '空格') + '</b>' + (sym ? '　符号 <kbd class="sym">' + sym + '</kbd>' : '') + (k[5] ? '　英文 <span class="en" data-say="' + esc(k[5]) + '">' + esc(k[5]) + '</span>' : '') +
+      '<br><b style="color:var(--stone)">Mac 里</b>：' + (k[3] || '打字') + '<br><b style="color:var(--main)">游戏里</b>：' + (k[4] || '默认没有用处（可以在“按键绑定”里给它安排一个）');
+  }
+  kb.addEventListener('click', e => { const b = e.target.closest('.k'); if (!b) return; $$('.k', kb).forEach(x => x.classList.toggle('sel', x === b)); show(all[+b.dataset.i]); });
+  /* 真键盘 */
+  let live = false;
+  const SAFE = {a: '全选', c: '拷贝', v: '粘贴', x: '剪切', z: '撤销', s: '存储', f: '查找', i: '显示简介'};
+  const gl = opts.goals || [];
+  const got = new Set();
+  const drawGoals = () => { if (goals) goals.innerHTML = gl.map((g, i) => '<li' + (got.has(i) ? ' class="ok"' : '') + '>' + g.t + '</li>').join(''); };
+  drawGoals();
+  function onKey(e){
+    if (!live) return;
+    if (e.target.closest && e.target.closest('input,textarea') && !box.contains(e.target)) return;
+    const b = $$('.k', kb).find(x => x.dataset.code && x.dataset.code === e.code) || (e.code === 'ArrowDown' ? $('.k[data-code=ArrowUp]', kb) : null);
+    if (e.metaKey && SAFE[e.key && e.key.toLowerCase()]) e.preventDefault();
+    if (!e.metaKey && ['Space', 'Tab', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Slash', 'Quote', 'Backspace', 'F1', 'F3', 'F5', 'F11'].includes(e.code)) e.preventDefault();
+    if (b) { b.classList.add('down'); setTimeout(() => b.classList.remove('down'), 260); show(all[+b.dataset.i]); }
+    const mods = [e.ctrlKey && '⌃ control', e.altKey && '⌥ option', e.shiftKey && '⇧ shift', e.metaKey && '⌘ command'].filter(Boolean);
+    const md = $('[data-mods]', box); if (md) md.textContent = mods.length ? '正按着：' + mods.join(' + ') : '';
+    if (e.metaKey && SAFE[e.key && e.key.toLowerCase()]) say.innerHTML += '<br>你按了 <kbd class="sym">⌘</kbd>' + (e.shiftKey ? '<kbd class="sym">⇧</kbd>' : '') + '<kbd>' + e.key.toUpperCase() + '</kbd>：' + (e.shiftKey && e.key.toLowerCase() === 'z' ? '重做' : SAFE[e.key.toLowerCase()]) + '（在这一页里被拦住了，没真的执行）';
+    gl.forEach((g, i) => { if (!got.has(i) && g.ok(e)) { got.add(i); drawGoals(); } });
+  }
+  document.addEventListener('keydown', onKey);
+  const lb = $('[data-live]', box);
+  if (lb) lb.addEventListener('click', () => { live = !live; lb.classList.toggle('on', live); lb.textContent = live ? '真键盘：开着（再点关掉）' : '用真键盘'; say.textContent = live ? '现在按你电脑上的键试试。fn 键浏览器收不到，按了没反应是正常的。' : '真键盘关掉了。'; });
+  return {show: i => show(all[i])};
+}
+
+/* ================= 一台假的 Mac：文件夹、访达、终端 =================
+   给第五部用。真名（终端里看到的）和中文名（访达里看到的）都写上。hide 是平时看不见的。 */
+const D = (n, c, o) => Object.assign({n, k: 'd', c: c || []}, o || {});
+const F = (n, o) => Object.assign({n, k: 'f'}, o || {});
+function makeFS(){
+  const world = (name, extra) => D(name, [F('level.dat', {kind: '世界的设置（种子、时间、游戏规则）', bin: 1}), F('icon.png', {kind: '世界列表里的小图'}),
+    D('region', [F('r.0.0.mca', {bin: 1, kind: '一大片地的方块（32×32 个区块）'}), F('r.-1.0.mca', {bin: 1, kind: '西边那一大片地'}), F('r.0.-1.mca', {bin: 1, kind: '北边那一大片地'})], {zh: '', note: '地形和方块都存在这里'}),
+    D('playerdata', [F('（一串字母数字）.dat', {bin: 1, kind: '玩家的位置、背包'})]), D('datapacks', extra || [], {note: '数据包放这里'}), D('advancements', [], {note: '进度'}), D('stats', [], {note: '统计'})]);
+  const pack = D('xiaoge_pack', [F('pack.mcmeta', {txt: '{\n  "pack": {\n    "description": "小格的第一个数据包",\n    "pack_format": 48\n  }\n}'}), D('data', [D('xiaoge', [D('function', [F('hello.mcfunction', {txt: 'say 你好，工坊！\ntitle @a title "欢迎来到工坊"'})])])])]);
+  const mc = D('minecraft', [
+    D('saves', [world('gongfang', [pack]), world('我的第一个家'), world('跳跳乐')], {note: '所有的世界（存档）'}),
+    D('screenshots', [F('2026-07-12_15.05.21.png', {kind: '游戏里按 fn + F2 截的图'}), F('2026-07-20_19.41.07.png', {kind: '游戏里按 fn + F2 截的图'})], {note: '游戏里的截图'}),
+    D('backups', [F('2026-07-20_19-50-12_gongfang.zip', {kind: '游戏里“制作备份”做出来的压缩包'})], {note: '游戏里“制作备份”做出来的备份'}),
+    D('resourcepacks', [], {note: '资源包（换材质、换声音）'}), D('logs', [F('latest.log', {txt: '[15:02:11] [Render thread/INFO]: Setting user: xiaoge\n[15:02:19] [Render thread/INFO]: Loaded 1290 recipes\n[15:03:40] [Server thread/INFO]: Preparing level "gongfang"\n[15:03:52] [Server thread/INFO]: xiaoge joined the game\n[15:05:21] [Render thread/INFO]: [System] Saved screenshot as 2026-07-12_15.05.21.png'}), F('2026-07-11-1.log.gz', {kind: '以前的日志，压缩过'})], {note: '日志：游戏一边运行一边写的“日记”'}),
+    D('crash-reports', [], {note: '游戏崩溃时写的报告'}), D('versions', [D('1.21.11', [])], {note: '下载的各个游戏版本'}),
+    F('options.txt', {txt: 'version:4440\nrenderDistance:8\nsimulationDistance:6\nmaxFps:60\nguiScale:0\nlang:zh_cn\nkey_key.inventory:key.keyboard.e\nkey_key.sprint:key.keyboard.left.control\nkey_key.jump:key.keyboard.space', kind: '你在“选项”里调的设置都写在这里'})
+  ], {note: 'Java 版的游戏目录'});
+  return D('', [
+    D('Applications', [F('Minecraft.app', {kind: '应用程序（我的世界启动器）', app: 1}), F('Safari 浏览器.app', {app: 1, kind: '应用程序'}), F('文本编辑.app', {app: 1, kind: '应用程序', real: 'TextEdit.app'}), F('系统设置.app', {app: 1, kind: '应用程序', real: 'System Settings.app'}), D('Utilities', [F('终端.app', {app: 1, kind: '应用程序', real: 'Terminal.app'}), F('活动监视器.app', {app: 1, kind: '应用程序', real: 'Activity Monitor.app'})], {zh: '实用工具'})], {zh: '应用程序'}),
+    D('Library', [D('Fonts', [], {zh: '字体'})], {zh: '资源库', note: '整台电脑共用的资源库，别动'}),
+    D('System', [], {zh: '系统', note: '系统自己的文件，别动'}),
+    D('Users', [
+      D('xiaoge', [
+        D('Desktop', [F('截屏2026-07-12 15.10.33.png', {kind: '按 ⇧⌘3 截的整个屏幕'}), F('暑假计划.txt', {txt: '1. 每天一个工坊项目\n2. 每天复习台 10 分钟\n3. 玩游戏前先定好闹钟'})], {zh: '桌面'}),
+        D('Documents', [D('编程课', [F('小海龟.py', {txt: 'import turtle\nt = turtle.Turtle()\nfor i in range(4):\n    t.forward(100)\n    t.left(90)'}), F('第一课.sb3', {kind: 'Scratch 作品'})]), F('我的世界笔记.txt', {txt: '下界 1 格 = 主世界 8 格\n红石信号走 15 格\n一组 = 64 个'})], {zh: '文稿'}),
+        D('Downloads', [F('server.jar', {kind: '官方服务器程序（第二十九章）', bin: 1})], {zh: '下载'}),
+        D('Pictures', [], {zh: '图片'}), D('Music', [], {zh: '音乐'}), D('Movies', [], {zh: '影片'}),
+        D('Library', [D('Application Support', [mc]), D('Preferences', [])], {zh: '资源库', hide: 1, note: '你自己的资源库：平时访达把它藏起来'}),
+        F('.zshrc', {hide: 1, kind: '终端的设置文件（点开头的文件平时看不见）'})
+      ], {home: 1})
+    ], {zh: '用户'})
+  ], {root: 1});
+}
+const HOME = '/Users/xiaoge';
+const showName = (node, real) => real ? node.n : (node.zh || node.n);
+/* 路径 → 节点。支持 ~、.、..、绝对和相对 */
+function resolvePath(root, cwd, p){
+  p = (p || '').trim();
+  if (p === '' ) p = '~';
+  if (p === '~' || p.startsWith('~/')) p = HOME + p.slice(1);
+  const parts = (p.startsWith('/') ? [] : cwd.split('/').filter(Boolean)).concat(p.split('/').filter(Boolean));
+  const stack = [];
+  for (const s of parts) { if (s === '.') continue; if (s === '..') { stack.pop(); continue; } stack.push(s); }
+  let node = root; const chain = [root];
+  for (const s of stack) {
+    if (node.k !== 'd') return {err: 'notdir', at: s};
+    const nx = node.c.find(x => x.n === s || x.n.toLowerCase() === s.toLowerCase());
+    if (!nx) return {err: 'nofile', at: s};
+    node = nx; chain.push(node);
+  }
+  return {node, chain, path: '/' + chain.slice(1).map(x => x.n).join('/')};
+}
+const tilde = p => p === HOME ? '~' : p.startsWith(HOME + '/') ? '~' + p.slice(HOME.length) : p;
+const kindOf = n => n.k === 'd' ? '文件夹' : n.kind || (/\.png$/.test(n.n) ? 'PNG 图片' : /\.txt$/.test(n.n) ? '纯文本文稿' : /\.py$/.test(n.n) ? 'Python 程序' : /\.mcfunction$/.test(n.n) ? '函数（纯文本）' : /\.mcmeta$/.test(n.n) ? '数据包身份证（纯文本）' : '文件');
+
+/* ---------- 访达 ----------
+   opts: {start, real(显示真名), tasks:[{t, p, file}], hidden(一开始就显示隐藏文件), go(显示“前往文件夹”)} */
+function finder(box, opts){
+  opts = opts || {};
+  const root = makeFS();
+  let cwd = opts.start || HOME, sel = null, showHidden = !!opts.hidden, real = !!opts.real;
+  const hist = [cwd]; let hi = 0;
+  const done = new Set();
+  box.classList.add('sim', 'fdr'); box.tabIndex = 0;
+  box.innerHTML = '<div class="sh"><i></i><i></i><i></i><span class="ttl"></span></div>' +
+    '<div class="ftb"><button class="btn" data-a="back" title="后退 ⌘[">‹</button><button class="btn" data-a="fwd" title="前进 ⌘]">›</button>' +
+    '<button class="btn" data-a="hid" title="显示/隐藏 隐藏文件 ⇧⌘.">⇧⌘. 隐藏文件</button><button class="btn" data-a="real">' + (real ? '显示中文名' : '显示真名') + '</button>' +
+    (opts.go === false ? '' : '<span class="gobox"><input type="text" placeholder="⇧⌘G 前往文件夹，比如 ~/Library" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="前往文件夹"><button class="btn" data-a="go">前往</button></span>') + '</div>' +
+    '<div class="fwin"><nav class="fside"></nav><div class="fcols"></div></div><div class="fpath"></div><div class="finfo say"></div>' +
+    (opts.tasks ? '<ul class="goals"></ul>' : '');
+  const side = $('.fside', box), cols = $('.fcols', box), pathbar = $('.fpath', box), info = $('.finfo', box), goals = $('.goals', box);
+  const FAV = [['应用程序', '/Applications'], ['桌面', HOME + '/Desktop'], ['文稿', HOME + '/Documents'], ['下载', HOME + '/Downloads'], ['xiaoge', HOME], ['Macintosh HD', '/']];
+  function nav(p, push){ const r = resolvePath(root, '/', p); if (r.err || r.node.k !== 'd') { info.textContent = '找不到这个文件夹：' + p; info.className = 'finfo say bad'; return false; } cwd = r.path || '/'; sel = null; if (push !== false) { hist.splice(hi + 1); hist.push(cwd); hi = hist.length - 1; } draw(); return true; }
+  function check(){ if (!opts.tasks) return; opts.tasks.forEach((t, i) => { const here = sel ? (cwd === '/' ? '' : cwd) + '/' + sel : cwd; if (here === t.p) done.add(i); }); goals.innerHTML = opts.tasks.map((t, i) => '<li' + (done.has(i) ? ' class="ok"' : '') + '>' + t.t + '</li>').join(''); }
+  function draw(){
+    const r = resolvePath(root, '/', cwd);
+    const ttl = r.node.root ? 'Macintosh HD' : showName(r.node, real);
+    $('.ttl', box).textContent = ttl;
+    side.innerHTML = '<b>个人收藏</b>' + FAV.map(f => '<a data-p="' + f[1] + '"' + (cwd === f[1] ? ' class="on"' : '') + '>' + f[0] + '</a>').join('');
+    let h = '';
+    r.chain.forEach((node, i) => {
+      const next = r.chain[i + 1];
+      const items = node.c.filter(x => showHidden || !x.hide || x === next).slice().sort((a, b) => (a.n[0] === '.') - (b.n[0] === '.') || a.n.localeCompare(b.n));
+      h += '<ul class="fcol">' + items.map(x => {
+        const on = next ? x === next : x.n === sel;
+        return '<li data-d="' + i + '" data-n="' + esc(x.n) + '" class="' + (x.k === 'd' ? 'dir' : 'file') + (on ? ' on' : '') + (x.hide ? ' hid' : '') + '"><span class="ico">' + (x.k === 'd' ? '▤' : x.app ? '◆' : '▢') + '</span>' + esc(showName(x, real)) + (x.k === 'd' ? '<span class="ar">›</span>' : '') + '</li>';
+      }).join('') + (items.length ? '' : '<li class="empty">（空的）</li>') + '</ul>';
+    });
+    if (sel) { const f = r.node.c.find(x => x.n === sel); if (f) h += '<div class="fprev"><b>' + esc(showName(f, real)) + '</b><span>' + kindOf(f) + '</span>' + (f.txt ? '<pre>' + esc(f.txt) + '</pre>' : '') + '</div>'; }
+    cols.innerHTML = h;
+    cols.scrollLeft = cols.scrollWidth;
+    pathbar.innerHTML = r.chain.map((n, i) => '<a data-i="' + i + '">' + (n.root ? 'Macintosh HD' : esc(showName(n, real))) + '</a>').join('<span>›</span>') + (sel ? '<span>›</span><a class="cur">' + esc(sel) + '</a>' : '');
+    const full = (cwd === '/' ? '' : cwd) + (sel ? '/' + sel : '');
+    info.className = 'finfo say';
+    info.innerHTML = '路径：<code>' + esc(full || '/') + '</code>' + (full.startsWith(HOME) ? '　也可以写成 <code>' + esc(tilde(full)) + '</code>' : '') + (r.node.note && !sel ? '<br>' + r.node.note : '');
+    $('[data-a=hid]', box).classList.toggle('on', showHidden);
+    check();
+  }
+  box.addEventListener('click', e => {
+    const a = e.target.closest('[data-a]'), li = e.target.closest('.fcol li[data-n]'), fa = e.target.closest('.fside a'), pa = e.target.closest('.fpath a[data-i]');
+    if (a) { const k = a.dataset.a;
+      if (k === 'back' && hi > 0) { hi--; cwd = hist[hi]; sel = null; draw(); }
+      if (k === 'fwd' && hi < hist.length - 1) { hi++; cwd = hist[hi]; sel = null; draw(); }
+      if (k === 'hid') { showHidden = !showHidden; draw(); }
+      if (k === 'real') { real = !real; a.textContent = real ? '显示中文名' : '显示真名'; draw(); }
+      if (k === 'go') { const v = $('.gobox input', box).value; if (v.trim()) nav(v); }
+    }
+    if (li) { const r = resolvePath(root, '/', cwd), d = +li.dataset.d, parent = r.chain[d], node = parent.c.find(x => x.n === li.dataset.n);
+      const base = '/' + r.chain.slice(1, d + 1).map(x => x.n).join('/');
+      if (node.k === 'd') nav((base === '/' ? '' : base) + '/' + node.n); else { if (cwd !== base) nav(base); sel = node.n; draw(); } }
+    if (fa) nav(fa.dataset.p);
+    if (pa) { const r = resolvePath(root, '/', cwd); nav('/' + r.chain.slice(1, +pa.dataset.i + 1).map(x => x.n).join('/')); }
+  });
+  const gi = $('.gobox input', box); if (gi) gi.addEventListener('keydown', e => { if (e.key === 'Enter') { e.stopPropagation(); if (gi.value.trim()) nav(gi.value); } });
+  box.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT') return;
+    if (e.metaKey && e.shiftKey && (e.key === '.' || e.key === '>')) { e.preventDefault(); showHidden = !showHidden; draw(); }
+    if (e.metaKey && e.shiftKey && (e.key === 'g' || e.key === 'G') && gi) { e.preventDefault(); gi.focus(); gi.select(); }
+    if (e.metaKey && e.key === '[') { e.preventDefault(); $('[data-a=back]', box).click(); }
+    if (e.metaKey && e.key === ']') { e.preventDefault(); $('[data-a=fwd]', box).click(); }
+  });
+  draw();
+  return {nav, get cwd(){ return cwd; }};
+}
+
+/* ---------- 终端 ----------
+   一个模拟的终端：只认识少数几个安全的命令。opts: {start, tasks:[{t, ok:(cmd, cwd, out)=>bool}]} */
+function terminal(box, opts){
+  opts = opts || {};
+  const root = makeFS();
+  let cwd = opts.start || HOME; const hist = []; let hp = 0; const done = new Set();
+  box.classList.add('sim', 'term');
+  box.innerHTML = '<div class="sh"><i></i><i></i><i></i><span>xiaoge — -zsh — 终端（模拟）</span></div><div class="tout" aria-live="polite"></div><div class="tin"><span class="pr"></span><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="在终端里输入命令"></div>' + (opts.tasks ? '<ul class="goals"></ul>' : '');
+  const out = $('.tout', box), inp = $('input', box), pr = $('.pr', box), goals = $('.goals', box);
+  const prompt = () => 'xiaoge@MacBook-Air ' + (tilde(cwd) === '~' ? '~' : tilde(cwd).split('/').pop() || '/') + ' %';
+  const put = (h, cls) => { out.insertAdjacentHTML('beforeend', '<div' + (cls ? ' class="' + cls + '"' : '') + '>' + h + '</div>'); out.scrollTop = out.scrollHeight; };
+  function words(line){ const w = []; let cur = '', q = null, any = false; for (let i = 0; i < line.length; i++) { const ch = line[i]; if (q) { if (ch === q) q = null; else cur += ch; continue; } if (ch === '"' || ch === "'") { q = ch; any = true; continue; } if (ch === '\\' && i + 1 < line.length) { cur += line[++i]; any = true; continue; } if (/\s/.test(ch)) { if (cur || any) { w.push(cur); cur = ''; any = false; } continue; } cur += ch; } if (cur || any) w.push(cur); return {w, open: !!q}; }
+  function run(line){
+    put('<span class="pr">' + esc(prompt()) + '</span> ' + esc(line));
+    const {w, open} = words(line); if (open) { put('（引号没有配对：少了一个 " 或 \'）', 'er'); return ''; }
+    if (!w.length) return '';
+    const [c, ...a] = w; let o = '';
+    const flags = a.filter(x => x.startsWith('-')), args = a.filter(x => !x.startsWith('-'));
+    const R = p => resolvePath(root, cwd, p);
+    if (/[，。：“”（）]|　/.test(line)) { put('zsh: 这一行里有中文标点或全角空格。终端只认英文标点，按 control + 空格切到英文输入法再打。', 'er'); return 'cnpunct'; }
+    switch (c) {
+      case 'pwd': o = cwd; put(esc(o)); break;
+      case 'whoami': put('xiaoge'); break;
+      case 'ls': { const r = R(args[0] || '.'); if (r.err) { put('ls: ' + esc(args[0]) + ': No such file or directory（没有这个文件或文件夹）', 'er'); break; } if (r.node.k === 'f') { put(esc(r.node.n)); break; } const all = flags.some(f => f.includes('a')); const items = r.node.c.filter(x => all || x.n[0] !== '.'); o = (all ? ['.', '..'] : []).concat(items.map(x => x.n + (x.k === 'd' && flags.some(f => f.includes('F')) ? '/' : ''))).join('  '); put(items.length || all ? '<span class="ls">' + (all ? '<b>.</b>  <b>..</b>  ' : '') + items.map(x => x.k === 'd' ? '<b>' + esc(x.n) + '</b>' : esc(x.n)).join('  ') + '</span>' : '（空的）'); break; }
+      case 'cd': { const r = R(args[0] || '~'); if (r.err) { put('cd: no such file or directory: ' + esc(args[0]) + '（没有这个文件夹。名字里有空格？要写成 Application\\ Support 或者加引号）', 'er'); break; } if (r.node.k !== 'd') { put('cd: not a directory: ' + esc(args[0]) + '（这是文件，不是文件夹）', 'er'); break; } cwd = r.path || '/'; break; }
+      case 'open': { const r = R(args[0] || ''); if (!args[0]) { put('open 后面要写一个文件或文件夹，比如 open .', 'er'); break; } if (r.err) { put('The file ' + esc(args[0]) + ' does not exist.（没有这个文件）', 'er'); break; } put('（' + (r.node.k === 'd' ? '访达打开了文件夹 ' : '用默认的程序打开了 ') + esc(tilde(r.path || '/')) + '）', 'ok'); break; }
+      case 'cat': { const r = R(args[0] || ''); if (!args[0] || r.err) { put('cat: ' + esc(args[0] || '') + ': No such file or directory', 'er'); break; } if (r.node.k === 'd') { put('cat: ' + esc(args[0]) + ': Is a directory（这是文件夹，cat 只能看文件）', 'er'); break; } if (r.node.bin) { put('（这是给电脑读的二进制文件，打出来是一堆乱码）', 'er'); break; } put('<pre>' + esc(r.node.txt || '（这个模拟文件里没有写内容）') + '</pre>'); o = 'cat:' + r.node.n; break; }
+      case 'mkdir': { if (!args[0]) { put('usage: mkdir 文件夹名', 'er'); break; } const r = R('.'); if (r.node.c.find(x => x.n === args[0])) { put('mkdir: ' + esc(args[0]) + ': File exists（已经有了）', 'er'); break; } r.node.c.push(D(args[0])); put('（建好了 ' + esc(args[0]) + '。这只是模拟，关掉网页就没了）', 'ok'); break; }
+      case 'echo': put(esc(args.join(' '))); break;
+      case 'clear': out.innerHTML = ''; break;
+      case 'exit': put('（真终端里，这会结束这个窗口里的 shell。模拟终端就不关了）', 'ok'); break;
+      case 'date': put(new Date().toString()); break;
+      case 'history': put(hist.map((h, i) => (i + 1) + '  ' + esc(h)).join('<br>')); break;
+      case 'help': put('这个模拟终端认识：pwd  ls  ls -a  cd  open  cat  mkdir  echo  clear  whoami  date  history。<br>小窍门：按 tab 自动补全名字，按 ↑ 找回上一条命令。'); break;
+      case 'rm': case 'sudo': case 'mv': put('这个模拟终端不提供 ' + esc(c) + '。' + (c === 'rm' ? 'rm 会直接删除，不进废纸篓，删了就找不回来。' : c === 'sudo' ? 'sudo 是用管理员的权限做事，输了密码电脑什么都听。' : 'mv 会移动或改名。') + '在真终端里，没有大人在旁边别用。', 'er'); break;
+      case 'python3': case 'python': put('（真电脑上会进入 Python。第二十六章和第十部讲 Python，这里先不进去）', 'ok'); break;
+      case 'java': put('（真电脑上要先装 Java。第二十九章讲过怎样用它开服务器）', 'ok'); break;
+      default: put('zsh: command not found: ' + esc(c) + '（没有这个命令。拼对了吗？大小写对吗？打 help 看看认识哪些）', 'er'); o = 'nf';
+    }
+    return o;
+  }
+  function check(cmd, o){ if (!opts.tasks) return; opts.tasks.forEach((t, i) => { try { if (t.ok(cmd, cwd, o)) done.add(i); } catch (e) {} }); goals.innerHTML = opts.tasks.map((t, i) => '<li' + (done.has(i) ? ' class="ok"' : '') + '>' + t.t + '</li>').join(''); }
+  function complete(){
+    const v = inp.value; let i = v.length; while (i > 0 && !(v[i - 1] === ' ' && v[i - 2] !== '\\')) i--; const pre = v.slice(0, i), last = v.slice(i);
+    const dirPart = last.includes('/') ? last.slice(0, last.lastIndexOf('/') + 1) : '', stem = last.slice(dirPart.length).replace(/\\ /g, ' ');
+    const r = resolvePath(root, cwd, dirPart.replace(/\\ /g, ' ') || '.'); if (r.err || r.node.k !== 'd') return;
+    const hits = r.node.c.filter(x => x.n.toLowerCase().startsWith(stem.toLowerCase()) && (stem.startsWith('.') || x.n[0] !== '.'));
+    if (hits.length === 1) { const h = hits[0]; inp.value = pre + dirPart + h.n.replace(/ /g, '\\ ') + (h.k === 'd' ? '/' : ' '); }
+    else if (hits.length > 1) { put('<span class="pr">' + esc(prompt()) + '</span> ' + esc(v)); put(hits.map(x => esc(x.n)).join('  ')); let p = hits[0].n; hits.forEach(x => { while (!x.n.toLowerCase().startsWith(p.toLowerCase())) p = p.slice(0, -1); }); if (p.length > stem.length) inp.value = pre + dirPart + p.replace(/ /g, '\\ '); }
+  }
+  inp.addEventListener('keydown', e => {
+    if (e.key === 'Enter') { const v = inp.value; inp.value = ''; if (v.trim()) { hist.push(v); } hp = hist.length; const o = run(v); pr.textContent = prompt(); check(v.trim(), o); }
+    else if (e.key === 'Tab') { e.preventDefault(); complete(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); if (hp > 0) { hp--; inp.value = hist[hp]; } }
+    else if (e.key === 'ArrowDown') { e.preventDefault(); if (hp < hist.length) { hp++; inp.value = hist[hp] || ''; } }
+    else if (e.key === 'c' && e.ctrlKey) { e.preventDefault(); put('<span class="pr">' + esc(prompt()) + '</span> ' + esc(inp.value) + '^C'); inp.value = ''; }
+    else if (e.key === 'u' && e.ctrlKey) { e.preventDefault(); inp.value = ''; }
+    else if (e.key === 'l' && e.ctrlKey) { e.preventDefault(); out.innerHTML = ''; }
+  });
+  box.addEventListener('click', e => { if (!e.target.closest('.goals') && !getSelection().toString()) inp.focus({preventScroll: true}); });
+  pr.textContent = prompt();
+  put('Last login: 这是一台模拟的终端，打 help 看看它认识哪些命令。', 'dim');
+  check('', '');
+  return {run: v => { const o = run(v); pr.textContent = prompt(); check(v, o); }};
+}
+
 
 /* ---------- 序幕：一格有多大 ---------- */
 dev('#sizeFig', () => {
@@ -2536,7 +3271,7 @@ dev('#heightFig', () => {
 
 
 /* ---------- 第六章：一棵家谱树 ---------- */
-dev('#treeFig', () => {
+dev('#treeFig', () => { if (PAGE !== 1) return;
   /* [名字, 开始, 结束(null=还在), 停了吗, 说明] */
   const L = [
     ['Java 版', 2009.4, null, 0, '最早的那个版本，用 Java 写的，在 Windows、苹果电脑和 Linux 上玩。模组最多。小格玩的就是它。'],
@@ -3383,7 +4118,7 @@ dev('#askFig', () => {
 
 
 /* ---------- 第三十二章：我的技能树（只存在你自己的浏览器里） ---------- */
-dev('#treeFig', () => {
+dev('#treeFig', () => { if (PAGE !== 4) return;
   const KEY = 'genesis-block-skills';
   /* [id, 名字, 一句话, 前置 id[], 列, 行, 章] */
   const T = [
@@ -3425,6 +4160,238 @@ dev('#treeFig', () => {
   }
   sv.addEventListener('click', e => { const n = e.target.closest('.node'); if (!n) return; const id = n.dataset.id; done.has(id) ? done.delete(id) : done.add(id); draw(); });
   $('#treeClear').addEventListener('click', () => { done.clear(); draw(); });
+  draw();
+});
+
+/* ================= 第五部 · 手：各章装置 ================= */
+const lowk = e => (e.key || '').toLowerCase();
+/* 第三十三章：键盘 */
+dev('#kbBox', box => keyboard(box, {live: true, goals: [
+  {t: '按 ⌘C（拷贝）', ok: e => e.metaKey && !e.shiftKey && lowk(e) === 'c'},
+  {t: '按 ⌘V（粘贴）', ok: e => e.metaKey && !e.shiftKey && lowk(e) === 'v'},
+  {t: '按 ⌘Z（撤销）', ok: e => e.metaKey && !e.shiftKey && lowk(e) === 'z'},
+  {t: '按 ⇧⌘Z（重做）', ok: e => e.metaKey && e.shiftKey && lowk(e) === 'z'},
+  {t: '按 ⌘A（全选）', ok: e => e.metaKey && lowk(e) === 'a'},
+  {t: '单按一下 ⌥ option', ok: e => e.key === 'Alt'},
+  {t: '单按一下 ⌃ control', ok: e => e.key === 'Control'},
+  {t: '按住 shift，打一个大写字母', ok: e => e.shiftKey && !e.metaKey && /^[A-Z]$/.test(e.key)}
+]}));
+
+/* 第三十四章：手势练习板 */
+dev('#padArea', pad => {
+  const G0 = [['点一下', 'click'], ['快速点两下', 'dbl'], ['右键（两指点，或 control + 点）', 'ctx'], ['两指上下滑（或滚鼠标滚轮）', 'wy'], ['两指左右滑', 'wx'], ['两指捏合或分开（放大缩小）', 'pinch'], ['按住拖一段', 'drag']];
+  const got = new Set(), ul = $('#padGoals');
+  const draw = () => { ul.innerHTML = G0.map(g => '<li' + (got.has(g[1]) ? ' class="ok"' : '') + '>' + g[0] + '</li>').join(''); };
+  let flashT = 0;
+  const hit = (k, msg) => { got.add(k); draw(); pad.textContent = msg; pad.classList.add('hit'); clearTimeout(flashT); flashT = setTimeout(() => pad.classList.remove('hit'), 300); };
+  let down = null, dragged = false;
+  pad.addEventListener('click', e => { if (dragged) return; if (e.detail === 1) hit('click', '点一下 · click'); });
+  pad.addEventListener('dblclick', () => hit('dbl', '点两下 · double-click'));
+  pad.addEventListener('contextmenu', e => { e.preventDefault(); hit('ctx', '右键 · right-click：平时这里会弹出一个菜单'); });
+  pad.addEventListener('wheel', e => {
+    e.preventDefault();
+    if (e.ctrlKey) return hit('pinch', '捏合 · pinch：平时会放大缩小');
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 2) hit('wx', '左右滑 · scroll sideways');
+    else if (Math.abs(e.deltaY) > 2) hit('wy', '上下滑 · scroll：平时会滚动页面');
+  }, {passive: false});
+  ['gesturestart', 'gesturechange'].forEach(t => pad.addEventListener(t, e => { e.preventDefault(); hit('pinch', '捏合 · pinch：平时会放大缩小'); }));
+  pad.addEventListener('pointerdown', e => { if (e.button === 0) { down = [e.clientX, e.clientY]; dragged = false; } });
+  pad.addEventListener('pointermove', e => { if (down && Math.hypot(e.clientX - down[0], e.clientY - down[1]) > 40) { dragged = true; hit('drag', '拖 · drag'); } });
+  window.addEventListener('pointerup', () => { down = null; setTimeout(() => dragged = false, 0); });
+  draw();
+});
+
+/* 第三十四章：标点侦探 */
+dev('#puncFig', () => {
+  const inp = $('#puncIn'), out = $('#puncOut'), say = $('#puncSay'), codes = $('#puncCodes');
+  const MAP = {'　': ' ', '“': '"', '”': '"', '‘': "'", '’': "'", '、': ',', '。': '.', '【': '[', '】': ']', '《': '<', '》': '>', '…': '...', '—': '-', '·': '.'};
+  const bad = ch => { const c = ch.codePointAt(0); return (c >= 0xFF01 && c <= 0xFF5E) || MAP[ch] !== undefined; };
+  const fix = ch => { const c = ch.codePointAt(0); return c >= 0xFF01 && c <= 0xFF5E ? String.fromCodePoint(c - 0xFEE0) : MAP[ch] !== undefined ? MAP[ch] : ch; };
+  const NAME = {'　': '全角空格', '，': '中文逗号', '：': '中文冒号', '；': '中文分号', '（': '中文括号', '）': '中文括号', '～': '中文波浪号', '“': '中文引号', '”': '中文引号', '。': '中文句号', '！': '中文叹号', '＠': '全角@', '／': '全角斜杠'};
+  function draw(){
+    const t = inp.value, chars = [...t];
+    let n = 0, h = '';
+    chars.forEach(ch => { if (bad(ch)) { n++; h += '<mark' + (ch === '　' ? ' class="sp"' : '') + ' title="' + (NAME[ch] || '全角字符') + '">' + (ch === '　' ? '&nbsp;' : esc(ch)) + '</mark>'; } else h += ch === ' ' ? '&nbsp;' : esc(ch); });
+    out.innerHTML = h || '<span style="color:var(--ink-3)">（空的）</span>';
+    const cjk = chars.filter(ch => /[一-鿿]/.test(ch)).length;
+    say.className = 'say ' + (n ? 'bad' : 'ok');
+    say.innerHTML = n ? '找到 <b>' + n + '</b> 个中文标点或全角字符（红色的）。命令里它们会让游戏看不懂。点“修好它”。' : '没有中文标点和全角空格，命令的“外壳”是干净的。' + (cjk ? '里面有 ' + cjk + ' 个汉字：如果它们在 /say 后面当作要说的话，没问题；如果是方块名、命令名，要换成英文。' : '');
+    codes.innerHTML = chars.slice(0, 60).map(ch => { const c = ch.codePointAt(0); return '<span style="display:inline-block;margin:0 10px 2px 0;' + (bad(ch) ? 'color:var(--zhu);font-weight:700' : '') + '">' + (ch === ' ' ? '空格' : ch === '　' ? '宽空格' : esc(ch)) + '=' + c + '</span>'; }).join('') + (chars.length > 60 ? '……' : '');
+  }
+  inp.addEventListener('input', draw);
+  $('#puncFix').addEventListener('click', () => { inp.value = [...inp.value].map(fix).join(''); draw(); });
+  $('#puncEx1').addEventListener('click', () => { inp.value = '/tp @s ～　～5 ～'; draw(); });
+  $('#puncEx2').addEventListener('click', () => { inp.value = '/summon minecraft：pig ~ ~ ~ {CustomName：“小猪”}'; draw(); });
+  draw();
+});
+
+/* 第三十五章：游戏键位 */
+dev('#gkBox', box => {
+  const K = (t, code) => ({t, ok: e => !e.metaKey && e.code === code});
+  keyboard(box, {mode: 2, live: true, goals: [K('打开物品栏', 'KeyE'), K('跳', 'Space'), K('潜行', 'ShiftLeft'), K('跑', 'ControlLeft'), K('扔掉手里的一个', 'KeyQ'), K('打开聊天框', 'KeyT'), K('直接打命令', 'Slash'), K('换到快捷栏第 5 格', 'Digit5'), K('和副手换东西', 'KeyF'), K('打开进度', 'KeyL')]});
+});
+
+/* 第三十五章：按键反应 */
+dev('#rxFig', () => {
+  const ACT = [['打开物品栏', 'Open Inventory', 'KeyE', 'E'], ['跳', 'Jump', 'Space', '空格'], ['潜行', 'Sneak', 'ShiftLeft', '左 shift'], ['扔掉手里的东西', 'Drop Selected Item', 'KeyQ', 'Q'], ['打开聊天框', 'Open Chat', 'KeyT', 'T'], ['打开进度', 'Advancements', 'KeyL', 'L'], ['和副手换东西', 'Swap Item With Offhand', 'KeyF', 'F'], ['往前走', 'Walk Forwards', 'KeyW', 'W'], ['往左走', 'Strafe Left', 'KeyA', 'A'], ['换到第 3 格', 'Hotbar Slot 3', 'Digit3', '3'], ['直接打命令', 'Open Command', 'Slash', '/'], ['往后退', 'Walk Backwards', 'KeyS', 'S']];
+  const show = $('#rxShow'), say = $('#rxSay'), go = $('#rxGo');
+  let run = false, round = 0, cur = null, t0 = 0, times = [], timer = 0, wrong = 0;
+  function next(){
+    cur = null; show.textContent = '……'; clearTimeout(timer);
+    if (round >= 10) return end();
+    timer = setTimeout(() => { cur = ACT[Math.floor(Math.random() * ACT.length)]; show.innerHTML = cur[0] + '<br><small style="font-size:15px;font-family:var(--f-mono)">' + cur[1] + '</small>'; t0 = performance.now(); }, 600 + Math.random() * 900);
+  }
+  function end(){
+    run = false; go.textContent = '再来一次';
+    const avg = times.reduce((a, b) => a + b, 0) / times.length;
+    show.textContent = '平均 ' + Math.round(avg) + ' 毫秒';
+    say.innerHTML = '十轮的时间加起来是 ' + Math.round(times.reduce((a, b) => a + b, 0)) + ' 毫秒，除以 10，平均 <b>' + Math.round(avg) + '</b> 毫秒。最快 ' + Math.round(Math.min(...times)) + '，最慢 ' + Math.round(Math.max(...times)) + '。按错了 ' + wrong + ' 次。（1000 毫秒 = 1 秒）';
+    bars($('#rxBars'), times.map((t, i) => ['第 ' + (i + 1) + ' 轮', t, '', t > avg ? 'var(--ter)' : '']).concat([['平均', avg, '', 'var(--gold)']]), Math.max(...times), v => Math.round(v) + ' ms');
+  }
+  document.addEventListener('keydown', e => {
+    if (!run) return;
+    if (['Space', 'Slash', 'Quote', 'Tab'].includes(e.code)) e.preventDefault();
+    if (!cur || e.metaKey || e.repeat) return;
+    if (e.code === cur[2]) { const t = performance.now() - t0; times.push(t); round++; say.textContent = '第 ' + round + ' 轮：' + Math.round(t) + ' 毫秒。'; next(); }
+    else { wrong++; const a = ACT.find(x => x[2] === e.code); say.textContent = '按错了：' + (a ? '那是“' + a[0] + '”。' : '这个键默认没有用处。') + '要按的是 ' + cur[3] + '。'; }
+  });
+  go.addEventListener('click', () => { run = true; round = 0; times = []; wrong = 0; $('#rxBars').innerHTML = ''; say.textContent = '把手放在键盘上，别用鼠标。'; go.textContent = '进行中……'; go.blur(); next(); });
+});
+
+/* 第三十六章：树图 */
+dev('#fsTreeSvg', svg => {
+  const N = [
+    [300, 26, 'Macintosh HD  /', 'd'],
+    [90, 92, '应用程序', 'd'], [230, 92, '用户 Users', 'd'], [370, 92, '资源库', 'd'], [500, 92, '系统', 'd'],
+    [230, 156, 'xiaoge（家）', 'd'],
+    [70, 224, '桌面', 'd'], [175, 224, '文稿', 'd'], [280, 224, '下载', 'd'], [395, 224, '资源库（藏着）', 'h'],
+    [70, 290, '截屏.png', 'f'], [175, 290, '编程课', 'd'], [395, 290, 'minecraft…', 'h'],
+    [175, 352, '小海龟.py', 'f']
+  ];
+  const E = [[0, 1], [0, 2], [0, 3], [0, 4], [2, 5], [5, 6], [5, 7], [5, 8], [5, 9], [6, 10], [7, 11], [9, 12], [11, 13]];
+  let g = '';
+  E.forEach(([a, b]) => { const p = N[a], q = N[b]; g += '<path d="M' + p[0] + ',' + (p[1] + 12) + ' C' + p[0] + ',' + (p[1] + 34) + ' ' + q[0] + ',' + (q[1] - 34) + ' ' + q[0] + ',' + (q[1] - 12) + '" fill="none" stroke="var(--ter)" stroke-width="2"/>'; });
+  N.forEach(n => { const w = Math.max(64, n[2].length * 13 + 14); g += '<rect x="' + (n[0] - w / 2) + '" y="' + (n[1] - 13) + '" width="' + w + '" height="26" rx="' + (n[3] === 'f' ? 13 : 4) + '" fill="' + (n[3] === 'f' ? 'var(--grass)' : 'var(--card)') + '" stroke="' + (n[3] === 'h' ? 'var(--ink-3)' : 'var(--ink-2)') + '" stroke-width="1.5"' + (n[3] === 'h' ? ' stroke-dasharray="4 3"' : '') + '/>' + txt(n[0], n[1] + 5, n[2], {s: 12.5, c: n[3] === 'f' ? '#fff' : 'var(--ink)', halo: false}); });
+  g += txt(560, 40, '根', {s: 13, c: 'var(--main)', w: true}) + txt(560, 230, '树枝', {s: 13, c: 'var(--main)', w: true}) + txt(560, 356, '叶子', {s: 13, c: 'var(--main)', w: true});
+  svg.setAttribute('viewBox', '0 0 600 375'); svg.innerHTML = g;
+});
+
+/* 第三十六—三十八章：模拟访达 */
+dev('#fd1', box => finder(box, {start: HOME + '/Desktop', tasks: [
+  {t: '打开“文稿”', p: HOME + '/Documents'},
+  {t: '找到“小海龟.py”，选中它', p: HOME + '/Documents/编程课/小海龟.py'},
+  {t: '看一眼桌面上的“暑假计划.txt”', p: HOME + '/Desktop/暑假计划.txt'},
+  {t: '在“应用程序”里的“实用工具”中找到“终端.app”', p: '/Applications/Utilities/终端.app'},
+  {t: '用最下面的路径栏跳回 xiaoge（家）', p: HOME}
+]}));
+dev('#fd2', box => finder(box, {start: HOME + '/Desktop', tasks: [
+  {t: '在“前往文件夹”里打 <code>~/Library</code>，回车', p: HOME + '/Library'},
+  {t: '走到 minecraft 文件夹', p: HOME + '/Library/Application Support/minecraft'},
+  {t: '打开 saves，看看有几个世界', p: HOME + '/Library/Application Support/minecraft/saves'},
+  {t: '回到家，让隐藏文件露出来，选中 <code>.zshrc</code>', p: HOME + '/.zshrc'},
+  {t: '点“显示真名”，去 <code>/Users</code> 看看“用户”的真名', p: '/Users'}
+]}));
+const MCP = HOME + '/Library/Application Support/minecraft';
+dev('#fd3', box => finder(box, {start: MCP, real: true, tasks: [
+  {t: '找到截图 2026-07-12_15.05.21.png', p: MCP + '/screenshots/2026-07-12_15.05.21.png'},
+  {t: '打开日志 logs/latest.log，看看最后一行写了什么', p: MCP + '/logs/latest.log'},
+  {t: '看 options.txt 里视野距离是多少', p: MCP + '/options.txt'},
+  {t: '找到 gongfang 世界里的 hello.mcfunction', p: MCP + '/saves/gongfang/datapacks/xiaoge_pack/data/xiaoge/function/hello.mcfunction'},
+  {t: '找到游戏里“制作备份”做出来的 zip', p: MCP + '/backups/2026-07-20_19-50-12_gongfang.zip'}
+]}));
+
+/* 第三十七章：读路径 */
+dev('#pathFig', () => {
+  const root = makeFS(), inp = $('#pathIn'), out = $('#pathOut'), say = $('#pathSay');
+  const EX = ['~/Desktop', '/Users/xiaoge/Documents/编程课/小海龟.py', '~/Library/Application Support/minecraft/saves/gongfang', '~/Documents/../Desktop', '~/Library/Application Support/minecraft/screenshot', 'Documents/编程课'];
+  $('#pathEx').innerHTML = EX.map((x, i) => '<button class="btn" data-i="' + i + '"><code>' + esc(x) + '</code></button>').join('');
+  $('#pathEx').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; inp.value = EX[+b.dataset.i]; draw(); });
+  function draw(){
+    let p = inp.value.trim();
+    if (!p) { out.innerHTML = ''; say.textContent = '打一个路径试试。'; return; }
+    const notes = [];
+    if (/[～，：]|　/.test(p)) notes.push('里面有中文标点或全角字符（～ ， ： 或宽空格），路径里要用英文的。');
+    let full = p;
+    if (p === '~' || p.startsWith('~/')) { full = HOME + p.slice(1); notes.push('开头的 ~ 是家，等于 <code>' + HOME + '</code>。'); }
+    else if (!p.startsWith('/')) { full = HOME + '/' + p; notes.push('不以 / 或 ~ 开头，是<b>相对路径</b>：要看你现在在哪儿。这里假设你在家（~）里。'); }
+    else notes.push('以 / 开头，是<b>绝对路径</b>：从根出发。');
+    const segs = full.split('/').filter(Boolean);
+    let node = root, stack = [root], h = '<span class="cb root">/ 根</span>', ok = true;
+    segs.forEach(s => {
+      if (!ok) { h += '<span class="sep">›</span><span class="cb no">' + esc(s) + '</span>'; return; }
+      if (s === '.') { h += '<span class="sep">›</span><span class="cb dot">. 这里</span>'; return; }
+      if (s === '..') { stack.pop(); node = stack[stack.length - 1] || root; h += '<span class="sep">›</span><span class="cb dot">.. 退回 ' + esc(node.root ? '/' : node.n) + '</span>'; return; }
+      const nx = node.k === 'd' && node.c.find(x => x.n === s);
+      if (!nx) { ok = false; h += '<span class="sep">›</span><span class="cb no">' + esc(s) + '<small>找不到</small></span>'; notes.push('在 <code>' + esc(node.root ? '/' : node.n) + '</code> 里找不到“' + esc(s) + '”。' + (node.k === 'd' ? '这里有：' + node.c.filter(x => !x.hide).slice(0, 8).map(x => '<code>' + esc(x.n) + '</code>').join(' ') : '它是文件，不能再往里走。')); return; }
+      node = nx; stack.push(nx);
+      h += '<span class="sep">›</span><span class="cb ' + (nx.k === 'd' ? 'd' : 'f') + (nx.hide ? ' h' : '') + '">' + esc(nx.n) + (nx.zh ? '<small>访达里叫“' + nx.zh + '”</small>' : nx.hide ? '<small>平时藏着</small>' : nx.k === 'f' ? '<small>文件</small>' : '') + '</span>';
+    });
+    out.innerHTML = h;
+    say.className = 'say ' + (ok ? 'ok' : 'bad');
+    say.innerHTML = (ok ? '找到了！一共 ' + segs.filter(s => s !== '.' && s !== '..').length + ' 级。' : '没找到。') + '<br>' + notes.join('<br>');
+  }
+  inp.addEventListener('input', draw); draw();
+});
+
+/* 第三十八章：这块地在哪个文件里 */
+dev('#regFig', () => {
+  const svg = $('#regSvg'); let x = 700, z = -20;
+  const fl = Math.floor;
+  function draw(){
+    const W = 360, R = 3, cell = W / (2 * R); // 显示 −3…2 六个区域
+    const X = v => (v / 512 + R) * cell, Z = v => (v / 512 + R) * cell;
+    let g = '';
+    for (let i = -R; i < R; i++) for (let j = -R; j < R; j++) {
+      const on = i === fl(x / 512) && j === fl(z / 512);
+      g += '<rect x="' + ((i + R) * cell) + '" y="' + ((j + R) * cell) + '" width="' + cell + '" height="' + cell + '" fill="' + (on ? 'var(--grass)' : 'var(--paper)') + '" fill-opacity="' + (on ? .5 : 1) + '" stroke="var(--rule)"/>' + txt((i + R + .5) * cell, (j + R + .5) * cell + 4, 'r.' + i + '.' + j, {s: 11, c: on ? 'var(--ink)' : 'var(--ink-3)', halo: false});
+    }
+    g += '<line x1="' + X(0) + '" x2="' + X(0) + '" y1="0" y2="' + W + '" stroke="var(--zhu)" stroke-width="1.5"/><line y1="' + Z(0) + '" y2="' + Z(0) + '" x1="0" x2="' + W + '" stroke="var(--blu)" stroke-width="1.5"/>';
+    g += txt(W - 4, Z(0) - 5, 'x →', {s: 12, a: 'end', c: 'var(--zhu)', w: true}) + txt(X(0) + 5, W - 6, 'z ↓（南）', {s: 12, a: 'start', c: 'var(--blu)', w: true});
+    g += '<circle cx="' + X(x) + '" cy="' + Z(z) + '" r="6" fill="var(--zhu)" stroke="var(--card)" stroke-width="2"/>';
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + W); svg.innerHTML = g;
+    const rx = fl(x / 512), rz = fl(z / 512), cx = fl(x / 16), cz = fl(z / 16);
+    kv($('#regKv'), [['区块（x, z）', cx + ', ' + cz], ['region 文件', 'r.' + rx + '.' + rz + '.mca'], ['这个文件管的 x', rx * 512 + ' 到 ' + (rx * 512 + 511)], ['这个文件管的 z', rz * 512 + ' 到 ' + (rz * 512 + 511)]]);
+    $('#regSay').innerHTML = 'x：' + x + ' ÷ 512 ≈ ' + (x / 512).toFixed(2) + '，往小取整 → <b>' + rx + '</b>。z：' + z + ' ÷ 512 ≈ ' + (z / 512).toFixed(2) + '，往小取整 → <b>' + rz + '</b>。' + ((x < 0 && x / 512 > -1) || (z < 0 && z / 512 > -1) ? ' 注意负数：比 0 小一点点，往小取就是 −1，不是 0。' : '');
+  }
+  slider('regX', v => v, v => { x = v; if (svg) draw(); });
+  slider('regZ', v => v, v => { z = v; draw(); });
+  svg.addEventListener('click', e => { const r = svg.getBoundingClientRect(), W = 360, k = W / r.width; x = Math.round(((e.clientX - r.left) * k / 60 - 3) * 512); z = Math.round(((e.clientY - r.top) * k / 60 - 3) * 512); $('#regX').value = x; $('#regZ').value = z; $('#regXO').textContent = x; $('#regZO').textContent = z; draw(); });
+});
+
+/* 第三十九章：模拟终端 */
+dev('#term1', box => terminal(box, {tasks: [
+  {t: '打 <code>pwd</code>，看看你在哪儿', ok: c => c === 'pwd'},
+  {t: '在家里打 <code>ls</code>，看看有什么', ok: (c, w) => /^ls\b/.test(c) && w === HOME},
+  {t: '<code>cd Documents</code> 走进文稿，再用 <code>cd ..</code> 退回家', ok: (c, w) => c === 'cd ..' && w === HOME},
+  {t: '走进游戏目录 minecraft（用 tab 补全）', ok: (c, w) => /\/minecraft$/.test(w)},
+  {t: '用 <code>cat</code> 看 options.txt 里的视野距离', ok: (c, w, o) => o === 'cat:options.txt'},
+  {t: '在家里用 <code>ls -a</code> 找到藏起来的 .zshrc', ok: (c, w) => /^ls\s+-[a-zA-Z]*a/.test(c) && w === HOME},
+  {t: '打 <code>open .</code>，用访达打开“这里”', ok: c => c === 'open .'}
+]}));
+
+/* 第四十章：问题卡生成器 */
+dev('#qcardFig', () => {
+  const F0 = [['want', '我想做什么'], ['did', '我做了哪几步（命令、按钮照抄）'], ['expect', '我以为会怎样'], ['saw', '实际怎样了（屏幕上的字照抄）'], ['tried', '我已经试过'], ['env', '电脑和版本']];
+  const EX = {want: '用 /fill 在家下面挖一个 50×50 的大地下室', did: '站在家门口，按 / 打了 /fill ~ ~-1 ~ ~50 ~-20 ~50 air', expect: '脚下出现一个大坑', saw: '聊天框里出现红字，里面有 too many blocks', tried: '把 50 改成 20 就成功了', env: 'M1 MacBook Air（8 GB），Java 版 1.21.x'};
+  const form = $('#qcForm');
+  form.innerHTML = F0.map(f => '<label class="lab">' + f[1] + '<textarea rows="2" data-k="' + f[0] + '" autocomplete="off"></textarea></label>').join('');
+  const out = $('#qcOut'), say = $('#qcSay');
+  const val = k => $('textarea[data-k=' + k + ']', form).value.trim();
+  function draw(){
+    const miss = F0.filter(f => !val(f[0]));
+    out.textContent = '你好，我遇到一个问题，请先解释原因，再告诉我怎样做。\n' + F0.map(f => '· ' + f[1].replace(/（.*）/, '') + '：' + (val(f[0]) || '（还没填）')).join('\n');
+    say.className = 'say ' + (miss.length ? '' : 'ok');
+    say.innerHTML = miss.length ? '还空着：' + miss.map(f => f[1].replace(/（.*）/, '')).join('、') + '。空着的越少，别人越不用回头再问你。' : '六样都填好了。很多时候，写到这儿你已经自己想到答案了。';
+  }
+  form.addEventListener('input', draw);
+  $('#qcEx').addEventListener('click', () => { F0.forEach(f => $('textarea[data-k=' + f[0] + ']', form).value = EX[f[0]]); draw(); });
+  $('#qcClr').addEventListener('click', () => { $$('textarea', form).forEach(t => t.value = ''); draw(); });
+  $('#qcCopy').addEventListener('click', () => {
+    const t = out.textContent;
+    const done = () => { say.className = 'say ok'; say.textContent = '拷贝好了，可以 ⌘V 粘贴。'; };
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(t).then(done, () => { const r = document.createRange(); r.selectNodeContents(out); getSelection().removeAllRanges(); getSelection().addRange(r); say.textContent = '已经选中了，按 ⌘C 拷贝。'; });
+    else { const r = document.createRange(); r.selectNodeContents(out); getSelection().removeAllRanges(); getSelection().addRange(r); say.textContent = '已经选中了，按 ⌘C 拷贝。'; }
+  });
   draw();
 });
 

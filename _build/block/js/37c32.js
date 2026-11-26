@@ -1,6 +1,6 @@
 
 /* ---------- 第三十二章：我的技能树（只存在你自己的浏览器里） ---------- */
-dev('#treeFig', () => {
+dev('#treeFig', () => { if (PAGE !== 4) return;
   const KEY = 'genesis-block-skills';
   /* [id, 名字, 一句话, 前置 id[], 列, 行, 章] */
   const T = [

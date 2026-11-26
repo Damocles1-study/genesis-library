@@ -1,0 +1,173 @@
+<!-- ============ 第三十七章 · 径 ============ -->
+<section class="chap" id="c37" data-vol="卷十一 · 径">
+  <div class="chead">
+    <div class="big">径</div>
+    <div>
+      <div class="no">第三十七章</div>
+      <h2>路径：一串地址</h2>
+      <dl><dt>讲什么</dt><dd>斜杠分开的一串名字；中文名和真名；波浪号 ~ 就是“家”；藏起来的资源库；⇧⌘. 和 ⇧⌘G；拷贝一个文件的路径；绝对路径和相对路径</dd><dt>本章装置</dt><dd>读路径 · 前往文件夹</dd></dl>
+      <div class="sub" data-s="机 英 程 数"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第五天</b><span class="pix">FINDER · 访达</span><span>想找存档</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>第十七章说存档在 <code>~/Library/Application Support/minecraft/saves</code>。我在访达里翻遍了，没有 Library 这个文件夹啊。</span></div>
+      <div class="l"><i class="j">舅</i><span>它在，只是被藏起来了。苹果怕大家乱动里面的东西。你先告诉我，这一串字你是怎么读的？</span></div>
+      <div class="l"><i class="g">格</i><span>波浪线……斜杠……Library……</span></div>
+      <div class="l"><i class="j">舅</i><span>像读一个地址：中国、江苏省、某某市、某某路、几号。这一串也是地址，从大到小，斜杠就是“的”。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★</span><span class="dim">★★</span></div><div><b>大约多久</b>40 分钟</div><div><b>要准备</b>MacBook</div><div><b>大人</b>资源库里的东西不要乱删，先问大人</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>读懂 <code>/Users/xiaoge/Documents/编程课/小海龟.py</code> 这样的路径。</li>
+      <li>知道 <code>~</code> 是什么，会把 <code>/Users/你的名字</code> 写成 <code>~</code>。</li>
+      <li>用 ⇧⌘G“前往文件夹”一下子跳到任何地方，包括藏起来的资源库。</li>
+      <li>拷贝一个文件的完整路径，分清绝对路径和相对路径。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>路径就是地址</h3>
+    <p>第三十六章说，文件夹是一棵树。要说清楚一片叶子在哪儿，就从根开始，把一路经过的树枝<b>一个一个念出来</b>，中间用斜杠 <code>/</code> 隔开。这一串，叫<b>路径</b>（<span class="en" data-say="path">path</span>，本来是“小路”）。</p>
+    <p class="ni" style="text-align:center"><code style="font-size:16px">/Users/xiaoge/Documents/编程课/小海龟.py</code></p>
+    <p>从左往右读：</p>
+    <ol class="steps">
+      <li>最前面的 <code>/</code>：根，整个硬盘。</li>
+      <li><code>Users</code>：根里面的“用户”文件夹，这台电脑上每个人都在里面有一个家。</li>
+      <li><code>xiaoge</code>：小格的家（个人文件夹）。</li>
+      <li><code>Documents</code>：家里的“文稿”。</li>
+      <li><code>编程课</code>：文稿里的一个文件夹。</li>
+      <li><code>小海龟.py</code>：最后这个是文件，叶子。</li>
+    </ol>
+    <p>和地址一模一样：<b>从大到小，一层一层</b>。斜杠就是“里面的”。</p>
+  </div>
+
+  <div class="corner" data-k="机">
+    <h5>访达说中文，路径说英文</h5>
+    <p>访达边栏上写“文稿”，可路径里写的是 <code>Documents</code>。这是因为 Mac 为了让大家看得懂，给几个系统文件夹起了中文的“外号”，<b>真名一直是英文</b>。终端里、路径里、程序里，用的都是真名。</p>
+    <p>常见的几对：用户 <code>Users</code>、桌面 <code>Desktop</code>、文稿 <code>Documents</code>、下载 <code>Downloads</code>、应用程序 <code>Applications</code>、资源库 <code>Library</code>。你自己建的文件夹，起什么名字就叫什么名字，没有外号。</p>
+  </div>
+
+  <div class="col">
+    <h3>波浪号 ~：回家</h3>
+    <p>每次都写 <code>/Users/xiaoge</code> 太长了。于是有一个简写：<b><code>~</code> 就代表“我的家”</b>（个人文件夹）。</p>
+    <ul class="plain">
+      <li><code>~</code> = <code>/Users/xiaoge</code></li>
+      <li><code>~/Desktop</code> = <code>/Users/xiaoge/Desktop</code></li>
+      <li><code>~/Library/Application Support/minecraft</code> = <code>/Users/xiaoge/Library/Application Support/minecraft</code></li>
+    </ul>
+    <p>好处是：这串路径在<b>谁的电脑上都能用</b>。豆子的名字是 doudou，<code>~</code> 在他电脑上就是 <code>/Users/doudou</code>。所以网上的教程写存档位置，都写 <code>~/Library/…</code>。</p>
+    <p>波浪号在键盘左上角，esc 下面那个键，要按住 <kbd>shift</kbd>。记得先切到英文：中文输入法打出来的是 <code>～</code>，不管用。（第四十二章，<code>~</code> 在命令里还会出现，意思是“从我现在站的地方算”，和这里的“家”很像：都是“以我为起点”。）</p>
+  </div>
+
+  <div class="fig" id="pathFig">
+    <div class="fig-label">装置 · 第三十七章 · 一</div>
+    <h4>读路径</h4>
+    <p class="how">在框里打一个路径（或者点下面的例子），装置会把它拆成一级一级，告诉你每一级是什么、在小格的电脑上找不找得到。</p>
+    <input type="text" id="pathIn" value="~/Library/Application Support/minecraft/saves" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="输入一个路径">
+    <div class="btns" id="pathEx"></div>
+    <div id="pathOut" class="crumbs"></div>
+    <div class="say" id="pathSay"></div>
+  </div>
+
+  <div class="col">
+    <h3>藏起来的资源库</h3>
+    <p>你的家里有一个文件夹叫 <code>Library</code>（资源库），访达平时<b>不让你看见</b>。里面放的是各个程序自己的设置和数据，比如我的世界的存档。乱删里面的东西，程序可能就打不开了，所以苹果把它藏了起来。要去那里，有三个办法：</p>
+  </div>
+  <div class="col">
+    <ol class="steps">
+      <li><b>前往文件夹</b>（最推荐）：在访达里按 <kbd class="sym">⇧</kbd><kbd class="sym">⌘</kbd><kbd>G</kbd>，弹出一个框，打 <code>~/Library/Application Support/minecraft</code>，按回车，一下子就到了。打到一半可以按 <kbd>tab</kbd>，它会帮你补全名字。</li>
+      <li><b>按住 option 看菜单</b>：点屏幕上面的菜单“前往”，按住 <kbd class="sym">⌥</kbd> option，菜单里会多出一项“资源库”。（第三十三章说过：option 会变出隐藏的选项。）</li>
+      <li><b>显示隐藏文件</b>：在访达里按 <kbd class="sym">⇧</kbd><kbd class="sym">⌘</kbd><kbd>.</kbd>（句号），所有藏起来的文件夹和文件都会半透明地出现，再按一次又藏起来。名字以点开头的文件（比如 <code>.zshrc</code>）也是这样藏起来的。</li>
+    </ol>
+  </div>
+
+  <div class="fig" id="fd2Fig">
+    <div class="fig-label">装置 · 第三十七章 · 二</div>
+    <h4>前往文件夹</h4>
+    <p class="how">还是那个模拟访达。这次从桌面开始。在上面的“前往文件夹”框里打路径，或者点“⇧⌘. 隐藏文件”让藏起来的东西露出来；点“显示真名”可以在中文名和英文真名之间切换。</p>
+    <div id="fd2"></div>
+  </div>
+
+  <div class="col">
+    <h3>拷贝一个文件的路径</h3>
+    <p>求助的时候、写程序的时候，常常要把一个文件的完整路径告诉别人。不用自己一个字一个字地打：</p>
+    <ol class="steps">
+      <li>在访达里选中那个文件，右键（两指点）。</li>
+      <li>按住 <kbd class="sym">⌥</kbd> option，菜单里的“拷贝”会变成“<b>将……拷贝为路径名称</b>”，点它。快捷键是 <kbd class="sym">⌥</kbd><kbd class="sym">⌘</kbd><kbd>C</kbd>。</li>
+      <li>到别的地方 ⌘V 粘贴，出来的就是完整路径。</li>
+    </ol>
+    <p>还有一个办法：把文件直接<b>拖进终端窗口</b>，终端里就会出现它的路径（第三十九章会用到）。</p>
+  </div>
+
+  <div class="col">
+    <h3>绝对路径和相对路径</h3>
+    <p>问路的时候有两种说法：</p>
+    <ul class="plain">
+      <li>“人民路 18 号”：不管你在哪儿，这个地址都一样。这叫<b>绝对路径</b>，以 <code>/</code> 或 <code>~</code> 开头，从根（或家）出发。</li>
+      <li>“从这儿往前走，第二个路口左转”：要看你现在站在哪儿。这叫<b>相对路径</b>，从“我现在在的文件夹”出发。</li>
+    </ul>
+    <p>相对路径里有两个特别的记号：<code>.</code>（一个点）是“这里”，<code>..</code>（两个点）是“上一层”。比如你现在在 <code>~/Documents</code>，那 <code>编程课/小海龟.py</code> 就是相对路径，<code>../Desktop</code> 是“退回到家，再进桌面”。</p>
+  </div>
+
+  <div class="corner" data-k="数">
+    <h5>绝对和相对，坐标里也有<span class="gr later">以后学 · 七年级 数轴</span></h5>
+    <p>路径的这两种说法，和游戏里坐标的两种写法一模一样：<code>/tp 100 64 -20</code> 是绝对坐标，不管你在哪儿都传到同一个地方；<code>/tp ~ ~5 ~</code> 是相对坐标，“从我现在的位置往上 5 格”。第四十二章细讲。数学里，从 0 点量起的叫“位置”，从某一点量起的叫“距离”或“变化”，也是同一个想法。</p>
+  </div>
+
+  <div class="task" data-id="t37a">
+    <div class="th"><b>在真电脑上找到存档</b><span class="xp">★★</span></div>
+    <div class="tb">
+      <ol>
+        <li>打开访达，按 ⇧⌘G，打 <code>~/Library/Application Support/minecraft/saves</code>，回车。</li>
+        <li>你看到的每一个文件夹，就是一个世界。找一找你最喜欢的那个。</li>
+        <li>把这个文件夹拖到访达边栏的“个人收藏”里，以后一点就到。</li>
+        <li>选中一个世界文件夹，用 ⌥⌘C 拷贝它的路径，粘贴到“备忘录”里看看。</li>
+      </ol>
+      <p>只看，先别动里面的东西。下一章教你怎样安全地备份。</p>
+    </div>
+  </div>
+
+  <div class="err">
+    <h5>出错了怎么办</h5>
+    <dl>
+      <dt>前往文件夹说“找不到”</dt><dd>一个字母一个字母检查：大小写一般不要紧，但空格、斜杠、拼写要对。<code>Application Support</code> 中间有一个空格。最稳的办法是打几个字母就按 tab，让它补全。</dd>
+      <dt>波浪号打出来是 ～</dt><dd>你在中文输入法里。按 中/英 键切到英文再打。</dd>
+      <dt>没有 minecraft 文件夹</dt><dd>说明这台电脑还没有运行过 Java 版，或者游戏目录被改到了别处。在启动器的“安装”里可以看到游戏目录在哪儿。</dd>
+    </dl>
+  </div>
+
+  <div class="pass" data-id="q37">
+    <div class="qq" data-a="1"><p>在小格的电脑上，<code>~/Desktop</code> 和下面哪个是同一个地方？</p><ol><li><code>/Desktop</code></li><li><code>/Users/xiaoge/Desktop</code></li><li><code>~/Users/Desktop</code></li></ol><p class="ex">~ 代表家，也就是 /Users/xiaoge。所以 ~/Desktop = /Users/xiaoge/Desktop。</p></div>
+    <div class="qq" data-a="0"><p>在访达里，哪个快捷键能打开“前往文件夹”？</p><ol><li>⇧⌘G</li><li>⇧⌘.</li><li>⌘G</li></ol><p class="ex">⇧⌘G 前往文件夹（Go）。⇧⌘. 是显示隐藏文件。</p></div>
+    <div class="qq" data-a="2"><p>你现在在 <code>~/Documents/编程课</code> 里，<code>..</code> 指的是哪个文件夹？</p><ol><li><code>~/Documents/编程课</code></li><li><code>~</code></li><li><code>~/Documents</code></li></ol><p class="ex">两个点是“上一层”。编程课的上一层是 Documents。</p></div>
+    <div class="qq" data-in="Library|library"><p>存档在 <code>~/____/Application Support/minecraft/saves</code>，横线上那个被藏起来的文件夹叫什么？（英文）</p><p class="ex">Library，资源库。访达平时把它藏起来，用 ⇧⌘G 或者按住 option 看“前往”菜单就能进去。</p></div>
+    <div class="qq" data-a="1"><p><code>/tp ~ ~5 ~</code> 里的 <code>~</code>，最像路径里的哪种写法？</p><ol><li>绝对路径：从根开始</li><li>相对路径：从“我现在在的地方”开始</li></ol><p class="ex">命令里的 ~ 是“从我现在的位置算”，是相对的。路径里的 ~ 是“家”，路径从家开始，算绝对路径的一种简写。两个 ~ 的共同点：都以“我”为起点。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>路径 <span class="en" data-say="path">path</span></b>从根出发、用斜杠隔开的一串名字，说清一个文件在哪儿。</div>
+    <div><b>波浪号 <span class="en" data-say="tilde">tilde</span> ~</b>路径里代表“我的家”，也就是 /Users/你的名字。</div>
+    <div><b>资源库 <span class="en" data-say="Library">Library</span></b>放程序设置和数据的文件夹，平时藏着。</div>
+    <div><b>绝对路径、相对路径</b>从根出发的，和从“我现在在的地方”出发的。</div>
+    <div><b>隐藏文件 <span class="en" data-say="hidden files">hidden files</span></b>平时看不见的文件，⇧⌘. 能让它们露出来。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>访达“前往文件夹”⇧⌘G（支持 tab 补全）、按住 option 显示“前往 → 资源库”、⇧⌘. 切换显示隐藏文件、右键按住 option 出现“将……拷贝为路径名称”（⌥⌘C），见苹果《Mac 上的访达》使用手册与常见技巧文档。系统文件夹的本地化显示名与英文真实路径的对应关系是 macOS 的标准行为。</p>
+    <p>建议：帮孩子把 saves 文件夹拖进边栏收藏；约定资源库里只看、不删，要动先问。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>手指头<small>带走一样</small></i>⇧⌘G 前往文件夹，打 ~/Library/Application Support/minecraft；⇧⌘. 显示隐藏文件；⌥⌘C 拷贝路径。</div>
+    <div><i>脑袋<small>带走一样</small></i>说清一个地方，要么从“大家都知道的起点”说（绝对），要么从“我在的地方”说（相对）。说之前想清楚用的是哪一种。</div>
+  </div>
+</section>

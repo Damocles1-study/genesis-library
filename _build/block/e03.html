@@ -1,0 +1,219 @@
+<!-- ============ 第三十五章 · 位 ============ -->
+<section class="chap" id="c35" data-vol="卷十 · 位">
+  <div class="chead">
+    <div class="big">位</div>
+    <div>
+      <div class="no">第三十五章</div>
+      <h2>游戏里的每一个键</h2>
+      <dl><dt>讲什么</dt><dd>Java 版的全部默认按键；怎样改键；Mac 上为什么要按 fn；F3 调试屏幕上每一行的意思；F3 加一个键的十几种组合；基岩版和中国版的不同</dd><dt>本章装置</dt><dd>游戏键位图 · 按键反应小游戏</dd></dl>
+      <div class="sub" data-s="机 英 数"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第三天</b><span class="pix">WORLD · gongfang</span><span>生存模式</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>舅舅，我玩了两年，一直只用那几个键。豆子说按 F3 加 G 能看到区块的边，我按了，音量变大了。</span></div>
+      <div class="l"><i class="j">舅</i><span>哈，那是 Mac 的老毛病：最上面一排默认管亮度和音量。要按住 fn，它们才变回 F 键。</span></div>
+      <div class="l"><i class="g">格</i><span>还有多少键是我不知道的？</span></div>
+      <div class="l"><i class="j">舅</i><span>打开“选项”→“控制”→“按键绑定”，从头到尾翻一遍。我们今天就把它翻完。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★</span><span class="dim">★★★</span></div><div><b>大约多久</b>40 分钟</div><div><b>要准备</b>Java 版，一个实验世界</div><div><b>大人</b>不用</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>说出 Java 版默认的移动、动作、物品栏、界面按键。</li>
+      <li>自己改键，改坏了知道怎样改回来。</li>
+      <li>在 Mac 上用 fn 按出 F3，读懂调试屏幕上的坐标和朝向。</li>
+      <li>用 F3 + G 看区块边界，用 F3 + H 看物品的英文 ID。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>默认按键全表</h3>
+    <p>下面是 Java 版刚装好时的样子（新版本可能加了几项，<b>以游戏里“按键绑定”页面为准</b>）。英文是游戏换成英文以后你会看到的名字，点一下可以听。</p>
+  </div>
+  <div class="wide tbl">
+    <table class="t kt">
+      <tr><th>键</th><th>做什么</th><th>英文名字</th></tr>
+      <tr><td colspan="3" style="color:var(--main)"><b>走路</b>（Movement）</td></tr>
+      <tr><td><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></td><td>往前、往左、往后、往右</td><td><span class="en" data-say="Walk Forwards">Walk Forwards</span> / <span class="en" data-say="Strafe Left">Strafe Left</span> / <span class="en" data-say="Walk Backwards">Walk Backwards</span> / <span class="en" data-say="Strafe Right">Strafe Right</span></td></tr>
+      <tr><td><kbd>空格</kbd></td><td>跳；创造模式连按两下：飞起来，再连按两下：落下</td><td><span class="en" data-say="Jump">Jump</span></td></tr>
+      <tr><td><kbd>shift</kbd>（左）</td><td>潜行：走得慢，走到方块边上不会掉下去；飞的时候是往下</td><td><span class="en" data-say="Sneak">Sneak</span></td></tr>
+      <tr><td><kbd>control</kbd>（左）</td><td>跑（也可以连按两下 W）</td><td><span class="en" data-say="Sprint">Sprint</span></td></tr>
+      <tr><td colspan="3" style="color:var(--main)"><b>动作</b>（Gameplay）</td></tr>
+      <tr><td>左键</td><td>挖、打</td><td><span class="en" data-say="Attack/Destroy">Attack/Destroy</span></td></tr>
+      <tr><td>右键</td><td>放方块、用东西</td><td><span class="en" data-say="Use Item/Place Block">Use Item/Place Block</span></td></tr>
+      <tr><td>中键</td><td>选取方块</td><td><span class="en" data-say="Pick Block">Pick Block</span></td></tr>
+      <tr><td colspan="3" style="color:var(--main)"><b>物品栏</b>（Inventory）</td></tr>
+      <tr><td><kbd>E</kbd></td><td>打开 / 关上物品栏</td><td><span class="en" data-say="Open/Close Inventory">Open/Close Inventory</span></td></tr>
+      <tr><td><kbd>1</kbd>—<kbd>9</kbd></td><td>换到快捷栏第几格</td><td><span class="en" data-say="Hotbar Slot">Hotbar Slot</span> 1—9</td></tr>
+      <tr><td><kbd>Q</kbd></td><td>扔掉手里的一个</td><td><span class="en" data-say="Drop Selected Item">Drop Selected Item</span></td></tr>
+      <tr><td><kbd>F</kbd></td><td>和副手（左手）换东西</td><td><span class="en" data-say="Swap Item With Offhand">Swap Item With Offhand</span></td></tr>
+      <tr><td><kbd>C</kbd> + 数字</td><td>创造模式：把整排快捷栏存起来</td><td><span class="en" data-say="Save Hotbar Activator">Save Hotbar Activator</span></td></tr>
+      <tr><td><kbd>X</kbd> + 数字</td><td>创造模式：把存好的那一排读出来</td><td><span class="en" data-say="Load Hotbar Activator">Load Hotbar Activator</span></td></tr>
+      <tr><td colspan="3" style="color:var(--main)"><b>聊天和联机</b>（Multiplayer）</td></tr>
+      <tr><td><kbd>T</kbd></td><td>打开聊天框</td><td><span class="en" data-say="Open Chat">Open Chat</span></td></tr>
+      <tr><td><kbd>/</kbd></td><td>打开聊天框，并且先打好一个斜杠：直接写命令</td><td><span class="en" data-say="Open Command">Open Command</span></td></tr>
+      <tr><td><kbd>tab</kbd></td><td>联机时看谁在线；打命令时自动补全</td><td><span class="en" data-say="List Players">List Players</span></td></tr>
+      <tr><td><kbd>P</kbd></td><td>社交互动：联机时可以屏蔽某个人的消息</td><td><span class="en" data-say="Social Interactions Screen">Social Interactions Screen</span></td></tr>
+      <tr><td colspan="3" style="color:var(--main)"><b>其他</b>（Miscellaneous）</td></tr>
+      <tr><td><kbd>L</kbd></td><td>打开进度（成就树）</td><td><span class="en" data-say="Advancements">Advancements</span></td></tr>
+      <tr><td><kbd>esc</kbd></td><td>暂停，打开菜单；关掉任何打开的界面</td><td><span class="en" data-say="Pause">Pause</span></td></tr>
+      <tr><td><kbd>F1</kbd></td><td>隐藏所有界面，只剩画面（拍风景照用）</td><td><span class="en" data-say="Hide GUI">Hide GUI</span></td></tr>
+      <tr><td><kbd>F2</kbd></td><td>截图</td><td><span class="en" data-say="Take Screenshot">Take Screenshot</span></td></tr>
+      <tr><td><kbd>F3</kbd></td><td>调试屏幕：坐标、朝向、帧数……</td><td><span class="en" data-say="Debug Screen">Debug Screen</span></td></tr>
+      <tr><td><kbd>F5</kbd></td><td>换视角：自己眼睛 → 从背后看 → 从前面看</td><td><span class="en" data-say="Toggle Perspective">Toggle Perspective</span></td></tr>
+      <tr><td><kbd>F11</kbd></td><td>全屏 / 退出全屏</td><td><span class="en" data-say="Toggle Fullscreen">Toggle Fullscreen</span></td></tr>
+    </table>
+  </div>
+
+  <div class="corner" data-k="英">
+    <h5>键名里的英文，一半是你认识的</h5>
+    <p><span class="en" data-say="walk">walk</span> 走，<span class="en" data-say="jump">jump</span> 跳，<span class="en" data-say="open">open</span> 打开，<span class="en" data-say="close">close</span> 关上，<span class="en" data-say="drop">drop</span> 扔下，<span class="en" data-say="swap">swap</span> 交换，<span class="en" data-say="save">save</span> 存，<span class="en" data-say="load">load</span> 读出来，<span class="en" data-say="hide">hide</span> 藏起来，<span class="en" data-say="take">take</span> 拿、拍。</p>
+    <p>有几个是新朋友：<span class="en" data-say="sneak">sneak</span> 是“偷偷地走”，<span class="en" data-say="sprint">sprint</span> 是“冲刺跑”，<span class="en" data-say="strafe">strafe</span> 是“侧着走”，<span class="en" data-say="hotbar">hotbar</span> 是“热”加“条”：放着最常用东西的那一条，<span class="en" data-say="offhand">offhand</span> 是“不常用的那只手”。</p>
+  </div>
+
+  <div class="fig" id="gkFig">
+    <div class="fig-label">装置 · 第三十五章 · 一</div>
+    <h4>游戏键位图</h4>
+    <p class="how">绿色的是游戏里有用的键。点一个键看它干什么。打开“用真键盘”，再把下面这几件事一件一件在你的键盘上按出来，按对了就打勾。</p>
+    <div id="gkBox"></div>
+  </div>
+
+  <div class="col">
+    <h3>改键</h3>
+    <p>觉得哪个键不顺手，可以换。比如有人喜欢用 <kbd>R</kbd> 跑步，或者把潜行改成“按一下就一直潜行”。</p>
+  </div>
+  <div class="col">
+    <ol class="steps">
+      <li>按 <kbd>esc</kbd>，点“选项”，再点“控制”，然后点“按键绑定”。</li>
+      <li>找到你想改的那一项，点它右边的按钮。按钮会变成“&gt; ? &lt;”的样子，意思是“等你按新键”。</li>
+      <li>按你想用的新键。完成。</li>
+      <li>如果新键已经被别的事占了，两边都会<b>变成红色</b>：一个键管两件事，游戏会糊涂。把其中一个改掉，红色就消失了。</li>
+      <li>改乱了也不怕：每一项后面有“重置”，页面最下面还有“全部重置”。</li>
+    </ol>
+    <p>在“控制”那一页（不是按键绑定里面），还有“潜行”和“疾跑”的<b>按住 / 切换</b>：选“切换”，就是按一下开始、再按一下停，手指不用一直按着。</p>
+    <p>你改的这些，游戏都写在 <code>options.txt</code> 这个文件里，一行一个，比如 <code>key_key.inventory:key.keyboard.e</code>。第三十八章会去看看它。</p>
+  </div>
+
+  <div class="corner" data-k="机">
+    <h5>Mac 上的 F 键</h5>
+    <p>MacBook 最上面一排，默认是调亮度、调音量这些“特殊功能”。按住左下角的 <kbd>fn</kbd>，它们才变成 F1、F2、F3……所以在游戏里：</p>
+    <ul>
+      <li>截图是 <kbd>fn</kbd> + <kbd>F2</kbd>，调试屏幕是 <kbd>fn</kbd> + <kbd>F3</kbd>。</li>
+      <li>F3 组合键要<b>先按住 fn 和 F3，再点那个字母</b>：比如 F3 + G，就是按住 fn 和 F3，点一下 G。</li>
+    </ul>
+    <p>觉得麻烦，可以请大人改一个设置：“系统设置”→“键盘”→“键盘快捷键……”→“功能键”，打开“将 F1、F2 等键用作标准功能键”。改了以后反过来：直接按就是 F 键，按住 fn 才是调亮度、调音量。</p>
+  </div>
+
+  <div class="col">
+    <h3>F3：游戏的仪表盘</h3>
+    <p>按 <kbd>fn</kbd> + <kbd>F3</kbd>，屏幕上会盖满白色的小字。别被吓到，你只要先认识左边这几行：</p>
+  </div>
+  <div class="wide tbl">
+    <table class="t kt">
+      <tr><th>那一行开头</th><th>意思</th><th>有什么用</th></tr>
+      <tr><td><code>XYZ:</code></td><td>你站的精确位置，带小数</td><td>第四十一章讲坐标</td></tr>
+      <tr><td><code>Block:</code></td><td>你脚下那一格方块的坐标，都是整数</td><td>告诉朋友你家在哪儿，用这个</td></tr>
+      <tr><td><code>Chunk:</code></td><td>你在哪个区块里</td><td>区块是 16 × 16 格的方柱</td></tr>
+      <tr><td><code>Facing:</code></td><td>你脸朝哪个方向，比如 <code>north (Towards negative Z)</code>，后面还有两个角度</td><td>north 是北；第四十二、六十四章讲方向和角度</td></tr>
+      <tr><td><code>Biome:</code></td><td>你站的地方是什么群系，比如 <code>minecraft:plains</code>（平原）</td><td>第五十六章有群系的英文</td></tr>
+      <tr><td><code>Light:</code></td><td>这一格有多亮</td><td>第六十八章讲光</td></tr>
+      <tr><td>最上面的 <code>fps</code></td><td>一秒钟画几张画面</td><td>越大越流畅，第二十七章做过实验</td></tr>
+    </table>
+  </div>
+  <div class="col">
+    <p>新版本的 F3 屏幕可以自己挑显示哪几行，名字和位置也可能变动，<b>以社区维基“调试屏幕”条目为准</b>。基岩版和中国版没有这个屏幕，要看坐标，在设置里打开“显示坐标”。</p>
+    <p>F3 还能和别的键一起按（Mac 上都要先按住 fn）：</p>
+  </div>
+  <div class="wide tbl">
+    <table class="t kt">
+      <tr><th>组合</th><th>做什么</th></tr>
+      <tr><td>F3 + G</td><td>显示区块的边界线：地上会出现一圈一圈的线</td></tr>
+      <tr><td>F3 + H</td><td>物品的“高级提示”：鼠标停在物品上，能看到它的英文 ID，比如 <code>minecraft:diamond_sword</code>。<b>学单词的好帮手</b></td></tr>
+      <tr><td>F3 + B</td><td>显示生物的“碰撞箱”：每只动物身上套一个线框</td></tr>
+      <tr><td>F3 + D</td><td>清空聊天框</td></tr>
+      <tr><td>F3 + T</td><td>重新读取资源包</td></tr>
+      <tr><td>F3 + A</td><td>重新加载区块（画面出毛病时试试）</td></tr>
+      <tr><td>F3 + P</td><td>切出去时要不要自动暂停</td></tr>
+      <tr><td>F3 + F4</td><td>游戏模式切换器（要有命令权限）：按住 F3，每点一次 F4 换一个模式</td></tr>
+      <tr><td>F3 + N</td><td>在旁观模式和上一个模式之间切换（要有命令权限）</td></tr>
+      <tr><td>F3 + C</td><td>把你现在的位置复制成一条命令。<b>别按住十秒</b>：那是故意让游戏崩溃的测试开关</td></tr>
+      <tr><td>F3 + Q</td><td>在聊天框里列出所有这些组合</td></tr>
+    </table>
+  </div>
+
+  <div class="task" data-id="t35a">
+    <div class="th"><b>仪表盘四件事</b><span class="xp">★★</span></div>
+    <div class="tb">
+      <ol>
+        <li>按 fn + F3，把 <code>Block:</code> 后面的三个数写在纸上。往前走十步，再看一次，哪个数变了？</li>
+        <li>转身，直到 <code>Facing:</code> 后面写着 <code>north</code>。这就是游戏里的北。</li>
+        <li>按 F3 + G，找到一条区块边界线，站在线上。</li>
+        <li>按 F3 + H，打开物品栏，把鼠标停在三样东西上，抄下它们的英文 ID。</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="fig" id="rxFig">
+    <div class="fig-label">装置 · 第三十五章 · 二</div>
+    <h4>按键反应</h4>
+    <p class="how">点“开始”，屏幕上会出现一件要做的事，你用最快的速度按出对应的键（按游戏的默认键位）。一共十轮，最后算你的平均反应时间。先把输入法切到英文。</p>
+    <div class="btns"><button class="btn pri" id="rxGo">开始</button></div>
+    <div class="punct" id="rxShow" style="text-align:center;font-family:var(--f-display);font-size:28px;min-height:2.2em">准备好了吗？</div>
+    <div class="say" id="rxSay"></div>
+    <div class="bars" id="rxBars"></div>
+  </div>
+
+  <div class="corner" data-k="数">
+    <h5>平均数<span class="gr">学过 · 四年级</span></h5>
+    <p>上面的小游戏算的是<b>平均数</b>：把十次的时间加起来，再除以 10。平均数让你用一个数说清楚“一般来说有多快”。</p>
+    <p>你会发现，第一轮常常最慢（还没进入状态），偶尔有一轮特别慢（看错了）。那一次特别慢的，会把平均数拉高很多。第六十五章会讲另一种“一般来说”：把所有数排好队，取中间那个，叫中位数，它就不怕个别特别慢的。</p>
+  </div>
+
+  <div class="col">
+    <h3>基岩版和中国版</h3>
+    <p>豆子在平板上玩的是基岩版：屏幕上有方向键和按钮，用手指点。基岩版也有电脑版（在 Windows 上），键位和 Java 版大致一样，但没有 F3 调试屏幕，很多细节不同。中国版的电脑版以网易的说明为准。<b>这本书讲的键位，都是 Mac 上的 Java 版。</b></p>
+  </div>
+
+  <div class="err">
+    <h5>出错了怎么办</h5>
+    <dl>
+      <dt>按 F3 变成了调亮度</dt><dd>要按住 fn。或者请大人改“将 F1、F2 等键用作标准功能键”。</dd>
+      <dt>按住 control 跑的时候，点左键变成了右键</dt><dd>有的 Mac 会把“control + 点”当成右键，这个问题有玩家遇到过。可以把疾跑改成别的键，或者在“控制”里把疾跑设成“切换”，或者连按两下 W 跑。</dd>
+      <dt>某个键突然不管用了</dt><dd>去“按键绑定”里看看那一项是不是变红了（和别的键冲突），或者被改掉了。</dd>
+    </dl>
+  </div>
+
+  <div class="pass" data-id="q35">
+    <div class="qq" data-a="1"><p>在 Mac 上打开调试屏幕，要按什么？</p><ol><li>F3</li><li>fn + F3</li><li>⌘ + F3</li></ol><p class="ex">MacBook 最上面一排默认是亮度、音量这些功能，按住 fn 才是 F3（除非大人改过设置）。</p></div>
+    <div class="qq" data-a="2"><p>改键的时候，两个按键变成了红色，说明什么？</p><ol><li>键盘坏了</li><li>这两个键不能改</li><li>两件事用了同一个键，冲突了</li></ol><p class="ex">一个键管两件事，游戏会糊涂。改掉其中一个。</p></div>
+    <div class="qq" data-a="0"><p>想看物品的英文 ID（比如 minecraft:diamond_sword），按哪个组合？</p><ol><li>F3 + H</li><li>F3 + G</li><li>F3 + B</li></ol><p class="ex">H 是高级提示（advanced tooltips）。G 是区块边界，B 是碰撞箱。</p></div>
+    <div class="qq" data-in="sneak"><p>shift 在游戏里是“潜行”，英文是哪个词？</p><p class="ex">sneak，偷偷地走。按住它走到方块边上不会掉下去。</p></div>
+    <div class="qq" data-in="300"><p>五次反应时间分别是 320、280、300、260、340 毫秒，平均是多少毫秒？</p><p class="ex">320 + 280 + 300 + 260 + 340 = 1500，1500 ÷ 5 = 300。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>按键绑定 <span class="en" data-say="key binds">key binds</span></b>哪个键管哪件事的一张表，可以自己改。</div>
+    <div><b>快捷栏 <span class="en" data-say="hotbar">hotbar</span></b>屏幕下面那九格，按 1—9 选。</div>
+    <div><b>调试屏幕 <span class="en" data-say="debug screen">debug screen</span></b>F3 打开的一屏小字。debug 是“找虫子”，就是找毛病。</div>
+    <div><b>冲突 <span class="en" data-say="conflict">conflict</span></b>两件事抢一个键。</div>
+    <div><b>平均数 <span class="en" data-say="average">average</span></b>总数除以个数，说清“一般有多大”。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>默认键位依据 Minecraft 社区维基“控制”条目（Java 版），英文名称取自游戏英文界面，各版本可能有增减。F3 组合键依据维基“调试屏幕”条目；F3 + C 长按 10 秒触发调试崩溃是有意设计。2025 年起的版本对调试屏幕做了可自定义的改动，书中只举最常用的几行。macOS“将 F1、F2 等键用作标准功能键”的位置以所用 macOS 版本为准。“control + 点按被识别为右键”是一些 Mac 玩家报告过的现象，是否出现取决于系统和游戏版本，书中写作“有玩家遇到过”。</p>
+    <p>F3 + H 显示英文 ID 是学单词的好入口：可以和孩子约定每次玩游戏时抄三个新 ID，配合第七部的复习台。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>手指头<small>带走一样</small></i>WASD 走，空格跳，shift 潜行，control 跑，E 物品栏，T 聊天，/ 命令。F 键要按住 fn。改坏了就“重置”。</div>
+    <div><i>脑袋<small>带走一样</small></i>工具的设置可以按自己的习惯改；改之前记住原来是什么样，改坏了知道怎样回去。</div>
+  </div>
+</section>

@@ -1,0 +1,2393 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="我的世界创世记第一部 · 土：一块方块从哪里来。乐高和像素、一个瑞典程序员的一周、第一个夜晚和一头画错的猪、十欧元的测试版、越长越高的世界、二十五亿美元、来到中国、模组和传说。写给四年级左右的玩家，大人也能读。">
+<meta property="og:title" content="一块一块 · 第一部 · 土">
+<meta property="og:description" content="我的世界是怎么来的、红石怎么变成电脑、玩完以后能学到什么。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 3L29 10V24L16 31L3 24V10Z' fill='%238c6239'/%3E%3Cpath d='M16 3L29 10L16 17L3 10Z' fill='%236f9a3a'/%3E%3Cpath d='M3 10L16 17V31L3 24Z' fill='%237a5330'/%3E%3Cpath d='M3 10L16 17L29 10V13L16 20L3 13Z' fill='%235b8430'/%3E%3C/svg%3E">
+<title>一块一块 · 第一部 · 土</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;700&family=Silkscreen&family=ZCOOL+KuaiLe&display=swap">
+<style>
+/* ZCOOL 字体把“回”字画成实心方块：这一个字改用系统宋体/黑体，其余字不变 */
+@font-face{font-family:"Hui Fix";unicode-range:U+56DE;src:local("Songti SC"),local("STSongti-SC-Regular"),local("STSong"),local("SimSun"),local("宋体"),local("Noto Serif CJK SC"),local("NotoSerifCJKsc-Regular"),local("Source Han Serif SC"),local("SourceHanSerifSC-Regular"),local("PingFang SC"),local("PingFangSC-Regular"),local("Microsoft YaHei"),local("Noto Sans CJK SC"),local("NotoSansCJKsc-Regular"),local("Droid Sans Fallback")}
+
+/* 版式：一个存档、一格物品栏。主色是草方块的绿，对色是泥土的棕，红石红只给“电”。
+   每章：章首（物品栏五格：挖 造 电 码 人；年代条 1958—今）→ 存档（小格和舅舅，虚构）→ 正文 → 真事框 → 试一试（游戏里 / 游戏外）→ 被拿掉的 → 传言查一查 → 眉批 → 装置 → 这一章的新词 → 给大人（可折叠）→ 两样带走（游戏里 / 游戏外）。 */
+:root{
+  --paper:#ebe4cf; --paper-2:#e0d8bf; --card:#f2ebd9;
+  --ink:#1d1c19; --ink-2:#47443d; --ink-3:#5b574e; --rule:#cbbfa3;
+  --main:#3b6622;   /* 草 */
+  --ter:#7a4a22;    /* 土 */
+  --zhu:#a3261c;    /* 红石 */
+  --dia:#1b6766;    /* 钻石 */
+  --stone:#6a675f;
+  --gold:#7f6200;
+  --kraft:#7d5a2a;
+  --och:#7a5510;
+  --red:#a3261c;
+  --blu:#2a4f78;
+  --grn:#2f6a48;
+  --pur:#5d2f63;
+  --sky:#b9cfd6; --grass:#6f9a3a; --grass-2:#5b8430; --dirt:#8c6239; --dirt-2:#7a5330; --stn:#8f8b83; --stn-2:#7b7770; --wood:#9c7445; --wood-2:#7d5b33; --leaf:#4f7a2e; --sand:#d8c58f; --water:#4f7fa8; --rs:#c0362a;
+  --hl:color-mix(in srgb,#9cc25a 36%,transparent);
+  --f-display:"Hui Fix","ZCOOL KuaiLe","PingFang SC","Noto Sans SC",sans-serif;
+  --f-body:"Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --f-hand:"Ma Shan Zheng","Kaiti SC","STKaiti","KaiTi",cursive;
+  --f-sans:"Noto Sans SC","PingFang SC","Hiragino Sans GB",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --f-pix:"Silkscreen","IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#141513; --paper-2:#1c1e1a; --card:#21231f; --ink:#e9e6d8; --ink-2:#b7b3a3; --ink-3:#979383; --rule:#383a33;
+  --main:#9ccf74; --ter:#d6a06a; --zhu:#ef7a6a; --dia:#7fd0cc; --stone:#aaa69c; --gold:#e0c25e; --kraft:#d1a66a; --och:#d9b45e; --red:#ef7a6a; --blu:#9cc0e6; --grn:#8fc2a0; --pur:#c9a0cf;
+  --sky:#22333b; --grass:#5b8430; --grass-2:#4c7028; --dirt:#6e4c2c; --dirt-2:#5e4026; --stn:#6d6a63; --stn-2:#5c5a54; --wood:#7d5b33; --wood-2:#624626; --leaf:#3d6024; --sand:#a8996c; --water:#3a6488; --rs:#e0574a;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#141513; --paper-2:#1c1e1a; --card:#21231f; --ink:#e9e6d8; --ink-2:#b7b3a3; --ink-3:#979383; --rule:#383a33;
+  --main:#9ccf74; --ter:#d6a06a; --zhu:#ef7a6a; --dia:#7fd0cc; --stone:#aaa69c; --gold:#e0c25e; --kraft:#d1a66a; --och:#d9b45e; --red:#ef7a6a; --blu:#9cc0e6; --grn:#8fc2a0; --pur:#c9a0cf;
+  --sky:#22333b; --grass:#5b8430; --grass-2:#4c7028; --dirt:#6e4c2c; --dirt-2:#5e4026; --stn:#6d6a63; --stn-2:#5c5a54; --wood:#7d5b33; --wood-2:#624626; --leaf:#3d6024; --sand:#a8996c; --water:#3a6488; --rs:#e0574a;
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+.g{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit;text-decoration-color:var(--main);text-underline-offset:3px}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--main);outline-offset:2px}
+svg{max-width:100%;height:auto;display:block}
+
+/* 页眉 */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+.bar-in{max-width:56rem;margin:0 auto;display:flex;align-items:center;gap:10px;padding-block:8px}
+.bar .home{text-decoration:none;font-size:13px;color:var(--ink-3);white-space:nowrap;border:1px solid var(--rule);border-radius:999px;padding:1px 9px}
+.bar .name{font-family:var(--f-display);font-size:19px;letter-spacing:.05em;white-space:nowrap;text-decoration:none}
+.bar .parts{display:flex;gap:2px}
+.bar .parts a{font-size:12.5px;text-decoration:none;color:var(--ink-3);padding:0 6px;border-radius:4px;white-space:nowrap}
+.bar .parts a.on{background:var(--main);color:var(--paper)}
+.bar .vol{margin-left:auto;font-size:13px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.bar .tocbtn{border:1px solid var(--rule);background:transparent;border-radius:6px;padding:0 8px;font-size:13px;cursor:pointer;color:var(--ink-2);white-space:nowrap}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;background:var(--main);width:0}
+.drawer{position:fixed;inset:0;z-index:40;display:none}
+.drawer.on{display:block}
+.drawer .mask{position:absolute;inset:0;background:rgba(0,0,0,.35)}
+.drawer .panel{position:absolute;right:0;top:0;bottom:0;width:min(370px,90vw);background:var(--paper);border-left:1px solid var(--rule);overflow:auto;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px))}
+.drawer h5{font-family:var(--f-display);font-weight:400;font-size:20px;margin:0 0 10px}
+.drawer ol{list-style:none;margin:0;padding:0}
+.drawer li.ph{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.16em;color:var(--main);padding:14px 0 2px}
+.drawer li.vh{font-size:12px;color:var(--ink-3);padding:8px 0 0;letter-spacing:.1em}
+.drawer li a{display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--rule);text-decoration:none;font-size:15px;line-height:1.5}
+.drawer li a .n{font-family:var(--f-display);font-size:18px;color:var(--main);min-width:1.6em;text-align:center}
+.drawer li a small{display:block;color:var(--ink-3);font-size:12px}
+.drawer li a.here .n{background:var(--main);color:var(--paper);border-radius:4px}
+.drawer .x{position:absolute;right:12px;top:10px;border:0;background:transparent;font-size:22px;cursor:pointer;color:var(--ink-2)}
+
+main{display:block}
+.col{max-width:38rem;margin-inline:auto}
+.wide{max-width:54rem;margin-inline:auto}
+.col p{margin:0 0 1.05em;text-indent:2em}
+.col p.ni,.col .ni{text-indent:0}
+h2,h3,h4{text-wrap:balance}
+h3{font-family:var(--f-display);font-weight:400;font-size:24px;line-height:1.4;margin:2.2em 0 .7em;letter-spacing:.03em}
+h3 .y{font-family:var(--f-mono);font-size:13px;color:var(--ink-3);margin-left:10px;letter-spacing:0;white-space:nowrap}
+em{font-style:normal;background:linear-gradient(transparent 62%,var(--hl) 62%)}
+strong{font-weight:600}
+blockquote{margin:1.4em 0;padding:.2em 0 .2em 1.2em;border-left:2px solid var(--och);color:var(--ink-2)}
+blockquote p{text-indent:0!important;margin:0 0 .4em}
+blockquote cite{font-style:normal;font-size:14px;color:var(--ink-3)}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.figcap{font-size:14px;color:var(--ink-2);line-height:1.7;margin-top:8px}
+.sep{text-align:center;color:var(--och);letter-spacing:1.2em;margin:2em 0;text-indent:1.2em!important;font-size:14px}
+ul.plain{font-size:16px;line-height:1.9;padding-left:1.4em}
+ul.plain li{margin:0 0 .35em}
+
+/* 封面 */
+.hero{padding-block:36px 20px}
+.hero .eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;color:var(--ink-3)}
+.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(60px,14vw,124px);line-height:1;margin:.25em 0 .2em;letter-spacing:.1em}
+.hero h1 .sm{display:block;font-size:.19em;letter-spacing:.3em;color:var(--ink-2);margin-top:.6em}
+.hero .part{display:inline-block;font-family:var(--f-display);font-size:22px;color:var(--main);border:1.5px solid var(--main);border-radius:4px;padding:0 10px;margin-bottom:6px;letter-spacing:.1em}
+.hero p.lead{font-size:18px;max-width:36em;margin:0 0 1em}
+.partnav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:24px 0}
+.partnav a{display:block;text-decoration:none;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;background:var(--card);line-height:1.5}
+.partnav a b{display:block;font-family:var(--f-display);font-weight:400;font-size:20px}
+.partnav a small{font-size:12.5px;color:var(--ink-3)}
+.partnav a.on{border-color:var(--main);box-shadow:inset 0 0 0 1px var(--main)}
+.partnav a .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;color:var(--main)}
+
+/* 六张脸 */
+.cast{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin:14px 0}
+.cast figure{margin:0;text-align:center;background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:6px 4px 8px}
+.cast svg{width:100%;max-width:120px;margin:auto;color:var(--c-ink)}
+.cast b{display:block;font-family:var(--f-display);font-weight:400;font-size:19px;line-height:1.2}
+.cast small{display:block;font-size:12px;color:var(--ink-3);line-height:1.4}
+.eras{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 2px}
+
+/* 目录 */
+.toc{list-style:none;margin:20px 0 0;padding:0;border-top:1px solid var(--rule)}
+.toc li a{display:grid;grid-template-columns:2.6em minmax(0,1fr) auto;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--rule);text-decoration:none}
+.toc .n{font-family:var(--f-display);font-size:28px;line-height:1;color:var(--main);text-align:center}
+.toc .t{font-family:var(--f-display);font-size:21px;line-height:1.3}
+.toc .t small{display:block;font-family:var(--f-body);font-size:13px;color:var(--ink-3);margin-top:2px}
+.toc .r{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);text-align:right;white-space:nowrap}
+.toc li a:hover .t{color:var(--main)}
+.toc .vh{padding:16px 0 4px;font-family:var(--f-mono);font-size:12px;letter-spacing:.16em;color:var(--ink-3);border-bottom:1px solid var(--rule)}
+.toc li.away a{opacity:.82}
+.toc li.away .r::after{content:" ↗";color:var(--main)}
+.qmap{list-style:none;margin:0;padding:0;columns:2 17em;column-gap:28px}
+.qmap li{break-inside:avoid;margin:0 0 .5em;font-size:15.5px;line-height:1.65}
+.qmap a{text-decoration:none;border-bottom:1px dashed var(--ink-3)}
+.qmap a:hover{color:var(--main)}
+.qmap b{font-family:var(--f-display);font-weight:400;color:var(--main);margin-left:4px}
+
+/* 卷首 */
+.volhead{position:relative;max-width:54rem;margin:64px auto 20px;padding:30px 22px 24px;border-top:3px double var(--ink);border-bottom:3px double var(--ink);overflow:hidden}
+.volhead .num{font-family:var(--f-mono);font-size:12px;letter-spacing:.24em;color:var(--main)}
+.volhead h2{font-family:var(--f-display);font-weight:400;font-size:clamp(64px,16vw,124px);line-height:1;margin:.1em 0 .12em;letter-spacing:.1em}
+.volhead h2 small{font-size:.24em;letter-spacing:.2em;color:var(--ink-2);margin-left:.4em}
+.volhead .lede{max-width:32em;margin:6px 0 0;font-size:16px;color:var(--ink-2);line-height:1.8}
+.volhead .pyr{position:absolute;right:-10px;bottom:-4px;width:190px;opacity:.9;pointer-events:none}
+
+/* 章首 */
+section.chap{padding-top:24px}
+.chead{position:relative;max-width:54rem;margin:46px auto 26px;padding:20px 22px 18px;display:grid;grid-template-columns:96px minmax(0,1fr);gap:20px;align-items:start;background:var(--paper-2);border-radius:10px;border:1px solid var(--rule)}
+.chead .big{font-family:var(--f-display);font-size:84px;line-height:1;color:var(--main);text-align:center;border:2px solid var(--main);border-radius:8px;padding:4px 0 8px;background:var(--card)}
+.chead .no{font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;color:var(--main)}
+.chead h2{font-family:var(--f-display);font-weight:400;font-size:clamp(32px,7vw,50px);line-height:1.15;margin:.08em 0 .2em;letter-spacing:.06em}
+.chead dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 14px;margin:6px 0 0;font-size:14.5px;line-height:1.7}
+.chead dt{color:var(--ink-3);white-space:nowrap}
+.chead dd{margin:0;color:var(--ink-2)}
+.where{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.where span{font-size:12px;line-height:1.6;border:1px solid var(--rule);border-radius:4px;padding:0 6px;color:var(--ink-3);background:var(--paper)}
+.where span.on{border-color:var(--main);color:var(--main);background:color-mix(in srgb,var(--main) 8%,var(--paper));font-weight:600}
+
+/* 你问的 */
+.ask{margin:1.6em 0;padding:12px 16px 4px;border-radius:8px;background:var(--card);border:1px solid var(--rule)}
+.ask .q{font-family:var(--f-display);font-size:19px;line-height:1.5;margin:0 0 .4em;text-indent:0!important}
+.ask .q::before{content:"有人问";font-family:var(--f-sans);font-size:11.5px;letter-spacing:.14em;color:var(--paper);background:var(--main);border-radius:3px;padding:1px 6px;margin-right:8px;vertical-align:3px}
+.ask p{text-indent:0!important;font-size:15.5px;line-height:1.8;margin:0 0 .7em;color:var(--ink-2)}
+
+/* 河湾：虚构的小地方 */
+.river{margin:1.8em 0 2em;padding:16px 18px 6px;border:1.5px dashed var(--och);border-radius:10px;position:relative;background:color-mix(in srgb,var(--och) 4%,var(--paper))}
+.river::before{content:attr(data-t);position:absolute;top:-12px;left:14px;background:var(--paper);padding:0 8px;font-size:13px;letter-spacing:.12em;color:var(--och);font-weight:600}
+.river::after{content:"虚构";position:absolute;top:-10px;right:14px;background:var(--paper);padding:0 6px;font-size:11px;letter-spacing:.2em;color:var(--ink-3);border:1px solid var(--rule);border-radius:3px;line-height:1.5}
+.river p{text-indent:0!important;font-size:16px;line-height:1.85}
+.river .nm{font-weight:600;color:var(--och)}
+
+/* 别处：同一件事在地球的不同地方 */
+.globe{margin:2em auto;max-width:54rem}
+.globe .gh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;border-bottom:1.5px solid var(--ink);padding-bottom:4px;margin-bottom:10px}
+.globe .gh b{font-family:var(--f-display);font-weight:400;font-size:22px;letter-spacing:.06em}
+.globe .gh span{font-size:13px;color:var(--ink-3)}
+.globe .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(15.5em,1fr));gap:10px}
+.rg{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:10px 13px 8px;font-size:15px;line-height:1.75}
+.rg h6{margin:0 0 4px;font-family:var(--f-display);font-weight:400;font-size:18px;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.rg h6 small{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);white-space:nowrap}
+.rg p{margin:0 0 .5em;text-indent:0!important}
+
+/* 告示 · 白话：讽刺栏 */
+.spin{margin:2em 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:1.5px solid var(--ink);border-radius:6px;overflow:hidden;background:var(--card)}
+.spin>div{padding:12px 16px 10px;font-size:15.5px;line-height:1.8}
+.spin>div p{text-indent:0!important;margin:0 0 .5em}
+.spin .off{font-family:var(--f-display);font-size:17px;letter-spacing:.04em;background:color-mix(in srgb,var(--main) 6%,var(--card))}
+.spin .plain{border-left:1.5px solid var(--ink)}
+.spin i{display:block;font-style:normal;font-family:var(--f-sans);font-size:11.5px;letter-spacing:.2em;color:var(--main);margin-bottom:4px}
+.spin .plain i{color:var(--grn)}
+.spin .src{grid-column:1 / -1;border-top:1px dashed var(--rule);font-size:12.5px;color:var(--ink-3);padding:4px 16px 6px}
+
+/* 那时的一天 */
+.life{margin:2em 0;padding:14px 16px 6px;border-radius:8px;border-left:4px solid var(--grn);background:color-mix(in srgb,var(--grn) 6%,var(--card))}
+.life h5{margin:0 0 .3em;font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--grn)}
+.life h5 small{font-family:var(--f-mono);font-size:12px;color:var(--ink-3);margin-left:8px}
+.life p{text-indent:0!important;font-size:15.5px;line-height:1.8;margin:0 0 .7em}
+
+/* 蓝框 */
+.box{margin:2em 0;padding:16px 18px 8px;border-radius:8px;border:1.5px solid var(--blu);background:color-mix(in srgb,var(--blu) 6%,var(--paper))}
+.box h5{margin:.1em 0 .5em;font-family:var(--f-display);font-weight:400;font-size:21px;color:var(--blu);letter-spacing:.04em}
+.box p{text-indent:0!important;margin:0 0 .8em;font-size:16px;line-height:1.85}
+.box ul,.box ol{margin:0 0 .8em;padding-left:1.2em;font-size:16px;line-height:1.85}
+.box li{margin:0 0 .3em}
+
+/* 眉批 */
+.echo{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;margin:1.6em 0;padding:14px 14px 10px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.echo .stamp{writing-mode:vertical-rl;font-family:var(--f-display);font-size:15px;color:var(--red);border:1.5px solid var(--red);border-radius:3px;padding:6px 2px;letter-spacing:.2em;align-self:start}
+.echo[data-k="存疑"] .stamp{color:var(--ink-3);border-color:var(--ink-3)}
+.echo[data-k="联系"] .stamp{color:var(--och);border-color:var(--och)}
+.echo[data-k="生活"] .stamp{color:var(--grn);border-color:var(--grn)}
+.echo[data-k="押韵"] .stamp{color:var(--blu);border-color:var(--blu)}
+.echo[data-k="讽刺"] .stamp{color:var(--main);border-color:var(--main)}
+.echo p{text-indent:0!important;margin:0 0 .5em;font-size:15.5px;line-height:1.8}
+.echo .rh{font-family:var(--f-display);font-size:18px;margin-bottom:.2em}
+
+/* 章末：史 / 世 */
+.seal{margin:2.6em 0 1em;border:1.5px solid var(--ink);border-radius:6px;background:var(--card);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);overflow:hidden}
+.seal>div{padding:12px 16px 14px;font-size:15.5px;line-height:1.75}
+.seal>div+div{border-left:1.5px solid var(--ink)}
+.seal i{display:block;font-style:normal;font-family:var(--f-display);font-size:22px;letter-spacing:.2em;margin-bottom:2px;color:var(--main)}
+.seal>div+div i{color:var(--grn)}
+.seal i small{font-family:var(--f-body);font-size:12px;letter-spacing:.1em;color:var(--ink-3);margin-left:6px}
+
+/* 装置 */
+.fig{margin:2.2em auto;padding:20px 18px;background:var(--card);border:1px solid var(--rule);border-radius:6px}
+.fig-label{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.12em;color:var(--main)}
+.fig h4{font-family:var(--f-display);font-weight:400;font-size:22px;margin:.25em 0 .35em}
+.fig .how{font-size:14.5px;color:var(--ink-2);margin:0 0 14px;line-height:1.75}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.btn{border:1px solid var(--ink-3);background:transparent;border-radius:999px;padding:4px 14px;font-size:14px;cursor:pointer;line-height:1.6;color:var(--ink)}
+.btn:hover{border-color:var(--ink)}
+.btn.pri{background:var(--main);color:var(--paper);border-color:var(--main)}
+.btn.on{background:var(--main);border-color:var(--main);color:var(--paper)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.readout{font-size:14.5px;color:var(--ink-2);line-height:1.75;min-height:1.5em}
+.readout b{color:var(--ink)}
+.say{background:var(--paper);border-left:3px solid var(--och);padding:8px 12px;margin:10px 0;font-size:15px;line-height:1.75;min-height:3.2em}
+.say.ok{border-left-color:var(--grn)}.say.bad{border-left-color:var(--red)}
+input[type=range]{width:100%;accent-color:var(--main)}
+.ctl{display:grid;grid-template-columns:7em minmax(0,1fr) 6.5em;gap:10px;align-items:center;font-size:14px;color:var(--ink-2);margin:4px 0}
+.ctl output{font-family:var(--f-mono);font-size:13px;color:var(--ink);text-align:right;white-space:nowrap}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(9em,1fr));gap:8px;margin:10px 0}
+.kv div{background:var(--paper);border-radius:6px;padding:6px 10px;font-size:12.5px;color:var(--ink-3);line-height:1.5}
+.kv b{display:block;font-family:var(--f-mono);font-weight:500;font-size:18px;color:var(--ink)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:center}
+.lab{font-size:12.5px;color:var(--ink-3);letter-spacing:.08em;margin:8px 0 4px}
+.chip{display:inline-block;font-size:12px;border:1px solid var(--rule);border-radius:4px;padding:0 6px;color:var(--ink-3);margin:0 4px 4px 0}
+.fig text{font-family:var(--f-sans)}
+.fig .mono{font-family:var(--f-mono)}
+select{border:1px solid var(--ink-3);border-radius:6px;background:var(--paper);padding:2px 6px;font-size:14px}
+label.ck{display:inline-flex;gap:6px;align-items:center;font-size:14px;color:var(--ink-2);margin:2px 12px 2px 0;cursor:pointer}
+label.ck input{accent-color:var(--main)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--ink-2);margin:6px 0}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:0}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(14em,1fr));gap:8px;margin:10px 0}
+.cards .cd{background:var(--paper);border-radius:6px;padding:8px 11px;font-size:14px;line-height:1.65;border:1px solid transparent}
+.cards .cd b{display:block;font-family:var(--f-display);font-weight:400;font-size:17px}
+.cards .cd small{color:var(--ink-3)}
+.cards .cd.on{border-color:var(--main)}
+
+/* 漫画 */
+.comic{max-width:54rem;margin:2em auto;padding:14px;background:var(--c-paper);border:2px solid var(--c-ink);color:var(--c-ink)}
+.comic .ctitle{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px 12px;border-bottom:2px solid var(--c-ink);padding-bottom:6px;margin-bottom:12px}
+.comic .ctitle b{font-family:var(--f-display);font-weight:400;font-size:26px;letter-spacing:.12em}
+.comic .ctitle span{font-family:var(--f-sans);font-size:12px;letter-spacing:.1em}
+.comic .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.pn{position:relative;border:2.5px solid var(--c-ink);background:var(--c-paper);overflow:hidden;container-type:inline-size;aspect-ratio:300/230}
+.pn.w{grid-column:span 2;aspect-ratio:600/250}
+.pn svg{position:absolute;inset:0;width:100%;height:100%;max-width:none;color:var(--c-ink)}
+.pn .cap{position:absolute;left:0;top:0;max-width:62%;background:var(--c-paper);border-right:2px solid var(--c-ink);border-bottom:2px solid var(--c-ink);font-family:var(--f-sans);font-weight:500;font-size:clamp(10.5px,4.1cqw,15px);line-height:1.45;padding:4px 8px;z-index:2}
+.pn .cap.br{left:auto;top:auto;right:0;bottom:0;border:0;border-left:2px solid var(--c-ink);border-top:2px solid var(--c-ink)}
+.pn .bb{position:absolute;z-index:3;background:var(--c-paper);border:2px solid var(--c-ink);border-radius:50%/42%;padding:.5em .85em;font-family:var(--f-sans);font-weight:500;font-size:clamp(10.5px,4.2cqw,16px);line-height:1.45;text-align:center;color:var(--c-ink)}
+.pn.w .bb{font-size:clamp(10.5px,2.5cqw,16px)}
+.pn.w .cap{font-size:clamp(10.5px,2.4cqw,15px)}
+.pn .bb::after{content:"";position:absolute;width:14px;height:14px;background:var(--c-paper);border-right:2px solid var(--c-ink);border-bottom:2px solid var(--c-ink);bottom:-8px;left:30%;transform:skewX(30deg) rotate(45deg)}
+.pn .bb.tr::after{left:auto;right:28%;transform:skewX(-30deg) rotate(45deg)}
+.pn .bb.nt::after{display:none}
+.pn .bb.shout{border-radius:6px;border-width:2.5px;font-weight:700}
+.pn .bb.think{border-style:dashed}
+.pn .sfx{position:absolute;z-index:2;font-family:var(--f-sans);font-weight:700;font-size:clamp(14px,7cqw,30px);color:var(--c-ink);transform:rotate(-8deg);letter-spacing:.05em;text-shadow:2px 2px 0 var(--c-paper),-2px -2px 0 var(--c-paper),2px -2px 0 var(--c-paper),-2px 2px 0 var(--c-paper)}
+.comic .after{font-family:var(--f-sans);font-size:13px;margin:10px 0 0;opacity:.8;line-height:1.7}
+
+/* 表 */
+table.t{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.6;min-width:520px}
+table.t th,table.t td{border-bottom:1px solid var(--rule);padding:7px 8px;text-align:left;vertical-align:top}
+table.t th{font-weight:400;color:var(--ink-3);font-size:13px}
+.src{font-size:14.5px;line-height:1.8;color:var(--ink-2)}
+.src li{margin:0 0 .5em}
+
+/* 本部完 */
+.partend{max-width:38rem;margin:70px auto 0;text-align:center}
+.partend .k{font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;color:var(--main)}
+.partend h3{margin:.3em 0 .6em}
+.partend a.go{display:inline-block;margin-top:8px;padding:8px 18px;border:1.5px solid var(--main);border-radius:999px;text-decoration:none;color:var(--main);font-family:var(--f-display);font-size:19px}
+footer{max-width:38rem;margin:60px auto 0;padding:24px 0 calc(40px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--rule);font-size:14px;color:var(--ink-3);line-height:1.8}
+footer p{text-indent:0!important}
+.nextbook{display:block;margin:20px 0;padding:14px 16px;border:1px solid var(--rule);border-radius:6px;text-decoration:none;background:var(--card)}
+.nextbook b{font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--ink)}
+
+@media print{.bar,.drawer,footer,.fig:not(.printme){display:none}}
+
+@media (max-width:700px){
+  body{font-size:16.5px}
+  .two,.spin,.myth{grid-template-columns:minmax(0,1fr)}
+  .spin .plain{border-left:0;border-top:1.5px solid var(--ink)}
+  .myth .chk{border-left:0;border-top:1.5px solid var(--ink-3)}
+  .seal{grid-template-columns:minmax(0,1fr)}
+  .seal>div+div{border-left:0;border-top:1.5px solid var(--ink)}
+  .toc li a,.toc li.soon>div{grid-template-columns:2.2em minmax(0,1fr)}
+  .toc .r{grid-column:2;text-align:left}
+  .bar .vol{display:none}
+  .bar .parts a{padding:0 4px}
+  .chead{grid-template-columns:58px minmax(0,1fr);gap:14px;padding:16px 14px}
+  .chead .big{font-size:46px;padding:2px 0 6px}
+  .ctl{grid-template-columns:5.5em minmax(0,1fr)}
+  .ctl output{grid-column:1 / -1;text-align:left;margin-top:-6px}
+  .partnav{grid-template-columns:minmax(0,1fr)}
+  .bars .row{grid-template-columns:5.6em minmax(0,1fr) 3.6em;gap:6px}
+  .volhead .ledg{width:80px;height:60px;opacity:.4}
+  .page{padding-left:44px}.page::before{left:32px}.page dd{font-size:18px}
+  .weeks{gap:1px}
+  .yrs span{font-size:8.5px}
+}
+@media (max-width:480px){.bar .name{font-size:17px}}
+.toc li.soon .t,.toc li.soon .n{opacity:.55}
+.toc li.soon>div{display:grid;grid-template-columns:2.6em minmax(0,1fr) auto;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--rule)}
+.toc li.soon .r::after{content:" · 写作中";color:var(--main)}
+@media (max-width:700px){.partnav{grid-template-columns:minmax(0,1fr)}.toc li.soon>div{grid-template-columns:2.2em minmax(0,1fr)}}
+
+/* ============ 《一块一块》新增 ============ */
+body{font-size:18px;line-height:1.95}
+.col p{text-indent:0;margin:0 0 1.1em}
+h3{font-size:26px}
+.hero h1{letter-spacing:.06em}
+.hero h1 .sm{letter-spacing:.2em}
+.pix{font-family:var(--f-pix);letter-spacing:.04em}
+/* 章首的大字：做成一块草方块 */
+.chead .big{position:relative;color:var(--ink);background:var(--dirt);border:0;border-radius:2px;box-shadow:inset 0 -6px 0 var(--dirt-2),inset 0 18px 0 var(--grass),inset 0 22px 0 var(--grass-2);padding:20px 0 8px;color:#f6efdc;text-shadow:2px 2px 0 rgba(0,0,0,.35)}
+/* 物品栏：五格 */
+.inv{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px}
+.inv span{display:inline-flex;align-items:center;gap:4px;font-size:12.5px;line-height:1.5;padding:2px 7px 2px 3px;border:2px solid var(--rule);background:var(--paper);color:var(--ink-3);border-radius:2px}
+.inv span b{display:inline-block;width:20px;height:20px;line-height:20px;text-align:center;font-family:var(--f-display);font-weight:400;font-size:14px;background:var(--paper-2);border-radius:1px}
+.inv span.on{border-color:var(--main);color:var(--ink);font-weight:700}
+.inv span.on b{background:var(--main);color:var(--paper)}
+.yrs{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));gap:2px;margin-top:10px}
+.yrs span{font-family:var(--f-mono);font-size:10px;line-height:16px;text-align:center;color:var(--ink-3);background:var(--paper);border-radius:1px}
+.yrs span.on{background:var(--ter);color:var(--paper)}
+
+/* 存档：小格和舅舅（虚构） */
+.save{margin:1.8em 0 2em;background:var(--paper-2);border:3px solid var(--ink-2);box-shadow:4px 4px 0 var(--rule);border-radius:2px;max-width:38rem}
+.save .hd{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;padding:7px 12px;background:var(--ink-2);color:var(--paper);font-size:13px}
+.save .hd b{font-family:var(--f-display);font-weight:400;font-size:17px;letter-spacing:.04em}
+.save .hd .pix{font-size:11px;opacity:.9}
+.save .hd::after{content:"虚构";margin-left:auto;font-size:11px;letter-spacing:.2em;border:1px solid currentColor;border-radius:2px;padding:0 5px;line-height:1.5}
+.save .bd{padding:12px 14px 6px}
+.save .l{display:grid;grid-template-columns:30px minmax(0,1fr);gap:9px;margin:0 0 9px;font-size:16px;line-height:1.75;align-items:start}
+.save .l i{font-style:normal;display:block;width:28px;height:28px;line-height:28px;text-align:center;font-family:var(--f-display);font-size:15px;color:#f6efdc;border-radius:2px;box-shadow:inset 0 -3px 0 rgba(0,0,0,.22)}
+.save .l i.g{background:#3b6622}.save .l i.j{background:#2a4f78}.save .l i.m{background:#8a3b4e}.save .l i.d{background:#7a4a22}.save .l i.n{background:#5b574e}
+.save .l.act{display:block;padding-left:39px;font-size:14.5px;color:var(--ink-3)}
+.save .ft{border-top:2px dashed var(--rule);padding:6px 14px 8px;font-size:13px;color:var(--ink-3);line-height:1.7}
+
+/* 真事框 */
+.real{margin:1.8em 0;padding:14px 16px 6px;border:2px solid var(--dia);border-radius:3px;background:color-mix(in srgb,var(--dia) 6%,var(--paper))}
+.real h5{margin:0 0 .4em;font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--dia)}
+.real h5::before{content:"真事";font-family:var(--f-sans);font-size:11.5px;letter-spacing:.14em;color:var(--paper);background:var(--dia);border-radius:2px;padding:1px 6px;margin-right:8px;vertical-align:3px}
+.real p,.real li{font-size:16px;line-height:1.85}
+.real p{margin:0 0 .8em}
+.real ul{margin:0 0 .8em;padding-left:1.2em}
+
+/* 试一试：游戏里 / 游戏外 */
+.try{margin:2em 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:2px solid var(--main);border-radius:3px;overflow:hidden;background:var(--card)}
+.try>div{padding:12px 16px 8px;font-size:15.5px;line-height:1.8}
+.try>div+div{border-left:2px solid var(--main)}
+.try i{display:block;font-style:normal;font-family:var(--f-display);font-size:19px;color:var(--main);margin-bottom:2px}
+.try>div+div i{color:var(--ter)}
+.try ol,.try ul{margin:0 0 .4em;padding-left:1.2em}
+.try li{margin:0 0 .3em}
+.try .h{grid-column:1 / -1;background:var(--main);color:var(--paper);font-family:var(--f-display);font-size:18px;padding:5px 16px;border:0}
+
+/* 被拿掉的 */
+.gone{margin:2em 0;padding:12px 16px 6px;border:2px dashed var(--stone);border-radius:3px;background:color-mix(in srgb,var(--stone) 6%,var(--paper))}
+.gone h5{margin:0 0 .3em;font-family:var(--f-display);font-weight:400;font-size:19px;color:var(--ink-2)}
+.gone h5::before{content:"被拿掉的";font-family:var(--f-sans);font-size:11px;letter-spacing:.14em;color:var(--paper);background:var(--stone);border-radius:2px;padding:1px 6px;margin-right:8px;vertical-align:3px}
+.gone h5 s{text-decoration-thickness:2px;text-decoration-color:var(--zhu)}
+.gone p{font-size:15.5px;line-height:1.8;margin:0 0 .7em}
+
+/* 传言查一查 */
+.myth{margin:2em 0;border:2px solid var(--ink-3);border-radius:3px;overflow:hidden;background:var(--card)}
+.myth .tag{display:flex;gap:10px;align-items:center;border-bottom:2px dashed var(--rule);font-family:var(--f-display);font-size:19px;padding:7px 16px 5px;line-height:1.4}
+.myth .tag::before{content:"传言";font-family:var(--f-sans);font-size:11px;letter-spacing:.16em;color:var(--paper);background:var(--ink-3);border-radius:2px;padding:0 6px;flex:none}
+.myth .vd{margin-left:auto;flex:none;font-family:var(--f-display);font-size:16px;border:2px solid currentColor;border-radius:3px;padding:0 8px;transform:rotate(-6deg)}
+.vd[data-v="真"]{color:var(--main)}.vd[data-v="假"]{color:var(--zhu)}.vd[data-v="存疑"]{color:var(--ink-3)}.vd[data-v="半真"]{color:var(--gold)}
+.myth .bd{padding:10px 16px 6px;font-size:15.5px;line-height:1.8}
+.myth .bd p{margin:0 0 .6em}
+
+/* 这一章的新词 */
+.words{margin:1.6em 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(13em,1fr));gap:8px}
+.words div{background:var(--card);border:2px solid var(--rule);border-radius:3px;padding:7px 11px;font-size:14.5px;line-height:1.65;color:var(--ink-2)}
+.words b{display:block;font-family:var(--f-display);font-weight:400;font-size:18px;color:var(--ter)}
+.words-h{font-family:var(--f-display);font-size:19px;margin:2em 0 .2em;color:var(--ter)}
+
+/* 给大人：折叠 */
+details.adult{margin:1.6em 0;border-left:4px solid var(--kraft);background:color-mix(in srgb,var(--kraft) 5%,var(--paper));padding:6px 14px;border-radius:0 3px 3px 0}
+details.adult summary{cursor:pointer;font-size:14.5px;color:var(--kraft);font-weight:700;list-style:none}
+details.adult summary::-webkit-details-marker{display:none}
+details.adult summary::before{content:"▸ ";}
+details.adult[open] summary::before{content:"▾ ";}
+details.adult p,details.adult li{font-size:14.5px;line-height:1.8;color:var(--ink-2)}
+details.adult p{margin:.5em 0}
+details.adult ul{padding-left:1.2em;margin:.4em 0}
+
+/* 两样带走 */
+.seal{border:3px solid var(--ink-2);border-radius:2px;box-shadow:4px 4px 0 var(--rule)}
+.seal>div+div{border-left:3px solid var(--ink-2)}
+.seal>div+div i{color:var(--ter)}
+
+/* 封面：放一块 */
+.bld{display:grid;grid-template-columns:minmax(0,1fr) 13em;gap:16px;align-items:start}
+.bld svg{width:100%;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.bld svg .cell{cursor:pointer}
+.bld svg .cell:hover{opacity:.75}
+.palette{display:flex;flex-wrap:wrap;gap:6px}
+.palette button{display:flex;align-items:center;gap:6px;border:2px solid var(--rule);background:var(--paper);border-radius:3px;padding:3px 8px 3px 4px;font-size:14px;cursor:pointer}
+.palette button.on{border-color:var(--ink);font-weight:700}
+.palette button svg{width:26px;height:26px}
+.kidmap{display:grid;grid-template-columns:repeat(auto-fill,minmax(15em,1fr));gap:10px;margin:12px 0}
+.kidmap a{display:block;text-decoration:none;background:var(--card);border:2px solid var(--rule);border-radius:3px;padding:10px 12px;line-height:1.65;font-size:14.5px;color:var(--ink-2)}
+.kidmap a:hover{border-color:var(--main)}
+.kidmap a b{display:block;font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--ink)}
+.kidmap a .ch{display:block;margin-top:4px;font-size:13px;color:var(--main)}
+.kidmap a .ch.soon{color:var(--ink-3)}
+.cast3{display:grid;grid-template-columns:repeat(auto-fit,minmax(15em,1fr));gap:10px;margin:12px 0}
+.cast3>div{display:grid;grid-template-columns:44px minmax(0,1fr);gap:10px;background:var(--card);border:2px solid var(--rule);border-radius:3px;padding:10px 12px;align-items:start}
+.cast3 .av{width:44px;height:44px;line-height:44px;text-align:center;font-family:var(--f-display);font-size:22px;color:#f6efdc;border-radius:2px;box-shadow:inset 0 -4px 0 rgba(0,0,0,.22)}
+.cast3 b{display:block;font-family:var(--f-display);font-weight:400;font-size:19px}
+.cast3 small{display:block;font-size:13px;color:var(--ink-3);line-height:1.6}
+.disc{font-size:13.5px;color:var(--ink-3);border:1px dashed var(--rule);border-radius:3px;padding:8px 12px;line-height:1.75;margin:14px 0}
+
+/* 卷首的一排方块 */
+.volhead svg.row{position:absolute;right:8px;bottom:6px;width:200px;opacity:.95;pointer-events:none}
+
+/* 装置用 */
+.grid8{display:grid;gap:2px;max-width:280px;margin:8px 0;touch-action:none}
+.grid8 span{aspect-ratio:1;background:var(--paper);border:1px solid var(--rule);cursor:pointer}
+.grid8 span.on{background:var(--ter);border-color:var(--ter)}
+.night{display:grid;grid-template-columns:repeat(auto-fill,minmax(10.5em,1fr));gap:6px;margin:10px 0}
+.night button{text-align:left;border:2px solid var(--rule);background:var(--paper);border-radius:3px;padding:6px 9px;font-size:14px;line-height:1.5;cursor:pointer}
+.night button small{display:block;color:var(--ink-3);font-size:12px}
+.night button:disabled{opacity:.4;cursor:not-allowed}
+.night button.done{border-color:var(--main);background:color-mix(in srgb,var(--main) 10%,var(--paper))}
+.clockbar{height:16px;border-radius:2px;background:linear-gradient(90deg,#d9b44a 0%,#e9c95a 50%,#c97a3a 82%,#3a3f5c 100%);position:relative;margin:8px 0 2px}
+.clockbar i{position:absolute;top:-4px;bottom:-4px;width:4px;background:var(--ink);border-radius:2px}
+.bag{display:flex;flex-wrap:wrap;gap:4px;margin:6px 0}
+.bag span{font-size:13px;border:2px solid var(--rule);background:var(--card);border-radius:2px;padding:0 7px}
+.quiz{display:grid;gap:8px;margin:10px 0}
+.quiz .qi{background:var(--paper);border:2px solid var(--rule);border-radius:3px;padding:8px 12px;font-size:15px;line-height:1.7}
+.quiz .qi .bt{display:flex;gap:6px;margin-top:4px;flex-wrap:wrap}
+.quiz .qi .ex{display:none;font-size:14px;color:var(--ink-2);margin-top:6px;border-top:1px dashed var(--rule);padding-top:6px}
+.quiz.shown .qi .ex{display:block}
+.quiz .qi.right{border-color:var(--main)}.quiz .qi.wrong{border-color:var(--zhu)}
+.cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;margin:10px 0}
+.cal div{background:var(--paper);border:1px solid var(--rule);border-radius:2px;font-size:12px;text-align:center;padding:4px 0 6px;line-height:1.4;color:var(--ink-3)}
+.cal div b{display:block;font-size:13px;color:var(--ink)}
+.cal div.ok{background:color-mix(in srgb,var(--main) 18%,var(--paper));border-color:var(--main);color:var(--ink)}
+.split{display:flex;height:26px;border-radius:2px;overflow:hidden;margin:8px 0;border:1px solid var(--rule)}
+.split i{display:block;height:100%}
+
+@media (max-width:700px){
+  body{font-size:17px}
+  .try{grid-template-columns:minmax(0,1fr)}
+  .try>div+div{border-left:0;border-top:2px solid var(--main)}
+  .seal>div+div{border-left:0;border-top:3px solid var(--ink-2)}
+  .bld{grid-template-columns:minmax(0,1fr)}
+  .chead .big{padding-top:16px;box-shadow:inset 0 -5px 0 var(--dirt-2),inset 0 12px 0 var(--grass),inset 0 15px 0 var(--grass-2)}
+  .volhead svg.row{width:120px;opacity:.35}
+  .yrs span{font-size:8px}
+}
+/* ===== 装置专用 ===== */
+.pixels{display:grid;gap:3px;margin:10px 0}
+.pixels span{aspect-ratio:1;border-radius:3px;background:var(--paper);border:1px solid var(--rule)}
+.bars{display:grid;gap:5px;margin:10px 0}
+.bars .row{display:grid;grid-template-columns:7.5em minmax(0,1fr) 4.2em;gap:8px;align-items:center;font-size:13.5px}
+.bars .row .nm{color:var(--ink-2);line-height:1.3}
+.bars .row .nm small{display:block;font-size:11px;color:var(--ink-3)}
+.bars .tr{position:relative;height:18px;background:var(--paper);border-radius:3px;overflow:hidden}
+.bars .tr i{position:absolute;left:0;top:0;bottom:0;background:var(--main);border-radius:3px;transition:width .4s}
+.bars .row .v{font-family:var(--f-mono);font-size:12px;color:var(--ink);text-align:right;white-space:nowrap}
+
+
+
+.tl{display:flex;gap:4px;overflow-x:auto;padding:4px 0 8px;-webkit-overflow-scrolling:touch}
+.tl button{flex:none;border:2px solid var(--rule);background:var(--paper);border-radius:3px;padding:4px 9px;font-size:13px;line-height:1.4;cursor:pointer;text-align:left}
+.tl button b{display:block;font-family:var(--f-mono);font-size:12px;color:var(--ink-3);font-weight:500}
+.tl button.on{border-color:var(--main);background:color-mix(in srgb,var(--main) 10%,var(--paper))}
+.tl button.dead{opacity:.6;text-decoration:line-through;text-decoration-color:var(--zhu)}
+/* 深色模式：存档抬头和“试一试”抬头别变成大块亮底 */
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .save .hd{background:#2b2e27;color:var(--ink)}:root:not([data-theme="light"]) .try .h{background:color-mix(in srgb,var(--main) 22%,var(--card));color:var(--ink)}:root:not([data-theme="light"]) .save{border-color:#4a4e44}}
+:root[data-theme="dark"] .save .hd{background:#2b2e27;color:var(--ink)}
+:root[data-theme="dark"] .try .h{background:color-mix(in srgb,var(--main) 22%,var(--card));color:var(--ink)}
+:root[data-theme="dark"] .save{border-color:#4a4e44}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="bar-in g">
+    <a class="home" href="../" title="回创世书房">书房</a>
+    <a class="name" href="./">一块一块</a>
+    <nav class="parts" aria-label="三部">
+      <a href="./" data-p="1">土</a><a href="two.html" data-p="2">电</a><a href="three.html" data-p="3">门</a>
+    </nav>
+    <span class="vol" id="barVol">序</span>
+    <button class="tocbtn" id="tocBtn" aria-label="打开目录">目录</button>
+  </div>
+  <div class="progress" id="prog"></div>
+</header>
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="mask" data-close></div>
+  <nav class="panel" aria-label="目录">
+    <button class="x" data-close aria-label="关闭">×</button>
+    <h5>全书目录</h5>
+    <ol id="drawerList"></ol>
+  </nav>
+</div>
+<main class="g">
+<!-- ============ 封面 · 第一部 ============ -->
+<section class="hero" data-vol="序" id="top">
+  <div class="wide">
+    <div class="eyebrow">MINECRAFT · 块 · 积 · 人 · 夜 · 卖 · 高 · 合 · 国 · 群 · 我的世界创世记</div>
+    <h1>一块一块<span class="sm">我的世界创世记</span></h1>
+    <span class="part">第一部 · 土</span>
+    <p class="lead">你一定见过这样一个世界：地是一格一格的，树是一格一格的，连云和太阳都是方的。你可以把地挖开，把石头搬走，用木头盖一座房子；你还可以用一种红色的粉末，造出会自己开关的门、会自己收庄稼的农场。有人甚至在里面造出了一台<em>能算数的电脑</em>。</p>
+    <p class="lead">这个世界叫《我的世界》，英文名字是 <b>Minecraft</b>，是“挖矿”（mine）和“手艺”（craft）两个词拼起来的。它是全世界卖得最多的电子游戏：2026 年，官方说它已经卖出了四亿两千五百万份以上。</p>
+    <p class="lead">可是它刚出生的时候，只是一个瑞典程序员下班以后写的小程序，第一版大概只用了一个星期。这本书讲它是怎么<b>一块一块</b>长大的。第一部《土》讲它从哪里来、怎样长大；第二部《电》讲红石怎样变成电线、开关和电脑，还有怎样用代码搭方块；第三部《门》讲走出游戏以后：在 MacBook 上怎么玩、怎么学，网上怎么保护自己，玩多久合适，长大以后这些本事能用在哪儿。</p>
+  </div>
+
+  <div class="wide">
+    <div class="fig" id="buildFig">
+      <div class="fig-label">封面装置</div>
+      <h4>放一块</h4>
+      <p class="how">先选一种方块，再点一块已经放好的方块：点它的顶面，新方块叠在上面；点它朝左或朝右的侧面，新方块贴着那一面放。切到“挖”，点哪一块就挖掉哪一块；挖空了的地方会露出虚线格子，点它可以重新放。下面会告诉你一共用了多少块。这些方块是这本书自己画的示意图，不是游戏里的图。</p>
+      <div class="bld">
+        <svg id="bldSvg" role="img" aria-label="一块八乘八的小地，可以放方块"></svg>
+        <div>
+          <div class="lab">手里拿的</div>
+          <div class="palette" id="bldPal"></div>
+          <div class="lab">要做什么</div>
+          <div class="btns" id="bldMode"></div>
+          <div class="btns"><button class="btn" id="bldHouse">盖一座小房子</button><button class="btn" id="bldClear">只留一层草地</button></div>
+        </div>
+      </div>
+      <div class="say" id="bldSay">还没开始。</div>
+      <p class="figcap">在这本书里，一格就是一米：一块方块是一个一米长、一米宽、一米高的立方体。你搭的小房子有多少块，它就占了多少立方米。<a href="#c0">序幕</a>会算一算你的房间、你的学校有多少格。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>陪你读的人</h3>
+    <p>每章开头有一个“存档”，是一个叫小格的四年级学生和他舅舅的一段故事。他们俩都是编出来的；他们碰到的事，很多玩方块游戏的小朋友都碰到过。</p>
+  </div>
+  <div class="wide">
+    <div class="cast3">
+      <div><span class="av" style="background:#3b6622">格</span><span><b>小格</b><small>十岁，四年级 · 用家里一台旧的 MacBook Air 上图形化编程课 · 最爱盖房子，最怕游戏里天黑 · 口头禅：“再玩五分钟！”</small></span></div>
+      <div><span class="av" style="background:#2a4f78">舅</span><span><b>舅舅</b><small>在读大学，学计算机 · 小时候也偷偷玩过方块游戏 · 每次来都被小格拉去“修电脑” · 口头禅：“你猜它为什么会这样？”</small></span></div>
+      <div><span class="av" style="background:#8a3b4e">妈</span><span><b>妈妈</b><small>定规矩的人：一天玩多久、在哪儿玩、能不能和陌生人一起玩 · 自己一次都没玩过，后来被小格教会了</small></span></div>
+      <div><span class="av" style="background:#7a4a22">豆</span><span><b>豆子</b><small>小格的同桌 · 用平板玩手机版 · 最会打怪，从来不盖房子 · 两个人经常吵“哪个版本更好”</small></span></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>每一章怎么读</h3>
+    <ul class="plain">
+      <li><b>章首</b>像游戏里的物品栏，有五格：挖（探索）、造（建造）、电（红石）、码（编程）、人（人和历史）。亮起来的格子，就是这一章会讲到的。下面一排年份告诉你故事发生在什么时候。</li>
+      <li><b>存档</b>（编的故事）：小格和舅舅碰到一个问题。</li>
+      <li><b>正文</b>讲真的历史。蓝色的<b>真事</b>框，是特别值得记住的事。</li>
+      <li><b>试一试</b>分两半：左边是在游戏里可以做的，右边是离开电脑也能做的。</li>
+      <li><b>被拿掉的</b>：游戏里曾经有、后来被删掉或者关掉的东西。<b>传言</b>：大家都在说的故事，查一查是真是假。</li>
+      <li>每章有一个可以动手玩的<b>装置</b>，章末是<b>这一章的新词</b>和<b>两样带走</b>：一样是游戏里学到的，一样是游戏外用得上的。</li>
+      <li>每章最后还有一个折起来的<b>给大人</b>，写给爸爸妈妈和老师：出处、争议，和一些陪孩子玩的建议。</li>
+    </ul>
+
+    <h3>从哪儿读起</h3>
+    <p>可以从头读到尾，也可以先挑你最想知道的：</p>
+  </div>
+  <div class="wide">
+    <div class="kidmap">
+      <a href="#c1"><b>它是怎么来的？</b>谁发明的，花了多久，第一版长什么样。<span class="ch">积 · 人 · 夜</span></a>
+      <a href="#c0"><b>我爱盖房子</b>一格到底多大，世界能盖多高，真的建筑师怎么用方块。<span class="ch">块 · 高 · 第三部的“造”</span></a>
+      <a data-c="c9" href="two.html#c9"><b>我想玩红石</b>红石粉、开关、逻辑门、加法器、游戏里的电脑。<span class="ch soon">第二部 · 线 · 门 · 数 · 机</span></a>
+      <a data-c="c16" href="two.html#c16"><b>我想学编程</b>命令方块、图形化编程、Python，和你在编程课上学的东西接起来。<span class="ch soon">第二部 · 令 · 码</span></a>
+      <a href="#c7"><b>我想和同学一起玩</b>手机版、电脑版、中国版有什么不一样，服务器和模组是什么。<span class="ch">国 · 群</span></a>
+      <a href="#c7"><b>我是家长</b>防沉迷的规定、花钱、网上的陌生人，和每章最后的“给大人”。<span class="ch">国 · 群 · 第三部</span></a>
+    </div>
+    <p class="disc">这本书不是 Mojang、微软或网易的官方作品，书里提到的游戏名字和商标属于它们各自的主人。书里的方块图、人物和装置都是这本书自己画、自己写的示意，不是游戏截图；正文里的历史尽量核对过，说不准的地方标了“存疑”，出处见<a href="#notes1">第一部末尾</a>。</p>
+
+    <div class="seen">
+      <h5>书房里别的书，也讲过相关的事</h5>
+      <ul>
+        <li>电脑是怎样从沙子、开关和逻辑门造出来的：<a href="../computer/">《计算机创世记》上卷《一沙一世界》</a>。第二部讲红石电路时会常常回到那里。</li>
+        <li>真房子为什么不塌，砖、梁、拱是怎么回事：<a href="../beam/">《上梁》</a>。一整座城怎样长出来：<a href="../city/">《城里城外》</a>。</li>
+        <li>一个人想做一款自己的游戏、开一家小工作室：<a href="../open/">《开张》</a>。</li>
+      </ul>
+    </div>
+
+    <div class="partnav">
+      <a href="./" class="on"><span class="k">第一部</span><b>土</b><small>序幕 + 卷一 来历 + 卷二 长大 · 一块方块从哪里来 · 九章</small></a>
+      <a data-c="c9" href="two.html"><span class="k">第二部</span><b>电</b><small>卷三 红石 + 卷四 机器和代码 · 写作中</small></a>
+      <a data-c="c17" href="three.html"><span class="k">第三部</span><b>门</b><small>卷五 动手 + 卷六 长大以后 + 尾声 · 写作中</small></a>
+    </div>
+
+    <h3>全书目录</h3>
+  </div>
+  <div class="wide"><ol class="toc" id="toc"></ol></div>
+</section>
+
+<!-- ============ 序幕 · 块 ============ -->
+<section class="chap" id="c0" data-vol="序幕 · 块">
+  <div class="chead">
+    <div class="big">块</div>
+    <div>
+      <div class="no">序幕</div>
+      <h2>一格是一米</h2>
+      <dl><dt>讲什么</dt><dd>方块世界里一格有多大、一天有多长、世界的边在哪儿；为什么它叫“沙盒游戏”；为什么全世界几亿人都在玩它</dd><dt>本章装置</dt><dd>一格有多大</dd></dl>
+      <div class="inv" data-a="挖 造"></div>
+      <div class="yrs" data-a="2026"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>小格的小屋</b><span class="pix">DAY 3 · X 12 Y 70 Z -5</span><span>创造模式</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>舅舅你看！我盖的房子，有客厅、有卧室，还有一个楼梯！是不是很大？</span></div>
+      <div class="l"><i class="j">舅</i><span>你先猜猜，它跟你真正的卧室比，谁大？</span></div>
+      <div class="l"><i class="g">格</i><span>那怎么比？游戏里又没有尺子。</span></div>
+      <div class="l act">舅舅从书包里摸出一把卷尺，拉着小格量卧室：长 3.5 米，宽 3 米，高 2.8 米。</div>
+      <div class="l"><i class="j">舅</i><span>游戏里一格就是一米。你的卧室大概是三格半长、三格宽、不到三格高。你的游戏房子呢？</span></div>
+      <div class="l"><i class="g">格</i><span>我数数……长十二格，宽九格，高五格。那我的游戏房子比我的卧室大好多倍！</span></div>
+    </div>
+    <div class="ft">那天晚上，小格把卧室按一格一米，在游戏里又盖了一遍。盖完才发现，床、书桌和衣柜一放，几乎就没地方走路了。</div>
+  </div>
+
+  <div class="col">
+    <h3>一格是一米</h3>
+    <p>在《我的世界》里，几乎所有东西都是一块一块的方块：泥土、石头、木头、沙子、水，甚至岩浆。每一块方块都是一个正方体。</p>
+    <p>这个正方体有多大？做游戏的人说过，<em>一块方块就是一米长、一米宽、一米高</em>，也就是一立方米。游戏里的人物大约 1.8 格高，正好像一个大人那么高；你在游戏里跳一下，能跳上一格高的台阶，就像在现实里跳上一个一米高的箱子（这个嘛，现实里可没那么容易）。</p>
+    <p>所以，游戏里的世界可以拿来跟真世界比。你家的楼有多高，你的教室有多大，学校操场一圈有多长，都能换成“几格”。</p>
+
+    <h3>一天二十分钟</h3>
+    <p>游戏里的太阳也会升起和落下。一个完整的白天加黑夜，在游戏里正好是现实中的<b>二十分钟</b>：大约十分钟白天，七分钟黑夜，中间还有黄昏和清晨。所以你玩一个小时，游戏里已经过了三天。</p>
+    <p>天黑以后，怪物会出来。这就是为什么很多人在游戏里的第一件事，是赶在天黑前盖一间小屋。第三章会讲这个“第一夜”是怎么被设计出来的。</p>
+
+    <h3>世界的边在哪儿</h3>
+    <p>方块世界不是无限大的，但它大得吓人。从世界的正中间出发，往东走大约<b>三千万格</b>，就会碰到一道看不见的墙，叫“世界边界”。往西、往南、往北也一样。</p>
+    <p>三千万格就是三千万米，也就是三万公里。整个世界从西边走到东边，有六万公里宽，比地球赤道一圈（大约四万公里）还长。如果把整个方块世界的地面铺开，面积大约是地球表面的<b>七倍</b>。</p>
+    <p>走过去要多久？游戏里的人正常走路，一秒大约走 4.3 格。不吃饭、不睡觉、不打怪，一直往前走，走到边界要八十天左右。跑着去，也要六十多天。</p>
+  </div>
+
+  <div class="real">
+    <h5>一个一直在走的人</h5>
+    <p>2011 年，美国有一个叫库尔特（Kurt J. Mac）的玩家，在游戏里开始往一个方向一直走，想走到当时世界很远很远的地方。他把每一段路都录成视频放到网上，边走边聊天，还借这个机会为生病的孩子们募捐。</p>
+    <p>他走得很慢，因为每次只走一小段。走了十多年，他还没有走到。这件事告诉我们：方块世界真的很大，大到一个人走十几年都走不完。</p>
+  </div>
+
+  <div class="col">
+    <h3>为什么叫“沙盒游戏”</h3>
+    <p>大多数游戏都会告诉你要做什么：打败这个坏人，跑到那个终点，拿到这么多分。《我的世界》不太一样。它把你丢进一个世界，然后就不管你了。你想挖矿就挖矿，想盖房子就盖房子，想种田就种田，想什么都不做、坐在海边看日落也可以。</p>
+    <p>这样的游戏叫“<b>沙盒游戏</b>”。“沙盒”就是公园里的沙坑：没有人规定你必须堆城堡还是挖隧道，你自己决定。</p>
+    <p>游戏里有好几种玩法，叫“模式”：</p>
+    <ul class="plain">
+      <li><b>生存模式</b>：要自己找吃的、找材料，会受伤，天黑有怪物。</li>
+      <li><b>创造模式</b>：所有方块随便拿，不会受伤，还能飞。适合专心盖东西。</li>
+      <li><b>冒险模式</b>：别人做好的地图，按他们的规则玩，不能随便拆。</li>
+      <li><b>极限模式</b>：和生存一样，但只有一条命。</li>
+      <li><b>旁观模式</b>：像一个看不见的幽灵，能穿过墙到处看，但什么也不能碰。</li>
+    </ul>
+  </div>
+
+  <div class="real">
+    <h5>为什么这么多人玩</h5>
+    <p>2023 年 10 月，它成为历史上第一个卖出三亿份的电子游戏；2025 年 4 月超过三亿五千万份；2026 年，微软说已经超过四亿两千五百万份，而且每天还有三十多万人第一次打开它。</p>
+    <p>为什么这么多人喜欢？大家给过很多答案：它<b>简单</b>，方块谁都看得懂；它<b>自由</b>，没有人规定你怎么玩；它<b>能一起玩</b>，和朋友盖一座城；它还<b>能学东西</b>，第二部和第三部会讲到，有人在里面学电路、学编程、学建筑、学地理。</p>
+  </div>
+
+  <div class="fig" id="sizeFig">
+    <div class="fig-label">装置 · 序幕</div>
+    <h4>一格有多大</h4>
+    <p class="how">挑一样东西，或者自己拖动下面的长、宽、高，看看它在方块世界里有多少格。网格里每一小格是一格（一米），旁边那个小人大约两格高，就是你在游戏里的样子。</p>
+    <div class="btns" id="sizePre"></div>
+    <div class="ctl"><span>长（米）</span><input type="range" id="szL" min="1" max="120" value="4"><output id="szLO"></output></div>
+    <div class="ctl"><span>宽（米）</span><input type="range" id="szW" min="1" max="120" value="3"><output id="szWO"></output></div>
+    <div class="ctl"><span>高（米）</span><input type="range" id="szH" min="1" max="340" value="3"><output id="szHO"></output></div>
+    <div class="scroll-x"><svg id="sizeSvg" role="img" aria-label="正面看的方格图"></svg></div>
+    <div class="kv" id="sizeKv"></div>
+    <div class="say" id="sizeSay"></div>
+    <p class="figcap">“实心”是把它里面全塞满方块；“只盖墙和顶”是像真房子一样只砌外面一层（地板、四面墙和屋顶，各一格厚）。放一块算一秒，是假设你一秒钟放一块、从不停手。建筑的尺寸都是大约的数字。</p>
+  </div>
+
+  <div class="try">
+    <div class="h">试一试</div>
+    <div><i>游戏里</i>
+      <ol>
+        <li>打开坐标：电脑上的 Java 版按 F3（MacBook 上按 fn + F3），手机版、基岩版和中国版在设置里打开“显示坐标”。</li>
+        <li>记下你站的位置，然后一直往前走 100 格，再看坐标变了多少。</li>
+        <li>你刚刚走了 100 米，差不多是学校跑道的一条直道。</li>
+      </ol>
+    </div>
+    <div><i>游戏外</i>
+      <ol>
+        <li>找一把卷尺，量一量你的房间有多长、多宽、多高。</li>
+        <li>在方格纸上一格当一米，把房间画出来，再把床和书桌画进去。</li>
+        <li>在游戏里照着这张图盖一遍。盖完和真房间比一比，哪里不一样？</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="gone">
+    <h5><s>远方之地</s></h5>
+    <p>很早的版本里，走到离中心大约一千二百五十万格的地方，地形会突然坏掉：变成一层一层的怪墙、悬空的大板子和奇怪的洞。玩家叫它“远方之地”（Far Lands）。这其实是计算地形的程序算到太大的数字时出了错。</p>
+    <p>2011 年，游戏换了一种生成地形的方法，远方之地就消失了。后来世界边界被定在三千万格，再也走不到那种坏掉的地方。前面说的那位一直走路的玩家，玩的正是一个还有远方之地的老版本。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">《我的世界》是无限大的<span class="vd" data-v="假">假</span></div>
+    <div class="bd"><p>它非常大，但不是无限大。世界有边界，大约在离中心三千万格的地方。不过对一个普通玩家来说，这和无限大也差不多：你一辈子可能都走不到那里。</p></div>
+  </div>
+
+  <div class="echo" data-k="联系">
+    <div class="stamp">联系</div>
+    <div><p class="rh">先定一个单位</p><p>人类量东西，最难的一步不是量，而是先说好“一”是多少。古时候各地的尺子长短不一样，一个地方的一尺到了另一个地方就不对了；后来人们才约好全世界都用“米”。方块世界一开始就说好了：一格就是一米。书房里的<a href="../beam/two.html#c11">《上梁》第十一章</a>讲过尺子的故事。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>方块</b>游戏世界里最小的一块积木，一米长、一米宽、一米高。</div>
+    <div><b>立方米</b>一米长、一米宽、一米高的空间。一块方块正好一立方米。</div>
+    <div><b>坐标</b>用几个数字说出“你在哪儿”。游戏里用 X、Y、Z 三个数：东西、上下、南北。</div>
+    <div><b>沙盒游戏</b>没有规定你必须做什么，让你自己决定怎么玩的游戏。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>“一格一米”来自 Mojang 官方和社区维基的通行说法；人物高约 1.8 格。昼夜循环 20 分钟、行走速度约 4.3 格每秒、世界边界在 Java 版离中心约 2999 万格，均据官方维基。销量：吉尼斯世界纪录记 2023 年 10 月超过 3 亿份、2025 年 4 月 3.5 亿份；4.25 亿份是 2026 年 Minecraft Live 上微软的说法，各方没有公布分平台数字。</p>
+    <p>孩子玩“创造模式”时更像在用一套无限量的积木，适合练习比例、对称和规划；“生存模式”更有紧张感。刚开始可以多鼓励创造模式，并和孩子一起量一量真实的房间。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>一格就是一米。方块世界比地球赤道一圈还宽，一个人走十几年都走不完。</div>
+    <div><i>游戏外<small>带走一样</small></i>量东西之前，先说好“一”是多少。说好了单位，游戏里的房子和真房子就能放在一起比。</div>
+  </div>
+</section>
+
+<div class="volhead" data-vol="卷一 · 来历">
+  <div class="num">VOLUME ONE · 第一部 · 卷一</div>
+  <h2>来历<small>它从哪里来</small></h2>
+  <p class="lede">一个游戏不会从石头缝里蹦出来。在《我的世界》之前，已经有了带小圆点的塑料积木、屏幕上一格一格的小方块、让人挖地道的游戏，和一个四月份才出生的挖矿游戏。这一卷先认识这些“前辈”，再认识那个把它们拼到一起的人，最后讲他怎样设计出让人又怕又爱的第一个夜晚。</p>
+  <svg class="row" aria-hidden="true"></svg>
+</div>
+
+<!-- ============ 第一章 · 积 ============ -->
+<section class="chap" id="c1" data-vol="卷一 · 积">
+  <div class="chead">
+    <div class="big">积</div>
+    <div>
+      <div class="no">第一章</div>
+      <h2>在它之前</h2>
+      <dl><dt>讲什么</dt><dd>丹麦木匠的塑料积木；屏幕上的“像素”和立体的“体素”；挖地道、建乐园、造矮人城堡的老游戏；一个只活了几个月的挖矿游戏</dd><dt>本章装置</dt><dd>从像素到方块</dd></dl>
+      <div class="inv" data-a="造 人"></div>
+      <div class="yrs" data-a="1958" data-b="2009"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>周六下午</b><span class="pix">NO WORLD · OFFLINE</span><span>没开电脑</span></div>
+    <div class="bd">
+      <div class="l act">小格把一大箱塑料积木倒在地板上，在拼一艘飞船。</div>
+      <div class="l"><i class="j">舅</i><span>你知道吗，你手里这种积木，和你天天玩的方块游戏是亲戚。</span></div>
+      <div class="l"><i class="g">格</i><span>怎么会？一个是塑料的，一个在电脑里。</span></div>
+      <div class="l"><i class="j">舅</i><span>你想想，它们都是一块一块的，都没有说明书也能玩，都是你想拼什么就拼什么。做方块游戏的人，小时候也玩过这种积木。</span></div>
+      <div class="l"><i class="g">格</i><span>那我的游戏是谁的孙子？</span></div>
+      <div class="l"><i class="j">舅</i><span>它的长辈可多了。我们一个一个认。</span></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>带小圆点的积木<span class="y">1932—1958</span></h3>
+    <p>二十世纪三十年代，丹麦有一位木匠叫奥勒·柯克·克里斯蒂安森。那时候生意不好，他开始用剩下的木头做玩具：木头鸭子、木头小车。他给自己的小工厂起名叫 LEGO，是丹麦语 “leg godt” 的缩写，意思是“好好玩”。这就是乐高。</p>
+    <p>后来他们开始做塑料积木。一开始的塑料积木有个大毛病：搭上去容易松，一碰就散。1958 年，他们想出一个办法：积木上面有一排小圆点，下面藏着几根空心的小管子，按下去以后小圆点被管子卡住，搭得又紧、又能拆开。他们给这个设计申请了<b>专利</b>，意思是“这个办法是我们想出来的，别人暂时不能照抄”。</p>
+    <p>这个小小的改进有多厉害？乐高公司算过：<em>两块一样的二乘四积木，能拼出二十四种样子；六块，能拼出九亿多种</em>。块越多，花样多得数不过来。</p>
+    <p>《我的世界》也是这个道理：每一块都很简单，可是几百块、几千块放在一起，就能拼出城堡、火车、整座城市。简单的东西，数量一多，就变得无穷无尽。</p>
+
+    <h3>屏幕上的小方格<span class="y">像素</span></h3>
+    <p>你把脸凑近一块老电视或者电脑屏幕，仔细看，会发现画面是由许许多多小点组成的。每一个小点只能显示一种颜色。这些小点叫<b>像素</b>，意思是“画面的元素”。</p>
+    <p>早年的电脑很慢、很小，记不住太多东西，所以游戏画面里的像素又大又少：一个小人可能只有十几个像素高，一眼就能看出一格一格的。后来电脑越来越厉害，像素越来越小、越来越多，画面就越来越细。</p>
+    <p>那如果把一个像素变成立体的呢？平面上的小方格叫像素，立体的小方块就叫<b>体素</b>。《我的世界》的整个世界，就是用体素搭起来的。</p>
+
+    <h3>挖地道、盖乐园、造城堡<span class="y">1997—2006</span></h3>
+    <p>在《我的世界》之前，有好几个游戏让做它的人着了迷：</p>
+    <ul class="plain">
+      <li><b>挖地道的游戏</b>。1997 年英国有个游戏，让你当一个地下城的主人，指挥小鬼在地底下挖出一条条通道和房间。“往下挖”这件事本身就很好玩。</li>
+      <li><b>盖乐园的游戏</b>。1999 年有个游戏，让你自己设计过山车和游乐园，看游客排队、尖叫、呕吐。它告诉人们：让玩家自己<b>造</b>东西，比让他们打怪更让人停不下来。</li>
+      <li><b>造矮人要塞的游戏</b>。2006 年，美国一对兄弟做了一个免费游戏：一群矮人在山里挖矿、打铁、种地、盖城堡。它的画面全是字母和符号，看起来像一屏乱码，可是世界里的一切都能挖、能改、能互相影响。很多玩家说，这是他们玩过最“深”的游戏。</li>
+    </ul>
+  </div>
+
+  <div class="real">
+    <h5>一个四月份出生的挖矿游戏</h5>
+    <p>2009 年 4 月，一个叫扎卡里·巴特（Zachary Barth）的美国年轻人，放出了一个叫 Infiniminer 的小游戏。世界是一块一块的立方体，两队玩家拿着镐子往地底下挖，比赛谁先挖到宝石。</p>
+    <p>它很快就火了。可是没过多久，它的<b>源代码</b>（就是写这个游戏的那些程序）被泄露了出去，很多人拿去改出了自己的版本，到处是作弊的人。巴特很灰心，不久就不再更新它了。</p>
+    <p>有一个瑞典程序员玩了 Infiniminer，非常喜欢。他后来说，这个游戏让他想到了自己要做的东西：一个一块一块的世界，但不光是比赛挖矿，还能盖房子、能一直玩下去。下一章，我们认识这个人。</p>
+    <p>巴特后来没有放弃做游戏。他开了一家小公司，专门做和<b>编程</b>有关的解谜游戏：玩家要在游戏里写小程序、设计电路，才能过关。</p>
+  </div>
+
+  <div class="fig" id="voxFig">
+    <div class="fig-label">装置 · 第一章</div>
+    <h4>从像素到方块</h4>
+    <p class="how">在左边的八乘八方格里点几下，画一个平面的图案（像素画）；再拖动“厚度”，看它怎样变成立体的方块（体素）。可以点“换一个”看几个例子。</p>
+    <div class="two">
+      <div>
+        <div class="grid8" id="voxGrid" style="grid-template-columns:repeat(8,1fr)"></div>
+        <div class="ctl"><span>厚度</span><input type="range" id="voxH" min="1" max="5" value="2"><output id="voxHO"></output></div>
+        <div class="btns"><button class="btn" id="voxEx">换一个</button><button class="btn" id="voxClr">擦掉</button></div>
+      </div>
+      <svg id="voxSvg" role="img" aria-label="把像素画加厚以后的立体图"></svg>
+    </div>
+    <div class="say" id="voxSay"></div>
+    <p class="figcap">平面上一个格子是一个像素；加了厚度以后，每一个像素变成一摞方块。很多玩家在游戏里搭“像素画”，就是把一张平面的画，一格一格地用方块拼在墙上或者地上。</p>
+  </div>
+
+  <div class="try">
+    <div class="h">试一试</div>
+    <div><i>游戏里</i>
+      <ol>
+        <li>用创造模式，选三四种颜色的方块（比如羊毛或者混凝土）。</li>
+        <li>先在纸上画一个十六乘十六的小图案：一颗爱心、一个笑脸、一只猫。</li>
+        <li>一格一格拼到地上，再飞到天上往下看。</li>
+      </ol>
+    </div>
+    <div><i>游戏外</i>
+      <ol>
+        <li>拿一张方格纸，用彩笔一格涂一种颜色，画一幅像素画。</li>
+        <li>如果家里有拼豆，可以照着这张图拼出来，用熨斗烫好（让大人帮忙）。</li>
+        <li>数一数：你的画用了多少个像素？如果每一格摞三块方块，一共要多少块？</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="gone">
+    <h5><s>Infiniminer</s></h5>
+    <p>这个启发了《我的世界》的游戏，只更新了几个月就停了。源代码被泄露、被别人随便改，是它停下来的主要原因。这件事后来常被拿来提醒做游戏的人：好的点子很容易被抄走，怎样保护自己的作品，也是做游戏要想的事。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">《我的世界》是抄 Infiniminer 的<span class="vd" data-v="半真">半真</span></div>
+    <div class="bd"><p>做《我的世界》的人自己承认，Infiniminer 给了他最初的灵感：一个用立方体搭成、能挖的世界。可是后来的生存、合成、无边无际的世界、昼夜和怪物，都是 Infiniminer 里没有的，也有一部分来自前面说的几个老游戏。</p><p>游戏的历史里，大家一直在互相学：一个人想出一个好点子，别人在上面再加一层。学别人的想法，再做出自己的东西，和照着别人的作品原样抄，是两回事。</p></div>
+  </div>
+
+  <div class="echo" data-k="押韵">
+    <div class="stamp">押韵</div>
+    <div><p class="rh">从木头到塑料，从字母到方块</p><p>乐高一开始是木头玩具，后来变成塑料积木；矮人要塞一开始是满屏字母，后来的游戏把它变成了看得见的方块。很多发明都是这样：<em>先有一个难看但好玩的东西，再有人把它变得好看、好上手</em>。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>像素</b>屏幕上最小的一个小点，只能显示一种颜色。</div>
+    <div><b>体素</b>立体的像素，就是一个小方块。</div>
+    <div><b>专利</b>一种证明：这个发明是我想出来的，一段时间里别人不能照着做来卖。</div>
+    <div><b>源代码</b>程序员用编程语言写下的那些字，电脑照着它运行。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>乐高的历史与“六块积木九亿多种拼法”据乐高公司公开资料（2005 年数学家埃勒斯计算）。1958 年 1 月 28 日乐高在丹麦申请“凸点加管”结构的专利。文中三个老游戏依次是《地下城守护者》（Dungeon Keeper，1997）、《过山车大亨》（RollerCoaster Tycoon，1999）和《矮人要塞》（Dwarf Fortress，2006 年首个公开版本）；Persson 在访谈和博客中提到过它们对他的影响。Infiniminer 2009 年 4 月发布，源码泄露后停更；巴特后来创办 Zachtronics。</p>
+    <p>给孩子讲“借鉴和抄袭的区别”，这一章是个好机会：可以拿他在编程课上看别人的作品、改出自己版本的经历来聊。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>《我的世界》的世界是用“体素”搭的：立体的像素。它的长辈有塑料积木、挖地道的游戏和一个只活了几个月的挖矿游戏。</div>
+    <div><i>游戏外<small>带走一样</small></i>简单的东西，数量一多，花样就无穷无尽。学别人的点子不丢人，重要的是在上面加上你自己的东西。</div>
+  </div>
+</section>
+
+<!-- ============ 第二章 · 人 ============ -->
+<section class="chap" id="c2" data-vol="卷一 · 人">
+  <div class="chead">
+    <div class="big">人</div>
+    <div>
+      <div class="no">第二章</div>
+      <h2>一个人和一周</h2>
+      <dl><dt>讲什么</dt><dd>七岁学编程的瑞典男孩；白天上班、晚上写游戏；“洞穴游戏”和论坛上的一个帖子；一个游戏怎样一版一版长大；做出好东西的人，不一定什么都对</dd><dt>本章装置</dt><dd>一版一版长大</dd></dl>
+      <div class="inv" data-a="码 人"></div>
+      <div class="yrs" data-a="1979" data-b="2010"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>编程课作业</b><span class="pix">SCRATCH · PROJECT 7</span><span>还没做完</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>舅舅，老师让我们做一个小游戏，我想做一个超大的冒险游戏，有一百关，有商店，有大怪兽……可是我做了三个星期，连第一关都没做完。</span></div>
+      <div class="l"><i class="j">舅</i><span>你知道你天天玩的那个方块游戏，第一版做了多久吗？</span></div>
+      <div class="l"><i class="g">格</i><span>好几年吧？</span></div>
+      <div class="l"><i class="j">舅</i><span>大概一个星期。不过那一版小得可怜：只有一块地，能放方块，能挖方块，就这么多。</span></div>
+      <div class="l"><i class="g">格</i><span>那也叫游戏？</span></div>
+      <div class="l"><i class="j">舅</i><span>叫。它先能玩，然后才一点一点变大。你那一百关，能不能先做出能玩的一关？</span></div>
+    </div>
+    <div class="ft">那个周末，小格把一百关删成了一关：一只小猫，跳过三个坑，碰到旗子就赢。他让妈妈玩了一遍，妈妈掉进了第二个坑。</div>
+  </div>
+
+  <div class="col">
+    <h3>七岁的程序员<span class="y">1979—2009</span></h3>
+    <p>1979 年，一个叫马库斯·佩尔松（Markus Persson）的男孩出生在瑞典的斯德哥尔摩。后来全世界的玩家都叫他在网上用的名字：<b>Notch</b>（诺奇）。</p>
+    <p>据他自己说，他七岁左右开始在爸爸的一台老电脑上学编程，照着杂志上的程序一行一行地敲；八岁的时候，他做出了自己的第一个小游戏，是一个只有文字的冒险游戏。</p>
+    <p>长大以后，他真的成了一名游戏程序员，在斯德哥尔摩一家做小游戏的公司上班，后来又去了一家做相册软件的公司。白天上班，晚上和周末，他就在家里写自己想做的游戏，还经常参加一种比赛：四十八小时之内，一个人从零做出一个游戏。</p>
+    <p>他最拿手的编程语言叫 <b>Java</b>。编程语言就是人和电脑说话的语言，就像你在编程课上拖的积木块，只不过 Java 要一个字母一个字母地打出来。</p>
+
+    <h3>洞穴游戏<span class="y">2009 年 5 月</span></h3>
+    <p>2009 年春天，Notch 玩了上一章说的那个挖矿游戏 Infiniminer，心里痒痒的。5 月，他开始写一个新程序，起名叫“洞穴游戏”（Cave Game）。</p>
+    <p>几天以后，他录了一段很短的视频：一块由草和石头组成的地，一个看不见的人走来走去，放下方块，挖掉方块。这就是《我的世界》最早的样子。</p>
+    <p>2009 年 5 月 17 日，他在一个独立游戏的论坛上发了一个帖子，给大家试玩，并给它起了新名字：<b>Minecraft</b>。从想法到能玩的第一版，大约只花了<em>一个星期</em>。</p>
+  </div>
+
+  <div class="real">
+    <h5>第一版有什么</h5>
+    <ul>
+      <li>一块不大的地，上面有草、泥土和石头。</li>
+      <li>你可以走、可以跳、可以放方块、可以挖方块。</li>
+      <li>没有怪物，没有生命值，没有合成，没有白天黑夜，没有别的人。</li>
+    </ul>
+    <p>就这么多。可是很多人玩了以后说：“就这样我也能玩一下午。”这说明他抓住了最好玩的那一点：<b>放一块，挖一块</b>。剩下的东西，都是后来一点一点加上去的。</p>
+  </div>
+
+  <div class="col">
+    <h3>一版一版长大<span class="y">2009—2011</span></h3>
+    <p>接下来两年半，Notch 几乎每隔几天就放出一个新版本。每一版加一点东西，玩家玩完就在论坛和博客上留言：这个太难了，那个有毛病，要是能加一个什么就好了。他看了留言，再改下一版。</p>
+    <p>这些版本被分成几个阶段，名字很怪：经典版（Classic）、室内开发版（Indev）、无限开发版（Infdev）、测试版（Alpha）、公测版（Beta），最后是正式版 1.0。每到一个新阶段，游戏就多了一样大东西：生存、合成、无限大的世界、和朋友联机……</p>
+    <p>游戏上的版本号，比如 1.21，也是这么来的：第一个数字变了，说明是一次大变化；后面的数字变了，说明加了一些东西或者修了一些错误。你电脑和手机上的软件，版本号也是同样的意思。</p>
+  </div>
+
+  <div class="fig" id="verFig">
+    <div class="fig-label">装置 · 第二章</div>
+    <h4>一版一版长大</h4>
+    <p class="how">点下面的每一个阶段，看看那时候的游戏有什么、玩家能做什么。右边的小格子是“能做的事”，越往后越多。</p>
+    <div class="tl" id="verTl"></div>
+    <div class="two">
+      <div class="say" id="verSay" style="margin:0"></div>
+      <div><div class="lab">这时候能做的事</div><div class="bag" id="verBag"></div></div>
+    </div>
+    <p class="figcap">日期是每个阶段第一个版本放出的大约时间。每个阶段里还有几十到上百个小版本。</p>
+  </div>
+
+  <div class="try">
+    <div class="h">试一试</div>
+    <div><i>游戏里</i>
+      <ol>
+        <li>2019 年游戏十岁生日的时候，官方把 2009 年的经典版放到了网上，用浏览器就能玩（让大人帮你找官方网址）。</li>
+        <li>玩五分钟，数一数：它比现在的游戏少了哪些东西？</li>
+        <li>如果你用电脑上的 Java 版，启动器里可以打开“显示历史版本”，玩一玩当年的测试版。</li>
+      </ol>
+    </div>
+    <div><i>游戏外</i>
+      <ol>
+        <li>想一个你想做的游戏，写下它所有的功能。</li>
+        <li>划掉，只留一个：没有它就不好玩的那一个。</li>
+        <li>先把这一个做出来，让家里人玩一次，听他们说什么，再加下一个。程序员管这个叫“先做出能玩的最小一版”。</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>做出好东西的人，不一定什么都对</h3>
+    <p>Notch 做出了全世界最受欢迎的游戏。可是后来，他在网上发了很多伤害别人、看不起一些人的话。很多玩家很失望。2019 年，游戏公司把游戏开头那些滚动的小字里提到他的话拿掉了，游戏十周年的活动也没有请他。</p>
+    <p>这件事告诉我们：一个人在一件事上非常厉害，不代表他说的每一句话都对。我们可以喜欢一个作品，同时不同意做它的人说过的话。</p>
+  </div>
+
+  <div class="gone">
+    <h5><s>Order of the Stone</s></h5>
+    <p>在论坛上第一次发布时，游戏的全名是 Minecraft: Order of the Stone，后面那半句可以理解为“石头会”。没过多久，后半截名字就被去掉了，只剩下 Minecraft。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">《我的世界》是 Notch 一个人做完的<span class="vd" data-v="半真">半真</span></div>
+    <div class="bd"><p>最早的一年多，几乎是他一个人写的。2010 年起，他找了朋友一起开公司；2011 年底，另一位瑞典程序员延斯·贝根斯滕（Jens Bergensten）接手当了总负责人，一直到现在。今天，做这个游戏的人有好几百个：程序员、画画的、做音乐的、测试的、管社区的……</p><p>一个人可以开个头，一群人才能把它养大。</p></div>
+  </div>
+
+  <div class="echo" data-k="生活">
+    <div class="stamp">生活</div>
+    <div><p class="rh">先做能玩的一关</p><p>想做一件大事的时候，最容易犯的错是一上来就做全部。Notch 的第一版只有“放一块、挖一块”。做功课、写作文、学一样新本事，都可以这样：先做出一个很小但完整的版本，再一点点加。书房里的<a href="../open/two.html#c11">《开张》第十一章</a>讲过大人做生意时的同一个道理。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>编程语言</b>人用来给电脑写命令的语言。Java、Python 都是，你在编程课上拖的积木块也是一种。</div>
+    <div><b>版本</b>一个软件的某一次发布。版本号越大，通常越新。</div>
+    <div><b>论坛</b>网上大家发帖子、留言讨论的地方。</div>
+    <div><b>独立游戏</b>不是大公司，而是一个人或者几个人自己做的游戏。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>Persson 生于 1979 年 6 月 1 日；七八岁学编程、八岁写第一个文字冒险游戏均出自他本人在访谈中的说法。2004—2009 年前后他在 King.com 工作，后到 jAlbum。“洞穴游戏”技术测试视频据存档在 2009 年 5 月 13 日前后；TIGSource 论坛的首帖为 2009 年 5 月 17 日（吉尼斯世界纪录收录为“第一个与 Minecraft 有关的论坛帖子”），有的报道写作 5 月 19 日。各阶段的日期按社区维基整理。2019 年移除闪烁标语与十周年活动未邀请一事见当时的媒体报道。</p>
+    <p>“先做最小可玩版本”对正在学编程的孩子很实用：可以和他一起把一个大计划拆成一张清单，每完成一项就让家人试玩一次。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>第一版只用了大约一个星期，只能放方块和挖方块。后面的一切，都是两年多里一版一版加上去的。</div>
+    <div><i>游戏外<small>带走一样</small></i>先做出能玩的最小一版，再听别人的意见慢慢改。喜欢一个作品，不等于同意做它的人说的每一句话。</div>
+  </div>
+</section>
+
+<!-- ============ 第三章 · 夜 ============ -->
+<section class="chap" id="c3" data-vol="卷一 · 夜">
+  <div class="chead">
+    <div class="big">夜</div>
+    <div>
+      <div class="no">第三章</div>
+      <h2>第一个夜晚</h2>
+      <dl><dt>讲什么</dt><dd>只能盖房子的游戏怎样变成要活下去的游戏；一只画错的猪；天黑以后为什么会有怪物；合成台和配方；饿肚子是哪一年加进来的</dd><dt>本章装置</dt><dd>第一夜</dd></dl>
+      <div class="inv" data-a="挖 造 人"></div>
+      <div class="yrs" data-a="2009" data-b="2011"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>新世界</b><span class="pix">DAY 1 · 18:40</span><span>生存模式 · 普通难度</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>啊啊啊天黑了！我还没盖房子！</span></div>
+      <div class="l"><i class="j">舅</i><span>你白天干什么了？</span></div>
+      <div class="l"><i class="g">格</i><span>我在海边看了一会儿日落，然后去追一只羊，然后……然后就天黑了。</span></div>
+      <div class="l act">屏幕上传来一阵嘶嘶声，接着“轰”的一声。小格的人物飞了出去。</div>
+      <div class="l"><i class="g">格</i><span>我不玩了！太吓人了！</span></div>
+      <div class="l"><i class="j">舅</i><span>别急着关。我们回到第一天早上重新来，这次先想好：天黑之前，一共有多少时间，要先做哪几件事。</span></div>
+    </div>
+    <div class="ft">第二次，小格在天黑前挖了一个土洞，把门口用土堵上，在洞里点了一根火把。他在洞里待了一整夜，第二天早上出来，觉得自己像一个探险家。</div>
+  </div>
+
+  <div class="col">
+    <h3>从“搭积木”到“活下去”<span class="y">2009 年 9 月</span></h3>
+    <p>最早的几个月，游戏里只能盖东西，像一盒用不完的积木。2009 年 9 月，Notch 放出了一个“生存测试版”：游戏里第一次有了<b>生命值</b>，有了会追着你打的怪物，打死怪物还能得分。</p>
+    <p>为什么要加这些？因为光有积木，有的人玩一会儿就不知道干什么了。有了危险，就有了目标：<em>先活下去</em>。你要去找材料、盖房子、做工具，盖房子不再只是为了好看，而是为了躲过一个夜晚。</p>
+    <p>后来，游戏里又有了白天和黑夜。天黑以后，暗的地方会冒出怪物；有光的地方不会。所以玩家很快就学会了两件事：<b>把房子堵严实</b>，<b>把屋里照亮</b>。</p>
+
+    <h3>一只画错的猪</h3>
+    <p>游戏里最有名的怪物，是一种绿色的、没有手、走近你就会“嘶”一声然后爆炸的家伙，叫“苦力怕”（Creeper）。它是怎么来的？</p>
+    <p>据 Notch 自己说，那是一个意外。他本来想做一只猪，在程序里写猪的身体尺寸时，不小心把“高”和“长”写反了。结果猪没有变成横着的，反而变成了竖着的一根，下面四条小短腿。他看了觉得挺怪、挺好玩，就给它换成绿色，变成了一个会偷偷靠近你的怪物。</p>
+    <p>程序员把写错的地方叫“bug”（虫子）。大多数 bug 要赶紧修掉，可是偶尔，一个 bug 会变成一个好点子。</p>
+  </div>
+
+  <div class="real">
+    <h5>合成：一个格子里的发明</h5>
+    <p>2010 年初，游戏里有了“合成”。你把几样东西按一定的形状摆进格子里，就能做出一样新东西：一块原木变四块木板；四块木板摆成正方形，变一张工作台；木板和木棍摆成一把镐子的样子，就是一把木镐。</p>
+    <p>这些“摆法”叫<b>配方</b>。游戏一开始不告诉你所有配方，很多都要自己去试、去问朋友、去网上查。人类真实的历史也是这样：没有人一出生就会打铁、烧陶、织布，每一样手艺，都是有人试了很多次才找到“配方”的。</p>
+  </div>
+
+  <div class="col">
+    <h3>饿肚子<span class="y">2011</span></h3>
+    <p>很长一段时间里，游戏里的人是不会饿的，吃东西只是为了回血。2011 年 9 月，游戏加了一条<b>饥饿值</b>：跑步、跳跃、打架都会让肚子变饿，饿了就不能跑，饿得太久还会掉血。于是种地、养牛、钓鱼都变得重要起来。</p>
+    <p>你看，一个游戏的“难”，是一样一样加上去的：先有怪物，再有黑夜，再有饥饿。每加一样，玩家就要多想一步。</p>
+  </div>
+
+  <div class="fig" id="nightFig">
+    <div class="fig-label">装置 · 第三章</div>
+    <h4>第一夜</h4>
+    <p class="how">你刚来到一个新世界，离天黑还有十分钟（六百秒）。下面每一个按钮是一件事，后面写着要花多少秒、需要先有什么。按顺序点，把时间安排好。天黑了，或者你按“天黑了”，就看看你能不能平安过夜。这是这本书自己设计的简化小游戏，规则和真游戏不完全一样。</p>
+    <div class="clockbar"><i id="nightHand" style="left:0"></i></div>
+    <div class="kv" id="nightKv"></div>
+    <div class="night" id="nightBtns"></div>
+    <div class="lab">背包</div>
+    <div class="bag" id="nightBag"></div>
+    <div class="btns"><button class="btn pri" id="nightEnd">天黑了</button><button class="btn" id="nightReset">回到第一天早上</button></div>
+    <div class="say" id="nightSay">太阳刚升起来。先做什么？</div>
+  </div>
+
+  <div class="try">
+    <div class="h">试一试</div>
+    <div><i>游戏里</i>
+      <ol>
+        <li>第一次玩生存，可以先把难度调成“和平”：没有怪物，饿了也不会掉血，先熟悉怎么砍树、怎么合成。</li>
+        <li>熟悉以后换成“简单”，试试在天黑前做到三件事：一个能关上的小屋、一根火把、一点吃的。</li>
+        <li>天黑以后待在屋里，看看窗外有什么。</li>
+      </ol>
+    </div>
+    <div><i>游戏外</i>
+      <ol>
+        <li>周末早上，写一张“今天天黑之前要做完的事”，后面写上每件事大概要多久。</li>
+        <li>按重要的先做排一排顺序。</li>
+        <li>晚上对一对：哪件事花的时间比你想的长？下次怎么排？</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="gone">
+    <h5><s>几个试验用的“人”</s></h5>
+    <p>2010 年前后的一个开发版本里，游戏里曾经短暂地出现过几种长得像人的试验怪物，有的只是换了个颜色的玩家模样。它们只是用来测试“怪物会不会走路、会不会追人”的，没过多久就被删掉了，后来的玩家几乎都没见过。生存测试版里打怪得分的“分数”，后来也拿掉了。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">苦力怕是从一只画错的猪变来的<span class="vd" data-v="真">真</span></div>
+    <div class="bd"><p>这个故事出自 Notch 本人的回忆：写猪的身体尺寸时把高和长弄反了，得到一个竖着的怪东西，他把它改成了苦力怕。没有别的证据能反驳他，所以一般都当真事讲。只是要记得：这是“据他自己说”。</p></div>
+  </div>
+
+  <div class="echo" data-k="押韵">
+    <div class="stamp">押韵</div>
+    <div><p class="rh">人类的第一夜</p><p>几十万年前，我们的祖先也怕天黑：看不见，野兽会来。后来人学会了用火，火堆让夜里有了光，野兽不敢靠近，人还能围着火吃熟的东西、讲故事。游戏里的第一根火把，和祖先的第一堆篝火，是同一件事。书房里的<a href="../eat/#c1">《吃了吗》第一章</a>讲过火的故事。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>生命值</b>你的人物还能挨几下。掉光了就要重来。</div>
+    <div><b>bug</b>程序里的错误。英文原意是“虫子”。</div>
+    <div><b>合成与配方</b>把几样东西按一定形状摆好，做出一样新东西；那个摆法就是配方。</div>
+    <div><b>难度</b>游戏里怪物有多凶、饿得有多快。和平、简单、普通、困难，四档。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>Classic 0.24_SURVIVAL_TEST 发布于 2009 年 9 月；合成和工作台出现在 2010 年初的 Indev；饥饿值在 2011 年 9 月的 Beta 1.8 加入。苦力怕的来历出自 Persson 本人后来的说法，各家报道一致引用，没有独立旁证。“试验用的人形怪物”指 Indev 时期短暂存在的几种测试生物。</p>
+    <p>不少孩子第一次玩生存会被夜里的怪物吓到。可以先用“和平”难度，等他熟悉了再慢慢调高；陪他玩第一个夜晚，也是一次很好的“做计划”练习。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>危险让盖房子有了意义。暗处会刷出怪物，所以要把屋子堵严、照亮。苦力怕来自一个写错的数字。</div>
+    <div><i>游戏外<small>带走一样</small></i>天黑之前时间有限，先做最要紧的事。写错的东西大多要改掉，偶尔也会变成好点子。</div>
+  </div>
+</section>
+
+<div class="volhead" data-vol="卷二 · 长大">
+  <div class="num">VOLUME TWO · 第一部 · 卷二</div>
+  <h2>长大<small>从一个帖子到全世界</small></h2>
+  <p class="lede">一个人下班后写的小程序，怎样变成一家公司、一款卖了四亿多份的游戏？这一卷讲它怎样一边做一边卖，怎样越长越高，怎样被一家大公司买下，怎样来到中国，又怎样被全世界的玩家一起养大。</p>
+  <svg class="row" aria-hidden="true"></svg>
+</div>
+
+<!-- ============ 第四章 · 卖 ============ -->
+<section class="chap" id="c4" data-vol="卷二 · 卖">
+  <div class="chead">
+    <div class="big">卖</div>
+    <div>
+      <div class="no">第四章</div>
+      <h2>十欧元一份</h2>
+      <dl><dt>讲什么</dt><dd>一个还没做完的游戏怎样开始卖；越早买越便宜；被冻住的钱；一个人变成一家公司；拉斯维加斯的 1.0；一份变成四亿多份</dd><dt>本章装置</dt><dd>卖了多少份</dd></dl>
+      <div class="inv" data-a="人"></div>
+      <div class="yrs" data-a="2009" data-b="2026"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>饭桌上</b><span class="pix">OFFLINE · DINNER</span><span>没开电脑</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>妈妈，豆子说他的游戏是免费的，为什么我的要花钱买？</span></div>
+      <div class="l"><i class="m">妈</i><span>这个我也不懂，问你舅舅。</span></div>
+      <div class="l"><i class="j">舅</i><span>有的游戏下载免费，靠卖皮肤、卖道具赚钱；有的游戏一次买断，以后就不用再花钱了。你知道这个游戏最早卖多少钱吗？</span></div>
+      <div class="l"><i class="g">格</i><span>多少？</span></div>
+      <div class="l"><i class="j">舅</i><span>大概十欧元，差不多八九十块人民币。而且那时候它还没做完，买的人是在买一个“以后会越来越好”的游戏。</span></div>
+      <div class="l"><i class="g">格</i><span>那要是以后没做好呢？</span></div>
+      <div class="l"><i class="j">舅</i><span>那就亏了。所以当时买的人，是相信做它的那个人。</span></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>先卖一个没做完的游戏<span class="y">2009—2010</span></h3>
+    <p>2009 年夏天，Notch 开始卖他的游戏。那时候它还在“测试版”，很多东西都没有。他想了一个办法：<em>越早买越便宜</em>。测试版的时候大约十欧元，到了公测版涨一点，正式版再涨一点。而且只要你买过一次，以后所有的新版本都免费。</p>
+    <p>这样做有两个好处：一是早早就有了钱，Notch 可以辞掉工作专心做游戏；二是早早就有了玩家，每天都有人告诉他哪里好玩、哪里不好玩。</p>
+    <p>今天很多游戏都这样卖，叫“抢先体验”。买的人要想清楚：你买的是一个还在长大的东西，它以后可能变得很好，也可能半路停下来。</p>
+
+    <h3>视频里的方块</h3>
+    <p>那时候游戏公司都在电视上、杂志上打广告。《我的世界》几乎没打过广告，它是被<b>玩家自己</b>传出去的。</p>
+    <p>很多玩家把自己玩的过程录成视频放到网上，一边玩一边讲：今天我盖了一座城堡，今天我差点被炸死。看的人越来越多，看完就想自己试试。一传十，十传百。</p>
+  </div>
+
+  <div class="real">
+    <h5>被冻住的六十万欧元</h5>
+    <p>2010 年夏天，买游戏的人突然多了起来，钱都打进了 Notch 的网上收款账户。收款公司一看：这个账户怎么一下子进来这么多钱？会不会有问题？于是把账户<b>冻住</b>了，钱只能进、不能取。据报道，那时候里面大约有六十万欧元。</p>
+    <p>Notch 在网上说了这件事，很多人帮他喊话。过了一段时间，账户才解冻。银行和收款公司这样做，是为了防骗子；可是有时候，也会误伤一个突然走红的小程序员。</p>
+  </div>
+
+  <div class="col">
+    <h3>一个人变成一家公司<span class="y">2010—2011</span></h3>
+    <p>钱多了，事情也多了：要回邮件、管服务器、做网站、画画、做音乐。一个人忙不过来。2010 年，Notch 和朋友们开了一家公司，叫 <b>Mojang</b>，瑞典语里是“小玩意儿”的意思。</p>
+    <p>2011 年 1 月，还在公测版的游戏卖到了一百万份。那年 11 月 18 日，Mojang 在美国拉斯维加斯办了第一次玩家大会，几千个玩家从世界各地赶来。就在大会上，Notch 按下按钮，放出了正式版 <b>1.0</b>。</p>
+    <p>一个月以后，Notch 把游戏交给了同事延斯·贝根斯滕。从那以后，延斯一直是这个游戏的总负责人。</p>
+    <p>同一年，游戏有了手机版；第二年，有了游戏机版。它从一台电脑，走进了全世界的口袋和客厅。</p>
+  </div>
+
+  <div class="fig" id="salesFig">
+    <div class="fig-label">装置 · 第四章</div>
+    <h4>卖了多少份</h4>
+    <p class="how">下面是官方或可靠的报道公布过的几个“里程碑”。点“摞起来有多高”，看看如果每一份都是一张光盘、一张一张摞起来，会摞多高。</p>
+    <div class="btns" id="salesMode"></div>
+    <div class="scroll-x"><svg id="salesSvg" role="img" aria-label="销量随年份增长的折线图"></svg></div>
+    <div class="say" id="salesSay"></div>
+    <p class="figcap">2011 年 1 月一百万（公测版，只算电脑）；2016 年 6 月一亿；2019 年 5 月一亿七千六百万；2020 年 5 月两亿；2023 年 10 月三亿；2025 年 4 月三亿五千万；2026 年 9 月四亿两千五百万。中间几年的数字不全，线是连起来的大概样子。一张光盘按 1.2 毫米厚算，其实现在大多数人是在网上下载的。</p>
+  </div>
+
+  <div class="try">
+    <div class="h">试一试</div>
+    <div><i>游戏里</i>
+      <ol>
+        <li>在游戏的主菜单或者设置里，找到你玩的版本号。</li>
+        <li>上网查一查（让大人帮忙）：这个版本是哪一年出的，加了什么？</li>
+        <li>想一想：如果你是做游戏的人，下一个版本你想加什么？为什么？</li>
+      </ol>
+    </div>
+    <div><i>游戏外</i>
+      <ol>
+        <li>学校或者小区有跳蚤市场、义卖的时候，试着卖一样你自己做的小东西。</li>
+        <li>卖之前先做一个样品，问三个同学：你愿意花多少钱买？</li>
+        <li>记下你花了多少材料钱、卖了多少钱。这就是一本最小的账。</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="gone">
+    <h5><s>线下的玩家大会</s></h5>
+    <p>2011 年以后，Mojang 每年在一座城市办一次线下玩家大会。2017 年起改成在网上直播，后来改名叫 Minecraft Live（我的世界直播），每次在直播里公布新东西。几千人挤在一个大厅里的那种大会，就这样停了。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">买一次就能永远玩所有版本<span class="vd" data-v="半真">半真</span></div>
+    <div class="bd"><p>当年买电脑版的人，确实以后所有更新都免费。可是今天这个游戏在不同的机器上是分开卖的：电脑上的 Java 版、手机和游戏机上的版本，往往要各买各的；在中国，网易代理的中国版下载免费，皮肤和一些内容要另外花钱。第六、七章会讲这些版本有什么不一样。</p></div>
+  </div>
+
+  <div class="echo" data-k="联系">
+    <div class="stamp">联系</div>
+    <div><p class="rh">先有人愿意买，再把它做大</p><p>边做边卖、听买的人怎么说，是很多小生意开头的办法。书房里的<a href="../open/two.html#c11">《开张》第十一章</a>讲过一些大人怎样先找到第一个愿意付钱的人。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>抢先体验</b>游戏还没做完就先卖，买的人先玩，边玩边等它长大。</div>
+    <div><b>买断</b>付一次钱，以后不再收钱。</div>
+    <div><b>冻结账户</b>银行或收款公司暂时不让账户里的钱取出来。</div>
+    <div><b>公司</b>一群人一起做事、一起分钱、一起承担风险的组织。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>早期售价：Alpha 阶段约 9.95 欧元，此后逐步提价，买过的玩家终身免费更新（据社区维基与当时报道）。PayPal 冻结发生在 2010 年 8—9 月，金额多报道为约 60 万欧元，个别报道换算成 75 万美元。Mojang 2009 年以 Mojang Specifications 名义成立，2010 年作为公司正式运营。销量里程碑：100 万（2011 年 1 月）、1 亿（2016 年 6 月）、1.76 亿（2019 年 5 月）、2 亿（2020 年 5 月）、3 亿（2023 年 10 月，吉尼斯）、3.5 亿（2025 年 4 月，吉尼斯）、4.25 亿（2026 年 9 月 Minecraft Live 后 Xbox 方面公布）。</p>
+    <p>可以借这一章和孩子聊“买断”“免费加内购”“抢先体验”的区别，以及他自己的零花钱怎么花。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>它是一边做一边卖的：越早买越便宜，买过的人以后都免费。它没怎么打广告，是玩家的视频把它传遍了世界。</div>
+    <div><i>游戏外<small>带走一样</small></i>买一个还没做完的东西，是在相信做它的人。卖东西之前，先问问别人愿意花多少钱。</div>
+  </div>
+</section>
+
+<!-- ============ 第五章 · 高 ============ -->
+<section class="chap" id="c5" data-vol="卷二 · 高">
+  <div class="chead">
+    <div class="big">高</div>
+    <div>
+      <div class="no">第五章</div>
+      <h2>越长越高的世界</h2>
+      <dl><dt>讲什么</dt><dd>万圣节那天打开的一扇地狱之门；末地和一首写给玩家的长诗；村民和交易；海洋、洞穴和山；世界的天花板一次次抬高；投票选新生物，后来又不选了</dd><dt>本章装置</dt><dd>世界变高了</dd></dl>
+      <div class="inv" data-a="挖 造"></div>
+      <div class="yrs" data-a="2010" data-b="2026"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>小格的塔</b><span class="pix">DAY 41 · Y 320</span><span>创造模式</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>舅舅，我想盖一座埃菲尔铁塔，盖到一半就放不上去了，它说“已到达建筑高度上限”！</span></div>
+      <div class="l"><i class="j">舅</i><span>埃菲尔铁塔多高？</span></div>
+      <div class="l"><i class="g">格</i><span>我查了，三百三十米。</span></div>
+      <div class="l"><i class="j">舅</i><span>那你从哪儿开始盖的？</span></div>
+      <div class="l"><i class="g">格</i><span>从海边的草地上。</span></div>
+      <div class="l"><i class="j">舅</i><span>海边离天花板只有两百五十多格。你要是从地底下最深的地方开始盖，就放得下了。要是在十几年前，这个世界只有一百二十八格高，连一半都放不下。</span></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>两扇门<span class="y">2010—2011</span></h3>
+    <p>2010 年 10 月 31 日是万圣节。那天，Notch 放出了一个“万圣节更新”：游戏里多了南瓜，多了一个全新的世界，叫<b>下界</b>。玩家用黑曜石搭一个门框，点上火，就能穿过去。下界里到处是岩浆和火，天花板是红色的石头，还有会飞、会哭、会吐火球的白色大怪物。</p>
+    <p>一年以后，正式版 1.0 又加了一个世界，叫<b>末地</b>：一座漂在黑暗中的岛，上面住着一条龙。打败这条龙，屏幕上会慢慢滚出一首很长的诗，像是两个看不见的声音在讨论你：这个玩家是谁，他为什么来这里，他在梦里学会了什么。诗是一位爱尔兰作家写的。很多玩家第一次读到都很惊讶：一个盖房子的游戏，结尾怎么是一首诗。</p>
+    <p>从那以后，游戏里有了三个世界：<b>主世界</b>、<b>下界</b>和<b>末地</b>。很多玩家给自己定了目标：打败末影龙，就算“通关”。可是通关以后，游戏也不会结束，你还可以接着盖、接着玩。</p>
+
+    <h3>村民、海洋和洞穴<span class="y">2011—2023</span></h3>
+    <p>接下来的十几年，游戏差不多每年来一次大更新，每次都有一个主题：</p>
+    <ul class="plain">
+      <li><b>冒险</b>（2011）：有了村庄、要塞和饥饿值。后来村民还能和你做买卖，用绿宝石换东西。</li>
+      <li><b>海洋</b>（2018）：海里有了珊瑚、海豚、鱼群和沉船。在这之前，海里几乎什么都没有。</li>
+      <li><b>下界</b>（2020）：把那个只有岩浆的地方，改成了五种不同的地形。</li>
+      <li><b>洞穴与山崖</b>（2021）：地下变成了巨大的洞穴，山也变得又高又陡。世界一下子往上长、也往下长。</li>
+      <li><b>荒野</b>（2022）、<b>足迹与故事</b>（2023）、<b>试炼</b>（2024）……</li>
+    </ul>
+    <p>2024 年以后，Mojang 改了一个办法：不再一年一次大更新，而是每过几个月放一个小一点的更新，让大家更常有新东西玩。2026 年秋天，他们还说要在游戏里加一个新的世界，这是末地之后十多年来的第一次。</p>
+  </div>
+
+  <div class="real">
+    <h5>世界的天花板</h5>
+    <p>方块世界不光有边，还有顶和底。2010 年的时候，整个世界只有 <b>128 格</b>高，海平面在第 64 格左右，所以从海边往上，只能盖六十多格。2012 年，世界长到了 <b>256 格</b>。2021 年的洞穴与山崖更新，世界往上长到 320，往下挖到 −64，一共 <b>384 格</b>。</p>
+    <p>为什么不一开始就做得很高？因为电脑要记住每一块方块。世界越高，要记住、要画出来的方块就越多，那时候的电脑和手机会被拖得很慢。电脑越来越快，世界才能越长越高。</p>
+  </div>
+
+  <div class="fig" id="heightFig">
+    <div class="fig-label">装置 · 第五章</div>
+    <h4>世界变高了</h4>
+    <p class="how">选一个年份，再选从哪儿开始盖：从海边的地面，还是从世界最底下。看看哪些真实的建筑放得下。一格一米，建筑的高度是大约的数字。</p>
+    <div class="btns" id="hYear"></div>
+    <div class="btns" id="hBase"></div>
+    <div class="scroll-x"><svg id="heightSvg" role="img" aria-label="世界高度和真实建筑的对比图"></svg></div>
+    <div class="say" id="heightSay"></div>
+  </div>
+
+  <div class="col">
+    <h3>投票选生物，后来又不选了<span class="y">2017—2024</span></h3>
+    <p>2017 年起，Mojang 每年在直播里请全世界的玩家投票：给你看几种还没做出来的新动物或新怪物，票数最多的那一个会被加进游戏，其他的先放着。</p>
+    <p>一开始大家觉得很好玩。可是后来，很多人不高兴了：输掉的那几个，好像永远不会来了；有时候大家最喜欢的那个偏偏输了。2023 年，五十多万玩家在网上签名反对这种投票。2024 年 9 月，Mojang 宣布不再搞投票，改成多听玩家平时的意见，把新东西更常地加进游戏。</p>
+    <p>这件事说明，就算是“大家一起投票”这种看起来很公平的办法，也会有让人不满意的地方：每次只能选一个，就总有人失望。</p>
+  </div>
+
+  <div class="try">
+    <div class="h">试一试</div>
+    <div><i>游戏里</i>
+      <ol>
+        <li>在创造模式里往上飞，飞到放不了方块的地方，看看坐标里的 Y 是多少。</li>
+        <li>再往下挖到最底下的基岩，看看 Y 是多少。两个数相减，就是世界有多高。</li>
+        <li>挑一座你喜欢的真实建筑，查它有多高，算一算从哪儿开始盖才放得下。</li>
+      </ol>
+    </div>
+    <div><i>游戏外</i>
+      <ol>
+        <li>估一估你家楼有多高：一层楼大约三米，数一数有几层。</li>
+        <li>学校的教学楼呢？换成方块是多少格？</li>
+        <li>和家人比一比，谁估得准。</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="gone">
+    <h5><s>每年一次的生物投票</s></h5>
+    <p>从 2017 年开始、到 2023 年为止的投票，2024 年被正式取消了。这些年投票输掉的好几个生物，到现在还没有出现在游戏里。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">一开始就有下界、末地和村民<span class="vd" data-v="假">假</span></div>
+    <div class="bd"><p>第一版只有草、土和石头。下界是 2010 年万圣节才有的，村庄是 2011 年，末地是 2011 年底的正式版。今天你看到的游戏，是十几年里一层一层加出来的。</p></div>
+  </div>
+
+  <div class="echo" data-k="联系">
+    <div class="stamp">联系</div>
+    <div><p class="rh">真城市也有天花板</p><p>游戏世界有高度上限，是因为电脑记不住太多方块。真实的城市也有“限高”：有的是因为机场，飞机要从头顶飞过；有的是为了保护老城的样子；还有的是怕楼太高着火了救不了。书房里的<a href="../beam/three.html#c21">《上梁》第二十一章</a>讲过摩天楼怎样一路长高。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>维度</b>游戏里说的“另一个世界”，比如下界和末地。</div>
+    <div><b>更新</b>做游戏的人放出新版本，加东西、改东西、修错误。</div>
+    <div><b>海平面</b>海水表面的高度。量山和楼有多高，常常从这里算起。</div>
+    <div><b>投票</b>每人选一个，按票数多少来决定。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>Halloween Update（Alpha 1.2.0）于 2010 年 10 月 30—31 日发布；1.0 加入末地与“终末之诗”，诗作者为爱尔兰作家朱利安·高夫（Julian Gough）。世界高度：早期 128 格，1.2（2012 年 Anvil 格式）起 256 格，1.18（2021 年）起 −64 至 320。生物投票：2017 年首次社区投票，2018、2019 为群系投票，2020—2023 为生物投票；2024 年 9 月 Mojang 宣布停止。2026 年 9 月 Minecraft Live 宣布新维度一事据当时报道，具体以官方为准。</p>
+    <p>“终末之诗”篇幅很长、略带哲思，很多孩子读不太懂，可以和他一起读一段，聊聊“游戏和梦”。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>世界有三个：主世界、下界、末地。世界的高度从 128 格长到 384 格，是因为电脑越来越快。</div>
+    <div><i>游戏外<small>带走一样</small></i>量高度要先说好从哪儿量起。投票看起来公平，可是每次只能选一个，总会有人失望。</div>
+  </div>
+</section>
+
+<!-- ============ 第六章 · 合 ============ -->
+<section class="chap" id="c6" data-vol="卷二 · 合">
+  <div class="chead">
+    <div class="big">合</div>
+    <div>
+      <div class="no">第六章</div>
+      <h2>二十五亿美元</h2>
+      <dl><dt>讲什么</dt><dd>一家大公司买下一家小公司；“不是为了钱”；两个版本为什么不一样；一个能在大街上玩的游戏为什么关了；一棵越长越大的家谱树；一部电影</dd><dt>本章装置</dt><dd>一棵家谱树</dd></dl>
+      <div class="inv" data-a="码 人"></div>
+      <div class="yrs" data-a="2011" data-b="2025"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>同桌吵架</b><span class="pix">JAVA vs BEDROCK</span><span>课间</span></div>
+    <div class="bd">
+      <div class="l"><i class="d">豆</i><span>你那个电脑版最没劲了，我手机版能和我表哥的游戏机一起玩！</span></div>
+      <div class="l"><i class="g">格</i><span>我的能装模组！你的能吗？</span></div>
+      <div class="l"><i class="d">豆</i><span>模组是什么？</span></div>
+      <div class="l act">晚上，小格把这件事告诉了舅舅。</div>
+      <div class="l"><i class="j">舅</i><span>你们俩都对。你玩的那个叫 Java 版，是最早的那一个；豆子玩的叫基岩版，是后来为了让手机、平板、游戏机、电脑都能一起玩才做的。它们长得差不多，可里面是两套不同的程序。</span></div>
+      <div class="l"><i class="g">格</i><span>为什么要做两套？做一套不行吗？</span></div>
+      <div class="l"><i class="j">舅</i><span>这要从一笔很大的买卖说起。</span></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>一笔很大的买卖<span class="y">2014</span></h3>
+    <p>2014 年 9 月 15 日，美国的微软公司宣布，花 <b>二十五亿美元</b>买下 Mojang。按当时的汇率，差不多是一百五十多亿元人民币。微软就是做 Windows 电脑系统和 Xbox 游戏机的那家公司。</p>
+    <p>为什么愿意花这么多钱？因为这个游戏那时已经有几千万玩家，每天都有很多新人加入；它能在电脑、手机、游戏机上玩，还能拿到学校里上课。对一家大公司来说，这是一件可以做很多年的事。</p>
+    <p>Notch 和另外两位创始人离开了 Mojang。他在网上写了一篇告别的话，大意是：这件事不是为了钱，而是为了让自己不被压垮。一个人做出一个全世界都在玩的游戏，每天会收到成千上万条消息，有夸的、有骂的、有提要求的，他觉得自己扛不住了。</p>
+    <p>做游戏的大部分人留了下来，延斯继续当总负责人。游戏照样更新，照样免费更新。</p>
+  </div>
+
+  <div class="real">
+    <h5>两个版本，两套程序</h5>
+    <p>最早的电脑版是用 Java 写的。Java 的好处是同一份程序能在 Windows、苹果电脑和 Linux 上跑，而且很容易被玩家拆开、改写，所以有了成千上万的模组。坏处是在手机和游戏机上跑得不够快。</p>
+    <p>于是，手机版从一开始就用另一种编程语言 C++ 重新写了一遍，跑得更快、更省电。2017 年，微软把手机版、Windows 10 版、Xbox 版合成了一套，叫<b>基岩版</b>，后来又加上了 Switch 和 PlayStation。从那以后，用手机的豆子就能和用游戏机的表哥在同一个世界里玩了。</p>
+    <ul>
+      <li><b>Java 版</b>：电脑上玩（Windows、Mac、Linux）。模组最多，红石更“老派”，大多数大型服务器都是这个版本。</li>
+      <li><b>基岩版</b>：手机、平板、游戏机、Windows 电脑都能玩，可以跨设备一起玩，有官方的市场卖地图和皮肤。</li>
+    </ul>
+    <p>两个版本大部分内容一样，但不能一起联机。中国还有一个网易代理的中国版，下一章讲。</p>
+  </div>
+
+  <div class="col">
+    <h3>一棵家谱树</h3>
+    <p>买下 Mojang 以后，除了主游戏，还长出了很多“亲戚”：有讲故事的游戏，有拿着手机在大街上放方块的游戏，有打地牢的游戏，有指挥军队的游戏，还有给学校用的教育版。有的活得很好，有的几年后就关了。</p>
+    <p>2025 年 4 月，一部真人电影《我的世界大电影》上映，全世界票房大约九亿多美元，是那几年最卖座的游戏电影之一。很多从来没玩过游戏的大人，也是看了电影才知道方块世界的。</p>
+  </div>
+
+  <div class="fig" id="treeFig">
+    <div class="fig-label">装置 · 第六章</div>
+    <h4>一棵家谱树</h4>
+    <p class="how">每一行是一个版本或者一个“亲戚”，横条是它活着的年份。灰色的、后面写着“停”的，是已经关掉或者不再更新的。点一行看看它是什么。</p>
+    <div class="scroll-x"><svg id="treeSvg" role="img" aria-label="我的世界各个版本和衍生游戏的时间线"></svg></div>
+    <div class="say" id="treeSay">点一行看看。</div>
+  </div>
+
+  <div class="try">
+    <div class="h">试一试</div>
+    <div><i>游戏里</i>
+      <ol>
+        <li>看看游戏的开始画面，上面写的是哪个版本？是 Java 版、基岩版，还是中国版？</li>
+        <li>问一问你的同学和朋友，他们玩的是哪个？</li>
+        <li>想一起玩，就要用同一个版本。把你们的版本写在一张表里。</li>
+      </ol>
+    </div>
+    <div><i>游戏外</i>
+      <ol>
+        <li>和家人聊一聊：如果你做了一个很棒的东西，有人出很多钱要买，你卖不卖？为什么？</li>
+        <li>卖了以后，你还想不想每天看到它、改进它？</li>
+        <li>这道题没有标准答案。听听大人怎么想。</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="gone">
+    <h5><s>拿着手机在大街上放方块</s></h5>
+    <p>2019 年，有一个叫《我的世界：地球》的游戏开始测试。你拿着手机走在真实的街道上，手机镜头里会出现方块和动物，你可以把方块放在真实的桌子上、草地上，和朋友一起搭。</p>
+    <p>可是第二年，全世界很多地方因为疫情不方便出门，这个“要出门才能玩”的游戏就很难做下去了。2021 年 6 月，它正式关闭。讲故事的那款《故事模式》，也因为做它的公司关门，在 2019 年下架了。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">被大公司买走以后，游戏就变味了<span class="vd" data-v="假">假</span></div>
+    <div class="bd"><p>很多玩家当时担心：大公司会不会把游戏改得面目全非，或者开始收月费？十多年过去，主要的开发团队还在，Java 版还在更新，买过的人更新仍然免费，模组也照样能装。变化当然有：版本更多了，商店更大了，账号要换成微软账号。是好是坏，玩家们至今还在争论。</p></div>
+  </div>
+
+  <div class="echo" data-k="生活">
+    <div class="stamp">生活</div>
+    <div><p class="rh">成功也会压人</p><p>大家都以为做出一个特别成功的东西，人就会特别开心。Notch 的告别信说的却是另一面：成千上万双眼睛盯着你，每个人都想让你按他的意思改，这是很重的担子。不管做成什么事，都要记得照顾好自己。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>收购</b>一家公司花钱把另一家公司买下来。</div>
+    <div><b>创始人</b>最早开这家公司的人。</div>
+    <div><b>跨平台</b>不同的设备（手机、电脑、游戏机）能一起玩。</div>
+    <div><b>衍生作品</b>从一个作品长出来的新作品：电影、小说、别的游戏。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>微软 2014 年 9 月 15 日宣布以 25 亿美元收购 Mojang，同年 11 月完成。Persson 当日博文题为“I’m leaving Mojang”。基岩版统一于 2017 年 9 月的“Better Together”更新。《我的世界：地球》2019 年开始测试，2021 年 6 月 30 日关闭；Telltale 的《故事模式》2015 年发行，2019 年因 Telltale 倒闭下架；《我的世界：地下城》2020 年发行；《我的世界：传奇》2023 年发行，2024 年初停止内容更新；电影《我的世界大电影》2025 年 4 月上映，全球票房约 9.5 亿美元。家谱树里的“树莓派版”是 2013 年随树莓派电脑发布的免费小版本，可以用 Python 控制，第二部会讲到。</p>
+    <p>孩子和同学经常为“哪个版本好”吵架。可以告诉他：版本没有好坏，只有适不适合；想一起玩，先对齐版本。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>Java 版和基岩版是两套程序：一个模组多，一个能跨设备一起玩。想联机，先用同一个版本。</div>
+    <div><i>游戏外<small>带走一样</small></i>同一件事可以用不同的工具做，各有长处。做成了大事，也要照顾好自己。</div>
+  </div>
+</section>
+
+<!-- ============ 第七章 · 国 ============ -->
+<section class="chap" id="c7" data-vol="卷二 · 国">
+  <div class="chead">
+    <div class="big">国</div>
+    <div>
+      <div class="no">第七章</div>
+      <h2>来到中国</h2>
+      <dl><dt>讲什么</dt><dd>“正版”是什么意思；网易代理中国版；免费下载和花钱的皮肤；为什么中国版和国际版不能一起玩；未成年人一周能玩几个小时、能花多少钱</dd><dt>本章装置</dt><dd>一年有几个小时</dd></dl>
+      <div class="inv" data-a="人"></div>
+      <div class="yrs" data-a="2016" data-b="2026"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>星期三晚上</b><span class="pix">20:05 · 无法登录</span><span>中国版</span></div>
+    <div class="bd">
+      <div class="l"><i class="d">豆</i><span>（打电话）小格！我登不上去了！它说“未成年人只能在周五、周六、周日和节假日的晚上八点到九点玩”！</span></div>
+      <div class="l"><i class="g">格</i><span>今天星期三呀。</span></div>
+      <div class="l"><i class="d">豆</i><span>我知道……那我这个星期只能玩三个小时？</span></div>
+      <div class="l act">小格挂了电话，去问舅舅这是谁规定的。</div>
+      <div class="l"><i class="j">舅</i><span>是国家的规定，不光管这一个游戏，在国内上线的网络游戏都要遵守。你想不想算一算，照这个规定，一年一共能玩多少个小时？</span></div>
+    </div>
+    <div class="ft">算完以后，小格和妈妈、舅舅一起写了一张“游戏公约”，贴在书桌旁边。第三部会讲这张公约是怎么写的。</div>
+  </div>
+
+  <div class="col">
+    <h3>“正版”是什么意思</h3>
+    <p>一个游戏是一群人花了很多时间和钱做出来的。你花钱买的，叫“正版”：做游戏的人能拿到钱，才能接着做下去。有人把游戏偷偷复制、改掉防复制的锁，放到网上让大家白拿，这叫“盗版”。</p>
+    <p>很多年里，国内的玩家想玩《我的世界》，只能去国外的网站买，要用外国的付款方式，还经常连不上服务器，所以不少人玩的是盗版。这对做游戏的人不公平，盗版的东西也常常夹带病毒和广告。</p>
+
+    <h3>网易代理<span class="y">2016—2017</span></h3>
+    <p>2016 年 5 月 20 日，微软、Mojang 和中国的网易公司一起宣布：《我的世界》要正式进入中国，由网易来运营，做一个专门的<b>中国版</b>。</p>
+    <p>为什么不是微软自己来？因为在中国上线一款网络游戏，要经过审批、要有在国内的服务器、要会做国内玩家喜欢的活动，网易做这些事很熟。2017 年，中国版先在电脑上测试，那年 9 月，手机版也上了国内的应用商店。</p>
+    <p>中国版和国外的版本有几个不一样的地方：</p>
+    <ul class="plain">
+      <li><b>下载免费</b>。基本的游戏不要钱，皮肤、一些地图和玩法组件要花钱。</li>
+      <li><b>要实名注册</b>。用身份证信息注册，系统知道你是不是未成年人。</li>
+      <li><b>有自己的服务器和内容中心</b>。很多国内的玩家和小团队在上面做地图、模组、皮肤，有的还能靠这个赚钱。</li>
+      <li><b>不能和国际版一起联机</b>。两边的账号和服务器是分开的。</li>
+    </ul>
+  </div>
+
+  <div class="real">
+    <h5>未成年人能玩多久、能花多少</h5>
+    <p>2019 年，国家新闻出版署规定：网络游戏要实名注册；每天晚上十点到第二天早上八点，不能给未成年人提供游戏服务；平时每天不超过一个半小时，节假日不超过三小时。</p>
+    <p>2021 年 8 月，规定变得更严：<b>只能在星期五、星期六、星期日和法定节假日，每天晚上八点到九点</b>，玩一个小时。别的时间都不行。</p>
+    <p>花钱也有上限（2019 年的规定，到现在还在用）：</p>
+    <ul>
+      <li>不满 8 岁：不能在游戏里花钱。</li>
+      <li>8 岁到不满 16 岁：每次最多 50 元，每个月最多 200 元。</li>
+      <li>16 岁到不满 18 岁：每次最多 100 元，每个月最多 400 元。</li>
+    </ul>
+    <p>这些规定管的是在国内上线运营的网络游戏，不只是《我的世界》，所有这样的游戏都一样。</p>
+  </div>
+
+  <div class="fig" id="yearFig">
+    <div class="fig-label">装置 · 第七章</div>
+    <h4>一年有几个小时</h4>
+    <p class="how">上面一排是一个普通星期，绿色的格子是能玩的时间。拖动滑块，告诉它一年里有几天节假日不在周五到周日（比如国庆、春节里的工作日），看看一年加起来能玩多少个小时。再拖下面三个滑块，想一想这些小时你打算怎么分。</p>
+    <div class="cal" id="yearCal"></div>
+    <div class="ctl"><span>节假日（不算周末）</span><input type="range" id="yrHol" min="0" max="20" value="10"><output id="yrHolO"></output></div>
+    <div class="kv" id="yearKv"></div>
+    <div class="lab">这些小时，你想怎么分</div>
+    <div class="ctl"><span>盖房子、探险</span><input type="range" id="yrA" min="0" max="10" value="5"><output id="yrAO"></output></div>
+    <div class="ctl"><span>红石和命令</span><input type="range" id="yrB" min="0" max="10" value="3"><output id="yrBO"></output></div>
+    <div class="ctl"><span>和朋友一起玩</span><input type="range" id="yrC" min="0" max="10" value="2"><output id="yrCO"></output></div>
+    <div class="split" id="yearSplit"></div>
+    <div class="say" id="yearSay"></div>
+    <p class="figcap">按 2021 年的规定算：一年大约五十二个星期，每个星期五、六、日各一小时，再加上落在周一到周四的节假日。每年的节假日安排不一样，滑块只是个大概。</p>
+  </div>
+
+  <div class="try">
+    <div class="h">试一试</div>
+    <div><i>游戏里</i>
+      <ol>
+        <li>想和同学一起玩，先问清楚：你们都是中国版，还是都是国际版？是电脑版还是手机版？</li>
+        <li>能玩的那一个小时很短，开始之前先想好今天要做什么：盖完屋顶？打一个副本？</li>
+        <li>九点到了，存好档再退出。</li>
+      </ol>
+    </div>
+    <div><i>游戏外</i>
+      <ol>
+        <li>和爸爸妈妈一起，写一张“游戏公约”：什么时候玩、玩多久、在哪儿玩、花不花钱、能不能和网上的陌生人一起玩。</li>
+        <li>大家都签上名字。</li>
+        <li>过一个月看看，哪一条做到了，哪一条要改。</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="gone">
+    <h5><s>平时每天一个半小时</s></h5>
+    <p>2019 年的规定里，未成年人平时每天还能玩一个半小时，节假日三个小时。2021 年的新规定把它换掉了，改成只有周五、周六、周日和法定节假日的晚上八点到九点。花钱的上限没有变。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">防沉迷是游戏公司自己想出来的<span class="vd" data-v="假">假</span></div>
+    <div class="bd"><p>这是国家的规定，由国家新闻出版署发的通知，所有在国内上线运营的网络游戏都要遵守。游戏公司要做的是实名验证、到点下线、限制花钱。有的公司还加了家长可以查看、可以设置的功能。</p></div>
+  </div>
+
+  <div class="echo" data-k="生活">
+    <div class="stamp">生活</div>
+    <div><p class="rh">时间也是一种钱</p><p>一年一百六十多个小时，听起来很多，其实就是七天。花掉了就没有了，和零花钱一样。所以最好先想好怎么花：哪些拿来玩，哪些拿来学，哪些和朋友一起。第三部会专门讲怎样给自己定一张时间表。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>正版</b>花钱买来的、做游戏的人同意你使用的版本。</div>
+    <div><b>盗版</b>没有经过做游戏的人同意，偷偷复制、传播的版本。</div>
+    <div><b>代理</b>一家公司替另一家公司在某个地方经营它的产品。</div>
+    <div><b>实名注册</b>用真实的身份信息注册账号。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>网易与微软、Mojang 于 2016 年 5 月 20 日宣布合作；中国版 2017 年先在 PC 端测试（4 月小范围、8 月不限号），iOS 版 2017 年 9 月上架国区应用商店。防沉迷：国家新闻出版署 2019 年 10 月《关于防止未成年人沉迷网络游戏的通知》（实名、时段、时长、充值限额），2021 年 8 月 30 日《关于进一步严格管理 切实防止未成年人沉迷网络游戏的通知》（仅周五、六、日和法定节假日 20—21 时），充值限额沿用 2019 年规定。</p>
+    <p>家里如果使用的是不联网的单机玩法或国外版本，上述规定并不直接适用，但时间和花钱的规矩同样值得和孩子一起定下来。中国版和国际版账号互不相通，孩子和同学联机前先确认版本，能少很多争吵。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>中国版由网易运营，下载免费、要实名，不能和国际版一起联机。未成年人只能在周五、六、日和节假日晚上八点到九点玩。</div>
+    <div><i>游戏外<small>带走一样</small></i>买正版，做东西的人才能接着做。一年一百六十多个小时也就是七天，先想好怎么花。</div>
+  </div>
+</section>
+
+<!-- ============ 第八章 · 群 ============ -->
+<section class="chap" id="c8" data-vol="卷二 · 群">
+  <div class="chead">
+    <div class="big">群</div>
+    <div>
+      <div class="no">第八章</div>
+      <h2>大家一起造</h2>
+      <dl><dt>讲什么</dt><dd>玩家自己改游戏：模组；很多人一起玩的服务器；一万亿次播放的视频；人人都能改的百科；一个根本不存在的人；藏在模组里的病毒</dd><dt>本章装置</dt><dd>真的假的</dd></dl>
+      <div class="inv" data-a="码 人"></div>
+      <div class="yrs" data-a="2010" data-b="2023"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>半夜的视频</b><span class="pix">22:47 · 平板</span><span>被发现了</span></div>
+    <div class="bd">
+      <div class="l act">小格躲在被子里，用平板看一个视频，标题是“游戏里真的有一个白眼睛的人，千万别在半夜打开这个存档”。</div>
+      <div class="l"><i class="m">妈</i><span>（掀开被子）几点了！</span></div>
+      <div class="l"><i class="g">格</i><span>妈妈……游戏里真的有一个白眼睛的鬼吗？我不敢睡了。</span></div>
+      <div class="l act">第二天，舅舅来了。</div>
+      <div class="l"><i class="j">舅</i><span>那个白眼睛的人，是十几年前有人在网上编的故事。做游戏的人还在更新日志里开玩笑，说“已删除他”。可是从来就没有加过，怎么删？</span></div>
+      <div class="l"><i class="g">格</i><span>那为什么那么多视频都说有？</span></div>
+      <div class="l"><i class="j">舅</i><span>因为吓人的视频有人看。网上的东西，要学会自己查一查。</span></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>模组：玩家自己改游戏<span class="y">2010—</span></h3>
+    <p>Java 版的程序可以被拆开来看。很早就有一些会编程的玩家，把游戏拆开，往里面加自己写的东西：新的方块、新的动物、新的机器、新的玩法。这些加进去的东西叫<b>模组</b>（英文 mod，“修改”的意思）。</p>
+    <p>后来，有人专门写了一种“装模组的底座”，让不同人写的模组能装在一起不打架。从那以后，模组越来越多：有让你造工厂和管道的，有让你种出几百种作物的，有让你坐火箭去月球的。有的模组本身就像一个全新的游戏。</p>
+    <p>做游戏的公司没有禁止模组，很多做模组的玩家后来还被请去当了正式的程序员。今天的游戏里，也有官方的办法让你改游戏：数据包、资源包、附加包。第二部会讲到怎样用命令和代码来改。</p>
+
+    <h3>服务器：很多人一起玩</h3>
+    <p>自己玩是一个世界，联机是很多人进到同一个世界。帮大家装着这个世界、让大家连进来的那台电脑，叫<b>服务器</b>。</p>
+    <p>有的服务器只有几个好朋友，有的大服务器同时有几万人在线，里面有各种小游戏：跑酷、躲猫猫、空岛生存、团队对战。管服务器的人叫“服主”，他们定规矩、抓作弊的人、处理吵架。</p>
+    <p>2014 年，Mojang 给服务器定了一条规矩：服务器可以卖好看的皮肤、帽子，但不能卖“花钱就更厉害”的东西，比如更好的剑、更多的血。这是为了让不花钱的玩家也能公平地玩。</p>
+
+    <h3>视频和百科</h3>
+    <p>前面说过，这个游戏是被玩家的视频传出去的。到 2021 年，全世界和它有关的视频在一个大视频网站上，加起来被播放了一万亿次，是那个网站上被看得最多的游戏。</p>
+    <p>还有一群人在写一本人人都能改的网上百科，把每一种方块、每一个配方、每一次更新都写下来。很多玩家查配方、查更新，第一个打开的就是它。这本百科不是官方写的，是成千上万个玩家一个字一个字攒起来的。</p>
+  </div>
+
+  <div class="real">
+    <h5>藏在模组里的病毒</h5>
+    <p>2023 年 6 月，有坏人把一种病毒偷偷塞进了一些模组和插件里，放在两个很大的模组网站上。下载了这些模组的人，电脑里的账号、密码、浏览器里存的东西都可能被偷走。网站和玩家们花了好几天才把它清理干净。</p>
+    <p>这件事告诉我们：<b>模组和插件也是程序</b>，程序能做好事，也能做坏事。下载之前要让大人一起看看：是不是从正规的网站下的，下载的人多不多，评论里有没有人说有问题。看不懂的文件，别打开。</p>
+  </div>
+
+  <div class="fig" id="quizFig">
+    <div class="fig-label">装置 · 第八章</div>
+    <h4>真的假的</h4>
+    <p class="how">下面十二句话，都是你可能在网上、在同学那儿听到的。每一句点“真”或“假”，全部点完再按“揭晓”。答案后面写着在哪一章能读到。</p>
+    <div class="quiz" id="quizBox"></div>
+    <div class="btns"><button class="btn pri" id="quizGo">揭晓</button><button class="btn" id="quizReset">重来</button></div>
+    <div class="say" id="quizSay">还没开始。</div>
+  </div>
+
+  <div class="try">
+    <div class="h">试一试</div>
+    <div><i>游戏里</i>
+      <ol>
+        <li>和一个好朋友约好，在同一个世界里一起盖一座房子：一个人盖墙，一个人盖屋顶。</li>
+        <li>盖之前先说好：门开在哪儿？用什么颜色？</li>
+        <li>盖完说说：两个人一起盖，比一个人快吗？哪里吵架了？</li>
+      </ol>
+    </div>
+    <div><i>游戏外</i>
+      <ol>
+        <li>做一本自己的“攻略小册子”：画三个你最常用的配方，写上怎么做。</li>
+        <li>拿给一个不会玩的人（比如妈妈）看，看她能不能照着做出来。</li>
+        <li>看不懂的地方就改。写给别人看的东西，要让别人看得懂。</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="gone">
+    <h5><s>白眼睛的人</s></h5>
+    <p>2010 年，有人在网上发了一个故事，说在游戏里看见一个和玩家长得一样、但眼睛是白色的人，远远地看着你，一走近就消失了。这个故事传得很广。Mojang 的人觉得很好玩，好多次在更新日志里写“删除了某某某”，开了十几年的玩笑。可这个人从来没有被加进游戏，所以也谈不上“删除”。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">游戏里藏着一个白眼睛的鬼<span class="vd" data-v="假">假</span></div>
+    <div class="bd"><p>这是 2010 年网上编出来的故事。后来有很多视频用改过的图片、模组和剪辑“证明”他存在，那些都是做出来吓人的。网上越吓人、越离奇的东西，越要多问一句：谁说的？他有没有证据？</p></div>
+  </div>
+
+  <div class="echo" data-k="押韵">
+    <div class="stamp">押韵</div>
+    <div><p class="rh">众人拾柴</p><p>一本百科、一个模组、一个服务器，都是很多不认识的人一点一点攒起来的。人类的文字、知识、手艺，也是这样一代一代、一个人一个人攒起来的。书房里的<a href="../reed/">《苇城书记》</a>讲过文字怎样被造出来、被借来借去。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>模组</b>玩家自己写的、加进游戏里的东西。</div>
+    <div><b>服务器</b>装着一个联机世界、让很多人连进来一起玩的电脑。</div>
+    <div><b>病毒</b>会偷偷做坏事的程序：偷密码、弄坏文件、乱弹广告。</div>
+    <div><b>都市传说</b>大家传来传去、听起来像真的、其实没有证据的故事。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>Forge 等模组加载器自 2011 年前后发展起来；2014 年 6 月 Mojang 开始执行最终用户许可协议中关于服务器收费的规定，禁止出售影响游戏平衡的物品。YouTube 于 2021 年 12 月公布当年 Minecraft 相关视频累计观看超过一万亿次。英文社区维基 2023 年迁到独立站点。“Herobrine”传说起于 2010 年；“Removed Herobrine”是更新日志里反复出现的玩笑。2023 年 6 月的恶意软件事件（被称为 Fractureiser）波及 CurseForge 与 Bukkit 上的部分模组和插件。</p>
+    <p>建议：模组只从知名平台下载，由大人确认；不要运行来路不明的 .jar 或 .exe 文件；孩子的游戏账号开启两步验证，密码不和其他账号重复。吓人的视频和“鬼故事”在这个年龄段很常见，可以借机教他“查一查是谁说的”。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>模组、服务器、视频、百科，都是玩家自己做的。服务器可以卖好看的东西，不能卖“花钱更厉害”的东西。白眼睛的人从来不存在。</div>
+    <div><i>游戏外<small>带走一样</small></i>模组也是程序，下载前让大人一起看。网上越吓人的东西，越要问一句：谁说的，有没有证据？</div>
+  </div>
+</section>
+
+<!-- ============ 第一部 · 说明与出处 ============ -->
+<section class="chap" id="notes1" data-vol="第一部 · 说明">
+  <div class="col">
+    <h3>哪些是真的</h3>
+    <ul class="plain">
+      <li><b>编的</b>：小格、舅舅、妈妈、豆子，和每章开头“存档”里的故事。封面的“放一块”、第三章的“第一夜”都是这本书自己设计的小游戏，规则是简化的。书里所有方块图都是自己画的示意，不是游戏截图。</li>
+      <li><b>真的</b>：正文和蓝色“真事”框里的人、年份和事情，尽量核对过。说不准的地方，写了“据他自己说”“据报道”“大约”。</li>
+    </ul>
+
+    <h3>存疑和说法不一的地方</h3>
+    <ul class="plain">
+      <li><b>苦力怕的来历</b>：只有 Notch 本人的说法，没有别的证据，书里当真事讲，但标了“据他自己说”。</li>
+      <li><b>第一个帖子的日期</b>：多数资料写 2009 年 5 月 17 日，有的报道写 5 月 19 日（可能是能下载的日子）。“大约一个星期”是从开工到发帖的大概时间。</li>
+      <li><b>被冻结的金额</b>：多数报道写约六十万欧元，也有换算成七十五万美元的；冻结的日子有八月、九月两种说法。</li>
+      <li><b>Notch 七岁学编程、八岁写游戏</b>：出自他本人的访谈。</li>
+      <li><b>2026 年的数字和新维度</b>：四亿两千五百万份、每天三十多万新玩家，来自 2026 年 9 月 Minecraft Live 之后 Xbox 方面的公布；新维度的名字和上线时间以官方为准。</li>
+      <li><b>远方之地的距离</b>：通常说是离中心约一千二百五十万格，不同版本略有出入。</li>
+    </ul>
+
+    <h3>出处</h3>
+    <ul class="src">
+      <li>Minecraft 官方网站与更新日志；社区维基（英文与中文）中关于版本历史、世界高度、世界边界、昼夜循环、生物投票、远方之地、Herobrine 的条目。</li>
+      <li>吉尼斯世界纪录：“最畅销的电子游戏”条目（3 亿份，2023 年 10 月；3.5 亿份，2025 年 4 月）、“第一个与 Minecraft 有关的论坛帖子”条目。</li>
+      <li>PC Gamer《The Making of Minecraft》及 2011—2014 年间对 Markus Persson 的访谈；Persson 的博客 “The Word of Notch”（PayPal 冻结、离开 Mojang 的告别文）。</li>
+      <li>微软 2014 年 9 月 15 日收购 Mojang 的公告；2017 年 “Better Together” 更新公告。</li>
+      <li>网易与微软 2016 年 5 月 20 日合作发布会的报道（爱范儿、搜狐等）；2017 年中国版测试与上线的报道。</li>
+      <li>国家新闻出版署《关于防止未成年人沉迷网络游戏的通知》（2019）、《关于进一步严格管理 切实防止未成年人沉迷网络游戏的通知》（2021）。</li>
+      <li>乐高公司关于 1958 年专利和积木组合数的公开资料。</li>
+      <li>2023 年 6 月模组恶意软件事件的安全公告与媒体报道；YouTube 2021 年关于 Minecraft 视频观看量的公告。</li>
+      <li>2024 年 9 月 Mojang 停止生物投票的公告及 GamesRadar、PC Gamer 等报道；2026 年 9 月 Minecraft Live 的报道（GamesRadar 等）。</li>
+    </ul>
+  </div>
+</section>
+
+<div class="partend" data-vol="第一部完">
+  <div class="k">第一部 · 土 · 完</div>
+  <h3>一块方块从哪里来，到这里讲完了</h3>
+  <p class="ni" style="font-size:17px;line-height:1.95;text-align:left">它的长辈是带小圆点的积木、屏幕上的像素和几个让人挖地道、盖乐园的老游戏；它的第一版是一个瑞典程序员花了大约一个星期写的，只能放方块、挖方块。后来它有了怪物、黑夜、合成和饥饿，有了下界和末地，世界从一百二十八格长到三百八十四格高；它一边做一边卖，被玩家的视频传遍世界，被一家大公司买下，来到中国，又被全世界的玩家用模组、服务器和百科一起养大。<em>一个人开了头，一群人把它养大。</em>第二部《电》讲游戏里最神奇的那种红色粉末：它怎样变成电线、开关、逻辑门，最后变成一台真的能算数的电脑；还有怎样用命令和代码来搭方块。</p>
+  <a class="go" data-c="c9" href="two.html">第二部 · 电（写作中）</a>
+</div>
+
+<footer>
+  <p>《一块一块 · 我的世界创世记》第一部，写给四年级左右的读者，大人也可以读。小格一家和“存档”里的故事是编的；正文中的史实尽量核对过，有争议的地方标了“存疑”，说明与出处见<a href="#notes1">上面</a>。</p>
+  <p>本书不是 Mojang、微软或网易的官方作品；Minecraft、我的世界等名称和商标属于它们各自的主人。书中的方块图、人物和小游戏均为本书原创示意，不是游戏原图。</p>
+  <a class="nextbook" href="../computer/"><small>书房里的另一本书</small><br><b>计算机创世记 · 一沙一世界</b><br><small>这本书的第二部会在游戏里用红石造一台电脑；那本书讲真的电脑是怎样从沙子、开关和逻辑门一步一步造出来的。</small></a>
+  <p><a href="#top" class="toTop">回到封面 ↑</a>　·　<a href="../">回书房</a></p>
+</footer>
+
+<script>
+(function(){
+'use strict';
+const $ = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => [...(r || document).querySelectorAll(s)];
+const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+const lerp = (a, b, t) => a + (b - a) * t;
+function rng(seed){ let a = seed >>> 0; return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const fmt = n => n >= 1e8 ? (n / 1e8).toFixed(n >= 1e9 ? 0 : 1) + ' 亿' : n >= 1e4 ? (Math.round(n / 1e3) / 10).toLocaleString() + ' 万' : Math.round(n).toLocaleString();
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+const btnRow = (box, items, cur, cb) => {
+  box.innerHTML = items.map((t, i) => '<button class="btn' + (i === cur ? ' on' : '') + '" data-i="' + i + '">' + t + '</button>').join('');
+  box.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; $$('button', box).forEach(x => x.classList.toggle('on', x === b)); cb(+b.dataset.i); });
+};
+const dev = (sel, fn) => { const el = $(sel); if (el) { try { fn(el); } catch (err) { console.error(sel, err); } } };
+const kv = (box, rows) => { box.innerHTML = rows.map(r => '<div>' + r[0] + '<b>' + r[1] + '</b></div>').join(''); };
+function txt(x, y, t, o){ o = o || {}; return '<text x="' + x + '" y="' + y + '" font-size="' + (o.s || 13) + '" fill="' + (o.c || 'var(--ink)') + '" text-anchor="' + (o.a || 'middle') + '"' + (o.w ? ' font-weight="700"' : '') + (o.halo === false ? '' : ' paint-order="stroke" stroke="' + (o.hc || 'var(--card)') + '" stroke-width="3.5" stroke-linejoin="round"') + '>' + t + '</text>'; }
+/* 滑块：初始化时调一次回调，所以回调里用到的变量要先定义 */
+function slider(id, f, cb){ const r = $('#' + id), o = $('#' + id + 'O'); const go = () => { if (o) o.textContent = f ? f(+r.value) : r.value; if (cb) cb(+r.value); }; r.addEventListener('input', go); go(); return () => +r.value; }
+
+/* ---------- 全书目录（三个网页共用） ---------- */
+const PAGE = /three\.html/.test(location.pathname) ? 3 : /two\.html/.test(location.pathname) ? 2 : 1;
+const READY = 1; // 已经写好的部数
+const PURL = {1: './', 2: 'two.html', 3: 'three.html'};
+const TOC = [
+  {p: 1, t: '第一部 · 土 —— 一块方块从哪里来'},
+  {v: '序幕'},
+  {id: 'c0', n: '块', t: '一格是一米', s: '方块世界有多大、一天多长、为什么全世界几亿人都在玩；一格有多大', r: '今天'},
+  {v: '卷一 · 来历'},
+  {id: 'c1', n: '积', t: '在它之前', s: '一块带小圆点的积木、屏幕上的小方格、一个矮人的要塞、一个四月份的挖矿游戏；从像素到方块', r: '1958—2009'},
+  {id: 'c2', n: '人', t: '一个人和一周', s: '七岁学编程的瑞典男孩、一份上班的工作、“洞穴游戏”、论坛上的一个帖子；一个游戏怎样一版一版长大', r: '1979—2010'},
+  {id: 'c3', n: '夜', t: '第一个夜晚', s: '生存模式、一只画错的猪、天黑以后出来的东西、饿肚子；第一夜', r: '2009—2011'},
+  {v: '卷二 · 长大'},
+  {id: 'c4', n: '卖', t: '十欧元一份', s: '先卖还没做完的游戏、被冻住的账户、一个人变成一家公司、拉斯维加斯的 1.0；卖了多少份', r: '2009—2026'},
+  {id: 'c5', n: '高', t: '越长越高的世界', s: '下界和末地、村民、海洋和洞穴、投票选生物又不选了；世界变高了', r: '2010—2026'},
+  {id: 'c6', n: '合', t: '二十五亿美元', s: '一家大公司买下小公司、两个版本、关掉的几款游戏、一部电影；一棵家谱树', r: '2011—2025'},
+  {id: 'c7', n: '国', t: '来到中国', s: '网易代理、免费下载和皮肤、未成年人的游戏时间；一年有几个小时', r: '2016—今'},
+  {id: 'c8', n: '群', t: '大家一起造', s: '模组、服务器、视频、维基、一个不存在的人、藏在模组里的病毒；真的假的', r: '2010—2023'},
+  {p: 2, t: '第二部 · 电 —— 红石、电路和代码'},
+  {v: '卷三 · 红石'},
+  {id: 'c9', n: '线', t: '红色的粉末', s: '红石粉就是电线、拉杆和按钮、信号能走十五格；从一盏灯开始', r: '2010—今'},
+  {id: 'c10', n: '门', t: '是和不是', s: '一根火把就是“非”、两个开关的“与”和“或”、一个美国学生的硕士论文；逻辑门', r: '1847—今'},
+  {id: 'c11', n: '数', t: '只会数到一', s: '二进制、一加一等于十、半加器和全加器；用红石做一台加法器', r: '1679—今'},
+  {id: 'c12', n: '记', t: '会记事的电路', s: '锁存器、开一下关一下、内存是什么；让灯记住你按过', r: '1918—今'},
+  {id: 'c13', n: '钟', t: '一秒二十下', s: '游戏刻、红石刻、时钟电路、电脑的“主频”；一秒钟能做几件事', r: '1949—今'},
+  {v: '卷四 · 机器和代码'},
+  {id: 'c14', n: '机', t: '游戏里的电脑', s: '红石计算器、红石处理器、在我的世界里造我的世界、一个要想好几个小时的聊天机器人', r: '2010—2025'},
+  {id: 'c15', n: '令', t: '命令方块', s: '一行字召唤一场雨、函数和数据包、小游戏地图是怎样做出来的', r: '2012—今'},
+  {id: 'c16', n: '码', t: '用代码搭房子', s: '图形化编程、教育版里的小机器人、Python 一行盖一座塔', r: '2013—今'},
+  {p: 3, t: '第三部 · 门 —— 走出游戏'},
+  {v: '卷五 · 动手'},
+  {id: 'c17', n: '本', t: '一台 MacBook Air', s: '哪个版本能在苹果电脑上玩、M1 芯片、键盘上的几个键、电脑卡了怎么办', r: '2020—今'},
+  {id: 'c18', n: '课', t: '教室里的方块', s: '教育版、老师用它上什么课、一座给记者的图书馆、一群居民自己设计公园', r: '2011—今'},
+  {id: 'c19', n: '图', t: '一比一的国家', s: '把丹麦和英国搬进游戏、坐标和比例尺、把你家小区画进去', r: '2014—今'},
+  {id: 'c20', n: '造', t: '从方块到真房子', s: '体素和像素、3D 打印、建筑师怎么看方块、做一个自己的模型', r: '今天'},
+  {v: '卷六 · 长大以后'},
+  {id: 'c21', n: '安', t: '网上的陌生人', s: '服务器里的聊天、送皮肤的骗局、账号和密码、遇到不舒服的事告诉谁', r: '今天'},
+  {id: 'c22', n: '时', t: '再玩五分钟', s: '为什么停不下来、奖励和惊喜、给自己定一张时间表', r: '今天'},
+  {id: 'c23', n: '长', t: '长大以后做什么', s: '程序员、游戏设计师、建筑师、老师……方块里藏着的二十种工作', r: '今天'},
+  {v: '尾声'},
+  {id: 'c24', n: '你', t: '你的世界', s: '一个人做出来、一群人养大、全世界一起玩；你的第一块', r: '今天'}
+];
+const chapPage = {}; { let p = 1; TOC.forEach(x => { if (x.p) p = x.p; if (x.id) chapPage[x.id] = p; }); }
+const href = id => (chapPage[id] === PAGE ? '' : PURL[chapPage[id]]) + '#' + id;
+$$('.bar .parts a').forEach(a => { const p = +a.dataset.p; a.classList.toggle('on', p === PAGE); if (p > READY) { a.removeAttribute('href'); a.style.opacity = .4; a.title = '写作中'; } });
+$('#drawerList').innerHTML = TOC.map(x => x.p ? '<li class="ph">' + x.t + '</li>' : x.v ? '<li class="vh">' + x.v + '</li>' :
+  chapPage[x.id] > READY ? '<li><a style="opacity:.5;pointer-events:none"><span class="n">' + x.n + '</span><span>' + x.t + '<small>写作中</small></span></a></li>' :
+  '<li><a href="' + href(x.id) + '"' + (chapPage[x.id] === PAGE ? ' class="here"' : '') + '><span class="n">' + x.n + '</span><span>' + x.t + '<small>' + x.s + '</small></span></a></li>').join('');
+dev('#toc', ul => {
+  ul.innerHTML = TOC.map(x => x.p ? '<li class="vh" style="color:var(--main)">' + x.t + '</li>' : x.v ? '<li class="vh">' + x.v + '</li>' :
+    chapPage[x.id] > READY ? '<li class="soon"><div><span class="n">' + x.n + '</span><span class="t">' + x.t + '<small>' + x.s + '</small></span><span class="r">' + x.r + '</span></div></li>' :
+    '<li' + (chapPage[x.id] === PAGE ? '' : ' class="away"') + '><a href="' + href(x.id) + '"><span class="n">' + x.n + '</span><span class="t">' + x.t + '<small>' + x.s + '</small></span><span class="r">' + x.r + '</span></a></li>').join('');
+});
+/* 页面里写 <a data-c="c12">…</a>，自动拼出跨页链接；没写好的部变灰 */
+$$('a[data-c]').forEach(a => { const id = a.dataset.c; if (chapPage[id] > READY) { a.removeAttribute('href'); a.title = '写作中'; a.style.textDecorationStyle = 'dotted'; a.classList.add('soon'); } else a.href = href(id); });
+
+/* ---------- 页眉：卷名、进度、目录抽屉 ---------- */
+const barVol = $('#barVol'), prog = $('#prog');
+const vols = $$('[data-vol]');
+let ticking = false;
+function onScroll(){
+  ticking = false;
+  const lim = innerHeight * 0.35; let cur = null;
+  for (const e of vols) { if (e.getBoundingClientRect().top < lim) cur = e; else break; }
+  barVol.textContent = cur ? cur.dataset.vol : '序';
+  const H = document.documentElement.scrollHeight - innerHeight;
+  prog.style.width = (H > 0 ? scrollY / H * 100 : 0) + '%';
+}
+window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, {passive: true});
+onScroll();
+const drawer = $('#drawer');
+function openD(on){ drawer.classList.toggle('on', on); drawer.setAttribute('aria-hidden', on ? 'false' : 'true'); }
+$('#tocBtn').addEventListener('click', () => openD(true));
+drawer.addEventListener('click', e => { if (e.target.closest('[data-close]') || e.target.closest('a')) openD(false); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') openD(false); });
+$$('.toTop').forEach(a => a.addEventListener('click', e => { e.preventDefault(); scrollTo({top: 0, behavior: 'smooth'}); }));
+
+/* 章首：物品栏五格 */
+const INV = [['挖', '探索'], ['造', '建造'], ['电', '红石'], ['码', '编程'], ['人', '人和历史']];
+$$('.inv').forEach(w => { const on = (w.dataset.a || '').split(/\s+/); w.innerHTML = INV.map(f => '<span' + (on.includes(f[0]) ? ' class="on"' : '') + '><b>' + f[0] + '</b>' + f[1] + '</span>').join(''); });
+/* 年代条：1958—今，十一格 */
+const ERA = [[1900, 1980, '1958'], [1980, 1995, '1980'], [1995, 2009, '2000'], [2009, 2010, '2009'], [2010, 2011, '2010'], [2011, 2012, '2011'], [2012, 2014, '2012'], [2014, 2017, '2014'], [2017, 2020, '2017'], [2020, 2024, '2020'], [2024, 2100, '今']];
+$$('.yrs').forEach(w => { const a = +w.dataset.a, b = +(w.dataset.b || w.dataset.a); w.innerHTML = ERA.map(e => '<span' + (b >= e[0] && a < e[1] ? ' class="on"' : '') + '>' + e[2] + '</span>').join(''); w.title = a + (b !== a ? '—' + b : ''); });
+
+/* ---------- 等距方块：自己画的示意，不是游戏原图 ----------
+   每种方块三个面：顶、左、右；每个面切成 4×4 小格，颜色略有深浅，像像素。 */
+const BT = {
+  grass: {n: '草', top: ['--grass', '--grass-2'], side: ['--dirt', '--dirt-2'], fringe: ['--grass', '--grass-2']},
+  dirt: {n: '土', top: ['--dirt', '--dirt-2'], side: ['--dirt', '--dirt-2']},
+  stone: {n: '石', top: ['--stn', '--stn-2'], side: ['--stn', '--stn-2']},
+  log: {n: '原木', top: ['--wood', '--sand'], side: ['--wood-2', '--wood'], ring: true},
+  plank: {n: '木板', top: ['--wood', '--wood-2'], side: ['--wood', '--wood-2'], plank: true},
+  leaf: {n: '树叶', top: ['--leaf', '--grass-2'], side: ['--leaf', '--grass-2']},
+  sand: {n: '沙', top: ['--sand', '--wood'], side: ['--sand', '--wood']},
+  water: {n: '水', top: ['--water', '--sky'], side: ['--water', '--blu'], alpha: .82},
+  glass: {n: '玻璃', top: ['--sky', '--card'], side: ['--sky', '--card'], alpha: .45, glass: true},
+  rs: {n: '红石', top: ['--stn', '--rs'], side: ['--stn', '--rs'], ore: true},
+  dia: {n: '钻石', top: ['--stn', '--dia'], side: ['--stn', '--dia'], ore: true}
+};
+const SHADE = {top: 0, left: .16, right: .3};
+function face(pts, cols, r, shade, o){
+  /* pts: 四个角 [p00, p10, p11, p01]，在面上做 4×4 小格 */
+  const at = (u, v) => { const a = pts[0], b = pts[1], c = pts[2], d = pts[3]; return [lerp(lerp(a[0], b[0], u), lerp(d[0], c[0], u), v), lerp(lerp(a[1], b[1], u), lerp(d[1], c[1], u), v)]; };
+  let g = '';
+  for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) {
+    let c = r() < .35 ? cols[1] : cols[0];
+    if (o.fringe && j === 0) c = o.fringe[r() < .4 ? 1 : 0];
+    if (o.fringe && j === 1 && r() < .4) c = o.fringe[0];
+    if (o.ore) c = (r() < .18 && i > 0 && i < 3 && j > 0 && j < 3) ? cols[1] : (r() < .3 ? '--stn-2' : '--stn');
+    if (o.ring && o.isTop) c = (i === 0 || i === 3 || j === 0 || j === 3) ? '--wood-2' : ((i === 1 || i === 2) && (j === 1 || j === 2) ? cols[1] : cols[0]);
+    if (o.plank && !o.isTop) c = j % 2 ? cols[1] : cols[0];
+    if (o.glass) c = (i === 0 || j === 0) ? '--card' : cols[0];
+    const q = [at(i / 4, j / 4), at((i + 1) / 4, j / 4), at((i + 1) / 4, (j + 1) / 4), at(i / 4, (j + 1) / 4)];
+    g += '<path d="M' + q.map(p => p[0].toFixed(1) + ',' + p[1].toFixed(1)).join('L') + 'Z" fill="var(' + c + ')"/>';
+  }
+  const P = pts.map(p => p[0].toFixed(1) + ',' + p[1].toFixed(1)).join('L');
+  if (shade) g += '<path d="M' + P + 'Z" fill="#000" opacity="' + shade + '"/>';
+  g += '<path d="M' + P + 'Z" fill="none" stroke="#000" stroke-opacity=".28" stroke-width=".8"/>';
+  return g;
+}
+/* 画一块：原点 (ox, oy) 是这块顶面中心往上的投影基准，s 是边长 */
+function cube(ox, oy, s, type, seed, faces){
+  const t = BT[type] || BT.dirt, r = rng(seed || 7), w = s * 0.866, h = s * 0.5;
+  faces = faces || {top: 1, left: 1, right: 1};
+  const T = [ox, oy - s], L = [ox - w, oy - s + h], R = [ox + w, oy - s + h], B = [ox, oy - s + 2 * h];
+  const Lb = [ox - w, oy + h], Rb = [ox + w, oy + h], Bb = [ox, oy + 2 * h];
+  let g = '<g' + (t.alpha ? ' opacity="' + t.alpha + '"' : '') + '>';
+  if (faces.left) g += face([L, B, Bb, Lb], t.side, r, SHADE.left, {fringe: t.fringe, ore: t.ore, plank: t.plank, glass: t.glass});
+  if (faces.right) g += face([B, R, Rb, Bb], t.side, r, SHADE.right, {fringe: t.fringe, ore: t.ore, plank: t.plank, glass: t.glass});
+  if (faces.top) g += face([T, R, B, L], t.top, r, 0, {ore: t.ore, ring: t.ring, isTop: true, glass: t.glass});
+  return g + '</g>';
+}
+/* 等距坐标 → 屏幕：gx 往右下，gy 往左下，gz 往上 */
+const isoXY = (gx, gy, gz, s, ox, oy) => [ox + (gx - gy) * s * 0.866, oy + (gx + gy) * s * 0.5 - gz * s];
+function blockIcon(type, size){
+  const s = 10; return '<svg viewBox="-10 -12 20 22" width="' + (size || 26) + '" height="' + (size || 26) + '" aria-hidden="true">' + cube(0, 0, s, type, 3) + '</svg>';
+}
+/* 卷首：一排方块 */
+$$('svg.row').forEach((svg, k) => {
+  const types = [['grass', 'dirt', 'stone', 'log'], ['rs', 'stone', 'rs', 'glass'], ['plank', 'glass', 'grass', 'leaf']][k % 3];
+  let g = ''; const s = 22;
+  [[0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]].forEach((p, i) => { const q = isoXY(p[0], p[1], p[2], s, 100, 40); g += cube(q[0], q[1], s, types[i], 11 + i); });
+  svg.setAttribute('viewBox', '30 0 140 110'); svg.innerHTML = g;
+});
+
+/* 通用小折线图：series=[{name,color,pts:[[x,y]...],dash,dots}]，opt={xmin,xmax,ymin,ymax,xt,yt,xf,yf,marks:[[x,label]],H} */
+function lineChart(svg, series, opt){
+  const W = 600, H = opt.H || 260, L = opt.L || 46, R = 14, T = 14, B = 30;
+  const X = x => L + (x - opt.xmin) / (opt.xmax - opt.xmin) * (W - L - R);
+  const Y = y => T + (1 - (y - opt.ymin) / (opt.ymax - opt.ymin)) * (H - T - B);
+  let g = '';
+  (opt.yt || []).forEach(v => g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + Y(v) + '" y2="' + Y(v) + '" stroke="var(--rule)"/>' + txt(L - 6, Y(v) + 4, opt.yf ? opt.yf(v) : v, {s: 11, a: 'end', c: 'var(--ink-3)', halo: false}));
+  (opt.xt || []).forEach(v => g += txt(X(v), H - 10, opt.xf ? opt.xf(v) : v, {s: 11, c: 'var(--ink-3)', halo: false}));
+  (opt.marks || []).forEach((m, i) => g += '<line x1="' + X(m[0]) + '" x2="' + X(m[0]) + '" y1="' + T + '" y2="' + (H - B) + '" stroke="var(--ink-3)" stroke-dasharray="2 3"/>' + txt(X(m[0]) + 3, T + 12 + (i % 3) * 14, m[1], {s: 11, a: 'start', c: 'var(--ink-2)'}));
+  series.forEach(s => {
+    const pts = s.pts.filter(p => p[1] != null);
+    g += '<path d="M' + pts.map(p => X(p[0]).toFixed(1) + ',' + Y(p[1]).toFixed(1)).join('L') + '" fill="none" stroke="' + s.color + '" stroke-width="' + (s.w || 2.4) + '"' + (s.dash ? ' stroke-dasharray="' + s.dash + '"' : '') + ' stroke-linejoin="round"/>';
+    if (s.dots) pts.forEach(p => g += '<circle cx="' + X(p[0]).toFixed(1) + '" cy="' + Y(p[1]).toFixed(1) + '" r="3.5" fill="' + s.color + '"/>');
+  });
+  g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + (H - B) + '" y2="' + (H - B) + '" stroke="var(--ink)" stroke-width="1.2"/>';
+  svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+  return {X, Y, W, H, L, R, T, B};
+}
+/* 横条：rows=[[名字, 数值, 小字, 颜色]] */
+function bars(box, rows, max, f){
+  box.innerHTML = rows.map(r => '<div class="row"><span class="nm">' + r[0] + (r[2] ? '<small>' + r[2] + '</small>' : '') + '</span><span class="tr"><i style="width:' + clamp(r[1] / max * 100, 0, 100) + '%;' + (r[3] ? 'background:' + r[3] : '') + '"></i></span><span class="v">' + (f ? f(r[1]) : r[1]) + '</span></div>').join('');
+}
+
+
+/* ---------- 封面装置：放一块 ----------
+   occ[x][y][z] 是方块种类或 null。点顶面在上面放，点左面放在 y+1，点右面放在 x+1；挖模式点哪块挖哪块。 */
+dev('#buildFig', () => {
+  const N = 8, MZ = 7, s = 20, w = s * 0.866, h = s * 0.5, OX = 150, OY = 150;
+  const svg = $('#bldSvg');
+  svg.setAttribute('viewBox', '0 0 300 330');
+  const TYPES = ['grass', 'dirt', 'stone', 'log', 'plank', 'leaf', 'sand', 'glass', 'water'];
+  let occ, cur = 'plank', mode = 0;
+  const empty = () => { occ = []; for (let x = 0; x < N; x++) { occ[x] = []; for (let y = 0; y < N; y++) { occ[x][y] = []; for (let z = 0; z < MZ; z++) occ[x][y][z] = null; occ[x][y][0] = 'grass'; } } };
+  const inside = (x, y, z) => x >= 0 && y >= 0 && z >= 0 && x < N && y < N && z < MZ;
+  function put(x, y, z, t){ if (inside(x, y, z)) occ[x][y][z] = t; }
+  function house(){
+    empty();
+    for (let x = 1; x <= 5; x++) for (let y = 1; y <= 5; y++) {
+      const edge = x === 1 || x === 5 || y === 1 || y === 5;
+      if (edge) for (let z = 1; z <= 3; z++) put(x, y, z, (x === 1 || x === 5) && (y === 1 || y === 5) ? 'log' : 'plank');
+      put(x, y, 4, 'stone');
+      if (x > 1 && x < 5 && y > 1 && y < 5) put(x, y, 5, 'stone');
+    }
+    put(3, 5, 1, null); put(3, 5, 2, null);
+    put(5, 3, 2, 'glass'); put(1, 3, 2, 'glass'); put(3, 1, 2, 'glass');
+    put(3, 3, 6, 'stone');
+    for (let z = 1; z <= 3; z++) put(7, 1, z, 'log');
+    [[6, 0], [7, 0], [6, 1], [6, 2], [7, 2]].forEach(p => { put(p[0], p[1], 3, 'leaf'); });
+    put(7, 1, 4, 'leaf'); put(6, 1, 4, 'leaf');
+    put(6, 6, 0, 'water'); put(7, 6, 0, 'water'); put(6, 7, 0, 'water'); put(7, 7, 0, 'sand'); put(5, 7, 0, 'sand');
+  }
+  /* 带标记的方块：每个面都知道自己是谁 */
+  function tagged(x, y, z, t){
+    const p = isoXY(x, y, z, s, OX, OY), ox = p[0], oy = p[1];
+    const T = [ox, oy - s], L = [ox - w, oy - s + h], R = [ox + w, oy - s + h], B = [ox, oy - s + 2 * h];
+    const Lb = [ox - w, oy + h], Rb = [ox + w, oy + h], Bb = [ox, oy + 2 * h];
+    const poly = (pts, f) => '<path class="cell" data-x="' + x + '" data-y="' + y + '" data-z="' + z + '" data-f="' + f + '" d="M' + pts.map(q => q[0].toFixed(1) + ',' + q[1].toFixed(1)).join('L') + 'Z" fill="transparent"/>';
+    return cube(ox, oy, s, t, x * 131 + y * 17 + z * 7 + 3) + poly([L, B, Bb, Lb], 'l') + poly([B, R, Rb, Bb], 'r') + poly([T, R, B, L], 't');
+  }
+  function draw(){
+    let g = '';
+    /* 地面格子：只在最底层空着的地方画 */
+    for (let x = 0; x < N; x++) for (let y = 0; y < N; y++) if (!occ[x][y][0]) {
+      const p = isoXY(x, y, 0, s, OX, OY), ox = p[0], oy = p[1];
+      g += '<path class="cell" data-x="' + x + '" data-y="' + y + '" data-z="-1" data-f="t" d="M' + ox + ',' + oy + 'L' + (ox + w) + ',' + (oy + h) + 'L' + ox + ',' + (oy + 2 * h) + 'L' + (ox - w) + ',' + (oy + h) + 'Z" fill="var(--paper-2)" stroke="var(--rule)" stroke-dasharray="2 2"/>';
+    }
+    const list = [];
+    for (let x = 0; x < N; x++) for (let y = 0; y < N; y++) for (let z = 0; z < MZ; z++) if (occ[x][y][z]) list.push([x, y, z]);
+    list.sort((a, b) => (a[0] + a[1]) - (b[0] + b[1]) || a[2] - b[2] || a[0] - b[0]);
+    list.forEach(q => g += tagged(q[0], q[1], q[2], occ[q[0]][q[1]][q[2]]));
+    svg.innerHTML = g;
+    const n = list.length, top = list.reduce((m, q) => Math.max(m, q[2] + 1), 0);
+    const kinds = {}; list.forEach(q => { const t = occ[q[0]][q[1]][q[2]]; kinds[t] = (kinds[t] || 0) + 1; });
+    const most = Object.keys(kinds).sort((a, b) => kinds[b] - kinds[a]).slice(0, 3).map(k => BT[k].n + ' ' + kinds[k]).join('、');
+    $('#bldSay').innerHTML = n ? '一共 <b>' + n + '</b> 块，也就是 ' + n + ' 立方米；最高 ' + top + ' 格（' + top + ' 米）。用得最多的：' + most + '。' + (n > 29 ? '小格的卧室大约 29 立方米，你这块地已经能装下 ' + (n / 29.4).toFixed(1) + ' 间卧室。' : '') : '地上什么都没有了。点虚线格子放第一块。';
+  }
+  svg.addEventListener('click', e => {
+    const c = e.target.closest('.cell'); if (!c) return;
+    let x = +c.dataset.x, y = +c.dataset.y, z = +c.dataset.z; const f = c.dataset.f;
+    if (mode === 1) { if (z >= 0) occ[x][y][z] = null; draw(); return; }
+    if (f === 't') z += 1; else if (f === 'l') y += 1; else x += 1;
+    if (!inside(x, y, z)) { $('#bldSay').textContent = '这里放不下了：小地只有八乘八，最多七层高。'; return; }
+    if (occ[x][y][z]) return;
+    occ[x][y][z] = cur; draw();
+  });
+  const pal = $('#bldPal');
+  pal.innerHTML = TYPES.map(t => '<button data-t="' + t + '"' + (t === cur ? ' class="on"' : '') + '>' + blockIcon(t, 24) + BT[t].n + '</button>').join('');
+  pal.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; cur = b.dataset.t; $$('button', pal).forEach(x => x.classList.toggle('on', x === b)); if (mode === 1) { mode = 0; $$('#bldMode .btn').forEach((x, i) => x.classList.toggle('on', i === 0)); } });
+  btnRow($('#bldMode'), ['放', '挖'], 0, i => { mode = i; });
+  $('#bldHouse').addEventListener('click', () => { house(); draw(); });
+  $('#bldClear').addEventListener('click', () => { empty(); draw(); });
+  house(); draw();
+});
+
+
+/* ---------- 序幕：一格有多大 ---------- */
+dev('#sizeFig', () => {
+  const PRE = [
+    ['你的卧室', 4, 3, 3, '大约 3.5 × 3 米，高 2.8 米'],
+    ['一间教室', 9, 7, 4, '大约 9 × 7 米，高 3.5 米'],
+    ['篮球场', 28, 15, 1, '28 × 15 米，地面只算一格厚'],
+    ['六层住宅楼', 40, 12, 18, '一层大约 3 米'],
+    ['天坛祈年殿', 32, 32, 38, '圆形的殿，直径约 32 米，高约 38 米'],
+    ['太和殿', 64, 37, 35, '故宫最大的殿，连台基高约 35 米'],
+    ['埃菲尔铁塔', 125, 125, 330, '底座约 125 米见方，高约 330 米；它是镂空的，真要盖用不了这么多块']
+  ];
+  const sv = $('#sizeSvg');
+  let note = PRE[0][4], busy = false;
+  const time = sec => sec < 60 ? Math.round(sec) + ' 秒' : sec < 3600 ? Math.round(sec / 60) + ' 分钟' : sec < 86400 ? (sec / 3600).toFixed(1) + ' 小时' : (sec / 86400).toFixed(1) + ' 天';
+  function draw(){
+    if (busy) return;
+    const l = +$('#szL').value, w = +$('#szW').value, hh = +$('#szH').value;
+    const solid = l * w * hh, shell = solid - Math.max(0, l - 2) * Math.max(0, w - 2) * Math.max(0, hh - 2);
+    kv($('#sizeKv'), [['长 × 宽 × 高', l + ' × ' + w + ' × ' + hh + ' 格'], ['实心要用', fmt(solid) + ' 块'], ['只盖墙和顶', fmt(shell) + ' 块'], ['一秒放一块，盖墙和顶要', time(shell)]]);
+    /* 正面图：长 × 高，每格一米，旁边站一个两格高的小人 */
+    const W = 600, H = 280, cols = l + 3, cell = Math.min(24, (W - 20) / cols, (H - 30) / (hh + 1));
+    const x0 = 10 + 2.2 * cell, y0 = H - 18;
+    let g = '<rect x="' + x0 + '" y="' + (y0 - hh * cell) + '" width="' + (l * cell) + '" height="' + (hh * cell) + '" fill="color-mix(in srgb,var(--ter) 22%,var(--card))" stroke="var(--ter)" stroke-width="1.5"/>';
+    if (cell >= 4) {
+      for (let i = 1; i < l; i++) g += '<line x1="' + (x0 + i * cell) + '" x2="' + (x0 + i * cell) + '" y1="' + (y0 - hh * cell) + '" y2="' + y0 + '" stroke="var(--ter)" stroke-opacity=".35"/>';
+      for (let j = 1; j < hh; j++) g += '<line x1="' + x0 + '" x2="' + (x0 + l * cell) + '" y1="' + (y0 - j * cell) + '" y2="' + (y0 - j * cell) + '" stroke="var(--ter)" stroke-opacity=".35"/>';
+    }
+    /* 小人：1.8 格高 */
+    const px = 10 + cell, ph = 1.8 * cell, pw = Math.max(2, .6 * cell);
+    g += '<rect x="' + (px - pw / 2) + '" y="' + (y0 - ph) + '" width="' + pw + '" height="' + (ph * .62) + '" fill="var(--blu)"/><rect x="' + (px - pw / 2) + '" y="' + (y0 - ph * .38) + '" width="' + pw + '" height="' + (ph * .38) + '" fill="var(--ink-2)"/><rect x="' + (px - pw / 2) + '" y="' + (y0 - ph - pw * .1) + '" width="' + pw + '" height="' + (pw) + '" fill="#c99a6b"/>';
+    g += '<line x1="0" x2="' + W + '" y1="' + y0 + '" y2="' + y0 + '" stroke="var(--grass)" stroke-width="3"/>';
+    g += txt(x0 + l * cell / 2, y0 + 14, l + ' 格', {s: 12, c: 'var(--ink-2)'}) + txt(x0 + l * cell + 6, y0 - hh * cell / 2, hh + ' 格', {s: 12, c: 'var(--ink-2)', a: 'start'});
+    if (cell < 4) g += txt(W - 8, 16, '格子太小画不出来了：每一小格都是一米', {s: 11, a: 'end', c: 'var(--ink-3)'});
+    sv.setAttribute('viewBox', '0 0 ' + W + ' ' + H); sv.innerHTML = g;
+    const fit = hh <= 257 ? '从海边的地面往上盖，现在的世界放得下它（海边往上还有大约 257 格）。' : hh <= 384 ? '从海边盖放不下了；要从世界最底下（大约 −64 格）开始盖才行。' : '';
+    $('#sizeSay').innerHTML = (note ? note + '。' : '') + fit + (shell > 86400 ? '一秒一块不停手，也要盖好几天：难怪很多人在服务器上一群人一起盖大建筑。' : '');
+  }
+  slider('szL', v => v + ' 米', () => { note = ''; draw(); });
+  slider('szW', v => v + ' 米', () => { note = ''; draw(); });
+  slider('szH', v => v + ' 米', () => { note = ''; draw(); });
+  btnRow($('#sizePre'), PRE.map(p => p[0]), 0, i => {
+    const p = PRE[i]; busy = true;
+    $('#szL').value = p[1]; $('#szW').value = p[2]; $('#szH').value = p[3];
+    ['szL', 'szW', 'szH'].forEach(id => $('#' + id).dispatchEvent(new Event('input')));
+    busy = false; note = p[0] + '：' + p[4]; draw();
+  });
+  note = PRE[0][0] + '：' + PRE[0][4]; draw();
+});
+
+
+/* ---------- 第一章：从像素到方块 ---------- */
+dev('#voxFig', () => {
+  const N = 8, grid = $('#voxGrid'), sv = $('#voxSvg');
+  const EX = [
+    ['爱心', ['.##..##.', '########', '########', '########', '.######.', '..####..', '...##...', '........']],
+    ['笑脸', ['..####..', '.#....#.', '#.#..#.#', '#......#', '#.#..#.#', '#..##..#', '.#....#.', '..####..']],
+    ['小房子', ['...##...', '..####..', '.######.', '########', '.#....#.', '.#.##.#.', '.#.##.#.', '.######.']],
+    ['一棵树', ['..###...', '.#####..', '#######.', '.#####..', '...#....', '...#....', '...#....', '..###...']],
+    ['字母 M', ['#......#', '##....##', '#.#..#.#', '#..##..#', '#......#', '#......#', '#......#', '#......#']]
+  ];
+  let on = [], ex = 0, painting = false, paintVal = true;
+  const load = k => { on = EX[k][1].map(r => r.split('').map(c => c === '#')); };
+  grid.innerHTML = Array.from({length: N * N}, (_, i) => '<span data-i="' + i + '"></span>').join('');
+  const cells = $$('span', grid);
+  function draw(){
+    cells.forEach((c, i) => c.classList.toggle('on', on[Math.floor(i / N)][i % N]));
+    const H = +$('#voxH').value, s = 13;
+    const list = [];
+    for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) if (on[r][c]) for (let z = 0; z < H; z++) list.push([c, r, z]);
+    list.sort((a, b) => (a[0] + a[1]) - (b[0] + b[1]) || a[2] - b[2]);
+    let g = '';
+    /* 一块灰色底板 */
+    const corner = (x, y) => isoXY(x, y, 0, s, 140, 92);
+    const p0 = corner(0, 0), p1 = corner(N, 0), p2 = corner(N, N), p3 = corner(0, N);
+    g += '<path d="M' + [p0, p1, p2, p3].map(p => p[0].toFixed(1) + ',' + p[1].toFixed(1)).join('L') + 'Z" fill="var(--paper-2)" stroke="var(--rule)"/>';
+    list.forEach(q => { const p = isoXY(q[0], q[1], q[2], s, 140, 92); g += cube(p[0], p[1], s, q[2] === H - 1 ? 'grass' : 'dirt', q[0] * 31 + q[1] * 7 + q[2]); });
+    sv.setAttribute('viewBox', '0 0 280 300'); sv.innerHTML = g;
+    const n = on.flat().filter(Boolean).length;
+    $('#voxSay').innerHTML = n ? '平面上用了 <b>' + n + '</b> 个像素；加到 ' + H + ' 格厚，就是 <b>' + (n * H) + '</b> 个体素（方块）。厚度每加一格，方块就多 ' + n + ' 块。' : '方格是空的，点几下画点什么。';
+  }
+  slider('voxH', v => v + ' 格', () => { if (on.length) draw(); });
+  const setCell = (el, v) => { const i = +el.dataset.i; on[Math.floor(i / N)][i % N] = v; draw(); };
+  grid.addEventListener('pointerdown', e => { const c = e.target.closest('span'); if (!c) return; e.preventDefault(); const i = +c.dataset.i; paintVal = !on[Math.floor(i / N)][i % N]; painting = true; setCell(c, paintVal); });
+  grid.addEventListener('pointermove', e => { if (!painting) return; const el = document.elementFromPoint(e.clientX, e.clientY); if (el && el.parentNode === grid) setCell(el, paintVal); });
+  window.addEventListener('pointerup', () => { painting = false; });
+  $('#voxEx').addEventListener('click', () => { ex = (ex + 1) % EX.length; load(ex); draw(); });
+  $('#voxClr').addEventListener('click', () => { on = on.map(r => r.map(() => false)); draw(); });
+  load(0); draw();
+});
+
+
+/* ---------- 第二章：一版一版长大 ---------- */
+dev('#verFig', () => {
+  const ST = [
+    ['洞穴游戏', '2009 年 5 月', '最早的样子，只给 Notch 自己和几个人看过视频。一块小地，草和石头。', ['走和跳', '放方块', '挖方块']],
+    ['经典版', '2009 年 5 月', '第一次放到论坛上给大家玩，用浏览器就能打开。像一盒积木，没有危险。不久还能几个人一起上线盖东西。', ['好几种方块', '在浏览器里玩', '几个人一起盖']],
+    ['生存测试', '2009 年 9 月', '第一次有了生命值和怪物，打怪会得分。从“搭积木”变成了“要活下去”。', ['生命值', '怪物', '分数']],
+    ['室内开发版', '2009 年 12 月', '名字里的“室内”是说它还在“家里”慢慢做。有了合成：工作台、熔炉、箱子；有了猪和羊；有了火把。', ['合成', '熔炉和箱子', '动物', '火把']],
+    ['无限开发版', '2010 年 2 月', '世界不再是一小块，而是可以一直走、一直生成下去。白天和黑夜也在这前后出现了。', ['无限大的世界', '白天和黑夜']],
+    ['测试版 Alpha', '2010 年 6 月', '生存模式可以联机了。夏天加了红石，万圣节加了下界。买的人越来越多。', ['生存联机', '红石', '下界']],
+    ['公测版 Beta', '2010 年 12 月', '加了床、下雨下雪、狼和地图。2011 年的冒险更新加了村庄和饥饿值。', ['床', '天气', '饥饿值', '村庄']],
+    ['正式版 1.0', '2011 年 11 月', '在拉斯维加斯的玩家大会上放出。有了末地和末影龙、附魔和药水。从此有了“通关”。', ['末地和龙', '附魔', '药水']]
+  ];
+  const tl = $('#verTl');
+  tl.innerHTML = ST.map((s, i) => '<button data-i="' + i + '"><b>' + s[1] + '</b>' + s[0] + '</button>').join('');
+  function show(k){
+    $$('button', tl).forEach((b, i) => b.classList.toggle('on', i === k));
+    const s = ST[k];
+    $('#verSay').innerHTML = '<b>' + s[0] + '</b>（' + s[1] + '）：' + s[2];
+    let all = []; for (let i = 0; i <= k; i++) all = all.concat(ST[i][3].map(t => [t, i === k]));
+    $('#verBag').innerHTML = all.map(t => '<span' + (t[1] ? ' style="border-color:var(--main);font-weight:700"' : '') + '>' + t[0] + '</span>').join('') + '<span style="border:0;background:none;color:var(--ink-3)">共 ' + all.length + ' 样</span>';
+  }
+  tl.addEventListener('click', e => { const b = e.target.closest('button'); if (b) show(+b.dataset.i); });
+  show(0);
+});
+
+
+/* ---------- 第三章：第一夜（简化的原创规划小游戏） ---------- */
+dev('#nightFig', () => {
+  const DAY = 600;
+  /* [名字, 秒, 需要(函数), 做完以后(函数), 说明] */
+  const ACT = [
+    ['砍一棵树', 60, b => true, b => { b.原木 += 4; }, '得到 4 块原木'],
+    ['原木做成木板', 10, b => b.原木 >= 1, b => { b.原木 -= 1; b.木板 += 4; }, '1 原木 → 4 木板'],
+    ['做一张工作台', 10, b => b.木板 >= 4 && !b.工作台, b => { b.木板 -= 4; b.工作台 = 1; }, '要 4 木板'],
+    ['做一把木镐', 15, b => b.工作台 && b.木板 >= 5 && !b.木镐, b => { b.木板 -= 5; b.木镐 = 1; }, '要工作台和 5 木板'],
+    ['挖泥土', 60, b => true, b => { b.泥土 += 32; }, '得到 32 块泥土'],
+    ['挖石头', 90, b => b.木镐, b => { b.圆石 += 24; }, '要木镐，得到 24 圆石'],
+    ['做一把石剑', 15, b => b.工作台 && b.圆石 >= 2 && b.木板 >= 1 && !b.石剑, b => { b.圆石 -= 2; b.木板 -= 1; b.石剑 = 1; }, '要工作台、2 圆石、1 木板'],
+    ['找煤', 120, b => b.木镐, b => { b.煤 += 4; }, '要木镐，得到 4 块煤'],
+    ['做火把', 10, b => b.煤 >= 1 && b.木板 >= 1, b => { b.煤 -= 1; b.木板 -= 1; b.火把 += 4; }, '1 煤 + 1 木板 → 4 火把'],
+    ['盖一间土屋', 90, b => b.泥土 >= 32 && !b.屋, b => { b.泥土 -= 32; b.屋 = '土屋'; }, '要 32 泥土'],
+    ['盖一间石屋', 120, b => b.圆石 >= 24 && b.木板 >= 2 && b.屋 !== '石屋', b => { b.圆石 -= 24; b.木板 -= 2; b.屋 = '石屋'; }, '要 24 圆石、2 木板（做门）'],
+    ['找吃的', 90, b => true, b => { b.食物 += 3; }, '摘苹果、打猎，得到 3 份食物'],
+    ['剪羊毛做床', 150, b => b.工作台 && b.木板 >= 3 && !b.床, b => { b.木板 -= 3; b.床 = 1; }, '要工作台、3 木板，还要找到羊']
+  ];
+  const NAMES = ['原木', '木板', '泥土', '圆石', '煤', '火把', '食物'];
+  let bag, t, log, over;
+  function reset(){ bag = {原木: 0, 木板: 0, 泥土: 0, 圆石: 0, 煤: 0, 火把: 0, 食物: 0, 工作台: 0, 木镐: 0, 石剑: 0, 床: 0, 屋: ''}; t = 0; log = []; over = false; render(); $('#nightSay').textContent = '太阳刚升起来。先做什么？'; }
+  const box = $('#nightBtns');
+  box.innerHTML = ACT.map((a, i) => '<button data-i="' + i + '">' + a[0] + '<small>' + a[1] + ' 秒 · ' + a[4] + '</small></button>').join('');
+  function render(){
+    $$('button', box).forEach((b, i) => { const a = ACT[i]; b.disabled = over || !a[2](bag) || t + a[1] > DAY; b.classList.toggle('done', log.includes(a[0])); });
+    $('#nightHand').style.left = 'calc(' + (t / DAY * 100) + '% - 2px)';
+    kv($('#nightKv'), [['已经过去', t + ' 秒'], ['离天黑还有', Math.max(0, DAY - t) + ' 秒'], ['做了几件事', log.length + ' 件']]);
+    const items = NAMES.filter(k => bag[k] > 0).map(k => k + ' ×' + bag[k]);
+    ['工作台', '木镐', '石剑', '床'].forEach(k => { if (bag[k]) items.push(k); });
+    if (bag.屋) items.push(bag.屋);
+    $('#nightBag').innerHTML = items.length ? items.map(x => '<span>' + x + '</span>').join('') : '<span>空的</span>';
+  }
+  function night(){
+    over = true; render();
+    let score = 0; const say = [];
+    if (bag.床 && bag.屋) { score = 5; say.push('你在' + bag.屋 + '里放好了床，天一黑就睡下了，一觉睡到天亮。完美的第一夜！'); }
+    else {
+      if (!bag.屋) say.push('你没有盖屋子，只能站在外面过夜。四面八方的黑暗里都可能冒出怪物。');
+      else { score += bag.屋 === '石屋' ? 2 : 1.5; say.push('你躲进了' + bag.屋 + (bag.屋 === '石屋' ? '，石头墙很结实。' : '，土墙不太结实，但能挡一挡。')); }
+      if (bag.火把 > 0) { score += 1; say.push('屋里点着火把，亮的地方不会冒出怪物。'); } else if (bag.屋) say.push('可是屋里黑乎乎的，要是屋子大一点，角落里可能会冒出东西。');
+      if (bag.石剑) { score += .5; say.push('手里有一把石剑，心里踏实一点。'); }
+      if (bag.食物 > 0) { score += .5; say.push('还有 ' + bag.食物 + ' 份吃的，不会饿着。'); } else say.push('你什么都没吃，第二天早上肚子咕咕叫。');
+      if (bag.床) { score += .5; say.push('你做了床，可是没有屋子，睡在外面不安全。'); }
+    }
+    const stars = Math.max(0, Math.min(5, Math.round(score)));
+    $('#nightSay').innerHTML = '<b>' + '★'.repeat(stars) + '☆'.repeat(5 - stars) + '</b>　' + say.join('') + ' 你一共用了 ' + t + ' 秒，做了：' + (log.join('、') || '什么也没做') + '。';
+    $('#nightSay').className = 'say ' + (stars >= 3 ? 'ok' : 'bad');
+  }
+  box.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b || b.disabled) return;
+    const a = ACT[+b.dataset.i]; a[3](bag); t += a[1]; log.push(a[0]);
+    $('#nightSay').className = 'say';
+    $('#nightSay').textContent = a[0] + '，花了 ' + a[1] + ' 秒。' + (DAY - t < 90 ? '太阳快落山了！' : '');
+    render();
+    if (ACT.every(x => !x[2](bag) || t + x[1] > DAY)) night();
+  });
+  $('#nightEnd').addEventListener('click', () => { if (!over) night(); });
+  $('#nightReset').addEventListener('click', () => { $('#nightSay').className = 'say'; reset(); });
+  reset();
+});
+
+
+/* ---------- 第四章：卖了多少份 ---------- */
+dev('#salesFig', () => {
+  /* [年份（带小数）, 百万份, 说明] */
+  const PTS = [[2011.04, 1, '2011 年 1 月：一百万份（公测版，只有电脑版）'], [2016.42, 100, '2016 年 6 月：一亿份'], [2019.38, 176, '2019 年 5 月：一亿七千六百万份'], [2020.38, 200, '2020 年 5 月：两亿份'], [2023.79, 300, '2023 年 10 月：三亿份，第一个卖到三亿份的电子游戏'], [2025.29, 350, '2025 年 4 月：三亿五千万份'], [2026.73, 425, '2026 年 9 月：四亿两千五百万份']];
+  const sv = $('#salesSvg');
+  function curve(){
+    const o = lineChart(sv, [{color: 'var(--main)', pts: [[2009.4, 0]].concat(PTS.map(p => [p[0], p[1]])), dots: true, w: 2.6}], {xmin: 2009, xmax: 2027, ymin: 0, ymax: 450, xt: [2009, 2011, 2013, 2015, 2017, 2019, 2021, 2023, 2025, 2027], yt: [0, 100, 200, 300, 400], yf: v => v ? v / 100 + ' 亿' : '0', H: 280, L: 52});
+    let g = '';
+    PTS.forEach((p, i) => { if (i === 0 || i >= 3) g += txt(o.X(p[0]) + (i === PTS.length - 1 ? -4 : 6), o.Y(p[1]) - 8, i === 0 ? '一百万' : (p[1] / 100) + ' 亿', {s: 11, a: i === PTS.length - 1 ? 'end' : 'start', c: 'var(--ink-2)'}); });
+    sv.insertAdjacentHTML('beforeend', g);
+    $('#salesSay').innerHTML = '从一百万份到一亿份，用了五年多；从三亿到四亿两千五百万，只用了三年。2025 年上映的电影，又让很多新玩家来了。';
+  }
+  function stack(){
+    /* 每份一张 1.2 毫米的光盘，摞起来多高（公里） */
+    const km = 425e6 * 1.2 / 1e6;
+    const rows = [['一张光盘', 0.0000012, '1.2 毫米'], ['小格的家（六楼）', 0.018, '约 18 米'], ['珠穆朗玛峰', 8.849, '8849 米'], ['飞机飞的高度', 10, '约 1 万米'], ['国际空间站', 400, '离地约 400 公里'], ['四亿两千五百万张光盘', km, '约 ' + Math.round(km) + ' 公里']];
+    const W = 600, H = 300, B = 26, T = 14, max = 560;
+    const Y = v => H - B - v / max * (H - B - T);
+    let g = '<line x1="40" x2="' + W + '" y1="' + (H - B) + '" y2="' + (H - B) + '" stroke="var(--ink)"/>';
+    [0, 100, 200, 300, 400, 500].forEach(v => g += '<line x1="40" x2="' + W + '" y1="' + Y(v) + '" y2="' + Y(v) + '" stroke="var(--rule)"/>' + txt(36, Y(v) + 4, v + ' km', {s: 10, a: 'end', c: 'var(--ink-3)', halo: false}));
+    rows.forEach((r, i) => {
+      const x = 70 + i * 88, top = Y(r[1]), last = i === rows.length - 1;
+      g += '<rect x="' + (x - 18) + '" y="' + Math.min(top, H - B - 2) + '" width="36" height="' + Math.max(2, H - B - top) + '" fill="' + (last ? 'var(--main)' : i === 4 ? 'var(--blu)' : 'var(--stone)') + '"/>';
+      g += txt(x, Math.min(top, H - B - 2) - 18, r[0], {s: 11, c: 'var(--ink)'}) + txt(x, Math.min(top, H - B - 2) - 5, r[2], {s: 10, c: 'var(--ink-3)'});
+    });
+    sv.setAttribute('viewBox', '0 0 ' + W + ' ' + H); sv.innerHTML = g;
+    $('#salesSay').innerHTML = '四亿两千五百万张光盘摞起来，大约 <b>' + Math.round(km) + ' 公里</b>高，比国际空间站飞得还高。珠穆朗玛峰在这张图上几乎看不见。';
+  }
+  btnRow($('#salesMode'), ['一年一年怎么涨的', '摞起来有多高'], 0, i => i ? stack() : curve());
+  curve();
+});
+
+
+/* ---------- 第五章：世界变高了 ---------- */
+dev('#heightFig', () => {
+  const YEARS = [['2010 年', 0, 128, 64], ['2012 年', 0, 256, 64], ['2021 年以后', -64, 320, 63]];
+  const BLD = [['教学楼', 20], ['祈年殿', 38], ['大雁塔', 64], ['应县木塔', 66], ['自由女神像', 93], ['胡夫金字塔', 146], ['埃菲尔铁塔', 330], ['上海中心', 632]];
+  let yi = 2, base = 0;
+  const sv = $('#heightSvg');
+  function draw(){
+    const y = YEARS[yi], bot = y[1], top = y[2], sea = y[3];
+    const start = base ? bot : sea, room = top - start;
+    const W = 600, H = 340, T = 16, B = 30, lo = -64, hi = 700;
+    const Y = v => T + (hi - v) / (hi - lo) * (H - T - B);
+    let g = '';
+    /* 世界的柱子 */
+    g += '<rect x="20" y="' + Y(top) + '" width="56" height="' + (Y(bot) - Y(top)) + '" fill="var(--sky)" stroke="var(--ink-3)"/>';
+    g += '<rect x="20" y="' + Y(sea) + '" width="56" height="' + (Y(bot) - Y(sea)) + '" fill="var(--stn)" opacity=".75"/>';
+    g += '<line x1="14" x2="' + (W - 6) + '" y1="' + Y(top) + '" y2="' + Y(top) + '" stroke="var(--zhu)" stroke-dasharray="5 4"/>' + txt(W - 8, Y(top) - 5, '天花板 ' + top, {s: 11, a: 'end', c: 'var(--zhu)'});
+    g += '<line x1="14" x2="' + (W - 6) + '" y1="' + Y(sea) + '" y2="' + Y(sea) + '" stroke="var(--water)" stroke-width="1.5"/>' + txt(W - 8, Y(sea) + 13, '海平面 ' + sea, {s: 11, a: 'end', c: 'var(--blu)'});
+    g += '<line x1="14" x2="' + (W - 6) + '" y1="' + Y(bot) + '" y2="' + Y(bot) + '" stroke="var(--ink-3)"/>' + txt(48, Y(bot) + 14, '最底下 ' + bot, {s: 11, c: 'var(--ink-3)'});
+    g += txt(48, Y(top) - 5, y[0], {s: 12, w: true});
+    /* 建筑 */
+    let fits = [], no = [];
+    BLD.forEach((b, i) => {
+      const x = 100 + i * 61, hgt = b[1], ok = hgt <= room;
+      const yTop = Y(Math.min(start + hgt, hi)), yBase = Y(start);
+      (ok ? fits : no).push(b[0]);
+      g += '<rect x="' + (x) + '" y="' + yTop + '" width="40" height="' + (yBase - yTop) + '" fill="' + (ok ? 'var(--main)' : 'var(--zhu)') + '" opacity="' + (ok ? .85 : .55) + '"/>';
+      g += txt(x + 20, yTop - 16, b[0], {s: 10.5}) + txt(x + 20, yTop - 4, hgt + ' 米', {s: 10, c: 'var(--ink-3)'});
+      if (!ok && start + hgt > top) g += '<line x1="' + x + '" x2="' + (x + 40) + '" y1="' + Y(top) + '" y2="' + Y(top) + '" stroke="var(--zhu)" stroke-width="3"/>';
+    });
+    sv.setAttribute('viewBox', '0 0 ' + W + ' ' + H); sv.innerHTML = g;
+    $('#heightSay').innerHTML = y[0] + '，世界从 ' + bot + ' 到 ' + top + '。' + (base ? '从最底下' : '从海边') + '开始盖，能用的高度是 <b>' + room + ' 格</b>。放得下：' + (fits.join('、') || '一个也没有') + '。' + (no.length ? '放不下：' + no.join('、') + '。' : '全都放得下！');
+  }
+  btnRow($('#hYear'), YEARS.map(y => y[0]), 2, i => { yi = i; draw(); });
+  btnRow($('#hBase'), ['从海边的地面盖', '从世界最底下盖'], 0, i => { base = i; draw(); });
+  draw();
+});
+
+
+/* ---------- 第六章：一棵家谱树 ---------- */
+dev('#treeFig', () => {
+  /* [名字, 开始, 结束(null=还在), 停了吗, 说明] */
+  const L = [
+    ['Java 版', 2009.4, null, 0, '最早的那个版本，用 Java 写的，在 Windows、苹果电脑和 Linux 上玩。模组最多。小格玩的就是它。'],
+    ['手机版 → 基岩版', 2011.6, null, 0, '2011 年先出了手机版，用 C++ 重新写。2017 年和 Windows 10 版、Xbox 版合成“基岩版”，后来加上 Switch 和 PlayStation，能跨设备一起玩。豆子玩的是它。'],
+    ['老游戏机版', 2012.35, 2018.9, 1, '2012 年起在老一代游戏机上出的版本，由另一家工作室做。后来大家都换到了基岩版，老版本不再更新。'],
+    ['树莓派版', 2013.1, 2013.9, 1, '2013 年给一种很便宜的小电脑“树莓派”做的免费版本，只有创造模式，可以用 Python 写程序来盖东西。只出了很少几版就不再更新了，第二部会讲到它。'],
+    ['故事模式', 2015.8, 2019.5, 1, '一个讲故事、靠选择推进剧情的游戏，由另一家公司做。那家公司关门以后，2019 年下架。'],
+    ['教育版', 2016.85, null, 0, '给学校用的版本，老师可以布置任务，里面有化学实验和编程用的小机器人。第三部会细讲。'],
+    ['中国版', 2017.3, null, 0, '网易在中国运营的版本，下载免费，要实名注册。'],
+    ['我的世界：地球', 2019.5, 2021.5, 1, '拿着手机在真实的街道上找方块、放方块的游戏。疫情里大家很少出门，2021 年 6 月关闭。'],
+    ['我的世界：地下城', 2020.4, null, 0, '几个人一起打地牢、闯关的游戏，画面是从斜上方往下看。'],
+    ['我的世界：传奇', 2023.3, 2024.1, 1, '指挥一支队伍保卫村庄的策略游戏。2024 年初宣布不再加新内容。'],
+    ['大电影', 2025.26, 2025.5, 0, '2025 年 4 月上映的真人电影，全世界票房约九亿多美元。']
+  ];
+  const sv = $('#treeSvg'), x0 = 132, x1 = 588, y0 = 30, rh = 24, X = y => x0 + (y - 2009) / (2027 - 2009) * (x1 - x0);
+  let sel = -1;
+  function draw(){
+    const H = y0 + L.length * rh + 26;
+    let g = '';
+    [2009, 2012, 2015, 2018, 2021, 2024, 2027].forEach(y => g += '<line x1="' + X(y) + '" x2="' + X(y) + '" y1="' + (y0 - 8) + '" y2="' + (H - 22) + '" stroke="var(--rule)"/>' + txt(X(y), H - 8, y, {s: 11, c: 'var(--ink-3)', halo: false}));
+    g += '<line x1="' + X(2014.7) + '" x2="' + X(2014.7) + '" y1="' + (y0 - 14) + '" y2="' + (H - 22) + '" stroke="var(--zhu)" stroke-dasharray="3 3"/>' + txt(X(2014.7) + 4, y0 - 16, '2014 微软买下', {s: 10.5, a: 'start', c: 'var(--zhu)'});
+    L.forEach((l, i) => {
+      const y = y0 + i * rh, end = l[2] == null ? 2026.9 : l[2], dead = l[3];
+      g += '<g class="row" data-i="' + i + '" style="cursor:pointer"><rect x="0" y="' + (y - 2) + '" width="600" height="' + rh + '" fill="' + (i === sel ? 'color-mix(in srgb,var(--main) 12%,transparent)' : 'transparent') + '"/>';
+      g += txt(x0 - 8, y + 14, l[0], {s: 12, a: 'end', c: dead ? 'var(--ink-3)' : 'var(--ink)'});
+      g += '<rect x="' + X(l[1]) + '" y="' + (y + 4) + '" width="' + Math.max(5, X(end) - X(l[1])) + '" height="13" rx="2" fill="' + (dead ? 'var(--stone)' : 'var(--main)') + '" opacity="' + (dead ? .55 : .9) + '"/>';
+      if (l[2] == null && l[0] !== '大电影') g += '<path d="M' + X(2026.9) + ',' + (y + 4) + 'l7,6.5l-7,6.5z" fill="var(--main)"/>';
+      if (dead) g += txt(X(end) + 4, y + 15, '停', {s: 11, a: 'start', c: 'var(--zhu)'});
+      g += '</g>';
+    });
+    sv.setAttribute('viewBox', '0 0 600 ' + H); sv.innerHTML = g;
+  }
+  sv.addEventListener('click', e => {
+    const r = e.target.closest('.row'); if (!r) return;
+    sel = +r.dataset.i; const l = L[sel];
+    $('#treeSay').innerHTML = '<b>' + l[0] + '</b>（' + Math.floor(l[1]) + (l[2] == null ? ' 年至今' : l[0] === '大电影' ? ' 年' : '—' + Math.floor(l[2]) + ' 年') + '）：' + l[4];
+    draw();
+  });
+  draw();
+});
+
+
+/* ---------- 第七章：一年有几个小时 ---------- */
+dev('#yearFig', () => {
+  const D = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
+  $('#yearCal').innerHTML = D.map((d, i) => '<div' + (i >= 4 ? ' class="ok"' : '') + '><b>' + d + '</b>' + (i >= 4 ? '20—21 时' : '不能玩') + '</div>').join('');
+  const COL = ['var(--main)', 'var(--zhu)', 'var(--blu)'];
+  let hours = 0;
+  function split(){
+    const a = +$('#yrA').value, b = +$('#yrB').value, c = +$('#yrC').value, s = a + b + c;
+    if (!s) { $('#yearSplit').innerHTML = ''; $('#yearSay').textContent = '三样都拖到零了：这一年你打算一点都不玩？也可以。'; return; }
+    const parts = [a, b, c].map(v => Math.round(hours * v / s));
+    $('#yearSplit').innerHTML = parts.map((p, i) => '<i style="width:' + (p / hours * 100) + '%;background:' + COL[i] + '" title="' + p + ' 小时"></i>').join('');
+    $('#yearSay').innerHTML = '盖房子和探险 <b>' + parts[0] + '</b> 小时，红石和命令 <b>' + parts[1] + '</b> 小时，和朋友一起 <b>' + parts[2] + '</b> 小时。' + (parts[1] >= 40 ? '四十个小时够你从一盏红石灯一路做到一台小小的加法器（第二部会讲）。' : '如果想学红石电路，可以多留一点时间给它。');
+  }
+  slider('yrHol', v => v + ' 天', v => {
+    hours = 52 * 3 + v;
+    kv($('#yearKv'), [['每个星期', '3 小时'], ['一年加起来', '约 ' + hours + ' 小时'], ['换成整天', '约 ' + (hours / 24).toFixed(1) + ' 天'], ['平均每天', '约 ' + Math.round(hours / 365 * 60) + ' 分钟']]);
+    if ($('#yrA')) split();
+  });
+  ['yrA', 'yrB', 'yrC'].forEach(id => slider(id, v => v + ' 份', split));
+});
+
+
+/* ---------- 第八章：真的假的 ---------- */
+dev('#quizFig', () => {
+  /* [说法, 答案(true=真), 解释, 章 id] */
+  const Q = [
+    ['游戏里一格就是一米。', true, '做游戏的人说过，一块方块就是一立方米。', 'c0'],
+    ['方块世界是无限大的。', false, '它非常大，但有边界，大约在离中心三千万格的地方。', 'c0'],
+    ['游戏的名字来自“挖矿”和“手艺”两个英文词。', true, 'mine 是挖矿，craft 是手艺。', 'top'],
+    ['第一版做了好几年才做出来。', false, '从开工到在论坛上发帖，大约一个星期。', 'c2'],
+    ['苦力怕是从一只画错的猪变来的。', true, '据 Notch 自己说，他把猪的高和长写反了。', 'c3'],
+    ['游戏一开始就有下界和末地。', false, '下界是 2010 年万圣节加的，末地是 2011 年底。', 'c5'],
+    ['2024 年起，不再每年投票选新生物了。', true, '2024 年 9 月 Mojang 宣布取消。', 'c5'],
+    ['微软买下 Mojang 花了二十五亿美元。', true, '2014 年 9 月宣布。', 'c6'],
+    ['中国版和国际版可以一起联机。', false, '两边的账号和服务器是分开的，不能一起玩。', 'c7'],
+    ['游戏里藏着一个白眼睛的人。', false, '这是 2010 年网上编出来的故事，从来没有加进游戏。', 'c8'],
+    ['网上能下载的模组都是安全的。', false, '2023 年就有人把病毒藏进了模组里。下载前要让大人一起看。', 'c8'],
+    ['有人用红石在游戏里造出了一个会聊天的小人工智能。', true, '2025 年，一位玩家用几亿块方块造了一个，回答一句话要好几个小时。第二部会讲。', 'c14']
+  ];
+  const box = $('#quizBox'); let pick = [];
+  const link = id => id === 'top' ? '<a href="#top">封面</a>' : '<a data-c="' + id + '" href="' + href(id) + '">' + (TOC.find(x => x.id === id) || {}).n + '</a>';
+  function build(){
+    pick = Q.map(() => null); box.classList.remove('shown');
+    box.innerHTML = Q.map((q, i) => '<div class="qi" data-i="' + i + '">' + (i + 1) + '. ' + q[0] + '<div class="bt"><button class="btn" data-v="1">真</button><button class="btn" data-v="0">假</button></div><div class="ex"><b>' + (q[1] ? '真' : '假') + '。</b>' + q[2] + ' 见' + link(q[3]) + '。</div></div>').join('');
+    $$('a[data-c]', box).forEach(a => { if (chapPage[a.dataset.c] > READY) { a.removeAttribute('href'); a.title = '写作中'; a.style.textDecorationStyle = 'dotted'; } });
+    $('#quizSay').textContent = '还没开始。';
+  }
+  box.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b || box.classList.contains('shown')) return;
+    const qi = b.closest('.qi'), i = +qi.dataset.i; pick[i] = b.dataset.v === '1';
+    $$('button', qi).forEach(x => x.classList.toggle('on', x === b));
+    const n = pick.filter(x => x !== null).length;
+    $('#quizSay').textContent = '已经答了 ' + n + ' / ' + Q.length + ' 题。';
+  });
+  $('#quizGo').addEventListener('click', () => {
+    if (pick.some(x => x === null)) { $('#quizSay').textContent = '还有 ' + pick.filter(x => x === null).length + ' 题没答，答完再揭晓。'; return; }
+    box.classList.add('shown'); let ok = 0;
+    $$('.qi', box).forEach((qi, i) => { const r = pick[i] === Q[i][1]; ok += r; qi.classList.add(r ? 'right' : 'wrong'); });
+    $('#quizSay').innerHTML = '答对 <b>' + ok + '</b> / ' + Q.length + ' 题。' + (ok === Q.length ? '全对！你可以去给同学当“查证员”了。' : ok >= 9 ? '很厉害。答错的那几题，点后面的链接再读一遍。' : '没关系，这些都是网上常听到的说法，现在你知道怎么查了。');
+  });
+  $('#quizReset').addEventListener('click', build);
+  build();
+});
+
+})();
+
+</script>
+</body>
+</html>

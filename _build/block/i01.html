@@ -1,0 +1,119 @@
+<!-- ============ 第六十七章 · 落 ============ -->
+<section class="chap" id="c67" data-vol="卷二十 · 落">
+  <div class="chead">
+    <div class="big">落</div>
+    <div>
+      <div class="no">第六十七章</div>
+      <h2>重力和下落</h2>
+      <dl><dt>讲什么</dt><dd>为什么东西会往下掉；越掉越快；游戏里一刻一刻怎样算；真实世界的 9.8；空气的阻力和“最快能掉多快”；摔下来扣几颗心，掉在水里、干草块上为什么不疼；月球上的锤子和羽毛</dd><dt>本章装置</dt><dd>跳下去</dd></dl>
+      <div class="sub" data-s="理 数"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第三十五天</b><span class="pix">WORLD · lab</span><span>生存模式 · 困难</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>我从 20 格高的地方跳到草地上，剩了一颗半心；从 30 格跳到水里，一点事都没有。</span></div>
+      <div class="l"><i class="j">舅</i><span>你已经做了两次物理实验了。下一步，是把结果变成一条规律：从多高摔下来，扣多少血？</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★</span><span class="dim">★★</span></div><div><b>大约多久</b>40 分钟</div><div><b>要准备</b>实验世界（打开 keepInventory）</div><div><b>大人</b>不用</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>说出“越掉越快”是什么意思，读懂一条速度越来越大的曲线。</li>
+      <li>用“掉落格数 − 3”算出摔下来扣几点血。</li>
+      <li>说出水、干草块、黏液块为什么能救命。</li>
+      <li>说出游戏和真实世界下落的两个不同。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>越掉越快</h3>
+    <p>松开手，石头往下掉，因为地球在“拉”它，这股拉力叫<b>重力</b>（<span class="en" data-say="gravity">gravity</span>）。重力不只是让它往下动，还让它<b>越来越快</b>：第一秒慢，第二秒快一些，第三秒更快。</p>
+    <p>游戏里，每一刻（1/20 秒）都做两步：先把往下的速度加上 0.08 格/刻，再乘以 0.98（这是游戏模拟的“空气阻力”）。这样一刻一刻算下去，速度越来越大，可是不会无限大：最后大约停在每刻 3.9 格，也就是每秒约 78 格（以社区维基为准）。换算一下，游戏里每秒速度大约增加 30 多格，比真实世界的 9.8 大三倍多：游戏里东西掉得特别“干脆”，这是为了好玩。</p>
+    <p>真实世界里，在没有空气的地方，下落的速度每秒增加约 <b>9.8 米/秒</b>：第 1 秒末 9.8，第 2 秒末 19.6……有空气的地方，空气会挡着，跳伞的人掉到大约每秒 50 多米就不再变快了，这叫<b>终端速度</b>。</p>
+  </div>
+
+  <div class="real">
+    <h5>月球上的锤子和羽毛</h5>
+    <p>四百多年前，意大利的伽利略用斜坡上滚球的实验发现：如果没有空气，重的和轻的东西掉得一样快。（他在比萨斜塔上扔两个球，这个故事很有名，但很可能是后人编的，存疑。）</p>
+    <p>1971 年，阿波罗 15 号的宇航员大卫·斯科特在月球上，一手拿锤子、一手拿羽毛，同时松手。月球上没有空气，两样东西<b>同时</b>落到了地面。地球上做这个实验，羽毛会慢慢飘，因为它被空气托着。</p>
+  </div>
+
+  <div class="col">
+    <h3>摔下来扣几颗心</h3>
+    <p>据社区维基，Java 版的摔落伤害很简单：</p>
+    <p class="ni" style="text-align:center;font-size:19px"><b>伤害 = 掉落的格数 − 3</b></p>
+    <p>伤害的单位是“点”，2 点是一颗心，你一共有 20 点（十颗心）。从 3 格以内跳下来不疼；从 13 格掉下来，扣 10 点，五颗心；从 23 格掉下来扣 20 点，没有盔甲就会死。</p>
+    <p>能救命的东西：</p>
+    <ul class="plain">
+      <li><b>水</b>：掉进水里不扣血。所以“水桶落地”是高手技巧：快落地时往脚下倒一桶水。</li>
+      <li><b>干草块</b>：伤害减少 80%。</li>
+      <li><b>黏液块</b>：会把你弹起来，不扣血（按住潜行就不弹）。</li>
+      <li>梯子、藤蔓、蜘蛛网、细雪也能接住你；“摔落保护”附魔和“缓降”效果能减少或免掉伤害。</li>
+    </ul>
+  </div>
+
+  <div class="fig" id="dropFig">
+    <div class="fig-label">装置 · 第六十七章</div>
+    <h4>跳下去</h4>
+    <p class="how">设一个高度，选落在什么上面。装置会算出：游戏里要掉多久、落地时多快、扣几颗心；真实世界里（没有空气时）同样高度要多久。下面的图：横着是时间，竖着是已经掉了多少格。</p>
+    <div class="ctl"><span>高度</span><input type="range" id="drH" min="1" max="100" value="20"><output id="drHO"></output></div>
+    <div class="btns" id="drOn"></div>
+    <div class="hearts" id="drHearts"></div>
+    <div class="kv" id="drKv"></div>
+    <svg id="drSvg" role="img" aria-label="下落距离随时间变化的曲线"></svg>
+    <div class="say" id="drSay"></div>
+  </div>
+
+  <div class="corner" data-k="理">
+    <h5>为什么落在水里不疼<span class="gr later">以后学 · 八年级 力 / 高中 动量</span></h5>
+    <p>摔疼的原因，不是“掉得快”，而是<b>一下子停住</b>。落在硬地上，速度在极短的时间里变成 0，身体受到很大的力；落进水里，水让你在一段距离里慢慢停下来，力就小多了。汽车的安全气囊、跳远的沙坑、蹦床，都是同一个道理：<em>让停下来的过程变长</em>。游戏没有真的去算这些，它只是规定“水里不扣血”，可这个规定是照着真实世界定的。</p>
+  </div>
+
+  <div class="corner" data-k="数">
+    <h5>下落的公式<span class="gr later">以后学 · 高一 自由落体</span></h5>
+    <p>没有空气时，下落的距离 = ½ × 9.8 × 时间 × 时间。1 秒掉 4.9 米，2 秒掉 19.6 米，3 秒掉 44.1 米：时间翻一倍，距离变成四倍。图上那条往下弯得越来越快的线，数学里叫<b>抛物线</b>的一半（初三的二次函数）。</p>
+  </div>
+
+  <div class="task" data-id="t67a">
+    <div class="th"><b>摔落实验记录表</b><span class="xp">★★</span></div>
+    <div class="tb">
+      <ol>
+        <li>在实验世界里，切到生存模式，难度选普通，打开 keepInventory，不穿盔甲。</li>
+        <li>用 <code>/tp ~ ~10 ~</code>、<code>~15</code>、<code>~20</code> 把自己传到不同高度，跳到草地上，记下每次剩几颗心（每次用 <code>/effect give @s instant_health</code> 或者等它回满再做下一次）。</li>
+        <li>在纸上画一张表：高度、扣的心、用“格数 − 3”算出来的数。对得上吗？</li>
+        <li>再试一次 20 格高，下面换成干草块、水、黏液块。</li>
+      </ol>
+      <p>这就是科学家的做法：改一样东西（高度、落在什么上），别的都不变，记下结果，找出规律。</p>
+    </div>
+  </div>
+
+  <div class="pass" data-id="q67">
+    <div class="qq" data-in="10"><p>从 13 格高摔到草地上，扣几点伤害？</p><p class="ex">13 − 3 = 10 点，也就是五颗心。</p></div>
+    <div class="qq" data-in="23"><p>你有 20 点血、没有盔甲，最少从几格高摔下来会死？</p><p class="ex">伤害 = 格数 − 3 ≥ 20，所以至少 23 格。</p></div>
+    <div class="qq" data-a="1"><p>月球上同时松开锤子和羽毛，会怎样？</p><ol><li>锤子先落地</li><li>同时落地</li><li>羽毛飘走</li></ol><p class="ex">月球上没有空气，重的轻的掉得一样快。</p></div>
+    <div class="qq" data-a="2"><p>落进水里不疼，真实的原因是？</p><ol><li>水是软的颜色</li><li>水里没有重力</li><li>水让你在一段距离里慢慢停下，力变小了</li></ol><p class="ex">停下来的过程变长，力就变小。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>重力 <span class="en" data-say="gravity">gravity</span></b>地球把东西往下拉的力。</div>
+    <div><b>加速 <span class="en" data-say="accelerate">accelerate</span></b>越来越快。</div>
+    <div><b>空气阻力 <span class="en" data-say="air resistance">air resistance</span></b>空气挡着东西，让它慢下来。</div>
+    <div><b>终端速度 <span class="en" data-say="terminal velocity">terminal velocity</span></b>有空气时，下落不再变快的那个速度。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>Java 版实体下落：每刻速度减 0.08、再乘 0.98，终端约 3.92 格/刻；摔落伤害为掉落距离减 3（点），干草块减免 80%，落水与黏液块无伤害；见社区维基“摔落伤害”“实体”条目，具体数值随版本可能调整。阿波罗 15 号锤子与羽毛实验（1971 年 8 月）有 NASA 影像资料。伽利略比萨斜塔实验的真实性学界普遍存疑。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>摔落伤害 = 格数 − 3；水、黏液块不疼，干草块减 80%。</div>
+    <div><i>脑袋<small>带走一样</small></i>摔疼是因为“一下子停住”。让停下来的过程变长，力就小了。</div>
+  </div>
+</section>

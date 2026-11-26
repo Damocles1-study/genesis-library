@@ -1,0 +1,117 @@
+<!-- ============ 第七十一章 · 转 ============ -->
+<section class="chap" id="c71" data-vol="卷二十 · 转">
+  <div class="chead">
+    <div class="big">转</div>
+    <div>
+      <div class="no">第七十一章</div>
+      <h2>昼夜、月亮、指南针</h2>
+      <dl><dt>讲什么</dt><dd>真实的白天黑夜是地球在转；游戏里是太阳在转；八种月亮；真实的月亮为什么会圆会缺；游戏的指南针指着出生点，真的指南针指着磁北；九百多年前沈括发现指南针“不全南”</dd><dt>本章装置</dt><dd>月相 · 指南针</dd></dl>
+      <div class="sub" data-s="理 数"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第三十九天</b><span class="pix">WORLD · 我的第一个家</span><span>生存模式 · 晚上</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>今晚的月亮只剩一半了，前天还是圆的。游戏里的月亮也会变？</span></div>
+      <div class="l"><i class="j">舅</i><span>会，有八种样子，八天一轮。真的月亮也会变，不过一轮要差不多一个月。为什么会变？我们拿一盏灯和一个球来想一想。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★</span><span class="dim">★★</span></div><div><b>大约多久</b>45 分钟</div><div><b>要准备</b>手电筒、一个球（做月相实验）</div><div><b>大人</b>晚上看月亮时一起</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>说出真实的白天黑夜是怎样来的。</li>
+      <li>说出游戏里月亮有几种样子、多少天一轮。</li>
+      <li>用“太阳照亮半个月亮”解释月亮的圆缺。</li>
+      <li>说出游戏的指南针和真的指南针各指着哪儿。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>谁在转</h3>
+    <p>游戏里，太阳和月亮绕着方块世界转，20 分钟一圈（第四十三章）。真实世界正好反过来：太阳不动，是<b>地球自己在转</b>，大约 24 小时转一圈。你站的地方转到对着太阳的那一面，就是白天；转到背着太阳的那一面，就是夜晚。</p>
+    <p>地球是从西往东转的，所以我们看见太阳从<b>东边</b>升起、往西边落下。游戏里的太阳也从东边出来，这一点做得和真的一样。</p>
+    <p>还有几样游戏没做：真实的地球还绕着太阳转，一年一圈，所以有春夏秋冬，夏天太阳高、白天长，冬天太阳低、白天短；游戏里没有季节，太阳每天都从头顶正上方经过。</p>
+  </div>
+
+  <div class="col">
+    <h3>八种月亮</h3>
+    <p>据社区维基，游戏里的月亮有 <b>8 种</b>样子，每个晚上换一种，8 天一轮：满月 → 渐亏凸月 → 下弦月 → 残月 → 新月（几乎看不见）→ 蛾眉月 → 上弦月 → 渐盈凸月 → 又是满月。月亮的样子还会影响游戏：比如满月的晚上，沼泽里生成的史莱姆更多。</p>
+    <p>真的月亮一轮大约 <b>29.5 天</b>。为什么会圆会缺？月亮自己不发光，它是被太阳照亮的。太阳<b>永远照亮月亮的一半</b>；月亮绕着地球转，我们从地球上看过去，有时看见整个亮的那一半（满月），有时只看见亮的一小条（月牙），有时亮的那一半完全背着我们（新月）。</p>
+  </div>
+
+  <div class="fig" id="moonFig">
+    <div class="fig-label">装置 · 第七十一章 · 一</div>
+    <h4>月相</h4>
+    <p class="how">左边是从天上往下看：太阳的光从右边照过来，月亮绕着地球转，亮的一半总是朝着太阳。右边是站在地球上看到的月亮。拖动滑块让月亮转。下面是游戏里的八种月亮和它们的名字。</p>
+    <div class="ctl"><span>第几天</span><input type="range" id="mnD" min="0" max="29.5" step="0.5" value="0"><output id="mnDO"></output></div>
+    <div class="moon2"><svg id="mnTop" role="img" aria-label="从上往下看的太阳、地球和月亮"></svg><svg id="mnView" role="img" aria-label="从地球上看到的月亮"></svg></div>
+    <div class="say" id="mnSay"></div>
+    <div class="phases" id="mnGame"></div>
+  </div>
+
+  <div class="corner" data-k="理">
+    <h5>自己做一个月相实验<span class="gr later">以后学 · 小学科学 / 初中地理</span></h5>
+    <p>晚上关灯，请大人在房间一边打开手电筒（当太阳）。你手里举着一个球（当月亮），自己的头当地球。举着球绕自己转一圈，眼睛一直看着球：你会看到球亮的部分从一条细线，到一半，到全亮，再变回去。这就是月相。</p>
+  </div>
+
+  <div class="col">
+    <h3>指南针指着哪儿</h3>
+    <p>游戏里的指南针（<span class="en" data-say="compass">compass</span>），指着的是这个世界的<b>出生点</b>（不是你的床）。在下界和末地，它会乱转。用磁石可以让它改指别处。</p>
+    <p>真的指南针里有一根小磁针，它指着的是地球的<b>磁场</b>的方向：地球本身就像一块大磁铁。磁针的一头大致指北，可是“磁北”和真正的北（地球自转轴的北极）不在同一个地方，所以指南针<b>不是正好指北</b>，偏了一个小角度，这叫<b>磁偏角</b>。</p>
+  </div>
+
+  <div class="real">
+    <h5>沈括：“常微偏东，不全南也”</h5>
+    <p>北宋的科学家沈括在《梦溪笔谈》里记下了指南针的几种做法，还写道：用磁石磨过的针能指南，可是“常微偏东，不全南也”，常常微微偏向东，不是正南。这是世界上最早关于磁偏角的记载之一，比欧洲早几百年。中国古代把它叫“指南”，因为人们习惯用针的另一头指南。</p>
+  </div>
+
+  <div class="fig" id="cmpsFig">
+    <div class="fig-label">装置 · 第七十一章 · 二</div>
+    <h4>指南针</h4>
+    <p class="how">从天上往下看。点一下网格，把你（绿色）移过去；点“移动出生点”再点网格，把出生点（金色）挪走。你手里的游戏指南针会一直指着出生点；旁边那根真的指南针，一直指着北（这里不考虑磁偏角）。</p>
+    <svg id="csSvg" style="max-width:380px;display:block;margin:0 auto" role="img" aria-label="地图上的你和出生点，两根指南针"></svg>
+    <div class="btns"><button class="btn" id="csSpawn">移动出生点</button></div>
+    <div class="say" id="csSay"></div>
+  </div>
+
+  <div class="task" data-id="t71a">
+    <div class="th"><b>八个晚上</b><span class="xp">★★</span></div>
+    <div class="tb">
+      <ol>
+        <li>在实验世界里，晚上抬头看月亮，按 fn + F2 拍一张。</li>
+        <li>用 <code>/time add 24000</code> 跳到下一个晚上，再拍一张。一共拍八张。</li>
+        <li>把八张截图按顺序排好，和装置里的八种月亮对一对。</li>
+        <li>（真实世界）连着一周，晚上和大人一起看看真的月亮，画下来。它一周变了多少？</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="pass" data-id="q71">
+    <div class="qq" data-a="0"><p>真实世界里有白天黑夜，是因为？</p><ol><li>地球在自转</li><li>太阳绕地球转</li><li>月亮挡住了太阳</li></ol><p class="ex">地球自转，大约 24 小时一圈。</p></div>
+    <div class="qq" data-in="8"><p>游戏里的月亮有几种样子？</p><p class="ex">8 种，8 天一轮。</p></div>
+    <div class="qq" data-a="2"><p>月亮为什么会圆会缺？</p><ol><li>月亮自己的灯开开关关</li><li>地球的影子挡住了它</li><li>太阳照亮它的一半，我们从不同的角度看见亮的部分不一样多</li></ol><p class="ex">月相是看的角度变了。（地球影子挡住月亮是“月食”，是另一回事。）</p></div>
+    <div class="qq" data-a="1"><p>游戏里的指南针指着哪儿？</p><ol><li>北</li><li>世界的出生点</li><li>你的床</li></ol><p class="ex">指着出生点。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>自转 <span class="en" data-say="rotation">rotation</span></b>自己绕着自己转。</div>
+    <div><b>月相 <span class="en" data-say="moon phase">moon phase</span></b>月亮的圆缺样子。</div>
+    <div><b>满月 <span class="en" data-say="full moon">full moon</span></b>圆圆的月亮；<b>新月</b> <span class="en" data-say="new moon">new moon</span> 几乎看不见。</div>
+    <div><b>磁场 <span class="en" data-say="magnetic field">magnetic field</span></b>磁铁周围看不见的“力的范围”。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>游戏月相 8 种、8 天一轮，满月对沼泽史莱姆生成的影响，指南针指向世界出生点、在下界末地随机转动、磁石指南针，见社区维基“月亮”“史莱姆”“指南针”条目。朔望月约 29.53 天。《梦溪笔谈·杂志》载“方家以磁石磨针锋，则能指南，然常微偏东，不全南也”。月相实验是小学科学的经典活动；地球自转与公转在初中地理系统学习。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>月亮 8 种、8 天一轮；指南针指着出生点。</div>
+    <div><i>脑袋<small>带走一样</small></i>月亮永远亮一半，变的是我们看它的角度。</div>
+  </div>
+</section>

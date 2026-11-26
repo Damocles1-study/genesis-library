@@ -1,0 +1,116 @@
+<!-- ============ 第六十八章 · 光 ============ -->
+<section class="chap" id="c68" data-vol="卷二十 · 光">
+  <div class="chead">
+    <div class="big">光</div>
+    <div>
+      <div class="no">第六十八章</div>
+      <h2>光</h2>
+      <dl><dt>讲什么</dt><dd>亮度从 0 到 15；火把 14、荧石 15；一格暗一级；光会绕过墙吗；亮度 0 的地方会出怪；真的光为什么暗得更快（平方反比）；光有多快</dd><dt>本章装置</dt><dd>插火把 · 一格一级和平方反比</dd></dl>
+      <div class="sub" data-s="理 数 程"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第三十六天</b><span class="pix">WORLD · 我的第一个家</span><span>生存模式</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>我在家里插满了火把，怎么还会在墙角刷出僵尸？</span></div>
+      <div class="l"><i class="j">舅</i><span>按 F3，站到那个墙角，看 Light 那一行。你会发现那里的亮度是 0。火把的光是一格一格往外传的，传到那里，正好用完了。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★</span><span class="dim">★★</span></div><div><b>大约多久</b>40 分钟</div><div><b>要准备</b>实验世界</div><div><b>大人</b>不用</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>说出几种光源的亮度，算出离火把几格远是多亮。</li>
+      <li>用最少的火把让一片地方亮度都大于 0。</li>
+      <li>说出游戏的光和真实的光“变暗”的规律有什么不同。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>亮度 0 到 15</h3>
+    <p>游戏里每一格都有一个亮度，从 0（漆黑）到 15（最亮）。按 F3，<code>Light</code> 那一行能看到。光有两种来源：天上的光（白天是 15，晚上低）和方块发的光。据社区维基，几种常见光源：</p>
+    <ul class="plain">
+      <li>15：荧石、海晶灯、灯笼、南瓜灯、营火、岩浆</li>
+      <li>14：火把</li>
+      <li>10：灵魂火把</li>
+      <li>7：红石火把（所以它照不亮多大地方）</li>
+    </ul>
+    <p>光往外传的时候，<b>每走一格，亮度少 1</b>。火把在 14，旁边一格 13，再旁边 12……离 14 格远就变成 0。“走一格”是横着或竖着走，不能斜着走，所以斜对角的那一格要算两步。光遇到不透明的方块会被挡住，要绕过去，绕的路越长，到那里就越暗。</p>
+    <p>据维基，从 1.18 起，主世界里的敌对生物（僵尸、骷髅、苦力怕等）只在方块光照是 <b>0</b> 的地方生成。所以“防刷怪”就是：<em>让每一格的亮度都至少是 1</em>。</p>
+  </div>
+
+  <div class="fig" id="lightFig">
+    <div class="fig-label">装置 · 第六十八章 · 一</div>
+    <h4>插火把</h4>
+    <p class="how">这是一个 15 × 15 的房间（从上往下看）。选“火把”“荧石”或“墙”，再点格子放上去，点同一个格子就拿掉。每一格写着它的亮度，红色的是 0：怪物能在那里生成。挑战：用最少的火把，让所有格子都不是红色。</p>
+    <div class="btns" id="ltTool"></div>
+    <svg id="ltSvg" style="max-width:420px;display:block;margin:6px auto" role="img" aria-label="一个房间的亮度网格"></svg>
+    <div class="kv" id="ltKv"></div>
+    <div class="btns"><button class="btn" id="ltClr">清空</button><button class="btn" id="ltEx">加一道墙</button></div>
+  </div>
+
+  <div class="corner" data-k="程">
+    <h5>光是一圈一圈传出去的<span class="gr later">以后学 · 第七十八章 广度优先搜索</span></h5>
+    <p>上面的装置是怎样算亮度的？从火把开始，先把它旁边的四格标成 13，再从这四格往外，把它们旁边的格子标成 12……一圈一圈往外，遇到墙就绕开。这种“一圈一圈往外找”的办法，程序员叫<b>广度优先搜索</b>。游戏算光、算水流、红石信号，用的都是类似的办法。第七十八章会用它来找迷宫的出口。</p>
+  </div>
+
+  <div class="col">
+    <h3>真的光：暗得更快</h3>
+    <p>真实世界的灯泡，离它 2 米的地方，比离它 1 米的地方暗多少？不是“少一点”，而是<b>只剩四分之一</b>；离 3 米，只剩九分之一。光从灯泡出来，向四面八方散开，像一个越吹越大的气球：离得远一倍，同样的光要铺满四倍大的面积。这叫<b>平方反比</b>。</p>
+    <p>游戏为什么不这样算？因为“一格少 1”简单、好算、玩家一眼能看懂。这是游戏的一种<b>简化</b>。</p>
+  </div>
+
+  <div class="fig" id="isqFig">
+    <div class="fig-label">装置 · 第六十八章 · 二</div>
+    <h4>一格一级和平方反比</h4>
+    <p class="how">拖动距离，比一比：游戏里的火把（14 − 距离）和真实的灯（1 ÷ 距离²，把 1 米处当成 100%）。</p>
+    <div class="ctl"><span>距离</span><input type="range" id="isD" min="1" max="14" value="2"><output id="isDO"></output></div>
+    <div class="bars" id="isBars"></div>
+    <div class="say" id="isSay"></div>
+  </div>
+
+  <div class="corner" data-k="理">
+    <h5>光有多快<span class="gr later">以后学 · 八年级上 光现象</span></h5>
+    <p>光一秒钟大约走 30 万千米，能绕地球七圈半。太阳光照到地球，要走大约 8 分 20 秒：你看到的太阳，是它 8 分钟以前的样子。光在同一种东西里沿直线走，所以有影子。这些初二物理第一学期会学到。</p>
+  </div>
+
+  <div class="task" data-id="t68a">
+    <div class="th"><b>火把的地图</b><span class="xp">★★</span></div>
+    <div class="tb">
+      <ol>
+        <li>在实验世界里 <code>/time set midnight</code>，盖一个 15 × 15 的石头房子，盖上屋顶。</li>
+        <li>在正中间插一把火把，按 F3，站到离火把 1、2、3……格远的地方，记下 Light 的数，验证“一格少 1”。</li>
+        <li>站到斜对角的格子上，看看是少 1 还是少 2。</li>
+        <li>用最少的火把，让房间每个角落的亮度都不是 0。</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="pass" data-id="q68">
+    <div class="qq" data-in="11"><p>火把亮度 14，横着离它 3 格的地方亮度是多少？</p><p class="ex">14 − 3 = 11。</p></div>
+    <div class="qq" data-in="12"><p>斜对角紧挨着火把的那一格（往东 1、往北 1），亮度是多少？</p><p class="ex">光不能斜着走，要走两步：14 − 2 = 12。</p></div>
+    <div class="qq" data-a="0"><p>真实的灯，离它 2 米的亮度是 1 米处的多少？</p><ol><li>四分之一</li><li>一半</li><li>一样亮</li></ol><p class="ex">平方反比：距离翻倍，亮度变成 1/4。</p></div>
+    <div class="qq" data-in="0"><p>从 1.18 起，主世界的敌对生物在方块亮度是几的地方生成？</p><p class="ex">0。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>亮度 <span class="en" data-say="light level">light level</span></b>一格有多亮，0 到 15。</div>
+    <div><b>光源 <span class="en" data-say="light source">light source</span></b>自己会发光的东西。</div>
+    <div><b>平方反比 <span class="en" data-say="inverse square law">inverse square law</span></b>距离翻倍，亮度变成四分之一。</div>
+    <div><b>简化 <span class="en" data-say="simplify">simplify</span></b>为了好算好懂，把真实的规律变简单。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>光照等级 0—15、各光源亮度、每格衰减 1（按曼哈顿距离传播，不透明方块阻挡）、1.18 起敌对生物仅在方块光照 0 处生成，见社区维基“亮度”“生成”条目。装置只模拟方块光、不含天空光。光的直线传播在人教版八年级上册；平方反比是高中物理内容。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>火把 14、荧石 15；一格少 1，斜着算两格；亮度 0 的地方会出怪。</div>
+    <div><i>脑袋<small>带走一样</small></i>游戏常常把真实的规律简化。能说出“哪里简化了”，就真懂了。</div>
+  </div>
+</section>

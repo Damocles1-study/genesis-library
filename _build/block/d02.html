@@ -1,0 +1,158 @@
+
+<!-- ============ 第二十六章 · 蟒 ============ -->
+<section class="chap" id="c26" data-vol="卷七 · 蟒">
+  <div class="chead">
+    <div class="big">蟒</div>
+    <div>
+      <div class="no">第二十六章</div>
+      <h2>让 Python 替你写命令</h2>
+      <dl><dt>讲什么</dt><dd>从官网装上 Python；小海龟画螺旋；方格纸上的勾股定理；一个十几行的程序写出几千行命令；缩进、引号和一个不能起的文件名</dd><dt>本章装置</dt><dd>Python 生成命令</dd></dl>
+      <div class="inv" data-a="码 造"></div>
+      <div class="yrs" data-a="1991" data-b="2026"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>暑假第二周</b><span class="pix">NEW WORLD · gongfang</span><span>创造模式</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>我想盖一个巨大的玻璃球，人能站在里面看海底。可是圆的东西用方块好难盖，我盖了一下午，歪得像个土豆。</span></div>
+      <div class="l"><i class="j">舅</i><span>球上每一块放在哪儿，其实可以算出来。算几千块方块的位置，人会累死，电脑一眨眼就算完。</span></div>
+      <div class="l"><i class="g">格</i><span>可是游戏里又没法写 Python。</span></div>
+      <div class="l"><i class="j">舅</i><span>不用在游戏里写。让 Python 在外面把几千行 setblock 命令写进一个函数文件，再把文件放进你上一章的数据包里。程序写命令，命令盖房子。</span></div>
+      <div class="l act">那天晚上，海边出现了一个圆滚滚的玻璃球。小格站在里面，看着鱼游过去。</div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★★</span><span class="dim">★</span></div><div><b>大约多久</b>1 小时（分两次做也行）</div><div><b>要准备</b>Python（官网免费）、上一章的数据包</div><div><b>大人</b>安装时一定要</div></div>
+
+  <div class="col">
+    <h3>先装上 Python</h3>
+    <ol class="steps">
+      <li><b>请大人一起，打开 Python 的官方网站</b>（python.org），在“下载”里找到给 macOS 的安装包，下载、双击安装。安装时电脑会要密码，这一步让大人来。只从官网下载，别从别的网站。</li>
+      <li><b>打开 IDLE。</b>装好以后，在“应用程序”里会多一个 Python 文件夹，里面有一个叫 IDLE 的程序。它是 Python 自带的写代码的地方。</li>
+      <li><b>和 Python 说第一句话。</b>在 IDLE 的窗口里，<code>&gt;&gt;&gt;</code> 后面输入下面几行，每行按一下回车：
+<pre class="py">print("你好，我是小格")
+1 + 1
+2 ** 10
+"哈" * 20</pre>
+        <code>2 ** 10</code> 是 2 乘自己 10 次，答案是 1024，第十一章里十根手指能数到的那个数加一。</li>
+    </ol>
+
+    <h3>小海龟画螺旋</h3>
+    <p>Python 自带一只会画画的“小海龟”：你告诉它往前走几步、往左转几度，它就在屏幕上画出线来。这和你在编程课上让小猫走路，是同一回事。</p>
+    <ol class="steps">
+      <li>在 IDLE 里点菜单“File”→“New File”，打开一个新窗口，写下：
+<pre class="py">import turtle
+
+t = turtle.Turtle()
+for i in range(36):        # 重复 36 次
+    t.forward(i * 5)       # 每次走得比上次远一点
+    t.left(90)             # 向左转 90 度
+turtle.done()</pre></li>
+      <li>保存，名字叫 <code>spiral.py</code>。<b>千万别叫 turtle.py</b>：那样 Python 会以为你自己的文件就是“小海龟”，反而找不到真的那只。</li>
+      <li>点菜单“Run”→“Run Module”（或者按 fn + F5）。一个窗口弹出来，小海龟画出一个方形的螺旋。</li>
+      <li>把 <code>90</code> 改成 <code>91</code>，再运行一次。只差一度，画出来的东西完全不一样了。</li>
+    </ol>
+    <p>注意那几行前面空出来的四个空格，叫<b>缩进</b>。Python 靠缩进知道哪几行在“重复”里面。少一个空格、多一个空格，它就会报错。</p>
+
+    <h3>方格纸上的勾股定理</h3>
+    <p>怎样让电脑知道一块方块在不在球里面？先在方格纸上想一个圆。圆心在 (0, 0)，半径是 5。点 (3, 4) 在圆上吗？</p>
+    <p>从圆心往右走 3 格，再往上走 4 格。这两段路和“从圆心直接走到那个点”的那条斜线，围成一个直角三角形。两千多年前人们就知道：<b>3 × 3 + 4 × 4 = 5 × 5</b>，也就是 9 + 16 = 25。所以 (3, 4) 离圆心正好是 5，正好在圆上。这叫<b>勾股定理</b>，中国古书《周髀算经》里有“勾三股四弦五”的说法，你要到初中才会正式学它。</p>
+    <p>所以规则很简单：<em>x × x + y × y 小于等于 r × r，这个点就在圆里面</em>。到了立体的球，再加上一个 z × z 就行。电脑把球附近的每一格都这样检查一遍，几千格，一眨眼。</p>
+  </div>
+
+  <div class="fig" id="pyFig">
+    <div class="fig-label">装置 · 第二十六章</div>
+    <h4>Python 生成命令</h4>
+    <p class="how">选一个形状，拖动半径。左边（手机上是上面）是完整的 Python 程序，可以照着抄进 IDLE；下面是它写出来的头几行命令；右边是这些命令盖出来的样子。</p>
+    <div class="btns" id="pyS"></div>
+    <div class="ctl"><span>半径</span><input type="range" id="pyR" min="2" max="6" value="4"><output id="pyRO"></output></div>
+    <div class="code">
+      <div>
+        <div class="lab">Python 程序</div>
+        <pre class="py" id="pyCode"></pre>
+        <div class="lab">它写出的 shape.mcfunction（开头几行）</div>
+        <pre class="py" id="pyOut"></pre>
+      </div>
+      <svg id="pySvg" role="img" aria-label="Python 程序生成的方块形状"></svg>
+    </div>
+    <div class="say" id="pySay"></div>
+    <p class="figcap">程序最后几行把所有命令写进一个叫 shape.mcfunction 的文件。<code>f"…{x}…"</code> 的意思是：把变量 x 的值填进这个位置。<code>~{x}</code> 写出来就是 <code>~3</code>、<code>~-2</code>，以你站的地方为准。</p>
+  </div>
+
+  <div class="col">
+    <h3>把程序写的命令放进游戏</h3>
+    <ol class="steps">
+      <li>把装置里的程序抄进 IDLE 的新文件，存成 <code>ball.py</code>，运行。IDLE 会说“一共写了多少行命令”，并且在 ball.py 旁边多出一个 <code>shape.mcfunction</code>。</li>
+      <li>把 shape.mcfunction 拖进上一章数据包的 <code>function</code> 文件夹里。</li>
+      <li>回到游戏，站到一块空地上（球会以你脚下为底），<code>/reload</code>，再 <code>/function xiaoge:shape</code>。</li>
+      <li>先从半径 6 试起。半径太大，命令会多到游戏一次执行不完，它会只做一部分就停下。</li>
+    </ol>
+
+    <h3>出错了怎么办</h3>
+    <ul class="plain">
+      <li><b>IndentationError</b>：缩进不对。检查每一层是不是正好四个空格，别混用空格和 Tab 键。</li>
+      <li><b>SyntaxError</b>：多半是用了中文的引号“”或者中文的括号（），Python 只认英文的 "" 和 ()。输入代码时，先把输入法切到英文。</li>
+      <li><b>小海龟找不到</b>：看看你的文件是不是叫了 turtle.py。</li>
+      <li><b>游戏里什么都没出现</b>：看看文件是不是在 function 文件夹里、有没有 /reload、名字空间和文件名对不对（上一章）。</li>
+    </ul>
+  </div>
+
+  <div class="real">
+    <h5>一条蛇？不，是一个喜剧节目</h5>
+    <p>Python 这个名字的意思是“蟒蛇”，所以很多书的封面上画着蛇。可是它的发明人，荷兰程序员吉多·范罗苏姆，是因为喜欢英国的一个喜剧节目才起了这个名字。1991 年，他公开了 Python 的第一个版本。他想要一种<b>读起来像英语、写起来不啰嗦</b>的语言。</p>
+    <p>今天，Python 是世界上用得最多的编程语言之一：科学家用它算数据，网站用它做后台，人工智能的程序很多也是用它写的。第十四章那个用红石搭的聊天机器人，作者就是先在真电脑上用 Python 把它“训练”好的。</p>
+  </div>
+
+  <div class="try">
+    <div class="h">试一试</div>
+    <div><i>游戏里</i>
+      <ol>
+        <li>用装置里的“空心球”程序，在海底盖一个玻璃球，挖开一个口子，游进去。</li>
+        <li>把程序里的 <code>minecraft:glass</code> 换成别的方块，比如 <code>minecraft:white_wool</code>，盖一个雪球。</li>
+        <li>挑战：改一改程序，只要球的上半部分，盖一个圆顶。提示：只在 y 大于等于 0 的时候才 append。</li>
+      </ol>
+    </div>
+    <div><i>游戏外</i>
+      <ol>
+        <li>在方格纸上画一个半径 5 的圆：一格一格检查 x × x + y × y 是不是小于等于 25，是就涂上颜色。你画出来的“方块圆”，和游戏里的一样。</li>
+        <li>让小海龟画一个五角星。提示：每次转 144 度，重复 5 次。为什么是 144？</li>
+        <li>算一算：半径 6 的空心球大约有多少块？用装置验证你的猜测。</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="gone">
+    <h5><s>Python 2</s></h5>
+    <p>Python 有过两个大版本。很多老教程里写着 <code>print "hello"</code>，不加括号，那是 Python 2 的写法。Python 2 在 2020 年 1 月 1 日正式“退休”，不再更新。现在装的都是 Python 3，要写成 <code>print("hello")</code>。看到老写法，就知道那篇教程至少是好几年前的了。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">Python 能直接控制 Java 版的游戏<span class="vd" data-v="半真">半真</span></div>
+    <div class="bd"><p>原版的 Java 版游戏里，没有一个让 Python 直接说话的“插口”。第十六章讲的树莓派版有，教育版的代码窗口也有；Java 版要装别人写的模组或者服务器插件才行。</p><p>这一章的办法绕开了这个问题：Python 不碰游戏，只负责<b>写文件</b>；游戏只负责<b>读文件</b>。两边各干各的，什么都不用装。很多真实的软件也是这样合作的。</p></div>
+  </div>
+
+  <div class="echo" data-k="押韵">
+    <div class="stamp">押韵</div>
+    <div><p class="rh">程序写程序</p><p>二十世纪五十年代，美国的计算机先驱格蕾丝·霍珀想：既然写机器指令又难又容易错，为什么不写一个程序，让它把人看得懂的话翻译成机器指令？很多人觉得这不可能（书房里的<a href="../computer/#v7">《计算机创世记》卷七</a>讲了她的故事）。今天你用 Python 写出 setblock 命令，干的是同一件事：<em>让程序替你写那些又长又容易错的东西</em>。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>IDLE</b>Python 自带的写代码、运行代码的程序。</div>
+    <div><b>缩进</b>代码前面空出来的空格。Python 靠它分清哪几行在一起。</div>
+    <div><b>勾股定理</b>直角三角形两条短边的平方加起来，等于长边的平方。</div>
+    <div><b>生成</b>让程序按规则自动写出东西，比如几千行命令。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>Python 由 Guido van Rossum 于 1991 年首次公开发布，名字来自 Monty Python 喜剧团；Python 2 于 2020 年 1 月 1 日停止维护。macOS 不再预装可直接使用的 Python 3，建议从 python.org 安装，安装包自带 IDLE 和 turtle 所需的 Tk。Java 版函数单次执行的命令数受游戏规则 maxCommandChainLength 限制（默认 65536），半径过大会被截断。“勾三股四弦五”见《周髀算经》。</p>
+    <p>这一章是“数学有用”的最好例子之一：勾股定理在孩子眼里第一次变成了一个能盖出东西的工具。如果孩子对 x × x 的写法有困难，可以先只做方格纸上的圆，再上电脑。代码建议让孩子自己一个字一个字地敲，不要复制粘贴：敲错、报错、改正，正是学习本身。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>Python 在外面写 .mcfunction 文件，数据包把它读进游戏。x² + y² + z² ≤ r²，就在球里面。从半径 6 试起。</div>
+    <div><i>游戏外<small>带走一样</small></i>勾股定理不只是考试题，它能盖出一个球。缩进、英文引号、别把文件叫 turtle.py。</div>
+  </div>
+</section>

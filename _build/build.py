@@ -13,7 +13,7 @@
     python3 _build/build.py stock1 stock2 stock3      # 《红与绿》三部
     python3 _build/build.py open1 open2 open3         # 《开张》三部
     python3 _build/build.py can1 can2 can3            # 《能不能》三部
-    python3 _build/build.py block1 block2 block3      # 《一块一块》三部
+    python3 _build/build.py block1 block2 block3 block4      # 《一块一块》四部
 """
 import os, re, sys
 
@@ -71,6 +71,7 @@ BOOKS = {
     'block1': ('block', 'block/index.html', ['top1.html', 'css.html', 'bar.html'] + ['a%02d.html' % i for i in range(11)]),
     'block2': ('block', 'block/two.html', ['top2.html', 'css.html', 'bar.html'] + ['b%02d.html' % i for i in range(10)]),
     'block3': ('block', 'block/three.html', ['top3.html', 'css.html', 'bar.html'] + ['c%02d.html' % i for i in range(10)]),
+    'block4': ('block', 'block/four.html', ['top4.html', 'css.html', 'bar.html'] + ['d%02d.html' % i for i in range(10)]),
 }
 DRAFT = '--draft' in sys.argv  # 写到一半时跳过缺失段落和锚点检查
 

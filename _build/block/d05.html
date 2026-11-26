@@ -1,0 +1,138 @@
+
+<!-- ============ 第二十九章 · 服 ============ -->
+<section class="chap" id="c29" data-vol="卷八 · 服">
+  <div class="chead">
+    <div class="big">服</div>
+    <div>
+      <div class="no">第二十九章</div>
+      <h2>自己开一个服务器</h2>
+      <dl><dt>讲什么</dt><dd>单人游戏里也藏着一个服务器；Java 运行环境；终端里的一行命令；读一读用户协议；白名单和正版验证；为什么不对整个互联网开放；当管理员的责任</dd><dt>本章装置</dt><dd>服务器设置</dd></dl>
+      <div class="inv" data-a="电 码 人"></div>
+      <div class="yrs" data-a="2012" data-b="2026"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>暑假第四周</b><span class="pix">SERVER · 小格的工坊</span><span>终端 + 游戏</span></div>
+    <div class="bd">
+      <div class="l"><i class="d">豆</i><span>每次都要等小格开着游戏我才能进，他一下线，世界就没了。</span></div>
+      <div class="l"><i class="j">舅</i><span>那就让世界单独“住”在一个程序里，叫服务器程序。谁玩不玩都没关系，只要它开着，世界就在。</span></div>
+      <div class="l"><i class="g">格</i><span>服务器不是那种一屋子的大机器吗？</span></div>
+      <div class="l"><i class="j">舅</i><span>大服务器是。可是“服务器”说到底就是一个程序。你这台 MacBook，就能跑一个给三四个人用的小服务器。</span></div>
+      <div class="l act">终端里一行一行的白字往上滚，最后停在一行 Done。小格在游戏里输入 localhost，进去了。舅舅说：“现在，你是这个世界的管理员了。”</div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★★★</span></div><div><b>大约多久</b>1—2 小时</div><div><b>要准备</b>Java 运行环境、官方服务器程序、终端</div><div><b>大人</b>一定要，全程</div></div>
+
+  <div class="col">
+    <h3>单人游戏里也藏着一个服务器</h3>
+    <p>上一章说，联机时开世界的那台电脑当了服务器。其实，从 2012 年的 1.3 版本起，<b>你一个人玩的时候，游戏里也偷偷开着一个服务器</b>：一部分负责算世界，一部分负责把世界画给你看，两部分在同一台电脑里互相寄包裹。“对局域网开放”，只是把这个藏着的服务器的门打开了一条缝。</p>
+    <p>官方还提供一个<b>单独的服务器程序</b>，它不画画面，只算世界、收发包裹。下面就在小格的 Mac 上把它跑起来。</p>
+
+    <h3>一步一步（请大人全程在旁边）</h3>
+    <ol class="steps">
+      <li><b>建一个文件夹</b>：在桌面上新建一个文件夹，叫 <code>mc-server</code>。服务器的所有东西都会放在这里。</li>
+      <li><b>装 Java 运行环境</b>：游戏启动器自带了一份 Java，可是服务器程序要自己准备一份。去 Minecraft 官网的“下载服务器”页面，看清楚你的版本要哪个版本的 Java（据报道，2026 年的新版本要 Java 25，1.20.5 到 1.21 系列要 Java 21），再从官方渠道装一个免费的 OpenJDK（比如微软或 Eclipse 发布的版本）。装好以后，在终端里输入 <code>java -version</code>，能看到版本号就对了。</li>
+      <li><b>下载服务器程序</b>：在同一个官方页面下载 <code>server.jar</code>，<b>版本要和你的游戏一样</b>，放进 mc-server 文件夹。别从别的网站下载“整合包”“一键开服”。</li>
+      <li><b>第一次运行</b>：打开终端，输入下面两行（第一行是“走进这个文件夹”，第二行是“用 Java 运行服务器，最多给它 2 GB 内存，不要窗口”）：
+<pre class="py">cd ~/Desktop/mc-server
+java -Xmx2G -Xms1G -jar server.jar nogui</pre>
+        它会很快停下来，文件夹里多了几个文件，其中一个叫 <code>eula.txt</code>。</li>
+      <li><b>读一读用户协议</b>：eula 是“最终用户许可协议”，就是你同意遵守 Mojang 的规矩。请大人和你一起读一读（里面有链接），同意了，就用纯文本把 <code>eula=false</code> 改成 <code>eula=true</code>。</li>
+      <li><b>改设置</b>：用纯文本打开 <code>server.properties</code>，照着下面装置里的建议改几行。最重要的两行：<code>white-list=true</code>（白名单）和 <code>online-mode=true</code>（正版验证）。</li>
+      <li><b>再运行一次</b>：在终端里按上箭头键，刚才那行命令会出来，回车。等到出现 <code>Done</code>，服务器就开好了。第一次要生成世界，会慢一点。</li>
+      <li><b>先把自己加进白名单</b>：白名单打开以后，连你自己也要先加进去才能进。在终端里（服务器的“控制台”）直接打命令，不用加斜杠：
+<pre class="py">whitelist add 小格的游戏名
+whitelist add 豆子的游戏名
+op 小格的游戏名</pre>
+        <code>whitelist add</code> 把人加进白名单（名字要和游戏里的名字一模一样）；<code>op</code> 给自己管理员权限，只给自己。</li>
+      <li><b>进去</b>：打开游戏，“多人游戏”→“添加服务器”，地址填 <code>localhost</code>（意思是“我自己这台电脑”），进入。同一个 Wi-Fi 下的朋友，地址填你电脑的 IP 地址（上一章）。</li>
+      <li><b>关服务器</b>：玩完了，在控制台输入 <code>stop</code>，它会先保存世界再关掉。<b>别直接关终端窗口</b>，那样可能丢掉最后一会儿盖的东西（第十二章）。</li>
+    </ol>
+  </div>
+
+  <div class="fig" id="propFig">
+    <div class="fig-label">装置 · 第二十九章</div>
+    <h4>服务器设置</h4>
+    <p class="how">server.properties 里有几十行设置，这里挑了最重要的七行。点一点每一行的选项，右边（手机上是下面）会生成要写进文件的样子，并告诉你每一项是什么意思。红框说明有一项不太安全。</p>
+    <div class="code">
+      <div id="propCtl"></div>
+      <div><pre class="py" id="propFile"></pre><div class="say" id="propSay"></div></div>
+    </div>
+    <p class="figcap">只改你看懂了的那几行，其余保持默认。改完要重启服务器才会生效。motd 是在服务器列表里显示的一句话，可以写你喜欢的。</p>
+  </div>
+
+  <div class="col">
+    <h3>为什么不对整个互联网开放</h3>
+    <p>网上有很多教程，教你在家里的路由器上设置“端口转发”，让全世界的人都能连进你的服务器。<b>这本书不教，也请你不要这样做</b>，原因是：</p>
+    <ul class="plain">
+      <li>那等于在你家的网络上开了一扇朝着全世界的门。网上有程序整天在找这样开着的门，有的只是来捣乱，有的会想办法钻进你的电脑。</li>
+      <li>你的服务器会暴露你家的 IP 地址，别人能大致知道你在哪个城市。</li>
+      <li>陌生人进来以后，会发生第二十一章讲的那些事，而你是管理员，要替所有人负责。</li>
+    </ul>
+    <p>想和住得远的同学一起玩，可以和大人商量用官方的 Realms：它是官方帮你开的私人服务器，只有你邀请的人能进来，但要按月付费。</p>
+
+    <h3>服务器里也能放数据包</h3>
+    <p>服务器的世界存在 mc-server 文件夹里的 <code>world</code> 文件夹中，里面也有一个 <code>datapacks</code>。把第二十五章的数据包放进去，在控制台输入 <code>reload</code>，你写的函数就在服务器上生效了，所有进来的朋友都会看到。备份也一样：先 <code>stop</code>，再把整个 world 文件夹复制一份。</p>
+  </div>
+
+  <div class="real">
+    <h5>2012 年，单人游戏变成了“自己连自己”</h5>
+    <p>早期的版本里，单人游戏和多人游戏是两套不一样的代码，同一个功能常常要写两遍，有时候单人能用、联机就坏了。2012 年 8 月的 1.3 版本，开发者把单人游戏也改成了“一个藏起来的服务器，加一个连上它的客户端”。从此以后，一个人玩和大家一起玩，用的是同一套规则。</p>
+    <p>这是程序员很喜欢的一种做法：<em>与其让两套东西各自出错，不如把它们变成一套</em>。</p>
+  </div>
+
+  <div class="try">
+    <div class="h">试一试</div>
+    <div><i>游戏里</i>
+      <ol>
+        <li>和大人一起，照着步骤开一个服务器，用 localhost 进去。</li>
+        <li>把同一个 Wi-Fi 下的家里人或者同学加进白名单，请他进来。没加进白名单的人能进吗？</li>
+        <li>把第二十五章的数据包放进服务器的 world/datapacks，reload，看看朋友那边能不能看到你的金子地。</li>
+        <li>玩完了，在控制台输入 stop，看着它保存、关掉。</li>
+      </ol>
+    </div>
+    <div><i>游戏外</i>
+      <ol>
+        <li>打开活动监视器（第二十七章），服务器开着的时候，看看有几个 java 在运行，各用了多少内存。</li>
+        <li>给你的服务器写一份三条的“规矩”（像第二十二章的公约）：比如不许拆别人的房子、吵架了怎么办。</li>
+        <li>想一想：如果有一百个人同时进你的服务器，这台电脑会怎样？真正的大服务器是怎么办的？</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="gone">
+    <h5><s>Bukkit</s></h5>
+    <p>早年，很多开服务器的人不用官方的服务器程序，而是用玩家做的一个叫 Bukkit 的版本，它能装各种“插件”：小游戏、经济系统、保护领地。2014 年，因为一场关于代码授权的纠纷，Bukkit 停了下来，大家又换成了它的“后代”们。服务器的世界一直这样：官方做一部分，玩家做更多。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">开服务器要很贵的电脑<span class="vd" data-v="半真">半真</span></div>
+    <div class="bd"><p>给自己和两三个朋友在家里玩的小服务器，一台普通的笔记本就能跑，小格的 MacBook Air 就行，只要别同时开太多东西。</p><p>可是几千、几万人同时在线的大服务器，就要放在机房里，用很多台专门的电脑一起扛，还要有人二十四小时照看。<em>服务器大小，看你要服务多少人</em>。</p></div>
+  </div>
+
+  <div class="echo" data-k="生活">
+    <div class="stamp">生活</div>
+    <div><p class="rh">当主人，就要替客人着想</p><p>开了服务器，你就是主人：要定规矩、要备份、要决定谁能进来，有人吵架了要去管，世界坏了要去修。第十三章说过，不用的时钟要关掉，因为一台机器会拖慢所有人。<em>当管理员的第一课，不是技术，是责任</em>。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>Java 运行环境</b>运行 Java 程序要先装的东西，服务器程序要用它。</div>
+    <div><b>终端、命令行</b>只能打字的窗口，一行命令让电脑做一件事。</div>
+    <div><b>localhost</b>“我自己这台电脑”的意思。</div>
+    <div><b>白名单、管理员</b>只让名单上的人进来；有权限管理服务器的人。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>Java 版 1.3（2012 年 8 月）起单人游戏使用内置服务器。官方服务器程序 server.jar 从 minecraft.net 的服务器下载页获取，所需 Java 版本随游戏版本变化（1.20.5 起要求 Java 21；据 2026 年的报道，26.1 起要求 Java 25），以官方页面为准。首次运行生成 eula.txt，需阅读并同意 EULA 后改为 true。默认端口 25565。white-list 与 online-mode 建议保持 true；online-mode=false 会关闭正版验证，任何人都能冒用名字。Bukkit 于 2014 年 9 月因 DMCA 纠纷停止分发。Realms 是官方付费服务。</p>
+    <p>本章需要家长全程参与：安装 Java、使用终端、修改文件。强烈建议不要做端口转发，也不要关闭防火墙；局域网内使用即可。8 GB 内存的 M1 Air 同时运行服务器和游戏时，建议服务器 -Xmx2G、游戏视野 6—8，并关闭其他程序。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>官方 server.jar + 对应版本的 Java，终端里 java -jar 运行，同意 eula，打开白名单和正版验证，localhost 进去，stop 关掉。只在家里的局域网里开。</div>
+    <div><i>游戏外<small>带走一样</small></i>服务器说到底是一个程序。开了服务器，你就是主人：定规矩、做备份、替大家负责。</div>
+  </div>
+</section>

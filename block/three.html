@@ -582,6 +582,25 @@ pre.py{font-family:var(--f-mono);font-size:13px;line-height:1.6;background:#1d1f
 .keys div{background:var(--card);border:1px solid var(--rule);border-radius:4px;padding:6px 10px;font-size:14px;line-height:1.55}
 .keys kbd{font-family:var(--f-mono);font-size:12.5px;background:var(--paper-2);border:1px solid var(--ink-3);border-bottom-width:2px;border-radius:3px;padding:0 5px;margin-right:6px;white-space:nowrap}
 @media (max-width:640px){.pf.two{grid-template-columns:1fr}}
+/* ---------- 第四部：工坊卡、步骤、实验表、技能树 ---------- */
+.lvl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--rule);border:2px solid var(--ink-3);border-radius:4px;overflow:hidden;margin:1.4em 0}
+.lvl div{background:var(--card);padding:6px 10px;font-size:14px;line-height:1.5}
+.lvl b{display:block;font-size:11.5px;font-weight:400;color:var(--ink-3);letter-spacing:.08em}
+.lvl .st{color:var(--zhu);letter-spacing:.1em}
+.dim{color:var(--rule)}
+.job b .dim{color:var(--rule)}
+ol.steps{counter-reset:st;list-style:none;padding:0;margin:1em 0}
+ol.steps>li{counter-increment:st;position:relative;padding:0 0 0 2.6em;margin:0 0 1.1em}
+ol.steps>li::before{content:counter(st);position:absolute;left:0;top:.1em;width:1.8em;height:1.8em;line-height:1.8em;text-align:center;font-family:var(--f-pix);font-size:14px;background:var(--main);color:var(--paper);border-radius:3px}
+ol.steps pre.py{margin:6px 0}
+.tt input,.exp input{width:4.2em;font:inherit;font-size:14px;padding:2px 4px;border:1px solid var(--rule);border-radius:3px;background:var(--paper);color:var(--ink)}
+table.t.exp{min-width:0;max-width:520px}
+table.t.exp td,table.t.exp th{text-align:center}
+.treeWrap{overflow-x:auto}
+.treeWrap svg{min-width:560px;width:100%}
+.ckrow{display:flex;flex-wrap:wrap;gap:6px 14px;margin:8px 0}
+@media (max-width:640px){.lvl{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.code>div,.cmd>div,.code>svg,.cmd>svg{min-width:0}
 </style>
 </head>
 <body>
@@ -590,7 +609,7 @@ pre.py{font-family:var(--f-mono);font-size:13px;line-height:1.6;background:#1d1f
     <a class="home" href="../" title="回创世书房">书房</a>
     <a class="name" href="./">一块一块</a>
     <nav class="parts" aria-label="三部">
-      <a href="./" data-p="1">土</a><a href="two.html" data-p="2">电</a><a href="three.html" data-p="3">门</a>
+      <a href="./" data-p="1">土</a><a href="two.html" data-p="2">电</a><a href="three.html" data-p="3">门</a><a href="four.html" data-p="4">工</a>
     </nav>
     <span class="vol" id="barVol">序</span>
     <button class="tocbtn" id="tocBtn" aria-label="打开目录">目录</button>
@@ -663,6 +682,7 @@ pre.py{font-family:var(--f-mono);font-size:13px;line-height:1.6;background:#1d1f
       <a href="./"><span class="k">第一部</span><b>土</b><small>序幕 + 卷一 来历 + 卷二 长大 · 一块方块从哪里来 · 九章</small></a>
       <a href="two.html"><span class="k">第二部</span><b>电</b><small>卷三 红石 + 卷四 机器和代码 · 红线怎样变成电脑 · 八章</small></a>
       <a href="three.html" class="on"><span class="k">第三部</span><b>门</b><small>卷五 动手 + 卷六 长大以后 + 尾声 · 走出游戏 · 八章</small></a>
+      <a href="four.html"><span class="k">第四部</span><b>工</b><small>卷七 码 + 卷八 机 + 卷九 脑 · 动手的工坊 · 八章</small></a>
     </div>
 
     <h3>全书目录</h3>
@@ -1633,6 +1653,7 @@ pre.py{font-family:var(--f-mono);font-size:13px;line-height:1.6;background:#1d1f
     <p><b>第一部《土》</b>讲它从哪里来。一个瑞典程序员小时候照着杂志敲代码，长大后下了班写自己的游戏，第一版只用了大约一个星期。它一边做一边卖，被玩家的视频传遍世界，有了下界和末地，被一家大公司买下，来到中国。最后，是全世界的玩家用模组、服务器、百科和视频，一起把它养大。</p>
     <p><b>第二部《电》</b>讲一根红线怎样变成电脑。电源、线、用电的；非、与、或；0 和 1 的加法；两根火把互相管着的记忆；一根火把绕回来管自己的心跳。零件拼起来，玩家在游戏里造出了电脑、在电脑上玩方块游戏、让方块学会聊天。命令和代码，又让人不用再一块一块地放。</p>
     <p><b>第三部《门》</b>讲走出游戏以后。在一台 MacBook Air 上把它装好、调好；老师用它上数学课，政府用它把国家搬进去，记者用它藏一座图书馆，居民用它设计公园；方块变成纸盒和 3D 打印的模型；网上的陌生人和骗局；停不下来的原因，和一张一起写的公约；方块里藏着的二十种工作。</p>
+    <p>如果读到这里，你的手已经痒了，想自己写一点代码、开一个服务器、做一次实验，后面还有一部：<a data-c="c25" href="four.html#c25">第四部《工》</a>，是一间一步一步带你动手的工坊。</p>
   </div>
 
   <div class="fig" id="lineAllFig">
@@ -1704,7 +1725,7 @@ pre.py{font-family:var(--f-mono);font-size:13px;line-height:1.6;background:#1d1f
   </div>
 </section>
 
-<!-- ============ 第三部 · 说明与出处（全书完） ============ -->
+<!-- ============ 第三部 · 说明与出处 ============ -->
 <section class="chap" id="notes3" data-vol="第三部 · 说明">
   <div class="col">
     <h3>全书哪些是真的</h3>
@@ -1743,18 +1764,18 @@ pre.py{font-family:var(--f-mono);font-size:13px;line-height:1.6;background:#1d1f
   </div>
 </section>
 
-<div class="partend" data-vol="全书完">
-  <div class="k">第三部 · 门 · 完 · 全书完</div>
+<div class="partend" data-vol="第三部完">
+  <div class="k">第三部 · 门 · 完 · 故事讲完了</div>
   <h3>每一个大世界，开头都只有一块</h3>
-  <p class="ni" style="font-size:17px;line-height:1.95;text-align:left">三部二十五章，从一块带小圆点的积木，讲到一台用四亿多块方块搭起来、想两个小时才回一句话的电脑，再讲到一张贴在书桌旁的公约。它是一个人下了班写出来的，是一群玩家一起养大的，也是全世界的孩子一起玩、一起学的。门开在二楼也没关系，窗户比门大也没关系。<em>放下你的第一块吧。</em></p>
-  <a class="go" href="./">回到第一部 · 土</a>
+  <p class="ni" style="font-size:17px;line-height:1.95;text-align:left">三部二十五章，从一块带小圆点的积木，讲到一台用四亿多块方块搭起来、想两个小时才回一句话的电脑，再讲到一张贴在书桌旁的公约。它是一个人下了班写出来的，是一群玩家一起养大的，也是全世界的孩子一起玩、一起学的。门开在二楼也没关系，窗户比门大也没关系。<em>放下你的第一块吧。</em>小格的故事讲到这里就完了。如果你想自己动手，后面还有一间工坊：第四部《工》，写数据包、用 Python 生成命令、看懂电脑和网络、开一个自己的服务器、在方块里做数学和物理实验、和 AI 一起学。</p>
+  <a class="go" href="four.html">第四部 · 工</a>
 </div>
 
 <footer>
   <p>《一块一块 · 我的世界创世记》第三部，写给四年级左右的读者，大人也可以读。小格一家和“存档”里的故事是编的；几个装置用的是简化规则和粗算；正文中的史实尽量核对过，有争议的地方标了“存疑”，说明与出处见<a href="#notes3">上面</a>。</p>
   <p>本书不是 Mojang、微软或网易的官方作品；Minecraft、我的世界等名称和商标属于它们各自的主人。书中的方块图、人物和小游戏均为本书原创示意，不是游戏原图。本书不推荐任何付费课程、服务器、模组网站或下载站点。</p>
   <a class="nextbook" href="../beam/"><small>书房里的另一本书</small><br><b>上梁 · 建造创世记</b><br><small>游戏里的方块可以飘在空中，真的房子不行。一根梁能搭多远、拱为什么不塌、塔吊和脚手架是怎么来的：真房子的创世记。</small></a>
-  <p><a href="#top" class="toTop">回到封面 ↑</a>　·　<a href="./">第一部</a>　·　<a href="two.html">第二部</a>　·　<a href="../">回书房</a></p>
+  <p><a href="#top" class="toTop">回到封面 ↑</a>　·　<a href="./">第一部</a>　·　<a href="two.html">第二部</a>　·　<a href="four.html">第四部</a>　·　<a href="../">回书房</a></p>
 </footer>
 
 <script>
@@ -1778,9 +1799,9 @@ function txt(x, y, t, o){ o = o || {}; return '<text x="' + x + '" y="' + y + '"
 function slider(id, f, cb){ const r = $('#' + id), o = $('#' + id + 'O'); const go = () => { if (o) o.textContent = f ? f(+r.value) : r.value; if (cb) cb(+r.value); }; r.addEventListener('input', go); go(); return () => +r.value; }
 
 /* ---------- 全书目录（三个网页共用） ---------- */
-const PAGE = /three\.html/.test(location.pathname) ? 3 : /two\.html/.test(location.pathname) ? 2 : 1;
-const READY = 3; // 已经写好的部数
-const PURL = {1: './', 2: 'two.html', 3: 'three.html'};
+const PAGE = /four\.html/.test(location.pathname) ? 4 : /three\.html/.test(location.pathname) ? 3 : /two\.html/.test(location.pathname) ? 2 : 1;
+const READY = 4; // 已经写好的部数
+const PURL = {1: './', 2: 'two.html', 3: 'three.html', 4: 'four.html'};
 const TOC = [
   {p: 1, t: '第一部 · 土 —— 一块方块从哪里来'},
   {v: '序幕'},
@@ -1817,7 +1838,19 @@ const TOC = [
   {id: 'c22', n: '时', t: '再玩五分钟', s: '为什么停不下来、不确定的奖励、什么才叫游戏障碍、开始前就想好怎么停；我们家的游戏公约', r: '2007—今'},
   {id: 'c23', n: '长', t: '长大以后做什么', s: '做一个游戏要多少种人、方块里练出来的本事、作品集；方块里藏着的二十种工作', r: '今天'},
   {v: '尾声'},
-  {id: 'c24', n: '你', t: '你的世界', s: '妈妈第一次拿起鼠标、全书时间线、押韵的地方、如果只记六句；我的第一块', r: '1679—今'}
+  {id: 'c24', n: '你', t: '你的世界', s: '妈妈第一次拿起鼠标、全书时间线、押韵的地方、如果只记六句；我的第一块', r: '1679—今'},
+  {p: 4, t: '第四部 · 工 —— 动手的工坊'},
+  {v: '卷七 · 码'},
+  {id: 'c25', n: '包', t: '第一个数据包', s: '几个文件夹和两个文本文件、纯文本和后缀名、每秒二十次的函数、数字对不上怎么办；数据包生成器', r: '2017—今'},
+  {id: 'c26', n: '蟒', t: '让 Python 替你写命令', s: '装上 Python、小海龟画画、勾股定理画一个球、一个程序写出几千行命令；Python 生成命令', r: '1991—今'},
+  {v: '卷八 · 机'},
+  {id: 'c27', n: '芯', t: '一块芯片里的电脑', s: 'CPU、GPU、内存和硬盘各管什么、活动监视器、做一次控制变量的实验；视野和帧数', r: '2020—今'},
+  {id: 'c28', n: '网', t: '和豆子联机', s: '局域网、IP 地址和端口、小包裹和延迟、在终端里 ping 一下；延迟是什么感觉', r: '1969—今'},
+  {id: 'c29', n: '服', t: '自己开一个服务器', s: '单人游戏里也藏着服务器、Java、终端里的一行命令、白名单、为什么不对整个互联网开放；服务器设置', r: '2012—今'},
+  {v: '卷九 · 脑'},
+  {id: 'c30', n: '算', t: '方块里的数学和物理', s: '下界的一比八、量一量走路多快、方块掉下去和石头掉下去、火把的光、五十块沙砾；掉下去要多久', r: '1590—今'},
+  {id: 'c31', n: '问', t: '和 AI 一起学', s: '几岁能用、在大人的账号下、它会说错、让它讲道理而不是替你做、一起检查一段 AI 写的代码；怎样问 AI', r: '2022—今'},
+  {id: 'c32', n: '路', t: '一张自学地图', s: '从现在到高中、免费的好地方、游戏外的创意、小格的局域网派对；我的技能树', r: '今天'}
 ];
 const chapPage = {}; { let p = 1; TOC.forEach(x => { if (x.p) p = x.p; if (x.id) chapPage[x.id] = p; }); }
 const href = id => (chapPage[id] === PAGE ? '' : PURL[chapPage[id]]) + '#' + id;
@@ -1872,7 +1905,7 @@ const BT = {
   leaf: {n: '树叶', top: ['--leaf', '--grass-2'], side: ['--leaf', '--grass-2']},
   sand: {n: '沙', top: ['--sand', '--wood'], side: ['--sand', '--wood']},
   water: {n: '水', top: ['--water', '--sky'], side: ['--water', '--blu'], alpha: .82},
-  glass: {n: '玻璃', top: ['--sky', '--card'], side: ['--sky', '--card'], alpha: .45, glass: true},
+  glass: {n: '玻璃', top: ['--sky', '--card'], side: ['--water', '--sky'], alpha: .6, glass: true},
   rs: {n: '红石', top: ['--stn', '--rs'], side: ['--stn', '--rs'], ore: true},
   dia: {n: '钻石', top: ['--stn', '--dia'], side: ['--stn', '--dia'], ore: true}
 };
@@ -1916,7 +1949,7 @@ function blockIcon(type, size){
 }
 /* 卷首：一排方块 */
 $$('svg.row').forEach((svg, k) => {
-  const types = [['grass', 'dirt', 'stone', 'log'], ['rs', 'stone', 'rs', 'glass'], ['plank', 'glass', 'grass', 'leaf']][k % 3];
+  const types = [['grass', 'dirt', 'stone', 'log'], ['rs', 'stone', 'rs', 'glass'], ['plank', 'glass', 'grass', 'leaf'], ['stone', 'dia', 'rs', 'plank']][k % 4];
   let g = ''; const s = 22;
   [[0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]].forEach((p, i) => { const q = isoXY(p[0], p[1], p[2], s, 100, 40); g += cube(q[0], q[1], s, types[i], 11 + i); });
   svg.setAttribute('viewBox', '30 0 140 110'); svg.innerHTML = g;
@@ -2216,6 +2249,37 @@ dev('#weekFig', () => {
     $('#wkSay').innerHTML = tips.join(' ');
   }
   [['wkSleep', v => v + ' 小时'], ['wkHw', v => v + ' 小时'], ['wkOut', v => v + ' 分钟'], ['wkGd', v => v + ' 分钟'], ['wkGe', v => v + ' 小时'], ['wkScr', v => v + ' 分钟']].forEach(s => slider(s[0], s[1], () => { if ($('#wkScr')) draw(); }));
+  draw();
+});
+
+
+/* ---------- 第四部封面：工坊项目表 ---------- */
+dev('#shopFig', () => {
+  /* [项目, 章, 难度1-4, 大约多久, 大人：0 不用 1 建议陪着 2 一定要, 要准备的] */
+  const P = [
+    ['写第一个数据包：一行命令打招呼', 'c25', 2, '30 分钟', 1, 'Java 版、文本编辑'],
+    ['走过的草地开出花来', 'c25', 2, '30 分钟', 1, '上一个数据包'],
+    ['装 Python，让小海龟画一个螺旋', 'c26', 1, '40 分钟', 2, '大人帮忙安装'],
+    ['用 Python 写出一个玻璃球的命令', 'c26', 3, '1 小时', 1, 'Python、数据包'],
+    ['打开活动监视器，看游戏吃多少内存', 'c27', 1, '15 分钟', 0, '只要电脑'],
+    ['视野距离和帧数的实验', 'c27', 2, '45 分钟', 0, '纸、笔'],
+    ['在终端里 ping 一下家里的路由器', 'c28', 1, '15 分钟', 1, '终端'],
+    ['和朋友局域网联机', 'c28', 2, '30 分钟', 1, '两台电脑，同一个 Wi-Fi'],
+    ['在自己电脑上开一个服务器', 'c29', 4, '1—2 小时', 2, 'Java 运行环境、终端'],
+    ['量一量游戏里走路有多快', 'c30', 1, '20 分钟', 0, '秒表'],
+    ['比一比方块和石头谁掉得快', 'c30', 2, '30 分钟', 0, '秒表、纸'],
+    ['挖五十块沙砾，数掉了几块燧石', 'c30', 1, '20 分钟', 0, '生存模式'],
+    ['和大人一起，让 AI 写一段命令再检查它', 'c31', 2, '40 分钟', 2, '大人的账号'],
+    ['在 Scratch 里做一个方块小游戏', 'c32', 2, '2—3 次课', 0, '浏览器']
+  ];
+  const AD = ['自己就能做', '最好有大人陪着', '一定要大人一起'];
+  let f = 0;
+  function draw(){
+    const rows = P.filter(p => f === 0 || (f === 1 && p[4] === 0) || (f === 2 && p[4] === 2) || (f === 3 && p[2] <= 1));
+    $('#shopList').innerHTML = rows.map(p => '<div class="job"><b>' + '★'.repeat(p[2]) + '<span class="dim">' + '★'.repeat(4 - p[2]) + '</span></b><span>' + p[0] + '</span><small>' + p[3] + '　·　' + AD[p[4]] + '　·　' + p[5] + '　·　<a data-c="' + p[1] + '" href="' + href(p[1]) + '">' + (TOC.find(x => x.id === p[1]) || {}).n + '</a></small></div>').join('');
+    $('#shopSay').textContent = '这一组有 ' + rows.length + ' 个项目。全部免费，只要一台电脑（联机那一个要两台）。星星越多越难，第一次做，从一颗星的开始。';
+  }
+  btnRow($('#shopF'), ['全部', '自己就能做', '一定要大人一起', '最简单的'], 0, i => { f = i; draw(); });
   draw();
 });
 
@@ -3115,6 +3179,252 @@ dev('#firstFig', () => {
     try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {}
   }
   $('#firstForm').addEventListener('input', e => { const k = e.target.dataset.k; if (k) { st[k] = e.target.value; draw(); } });
+  draw();
+});
+
+
+/* ---------- 第二十五章：数据包生成器 ---------- */
+dev('#packFig', () => {
+  const E = [
+    {n: '打招呼', f: 'hello', tick: false, body: ['say 你好，工坊！', 'title @a title "欢迎来到工坊"'], say: '输入 <code>/function NS:hello</code>，聊天框里会出现一句话，屏幕中间会出现一行大字。'},
+    {n: '脚下一块金子地', f: 'gold', tick: false, body: ['fill ~-3 ~-1 ~-3 ~3 ~-1 ~3 minecraft:gold_block', 'say 金子地铺好了'], say: '输入 <code>/function NS:gold</code>，你脚下会出现一块 7 × 7 的金块地。<code>~</code> 的意思是“以我站的地方为准”。'},
+    {n: '一键盖塔', f: 'tower', tick: false, body: ['fill ~2 ~ ~2 ~6 ~11 ~6 minecraft:stone_bricks hollow', 'setblock ~4 ~ ~2 minecraft:air', 'setblock ~4 ~1 ~2 minecraft:air', 'say 一座空心的塔盖好了，门在朝北那一面'], say: '输入 <code>/function NS:tower</code>，旁边会出现一座 5 × 5、12 层高的空心石砖塔，还开好了门。'},
+    {n: '走过的草地开花', f: 'tick', tick: true, body: ['execute as @a at @s if block ~ ~-1 ~ minecraft:grass_block if block ~ ~ ~ minecraft:air run setblock ~ ~ ~ minecraft:poppy'], say: '这个不用输入命令：<code>/reload</code> 以后，它每秒自己运行 20 次（第十三章的游戏刻）。你走到哪片草地，哪里就开出一朵花。'}
+  ];
+  let ei = 0, vi = 0;
+  const box = $('#packOut'), nsIn = $('#packNs');
+  function ns(){ const v = (nsIn.value || '').toLowerCase().replace(/[^a-z0-9_]/g, ''); return v || 'xiaoge'; }
+  function draw(){
+    const N = ns(), e = E[ei];
+    const meta = vi === 0 ? '{\n  "pack": {\n    "description": "我的第一个数据包",\n    "pack_format": 48\n  }\n}' : '{\n  "pack": {\n    "description": "我的第一个数据包",\n    "min_format": [88, 0],\n    "max_format": [88, 0]\n  }\n}';
+    const files = [['pack.mcmeta', meta]];
+    files.push(['data/' + N + '/function/' + e.f + '.mcfunction', e.body.join('\n')]);
+    if (e.tick) files.push(['data/minecraft/tags/function/tick.json', '{\n  "values": ["' + N + ':' + e.f + '"]\n}']);
+    const tree = N + '_pack/\n' + files.map(f => '  ' + f[0]).join('\n');
+    box.innerHTML = '<div class="lab">文件夹长这样（放进存档的 datapacks 文件夹里）</div><pre class="py">' + esc(tree) + '</pre>' +
+      files.map(f => '<div class="lab">' + esc(f[0]) + '</div><pre class="py">' + esc(f[1]) + '</pre>').join('');
+    $('#packSay').innerHTML = '名字空间是 <b>' + N + '</b>（只能用小写字母、数字和下划线，你输入的别的字会被去掉）。' + e.say.replace(/NS/g, N) + (vi === 0 ? ' pack.mcmeta 里的 48 是 1.21 和 1.21.1 的数字。' : ' 1.21.9 以后改成了两个数，这里的 88 是 1.21.9 和 1.21.10 的例子。') + '<b>你的游戏是别的版本，就要换成对应的数字</b>，去社区维基搜“数据包格式”查。';
+  }
+  btnRow($('#packE'), E.map(e => e.n), 0, i => { ei = i; draw(); });
+  btnRow($('#packV'), ['老写法（1.21—1.21.8）', '新写法（1.21.9 以后）'], 0, i => { vi = i; draw(); });
+  nsIn.addEventListener('input', draw);
+  draw();
+});
+
+
+/* ---------- 第二十六章：Python 生成命令 ---------- */
+dev('#pyFig', () => {
+  const sv = $('#pySvg');
+  const S = [
+    {n: '空心球', mat: 'glass', gen: r => { const o = []; for (let x = -r; x <= r; x++) for (let y = -r; y <= r; y++) for (let z = -r; z <= r; z++) { const d = x * x + y * y + z * z; if (d <= r * r && d > (r - 1) * (r - 1)) o.push([x, y + r, z]); } return o; },
+      py: r => 'r = ' + r + '\nlines = []\nfor x in range(-r, r + 1):\n    for y in range(-r, r + 1):\n        for z in range(-r, r + 1):\n            d = x*x + y*y + z*z      # 离球心多远（的平方）\n            if (r-1)*(r-1) < d <= r*r:   # 只要最外面一层\n                lines.append(f"setblock ~{x} ~{y + r} ~{z} minecraft:glass")'},
+    {n: '实心球', mat: 'stone', gen: r => { const o = []; for (let x = -r; x <= r; x++) for (let y = -r; y <= r; y++) for (let z = -r; z <= r; z++) if (x * x + y * y + z * z <= r * r) o.push([x, y + r, z]); return o; },
+      py: r => 'r = ' + r + '\nlines = []\nfor x in range(-r, r + 1):\n    for y in range(-r, r + 1):\n        for z in range(-r, r + 1):\n            if x*x + y*y + z*z <= r*r:   # 勾股定理：在球里面吗？\n                lines.append(f"setblock ~{x} ~{y + r} ~{z} minecraft:stone")'},
+    {n: '圆柱', mat: 'plank', gen: r => { const o = []; for (let y = 0; y < 2 * r; y++) for (let x = -r; x <= r; x++) for (let z = -r; z <= r; z++) { const d = x * x + z * z; if (d <= r * r && d > (r - 1) * (r - 1)) o.push([x, y, z]); } return o; },
+      py: r => 'r = ' + r + '\nlines = []\nfor y in range(2 * r):                 # 一层一层往上\n    for x in range(-r, r + 1):\n        for z in range(-r, r + 1):\n            d = x*x + z*z                 # 只看平面上离中心多远\n            if (r-1)*(r-1) < d <= r*r:\n                lines.append(f"setblock ~{x} ~{y} ~{z} minecraft:oak_planks")'},
+    {n: '螺旋楼梯', mat: 'sand', gen: r => { const o = [], n = r * 6; for (let i = 0; i < n; i++) { const a = i / 8 * Math.PI * 2 / 2; o.push([Math.round(r * Math.cos(a)), i, Math.round(r * Math.sin(a))]); } return o; },
+      py: r => 'import math\nr = ' + r + '\nlines = []\nfor i in range(' + r * 6 + '):          # 每一级楼梯\n    a = i * math.pi / 8               # 每级转一个小角度\n    x = round(r * math.cos(a))\n    z = round(r * math.sin(a))\n    lines.append(f"setblock ~{x} ~{i} ~{z} minecraft:sandstone")'}
+  ];
+  const TAIL = '\n\nwith open("shape.mcfunction", "w", encoding="utf-8") as f:\n    f.write("\\n".join(lines))\nprint("一共写了", len(lines), "行命令")';
+  let si = 0;
+  function draw(){
+    const r = +$('#pyR').value, sh = S[si], pts = sh.gen(r);
+    $('#pyCode').textContent = sh.py(r) + TAIL;
+    const name = {glass: 'glass', stone: 'stone', plank: 'oak_planks', sand: 'sandstone'}[sh.mat];
+    $('#pyOut').textContent = pts.slice(0, 5).map(p => 'setblock ~' + p[0] + ' ~' + p[1] + ' ~' + p[2] + ' minecraft:' + name).join('\n') + '\n……（一共 ' + pts.length + ' 行）';
+    /* 预览：平移到正坐标再画 */
+    const s = Math.max(5, 13 - r), mx = Math.min(...pts.map(p => p[0])), mz = Math.min(...pts.map(p => p[2]));
+    const L = pts.map(p => [p[0] - mx, p[1], p[2] - mz]);
+    const span = Math.max(...L.map(p => p[0])) + Math.max(...L.map(p => p[2])) + 2, top = Math.max(...L.map(p => p[1])) + 2;
+    const ox = (Math.max(...L.map(p => p[2])) + 1) * s * .866 + 10, oy = top * s + 10;
+    const set = new Set(L.map(p => p.join(',')));
+    const has = (x, y, z) => sh.mat !== 'glass' && set.has(x + ',' + y + ',' + z);
+    L.sort((a, b) => (a[0] + a[2]) - (b[0] + b[2]) || a[1] - b[1]);
+    let g = '';
+    L.forEach(b => { const q = isoXY(b[0], b[2], b[1], s, ox, oy); g += cube(q[0], q[1], s, sh.mat, b[0] * 5 + b[1] * 3 + b[2] * 7, {top: !has(b[0], b[1] + 1, b[2]), left: !has(b[0], b[1], b[2] + 1), right: !has(b[0] + 1, b[1], b[2])}); });
+    const W = span * s * .866 + 20;
+    sv.setAttribute('viewBox', '0 0 ' + W + ' ' + (oy + span * s * .5 + 10)); sv.innerHTML = g;
+    $('#pySay').innerHTML = '这个程序只有十来行，却写出了 <b>' + pts.length + '</b> 行命令。' + (pts.length > 100 ? '要是手写，一行十秒，也要写 ' + Math.round(pts.length * 10 / 60) + ' 分钟，还很容易写错。' : '把半径改大一点试试，程序一个字都不用改。');
+  }
+  btnRow($('#pyS'), S.map(x => x.n), 0, i => { si = i; draw(); });
+  slider('pyR', v => '半径 ' + v, () => { if ($('#pyCode')) draw(); });
+  draw();
+});
+
+
+/* ---------- 第二十七章：视野和帧数（控制变量的实验记录表） ---------- */
+dev('#expFig', () => {
+  const KEY = 'genesis-block-exp';
+  /* 示意数据：不是真的测量结果，读者要换成自己测的 */
+  const DEMO = [[4, 120, 118, 121], [8, 92, 95, 90], [12, 70, 72, 68], [16, 52, 50, 49], [24, 33, 35, 34], [32, 22, 21, 23]];
+  let rows;
+  try { rows = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { rows = null; }
+  let demo = !rows; if (!rows) rows = DEMO.map(r => r.slice());
+  const tb = $('#expTab');
+  function table(){
+    tb.innerHTML = '<tr><th>视野（区块）</th><th>第 1 次</th><th>第 2 次</th><th>第 3 次</th><th>平均</th></tr>' + rows.map((r, i) => '<tr>' + r.map((v, j) => '<td><input type="number" min="0" max="999" data-i="' + i + '" data-j="' + j + '" value="' + v + '" aria-label="第' + (i + 1) + '行第' + (j + 1) + '格"></td>').join('') + '<td class="avg"></td></tr>').join('');
+  }
+  function draw(){
+    const av = rows.map(r => (r[1] + r[2] + r[3]) / 3);
+    $$('td.avg', tb).forEach((td, i) => td.textContent = av[i].toFixed(1));
+    const pts = rows.map((r, i) => [r[0], av[i]]).sort((a, b) => a[0] - b[0]);
+    const ymax = Math.max(60, Math.ceil(Math.max(...av) / 20) * 20);
+    lineChart($('#expSvg'), [{color: 'var(--main)', pts, dots: true}], {xmin: 0, xmax: 34, ymin: 0, ymax, xt: [2, 8, 12, 16, 24, 32], yt: [0, ymax / 4, ymax / 2, ymax * 3 / 4, ymax], H: 230, marks: [[12, '默认']]});
+    $('#expSay').innerHTML = (demo ? '<b>现在显示的是编的示意数据</b>，不是真的测量结果。把表格换成你自己量的数字，图会跟着变。' : '这是你自己量的数字。') + '如果线是往下走的，说明视野越远，电脑一秒钟画的画面越少。帧数在 30 以上，一般就觉得流畅了。';
+  }
+  tb.addEventListener('input', e => { const t = e.target; if (!t.dataset.i) return; rows[+t.dataset.i][+t.dataset.j] = +t.value || 0; demo = false; try { localStorage.setItem(KEY, JSON.stringify(rows)); } catch (er) {} draw(); });
+  $('#expReset').addEventListener('click', () => { rows = DEMO.map(r => r.slice()); demo = true; try { localStorage.removeItem(KEY); } catch (er) {} table(); draw(); });
+  table(); draw();
+});
+
+
+/* ---------- 第二十八章：延迟是什么感觉 ---------- */
+dev('#pingFig', () => {
+  const sv = $('#pingSvg'); let ping = 50, t0 = performance.now(), raf = 0, vis = true;
+  const W = 600, H = 200;
+  if ('IntersectionObserver' in window) new IntersectionObserver(es => { vis = es[0].isIntersecting; if (vis) loop(); }).observe(sv);
+  function pos(t){ return 60 + (Math.sin(t / 900) * .5 + .5) * (W - 120); }
+  function loop(){
+    cancelAnimationFrame(raf);
+    const t = performance.now() - t0;
+    const me = pos(t), srv = pos(t - ping), other = pos(t - 2 * ping);
+    let g = '<rect width="' + W + '" height="' + H + '" fill="var(--paper)"/>';
+    const row = (y, label, x, col, note) => '<line x1="40" x2="' + (W - 40) + '" y1="' + y + '" y2="' + y + '" stroke="var(--rule)"/>' + txt(40, y - 14, label, {s: 12, a: 'start', c: 'var(--ink-2)'}) + '<rect x="' + (x - 9) + '" y="' + (y - 9) + '" width="18" height="18" fill="' + col + '" stroke="var(--ink-3)"/>' + txt(W - 40, y - 14, note, {s: 11, a: 'end', c: 'var(--ink-3)'});
+    g += row(45, '你自己的屏幕上，你在这儿', me, 'var(--main)', '马上就动');
+    g += row(105, '服务器知道的你', srv, 'var(--blu)', '晚 ' + ping + ' 毫秒');
+    g += row(165, '豆子屏幕上的你', other, 'var(--zhu)', '晚 ' + 2 * ping + ' 毫秒');
+    sv.setAttribute('viewBox', '0 0 ' + W + ' ' + H); sv.innerHTML = g;
+    if (vis) raf = requestAnimationFrame(loop);
+  }
+  slider('pingMs', v => v + ' 毫秒', v => {
+    ping = v;
+    const ticks = v / 50;
+    kv($('#pingKv'), [['单程延迟', v + ' 毫秒'], ['相当于几个游戏刻', ticks.toFixed(1) + ' 刻'], ['豆子看到你，晚了', (2 * v / 1000).toFixed(2) + ' 秒']]);
+    $('#pingSay').textContent = v <= 30 ? '同一个 Wi-Fi 下的局域网，延迟通常就这么小，几乎感觉不到。' : v <= 120 ? '隔着一座城、一个国家联机，大概是这样。打怪时会觉得稍微有点“慢半拍”。' : '延迟很大：你明明躲开了，豆子的屏幕上你还站在原地。玩家说的“卡”“瞬移”“橡皮筋”，很多就是这个。';
+    loop();
+  });
+});
+
+
+/* ---------- 第二十九章：服务器设置 server.properties ---------- */
+dev('#propFig', () => {
+  /* [键, 中文, 选项[], 默认序号, 每个选项的解释[], 危险的选项序号] */
+  const K = [
+    ['white-list', '白名单', ['true', 'false'], 0, ['只有你写进名单的人才能进来。自己家开服，一定要开。', '谁知道地址都能进来。'], 1],
+    ['online-mode', '正版验证', ['true', 'false'], 0, ['每个进来的人都要用真的账号登录，别人冒充不了你。', '不验证账号：任何人都能随便起个名字进来，甚至冒充你。'], 1],
+    ['max-players', '最多几个人', ['3', '5', '10', '20'], 0, ['自己和两个朋友，8 GB 的电脑够用。', '五个人，电脑会忙一些。', '十个人，这台电脑会很吃力。', '二十个人，别在这台电脑上试。'], 3],
+    ['difficulty', '难度', ['peaceful', 'easy', 'normal', 'hard'], 1, ['和平：没有怪物，适合一起盖房子。', '简单。', '普通。', '困难：饿了会饿死，怪物很凶。'], -1],
+    ['gamemode', '模式', ['survival', 'creative'], 1, ['生存。', '创造：适合一起搭东西、测试数据包。'], -1],
+    ['pvp', '玩家互相打', ['false', 'true'], 0, ['朋友之间不能互相伤害，少吵架。', '可以互相打。先说好规矩。'], -1],
+    ['view-distance', '视野距离', ['6', '10', '16'], 0, ['6 个区块：电脑轻松（第十七章）。', '10 个区块。', '16 个区块：这台电脑会很累。'], 2]
+  ];
+  const st = K.map(k => k[3]);
+  const box = $('#propCtl');
+  box.innerHTML = K.map((k, i) => '<div class="pf"><div class="lab">' + k[1] + '（<code>' + k[0] + '</code>）</div><div class="btns" data-i="' + i + '">' + k[2].map((o, j) => '<button class="btn" data-j="' + j + '">' + o + '</button>').join('') + '</div></div>').join('');
+  function draw(){
+    K.forEach((k, i) => $$('[data-i="' + i + '"] button', box).forEach((b, j) => b.classList.toggle('on', st[i] === j)));
+    $('#propFile').textContent = '# server.properties 里的几行（其余保持默认）\nmotd=小格的工坊\n' + K.map((k, i) => k[0] + '=' + k[2][st[i]]).join('\n');
+    const warn = K.filter((k, i) => k[5] === st[i]);
+    $('#propSay').innerHTML = K.map((k, i) => '<b>' + k[1] + '</b>：' + k[4][st[i]]).join(' ') + (warn.length ? '<br><b style="color:var(--zhu)">要小心：</b>' + warn.map(k => k[1]).join('、') + '。' : '<br>这一套设置适合在家里和熟人一起玩。');
+    $('#propSay').className = 'say ' + (warn.length ? 'bad' : 'ok');
+  }
+  box.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; st[+b.parentNode.dataset.i] = +b.dataset.j; draw(); });
+  draw();
+});
+
+
+/* ---------- 第三十章：掉下去要多久（游戏里的规则 vs 真实世界） ---------- */
+dev('#fallFig', () => {
+  /* 游戏（Java 版玩家，据社区资料）：每刻先按速度移动，再让速度减 0.08、乘 0.98；单位：格/刻，一刻 0.05 秒 */
+  function game(h){ let y = 0, v = 0, t = 0; const pts = [[0, 0]]; while (y < h && t < 400) { y += v; v = (v + 0.08) * 0.98; t++; pts.push([t * 0.05, Math.min(y, h)]); } return {t: t * 0.05, pts, vmax: v * 20}; }
+  function real(h){ const T = Math.sqrt(2 * h / 9.8), pts = []; for (let i = 0; i <= 40; i++) { const t = T * i / 40; pts.push([t, 4.9 * t * t]); } return {t: T, pts, v: 9.8 * T}; }
+  slider('fallH', v => v + ' 格（米）', h => {
+    const g = game(h), r = real(h), tmax = Math.max(g.t, r.t) * 1.05;
+    lineChart($('#fallSvg'), [{color: 'var(--zhu)', pts: g.pts}, {color: 'var(--blu)', pts: r.pts, dash: '6 4'}], {xmin: 0, xmax: tmax, ymin: 0, ymax: h, xt: [0, tmax / 2, tmax].map(x => +x.toFixed(1)), xf: x => x + ' 秒', yt: [0, h / 2, h].map(x => Math.round(x)), yf: y => '下落 ' + y, L: 70, H: 220});
+    const dmg = Math.max(0, h - 3);
+    kv($('#fallKv'), [['游戏里的你', g.t.toFixed(2) + ' 秒'], ['真实世界的石头', r.t.toFixed(2) + ' 秒'], ['游戏里落地时的速度', (g.vmax).toFixed(1) + ' 格/秒'], ['游戏里会掉几颗心', dmg ? (dmg / 2).toFixed(1) + ' 颗' + (dmg >= 20 ? '（满血也扛不住）' : '') : '不掉']]);
+    $('#fallSay').innerHTML = '红线是游戏里的规则，蓝色虚线是真实世界（不算空气阻力的石头）。' + (g.t > r.t ? '游戏里比真的<b>慢</b>一点：' : '游戏里比真的<b>快</b>一点：') + '游戏用的是一条简单的“每一刻怎么变”的规则，加了“空气阻力”，所以掉得越久，越接近一个最大速度（大约每秒 78 格）。真实的物体也有最大速度，人跳伞时大约每秒五十多米。';
+  });
+});
+
+dev('#netherFig', () => {
+  const go = () => {
+    const x = +$('#nxIn').value || 0, z = +$('#nzIn').value || 0;
+    $('#netherSay').innerHTML = '主世界的 (' + x + ', ' + z + ') → 下界的 (<b>' + Math.floor(x / 8) + '</b>, <b>' + Math.floor(z / 8) + '</b>)。在下界走 1 格，等于在主世界走 8 格：从家到 ' + Math.round(Math.hypot(x, z)) + ' 格外的地方，下界只要走 ' + Math.round(Math.hypot(x, z) / 8) + ' 格。高度 y 不用除。';
+  };
+  ['nxIn', 'nzIn'].forEach(id => $('#' + id).addEventListener('input', go)); go();
+});
+
+
+/* ---------- 第三十一章：怎样问 AI（拼一个好问题） ---------- */
+dev('#askFig', () => {
+  const P = [
+    ['ver', '说清楚版本', '我玩的是 Mac 上的 Java 版（版本号写在启动器里，比如 1.21.1）。', '版本不一样，命令和文件夹的写法常常不一样，AI 不知道你的版本，就容易给你一个“过时”的答案。'],
+    ['goal', '说清楚想做什么', '我想做一个数据包：每次我走到草地上，脚下就开出一朵花。', '“帮我做个好玩的”太含糊，AI 只能乱猜。'],
+    ['have', '说清楚我已经做到哪儿', '我已经会写 /function 运行一个函数了，但不知道怎么让它自己一直运行。', '这样 AI 就不会从头讲起，也不会讲得太难。'],
+    ['why', '要它讲道理', '请一行一行告诉我，每一部分是什么意思。', '只要答案不要道理，下次碰到一样的问题你还是不会。'],
+    ['hint', '先给提示，别直接给答案', '先给我一个提示，让我自己试；我还不会，再告诉我答案。', '自己想出来的，记得最牢。'],
+    ['check', '让它提醒你怎么检查', '告诉我怎样在一个测试世界里检查它对不对。', 'AI 会说错。会检查，比会问更重要。']
+  ];
+  const BAD = ['名字', '学校', '住址', '照片', '密码'];
+  const on = new Set(['goal']);
+  $('#askPick').innerHTML = P.map(p => '<label class="ck"><input type="checkbox" data-k="' + p[0] + '"' + (on.has(p[0]) ? ' checked' : '') + '> ' + p[1] + '</label>').join('');
+  function draw(){
+    const used = P.filter(p => on.has(p[0]));
+    $('#askOut').textContent = used.length ? used.map(p => p[2]).join('\n') : '帮我做个好玩的。';
+    const n = used.length;
+    $('#askSay').innerHTML = '用了 ' + n + ' / 6 样。' + (n <= 1 ? '这个问题太含糊了，AI 会给你一个很笼统、很可能不适合你的回答。' : n <= 3 ? '好多了。再加上“要它讲道理”和“怎么检查”试试。' : n < 6 ? '这是一个很好的问题。' : '六样都有：这是一个会学习的人问出来的问题。') +
+      '<br>还没用上的：' + (P.filter(p => !on.has(p[0])).map(p => '<b>' + p[1] + '</b>（' + p[3] + '）').join(' ') || '没有了。') +
+      '<br>无论怎么问，都<b>不要</b>写上你的' + BAD.join('、') + '。';
+  }
+  $('#askPick').addEventListener('change', e => { const k = e.target.dataset.k; if (!k) return; e.target.checked ? on.add(k) : on.delete(k); draw(); });
+  draw();
+});
+
+
+/* ---------- 第三十二章：我的技能树（只存在你自己的浏览器里） ---------- */
+dev('#treeFig', () => {
+  const KEY = 'genesis-block-skills';
+  /* [id, 名字, 一句话, 前置 id[], 列, 行, 章] */
+  const T = [
+    ['blk', '会搭方块', '盖一座自己的房子', [], 0, 0, 'c0'],
+    ['rs', '红石灯', '拉杆、线和一盏灯', ['blk'], 1, 0, 'c9'],
+    ['gate', '逻辑门', '用火把做出“与”', ['rs'], 2, 0, 'c10'],
+    ['add', '加法器', '红石算出 1 + 1 = 10', ['gate'], 3, 0, 'c11'],
+    ['cmd', '一行命令', '用 /fill 盖一座塔', ['blk'], 1, 1, 'c15'],
+    ['pack', '数据包', '写一个自己的函数', ['cmd'], 2, 1, 'c25'],
+    ['tick', '会自己跑的函数', '走过的草地开花', ['pack'], 3, 1, 'c25'],
+    ['scr', 'Scratch', '做一个方块小游戏', ['blk'], 1, 2, 'c16'],
+    ['py', 'Python', '小海龟画螺旋', ['scr'], 2, 2, 'c26'],
+    ['gen', '程序写程序', 'Python 生成一个球', ['py', 'pack'], 3, 2, 'c26'],
+    ['hw', '认识电脑', '活动监视器和帧数实验', ['blk'], 1, 3, 'c27'],
+    ['lan', '局域网', '和朋友联机、ping 一下', ['hw'], 2, 3, 'c28'],
+    ['srv', '服务器', '在自己电脑上开服', ['lan'], 3, 3, 'c29'],
+    ['math', '方块数学', '面积、比例尺、一比八', ['blk'], 1, 4, 'c18'],
+    ['phy', '方块物理', '量速度、比下落', ['math'], 2, 4, 'c30'],
+    ['ai', '会问 AI', '和大人一起检查 AI 的代码', ['pack', 'py'], 4, 1, 'c31'],
+    ['mine', '我的作品', '一个游戏外的创意做出来了', ['gen', 'srv', 'phy', 'ai', 'add'], 4, 3, 'c32']
+  ];
+  let done;
+  try { done = new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); } catch (e) { done = new Set(); }
+  const sv = $('#treeSvg'), CW = 120, RH = 74, BW = 104, BH = 50;
+  const byId = Object.fromEntries(T.map(t => [t[0], t]));
+  const P = t => [16 + t[4] * CW, 14 + t[5] * RH];
+  function draw(){
+    let g = '';
+    T.forEach(t => t[3].forEach(pid => { const a = P(byId[pid]), b = P(t); g += '<path d="M' + (a[0] + BW) + ',' + (a[1] + BH / 2) + 'C' + (a[0] + BW + 14) + ',' + (a[1] + BH / 2) + ' ' + (b[0] - 14) + ',' + (b[1] + BH / 2) + ' ' + b[0] + ',' + (b[1] + BH / 2) + '" fill="none" stroke="' + (done.has(pid) ? 'var(--main)' : 'var(--rule)') + '" stroke-width="2"/>'; }));
+    T.forEach(t => {
+      const p = P(t), ok = done.has(t[0]), ready = t[3].every(x => done.has(x));
+      g += '<g class="node" data-id="' + t[0] + '" style="cursor:pointer"><rect x="' + p[0] + '" y="' + p[1] + '" width="' + BW + '" height="' + BH + '" rx="4" fill="' + (ok ? 'var(--main)' : 'var(--card)') + '" stroke="' + (ok ? 'var(--main)' : ready ? 'var(--ink-2)' : 'var(--rule)') + '" stroke-width="2"' + (ready || ok ? '' : ' stroke-dasharray="4 3"') + '/>' +
+        txt(p[0] + BW / 2, p[1] + 20, (ok ? '✓ ' : '') + t[1], {s: 13, w: true, c: ok ? 'var(--paper)' : 'var(--ink)', halo: false}) + txt(p[0] + BW / 2, p[1] + 38, t[2].length > 9 ? t[2].slice(0, 9) + '…' : t[2], {s: 10, c: ok ? 'var(--paper)' : 'var(--ink-3)', halo: false}) + '</g>';
+    });
+    sv.setAttribute('viewBox', '0 0 ' + (16 + 5 * CW) + ' ' + (14 + 5 * RH)); sv.innerHTML = g;
+    const next = T.filter(t => !done.has(t[0]) && t[3].every(x => done.has(x)));
+    $('#treeSay').innerHTML = '点亮了 <b>' + done.size + '</b> / ' + T.length + ' 个。' + (next.length ? '现在可以去试：' + next.slice(0, 4).map(t => '<a data-c="' + t[6] + '" href="' + href(t[6]) + '">' + t[1] + '（' + t[2] + '）</a>').join('、') + '。' : '全部点亮了！去做一个只属于你的东西吧。');
+    try { localStorage.setItem(KEY, JSON.stringify([...done])); } catch (e) {}
+  }
+  sv.addEventListener('click', e => { const n = e.target.closest('.node'); if (!n) return; const id = n.dataset.id; done.has(id) ? done.delete(id) : done.add(id); draw(); });
+  $('#treeClear').addEventListener('click', () => { done.clear(); draw(); });
   draw();
 });
 

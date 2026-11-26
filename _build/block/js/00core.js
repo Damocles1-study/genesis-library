@@ -18,9 +18,9 @@ function txt(x, y, t, o){ o = o || {}; return '<text x="' + x + '" y="' + y + '"
 function slider(id, f, cb){ const r = $('#' + id), o = $('#' + id + 'O'); const go = () => { if (o) o.textContent = f ? f(+r.value) : r.value; if (cb) cb(+r.value); }; r.addEventListener('input', go); go(); return () => +r.value; }
 
 /* ---------- 全书目录（三个网页共用） ---------- */
-const PAGE = /three\.html/.test(location.pathname) ? 3 : /two\.html/.test(location.pathname) ? 2 : 1;
-const READY = 3; // 已经写好的部数
-const PURL = {1: './', 2: 'two.html', 3: 'three.html'};
+const PAGE = /four\.html/.test(location.pathname) ? 4 : /three\.html/.test(location.pathname) ? 3 : /two\.html/.test(location.pathname) ? 2 : 1;
+const READY = 4; // 已经写好的部数
+const PURL = {1: './', 2: 'two.html', 3: 'three.html', 4: 'four.html'};
 const TOC = [
   {p: 1, t: '第一部 · 土 —— 一块方块从哪里来'},
   {v: '序幕'},
@@ -57,7 +57,19 @@ const TOC = [
   {id: 'c22', n: '时', t: '再玩五分钟', s: '为什么停不下来、不确定的奖励、什么才叫游戏障碍、开始前就想好怎么停；我们家的游戏公约', r: '2007—今'},
   {id: 'c23', n: '长', t: '长大以后做什么', s: '做一个游戏要多少种人、方块里练出来的本事、作品集；方块里藏着的二十种工作', r: '今天'},
   {v: '尾声'},
-  {id: 'c24', n: '你', t: '你的世界', s: '妈妈第一次拿起鼠标、全书时间线、押韵的地方、如果只记六句；我的第一块', r: '1679—今'}
+  {id: 'c24', n: '你', t: '你的世界', s: '妈妈第一次拿起鼠标、全书时间线、押韵的地方、如果只记六句；我的第一块', r: '1679—今'},
+  {p: 4, t: '第四部 · 工 —— 动手的工坊'},
+  {v: '卷七 · 码'},
+  {id: 'c25', n: '包', t: '第一个数据包', s: '几个文件夹和两个文本文件、纯文本和后缀名、每秒二十次的函数、数字对不上怎么办；数据包生成器', r: '2017—今'},
+  {id: 'c26', n: '蟒', t: '让 Python 替你写命令', s: '装上 Python、小海龟画画、勾股定理画一个球、一个程序写出几千行命令；Python 生成命令', r: '1991—今'},
+  {v: '卷八 · 机'},
+  {id: 'c27', n: '芯', t: '一块芯片里的电脑', s: 'CPU、GPU、内存和硬盘各管什么、活动监视器、做一次控制变量的实验；视野和帧数', r: '2020—今'},
+  {id: 'c28', n: '网', t: '和豆子联机', s: '局域网、IP 地址和端口、小包裹和延迟、在终端里 ping 一下；延迟是什么感觉', r: '1969—今'},
+  {id: 'c29', n: '服', t: '自己开一个服务器', s: '单人游戏里也藏着服务器、Java、终端里的一行命令、白名单、为什么不对整个互联网开放；服务器设置', r: '2012—今'},
+  {v: '卷九 · 脑'},
+  {id: 'c30', n: '算', t: '方块里的数学和物理', s: '下界的一比八、量一量走路多快、方块掉下去和石头掉下去、火把的光、五十块沙砾；掉下去要多久', r: '1590—今'},
+  {id: 'c31', n: '问', t: '和 AI 一起学', s: '几岁能用、在大人的账号下、它会说错、让它讲道理而不是替你做、一起检查一段 AI 写的代码；怎样问 AI', r: '2022—今'},
+  {id: 'c32', n: '路', t: '一张自学地图', s: '从现在到高中、免费的好地方、游戏外的创意、小格的局域网派对；我的技能树', r: '今天'}
 ];
 const chapPage = {}; { let p = 1; TOC.forEach(x => { if (x.p) p = x.p; if (x.id) chapPage[x.id] = p; }); }
 const href = id => (chapPage[id] === PAGE ? '' : PURL[chapPage[id]]) + '#' + id;
@@ -112,7 +124,7 @@ const BT = {
   leaf: {n: '树叶', top: ['--leaf', '--grass-2'], side: ['--leaf', '--grass-2']},
   sand: {n: '沙', top: ['--sand', '--wood'], side: ['--sand', '--wood']},
   water: {n: '水', top: ['--water', '--sky'], side: ['--water', '--blu'], alpha: .82},
-  glass: {n: '玻璃', top: ['--sky', '--card'], side: ['--sky', '--card'], alpha: .45, glass: true},
+  glass: {n: '玻璃', top: ['--sky', '--card'], side: ['--water', '--sky'], alpha: .6, glass: true},
   rs: {n: '红石', top: ['--stn', '--rs'], side: ['--stn', '--rs'], ore: true},
   dia: {n: '钻石', top: ['--stn', '--dia'], side: ['--stn', '--dia'], ore: true}
 };
@@ -156,7 +168,7 @@ function blockIcon(type, size){
 }
 /* 卷首：一排方块 */
 $$('svg.row').forEach((svg, k) => {
-  const types = [['grass', 'dirt', 'stone', 'log'], ['rs', 'stone', 'rs', 'glass'], ['plank', 'glass', 'grass', 'leaf']][k % 3];
+  const types = [['grass', 'dirt', 'stone', 'log'], ['rs', 'stone', 'rs', 'glass'], ['plank', 'glass', 'grass', 'leaf'], ['stone', 'dia', 'rs', 'plank']][k % 4];
   let g = ''; const s = 22;
   [[0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]].forEach((p, i) => { const q = isoXY(p[0], p[1], p[2], s, 100, 40); g += cube(q[0], q[1], s, types[i], 11 + i); });
   svg.setAttribute('viewBox', '30 0 140 110'); svg.innerHTML = g;

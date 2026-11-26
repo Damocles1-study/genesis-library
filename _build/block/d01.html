@@ -1,0 +1,149 @@
+
+<!-- ============ 第二十五章 · 包 ============ -->
+<section class="chap" id="c25" data-vol="卷七 · 包">
+  <div class="chead">
+    <div class="big">包</div>
+    <div>
+      <div class="no">第二十五章</div>
+      <h2>第一个数据包</h2>
+      <dl><dt>讲什么</dt><dd>一个数据包就是几个文件夹和两个文本文件；Mac 上怎样写“纯文本”；名字空间；每秒运行二十次的函数；数字对不上、找不到函数怎么办</dd><dt>本章装置</dt><dd>数据包生成器</dd></dl>
+      <div class="inv" data-a="码"></div>
+      <div class="yrs" data-a="2017" data-b="2026"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>暑假第一周</b><span class="pix">NEW WORLD · gongfang</span><span>创造模式 · 允许作弊</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>第十五章那个 /fill，我每次都要重新打一遍，好长，老打错。</span></div>
+      <div class="l"><i class="j">舅</i><span>那就把它写进一个文件里。以后只要打一个短短的名字，游戏就会把文件里的命令一行一行全做一遍。这种文件放在一起，叫数据包。</span></div>
+      <div class="l"><i class="g">格</i><span>要装什么软件吗？</span></div>
+      <div class="l"><i class="j">舅</i><span>什么都不用装。电脑自带的“文本编辑”就够了。不过有一个坑，我们第一步就会掉进去。</span></div>
+      <div class="l act">二十分钟后，小格在聊天框里打了 <code>/function xiaoge:hello</code>，按下回车，屏幕中间出现了一行大字：欢迎来到工坊。</div>
+      <div class="l"><i class="g">格</i><span>是我写的字！游戏照着我写的字做了！</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★</span><span class="dim">★★</span></div><div><b>大约多久</b>30—45 分钟</div><div><b>要准备</b>Java 版、Mac 自带的“文本编辑”</div><div><b>大人</b>第一次最好陪着</div></div>
+
+  <div class="col">
+    <h3>数据包是什么</h3>
+    <p>第十五章讲过：把很多行命令写进一个文本文件，叫“函数”；把函数和别的设置装进一个文件夹，放进存档里，叫“<b>数据包</b>”。它不是模组，不用装任何东西，游戏本来就认识它。</p>
+    <p>一个最小的数据包，只要这样几样：</p>
+    <pre class="py">xiaoge_pack/                     ← 数据包的文件夹，名字随便起
+  pack.mcmeta                    ← 一张“身份证”：我是数据包，适合哪个版本
+  data/
+    xiaoge/                      ← 名字空间：你自己的名字
+      function/
+        hello.mcfunction         ← 一个函数：里面一行一条命令</pre>
+
+    <h3>一步一步</h3>
+  </div>
+  <div class="col">
+    <ol class="steps">
+      <li><b>建一个实验世界。</b>创造模式，打开“允许作弊”，名字用英文或拼音，比如 <code>gongfang</code>（文件夹名字里没有中文，后面少出错）。别在你辛苦盖的老世界里做实验。</li>
+      <li><b>找到数据包文件夹。</b>回到“选择世界”，选中这个世界，点“编辑”，再点“打开世界文件夹”。访达里会打开一个文件夹，里面有一个叫 <code>datapacks</code> 的文件夹，进去。</li>
+      <li><b>让 Mac 显示后缀名。</b>在访达的菜单里打开“设置”→“高级”，勾上“显示所有文件扩展名”。这一步很重要：文件到底叫 <code>pack.mcmeta</code> 还是 <code>pack.mcmeta.txt</code>，要看得见。</li>
+      <li><b>建文件夹。</b>在 datapacks 里新建文件夹 <code>xiaoge_pack</code>，里面建 <code>data</code>，再里面建 <code>xiaoge</code>，再里面建 <code>function</code>。名字一律用<b>小写字母、数字、下划线</b>，不要空格、不要大写、不要中文。</li>
+      <li><b>写“身份证”。</b>打开“文本编辑”，新建一个文档，<b>先点菜单“格式”→“制作纯文本”</b>（这就是舅舅说的那个坑：文本编辑默认写的是带格式的“富文本”，游戏读不懂）。写进下面这几行，存到 <code>xiaoge_pack</code> 文件夹里，名字叫 <code>pack.mcmeta</code>，编码选 UTF-8；如果电脑问你要不要加 .txt，选“使用 .mcmeta”。
+<pre class="py">{
+  "pack": {
+    "description": "小格的第一个数据包",
+    "pack_format": 48
+  }
+}</pre>
+        这里的 48 是 1.21 和 1.21.1 版本的数字。<b>每个版本的数字都不一样</b>，1.21.9 以后还改成了 <code>min_format</code> 和 <code>max_format</code> 两个数（下面的装置里有新写法的样子）。去社区维基搜“数据包格式”，找到你游戏版本的那一行。</li>
+      <li><b>写一个函数。</b>同样用纯文本，写下面两行，存到 <code>function</code> 文件夹里，名字叫 <code>hello.mcfunction</code>。注意：函数文件里的命令，<b>前面不加斜杠</b>。
+<pre class="py">say 你好，工坊！
+title @a title "欢迎来到工坊"</pre></li>
+      <li><b>让游戏读进来。</b>回到游戏，进入这个世界，在聊天框里输入 <code>/reload</code>（重新读取数据包），再输入 <code>/datapack list</code>，看看列表里有没有你的数据包。</li>
+      <li><b>运行它。</b>输入 <code>/function xiaoge:hello</code>。冒号前面是名字空间，后面是函数的文件名（不带后缀）。</li>
+    </ol>
+  </div>
+
+  <div class="col">
+    <h3>出错了怎么办</h3>
+    <ul class="plain">
+      <li><b>/datapack list 里没有它</b>：pack.mcmeta 是不是直接放在 xiaoge_pack 里（不是放进了 data）？是不是变成了 pack.mcmeta.txt 或者 .rtf？里面的大括号、引号、逗号有没有少？数字对不对？</li>
+      <li><b>说“找不到函数”</b>：文件夹是不是叫 <code>function</code>（1.21 以前的版本叫 <code>functions</code>，多一个 s）？名字里有没有大写字母？后缀是不是 .mcfunction？</li>
+      <li><b>命令报错</b>：函数里某一行写错了，游戏会在聊天框或者日志里告诉你是哪一行。先把那一行单独拿到聊天框里打一遍试试。</li>
+      <li>改了文件，记得再 <code>/reload</code> 一次。</li>
+    </ul>
+    <p>这些错误，每一个程序员都犯过很多次。<em>读报错、一样一样排除，就是第二十三章说的“调试”。</em></p>
+
+    <h3>让函数自己跑起来</h3>
+    <p>第十三章讲过，游戏一秒钟打 20 下拍子。数据包可以让一个函数<b>每一下拍子都运行一次</b>：只要在 <code>data/minecraft/tags/function/</code> 里放一个叫 <code>tick.json</code> 的文件，写上你的函数名字。比如下面这个函数：每一刻检查每个玩家，脚下是草方块、站的地方是空气，就在那里种一朵花。</p>
+    <pre class="py">execute as @a at @s if block ~ ~-1 ~ minecraft:grass_block if block ~ ~ ~ minecraft:air run setblock ~ ~ ~ minecraft:poppy</pre>
+    <p>这一行很长，拆开读就不难：“对所有玩家（as @a），在他站的地方（at @s），如果脚下是草（if block … grass_block），如果这里是空的（if block … air），就放一朵虞美人（run setblock … poppy）”。这就是第十章的“与”，也是第二十二章说的“如果”。</p>
+  </div>
+
+  <div class="fig" id="packFig">
+    <div class="fig-label">装置 · 第二十五章</div>
+    <h4>数据包生成器</h4>
+    <p class="how">先给你的数据包起一个名字空间（小写英文或拼音），选一个效果，再选你的游戏版本用哪种“身份证”写法。下面会列出要建的每一个文件和里面的每一行字，照着做就行。</p>
+    <label class="lab">名字空间<input type="text" id="packNs" value="xiaoge" maxlength="16" autocomplete="off" autocapitalize="off" spellcheck="false"></label>
+    <div class="btns" id="packE"></div>
+    <div class="btns" id="packV"></div>
+    <div id="packOut"></div>
+    <div class="say" id="packSay"></div>
+    <p class="figcap">pack.mcmeta 里的数字是举例，换成你的版本的数字。“一键盖塔”用了 <code>fill … hollow</code>：只盖外壳、里面留空，第十八章数墙的那道题，游戏帮你做了。</p>
+  </div>
+
+  <div class="real">
+    <h5>名字空间：几百万人一起写，怎样不撞名字</h5>
+    <p>如果你的函数叫 hello，别人的也叫 hello，同时装进一个世界，游戏怎么知道运行谁的？办法是在前面加上一个“姓”：<code>xiaoge:hello</code> 和 <code>doudou:hello</code> 就分得清了。游戏自己的东西，姓都是 <code>minecraft</code>，比如 <code>minecraft:stone</code>。</p>
+    <p>真实的软件世界也是这样。网址用不同的域名，Java 程序用像 <code>com.example.game</code> 这样倒过来的域名当“姓”。<em>人一多，起名字就成了一门学问</em>。</p>
+  </div>
+
+  <div class="try">
+    <div class="h">试一试</div>
+    <div><i>游戏里</i>
+      <ol>
+        <li>照着上面的步骤，写出 hello 函数并运行它。</li>
+        <li>用装置里的“一键盖塔”，再写一个 tower 函数。把塔的高度从 12 改成 30，看看会怎样。</li>
+        <li>加上 tick.json，在草地上走一圈，回头看看。玩够了，把 tick.json 删掉再 /reload，不然它会一直种下去。</li>
+      </ol>
+    </div>
+    <div><i>游戏外</i>
+      <ol>
+        <li>在纸上画出你的数据包的“文件夹树”，像一棵倒过来的树。电脑里所有文件都是这样一层一层放的。</li>
+        <li>把那条很长的 execute 命令，用自己的话写成一句中文。</li>
+        <li>想一个你自己的函数：按一下，它会做什么？先用中文一句一句写下来，再去查每一句对应什么命令。</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="gone">
+    <h5><s>functions 文件夹</s></h5>
+    <p>2024 年的 1.21 版本，把数据包里好几个文件夹的名字从复数改成了单数：<code>functions</code> 变成了 <code>function</code>。很多网上的老教程、老数据包还写着 functions，照着做就会“找不到函数”。这也是为什么做任何事之前，都要先看清楚教程是哪个版本的。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">做数据包要先装模组<span class="vd" data-v="假">假</span></div>
+    <div class="bd"><p>数据包是 Java 版本来就支持的东西，放进存档的 datapacks 文件夹，<code>/reload</code> 就能用，不用装任何模组，也不用改游戏本身。</p><p>它能做的事也有边界：能用命令做到的事，它都能做；想加一种全新的方块、全新的生物模型，就要用模组或者资源包了。基岩版也有类似的东西，叫“行为包”，写法不一样。</p></div>
+  </div>
+
+  <div class="echo" data-k="联系">
+    <div class="stamp">联系</div>
+    <div><p class="rh">每秒二十次的函数，就是游戏自己的心跳</p><p>第十三章讲过，游戏每一刻把整个世界检查一遍。你写的 tick 函数，就是挤进这一遍检查里的一小段“你的规则”。游戏本身，其实也是一个巨大的、每秒运行二十次的函数。<em>你写的第一个 tick 函数，和做游戏的人写的程序，是同一种东西，只是小得多</em>。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>纯文本</b>只有字、没有字体颜色和格式的文件。程序只认纯文本。</div>
+    <div><b>后缀名</b>文件名最后一个点后面的部分，比如 .mcfunction，告诉电脑这是什么文件。</div>
+    <div><b>名字空间</b>名字前面的“姓”，比如 xiaoge:hello，防止和别人撞名字。</div>
+    <div><b>JSON</b>pack.mcmeta、tick.json 用的写法：大括号、引号、冒号、逗号，一个都不能错。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>函数随 Java 版 1.12（2017）加入，数据包随 1.13（2018）。1.21（2024）把数据包内多个目录改为单数（functions → function，tags/functions → tags/function）。1.21.9 起 pack.mcmeta 改用 min_format / max_format，各版本的格式号见社区维基“Pack format”页面；书中的 48（1.21 / 1.21.1）和装置里的 88（1.21.9 / 1.21.10）只作举例，2026 年的新版本号码以维基为准。命令写法也偶有变化，书中命令按 1.21 系列的写法写成，没有在每个版本里逐一实测；建议先在实验世界里试。</p>
+    <p>建议陪孩子做第一个：难点不在命令，在文件操作（纯文本、扩展名、文件夹层级）。这恰恰是很多孩子平时用平板接触不到的“电脑基本功”。之后可以放手让他自己改函数内容，出错时引导他读报错，而不是直接替他改。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>数据包 = pack.mcmeta + data/名字空间/function/*.mcfunction。/reload 读进来，/function 名字空间:文件名 运行；tick.json 让函数每秒跑二十次。</div>
+    <div><i>游戏外<small>带走一样</small></i>程序只认纯文本，文件名和后缀名要看清楚。出错了就读报错、一样一样排除，这叫调试。</div>
+  </div>
+</section>

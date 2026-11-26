@@ -1916,7 +1916,7 @@ function slider(id, f, cb){ const r = $('#' + id), o = $('#' + id + 'O'); const 
 
 /* ---------- 全书目录（三个网页共用） ---------- */
 const PAGE = /three\.html/.test(location.pathname) ? 3 : /two\.html/.test(location.pathname) ? 2 : 1;
-const READY = 1; // 已经写好的部数
+const READY = 2; // 已经写好的部数
 const PURL = {1: './', 2: 'two.html', 3: 'three.html'};
 const TOC = [
   {p: 1, t: '第一部 · 一起 —— 什么不能一起吃、一起服'},
@@ -1934,15 +1934,15 @@ const TOC = [
   {id: 'c8', n: '怪', t: '看人的相克', s: '暴风雪里的一头死牛、奶酪和抗抑郁药、一个吃甘草糖的人、低钠盐；华法林的菠菜', r: '1921—2021'},
   {p: 2, t: '第二部 · 接着 —— 做完什么不能马上做什么'},
   {v: '卷三 · 饭后酒后'},
-  {id: 'c9', n: '饭', t: '吃完以后', s: '饭后游泳会抽筋吗、吃完就躺、饭后百步走', r: '1908—今'},
-  {id: 'c10', n: '醉', t: '喝完以后', s: '泡澡和桑拿、几个小时以后能开车、醉了侧着睡', r: '1874—今'},
-  {id: 'c11', n: '跑', t: '跑完以后', s: '一停下就晕、大口灌冰水、横纹肌溶解和热射病', r: '1896—今'},
-  {id: 'c12', n: '夜', t: '熬完以后', s: '困了开车像醉了开车、一下子站起来、洗完头就睡', r: '1960—今'},
+  {id: 'c9', n: '饭', t: '吃完以后', s: '童子军手册里的抽筋、红十字会的一次复查、吃完就躺和胃酸、饭后百步走、吃完酸的别马上刷牙；胃里还剩多少', r: '1908—今'},
+  {id: 'c10', n: '醉', t: '喝完以后', s: '吹一口气的仪器、芬兰的桑拿和日本的浴缸、醉了侧着睡、浓茶解不了酒；几点能开车', r: '1931—今'},
+  {id: 'c11', n: '跑', t: '跑完以后', s: '马拉松的传说、终点线上倒下的人、波士顿的一杯杯水、横纹肌溶解、先降温再送医；跑完喝多少水', r: '前 490—今'},
+  {id: 'c12', n: '夜', t: '熬完以后', s: '熬一夜等于喝醉、一艘油轮的三副、连续开车四小时、三个半分钟、湿着头发睡觉；醒了多少个小时', r: '1989—今'},
   {v: '卷四 · 放多久'},
-  {id: 'c13', n: '剩', t: '剩菜剩饭', s: '危险温度区、炒饭综合征、隔夜菜里的亚硝酸盐', r: '1970—今'},
-  {id: 'c14', n: '泡', t: '泡发', s: '一锅酸汤子、泡了两天的木耳、米酵菌酸', r: '1895—2024'},
-  {id: 'c15', n: '冻', t: '冻和化', s: '反复冻、台面上化一下午、冰箱里能放多久', r: '1924—今'},
-  {id: 'c16', n: '后', t: '做完这件事以后', s: '吃了药能不能开车、潜水以后坐飞机、献完血、拔完牙', r: '1950—今'},
+  {id: 'c13', n: '剩', t: '剩菜剩饭', s: '中餐馆的一锅隔夜米饭、两个小时和危险温度区、隔夜菜里的亚硝酸盐、腌菜的亚硝峰、千滚水；常温放多久', r: '1971—今'},
+  {id: 'c14', n: '泡', t: '泡发和发霉', s: '爪哇的椰子豆饼、一锅冻了一年的酸汤子、泡了两天的木耳、十万只火鸡和黄曲霉；泡多久', r: '1895—2024'},
+  {id: 'c15', n: '冻', t: '冻和化', s: '冻不死的细菌和冻得死的虫、台面上化一天、化了能不能再冻、“僵尸肉”；台面上化一块肉', r: '1912—今'},
+  {id: 'c16', n: '后', t: '做完这件事以后', s: '吃了药开车、沉箱病和潜水后坐飞机、拔完牙、献完血、打完针、全麻醒来；潜水以后多久能飞', r: '1870—今'},
   {p: 3, t: '第三部 · 混用 —— 什么和什么不能混'},
   {v: '卷五 · 瓶子'},
   {id: 'c17', n: '氯', t: '八四和洁厕灵', s: '伊普尔的绿雾、1984 年的一瓶消毒液、漂白水和氨水', r: '1789—今'},
@@ -2103,6 +2103,70 @@ dev('#quizFig', fig => {
     $$('.yn button', box).forEach(b => b.classList.remove('on'));
     say.textContent = '还没开始。';
   });
+});
+
+
+/* ---------- 第二部封面装置：等多久 ---------- */
+dev('#waitFig', fig => {
+  const svg = $('#waitSvg'), out = $('#waitOut');
+  const M = 1, H = 60, D = 1440;   // 分钟
+  /* [名称, 下限分钟, 上限分钟, 章, 章的判词, 说明]；下限 0 = 不用等；-1 = 等多久都没用 */
+  const R = [
+    ['打完疫苗到离开接种点', 30, 30, 'c16', '真', '最严重的过敏反应大多发生在接种后半小时内，接种点有肾上腺素，能马上处理。'],
+    ['冲过终点到停下坐着', 5, 10, 'c11', '半真', '突然停下，血淤在腿上，容易晕倒。慢走几分钟，让心跳和血压慢慢落地。'],
+    ['吃完酸的东西到刷牙', 30, 60, 'c9', '半真', '酸会让牙釉质暂时变软，先漱口，等半小时到一小时再刷。证据还有争论，等一会儿没有坏处。'],
+    ['吃完饭到下水游泳', 0, 0, 'c9', '假', '不用等。别吃太撑、别喝酒、孩子有大人一直看着，比等一个小时要紧得多。'],
+    ['剩饭剩菜从出锅到进冰箱', 0, 120, 'c13', '真', '越快越好，不超过两小时（天热一小时）。不用等凉透：分装进浅盒，稍散热气就放进去。'],
+    ['木耳泡发', 60, 180, 'c14', '真', '凉水一两个小时就能泡开，天热放冰箱里泡，泡开就做，别泡一夜。泡久了可能产生没有解药的米酵菌酸。'],
+    ['饭后到躺下睡觉', 120, 180, 'c9', '看人', '对有反流的人，睡前两三个小时别吃东西；胃好的人饭后靠一会儿不要紧。'],
+    ['散瞳验光到自己开车', 240, 360, 'c16', '真', '常见的短效散瞳药要四到六个小时才恢复，有的更久。当天别自己开车。'],
+    ['冷冻的肉在冷藏室里化开', 600, 1440, 'c15', '真', '一公斤左右大约要大半天到一天。头天晚上挪到冷藏室，别放台面上化。'],
+    ['潜水到坐飞机', 720, 1440, 'c16', '看量', '只潜一次至少 12 小时，一天潜好几次或连着几天潜至少 18 小时，减压潜水更久。'],
+    ['喝酒到开车', 360, 1440, 'c10', '看量', '肝脏拆酒的速度几乎固定，喝得多，第二天上午可能还超标。最稳妥的答案：喝了就不开。'],
+    ['熬了一夜到开车', 420, 540, 'c12', '真', '先睡一整觉。清醒二十四小时，开车的表现约等于血液酒精 100 毫克每百毫升。'],
+    ['拔牙到漱口', 1440, 1440, 'c16', '真', '当天别漱口、别吐口水、别用吸管，保住伤口里的血块，否则可能干槽症。'],
+    ['全麻醒来到开车、签字', 1440, 1440, 'c16', '真', '麻醉药的余威会持续好几个小时，自己却觉得没事。二十四小时内别开车、别签重要文件。'],
+    ['头孢停药到喝酒', 7 * D, 7 * D, 'c4', '真', '说明书常写停药后七天内别喝。部分头孢会卡住拆乙醛的那一步。'],
+    ['腌菜从下缸到开吃', 20 * D, 20 * D, 'c13', '真', '头几天到一个多礼拜是亚硝酸盐的高峰，之后慢慢降下来。常见的建议是二十天以后再吃。'],
+    ['献全血到下一次献全血', 180 * D, 180 * D, 'c16', '真', '国家标准规定至少隔六个月，让身体把血和铁补回来。'],
+    ['喝西柚汁到吃某些降压药', -1, -1, 'c5', '真', '隔不开：西柚弄坏的酶要一天以上才补回来，天天喝作用还会叠加。吃这类药的人干脆别喝。']
+  ];
+  const lo = 0, hi = Math.log10(365 * D);
+  const TK = [[1, '1分'], [10, '10分'], [60, '1时'], [360, '6时'], [D, '1天'], [7 * D, '1周'], [30 * D, '1月'], [365 * D, '1年']];
+  let cur = -1;
+  function draw(){
+    const nar = fig.clientWidth < 540;
+    svg.style.minWidth = nar ? '0' : '560px';
+    const W0 = nar ? 360 : 600, L = nar ? 10 : 178, Rr = nar ? 12 : 18, T = 26, rowH = nar ? 38 : 25, Hh = T + R.length * rowH + 28;
+    const X = m => L + (Math.log10(Math.max(m, 1)) - lo) / (hi - lo) * (W0 - L - Rr);
+    let g = '';
+    TK.forEach((t, k) => { if (nar && k % 2 && k !== 7) return; g += '<line x1="' + X(t[0]) + '" x2="' + X(t[0]) + '" y1="' + (T - 8) + '" y2="' + (Hh - 22) + '" stroke="var(--rule)"/>' + txt(X(t[0]), Hh - 8, t[1], {s: 10.5, c: 'var(--ink-3)', halo: false}); });
+    R.forEach((r, i) => {
+      const y0 = T + i * rowH + rowH / 2, y = nar ? y0 + 7 : y0;
+      if (i === cur) g += '<rect x="0" y="' + (y0 - rowH / 2) + '" width="' + W0 + '" height="' + rowH + '" fill="var(--main)" opacity=".09"/>';
+      g += '<g data-i="' + i + '" style="cursor:pointer"><rect x="0" y="' + (y0 - rowH / 2) + '" width="' + W0 + '" height="' + rowH + '" fill="transparent"/>';
+      g += nar ? txt(L, y0 - 6, r[0], {s: 12, a: 'start', c: i === cur ? 'var(--main)' : 'var(--ink)'}) : txt(L - 8, y + 4, r[0], {s: 12, a: 'end', c: i === cur ? 'var(--main)' : 'var(--ink)'});
+      const col = {'真': 'var(--red)', '看量': 'var(--main)', '看人': 'var(--blu)', '半真': 'var(--pur)', '假': 'var(--ink-3)'}[r[4]];
+      if (r[1] === 0 && r[2] === 0) g += txt(X(1) + (nar ? 120 : 4), nar ? y0 - 6 : y + 4, '不用等', {s: 11.5, a: 'start', c: 'var(--ink-3)', w: 1});
+      else if (r[1] < 0) g += '<line x1="' + X(1) + '" x2="' + (W0 - Rr) + '" y1="' + y + '" y2="' + y + '" stroke="var(--red)" stroke-width="2" stroke-dasharray="2 4"/>' + txt((X(1) + W0) / 2, y - 4, '隔多久都没用', {s: 11, c: 'var(--red)', w: 1});
+      else {
+        const x0 = X(Math.max(r[1], 1)), x1 = X(r[2]);
+        g += '<rect x="' + (x0 - (x1 - x0 < 6 ? 3 : 0)) + '" y="' + (y - 5) + '" width="' + Math.max(6, x1 - x0) + '" height="10" rx="5" fill="' + col + '" opacity=".75"/>';
+      }
+      g += '</g>';
+    });
+    svg.setAttribute('viewBox', '0 0 ' + W0 + ' ' + Hh); svg.innerHTML = g;
+  }
+  window.addEventListener('resize', () => draw());
+  const fm = m => m >= D ? (m / D) + ' 天' : m >= 60 ? (m / 60) + ' 小时' : m + ' 分钟';
+  svg.addEventListener('click', e => {
+    const gg = e.target.closest('g[data-i]'); if (!gg) return;
+    cur = +gg.dataset.i; draw();
+    const r = R[cur], t = r[1] < 0 ? '隔不开' : r[2] === 0 ? '不用等' : r[1] === r[2] ? fm(r[2]) : (r[1] ? fm(r[1]) : '立刻') + ' 到 ' + fm(r[2]);
+    const id = r[3], lk = chapPage[id] > READY ? '' : '<a href="' + href(id) + '">' + TOC.find(x => x.id === id).n + ' · ' + TOC.find(x => x.id === id).t + '</a>';
+    out.innerHTML = '<div class="top"><b>' + r[0] + '：' + t + '</b><i class="st" data-v="' + r[4] + '">' + r[4] + '</i></div><p>' + r[5] + '</p><p style="font-size:13.5px;color:var(--ink-3)">详见 ' + lk + '</p>';
+  });
+  draw();
 });
 
 
@@ -2585,7 +2649,365 @@ dev('#tallyFig', fig => {
   function paint(){ $$('i', box).forEach((d, i) => { d.style.opacity = !f || items[i].v === f ? 1 : 0.12; }); }
   box.addEventListener('click', e => { const d = e.target.closest('i'); if (!d) return; const x = items[+d.dataset.i]; out.innerHTML = '<i class="st sm" data-v="' + x.v + '">' + x.v + '</i> <b>' + esc(x.t) + '</b>　' + esc(x.p) + ' <a href="#' + x.id + '">' + esc(x.ch) + ' ↑</a>'; });
   const pct = v => Math.round((n[v] || 0) / items.length * 100);
-  out.innerHTML = '这一部一共 ' + items.length + ' 条判词：<b>假</b>占 ' + pct('假') + '%，<b>真</b>占 ' + pct('真') + '%，其余是看量、看人和半真。第一卷里盖“真”的，不是柿子就是生熟，再就是指向药箱的两条，没有一条是挂图上的“相克”。点一格看看。';
+  const tail = PAGE === 1 ? '第一卷里盖“真”的，不是柿子就是生熟，再就是指向药箱的两条，没有一条是挂图上的“相克”。'
+    : PAGE === 2 ? '盖“假”的多半是“这样能解决”的偏方：泡澡醒酒、浓茶解酒、热透了就安全、冷冻能杀菌；盖“真”的多半是“要等”和“要有人看着”。' : '';
+  out.innerHTML = '这一部一共 ' + items.length + ' 条判词：<b>假</b>占 ' + pct('假') + '%，<b>真</b>占 ' + pct('真') + '%，其余是看量、看人和半真。' + tail + '点一格看看。';
+});
+
+
+/* ---------- 装置 10：胃里还剩多少 ---------- */
+dev('#mealFig', fig => {
+  const svg = $('#mlSvg'), say = $('#mlSay'), walk = $('#mlWalk');
+  const st = {size: 1, fat: 0, lie: 0.5};
+  const TH = [1.0, 1.5, 2.2];               // 半排空时间（小时）
+  const left = t => Math.exp(-Math.LN2 * t / (TH[st.size] * (st.fat ? 1.35 : 1)));
+  const glu = (t, w) => { const tp = 0.6, A = [1.6, 2.4, 3.0][st.size] * (w ? 0.72 : 1); const tt = w ? t * 1.1 : t; return 5 + A * (tt / tp) * Math.exp(1 - tt / tp); };
+  function draw(){
+    const W = 600, H = 300, L = 46, R = 14, T = 16, mid = 150, B = 30;
+    const X = t => L + t / 5 * (W - L - R);
+    const Y1 = v => T + (1 - v) * (mid - T - 20);
+    const Y2 = v => H - B - (v - 4) / 5 * (H - B - mid - 8);
+    let g = '';
+    for (let h = 0; h <= 5; h++) g += '<line x1="' + X(h) + '" x2="' + X(h) + '" y1="' + T + '" y2="' + (H - B) + '" stroke="var(--rule)"/>' + txt(X(h), H - 10, '饭后 ' + h + ' 时', {s: 10.5, c: 'var(--ink-3)', halo: false});
+    [0, 0.5, 1].forEach(v => g += txt(L - 6, Y1(v) + 4, Math.round(v * 100) + '%', {s: 10.5, a: 'end', c: 'var(--ink-3)', halo: false}));
+    const pts = []; for (let t = 0; t <= 5.001; t += 0.05) pts.push([t, left(t)]);
+    g += '<path d="M' + X(0) + ',' + Y1(0) + 'L' + pts.map(p => X(p[0]).toFixed(1) + ',' + Y1(p[1]).toFixed(1)).join('L') + 'L' + X(5) + ',' + Y1(0) + 'Z" fill="var(--kraft)" opacity=".18"/>';
+    g += '<path d="M' + pts.map(p => X(p[0]).toFixed(1) + ',' + Y1(p[1]).toFixed(1)).join('L') + '" fill="none" stroke="var(--kraft)" stroke-width="2.4"/>';
+    g += txt(W - R - 4, T + 12, '胃里还剩多少', {s: 11, a: 'end', c: 'var(--kraft)'});
+    const lv = left(st.lie);
+    g += '<line x1="' + X(st.lie) + '" x2="' + X(st.lie) + '" y1="' + T + '" y2="' + (mid - 20) + '" stroke="var(--red)" stroke-width="2" stroke-dasharray="4 3"/><circle cx="' + X(st.lie) + '" cy="' + Y1(lv) + '" r="5" fill="var(--red)"/>' + txt(X(st.lie) + 6, Y1(lv) - 8, '躺下：还剩 ' + Math.round(lv * 100) + '%', {s: 11.5, a: 'start', c: 'var(--red)', w: 1});
+    [5, 7, 9].forEach(v => g += txt(L - 6, Y2(v) + 4, v, {s: 10.5, a: 'end', c: 'var(--ink-3)', halo: false}));
+    g += txt(L + 4, mid + 6, '饭后血糖（示意，毫摩尔每升）', {s: 11, a: 'start', c: 'var(--ter)'});
+    const gp = w => { const a = []; for (let t = 0; t <= 5.001; t += 0.05) a.push([t, glu(t, w)]); return a; };
+    g += '<path d="M' + gp(false).map(p => X(p[0]).toFixed(1) + ',' + Y2(p[1]).toFixed(1)).join('L') + '" fill="none" stroke="var(--ink-3)" stroke-width="1.8" stroke-dasharray="' + (walk.checked ? '4 3' : '0') + '"/>';
+    if (walk.checked) {
+      g += '<rect x="' + X(0.2) + '" y="' + (H - B - 8) + '" width="' + (X(0.45) - X(0.2)) + '" height="6" rx="3" fill="var(--ter)"/>' + txt(X(0.32), H - B - 12, '散步', {s: 10, c: 'var(--ter)'});
+      g += '<path d="M' + gp(true).map(p => X(p[0]).toFixed(1) + ',' + Y2(p[1]).toFixed(1)).join('L') + '" fill="none" stroke="var(--ter)" stroke-width="2.6"/>';
+    }
+    g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + (H - B) + '" y2="' + (H - B) + '" stroke="var(--ink)"/>';
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g;
+    const p0 = Math.max(...gp(false).map(p => p[1])), p1 = Math.max(...gp(true).map(p => p[1]));
+    let s = '饭后 ' + st.lie + ' 小时躺下，胃里大约还剩 <b>' + Math.round(lv * 100) + '%</b>。';
+    s += lv > 0.5 ? ' 胃还很满，躺平以后最容易反流；有烧心、反酸的人，至少等两三个小时。' : lv > 0.25 ? ' 胃里还有不少，反流的人再等等更好。' : ' 胃已经空得差不多了，这时候躺下对反流的人也比较友好。';
+    if (walk.checked) s += ' 饭后散步让血糖峰值从约 ' + p0.toFixed(1) + ' 降到约 ' + p1.toFixed(1) + '（示意）。';
+    else s += ' 勾上“饭后散步”看看血糖曲线。';
+    say.innerHTML = s;
+  }
+  btnRow($('#mlSize'), ['吃得少', '正常一顿', '吃撑了'], 1, i => { st.size = i; draw(); });
+  btnRow($('#mlFat'), ['清淡', '油腻（火锅、烧烤）'], 0, i => { st.fat = i; draw(); });
+  walk.addEventListener('change', draw);
+  slider('mlLie', v => { st.lie = v; return v ? v + ' 小时' : '马上'; }, draw);
+});
+
+
+/* ---------- 装置 11：几点能开车 ---------- */
+dev('#bacFig', fig => {
+  const svg = $('#bcSvg'), kvb = $('#bcKv'), say = $('#bcSay');
+  const g = {b: 3, p: 2, r: 0};
+  const num = id => +$('#' + id).value;
+  const clock = h => { const d = Math.floor(h / 24), m = ((h % 24) + 24) % 24; return (d ? '次日 ' : '') + Math.floor(m) + ':' + (m % 1 >= 0.5 ? '30' : '00'); };
+  function sim(beta){
+    const W = clamp(num('bcW') || 65, 35, 150), r = +$('#bcS').value;
+    const t0 = clamp(num('bcT0'), 0, 23), t1 = Math.max(t0 + 0.5, clamp(num('bcT1'), 0, 30));
+    const A = g.b * 20.5 + g.p * 16 + g.r * 14;                 // 克
+    const dt = 0.05, ka = 2; let stom = 0, C = 0, pts = [], peak = 0, tp = t0, below80 = null, below20 = null;
+    for (let t = t0; t <= t0 + 36; t += dt) {
+      if (t < t1) stom += A / (t1 - t0) * dt;
+      const ab = ka * stom * dt; stom -= ab;
+      C += ab / (r * W) * 100;                                     // 毫克每百毫升
+      C = Math.max(0, C - beta * dt);
+      pts.push([t, C]);
+      if (C > peak) { peak = C; tp = t; }
+      if (t > t1 && t > tp) { if (below80 == null && C < 80) below80 = t; if (below20 == null && C < 20) below20 = t; }
+    }
+    if (peak < 80) below80 = null; if (peak < 20) below20 = null;
+    return {pts, peak, tp, below80, below20, A, t0, t1};
+  }
+  function draw(){
+    const slow = sim(10), fast = sim(20);
+    const t0 = slow.t0, tmax = Math.max(t0 + 12, (slow.below20 || slow.t1 + 2) + 2);
+    const ymax = Math.max(100, slow.peak * 1.15);
+    const c = lineChart(svg, [
+      {pts: slow.pts.filter(p => p[0] <= tmax), color: 'var(--red)', w: 2.2},
+      {pts: fast.pts.filter(p => p[0] <= tmax), color: 'var(--ter)', w: 2.2}
+    ], {xmin: t0, xmax: tmax, ymin: 0, ymax: ymax, xt: Array.from({length: Math.floor((tmax - t0) / 3) + 1}, (_, i) => t0 + i * 3), xf: v => clock(v).replace('次日 ', '次'), yt: [0, 20, 80, 150, 250].filter(v => v <= ymax), H: 260});
+    let ex = '';
+    [[20, '20 饮酒驾车'], [80, '80 醉酒驾车']].forEach(l => ex += '<line x1="' + c.L + '" x2="' + (c.W - c.R) + '" y1="' + c.Y(l[0]) + '" y2="' + c.Y(l[0]) + '" stroke="var(--red)" stroke-dasharray="5 4" opacity=".8"/>' + txt(c.W - c.R - 4, c.Y(l[0]) - 4, l[1], {s: 11, a: 'end', c: 'var(--red)'}));
+    ex += '<rect x="' + c.X(t0) + '" y="' + c.T + '" width="' + (c.X(slow.t1) - c.X(t0)) + '" height="' + (c.H - c.B - c.T) + '" fill="var(--och)" opacity=".1"/>' + txt(c.X(t0) + 4, c.T + 12, '喝酒中', {s: 11, a: 'start', c: 'var(--och)'});
+    ex += txt(c.L + 4, c.H - c.B - 6, '红：拆得慢的人　蓝：拆得快的人', {s: 10.5, a: 'start', c: 'var(--ink-3)'});
+    svg.insertAdjacentHTML('beforeend', ex);
+    kv(kvb, [['喝下的纯酒精', '约 ' + Math.round(slow.A) + ' 克'], ['峰值', '约 ' + Math.round(fast.peak) + '—' + Math.round(slow.peak)], ['降到 80 以下', slow.below80 ? clock(fast.below80 || slow.below80) + ' — ' + clock(slow.below80) : '没超过 80'], ['降到 20 以下', slow.below20 ? clock(fast.below20 || slow.below20) + ' — ' + clock(slow.below20) : '没超过 20']]);
+    let s;
+    if (!slow.A) s = '什么都没喝。拖动上面的滑块。';
+    else if (slow.peak < 20) s = '这点酒，算出来的峰值没有超过 20。可人和人差别很大，空腹、体重轻的人会更高。<b>喝了就别开车</b>，这条规矩最省事。';
+    else {
+      s = '算出来，最早也要到 <b>' + clock(fast.below20) + '</b>，拆得慢的人要到 <b>' + clock(slow.below20) + '</b>，血液酒精才降到 20 以下。';
+      if (slow.below20 - 24 > 6) s += ' 也就是说，第二天上午开车很可能还算酒驾，人却觉得自己早就醒了。';
+      s += ' 这个时间只是一个粗略的范围，<b>不能拿它来决定能不能开车</b>。';
+    }
+    say.innerHTML = s;
+  }
+  ['bcW', 'bcS', 'bcT0', 'bcT1'].forEach(id => $('#' + id).addEventListener('input', draw));
+  $('#bcS').addEventListener('change', draw);
+  slider('bcB', v => { g.b = v; return v ? v + ' 两（' + v * 50 + ' 毫升）' : '没喝'; }, draw);
+  slider('bcP', v => { g.p = v; return v ? v + ' 瓶' : '没喝'; }, draw);
+  slider('bcR', v => { g.r = v; return v ? v + ' 杯' : '没喝'; }, draw);
+});
+
+
+/* ---------- 装置 12：跑完喝多少水 ---------- */
+dev('#naFig', fig => {
+  const svg = $('#naSvg'), kvb = $('#naKv'), say = $('#naSay'), salt = $('#naSalt');
+  const g = {w: 60, h: 4.5, s: 0.7, d: 1.2};
+  function na(t){
+    const tbw = 0.6 * g.w, vs = g.s * t, vd = g.d * t;
+    return (140 * tbw - 40 * vs + (salt.checked ? 20 * vd : 0)) / (tbw - vs + vd);
+  }
+  function draw(){
+    const pts = []; for (let t = 0; t <= g.h + 1e-9; t += g.h / 60) pts.push([t, na(t)]);
+    const end = na(g.h), lo = Math.min(118, Math.floor(Math.min(...pts.map(p => p[1])) - 2)), hi = Math.max(146, Math.ceil(Math.max(...pts.map(p => p[1])) + 2));
+    const c = lineChart(svg, [{pts, color: end < 135 ? 'var(--red)' : 'var(--ter)', w: 2.8}], {xmin: 0, xmax: g.h, ymin: lo, ymax: hi, xt: Array.from({length: Math.floor(g.h) + 1}, (_, i) => i), xf: v => v + ' 时', yt: [120, 125, 130, 135, 140, 145].filter(v => v >= lo && v <= hi), H: 240});
+    let ex = '<rect x="' + c.L + '" y="' + c.Y(Math.min(145, hi)) + '" width="' + (c.W - c.L - c.R) + '" height="' + (c.Y(135) - c.Y(Math.min(145, hi))) + '" fill="var(--grn)" opacity=".12"/>';
+    ex += txt(c.W - c.R - 4, c.Y(135) + 14, '135 以下：偏低', {s: 11, a: 'end', c: 'var(--red)'});
+    if (lo < 125) ex += '<line x1="' + c.L + '" x2="' + (c.W - c.R) + '" y1="' + c.Y(125) + '" y2="' + c.Y(125) + '" stroke="var(--red)" stroke-dasharray="4 3"/>' + txt(c.W - c.R - 4, c.Y(125) - 4, '125 左右：可能头痛、呕吐、糊涂', {s: 11, a: 'end', c: 'var(--red)'});
+    ex += txt(c.L + 4, c.T + 12, '血钠（毫摩尔每升）', {s: 11, a: 'start', c: 'var(--ink-3)'});
+    svg.insertAdjacentHTML('afterbegin', ex);
+    const dw = (g.d - g.s) * g.h;
+    kv(kvb, [['出汗一共', (g.s * g.h).toFixed(1) + ' 升'], ['喝水一共', (g.d * g.h).toFixed(1) + ' 升'], ['体重变化', (dw > 0 ? '+' : dw < 0 ? '−' : '') + Math.abs(dw).toFixed(1) + ' 公斤'], ['跑完的血钠', end.toFixed(0)]]);
+    let s;
+    if (end < 125) s = '<b>喝得比出汗多太多了</b>：跑完体重反而重了 ' + dw.toFixed(1) + ' 公斤，血钠掉到了危险的范围。2002 年波士顿马拉松去世的那位选手，就是这种情况。';
+    else if (end < 135) s = '血钠偏低了。跑完比跑前<b>还重</b>，就是喝多了的信号。按口渴喝，别逼自己每个补给站都灌一杯。';
+    else if (dw < -0.03 * g.w) s = '体重掉了 ' + Math.abs(dw).toFixed(1) + ' 公斤，超过体重的百分之三，脱水比较明显了，热天容易出问题。渴了就喝，长跑可以补点含盐的饮料。';
+    else s = '出汗和喝水差不多平衡，血钠在正常范围。这就是“按口渴喝”的样子：跑完体重略轻一点，比重了要安全。';
+    if (salt.checked && end < 135) s += ' 运动饮料能慢一点，可喝得太多一样会低钠：它的盐比汗里少。';
+    say.innerHTML = s;
+  }
+  salt.addEventListener('change', draw);
+  slider('naW', v => { g.w = v; return v + ' 公斤'; }, draw);
+  slider('naH', v => { g.h = v; return v + ' 小时'; }, draw);
+  slider('naS', v => { g.s = v; return v.toFixed(1) + ' 升'; }, draw);
+  slider('naD', v => { g.d = v; return v.toFixed(1) + ' 升'; }, draw);
+});
+
+
+/* ---------- 装置 13：醒了多少个小时 ---------- */
+dev('#awakeFig', fig => {
+  const svg = $('#awSvg'), say = $('#awSay');
+  const g = {u: 7, n: 31.5};
+  const clock = h => { const d = Math.floor(h / 24), m = h % 24; return (d ? '次日 ' : '') + Math.floor(m) + ':' + (m % 1 ? '30' : '00'); };
+  const dip = h => { const m = ((h % 24) + 24) % 24; return m >= 1 && m <= 7 ? 15 * Math.sin(Math.PI * (m - 1) / 6) : 0; };
+  const eq = (t, u) => Math.max(0, (t - u - 10) * 7) + (t - u > 14 ? dip(t) : 0);
+  function draw(){
+    const u = g.u, n = Math.max(g.n, u + 1), x1 = Math.max(n + 3, u + 30);
+    const pts = []; for (let t = u; t <= x1; t += 0.25) pts.push([t, eq(t, u)]);
+    const ymax = Math.max(130, Math.max(...pts.map(p => p[1])) + 10);
+    const c = lineChart(svg, [{pts, color: 'var(--ter)', w: 2.6}], {xmin: u, xmax: x1, ymin: 0, ymax: ymax, xt: Array.from({length: Math.floor((x1 - u) / 4) + 1}, (_, i) => u + i * 4), xf: v => clock(v).replace('次日 ', '次'), yt: [0, 20, 50, 80, 120].filter(v => v <= ymax), H: 250});
+    let ex = '';
+    [[20, '20 饮酒驾车'], [80, '80 醉酒驾车']].forEach(l => ex += '<line x1="' + c.L + '" x2="' + (c.W - c.R) + '" y1="' + c.Y(l[0]) + '" y2="' + c.Y(l[0]) + '" stroke="var(--red)" stroke-dasharray="5 4" opacity=".8"/>' + txt(c.W - c.R - 4, c.Y(l[0]) - 4, l[1], {s: 11, a: 'end', c: 'var(--red)'}));
+    for (let d = Math.floor(u / 24); d * 24 <= x1; d++) { const a = Math.max(u, d * 24 + 2), b = Math.min(x1, d * 24 + 6); if (b > a) ex += '<rect x="' + c.X(a) + '" y="' + c.T + '" width="' + (c.X(b) - c.X(a)) + '" height="' + (c.H - c.B - c.T) + '" fill="var(--blu)" opacity=".1"/>' + txt((c.X(a) + c.X(b)) / 2, c.T + 12, '凌晨低谷', {s: 10.5, c: 'var(--blu)'}); }
+    const v = eq(n, u);
+    ex += '<line x1="' + c.X(n) + '" x2="' + c.X(n) + '" y1="' + c.T + '" y2="' + (c.H - c.B) + '" stroke="var(--ink)" stroke-width="1.5"/><circle cx="' + c.X(n) + '" cy="' + c.Y(v) + '" r="5.5" fill="var(--main)"/>' + txt(c.X(n) + 6, c.Y(v) - 8, '现在', {s: 11.5, a: 'start', c: 'var(--main)', w: 1});
+    ex += txt(c.L + 4, c.H - c.B - 6, '相当于血液酒精（毫克每百毫升，示意）', {s: 10.5, a: 'start', c: 'var(--ink-3)'});
+    svg.insertAdjacentHTML('beforeend', ex);
+    const hrs = n - u;
+    let s = '从 ' + clock(u) + ' 起床，到 ' + clock(n) + ' 已经醒了 <b>' + hrs + ' 个小时</b>，开车的状态大约相当于血液酒精 <b>' + Math.round(v) + '</b> 毫克每百毫升。';
+    if (v >= 80) s += ' 已经越过了“醉驾”那条线。今天别开车，先睡。';
+    else if (v >= 20) s += ' 如果这是酒精，你已经算酒驾了。困驾没有人查，只能自己管住。';
+    else s += ' 还在比较安全的范围，但熬到后半夜，曲线会往上走得很快。';
+    say.innerHTML = s;
+  }
+  slider('awU', v => { g.u = v; return clock(v); }, draw);
+  slider('awN', v => { g.n = v; return clock(v); }, draw);
+});
+
+
+/* ---------- 细菌生长的示意模型（第十三、十四章共用） ---------- */
+/* 返回 t 小时后的 log10(每克细菌数)；T 摄氏度；起点约 10^2.5，上限 10^9 */
+function growRate(T){ if (T <= 5 || T >= 50) return 0; const r = Math.LN2 / 0.33 * Math.pow((Math.min(T, 40) - 5) / 35, 2); return T > 40 ? r * (50 - T) / 10 : r; }
+function growLog(T, t){
+  if (T >= 60) return Math.max(-1, 2.5 - t * 3);
+  const r = growRate(T); if (!r) return 2.5;
+  const lag = 1.2 / r;
+  return Math.min(9, 2.5 + Math.max(0, t - lag) * r / Math.LN10);
+}
+
+/* ---------- 装置 14：常温放多久 ---------- */
+dev('#growFig', fig => {
+  const svg = $('#grSvg'), say = $('#grSay'), btn = $('#grHeat');
+  const PL = [['冰箱冷藏室', 4], ['凉快的屋里', 15], ['空调房', 22], ['夏天的屋里', 28], ['车里 / 外卖袋里', 35], ['保温（60 度以上）', 65]];
+  let ti = 3, hrs = 8, heated = false;
+  const TOX = 5;
+  function toxin(T, t){ let a = 0; for (let x = 0; x <= t; x += 0.1) a += Math.max(0, growLog(T, x) - TOX) * 0.1; return a; }
+  function draw(){
+    const T = PL[ti][1];
+    const pts = []; for (let t = 0; t <= 24.001; t += 0.25) pts.push([t, growLog(T, t)]);
+    const c = lineChart(svg, [{pts: pts.filter(p => p[0] <= hrs), color: 'var(--red)', w: 2.8}, {pts: pts.filter(p => p[0] >= hrs), color: 'var(--rule)', w: 1.6, dash: '3 3'}], {xmin: 0, xmax: 24, ymin: -1, ymax: 10, xt: [0, 2, 4, 6, 8, 12, 16, 20, 24], xf: v => v + ' 时', yt: [0, 2, 4, 6, 8], yf: v => '10^' + v, H: 250});
+    let ex = '<line x1="' + c.L + '" x2="' + (c.W - c.R) + '" y1="' + c.Y(TOX) + '" y2="' + c.Y(TOX) + '" stroke="var(--red)" stroke-dasharray="5 4" opacity=".8"/>' + txt(c.W - c.R - 4, c.Y(TOX) - 5, '超过这里开始积累毒素（示意）', {s: 11, a: 'end', c: 'var(--red)'});
+    ex += '<line x1="' + c.X(2) + '" x2="' + c.X(2) + '" y1="' + c.T + '" y2="' + (c.H - c.B) + '" stroke="var(--grn)" stroke-dasharray="3 3"/>' + txt(c.X(2) + 4, c.T + 12, '两小时', {s: 11, a: 'start', c: 'var(--grn)'});
+    const now = growLog(T, hrs), tx = toxin(T, hrs);
+    const shown = heated ? -1 : now;
+    ex += '<circle cx="' + c.X(hrs) + '" cy="' + c.Y(shown) + '" r="6" fill="' + (heated ? 'var(--ter)' : 'var(--red)') + '"/>';
+    if (heated) ex += txt(c.X(hrs) + 8, c.Y(-1) - 6, '热透：细菌没了', {s: 11, a: 'start', c: 'var(--ter)', w: 1});
+    ex += txt(c.L + 4, c.T + 12, '每克米饭里的细菌（对数刻度）', {s: 11, a: 'start', c: 'var(--ink-3)'});
+    const bw = Math.min(140, tx * 18);
+    ex += '<rect x="' + (c.W - c.R - 150) + '" y="' + (c.T + 24) + '" width="150" height="14" rx="3" fill="var(--paper)" stroke="var(--rule)"/><rect x="' + (c.W - c.R - 150) + '" y="' + (c.T + 24) + '" width="' + bw + '" height="14" rx="3" fill="var(--main)"/>' + txt(c.W - c.R - 154, c.T + 35, '毒素', {s: 11, a: 'end', c: 'var(--main)'});
+    svg.insertAdjacentHTML('beforeend', ex);
+    let s = '在' + PL[ti][0] + '（约 ' + T + ' 度）放了 ' + hrs + ' 小时：';
+    if (T >= 60) s += '保温在六十度以上，细菌长不起来，反而在减少。所以宴席上的菜要么保持滚烫，要么尽快冷藏，别在中间的温度待着。';
+    else if (T <= 5) s += '冷藏室里细菌几乎不长。剩菜就该待在这里，三四天内吃完。';
+    else if (tx <= 0) s += '细菌还没长到产毒的程度。' + (hrs > 2 ? '不过已经过了两小时，趁现在放进冰箱。' : '两小时内放进冰箱就好。');
+    else s += heated ? '<b>热透以后细菌被杀掉了，可毒素一点没少</b>（右上角那一条）。这就是“热透了还会吐”。' : '细菌已经长过了那条线，毒素在积累。按“热透了再吃”试试。';
+    say.innerHTML = s;
+    btn.textContent = heated ? '撤销加热' : '热透了再吃';
+  }
+  btn.addEventListener('click', () => { heated = !heated; draw(); });
+  slider('grT', v => { ti = v; heated = false; return PL[v][0] + ' · ' + PL[v][1] + '℃'; }, draw);
+  slider('grH', v => { hrs = v; heated = false; return v + ' 小时'; }, draw);
+});
+
+
+/* ---------- 装置 15：泡多久 ---------- */
+dev('#soakFig', fig => {
+  const svg = $('#skSvg'), say = $('#skSay');
+  const TS = [['冰箱里', 4], ['凉水（冬天）', 10], ['凉水（春秋）', 16], ['室温', 22], ['夏天室温', 28], ['温水 / 闷热的厨房', 35]];
+  const HS = []; for (let h = 0; h <= 48; h += 2) HS.push(h);
+  const W0 = 600, L = 120, R = 12, T = 18, cw = (W0 - L - R) / HS.length, ch = 34, H = T + TS.length * ch + 30;
+  const col = v => { const k = clamp((v - 2.8) / 3.5, 0, 1); return 'hsl(' + (130 - 125 * k) + ',' + (40 + 20 * k) + '%,' + (52 - 8 * k) + '%)'; };
+  let sel = null;
+  function draw(){
+    let g = '';
+    TS.forEach((t, i) => {
+      const y = T + i * ch;
+      g += txt(L - 8, y + ch / 2 + 4, t[0], {s: 12, a: 'end'});
+      HS.forEach((h, j) => {
+        const v = growLog(t[1], h), x = L + j * cw;
+        g += '<rect data-i="' + i + '" data-j="' + j + '" x="' + (x + 1) + '" y="' + (y + 1) + '" width="' + (cw - 2) + '" height="' + (ch - 2) + '" rx="2" fill="' + col(v) + '" opacity="' + (sel && (sel[0] !== i || sel[1] !== j) ? 0.75 : 1) + '" style="cursor:pointer"' + (sel && sel[0] === i && sel[1] === j ? ' stroke="var(--ink)" stroke-width="2"' : '') + '/>';
+      });
+    });
+    HS.forEach((h, j) => { if (h % 8 === 0) g += txt(L + j * cw + cw / 2, H - 10, h + '时', {s: 10.5, c: 'var(--ink-3)', halo: false}); });
+    const xs = L + 1 * cw;
+    g += '<line x1="' + xs + '" x2="' + xs + '" y1="' + (T - 4) + '" y2="' + (T + TS.length * ch + 4) + '" stroke="var(--ink)" stroke-width="1.6" stroke-dasharray="4 3"/>' + txt(xs + 4, T - 6, '木耳泡开（约 1—2 小时）', {s: 10.5, a: 'start', c: 'var(--ink)'});
+    svg.setAttribute('viewBox', '0 0 ' + W0 + ' ' + H); svg.innerHTML = g;
+  }
+  svg.addEventListener('click', e => {
+    const r = e.target.closest('rect[data-i]'); if (!r) return;
+    const i = +r.dataset.i, j = +r.dataset.j; sel = [i, j]; draw();
+    const t = TS[i], h = HS[j], v = growLog(t[1], h);
+    let s = '<b>' + t[0] + '，泡了 ' + h + ' 小时</b>：';
+    if (v < 3.2) s += '细菌几乎没怎么长。' + (h <= 4 ? '这是比较稳妥的泡法：泡开就做。' : '冷得够，长得慢；不过泡开以后也没必要一直泡着。');
+    else if (v < 5) s += '细菌已经开始长了。泡开的木耳早就该下锅了，越往后越不划算。';
+    else s += '在这个温度泡这么久，如果水里混进了产毒的细菌，它已经有足够的时间繁殖。米酵菌酸耐热、闻不出、没有解药：<b>整盆倒掉</b>。';
+    say.innerHTML = s;
+  });
+  draw();
+});
+
+
+/* ---------- 装置 16：台面上化一块肉 ---------- */
+dev('#thawFig', fig => {
+  const svg = $('#thSvg'), kvb = $('#thKv'), say = $('#thSay'), roomRow = $('#thRoomRow');
+  const MT = [['台面上（室温）', 'room', 0.6], ['冷藏室（4 度）', 4, 0.6], ['冷水里（每半小时换水）', 15, 4], ['热水里（50 度）', 50, 4]];
+  let m = 0, room = 26;
+  function sim(){
+    const Ta = MT[m][1] === 'room' ? room : MT[m][1], h = MT[m][2], k = 1.0, Lh = 12, C = 1.5, dt = 0.01;
+    let Ts = -18, Tc = -18, lat = 0, t = 0, thaw = null, dangerBefore = 0, dangerAll = 0;
+    const ps = [], pc = [];
+    for (let i = 0; i <= 24 / dt; i++) {
+      t = i * dt;
+      const q = k * (Ts - Tc);
+      Ts += (h * (Ta - Ts) - q) * dt;
+      if (Tc < -1) Tc = Math.min(-1, Tc + q / C * dt);
+      else if (lat < 1) { lat += q / Lh * dt; Tc = -1; if (lat >= 1 && thaw == null) thaw = t; }
+      else Tc += q / C * dt;
+      const inD = Ts > 5 && Ts < 60;
+      if (inD) { dangerAll += dt; if (thaw == null) dangerBefore += dt; }
+      if (i % 10 === 0) { ps.push([t, Ts]); pc.push([t, Tc]); }
+    }
+    return {ps, pc, thaw, dangerBefore, dangerAll, Ta};
+  }
+  function draw(){
+    roomRow.style.display = MT[m][1] === 'room' ? '' : 'none';
+    const r = sim(), ymax = Math.max(30, r.Ta + 5);
+    const c = lineChart(svg, [{pts: r.ps, color: 'var(--och)', w: 2.6}, {pts: r.pc, color: 'var(--blu)', w: 2.6}], {xmin: 0, xmax: 24, ymin: -20, ymax: ymax, xt: [0, 2, 4, 6, 8, 12, 16, 20, 24], xf: v => v + ' 时', yt: [-20, -10, 0, 10, 20, 30, 40, 50].filter(v => v <= ymax), yf: v => v + '℃', H: 250});
+    let ex = '<rect x="' + c.L + '" y="' + c.Y(Math.min(60, ymax)) + '" width="' + (c.W - c.L - c.R) + '" height="' + (c.Y(5) - c.Y(Math.min(60, ymax))) + '" fill="var(--ink-3)" opacity=".12"/>' + txt(c.L + 4, c.Y(5) - 5, '5℃ 以上：危险温度区', {s: 11, a: 'start', c: 'var(--ink-2)'});
+    if (r.thaw != null) ex += '<line x1="' + c.X(r.thaw) + '" x2="' + c.X(r.thaw) + '" y1="' + c.T + '" y2="' + (c.H - c.B) + '" stroke="var(--blu)" stroke-dasharray="4 3"/>' + txt(c.X(r.thaw) + 4, c.T + 12, '中心化透', {s: 11, a: 'start', c: 'var(--blu)', w: 1});
+    ex += txt(c.W - c.R - 4, c.H - c.B - 6, '橙：表面　蓝：中心', {s: 10.5, a: 'end', c: 'var(--ink-3)'});
+    svg.insertAdjacentHTML('afterbegin', ex);
+    const f = x => x < 0.1 ? '几乎没有' : x.toFixed(1) + ' 小时';
+    kv(kvb, [['中心化透', r.thaw != null ? '约 ' + r.thaw.toFixed(1) + ' 小时' : '24 小时内没化透'], ['化透之前，表面在危险区', f(r.dangerBefore)], ['放满一天，表面在危险区', f(r.dangerAll)]]);
+    const S = [
+      '等中心化透，表面已经在危险温度区里待了 ' + f(r.dangerBefore) + '；要是像那位合租的男生一样放一整天，表面在危险区里泡了 ' + f(r.dangerAll) + '。屋里越热，越糟。',
+      '最慢，可表面一直待在冰箱的温度，几乎不进危险区。头天晚上挪进冷藏室，是最省心的化法。',
+      '比台面快得多：水传热比空气快几十倍，水又是凉的，表面温度不高。记得换水，化好马上做。',
+      '最快，可表面很快就到了四十多度，正是细菌最爱的温度，里面却还冻着。别用热水化肉。'
+    ];
+    say.innerHTML = S[m];
+  }
+  btnRow($('#thM'), MT.map(x => x[0]), 0, i => { m = i; draw(); });
+  slider('thR', v => { room = v; return v + '℃'; }, draw);
+});
+
+
+/* ---------- 装置 17：潜水以后多久能飞 ---------- */
+dev('#diveFig', fig => {
+  const svg = $('#dvSvg'), say = $('#dvSay');
+  const g = {d: 18, t: 45, n: 1, s: 2};
+  const HT = [10, 40, 120, 360], MR = [1.6, 1.35, 1.2, 1.1], NAME = ['很快的组织', '较快', '较慢', '很慢的组织'];
+  const CAB = 0.79, N2 = 0.79;
+  const step = (P, Pin, min, ht) => Pin + (P - Pin) * Math.pow(2, -min / ht);
+  function load(){
+    let P = HT.map(() => N2);
+    for (let k = 0; k < g.n; k++) {
+      P = P.map((p, i) => step(p, N2 * (1 + g.d / 10), g.t, HT[i]));
+      if (k < g.n - 1) P = P.map((p, i) => step(p, N2, 90, HT[i]));
+    }
+    return P;
+  }
+  const after = (P0, hrs) => P0.map((p, i) => step(p, N2, hrs * 60, HT[i]));
+  const ratio = P => P.map((p, i) => p / (CAB * MR[i]));
+  function draw(){
+    const P0 = load();
+    const W = 600, H = 300, L = 46, R = 14, T = 16, split = 330;
+    let g2 = '';
+    /* 左：四种组织此刻离“冒泡线”多远 */
+    const rr = ratio(after(P0, g.s));
+    const bx = 70, bw = 46, gap = 18, top = 30, base = 250, Ymax = 1.6;
+    const Y = v => base - Math.min(v, Ymax) / Ymax * (base - top);
+    g2 += '<line x1="40" x2="' + (split - 20) + '" y1="' + Y(1) + '" y2="' + Y(1) + '" stroke="var(--red)" stroke-dasharray="5 4"/>' + txt(42, Y(1) - 5, '冒泡线', {s: 11, a: 'start', c: 'var(--red)'});
+    rr.forEach((v, i) => {
+      const x = bx + i * (bw + gap);
+      g2 += '<rect x="' + x + '" y="' + Y(v) + '" width="' + bw + '" height="' + (base - Y(v)) + '" rx="3" fill="' + (v >= 1 ? 'var(--red)' : v > 0.85 ? 'var(--och)' : 'var(--ter)') + '" opacity=".85"/>';
+      g2 += txt(x + bw / 2, Y(v) - 5, Math.round(v * 100) + '%', {s: 11, w: 1});
+      g2 += txt(x + bw / 2, base + 14, HT[i] + '分', {s: 10.5, c: 'var(--ink-3)', halo: false});
+    });
+    g2 += txt(bx - 30, top - 12, '此刻登机，各组织到冒泡线的百分比', {s: 11, a: 'start', c: 'var(--ink-3)'});
+    g2 += txt(bx + 2 * (bw + gap) - gap / 2, base + 30, '组织的半饱和时间', {s: 10.5, c: 'var(--ink-3)', halo: false});
+    /* 右：最危险的组织随水面休息时间的变化 */
+    const X2 = h => split + 20 + h / 30 * (W - R - split - 20);
+    const Y2 = v => base - Math.min(v, Ymax) / Ymax * (base - top);
+    const curve = []; let ok = null;
+    for (let h = 0; h <= 30; h += 0.25) { const v = Math.max(...ratio(after(P0, h))); curve.push([h, v]); if (ok == null && v < 1) ok = h; }
+    [0, 6, 12, 18, 24, 30].forEach(h => g2 += '<line x1="' + X2(h) + '" x2="' + X2(h) + '" y1="' + top + '" y2="' + base + '" stroke="var(--rule)"/>' + txt(X2(h), base + 14, h + '时', {s: 10.5, c: 'var(--ink-3)', halo: false}));
+    g2 += '<line x1="' + X2(0) + '" x2="' + X2(30) + '" y1="' + Y2(1) + '" y2="' + Y2(1) + '" stroke="var(--red)" stroke-dasharray="5 4"/>';
+    const gl = g.n > 1 ? 18 : 12;
+    g2 += '<rect x="' + X2(0) + '" y="' + top + '" width="' + (X2(gl) - X2(0)) + '" height="' + (base - top) + '" fill="var(--main)" opacity=".08"/>' + txt(X2(gl) - 3, top + 12, '指南：至少 ' + gl + ' 小时', {s: 11, a: 'end', c: 'var(--main)', w: 1});
+    g2 += '<path d="M' + curve.map(p => X2(p[0]).toFixed(1) + ',' + Y2(p[1]).toFixed(1)).join('L') + '" fill="none" stroke="var(--ter)" stroke-width="2.4"/>';
+    const vNow = Math.max(...rr);
+    g2 += '<circle cx="' + X2(g.s) + '" cy="' + Y2(vNow) + '" r="5" fill="var(--main)"/>';
+    g2 += txt(split + 20, top - 12, '上水以后过了多久（最危险的那种组织）', {s: 11, a: 'start', c: 'var(--ink-3)'});
+    g2 += txt(X2(15), base + 30, '水面休息时间', {s: 10.5, c: 'var(--ink-3)', halo: false});
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = g2;
+    const worst = rr.indexOf(vNow);
+    let s = '上水 ' + g.s + ' 小时后登机，' + NAME[worst] + '离冒泡线最近（' + Math.round(vNow * 100) + '%）。';
+    s += ok == null ? ' 这个模型里三十小时都没降下来，这样的潜水一定要按专业的减压规定来。' : ' 这个简化模型算出来，大约 <b>' + ok + ' 小时</b>后各组织都降到线下；指南要求的是至少 <b>' + gl + ' 小时</b>。';
+    s += ' 两者的差距就是安全余量：真实的身体有气泡、有个体差异、有脱水和疲劳，指南宁可多等。';
+    if (g.n > 1) s += ' 一天潜好几次，慢组织里攒下的氮更多，所以要等得更久。';
+    say.innerHTML = s;
+  }
+  slider('dvD', v => { g.d = v; return v + ' 米'; }, draw);
+  slider('dvT', v => { g.t = v; return v + ' 分钟'; }, draw);
+  slider('dvN', v => { g.n = v; return v + ' 次'; }, draw);
+  slider('dvS', v => { g.s = v; return v + ' 小时'; }, draw);
 });
 
 })();

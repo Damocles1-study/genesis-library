@@ -64,5 +64,7 @@ dev('#tallyFig', fig => {
   function paint(){ $$('i', box).forEach((d, i) => { d.style.opacity = !f || items[i].v === f ? 1 : 0.12; }); }
   box.addEventListener('click', e => { const d = e.target.closest('i'); if (!d) return; const x = items[+d.dataset.i]; out.innerHTML = '<i class="st sm" data-v="' + x.v + '">' + x.v + '</i> <b>' + esc(x.t) + '</b>　' + esc(x.p) + ' <a href="#' + x.id + '">' + esc(x.ch) + ' ↑</a>'; });
   const pct = v => Math.round((n[v] || 0) / items.length * 100);
-  out.innerHTML = '这一部一共 ' + items.length + ' 条判词：<b>假</b>占 ' + pct('假') + '%，<b>真</b>占 ' + pct('真') + '%，其余是看量、看人和半真。第一卷里盖“真”的，不是柿子就是生熟，再就是指向药箱的两条，没有一条是挂图上的“相克”。点一格看看。';
+  const tail = PAGE === 1 ? '第一卷里盖“真”的，不是柿子就是生熟，再就是指向药箱的两条，没有一条是挂图上的“相克”。'
+    : PAGE === 2 ? '盖“假”的多半是“这样能解决”的偏方：泡澡醒酒、浓茶解酒、热透了就安全、冷冻能杀菌；盖“真”的多半是“要等”和“要有人看着”。' : '';
+  out.innerHTML = '这一部一共 ' + items.length + ' 条判词：<b>假</b>占 ' + pct('假') + '%，<b>真</b>占 ' + pct('真') + '%，其余是看量、看人和半真。' + tail + '点一格看看。';
 });

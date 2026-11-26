@@ -554,6 +554,34 @@ pre.py{font-family:var(--f-mono);font-size:13px;line-height:1.6;background:#1d1f
   .adder .bit{font-size:17px}
 }
 .col code,.save code,.fig .how code,.figcap code,.try code,.gone code,details.adult code{font-family:var(--f-mono);font-size:.88em;background:var(--paper-2);padding:0 4px;border-radius:3px;word-break:break-all}
+/* ---------- 第三部：一周、公约、工作、时间线 ---------- */
+.wkrow{display:grid;grid-template-columns:2.6em minmax(0,1fr);gap:8px;align-items:center;margin:3px 0;font-size:13px}
+.wkbar{display:flex;height:20px;border:1px solid var(--rule);border-radius:3px;overflow:hidden;background:var(--paper)}
+.wkbar i{display:block;height:100%}
+.legend{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12.5px;color:var(--ink-2);margin:8px 0}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:4px;vertical-align:-1px;border:1px solid var(--rule)}
+.pf{margin:6px 0 10px}
+.pf.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fig input[type=text]{display:block;width:100%;margin-top:4px;font:inherit;font-size:15px;padding:5px 8px;border:2px solid var(--rule);border-radius:3px;background:var(--paper);color:var(--ink)}
+.fig label.lab{display:block;margin:6px 0}
+.pact{background:var(--paper);border:3px solid var(--wood-2);border-radius:4px;padding:12px 16px;margin:12px 0;font-size:15px;line-height:1.75}
+.pact h5{font-family:var(--f-display);font-weight:400;font-size:22px;margin:0 0 6px;text-align:center}
+.pact ol{margin:0;padding-left:1.4em}
+.pact .sig{margin:10px 0 0;font-family:var(--f-hand);font-size:18px}
+.pact .small,.fig .small{font-size:13px;color:var(--ink-3);margin:4px 0 0}
+.jobs{display:grid;grid-template-columns:repeat(auto-fill,minmax(15em,1fr));gap:8px;margin:10px 0}
+.job{background:var(--paper);border:2px solid var(--rule);border-radius:3px;padding:8px 10px;line-height:1.55}
+.job b{display:block;font-family:var(--f-display);font-weight:400;font-size:18px;color:var(--main)}
+.job span{display:block;font-size:14px}
+.job small{display:block;font-size:12.5px;color:var(--ink-3);margin-top:3px}
+.tline{list-style:none;margin:10px 0;padding:0;border-left:3px solid var(--main)}
+.tline li{display:grid;grid-template-columns:3.4em minmax(0,1fr) auto;gap:8px;align-items:baseline;padding:4px 0 4px 12px;font-size:14.5px;border-bottom:1px dashed var(--rule)}
+.tline .y{font-family:var(--f-mono);font-size:13px;color:var(--ink-3)}
+.tline a{font-family:var(--f-display);color:var(--main);text-decoration:none;border:1px solid var(--main);border-radius:3px;padding:0 6px}
+.keys{display:grid;grid-template-columns:repeat(auto-fill,minmax(13em,1fr));gap:6px;margin:10px 0}
+.keys div{background:var(--card);border:1px solid var(--rule);border-radius:4px;padding:6px 10px;font-size:14px;line-height:1.55}
+.keys kbd{font-family:var(--f-mono);font-size:12.5px;background:var(--paper-2);border:1px solid var(--ink-3);border-bottom-width:2px;border-radius:3px;padding:0 5px;margin-right:6px;white-space:nowrap}
+@media (max-width:640px){.pf.two{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -639,7 +667,7 @@ pre.py{font-family:var(--f-mono);font-size:13px;line-height:1.6;background:#1d1f
     <div class="partnav">
       <a href="./"><span class="k">第一部</span><b>土</b><small>序幕 + 卷一 来历 + 卷二 长大 · 一块方块从哪里来 · 九章</small></a>
       <a href="two.html" class="on"><span class="k">第二部</span><b>电</b><small>卷三 红石 + 卷四 机器和代码 · 八章</small></a>
-      <a data-c="c17" href="three.html"><span class="k">第三部</span><b>门</b><small>卷五 动手 + 卷六 长大以后 + 尾声 · 写作中</small></a>
+      <a data-c="c17" href="three.html"><span class="k">第三部</span><b>门</b><small>卷五 动手 + 卷六 长大以后 + 尾声 · 走出游戏 · 八章</small></a>
     </div>
 
     <h3>全书目录</h3>
@@ -1740,7 +1768,7 @@ pre.py{font-family:var(--f-mono);font-size:13px;line-height:1.6;background:#1d1f
   <div class="k">第二部 · 电 · 完</div>
   <h3>一根红线，变成了一台电脑</h3>
   <p class="ni" style="font-size:17px;line-height:1.95;text-align:left">红石粉是线，拉杆是电源，灯是用电的；一根火把把“有”变成“没有”，三根火把拼出“并且”；只用 0 和 1，加法器算出一加一等于十；两根火把互相管着，记住了一件事；一根火把绕回来管自己，有了心跳。零件齐了，玩家拼出了运算器、电脑、能在里面玩方块游戏的电脑，和一个想两个小时才回一句话的聊天机器人。最后，命令和代码让人不用再一块一块地放：<em>重复的活，交给电脑</em>。你家里的电脑，也是这样一级一级造出来的，只是它的开关小到看不见。第三部《门》走出游戏：在 MacBook 上怎么玩、怎么学，教室和真实的城市怎样用方块，网上怎样保护自己，玩多久合适，和长大以后这些本事能用在哪儿。</p>
-  <a class="go" data-c="c17" href="three.html">第三部 · 门（写作中）</a>
+  <a class="go" data-c="c17" href="three.html">第三部 · 门</a>
 </div>
 
 <footer>
@@ -1772,7 +1800,7 @@ function slider(id, f, cb){ const r = $('#' + id), o = $('#' + id + 'O'); const 
 
 /* ---------- 全书目录（三个网页共用） ---------- */
 const PAGE = /three\.html/.test(location.pathname) ? 3 : /two\.html/.test(location.pathname) ? 2 : 1;
-const READY = 2; // 已经写好的部数
+const READY = 3; // 已经写好的部数
 const PURL = {1: './', 2: 'two.html', 3: 'three.html'};
 const TOC = [
   {p: 1, t: '第一部 · 土 —— 一块方块从哪里来'},
@@ -1801,16 +1829,16 @@ const TOC = [
   {id: 'c16', n: '码', t: '用代码搭房子', s: '图形化编程、教育版里的小机器人、Python 一行盖一座塔', r: '2013—今'},
   {p: 3, t: '第三部 · 门 —— 走出游戏'},
   {v: '卷五 · 动手'},
-  {id: 'c17', n: '本', t: '一台 MacBook Air', s: '哪个版本能在苹果电脑上玩、M1 芯片、键盘上的几个键、电脑卡了怎么办', r: '2020—今'},
-  {id: 'c18', n: '课', t: '教室里的方块', s: '教育版、老师用它上什么课、一座给记者的图书馆、一群居民自己设计公园', r: '2011—今'},
-  {id: 'c19', n: '图', t: '一比一的国家', s: '把丹麦和英国搬进游戏、坐标和比例尺、把你家小区画进去', r: '2014—今'},
-  {id: 'c20', n: '造', t: '从方块到真房子', s: '体素和像素、3D 打印、建筑师怎么看方块、做一个自己的模型', r: '今天'},
+  {id: 'c17', n: '本', t: '一台 MacBook Air', s: '哪个版本能在苹果电脑上玩、M1 芯片、键盘上的几个键、卡了怎么办、存档和备份；视野距离', r: '2020—今'},
+  {id: 'c18', n: '课', t: '教室里的方块', s: '一位老师的改装版、教育版、一座藏在游戏里的图书馆、居民设计公园；方块数学课', r: '2011—今'},
+  {id: 'c19', n: '图', t: '一比一的国家', s: '一个实习生和二百二十亿块方块、一比一的丹麦、把地球搬进去、方块世界有多大；比例尺', r: '2013—今'},
+  {id: 'c20', n: '造', t: '从方块到真房子', s: '游戏变回积木、3D 打印、医院里的体素、游戏里的房子现实里能不能盖；方块变模型', r: '2011—今'},
   {v: '卷六 · 长大以后'},
-  {id: 'c21', n: '安', t: '网上的陌生人', s: '服务器里的聊天、送皮肤的骗局、账号和密码、遇到不舒服的事告诉谁', r: '今天'},
-  {id: 'c22', n: '时', t: '再玩五分钟', s: '为什么停不下来、奖励和惊喜、给自己定一张时间表', r: '今天'},
-  {id: 'c23', n: '长', t: '长大以后做什么', s: '程序员、游戏设计师、建筑师、老师……方块里藏着的二十种工作', r: '今天'},
+  {id: 'c21', n: '安', t: '网上的陌生人', s: '四样不能说的东西、“免费送”的骗局、被骂被炸怎么办、遇到不舒服的事告诉谁；这条消息怎么办', r: '今天'},
+  {id: 'c22', n: '时', t: '再玩五分钟', s: '为什么停不下来、不确定的奖励、什么才叫游戏障碍、开始前就想好怎么停；我们家的游戏公约', r: '2007—今'},
+  {id: 'c23', n: '长', t: '长大以后做什么', s: '做一个游戏要多少种人、方块里练出来的本事、作品集；方块里藏着的二十种工作', r: '今天'},
   {v: '尾声'},
-  {id: 'c24', n: '你', t: '你的世界', s: '一个人做出来、一群人养大、全世界一起玩；你的第一块', r: '今天'}
+  {id: 'c24', n: '你', t: '你的世界', s: '妈妈第一次拿起鼠标、全书时间线、押韵的地方、如果只记六句；我的第一块', r: '1679—今'}
 ];
 const chapPage = {}; { let p = 1; TOC.forEach(x => { if (x.p) p = x.p; if (x.id) chapPage[x.id] = p; }); }
 const href = id => (chapPage[id] === PAGE ? '' : PURL[chapPage[id]]) + '#' + id;
@@ -2178,6 +2206,38 @@ dev('#rsFig', () => {
   $('#rsSlow').addEventListener('click', e => { slow = !slow; e.target.classList.toggle('on', slow); bd.speed(slow ? 600 : 100); });
   $('#rsNum').addEventListener('click', e => { num = !num; e.target.classList.toggle('on', num); bd.nums(num); });
   pick(0);
+});
+
+
+/* ---------- 第三部封面：一周一百六十八小时 ---------- */
+dev('#weekFig', () => {
+  const CAT = [['睡觉', 'var(--blu)'], ['上学', 'var(--ter)'], ['作业', 'var(--pur)'], ['吃饭洗漱', 'var(--stone)'], ['户外运动', 'var(--main)'], ['玩方块游戏', 'var(--zhu)'], ['别的屏幕', 'var(--gold)'], ['自由', 'var(--paper-2)']];
+  const D = ['一', '二', '三', '四', '五', '六', '日'];
+  const g = id => +$('#' + id).value;
+  function draw(){
+    const sleep = g('wkSleep'), hw = g('wkHw'), out = g('wkOut') / 60, gd = g('wkGd') / 60, ge = g('wkGe'), scr = g('wkScr') / 60;
+    const tot = Array(8).fill(0);
+    let h = '';
+    D.forEach((d, i) => {
+      const we = i >= 5;
+      const v = [sleep, we ? 0 : 7.5, we ? hw / 2 : hw, 2.5, out, we ? ge : gd, scr];
+      let used = v.reduce((a, b) => a + b, 0); const free = Math.max(0, 24 - used); v.push(free);
+      const k = used > 24 ? 24 / used : 1;
+      v.forEach((x, j) => tot[j] += x * (j < 7 ? k : 1));
+      h += '<div class="wkrow"><b>周' + d + '</b><span class="wkbar">' + v.map((x, j) => x > 0 ? '<i style="width:' + (x * (j < 7 ? k : 1) / 24 * 100).toFixed(2) + '%;background:' + CAT[j][1] + '" title="' + CAT[j][0] + ' ' + x.toFixed(1) + ' 小时"></i>' : '').join('') + '</span></div>';
+    });
+    $('#wkGrid').innerHTML = h + '<div class="legend">' + CAT.map(c => '<span><i style="background:' + c[1] + '"></i>' + c[0] + '</span>').join('') + '</div>';
+    const game = tot[5], free = tot[7];
+    kv($('#wkKv'), [['一周玩方块游戏', game.toFixed(1) + ' 小时'], ['一周户外运动', tot[4].toFixed(1) + ' 小时'], ['一周完全自由的时间', free.toFixed(1) + ' 小时']]);
+    const tips = [];
+    tips.push(sleep < 9 ? '每晚睡 ' + sleep + ' 小时，少了：六到十二岁的孩子，医生建议每天睡 9 到 12 小时。' : sleep > 12 ? '睡得比建议的还多，周末补觉也别太多。' : '睡眠在 9 到 12 小时之间，很好。');
+    tips.push(out < 1 ? '户外运动每天不到一小时。世界卫生组织建议，孩子平均每天至少活动 60 分钟，最好是跑跑跳跳的那种。' : '每天运动够一小时了。');
+    if (free < 7) tips.push('一周的自由时间不到 7 小时，太满了：人也需要发呆、看闲书、什么都不干的时间。');
+    if (gd > 1) tips.push('平日每天玩超过一小时，作业和睡觉的时间就容易被挤掉。');
+    $('#wkSay').innerHTML = tips.join(' ');
+  }
+  [['wkSleep', v => v + ' 小时'], ['wkHw', v => v + ' 小时'], ['wkOut', v => v + ' 分钟'], ['wkGd', v => v + ' 分钟'], ['wkGe', v => v + ' 小时'], ['wkScr', v => v + ' 分钟']].forEach(s => slider(s[0], s[1], () => { if ($('#wkScr')) draw(); }));
+  draw();
 });
 
 
@@ -2830,6 +2890,253 @@ dev('#codeFig', () => {
   setRange();
   slider('codeN', v => v, show);
   $('#codeRun').addEventListener('click', play);
+});
+
+
+/* ---------- 第十七章：视野距离 ---------- */
+dev('#viewFig', () => {
+  const sv = $('#viewSvg');
+  slider('viewR', v => v + ' 个区块', r => {
+    const n = 2 * r + 1, chunks = n * n, blocks = chunks * 16 * 16 * 384;
+    const W = 300, c = W / 2, cell = (W - 20) / 65;
+    let g = '<rect width="' + W + '" height="' + W + '" fill="var(--paper)"/>';
+    const s = cell * n;
+    g += '<rect x="' + (c - s / 2) + '" y="' + (c - s / 2) + '" width="' + s + '" height="' + s + '" fill="var(--grass)" fill-opacity=".55"/>';
+    if (n <= 33) for (let i = 0; i <= n; i++) { const p = c - s / 2 + i * cell; g += '<line x1="' + p + '" y1="' + (c - s / 2) + '" x2="' + p + '" y2="' + (c + s / 2) + '" stroke="var(--ink-3)" stroke-opacity=".25" stroke-width=".5"/><line y1="' + p + '" x1="' + (c - s / 2) + '" y2="' + p + '" x2="' + (c + s / 2) + '" stroke="var(--ink-3)" stroke-opacity=".25" stroke-width=".5"/>'; }
+    g += '<circle cx="' + c + '" cy="' + c + '" r="3.5" fill="var(--zhu)"/>' + txt(c, c - 8, '你', {s: 11, w: true});
+    const b = cell * 65; g += '<rect x="' + (c - b / 2) + '" y="' + (c - b / 2) + '" width="' + b + '" height="' + b + '" fill="none" stroke="var(--ink-3)" stroke-dasharray="3 3"/>' + txt(c, 12, '最远能调到 32 个区块', {s: 10, c: 'var(--ink-3)'});
+    sv.setAttribute('viewBox', '0 0 ' + W + ' ' + W); sv.innerHTML = g;
+    kv($('#viewKv'), [['往四周能看多远', '约 ' + r * 16 + ' 米'], ['电脑要准备的区块', chunks.toLocaleString() + ' 个'], ['里面的方块格子', '约 ' + fmt(blocks) + ' 个']]);
+    $('#viewSay').textContent = r <= 6 ? '视野比较近，远处会有一圈雾，可是电脑轻松得多。小格那台 8 GB 的 MacBook Air，可以先从这里开始试。' :
+      r <= 12 ? '这是很多电脑的默认范围。如果游戏一卡一卡的，先把这个数调小。' : '视野很远，风景好看，可是电脑要同时准备' + chunks + '个区块，没有风扇的 MacBook Air 很快就会发烫、变慢。';
+  });
+});
+
+
+/* ---------- 第十八章：方块数学课（地板在里面，墙围在地板外面一圈） ---------- */
+dev('#mathFig', () => {
+  const sv = $('#mathSvg'), s = 14;
+  function draw(){
+    const L = +$('#mL').value, W = +$('#mW').value, H = +$('#mH').value;
+    const floor = L * W, per = 2 * (L + W) + 4, wall = per * H, vol = L * W * H;
+    const ox = 13 * s * .866 + 12, oy = 7 * s + 18;
+    const list = [];
+    for (let x = 1; x <= L; x++) for (let z = 1; z <= W; z++) list.push([x, 0, z, 'stone']);
+    for (let y = 0; y < H; y++) for (let x = 0; x <= L + 1; x++) for (let z = 0; z <= W + 1; z++) if (x === 0 || z === 0 || x === L + 1 || z === W + 1) {
+      /* 朝着读者的两面墙只画最下面一层，看得见里面 */
+      if ((x === L + 1 || z === W + 1) && y > 0) continue;
+      const corner = (x === 0 || x === L + 1) && (z === 0 || z === W + 1);
+      list.push([x, y, z, corner ? 'log' : 'plank']);
+    }
+    list.sort((a, b) => (a[0] + a[2]) - (b[0] + b[2]) || a[1] - b[1]);
+    let g = '';
+    list.forEach(b => { const q = isoXY(b[0], b[2], b[1], s, ox, oy); g += cube(q[0], q[1], s, b[3], b[0] * 3 + b[1] * 7 + b[2] * 11); });
+    sv.setAttribute('viewBox', '0 0 ' + ox * 2 + ' ' + (oy + 26 * s * .5 + 6)); sv.innerHTML = g;
+    kv($('#mathKv'), [['地板（面积）', floor + ' 块'], ['墙一圈', per + ' 块'], ['四面墙一共', wall + ' 块'], ['屋子里的空间', vol + ' 格']]);
+    $('#mathSay').innerHTML = '地板是 ' + L + ' × ' + W + ' = <b>' + floor + '</b> 块，这就是“面积”。墙围在地板外面一圈：两条长边 ' + L + ' + ' + L + '，两条短边 ' + W + ' + ' + W + '，再加上四个角（深色的原木），一共 <b>' + per + '</b> 块。忘了四个角，是最常见的错。墙高 ' + H + ' 层，要 ' + per + ' × ' + H + ' = <b>' + wall + '</b> 块。屋子里能装 ' + L + ' × ' + W + ' × ' + H + ' = <b>' + vol + '</b> 格空气，这就是“体积”的意思（五年级会学）。';
+  }
+  ['mL', 'mW', 'mH'].forEach(id => slider(id, v => v + ' 格', () => { if ($('#mH')) draw(); }));
+  draw();
+});
+
+
+/* ---------- 第十九章：比例尺 ---------- */
+dev('#scaleFig', () => {
+  /* [名字, 面积（平方米）, 最高处（米）, 说明] */
+  const P = [['你的卧室', 14, 2.8, '约 4 × 3.5 米'], ['学校操场', 2e4, 15, '约 200 × 100 米，最高的是教学楼'], ['故宫', 7.2e5, 35, '约 961 × 753 米，最高的是太和殿'], ['一个县城', 5e7, 100, '约 50 平方千米，示意'], ['丹麦', 4.3e10, 171, '约 4.3 万平方千米，最高处约 171 米'], ['大不列颠岛及周边', 2.24e11, 1345, '约 22.4 万平方千米，最高的本尼维斯山约 1345 米'], ['中国', 9.6e12, 8849, '约 960 万平方千米，最高的珠穆朗玛峰约 8849 米'], ['整个地球表面', 5.1e14, 8849, '约 5.1 亿平方千米，包括海洋']];
+  const S = [1, 10, 50, 1000];
+  let pi = 2, si = 0;
+  const WORLD = 6e7 * 6e7, HMAX = 384;
+  function draw(){
+    const p = P[pi], sc = S[si], ground = p[1] / (sc * sc), hgt = p[2] / sc, secs = ground;
+    const t = secs < 3600 ? Math.round(secs / 60) + ' 分钟' : secs < 86400 * 2 ? (secs / 3600).toFixed(1) + ' 小时' : secs < 3.156e7 * 2 ? Math.round(secs / 86400) + ' 天' : fmt(secs / 3.156e7) + ' 年';
+    kv($('#scaleKv'), [['地面要铺多少块', fmt(Math.max(1, Math.round(ground))) + ' 块'], ['一秒放一块，铺完要', ground < 60 ? Math.ceil(ground) + ' 秒' : t], ['最高处有多少格', (hgt < 10 ? hgt.toFixed(1) : Math.round(hgt)) + ' 格']]);
+    const fitH = hgt <= HMAX, fitW = p[1] / (sc * sc) <= WORLD;
+    $('#scaleSay').innerHTML = p[0] + '（' + p[3] + '），按 1 格 = ' + sc + ' 米来搭。' +
+      (fitW ? '方块世界放得下。' : '方块世界都放不下！') +
+      (fitH ? '' : ' 可是最高处要 ' + Math.round(hgt) + ' 格，比方块世界从底到顶的 384 格还高，<b>放不下</b>：要么把高度另外缩小，要么用特别的模组。') +
+      (si === 0 && pi >= 4 ? ' 一比一的国家，只能让电脑程序根据地图数据自动生成，没有人能用手一块一块地放。' : '');
+  }
+  btnRow($('#scaleP'), P.map(p => p[0]), pi, i => { pi = i; draw(); });
+  btnRow($('#scaleS'), S.map(s => '1 格 = ' + s + ' 米'), si, i => { si = i; draw(); });
+  draw();
+});
+
+
+/* ---------- 第二十章：方块变模型 ---------- */
+dev('#modelFig', () => {
+  const sv = $('#modelSvg'), s = 16;
+  const B = {
+    house: () => { const r = []; for (let x = 0; x < 5; x++) for (let z = 0; z < 4; z++) { r.push([x, 0, z, 'stone']); } for (let y = 1; y <= 3; y++) for (let x = 0; x < 5; x++) for (let z = 0; z < 4; z++) if (x === 0 || z === 0 || x === 4 || z === 3) r.push([x, y, z, (y === 2 && (x === 2 || z === 2) && x !== 0 && z !== 0) ? 'glass' : 'plank']); for (let x = 0; x < 5; x++) for (let z = 0; z < 4; z++) r.push([x, 4, z, 'log']); return r; },
+    tree: () => { const r = []; for (let y = 0; y < 4; y++) r.push([2, y, 2, 'log']); for (let x = 0; x < 5; x++) for (let z = 0; z < 5; z++) for (let y = 3; y < 5; y++) if (!(x === 2 && z === 2 && y === 3) && !((x === 0 || x === 4) && (z === 0 || z === 4))) r.push([x, y, z, 'leaf']); for (let x = 1; x < 4; x++) for (let z = 1; z < 4; z++) r.push([x, 5, z, 'leaf']); return r; },
+    tower: () => { const r = []; for (let y = 0; y < 7; y++) for (let x = 0; x < 3; x++) for (let z = 0; z < 3; z++) if (x !== 1 || z !== 1) r.push([x, y, z, 'stone']); [[0, 0], [2, 0], [0, 2], [2, 2]].forEach(c => r.push([c[0], 7, c[1], 'stone'])); return r; }
+  };
+  const N = {house: '小房子', tree: '一棵树', tower: '石头塔'};
+  let k = 'house', sc = 1;
+  function draw(){
+    const list = B[k]().sort((a, b) => (a[0] + a[2]) - (b[0] + b[2]) || a[1] - b[1]);
+    const ox = 8 * s * .866 + 10, oy = 8 * s + 14;
+    let g = ''; list.forEach(b => { const q = isoXY(b[0], b[2], b[1], s, ox, oy); g += cube(q[0], q[1], s, b[3], b[0] * 5 + b[1] * 3 + b[2] * 7); });
+    sv.setAttribute('viewBox', '0 0 ' + ox * 2 + ' ' + (oy + 10 * s * .5 + 8)); sv.innerHTML = g;
+    const n = list.length, xs = list.map(b => b[0]), ys = list.map(b => b[1]), zs = list.map(b => b[2]);
+    const dim = [Math.max(...xs) + 1, Math.max(...zs) + 1, Math.max(...ys) + 1].map(v => v * sc);
+    const cm3 = n * sc * sc * sc, gram = cm3 * 1.24 * 0.3;
+    kv($('#modelKv'), [['一共', n + ' 块'], ['做出来的大小', dim.join(' × ') + ' 厘米'], ['折纸方块要剪', n + ' 张展开图'], ['3D 打印大约用料', Math.round(gram) + ' 克']]);
+    $('#modelSay').innerHTML = N[k] + '有 <b>' + n + '</b> 块。按 1 格 = ' + sc + ' 厘米做模型，' + (sc === 1 ? '只有手掌那么大，最适合 3D 打印。' : sc === 2 ? '大概和一本书差不多高。' : '已经有一个小书架那么大了，用纸方块做要剪很久。') + '3D 打印的用料按“外壳实心、里面三成”的常见设置粗算，真实情况看打印机和设置。';
+  }
+  btnRow($('#modelK'), Object.keys(B).map(x => N[x]), 0, i => { k = Object.keys(B)[i]; draw(); });
+  btnRow($('#modelS'), ['1 格 = 1 厘米', '1 格 = 2 厘米', '1 格 = 5 厘米'], 0, i => { sc = [1, 2, 5][i]; draw(); });
+  draw();
+});
+
+
+/* ---------- 第二十一章：这条消息怎么办 ---------- */
+dev('#safeFig', () => {
+  /* [情景, 选项[], 最好的选项序号, 解释] */
+  const Q = [
+    ['服务器里一个陌生人说：“告诉我你的账号和密码，我帮你免费升级成会员。”', ['告诉他，反正是免费的', '不告诉，退出聊天，告诉大人'], 1, '密码只能自己和爸爸妈妈知道。没有任何正规的游戏，会要你把密码告诉另一个玩家。“免费”“送”是骗子最常用的词。'],
+    ['有人发来一个链接：“点这里领取一万个游戏币。”', ['点开看看', '不点，告诉大人'], 1, '这种链接常常是假网站，骗你输入账号密码，或者让你下载带病毒的东西。真的活动，会在游戏的官方页面上写。'],
+    ['一起盖房子的网友问：“你在哪个学校？住哪个小区？”', ['告诉他，我们是朋友', '不说，换个话题；他一直问就告诉大人'], 1, '学校、住址、真名、电话、照片，都是“个人信息”。网上的人你看不见，说自己是十岁的小朋友，也可能是大人。'],
+    ['一个网友说：“我们加个别的聊天软件吧，别让你爸妈知道。”', ['偷偷加', '不加，马上告诉大人'], 1, '“别让爸妈知道”是一个很危险的信号。一个真心对你好的朋友，不会让你瞒着家里人。'],
+    ['有人在聊天里一直骂你、说很难听的话。', ['骂回去', '不理他，屏蔽、举报，告诉大人'], 1, '吵架只会越吵越凶。游戏里可以屏蔽他、举报他（很多版本能直接举报聊天消息），再离开那个服务器。'],
+    ['豆子说：“我在一个网站找到了免费的模组，下载下来就能飞！”', ['赶紧下载', '先请大人一起看看是哪个网站'], 1, '第八章讲过，2023 年就有人把病毒藏进了模组里。下载任何东西之前，先让大人看看来源可靠不可靠。'],
+    ['你辛辛苦苦盖的房子，被一个陌生玩家用炸药炸掉了。', ['去把他的房子也炸了', '截图，告诉服务器的管理员和大人'], 1, '在别人的世界里搞破坏，玩家叫它“恶意破坏”。报复只会让事情更糟；截图留下证据，交给管理员处理。以后可以只和认识的朋友在私人的世界里玩。'],
+    ['游戏里弹出：“充值 648 元，限时送稀有皮肤！”', ['用妈妈的手机付钱', '关掉，想要就和爸妈商量'], 1, '花钱一定要先和爸爸妈妈商量。在中国，未成年人在游戏里充值有限额（第七章讲过）。“限时”是让你来不及想清楚的小把戏。'],
+    ['一个网友说要寄礼物给你，问你家的地址。', ['告诉他', '不说，告诉大人'], 1, '不管对方说得多好听，家里的地址都不能告诉网上的陌生人。'],
+    ['你看到一张让你害怕、不舒服的图片。', ['自己憋着，不敢说', '关掉，告诉信任的大人'], 1, '这不是你的错。看到让你不舒服的东西，马上关掉，告诉爸爸妈妈、老师或者别的你信任的大人。说出来，大人才能帮你。']
+  ];
+  const box = $('#safeBox'); let pick = [];
+  function build(){
+    pick = Q.map(() => null); box.classList.remove('shown');
+    box.innerHTML = Q.map((q, i) => '<div class="qi" data-i="' + i + '">' + (i + 1) + '. ' + q[0] + '<div class="bt">' + (i % 3 === 1 ? [0, 1] : [1, 0]).map(j => '<button class="btn" data-v="' + j + '">' + q[1][j] + '</button>').join('') + '</div><div class="ex"><b>' + (q[1][q[2]]) + '。</b>' + q[3] + '</div></div>').join('');
+    $('#safeSay').textContent = '还没开始。';
+  }
+  box.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    const qi = b.closest('.qi'), i = +qi.dataset.i; pick[i] = +b.dataset.v;
+    $$('button', qi).forEach(x => x.classList.toggle('on', x === b));
+    qi.classList.add('shown1'); qi.classList.toggle('right', pick[i] === Q[i][2]); qi.classList.toggle('wrong', pick[i] !== Q[i][2]);
+    qi.querySelector('.ex').style.display = 'block';
+    const n = pick.filter(x => x !== null).length, ok = pick.filter((x, j) => x === Q[j][2]).length;
+    $('#safeSay').innerHTML = '答了 ' + n + ' / ' + Q.length + ' 题，选对 ' + ok + ' 题。' + (n === Q.length ? (ok === Q.length ? '全对！记住最后一条最重要：拿不准的时候，就告诉大人。' : '选错的那几题，读一读下面的解释。') : '');
+  });
+  $('#safeReset').addEventListener('click', build);
+  build();
+});
+
+
+/* ---------- 第二十二章：我的游戏公约（只存在你自己的浏览器里） ---------- */
+dev('#pactFig', () => {
+  const KEY = 'genesis-block-pact';
+  const F = [
+    {id: 'wd', t: '上学的日子', k: 'one', o: ['不玩', '每天 20 分钟', '每天 30 分钟', '每天 45 分钟', '只有周五玩 1 小时']},
+    {id: 'we', t: '周末和假期', k: 'one', o: ['每天 1 小时', '每天 1 个半小时', '每天 2 小时', '一共 3 小时，自己分']},
+    {id: 'before', t: '开始玩之前，先做完', k: 'many', o: ['作业', '阅读 20 分钟', '户外运动', '收拾书桌']},
+    {id: 'where', t: '在哪儿玩', k: 'one', o: ['客厅', '书房，开着门', '大人在旁边的地方']},
+    {id: 'stop', t: '怎样停下来', k: 'many', o: ['定一个闹钟', '提前 5 分钟提醒自己', '玩到一件事做完就停（盖完一面墙、到家门口）', '不在睡觉前一小时玩']},
+    {id: 'who', t: '和谁一起玩', k: 'one', o: ['只和认识的同学、家人', '自己一个人玩', '公共服务器要先问大人']},
+    {id: 'money', t: '花钱', k: 'one', o: ['不花钱', '每次都先和大人商量']},
+    {id: 'miss', t: '如果没做到', k: 'one', o: ['第二天少玩一次', '一起坐下来重新商量', '先停一周，再试一次']}
+  ];
+  let st = {};
+  try { st = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { st = {}; }
+  F.forEach(f => { if (st[f.id] === undefined) st[f.id] = f.k === 'one' ? 1 : [0]; });
+  if (st.kid === undefined) st.kid = ''; if (st.adult === undefined) st.adult = '';
+  const form = $('#pactForm');
+  form.innerHTML = F.map(f => '<div class="pf"><div class="lab">' + f.t + (f.k === 'many' ? '（可以选几样）' : '') + '</div><div class="btns" data-f="' + f.id + '">' + f.o.map((o, i) => '<button class="btn" data-i="' + i + '">' + o + '</button>').join('') + '</div></div>').join('') +
+    '<div class="pf two"><label class="lab">我的名字<input id="pactKid" type="text" maxlength="12"></label><label class="lab">大人的名字<input id="pactAdult" type="text" maxlength="12"></label></div>';
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} }
+  function draw(){
+    F.forEach(f => $$('[data-f="' + f.id + '"] button', form).forEach((b, i) => b.classList.toggle('on', f.k === 'one' ? st[f.id] === i : st[f.id].includes(i))));
+    const val = f => f.k === 'one' ? f.o[st[f.id]] : (st[f.id].length ? st[f.id].map(i => f.o[i]).join('；') : '（还没选）');
+    $('#pactCard').innerHTML = '<h5>我们家的游戏公约</h5><ol>' + F.map(f => '<li><b>' + f.t + '：</b>' + val(f) + '</li>').join('') + '</ol><p class="sig">签名：' + (esc(st.kid) || '＿＿＿＿') + '　　' + (esc(st.adult) || '＿＿＿＿') + '</p><p class="small">这张公约可以随时一起改。一个月以后，坐下来看看哪一条好用、哪一条不好用。</p>';
+    save();
+  }
+  form.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return; const id = b.parentNode.dataset.f, f = F.find(x => x.id === id), i = +b.dataset.i;
+    if (f.k === 'one') st[id] = i; else { const a = st[id]; st[id] = a.includes(i) ? a.filter(x => x !== i) : a.concat(i).sort(); }
+    draw();
+  });
+  const kid = $('#pactKid'), ad = $('#pactAdult'); kid.value = st.kid; ad.value = st.adult;
+  kid.addEventListener('input', () => { st.kid = kid.value; draw(); }); ad.addEventListener('input', () => { st.adult = ad.value; draw(); });
+  $('#pactClear').addEventListener('click', () => { try { localStorage.removeItem(KEY); } catch (e) {} st = {}; F.forEach(f => st[f.id] = f.k === 'one' ? 1 : [0]); st.kid = st.adult = ''; kid.value = ad.value = ''; draw(); });
+  draw();
+});
+
+
+/* ---------- 第二十三章：方块里藏着的工作 ---------- */
+dev('#jobFig', () => {
+  const A = ['盖房子', '玩红石', '做地图和小游戏', '写命令和代码', '探险和打怪', '画皮肤和材质', '拍视频、讲解', '带朋友一起玩', '种田和养动物', '研究怎样最省力'];
+  /* [工作, 做什么, 要学什么, 和哪些爱好有关(序号)] */
+  const J = [
+    ['建筑师', '设计真的房子：好看、好住、不会塌', '数学、美术、物理，大学读建筑', [0, 9]],
+    ['城市规划师', '决定一座城里哪儿修路、哪儿建学校和公园', '地理、数学、和人打交道，大学读城乡规划', [0, 7, 9]],
+    ['土木工程师', '算清楚桥和大楼要多粗的柱子、多深的地基', '数学、物理，大学读土木工程', [0, 9]],
+    ['室内设计师', '把房间布置得好用又好看', '美术、空间想象', [0, 5]],
+    ['电子工程师', '设计电路板和电器', '数学、物理，大学读电子工程', [1, 9]],
+    ['芯片设计师', '设计电脑和手机里的芯片：几十亿个开关怎样连', '数学、物理、逻辑，大学读微电子或计算机', [1, 3]],
+    ['程序员', '写程序，让电脑做事', '数学、英语、编程，大学读计算机或软件', [3, 1, 9]],
+    ['游戏程序员', '写游戏背后的程序：方块怎样掉、怪物怎样走', '编程、数学', [3, 2]],
+    ['关卡设计师', '设计游戏里的一关一关：哪里难、哪里藏宝', '多玩、多做、会讲故事', [2, 4]],
+    ['游戏美术', '画游戏里的角色、方块、场景', '美术、电脑绘图', [5, 0]],
+    ['音效师和作曲家', '给游戏配音乐和声音', '音乐、录音', [6]],
+    ['测试工程师', '专门找游戏和软件里的错误', '细心、会写清楚问题、编程', [9, 4, 3]],
+    ['数据科学家', '从一大堆数字里找出规律', '数学、统计、编程', [9, 3]],
+    ['人工智能工程师', '训练会“学习”的程序', '数学、编程，大学读计算机或人工智能', [3, 1]],
+    ['机器人工程师', '设计会动的机器', '编程、电子、机械', [1, 3, 9]],
+    ['老师', '把难懂的东西讲给别人听', '先把自己学懂，再学怎样讲', [7, 6]],
+    ['视频创作者', '拍视频、做讲解、写脚本', '会讲故事、剪辑，也要懂网上的规矩', [6, 7]],
+    ['社区管理员', '照看一个游戏或者网站上的玩家，处理吵架和举报', '耐心、公平、会写规则', [7]],
+    ['农学家和生态学家', '研究怎样种好庄稼、照顾动物和环境', '生物、化学', [8, 9]],
+    ['地图测绘员', '用卫星和仪器量出真实世界，画成地图', '地理、数学、电脑', [4, 0]]
+  ];
+  const on = new Set([0, 1]);
+  $('#jobPick').innerHTML = A.map((a, i) => '<button class="btn" data-i="' + i + '">' + a + '</button>').join('');
+  function draw(){
+    $$('#jobPick button').forEach(b => b.classList.toggle('on', on.has(+b.dataset.i)));
+    const r = J.map(j => [j, j[3].filter(x => on.has(x)).length]).filter(x => x[1] > 0).sort((a, b) => b[1] - a[1]);
+    $('#jobList').innerHTML = r.length ? r.map(x => '<div class="job"><b>' + x[0][0] + '</b><span>' + x[0][1] + '</span><small>要学：' + x[0][2] + '　·　和你喜欢的“' + x[0][3].filter(i => on.has(i)).map(i => A[i]).join('、') + '”有关</small></div>').join('') : '<p class="small">先在上面点几样你在游戏里最喜欢做的事。</p>';
+    $('#jobSay').textContent = r.length ? '一共找到 ' + r.length + ' 种工作。它们只是“可能”：你长大以后会变，工作也会变，二十年后还会有今天没有的工作。' : '';
+  }
+  $('#jobPick').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; const i = +b.dataset.i; on.has(i) ? on.delete(i) : on.add(i); draw(); });
+  draw();
+});
+
+
+/* ---------- 尾声：全书时间线 + 你的第一块 ---------- */
+dev('#lineAllFig', () => {
+  /* [年份, 事, 章] */
+  const E = [
+    [1679, '莱布尼茨写下只用 0 和 1 的数法', 'c11'], [1847, '布尔把“并且、或者、不”写成算式', 'c10'], [1918, '两只电子管做成第一个“触发器”', 'c12'],
+    [1937, '香农用布尔代数设计开关电路', 'c10'], [1946, 'ENIAC 每秒做约五千次加法', 'c13'], [1958, '带小圆点的积木申请专利', 'c1'],
+    [2009, '一个瑞典程序员在论坛上发帖：洞穴游戏', 'c2'], [2009, '十欧元一份的测试版开卖', 'c4'], [2010, '红石来了', 'c9'], [2010, '第一台红石运算器', 'c14'],
+    [2010, '万圣节，下界开门', 'c5'], [2011, '拉斯维加斯，正式版 1.0', 'c4'], [2012, '命令方块', 'c15'], [2012, '和联合国一起，居民用方块设计公园', 'c18'],
+    [2013, '树莓派上的免费版，能用 Python', 'c16'], [2013, '大不列颠岛被搬进游戏', 'c19'], [2014, '微软用二十五亿美元买下 Mojang', 'c6'], [2014, '一比一的丹麦', 'c19'],
+    [2016, '网易代理中国版', 'c7'], [2016, '教育版上线', 'c18'], [2020, '一座藏着被禁文章的图书馆', 'c18'], [2021, '世界从 256 格长到 384 格高', 'c5'],
+    [2022, 'Java 版原生支持苹果芯片', 'c17'], [2022, '在方块游戏里玩方块游戏', 'c14'], [2024, '不再投票选新生物', 'c5'], [2025, '一部电影', 'c6'],
+    [2025, '会聊天的红石机器人', 'c14'], [2026, '卖出四亿两千五百万份', 'c0'], [2026, '你翻到了这一页', 'c24']
+  ];
+  const box = $('#allLine'); let part = 0;
+  function draw(){
+    const rows = E.filter(e => !part || chapPage[e[2]] === part);
+    box.innerHTML = rows.map(e => '<li><span class="y">' + e[0] + '</span><span>' + e[1] + '</span><a data-c="' + e[2] + '" href="' + href(e[2]) + '">' + (TOC.find(x => x.id === e[2]) || {}).n + '</a></li>').join('');
+  }
+  btnRow($('#allPart'), ['全部', '第一部 · 土', '第二部 · 电', '第三部 · 门'], 0, i => { part = i; draw(); });
+  draw();
+});
+
+dev('#firstFig', () => {
+  const KEY = 'genesis-block-first';
+  let st = {};
+  try { st = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { st = {}; }
+  const F = [['what', '我想做的第一件东西'], ['where', '在哪儿做（游戏里 / 纸上 / Scratch / 别的）'], ['first', '第一步，这个星期就能做的'], ['help', '要请谁帮忙'], ['show', '做好了，给谁看']];
+  $('#firstForm').innerHTML = F.map(f => '<label class="lab">' + f[1] + '<input type="text" data-k="' + f[0] + '" maxlength="40" value="' + esc(st[f[0]] || '') + '"></label>').join('');
+  function draw(){
+    $('#firstCard').innerHTML = '<h5>我的第一块</h5>' + F.map(f => '<p><b>' + f[1].replace(/（.*）/, '') + '：</b>' + (esc(st[f[0]] || '') || '＿＿＿＿＿＿') + '</p>').join('');
+    try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {}
+  }
+  $('#firstForm').addEventListener('input', e => { const k = e.target.dataset.k; if (k) { st[k] = e.target.value; draw(); } });
+  draw();
 });
 
 })();

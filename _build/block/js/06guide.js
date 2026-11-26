@@ -8,6 +8,7 @@ const G = (() => {
   try { d = JSON.parse(localStorage.getItem(GKEY) || '{}') || {}; } catch (e) { d = {}; }
   ['task', 'quiz', 'srs', 'flag'].forEach(k => { if (!d[k] || typeof d[k] !== 'object' || Array.isArray(d[k])) d[k] = {}; });
   if (!Array.isArray(d.bug)) d.bug = [];
+  if (!Array.isArray(d.custom)) d.custom = [];
   const save = () => { try { localStorage.setItem(GKEY, JSON.stringify(d)); } catch (e) {} refreshAchv(); };
   return {d, save};
 })();
@@ -119,7 +120,7 @@ function addSRS(en, on){ if (on) { if (!G.d.srs[en]) G.d.srs[en] = {b: 0, due: T
 function wordCard(w){
   const en = w[0], col = WCOL[en.replace(/_(wool|dye|concrete)$/, '')];
   const ic = BTMAP[en] ? '<span class="ic">' + blockIcon(BTMAP[en], 26) + '</span>' : col && /_wool$|^[a-z_]+$/.test(en) && WCOL[en] ? '<span class="ic"><span class="swatch" style="background:' + col + ';width:22px;height:22px"></span></span>' : col ? '<span class="ic"><span class="swatch" style="background:' + col + ';width:22px;height:22px"></span></span>' : '';
-  return '<div class="wc" data-en="' + esc(en) + '">' + ic + '<span class="w" data-say="' + esc(en) + '">' + esc(en) + '</span><span class="zh">' + w[1] + '</span>' + (w[3] ? '<span class="nt">' + w[3] + '</span>' : '') +
+  return '<div class="wc" data-en="' + esc(en) + '">' + ic + '<span class="w" data-say="' + esc(en) + '">' + esc(en) + '</span><span class="zh">' + esc(w[1]) + '</span>' + (w[3] ? '<span class="nt">' + esc(w[3]) + '</span>' : '') +
     '<span class="ac"><button data-srs class="' + (inSRS(en) ? 'on' : '') + '">' + (inSRS(en) ? '✓ 在复习台' : '+ 复习') + '</button></span></div>';
 }
 $$('.wgrid[data-cat]').forEach(g => {
@@ -154,7 +155,8 @@ $$('.wgrid[data-cat]').forEach(g => {
    一个词答对一次，就往右挪一格；第 0 格今天再看，第 1 格隔 1 天，第 2 格隔 2 天，然后 4、8、16 天。答错回到第 0 格。 */
 const SRS_GAP = [0, 1, 2, 4, 8, 16];
 function srsBox(box){
-  const W = {}; (typeof WORDS !== 'undefined' ? WORDS : []).forEach(w => W[w[0]] = w);
+  const W = {}; const refreshW = () => { (typeof WORDS !== 'undefined' ? WORDS : []).concat(G.d.custom).forEach(w => W[w[0]] = w); }; refreshW();
+  document.addEventListener('srs-refresh', () => { refreshW(); next(); });
   let mode = 0, cur = null, shown = false;
   box.innerHTML = '<div class="btns" data-m></div><div class="srs"><div class="boxes"></div><div class="card"></div><div class="btns" data-b style="justify-content:center"></div><div class="say"></div></div>';
   const card = $('.card', box), bts = $('[data-b]', box), sayEl = $('.say', box), boxes = $('.boxes', box);
@@ -162,7 +164,7 @@ function srsBox(box){
   function due(){ const t = TODAY(); return Object.keys(G.d.srs).filter(k => W[k] && G.d.srs[k].due <= t); }
   function drawBoxes(){ const c = [0, 0, 0, 0, 0, 0]; Object.keys(G.d.srs).forEach(k => { if (W[k]) c[Math.min(5, G.d.srs[k].b)]++; }); boxes.innerHTML = c.map((n, i) => '<div><b>' + n + '</b>第 ' + i + ' 格' + (i ? '<br>隔 ' + SRS_GAP[i] + ' 天' : '<br>今天') + '</div>').join(''); }
   function next(){
-    drawBoxes(); shown = false;
+    refreshW(); drawBoxes(); shown = false;
     const q = due();
     if (!Object.keys(G.d.srs).length) { cur = null; card.innerHTML = '<div class="zh">复习台还是空的</div><div class="nt">去第七部的词卡上点“+ 复习”，或者点下面的按钮，先放进二十个最常用的词。</div>'; bts.innerHTML = '<button class="btn pri" data-x="starter">放进二十个常用词</button>'; return; }
     if (!q.length) { cur = null; card.innerHTML = '<div class="zh">今天的都复习完了</div><div class="nt">一共 ' + Object.keys(G.d.srs).length + ' 个词在复习台里。明天再来，到时候会有该复习的词。</div>'; bts.innerHTML = '<button class="btn" data-x="more">不过瘾？再加十个新词</button>'; return; }

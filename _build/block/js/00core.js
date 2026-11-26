@@ -20,7 +20,7 @@ function slider(id, f, cb){ const r = $('#' + id), o = $('#' + id + 'O'); const 
 /* ---------- 全书目录（三个网页共用） ---------- */
 const PFILE = ['index', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
 const PAGE = (() => { const m = location.pathname.match(/\/(two|three|four|five|six|seven|eight|nine|ten)\.html/); return m ? PFILE.indexOf(m[1]) + 1 : 1; })();
-const READY = 6; // 已经写好的部数
+const READY = 7; // 已经写好的部数
 const PURL = {}; PFILE.forEach((f, i) => PURL[i + 1] = i ? f + '.html' : './');
 /* 十部：前四部是故事，后六部是指南 */
 const PARTS = [

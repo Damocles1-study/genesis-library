@@ -1,0 +1,103 @@
+<div class="volhead" data-vol="卷十九 · 量">
+  <div class="num">VOLUME NINETEEN · 第八部 · 卷十九</div>
+  <h2>量<small>形状、角度、可能性、快慢</small></h2>
+  <p class="lede">这一卷量四样东西：一块地有多大、转了多少度、一件事有多大可能、跑得有多快。最后用一条两千五百年前的定理，算出“抄近路”能省多少。</p>
+  <svg class="row" aria-hidden="true"></svg>
+</div>
+
+<!-- ============ 第六十三章 · 形 ============ -->
+<section class="chap" id="c63" data-vol="卷十九 · 形">
+  <div class="chead">
+    <div class="big">形</div>
+    <div>
+      <div class="no">第六十三章</div>
+      <h2>面积、周长、体积</h2>
+      <dl><dt>讲什么</dt><dd>地板是面积，围栏是周长；同样多的围栏，围成什么形状地最大；方块画的圆和 π；一个水池要几桶水</dd><dt>本章装置</dt><dd>围一块地 · 方块圆</dd></dl>
+      <div class="sub" data-s="数"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第三十一天</b><span class="pix">WORLD · 我的第一个家</span><span>生存模式</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>我只有 40 根栅栏，想给羊围一块地。围成长长的一条，还是方方的？</span></div>
+      <div class="l"><i class="j">舅</i><span>试试看。栅栏一样多，围出来的地可以差很多。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★</span><span class="dim">★★</span></div><div><b>大约多久</b>45 分钟</div><div><b>要准备</b>方格纸</div><div><b>大人</b>不用</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>分清面积（铺地板要几块）和周长（围一圈要几根）。</li>
+      <li>用同样多的栅栏，围出尽量大的一块地。</li>
+      <li>数出方块画的圆有几块，比一比 π × 半径 × 半径。</li>
+      <li>算出一个水池的体积。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>面积和周长</h3>
+    <p>一块长 6 格、宽 4 格的地：</p>
+    <ul class="plain">
+      <li><b>面积</b>：铺满它要多少块方块？6 × 4 = <b>24</b> 块。</li>
+      <li><b>周长</b>：绕它的边走一圈有多长？6 + 4 + 6 + 4 = <b>20</b> 格。</li>
+    </ul>
+    <p>可是在方块世界里，围栏不能放在“边线”上，只能放在地外面的那一圈格子里。所以围住 6 × 4 的地，要的栅栏是外面那一圈：(6 + 2) × (4 + 2) − 6 × 4 = 48 − 24 = <b>24 根</b>，也就是周长再加上 4 个角。第十八章算墙的块数，用的就是这个：2 × (长 + 宽) + 4。</p>
+  </div>
+
+  <div class="fig" id="fenceFig">
+    <div class="fig-label">装置 · 第六十三章 · 一</div>
+    <h4>围一块地</h4>
+    <p class="how">你有一些栅栏，拖动“长”，宽会自动变成剩下的栅栏能围出来的样子。看看什么时候围出的地最大。</p>
+    <div class="ctl"><span>栅栏</span><input type="range" id="fcN" min="12" max="60" step="2" value="40"><output id="fcNO"></output></div>
+    <div class="ctl"><span>长</span><input type="range" id="fcL" min="1" max="27" value="5"><output id="fcLO"></output></div>
+    <svg id="fcSvg" style="max-width:420px;display:block;margin:6px auto" role="img" aria-label="用栅栏围成的长方形"></svg>
+    <div class="say" id="fcSay"></div>
+  </div>
+
+  <div class="corner" data-k="数">
+    <h5>周长一样，面积可以差很多<span class="gr">学过 · 三年级 周长与面积</span></h5>
+    <p>用 40 根栅栏：围成 1 × 17 的长条，只有 17 格；围成 9 × 9 的正方形，有 81 格。<b>周长相同的长方形里，越接近正方形，面积越大。</b>如果不用方块，用一根绳子围，圆的面积最大（这一章后面的方块圆）。蜜蜂的蜂巢、肥皂泡、水滴，都在用这个道理“省材料”。</p>
+  </div>
+
+  <div class="col">
+    <h3>方块画的圆</h3>
+    <p>方块世界里没有真正的圆，只能用一格一格的方块“拼”出一个看起来圆的形状（像屏幕上的像素）。半径越大，拼得越像。</p>
+    <p>圆的面积有一个公式：<b>π × 半径 × 半径</b>。π（读作“派”）大约是 3.14，它是“圆的一圈有直径的几倍长”。六年级上册会学圆。下面的装置，你可以数一数方块圆有几块，和公式比一比，越大越接近。</p>
+  </div>
+
+  <div class="fig" id="circFig">
+    <div class="fig-label">装置 · 第六十三章 · 二</div>
+    <h4>方块圆</h4>
+    <p class="how">拖动半径。绿色的格子是“中心离圆心不超过半径”的那些。下面比较：一共几块，和 π × r × r 差多少。</p>
+    <div class="ctl"><span>半径 r</span><input type="range" id="ciR" min="1" max="20" value="5"><output id="ciRO"></output></div>
+    <svg id="ciSvg" style="max-width:360px;display:block;margin:6px auto" role="img" aria-label="用方块拼成的圆"></svg>
+    <div class="kv" id="ciKv"></div>
+  </div>
+
+  <div class="col">
+    <h3>水池要几桶水</h3>
+    <p>一个长 5 格、宽 4 格、深 2 格的水池，体积是 5 × 4 × 2 = 40 格。一桶水只能放一格水源。不过方块世界有个小秘密：两格水源中间的空格，会自己生成水源，所以用一个“无限水源”（2 × 2 的小水池），就能舀出无数桶水。第七十章会讲水是怎样流的。</p>
+  </div>
+
+  <div class="task" data-id="t63a">
+    <div class="th"><b>最大的羊圈</b><span class="xp">★★</span></div>
+    <div class="tb">
+      <p>在实验世界里拿 40 根栅栏（<code>/give @s oak_fence 40</code>），先围一个你觉得最大的羊圈，数一数里面有几格。然后在纸上算一算，再改成更大的。别忘了留一扇门（门也算一格栅栏的位置）。</p>
+    </div>
+  </div>
+
+  <div class="pass" data-id="q63">
+    <div class="qq" data-in="24"><p>6 × 4 的地，面积几块？</p><p class="ex">6 × 4 = 24。</p></div>
+    <div class="qq" data-in="20"><p>6 × 4 的长方形，周长是多少？</p><p class="ex">(6 + 4) × 2 = 20。</p></div>
+    <div class="qq" data-a="2"><p>周长相同的长方形，哪种面积最大？</p><ol><li>最长最细的</li><li>随便哪种都一样</li><li>最接近正方形的</li></ol><p class="ex">越接近正方形面积越大。</p></div>
+    <div class="qq" data-in="40"><p>5 × 4 × 2 的水池，体积几格？</p><p class="ex">5 × 4 × 2 = 40。</p></div>
+  </div>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>地板数面积，围栏数周长（外面一圈还要加 4 个角）。</div>
+    <div><i>脑袋<small>带走一样</small></i>同样多的材料，换个形状，能多出好几倍的地方。</div>
+  </div>
+</section>

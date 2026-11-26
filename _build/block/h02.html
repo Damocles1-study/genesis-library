@@ -1,0 +1,118 @@
+<!-- ============ 第六十章 · 负 ============ -->
+<section class="chap" id="c60" data-vol="卷十八 · 负">
+  <div class="chead">
+    <div class="big">负</div>
+    <div>
+      <div class="no">第六十章</div>
+      <h2>负数</h2>
+      <dl><dt>讲什么</dt><dd>数轴；谁大谁小；往上往下就是加和减；减去一个负数；离 0 多远（绝对值）；两个高度差几格</dd><dt>本章装置</dt><dd>高度电梯 · 比大小</dd></dl>
+      <div class="sub" data-s="数 令"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第二十八天</b><span class="pix">WORLD · 我的第一个家</span><span>生存模式</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>我家门口在 y = 70，我在 y = −58 挖到了钻石。我挖了多深？</span></div>
+      <div class="l"><i class="j">舅</i><span>你从 70 往下到 0，是 70 格；再从 0 往下到 −58，又是 58 格。加起来呢？</span></div>
+      <div class="l"><i class="g">格</i><span>128 格！可是算式怎么写？70 − 58 不对啊。</span></div>
+      <div class="l"><i class="j">舅</i><span>算式是 70 − (−58)。减去一个负数……我们今天就弄明白它为什么等于 70 + 58。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★</span><span class="dim">★★</span></div><div><b>大约多久</b>40 分钟</div><div><b>要准备</b>纸和笔</div><div><b>大人</b>不用</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>在数轴上比较两个数的大小，包括负数。</li>
+      <li>把“往上几格”“往下几格”写成加法和减法。</li>
+      <li>算出两个高度之间差几格，包括一个在 0 上面、一个在 0 下面的。</li>
+      <li>说出“绝对值”就是“离 0 多远”。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>竖着的数轴</h3>
+    <p>第四十一章说过，y 是一根竖着的尺子：0 在地下某一层，往上是正，往下是负。把它想成一部电梯：0 是“大厅”，往上 1 楼、2 楼，往下 −1 层、−2 层。</p>
+    <p><b>谁大谁小？在数轴上，越往上（越往右）越大。</b>所以：</p>
+    <ul class="plain">
+      <li>5 &gt; −5：5 楼比地下 5 层高。</li>
+      <li>−2 &gt; −10：地下 2 层比地下 10 层高。数字看起来小，其实<b>更大</b>，因为它离“上面”更近。</li>
+      <li>0 比所有负数都大，比所有正数都小。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>往上是加，往下是减</h3>
+    <p>电梯从 y = −60 往上走 15 层：−60 + 15 = −45。从 y = 10 往下走 25 层：10 − 25 = −15，穿过了 0。在数轴上一格一格地数，就不会错。</p>
+    <p>那“两个高度差几格”呢？用<b>上面的减下面的</b>：</p>
+    <ul class="plain">
+      <li>从 −58 到 70：70 − (−58)。往下想：70 到 0 是 70 格，0 到 −58 是 58 格，一共 128 格。所以 <b>70 − (−58) = 70 + 58 = 128</b>。</li>
+      <li>减去一个负数，等于加上它的“正版”。这是初一数学课上一句很有名的话，你现在已经知道它为什么对了：<em>多走了 0 下面那一段</em>。</li>
+    </ul>
+  </div>
+
+  <div class="fig" id="elevFig">
+    <div class="fig-label">装置 · 第六十章 · 一</div>
+    <h4>高度电梯</h4>
+    <p class="how">绿色的小方块是你。点按钮让电梯上下，下面会写出算式。再试试“挑一个目的地”：电脑说一个高度，你算出要上还是下、走几格。</p>
+    <div class="elev"><svg id="elSvg" role="img" aria-label="一根竖着的数轴，标着你的高度"></svg>
+      <div><div class="btns" id="elBtns"></div><div class="say" id="elSay"></div>
+        <div class="btns"><button class="btn pri" id="elGoal">挑一个目的地</button></div>
+        <div class="inrow" style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><span>要走</span><input type="text" id="elIn" inputmode="numeric" style="width:6em;font-family:var(--f-mono)" aria-label="要走几格，往下写负数"><span>格（往下写负数）</span><button class="btn" id="elGo">走！</button></div>
+        <div class="say" id="elQ"></div></div></div>
+  </div>
+
+  <div class="corner" data-k="数">
+    <h5>绝对值：离 0 多远<span class="gr later">以后学 · 七年级上 有理数</span></h5>
+    <p>−60 和 60，一个在 0 下面、一个在 0 上面，可是它们<b>离 0 一样远</b>，都是 60 格。“离 0 多远”叫<b>绝对值</b>，写成两条竖线：|−60| = 60，|60| = 60。</p>
+    <p>游戏的 <code>distance</code>（第四十八章）就是一种“离得多远”，它永远不会是负数。</p>
+  </div>
+
+  <div class="fig" id="cmpFig">
+    <div class="fig-label">装置 · 第六十章 · 二</div>
+    <h4>比大小</h4>
+    <p class="how">两个高度，哪个更高（更大）？连对十题过关。</p>
+    <div class="btns" id="cmpOps" style="justify-content:center;font-size:22px"></div>
+    <div class="say" id="cmpSay"></div>
+  </div>
+
+  <div class="task" data-id="t60a">
+    <div class="th"><b>挖一口竖井</b><span class="xp">★★</span></div>
+    <div class="tb">
+      <ol>
+        <li>在普通世界（不是超平坦）里，站在地面上，看 F3 记下 y。</li>
+        <li>先在纸上算：挖到 y = −50，要往下挖几格？写成算式。</li>
+        <li>用梯子一格一格往下挖（或者用 <code>/tp ~ -50 ~</code> 直接下去，再 /tp 回来），验证你的答案。</li>
+        <li>算一算：从你家到 y = −50，一共要放几把梯子？</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="pass" data-id="q60">
+    <div class="qq" data-a="0"><p>−3 和 −30，哪个大？</p><ol><li>−3</li><li>−30</li><li>一样大</li></ol><p class="ex">在数轴上，−3 在 −30 的上面（右边），所以 −3 更大。</p></div>
+    <div class="qq" data-in="-45|−45"><p>−60 + 15 = ？</p><p class="ex">从 −60 往上 15 格，到 −45。</p></div>
+    <div class="qq" data-in="128"><p>从 y = −58 到 y = 70，差几格？</p><p class="ex">70 − (−58) = 70 + 58 = 128。</p></div>
+    <div class="qq" data-in="-15|−15"><p>10 − 25 = ？</p><p class="ex">从 10 往下 25 格，穿过 0，到 −15。</p></div>
+    <div class="qq" data-in="64"><p>|−64| = ？（−64 离 0 多远）</p><p class="ex">64。基岩所在的最底层离 0 有 64 格。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>数轴 <span class="en" data-say="number line">number line</span></b>标着 0、正数和负数的一条线。</div>
+    <div><b>绝对值 <span class="en" data-say="absolute value">absolute value</span></b>一个数离 0 有多远，永远不是负的。</div>
+    <div><b>大于 <span class="en" data-say="greater than">greater than</span> &gt;</b>开口朝着大的那个。</div>
+    <div><b>小于 <span class="en" data-say="less than">less than</span> &lt;</b>尖尖朝着小的那个。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>负数在人教版六年级下册入门（认识、读写、比较），七年级上册系统学习有理数的加减乘除与绝对值。“减去一个负数等于加上它的相反数”是孩子最容易卡住的地方，用竖直的高度（电梯、坐标）来理解往往比水平数轴更直观。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>y 越大越高；两个高度差几格 = 上面的 − 下面的。</div>
+    <div><i>脑袋<small>带走一样</small></i>减去一个负数，就是多走了 0 下面那一段，所以等于加上它。</div>
+  </div>
+</section>

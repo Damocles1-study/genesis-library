@@ -1,0 +1,158 @@
+<!-- ============ 第六十二章 · 比 ============ -->
+<section class="chap" id="c62" data-vol="卷十八 · 比">
+  <div class="chead">
+    <div class="big">比</div>
+    <div>
+      <div class="no">第六十二章</div>
+      <h2>分数和比例</h2>
+      <dl><dt>讲什么</dt><dd>下界一格等于主世界八格；合成配方就是比；做 100 个火把要几块原木；一块木板能烧一个半；地图的比例尺</dd><dt>本章装置</dt><dd>下界换算 · 合成计算器 · 燃料账</dd></dl>
+      <div class="sub" data-s="数"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第三十天</b><span class="pix">WORLD · 我的第一个家</span><span>生存模式</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>我要在下界修一条路去豆子家。他家在主世界 x = 800、z = −240。下界里该往哪儿走？</span></div>
+      <div class="l"><i class="j">舅</i><span>下界走 1 格，等于主世界走 8 格。所以都除以 8。</span></div>
+      <div class="l"><i class="g">格</i><span>800 ÷ 8 = 100，−240 ÷ 8 = −30。只要走一百多格！</span></div>
+      <div class="l"><i class="j">舅</i><span>这就是“比”。你还会在工作台、熔炉、地图上碰到它。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★</span><span class="dim">★★</span></div><div><b>大约多久</b>45 分钟</div><div><b>要准备</b>纸和笔</div><div><b>大人</b>不用</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>把主世界坐标换成下界坐标，再换回来。</li>
+      <li>把合成配方写成比，算出做一批东西要多少原料。</li>
+      <li>算出燃料够烧几个，用上“一个半”“半个”这样的分数。</li>
+      <li>看懂地图的 1:2、1:4 是什么意思。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>下界：1 比 8</h3>
+    <p>在下界里，你往东走 1 格，相当于在主世界里往东走 8 格（南北也一样，高度不算）。写成<b>比</b>：下界 : 主世界 = <b>1 : 8</b>。</p>
+    <ul class="plain">
+      <li>主世界 → 下界：x 和 z 都<b>除以 8</b>。</li>
+      <li>下界 → 主世界：x 和 z 都<b>乘以 8</b>。</li>
+      <li>y（高度）不变。</li>
+    </ul>
+    <p>所以在下界修路，比在主世界跑快 8 倍。很多老玩家把家和家之间的路都修在下界。第三十章讲过怎样让两边的传送门连上；这一章专心算数。</p>
+  </div>
+
+  <div class="fig" id="netFig">
+    <div class="fig-label">装置 · 第六十二章 · 一</div>
+    <h4>下界换算</h4>
+    <p class="how">在左边写主世界坐标，或者在右边写下界坐标，另一边会自动算出来，下面写出算式。不能整除的时候，看看游戏会怎样取整。</p>
+    <div class="netw"><div><b>主世界</b><label>x <input type="text" id="ntOx" value="800" inputmode="numeric"></label><label>z <input type="text" id="ntOz" value="-240" inputmode="numeric"></label></div><div class="arr">÷ 8 →<br>← × 8</div><div><b>下界</b><label>x <input type="text" id="ntNx" inputmode="numeric"></label><label>z <input type="text" id="ntNz" inputmode="numeric"></label></div></div>
+    <div class="say" id="ntSay"></div>
+  </div>
+
+  <div class="col">
+    <h3>配方就是比</h3>
+    <p>工作台的每个配方，都是一个比：</p>
+    <ul class="plain">
+      <li>1 块原木 → 4 块木板：原木 : 木板 = 1 : 4。</li>
+      <li>2 块木板 → 4 根木棍：木板 : 木棍 = 2 : 4 = <b>1 : 2</b>（两边同时除以 2，比不变，这叫“化简”）。</li>
+      <li>1 根木棍 + 1 块煤 → 4 个火把。</li>
+      <li>3 个小麦 → 1 个面包。</li>
+      <li>9 个铁锭 ↔ 1 个铁块（能来回换）。</li>
+    </ul>
+    <p>想做 100 个火把，要几块原木？倒着推：100 个火把要 25 根木棍、25 块煤；25 根木棍要合成 7 次（每次 4 根，6 次只有 24 根不够），就是 14 块木板；14 块木板要 4 块原木（每块 4 块木板，3 块只有 12 块不够）。<b>每一步除不尽，都要“往大的方向”取整</b>，还会剩下一些。</p>
+  </div>
+
+  <div class="fig" id="craftFig">
+    <div class="fig-label">装置 · 第六十二章 · 二</div>
+    <h4>合成计算器</h4>
+    <p class="how">选你想做的东西和数量，计算器会倒着推出要多少原料，每一步写出算式，最后告诉你会剩下多少。</p>
+    <div class="btns" id="cfK"></div>
+    <div class="ctl"><span>想要几个</span><input type="range" id="cfN" min="1" max="300" value="100"><output id="cfNO"></output></div>
+    <div class="say" id="cfSay" style="font-size:15.5px"></div>
+  </div>
+
+  <div class="col">
+    <h3>一块木板烧一个半</h3>
+    <p>熔炉要烧燃料。不同的燃料，能烧的东西不一样多（以社区维基为准）：</p>
+    <ul class="plain">
+      <li>1 块煤：烧 <b>8</b> 个</li>
+      <li>1 块木板：烧 <b>1½</b> 个（一个半）</li>
+      <li>1 根木棍：烧 <b>½</b> 个（半个）</li>
+      <li>1 根烈焰棒：烧 12 个</li>
+      <li>1 桶熔岩：烧 100 个</li>
+    </ul>
+    <p>这里第一次出现了<b>分数</b>：“一个半”就是 1½，也可以写成 3/2；“半个”就是 1/2。两根木棍才能烧一个东西：½ + ½ = 1。烧 6 块铁矿，用木板要几块？6 ÷ 1½ = 4 块。</p>
+  </div>
+
+  <div class="fig" id="fuelFig">
+    <div class="fig-label">装置 · 第六十二章 · 三</div>
+    <h4>燃料账</h4>
+    <p class="how">要烧几个东西？用哪种燃料？算算要几块（几根、几桶），会不会浪费。</p>
+    <div class="btns" id="flK"></div>
+    <div class="ctl"><span>要烧几个</span><input type="range" id="flN" min="1" max="128" value="20"><output id="flNO"></output></div>
+    <div class="say" id="flSay"></div>
+  </div>
+
+  <div class="col">
+    <h3>地图的比例尺</h3>
+    <p>一张新做的地图，画的是 128 × 128 格的地方，地图上 1 个小点就是地上 1 格：比例尺 <b>1 : 1</b>。在制图台上加一张纸，地图会缩小一级，画的范围变大一倍：</p>
+    <ul class="plain">
+      <li>1 : 2：1 个点 = 2 × 2 格，画 256 × 256 格</li>
+      <li>1 : 4：画 512 × 512 格</li>
+      <li>1 : 8：画 1024 × 1024 格</li>
+      <li>1 : 16：画 2048 × 2048 格（最大的一级）</li>
+    </ul>
+    <p>真的地图上也有比例尺：1 : 10000 的意思是“图上 1 厘米 = 地上 10000 厘米 = 100 米”。第十九章的一比一丹麦，比例尺就是 1 : 1。</p>
+  </div>
+
+  <div class="corner" data-k="数">
+    <h5>这一章用到了哪些年级的数学<span class="gr">学过 · 三年级 分数初步</span><span class="gr later">以后学 · 六年级 比与比例</span></h5>
+    <ul>
+      <li>分数的初步认识（三年级上）：½、¼。</li>
+      <li>分数的意义、分数加减（五年级）：½ + ½ = 1，1½ = 3/2。</li>
+      <li>比（六年级上）：1 : 8、2 : 4 = 1 : 2。</li>
+      <li>比例和比例尺（六年级下）：地图的 1 : 4。</li>
+      <li>除不尽时往大的方向取整：生活里的“至少要几个”。</li>
+    </ul>
+  </div>
+
+  <div class="task" data-id="t62a">
+    <div class="th"><b>下界高速公路</b><span class="xp">★★★</span></div>
+    <div class="tb">
+      <ol>
+        <li>在实验世界里，选两个相距很远的地方（比如原点和 x = 1600、z = 800）。</li>
+        <li>算出它们在下界里各是哪个坐标。</li>
+        <li>在下界里修一条路，在两头各搭一个传送门。</li>
+        <li>穿过去，看看出来的地方和你算的是不是一样（传送门的连接有一些规则，以第三十章和维基为准）。</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="pass" data-id="q62">
+    <div class="qq" data-in="100"><p>主世界 x = 800，下界里 x 是多少？</p><p class="ex">800 ÷ 8 = 100。</p></div>
+    <div class="qq" data-in="-400|−400"><p>下界 z = −50，回到主世界 z 是多少？</p><p class="ex">−50 × 8 = −400。</p></div>
+    <div class="qq" data-in="1:2|1 : 2|1：2"><p>2 块木板做 4 根木棍，木板 : 木棍化简以后是多少？（写成 a:b）</p><p class="ex">2 : 4，两边都除以 2，是 1 : 2。</p></div>
+    <div class="qq" data-in="4"><p>1 块木板能烧 1½ 个东西。烧 6 个东西要几块木板？</p><p class="ex">6 ÷ 1½ = 4。</p></div>
+    <div class="qq" data-a="2"><p>1 : 4 的地图，画的范围是多少格见方？</p><ol><li>128</li><li>256</li><li>512</li></ol><p class="ex">128 × 4 = 512。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>比 <span class="en" data-say="ratio">ratio</span></b>两个量的关系，写成 1 : 8。</div>
+    <div><b>分数 <span class="en" data-say="fraction">fraction</span></b>½、¼ 这样表示“几分之几”的数。</div>
+    <div><b>比例尺 <span class="en" data-say="scale">scale</span></b>图上的长度和真实长度的比。</div>
+    <div><b>化简 <span class="en" data-say="simplify">simplify</span></b>两边同时除以同一个数，比不变。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>下界与主世界水平坐标 1:8、合成配方、燃料燃烧数（煤 8、木板 1.5、木棍 0.5、烈焰棒 12、熔岩桶 100）、地图缩放等级 0—4（1:1 到 1:16，128 到 2048 格）见社区维基对应条目。传送门坐标换算时游戏的取整与搜索规则较复杂，书中只讲乘除。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>去下界除以 8，回主世界乘以 8；做东西倒着推原料，除不尽往大的取。</div>
+    <div><i>脑袋<small>带走一样</small></i>比说的是“一份对几份”。看懂了比，就能把一个问题放大或缩小。</div>
+  </div>
+</section>

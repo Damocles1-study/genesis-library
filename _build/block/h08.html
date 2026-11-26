@@ -1,0 +1,122 @@
+<!-- ============ 第六十六章 · 速 ============ -->
+<section class="chap" id="c66" data-vol="卷十九 · 速">
+  <div class="chead">
+    <div class="big">速</div>
+    <div>
+      <div class="no">第六十六章</div>
+      <h2>速度和勾股定理</h2>
+      <dl><dt>讲什么</dt><dd>走、跑、潜行、矿车各有多快；路程 = 速度 × 时间；斜着走比横平竖直近多少；3、4、5；两千五百年前的定理；选择器的 distance 是怎么算的</dd><dt>本章装置</dt><dd>赛跑 · 抄近路 · 方块证明</dd></dl>
+      <div class="sub" data-s="数 理"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第三十四天</b><span class="pix">WORLD · 我的第一个家</span><span>生存模式</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>豆子家在我东边 300 格、北边 400 格。我先往东跑 300，再往北跑 400，一共 700 格。</span></div>
+      <div class="l"><i class="j">舅</i><span>要是斜着直接跑过去呢？</span></div>
+      <div class="l"><i class="g">格</i><span>……应该近一点？近多少？</span></div>
+      <div class="l"><i class="j">舅</i><span>正好 500 格，近了 200 格。这是一条两千五百年前就有人知道的规律。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★★</span><span class="dim">★</span></div><div><b>大约多久</b>50 分钟</div><div><b>要准备</b>方格纸、计算器（聚焦搜索就行）</div><div><b>大人</b>不用</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>用“路程 = 速度 × 时间”算出跑一段路要多久。</li>
+      <li>说出直角三角形两条短边和长边的关系：a² + b² = c²。</li>
+      <li>算出两个坐标之间的直线距离。</li>
+      <li>用方块拼出 3、4、5 的证明。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>谁跑得快</h3>
+    <p>据社区维基（不同版本、地形会有出入），在平地上：</p>
+    <ul class="plain">
+      <li>潜行：约 1.3 格/秒</li>
+      <li>走：约 4.3 格/秒（第三十章量过）</li>
+      <li>跑：约 5.6 格/秒</li>
+      <li>矿车在铁轨上：最快约 8 格/秒</li>
+    </ul>
+    <p>“格/秒”就是“每秒走几格”，叫<b>速度</b>。一格是一米，所以也是“米/秒”。四年级上册学的公式：<b>路程 = 速度 × 时间</b>，反过来，<b>时间 = 路程 ÷ 速度</b>。跑 700 格要 700 ÷ 5.6 = 125 秒，大约两分钟。</p>
+  </div>
+
+  <div class="fig" id="raceFig">
+    <div class="fig-label">装置 · 第六十六章 · 一</div>
+    <h4>赛跑</h4>
+    <p class="how">设一段距离，看看四种方式各要多久。点“开跑”，看它们一起出发。</p>
+    <div class="ctl"><span>距离</span><input type="range" id="rcD" min="10" max="1000" step="10" value="300"><output id="rcDO"></output></div>
+    <div class="bars" id="rcBars"></div>
+    <div class="btns"><button class="btn pri" id="rcGo">开跑</button></div>
+    <div class="race" id="rcTrack"></div>
+  </div>
+
+  <div class="col">
+    <h3>抄近路：勾股定理</h3>
+    <p>往东 3 格、往北 4 格，斜着直走过去是几格？画在方格纸上：横着 3、竖着 4，两条边是直角，斜边量出来正好是 <b>5</b>。</p>
+    <p>两千五百多年前，古希腊的毕达哥拉斯学派、更早的古巴比伦人和中国的《周髀算经》都发现了同一个规律：</p>
+    <p class="ni" style="text-align:center;font-size:20px"><b>a² + b² = c²</b></p>
+    <p>直角三角形两条直角边，各自乘自己，加起来，等于斜边乘自己。3 × 3 + 4 × 4 = 9 + 16 = 25 = 5 × 5。中国古人把它叫“勾股定理”：短的直角边叫“勾”，长的叫“股”，斜边叫“弦”，“勾三股四弦五”。</p>
+    <p>小格的问题：300² + 400² = 90000 + 160000 = 250000 = 500²。所以斜着走是 <b>500 格</b>。</p>
+  </div>
+
+  <div class="fig" id="proofFig">
+    <div class="fig-label">装置 · 第六十六章 · 二</div>
+    <h4>方块证明</h4>
+    <p class="how">在直角三角形的每一条边上，用方块搭一个正方形。数一数：两个小正方形的方块数，加起来是不是正好等于大正方形的？换几组数试试，有的能凑整，有的不能。</p>
+    <div class="btns" id="pfBtns"></div>
+    <svg id="pfSvg" style="max-width:420px;display:block;margin:0 auto" role="img" aria-label="三条边上各有一个正方形的直角三角形"></svg>
+    <div class="say" id="pfSay"></div>
+  </div>
+
+  <div class="fig" id="distFig">
+    <div class="fig-label">装置 · 第六十六章 · 三</div>
+    <h4>抄近路</h4>
+    <p class="how">在网格上点两下，选起点和终点。装置会算出：横平竖直走要几格（像在城市里沿着街走），斜着直走要几格（勾股定理），省了多少，跑过去要几秒。</p>
+    <svg id="dtSvg" style="max-width:380px;display:block;margin:0 auto" role="img" aria-label="一张网格，选两个点"></svg>
+    <div class="kv" id="dtKv"></div>
+    <div class="say" id="dtSay"></div>
+  </div>
+
+  <div class="corner" data-k="数">
+    <h5>选择器的 distance，用的就是它<span class="gr later">以后学 · 八年级下 勾股定理</span></h5>
+    <p>第四十八章的 <code>@e[distance=..10]</code>，“离我 10 格以内”，游戏算的是<b>直线距离</b>，而且是三维的：√(dx² + dy² + dz²)。“√”叫<b>平方根</b>（七年级下学）：√25 = 5，因为 5 × 5 = 25。所以“10 格以内”是一个以你为中心、半径 10 的<b>球</b>，不是一个方盒子。</p>
+    <p>第六十四章的问题也解开了：朝“北偏东 30°”走 20 格，往北走了大约 17.3 格，往东 10 格。17.3² + 10² ≈ 300 + 100 = 400 = 20²。</p>
+  </div>
+
+  <div class="task" data-id="t66a">
+    <div class="th"><b>3、4、5 的直角</b><span class="xp">★★</span></div>
+    <div class="tb">
+      <p>古代的木匠和建筑工人，用一根打了 12 个等距绳结的绳子，围成 3、4、5 的三角形，就能得到一个准确的直角（这个用法在好几个古文明里都有记载，具体是谁最先用的，说法不一）。在游戏里：从一点往东放 3 块，往北放 4 块，再数一数两个端点之间斜着隔了几格（用 /tp 和 F3 量）。</p>
+    </div>
+  </div>
+
+  <div class="pass" data-id="q66">
+    <div class="qq" data-in="100"><p>矿车每秒 8 格，800 格要几秒？</p><p class="ex">800 ÷ 8 = 100 秒。</p></div>
+    <div class="qq" data-in="10"><p>往东 6、往北 8，直线距离是多少？</p><p class="ex">6² + 8² = 36 + 64 = 100 = 10²。</p></div>
+    <div class="qq" data-in="13"><p>往东 5、往南 12，直线距离？</p><p class="ex">25 + 144 = 169 = 13²。</p></div>
+    <div class="qq" data-a="1"><p>@e[distance=..10] 选中的范围是什么形状？</p><ol><li>一个方盒子</li><li>一个球</li><li>一条线</li></ol><p class="ex">直线距离 10 以内，是半径 10 的球。</p></div>
+    <div class="qq" data-in="5"><p>√25 = ？</p><p class="ex">5 × 5 = 25，所以 √25 = 5。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>速度 <span class="en" data-say="speed">speed</span></b>每秒走多远。</div>
+    <div><b>勾股定理 <span class="en" data-say="Pythagorean theorem">Pythagorean theorem</span></b>a² + b² = c²。</div>
+    <div><b>平方根 <span class="en" data-say="square root">square root</span></b>√25 = 5。</div>
+    <div><b>直角三角形 <span class="en" data-say="right triangle">right triangle</span></b>有一个角是 90° 的三角形。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>移动速度（潜行约 1.31、行走约 4.317、疾跑约 5.612 格/秒，矿车最高 8 格/秒）见社区维基“移动”“矿车”条目。勾股定理在人教版八年级下册；“勾三股四弦五”见《周髀算经》；古巴比伦泥板 Plimpton 322 记有勾股数。拉绳定直角的说法流传甚广，具体文明与年代的史料并不确凿。目标选择器 distance 按欧几里得距离计算。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>走 4.3、跑 5.6、矿车 8 格/秒；distance 是直线距离。</div>
+    <div><i>脑袋<small>带走一样</small></i>a² + b² = c²：斜着走，比先横后竖近。</div>
+  </div>
+</section>

@@ -1,0 +1,90 @@
+<!-- ============ 第六十四章 · 角 ============ -->
+<section class="chap" id="c64" data-vol="卷十九 · 角">
+  <div class="chead">
+    <div class="big">角</div>
+    <div>
+      <div class="no">第六十四章</div>
+      <h2>角度和朝向</h2>
+      <dl><dt>讲什么</dt><dd>一圈 360 度；直角、平角；量角器；游戏的水平角度从南开始；“北偏东 30°”；钟面上的角</dd><dt>本章装置</dt><dd>方向盘</dd></dl>
+      <div class="sub" data-s="数 令"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第三十二天</b><span class="pix">WORLD · lab</span><span>创造模式</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>F3 上写着 Facing north，后面的数是 −170 点几。为什么北不是 0？</span></div>
+      <div class="l"><i class="j">舅</i><span>游戏把南当成 0。地图和指南针却把北当成 0。两种说法，换一换就好。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★</span><span class="dim">★★</span></div><div><b>大约多久</b>40 分钟</div><div><b>要准备</b>量角器（没有也行）</div><div><b>大人</b>不用</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>说出一圈、半圈、直角各是多少度。</li>
+      <li>把游戏的水平角度和东西南北对上。</li>
+      <li>读懂、说出“北偏东 30°”这种方向。</li>
+      <li>算出钟面上时针和分针的角。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>一圈 360 度</h3>
+    <p>转一整圈是 <b>360°</b>，半圈是 180°（平角），四分之一圈是 <b>90°</b>（直角，就是方块的一个角）。为什么是 360？一个说法是古代巴比伦人觉得一年大约 360 天，而且 360 能被 2、3、4、5、6、8、9、10、12 整除，分起来很方便（第六十一章的“因数”）。</p>
+    <p>量角度的工具叫<b>量角器</b>：半圆形，中心对准角的顶点，一条边对准 0，看另一条边指着几。</p>
+  </div>
+
+  <div class="col">
+    <h3>两种“0 度”</h3>
+    <p>第四十二章讲过，游戏的水平角度：<b>南 0、西 90、北 180、东 −90</b>，往右转数变大。而地图和指南针的习惯是：<b>北 0、东 90、南 180、西 270</b>，叫“方位角”。两种换算很简单：</p>
+    <p class="ni" style="text-align:center"><b>方位角 = 游戏角度 + 180</b>（超过 360 就减去 360）</p>
+    <p>游戏角度 0（南）+ 180 = 180，方位角 180 也是南 ✓。游戏角度 −90（东）+ 180 = 90，方位角 90 是东 ✓。</p>
+  </div>
+
+  <div class="col">
+    <h3>北偏东 30°</h3>
+    <p>六年级上册会学用角度说方向：“北偏东 30°”的意思是，先面朝北，再往东边转 30°。“西偏南 45°”是先面朝西，再往南转 45°，正好是西南。在游戏里：北偏东 30° 的方位角是 30，游戏角度就是 30 − 180 = −150。</p>
+  </div>
+
+  <div class="fig" id="dialFig">
+    <div class="fig-label">装置 · 第六十四章</div>
+    <h4>方向盘</h4>
+    <p class="how">在圆盘上点一下（或者拖动滑块），箭头就指向那里。下面同时显示：游戏角度、F3 上的 Facing、方位角、“北偏东几度”的说法。点“考考我”，按题目把箭头转到对的方向（差 5° 以内算对）。</p>
+    <svg id="dlSvg" style="max-width:320px;display:block;margin:0 auto;touch-action:none" role="img" aria-label="一个可以转的方向盘"></svg>
+    <div class="ctl"><span>游戏角度</span><input type="range" id="dlR" min="-180" max="180" value="-150"><output id="dlRO"></output></div>
+    <div class="kv" id="dlKv"></div>
+    <div class="btns"><button class="btn pri" id="dlQ">考考我</button><button class="btn" id="dlOk">就是这个方向</button></div>
+    <div class="say" id="dlSay"></div>
+  </div>
+
+  <div class="corner" data-k="数">
+    <h5>钟面上的角<span class="gr">学过 · 四年级上 角的度量</span></h5>
+    <p>钟面一圈 360°，12 个大格，每格 360 ÷ 12 = <b>30°</b>。3 点整，时针和分针隔 3 格，是 90°，直角；6 点整，180°，平角。游戏里的时钟（clock）只有一根指针，它转一圈是游戏里的一整天：24000 刻转 360°，每 1000 刻转 15°。</p>
+  </div>
+
+  <div class="task" data-id="t64a">
+    <div class="th"><b>指哪儿打哪儿</b><span class="xp">★★</span></div>
+    <div class="tb">
+      <ol>
+        <li>在实验世界里打 <code>/tp @s ~ ~ ~ -150 0</code>，看 F3：你朝的是北偏东 30° 吗？</li>
+        <li>算一算“西偏南 45°”的游戏角度，用 /tp 转过去验证。</li>
+        <li>用 <code>/tp ^ ^ ^20</code> 往那个方向走 20 格，看 x 和 z 各变了多少。（为什么都不是 20？第六十六章揭晓。）</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="pass" data-id="q64">
+    <div class="qq" data-in="90"><p>直角是多少度？</p><p class="ex">90°，四分之一圈。</p></div>
+    <div class="qq" data-a="1"><p>游戏角度 90 朝哪个方向？</p><ol><li>东</li><li>西</li><li>北</li></ol><p class="ex">南 0、西 90、北 180、东 −90。</p></div>
+    <div class="qq" data-in="270"><p>游戏角度 90（西），方位角是多少？</p><p class="ex">90 + 180 = 270。</p></div>
+    <div class="qq" data-in="-150|−150"><p>“北偏东 30°”的游戏角度？</p><p class="ex">方位角 30，游戏角度 = 30 − 180 = −150。</p></div>
+    <div class="qq" data-in="30"><p>钟面上相邻两个数字之间是几度？</p><p class="ex">360 ÷ 12 = 30。</p></div>
+  </div>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>南 0、西 90、北 180、东 −90；方位角 = 游戏角度 + 180。</div>
+    <div><i>脑袋<small>带走一样</small></i>“0 从哪儿开始数”不同，数字就不同。先问清楚起点。</div>
+  </div>
+</section>

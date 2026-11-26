@@ -1,0 +1,112 @@
+<!-- ============ 第六十五章 · 率 ============ -->
+<section class="chap" id="c65" data-vol="卷十九 · 率">
+  <div class="chead">
+    <div class="big">率</div>
+    <div>
+      <div class="no">第六十五章</div>
+      <h2>概率和统计</h2>
+      <dl><dt>讲什么</dt><dd>一定、可能、不可能；八分之一的鸡蛋；扔得越多越接近；百分数；平均数、中位数、众数；把数画成统计图</dd><dt>本章装置</dt><dd>扔鸡蛋 · 我的统计图</dd></dl>
+      <div class="sub" data-s="数 程"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第三十三天</b><span class="pix">WORLD · 我的第一个家</span><span>生存模式</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>我扔了 16 个鸡蛋，一只小鸡都没有！豆子扔了 5 个就出来两只。游戏是不是不公平？</span></div>
+      <div class="l"><i class="j">舅</i><span>每个鸡蛋孵出小鸡的机会，都是八分之一。16 个蛋，平均会有 2 只，可是“平均”不等于“每次”。我们扔一千个试试。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★</span><span class="dim">★★</span></div><div><b>大约多久</b>45 分钟</div><div><b>要准备</b>纸和笔</div><div><b>大人</b>不用</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>用“一定、可能、不可能”说一件事，用分数和百分数说“有多可能”。</li>
+      <li>说出为什么扔得越多，结果越接近八分之一。</li>
+      <li>算出一组数的平均数、中位数和众数。</li>
+      <li>挑一种合适的统计图，把自己的数据画出来。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>有多可能</h3>
+    <p>“明天太阳从东边升起”是<b>一定</b>的；“扔一个鸡蛋孵出小鸡”是<b>可能</b>的；“挖泥土挖出钻石”是<b>不可能</b>的。五年级上册的“可能性”讲的就是这些。</p>
+    <p>“可能”有大有小。据社区维基，在 Java 版里扔出一个鸡蛋，有 <b>1/8</b> 的机会孵出一只小鸡（孵出来的里面，又有 1/32 的机会一下子出来 4 只）。挖沙砾，有大约 <b>1/10</b> 的机会掉燧石（第三十章）。</p>
+    <p>1/8 也可以写成<b>百分数</b>：1 ÷ 8 = 0.125 = <b>12.5%</b>，意思是“每 100 次里大约 12.5 次”。百分数六年级上册学。</p>
+  </div>
+
+  <div class="fig" id="eggFig">
+    <div class="fig-label">装置 · 第六十五章 · 一</div>
+    <h4>扔鸡蛋</h4>
+    <p class="how">每扔一个蛋，电脑掷一次“八面骰子”，掷出 1 就孵出小鸡（再有 1/32 的机会出来 4 只）。先扔 16 个看看，再扔 1000 个。折线是“到现在为止，孵出的比例”，看它最后停在哪儿。最下面的直方图：每次扔 16 个蛋、重复 300 次，孵出几只的次数。</p>
+    <div class="btns"><button class="btn" data-e="1">扔 1 个</button><button class="btn" data-e="16">扔 16 个</button><button class="btn" data-e="100">扔 100 个</button><button class="btn pri" data-e="1000">扔 1000 个</button><button class="btn" data-e="0">重来</button></div>
+    <div class="kv" id="egKv"></div>
+    <svg id="egLine" role="img" aria-label="孵出比例随扔的次数变化的折线"></svg>
+    <div class="btns"><button class="btn" id="egHist">每次 16 个，重复 300 次</button></div>
+    <div class="bars" id="egBars"></div>
+    <div class="say" id="egSay"></div>
+  </div>
+
+  <div class="corner" data-k="数">
+    <h5>扔得越多，越接近<span class="gr later">以后学 · 九年级上 概率初步</span></h5>
+    <p>扔 16 个，可能一只都没有，也可能有四只，都很正常。扔 1000 个，孵出的比例会很接近 12.5%。<b>次数越多，实际的比例越接近理论上的概率</b>，数学家叫它“大数定律”。所以豆子运气好不代表游戏不公平：样本太少，说明不了什么。</p>
+    <p>这也是做实验的道理：第二十七章做控制变量实验时，每种设置要多试几次，取平均。</p>
+  </div>
+
+  <div class="col">
+    <h3>平均数、中位数、众数</h3>
+    <p>小格记下了自己一周七天每天挖到的钻石：<code>2, 0, 3, 1, 0, 9, 0</code>。“一般来说一天挖几个”有三种说法：</p>
+    <ul class="plain">
+      <li><b>平均数</b>（四年级下）：加起来除以天数，15 ÷ 7 ≈ 2.1 个。</li>
+      <li><b>中位数</b>（六年级）：从小到大排好，取正中间那个：0, 0, 0, <b>1</b>, 2, 3, 9 → 1 个。</li>
+      <li><b>众数</b>：出现得最多的那个数：<b>0</b>（三天）。</li>
+    </ul>
+    <p>那天挖到 9 个是因为碰到了一个大矿脉，它把平均数拉高了。<b>有一个特别大或特别小的数时，中位数更能说明“一般情况”</b>。第三十五章的按键反应，偶尔一次看错，也会把平均拉高。</p>
+  </div>
+
+  <div class="fig" id="statFig">
+    <div class="fig-label">装置 · 第六十五章 · 二</div>
+    <h4>我的统计图</h4>
+    <p class="how">把你自己的一组数写进去（用逗号或空格隔开）：每天挖到几个钻石、每天玩了几分钟、每次按键反应的毫秒数……装置会算出平均数、中位数、众数，再画成条形图。</p>
+    <input type="text" id="stIn" value="2, 0, 3, 1, 0, 9, 0" autocomplete="off" aria-label="一组数">
+    <div class="kv" id="stKv"></div>
+    <div class="bars" id="stBars"></div>
+    <div class="say" id="stSay"></div>
+  </div>
+
+  <div class="corner" data-k="数">
+    <h5>挑哪一种统计图<span class="gr">学过 · 二年级 / 四年级 条形统计图</span><span class="gr later">以后学 · 五年级下 折线 / 六年级 扇形</span></h5>
+    <ul>
+      <li><b>条形图</b>：比一比谁多谁少（每天挖了几个）。</li>
+      <li><b>折线图</b>：看一样东西怎样随时间变（上面扔鸡蛋的比例；第四部卖了多少份）。</li>
+      <li><b>扇形图</b>（饼图）：看各部分占整体的多少（一天的时间怎样分）。</li>
+    </ul>
+  </div>
+
+  <div class="task" data-id="t65a">
+    <div class="th"><b>真的扔一百个蛋</b><span class="xp">★★</span></div>
+    <div class="tb">
+      <ol>
+        <li>在实验世界里 <code>/give @s egg 96</code>，分六次扔，每次 16 个，记下每次孵出几只。</li>
+        <li>算出六次的平均数和中位数。</li>
+        <li>96 个蛋一共孵出几只？占百分之几？离 12.5% 远不远？</li>
+        <li>用“我的统计图”把六次的结果画出来。</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="pass" data-id="q65">
+    <div class="qq" data-in="12.5|12.5%"><p>1/8 是百分之几？</p><p class="ex">1 ÷ 8 = 0.125 = 12.5%。</p></div>
+    <div class="qq" data-in="2"><p>每个蛋 1/8 的机会孵出小鸡，扔 16 个，平均会有几只？</p><p class="ex">16 × 1/8 = 2。平均是 2，但每次可能多也可能少。</p></div>
+    <div class="qq" data-in="3"><p>1, 3, 3, 4, 9 的中位数是多少？</p><p class="ex">排好以后正中间是 3。</p></div>
+    <div class="qq" data-in="4"><p>1, 3, 3, 4, 9 的平均数是多少？</p><p class="ex">(1 + 3 + 3 + 4 + 9) ÷ 5 = 20 ÷ 5 = 4。</p></div>
+    <div class="qq" data-a="1"><p>想看“一周里每天玩游戏的时间怎样变化”，用哪种图最合适？</p><ol><li>扇形图</li><li>折线图</li><li>不用画图</li></ol><p class="ex">随时间变化用折线图。</p></div>
+  </div>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>鸡蛋 1/8、沙砾约 1/10。运气好坏要看很多次。</div>
+    <div><i>脑袋<small>带走一样</small></i>样本太少别下结论；有特别大的数时，看中位数。</div>
+  </div>
+</section>

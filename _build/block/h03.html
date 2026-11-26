@@ -1,0 +1,141 @@
+<!-- ============ 第六十一章 · 乘 ============ -->
+<section class="chap" id="c61" data-vol="卷十八 · 乘">
+  <div class="chead">
+    <div class="big">乘</div>
+    <div>
+      <div class="no">第六十一章</div>
+      <h2>乘法和 2 的幂</h2>
+      <dl><dt>讲什么</dt><dd>一箱子装满有多少个；把乘法拆开算（分配律）；为什么是 64 不是 60；2、4、8、16、32、64……；乘方的写法；因数：64 能平分给几个人</dd><dt>本章装置</dt><dd>装满了多少个 · 2 的幂阶梯 · 平分</dd></dl>
+      <div class="sub" data-s="数 程"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>寒假第二十九天</b><span class="pix">WORLD · 我的第一个家</span><span>生存模式</span></div>
+    <div class="bd">
+      <div class="l"><i class="g">格</i><span>我的大箱子装满了圆石，到底有多少个？54 格，每格 64 个……</span></div>
+      <div class="l"><i class="j">舅</i><span>两位数乘两位数，你三年级学过。不过有个窍门：64 是 8 乘 8，也是 2 乘了六次。游戏里的很多数都是 2 乘来乘去得来的。</span></div>
+      <div class="l"><i class="g">格</i><span>为什么不用 60 或者 100？</span></div>
+      <div class="l"><i class="j">舅</i><span>因为电脑喜欢 2。还记得第十一章吗？电脑只会数 0 和 1。</span></div>
+    </div>
+  </div>
+
+  <div class="lvl"><div><b>难度</b><span class="st">★★</span><span class="dim">★★</span></div><div><b>大约多久</b>45 分钟</div><div><b>要准备</b>纸和笔</div><div><b>大人</b>不用</div></div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li>算出快捷栏、物品栏、箱子、大箱子装满一共多少个。</li>
+      <li>用“拆开再加”的办法算 64 × 27 这样的乘法。</li>
+      <li>背出 2 的幂到 1024，认出游戏里的 16、64、512、32768。</li>
+      <li>写出 2⁶ = 64，说出“乘方”是什么意思。</li>
+      <li>说出 64 能平分给几个人：64 的因数。</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>装满了多少个</h3>
+    <ul class="plain">
+      <li>快捷栏 9 格：9 × 64 = <b>576</b></li>
+      <li>物品栏 36 格（含快捷栏）：36 × 64 = <b>2304</b></li>
+      <li>箱子 27 格：27 × 64 = <b>1728</b></li>
+      <li>大箱子 54 格：54 × 64 = <b>3456</b></li>
+    </ul>
+    <p>怎么算 27 × 64？把一个数<b>拆开</b>：27 × 64 = 27 × 60 + 27 × 4 = 1620 + 108 = 1728。这叫<b>乘法分配律</b>（四年级下册学）。还有一个更巧的拆法：64 = 8 × 8，所以 27 × 64 = 27 × 8 × 8 = 216 × 8 = 1728。拆法不止一种，挑你算得最顺手的。</p>
+  </div>
+
+  <div class="fig" id="fullFig">
+    <div class="fig-label">装置 · 第六十一章 · 一</div>
+    <h4>装满了多少个</h4>
+    <p class="how">选一个容器和一种东西，看看装满是多少个，下面会写出两种拆开算的办法。</p>
+    <div class="btns" id="fuBox"></div>
+    <div class="btns" id="fuItem"></div>
+    <div class="say" id="fuSay" style="font-size:16px"></div>
+  </div>
+
+  <div class="col">
+    <h3>2、4、8、16、32、64</h3>
+    <p>从 1 开始，一直乘 2：1、2、4、8、16、32、64、128、256、512、1024……这串数叫 <b>2 的幂</b>。在方块世界里，它们到处都是：</p>
+    <ul class="plain">
+      <li><b>16</b>：一个区块的边长；鸡蛋、雪球一组 16 个。</li>
+      <li><b>64</b>：一组。</li>
+      <li><b>128</b>：一张地图（最小的那种）的边长是 128 格；很早以前，世界只有 128 格高。</li>
+      <li><b>256</b>：后来世界长到 256 格高。</li>
+      <li><b>512</b>：一个 region 文件管 512 × 512 格（第三十八章）。</li>
+      <li><b>32768</b>：/fill 一次最多填的格数（第四十七章）。</li>
+    </ul>
+    <p>为什么？因为电脑里的数是用 0 和 1 记的（第十一章的二进制）。在二进制里，2 的幂是最“整”的数：64 写成 1000000，就像十进制里的 100 一样整齐。用这些数，电脑算起来最快、最省地方。</p>
+  </div>
+
+  <div class="fig" id="powFig">
+    <div class="fig-label">装置 · 第六十一章 · 二</div>
+    <h4>2 的幂阶梯</h4>
+    <p class="how">拖动滑块：2 乘自己几次？右边是二进制的样子，下面是它在游戏或电脑里出现在哪儿。</p>
+    <div class="ctl"><span>乘几次</span><input type="range" id="powN" min="0" max="31" value="6"><output id="powNO"></output></div>
+    <div class="kv" id="powKv"></div>
+    <div class="say" id="powSay"></div>
+  </div>
+
+  <div class="corner" data-k="数">
+    <h5>乘方：把“乘好几次”写短<span class="gr later">以后学 · 七年级上 有理数的乘方</span></h5>
+    <p>2 × 2 × 2 × 2 × 2 × 2 太长了，数学家把它写成 <b>2⁶</b>，读作“2 的 6 次方”。下面那个大的 2 叫<b>底数</b>，右上角小小的 6 叫<b>指数</b>，意思是“乘几次”。所以：</p>
+    <ul>
+      <li>2⁴ = 16，2⁶ = 64，2⁹ = 512，2¹⁵ = 32768。</li>
+      <li>3³ = 27：箱子是 3 行 9 列 = 27 格，27 也正好是 3 的 3 次方。</li>
+      <li>10² = 100，10³ = 1000：十进制的“整数”也是乘方。</li>
+    </ul>
+    <p>在电脑和 Python 里，乘方写成 <code>2**6</code>（两个星号）。你可以在聚焦搜索里试试打 <code>2^6</code>。</p>
+  </div>
+
+  <div class="real">
+    <h5>棋盘上的米</h5>
+    <p>有一个流传很广的故事：古时候有人发明了国际象棋，国王要赏他。他说：棋盘第一格放 1 粒米，第二格 2 粒，第三格 4 粒，每格翻一倍，放满 64 格就行。国王以为很少，结果全国的米都不够：最后一格要放 2⁶³ 粒，大约九百二十亿亿粒（922 后面还跟着 16 个 0）。故事是传说（<b>存疑</b>，有好几个版本），可是数学是真的：<em>一直翻倍，长得比你想象的快得多</em>。第五十八章的复习台，间隔也是一直翻倍的。</p>
+  </div>
+
+  <div class="col">
+    <h3>64 能平分给几个人</h3>
+    <p>为什么一组是 64 而不是 60？还有一个好处：64 能被 2、4、8、16、32 整除，分东西很方便：一组钻石平分给 2 个、4 个、8 个人，都没有剩下的。能把一个数整除的数，叫它的<b>因数</b>（五年级下册学）。64 的因数是 1、2、4、8、16、32、64。60 的因数更多（1、2、3、4、5、6、10、12、15、20、30、60），所以一小时是 60 分钟，分成一半、三分之一、四分之一都整齐。两种“好分”，一种适合电脑，一种适合人。</p>
+  </div>
+
+  <div class="fig" id="divFig">
+    <div class="fig-label">装置 · 第六十一章 · 三</div>
+    <h4>平分</h4>
+    <p class="how">选一个数，再选分给几个人，看看能不能分完、每人几个、剩几个。下面列出这个数所有的因数。</p>
+    <div class="btns" id="dvN"></div>
+    <div class="ctl"><span>几个人</span><input type="range" id="dvP" min="1" max="20" value="3"><output id="dvPO"></output></div>
+    <div class="say" id="dvSay"></div>
+  </div>
+
+  <div class="task" data-id="t61a">
+    <div class="th"><b>仓库清点</b><span class="xp">★★</span></div>
+    <div class="tb">
+      <p>打开你生存世界里的一个箱子，数一数每种东西有几组、几个，算出这个箱子里一共有多少个东西。用两种方法算（一格一格加、先乘再加），看看结果是不是一样。</p>
+    </div>
+  </div>
+
+  <div class="pass" data-id="q61">
+    <div class="qq" data-in="1728"><p>一个箱子 27 格，装满一组 64 个的圆石，一共多少个？</p><p class="ex">27 × 64 = 1728。可以拆成 27 × 60 + 27 × 4。</p></div>
+    <div class="qq" data-in="512"><p>2⁹ = ？</p><p class="ex">2、4、8、16、32、64、128、256、512：九个 2 相乘是 512。</p></div>
+    <div class="qq" data-in="6"><p>64 = 2 的几次方？</p><p class="ex">2⁶ = 64。</p></div>
+    <div class="qq" data-a="1"><p>下面哪个数不是 64 的因数？</p><ol><li>8</li><li>6</li><li>16</li></ol><p class="ex">64 ÷ 6 = 10 余 4，除不尽。</p></div>
+    <div class="qq" data-in="576"><p>快捷栏 9 格全是一组一组的方块，一共几个？</p><p class="ex">9 × 64 = 576。</p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>乘方 <span class="en" data-say="power">power</span></b>同一个数乘好几次，写成 2⁶。</div>
+    <div><b>指数 <span class="en" data-say="exponent">exponent</span></b>右上角那个小数字：乘几次。</div>
+    <div><b>分配律 <span class="en" data-say="distributive law">distributive law</span></b>(a + b) × c = a × c + b × c。</div>
+    <div><b>因数 <span class="en" data-say="factor">factor</span></b>能把一个数整除的数。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>堆叠 64、区块 16、地图 128（0 级缩放）、region 512、/fill 上限 32768 见社区维基。乘法分配律在人教版四年级下册，因数和倍数在五年级下册，乘方在七年级上册。棋盘麦粒的故事流传版本众多，来源无法确证，书中标为传说。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>箱子 1728、大箱子 3456、物品栏 2304。16、64、512、32768 都是 2 的幂。</div>
+    <div><i>脑袋<small>带走一样</small></i>乘法可以拆开算；一直翻倍，长得比想象的快。</div>
+  </div>
+</section>

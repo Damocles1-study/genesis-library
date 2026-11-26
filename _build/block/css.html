@@ -495,3 +495,48 @@ details.adult ul{padding-left:1.2em;margin:.4em 0}
 :root[data-theme="dark"] .save .hd{background:#2b2e27;color:var(--ink)}
 :root[data-theme="dark"] .try .h{background:color-mix(in srgb,var(--main) 22%,var(--card));color:var(--ink)}
 :root[data-theme="dark"] .save{border-color:#4a4e44}
+
+/* ---------- 第二部：电路板、真值表、加法器、命令台、代码积木 ---------- */
+.rsb{width:100%;max-width:560px;display:block;margin:0 auto;touch-action:manipulation;user-select:none;-webkit-user-select:none;background:var(--paper);border:1px solid var(--rule);border-radius:4px}
+.rsb .hit{cursor:pointer}
+.rsb .hit:hover{fill:var(--hl)}
+.fig .lab2{font-size:13px;color:var(--ink-3);margin:10px 0 2px}
+table.t.tt{min-width:0;max-width:420px;margin:8px 0}
+.tt td,.tt th{text-align:center!important}
+.tt tr.now td{background:var(--hl)}
+.tt .y1{color:var(--zhu)}.tt .y0{color:var(--ink-3);font-weight:400}
+.adder{display:grid;grid-template-columns:4.2em repeat(5,minmax(0,1fr));gap:6px;max-width:440px;margin:8px 0;align-items:center}
+.adder .lab{font-size:13px;color:var(--ink-3);margin:0}
+.adder .hd{text-align:center;font-family:var(--f-mono);font-size:13px;color:var(--ink-3)}
+.adder .bit{font-family:var(--f-pix);font-size:20px;text-align:center;border:2px solid var(--rule);border-radius:3px;padding:4px 0;background:var(--paper);color:var(--ink-3);line-height:1.4}
+.adder button.bit{cursor:pointer}
+.adder .bit.on{background:var(--rs);border-color:var(--zhu);color:#fff}
+.adder .bit.out.on{background:#f4c94a;border-color:#a8730c;color:#3a2a00}
+.adder .cr{text-align:center;font-size:12px;color:var(--zhu);min-height:1.4em}
+.lineS{width:100%;max-width:440px;display:block;margin:0 auto}
+.clkrow{display:flex;gap:10px;margin:8px 0 4px}
+.clk{width:34px;height:34px;border-radius:4px;background:var(--stn-2);border:1px solid var(--ink-3)}
+.clk.on{background:#f4c94a;box-shadow:0 0 12px #f4c94a;border-color:#a8730c}
+.cmd{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
+.cmd svg{width:100%;border-radius:4px}
+.cmdline{display:flex;gap:6px;margin:6px 0}
+.cmdline input{flex:1;min-width:0;font-family:var(--f-mono);font-size:14px;padding:6px 8px;border:2px solid var(--ink-3);border-radius:3px;background:#1d1f1b;color:#e9e6d8}
+.cmdlog{list-style:none;margin:8px 0;padding:0;font-size:13.5px;line-height:1.55}
+.cmdlog li{border-left:3px solid var(--main);padding:3px 8px;margin:4px 0;background:var(--paper)}
+.cmdlog li.bad{border-left-color:var(--zhu)}
+.cmdlog code{display:block;font-family:var(--f-mono);font-size:12.5px;color:var(--ink-2);word-break:break-all}
+.code{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
+.code svg{width:100%}
+.cb{border-radius:6px;padding:6px 10px;margin:4px 0;font-size:14px;line-height:1.6;color:#fff}
+.cb b{background:rgba(255,255,255,.88);color:#222;border-radius:9px;padding:0 6px;font-weight:700;font-family:var(--f-mono);font-size:13px}
+.cb.hat{background:#b8860b;border-radius:14px 14px 6px 6px}
+.cb.loop{background:#c16a12}
+.cb.put{background:#2f6a9a}
+.cb .in{margin:6px 0 2px 14px;border-left:4px solid rgba(0,0,0,.18);padding-left:4px}
+pre.py{font-family:var(--f-mono);font-size:13px;line-height:1.6;background:#1d1f1b;color:#e9e6d8;border-radius:4px;padding:10px 12px;margin:6px 0;white-space:pre;overflow-x:auto}
+@media (max-width:640px){
+  .cmd,.code{grid-template-columns:1fr}
+  .adder{grid-template-columns:3.4em repeat(5,minmax(0,1fr));gap:4px}
+  .adder .bit{font-size:17px}
+}
+.col code,.save code,.fig .how code,.figcap code,.try code,.gone code,details.adult code{font-family:var(--f-mono);font-size:.88em;background:var(--paper-2);padding:0 4px;border-radius:3px;word-break:break-all}

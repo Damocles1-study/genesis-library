@@ -1,0 +1,132 @@
+
+<!-- ============ 第十六章 · 码 ============ -->
+<section class="chap" id="c16" data-vol="卷四 · 码">
+  <div class="chead">
+    <div class="big">码</div>
+    <div>
+      <div class="no">第十六章</div>
+      <h2>用代码搭房子</h2>
+      <dl><dt>讲什么</dt><dd>编程课上的积木和方块游戏接上了；一个会听程序指挥的小机器人；树莓派上的免费版和 Python；三行代码盖一座塔</dd><dt>本章装置</dt><dd>几行代码盖一座塔</dd></dl>
+      <div class="inv" data-a="码 造 人"></div>
+      <div class="yrs" data-a="2013" data-b="2026"></div>
+    </div>
+  </div>
+
+  <div class="save">
+    <div class="hd"><b>周三晚上</b><span class="pix">NO WORLD · 编程课</span><span>在 MacBook Air 上</span></div>
+    <div class="bd">
+      <div class="l act">小格在上网课，屏幕上是一块一块彩色的积木：“当绿旗被点击”“重复 10 次”“移动 10 步”。小猫在舞台上转圈。</div>
+      <div class="l"><i class="g">格</i><span>舅舅，编程课好无聊，天天让小猫转圈。</span></div>
+      <div class="l"><i class="j">舅</i><span>那要是让它不转圈，改成在方块世界里盖一座塔呢？</span></div>
+      <div class="l"><i class="g">格</i><span>还能这样？！</span></div>
+      <div class="l"><i class="j">舅</i><span>能。你课上学的“重复”“如果”“变量”，和游戏里用代码搭房子，是一模一样的东西。你用手一块一块放，盖一座二十层的塔要点二十下；写三行代码，点一下就好了。</span></div>
+      <div class="l"><i class="g">格</i><span>那盖一百层呢？</span></div>
+      <div class="l"><i class="j">舅</i><span>把 20 改成 100。</span></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>你在编程课上学的东西</h3>
+    <p>很多小朋友的第一门编程课，用的是一块一块能拖来拖去的彩色积木：把“移动 10 步”拖到“重复 10 次”里面，小猫就会走一百步。这种方法叫<b>积木编程</b>（也叫图形化编程），积木的形状决定了它们能不能卡在一起，所以几乎不会写错。</p>
+    <p>积木编程里最重要的几个想法，在方块游戏里全都用得上：</p>
+    <ul class="plain">
+      <li><b>重复</b>（也叫循环）：同一件事做很多遍。盖塔就是“放一块，往上一格”重复二十遍。</li>
+      <li><b>变量</b>：一个能变的数，起一个名字。比如 i 从 0 数到 19，第 i 次就把方块放在高度 i 的地方。</li>
+      <li><b>如果</b>（也叫条件）：如果前面是水，就搭一座桥；不是，就往前走。第十章的逻辑门，就是“如果”的老祖宗。</li>
+      <li><b>坐标</b>：上一章的 x、y、z，告诉程序方块放在哪儿。</li>
+    </ul>
+
+    <h3>一个会听程序的小机器人<span class="y">2015 起</span></h3>
+    <p>2015 年底，一个推广编程的组织和《我的世界》合作，做了一套免费的网页编程小课：画面是方块世界，玩家拖积木，指挥一个小人去砍树、挖矿、躲开岩浆。它在网页里就能玩，不用装游戏，很多学校的计算机课都用过。</p>
+    <p>后来，专门给学校用的“<b>教育版</b>”里，加了一个会听程序指挥的小机器人，叫“智能体”（Agent）。在游戏里按一个键，旁边会打开一个积木编程的窗口，积木和你课上用的很像。你写好程序，小机器人就照着去走路、放方块、挖地道、种庄稼。积木写熟了，还可以一键切换成用文字写的 Python 或者 JavaScript，看看同一个程序换成“文字代码”是什么样子。</p>
+  </div>
+
+  <div class="real">
+    <h5>树莓派上的免费版</h5>
+    <p>2013 年初，英国有一种只有信用卡那么大、很便宜的小电脑，叫<b>树莓派</b>，是专门为了让孩子学编程而做的。Mojang 为它做了一个免费的特别版《我的世界》，叫 Pi Edition（树莓派版）。</p>
+    <p>它的玩法很少，只有创造模式，可是它带了一个其他版本都没有的东西：一套能用 <b>Python</b> 控制游戏的接口。孩子们写几行 Python，就能在游戏里瞬间盖出一座房子、让脚下自动铺出一条路、把自己“发射”到天上。很多老师和家长就是从这里第一次发现：方块游戏可以拿来学编程。</p>
+  </div>
+
+  <div class="fig" id="codeFig">
+    <div class="fig-label">装置 · 第十六章</div>
+    <h4>几行代码盖一座塔</h4>
+    <p class="how">先选要盖什么，再拖动滑块改大小、选一种方块。左边是积木的样子，下面是同一个程序写成 Python 的样子（写法参考教育版里的 MakeCode，细节以官方为准）。点“运行”，看电脑一行一行地照着做。</p>
+    <div class="btns" id="codePick"></div>
+    <div class="ctl"><span id="codeNL">高</span><input type="range" id="codeN" min="1" max="8" value="5"><output id="codeNO"></output></div>
+    <div class="btns" id="codeMat"></div>
+    <div class="code">
+      <div>
+        <div id="codeBlk"></div>
+        <pre class="py" id="codePy"></pre>
+        <div class="btns"><button class="btn pri" id="codeRun">运行</button></div>
+      </div>
+      <svg id="codeSvg" role="img" aria-label="程序在一块小地上盖出来的方块"></svg>
+    </div>
+    <div class="say" id="codeSay"></div>
+    <p class="figcap">注意看：把塔从 5 层改成 8 层，程序只改了一个数字。这就是“重复”的力量：<em>做 5 遍和做 500 遍，写起来几乎一样长</em>。Python 里 <code>range(5)</code> 的意思是从 0 数到 4，一共 5 个数；<code>world(4, i, 4)</code> 是一个坐标，中间那个 i 是高度。</p>
+  </div>
+
+  <div class="col">
+    <h3>在 MacBook 上，能怎么学</h3>
+    <p>小格用的是一台 MacBook Air。用苹果电脑学“方块编程”，大概有这几条路（具体怎么装、要什么账号，第三部会细讲，而且以官方最新说明为准）：</p>
+    <ul class="plain">
+      <li><b>网页上的编程小课</b>：上面说的方块世界编程课，在浏览器里就能玩，不用装游戏。</li>
+      <li><b>教育版</b>：有 Mac 的版本，自带小机器人和积木编程窗口。不过它通常要用学校或者机构给的账号登录。可以问问你的编程老师或者学校。</li>
+      <li><b>Java 版里的命令和数据包</b>：上一章讲的命令、函数、数据包，在 Mac 上的 Java 版里都能用，它们本身就是一种“代码”。</li>
+      <li><b>先在 Scratch 里做一个自己的方块小游戏</b>：用你最熟的积木，画一块 8×8 的地，点一下放一块方块。你会发现，做一个方块游戏，和玩一个方块游戏，是两种完全不一样的快乐。</li>
+    </ul>
+    <p>再往后，有人会去学游戏本身用的语言 Java，给游戏写模组；有人会学 Python，去做和游戏无关的事。<b>不管哪条路，都从你现在学的“重复”和“如果”开始。</b></p>
+  </div>
+
+  <div class="try">
+    <div class="h">试一试</div>
+    <div><i>游戏里</i>
+      <ol>
+        <li>如果你能用教育版：打开代码窗口，让小机器人“重复 10 次：往前走一步、在脚下放一块方块”，它会铺出一条路。</li>
+        <li>如果你用的是 Java 版：在实验世界里用上一章的 <code>/fill</code>，一行命令盖一座 3×3、10 层高的塔。</li>
+        <li>比一比：用手放、用命令、用程序，盖同一座塔，各要多久？</li>
+      </ol>
+    </div>
+    <div><i>游戏外</i>
+      <ol>
+        <li>用 Scratch 画一座“像素塔”：重复 8 次，每次画一个方块、往上挪一格。</li>
+        <li>把刷牙写成一段“程序”：“重复 20 次：上下刷一下”，再加一个“如果牙膏用完了，就告诉妈妈”。</li>
+        <li>给你的编程老师看看这一章的装置，问问老师：课上能不能做一个“盖塔”的作业？</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="gone">
+    <h5><s>树莓派版</s></h5>
+    <p>树莓派上的免费版是照着很早的手机版做的，玩法一直很少。后来它就不再更新了，树莓派的新系统也不再自带它。它留下的那套 Python 接口，被热心的程序员接着维护，搬到了别的地方继续用。一个版本停了，它教会大家的那个想法，没有停。</p>
+  </div>
+
+  <div class="myth">
+    <div class="tag">学编程，得先把英语学好<span class="vd" data-v="半真">半真</span></div>
+    <div class="bd"><p>积木编程有中文版，完全不用英语就能学；你现在就能写出“重复”“如果”的程序。</p><p>等到写文字代码的时候，确实会碰到 for、if、range 这样的英文单词，不过常用的也就几十个，多半比英语课上的单词还简单，用着用着就记住了。很多小朋友反过来，是因为编程才多认识了一些英文单词。</p></div>
+  </div>
+
+  <div class="echo" data-k="押韵">
+    <div class="stamp">押韵</div>
+    <div><p class="rh">一个七岁学编程的孩子，做了一个让孩子学编程的游戏</p><p>第一部说过，做这个游戏的 Notch 七岁就照着杂志上的程序，在家里的电脑上一行一行地敲代码。三十多年后，全世界的孩子在他做的游戏里，拖着积木学编程。<em>你今天学的东西，说不定哪天就会变成别人学习的地方。</em></p></div>
+  </div>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div><b>积木编程</b>把一块块能拼在一起的积木当成程序，又叫图形化编程。</div>
+    <div><b>循环</b>同一件事重复做很多遍，就是“重复”积木。</div>
+    <div><b>变量</b>一个起了名字、能变的数，比如 i。</div>
+    <div><b>Python</b>一种用文字写程序的语言，很多人把它当成积木之后的第一门“文字编程”。</div>
+  </div>
+
+  <details class="adult">
+    <summary>给大人</summary>
+    <p>Code.org 与 Minecraft 合作的“编程一小时”网页课程始于 2015 年底，此后每年有新主题，免费、在浏览器中运行。教育版（Minecraft Education）的 Code Builder 集成 Microsoft MakeCode，可在积木、JavaScript、Python 之间切换，2020 年起陆续加入基于 Python 的课程；教育版有 macOS 版本，一般需要学校或机构的 Microsoft 365 教育账号，个人购买与试用政策以官方为准。Minecraft: Pi Edition 2013 年初发布，免费，带 Python API（mcpi），后停止更新，接口由社区维护（如 PyPI 上的 mcpi 包）。装置中的 Python 写法参考 MakeCode 的 <code>blocks.place</code>、<code>blocks.fill</code> 与 <code>world()</code>，方块常量名以 MakeCode 内实际显示为准。</p>
+    <p>建议把这一章交给孩子的编程老师看：很多少儿编程课用的正是 Scratch 一类的积木，和 MakeCode 的思路一致。本书不推荐任何付费课程。如果孩子想自己做“方块游戏”，Scratch 里画一个 8×8 网格、点击放方块，是一个大约一两节课能完成的好项目。</p>
+  </details>
+
+  <div class="seal">
+    <div><i>游戏里<small>带走一样</small></i>重复、变量、如果、坐标，是用代码搭房子的四样工具。写三行代码盖二十层的塔，改一个数字就能盖一百层。</div>
+    <div><i>游戏外<small>带走一样</small></i>编程课上的积木和方块游戏是同一套想法。做 5 遍和做 500 遍写起来差不多长：重复的活，交给电脑。</div>
+  </div>
+</section>

@@ -509,6 +509,51 @@ details.adult ul{padding-left:1.2em;margin:.4em 0}
 :root[data-theme="dark"] .save .hd{background:#2b2e27;color:var(--ink)}
 :root[data-theme="dark"] .try .h{background:color-mix(in srgb,var(--main) 22%,var(--card));color:var(--ink)}
 :root[data-theme="dark"] .save{border-color:#4a4e44}
+
+/* ---------- 第二部：电路板、真值表、加法器、命令台、代码积木 ---------- */
+.rsb{width:100%;max-width:560px;display:block;margin:0 auto;touch-action:manipulation;user-select:none;-webkit-user-select:none;background:var(--paper);border:1px solid var(--rule);border-radius:4px}
+.rsb .hit{cursor:pointer}
+.rsb .hit:hover{fill:var(--hl)}
+.fig .lab2{font-size:13px;color:var(--ink-3);margin:10px 0 2px}
+table.t.tt{min-width:0;max-width:420px;margin:8px 0}
+.tt td,.tt th{text-align:center!important}
+.tt tr.now td{background:var(--hl)}
+.tt .y1{color:var(--zhu)}.tt .y0{color:var(--ink-3);font-weight:400}
+.adder{display:grid;grid-template-columns:4.2em repeat(5,minmax(0,1fr));gap:6px;max-width:440px;margin:8px 0;align-items:center}
+.adder .lab{font-size:13px;color:var(--ink-3);margin:0}
+.adder .hd{text-align:center;font-family:var(--f-mono);font-size:13px;color:var(--ink-3)}
+.adder .bit{font-family:var(--f-pix);font-size:20px;text-align:center;border:2px solid var(--rule);border-radius:3px;padding:4px 0;background:var(--paper);color:var(--ink-3);line-height:1.4}
+.adder button.bit{cursor:pointer}
+.adder .bit.on{background:var(--rs);border-color:var(--zhu);color:#fff}
+.adder .bit.out.on{background:#f4c94a;border-color:#a8730c;color:#3a2a00}
+.adder .cr{text-align:center;font-size:12px;color:var(--zhu);min-height:1.4em}
+.lineS{width:100%;max-width:440px;display:block;margin:0 auto}
+.clkrow{display:flex;gap:10px;margin:8px 0 4px}
+.clk{width:34px;height:34px;border-radius:4px;background:var(--stn-2);border:1px solid var(--ink-3)}
+.clk.on{background:#f4c94a;box-shadow:0 0 12px #f4c94a;border-color:#a8730c}
+.cmd{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
+.cmd svg{width:100%;border-radius:4px}
+.cmdline{display:flex;gap:6px;margin:6px 0}
+.cmdline input{flex:1;min-width:0;font-family:var(--f-mono);font-size:14px;padding:6px 8px;border:2px solid var(--ink-3);border-radius:3px;background:#1d1f1b;color:#e9e6d8}
+.cmdlog{list-style:none;margin:8px 0;padding:0;font-size:13.5px;line-height:1.55}
+.cmdlog li{border-left:3px solid var(--main);padding:3px 8px;margin:4px 0;background:var(--paper)}
+.cmdlog li.bad{border-left-color:var(--zhu)}
+.cmdlog code{display:block;font-family:var(--f-mono);font-size:12.5px;color:var(--ink-2);word-break:break-all}
+.code{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
+.code svg{width:100%}
+.cb{border-radius:6px;padding:6px 10px;margin:4px 0;font-size:14px;line-height:1.6;color:#fff}
+.cb b{background:rgba(255,255,255,.88);color:#222;border-radius:9px;padding:0 6px;font-weight:700;font-family:var(--f-mono);font-size:13px}
+.cb.hat{background:#b8860b;border-radius:14px 14px 6px 6px}
+.cb.loop{background:#c16a12}
+.cb.put{background:#2f6a9a}
+.cb .in{margin:6px 0 2px 14px;border-left:4px solid rgba(0,0,0,.18);padding-left:4px}
+pre.py{font-family:var(--f-mono);font-size:13px;line-height:1.6;background:#1d1f1b;color:#e9e6d8;border-radius:4px;padding:10px 12px;margin:6px 0;white-space:pre;overflow-x:auto}
+@media (max-width:640px){
+  .cmd,.code{grid-template-columns:1fr}
+  .adder{grid-template-columns:3.4em repeat(5,minmax(0,1fr));gap:4px}
+  .adder .bit{font-size:17px}
+}
+.col code,.save code,.fig .how code,.figcap code,.try code,.gone code,details.adult code{font-family:var(--f-mono);font-size:.88em;background:var(--paper-2);padding:0 4px;border-radius:3px;word-break:break-all}
 </style>
 </head>
 <body>
@@ -596,8 +641,8 @@ details.adult ul{padding-left:1.2em;margin:.4em 0}
     <div class="kidmap">
       <a href="#c1"><b>它是怎么来的？</b>谁发明的，花了多久，第一版长什么样。<span class="ch">积 · 人 · 夜</span></a>
       <a href="#c0"><b>我爱盖房子</b>一格到底多大，世界能盖多高，真的建筑师怎么用方块。<span class="ch">块 · 高 · 第三部的“造”</span></a>
-      <a data-c="c9" href="two.html#c9"><b>我想玩红石</b>红石粉、开关、逻辑门、加法器、游戏里的电脑。<span class="ch soon">第二部 · 线 · 门 · 数 · 机</span></a>
-      <a data-c="c16" href="two.html#c16"><b>我想学编程</b>命令方块、图形化编程、Python，和你在编程课上学的东西接起来。<span class="ch soon">第二部 · 令 · 码</span></a>
+      <a data-c="c9" href="two.html#c9"><b>我想玩红石</b>红石粉、开关、逻辑门、加法器、游戏里的电脑。<span class="ch">第二部 · 线 · 门 · 数 · 机</span></a>
+      <a data-c="c16" href="two.html#c16"><b>我想学编程</b>命令方块、图形化编程、Python，和你在编程课上学的东西接起来。<span class="ch">第二部 · 令 · 码</span></a>
       <a href="#c7"><b>我想和同学一起玩</b>手机版、电脑版、中国版有什么不一样，服务器和模组是什么。<span class="ch">国 · 群</span></a>
       <a href="#c7"><b>我是家长</b>防沉迷的规定、花钱、网上的陌生人，和每章最后的“给大人”。<span class="ch">国 · 群 · 第三部</span></a>
     </div>
@@ -614,7 +659,7 @@ details.adult ul{padding-left:1.2em;margin:.4em 0}
 
     <div class="partnav">
       <a href="./" class="on"><span class="k">第一部</span><b>土</b><small>序幕 + 卷一 来历 + 卷二 长大 · 一块方块从哪里来 · 九章</small></a>
-      <a data-c="c9" href="two.html"><span class="k">第二部</span><b>电</b><small>卷三 红石 + 卷四 机器和代码 · 写作中</small></a>
+      <a data-c="c9" href="two.html"><span class="k">第二部</span><b>电</b><small>卷三 红石 + 卷四 机器和代码 · 红线怎样变成电脑 · 八章</small></a>
       <a data-c="c17" href="three.html"><span class="k">第三部</span><b>门</b><small>卷五 动手 + 卷六 长大以后 + 尾声 · 写作中</small></a>
     </div>
 
@@ -1757,7 +1802,7 @@ details.adult ul{padding-left:1.2em;margin:.4em 0}
   <div class="k">第一部 · 土 · 完</div>
   <h3>一块方块从哪里来，到这里讲完了</h3>
   <p class="ni" style="font-size:17px;line-height:1.95;text-align:left">它的长辈是带小圆点的积木、屏幕上的像素和几个让人挖地道、盖乐园的老游戏；它的第一版是一个瑞典程序员花了大约一个星期写的，只能放方块、挖方块。后来它有了怪物、黑夜、合成和饥饿，有了下界和末地，世界从一百二十八格长到三百八十四格高；它一边做一边卖，被玩家的视频传遍世界，被一家大公司买下，来到中国，又被全世界的玩家用模组、服务器和百科一起养大。<em>一个人开了头，一群人把它养大。</em>第二部《电》讲游戏里最神奇的那种红色粉末：它怎样变成电线、开关、逻辑门，最后变成一台真的能算数的电脑；还有怎样用命令和代码来搭方块。</p>
-  <a class="go" data-c="c9" href="two.html">第二部 · 电（写作中）</a>
+  <a class="go" data-c="c9" href="two.html">第二部 · 电</a>
 </div>
 
 <footer>
@@ -1789,7 +1834,7 @@ function slider(id, f, cb){ const r = $('#' + id), o = $('#' + id + 'O'); const 
 
 /* ---------- 全书目录（三个网页共用） ---------- */
 const PAGE = /three\.html/.test(location.pathname) ? 3 : /two\.html/.test(location.pathname) ? 2 : 1;
-const READY = 1; // 已经写好的部数
+const READY = 2; // 已经写好的部数
 const PURL = {1: './', 2: 'two.html', 3: 'three.html'};
 const TOC = [
   {p: 1, t: '第一部 · 土 —— 一块方块从哪里来'},
@@ -2024,6 +2069,177 @@ dev('#buildFig', () => {
   $('#bldHouse').addEventListener('click', () => { house(); draw(); });
   $('#bldClear').addEventListener('click', () => { empty(); draw(); });
   house(); draw();
+});
+
+
+/* ================= 第二部 · 电路沙盘 =================
+   这本书自己设计的简化规则，不完全等于游戏里的红石：
+   · 线（红石粉）挨着电源的一格是 15，每走一格少 1，到 0 就没电了；
+   · 拉杆、按钮是电源；按钮按一下亮 1 秒；
+   · 火把是“非”：左边（输入，画了小三角）有电它就灭，没电它就亮；亮的时候往右、上、下三面送电，不往左送；
+   · 灯：上下左右任何一面有电就亮；
+   · 每 0.1 秒算一步，火把要一步才反应过来。 */
+const RS = {E: 0, W: 1, L: 2, B: 3, T: 4, P: 5};
+const RS_CH = {'.': [0, 0], '-': [1, 0], 'L': [2, 0], 'K': [2, 1], 'B': [3, 0], 'T': [4, 1], 't': [4, 0], 'O': [5, 0]};
+const RS_PRESET = {
+  lamp: {n: '一盏灯', rows: ['............', '............', '............', '.K---------O', '............', '............', '............'],
+    say: '拉杆拉开，线一格一格传过去，最后一格旁边的灯就亮了。打开“显示数字”，看看电每走一格少多少。'},
+  not: {n: '非', rows: ['............', '............', '..L-T-O.....', '............', '............'], ins: [[2, 2]], out: [6, 2],
+    say: '拉杆关着，火把的左边没电，它就亮，灯也亮；拉杆一开，火把灭了，灯也灭了。火把把“有”变成“没有”，这就是“非”。'},
+  and: {n: '与', rows: ['............', '.L-T-.......', '....-T-O....', '.L-T-.......', '............'], ins: [[1, 1], [1, 3]], out: [7, 2],
+    say: '两个拉杆都开，灯才亮。它用了三根火把：先把两个输入各“非”一次，合到一根线上，再“非”一次。'},
+  nand: {n: '与非', rows: ['............', '.L-T-.......', '....-O......', '.L-T-.......', '............'], ins: [[1, 1], [1, 3]], out: [5, 2],
+    say: '和“与”正好相反：只有两个拉杆都开的时候，灯才灭。“与非”很厉害，光用它就能拼出别的所有门。'},
+  or: {n: '或', rows: ['............', '.L---.......', '....--O.....', '.L---.......', '............'], ins: [[1, 1], [1, 3]], out: [6, 2],
+    say: '两根线接到一起：随便哪个拉杆开着，灯都亮。“或”是最简单的门，连火把都不用。'},
+  nor: {n: '或非', rows: ['............', '.L---.......', '....-T-O....', '.L---.......', '............'], ins: [[1, 1], [1, 3]], out: [7, 2],
+    say: '先“或”，再接一根火把“非”一下：两个拉杆都关着，灯才亮。'},
+  clock: {n: '时钟', rows: ['............', '............', '..--........', '..-T-O......', '............', '............', '............'],
+    say: '火把亮了，电顺着线绕回来，送到它自己的左边，它就灭了；它一灭，线没电了，它又亮了……它会一直这样闪下去，像一颗心在跳。点“慢放”看清楚一点。'},
+  latch: {n: '记忆', rows: ['.....B......', '.B-T--t-O...', '..-...-.....', '..-----.....'], labels: [[1, 1, '记'], [5, 0, '忘'], [8, 1, '灯']],
+    say: '按一下“记”，灯亮了，手松开它还亮着；按一下“忘”，灯才灭。两根火把互相管着对方：这一根亮，那一根就灭，谁也不肯变。这就是电路的“记忆”。'}
+};
+function Board(svg, o){
+  o = o || {};
+  const C = 40;
+  let W = 12, H = 7, ty = [], on = [], pw = [], lit = [], labels = [], sig = '', speed = 100, tool = 0, nums = !!o.nums, timer = null, visible = true, paint = false;
+  const idx = (x, y) => y * W + x;
+  const inb = (x, y) => x >= 0 && y >= 0 && x < W && y < H;
+  const NB = [[1, 0], [-1, 0], [0, 1], [0, -1]];
+  /* (sx,sy) 这一格往 (tx,ty) 送电吗？ */
+  function feeds(sx, sy, tx, tY){
+    const k = idx(sx, sy), t = ty[k];
+    if (t === RS.L || t === RS.B) return on[k] > 0;
+    if (t === RS.T) return on[k] > 0 && !(tx === sx - 1 && tY === sy);
+    return false;
+  }
+  function wires(){
+    pw.fill(0); const q = [];
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      if (ty[idx(x, y)] !== RS.W) continue;
+      for (const d of NB) { const nx = x + d[0], ny = y + d[1]; if (inb(nx, ny) && feeds(nx, ny, x, y)) { pw[idx(x, y)] = 15; q.push(idx(x, y)); break; } }
+    }
+    while (q.length) {
+      const k = q.shift(), x = k % W, y = (k / W) | 0, v = pw[k] - 1;
+      if (v <= 0) continue;
+      for (const d of NB) { const nx = x + d[0], ny = y + d[1]; if (!inb(nx, ny)) continue; const j = idx(nx, ny); if (ty[j] === RS.W && pw[j] < v) { pw[j] = v; q.push(j); } }
+    }
+  }
+  function powered(x, y){
+    if (!inb(x, y)) return false; const k = idx(x, y);
+    if (ty[k] === RS.W) return pw[k] > 0;
+    return feeds(x, y, x + 1, y);
+  }
+  /* 每一步把每根火把检查一遍；passes>1 时（人刚动过手）多算几遍，让电路先稳下来 */
+  function settle(passes){
+    wires();
+    for (let n = 0; n < (passes || 1); n++) {
+      let changed = false;
+      for (let k = 0; k < W * H; k++) if (ty[k] === RS.T) {
+        const x = k % W, y = (k / W) | 0, want = powered(x - 1, y) ? 0 : 1;
+        if (want !== on[k]) { on[k] = want; wires(); changed = true; }
+      }
+      if (!changed) break;
+    }
+    for (let k = 0; k < W * H; k++) {
+      lit[k] = 0; if (ty[k] !== RS.P) continue;
+      const x = k % W, y = (k / W) | 0;
+      for (const d of NB) { const nx = x + d[0], ny = y + d[1]; if (!inb(nx, ny)) continue; const j = idx(nx, ny); if ((ty[j] === RS.W && pw[j] > 0) || feeds(nx, ny, x, y)) { lit[k] = 1; break; } }
+    }
+  }
+  function conn(x, y){ return NB.filter(d => inb(x + d[0], y + d[1]) && ty[idx(x + d[0], y + d[1])] !== RS.E); }
+  function draw(force){
+    const s = ty.join('') + on.join('') + pw.join(',') + nums;
+    if (s === sig && !force) return; sig = s;
+    let g = '';
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const k = idx(x, y), X = x * C, Y = y * C, cx = X + C / 2, cy = Y + C / 2, t = ty[k];
+      g += '<rect x="' + X + '" y="' + Y + '" width="' + C + '" height="' + C + '" fill="var(--paper)" stroke="var(--rule)" stroke-width=".6"/>';
+      if (t === RS.W) {
+        const p = pw[k], col = p > 0 ? 'var(--rs)' : 'var(--zhu)', op = p > 0 ? (.45 + .55 * p / 15).toFixed(2) : .22;
+        conn(x, y).forEach(d => g += '<line x1="' + cx + '" y1="' + cy + '" x2="' + (cx + d[0] * C / 2) + '" y2="' + (cy + d[1] * C / 2) + '" stroke="' + col + '" stroke-opacity="' + op + '" stroke-width="7" stroke-linecap="round"/>');
+        g += '<circle cx="' + cx + '" cy="' + cy + '" r="6" fill="' + col + '" fill-opacity="' + op + '"/>';
+        if (nums && p > 0) g += txt(cx, cy + 4, p, {s: 11, w: true});
+      } else if (t === RS.L) {
+        g += '<rect x="' + (cx - 12) + '" y="' + (cy + 4) + '" width="24" height="9" rx="2" fill="var(--stn)" stroke="var(--ink-3)" stroke-width=".8"/>';
+        const a = on[k] ? 1 : -1;
+        g += '<line x1="' + cx + '" y1="' + (cy + 6) + '" x2="' + (cx + a * 9) + '" y2="' + (cy - 11) + '" stroke="var(--wood-2)" stroke-width="4" stroke-linecap="round"/>';
+        g += '<circle cx="' + (cx + a * 9) + '" cy="' + (cy - 11) + '" r="3.5" fill="' + (on[k] ? 'var(--rs)' : 'var(--wood)') + '"/>';
+      } else if (t === RS.B) {
+        g += '<rect x="' + (cx - 9) + '" y="' + (cy - 9) + '" width="18" height="18" rx="3" fill="' + (on[k] ? 'var(--rs)' : 'var(--stn)') + '" stroke="var(--ink-3)"/>';
+        g += '<rect x="' + (cx - 5) + '" y="' + (cy - 5) + '" width="10" height="10" rx="2" fill="#000" fill-opacity="' + (on[k] ? .25 : .1) + '"/>';
+      } else if (t === RS.T) {
+        g += '<path d="M' + (X + 2) + ',' + (cy - 6) + 'L' + (X + 9) + ',' + cy + 'L' + (X + 2) + ',' + (cy + 6) + 'Z" fill="var(--ink-3)"/>';
+        if (on[k]) g += '<circle cx="' + cx + '" cy="' + (cy - 7) + '" r="13" fill="var(--rs)" fill-opacity=".2"/>';
+        g += '<rect x="' + (cx - 2.5) + '" y="' + (cy - 4) + '" width="5" height="17" fill="var(--wood-2)"/>';
+        g += '<circle cx="' + cx + '" cy="' + (cy - 7) + '" r="6" fill="' + (on[k] ? 'var(--rs)' : 'var(--stn-2)') + '" stroke="var(--ink-3)" stroke-width=".8"/>';
+      } else if (t === RS.P) {
+        if (lit[k]) g += '<rect x="' + (cx - 18) + '" y="' + (cy - 18) + '" width="36" height="36" rx="6" fill="#f4c94a" fill-opacity=".3"/>';
+        g += '<rect x="' + (cx - 13) + '" y="' + (cy - 13) + '" width="26" height="26" rx="3" fill="' + (lit[k] ? '#f4c94a' : 'var(--stn-2)') + '" stroke="' + (lit[k] ? '#a8730c' : 'var(--ink-3)') + '"/>';
+        g += '<path d="M' + cx + ',' + (cy - 13) + 'V' + (cy + 13) + 'M' + (cx - 13) + ',' + cy + 'H' + (cx + 13) + '" stroke="' + (lit[k] ? '#c8901a' : '#000') + '" stroke-opacity="' + (lit[k] ? .7 : .2) + '"/>';
+      }
+    }
+    labels.forEach(l => g += txt(l[0] * C + C / 2, l[1] * C + C - 3, l[2], {s: 11, w: true, c: 'var(--main)'}));
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) g += '<rect class="hit" data-x="' + x + '" data-y="' + y + '" x="' + x * C + '" y="' + y * C + '" width="' + C + '" height="' + C + '" fill="transparent"/>';
+    svg.setAttribute('viewBox', '0 0 ' + W * C + ' ' + H * C); svg.innerHTML = g;
+    if (o.onChange) o.onChange(api);
+  }
+  function step(){
+    for (let k = 0; k < W * H; k++) if (ty[k] === RS.B && on[k] > 0) on[k]--;
+    settle(); draw();
+  }
+  function use(x, y){
+    const k = idx(x, y);
+    if (tool === 0) {
+      if (ty[k] === RS.L) on[k] ^= 1; else if (ty[k] === RS.B) on[k] = 10; else return;
+    } else {
+      const nt = [0, RS.W, RS.L, RS.B, RS.T, RS.P, RS.E][tool];
+      if (ty[k] === nt) return;
+      ty[k] = nt; on[k] = nt === RS.T ? 1 : 0;
+      labels = labels.filter(l => !(l[0] === x && l[1] === y));
+    }
+    settle(6); draw();
+  }
+  function cellAt(e){ const r = e.target.closest('.hit'); return r ? [+r.dataset.x, +r.dataset.y] : null; }
+  svg.addEventListener('pointerdown', e => { const c = cellAt(e); if (!c) return; paint = tool === 1 || tool === 6; use(c[0], c[1]); });
+  svg.addEventListener('pointermove', e => { if (!paint) return; const el = document.elementFromPoint(e.clientX, e.clientY); if (!el || !el.classList.contains('hit')) return; use(+el.dataset.x, +el.dataset.y); });
+  window.addEventListener('pointerup', () => { paint = false; });
+  function run(){ clearInterval(timer); timer = setInterval(() => { if (visible) step(); }, speed); }
+  if ('IntersectionObserver' in window) new IntersectionObserver(es => { visible = es[0].isIntersecting; }).observe(svg);
+  const api = {
+    load(p){ const rows = p.rows; H = rows.length; W = Math.max(...rows.map(r => r.length));
+      ty = new Array(W * H).fill(0); on = ty.slice(); pw = ty.slice(); lit = ty.slice();
+      rows.forEach((r, y) => [...r].forEach((ch, x) => { const v = RS_CH[ch] || [0, 0]; ty[idx(x, y)] = v[0]; on[idx(x, y)] = v[1]; }));
+      labels = (p.labels || []).slice(); settle(6); draw(true); },
+    tool(i){ tool = i; svg.style.touchAction = (i === 1 || i === 6) ? 'none' : 'manipulation'; },
+    speed(ms){ speed = ms; run(); },
+    nums(b){ nums = b; draw(true); },
+    cell(x, y){ const k = idx(x, y); return {t: ty[k], on: on[k], p: pw[k], lit: lit[k]}; },
+    flip(x, y){ const t = tool; tool = 0; use(x, y); tool = t; },
+    count(){ const c = {}; ty.forEach(t => { if (t) c[t] = (c[t] || 0) + 1; }); return c; }
+  };
+  run();
+  return api;
+}
+
+/* ---------- 第二部封面：电路沙盘 ---------- */
+dev('#rsFig', () => {
+  const bd = Board($('#rsSvg'), {onChange: b => {
+    const c = b.count(), n = (c[RS.W] || 0) + (c[RS.L] || 0) + (c[RS.B] || 0) + (c[RS.T] || 0) + (c[RS.P] || 0);
+    $('#rsCount').textContent = n ? '用了 ' + n + ' 格：线 ' + (c[RS.W] || 0) + '、拉杆 ' + (c[RS.L] || 0) + '、按钮 ' + (c[RS.B] || 0) + '、火把 ' + (c[RS.T] || 0) + '、灯 ' + (c[RS.P] || 0) + '。' : '板子是空的。';
+  }});
+  const keys = ['lamp', 'not', 'and', 'or', 'clock', 'latch'];
+  const pad = rows => { const r = rows.map(s => (s + '............').slice(0, 12)); while (r.length < 7) r.push('............'); return r; };
+  function pick(i){
+    if (i === keys.length) { bd.load({rows: pad([])}); $('#rsSay').textContent = '一块空板子。先在下面选“线”“拉杆”“火把”“灯”，在格子上点一点（线和擦可以按住拖），再选“手”去拨拉杆、按按钮。'; return; }
+    const p = RS_PRESET[keys[i]]; bd.load({rows: pad(p.rows), labels: p.labels}); $('#rsSay').textContent = p.say;
+  }
+  btnRow($('#rsPre'), keys.map(k => RS_PRESET[k].n).concat('空白'), 0, pick);
+  btnRow($('#rsTool'), ['手：拨、按', '线', '拉杆', '按钮', '火把（非）', '灯', '擦'], 0, i => bd.tool(i));
+  let slow = false, num = false;
+  $('#rsSlow').addEventListener('click', e => { slow = !slow; e.target.classList.toggle('on', slow); bd.speed(slow ? 600 : 100); });
+  $('#rsNum').addEventListener('click', e => { num = !num; e.target.classList.toggle('on', num); bd.nums(num); });
+  pick(0);
 });
 
 
@@ -2384,6 +2600,298 @@ dev('#quizFig', () => {
   });
   $('#quizReset').addEventListener('click', build);
   build();
+});
+
+
+/* ---------- 第九章：信号走十五格 ---------- */
+dev('#lineFig', () => {
+  const sv = $('#lineSvg'); let rep = false;
+  function draw(n){
+    /* 序列：拉杆、n 格线（打开中继器时每 15 格线后插一个中继器）、灯 */
+    const seq = [{t: 'L'}]; let s = 15, reps = 0, dead = false;
+    for (let i = 0; i < n; i++) {
+      if (rep && i > 0 && i % 15 === 0) { seq.push({t: 'R'}); reps++; s = 15; }
+      seq.push({t: 'W', p: s > 0 ? s : 0}); if (s <= 0) dead = true; s--;
+    }
+    const last = seq[seq.length - 1], ok = n === 0 || last.p > 0;
+    seq.push({t: 'P', lit: ok});
+    const per = 10, C = 40, rows = Math.ceil(seq.length / per), W = per * C, H = rows * C + 8;
+    const pos = i => { const r = (i / per) | 0, c = i % per; return [(r % 2 ? per - 1 - c : c) * C + C / 2, r * C + C / 2 + 4]; };
+    let g = '';
+    for (let i = 0; i < seq.length - 1; i++) { const a = pos(i), b = pos(i + 1), on = seq[i + 1].t === 'P' ? ok : (seq[i + 1].p > 0 || seq[i + 1].t === 'R'); g += '<line x1="' + a[0] + '" y1="' + a[1] + '" x2="' + b[0] + '" y2="' + b[1] + '" stroke="' + (on ? 'var(--rs)' : 'var(--zhu)') + '" stroke-opacity="' + (on ? .7 : .2) + '" stroke-width="6" stroke-linecap="round"/>'; }
+    seq.forEach((c, i) => {
+      const p = pos(i), x = p[0], y = p[1];
+      if (c.t === 'L') g += '<rect x="' + (x - 13) + '" y="' + (y - 13) + '" width="26" height="26" rx="4" fill="var(--stn)" stroke="var(--ink-3)"/>' + txt(x, y + 4, '开', {s: 12, w: true});
+      else if (c.t === 'R') g += '<rect x="' + (x - 15) + '" y="' + (y - 9) + '" width="30" height="18" rx="3" fill="var(--card)" stroke="var(--rs)" stroke-width="2"/>' + txt(x, y + 4, '中继', {s: 10, w: true, c: 'var(--zhu)'});
+      else if (c.t === 'P') g += (c.lit ? '<rect x="' + (x - 18) + '" y="' + (y - 18) + '" width="36" height="36" rx="6" fill="#f4c94a" fill-opacity=".35"/>' : '') + '<rect x="' + (x - 13) + '" y="' + (y - 13) + '" width="26" height="26" rx="3" fill="' + (c.lit ? '#f4c94a' : 'var(--stn-2)') + '" stroke="var(--ink-3)"/>';
+      else { g += '<circle cx="' + x + '" cy="' + y + '" r="11" fill="' + (c.p > 0 ? 'var(--rs)' : 'var(--paper)') + '" fill-opacity="' + (c.p > 0 ? (.3 + .7 * c.p / 15).toFixed(2) : 1) + '" stroke="var(--zhu)" stroke-opacity=".5"/>' + txt(x, y + 4, c.p, {s: 11, w: true, c: c.p > 0 ? 'var(--ink)' : 'var(--ink-3)'}); }
+    });
+    sv.setAttribute('viewBox', '0 0 ' + W + ' ' + H); sv.innerHTML = g;
+    $('#lineSay').innerHTML = n === 0 ? '一格线都没有，拉杆挨着灯，灯直接就亮。' :
+      ok ? '铺了 <b>' + n + '</b> 格线，最后一格还剩 <b>' + last.p + '</b>，灯亮了。' + (reps ? '中间用了 ' + reps + ' 个中继器，每个让信号慢 0.1 秒，一共晚到 ' + (reps / 10).toFixed(1) + ' 秒。' : '红石线本身不花时间，一拉就到。')
+      : '铺了 <b>' + n + '</b> 格线，到第 16 格信号就变成 0 了，灯<b>不亮</b>。打开“放中继器”试试。';
+    $('#lineSay').className = 'say ' + (ok ? 'ok' : 'bad');
+  }
+  const get = slider('lineN', v => v + ' 格', draw);
+  $('#lineRep').addEventListener('click', e => { rep = !rep; e.target.classList.toggle('on', rep); draw(get()); });
+});
+
+
+/* ---------- 第十章：逻辑门 ---------- */
+dev('#gateFig', () => {
+  const G = ['not', 'and', 'or', 'nand', 'nor'];
+  const F = {not: a => !a[0], and: a => a[0] && a[1], or: a => a[0] || a[1], nand: a => !(a[0] && a[1]), nor: a => !(a[0] || a[1])};
+  let cur = 'not';
+  function table(b){
+    const p = RS_PRESET[cur], ins = p.ins.map(c => b.cell(c[0], c[1]).on > 0), out = b.cell(p.out[0], p.out[1]).lit > 0;
+    const n = p.ins.length, rows = [];
+    for (let m = 0; m < (1 << n); m++) { const a = []; for (let j = 0; j < n; j++) a.push(!!(m >> (n - 1 - j) & 1)); rows.push(a); }
+    const yn = v => v ? '<b class="y1">1 有</b>' : '<b class="y0">0 没有</b>';
+    $('#gateTab').innerHTML = '<table class="t tt"><tr>' + (n === 1 ? '<th>拉杆</th>' : '<th>拉杆 A（上）</th><th>拉杆 B（下）</th>') + '<th>灯</th></tr>' +
+      rows.map(a => '<tr' + (a.every((v, j) => v === ins[j]) ? ' class="now"' : '') + '>' + a.map(v => '<td>' + yn(v) + '</td>').join('') + '<td>' + yn(F[cur](a)) + '</td></tr>').join('') + '</table>';
+    $('#gateSay').innerHTML = '现在：' + (n === 1 ? '拉杆' + (ins[0] ? '开' : '关') : 'A ' + (ins[0] ? '开' : '关') + '，B ' + (ins[1] ? '开' : '关')) + '，灯<b>' + (out ? '亮' : '灭') + '</b>。' + p.say;
+  }
+  const bd = Board($('#gateSvg'), {onChange: table});
+  btnRow($('#gatePick'), G.map(k => RS_PRESET[k].n), 0, i => { cur = G[i]; bd.load(RS_PRESET[cur]); });
+  bd.load(RS_PRESET.not);
+});
+
+
+/* ---------- 第十一章：四位加法器 ---------- */
+dev('#addFig', () => {
+  const A = [0, 0, 0, 1], B = [0, 0, 0, 1], V = [8, 4, 2, 1];
+  const box = $('#addBox');
+  const num = a => a.reduce((s, b, i) => s + b * V[i], 0);
+  function draw(){
+    /* 从右往左（个位开始）一位一位加；cin[i] 是从右边一列进到第 i 列的 1 */
+    const S = [0, 0, 0, 0], cin = [0, 0, 0, 0]; let c = 0;
+    for (let i = 3; i >= 0; i--) { cin[i] = c; S[i] = A[i] ^ B[i] ^ c; c = (A[i] & B[i]) | (c & (A[i] ^ B[i])); }
+    const btn = (v, k) => '<button class="bit in' + (v ? ' on' : '') + '" data-k="' + k + '" aria-label="' + k + '">' + v + '</button>';
+    const out = v => '<div class="bit out' + (v ? ' on' : '') + '">' + v + '</div>';
+    const cr = v => '<div class="cr' + (v ? ' on' : '') + '">' + (v ? '进 1' : '') + '</div>';
+    let h = '<div class="lab">每格代表</div><div class="hd">16</div>' + V.map(v => '<div class="hd">' + v + '</div>').join('');
+    h += '<div class="lab">A</div><div></div>' + A.map((v, i) => btn(v, 'A' + i)).join('');
+    h += '<div class="lab">B</div><div></div>' + B.map((v, i) => btn(v, 'B' + i)).join('');
+    h += '<div class="lab">进位</div>' + cr(c) + cin.map(cr).join('');
+    h += '<div class="lab">和</div>' + out(c) + S.map(out).join('');
+    box.innerHTML = h;
+    const a = num(A), b = num(B), s = a + b;
+    $('#addSay').innerHTML = 'A = <b>' + A.join('') + '</b>（' + a + '），B = <b>' + B.join('') + '</b>（' + b + '）。加起来是 <b>' + (c ? '1' : '') + S.join('') + '</b>，也就是 <b>' + s + '</b>。' +
+      (s > 15 ? '超过 15 了，四格放不下，最左边多出来的那个 1 就是“进位”：真的电脑会把它交给下一组加法器。' : a === 1 && b === 1 ? '一加一，在二进制里写成 10：这一格满二就往左进一，和十进制满十进一是一个道理。' : '点一点 A、B 两行的格子，换两个数试试。');
+  }
+  box.addEventListener('click', e => { const b = e.target.closest('button.bit'); if (!b) return; const k = b.dataset.k, arr = k[0] === 'A' ? A : B; arr[+k[1]] ^= 1; draw(); });
+  $('#addInc').addEventListener('click', () => { let a = (num(A) + 1) % 16; for (let i = 3; i >= 0; i--) { A[i] = a & 1; a >>= 1; } draw(); });
+  $('#addClr').addEventListener('click', () => { A.fill(0); B.fill(0); draw(); });
+  draw();
+});
+
+
+/* ---------- 第十二章：会记事的电路 ---------- */
+dev('#latchFig', () => {
+  const p = RS_PRESET.latch;
+  const bd = Board($('#latchSvg'), {onChange: b => {
+    const L = b.cell(8, 1).lit > 0, s = b.cell(1, 1).on > 0, r = b.cell(5, 0).on > 0;
+    $('#latchSay').innerHTML = (s ? '你正按着“记”。' : r ? '你正按着“忘”。' : '现在两个按钮都没按。') + '灯<b>' + (L ? '亮着' : '灭着') + '</b>' + (!s && !r ? (L ? '：它记得你按过“记”。' : '：它记得你最后按的是“忘”（或者还没按过）。') : '。');
+  }});
+  bd.load(p);
+  $('#latchSlow').addEventListener('click', e => { const on = e.target.classList.toggle('on'); bd.speed(on ? 600 : 100); });
+});
+
+dev('#memFig', () => {
+  const IT = [['一个英文字母', 8], ['一个汉字', 24], ['这一章的全部文字', 6000 * 24], ['一张手机照片', 3e6 * 8], ['一首歌', 4e6 * 8], ['一部电影', 2e9 * 8], ['8 GB 内存（小格那台电脑）', 8 * 1073741824 * 8]];
+  let it = 0;
+  function draw(){
+    const per = +$('#memPer').value, bits = IT[it][1], blocks = bits * per, side = Math.sqrt(blocks);
+    const sideS = side >= 1000 ? (side / 1000).toFixed(side >= 1e4 ? 0 : 1) + ' 千米' : Math.round(side) + ' 米';
+    kv($('#memKv'), [['要记住的“0 和 1”', fmt(bits) + ' 个'], ['需要的方块', '约 ' + fmt(blocks) + ' 块'], ['铺成一层正方形', '边长约 ' + sideS]]);
+    const gugong = blocks / 720000, field = blocks / 7140;
+    $('#memSay').innerHTML = '记住' + IT[it][0] + '，' + (blocks < 7140 ? '大概一间大教室的地面就铺得下。' : blocks < 720000 ? '要铺满大约 <b>' + field.toFixed(field < 10 ? 1 : 0) + '</b> 个足球场。' : '要铺满大约 <b>' + fmt(gugong) + '</b> 个故宫那么大的地。') +
+      (it === 6 ? '真的内存条把这么多“记忆格子”挤进了指甲盖大小的芯片里，每一格比细菌还小得多。' : '');
+  }
+  btnRow($('#memIt'), IT.map(x => x[0]), 0, i => { it = i; draw(); });
+  slider('memPer', v => '每格 ' + v + ' 块', draw);
+});
+
+
+/* ---------- 第十三章：一秒二十下 ---------- */
+dev('#clockFig', () => {
+  const lamps = $('#clkLamps'); let t = 0, timer = null, period = 4, count = 0;
+  lamps.innerHTML = '<span class="clk"></span>'.repeat(5);
+  function start(){
+    clearInterval(timer); t = 0; count = 0;
+    /* period 以红石刻（0.1 秒）计：亮一半、灭一半 */
+    timer = setInterval(() => {
+      t++; const on = (t % period) < period / 2;
+      if (t % period === 0) count++;
+      $$('.clk', lamps).forEach((e, i) => e.classList.toggle('on', ((t + i) % period) < period / 2));
+    }, 100);
+  }
+  slider('clkP', v => (v / 10).toFixed(1) + ' 秒一次', v => {
+    period = v; start();
+    const hz = 10 / v;
+    kv($('#clkKv'), [['一秒钟闪', (hz >= 1 ? hz.toFixed(hz % 1 ? 1 : 0) : hz.toFixed(2)) + ' 次'], ['一分钟闪', Math.round(hz * 60) + ' 次'], ['等于多少个游戏刻', v * 2 + ' 刻']]);
+  });
+
+  const M = [['你用笔算加法', 1, '大约一秒一道'], ['游戏里的红石电脑', 1, '大约每秒一步'], ['ENIAC（1946 年）', 5000, '每秒约五千次加法'], ['M1 芯片的一个核', 3.2e9, '每秒约三十二亿拍']];
+  const lg = v => Math.log10(v) + 1;
+  bars($('#clkBars'), M.map((m, i) => [m[0], lg(m[1]), m[2], i === 3 ? 'var(--main)' : i === 2 ? 'var(--blu)' : 'var(--zhu)']), lg(3.2e9) * 1.02, v => '');
+  let who = 1;
+  function say(){
+    const s = 3.2e9 / M[who][1], yr = s / 3.156e7;
+    $('#clkSay').innerHTML = 'M1 芯片一个核心一秒钟打的“拍子”，交给' + M[who][0] + '一拍一拍地做，要 ' +
+      (yr >= 1 ? '<b>' + Math.round(yr) + ' 年</b>' : s >= 86400 ? '<b>' + (s / 86400).toFixed(1) + ' 天</b>' : '<b>' + Math.round(s) + ' 秒</b>') + '。' +
+      (who < 2 ? '比一个人一辈子还长。' : '') + '（这里只比“拍子”，真的电脑每一拍能做的事也比红石电脑多得多。）';
+  }
+  btnRow($('#clkWho'), M.slice(0, 3).map(m => m[0]), 1, i => { who = i; say(); });
+  say();
+});
+
+
+/* ---------- 第十四章：游戏里的电脑有多大、多慢 ---------- */
+dev('#machFig', () => {
+  const R = [['你的卧室', 4 * 3.5 * 2.8, '约 4×3.5×2.8 米'], ['一间教室', 9 * 7 * 3.5, '约 9×7×3.5 米'], ['2010 年的 16 位运算器', 160 * 110 * 10, '160×110×10 格'], ['埃菲尔铁塔占的空间', 125 * 125 * 330, '约 125×125×330 米'], ['CraftGPT（2025 年）', 1020 * 260 * 1656, '1020×260×1656 格']];
+  const lg = v => Math.log10(v);
+  bars($('#machBars'), R.map((r, i) => [r[0], lg(r[1]), r[2], i === 4 ? 'var(--zhu)' : i === 2 ? 'var(--ter)' : 'var(--blu)']), lg(4.4e8) * 1.01, v => fmt(Math.pow(10, v)));
+  /* CraftGPT：加速约 4 万倍时回答一句要约 2 小时 → 原速约 8 万小时 */
+  const BASE = 2 * 40000;
+  slider('machSp', v => fmt(Math.round(Math.pow(10, v / 10))) + ' 倍', v => {
+    const sp = Math.pow(10, v / 10), h = BASE / sp;
+    const s = h >= 24 * 365 ? (h / 24 / 365).toFixed(1) + ' 年' : h >= 48 ? (h / 24).toFixed(0) + ' 天' : h >= 1 ? h.toFixed(1) + ' 小时' : Math.round(h * 60) + ' 分钟';
+    kv($('#machKv'), [['游戏加快到', fmt(Math.round(sp)) + ' 倍'], ['CraftGPT 回你一句话', '约 ' + s]]);
+    $('#machSay').textContent = sp < 2 ? '用普通的游戏速度，回一句话要大约九年：你问它的时候上四年级，它回答的时候你已经快上大学了。' :
+      sp < 30000 ? '作者用了一个专门给红石加速的服务器程序。加速越多，回答越快。' : '加速约四万倍，回一句话大约两个小时，这是作者自己说的数字。电脑这么快，还要两个小时，你就知道这台“方块电脑”有多慢了。';
+  });
+});
+
+
+/* ---------- 第十五章：一行命令（简化版，写法模仿游戏里的命令） ---------- */
+dev('#cmdFig', () => {
+  const X = 10, Y = 8, Z = 10, s = 17;
+  let w, night = false, rain = false;
+  const id = (x, y, z) => (y * Z + z) * X + x;
+  const NAME = {grass_block: 'grass', grass: 'grass', '草': 'grass', '草方块': 'grass', dirt: 'dirt', '泥土': 'dirt', '土': 'dirt', stone: 'stone', '石头': 'stone', '石': 'stone',
+    oak_planks: 'plank', planks: 'plank', '木板': 'plank', oak_log: 'log', log: 'log', '原木': 'log', oak_leaves: 'leaf', leaves: 'leaf', '树叶': 'leaf',
+    glass: 'glass', '玻璃': 'glass', sand: 'sand', '沙子': 'sand', '沙': 'sand', water: 'water', '水': 'water', redstone_ore: 'rs', '红石矿': 'rs', diamond_ore: 'dia', '钻石矿': 'dia', air: '', '空气': ''};
+  const sv = $('#cmdSvg'), log = $('#cmdLog'), inp = $('#cmdIn');
+  function reset(){ w = new Array(X * Y * Z).fill(''); night = false; rain = false; draw(); }
+  function draw(){
+    const ox = Z * s * .866 + 34, oy = Y * s + 26;
+    let g = '<rect x="-20" y="-20" width="2000" height="2000" fill="' + (night ? '#1c2238' : 'var(--sky)') + '" opacity="' + (night ? 1 : .55) + '"/>';
+    if (night) for (let i = 0; i < 14; i++) g += '<rect x="' + (17 + i * 41 % 330) + '" y="' + (8 + i * 23 % 60) + '" width="2" height="2" fill="#fff" opacity=".8"/>';
+    const P = (x, z) => isoXY(x, z, 0, s, ox, oy);
+    const c = [P(0, 0), P(X, 0), P(X, Z), P(0, Z)];
+    g += '<path d="M' + c.map(p => p[0].toFixed(1) + ',' + p[1].toFixed(1)).join('L') + 'Z" fill="var(--paper)" fill-opacity=".6" stroke="var(--ink-3)" stroke-dasharray="3 3"/>';
+    for (let i = 1; i < X; i++) { const a = P(i, 0), b = P(i, Z); g += '<line x1="' + a[0] + '" y1="' + a[1] + '" x2="' + b[0] + '" y2="' + b[1] + '" stroke="var(--rule)" stroke-width=".6"/>'; }
+    for (let i = 1; i < Z; i++) { const a = P(0, i), b = P(X, i); g += '<line x1="' + a[0] + '" y1="' + a[1] + '" x2="' + b[0] + '" y2="' + b[1] + '" stroke="var(--rule)" stroke-width=".6"/>'; }
+    const ax = P(X, 0), az = P(0, Z);
+    g += txt(ax[0] + 4, ax[1] + 4, 'x→9', {s: 11, a: 'start', c: 'var(--zhu)', w: true}) + txt(az[0] - 4, az[1] + 4, '9←z', {s: 11, a: 'end', c: 'var(--blu)', w: true});
+    const o0 = P(0, 0); g += txt(o0[0], o0[1] - 4, '0,0', {s: 10, c: 'var(--ink-3)'});
+    const L = [];
+    for (let y = 0; y < Y; y++) for (let z = 0; z < Z; z++) for (let x = 0; x < X; x++) if (w[id(x, y, z)]) L.push([x, y, z]);
+    L.sort((a, b) => (a[0] + a[2]) - (b[0] + b[2]) || a[1] - b[1]);
+    const has = (x, y, z) => x < X && y < Y && z < Z && w[id(x, y, z)] && w[id(x, y, z)] !== 'glass' && w[id(x, y, z)] !== 'water';
+    L.forEach(b => { const q = isoXY(b[0], b[2], b[1], s, ox, oy);
+      g += cube(q[0], q[1], s, w[id(b[0], b[1], b[2])], b[0] * 7 + b[1] * 13 + b[2] * 3, {top: !has(b[0], b[1] + 1, b[2]), left: !has(b[0], b[1], b[2] + 1), right: !has(b[0] + 1, b[1], b[2])}); });
+    if (rain) for (let i = 0; i < 40; i++) { const x = (i * 37) % 340, y = (i * 53) % 300; g += '<line x1="' + x + '" y1="' + y + '" x2="' + (x - 4) + '" y2="' + (y + 12) + '" stroke="var(--water)" stroke-width="1.4" opacity=".7"/>'; }
+    sv.setAttribute('viewBox', '0 0 ' + (ox * 2) + ' ' + (oy + (X + Z) * s * .5 + 8)); sv.innerHTML = g;
+    $('#cmdCount').textContent = '方块数：' + w.filter(Boolean).length;
+  }
+  const inRange = (x, y, z) => x >= 0 && x < X && y >= 0 && y < Y && z >= 0 && z < Z;
+  function run(line){
+    const raw = line.trim(); if (!raw) return;
+    const t = raw.replace(/^\//, '').split(/\s+/), cmd = t[0].toLowerCase();
+    let ok = true, msg = '';
+    const nums = a => a.map(v => Number(v));
+    const blk = n => { const k = (n || '').toLowerCase().replace(/^minecraft:/, ''); return k in NAME ? NAME[k] : null; };
+    if (cmd === 'setblock') {
+      const [x, y, z] = nums(t.slice(1, 4)), b = blk(t[4]);
+      if (t.length < 5 || [x, y, z].some(isNaN)) { ok = false; msg = '写法是：/setblock x y z 方块名'; }
+      else if (b === null) { ok = false; msg = '不认识“' + esc(t[4]) + '”这种方块。试试 stone、oak_planks、glass、air。'; }
+      else if (!inRange(x, y, z)) { ok = false; msg = '这块小地只有 x 0—9、y 0—7、z 0—9。'; }
+      else { w[id(x, y, z)] = b; msg = b ? '在 (' + x + ', ' + y + ', ' + z + ') 放了一块。' : '把 (' + x + ', ' + y + ', ' + z + ') 那一块变成了空气。'; }
+    } else if (cmd === 'fill') {
+      const v = nums(t.slice(1, 7)), b = blk(t[7]);
+      if (t.length < 8 || v.some(isNaN)) { ok = false; msg = '写法是：/fill x1 y1 z1 x2 y2 z2 方块名'; }
+      else if (b === null) { ok = false; msg = '不认识“' + esc(t[7]) + '”这种方块。'; }
+      else if (!inRange(v[0], v[1], v[2]) || !inRange(v[3], v[4], v[5])) { ok = false; msg = '有一个角超出了这块小地：x 0—9、y 0—7、z 0—9。'; }
+      else { let n = 0; for (let x = Math.min(v[0], v[3]); x <= Math.max(v[0], v[3]); x++) for (let y = Math.min(v[1], v[4]); y <= Math.max(v[1], v[4]); y++) for (let z = Math.min(v[2], v[5]); z <= Math.max(v[2], v[5]); z++) { w[id(x, y, z)] = b; n++; } msg = '一下子' + (b ? '填了 ' : '挖空了 ') + n + ' 格。'; }
+    } else if (cmd === 'time') {
+      const v = (t[2] || '').toLowerCase();
+      if (t[1] === 'set' && (v === 'night' || v === 'midnight')) { night = true; msg = '天黑了。'; } else if (t[1] === 'set' && (v === 'day' || v === 'noon')) { night = false; msg = '天亮了。'; } else { ok = false; msg = '试试 /time set day 或 /time set night'; }
+    } else if (cmd === 'weather') {
+      const v = (t[1] || '').toLowerCase();
+      if (v === 'rain' || v === 'thunder') { rain = true; msg = '下雨了。'; } else if (v === 'clear') { rain = false; msg = '雨停了。'; } else { ok = false; msg = '试试 /weather rain 或 /weather clear'; }
+    } else if (cmd === 'say') { msg = '你说：' + esc(t.slice(1).join(' ')); }
+    else { ok = false; msg = '这个小玩具只认识 setblock、fill、time、weather、say 五个命令。'; }
+    log.insertAdjacentHTML('afterbegin', '<li class="' + (ok ? 'ok' : 'bad') + '"><code>' + esc(raw) + '</code><span>' + msg + '</span></li>');
+    while (log.children.length > 6) log.lastChild.remove();
+    draw();
+  }
+  const PRE = [['铺草地', ['/fill 0 0 0 9 0 9 grass_block']], ['一大块木头', ['/fill 2 1 2 7 3 6 oak_planks']], ['挖空里面', ['/fill 3 1 3 6 3 5 air']], ['开一扇门', ['/fill 4 1 6 5 2 6 air']], ['玻璃屋顶', ['/fill 2 4 2 7 4 6 glass']], ['种一棵树', ['/fill 8 1 1 8 3 1 oak_log', '/fill 7 4 0 9 5 2 oak_leaves', '/setblock 8 6 1 oak_leaves']], ['天黑', ['/time set night']], ['下雨', ['/weather rain']]];
+  $('#cmdPre').innerHTML = PRE.map((p, i) => '<button class="btn" data-i="' + i + '">' + p[0] + '</button>').join('');
+  $('#cmdPre').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; const p = PRE[+b.dataset.i]; inp.value = p[1][p[1].length - 1]; p[1].forEach(run); });
+  $('#cmdGo').addEventListener('click', () => { run(inp.value); inp.select(); });
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') { run(inp.value); inp.select(); } });
+  $('#cmdReset').addEventListener('click', () => { log.innerHTML = ''; reset(); });
+  reset();
+});
+
+
+/* ---------- 第十六章：几行代码盖一座塔（写法参考 MakeCode，细节以官方为准） ---------- */
+dev('#codeFig', () => {
+  const X = 10, Y = 8, Z = 10, s = 16;
+  const MAT = [['石头', 'stone', 'STONE'], ['木板', 'plank', 'PLANKS_OAK'], ['玻璃', 'glass', 'GLASS'], ['沙子', 'sand', 'SAND']];
+  const P = [
+    {n: '一座塔', k: '高', lo: 1, hi: 8, v: 5, list: n => { const r = []; for (let i = 0; i < n; i++) r.push([4, i, 4]); return r; },
+      blk: (n, m) => '<div class="cb loop">重复 <b>' + n + '</b> 次（每次 i 加 1）<div class="in"><div class="cb put">放一块 <b>' + m + '</b> 在 (4, <b>i</b>, 4)</div></div></div>',
+      py: (n, M) => 'for i in range(' + n + '):\n    blocks.place(' + M + ', world(4, i, 4))'},
+    {n: '一堵墙', k: '长', lo: 2, hi: 10, v: 6, list: n => { const r = []; for (let y = 0; y < 3; y++) for (let x = 0; x < n; x++) r.push([x, y, 5]); return r; },
+      blk: (n, m) => '<div class="cb loop">重复 <b>3</b> 次（每次 y 加 1）<div class="in"><div class="cb loop">重复 <b>' + n + '</b> 次（每次 x 加 1）<div class="in"><div class="cb put">放一块 <b>' + m + '</b> 在 (<b>x</b>, <b>y</b>, 5)</div></div></div></div></div>',
+      py: (n, M) => 'for y in range(3):\n    for x in range(' + n + '):\n        blocks.place(' + M + ', world(x, y, 5))'},
+    {n: '一座金字塔', k: '层数', lo: 1, hi: 5, v: 4, list: n => { const r = []; for (let k = 0; k < n; k++) for (let x = k; x <= 2 * n - 2 - k; x++) for (let z = k; z <= 2 * n - 2 - k; z++) r.push([x, k, z]); return r; },
+      blk: (n, m) => '<div class="cb loop">重复 <b>' + n + '</b> 次（每次 k 加 1）<div class="in"><div class="cb put">用 <b>' + m + '</b> 填满从 (<b>k</b>, <b>k</b>, <b>k</b>) 到 (<b>' + (2 * n - 2) + '−k</b>, <b>k</b>, <b>' + (2 * n - 2) + '−k</b>) 的一层</div></div></div>',
+      py: (n, M) => 'for k in range(' + n + '):\n    blocks.fill(' + M + ', world(k, k, k),\n                world(' + (2 * n - 2) + ' - k, k, ' + (2 * n - 2) + ' - k))'},
+    {n: '一段楼梯', k: '级数', lo: 2, hi: 8, v: 6, list: n => { const r = []; for (let i = 0; i < n; i++) for (let y = 0; y <= i; y++) r.push([i + 1, y, 3]); return r; },
+      blk: (n, m) => '<div class="cb loop">重复 <b>' + n + '</b> 次（每次 i 加 1）<div class="in"><div class="cb loop">重复 <b>i + 1</b> 次（每次 y 加 1）<div class="in"><div class="cb put">放一块 <b>' + m + '</b> 在 (<b>i</b> + 1, <b>y</b>, 3)</div></div></div></div></div>',
+      py: (n, M) => 'for i in range(' + n + '):\n    for y in range(i + 1):\n        blocks.place(' + M + ', world(i + 1, y, 3))'}
+  ];
+  let pi = 0, mi = 0, timer = null, shown = [];
+  const sv = $('#codeSvg');
+  function render(list, type){
+    const ox = Z * s * .866 + 12, oy = Y * s + 20;
+    const iso = (x, z, y) => isoXY(x, z, y, s, ox, oy);
+    let g = '';
+    const c = [iso(0, 0, 0), iso(X, 0, 0), iso(X, Z, 0), iso(0, Z, 0)];
+    g += '<path d="M' + c.map(p => p[0].toFixed(1) + ',' + p[1].toFixed(1)).join('L') + 'Z" fill="var(--grass)" fill-opacity=".35" stroke="var(--ink-3)" stroke-dasharray="3 3"/>';
+    const set = new Set(list.map(b => b.join(',')));
+    const has = (x, y, z) => type !== 'glass' && set.has(x + ',' + y + ',' + z);
+    list.slice().sort((a, b) => (a[0] + a[2]) - (b[0] + b[2]) || a[1] - b[1]).forEach(b => {
+      const q = iso(b[0], b[2], b[1]);
+      g += cube(q[0], q[1], s, type, b[0] * 5 + b[1] * 11 + b[2] * 3, {top: !has(b[0], b[1] + 1, b[2]), left: !has(b[0], b[1], b[2] + 1), right: !has(b[0] + 1, b[1], b[2])});
+    });
+    sv.setAttribute('viewBox', '0 0 ' + ox * 2 + ' ' + (oy + (X + Z) * s * .5 + 6)); sv.innerHTML = g;
+  }
+  function show(){
+    clearInterval(timer);
+    const p = P[pi], n = +$('#codeN').value, m = MAT[mi], list = p.list(n);
+    $('#codeBlk').innerHTML = '<div class="cb hat">当程序开始时</div>' + p.blk(n, m[0]);
+    $('#codePy').textContent = p.py(n, m[2]);
+    shown = list; render(list, m[1]);
+    const lines = p.py(n, m[2]).split('\n').length;
+    $('#codeSay').innerHTML = '程序只有 <b>' + lines + '</b> 行，放了 <b>' + list.length + '</b> 块。' + (list.length > 20 ? '要是用手一块一块点，得点 ' + list.length + ' 下。' : '把数字改大一点试试：代码几乎不用改，房子就大了。');
+  }
+  function play(){
+    clearInterval(timer);
+    const list = P[pi].list(+$('#codeN').value), type = MAT[mi][1]; let k = 0;
+    render([], type);
+    timer = setInterval(() => { k++; render(list.slice(0, k), type); $('#codeSay').innerHTML = '电脑正在一行一行地照做：已经放了 <b>' + k + '</b> / ' + list.length + ' 块。'; if (k >= list.length) { clearInterval(timer); $('#codeSay').innerHTML += ' 做完了。'; } }, list.length > 60 ? 40 : 120);
+  }
+  function setRange(){ const p = P[pi], r = $('#codeN'); r.min = p.lo; r.max = p.hi; r.value = p.v; $('#codeNL').textContent = p.k; }
+  btnRow($('#codePick'), P.map(p => p.n), 0, i => { pi = i; setRange(); $('#codeNO').textContent = $('#codeN').value; show(); });
+  btnRow($('#codeMat'), MAT.map(m => m[0]), 0, i => { mi = i; show(); });
+  setRange();
+  slider('codeN', v => v, show);
+  $('#codeRun').addEventListener('click', play);
 });
 
 })();

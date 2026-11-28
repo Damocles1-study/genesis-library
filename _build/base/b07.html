@@ -1,0 +1,190 @@
+<section class="chap" id="c15" data-vol="卷四 · 流水线">
+  <div class="chead">
+    <div class="big">流</div>
+    <div>
+      <div class="no">第十五章</div>
+      <h2>流水线</h2>
+      <dl><dt>讲什么</dt><dd>洗衣服的办法：把一件事切成几段，几件事错开同时做；五段流水线；吞吐率、加速比和效率；结构冒险、数据冒险、控制冒险；旁路；分支预测；超标量和乱序执行；为什么排好序的数组循环更快</dd><dt>装置</dt><dd>流水线时空图</dd></dl>
+      <div class="crs" data-c="组成"></div>
+      <div class="lvs"><a data-l="1" href="#c15-1">第一层 · 40 分钟</a><a data-l="2" href="#c15-2">第二层 · 60 分钟</a><a data-l="3" href="#c15-3">第三层 · 35 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>小机每条指令要三步。真的处理器一秒钟几十亿条，每一步得多快啊？</span></div>
+    <div class="l"><i class="j">舅</i><span>它不是每一步都更快，是几条指令同时在做不同的步骤。你家周末洗衣服，是不是第一桶在烘干的时候，第二桶已经在洗了？</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>用洗衣服讲清楚流水线为什么能让“每小时洗完几桶”变多，而“一桶要多久”并没有变短。</li>
+      <li><span class="lg lg1">一</span>画出五段流水线的时空图。</li>
+      <li><span class="lg lg2">二</span>计算流水线的吞吐率、加速比、效率；找出指令序列里的数据冒险，算出有无旁路时各要停几拍。</li>
+      <li><span class="lg lg3">三</span>说出超标量、乱序执行、寄存器重命名、分支预测和幽灵漏洞的关系；在 Mac 上测出分支预测的作用。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c15-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：取指译码执行（第十三章）</span><span class="tm">约 40 分钟</span></div>
+    <div class="lyb">
+      <h3>洗衣服</h3>
+      <p>洗一桶衣服有三步：洗 30 分钟，烘 30 分钟，叠 30 分钟。四桶衣服，一桶一桶地来，要 4 × 90 = 360 分钟。聪明的办法是：第一桶洗完放进烘干机，马上开始洗第二桶；第一桶烘完拿去叠，第二桶进烘干机，第三桶开始洗……三台“机器”同时都在忙。这样四桶只要 90 + 3 × 30 = 180 分钟。这就是<b>流水线</b>（<span class="en" data-say="pipeline">pipeline</span>）。</p>
+      <p>注意两件事：</p>
+      <ul class="plain">
+        <li>每一桶从开始到结束，还是要 90 分钟，<b>没有变快</b>。变快的是“每 30 分钟就有一桶洗好”，也就是单位时间里完成的数量（<b>吞吐率</b>）。</li>
+        <li>桶数越多，越接近“三倍速”：开头要“灌满”流水线、结尾要“排空”，桶多了这点损失就可以忽略。</li>
+      </ul>
+      <h3>五段流水线</h3>
+      <p>处理器把执行一条指令切成五段，每段用一个时钟周期，段和段之间用寄存器隔开（第十一章说的“把组合逻辑切开，中间插寄存器”）：</p>
+      <div class="tbl"><table class="t"><tr><th>段</th><th>做什么</th></tr>
+        <tr><td><b>IF</b> 取指</td><td>按 PC 从内存（指令缓存）取指令，PC 加 4</td></tr>
+        <tr><td><b>ID</b> 译码</td><td>看是什么指令，从寄存器里读出操作数</td></tr>
+        <tr><td><b>EX</b> 执行</td><td>ALU 运算，或者算出要访问的内存地址</td></tr>
+        <tr><td><b>MEM</b> 访存</td><td>ldr 读内存、str 写内存；别的指令这一段空着</td></tr>
+        <tr><td><b>WB</b> 写回</td><td>把结果写回寄存器</td></tr></table></div>
+      <p>理想情况下，每个时钟周期都有一条新指令进入流水线，五条指令同时处在五个不同的段里。一条指令仍然要 5 个周期，但平均每个周期完成一条，比不用流水线快将近 5 倍。</p>
+
+      <div class="fig" id="pipeFig">
+        <div class="fig-label">装置 · 第十五章</div>
+        <h4>流水线时空图</h4>
+        <p class="how">横着是时钟周期，竖着是六条指令。先看“不用流水线”和“理想流水线”的差别；第二层再看后面三种：真实的指令之间会互相等。灰色的“停”是流水线停顿（气泡）。</p>
+        <div class="btns" data-m></div>
+        <div class="pipeprog"></div>
+        <div class="pipe scroll-x"></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+
+      <div class="task" data-id="base-t15a">
+        <div class="th"><b>画一张洗衣服的时空图</b></div>
+        <div class="tb"><p>在纸上画格子：横着每格 30 分钟，竖着是第 1—5 桶，在格子里写“洗”“烘”“叠”。如果烘干要 60 分钟（比别的慢一倍），会发生什么？（提示：洗好的衣服要排队等烘干机。流水线的速度取决于<b>最慢的那一段</b>，所以处理器设计者要把各段切得一样长。）</p></div>
+      </div>
+      <div class="pass" data-id="base-q15a">
+        <div class="qq" data-a="1"><p>流水线让什么变快了？</p><ol><li>每条指令从开始到结束的时间</li><li>单位时间里完成的指令数</li><li>内存</li></ol><p class="ex">吞吐率提高了，单条指令的延迟没变（甚至稍长）。</p></div>
+        <div class="qq" data-in="180"><p>洗、烘、叠各 30 分钟，用流水线洗 4 桶要多少分钟？</p><p class="ex">90 + 3 × 30 = 180。</p></div>
+        <div class="qq" data-a="2"><p>五段流水线里，ldr 在哪一段真正读内存？</p><ol><li>IF</li><li>EX</li><li>MEM</li></ol><p class="ex">EX 算地址，MEM 读内存。</p></div>
+        <div class="qq" data-a="0"><p>流水线的速度取决于？</p><ol><li>最慢的那一段</li><li>最快的那一段</li><li>段的个数</li></ol><p class="ex">时钟周期要容得下最慢的一段。</p></div>
+        <div class="qq" data-in="10"><p>理想的五段流水线执行 6 条指令，一共要几个时钟周期？</p><p class="ex">第一条 5 个周期，后面每条再加 1：5 + 5 = 10。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c15-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 计组 · 指令流水线</span><span class="tm">约 60 分钟</span><span class="sum">吞吐率、加速比、效率的公式；三种冒险；停顿和旁路；load-use 冒险必须停一拍；控制冒险的几种对策；动态分支预测的两位计数器。</span></div>
+    <div class="lyb">
+      <h3>性能指标</h3>
+      <p>设流水线有 k 段，每段时间 Δt，连续输入 n 条指令（不考虑冒险）：</p>
+      <ul class="plain">
+        <li>总时间 T = (k + n − 1)Δt（前 k 个 Δt 灌满，之后每 Δt 出一条）。</li>
+        <li><b>吞吐率</b> TP = n / T = n / ((k + n − 1)Δt)，n → ∞ 时趋于 1/Δt。</li>
+        <li><b>加速比</b> S = 不用流水线的时间 / 用流水线的时间 = nkΔt / ((k + n − 1)Δt)，n → ∞ 时趋于 k。</li>
+        <li><b>效率</b> E = 时空图里有效面积 / 总面积 = nkΔt / (k(k + n − 1)Δt) = n / (k + n − 1)。</li>
+      </ul>
+      <p>各段时间不相等时，Δt 取最长的那一段（再加上段间寄存器的开销）。</p>
+      <h3>三种冒险</h3>
+      <ul class="plain">
+        <li><b>结构冒险</b>：两条指令同时要用同一个硬件。例如只有一块存储器，IF 取指和 MEM 访存撞车。对策：指令缓存和数据缓存分开（第十三章的改良哈佛结构），或者停一拍。</li>
+        <li><b>数据冒险</b>：后一条指令要用前一条指令的结果，而结果还没写回。最常见的是“写后读”（RAW）。对策：<b>停顿</b>（插气泡，等前一条写回）；<b>旁路</b>（也叫转发，把 EX 或 MEM 段刚算出的结果直接送回 ALU 的输入，不等写回寄存器）；编译器<b>重排</b>指令，把无关的指令塞进去。</li>
+        <li><b>控制冒险</b>：遇到跳转，在跳转指令算出“跳不跳、跳到哪儿”之前，流水线不知道下一条该取哪一条。对策：停到结果出来；<b>预测</b>（先按猜测往下取，猜错了就把取错的指令清掉）；早期 MIPS 用“延迟槽”（跳转后面那一条无论如何都执行，由编译器填有用的指令）。</li>
+      </ul>
+      <p>旁路解决不了的一种：<b>load-use 冒险</b>。ldr 要到 MEM 段结束才拿到数据，紧跟着的指令在 EX 段一开始就要用，时间上来不及，必须停一拍（装置里“加上旁路”那种模式可以看到）。编译器会尽量在 ldr 和使用它的指令之间塞一条别的指令。</p>
+      <p><b>动态分支预测</b>：最简单的是给每条跳转指令配一个两位的饱和计数器，四个状态：强不跳、弱不跳、弱跳、强跳。每次实际跳了就加一、没跳就减一（到头不再变），预测看高位。比起“上次跳了就猜跳”，两位计数器在循环结尾只会错一次，不会连错两次。真实处理器的预测器要复杂得多，准确率常在 95% 以上。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）某五段流水线各段时间为 80 ps、100 ps、120 ps、100 ps、80 ps，段间寄存器延迟 20 ps。求时钟周期、执行 100 条指令（无冒险）的总时间、吞吐率和相对于不用流水线（一条指令 480 ps、一条接一条）的加速比。（2）对下列指令序列，在五段流水线中（寄存器堆先写后读，同一周期内可以读到刚写的值），分别求不使用旁路和使用旁路时各要插入几个气泡：<br><code>I1: ldr x1, [x0]</code><br><code>I2: add x2, x1, x3</code><br><code>I3: sub x4, x2, x5</code></p>
+        <details><summary>看解答</summary><div>
+          <p>（1）周期 = 最长段 120 + 20 = 140 ps。总时间 = (5 + 100 − 1) × 140 = 14560 ps。吞吐率 = 100 / 14560 ps ≈ 6.87 × 10<sup>9</sup> 条/秒。不用流水线：100 × 480 = 48000 ps，加速比 ≈ 3.30（小于 5，因为段不均衡、还有寄存器开销）。</p>
+          <p>（2）不用旁路：I2 要在 ID 读到 x1，最早与 I1 的 WB 同周期，I1 的 WB 在第 5 周期，I2 正常应在第 3 周期 ID，要停 2 拍；I3 依赖 I2 的 x2，同理再停 2 拍；共 4 个气泡。用旁路：I1 是 ldr，load-use 必须停 1 拍；I2 的结果在 EX 末尾就能转发给 I3，不用停；共 1 个气泡。可以在上面的装置里对照（装置用的序列不同，方法一样）。</p>
+        </div></details>
+      </div>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>为什么在一个大数组上，先排好序再执行 <code>if (a[i] &gt;= 128) sum += a[i];</code> 会快很多？</p>
+        <details><summary>看要点</summary><div><p>数据随机时，这个分支跳不跳像抛硬币，预测器大约一半猜错，每次猜错都要清空流水线、浪费十几个周期；排好序后，前一半一直不跳、后一半一直跳，预测几乎全对。解决办法：排序，或者把分支改成无分支的写法（条件选择、位运算），编译器有时会自己做（第十四章的 csel）。第三层有在 Mac 上动手测的实验。</p></div></details>
+      </div>
+      <div class="pass" data-id="base-q15b">
+        <div class="qq" data-in="5"><p>k 段流水线，n 很大时加速比趋近于多少？（k = 5）</p><p class="ex">趋于 k。</p></div>
+        <div class="qq" data-in="5/9|0.56|0.556|0.5556|56%"><p>五段流水线只执行 5 条指令，效率是多少？（写分数或保留两位小数）</p><p class="ex">E = n / (k + n − 1) = 5 / (5 + 5 − 1) = 5/9 ≈ 0.56。指令太少，灌满和排空占了很大比例。</p></div>
+        <div class="qq" data-a="1"><p>ldr 后面紧跟一条用它结果的指令，有旁路时还要停几拍？</p><ol><li>0</li><li>1</li><li>2</li></ol><p class="ex">load-use 冒险，旁路也来不及，停 1 拍。</p></div>
+        <div class="qq" data-a="0"><p>指令缓存和数据缓存分开，主要解决哪种冒险？</p><ol><li>结构冒险</li><li>数据冒险</li><li>控制冒险</li></ol><p class="ex">IF 和 MEM 不再争同一块存储器。</p></div>
+        <div class="qq" data-a="2"><p>两位饱和计数器预测器，相比一位的好处是？</p><ol><li>更省电</li><li>永远猜对</li><li>在循环结尾只错一次，不会连错两次</li></ol><p class="ex">一次意外不会立刻改变预测。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c15-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">真实处理器的“并行”</span><span class="tm">约 35 分钟</span><span class="sum">超标量；乱序执行和托马苏洛算法；寄存器重命名和重排序缓冲；M1 的宽度；幽灵漏洞；在 Mac 上测分支预测。</span></div>
+    <div class="lyb">
+      <h3>一个周期不止一条</h3>
+      <p>流水线让每周期完成一条指令；要更多，就同时取好几条、配好几套 ALU，叫<b>超标量</b>。但相邻的指令常常互相依赖，不能同时做。<b>乱序执行</b>的办法是：一次看一大段指令（几百条），谁的操作数准备好了就先执行谁，不按程序顺序；最后再按原顺序“提交”结果，让程序看起来仍然是一条一条执行的。它的核心思想来自 1967 年罗伯特·托马苏洛为 IBM System/360 Model 91 的浮点部件设计的算法。</p>
+      <ul class="plain">
+        <li><b>寄存器重命名</b>：程序只有 31 个寄存器名，同一个名字被反复使用会制造假的依赖（“写后写”“读后写”）。处理器内部有几百个物理寄存器，每次写都分配一个新的，假依赖就消失了。</li>
+        <li><b>重排序缓冲</b>（ROB）：记着所有正在飞的指令的原始顺序，按顺序提交；如果前面某条分支猜错了、或者出了异常，就把它后面所有“偷跑”的指令作废。</li>
+      </ul>
+      <p>据公开的测评，Apple M1 的性能核每周期能译码 8 条指令，重排序缓冲有六百多项，在发布时都是同类处理器里最宽的之一；也就是说，它同时“看着”几百条指令，挑能做的先做。这是它主频不高却很快的主要原因之一。</p>
+      <h3>幽灵</h3>
+      <p>乱序和预测执行“偷跑”的指令虽然会被作废，但它们在偷跑时读过的数据已经被搬进了缓存（第十六章），而缓存里有没有某个数据，可以通过测量访问时间看出来。2018 年公开的<b>幽灵</b>（Spectre）和<b>熔断</b>（Meltdown）漏洞，就是故意训练分支预测器猜错、让处理器偷跑去读本不该读的数据，再从缓存的时间差里把它“看”出来。几乎所有高性能处理器都受影响。修补手段包括软件里插屏障、操作系统隔离内核地址、浏览器降低计时器精度等，代价是一些性能。这是“抽象会漏”（第零章）最惊人的例子：一个本来只影响速度的优化，泄露了数据。</p>
+      <div class="try">
+        <div class="th"><b>在 Mac 上测分支预测</b><span class="tm">15 分钟 · 需要第三部的 C 基础</span></div>
+        <div class="tb">
+<pre class="code" data-k="branch.c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+#define N (1 &lt;&lt; 24)
+static int cmp(const void *a, const void *b) { return *(int*)a - *(int*)b; }
+static double run(int *a) {
+    struct timespec t0, t1; long long s = 0;
+    clock_gettime(CLOCK_MONOTONIC, &amp;t0);
+    for (int r = 0; r &lt; 10; r++)
+        for (int i = 0; i &lt; N; i++)
+            if (a[i] &gt;= 128) s += a[i];
+    clock_gettime(CLOCK_MONOTONIC, &amp;t1);
+    printf("(sum=%lld) ", s);
+    return (t1.tv_sec - t0.tv_sec) + (t1.tv_nsec - t0.tv_nsec) / 1e9;
+}
+int main(void) {
+    int *a = malloc(N * sizeof(int));
+    for (int i = 0; i &lt; N; i++) a[i] = rand() % 256;
+    printf("随机：%.3f 秒\n", run(a));
+    qsort(a, N, sizeof(int), cmp);
+    printf("排序后：%.3f 秒\n", run(a));
+    return 0;
+}</pre>
+<pre class="sh" data-k="终端"><span class="p">% </span>clang -O1 branch.c -o branch &amp;&amp; ./branch
+<span class="p">% </span>clang -O3 branch.c -o branch &amp;&amp; ./branch</pre>
+          <p>用 <code>-O1</code> 时，随机的那次通常明显更慢。换成 <code>-O3</code>，两次可能差不多快：编译器把 if 改写成了无分支的条件选择或向量指令，没有分支，就谈不上预测。结果因芯片和编译器版本而异，这正是实验的意义：自己量，别光信书。</p>
+        </div>
+      </div>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>R. M. Tomasulo, “An Efficient Algorithm for Exploiting Multiple Arithmetic Units”, <i>IBM Journal</i>, 1967。</li>
+          <li>P. Kocher et al., “Spectre Attacks: Exploiting Speculative Execution”, IEEE S&amp;P 2019；M. Lipp et al., “Meltdown”, USENIX Security 2018。</li>
+          <li>Hennessy &amp; Patterson《计算机体系结构：量化研究方法》第三章；Stack Overflow 上 2012 年的问题 “Why is processing a sorted array faster than processing an unsorted array?”。</li>
+        </ul>
+      </div>
+      <div class="pass" data-id="base-q15c">
+        <div class="qq" data-a="1"><p>寄存器重命名消除的是哪类依赖？</p><ol><li>真正的写后读</li><li>写后写、读后写这类“名字冲突”造成的假依赖</li><li>控制依赖</li></ol><p class="ex">真依赖消除不了，只能等或者转发。</p></div>
+        <div class="qq" data-a="0"><p>乱序执行的处理器，结果按什么顺序提交？</p><ol><li>程序原来的顺序</li><li>执行完的先后</li><li>随机</li></ol><p class="ex">重排序缓冲保证按序提交。</p></div>
+        <div class="qq" data-a="2"><p>幽灵漏洞利用了什么来“看到”偷跑时读过的数据？</p><ol><li>屏幕</li><li>网络</li><li>缓存的访问时间差</li></ol><p class="ex">缓存侧信道。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div data-l="1"><b>流水线 <span class="en" data-say="pipeline">pipeline</span></b>把一件事切成几段，几件事错开同时做。</div>
+    <div data-l="1"><b>吞吐率 <span class="en" data-say="throughput">throughput</span></b>单位时间完成多少。</div>
+    <div data-l="1"><b>延迟 <span class="en" data-say="latency">latency</span></b>一件事从开始到结束要多久。</div>
+    <div data-l="2"><b>冒险 <span class="en" data-say="hazard">hazard</span></b>让流水线不能正常前进的情况。</div>
+    <div data-l="2"><b>旁路 <span class="en" data-say="forwarding">forwarding</span></b>把刚算出的结果直接送给后面的指令。</div>
+    <div data-l="3"><b>乱序执行 <span class="en" data-say="out of order execution">out-of-order</span></b>谁准备好了先做谁，最后按序提交。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>流水线不让一件事变快，让单位时间做的事变多；最慢的一段说了算。</div>
+    <div><i>第二层带走</i>T = (k + n − 1)Δt；load-use 有旁路也要停一拍。</div>
+    <div><i>第三层带走</i>处理器靠猜和偷跑赢来速度，也因此漏了数据。</div>
+  </div>
+</section>

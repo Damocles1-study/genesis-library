@@ -1,0 +1,213 @@
+<section class="chap" id="c13" data-vol="卷四 · 一台小机器">
+  <div class="chead">
+    <div class="big">机</div>
+    <div>
+      <div class="no">第十三章</div>
+      <h2>一台小机器</h2>
+      <dl><dt>讲什么</dt><dd>存储程序：指令也是数，和数据放在同一个内存里；程序计数器、指令寄存器、累加器；取指、译码、执行；一台只有十条指令、十六格内存的“小机”；MAR、MDR 和指令周期；冯·诺依曼瓶颈；自己改自己的程序</dd><dt>装置</dt><dd>小机模拟器</dd></dl>
+      <div class="crs" data-c="组成 系统"></div>
+      <div class="lvs"><a data-l="1" href="#c13-1">第一层 · 60 分钟</a><a data-l="2" href="#c13-2">第二层 · 50 分钟</a><a data-l="3" href="#c13-3">第三层 · 30 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>加法器、寄存器、内存都有了。可是谁来告诉加法器“现在加哪两个数”？</span></div>
+    <div class="l"><i class="j">舅</i><span>内存自己告诉它。这是整个计算机史上最聪明的一个主意：把命令也写成数，放进内存里。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>说出“存储程序”是什么意思；说出程序计数器、指令寄存器、累加器各记着什么。</li>
+      <li><span class="lg lg1">一</span>在小机上一步一步跟踪“取指、译码、执行”，自己写一个十几条指令的小程序。</li>
+      <li><span class="lg lg2">二</span>写出取指周期的微操作；说出 MAR、MDR 的作用和指令周期的组成；用 Python 写一个小机模拟器。</li>
+      <li><span class="lg lg3">三</span>说出冯·诺依曼瓶颈和哈佛结构；解释为什么今天的系统不让程序随便改自己的代码。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c13-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：二进制、十六进制、内存（第十二章）</span><span class="tm">约 60 分钟</span></div>
+    <div class="lyb">
+      <h3>命令也是数</h3>
+      <p>早期的一些计算机，“程序”是用插线板和开关设定的：换一个题目，工程师就得重新插几天线。1945 年前后，冯·诺依曼等人想清楚了一件事：<b>命令也可以写成数，和要处理的数据一起放进内存</b>。机器从内存里一条一条取出命令，照着做。换一个题目，只要往内存里换一串数，几分钟的事。这就是<b>存储程序</b>，今天所有的电脑、手机都是这样工作的。</p>
+      <p>这样的一条命令叫<b>指令</b>（<span class="en" data-say="instruction">instruction</span>）。每条指令说一件很小的事：“把第 14 格的数拿过来”“加上第 15 格的数”“如果结果是 0，就跳到第 5 条”。</p>
+      <h3>小机</h3>
+      <p>我们来造一台最小的机器，叫它<b>小机</b>（这是本书自己设计的教学用机器，不是真实存在的型号）。它有：</p>
+      <ul class="plain">
+        <li>一块 <b>16 格</b>的内存，每格 8 位（第十二章那块）。程序和数据都放在这里。</li>
+        <li>一个<b>累加器</b> ACC：8 位的寄存器，算出来的结果都放在这里。</li>
+        <li>一个<b>程序计数器</b> PC：4 位，记着“下一条指令在第几格”。每取一条指令，它就自动加一（第十一章的计数器）。</li>
+        <li>一个<b>指令寄存器</b> IR：放着正在执行的那条指令。</li>
+        <li>一个 ALU（第十章），能加能减。</li>
+      </ul>
+      <p>每条指令占一个字节：<b>高 4 位是“做什么”（操作码），低 4 位是“对哪一格”（地址）</b>。4 位操作码最多 16 种指令，小机只用了 10 种：</p>
+      <div class="tbl"><table class="t"><tr><th>操作码</th><th>写法</th><th>意思</th></tr>
+        <tr><td class="m">0</td><td class="m">HLT</td><td>停机</td></tr>
+        <tr><td class="m">1</td><td class="m">LDA a</td><td>把第 a 格的数装进 ACC（load）</td></tr>
+        <tr><td class="m">2</td><td class="m">STA a</td><td>把 ACC 存进第 a 格（store）</td></tr>
+        <tr><td class="m">3</td><td class="m">ADD a</td><td>ACC 加上第 a 格的数</td></tr>
+        <tr><td class="m">4</td><td class="m">SUB a</td><td>ACC 减去第 a 格的数</td></tr>
+        <tr><td class="m">5</td><td class="m">LDI n</td><td>把数 n（0—15）直接装进 ACC</td></tr>
+        <tr><td class="m">6</td><td class="m">JMP a</td><td>跳到第 a 格去取下一条指令（把 PC 改成 a）</td></tr>
+        <tr><td class="m">7</td><td class="m">JZ a</td><td>如果 ACC 是 0，就跳到第 a 格</td></tr>
+        <tr><td class="m">8</td><td class="m">JN a</td><td>如果 ACC 是负数（最高位是 1，第三章），就跳到第 a 格</td></tr>
+        <tr><td class="m">9</td><td class="m">OUT</td><td>把 ACC 打印出来</td></tr></table></div>
+      <p>例如字节 <code>0x3F</code> = 0011 1111：操作码 3 是 ADD，地址 15，意思是“ACC 加上第 15 格的数”。</p>
+      <h3>取指、译码、执行</h3>
+      <p>小机通电以后，永远在重复同样的三步：</p>
+      <ol class="plain">
+        <li><b>取指</b>：按 PC 指的格子，把那个字节从内存里取出来，放进 IR；PC 加一。</li>
+        <li><b>译码</b>：看 IR 的高 4 位是哪种指令，低 4 位是哪一格。</li>
+        <li><b>执行</b>：照着做。如果是跳转指令，就把 PC 改掉，下一次就从新的地方取。</li>
+      </ol>
+      <p>就这么简单。所有的程序，不管是游戏还是浏览器，最终都是处理器在这三步里一圈一圈地转，只是真正的处理器每秒转几十亿圈。</p>
+
+      <div class="fig" id="cpuFig">
+        <div class="fig-label">装置 · 第十三章</div>
+        <h4>小机模拟器</h4>
+        <p class="how">选一个现成的程序，点“走一小步”看取指、译码、执行三个阶段，或点“走一条”“一直走”。蓝框是 PC 指的格子，橙框是这一步读写的格子。也可以在下面的框里自己写程序，点“装进内存”。</p>
+        <div class="btns" data-p></div>
+        <div class="cpuwrap">
+          <div class="cpumem"></div>
+          <div><div class="cpureg"></div><div class="cpuout"></div></div>
+        </div>
+        <div class="btns"><button class="btn pri" data-c="phase">走一小步</button><button class="btn" data-c="inst">走一条</button><button class="btn" data-c="run">一直走</button><button class="btn" data-c="reset">重来</button></div>
+        <div class="say"></div>
+        <details class="asm"><summary>自己写程序</summary>
+          <p class="dim" style="font-size:13px;margin:6px 0">一行一条，从第 0 格往下放；写数字就是数据；写 <code>14: 7</code> 表示把 7 放进第 14 格。分号后面是注释。</p>
+          <textarea id="cpuSrc" rows="8" aria-label="小机程序"></textarea>
+          <div class="btns"><button class="btn pri" data-c="load">装进内存</button></div>
+        </details>
+      </div>
+
+      <p>跟着“倒数”程序走几圈，注意第 3 格的 <code>JZ 5</code> 和第 4 格的 <code>JMP 1</code>：靠“跳回去”，同样几条指令被执行了好多遍，这就是<b>循环</b>；靠“满足条件才跳”，机器就能做<b>判断</b>。Python 里的 <code>while</code> 和 <code>if</code>，最后都会变成这样的跳转指令。</p>
+      <div class="task" data-id="base-t13a">
+        <div class="th"><b>给小机写程序</b></div>
+        <div class="tb"><ol><li>改“加法”程序，让它算 9 − 4。</li><li>写一个程序，打印 1、2、3、4、5（提示：从 1 开始，每次加 1，打印，再和 6 比较：减去 6 得 0 就停。可以先存一份再减，用 STA 和 LDA）。</li><li>看“自己改自己”程序：它运行到第 3 格时，那里原来是 HLT，为什么却打印出了 7？</li></ol></div>
+      </div>
+      <div class="pass" data-id="base-q13a">
+        <div class="qq" data-a="1"><p>“存储程序”的意思是？</p><ol><li>程序存在 U 盘里</li><li>指令也写成数，和数据一起放在内存里</li><li>程序不能改</li></ol><p class="ex">冯·诺依曼结构的核心。</p></div>
+        <div class="qq" data-a="0"><p>程序计数器 PC 记着什么？</p><ol><li>下一条指令在内存的哪一格</li><li>算出来的结果</li><li>已经执行了几条指令</li></ol><p class="ex">每取一条就加一，跳转指令会改写它。</p></div>
+        <div class="qq" data-in="add 15|add15"><p>小机的指令字节 <code>0x3F</code> 写成助记符是？（如 LDA 3）</p><p class="ex">0011 = 3 是 ADD，1111 = 15。</p></div>
+        <div class="qq" data-in="1e|0x1e"><p>“LDA 14” 编码成一个字节是多少？（写十六进制）</p><p class="ex">操作码 1，地址 14 = E：0x1E。</p></div>
+        <div class="qq" data-a="2"><p>取指、译码、执行三步里，PC 在哪一步加一？</p><ol><li>译码</li><li>执行</li><li>取指</li></ol><p class="ex">取完指令马上加一，指向下一条。</p></div>
+        <div class="qq" data-a="1"><p>循环在机器里是靠什么实现的？</p><ol><li>一条叫 LOOP 的指令</li><li>跳回前面的跳转指令</li><li>把程序复制很多遍</li></ol><p class="ex">JMP 跳回去，JZ 之类的条件跳转决定什么时候跳出来。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c13-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 计组 · CPU 的功能和结构、指令周期</span><span class="tm">约 50 分钟</span><span class="sum">运算器和控制器里的寄存器；MAR 和 MDR；指令周期：取指、间址、执行、中断；取指周期的微操作；单总线数据通路；硬布线和微程序控制器预告；用 Python 写小机。</span></div>
+    <div class="lyb">
+      <h3>CPU 里的寄存器</h3>
+      <ul class="plain">
+        <li><b>运算器</b>：ALU、累加器 ACC、乘商寄存器 MQ、通用寄存器组、程序状态字寄存器 PSW（存第三章的 ZF、SF、CF、OF 等标志）。</li>
+        <li><b>控制器</b>：程序计数器 PC、指令寄存器 IR、指令译码器、控制单元 CU（产生控制信号）。</li>
+        <li><b>和主存打交道的两个</b>：存储器地址寄存器 <b>MAR</b>（放要访问的地址，位数 = 地址线根数）和存储器数据寄存器 <b>MDR</b>（放读出或要写入的数据，位数 = 数据线根数）。CPU 访存一定要经过它们。</li>
+      </ul>
+      <p>对程序员“可见”的（能用指令直接读写的）：PC、通用寄存器、PSW 的部分标志；不可见的：IR、MAR、MDR 等。408 常考这一区分。</p>
+      <h3>指令周期</h3>
+      <p>执行一条指令的全部时间叫指令周期，由若干个机器周期（CPU 周期）组成，每个机器周期又由若干个时钟周期组成。一条指令可能经过：</p>
+      <ul class="plain">
+        <li><b>取指周期</b>（每条指令都有）：取出指令，PC 加一。</li>
+        <li><b>间址周期</b>（间接寻址时才有，第十四章）：再访存一次取出真正的操作数地址。</li>
+        <li><b>执行周期</b>：完成指令的功能。</li>
+        <li><b>中断周期</b>（有中断请求且允许时）：保存断点，转去中断服务程序（第二十五章）。</li>
+      </ul>
+      <p>取指周期的微操作，用 (X) 表示“X 的内容”：</p>
+      <pre class="out">(PC) → MAR          ; 地址送出
+1 → R，M(MAR) → MDR ; 读主存
+(MDR) → IR          ; 指令进 IR
+(PC) + 1 → PC       ; 指向下一条（按字节编址、指令长 k 字节时加 k）</pre>
+      <p>“ADD X”（ACC 加上主存 X 单元）的执行周期：Ad(IR) → MAR，1 → R，M(MAR) → MDR，(ACC) + (MDR) → ACC。小机模拟器里同时显示了 MAR 和 MDR，可以对照着看。</p>
+      <h3>数据通路和控制器</h3>
+      <p>寄存器、ALU、主存之间用什么连起来，叫<b>数据通路</b>。最简单的是单总线：所有部件挂在一根内部总线上，同一时刻只能有一个部件往总线上送数据，所以 (ACC) + (MDR) 要先把一个操作数放进 ALU 前面的暂存器 Y，下一步再相加，结果先进暂存器 Z，再送回 ACC。多总线结构可以一步完成，硬件更多。</p>
+      <p>控制单元在每个时钟周期产生一组控制信号（哪个寄存器往总线送、哪个从总线收、ALU 做什么运算），有两种实现：<b>硬布线</b>（用组合逻辑直接产生，快，难改，RISC 多用）和<b>微程序</b>（把每条指令拆成一串“微指令”存在控制存储器里，一条一条读出来执行，灵活，CISC 传统上多用）。这部分是本系列《芯》的重点。</p>
+      <div class="try">
+        <div class="th"><b>用 Python 写一个小机</b><span class="tm">30 分钟</span></div>
+        <div class="tb">
+<pre class="code" data-k="xiaoji.py">mem = [0x1F, 0x90, 0x4E, 0x75, 0x61, 0x00, 0, 0, 0, 0, 0, 0, 0, 0, 1, 5]  # “倒数”
+pc, acc = 0, 0
+while True:
+    ir = mem[pc]; pc = (pc + 1) % 16            # 取指
+    op, a = ir &gt;&gt; 4, ir &amp; 15                    # 译码
+    if   op == 0: break                         # 执行
+    elif op == 1: acc = mem[a]
+    elif op == 2: mem[a] = acc
+    elif op == 3: acc = (acc + mem[a]) % 256
+    elif op == 4: acc = (acc - mem[a]) % 256
+    elif op == 5: acc = a
+    elif op == 6: pc = a
+    elif op == 7 and acc == 0: pc = a
+    elif op == 8 and acc &gt;= 128: pc = a
+    elif op == 9: print(acc)</pre>
+          <p>十几行就是一台计算机。可以加一条 <code>print(pc, hex(ir), acc)</code> 看每一步，或者给它加一条新指令（比如操作码 A 表示“ACC 左移一位”），再改装置里的程序验证。这种“用一个程序模拟另一台机器”的程序叫<b>模拟器</b>或<b>解释器</b>，第零章说的 Python 解释器做的也是这件事，只是复杂得多。</p>
+        </div>
+      </div>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>某机指令字长 16 位，主存按字编址、容量 4K 字，指令格式为“操作码 + 一个直接地址”。问：（1）操作码最多几位？最多能有多少种指令？（2）MAR、MDR、PC、IR 各至少多少位？（3）若主存扩大到 64K 字而指令字长不变，直接寻址还够用吗？（4）写出“STA X”（把 ACC 存入主存 X 单元）执行周期的微操作。</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）4K = 2<sup>12</sup> 字，直接地址 12 位，操作码 16 − 12 = 4 位，最多 16 种指令。</p>
+          <p>（2）MAR 12 位，PC 12 位，MDR 16 位（等于字长），IR 16 位（等于指令字长）。</p>
+          <p>（3）不够：64K = 2<sup>16</sup> 字要 16 位地址，整条指令都给了地址，操作码就没地方放了。要改用别的寻址方式，比如用寄存器提供一部分地址（基址、变址）或间接寻址，这正是第十四章各种寻址方式存在的原因之一。</p>
+          <p>（4）Ad(IR) → MAR；(ACC) → MDR；1 → W；MDR → M(MAR)。</p>
+        </div></details>
+      </div>
+      <div class="pass" data-id="base-q13b">
+        <div class="qq" data-a="2"><p>下面哪个寄存器对程序员不可见？</p><ol><li>PC</li><li>通用寄存器</li><li>MAR</li></ol><p class="ex">MAR、MDR、IR 都不能用指令直接访问。</p></div>
+        <div class="qq" data-in="32"><p>主存容量 4G 字节、按字节编址，MAR 至少几位？</p><p class="ex">2<sup>32</sup>，32 位。</p></div>
+        <div class="qq" data-a="0"><p>取指周期的第一个微操作是？</p><ol><li>(PC) → MAR</li><li>(MDR) → IR</li><li>(PC) + 1 → PC</li></ol><p class="ex">先把地址送出去。</p></div>
+        <div class="qq" data-a="1"><p>间址周期什么时候出现？</p><ol><li>每条指令都有</li><li>采用间接寻址的指令</li><li>有中断时</li></ol><p class="ex">要多访存一次取有效地址。</p></div>
+        <div class="qq" data-a="1"><p>微程序控制器的特点是？</p><ol><li>速度最快，难修改</li><li>把指令拆成微指令存在控制存储器里，灵活易改</li><li>不需要时钟</li></ol><p class="ex">硬布线快，微程序灵活。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c13-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">结构的代价和安全</span><span class="tm">约 30 分钟</span><span class="sum">冯·诺依曼瓶颈；哈佛结构和今天的“改良哈佛”；自己改自己的代码，W^X 和 Apple Silicon 上的 JIT；只有一条指令也能算一切；EDVAC 报告的署名之争。</span></div>
+    <div class="lyb">
+      <h3>冯·诺依曼瓶颈</h3>
+      <p>1977 年，约翰·巴克斯（FORTRAN 的发明者）在图灵奖演讲中批评：处理器和内存之间只有一条窄窄的通道，程序把大部分时间花在一个字一个字地在通道里搬东西上，他称之为<b>冯·诺依曼瓶颈</b>。四十多年来，处理器变快的速度一直远远超过内存，这个瓶颈越来越窄，于是有了第十六章的缓存、第十五章的乱序执行，以及“把计算搬到数据旁边”的各种研究。</p>
+      <h3>哈佛结构</h3>
+      <p>指令和数据放在两块分开的存储器里、用两套总线同时访问，叫<b>哈佛结构</b>（得名于哈佛大学 1944 年的 Mark I，它从纸带读指令）。很多单片机和数字信号处理器用它。今天的通用处理器是“改良哈佛”：内存只有一块（存储程序），但一级缓存分成指令缓存和数据缓存，取指和读写数据可以同时进行。</p>
+      <h3>自己改自己</h3>
+      <p>既然指令就是数，程序当然能改写自己的指令（小机的“自己改自己”演示的就是这个）。早年为了省内存常这样做；今天它是安全隐患：攻击者只要能往数据区写一段字节，再骗处理器跳过去执行，就能控制程序。所以现代系统要求内存页“可写”和“可执行”二选一（W^X），处理器和操作系统配合，把栈和堆标成不可执行。要即时编译（JIT，比如浏览器的 JavaScript 引擎）的程序，必须向系统申请特殊的内存，在“写代码”和“执行代码”两种状态之间切换；Apple Silicon 的 macOS 对此要求更严格，提供专门的接口让线程在两种状态间切换，并要求程序声明相应的权限。</p>
+      <h3>一条指令就够</h3>
+      <p>小机有十条指令。到底最少要几条？理论上一条就够：比如 subleq a, b, c（“把 b 格减去 a 格的值，结果为负或零就跳到 c”），只靠它就能写出任何程序（只要内存足够大），这样的机器叫单指令计算机。这说明“能算什么”和“算得多方便、多快”是两回事：前者早在 1936 年图灵就回答了，后者才是处理器设计者每天在操心的事。</p>
+      <div class="story">
+        <h5>谁的结构</h5>
+        <p>1945 年的《EDVAC 报告草稿》只署了冯·诺依曼的名字，在同事中流传开来，“冯·诺依曼结构”这个叫法也由此而来。但 ENIAC 的设计者埃克特和莫奇利认为，存储程序的想法是他们团队先提出的，报告的流传还让他们失去了申请专利的机会，双方从此分道扬镳。今天的历史学者一般认为这是一个团队集体讨论的成果。</p>
+      </div>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>J. von Neumann, “First Draft of a Report on the EDVAC”, 1945。</li>
+          <li>J. Backus, “Can Programming Be Liberated from the von Neumann Style?”, 图灵奖演讲, <i>CACM</i>, 1978。</li>
+          <li>Nisan &amp; Schocken《计算机系统要素》第四、五章（Hack 机器）；Apple 开发者文档关于 Apple Silicon 上 JIT 与 MAP_JIT 的说明。</li>
+        </ul>
+      </div>
+      <div class="pass" data-id="base-q13c">
+        <div class="qq" data-a="1"><p>“冯·诺依曼瓶颈”指的是？</p><ol><li>指令太少</li><li>处理器和内存之间的通道成为限制</li><li>寄存器太多</li></ol><p class="ex">巴克斯 1977 年提出。</p></div>
+        <div class="qq" data-a="0"><p>今天的处理器在哪一层体现了哈佛结构？</p><ol><li>一级缓存分成指令缓存和数据缓存</li><li>内存分成两块</li><li>没有</li></ol><p class="ex">改良哈佛结构。</p></div>
+        <div class="qq" data-a="2"><p>W^X 的意思是？</p><ol><li>一页内存要么可读要么可写</li><li>不许写内存</li><li>一页内存要么可写要么可执行，不能同时</li></ol><p class="ex">防止写进去的数据被当成代码执行。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div data-l="1"><b>指令 <span class="en" data-say="instruction">instruction</span></b>处理器能执行的一条最小命令。</div>
+    <div data-l="1"><b>程序计数器 <span class="en" data-say="program counter">program counter</span></b>PC，记着下一条指令的位置。</div>
+    <div data-l="1"><b>累加器 <span class="en" data-say="accumulator">accumulator</span></b>放运算结果的寄存器。</div>
+    <div data-l="1"><b>取指 / 译码 / 执行</b><span class="en" data-say="fetch">fetch</span>、<span class="en" data-say="decode">decode</span>、<span class="en" data-say="execute">execute</span>。</div>
+    <div data-l="2"><b>微操作 <span class="en" data-say="micro-operation">micro-operation</span></b>一个时钟周期里完成的一次寄存器传送。</div>
+    <div data-l="3"><b>即时编译 <span class="en" data-say="just in time compilation">JIT</span></b>程序运行时才把代码翻译成机器指令。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>命令也是数；处理器一辈子只做三件事：取指、译码、执行。</div>
+    <div><i>第二层带走</i>访存都经过 MAR 和 MDR；取指周期四步，PC 在取指时加一。</div>
+    <div><i>第三层带走</i>指令即数据，是计算机最大的力量，也是最大的安全隐患。</div>
+  </div>
+</section>

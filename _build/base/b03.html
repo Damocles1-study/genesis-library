@@ -1,0 +1,177 @@
+<section class="chap" id="c11" data-vol="卷三 · 时序电路">
+  <div class="chead">
+    <div class="big">记</div>
+    <div>
+      <div class="no">第十一章</div>
+      <h2>时序电路</h2>
+      <dl><dt>讲什么</dt><dd>把输出绕回输入，电路就有了记忆；SR 锁存器；D 锁存器和 D 触发器；时钟；寄存器和计数器；建立时间、保持时间和最高频率；有限状态机；亚稳态</dd><dt>装置</dt><dd>会记事的两个门 · 时钟和计数器 · 找出 101</dd></dl>
+      <div class="crs" data-c="组成 数学"></div>
+      <div class="lvs"><a data-l="1" href="#c11-1">第一层 · 45 分钟</a><a data-l="2" href="#c11-2">第二层 · 50 分钟</a><a data-l="3" href="#c11-3">第三层 · 25 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>加法器算完就忘。可是电脑要记住好多东西啊。</span></div>
+    <div class="l"><i class="j">舅</i><span>记忆来自一个小把戏：让门的输出回过头来管自己。你在红石里用两根火把互相管着做过，今天看它的正式名字。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>讲清楚两个或非门交叉接起来为什么能记住一个比特；说出时钟和触发器的作用。</li>
+      <li><span class="lg lg1">一</span>说出寄存器就是一排触发器，计数器每来一下时钟就加一。</li>
+      <li><span class="lg lg2">二</span>区分锁存器和触发器；用建立时间、保持时间和关键路径算最高时钟频率；设计一个简单的有限状态机。</li>
+      <li><span class="lg lg3">三</span>说出亚稳态是什么，跨时钟域为什么要用两级触发器同步。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c11-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：或非门（第九章）</span><span class="tm">约 45 分钟</span></div>
+    <div class="lyb">
+      <h3>绕回来的线</h3>
+      <p>组合电路的线都是从输入流向输出，一去不回。现在做一件奇怪的事：拿两个或非门，把<b>每个门的输出接到另一个门的一个输入上</b>，它们就互相管着了。剩下的两个输入叫 S（设置，set）和 R（复位，reset），两个输出叫 Q 和 Q̄（读作“Q 非”）。</p>
+      <ul class="plain">
+        <li>按一下 S（S 变成 1 再回到 0）：Q 变成 1，而且<b>松手以后还保持 1</b>。</li>
+        <li>按一下 R：Q 变成 0，松手以后保持 0。</li>
+        <li>S 和 R 都是 0：什么也不变，它“记得”上一次是被设置还是被复位。</li>
+      </ul>
+      <p>为什么能记住？Q 是 1 时，它让下面的门输出 Q̄ = 0，Q̄ = 0 又让上面的门继续输出 Q = 1，两个门互相撑着，稳稳地停在这个状态，直到有人按 R。这个小电路叫 <b>SR 锁存器</b>，它记住了一个比特。</p>
+      <div class="fig" id="srFig">
+        <div class="fig-label">装置 · 第十一章 · 一</div>
+        <h4>会记事的两个门</h4>
+        <p class="how">按住 S 或 R 不放（或者点一下），看 Q 怎样变、松开后怎样保持。橙色是 1。两个都按下去再同时松开，看看会发生什么（第二层讲）。</p>
+        <svg viewBox="0 0 520 240" role="img" aria-label="或非门 SR 锁存器"></svg>
+        <div class="btns" style="justify-content:center"><button class="btn" data-k="S">按住 S</button><button class="btn" data-k="R">按住 R</button><button class="btn" data-k="both">S、R 都按再同时松开</button></div>
+        <div class="say"></div>
+      </div>
+      <h3>时钟和触发器</h3>
+      <p>电脑里有几十亿个比特要记，如果每个都随时可能被改，就乱套了：加法器的结果还没算完、还在抖，就被记下来了。办法是请一个“指挥”：<b>时钟</b>。时钟是一根不停地 0、1、0、1 跳的线，像乐队指挥的手一下一下打拍子。约定：<b>大家只在时钟从 0 跳到 1 的那一瞬间，才把输入记下来</b>，其余时间输入怎么变都不管。</p>
+      <p>按这个约定工作的存储单元叫 <b>D 触发器</b>：它有一个数据输入 D 和一个时钟输入；每当时钟“往上跳”，它就把 D 此刻的值抄到输出 Q，然后一直保持到下一次往上跳。第零章说 M1 芯片的主频是 3.2 GHz 左右，意思就是这个“指挥”每秒打三十多亿下拍子。</p>
+      <ul class="plain">
+        <li>把 8 个 D 触发器并排，共用一个时钟，就能一下记住一个字节，这叫<b>寄存器</b>。处理器里最快的存储就是寄存器。</li>
+        <li>把一个寄存器的输出接到加法器上加 1，结果再接回寄存器的输入，每来一下时钟它就加一：这是<b>计数器</b>。处理器里记“下一条指令在哪儿”的程序计数器，就是这样一个会自动加一的寄存器（第十三章）。</li>
+      </ul>
+      <div class="fig" id="cntFig">
+        <div class="fig-label">装置 · 第十一章 · 二</div>
+        <h4>时钟和计数器</h4>
+        <p class="how">上面是时钟的波形。一个 4 位计数器（4 个 D 触发器 + 一个加一电路），每当时钟往上跳就加一。可以一下一下手动打拍子，也可以让它自己跑。</p>
+        <svg viewBox="0 0 640 150" role="img" aria-label="时钟波形和计数值"></svg>
+        <div class="bitrow cntbits"></div>
+        <div class="btns" style="justify-content:center"><button class="btn pri" data-k="tick">打一下拍子</button><button class="btn" data-k="run">自己跑</button><button class="btn" data-k="reset">清零</button></div>
+        <div class="say"></div>
+      </div>
+      <div class="try">
+        <div class="th"><b>用 Python 模拟锁存器</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+<pre class="code" data-k="latch.py">def NOR(a, b): return 1 - (a | b)
+
+q, qn = 0, 1                       # 现在记着 0
+def step(s, r):
+    global q, qn
+    for _ in range(4):             # 线绕回来，多算几轮直到稳定
+        q, qn = NOR(r, qn), NOR(s, q)
+    return q
+
+print(step(1, 0), step(0, 0))      # 按一下 S，再松开：1 1
+print(step(0, 1), step(0, 0))      # 按一下 R，再松开：0 0</pre>
+          <p>“多算几轮直到稳定”正是绕回来的线在做的事。试试 <code>step(1, 1)</code> 之后再 <code>step(0, 0)</code>，把循环里每一轮的 q、qn 打出来，看看会不会来回跳。</p>
+        </div>
+      </div>
+      <div class="pass" data-id="base-q11a">
+        <div class="qq" data-a="1"><p>电路能“记住”东西，关键是？</p><ol><li>门特别多</li><li>输出绕回来接到输入上</li><li>用了与非门</li></ol><p class="ex">反馈。组合电路没有反馈，所以没有记忆。</p></div>
+        <div class="qq" data-in="1"><p>SR 锁存器，按一下 S 再松开，Q 是几？</p><p class="ex">设置为 1，松开后保持。</p></div>
+        <div class="qq" data-a="2"><p>D 触发器在什么时候把 D 抄到 Q？</p><ol><li>D 一变就抄</li><li>时钟是 1 的整段时间</li><li>时钟从 0 跳到 1 的那一瞬间</li></ol><p class="ex">上升沿触发。</p></div>
+        <div class="qq" data-in="8"><p>记住一个字节的寄存器，至少要几个 D 触发器？</p><p class="ex">一个触发器一个比特。</p></div>
+        <div class="qq" data-in="0"><p>4 位计数器从 15 再数一下，变成几？</p><p class="ex">1111 + 1 = 10000，只留 4 位：0000。溢出（第三章）。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c11-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">数字逻辑 · 408 计组的时序基础</span><span class="tm">约 50 分钟</span><span class="sum">SR 锁存器的禁止状态；电平触发和边沿触发；主从结构；建立时间、保持时间和最高频率；寄存器、移位寄存器；有限状态机的设计步骤和一个序列检测器。</span></div>
+    <div class="lyb">
+      <h3>锁存器和触发器</h3>
+      <ul class="plain">
+        <li>或非门 SR 锁存器的 S = R = 1 是<b>禁止状态</b>：Q 和 Q̄ 都被拉成 0（不再互补）；如果两者再同时变回 0，谁先变取决于哪个门稍快一点，结果不确定，甚至会来回振荡一阵。第一层装置里“同时松开”演示的就是这个。</li>
+        <li><b>D 锁存器</b>：在 SR 锁存器前面加两个门，令 S = D·E、R = D′·E，E（使能）为 1 时 Q 跟着 D 变（“透明”），E 为 0 时保持。它是<b>电平触发</b>的，E 为 1 的整段时间都在变，容易让信号穿过好几级。</li>
+        <li><b>D 触发器</b>：两个 D 锁存器串联（主从结构），一个在时钟为 0 时透明，一个在时钟为 1 时透明，合起来只在时钟上升沿那一刻采样，叫<b>边沿触发</b>。同步电路几乎都用边沿触发的触发器。</li>
+        <li>其他触发器（JK、T）都能用 D 触发器加组合逻辑搭出来；T 触发器每来一个时钟翻转一次，可以用来分频。</li>
+      </ul>
+      <h3>时钟能多快</h3>
+      <p>触发器在采样的那一刻，要求 D 在时钟沿之前至少 t<sub>setup</sub>（<b>建立时间</b>）就稳定，在之后至少 t<sub>hold</sub>（<b>保持时间</b>）内不变。时钟沿到来后，Q 要经过 t<sub>pcq</sub>（触发器的时钟到输出延迟）才变成新值。数据从一个触发器出发，经过组合逻辑（最长 t<sub>pd</sub>）到达下一个触发器，必须赶在下一个时钟沿之前满足建立时间：</p>
+      <p style="text-align:center;font-family:var(--f-mono)">T<sub>c</sub> ≥ t<sub>pcq</sub> + t<sub>pd</sub> + t<sub>setup</sub>，最高频率 f = 1 / T<sub>c</sub></p>
+      <p>这就是为什么第十章说“关键路径决定时钟”。要提高频率，就把一大段组合逻辑切成几小段，中间插寄存器，这就是第十五章的流水线。</p>
+      <h3>有限状态机</h3>
+      <p>寄存器记住“现在的状态”，组合逻辑根据现在的状态和输入算出“下一个状态”（和输出），时钟一到就更新：这种结构叫<b>有限状态机</b>（FSM）。输出只看状态的叫摩尔型，输出还看当前输入的叫米利型。设计步骤：画状态图 → 列状态转换表 → 给状态编码（k 个状态要 ⌈log<sub>2</sub>k⌉ 个触发器）→ 写出次态和输出的逻辑表达式 → 化简画电路。自动售货机、红绿灯、串口收发、处理器的控制器都是状态机。</p>
+      <div class="fig" id="fsmFig">
+        <div class="fig-label">装置 · 第十一章 · 三</div>
+        <h4>找出 101</h4>
+        <p class="how">一个摩尔型状态机，盯着一串一位一位送进来的比特，每当最近三位是 1、0、1 时输出 1（允许重叠，比如 10101 里有两个）。点 0 或 1 送一位进去，看状态怎样跳。</p>
+        <svg viewBox="0 0 640 210" role="img" aria-label="序列检测状态图"></svg>
+        <div class="btns" style="justify-content:center"><button class="btn pri" data-b="0">送 0</button><button class="btn pri" data-b="1">送 1</button><button class="btn" data-b="r">重来</button></div>
+        <div class="say"></div>
+      </div>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）某同步电路中，触发器的 t<sub>pcq</sub> = 50 ps、t<sub>setup</sub> = 30 ps，两级触发器之间组合逻辑的最长延迟为 420 ps，最高时钟频率是多少？如果把组合逻辑平均切成两段、中间加一级同样的触发器呢？（2）设计一个检测输入序列“11”（不重叠）的摩尔型状态机，最少要几个状态、几个触发器？</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）T<sub>c</sub> ≥ 50 + 420 + 30 = 500 ps，f = 2 GHz。切成两段：每段 210 ps，T<sub>c</sub> ≥ 50 + 210 + 30 = 290 ps，f ≈ 3.45 GHz。频率没有翻倍，因为触发器本身的开销 80 ps 没有变少，切得越细，这部分占比越大（第十五章）。</p>
+          <p>（2）三个状态：S0（还没看到 1）、S1（刚看到一个 1）、S2（看到 11，输出 1）。S2 收到下一位时：不重叠，所以收到 1 回 S1、收到 0 回 S0。三个状态要 ⌈log<sub>2</sub>3⌉ = 2 个触发器。</p>
+        </div></details>
+      </div>
+      <div class="pass" data-id="base-q11b">
+        <div class="qq" data-a="2"><p>或非门 SR 锁存器的禁止输入是？</p><ol><li>S = 0，R = 0</li><li>S = 1，R = 0</li><li>S = 1，R = 1</li></ol><p class="ex">Q 和 Q̄ 都变 0，撤销时结果不确定。</p></div>
+        <div class="qq" data-a="0"><p>D 锁存器和 D 触发器的区别是？</p><ol><li>锁存器电平触发，触发器边沿触发</li><li>锁存器更快</li><li>没有区别</li></ol><p class="ex">锁存器在使能有效的整段时间透明。</p></div>
+        <div class="qq" data-in="2"><p>t<sub>pcq</sub> = 100 ps，组合逻辑 350 ps，t<sub>setup</sub> = 50 ps，最高频率是几 GHz？</p><p class="ex">T = 500 ps，f = 2 GHz。</p></div>
+        <div class="qq" data-in="3"><p>一个状态机有 6 个状态，至少要几个触发器？</p><p class="ex">⌈log<sub>2</sub>6⌉ = 3。</p></div>
+        <div class="qq" data-a="1"><p>输出只取决于当前状态的状态机叫？</p><ol><li>米利型</li><li>摩尔型</li><li>图灵型</li></ol><p class="ex">摩尔（Moore）型。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c11-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">亚稳态、时钟、异步</span><span class="tm">约 25 分钟</span><span class="sum">输入在时钟沿附近变化会怎样：亚稳态；两级触发器同步器；时钟偏斜和时钟树；门控时钟省电；没有时钟的电路；Verilog 里的触发器。</span></div>
+    <div class="lyb">
+      <h3>亚稳态</h3>
+      <p>如果 D 恰好在时钟沿附近变化（违反建立或保持时间），触发器可能停在 0 和 1 之间的“半空中”，过一段不确定的时间才倒向某一边，这叫<b>亚稳态</b>。它无法彻底消除，只能让它出现的概率小到可以忽略。凡是来自外部、和本电路时钟无关的信号（按键、另一个芯片、另一个时钟域），都要先经过一个<b>同步器</b>：两个串联的触发器，第一个可能进入亚稳态，但它有整整一个时钟周期去“倒下来”，第二个采样时几乎总是稳定的。平均多久出一次错（MTBF）随等待时间指数增长，两级通常就够了，要求极高的场合用三级。</p>
+      <h3>时钟本身也难</h3>
+      <p>几十亿个触发器要在“同一瞬间”收到时钟沿，可电信号走过芯片要时间，不同位置收到的时间差叫<b>时钟偏斜</b>。芯片里专门有一棵时钟树把时钟均匀地送到各处，它本身就要消耗相当可观的功率。省电的办法之一是<b>门控时钟</b>：某一块电路暂时不用，就把它的时钟关掉，它的触发器就不再翻转、不再耗电。手机和 Mac 芯片里大量使用这种办法，还会按负载动态调整电压和频率。</p>
+      <p>也有人研究完全不用全局时钟的<b>异步电路</b>：每一级做完了就用“握手”信号通知下一级。它省电、没有时钟偏斜问题，但设计和验证困难，至今主要用在局部。</p>
+      <h3>在 Verilog 里写一个触发器</h3>
+      <pre class="code" data-k="Verilog">module counter4(input clk, reset, output reg [3:0] q);
+  always @(posedge clk)          // 只在时钟上升沿发生
+    if (reset) q &lt;= 4'b0000;
+    else       q &lt;= q + 1;       // 加一电路 + 4 个 D 触发器
+endmodule</pre>
+      <p><code>posedge clk</code> 就是“时钟往上跳”，<code>&lt;=</code> 是“非阻塞赋值”，表示所有触发器在同一个沿上同时更新。可以用第十章装好的 Icarus Verilog 写个测试来仿真它。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>Harris &amp; Harris《数字设计和计算机体系结构》第三章（时序逻辑、动态约束、同步器）。</li>
+          <li>C. L. Seitz, “System Timing”, 收于 Mead &amp; Conway《VLSI 系统导论》, 1980。</li>
+        </ul>
+      </div>
+      <div class="pass" data-id="base-q11c">
+        <div class="qq" data-a="1"><p>两级触发器同步器能做到什么？</p><ol><li>彻底消除亚稳态</li><li>让亚稳态导致错误的概率小到可以忽略</li><li>提高时钟频率</li></ol><p class="ex">亚稳态无法彻底消除。</p></div>
+        <div class="qq" data-a="0"><p>门控时钟的主要目的是？</p><ol><li>省电</li><li>提高频率</li><li>消除冒险</li></ol><p class="ex">不翻转就不耗动态功耗。</p></div>
+        <div class="qq" data-in="posedge"><p>Verilog 里“时钟上升沿”写作 <code>@(____ clk)</code>？</p><p class="ex">posedge。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div data-l="1"><b>锁存器 <span class="en" data-say="latch">latch</span></b>能记住一个比特的最简单电路。</div>
+    <div data-l="1"><b>触发器 <span class="en" data-say="flip-flop">flip-flop</span></b>只在时钟沿记下输入的存储单元。</div>
+    <div data-l="1"><b>时钟 <span class="en" data-say="clock">clock</span></b>不停 0、1 跳动的“指挥”信号。</div>
+    <div data-l="1"><b>寄存器 <span class="en" data-say="register">register</span></b>一排共用时钟的触发器。</div>
+    <div data-l="2"><b>状态机 <span class="en" data-say="finite state machine">finite state machine</span></b>寄存器记状态，组合逻辑算下一个状态。</div>
+    <div data-l="3"><b>亚稳态 <span class="en" data-say="metastability">metastability</span></b>卡在 0 和 1 之间一时倒不下来。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>输出绕回输入就有了记忆；大家只在时钟往上跳时记东西。</div>
+    <div><i>第二层带走</i>周期 ≥ 触发器延迟 + 最长组合逻辑 + 建立时间；状态机 = 寄存器 + 组合逻辑。</div>
+    <div><i>第三层带走</i>外来的信号先同步再用；亚稳态只能变少，不能消灭。</div>
+  </div>
+</section>

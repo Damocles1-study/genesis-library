@@ -1,0 +1,208 @@
+<section class="chap" id="c10" data-vol="卷三 · 组合电路">
+  <div class="chead">
+    <div class="big">合</div>
+    <div>
+      <div class="no">第十章</div>
+      <h2>组合电路</h2>
+      <dl><dt>讲什么</dt><dd>半加器、全加器、一串全加器就是第三章的加法；减法只要多几个异或门；多路选择器像铁路道岔；译码器从地址选出一根线；一个小 ALU；卡诺图化简；超前进位；用查找表做任意函数，和 FPGA</dd><dt>装置</dt><dd>四位加法器 · 卡诺图</dd></dl>
+      <div class="crs" data-c="组成 数学"></div>
+      <div class="lvs"><a data-l="1" href="#c10-1">第一层 · 50 分钟</a><a data-l="2" href="#c10-2">第二层 · 60 分钟</a><a data-l="3" href="#c10-3">第三层 · 40 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>红石加法器我搭过，好大一片。</span></div>
+    <div class="l"><i class="j">舅</i><span>原理一模一样。今天把它画成门，再看看真正的芯片怎样让它更快，以及它怎样顺便学会了减法。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>用异或和与搭半加器，用两个半加器搭全加器，串成多位加法器；说出进位为什么要“一位一位传”。</li>
+      <li><span class="lg lg1">一</span>说出多路选择器、译码器各是干什么的。</li>
+      <li><span class="lg lg2">二</span>用卡诺图化简四变量函数；写出超前进位的表达式，比较串行进位和并行进位的延迟。</li>
+      <li><span class="lg lg3">三</span>用多路选择器实现任意函数；在 Mac 上用 Verilog 写一个全加器并仿真。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c10-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：二进制加法、与或异或</span><span class="tm">约 50 分钟</span></div>
+    <div class="lyb">
+      <h3>没有记忆的电路</h3>
+      <p>这一章的电路有一个共同点：输出只取决于<b>此刻</b>的输入，输入一变，输出跟着变，以前发生过什么它一概不记得。这样的电路叫<b>组合电路</b>。下一章才给电路加上记忆。</p>
+      <h3>半加器和全加器</h3>
+      <p>两个一位二进制数相加，只有四种情况：0 + 0 = 0，0 + 1 = 1，1 + 0 = 1，1 + 1 = 10。把结果拆成两位：本位的“和”S，和往高位的“进位”C。</p>
+      <div class="tbl"><table class="t c" style="max-width:320px"><tr><th>A</th><th>B</th><th>进位 C</th><th>和 S</th></tr><tr><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>0</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>1</td><td>0</td></tr></table></div>
+      <p>看 S 那一列：两个不一样才是 1，这正是<b>异或</b>。C 那一列：两个都是 1 才是 1，这正是<b>与</b>。所以一个异或门加一个与门，就是一位加法器，叫<b>半加器</b>。</p>
+      <p>“半”是因为它不完整：多位数相加时，除了 A 和 B，还要加上从低位传来的进位，一共三个数。<b>全加器</b>就是两个半加器：先把 A、B 相加，再把结果和低位进位相加；两次只要有一次产生进位，就向高位进位（用一个或门合起来）。</p>
+      <p>把四个全加器排成一排，每一个的进位输出接到左边那个的进位输入，就是一个四位加法器。第三章装置里的那张竖式，就是这样一排全加器在算。进位要从最右边一位一位传到最左边，像多米诺骨牌，所以这种加法器叫<b>行波进位</b>加法器。</p>
+
+      <div class="fig" id="adderFig">
+        <div class="fig-label">装置 · 第十章 · 一</div>
+        <h4>四位加法器</h4>
+        <p class="how">点 A、B 的比特。每个方框是一个全加器，橙色的箭头是正在传的进位。点“慢动作”看进位怎样一级一级传过去；打开“做减法”，看 B 怎样经过异或门被取反、最低位怎样多加一个 1（第三章的“取反加一”）。</p>
+        <div class="btns"><button class="btn" data-x="slow">慢动作</button><button class="btn" data-x="sub">做减法：关</button><button class="btn" data-x="worst">最长的进位</button></div>
+        <svg viewBox="0 0 640 260" role="img" aria-label="四位行波进位加法器"></svg>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+
+      <h3>做选择的电路</h3>
+      <ul class="plain">
+        <li><b>多路选择器</b>（<span class="en" data-say="multiplexer">multiplexer</span>，简称 MUX）：有好几个数据输入，再加几根“选择线”，选择线的值决定把哪一个输入送到输出。就像铁路的道岔，扳到哪边，火车就开往哪边。两选一的 MUX：选择线 S = 0 时输出 A，S = 1 时输出 B，写成门就是 (A 且 非S) 或 (B 且 S)。</li>
+        <li><b>译码器</b>（<span class="en" data-say="decoder">decoder</span>）：输入 n 位的编号，在 2<sup>n</sup> 根输出线里只让第“编号”根变成 1。3 位输入 101，就让第 5 根线亮。第十二章里，内存就是靠它从地址找到那一格的。</li>
+      </ul>
+      <p>把加法器、减法、与、或、异或这些电路放在一起，后面接一个 MUX，用几根“操作码”线选出要哪个结果，就是一个最小的<b>算术逻辑单元</b>（ALU）。处理器里真正“算”的地方就是它，第十三章的小机器会用到。</p>
+
+      <div class="try">
+        <div class="th"><b>用 Python 搭一个四位加法器</b><span class="tm">15 分钟</span></div>
+        <div class="tb">
+<pre class="code" data-k="adder.py">def half_add(a, b):
+    return a ^ b, a &amp; b                  # 和, 进位
+
+def full_add(a, b, c):
+    s1, c1 = half_add(a, b)
+    s,  c2 = half_add(s1, c)
+    return s, c1 | c2
+
+def add4(x, y):
+    c, out = 0, 0
+    for i in range(4):                   # 从最低位开始，进位一位一位往上传
+        s, c = full_add((x &gt;&gt; i) &amp; 1, (y &gt;&gt; i) &amp; 1, c)
+        out |= s &lt;&lt; i
+    return out, c
+
+for x, y in [(5, 3), (9, 7), (15, 1)]:
+    print(x, '+', y, '=', add4(x, y))</pre>
+          <p>运行后看看 9 + 7 和 15 + 1 的进位输出。再写一个 <code>sub4(x, y)</code>：把 y 的每一位取反、进位初值设成 1，用 add4 的办法相加，验证 5 − 3、3 − 5 的结果（4 位补码）。</p>
+        </div>
+      </div>
+      <div class="pass" data-id="base-q10a">
+        <div class="qq" data-a="1"><p>半加器的“和”用哪种门？</p><ol><li>与</li><li>异或</li><li>或</li></ol><p class="ex">两个不一样才是 1。进位才是与。</p></div>
+        <div class="qq" data-in="3"><p>全加器有几个输入？</p><p class="ex">A、B 和低位来的进位。</p></div>
+        <div class="qq" data-a="0"><p>行波进位加法器慢在哪里？</p><ol><li>进位要一位一位往高位传</li><li>异或门太慢</li><li>它不能做减法</li></ol><p class="ex">位数越多，最长的进位链越长。</p></div>
+        <div class="qq" data-a="2"><p>3 位输入的译码器有几根输出线？</p><ol><li>3</li><li>6</li><li>8</li></ol><p class="ex">2<sup>3</sup> = 8，每次只有一根是 1。</p></div>
+        <div class="qq" data-a="1"><p>两选一多路选择器的选择线 S = 1 时，输出是？</p><ol><li>A</li><li>B</li><li>A 和 B 的与</li></ol><p class="ex">按约定 S = 0 选 A，S = 1 选 B。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c10-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">数字逻辑 · 408 计组 · 加法器</span><span class="tm">约 60 分钟</span><span class="sum">组合电路的设计流程；卡诺图（相邻格只差一位，就是格雷码）；无关项；超前进位的 G 和 P；串行进位、组内并行组间串行、两级先行的延迟比较。</span></div>
+    <div class="lyb">
+      <h3>卡诺图</h3>
+      <p>设计组合电路的流程：真值表 → 最小项表达式 → 化简 → 画门。化简最直观的工具是<b>卡诺图</b>：把真值表排成方格，行和列按格雷码（第七章，相邻只差一位）排列，于是<b>位置相邻的格子，对应的最小项只差一个变量</b>，可以合并消去那个变量（AB′C + ABC = AC）。规则：</p>
+      <ul class="plain">
+        <li>只圈 1（求最简与或式）；圈的大小必须是 1、2、4、8、16 格，形状是矩形；</li>
+        <li>最上一行和最下一行相邻，最左一列和最右一列相邻（图是卷起来的，四个角也相邻）；</li>
+        <li>圈要尽量大、个数要尽量少，每个 1 至少被圈一次，可以重复圈；</li>
+        <li>每个圈对应一个与项：圈内取值不变的变量留下（为 1 写原变量，为 0 写反变量），变了的消去；</li>
+        <li><b>无关项</b>（X）：某些输入组合永远不会出现（比如 BCD 码里的 1010—1111），对应的输出想填 0 就填 0、想填 1 就填 1，能让圈更大时就当 1 用。</li>
+      </ul>
+      <div class="fig" id="kmapFig">
+        <div class="fig-label">装置 · 第十章 · 二</div>
+        <h4>卡诺图</h4>
+        <p class="how">点格子在 0、1、X（无关项）之间切换。下面自动给出一个最简的与或式，每个圈用不同的颜色标在图上。行是 AB，列是 CD，都按格雷码 00、01、11、10 排列。</p>
+        <div class="btns" data-ex></div>
+        <div class="kmwrap"><div class="kmap"></div><div class="kmres"></div></div>
+      </div>
+      <h3>超前进位</h3>
+      <p>行波进位的毛病是第 i 位要等第 i − 1 位的进位。把全加器的进位写成 C<sub>i+1</sub> = A<sub>i</sub>B<sub>i</sub> + (A<sub>i</sub> ⊕ B<sub>i</sub>)C<sub>i</sub>，记 <b>G<sub>i</sub> = A<sub>i</sub>B<sub>i</sub></b>（这一位自己就会产生进位，generate），<b>P<sub>i</sub> = A<sub>i</sub> ⊕ B<sub>i</sub></b>（或 A<sub>i</sub> + B<sub>i</sub>，这一位会把低位来的进位传过去，propagate），则 C<sub>i+1</sub> = G<sub>i</sub> + P<sub>i</sub>C<sub>i</sub>。把它逐层展开：</p>
+      <p style="font-family:var(--f-mono);font-size:14px">C<sub>1</sub> = G<sub>0</sub> + P<sub>0</sub>C<sub>0</sub><br>C<sub>2</sub> = G<sub>1</sub> + P<sub>1</sub>G<sub>0</sub> + P<sub>1</sub>P<sub>0</sub>C<sub>0</sub><br>C<sub>3</sub> = G<sub>2</sub> + P<sub>2</sub>G<sub>1</sub> + P<sub>2</sub>P<sub>1</sub>G<sub>0</sub> + P<sub>2</sub>P<sub>1</sub>P<sub>0</sub>C<sub>0</sub><br>C<sub>4</sub> = G<sub>3</sub> + P<sub>3</sub>G<sub>2</sub> + P<sub>3</sub>P<sub>2</sub>G<sub>1</sub> + P<sub>3</sub>P<sub>2</sub>P<sub>1</sub>G<sub>0</sub> + P<sub>3</sub>P<sub>2</sub>P<sub>1</sub>P<sub>0</sub>C<sub>0</sub></p>
+      <p>每个进位都只依赖 G、P 和 C<sub>0</sub>，可以同时算出来：G、P 一级门，进位“与或”两级门，所有进位只要约 3 级门延迟，不随位数增长。代价是位数一多，与门的输入太多、电路太大。所以实际做法是分组：4 位一组，组内并行，组与组之间可以串行（“组内并行、组间串行”），也可以再对各组的 G*、P* 做一次超前进位（“两级先行”）。408 常考比较几种方案的进位延迟。教科书里常以“一级与或门延迟”为单位粗略计算：n 位串行进位约 2n 级门延迟；4 位一组、组间串行的 16 位加法器约 4 组 × 2 级；两级先行约 2 + 2 + 2 级（先出各组的 G*、P*，再出组间进位，再出组内进位）。具体数字依教材的约定而定，做题时按题目给的单位。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）用卡诺图化简 F(A,B,C,D) = Σm(0, 2, 5, 7, 8, 10, 13, 15)。（2）写出 4 位超前进位加法器 C<sub>3</sub> 的表达式。（3）若一级与门或或门的延迟为 T，异或门延迟为 1.5T，求 8 位行波进位加法器从输入稳定到最高位和输出稳定的最长时间（全加器按“两个半加器 + 或门”实现）。</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）m0、m2、m8、m10 是四个角（B′D′）；m5、m7、m13、m15 是中间四格（BD）。F = BD + B′D′（也就是 B 同或 D）。可以在上面的装置里点出来验证。</p>
+          <p>（2）见正文 C<sub>3</sub> 的展开式。</p>
+          <p>（3）第 0 位：第一个半加器 1.5T 出 S1 和（T 后出）C1；第二个半加器的进位 = S1·C<sub>0</sub>，在 1.5T + T = 2.5T 出；或门再 T，C<sub>1</sub> 在 3.5T 稳定。之后每一位的进位路径是“进位输入 → 第二个半加器的与门 → 或门”，每位 2T（此时各位的 S1 早已稳定）。C<sub>7</sub> 在 3.5T + 6 × 2T = 15.5T 稳定，最高位的和 S<sub>7</sub> = S1 ⊕ C<sub>7</sub> 再要 1.5T，共 17T。这类题的关键是找出关键路径，看清哪些信号早已就绪。</p>
+        </div></details>
+      </div>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>怎样只用多路选择器实现任意一个 n 输入的逻辑函数？</p>
+        <details><summary>看要点</summary><div><p>用一个 2<sup>n</sup> 选 1 的 MUX：n 个输入接到选择线上，2<sup>n</sup> 个数据输入分别接常数 0 或 1，正好就是真值表的输出列。这样 MUX 就成了一张“查找表”（LUT）。FPGA 正是用大量小查找表（常见 4—6 输入）加可编程连线来实现任意电路的。</p></div></details>
+      </div>
+      <div class="pass" data-id="base-q10b">
+        <div class="qq" data-a="1"><p>卡诺图的行列为什么按 00、01、11、10 排列？</p><ol><li>好看</li><li>相邻格只差一位，才能合并消去变量</li><li>这是二进制从小到大</li></ol><p class="ex">格雷码顺序。</p></div>
+        <div class="qq" data-a="2"><p>卡诺图里一个包含 4 个格子的圈，能消去几个变量？</p><ol><li>4 个</li><li>1 个</li><li>2 个</li></ol><p class="ex">2<sup>k</sup> 个格子消去 k 个变量。</p></div>
+        <div class="qq" data-in="g1+p1g0+p1p0c0|g1 + p1g0 + p1p0c0"><p>写出超前进位 C<sub>2</sub>（用 G、P、C0 表示，下标写成数字，如 g1+p1g0+…）。</p><p class="ex">C2 = G1 + P1G0 + P1P0C0。</p></div>
+        <div class="qq" data-a="0"><p>G<sub>i</sub> = A<sub>i</sub>B<sub>i</sub> 的含义是？</p><ol><li>这一位自己就会产生进位</li><li>这一位会传递低位的进位</li><li>这一位的和</li></ol><p class="ex">generate。P 是 propagate。</p></div>
+        <div class="qq" data-a="1"><p>无关项在卡诺图里应该怎样处理？</p><ol><li>一定当 0</li><li>能让圈更大时当 1，否则当 0</li><li>一定当 1</li></ol><p class="ex">怎么方便怎么来。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c10-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">硬件描述语言、FPGA、冒险</span><span class="tm">约 40 分钟</span><span class="sum">在 Mac 上装 Icarus Verilog，写一个全加器并仿真；FPGA 的查找表；竞争和冒险；乘法器和《芯》的预告。</span></div>
+    <div class="lyb">
+      <h3>用代码写电路</h3>
+      <p>今天没有人一个门一个门地画处理器，而是用<b>硬件描述语言</b>（Verilog、VHDL 等）写，再由工具综合成门电路。它看起来像程序，本质却完全不同：每一行描述的是同时存在、同时工作的电路。</p>
+      <div class="try">
+        <div class="th"><b>在 Mac 上仿真一个全加器</b><span class="tm">20 分钟 · 需要 Homebrew</span></div>
+        <div class="tb">
+          <ol class="steps">
+            <li>如果还没有 Homebrew（Mac 上最常用的软件包管理器），先按它官网 brew.sh 上的一行命令安装；然后：
+<pre class="sh" data-k="终端"><span class="p">% </span>brew install icarus-verilog</pre></li>
+            <li>建文件 <code>fa.v</code>：
+<pre class="code" data-k="fa.v">module full_add(input a, b, cin, output s, cout);
+  assign s    = a ^ b ^ cin;
+  assign cout = (a &amp; b) | (cin &amp; (a ^ b));
+endmodule
+
+module test;
+  reg a, b, cin; wire s, cout; integer i;
+  full_add u(a, b, cin, s, cout);
+  initial begin
+    for (i = 0; i &lt; 8; i = i + 1) begin
+      {a, b, cin} = i; #1;
+      $display("%b %b %b -&gt; cout=%b s=%b", a, b, cin, cout, s);
+    end
+  end
+endmodule</pre></li>
+            <li>编译并运行仿真：
+<pre class="sh" data-k="终端"><span class="p">% </span>iverilog -o fa fa.v
+<span class="p">% </span>vvp fa</pre>
+            打出八行，就是全加器的真值表。<code>#1</code> 表示“等 1 个时间单位”，让电路稳定下来再看结果。</li>
+          </ol>
+        </div>
+      </div>
+      <h3>FPGA</h3>
+      <p>FPGA（现场可编程门阵列）是一块“空白”的芯片，里面是成千上万个小查找表、触发器和可编程的连线。把 Verilog 综合以后“下载”进去，它就变成你写的那个电路，改了还能重写。新处理器在流片前常先在 FPGA 上跑；网络设备、高频交易、信号处理也大量使用。想继续玩，可以找一块便宜的开源 FPGA 开发板，配合 Yosys 等开源工具链。</p>
+      <h3>竞争和冒险</h3>
+      <p>组合电路里，同一个信号经过不同长度的路径到达一个门，到达时间不同，输出可能短暂地出现一个错误的尖峰（毛刺），叫<b>冒险</b>。例如 F = A + A′ 理论上恒为 1，但 A 从 1 变 0 的一瞬间，A′ 那条路晚到一点，F 可能闪成 0。在卡诺图上，两个相切而不相交的圈之间就可能产生冒险，加一个跨过边界的冗余圈可以消除。好在有时钟的电路（下一章）只在时钟边沿“看”结果，只要毛刺在那之前平息，就不会出错。</p>
+      <h3>乘法器（预告）</h3>
+      <p>二进制乘法就是“移位 + 加法”：乘数的哪一位是 1，就把被乘数左移相应位数加进去。硬件里可以用一个加法器循环做（慢而省），也可以把所有部分积一次性用加法器树加起来（快而大，如华莱士树）。补码乘法的布斯算法、除法的恢复余数和加减交替法，是 408 计算机组成的重点，留给本系列的《芯》细讲。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>M. Karnaugh, “The Map Method for Synthesis of Combinational Logic Circuits”, 1953。</li>
+          <li>Harris &amp; Harris《数字设计和计算机体系结构》第二、五章（组合逻辑、算术电路）。</li>
+          <li>Icarus Verilog 与 Yosys 项目的官方文档。</li>
+        </ul>
+      </div>
+      <div class="pass" data-id="base-q10c">
+        <div class="qq" data-a="1"><p>Verilog 里两行 <code>assign</code> 语句的执行顺序是？</p><ol><li>从上到下</li><li>描述的是同时存在的电路，没有先后</li><li>从下到上</li></ol><p class="ex">硬件描述语言描述的是并行的电路。</p></div>
+        <div class="qq" data-a="0"><p>FPGA 用什么实现任意的小逻辑函数？</p><ol><li>查找表（本质是多路选择器加存储）</li><li>继电器</li><li>处理器</li></ol><p class="ex">LUT。</p></div>
+        <div class="qq" data-a="2"><p>组合电路里的“冒险”指的是？</p><ol><li>电路烧掉</li><li>输出永远错</li><li>信号到达时间不同造成的短暂毛刺</li></ol><p class="ex">竞争造成的冒险。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div data-l="1"><b>加法器 <span class="en" data-say="adder">adder</span></b>半加器、全加器，以及它们串成的多位加法器。</div>
+    <div data-l="1"><b>进位 <span class="en" data-say="carry">carry</span></b>往高一位进的那个 1。</div>
+    <div data-l="1"><b>多路选择器 <span class="en" data-say="multiplexer">multiplexer</span></b>按选择线挑一路输入送出去。</div>
+    <div data-l="1"><b>ALU</b>算术逻辑单元（arithmetic logic unit），处理器里算东西的地方。</div>
+    <div data-l="2"><b>卡诺图 <span class="en" data-say="Karnaugh map">Karnaugh map</span></b>按格雷码排的真值表，用来化简。</div>
+    <div data-l="3"><b>硬件描述语言 <span class="en" data-say="hardware description language">HDL</span></b>用代码描述电路，如 Verilog。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>半加器 = 异或 + 与；全加器串起来就是加法，B 取反再加一就是减法。</div>
+    <div><i>第二层带走</i>卡诺图相邻只差一位；超前进位用 G、P 把进位链“压扁”。</div>
+    <div><i>第三层带走</i>多路选择器就是查找表；写电路像写程序，但每一行都同时在跑。</div>
+  </div>
+</section>

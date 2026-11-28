@@ -1,0 +1,195 @@
+<section class="chap" id="c14" data-vol="卷四 · 指令和汇编">
+  <div class="chead">
+    <div class="big">令</div>
+    <div>
+      <div class="no">第十四章</div>
+      <h2>指令和汇编</h2>
+      <dl><dt>讲什么</dt><dd>从小机到真正的处理器；汇编语言是给指令起的名字；在 Mac 上让 clang 吐出 arm64 汇编；寄存器；条件跳转和第三章的标志位；指令格式和扩展操作码；九种寻址方式；精简和复杂指令集；一条指令的 32 个比特；Rosetta 2</dd><dt>装置</dt><dd>C 和汇编对照 · 寻址方式</dd></dl>
+      <div class="crs" data-c="组成 系统"></div>
+      <div class="lvs"><a data-l="1" href="#c14-1">第一层 · 50 分钟</a><a data-l="2" href="#c14-2">第二层 · 60 分钟</a><a data-l="3" href="#c14-3">第三层 · 30 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>小机只有十条指令。我的 MacBook 有多少条？</span></div>
+    <div class="l"><i class="j">舅</i><span>几百条，看怎么数。不过它们干的事和小机差不多：搬数、算数、比较、跳。我们让编译器把一段 C 翻译出来，亲眼看看。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>用 <code>clang -S</code> 在 Mac 上看一个 C 函数的 arm64 汇编，认出 add、cmp、b、ldr、ret 这几种指令。</li>
+      <li><span class="lg lg1">一</span>说出汇编和机器指令的关系，寄存器和内存的区别。</li>
+      <li><span class="lg lg2">二</span>设计扩展操作码；对九种寻址方式算出有效地址和访存次数；比较精简指令集和复杂指令集。</li>
+      <li><span class="lg lg3">三</span>把一条 arm64 指令拆成 32 个比特；说出 Rosetta 2 怎样让英特尔的程序在 Apple Silicon 上跑。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c14-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：小机（第十三章）</span><span class="tm">约 50 分钟</span></div>
+    <div class="lyb">
+      <h3>汇编：给指令起名字</h3>
+      <p>小机的指令是一个个字节，0x1E、0x3F，人看不懂。所以我们给它们起了名字：LDA 14、ADD 15。这种“用名字写机器指令”的语言叫<b>汇编语言</b>（<span class="en" data-say="assembly language">assembly language</span>），把它翻译成字节的程序叫<b>汇编器</b>。汇编和机器指令基本上是一一对应的：一行汇编就是一条指令。</p>
+      <p>真正的处理器和小机比，主要多了这些：</p>
+      <ul class="plain">
+        <li><b>寄存器多</b>：小机只有一个 ACC。Apple Silicon 用的 arm64 有 31 个 64 位通用寄存器，叫 x0 到 x30；只用低 32 位时叫 w0 到 w30。寄存器在处理器内部，读写只要不到一纳秒，比内存快一百倍左右，所以编译器会尽量把常用的变量放在寄存器里。</li>
+        <li><b>内存大</b>：地址是 64 位的，不再是 4 位。</li>
+        <li><b>指令多、更灵活</b>：一条指令可以指定两三个寄存器，比如 <code>add w0, w1, w2</code> 表示 w0 = w1 + w2。</li>
+        <li><b>arm64 的指令一律 4 个字节</b>（32 位）。英特尔和 AMD 的 x86-64 指令长短不一，从 1 个字节到 15 个字节都有。</li>
+      </ul>
+      <h3>在 Mac 上看汇编</h3>
+      <div class="try">
+        <div class="th"><b>让编译器把 C 翻译成汇编</b><span class="tm">15 分钟</span></div>
+        <div class="tb">
+          <ol class="steps">
+            <li>在 <code>~/base</code> 里建一个 <code>f.c</code>（C 语言第三部才正式学，这里照抄就行）：
+<pre class="code" data-k="f.c">int add(int a, int b) { return a + b; }
+
+int max(int a, int b) { return a &gt; b ? a : b; }
+
+int sum(int *a, int n) {
+    int s = 0;
+    for (int i = 0; i &lt; n; i++) s += a[i];
+    return s;
+}</pre></li>
+            <li>让 clang 只翻译到汇编为止（<code>-S</code>），开一级优化（<code>-O1</code>），输出到屏幕（<code>-o -</code>）：
+<pre class="sh" data-k="终端"><span class="p">% </span>clang -O1 -S f.c -o -</pre></li>
+            <li>输出里有很多以点开头的行（给汇编器的说明），先跳过；找到 <code>_add:</code>、<code>_max:</code>、<code>_sum:</code> 三个标签（Mac 上函数名前会加一个下划线），下面那几行就是三个函数的指令。对照下面的装置读一读。不同版本的 clang 输出可能有些差别，意思是一样的。</li>
+          </ol>
+        </div>
+      </div>
+      <div class="fig" id="asmFig">
+        <div class="fig-label">装置 · 第十四章 · 一</div>
+        <h4>C 和汇编对照</h4>
+        <p class="how">选一个函数。点左边的一行 C，右边对应的汇编会亮起来；点右边的一行汇编，看它在干什么。按 macOS 的约定，函数的第一、二个参数放在 w0、w1（或 x0、x1）里，返回值也放在 w0 里。</p>
+        <div class="btns" data-m></div>
+        <div class="asmwrap"><div class="asmC"></div><div class="asmA"></div></div>
+        <div class="say"></div>
+      </div>
+      <h3>条件跳转和标志位</h3>
+      <p>注意 <code>cmp</code> 这条指令：它做一次减法，<b>结果扔掉，只留下标志位</b>（第三章的 N、Z、C、V）。紧跟着的条件跳转 <code>b.lt</code>（小于就跳）、<code>b.ne</code>（不等就跳）就看这些标志决定跳不跳。小机的 JZ、JN 是同一个思路的简化版。第三章说过，同一次减法，有符号数和无符号数看的标志不一样，所以 arm64 有两套条件：<code>b.lt</code> / <code>b.gt</code> 用于有符号数，<code>b.lo</code> / <code>b.hi</code> 用于无符号数。C 里把变量声明成 <code>int</code> 还是 <code>unsigned</code>，编译器选的跳转指令就不同。</p>
+      <div class="task" data-id="base-t14a">
+        <div class="th"><b>看看优化做了什么</b></div>
+        <div class="tb"><p>把上面的命令里 <code>-O1</code> 换成 <code>-O0</code>（不优化）再看一次 <code>_add</code>：多了好多 <code>str</code>、<code>ldr</code>，它把参数先存进内存再读出来。再换成 <code>-O2</code> 看 <code>_sum</code>：多了很多 <code>v0</code>、<code>v1</code> 这样的寄存器，那是第七章第三层说的 NEON 向量寄存器，编译器让它一次加好几个数。</p></div>
+      </div>
+      <div class="pass" data-id="base-q14a">
+        <div class="qq" data-a="1"><p>汇编语言和机器指令的关系是？</p><ol><li>一行汇编对应几百条指令</li><li>基本上一行汇编对应一条机器指令</li><li>没有关系</li></ol><p class="ex">汇编就是给指令起名字。</p></div>
+        <div class="qq" data-in="4"><p>arm64 的每条指令占几个字节？</p><p class="ex">一律 32 位，4 个字节。</p></div>
+        <div class="qq" data-a="0"><p><code>cmp w0, w1</code> 做了什么？</p><ol><li>算 w0 − w1，只留下标志位</li><li>把 w1 复制到 w0</li><li>比较两块内存</li></ol><p class="ex">结果不保存，后面的条件跳转看标志。</p></div>
+        <div class="qq" data-a="2"><p>arm64 里比较两个无符号数，“小于就跳”应该用？</p><ol><li>b.lt</li><li>b.ne</li><li>b.lo</li></ol><p class="ex">lt 是有符号的小于，lo（lower）是无符号的。</p></div>
+        <div class="qq" data-a="1"><p>为什么编译器尽量把变量放在寄存器里？</p><ol><li>寄存器更大</li><li>寄存器在处理器里面，比内存快得多</li><li>内存会丢数据</li></ol><p class="ex">快一百倍左右。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c14-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 计组 · 指令系统</span><span class="tm">约 60 分钟</span><span class="sum">指令格式：零到三地址；定长和扩展操作码的设计；九种寻址方式的有效地址和访存次数；arm64 里的寻址写法；相对寻址的偏移量；精简和复杂指令集。</span></div>
+    <div class="lyb">
+      <h3>指令格式</h3>
+      <p>一条指令 = 操作码 + 地址码。按地址码的个数分：<b>零地址</b>（如 HLT，或者堆栈机里的 ADD，操作数隐含在栈顶）、<b>一地址</b>（如小机的 ADD a，另一个操作数隐含在累加器）、<b>二地址</b>（A1 ← A1 op A2，x86 常见）、<b>三地址</b>（A3 ← A1 op A2，arm64 的 add w0, w1, w2）。地址越多，一条指令做的事越完整，但指令越长。</p>
+      <p><b>扩展操作码</b>：指令字长固定时，让操作码长度随地址个数变化——地址少的指令，把省下来的地址位挪给操作码。设计时，短操作码必须留出一些编码作为“扩展标志”，长操作码以它们开头，保证任何一个短操作码都不是长操作码的前缀，译码才不会混淆。</p>
+      <h3>寻址方式</h3>
+      <p>指令里的地址码 A 不一定就是操作数所在的地址。按什么规则求出操作数的真实地址（<b>有效地址</b> EA），叫寻址方式：</p>
+      <div class="tbl w"><table class="t"><tr><th>方式</th><th>有效地址 / 操作数</th><th>取到操作数要访存几次（不算取指）</th><th>用处</th></tr>
+        <tr><td>立即</td><td>操作数就是 A</td><td>0</td><td>常数</td></tr>
+        <tr><td>直接</td><td>EA = A</td><td>1</td><td>简单，但 A 的位数限制了寻址范围</td></tr>
+        <tr><td>间接</td><td>EA = (A)</td><td>2（一次间址）</td><td>扩大寻址范围、指针</td></tr>
+        <tr><td>寄存器</td><td>操作数在寄存器 R<sub>i</sub> 里</td><td>0</td><td>最快</td></tr>
+        <tr><td>寄存器间接</td><td>EA = (R<sub>i</sub>)</td><td>1</td><td>指针、遍历</td></tr>
+        <tr><td>基址</td><td>EA = (BR) + A</td><td>1</td><td>程序重定位，BR 由操作系统设定</td></tr>
+        <tr><td>变址</td><td>EA = (IX) + A</td><td>1</td><td>数组：A 是首地址，IX 是下标</td></tr>
+        <tr><td>相对</td><td>EA = (PC) + A，A 是带符号的偏移</td><td>1（跳转指令则不访存数据）</td><td>跳转、位置无关代码</td></tr>
+        <tr><td>堆栈</td><td>EA 由栈指针 SP 隐含给出</td><td>1（栈在内存时）</td><td>函数调用（第二十章）</td></tr></table></div>
+      <p>arm64 里的写法：<code>mov w0, #5</code>（立即）；<code>ldr w0, [x1]</code>（寄存器间接）；<code>ldr w0, [x1, #8]</code>（基址加偏移）；<code>ldr w0, [x1, x2, lsl #2]</code>（x1 + x2 × 4，相当于变址，正好是 int 数组 a[i]）；<code>ldr w9, [x0], #4</code>（先用 x0 取数，再让 x0 加 4，装置里 sum 函数就用了它）；<code>b label</code>、<code>bl func</code>（相对寻址的跳转）。arm64 是<b>load/store 结构</b>：只有 ldr、str 这类指令能访问内存，算术指令只能对寄存器操作。</p>
+      <div class="fig" id="eaFig">
+        <div class="fig-label">装置 · 第十四章 · 二</div>
+        <h4>寻址方式</h4>
+        <p class="how">一台假想的机器（按字编址），寄存器和内存的值如下。选一种寻址方式、改指令里的形式地址 A，看有效地址、操作数和访存次数。</p>
+        <div class="btns" data-m></div>
+        <div class="row"><label class="dim" style="font-size:13px">形式地址 A =</label><input type="number" id="eaA" value="3" min="-8" max="15" style="width:6em" aria-label="形式地址"></div>
+        <div class="eaState scroll-x"></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+      <h3>精简和复杂</h3>
+      <p><b>CISC</b>（复杂指令集，代表 x86）：指令多、长度可变、一条指令可以直接对内存做运算、寻址方式丰富，历史上为了让汇编程序员写得方便、让程序更短。<b>RISC</b>（精简指令集，代表 ARM、RISC-V、MIPS）：指令少而规整、定长、只有 load/store 访存、寄存器多，便于流水线（下一章）和硬布线控制。今天两者的界限已经模糊：x86 处理器在内部把复杂指令拆成类似 RISC 的“微操作”来执行；ARM 也加了不少复杂指令。苹果从英特尔换到自研的 ARM 芯片，主要收益在每瓦性能，这和指令集有关，更和芯片设计、工艺、统一内存有关。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）某机指令字长 16 位，每个地址码 4 位，采用扩展操作码。已有三地址指令 14 条、二地址指令 30 条，一地址指令最多能有多少条？若还要设置 16 条零地址指令，一地址指令最多多少条？（2）某转移指令采用相对寻址，指令长 2 字节、按字节编址，位于 2000H，第一个字节是操作码，第二个字节是 8 位补码偏移量。取指后 PC 自动加 2。要转移到 1FF0H，偏移量应为多少（十六进制）？（3）上题中，这条指令能转移到的地址范围是多少？</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）三地址指令操作码 4 位，16 个编码用了 14 个，留 2 个作扩展；二地址指令操作码 8 位，可用 2 × 16 = 32 个，用了 30 个，留 2 个；一地址指令操作码 12 位，可用 2 × 16 = 32 个。不要零地址指令时最多 32 条；要 16 条零地址指令时，一地址必须留 1 个编码扩展（1 × 16 = 16 条零地址），最多 31 条。</p>
+          <p>（2）EA = (PC) + 偏移，取指后 PC = 2002H，偏移 = 1FF0H − 2002H = −12H = −18，8 位补码为 EEH。</p>
+          <p>（3）偏移 −128 ～ +127，范围 2002H − 80H = 1F82H 到 2002H + 7FH = 2081H。</p>
+        </div></details>
+      </div>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>RISC 和 CISC 的主要区别？</p>
+        <details><summary>看要点</summary><div><p>指令数量和复杂度、指令长度是否固定、能否直接对内存运算（load/store）、寄存器数量、控制器实现（硬布线 / 微程序）、对流水线的友好程度。补充现状：现代 x86 内部译码成微操作，CISC 和 RISC 的差别主要剩在译码器复杂度和指令编码密度上；ARM 在移动端和 Apple Silicon 上的成功说明 RISC 的能效优势。</p></div></details>
+      </div>
+      <div class="pass" data-id="base-q14b">
+        <div class="qq" data-a="2"><p>取操作数时访存次数最多的（一次间址）是？</p><ol><li>直接寻址</li><li>寄存器间接</li><li>间接寻址</li></ol><p class="ex">先取有效地址，再取操作数，两次。</p></div>
+        <div class="qq" data-a="1"><p>数组元素 a[i] 最自然的寻址方式是？</p><ol><li>立即</li><li>变址</li><li>相对</li></ol><p class="ex">形式地址给首地址，变址寄存器给下标。</p></div>
+        <div class="qq" data-a="0"><p>相对寻址的有效地址是？</p><ol><li>(PC) + A</li><li>(A)</li><li>(BR) + A</li></ol><p class="ex">相对于程序计数器。</p></div>
+        <div class="qq" data-in="eeh|ee|0xee"><p>上面典型题（2）的偏移量是多少（十六进制）？</p><p class="ex">EEH。</p></div>
+        <div class="qq" data-a="2"><p>arm64 里能访问内存的指令是？</p><ol><li>add、sub</li><li>cmp、b</li><li>ldr、str 这类</li></ol><p class="ex">load/store 结构。</p></div>
+        <div class="qq" data-a="1"><p>扩展操作码设计时，为什么短操作码要留出几个编码？</p><ol><li>为了好看</li><li>作为扩展标志，保证短码不是长码的前缀</li><li>留给以后</li></ol><p class="ex">译码时才能唯一区分。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c14-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">编码、工具、二进制翻译</span><span class="tm">约 30 分钟</span><span class="sum">把 add w0, w1, w0 拆成 32 个比特；用 objdump 看真实的编码；Compiler Explorer；调用约定预告；Rosetta 2 和硬件里的 TSO 开关；RISC-V。</span></div>
+    <div class="lyb">
+      <h3>一条指令的 32 个比特</h3>
+      <p><code>add w0, w1, w0</code> 编码为 <code>0x0B000020</code>。按 arm64 手册里“加法（移位寄存器）”的格式拆开：</p>
+      <div class="tbl w"><table class="t c"><tr><th>位</th><td>31</td><td>30</td><td>29</td><td>28—24</td><td>23—22</td><td>21</td><td>20—16</td><td>15—10</td><td>9—5</td><td>4—0</td></tr>
+        <tr><th>字段</th><td>sf</td><td>op</td><td>S</td><td>01011</td><td>shift</td><td>0</td><td>Rm</td><td>imm6</td><td>Rn</td><td>Rd</td></tr>
+        <tr><th>值</th><td>0</td><td>0</td><td>0</td><td class="m">01011</td><td class="m">00</td><td>0</td><td class="m">00000</td><td class="m">000000</td><td class="m">00001</td><td class="m">00000</td></tr>
+        <tr><th>意思</th><td>32 位</td><td>加</td><td>不设标志</td><td>这一类</td><td>不移位</td><td></td><td>w0</td><td>移 0 位</td><td>w1</td><td>结果写 w0</td></tr></table></div>
+      <p>sf 改成 1 就是 64 位的 <code>add x0, x1, x0</code>；S 改成 1 就是会设标志位的 <code>adds</code>；op 改成 1 就是减法。<code>cmp w0, w1</code> 其实是 <code>subs wzr, w0, w1</code>：结果写进永远为零的寄存器（相当于扔掉），只留标志。规整的编码让译码电路简单，这正是 RISC 的好处。</p>
+      <div class="try">
+        <div class="th"><b>看真实的编码</b><span class="tm">5 分钟</span></div>
+        <div class="tb">
+<pre class="sh" data-k="终端"><span class="p">% </span>clang -O1 -c f.c -o f.o
+<span class="p">% </span>objdump -d f.o</pre>
+          <p><code>-c</code> 只编译成目标文件不链接（第二十二章）。<code>objdump -d</code> 反汇编，每行左边是指令的 32 位编码，右边是汇编。找到 add 那一行，和上面的表对一对。想快速试很多例子，可以用网站 Compiler Explorer（godbolt.org），选 armv8 的 clang，左边写 C、右边实时出汇编，还能把 C 的每一行和汇编对应起来着色。</p>
+        </div>
+      </div>
+      <h3>调用约定（预告）</h3>
+      <p>为什么参数在 w0、w1，返回值在 w0？这是 arm64 的<b>调用约定</b>规定的：前 8 个整数参数放 x0—x7，返回值放 x0，x30 存返回地址（<code>bl</code> 指令跳过去时自动把返回地址写进 x30，<code>ret</code> 就是跳回 x30），x29 是帧指针，sp 是栈指针。编译器和所有库都遵守同一个约定，不同人写的函数才能互相调用。第二十章讲函数调用和栈时细说。</p>
+      <h3>Rosetta 2</h3>
+      <p>2020 年 Mac 从英特尔换到 Apple Silicon，大量 x86-64 程序要继续能用。Rosetta 2 主要在程序第一次运行时把 x86-64 机器码<b>整体翻译</b>成 arm64 机器码并缓存起来，对运行时才生成的代码（比如 JIT）再即时翻译。两种指令集有一个麻烦的差别：多核同时读写内存时，x86 保证的顺序（TSO）比 ARM 严格。据公开的分析，Apple Silicon 在硬件里加了一个可以按线程打开的 TSO 模式，专门给翻译后的代码用，省掉了大量额外的同步指令。这是“为兼容老软件，在硬件里开后门”的一个漂亮例子。</p>
+      <p>想看一个干净的现代 RISC 指令集，可以读 RISC-V：它是开放的标准，基本整数指令集只有约四十条指令，手册写得很清楚，很多大学的计算机组成课已经改用它。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>Arm Architecture Reference Manual for A-profile（A64 指令编码）；Apple 开发者文档 “Writing ARM64 code for Apple platforms”（macOS 上与标准调用约定的差异）。</li>
+          <li>Patterson &amp; Hennessy《计算机组成与设计：硬件/软件接口》ARM 版或 RISC-V 版第二章。</li>
+          <li>The RISC-V Instruction Set Manual, Volume I。</li>
+        </ul>
+      </div>
+      <div class="pass" data-id="base-q14c">
+        <div class="qq" data-a="1"><p><code>add w0, w1, w0</code> 编码里的 sf 位改成 1，变成？</p><ol><li>减法</li><li>64 位的 add x0, x1, x0</li><li>会设标志的 adds</li></ol><p class="ex">sf 决定 32 位还是 64 位。</p></div>
+        <div class="qq" data-in="x30"><p>arm64 里 <code>bl</code> 把返回地址存进哪个寄存器？</p><p class="ex">x30，也叫链接寄存器 LR。</p></div>
+        <div class="qq" data-a="0"><p>Rosetta 2 主要怎样运行 x86-64 程序？</p><ol><li>第一次运行时把机器码整体翻译成 arm64 并缓存</li><li>一条一条解释执行</li><li>芯片里藏着一个英特尔处理器</li></ol><p class="ex">提前翻译为主，动态生成的代码再即时翻译。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div data-l="1"><b>汇编语言 <span class="en" data-say="assembly language">assembly</span></b>用名字写的机器指令。</div>
+    <div data-l="1"><b>寄存器 <span class="en" data-say="register">register</span></b>处理器内部最快的几十个小存储。</div>
+    <div data-l="1"><b>条件跳转 <span class="en" data-say="conditional branch">conditional branch</span></b>看标志位决定跳不跳。</div>
+    <div data-l="2"><b>寻址方式 <span class="en" data-say="addressing mode">addressing mode</span></b>从指令里的地址码求出操作数位置的规则。</div>
+    <div data-l="2"><b>精简指令集 <span class="en" data-say="RISC">RISC</span></b>指令少而规整、定长、只用 load/store 访存。</div>
+    <div data-l="3"><b>调用约定 <span class="en" data-say="calling convention">calling convention</span></b>参数和返回值放在哪儿的约定。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>汇编就是给指令起名字；if 和循环最后都变成 cmp 加条件跳转。</div>
+    <div><i>第二层带走</i>扩展操作码留扩展位；有效地址看寻址方式，访存次数要算对。</div>
+    <div><i>第三层带走</i>每条指令都是 32 个比特的约定；为了兼容，连硬件都肯开后门。</div>
+  </div>
+</section>

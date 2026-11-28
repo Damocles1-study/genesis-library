@@ -1,0 +1,199 @@
+<div class="vol-h" data-vol="卷三 · 电路">
+  <div class="k">卷三</div>
+  <h2>电路</h2>
+  <p>一楼和二楼。用电去控制电，就有了开关；开关串起来、并起来，就有了第一部第七章的与、或、非；门拼起来能算加法、能做选择；门的输出绕回来接到自己的输入上，电路就有了记忆。</p>
+</div>
+
+<section class="chap" id="c9" data-vol="卷三 · 晶体管">
+  <div class="chead">
+    <div class="big">管</div>
+    <div>
+      <div class="no">第九章</div>
+      <h2>晶体管</h2>
+      <dl><dt>讲什么</dt><dd>电压、电流和电阻；用电控制电：继电器；没有零件会动的开关：晶体管；串联是与、并联是或；CMOS 的非门、与非门、或非门；与非是万能的；逻辑代数；门延迟和功耗；为什么主频不再往上涨</dd><dt>装置</dt><dd>CMOS 门电路</dd></dl>
+      <div class="crs" data-c="组成 物理 数学"></div>
+      <div class="lvs"><a data-l="1" href="#c9-1">第一层 · 50 分钟</a><a data-l="2" href="#c9-2">第二层 · 45 分钟</a><a data-l="3" href="#c9-3">第三层 · 30 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>红石火把就是“非”：后面有电，火把就灭。真的电脑里也有火把吗？</span></div>
+    <div class="l"><i class="j">舅</i><span>有，叫晶体管。你的 MacBook 里有一百六十亿个。今天我们拆开一个看看。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>用水管讲清电压、电流和电阻；说出继电器和晶体管都是“用电控制电的开关”。</li>
+      <li><span class="lg lg1">一</span>用串联和并联搭出与、或；看懂一个 CMOS 非门为什么输出总和输入相反。</li>
+      <li><span class="lg lg2">二</span>用逻辑代数化简表达式；证明与非门是完备的；说出门延迟和动态功耗公式。</li>
+      <li><span class="lg lg3">三</span>说出 MOS 管怎样导通；解释摩尔定律和登纳德缩放，以及工艺“几纳米”为什么不是真实尺寸。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c9-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：与或非（第七章）</span><span class="tm">约 50 分钟</span></div>
+    <div class="lyb">
+      <h3>电是怎样流的</h3>
+      <div class="bridge" data-s="电" data-k="物理">
+        <h5>电压、电流、电阻</h5>
+        <p>把电路想成水管。电池像一个水泵，把水从低处抽到高处，高低之差就是<b>电压</b>（单位伏特，V）。水从高处往低处流，每秒流过多少就是<b>电流</b>（单位安培，A）。管子细、弯多，水就流得慢，这种“阻碍”叫<b>电阻</b>（单位欧姆，Ω）。三者的关系：电压 = 电流 × 电阻，叫欧姆定律，初中物理会学。</p>
+        <p>最简单的电路：电池、开关、小灯泡连成一个圈。开关合上，圈通了，电流流过灯泡，灯亮；开关断开，圈断了，灯灭。电路里电压高的一头记作 1，接地（0 伏）的一头记作 0。</p>
+      </div>
+      <h3>用电控制电</h3>
+      <p>普通的开关要用手按。电脑需要的是一种<b>能被电按下的开关</b>：一根线上有没有电，决定另一根线通不通。这样，一个开关的输出就能去控制下一个开关，一级一级接下去，不需要人。</p>
+      <p>最早的办法是<b>继电器</b>：一个线圈通电就变成磁铁，把一片金属吸过来，接通另一条电路。二十世纪三四十年代的早期计算机，就是用成千上万个继电器搭的，咔哒咔哒响，每秒只能切换几十次。后来换成电子管（像小灯泡，没有零件动，快得多，但又大又烫又爱坏），再后来是<b>晶体管</b>。</p>
+      <p>晶体管用硅做成，没有任何会动的零件。最常用的一种叫 MOS 管，有三个脚：两头是“源”和“漏”，电流从这里过；中间是“栅”，像一道闸门。分两种：</p>
+      <ul class="plain">
+        <li><b>N 型</b>：栅极给高电压（1），闸门打开，两头接通；给 0，断开。</li>
+        <li><b>P 型</b>：正好相反，栅极给 0 才接通，给 1 断开。</li>
+      </ul>
+      <p>它们很小很小，今天一个指甲盖大小的芯片里能放下几百亿个，开关一次只要几十亿分之一秒。这就是一楼：几百亿个开关。</p>
+
+      <h3>串联是与，并联是或</h3>
+      <p>拿两个开关 A、B 和一盏灯：</p>
+      <ul class="plain">
+        <li>两个开关<b>一前一后串在一根线上</b>：只有 A 和 B 都合上，灯才亮。这就是“与”。</li>
+        <li>两个开关<b>并排接成两条路</b>：A 或 B 合上一个，电就能从那条路过去，灯就亮。这就是“或”。</li>
+      </ul>
+      <p>“非”稍微巧一点：输入是 1 时要让输出变成 0。用一个 P 管和一个 N 管叠起来：P 管接在电源（1）和输出之间，N 管接在输出和地（0）之间，两个管子的栅极接在一起当输入。输入是 0：P 管通、N 管断，输出被连到电源，是 1。输入是 1：P 管断、N 管通，输出被连到地，是 0。总有一个通、一个断，所以这种搭法叫 <b>CMOS</b>（互补的 MOS）：它几乎不费电，只有在切换的一瞬间才有电流。</p>
+      <p>同样的思路：两个 N 管串联接地、两个 P 管并联接电源，就是<b>与非门</b>（先“与”再“非”）；反过来，N 管并联、P 管串联，就是<b>或非门</b>。在 CMOS 里，与非和或非比与、或更“天然”，要得到“与”，就在与非后面再接一个非门。</p>
+
+      <div class="fig" id="cmosFig">
+        <div class="fig-label">装置 · 第九章</div>
+        <h4>CMOS 门电路</h4>
+        <p class="how">选一种门，点 A、B 切换输入。绿色的管子是接通的，灰色是断开的；橙色的线说明输出被连到了电源（1）还是地（0）。右边的真值表标出现在这一行。</p>
+        <div class="btns" data-m></div>
+        <div class="row" style="justify-content:center"><button class="btn" data-in="A">A = 0</button><button class="btn" data-in="B">B = 0</button></div>
+        <div class="cmoswrap"><svg viewBox="0 0 360 330" class="cmos" role="img" aria-label="CMOS 电路"></svg><div class="tt"></div></div>
+        <div class="say"></div>
+      </div>
+
+      <h3>与非是万能的</h3>
+      <p>只要有足够多的与非门，就能搭出任何一种逻辑：</p>
+      <ul class="plain">
+        <li>非：把与非门的两个输入接在一起，NAND(A, A) = 非 A。</li>
+        <li>与：与非后面再接一个“非”。</li>
+        <li>或：先把 A、B 各自“非”一下，再与非：NAND(非 A, 非 B) = A 或 B（第七章的德摩根定律）。</li>
+      </ul>
+      <div class="try">
+        <div class="th"><b>只用与非，造出其余的门</b><span class="tm">15 分钟</span></div>
+        <div class="tb">
+          <p>在 <code>~/base</code> 里新建 <code>gates.py</code>（可以用 <code>nano gates.py</code>，或者用 Mac 自带的“文本编辑”，记得存成纯文本）：</p>
+<pre class="code" data-k="gates.py">def NAND(a, b):
+    return 1 - (a &amp; b)
+
+def NOT(a):    return NAND(a, a)
+def AND(a, b): return NOT(NAND(a, b))
+def OR(a, b):  return NAND(NOT(a), NOT(b))
+
+for a in (0, 1):
+    for b in (0, 1):
+        print(a, b, "与", AND(a, b), "或", OR(a, b), "与非", NAND(a, b))</pre>
+<pre class="sh" data-k="终端"><span class="p">% </span>python3 gates.py</pre>
+          <p>打出来的四行就是三种门的真值表。试着自己加一个 <code>XOR(a, b)</code>（异或），只许用上面已有的函数。提示：异或 =（A 或 B）且 非（A 且 B）。</p>
+        </div>
+      </div>
+      <div class="task" data-id="base-t9a">
+        <div class="th"><b>用四个与非门搭异或</b></div>
+        <div class="tb"><p>上面的提示用了好几个门。其实只用 4 个与非门就能搭出异或：先算 n = NAND(A, B)，再算 NAND(A, n) 和 NAND(B, n)，最后把这两个结果再与非一次。在 gates.py 里写出来，用四种输入验证。</p></div>
+      </div>
+      <div class="pass" data-id="base-q9a">
+        <div class="qq" data-a="1"><p>两个开关串联控制一盏灯，相当于哪种逻辑？</p><ol><li>或</li><li>与</li><li>非</li></ol><p class="ex">都合上才通。</p></div>
+        <div class="qq" data-a="0"><p>N 型 MOS 管的栅极给 1，会怎样？</p><ol><li>接通</li><li>断开</li><li>烧掉</li></ol><p class="ex">N 管给 1 通，P 管给 0 通。</p></div>
+        <div class="qq" data-a="2"><p>CMOS 非门的输入是 1 时，输出被连到哪里？</p><ol><li>电源，输出 1</li><li>什么也不连</li><li>地，输出 0</li></ol><p class="ex">输入 1：上面的 P 管断，下面的 N 管通。</p></div>
+        <div class="qq" data-in="0"><p>NAND(1, 1) 等于几？</p><p class="ex">先与得 1，再非得 0。</p></div>
+        <div class="qq" data-a="1"><p>继电器、电子管、晶体管的共同点是？</p><ol><li>都用硅做</li><li>都是用电控制电的开关</li><li>都会咔哒响</li></ol><p class="ex">一个开关的输出能控制下一个开关，才能一级一级搭成电脑。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c9-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">数字逻辑基础 · 面试</span><span class="tm">约 45 分钟</span><span class="sum">逻辑代数的基本定律和化简；最小项和真值表；与非门的完备性；门延迟、扇出；动态功耗 P ≈ αCV²f 和“功耗墙”。</span></div>
+    <div class="lyb">
+      <h3>逻辑代数</h3>
+      <p>写法约定：A·B（或 AB）表示与，A + B 表示或，A′（或 Ā）表示非。基本定律：</p>
+      <div class="tbl"><table class="t"><tr><th>名称</th><th>与的形式</th><th>或的形式</th></tr>
+        <tr><td>0—1 律</td><td>A·0 = 0，A·1 = A</td><td>A + 1 = 1，A + 0 = A</td></tr>
+        <tr><td>重叠律</td><td>A·A = A</td><td>A + A = A</td></tr>
+        <tr><td>互补律</td><td>A·A′ = 0</td><td>A + A′ = 1</td></tr>
+        <tr><td>交换、结合</td><td colspan="2">同普通代数</td></tr>
+        <tr><td>分配律</td><td>A(B + C) = AB + AC</td><td>A + BC = (A + B)(A + C)　← 普通代数里没有</td></tr>
+        <tr><td>吸收律</td><td>A(A + B) = A</td><td>A + AB = A；A + A′B = A + B</td></tr>
+        <tr><td>德摩根</td><td>(AB)′ = A′ + B′</td><td>(A + B)′ = A′B′</td></tr>
+      </table></div>
+      <p>任何逻辑函数都可以从真值表直接写出“最小项之和”：把输出为 1 的每一行写成一个所有变量都出现的与项（变量为 0 的取非），再全部或起来。例如异或：输出为 1 的行是 (0,1) 和 (1,0)，所以 A ⊕ B = A′B + AB′。这样写出来往往不是最简的，需要化简（下一章的卡诺图更直观）。</p>
+      <h3>完备性</h3>
+      <p>{与, 或, 非} 能表示任何函数（因为任何函数都能写成最小项之和）。而与和或都能用与非加非表示，非又能用与非表示，所以 {与非} 单独就是完备的；同理 {或非} 也是。芯片设计里大量使用与非、或非，因为在 CMOS 里它们比与、或少两个管子、更快。</p>
+      <h3>门延迟和扇出</h3>
+      <p>输入变了，输出不会立刻变：管子要充放电，需要一点时间，叫<b>传播延迟</b>（今天约几十皮秒，1 皮秒 = 10<sup>−12</sup> 秒）。一条信号路径经过几级门，延迟就大约叠几倍；电路里最慢的那条路径叫<b>关键路径</b>，它决定了时钟最快能多快（第十一章）。一个门的输出能接多少个门的输入叫<b>扇出</b>，接得越多，要充的电越多，越慢。</p>
+      <h3>功耗和功耗墙</h3>
+      <p>CMOS 的功耗主要来自每次切换时给导线和管子的电容充放电：动态功耗 P ≈ α·C·V<sup>2</sup>·f（α 是平均每个时钟周期有多大比例的电路在切换，C 是电容，V 是电压，f 是频率）。几十年里，晶体管越做越小，C 和 V 跟着下降，频率就能一路提高而功耗不涨（登纳德缩放）。大约 2005 年前后，电压降不下去了（再低管子就关不严，漏电太大），而功耗和 V 的平方成正比，频率一高芯片就热得受不了。这就是“功耗墙”：处理器的主频从此停在几 GHz，厂商转而往一块芯片里放更多的核、更多专用电路。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）化简 F = AB + AB′ + A′B。（2）只用与非门实现 F = AB + CD，最少要几个门？（3）一块芯片电压从 1.0 V 降到 0.8 V，频率不变，动态功耗变为原来的多少？</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）AB + AB′ = A(B + B′) = A；A + A′B = A + B（吸收律）。F = A + B。</p>
+          <p>（2）AB + CD = ((AB)′·(CD)′)′（德摩根两次），正好是三个与非门：两个分别算 (AB)′、(CD)′，第三个把它们与非。这种“与或”结构直接换成“与非-与非”结构是常用技巧。</p>
+          <p>（3）P ∝ V<sup>2</sup>，0.8<sup>2</sup> = 0.64，变为原来的 64%。这就是降低电压能大幅省电的原因。</p>
+        </div></details>
+      </div>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>为什么 CPU 的主频十几年没怎么涨，性能却还在涨？</p>
+        <details><summary>看要点</summary><div><p>登纳德缩放失效后，功耗 ∝ CV<sup>2</sup>f 让高主频的发热无法承受（功耗墙）。性能提升转向：每个时钟周期做更多事（更宽的超标量、乱序执行、更大的缓存、更好的分支预测，第十五、十六章），更多的核（并行），专用加速器（GPU、神经网络引擎、视频编解码器），以及更好的工艺带来的更低功耗。代价是：软件要会利用并行，才能吃到这些好处。</p></div></details>
+      </div>
+      <div class="pass" data-id="base-q9b">
+        <div class="qq" data-in="a+b|a + b"><p>化简 A + A′B（写成最简的或式）。</p><p class="ex">吸收律：A + A′B = A + B。</p></div>
+        <div class="qq" data-a="2"><p>下面哪组门单独就是完备的？</p><ol><li>{与}</li><li>{与, 或}</li><li>{或非}</li></ol><p class="ex">只有与、或没有非，表达不了“非”。或非单独就完备。</p></div>
+        <div class="qq" data-a="0"><p>(A + B)′ 等于？</p><ol><li>A′B′</li><li>A′ + B′</li><li>AB</li></ol><p class="ex">德摩根。</p></div>
+        <div class="qq" data-in="0.25|25%|1/4"><p>电压减半、频率不变，动态功耗变为原来的几倍？</p><p class="ex">(1/2)<sup>2</sup> = 1/4。</p></div>
+        <div class="qq" data-a="1"><p>决定时钟最快能多快的是？</p><ol><li>门的个数</li><li>关键路径的延迟</li><li>芯片的面积</li></ol><p class="ex">最慢的那条路径要在一个时钟周期内走完。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c9-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">器件和工艺</span><span class="tm">约 30 分钟</span><span class="sum">硅为什么能当开关：掺杂和沟道；漏电；摩尔定律和登纳德缩放的原文；FinFET 和全环绕栅极；“3 纳米”不是 3 纳米；光刻机。</span></div>
+    <div class="lyb">
+      <h3>硅怎样变成开关</h3>
+      <p>纯硅导电很差。往里面掺一点点磷，多出自由电子，成为 N 型半导体；掺硼，多出“空穴”，成为 P 型。一个 N 型 MOS 管是在 P 型的硅片上做两块 N 型区（源和漏），中间上方隔一层极薄的绝缘层放一块导体（栅）。栅极加正电压，把下面的电子吸上来，在源和漏之间形成一条薄薄的导电“沟道”，管子导通；电压撤掉，沟道消失。让沟道形成的最小电压叫阈值电压。</p>
+      <p>管子越小，绝缘层越薄、沟道越短，“关”的时候也越关不严，总有一点电流漏过去，这就是静态功耗（漏电）。为了把闸门管得更严，2011 年起英特尔量产 FinFET：把沟道立起来做成一片“鳍”，栅极从三面包住它；更新的工艺用全环绕栅极（GAA），栅极把沟道四面包住。</p>
+      <h3>摩尔定律和登纳德缩放</h3>
+      <p>1965 年，戈登·摩尔在一篇四页的文章里注意到，芯片上能经济地集成的元件数大约每年翻一番，并预测会持续十年；1975 年他把速度修正为大约每两年翻一番。这不是物理定律，而是一个行业愿意花多少钱、能多快改进工艺的经验规律，后来变成了行业互相约定的节奏。1974 年罗伯特·登纳德等人指出：晶体管尺寸缩小 k 倍时，若电压也缩小 k 倍，单位面积的功耗不变而速度变快。第二层讲了它在 2005 年前后的失效。</p>
+      <p>工艺名字里的“7 纳米”“5 纳米”“3 纳米”，早已不对应晶体管上任何一个真实的尺寸，而是一代一代沿用下来的“代号”，表示密度大约相当于按老办法缩到那个尺寸。真实的栅极间距仍是几十纳米。比较两家的工艺，要看每平方毫米能放多少晶体管、性能和功耗，而不是看名字。</p>
+      <h3>光刻</h3>
+      <p>芯片是“印”出来的：在硅片上涂感光胶，用光透过掩膜照射，再刻蚀、掺杂、沉积，一层一层重复几十到上百次。图案越细，光的波长就要越短。最先进的芯片用 13.5 纳米波长的极紫外光（EUV），这种光刻机目前全世界只有荷兰的 ASML 一家能造，一台的价格以亿美元计。</p>
+      <p>想看这些技术的历史：书房里的<a href="../computer/">《计算机创世记》</a>上卷有专门讲芯片和“墙”的两章。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>G. E. Moore, “Cramming More Components onto Integrated Circuits”, <i>Electronics</i>, 1965；“Progress in Digital Integrated Electronics”, IEDM, 1975。</li>
+          <li>R. H. Dennard et al., “Design of Ion-Implanted MOSFET's with Very Small Physical Dimensions”, <i>IEEE JSSC</i>, 1974。</li>
+          <li>Harris &amp; Harris《数字设计和计算机体系结构》第一章；Weste &amp; Harris《CMOS 超大规模集成电路设计》。</li>
+        </ul>
+      </div>
+      <div class="pass" data-id="base-q9c">
+        <div class="qq" data-a="1"><p>N 型半导体是往硅里掺什么得到的？</p><ol><li>硼</li><li>磷</li><li>金</li></ol><p class="ex">磷多一个外层电子，提供自由电子。</p></div>
+        <div class="qq" data-a="2"><p>“3 纳米工艺”的 3 纳米指的是？</p><ol><li>栅极长度</li><li>晶体管宽度</li><li>一个代号，不对应真实尺寸</li></ol><p class="ex">要比较密度、性能和功耗。</p></div>
+        <div class="qq" data-in="1975"><p>摩尔把“每年翻一番”修正为“约每两年翻一番”是哪一年？</p><p class="ex">1975 年。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div data-l="1"><b>晶体管 <span class="en" data-say="transistor">transistor</span></b>用电控制的开关，没有会动的零件。</div>
+    <div data-l="1"><b>电压 / 电流 / 电阻</b><span class="en" data-say="voltage">voltage</span>、<span class="en" data-say="current">current</span>、<span class="en" data-say="resistance">resistance</span>。</div>
+    <div data-l="1"><b>门 <span class="en" data-say="logic gate">logic gate</span></b>实现一种逻辑运算的小电路。</div>
+    <div data-l="1"><b>与非 <span class="en" data-say="NAND">NAND</span></b>先与再非；只用它就能搭出一切。</div>
+    <div data-l="2"><b>传播延迟 <span class="en" data-say="propagation delay">propagation delay</span></b>输入变化到输出变化要的时间。</div>
+    <div data-l="3"><b>光刻 <span class="en" data-say="lithography">lithography</span></b>用光把电路图案“印”到硅片上。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>晶体管是用电控制的开关；串联是与，并联是或，一上一下是非。</div>
+    <div><i>第二层带走</i>与非单独就完备；功耗 ∝ CV²f，所以主频撞了墙。</div>
+    <div><i>第三层带走</i>摩尔定律是经济规律不是物理定律；工艺名字只是代号。</div>
+  </div>
+</section>

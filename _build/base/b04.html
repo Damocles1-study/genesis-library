@@ -1,0 +1,183 @@
+<div class="vol-h" data-vol="卷四 · 机器">
+  <div class="k">卷四</div>
+  <h2>机器</h2>
+  <p>二楼到三楼。把会记事的电路排成一大排、编上门牌号，就是内存；在内存旁边放一个按顺序取指令、执行指令的电路，就是处理器。卷四先造一台小得不能再小的机器，再看真正的处理器用了哪些办法让它快几千倍。</p>
+</div>
+
+<section class="chap" id="c12" data-vol="卷四 · 存储器">
+  <div class="chead">
+    <div class="big">存</div>
+    <div>
+      <div class="no">第十二章</div>
+      <h2>存储器</h2>
+      <dl><dt>讲什么</dt><dd>一排带门牌号的小柜子：地址和数据；读和写；SRAM、DRAM、闪存；存储器的指标；DRAM 的刷新和地址复用；用小芯片拼大内存：位扩展、字扩展；多体交叉；行缓冲、Rowhammer 和统一内存</dd><dt>装置</dt><dd>十六格内存 · 拼一块内存</dd></dl>
+      <div class="crs" data-c="组成 系统"></div>
+      <div class="lvs"><a data-l="1" href="#c12-1">第一层 · 40 分钟</a><a data-l="2" href="#c12-2">第二层 · 60 分钟</a><a data-l="3" href="#c12-3">第三层 · 30 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>8 GB 内存，就是八十多亿个第十一章那种触发器？</span></div>
+    <div class="l"><i class="j">舅</i><span>思路对，做法不对：触发器太大了，放不下那么多。内存用的是更小、更“偷懒”的办法。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>说出地址、数据、读、写各是什么；算出 n 根地址线能找到多少格。</li>
+      <li><span class="lg lg1">一</span>说出 SRAM、DRAM、闪存各用在哪儿、为什么。</li>
+      <li><span class="lg lg2">二</span>用小芯片做位扩展、字扩展和字位同时扩展，写出片选逻辑和每组的地址范围；解释 DRAM 刷新和多体交叉。</li>
+      <li><span class="lg lg3">三</span>说出 DRAM 的行缓冲和 Rowhammer；知道固态硬盘为什么要“先擦后写”。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c12-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：寄存器（第十一章）、译码器（第十章）</span><span class="tm">约 40 分钟</span></div>
+    <div class="lyb">
+      <h3>一排带门牌号的柜子</h3>
+      <p>把内存想成一排很长很长的小柜子，每个柜子里放一个字节，每个柜子有一个编号，从 0 开始数，这个编号叫<b>地址</b>。处理器和内存之间只做两件事：</p>
+      <ul class="plain">
+        <li><b>读</b>：“把第 1000 号柜子里的东西给我看看。”</li>
+        <li><b>写</b>：“把 65 放进第 1000 号柜子。”原来的东西被覆盖。</li>
+      </ul>
+      <p>它们之间连着三组线：<b>地址线</b>（说是哪一格）、<b>数据线</b>（把内容送来送去）、<b>控制线</b>（说是读还是写）。地址线有 n 根，就能说出 2<sup>n</sup> 个不同的地址。你的 8 GB 内存有 8 × 2<sup>30</sup> = 2<sup>33</sup> 个字节，至少需要 33 位地址。</p>
+      <p>内存收到地址以后，用第十章的<b>译码器</b>把地址变成“第几根线亮”，那根线打开对应那一格，数据就从那一格出来（读），或者写进那一格（写）。</p>
+      <div class="fig" id="ramFig">
+        <div class="fig-label">装置 · 第十二章 · 一</div>
+        <h4>十六格内存</h4>
+        <p class="how">一块只有 16 格、每格 8 位的小内存。点地址线设置地址（4 根线，0—15），译码器会点亮那一格。设好数据后点“写”，或者直接点“读”。</p>
+        <div class="ramwrap">
+          <div><div class="lab2">地址线 A3—A0</div><div class="ramAddr"></div><div class="lab2">数据线 D7—D0</div><div class="ramData"></div>
+            <div class="btns" style="justify-content:center"><button class="btn pri" data-x="w">写</button><button class="btn" data-x="r">读</button><button class="btn" data-x="hi">写进 “HI!”</button></div></div>
+          <div class="ramcells"></div>
+        </div>
+        <div class="say"></div>
+      </div>
+      <h3>三种存储</h3>
+      <div class="tbl"><table class="t"><tr><th></th><th>一个比特用什么存</th><th>断电以后</th><th>快慢</th><th>用在哪儿</th></tr>
+        <tr><td><b>SRAM</b></td><td>六个晶体管（两个非门互相撑着，像第十一章的锁存器）</td><td>丢失</td><td>最快</td><td>处理器里的缓存（第十六章）</td></tr>
+        <tr><td><b>DRAM</b></td><td>一个晶体管 + 一个很小的电容（有电荷是 1）</td><td>丢失</td><td>中等</td><td>内存条、你 Mac 的“内存”</td></tr>
+        <tr><td><b>闪存</b></td><td>一个能把电荷关起来的特殊晶体管</td><td>保留</td><td>慢</td><td>固态硬盘、U 盘、手机存储</td></tr></table></div>
+      <p>DRAM 便宜是因为一个比特只要一个管子加一个电容，比 SRAM 小得多；代价是电容会漏电，几十毫秒就漏光了，所以内存控制器要不停地把每一行读出来再写回去，叫<b>刷新</b>。DRAM 的 D 就是 dynamic（动态），说的就是这件事。断电会丢的存储叫“易失性”存储，所以写了半天的文档要“保存”，就是把它从内存抄到硬盘（闪存）上。</p>
+      <div class="try">
+        <div class="th"><b>看看 Mac 的内存</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+          <ol class="steps">
+            <li>打开“活动监视器”（⌘ + 空格，输入“活动监视器”），点上面的“内存”。看“物理内存”“已使用的内存”“已缓存的文件”。macOS 会尽量把空闲的内存拿来缓存文件，所以“剩余”很少不代表不够用，看下面的“内存压力”颜色更准。</li>
+            <li>在终端里：
+<pre class="sh" data-k="终端"><span class="p">% </span>pagesize
+<span class="o">16384</span>
+<span class="p">% </span>vm_stat | head -5</pre>
+            Apple Silicon 的 Mac 管理内存时以 16384 字节（16 KB）为一“页”（第二十七章讲页是什么），<code>vm_stat</code> 里的数字都以页为单位。</li>
+            <li>用 Python 造一块“内存”玩：<code>mem = bytearray(16)</code>，<code>mem[3] = 72</code>，<code>mem[4] = 73</code>，<code>print(mem)</code>。</li>
+          </ol>
+        </div>
+      </div>
+      <div class="pass" data-id="base-q12a">
+        <div class="qq" data-in="1024"><p>10 根地址线能找到多少个不同的地址？</p><p class="ex">2<sup>10</sup> = 1024。</p></div>
+        <div class="qq" data-a="1"><p>你 Mac 里的“内存”主要是哪一种？</p><ol><li>SRAM</li><li>DRAM</li><li>闪存</li></ol><p class="ex">DRAM 便宜、容量大。SRAM 用在处理器内部的缓存。</p></div>
+        <div class="qq" data-a="2"><p>DRAM 为什么要刷新？</p><ol><li>为了变快</li><li>为了省电</li><li>电容会漏电，要定期读出再写回</li></ol><p class="ex">dynamic 就是这个意思。</p></div>
+        <div class="qq" data-a="0"><p>断电以后还记得内容的是？</p><ol><li>闪存</li><li>DRAM</li><li>SRAM</li></ol><p class="ex">闪存把电荷关在一个绝缘的“笼子”里。</p></div>
+        <div class="qq" data-a="1"><p>内存从地址找到那一格，用的是第十章的哪种电路？</p><ol><li>加法器</li><li>译码器</li><li>多路选择器</li></ol><p class="ex">译码器把 n 位地址变成 2<sup>n</sup> 根线里的一根。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c12-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 计组 · 主存储器</span><span class="tm">约 60 分钟</span><span class="sum">存取时间、存取周期、带宽；SRAM 和 DRAM 的原理；DRAM 的三种刷新方式和行列地址复用；主存和 CPU 的连接：位扩展、字扩展、字位同时扩展、线选和译码片选；低位交叉的多体存储器。</span></div>
+    <div class="lyb">
+      <h3>指标</h3>
+      <ul class="plain">
+        <li><b>存取时间</b>：从发出读写命令到完成操作的时间。<b>存取周期</b>：连续两次独立访问之间的最短间隔，存取周期 = 存取时间 + 恢复时间，所以存取周期 ≥ 存取时间（DRAM 读出是破坏性的，要写回，恢复时间更长）。</li>
+        <li><b>带宽</b>（数据传输率）= 每个存取周期传送的数据量 ÷ 存取周期。</li>
+      </ul>
+      <h3>DRAM 的两件事</h3>
+      <p><b>刷新</b>：以行为单位，规定时间（常取 2 ms 或 64 ms）内要把所有行都刷一遍。三种安排：<b>集中刷新</b>在刷新周期末尾集中刷完所有行，期间不能访存（“死区”）；<b>分散刷新</b>把每个存取周期拉长一倍，一半用来刷新一行，没有死区但访存变慢；<b>异步刷新</b>把刷新平均分散到整个刷新周期里（每隔 2 ms / 行数 刷一行），死区被分散得很小，最常用。刷新由存储器内部的刷新电路完成，不需要 CPU 参与，也不占数据线。</p>
+      <p><b>行列地址复用</b>：DRAM 容量大、地址位多，为了少用引脚，把地址分两次送入：先送行地址（RAS 有效），再送列地址（CAS 有效）。所以 DRAM 芯片的地址引脚数是地址位数的一半。例如 4M × 8 位的 DRAM，需要 22 位地址，芯片上只要 11 根地址线（这类题要注意存储阵列是否为正方形，按题意来）。</p>
+      <h3>用小芯片拼成大内存</h3>
+      <ul class="plain">
+        <li><b>位扩展</b>：芯片的字数够、位数不够。几片芯片共用地址线和片选，各自接数据线的不同几位。用 1K × 4 位的芯片拼 1K × 8 位：2 片。</li>
+        <li><b>字扩展</b>：位数够、字数不够。芯片共用数据线和低位地址线，用高位地址经过译码器产生各片的片选信号，每次只选中一片。用 1K × 8 位拼 4K × 8 位：4 片，低 10 位地址接芯片，高 2 位经 2-4 译码器选片。</li>
+        <li><b>字位同时扩展</b>：先做位扩展组成一“组”，再对组做字扩展。总片数 = (目标字数 ÷ 芯片字数) × (目标位数 ÷ 芯片位数)。</li>
+        <li><b>线选法</b>直接用高位地址线的某一根当片选（简单但浪费地址空间、地址可能不连续）；<b>译码片选法</b>用译码器，地址连续。</li>
+      </ul>
+      <div class="fig" id="expFig">
+        <div class="fig-label">装置 · 第十二章 · 二</div>
+        <h4>拼一块内存</h4>
+        <p class="how">设定要拼成的内存和手里芯片的规格（字数用 K = 2<sup>10</sup>），看要几片、怎样分组、地址线怎样分配、每组的地址范围。按字节编址时把“每字位数”设成 8。</p>
+        <div class="row"><label class="dim" style="font-size:13px">目标</label><select id="exTW" aria-label="目标字数"></select><span>×</span><select id="exTB" aria-label="目标位数"></select><label class="dim" style="font-size:13px">芯片</label><select id="exCW" aria-label="芯片字数"></select><span>×</span><select id="exCB" aria-label="芯片位数"></select></div>
+        <div class="kv"></div>
+        <div class="expTable scroll-x"></div>
+        <div class="say"></div>
+      </div>
+      <h3>多体交叉存储器</h3>
+      <p>一块存储器的存取周期是硬伤：读完一个字，要等恢复时间才能读下一个。办法是用 m 个独立的存储体（模块）并行工作。<b>低位交叉编址</b>把相邻地址分到不同的体（地址 mod m 决定体号），连续访问时各体轮流启动，每隔 1/m 个存取周期启动一个体。理想情况下，连续读 n 个字的时间从 nT 降为 T + (n − 1)T/m。高位交叉（高位地址选体）则主要用于扩容，相邻地址在同一个体里，提高不了连续访问的速度。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>某计算机按字节编址，CPU 地址线 16 根（A15—A0），数据线 8 根。现用 2K × 4 位的 SRAM 芯片组成 8K × 8 位的存储器，从地址 0 开始连续编址，采用 3-8 译码器做片选。问：（1）需要几片芯片？如何分组？（2）芯片内地址用哪几根地址线？片选用哪几根？（3）写出每组芯片的地址范围。（4）若某芯片的片选输出端损坏总为有效，会出现什么现象？</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）(8K/2K) × (8/4) = 4 × 2 = 8 片；每 2 片组成一组（位扩展成 2K × 8），共 4 组（字扩展）。</p>
+          <p>（2）2K = 2<sup>11</sup>，芯片内地址用 A10—A0；4 组用 A12、A11 区分（接 3-8 译码器的两个输入，第三个输入接 A13 或接地并配合使能端，使 A15—A13 全 0 时译码器才工作）。</p>
+          <p>（3）第 0 组 0000H—07FFH，第 1 组 0800H—0FFFH，第 2 组 1000H—17FFH，第 3 组 1800H—1FFFH。</p>
+          <p>（4）该组在访问其他组时也被选中，读操作时数据线上两组同时输出发生冲突，读出错误数据；写操作时数据会被同时写进这一组，把它原有内容破坏。</p>
+        </div></details>
+      </div>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>SRAM 和 DRAM 的区别？为什么缓存用 SRAM、主存用 DRAM？</p>
+        <details><summary>看要点</summary><div><p>SRAM 用 6 个晶体管组成双稳态电路，不需要刷新，读不破坏数据，速度快，但面积大、成本高、密度低；DRAM 用 1 个晶体管加 1 个电容，靠电荷存储，需要刷新，读出是破坏性的要写回，地址常复用，速度较慢但密度高、便宜。缓存容量小、要求快，用 SRAM；主存容量大、要便宜，用 DRAM。</p></div></details>
+      </div>
+      <div class="pass" data-id="base-q12b">
+        <div class="qq" data-in="8"><p>用 1K × 4 位的芯片组成 4K × 8 位的存储器，需要几片？</p><p class="ex">(4K/1K) × (8/4) = 8。</p></div>
+        <div class="qq" data-a="1"><p>字扩展时，各芯片之间共用的是？</p><ol><li>片选信号</li><li>数据线和低位地址线</li><li>高位地址线</li></ol><p class="ex">高位地址经译码产生不同的片选。</p></div>
+        <div class="qq" data-in="11"><p>一块 4M × 8 位的 DRAM 采用行列地址复用（阵列为正方形），芯片需要几根地址引脚？</p><p class="ex">4M = 2<sup>22</sup>，复用后 11 根。</p></div>
+        <div class="qq" data-a="2"><p>哪种刷新方式有较长的“死区”？</p><ol><li>分散刷新</li><li>异步刷新</li><li>集中刷新</li></ol><p class="ex">集中刷新期间不能访存。</p></div>
+        <div class="qq" data-a="0"><p>想提高连续访问的速度，多体存储器应该用？</p><ol><li>低位交叉编址</li><li>高位交叉编址</li><li>都一样</li></ol><p class="ex">相邻地址落在不同的体里，才能流水式地轮流启动。</p></div>
+        <div class="qq" data-a="1"><p>存取周期和存取时间的关系是？</p><ol><li>存取周期 &lt; 存取时间</li><li>存取周期 ≥ 存取时间</li><li>一定相等</li></ol><p class="ex">存取周期还包括恢复时间。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c12-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">真实的 DRAM 和闪存</span><span class="tm">约 30 分钟</span><span class="sum">bank、行缓冲和“行命中”；CL 这些时序参数；Rowhammer：敲一行，翻邻居；Apple Silicon 的统一内存；闪存的页、块、先擦后写、磨损均衡和 TRIM。</span></div>
+    <div class="lyb">
+      <h3>DRAM 里面</h3>
+      <p>一块 DRAM 芯片分成好几个 bank，每个 bank 是一个大的二维阵列。读一个数据时，先把整整一行（几千字节）读到这个 bank 的<b>行缓冲</b>里（激活，要等 tRCD），再从行缓冲里取列（要等 CL），用完要把这一行写回去（预充电，tRP）。如果下一次访问恰好在同一行（行命中），就省掉激活和预充电，快得多。内存条标签上的“CL16”之类就是这些时序参数（以时钟周期计）。顺序访问内存比随机访问快，原因之一就在这里，第十六章的缓存又是另一层原因。</p>
+      <h3>Rowhammer</h3>
+      <p>2014 年，卡内基梅隆大学和英特尔的研究者发表论文：反复快速地激活同一行（“敲打”），会让相邻行电容里的电荷漏得更快，在刷新之前翻转比特。他们测试的大多数 DRAM 模块都能被这样诱发错误。后来谷歌 Project Zero 演示了利用它从普通程序提升权限。这件事说明，第八章的“比特会翻”不只是宇宙射线的事，也可以被人故意制造；DRAM 厂商和内存控制器此后加了各种缓解措施（更频繁地刷新被敲打行的邻居等）。</p>
+      <h3>统一内存</h3>
+      <p>Apple Silicon 把 LPDDR 内存芯片和处理器封装在一起，CPU、GPU、神经网络引擎共用同一块内存（统一内存架构），不用像传统电脑那样把数据在“内存”和“显存”之间来回拷贝；代价是内存买了就不能升级。8 GB 的 M1 Air 跑大程序时，macOS 会先压缩不常用的内存页，再不够才换出到固态硬盘（第二十七章）。</p>
+      <h3>闪存为什么怪</h3>
+      <p>闪存以“页”（几 KB 到十几 KB）为单位读写，却只能以“块”（几百页）为单位擦除，而且<b>写之前必须先擦</b>（只能把 1 变成 0，要变回 1 得整块擦）。每个块能擦写的次数有限（第一章说的 TLC 只有约几千次）。所以固态硬盘里有一个小处理器运行“闪存转换层”：改一页数据时，把新内容写到别处的空页，旧页标记为作废，再在后台把作废页多的块整理、擦除（垃圾回收）；同时尽量让所有块被均匀地擦写（<b>磨损均衡</b>）。操作系统删除文件时发 TRIM 命令告诉硬盘“这些页没用了”，硬盘就不必再搬它们。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>Y. Kim et al., “Flipping Bits in Memory Without Accessing Them: An Experimental Study of DRAM Disturbance Errors”, ISCA 2014。</li>
+          <li>Ulrich Drepper, “What Every Programmer Should Know About Memory”, 2007。</li>
+          <li>JEDEC 的 DDR / LPDDR 标准文档（时序参数的定义）。</li>
+        </ul>
+      </div>
+      <div class="pass" data-id="base-q12c">
+        <div class="qq" data-a="1"><p>DRAM 的“行命中”为什么快？</p><ol><li>那一行用的是 SRAM</li><li>数据已经在行缓冲里，省掉激活和预充电</li><li>不需要地址</li></ol><p class="ex">只要读列。</p></div>
+        <div class="qq" data-a="0"><p>Rowhammer 让比特翻转的方式是？</p><ol><li>反复激活一行，干扰相邻行</li><li>用宇宙射线</li><li>加高电压</li></ol><p class="ex">敲打一行，邻居漏电。</p></div>
+        <div class="qq" data-a="2"><p>闪存在改写一页之前必须？</p><ol><li>先读两遍</li><li>先断电</li><li>所在的块先被擦除（或者写到别的空页）</li></ol><p class="ex">先擦后写，擦以块为单位。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div data-l="1"><b>地址 <span class="en" data-say="address">address</span></b>每一格存储的编号。</div>
+    <div data-l="1"><b>内存 <span class="en" data-say="memory">memory</span></b>断电就丢、处理器直接读写的存储。</div>
+    <div data-l="1"><b>刷新 <span class="en" data-say="refresh">refresh</span></b>DRAM 定期读出再写回，补上漏掉的电荷。</div>
+    <div data-l="2"><b>片选 <span class="en" data-say="chip select">chip select</span></b>决定这一次访问选中哪块芯片的信号。</div>
+    <div data-l="2"><b>交叉编址 <span class="en" data-say="interleaving">interleaving</span></b>相邻地址放在不同的存储体里。</div>
+    <div data-l="3"><b>磨损均衡 <span class="en" data-say="wear leveling">wear leveling</span></b>让闪存的每一块被均匀地擦写。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>内存是一排带门牌号的柜子；n 根地址线管 2<sup>n</sup> 格。</div>
+    <div><i>第二层带走</i>片数 = 字的倍数 × 位的倍数；低位地址进芯片，高位地址去译码片选。</div>
+    <div><i>第三层带走</i>每种存储都有怪脾气：DRAM 会漏、会被敲翻，闪存要先擦后写。</div>
+  </div>
+</section>

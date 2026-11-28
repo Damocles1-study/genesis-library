@@ -23,7 +23,7 @@ const grp = (s, k) => s.replace(new RegExp('(.{' + (k || 4) + '})(?=.)', 'g'), '
 /* ---------- 全书目录（四个网页共用） ---------- */
 const PFILE = ['index', 'two', 'three', 'four'];
 const PAGE = (() => { const m = location.pathname.match(/\/(two|three|four)\.html/); return m ? PFILE.indexOf(m[1]) + 1 : 1; })();
-const READY = 1; // 已经写好的部数
+const READY = 2; // 已经写好的部数
 const PURL = {}; PFILE.forEach((f, i) => PURL[i + 1] = i ? f + '.html' : './');
 const PARTS = [
   {k: '位', s: '数据：数、字、图、声音都是比特 · 九章'},

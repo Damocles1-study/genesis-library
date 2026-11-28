@@ -1,0 +1,196 @@
+<section class="chap" id="c16" data-vol="卷四 · 存储层次">
+  <div class="chead">
+    <div class="big">层</div>
+    <div>
+      <div class="no">第十六章</div>
+      <h2>存储层次</h2>
+      <dl><dt>讲什么</dt><dd>越快越小越贵；如果一纳秒是一秒；时间局部性和空间局部性；缓存：把常用的放手边；缓存行；直接映射、全相联、组相联；替换和写回；命中率和平均访问时间；在 Mac 上量出缓存</dd><dt>装置</dt><dd>缓存模拟器 · 地址怎样切</dd></dl>
+      <div class="crs" data-c="组成 系统 结构"></div>
+      <div class="lvs"><a data-l="1" href="#c16-1">第一层 · 45 分钟</a><a data-l="2" href="#c16-2">第二层 · 60 分钟</a><a data-l="3" href="#c16-3">第三层 · 40 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>第十五章说处理器同时看着几百条指令。可是它要的数都在内存里，内存跟得上吗？</span></div>
+    <div class="l"><i class="j">舅</i><span>跟不上，差了一百倍。所以处理器在身边放了几个小抽屉，把最近用过的东西先放在手边。你写作业时，常用的那几本书是不是也摊在桌上，不会每次都跑去书架拿？</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>按快慢排出寄存器、缓存、内存、固态硬盘；说出两种局部性。</li>
+      <li><span class="lg lg1">一</span>解释为什么按行遍历二维数组比按列快。</li>
+      <li><span class="lg lg2">二</span>把主存地址切成标记、组号、块内地址；算命中率和平均访问时间；比较三种映射和两种写策略。</li>
+      <li><span class="lg lg3">三</span>写一个 C 程序在 Mac 上量出各级缓存的大小；说出伪共享和分块。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c16-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：内存（第十二章）</span><span class="tm">约 45 分钟</span></div>
+    <div class="lyb">
+      <h3>越快越小</h3>
+      <p>存储器有个躲不开的规律：<b>快的贵，所以小；大的便宜，所以慢</b>。于是电脑把它们叠成一层一层：</p>
+      <div class="tbl"><table class="t"><tr><th>层</th><th>大约多大</th><th>访问一次大约多久</th><th>如果 1 纳秒是 1 秒</th></tr>
+        <tr><td>寄存器</td><td>几百字节</td><td>不到 1 纳秒</td><td>眨一下眼</td></tr>
+        <tr><td>一级缓存（L1）</td><td>几十到一百多 KB</td><td>约 1 纳秒</td><td>1 秒：伸手拿桌上的书</td></tr>
+        <tr><td>二级缓存（L2）</td><td>几 MB 到十几 MB</td><td>几纳秒</td><td>几秒：转身拿书架上的</td></tr>
+        <tr><td>内存（DRAM）</td><td>几 GB 到几十 GB</td><td>约 100 纳秒</td><td>一分半：下楼去图书馆</td></tr>
+        <tr><td>固态硬盘</td><td>几百 GB 到几 TB</td><td>几十到一百多微秒</td><td>一两天：等快递</td></tr>
+        <tr><td>机械硬盘</td><td>几 TB</td><td>约 10 毫秒</td><td>四个月</td></tr></table></div>
+      <p>数字只是数量级，每台机器不同。要记住的是“差多少倍”：从缓存到内存差约一百倍，从内存到固态硬盘又差约一千倍。</p>
+      <h3>局部性</h3>
+      <p>为什么叠起来就有用？因为程序访问数据有两个习惯，叫<b>局部性</b>：</p>
+      <ul class="plain">
+        <li><b>时间局部性</b>：刚用过的东西，很快还会再用。比如循环里的变量 s，每一圈都要用。</li>
+        <li><b>空间局部性</b>：用了一个东西，很快会用它旁边的东西。比如数组 a[0] 用完用 a[1]，指令一条挨一条执行。</li>
+      </ul>
+      <p>所以处理器每次从内存取数据时，不只取那一个字节，而是把它旁边一整块（Apple Silicon 上是 128 字节，很多英特尔机器是 64 字节）一起搬进缓存，这一块叫<b>缓存行</b>（<span class="en" data-say="cache line">cache line</span>）。下次要的数据如果已经在缓存里，叫<b>命中</b>，很快；不在，叫<b>缺失</b>，要去内存搬，很慢。程序跑得快不快，很大程度上看命中率高不高。</p>
+      <h3>按行还是按列</h3>
+      <p>二维数组在内存里是一行接一行放的（C 和 Python 的 NumPy 默认如此）。按行遍历，访问的地址一个挨一个，一个缓存行搬进来，里面的数据全都用上了；按列遍历，每次跳过一整行，每访问一个数都可能落在不同的缓存行，刚搬进来的那一行只用了一个数，就被别的行挤掉了。数组一大，按列可以慢好几倍。下面的装置让你亲眼看看。</p>
+
+      <div class="fig" id="cacheFig">
+        <div class="fig-label">装置 · 第十六章 · 一</div>
+        <h4>缓存模拟器</h4>
+        <p class="how">一个 8 × 8 的 int 数组（每个 4 字节）放在内存里，一个很小的缓存只能放 4 行、每行 16 字节（4 个 int）。选一种遍历方式，点“走一步”或“一直走”，看每次访问是命中（绿）还是缺失（红），以及缓存里装着哪些行。第二层再试试不同的映射方式。</p>
+        <div class="btns" data-pat></div>
+        <div class="btns" data-map></div>
+        <div class="cachewrap"><div class="cArr"></div><div class="cCache"></div></div>
+        <div class="btns"><button class="btn pri" data-x="step">走一步</button><button class="btn" data-x="run">一直走</button><button class="btn" data-x="all">一下走完</button><button class="btn" data-x="reset">重来</button></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+
+      <div class="task" data-id="base-t16a">
+        <div class="th"><b>找一找生活里的“缓存”</b></div>
+        <div class="tb"><p>浏览器会把看过的网页图片存在本地（下次打开更快）；手机把常用的 App 留在后台；你把常用的文具放在笔袋里而不是抽屉里。各举一个例子，说出它利用的是时间局部性还是空间局部性，以及“缓存满了”时它会扔掉什么。</p></div>
+      </div>
+      <div class="pass" data-id="base-q16a">
+        <div class="qq" data-a="2"><p>下面谁最快？</p><ol><li>内存</li><li>固态硬盘</li><li>一级缓存</li></ol><p class="ex">寄存器 &gt; L1 &gt; L2 &gt; 内存 &gt; 固态硬盘。</p></div>
+        <div class="qq" data-a="0"><p>循环变量每一圈都要用，这体现了？</p><ol><li>时间局部性</li><li>空间局部性</li><li>都不是</li></ol><p class="ex">同一个东西反复用。</p></div>
+        <div class="qq" data-a="1"><p>缓存每次从内存搬一整块（缓存行），利用的是？</p><ol><li>时间局部性</li><li>空间局部性</li><li>运气</li></ol><p class="ex">旁边的数据很快也会用到。</p></div>
+        <div class="qq" data-a="1"><p>C 里遍历一个很大的二维数组，哪种更快？</p><ol><li>按列</li><li>按行</li><li>一样</li></ol><p class="ex">按行时地址连续，缓存行里的数据都用上了。</p></div>
+        <div class="qq" data-in="100"><p>内存比一级缓存大约慢多少倍？（数量级）</p><p class="ex">约 1 纳秒对约 100 纳秒，一百倍左右。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>第二部的第一层读完了！往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c16-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 计组 · 高速缓冲存储器</span><span class="tm">约 60 分钟</span><span class="sum">命中率、平均访问时间；地址切成标记、组号（行号）、块内地址；直接映射、全相联、组相联；LRU 等替换算法；写回和写直达、写分配；Cache 总容量（含标记、有效位、脏位）怎样算；数组访问的命中率题。</span></div>
+    <div class="lyb">
+      <h3>命中率和平均访问时间</h3>
+      <p>命中率 h = 命中次数 ÷ 访问总次数。设缓存访问时间 t<sub>c</sub>、主存访问时间 t<sub>m</sub>：如果缺失时先查缓存再访存（多数教材的约定），平均访问时间 = t<sub>c</sub> + (1 − h)t<sub>m</sub>；如果同时启动查缓存和访存，平均访问时间 = h·t<sub>c</sub> + (1 − h)t<sub>m</sub>。做题看清题目的说法。命中率从 95% 到 99%，缺失率从 5% 降到 1%，平均时间可能差一倍多：<b>缺失率比命中率更能说明问题</b>。</p>
+      <h3>地址怎样切</h3>
+      <p>主存和缓存都按“块”（缓存行）为单位交换。主存地址从低到高切成三段：<b>块内地址</b>（log<sub>2</sub>块大小 位），<b>组号</b>（log<sub>2</sub>组数 位；直接映射时叫行号，全相联时没有这一段），剩下的高位是<b>标记</b>（tag），存在缓存行旁边，用来核对“这一行装的是不是我要的那一块”。</p>
+      <ul class="plain">
+        <li><b>直接映射</b>：主存第 j 块只能放进缓存第 j mod 行数 行。电路简单（只比较一个标记），但两块抢同一行时会反复互相挤掉（冲突缺失）。</li>
+        <li><b>全相联</b>：任何一块可以放在任何一行。冲突最少，但每次都要和所有行的标记比较，硬件贵，只用于很小的缓存（如 TLB）。</li>
+        <li><b>k 路组相联</b>：缓存分成若干组，每组 k 行；主存块先按 j mod 组数 定组，组内随便放。折中方案，今天的缓存几乎都是 4—16 路组相联。</li>
+      </ul>
+      <p>每一行除了数据，还有：<b>有效位</b>（这一行装没装东西）、<b>标记</b>、写回策略下的<b>脏位</b>（这一行被改过没有），使用 LRU 等替换算法时还有替换控制位。408 常考“Cache 的总容量（含这些位）是多少”。</p>
+      <h3>替换和写</h3>
+      <ul class="plain">
+        <li>组满了要放新块，扔谁？<b>随机</b>；<b>先进先出</b>（FIFO）；<b>最近最少使用</b>（LRU，扔最久没用的，最符合时间局部性，k 路要 log<sub>2</sub>k 位计数器左右的硬件）；直接映射没得选。</li>
+        <li>写命中时：<b>写直达</b>（同时写缓存和主存，简单但慢，常配写缓冲）；<b>写回</b>（只写缓存、置脏位，这一行被换出时才写回主存，省带宽）。</li>
+        <li>写缺失时：<b>写分配</b>（先把块调进缓存再写，通常配写回）；<b>非写分配</b>（直接写主存，通常配写直达）。</li>
+      </ul>
+      <div class="fig" id="splitFig">
+        <div class="fig-label">装置 · 第十六章 · 二</div>
+        <h4>地址怎样切</h4>
+        <p class="how">设定主存地址位数、缓存容量、块大小和相联度，看地址怎样切成三段、缓存一共多少位（含有效位、脏位、标记）。再输入一个地址，看它落在哪一组、标记是多少。</p>
+        <div class="row" style="gap:6px 10px"><label class="dim" style="font-size:13px">地址位数</label><select id="spA"></select><label class="dim" style="font-size:13px">缓存数据区</label><select id="spC"></select><label class="dim" style="font-size:13px">块大小</label><select id="spB"></select><label class="dim" style="font-size:13px">相联度</label><select id="spW"></select></div>
+        <div class="row" style="margin-top:6px"><label class="dim" style="font-size:13px">写回（有脏位）</label><input type="checkbox" id="spD" checked><label class="dim" style="font-size:13px">地址（十六进制）</label><input type="text" id="spX" value="12345678" style="width:9em;font-family:var(--f-mono)"></div>
+        <div class="spbar"></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>某计算机主存地址 32 位，按字节编址。数据 Cache 容量 32 KB（不含标记等），块大小 64 B，采用 4 路组相联、LRU 替换、写回和写分配。（1）主存地址怎样划分？（2）每行除数据外还有哪些控制位、各几位？Cache 总容量是多少位？（3）数组 <code>int a[256][256]</code> 按行优先存放，首地址 0x00800000，Cache 初始为空。程序按行遍历求和一次，命中率是多少？按列遍历呢？</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）块内地址 6 位（64 B）；行数 32 K / 64 = 512，组数 512 / 4 = 128，组号 7 位；标记 32 − 7 − 6 = 19 位。</p>
+          <p>（2）有效位 1、脏位 1、LRU 位 2（4 路），标记 19，共 23 位。每行 64 × 8 + 23 = 535 位，总容量 512 × 535 = 273920 位。</p>
+          <p>（3）按行：一块 64 B 装 16 个 int，每 16 次访问 1 次缺失 15 次命中，命中率 15/16 = 93.75%。按列：每行 256 × 4 = 1 KB，同一列相邻两个元素相隔 1 KB；1 KB 是 16 块，地址每加 1 KB 组号加 16（mod 128），一列 256 个元素只映射到 128 / gcd(16,128) = 8 个组，每组 4 路共 32 行，远放不下一列用到的 256 个块，下一列再访问时早被换掉，命中率约为 0。这就是按列遍历慢的原因。</p>
+        </div></details>
+      </div>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>写回和写直达各有什么优缺点？多核下写回带来什么问题？</p>
+        <details><summary>看要点</summary><div><p>写直达简单、主存始终是最新的，但每次写都要访存，带宽压力大（常加写缓冲）；写回只在换出脏行时写主存，省带宽，但实现复杂、主存可能是旧的。多核各有私有缓存时，同一个地址可能在几个核的缓存里有不同版本，需要缓存一致性协议（如 MESI：修改、独占、共享、无效）来保证大家看到一致的值，这又引出第三层的伪共享和第二十九章的并发问题。</p></div></details>
+      </div>
+      <div class="pass" data-id="base-q16b">
+        <div class="qq" data-in="5"><p>Cache 64 行、块大小 32 B、2 路组相联，组号有几位？（主存按字节编址）</p><p class="ex">64 ÷ 2 = 32 组，log<sub>2</sub>32 = 5 位。（块内地址也是 5 位，别混了。）</p></div>
+        <div class="qq" data-a="1"><p>哪种映射方式冲突缺失最多？</p><ol><li>全相联</li><li>直接映射</li><li>8 路组相联</li></ol><p class="ex">每块只有一个位置可放。</p></div>
+        <div class="qq" data-a="0"><p>写回策略下，脏位的作用是？</p><ol><li>标记这一行被改过，换出时要写回主存</li><li>标记这一行有效</li><li>标记这一行最近被用过</li></ol><p class="ex">没改过的行换出时直接丢掉即可。</p></div>
+        <div class="qq" data-in="5.5|5.5ns"><p>t<sub>c</sub> = 1 ns，t<sub>m</sub> = 100 ns，命中率 95.5%，缺失时先查缓存再访存，平均访问时间是多少 ns？</p><p class="ex">1 + 0.045 × 100 = 5.5。</p></div>
+        <div class="qq" data-a="2"><p>按行遍历 int 数组，块大小 64 B，冷启动，命中率是？</p><ol><li>50%</li><li>87.5%</li><li>93.75%</li></ol><p class="ex">一块 16 个 int，1 次缺失 15 次命中。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c16-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">在真机上量，和写快程序</span><span class="tm">约 40 分钟</span><span class="sum">一个 C 程序画出“存储器山”的一条线，量出各级缓存；缺失的三种原因；预取；TLB 预告；伪共享；矩阵乘法换个循环顺序、分块。</span></div>
+    <div class="lyb">
+      <h3>在 Mac 上量出缓存</h3>
+      <p>思路：在一块大小为 S 的数组里反复随机地跳着读（每次读的位置由上一次读到的值决定，让处理器没法提前猜），S 小于某级缓存时，平均一次很快；S 一超过那级缓存，时间就跳上一个台阶。</p>
+      <pre class="code" data-k="cache.c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+static double now(void) { struct timespec t; clock_gettime(CLOCK_MONOTONIC, &amp;t); return t.tv_sec + t.tv_nsec / 1e9; }
+int main(void) {
+    for (size_t kb = 4; kb &lt;= 256 * 1024; kb *= 2) {
+        size_t n = kb * 1024 / sizeof(size_t);
+        size_t *a = malloc(n * sizeof(size_t));
+        for (size_t i = 0; i &lt; n; i++) a[i] = i;
+        for (size_t i = n - 1; i &gt; 0; i--) {          /* 打乱成一个大环 */
+            size_t j = rand() % i, t = a[i]; a[i] = a[j]; a[j] = t;
+        }
+        size_t p = 0, steps = 20000000;
+        double t0 = now();
+        for (size_t s = 0; s &lt; steps; s++) p = a[p];
+        double ns = (now() - t0) / steps * 1e9;
+        printf("%8zu KB  %6.2f ns  (%zu)\n", kb, ns, p);
+        free(a);
+    }
+    return 0;
+}</pre>
+      <pre class="sh" data-k="终端"><span class="p">% </span>clang -O2 cache.c -o cache &amp;&amp; ./cache</pre>
+      <p>把结果和第零章 <code>sysctl</code> 查到的缓存大小对照：时间大致会在一级缓存、二级缓存（以及 Apple Silicon 的系统级缓存）大小附近各跳一个台阶，最后停在一百纳秒左右（内存）。这个“随机打乱”的写法并不保证得到一个完整的大环，有时环会短一些，数会偏乐观；想更严谨可以改成生成一个随机排列再串起来。<code>printf</code> 里打印 p，是为了不让编译器发现结果没用而把循环删掉。</p>
+      <h3>缺失的三种原因</h3>
+      <p><b>强制缺失</b>（第一次访问，谁也躲不掉）、<b>容量缺失</b>（要用的数据比缓存大）、<b>冲突缺失</b>（缓存没满，但几块抢同一组）。对策分别是预取、减小工作集（分块）、提高相联度或调整数据布局。处理器的<b>硬件预取器</b>会发现“你在按固定步长往后读”，提前把后面的行搬进来；随机访问它就无能为力，上面的程序正是故意让它失效。</p>
+      <h3>伪共享</h3>
+      <p>两个线程分别不停地改两个不同的变量，可这两个变量恰好在同一个缓存行里：每次一个核写，缓存一致性协议都要让另一个核的那一行失效，这一行就在两个核之间来回“弹”，两个毫不相干的线程互相拖慢好几倍。这叫<b>伪共享</b>。对策是让各线程的数据各占一个缓存行（填充或对齐到 128 字节），第二十九章会再遇到。</p>
+      <h3>换个循环顺序</h3>
+      <p>矩阵乘法 C = A × B 的三重循环有六种排列。最朴素的 i-j-k 顺序，最内层沿着 B 的列走，步长一行；改成 i-k-j，最内层沿 B 和 C 的行走，全是连续访问，同样的计算量常常快好几倍。再进一步把矩阵切成能放进缓存的小块（<b>分块</b>），每一块反复用够了再换下一块。高性能数学库（Mac 上的 Accelerate 框架）做的就是把这些做到极致，再加上第七章说的向量指令。</p>
+      <p>还有一层缓存要留到第四部：把虚拟地址翻译成物理地址也要查表，查表的结果缓存在 <b>TLB</b> 里，它也是一个缓存，常常是全相联的（第二十七章）。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>CS:APP 第六章“存储器层次结构”（“存储器山”的思路出自这里）。</li>
+          <li>Ulrich Drepper, “What Every Programmer Should Know About Memory”, 2007。</li>
+          <li>Peter Norvig 等人整理的 “Latency Numbers Every Programmer Should Know”（数量级参考，具体数随年份变化）。</li>
+        </ul>
+      </div>
+      <div class="pass" data-id="base-q16c">
+        <div class="qq" data-a="1"><p>两个线程改两个不同的变量却互相拖慢，最可能是？</p><ol><li>死锁</li><li>伪共享：两个变量在同一个缓存行</li><li>内存不够</li></ol><p class="ex">一致性协议让这一行在两个核之间来回失效。</p></div>
+        <div class="qq" data-a="2"><p>提高相联度主要减少哪种缺失？</p><ol><li>强制缺失</li><li>容量缺失</li><li>冲突缺失</li></ol><p class="ex">几块抢同一组的情况变少。</p></div>
+        <div class="qq" data-a="0"><p>上面的测量程序为什么要“按上一次读到的值决定下一次读哪儿”？</p><ol><li>让处理器和预取器没法提前猜，测出真实的访问延迟</li><li>为了省内存</li><li>为了好玩</li></ol><p class="ex">否则硬件预取和乱序执行会把延迟藏起来。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div data-l="1"><b>缓存 <span class="en" data-say="cache">cache</span></b>放在手边的小而快的存储。</div>
+    <div data-l="1"><b>局部性 <span class="en" data-say="locality">locality</span></b>刚用过的、旁边的，很快还会用。</div>
+    <div data-l="1"><b>命中 / 缺失</b><span class="en" data-say="hit">hit</span> 和 <span class="en" data-say="miss">miss</span>：要的东西在不在缓存里。</div>
+    <div data-l="2"><b>组相联 <span class="en" data-say="set associative">set-associative</span></b>块先定组，组内随便放。</div>
+    <div data-l="2"><b>写回 <span class="en" data-say="write back">write-back</span></b>只写缓存，换出时才写主存。</div>
+    <div data-l="3"><b>伪共享 <span class="en" data-say="false sharing">false sharing</span></b>不相干的数据挤在同一个缓存行里互相拖慢。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>快的小、大的慢，所以叠成几层；局部性让手边的小抽屉够用。</div>
+    <div><i>第二层带走</i>地址 = 标记 | 组号 | 块内地址；看缺失率，别只看命中率。</div>
+    <div><i>第三层带走</i>同样的计算，换个访问顺序就能快好几倍；先量，再优化。</div>
+  </div>
+</section>

@@ -1,0 +1,175 @@
+<section class="chap" id="c20" data-vol="卷五 · 函数调用">
+  <div class="chead">
+    <div class="big">栈</div>
+    <div>
+      <div class="no">第二十章</div>
+      <h2>函数调用</h2>
+      <dl><dt>讲什么</dt><dd>函数调用像叠盘子；栈帧里放着局部变量和返回地址；递归就是一层层叠上去再退回来；叠太高就是“栈溢出”；arm64 的调用约定和栈帧；x86-64 的 call、ret 和 408 的机器级表示；尾调用；给返回地址签名</dd><dt>装置</dt><dd>栈的一生</dd></dl>
+      <div class="crs" data-c="组成 系统 结构"></div>
+      <div class="lvs"><a data-l="1" href="#c20-1">第一层 · 45 分钟</a><a data-l="2" href="#c20-2">第二层 · 60 分钟</a><a data-l="3" href="#c20-3">第三层 · 25 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>函数 A 调用 B，B 又调用 C，C 做完了怎么知道该回到 B 的哪一行？</span></div>
+    <div class="l"><i class="j">舅</i><span>出门前在门口贴一张纸条：“办完事回到这里”。每调用一次就贴一张，叠成一摞；回来时揭掉最上面那张。这一摞纸条，就是栈。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>画出递归求阶乘时栈帧怎样一层层叠上去、又一层层退回来。</li>
+      <li><span class="lg lg1">一</span>说出“栈溢出”是怎么回事，在 Mac 上查出栈有多大。</li>
+      <li><span class="lg lg2">二</span>读懂 arm64 函数开头和结尾的那几条指令；说出调用者保存和被调用者保存的寄存器；看懂 x86-64 的 call、ret、push、pop。</li>
+      <li><span class="lg lg3">三</span>说出尾调用优化、栈保护和返回地址签名是怎样工作的。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c20-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：指针（第十八章）</span><span class="tm">约 45 分钟</span></div>
+    <div class="lyb">
+      <h3>一摞盘子</h3>
+      <p>食堂里摞着一叠盘子：新洗好的放在最上面，拿的时候也从最上面拿。<b>后放的先拿</b>，这种结构叫<b>栈</b>（<span class="en" data-say="stack">stack</span>）。函数调用正好就是这样：main 调用 A，A 调用 B，B 必须先结束，A 才能接着做，A 结束了才轮到 main。最后被调用的最先返回。</p>
+      <p>每调用一次函数，程序就在栈上划出一块地方，叫这个函数的<b>栈帧</b>，里面放着：</p>
+      <ul class="plain">
+        <li><b>返回地址</b>：做完以后回到调用者的哪一条指令（门口的纸条）；</li>
+        <li>这个函数的<b>局部变量</b>和参数（放不进寄存器的那些）；</li>
+        <li>一些要暂时保存的寄存器的旧值。</li>
+      </ul>
+      <p>函数返回时，它的栈帧就被整块收回。所以局部变量只在函数运行期间存在，第十八章说“返回局部变量的地址”是错的，原因就在这里。在 Mac 上，栈从高地址往低地址长（第三部封面的内存地图里，栈在上面、往下长）。</p>
+      <div class="fig" id="stackFig">
+        <div class="fig-label">装置 · 第二十章</div>
+        <h4>栈的一生</h4>
+        <p class="how">一步一步执行递归求阶乘的程序，看每调用一次 fact 就多出一个栈帧、每返回一次就少一个。每个栈帧里都存着“回到哪儿”。第二个程序是一个忘了写终点的递归。</p>
+        <div class="btns" data-m></div>
+        <div class="trace"></div>
+      </div>
+      <h3>递归和栈溢出</h3>
+      <p>递归就是函数调用自己。每一层都有自己的栈帧和自己的 n，所以 fact(3) 里的 n 和 fact(2) 里的 n 互不干扰。递归一定要有终点（n ≤ 1 时直接返回），否则会一直叠下去。栈的大小是有限的，叠满了，程序就会访问到栈下面那片不许碰的内存，被系统立刻终止，这叫<b>栈溢出</b>（<span class="en" data-say="stack overflow">stack overflow</span>，程序员问答网站 Stack Overflow 的名字就是这么来的）。</p>
+      <div class="try">
+        <div class="th"><b>把栈撑爆</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+<pre class="code" data-k="deep.c">#include &lt;stdio.h&gt;
+int depth = 0;
+void dive(void) {
+    char pad[1000];              /* 每层栈帧多占 1000 字节 */
+    pad[0] = (char)depth;
+    depth++;
+    if (depth % 1000 == 0) printf("已经 %d 层\n", depth);
+    dive();
+}
+int main(void) { dive(); return 0; }</pre>
+<pre class="sh" data-k="终端"><span class="p">% </span>ulimit -s
+<span class="o">8176</span>
+<span class="p">% </span>clang -O0 deep.c -o deep &amp;&amp; ./deep</pre>
+          <p><code>ulimit -s</code> 显示主线程的栈有多大，单位是 KB，Mac 上多半是 8176（约 8 MB）。程序打印到八千层左右就会崩溃，报 <code>Segmentation fault</code> 或 <code>Illegal instruction</code>。估算一下：8 MB ÷ 每层一千多字节，大约就是这么多层。用 <code>-O0</code> 是怕编译器把递归优化掉（第三层）。</p>
+        </div>
+      </div>
+      <div class="task" data-id="base-t20a">
+        <div class="th"><b>把递归改成循环</b></div>
+        <div class="tb"><p>用 for 循环重写 fact，算 fact(10) 和 fact(13)，和递归版对比结果。再算 fact(13)，结果对吗？（提示：13! 超过了 int 的范围，第三章。）换成 long 再试。循环版不需要一层层的栈帧，再深也不会爆栈。</p></div>
+      </div>
+      <div class="pass" data-id="base-q20a">
+        <div class="qq" data-a="1"><p>栈的特点是？</p><ol><li>先放的先拿</li><li>后放的先拿</li><li>随便拿</li></ol><p class="ex">后进先出。</p></div>
+        <div class="qq" data-a="0"><p>栈帧里一定有的、用来“回到调用者”的东西是？</p><ol><li>返回地址</li><li>全局变量</li><li>堆</li></ol><p class="ex">门口的纸条。</p></div>
+        <div class="qq" data-in="4"><p>调用 fact(4)（终点是 n ≤ 1），最多同时有几个 fact 的栈帧？</p><p class="ex">fact(4)、fact(3)、fact(2)、fact(1)，4 个。</p></div>
+        <div class="qq" data-a="2"><p>函数返回以后，它的局部变量？</p><ol><li>还在，下次调用接着用</li><li>被存到硬盘</li><li>所在的栈帧被收回，不能再用</li></ol><p class="ex">要跨调用保留，用 static 或全局变量，或者放到堆上。</p></div>
+        <div class="qq" data-a="1"><p>没有终点的递归最后会怎样？</p><ol><li>一直运行下去</li><li>栈溢出，程序崩溃</li><li>自动停下返回 0</li></ol><p class="ex">栈是有限的。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c20-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 计组 · 程序的机器级表示 · 面试</span><span class="tm">约 60 分钟</span><span class="sum">arm64 的调用约定：参数、返回值、x29 和 x30、调用者保存和被调用者保存；函数开头的 stp 和结尾的 ldp、ret；x86-64 的 call、ret、push、pop、rbp 和 rsp；栈帧大小和递归深度的题目。</span></div>
+    <div class="lyb">
+      <h3>arm64 的栈帧</h3>
+      <p>Apple Silicon 上（AAPCS64，Apple 略有调整）：前 8 个整数或指针参数放在 x0—x7，返回值放在 x0；<b>x30</b>（LR，链接寄存器）放返回地址，<code>bl func</code> 跳到 func 的同时把下一条指令的地址写进 x30，<code>ret</code> 就是跳回 x30；<b>x29</b>（FP）是帧指针，指向当前栈帧里保存旧 x29 的位置，一串 x29 连起来就能从内往外走遍所有栈帧（调试器的 <code>bt</code> 就靠它）；<b>sp</b> 是栈指针，必须始终 16 字节对齐。一个要调用别的函数的函数，开头结尾通常是这样：</p>
+      <pre class="code" data-k="arm64">fact:
+    stp  x29, x30, [sp, #-32]!   ; sp 先减 32（栈往下长），把旧 x29 和返回地址存进去
+    mov  x29, sp                 ; 新的帧指针
+    …                            ; 函数体，局部变量放在 [sp, #16] 之类的地方
+    bl   fact                    ; 递归调用：x30 被改写成这里的下一条
+    …
+    ldp  x29, x30, [sp], #32     ; 恢复旧 x29 和返回地址，sp 加回 32
+    ret                          ; 跳回 x30</pre>
+      <p>因为 bl 会改写 x30，所以凡是要调用别人的函数，都得先把自己的 x30 存到栈上，这就是“返回地址在栈里”的由来。叶子函数（不再调用别人的函数，比如第十四章的 add）可以不建栈帧，直接用 x30 返回。</p>
+      <p><b>谁来保存寄存器</b>：x19—x28 是<b>被调用者保存</b>的，函数如果要用它们，得先把旧值存起来、返回前恢复，所以调用者可以放心地把值留在里面跨调用使用；x0—x18 中的大部分是<b>调用者保存</b>的，被调用的函数可以随便改，调用者如果调用后还要用，得自己先存。</p>
+      <h3>x86-64 的版本（408 用的是它）</h3>
+      <p>考研 408 的“程序的机器级表示”以 x86 为例。区别主要在：<code>call f</code> 把返回地址<b>压到栈上</b>（rsp 减 8，再写入），而不是放进寄存器；<code>ret</code> 从栈顶弹出返回地址跳过去。典型的开头和结尾：</p>
+      <pre class="code" data-k="x86-64（AT&amp;T 写法：源在前，目的在后）">f:  pushq %rbp            # 旧的帧指针压栈
+    movq  %rsp, %rbp      # 新帧指针 = 当前栈顶
+    subq  $16, %rsp       # 给局部变量留 16 字节
+    …                     # 局部变量用 -4(%rbp)、-8(%rbp) 访问
+    leave                 # 等于 movq %rbp, %rsp; popq %rbp
+    ret                   # 弹出返回地址，跳回去</pre>
+      <p>Linux 上 x86-64 的参数依次放在 rdi、rsi、rdx、rcx、r8、r9，返回值在 rax。408 题里还会出现 32 位 x86（IA-32），参数全部压栈、用 <code>8(%ebp)</code>、<code>12(%ebp)</code> 取参数（%ebp 上面 4 字节是返回地址，再上面才是第一个参数）。Intel 写法和 AT&amp;T 写法操作数顺序相反，读题先看是哪种。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）某递归函数每层栈帧 48 字节，主线程栈 8 MB（按 8 × 2<sup>20</sup> 字节算，不计其他开销），最多能递归多少层？（2）IA-32 下，函数 <code>int f(int a, int b)</code> 采用标准的 <code>push %ebp; mov %esp, %ebp</code> 开头，进入函数体后，a 和 b 分别在 %ebp 加多少的位置？返回地址在哪里？（3）arm64 下，叶子函数为什么可以不把 x30 存到栈上？</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）8 × 2<sup>20</sup> ÷ 48 ≈ 174762 层（实际会少一些，栈里还有 main 和启动代码的帧）。</p>
+          <p>（2）调用者先压 b、再压 a（参数从右往左压），call 压返回地址，f 再压旧 %ebp 并让 %ebp 指向它。所以 (%ebp) 是旧 %ebp，4(%ebp) 是返回地址，8(%ebp) 是 a，12(%ebp) 是 b。</p>
+          <p>（3）叶子函数不执行 bl，x30 不会被改写，ret 时 x30 里还是调用者给的返回地址。</p>
+        </div></details>
+      </div>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>递归和迭代各有什么优缺点？什么时候递归会爆栈？</p>
+        <details><summary>看要点</summary><div><p>递归代码贴近问题的数学定义，写树、分治、回溯很自然；代价是每层一个栈帧（时间上有调用开销，空间上占 O(深度) 的栈），深度过大会栈溢出，比如对一条退化成链表的二叉树递归、或者对几十万个元素递归求和。迭代需要自己维护状态（必要时自己用一个栈），没有爆栈风险。尾递归在支持尾调用优化的编译器下可以变成循环（第三层），但 C 标准不保证这件事。</p></div></details>
+      </div>
+      <div class="pass" data-id="base-q20b">
+        <div class="qq" data-in="x30"><p>arm64 里 bl 把返回地址写进哪个寄存器？</p><p class="ex">x30（LR）。</p></div>
+        <div class="qq" data-a="1"><p>x86-64 的 call 指令把返回地址放在哪儿？</p><ol><li>rax</li><li>压到栈上</li><li>rbp</li></ol><p class="ex">ret 再从栈上弹出来。</p></div>
+        <div class="qq" data-a="0"><p>arm64 里 x19—x28 是？</p><ol><li>被调用者保存的寄存器</li><li>调用者保存的寄存器</li><li>参数寄存器</li></ol><p class="ex">函数要用就得先存后恢复。</p></div>
+        <div class="qq" data-in="12"><p>IA-32 下，标准开头之后第二个参数在 %ebp 加多少？</p><p class="ex">4 是返回地址，8 是第一个参数，12 是第二个。</p></div>
+        <div class="qq" data-in="16"><p>arm64 要求 sp 始终按几字节对齐？</p><p class="ex">16 字节。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c20-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">编译器和安全</span><span class="tm">约 25 分钟</span><span class="sum">尾调用优化：clang -O2 会把尾递归变成循环；线程的栈比主线程小；栈保护和影子栈；Apple Silicon 用 paciasp 和 retaa 给返回地址签名。</span></div>
+    <div class="lyb">
+      <h3>尾调用</h3>
+      <p>如果一个函数的最后一步就是调用另一个函数并直接返回它的结果（<code>return g(x);</code>），当前的栈帧其实已经没用了，可以直接跳到 g，让 g 返回时直接回到我们的调用者。这叫<b>尾调用优化</b>。<code>return n * fact(n - 1);</code> 不是尾调用（调用完还要乘 n），改写成带累加器的 <code>fact_acc(n - 1, acc * n)</code> 就是。用 <code>clang -O2 -S</code> 看，尾递归版里根本没有 bl，只有一个跳回开头的 b。C 标准不保证这种优化，所以不要依赖它防止爆栈；有些语言（Scheme）则规定必须做。</p>
+      <h3>线程的栈更小</h3>
+      <p>主线程的栈约 8 MB，但 macOS 上用 pthread 新建的线程，默认栈只有 512 KB。在线程里放一个几百 KB 的局部数组，或者递归深一点，就会爆栈。大数组应该放到堆上（下一章），或者创建线程时用 <code>pthread_attr_setstacksize</code> 指定更大的栈。</p>
+      <h3>保护返回地址</h3>
+      <p>第十九章说过，攻击者最想改写的就是栈上的返回地址。除了栈保护（canary），硬件也来帮忙：</p>
+      <ul class="plain">
+        <li><b>指针签名</b>：在 Apple Silicon 的 arm64e 程序里，函数开头多一条 <code>pacibsp</code>（或 <code>paciasp</code>），用密钥和当前 sp 给 x30 签名后再存进栈；结尾用 <code>retab</code>（或 <code>autibsp</code> 加 ret）验证签名后再跳。栈上的返回地址被改了，验签就失败，程序立刻崩溃，攻击者拿不到控制权。</li>
+        <li><b>影子栈</b>：英特尔的 CET 等技术在另一块受保护的内存里再存一份返回地址，ret 时两份对不上就报错。</li>
+      </ul>
+      <p>可以试试：<code>clang -arch arm64e -O1 -S f.c -o -</code>，看看函数开头结尾是不是多了这些指令（arm64e 主要用于系统程序，普通 App 默认编译成 arm64）。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>Arm, “Procedure Call Standard for the Arm 64-bit Architecture (AAPCS64)”；Apple, “Writing ARM64 code for Apple platforms”。</li>
+          <li>CS:APP 3.7 节“过程”（x86-64 的栈帧，408 机器级表示部分的主要参考）。</li>
+          <li>Apple Platform Security Guide（Pointer Authentication）。</li>
+        </ul>
+      </div>
+      <div class="pass" data-id="base-q20c">
+        <div class="qq" data-a="1"><p>下面哪个是尾调用？</p><ol><li>return n * f(n − 1);</li><li>return f(n − 1, acc * n);</li><li>f(n − 1); return 0;</li></ol><p class="ex">调用完直接返回结果，不再做别的。</p></div>
+        <div class="qq" data-in="512"><p>macOS 上 pthread 新线程的默认栈大约多少 KB？</p><p class="ex">512 KB，比主线程小得多。</p></div>
+        <div class="qq" data-a="0"><p>arm64e 函数开头的 pacibsp 做了什么？</p><ol><li>给返回地址签名</li><li>把栈清零</li><li>关闭中断</li></ol><p class="ex">PAC，返回时验签。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div data-l="1"><b>栈 <span class="en" data-say="stack">stack</span></b>后进先出的一摞东西；也指程序里放栈帧的那块内存。</div>
+    <div data-l="1"><b>栈帧 <span class="en" data-say="stack frame">stack frame</span></b>一次函数调用占的那一块栈。</div>
+    <div data-l="1"><b>递归 <span class="en" data-say="recursion">recursion</span></b>函数调用自己。</div>
+    <div data-l="1"><b>返回地址 <span class="en" data-say="return address">return address</span></b>函数做完回到哪条指令。</div>
+    <div data-l="2"><b>调用约定 <span class="en" data-say="calling convention">calling convention</span></b>参数、返回值、寄存器保存的规矩。</div>
+    <div data-l="3"><b>尾调用 <span class="en" data-say="tail call">tail call</span></b>最后一步就是调用并直接返回。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>每调用一次叠一个栈帧，返回时揭掉；递归要有终点，栈有底。</div>
+    <div><i>第二层带走</i>arm64 返回地址先在 x30、要调用别人时存进栈；x86 的 call 直接压栈。</div>
+    <div><i>第三层带走</i>栈上的返回地址是攻击者的头号目标，所以有了 canary、影子栈和指针签名。</div>
+  </div>
+</section>

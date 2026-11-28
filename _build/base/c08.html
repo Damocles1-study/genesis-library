@@ -1,0 +1,152 @@
+<section class="chap" id="c24" data-vol="卷六 · 调试">
+  <div class="chead">
+    <div class="big">调</div>
+    <div>
+      <div class="no">第二十四章</div>
+      <h2>调试</h2>
+      <dl><dt>讲什么</dt><dd>找虫子的心态：先复现、再缩小、再假设、再验证；printf 大法；lldb：断点、单步、看变量、看调用栈；条件断点和观察点；看寄存器、看内存、看汇编；段错误怎么查；断点是怎样实现的；调试信息</dd><dt>装置</dt><dd>模拟 lldb</dd></dl>
+      <div class="crs" data-c="系统 组成"></div>
+      <div class="lvs"><a data-l="1" href="#c24-1">第一层 · 50 分钟</a><a data-l="2" href="#c24-2">第二层 · 40 分钟</a><a data-l="3" href="#c24-3">第三层 · 25 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>我的程序算平均数，四个数 3、1、4、1，它说平均是八千多。</span></div>
+    <div class="l"><i class="j">舅</i><span>别急着改代码。先让程序停在半路，看看每个变量到底是多少。猜十次，不如看一眼。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>用“复现、缩小、假设、验证”的办法找虫子；在 Mac 上用 lldb 设断点、单步、打印变量、看调用栈。</li>
+      <li><span class="lg lg1">一</span>在模拟的 lldb 里把一个越界的虫子找出来。</li>
+      <li><span class="lg lg2">二</span>用条件断点、观察点、内存和寄存器命令；按步骤排查段错误。</li>
+      <li><span class="lg lg3">三</span>说出软件断点、单步和硬件观察点是怎样实现的；知道调试信息存在哪里。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c24-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：C、数组（第十九章）、栈（第二十章）</span><span class="tm">约 50 分钟</span></div>
+    <div class="lyb">
+      <h3>找虫子的四步</h3>
+      <p>程序里的错误叫 bug（虫子），找错误叫调试（debug）。据说这个词和 1947 年一台计算机里真的夹住的一只飞蛾有关（《一块一块》里讲过，那只飞蛾被贴在了工作日志上）。不管多厉害的程序员，调试都按这几步：</p>
+      <ol class="plain">
+        <li><b>复现</b>：先找到一个每次都能让错误出现的输入。时有时无的错误最难查，先想办法让它稳定出现。</li>
+        <li><b>缩小</b>：把范围缩小到最少的代码。程序的前一半有没有问题？把输入减到最短还会错吗？</li>
+        <li><b>假设</b>：根据看到的现象，猜一个原因。“平均数太大，可能是加进了不该加的数。”</li>
+        <li><b>验证</b>：让程序停下来，看变量，证明或推翻你的猜测。推翻了就换一个猜测。</li>
+      </ol>
+      <p>最简单的“看变量”是在代码里加 printf，把中间结果打出来。它很好用，但每看一个新变量都要改代码、重新编译。<b>调试器</b>能让程序停在任何一行，随便看任何变量，还能一步一步往下走。Mac 上的调试器叫 <b>lldb</b>，它和 clang 是同一个项目（LLVM）里的工具，装命令行工具时已经装好了。</p>
+      <div class="try">
+        <div class="th"><b>用 lldb 找虫子</b><span class="tm">20 分钟</span></div>
+        <div class="tb">
+          <ol class="steps">
+            <li>建 <code>avg.c</code>（就是下面装置里的程序），用 <code>-g</code>（带调试信息）和 <code>-O0</code>（不优化）编译，先运行一次看到错误的结果：
+<pre class="sh" data-k="终端"><span class="p">% </span>clang -g -O0 avg.c -o avg &amp;&amp; ./avg</pre></li>
+            <li>用 lldb 启动它（第一次用时，系统可能会弹窗要你输入密码，允许开发者工具控制进程）：
+<pre class="sh" data-k="终端"><span class="p">% </span>lldb ./avg
+<span class="o">(lldb) </span>b sum
+<span class="o">(lldb) </span>run
+<span class="o">(lldb) </span>next
+<span class="o">(lldb) </span>p s
+<span class="o">(lldb) </span>p i
+<span class="o">(lldb) </span>bt
+<span class="o">(lldb) </span>quit</pre></li>
+            <li>最常用的命令：<code>b 行号</code> 或 <code>b 函数名</code>（设断点）、<code>run</code>（运行到断点停下）、<code>next</code>（执行一行，遇到函数调用不进去）、<code>step</code>（执行一行，遇到函数调用钻进去）、<code>p 变量</code>（打印）、<code>bt</code>（调用栈，第二十章的栈帧一层一层列出来）、<code>continue</code>（继续跑到下一个断点）、<code>finish</code>（跑完当前函数回到调用者）、<code>quit</code>。大部分命令都可以只打第一个字母。</li>
+          </ol>
+        </div>
+      </div>
+      <div class="fig" id="lldbFig">
+        <div class="fig-label">装置 · 第二十四章</div>
+        <h4>模拟 lldb</h4>
+        <p class="how">这是一个模拟的 lldb，程序就是上面的 avg.c。在框里输入命令，回车执行（支持 b、run、next、step、continue、finish、p、bt、list、help、quit）。目标：找出为什么平均数是八千多。不知道从哪儿下手，就先输入 <code>b 5</code> 再输入 <code>run</code>。</p>
+        <div class="lldbwrap"><pre class="out lldbsrc"></pre><div class="lldbterm"><pre class="lldbout"></pre><div class="lldbin"><span>(lldb)</span><input type="text" id="lldbCmd" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="lldb 命令"></div></div></div>
+        <div class="btns"><span class="dim" style="font-size:13px">试试：</span><button class="btn" data-c="b 5">b 5</button><button class="btn" data-c="run">run</button><button class="btn" data-c="p i">p i</button><button class="btn" data-c="p s">p s</button><button class="btn" data-c="continue">continue</button><button class="btn" data-c="bt">bt</button><button class="btn" data-c="restart">重来</button></div>
+        <div class="say"></div>
+      </div>
+      <div class="task" data-id="base-t24a">
+        <div class="th"><b>修好它，再验证</b></div>
+        <div class="tb"><p>找到错误以后，在真的 avg.c 里改掉，重新编译运行，确认平均数是 2（整数除法，9 ÷ 4 = 2）。再想一想：如果一开始就用第十九章的 <code>-fsanitize=address</code> 编译，会不会更快发现？试试看。</p></div>
+      </div>
+      <div class="pass" data-id="base-q24a">
+        <div class="qq" data-a="1"><p>调试的第一步应该是？</p><ol><li>马上改代码</li><li>找到一个每次都能让错误出现的输入</li><li>重装系统</li></ol><p class="ex">先复现。</p></div>
+        <div class="qq" data-a="2"><p>想让 lldb 能显示变量名和源代码行，编译时要加？</p><ol><li>-O3</li><li>-c</li><li>-g</li></ol><p class="ex">带上调试信息；最好再加 -O0。</p></div>
+        <div class="qq" data-a="0"><p>next 和 step 的区别是？</p><ol><li>遇到函数调用，next 不进去，step 钻进去</li><li>没有区别</li><li>next 往回走</li></ol><p class="ex">step into / step over。</p></div>
+        <div class="qq" data-in="bt"><p>在 lldb 里查看调用栈的命令是？（两个字母）</p><p class="ex">backtrace。</p></div>
+        <div class="qq" data-a="1"><p>avg.c 的虫子在哪里？</p><ol><li>printf 的格式</li><li>循环条件 i &lt;= n 多读了一个 a[4]</li><li>整数除法</li></ol><p class="ex">应该是 i &lt; n。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。第三部的第一层读完了！</div>
+
+  <section class="ly" data-l="2" id="c24-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">调试的进阶工具 · 面试</span><span class="tm">约 40 分钟</span><span class="sum">条件断点；观察点；看寄存器、内存和汇编；段错误的排查步骤；断言和单元测试；二分查找出错的提交。</span></div>
+    <div class="lyb">
+      <h3>更多的 lldb</h3>
+      <ul class="plain">
+        <li><b>条件断点</b>：循环一万次，只在第 9999 次出错。<code>br set -l 5 -c 'i == 9999'</code>，只有条件成立时才停。</li>
+        <li><b>观察点</b>：某个变量不知被谁改坏了。<code>watchpoint set variable s</code>（或 <code>w s v s</code>），之后任何代码一改 s，程序就停在那一行。查“内存被悄悄改写”类的虫子，它是最强的武器。</li>
+        <li><b>看机器</b>：<code>register read</code> 看寄存器（第十四章的 x0、sp、pc）；<code>memory read -s4 -fx -c8 &amp;a</code> 以 4 字节为一组、十六进制显示 a 开头的 8 个数；<code>disassemble</code> 看当前函数的汇编，配合 <code>si</code>（一次一条指令）单步。</li>
+        <li><b>崩溃时</b>：程序崩在 lldb 里会自动停下，<code>bt</code> 看是在哪个函数的哪一行、从哪儿调过来的，<code>frame select 2</code> 切到上面某一层看那一层的变量。</li>
+      </ul>
+      <h3>段错误怎么查</h3>
+      <p>“Segmentation fault”（Mac 上调试器里显示 EXC_BAD_ACCESS）的意思是程序访问了不该访问的地址。按这个顺序查：① 用 <code>-g -fsanitize=address</code> 重新编译运行，大多数越界、释放后使用会被直接点名；② 在 lldb 里运行，崩溃时 <code>bt</code>，找到你自己的代码里最靠上的那一帧；③ 在那一帧 <code>p</code> 出相关的指针，看是 NULL（空指针）、是一个很小的数（多半是空指针加偏移）、还是一个很怪的地址（野指针或被改坏）；④ 如果是递归，看栈有多深（第二十章的栈溢出）。</p>
+      <h3>让虫子更早现身</h3>
+      <p><code>assert(n &gt; 0);</code>（需要 <code>#include &lt;assert.h&gt;</code>）在条件不成立时立刻终止并打印位置，把“很久以后在别处出怪事”变成“当场报错”。为每个函数写几个小测试（单元测试），改代码后一键全部跑一遍。如果某个功能以前好好的、现在坏了，用 <code>git bisect</code> 在提交历史里二分查找是哪一次提交引入的（也就是对提交历史做二分查找）。</p>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>线上服务偶尔崩溃，本地复现不了，怎么办？</p>
+        <details><summary>看要点</summary><div><p>先收集现场：开启核心转储（core dump）或崩溃报告（macOS 的崩溃报告在“控制台”App 和 ~/Library/Logs/DiagnosticReports），拿到崩溃时的调用栈和寄存器；加日志记录关键输入和状态；看崩溃是否和特定输入、负载、时间、机器有关，尽量构造出能复现的输入。工具上：用地址消毒器、线程消毒器（查数据竞争，第二十九章）编译测试版本做压力测试；对比出问题前后的代码改动。偶发崩溃常见原因是内存错误和并发竞争。</p></div></details>
+      </div>
+      <div class="pass" data-id="base-q24b">
+        <div class="qq" data-a="1"><p>某个变量不知被哪行代码改坏了，最适合用？</p><ol><li>条件断点</li><li>观察点</li><li>printf</li></ol><p class="ex">一被改就停。</p></div>
+        <div class="qq" data-a="0"><p>崩溃时 p 出一个指针的值是 0x10，最可能是？</p><ol><li>空指针加了一个小偏移（比如访问结构体成员）</li><li>正常的堆地址</li><li>栈地址</li></ol><p class="ex">NULL-&gt;field 就会这样。</p></div>
+        <div class="qq" data-in="register read"><p>lldb 里查看寄存器的命令是？（两个单词）</p><p class="ex">register read。</p></div>
+        <div class="qq" data-a="2"><p>用来在提交历史里找出“哪一次改动引入了错误”的是？</p><ol><li>git log</li><li>git diff</li><li>git bisect</li></ol><p class="ex">二分查找。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c24-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">调试器是怎样做到的</span><span class="tm">约 25 分钟</span><span class="sum">软件断点：把一条指令换成陷阱指令；单步；硬件观察点和调试寄存器；调试器怎样控制另一个进程；DWARF 调试信息和 .dSYM；优化过的代码为什么难调。</span></div>
+    <div class="lyb">
+      <h3>断点的秘密</h3>
+      <p>你在第 5 行设断点时，lldb 查调试信息，找到第 5 行对应的第一条机器指令的地址，然后<b>把那条指令换成一条陷阱指令</b>（arm64 上是 <code>brk #0</code>，x86 上是 <code>int3</code>），原来的指令先存起来。程序跑到那里，执行陷阱指令，处理器产生异常，操作系统暂停这个进程并通知调试器。你输入 continue 时，调试器把原指令放回去、单步执行这一条，再把陷阱指令换回来，让程序继续跑。所以“断点”其实是调试器在你的程序里偷偷改写了代码（第十三章“指令即数据”的又一次应用）。</p>
+      <ul class="plain">
+        <li><b>单步</b>：处理器有专门的“单步”模式，每执行一条指令就产生一次异常，调试器借此一条一条地走。</li>
+        <li><b>硬件观察点</b>：处理器里有几个调试寄存器，可以设置“访问这个地址就产生异常”，不用改代码、不拖慢程序，但数量很少（通常只有几个）。超过数量时，调试器只能用慢得多的软件办法。</li>
+        <li><b>控制另一个进程</b>：调试器要读写别的进程的内存和寄存器，需要操作系统给它特权（Linux 上是 ptrace 系统调用，macOS 上是 Mach 的任务端口）。所以 macOS 会要你输入密码授权，系统进程则受第二十三章的系统完整性保护，不让调试。</li>
+      </ul>
+      <h3>调试信息</h3>
+      <p><code>-g</code> 让编译器生成 DWARF 格式的调试信息：哪个地址对应源文件第几行、每个变量放在哪个寄存器或栈上的哪个位置、类型是什么。在 Mac 上，它们留在 .o 文件里，可执行文件只记着去哪找；发布时用 <code>dsymutil</code> 把它们收集成一个 .dSYM 包，崩溃报告靠它把地址翻译回函数名和行号（叫“符号化”）。开了优化（<code>-O2</code>）以后，变量可能只活在寄存器里、甚至被算掉了，代码行也被重排合并，调试器常显示 “optimized out”，这就是调试时用 -O0 的原因。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>LLDB 官方教程（lldb.llvm.org 的 Tutorial 和与 GDB 命令对照表）。</li>
+          <li>Eli Bendersky, “How debuggers work”（三篇系列文章）；DWARF Debugging Information Format 标准。</li>
+          <li>Andreas Zeller,《调试的艺术：为什么程序会出错》（系统讲调试方法论）。</li>
+        </ul>
+      </div>
+      <div class="pass" data-id="base-q24c">
+        <div class="qq" data-a="1"><p>软件断点是怎样实现的？</p><ol><li>处理器自带</li><li>把断点处的指令换成一条陷阱指令</li><li>让程序变慢</li></ol><p class="ex">arm64 的 brk、x86 的 int3。</p></div>
+        <div class="qq" data-a="0"><p>为什么开了 -O2 调试时常看到 optimized out？</p><ol><li>变量只在寄存器里或被优化掉了</li><li>调试器坏了</li><li>没有加 -g</li></ol><p class="ex">调试用 -O0。</p></div>
+        <div class="qq" data-a="2"><p>macOS 上把调试信息收集起来随崩溃报告使用的是？</p><ol><li>.o 文件</li><li>Makefile</li><li>.dSYM 包</li></ol><p class="ex">dsymutil 生成。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div data-l="1"><b>调试 <span class="en" data-say="debug">debug</span></b>找出并改掉程序里的错误。</div>
+    <div data-l="1"><b>断点 <span class="en" data-say="breakpoint">breakpoint</span></b>让程序运行到这里停下。</div>
+    <div data-l="1"><b>单步 <span class="en" data-say="step">step</span></b>一次只执行一行（或一条指令）。</div>
+    <div data-l="1"><b>调用栈 <span class="en" data-say="backtrace">backtrace</span></b>当前所有栈帧，从里到外。</div>
+    <div data-l="2"><b>观察点 <span class="en" data-say="watchpoint">watchpoint</span></b>某个变量一被改就停下。</div>
+    <div data-l="3"><b>调试信息 <span class="en" data-say="debug information">debug info</span></b>地址和源代码行、变量之间的对照表。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>复现、缩小、假设、验证；猜十次不如停下来看一眼。</div>
+    <div><i>第二层带走</i>段错误先上地址消毒器，再 bt、再看指针；观察点专抓被悄悄改写的变量。</div>
+    <div><i>第三层带走</i>断点是调试器偷偷改写的一条指令；优化让程序快，也让它难调。</div>
+  </div>
+</section>

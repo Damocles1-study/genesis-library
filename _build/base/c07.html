@@ -1,0 +1,178 @@
+<section class="chap" id="c23" data-vol="卷六 · 加载">
+  <div class="chead">
+    <div class="big">载</div>
+    <div>
+      <div class="no">第二十三章</div>
+      <h2>加载</h2>
+      <dl><dt>讲什么</dt><dd>敲下 ./prog 以后：操作系统读文件头、把各段放进内存、准备好栈、请动态链接器接上库、跳到 main；argc 和 argv；退出码；程序的内存地图在真机上长什么样；408 的三种装入方式；代码签名和隔离属性</dd><dt>装置</dt><dd>你的程序住在哪儿</dd></dl>
+      <div class="crs" data-c="系统"></div>
+      <div class="lvs"><a data-l="1" href="#c23-1">第一层 · 40 分钟</a><a data-l="2" href="#c23-2">第二层 · 45 分钟</a><a data-l="3" href="#c23-3">第三层 · 25 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>prog 只是硬盘上的一个文件。我敲 ./prog，它怎么就“活”了？</span></div>
+    <div class="l"><i class="j">舅</i><span>操作系统照着文件里的“装箱单”，把东西一样一样搬进内存，摆好，再按下开始键。我们来看看它摆成了什么样。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>说出运行一个程序时操作系统做的几件事；用 argc、argv 读命令行参数，用退出码报告成败。</li>
+      <li><span class="lg lg1">一</span>打印自己程序里各种东西的地址，把它们放到内存地图上。</li>
+      <li><span class="lg lg2">二</span>说出绝对装入、可重定位装入、动态运行时装入的区别；用 vmmap 和 otool 看真实的布局和加载命令。</li>
+      <li><span class="lg lg3">三</span>说出 macOS 为什么要求代码签名，隔离属性和门禁是做什么的。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c23-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：内存地图（第三部封面）、链接（第二十二章）</span><span class="tm">约 40 分钟</span></div>
+    <div class="lyb">
+      <h3>敲下回车以后</h3>
+      <ol class="plain">
+        <li>终端里的 shell（zsh）请操作系统“新开一个进程，运行 ./prog”（第二十六章细讲）。</li>
+        <li>操作系统打开 prog，读开头的文件头：魔数对不对（第二章的 CF FA ED FE）、是不是这种处理器的程序、要装哪些段。</li>
+        <li>给这个进程准备一片全新的地址空间，把代码段、数据段映射进去，BSS 段清零，再准备好栈，把命令行参数和环境变量放在栈顶。</li>
+        <li>把动态链接器 dyld 也装进来，先运行它：它把 prog 需要的动态库（比如 printf 所在的 libSystem）接上，把那些 U 符号的地址填好（上一章）。</li>
+        <li>dyld 跳到 main。你的代码开始执行。</li>
+        <li>main 返回（或者调用 exit），操作系统收回这个进程的所有内存、关掉它打开的文件，把退出码交给 shell。</li>
+      </ol>
+      <h3>命令行参数和退出码</h3>
+      <p>main 其实可以有两个参数：<code>int main(int argc, char **argv)</code>。argc 是参数个数，argv 是一个字符串数组（每个元素是一个 char 指针，第十八、十九章），<code>argv[0]</code> 是程序自己的名字。运行 <code>./prog hello 42</code> 时，argc 是 3，argv[1] 是 "hello"，argv[2] 是 "42"（字符串，要数字得用 atoi 转换）。main 的返回值是<b>退出码</b>，0 表示成功，非 0 表示出了某种错，shell 里用 <code>echo $?</code> 查看，脚本用它判断上一步成没成功。</p>
+      <div class="try">
+        <div class="th"><b>你的程序住在哪儿</b><span class="tm">15 分钟</span></div>
+        <div class="tb">
+<pre class="code" data-k="where.c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+int g_init = 42;                 /* 有初值的全局变量 */
+int g_zero;                      /* 没初值的全局变量 */
+const char *msg = "hi";          /* 字符串字面量 */
+int main(int argc, char **argv) {
+    int local = 1;
+    int *heap = malloc(16);
+    printf("main   %p\n", (void *)main);
+    printf("msg    %p\n", (void *)msg);
+    printf("g_init %p\n", (void *)&amp;g_init);
+    printf("g_zero %p\n", (void *)&amp;g_zero);
+    printf("heap   %p\n", (void *)heap);
+    printf("local  %p\n", (void *)&amp;local);
+    printf("printf %p\n", (void *)printf);
+    printf("参数有 %d 个，第一个是 %s\n", argc, argv[0]);
+    free(heap);
+    return 3;
+}</pre>
+<pre class="sh" data-k="终端"><span class="p">% </span>clang where.c -o where &amp;&amp; ./where; echo "退出码 $?"</pre>
+          <p>把打印出来的前七行复制，粘贴到下面装置的框里，看它们在地图上的位置。再运行一次，地址会整体挪动（第十八章的地址随机化），但相对关系不变。</p>
+        </div>
+      </div>
+      <div class="fig" id="loadFig">
+        <div class="fig-label">装置 · 第二十三章</div>
+        <h4>你的程序住在哪儿</h4>
+        <p class="how">框里预先放着一次运行的示意结果。换成你自己运行 where 的输出（每行一个“名字 地址”），点“画出来”。地址从高到低排列，相邻两行之间的距离按“差了多少个数量级”画。</p>
+        <textarea id="ldIn" rows="7" aria-label="where 程序的输出"></textarea>
+        <div class="btns"><button class="btn pri" data-x="go">画出来</button><button class="btn" data-x="eg">恢复示意数据</button></div>
+        <div class="ldmap"></div>
+        <div class="say"></div>
+      </div>
+      <p>你会发现，真实的地图和第三部封面那张“教科书”的图不完全一样：在 Apple Silicon 的 Mac 上，堆的地址（0x6000… 开头）反而比栈（0x16… 开头）高得多，系统库的代码（printf）又在另一片区域。教科书的图讲的是“分几种区域、各放什么”，具体摆在哪儿，每个操作系统有自己的安排，这并不矛盾。</p>
+      <div class="task" data-id="base-t23a">
+        <div class="th"><b>写一个小工具</b></div>
+        <div class="tb"><p>写一个 <code>add</code> 程序：<code>./add 3 5</code> 打印 8。参数不是两个时，打印用法提示并 <code>return 1</code>；成功时 <code>return 0</code>。然后试试 <code>./add 3 5 &amp;&amp; echo 成功</code> 和 <code>./add 3 &amp;&amp; echo 成功</code>：<code>&amp;&amp;</code> 只在前一个命令退出码为 0 时才执行后一个。</p></div>
+      </div>
+      <div class="pass" data-id="base-q23a">
+        <div class="qq" data-in="3"><p>运行 <code>./prog a b</code>，argc 是几？</p><p class="ex">程序名也算一个：prog、a、b。</p></div>
+        <div class="qq" data-a="1"><p>argv[0] 是什么？</p><ol><li>第一个参数</li><li>程序自己的名字</li><li>参数个数</li></ol><p class="ex">./prog 本身。</p></div>
+        <div class="qq" data-a="2"><p>程序里的 printf 是谁在运行前接上的？</p><ol><li>编译器</li><li>shell</li><li>动态链接器 dyld</li></ol><p class="ex">printf 在动态库里，加载时才接上。</p></div>
+        <div class="qq" data-a="0"><p>main 返回 0 表示？</p><ol><li>成功</li><li>失败</li><li>没有意义</li></ol><p class="ex">约定 0 是成功，用 echo $? 查看。</p></div>
+        <div class="qq" data-a="1"><p>在 Apple Silicon 的 Mac 上，堆的地址比栈高，和教科书的图矛盾吗？</p><ol><li>矛盾，教科书错了</li><li>不矛盾，图讲的是有哪些区域，具体摆放各系统不同</li><li>是程序出错了</li></ol><p class="ex">区域的种类和作用是一样的。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c23-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 操作系统 · 程序的装入 · 面试</span><span class="tm">约 45 分钟</span><span class="sum">逻辑地址和物理地址；绝对装入、可重定位装入、动态运行时装入；重定位寄存器；exec 做了什么；用 otool -l 和 vmmap 看真实的加载命令和布局。</span></div>
+    <div class="lyb">
+      <h3>逻辑地址和三种装入</h3>
+      <p>编译链接出来的程序，里面的地址都是从某个约定的起点算起的<b>逻辑地址</b>；程序最终在内存里的位置是<b>物理地址</b>。从前者到后者的转换叫<b>重定位</b>。408 操作系统把装入分为三种：</p>
+      <ul class="plain">
+        <li><b>绝对装入</b>：编译时就知道程序会装在哪里，直接生成物理地址。只适合单道程序的简单系统。</li>
+        <li><b>可重定位装入</b>（静态重定位）：装入时一次性把程序里所有地址加上装入的起始地址。装好以后不能再移动。</li>
+        <li><b>动态运行时装入</b>（动态重定位）：装入后程序里仍是逻辑地址，<b>每次访问内存时</b>由硬件把逻辑地址加上<b>重定位寄存器</b>的值得到物理地址。程序可以在内存里移动（只要改寄存器），这是第二十一章“紧凑”在操作系统层面能做的前提。今天的分页（第二十七章）是它的推广：不是加一个基址，而是查一张表。</li>
+      </ul>
+      <h3>exec 做了什么</h3>
+      <p>在类 Unix 系统里，“运行一个程序”是系统调用 exec 族（如 execve）完成的：它<b>不新建进程</b>，而是把调用它的那个进程的地址空间整个换成新程序的（代码、数据、堆、栈全部丢掉重来），进程号不变。shell 先 fork 出一个自己的复制品，再让复制品 exec 目标程序，这就是第二十六章的 fork + exec。</p>
+      <div class="try">
+        <div class="th"><b>看真实的加载命令和内存布局</b><span class="tm">15 分钟</span></div>
+        <div class="tb">
+<pre class="sh" data-k="终端"><span class="p">% </span>otool -l where | grep -A3 -E "LC_SEGMENT_64|LC_MAIN|LC_LOAD_DYLINKER" | head -40
+<span class="p">% </span>otool -l where | grep -A2 LC_LOAD_DYLIB</pre>
+          <p>LC_SEGMENT_64 是一个一个要映射的段（__PAGEZERO、__TEXT、__DATA、__LINKEDIT）；LC_LOAD_DYLINKER 指明用 /usr/lib/dyld 当动态链接器；LC_MAIN 记着 main 在文件里的偏移；LC_LOAD_DYLIB 列出依赖的动态库。<code>__PAGEZERO</code> 是一大片不可访问的区域，从地址 0 开始，所以解引用空指针会立刻崩溃（第十八章）。</p>
+          <p>想看一个正在运行的进程的完整内存布局，在 where.c 的 return 前加一行 <code>getchar();</code>（让它停下等你按回车），运行后在另一个终端窗口里：</p>
+<pre class="sh" data-k="终端"><span class="p">% </span>vmmap where | head -60</pre>
+          <p>vmmap 列出每一块区域的地址范围、权限（r-x 表示可读可执行）和用途（__TEXT、MALLOC、Stack……）。</p>
+        </div>
+      </div>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）某程序采用动态运行时装入，被装到物理地址 20000H 开始的区域，重定位寄存器的值是多少？程序中逻辑地址 0345H 处的一条指令访问逻辑地址 1A00H 的数据，实际访问的物理地址是多少？（2）若改为可重定位装入，程序装入后被操作系统移动到 40000H，会出现什么问题？</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）重定位寄存器 = 20000H；物理地址 = 20000H + 1A00H = 21A00H（这条指令本身在 20345H）。</p>
+          <p>（2）可重定位装入在装入时已经把程序里的地址都改成了基于 20000H 的物理地址，移动后这些地址全都指向旧位置，程序会访问错误的内存。所以静态重定位的程序装入后不能移动；要能移动，必须用动态重定位。</p>
+        </div></details>
+      </div>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>一个程序从磁盘上的可执行文件到在内存中运行，经历了哪些步骤？</p>
+        <details><summary>看要点</summary><div><p>（shell）fork 出子进程 → 子进程 execve → 内核检查格式和权限，建立新的虚拟地址空间，按程序头 / 加载命令映射代码段和数据段（多数是“按需”映射，真正访问时才通过缺页读进来，第二十七章），分配栈并压入 argv、环境变量和辅助信息 → 加载动态链接器并把控制权交给它 → 动态链接器加载依赖的共享库、做重定位和符号绑定、运行初始化函数 → 跳到程序入口（C 运行时的启动代码）→ 调用 main → 返回后调用 exit，清理并把退出码交给父进程。</p></div></details>
+      </div>
+      <div class="pass" data-id="base-q23b">
+        <div class="qq" data-a="2"><p>装入后还能在内存里移动的是哪种装入方式？</p><ol><li>绝对装入</li><li>可重定位装入</li><li>动态运行时装入</li></ol><p class="ex">每次访存时才加上重定位寄存器。</p></div>
+        <div class="qq" data-in="21a00h|21a00|0x21a00"><p>重定位寄存器为 20000H，逻辑地址 1A00H 对应的物理地址是？</p><p class="ex">相加：21A00H。</p></div>
+        <div class="qq" data-a="0"><p>exec 系统调用会新建一个进程吗？</p><ol><li>不会，它把当前进程换成新程序，进程号不变</li><li>会</li><li>只在 Mac 上会</li></ol><p class="ex">新建进程的是 fork。</p></div>
+        <div class="qq" data-a="1"><p>Mach-O 里从地址 0 开始、不可访问的那个段叫？</p><ol><li>__TEXT</li><li>__PAGEZERO</li><li>__DATA</li></ol><p class="ex">所以空指针一碰就崩。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c23-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">macOS 的加载安全</span><span class="tm">约 25 分钟</span><span class="sum">Apple Silicon 上所有原生代码都必须签名；链接器自动做的“临时签名”；下载文件的隔离属性和门禁；系统完整性保护；以 #! 开头的脚本是怎样运行的。</span></div>
+    <div class="lyb">
+      <h3>代码签名</h3>
+      <p>在 Apple Silicon 的 Mac 上，内核拒绝运行没有有效签名的原生代码。你自己编译的 where 能运行，是因为链接器自动给它做了一个“临时签名”（ad-hoc）：只记录了文件内容的哈希，不说明是谁签的。用 <code>codesign -dv where</code> 能看到 <code>Signature=adhoc</code>。如果你用十六进制编辑器改了 where 里的一个字节，签名就对不上，运行时会被系统直接杀掉（终端显示 killed）。发布给别人用的程序，要用开发者证书签名并提交给 Apple 公证。</p>
+      <h3>隔离属性和门禁</h3>
+      <p>从浏览器、聊天软件下载的文件，会被打上一个“隔离”扩展属性（<code>xattr -l 文件</code> 能看到 <code>com.apple.quarantine</code>）。第一次打开带这个属性的程序时，门禁（Gatekeeper）会检查它的签名和公证，不合格就拦下，弹出“无法验证开发者”。这是 macOS 防恶意软件的第一道门；遇到它时，先想清楚这个程序是从哪里来的，而不是急着找办法绕过。</p>
+      <h3>系统完整性保护</h3>
+      <p>系统完整性保护（SIP）让系统目录里的文件连管理员也改不了，并限制调试器附加到系统进程、限制某些动态链接器的环境变量对系统程序起作用。所以一些老教程里“用 DYLD_ 开头的环境变量注入代码”“用 dtrace 跟踪任何进程”的做法，在默认设置的 Mac 上不再管用。第二十五章要跟踪系统调用时，我们会改用 Linux 虚拟机。</p>
+      <h3>#! 开头的脚本</h3>
+      <p>第七章的 hi.sh 能直接运行，是因为内核在 exec 时发现文件以 <code>#!</code> 开头，就读出后面写的解释器路径（比如 <code>#!/bin/zsh</code> 或 <code>#!/usr/bin/env python3</code>），改为运行那个解释器、把脚本文件名作为参数交给它。脚本本身不是机器码，所以也不需要第二十二章的那四步。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>Apple Platform Security Guide（代码签名、门禁、系统完整性保护）；<code>man codesign</code>、<code>man vmmap</code>。</li>
+          <li>CS:APP 7.9—7.12 节（加载、动态链接）；Levine《链接器和加载器》第十章。</li>
+        </ul>
+      </div>
+      <div class="pass" data-id="base-q23c">
+        <div class="qq" data-a="1"><p>你自己用 clang 编译的程序在 Apple Silicon 上能运行，是因为？</p><ol><li>不需要签名</li><li>链接器自动做了临时签名</li><li>用了 Rosetta</li></ol><p class="ex">ad-hoc 签名。</p></div>
+        <div class="qq" data-a="0"><p>下载的程序第一次打开时被门禁检查，是因为它带着？</p><ol><li>隔离扩展属性</li><li>可执行权限</li><li>魔数</li></ol><p class="ex">com.apple.quarantine。</p></div>
+        <div class="qq" data-a="2"><p>以 #!/usr/bin/env python3 开头的脚本被执行时，内核实际运行的是？</p><ol><li>脚本本身的机器码</li><li>zsh</li><li>python3，并把脚本文件名交给它</li></ol><p class="ex">#! 后面写的解释器。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div data-l="1"><b>加载 <span class="en" data-say="load">load</span></b>把程序从文件搬进内存、准备好运行。</div>
+    <div data-l="1"><b>命令行参数 <span class="en" data-say="argument">argument</span></b>运行时跟在程序名后面的字。</div>
+    <div data-l="1"><b>退出码 <span class="en" data-say="exit status">exit status</span></b>程序结束时交回的一个数，0 是成功。</div>
+    <div data-l="2"><b>重定位 <span class="en" data-say="relocation">relocation</span></b>把逻辑地址变成真实地址。</div>
+    <div data-l="2"><b>逻辑地址 <span class="en" data-say="logical address">logical address</span></b>程序里用的、从约定起点算起的地址。</div>
+    <div data-l="3"><b>代码签名 <span class="en" data-say="code signing">code signing</span></b>证明程序没被改过、是谁发布的。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>运行程序 = 读装箱单、摆进内存、接上库、跳到 main；结束时交回一个退出码。</div>
+    <div><i>第二层带走</i>动态重定位每次访存都加基址，所以程序装入后还能挪。</div>
+    <div><i>第三层带走</i>今天的系统在“能不能运行”之前先问“这是不是原来那个程序”。</div>
+  </div>
+</section>

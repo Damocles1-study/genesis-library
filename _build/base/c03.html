@@ -1,0 +1,179 @@
+<section class="chap" id="c19" data-vol="卷五 · 数组、字符串和结构体">
+  <div class="chead">
+    <div class="big">组</div>
+    <div>
+      <div class="no">第十九章</div>
+      <h2>数组、字符串和结构体</h2>
+      <dl><dt>讲什么</dt><dd>数组是一排挨着的格子；a[i] 的地址怎样算；C 不检查越界；字符串是以 0 结尾的字符数组；结构体把几样东西捆在一起；二维数组按行存；数组和指针的区别；内存对齐和填充；缓冲区溢出、莫里斯蠕虫和心脏出血</dd><dt>装置</dt><dd>一字节一字节看内存</dd></dl>
+      <div class="crs" data-c="组成 结构 系统"></div>
+      <div class="lvs"><a data-l="1" href="#c19-1">第一层 · 50 分钟</a><a data-l="2" href="#c19-2">第二层 · 50 分钟</a><a data-l="3" href="#c19-3">第三层 · 25 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>Python 的列表越界会报 IndexError。C 呢？</span></div>
+    <div class="l"><i class="j">舅</i><span>C 什么也不说，照着地址算过去就读，读到的是隔壁的东西。今天就去隔壁看看。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>算出 a[i] 的地址；说出 C 的数组越界会发生什么。</li>
+      <li><span class="lg lg1">一</span>说出字符串 "Hi" 在内存里占几个字节、为什么。</li>
+      <li><span class="lg lg2">二</span>算二维数组元素的地址；区分数组和指针；算出结构体的 sizeof（含填充）。</li>
+      <li><span class="lg lg3">三</span>讲清楚缓冲区溢出怎样被利用，以及栈保护、不可执行栈等对策。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c19-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：指针（第十八章）、ASCII（第五章）</span><span class="tm">约 50 分钟</span></div>
+    <div class="lyb">
+      <h3>数组：一排挨着的格子</h3>
+      <p><code>int a[4] = {10, 20, 30, 40};</code> 在内存里要 4 × 4 = 16 个连在一起的字节，a[0] 在最前面，a[1] 紧跟在后面……于是第 i 个元素的地址很好算：</p>
+      <p style="text-align:center;font-family:var(--f-mono)">a[i] 的地址 = a 的首地址 + i × 每个元素的字节数</p>
+      <p>这就是数组从 0 开始数的原因：a[0] 离开头 0 个元素。处理器算这个地址只要一条指令（第十四章的 <code>ldr w0, [x1, x2, lsl #2]</code>，左移 2 位就是乘 4），所以按下标访问数组非常快，不管数组多长。</p>
+      <h3>C 不检查越界</h3>
+      <p>a 只有 4 个元素，写 a[5] 会怎样？Python 会报错。C 不检查，它照样用“首地址 + 5 × 4”算出一个地址去读写，那里可能是别的变量、可能是函数的返回地址、也可能根本不属于你。读到的是乱七八糟的东西，写进去会悄悄破坏别的数据。这是 C 程序里最常见、也最危险的一类错误。</p>
+      <h3>字符串：以 0 结尾的字符数组</h3>
+      <p>C 没有专门的字符串类型，字符串就是一个 char 数组，<b>最后多放一个值为 0 的字节</b>作为结尾标记（写作 <code>'\0'</code>，不是字符 '0'，字符 '0' 是 48）。<code>char s[] = "Hi!";</code> 占 4 个字节：72、105、33、0。<code>strlen(s)</code> 从头数到 0 为止，得 3；<code>sizeof(s)</code> 是整个数组，得 4。如果结尾的 0 丢了，所有字符串函数都会一直往后读，直到碰巧遇到一个 0 为止，第五章说的“烫烫烫”常常就是这么打出来的。</p>
+      <h3>结构体：把几样东西捆在一起</h3>
+      <pre class="code" data-k="C">struct student {
+    char name[8];
+    int  age;
+    double height;
+};
+struct student s = {"Xiao", 10, 1.42};
+printf("%s %d %.2f\n", s.name, s.age, s.height);</pre>
+      <p>结构体的成员也是挨着放的，用点号访问。通过指针访问写 <code>p-&gt;age</code>，等价于 <code>(*p).age</code>。</p>
+      <div class="fig" id="arrFig">
+        <div class="fig-label">装置 · 第十九章</div>
+        <h4>一字节一字节看内存</h4>
+        <p class="how">下面是三个局部变量在内存里的一种可能的排法，每格一个字节：一个 int 数组、一个字符串、一个结构体（灰色斜线是“填充”字节，第二层讲）。拖动下标 i，看 a[i] 算出的地址落在哪里；超出 0—3 时，看看读到了谁的字节。</p>
+        <label class="lab">下标 i = <b id="arIO"></b></label>
+        <input type="range" id="arI" min="-2" max="9" value="1">
+        <div class="bytegrid scroll-x"></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+      <div class="try">
+        <div class="th"><b>越界和字符串的结尾</b><span class="tm">15 分钟</span></div>
+        <div class="tb">
+<pre class="code" data-k="arr.c">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+int main(void) {
+    int a[4] = {10, 20, 30, 40};
+    char s[] = "Hi!";
+    printf("a 从 %p 开始，a[1] 在 %p，a[3] 在 %p\n", (void *)a, (void *)&amp;a[1], (void *)&amp;a[3]);
+    printf("strlen = %zu，sizeof = %zu\n", strlen(s), sizeof(s));
+    for (int i = 0; i &lt;= 6; i++) printf("a[%d] = %d\n", i, a[i]);   /* 故意越界 */
+    return 0;
+}</pre>
+<pre class="sh" data-k="终端"><span class="p">% </span>clang -g arr.c -o arr &amp;&amp; ./arr
+<span class="p">% </span>clang -g -fsanitize=address arr.c -o arr &amp;&amp; ./arr</pre>
+          <p>第一次运行，a[4]、a[5]、a[6] 会打出一些莫名其妙的数，程序却不报错。第二次加上“地址消毒器”（AddressSanitizer），程序一越界就停下，红字指出是哪一行、越界了几个字节。以后写 C，调试时都加上它。</p>
+        </div>
+      </div>
+      <div class="task" data-id="base-t19a">
+        <div class="th"><b>自己写 strlen</b></div>
+        <div class="tb"><p>不用库函数，写一个 <code>int my_strlen(const char *s)</code>：从 s 开始一个字节一个字节往后看，遇到 0 就停，返回数了几个。再写一个 <code>void my_upper(char *s)</code> 把小写字母都变成大写（提示：第七章的“异或 32”，或者减 32；先判断它是不是 'a' 到 'z'）。</p></div>
+      </div>
+      <div class="pass" data-id="base-q19a">
+        <div class="qq" data-in="0x1008|1008"><p>int 数组 a 的首地址是 0x1000，a[2] 的地址是？</p><p class="ex">0x1000 + 2 × 4 = 0x1008。</p></div>
+        <div class="qq" data-a="2"><p>C 程序读 a[10]，而 a 只有 4 个元素，会怎样？</p><ol><li>编译不通过</li><li>报 IndexError</li><li>照样按地址去读，读到别的东西，可能不报错</li></ol><p class="ex">C 不检查越界。</p></div>
+        <div class="qq" data-in="4"><p><code>char s[] = "abc";</code> 的 sizeof(s) 是几？</p><p class="ex">3 个字母加结尾的 0。</p></div>
+        <div class="qq" data-in="3"><p>上一题的 strlen(s) 是几？</p><p class="ex">数到 0 为止，不算 0。</p></div>
+        <div class="qq" data-a="0"><p><code>p-&gt;age</code> 等价于？</p><ol><li>(*p).age</li><li>*p.age</li><li>&amp;p.age</li></ol><p class="ex">点号优先级比星号高，所以要加括号，箭头是简写。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c19-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">数据结构的数组存储 · 408 计组的对齐</span><span class="tm">约 50 分钟</span><span class="sum">二维数组按行存和按列存的地址公式；对称和三角矩阵的压缩存储；数组名什么时候是指针；字符串函数和长度限制；内存对齐的规则和结构体大小。</span></div>
+    <div class="lyb">
+      <h3>二维数组的地址</h3>
+      <p><code>int m[R][C]</code> 在 C 里<b>按行存放</b>（行优先）：先放第 0 行的 C 个元素，再放第 1 行……所以 <code>LOC(m[i][j]) = LOC(m[0][0]) + (i × C + j) × L</code>（L 是每个元素的字节数）。Fortran、MATLAB 是按列存放的：<code>LOC = LOC(m[0][0]) + (j × R + i) × L</code>。第十六章说按行遍历快，就是因为 C 按行存。数据结构课的题目常把下标从 1 开始、或者给定 m[1..R][1..C]，套公式前先把下标换成“前面有几个元素”。</p>
+      <p><b>压缩存储</b>：n 阶对称矩阵只存下三角（含对角线），共 n(n + 1)/2 个元素；按行存放时，a<sub>ij</sub>（i ≥ j，下标从 1 开始）在一维数组里的下标（从 0 开始）是 i(i − 1)/2 + j − 1。三角矩阵、三对角矩阵同理推导。这类题的方法都一样：数清楚它前面有几个元素。</p>
+      <h3>数组和指针</h3>
+      <p>数组名在大多数表达式里会“退化”成指向首元素的指针，所以 <code>int *p = a;</code> 合法，<code>a[i]</code> 和 <code>p[i]</code> 写法相同。但它们不是一回事：<code>sizeof(a)</code> 是整个数组的字节数，<code>sizeof(p)</code> 是 8；<code>&amp;a</code> 的类型是“指向整个数组的指针”，<code>&amp;a + 1</code> 跳过整个数组；数组名不能被赋值。数组作函数参数时，<code>void f(int a[])</code> 和 <code>void f(int *a)</code> 完全一样，函数里拿不到数组的长度，所以 C 的函数总要多传一个长度参数。</p>
+      <h3>字符串函数的坑</h3>
+      <p><code>strcpy(dst, src)</code> 不管 dst 有多大，一直抄到 src 的 0 为止，dst 小了就越界；<code>strcat</code> 同理；<code>gets</code> 根本没法限制长度，C11 已经删掉。要用带长度的版本：<code>snprintf(dst, sizeof dst, "%s", src)</code>，或者 macOS 和 BSD 提供的 <code>strlcpy</code>、<code>strlcat</code>（保证结尾有 0）。<code>strncpy</code> 名字像安全版，但源串太长时<b>不会</b>补结尾的 0，是有名的陷阱。</p>
+      <h3>内存对齐</h3>
+      <p>处理器读一个 4 字节的 int，如果它的地址是 4 的倍数，一次就能读出来；不是的话，有的处理器要读两次再拼起来，有的干脆报错。所以编译器让每种类型放在它大小的整数倍的地址上（<b>对齐</b>）：char 随便放，short 放在 2 的倍数，int、float 放在 4 的倍数，long、double、指针放在 8 的倍数。结构体的规则：</p>
+      <ol class="plain">
+        <li>每个成员的偏移量必须是它自身对齐要求的整数倍，不够就在前面插<b>填充</b>字节；</li>
+        <li>结构体的总大小必须是其中最大对齐要求的整数倍，不够就在末尾填充（这样结构体数组里每个元素也对齐）。</li>
+      </ol>
+      <p>例：<code>struct { char c; int i; char d; }</code>：c 在偏移 0；i 要 4 的倍数，偏移 1—3 填充，i 在 4—7；d 在 8；总大小要是 4 的倍数，9—11 填充，sizeof 为 12。把字段按从大到小重排成 <code>{ int i; char c; char d; }</code>，sizeof 就是 8。装置里的结构体就是前一种。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）二维数组 <code>double m[10][20]</code> 按行存放，首地址 2000（十进制），m[3][5] 的地址是多少？若按列存放呢？（2）在 Apple Silicon 的 Mac 上（char 1、short 2、int 4、double 8，按自然边界对齐），求 <code>struct A { char a; double b; short c; int d; };</code> 的 sizeof，并给出一种使它最小的字段顺序。（3）n 阶下三角矩阵（含对角线）按行优先压缩存入数组 B[0..]，a<sub>ij</sub>（1 ≤ j ≤ i ≤ n）存在 B 的哪个下标？</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）按行：2000 + (3 × 20 + 5) × 8 = 2000 + 520 = 2520。按列：2000 + (5 × 10 + 3) × 8 = 2000 + 424 = 2424。</p>
+          <p>（2）a 偏移 0；b 要 8 的倍数，偏移 8—15（1—7 填充）；c 偏移 16—17；d 要 4 的倍数，偏移 20—23（18—19 填充）；总大小 24，已是 8 的倍数，sizeof = 24。重排为 double b; int d; short c; char a; 偏移 0、8、12、14，共 15，补到 8 的倍数为 16。</p>
+          <p>（3）第 i 行前面有 1 + 2 + … + (i − 1) = i(i − 1)/2 个元素，本行 a<sub>ij</sub> 前面还有 j − 1 个，下标为 i(i − 1)/2 + j − 1。</p>
+        </div></details>
+      </div>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>为什么要内存对齐？怎样取消对齐？</p>
+        <details><summary>看要点</summary><div><p>对齐让一次访存就能取出整个数据，避免跨缓存行、跨页的拆分读写，有的架构不支持非对齐访问；代价是结构体里多出填充字节。可以用 <code>__attribute__((packed))</code> 或 <code>#pragma pack</code> 取消填充（常用于网络包、文件格式这类需要精确布局的场合），代价是访问可能变慢，指向成员的指针也可能是非对齐的。工程上更常见的做法是按成员大小从大到小排列字段。</p></div></details>
+      </div>
+      <div class="pass" data-id="base-q19b">
+        <div class="qq" data-in="2520"><p>上面典型题（1）按行存放时 m[3][5] 的地址是？</p><p class="ex">2000 + 65 × 8。</p></div>
+        <div class="qq" data-in="12"><p><code>struct { char c; int i; char d; }</code> 的 sizeof 是？</p><p class="ex">0、4—7、8，末尾补到 12。</p></div>
+        <div class="qq" data-in="8"><p>把它改成 <code>{ int i; char c; char d; }</code>，sizeof 是？</p><p class="ex">0—3、4、5，补到 4 的倍数：8。</p></div>
+        <div class="qq" data-a="1"><p>函数参数写成 <code>int a[]</code>，在函数里 <code>sizeof(a)</code> 是？</p><ol><li>整个数组的大小</li><li>指针的大小 8</li><li>4</li></ol><p class="ex">数组参数就是指针。</p></div>
+        <div class="qq" data-a="2"><p>下面哪个函数源串太长时不会在目标末尾补 0？</p><ol><li>strlcpy</li><li>snprintf</li><li>strncpy</li></ol><p class="ex">strncpy 是有名的陷阱。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c19-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">越界的代价</span><span class="tm">约 25 分钟</span><span class="sum">缓冲区溢出怎样改写返回地址；1988 年的莫里斯蠕虫；2014 年的心脏出血；栈保护、不可执行栈、地址随机化和指针签名；为什么新语言要检查边界。</span></div>
+    <div class="lyb">
+      <h3>写过头，改掉返回地址</h3>
+      <p>函数的局部数组放在栈上，紧挨着的高地址处保存着函数的返回地址（下一章）。如果程序用 gets 或 strcpy 把一段比数组长的输入抄进去，多出来的字节就会盖掉返回地址。精心构造的输入能让返回地址指向攻击者想执行的代码：早年是直接塞在输入里的一段机器码，栈不可执行之后改成拼接程序里已有的指令片段（返回导向编程）。这就是<b>缓冲区溢出攻击</b>，几十年来最常见的漏洞类型之一。</p>
+      <div class="story">
+        <h5>莫里斯蠕虫和心脏出血</h5>
+        <p>1988 年 11 月，康奈尔大学的研究生罗伯特·莫里斯放出了一个能自我复制的程序，它的传播手段之一，就是利用 Unix 上 fingerd 服务里一次没有长度限制的 gets 调用造成缓冲区溢出。当时互联网上大约六万台机器，据估计有几千台被感染、运行变得极慢。这是互联网上第一起广为人知的蠕虫事件，莫里斯成为美国依据《计算机欺诈和滥用法》被定罪的第一人。2014 年公开的“心脏出血”漏洞方向相反：加密库 OpenSSL 处理“心跳”请求时，相信了对方声称的长度，没有检查就把那么多字节回传，于是每次可以从服务器内存里多读出最多约 64 KB，可能包括密钥和密码。一行没写的边界检查，影响了互联网上相当比例的加密网站。</p>
+      </div>
+      <h3>层层设防</h3>
+      <ul class="plain">
+        <li><b>栈保护</b>（stack canary）：编译器在局部数组和返回地址之间放一个随机数，函数返回前检查它有没有被改，被改了就立刻终止程序。clang 的 <code>-fstack-protector</code> 系列选项。</li>
+        <li><b>不可执行栈</b>：第十三章的 W^X，栈上的数据不能当代码执行。</li>
+        <li><b>地址随机化</b>：第十八章，攻击者不知道要跳到哪儿。</li>
+        <li><b>指针签名</b>：Apple Silicon 上用 PAC 给返回地址签名（下一章），改了就验不过。</li>
+        <li><b>更安全的语言</b>：Rust、Go、Swift 等默认检查数组边界，越界时报错而不是悄悄读写；Rust 还在编译时检查指针的有效期。美国网络安全机构近年多次建议新项目优先使用内存安全的语言。</li>
+      </ul>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>Aleph One, “Smashing The Stack For Fun And Profit”, <i>Phrack</i> 49, 1996。</li>
+          <li>E. H. Spafford, “The Internet Worm Program: An Analysis”, 1988；CVE-2014-0160（Heartbleed）。</li>
+          <li>CS:APP 3.10 节“内存越界引用和缓冲区溢出”。</li>
+        </ul>
+      </div>
+      <div class="pass" data-id="base-q19c">
+        <div class="qq" data-a="1"><p>栈保护（canary）是怎样发现溢出的？</p><ol><li>每次写数组都检查下标</li><li>在数组和返回地址之间放一个随机数，返回前检查它被改没有</li><li>把栈放到硬盘上</li></ol><p class="ex">写过头先会盖掉这个随机数。</p></div>
+        <div class="qq" data-a="0"><p>心脏出血漏洞属于？</p><ol><li>越界读</li><li>越界写</li><li>整数溢出</li></ol><p class="ex">相信了对方给的长度，多读了内存。</p></div>
+        <div class="qq" data-in="1988"><p>莫里斯蠕虫是哪一年？</p><p class="ex">1988 年 11 月。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div data-l="1"><b>数组 <span class="en" data-say="array">array</span></b>一排挨着的同类型格子。</div>
+    <div data-l="1"><b>越界 <span class="en" data-say="out of bounds">out of bounds</span></b>下标超出数组的范围。</div>
+    <div data-l="1"><b>字符串 <span class="en" data-say="string">string</span></b>C 里是以 0 结尾的 char 数组。</div>
+    <div data-l="1"><b>结构体 <span class="en" data-say="struct">struct</span></b>把几样东西捆成一个整体。</div>
+    <div data-l="2"><b>对齐 <span class="en" data-say="alignment">alignment</span></b>数据放在它大小的整数倍地址上。</div>
+    <div data-l="3"><b>缓冲区溢出 <span class="en" data-say="buffer overflow">buffer overflow</span></b>写过了数组的边界。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>a[i] 在首地址加 i 个元素处；C 不检查越界；字符串靠结尾的 0。</div>
+    <div><i>第二层带走</i>地址公式数清“前面有几个”；结构体按最大成员对齐，字段从大到小排最省。</div>
+    <div><i>第三层带走</i>一次没做的边界检查，可以让整个互联网出血。</div>
+  </div>
+</section>

@@ -1,0 +1,189 @@
+<section class="chap" id="c21" data-vol="卷五 · 堆">
+  <div class="chead">
+    <div class="big">堆</div>
+    <div>
+      <div class="no">第二十一章</div>
+      <h2>堆</h2>
+      <dl><dt>讲什么</dt><dd>栈上的东西函数一返回就没了，堆上的东西要自己还；malloc 和 free；内存泄漏、释放后使用、重复释放；用地址消毒器和 leaks 抓虫；分配器怎样管一大块内存；首次适应、最佳适应、最坏适应、邻近适应；内部碎片和外部碎片；垃圾回收和所有权</dd><dt>装置</dt><dd>分配器</dd></dl>
+      <div class="crs" data-c="系统 结构"></div>
+      <div class="lvs"><a data-l="1" href="#c21-1">第一层 · 45 分钟</a><a data-l="2" href="#c21-2">第二层 · 55 分钟</a><a data-l="3" href="#c21-3">第三层 · 25 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>如果我想要一个数组，长度要等程序运行起来、问了用户以后才知道，怎么办？</span></div>
+    <div class="l"><i class="j">舅</i><span>到堆上去借。借多少说多少，用完记得还。Python 替你还，C 要你自己还，这是 C 程序员最常犯错的地方。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>用 malloc 借一块内存、用 free 还回去；说出栈和堆的区别。</li>
+      <li><span class="lg lg1">一</span>说出内存泄漏、释放后使用、重复释放是什么，用地址消毒器把它们抓出来。</li>
+      <li><span class="lg lg2">二</span>按首次、最佳、最坏、邻近适应模拟一串分配和释放；区分内部碎片和外部碎片。</li>
+      <li><span class="lg lg3">三</span>说出真实的分配器怎样提速；比较引用计数、追踪式垃圾回收和 Rust 的所有权。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c21-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：指针（第十八章）、栈（第二十章）</span><span class="tm">约 45 分钟</span></div>
+    <div class="lyb">
+      <h3>栈不够用的时候</h3>
+      <p>栈上的局部变量有两个限制：函数一返回就消失；大小要在写程序时就定下来，而且栈总共只有几 MB。可是很多东西不是这样的：用户要打开一张 4000 万像素的照片（几十 MB），一个游戏要存所有玩家的信息（人数一直在变），一个函数要造一个链表交给别人用（不能随着它返回而消失）。这些东西放在<b>堆</b>（<span class="en" data-say="heap">heap</span>）上：一大片由程序自己申请、自己归还的内存。第三部封面的内存地图里，堆在下面、往上长。</p>
+      <h3>借和还</h3>
+      <pre class="code" data-k="C">#include &lt;stdlib.h&gt;
+int n = 1000;                          /* 运行时才知道的长度 */
+int *a = malloc(n * sizeof(int));      /* 借 4000 字节，得到它的首地址 */
+if (a == NULL) { /* 借不到 */ }
+for (int i = 0; i &lt; n; i++) a[i] = i;  /* 当数组用 */
+free(a);                               /* 还回去 */
+a = NULL;                              /* 好习惯：还了以后别再碰它 */</pre>
+      <p><code>malloc</code>（memory allocate）在堆上找一块够大的空地，返回它的地址；<code>free</code> 把它还回去，以后可以再借给别人。借来的内存会一直在，直到你 free 它，或者整个程序结束。Python 的列表、字典、对象都住在堆上，只是 Python 会自己判断“没人用了”再替你还（第三层）。</p>
+      <h3>三种常见的错</h3>
+      <ul class="plain">
+        <li><b>内存泄漏</b>：借了不还。程序越跑越占内存，跑久了把电脑拖慢。浏览器开几天变得很卡，常常就是某处在泄漏。</li>
+        <li><b>释放后使用</b>（use after free）：已经 free 了还继续读写。那块内存可能已经借给了别人，你改的是别人的数据。这是最危险的安全漏洞类型之一。</li>
+        <li><b>重复释放</b>（double free）：同一块 free 两次，会把分配器自己的账本搞乱。</li>
+      </ul>
+      <p>这三种错误，程序常常不会马上崩溃，而是在很久以后、很远的地方出现奇怪的症状，非常难查。所以要用工具。</p>
+      <div class="try">
+        <div class="th"><b>用工具抓内存错误</b><span class="tm">20 分钟</span></div>
+        <div class="tb">
+<pre class="code" data-k="bug.c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+int main(int argc, char **argv) {
+    char *name = malloc(8);
+    strcpy(name, "Xiaoge");                 /* 6 个字母 + 结尾的 0，正好放得下 */
+    printf("%s\n", name);
+    if (argc &gt; 1) name[8] = '!';            /* 错误一：越界写（带参数运行时才触发） */
+    free(name);
+    if (argc &gt; 2) printf("%c\n", name[0]);  /* 错误二：释放后使用 */
+    char *leak = malloc(100);               /* 错误三：借了不还 */
+    leak[0] = 'x';
+    return 0;
+}</pre>
+<pre class="sh" data-k="终端"><span class="p">% </span>clang -g -fsanitize=address bug.c -o bug
+<span class="p">% </span>./bug a
+<span class="p">% </span>./bug a b
+<span class="p">% </span>clang -g bug.c -o bug2 &amp;&amp; leaks --atExit -- ./bug2</pre>
+          <p><code>./bug a</code>：地址消毒器报 <code>heap-buffer-overflow</code>，指出是哪一行写过了头、那块内存是在哪一行借的。<code>./bug a b</code> 的第一个错误会先被抓住；把第 8 行注释掉再试，就会看到 <code>heap-use-after-free</code>。最后用 macOS 自带的 <code>leaks</code> 工具运行不带消毒器的版本，它会在程序结束时报告“1 leak”，并列出那 100 字节。在 Linux 上，同样的事可以用 Valgrind 或地址消毒器的泄漏检测。</p>
+        </div>
+      </div>
+      <div class="fig" id="heapFig">
+        <div class="fig-label">装置 · 第二十一章</div>
+        <h4>分配器</h4>
+        <p class="how">一块 256 字节的“堆”，每格 8 字节。malloc 借内存时要先找一块够大的空地，每块前面还要多占一格放“账本”（这块多大、借出去没有）。借几次、还几次，看空地怎样被切成碎片；第二层再比较四种找空地的办法。</p>
+        <div class="btns" data-alg></div>
+        <div class="row"><label class="dim" style="font-size:13px">借多少字节</label><input type="number" id="hpN" value="24" min="1" max="240" style="width:6em"><button class="btn pri" data-x="m">malloc</button><button class="btn" data-x="demo">演示：碎片是怎样来的</button><button class="btn" data-x="reset">清空</button><label class="dim" style="font-size:13px"><input type="checkbox" id="hpC" checked> free 时合并相邻的空地</label></div>
+        <div class="heapbar"></div>
+        <div class="heapptrs"></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+      <div class="task" data-id="base-t21a">
+        <div class="th"><b>一个会长大的数组</b></div>
+        <div class="tb"><p>写一个程序，不断读入整数（用 scanf，读到 0 停），存进一个用 malloc 借来的数组。数组满了，就借一块两倍大的新内存（或者用 <code>realloc</code>），把旧的内容拷过去，free 旧的。最后打印所有数。这就是 Python 列表的 append 在底下做的事。写完用 <code>-fsanitize=address</code> 跑一遍，确认没有错误。</p></div>
+      </div>
+      <div class="pass" data-id="base-q21a">
+        <div class="qq" data-a="1"><p>想让一个函数造出的数据在它返回后还能用，应该放在？</p><ol><li>栈上</li><li>堆上</li><li>寄存器里</li></ol><p class="ex">栈帧会随返回收回，堆上的要到 free 才消失。</p></div>
+        <div class="qq" data-a="0"><p>借了内存一直不 free，叫？</p><ol><li>内存泄漏</li><li>栈溢出</li><li>越界</li></ol><p class="ex">程序越跑越占内存。</p></div>
+        <div class="qq" data-a="2"><p>free 之后还读写那块内存，叫？</p><ol><li>重复释放</li><li>空指针</li><li>释放后使用</li></ol><p class="ex">那块内存可能已经借给别人了。</p></div>
+        <div class="qq" data-a="1"><p>malloc 借不到内存时返回？</p><ol><li>0 字节的内存</li><li>NULL</li><li>程序立刻退出</li></ol><p class="ex">要检查返回值。</p></div>
+        <div class="qq" data-a="0"><p>想在 Mac 上抓住越界和释放后使用，编译时加？</p><ol><li>-fsanitize=address</li><li>-O3</li><li>-o</li></ol><p class="ex">地址消毒器。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c21-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 操作系统 · 动态分区分配 · 面试</span><span class="tm">约 55 分钟</span><span class="sum">分配器的账本：头部、空闲链表、切分和合并；首次适应、邻近适应、最佳适应、最坏适应的规则和优缺点；内部碎片和外部碎片；紧凑；一道模拟题。</span></div>
+    <div class="lyb">
+      <h3>分配器的账本</h3>
+      <p>堆是一大块连续的内存，分配器要记住哪些段借出去了、哪些空着。最简单的做法：每块前面放一个<b>头部</b>，写着这块的大小和“已分配 / 空闲”标记，所有块首尾相接，从头部的大小就能跳到下一块（隐式空闲链表）。更快的做法把空闲块用指针串成链表（显式空闲链表），或者按大小分成好几条链（分离空闲链表）。</p>
+      <ul class="plain">
+        <li><b>切分</b>：找到的空闲块比要求的大，把它切成两块，前面借出去，后面仍然空闲。</li>
+        <li><b>合并</b>：free 时，如果前后相邻的块也是空闲的，就合并成一大块。往前合并需要知道前一块的大小，所以很多分配器在块的末尾也放一份大小（<b>边界标记</b>）。</li>
+        <li><b>对齐</b>：malloc 返回的地址要满足最严格的对齐要求（Mac 上是 16 字节），所以实际分到的往往比要求的多一点。</li>
+      </ul>
+      <h3>四种找空地的办法</h3>
+      <p>这一节和 408 操作系统里“连续分配管理方式”中的<b>动态分区分配</b>完全是一回事（那里分的是物理内存的分区，这里分的是堆）：</p>
+      <div class="tbl w"><table class="t"><tr><th>算法</th><th>规则</th><th>空闲分区怎样排</th><th>特点</th></tr>
+        <tr><td>首次适应</td><td>从头找，第一个够大的</td><td>按地址递增</td><td>简单、快；低地址容易留下很多小碎片</td></tr>
+        <tr><td>邻近适应（循环首次适应）</td><td>从上次找到的位置接着往后找</td><td>按地址，循环</td><td>分配更均匀；但会把高地址的大空闲区也切碎</td></tr>
+        <tr><td>最佳适应</td><td>所有够大的里面最小的那个</td><td>按大小递增</td><td>留下的边角最小，于是产生大量极小、谁也用不上的碎片</td></tr>
+        <tr><td>最坏适应</td><td>最大的那个</td><td>按大小递减</td><td>留下的剩余较大还能用，但很快没有大块可用</td></tr></table></div>
+      <p>没有哪种总是最好。研究和实践表明，首次适应在大多数负载下表现不错，所以常被采用。</p>
+      <h3>两种碎片</h3>
+      <ul class="plain">
+        <li><b>内部碎片</b>：分给你的块比你要的大，多出来的那点在块内部浪费了（头部、对齐、固定大小的分配单位都会造成）。</li>
+        <li><b>外部碎片</b>：空闲内存的总量够，但被切成了许多不相邻的小段，没有一段大到能满足请求。可以用<b>紧凑</b>（把已分配的块挪到一起）消除，但 C 的指针直接存着地址，挪了指针就全错了，所以 malloc 不能紧凑；操作系统管理物理内存时可以配合重定位做，代价很大。第二十七章的分页从根本上绕开了这个问题。</li>
+      </ul>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>某系统内存中的空闲分区（按地址递增）依次为：A 100 KB、B 500 KB、C 200 KB、D 300 KB、E 600 KB。现依次有作业请求 212 KB、417 KB、112 KB、426 KB。分别用首次适应、最佳适应、最坏适应分配，每次从选中分区的低地址端切出所需大小，剩余部分留作空闲分区。哪种算法能满足全部请求？</p>
+        <details><summary>看解答</summary><div>
+          <p><b>首次适应</b>：212 → B（剩 288）；417 → E（剩 183）；112 → B 剩下的 288（剩 176）；426：剩下 A 100、B 176、C 200、D 300、E 183，都不够，<b>失败</b>。</p>
+          <p><b>最佳适应</b>：212 → D 300（剩 88）；417 → B 500（剩 83）；112 → C 200（剩 88）；426 → E 600（剩 174）。<b>全部满足</b>。</p>
+          <p><b>最坏适应</b>：212 → E 600（剩 388）；417 → B 500（剩 83）；112 → E 剩下的 388（剩 276）；426：最大的是 D 300，不够，<b>失败</b>。</p>
+          <p>这一组数据里最佳适应赢了，换一组数据结论可能相反。注意题目约定（从低端切、剩余留作分区）会影响结果。</p>
+        </div></details>
+      </div>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>malloc 是怎么实现的？它是系统调用吗？</p>
+        <details><summary>看要点</summary><div><p>malloc 是 C 标准库里的函数，不是系统调用。它向操作系统一次批发一大块内存（Linux 上用 brk 扩展堆顶或 mmap，macOS 上用 mach_vm_allocate / mmap），然后在用户态自己零售：维护空闲链表或按大小分级的“桶”，切分、合并、对齐；大块请求直接用 mmap 单独映射，free 时归还系统。多线程下为了不抢锁，常给每个线程或每个核一份缓存。free 只是把块还给分配器，不一定马上还给操作系统。</p></div></details>
+      </div>
+      <div class="pass" data-id="base-q21b">
+        <div class="qq" data-a="2"><p>空闲分区按大小递增排列、每次取第一个够大的，是哪种算法？</p><ol><li>首次适应</li><li>最坏适应</li><li>最佳适应</li></ol><p class="ex">按大小递增排，第一个够大的就是最小的够大的。</p></div>
+        <div class="qq" data-a="1"><p>空闲总量够、却没有一块连续的够大，这叫？</p><ol><li>内部碎片</li><li>外部碎片</li><li>内存泄漏</li></ol><p class="ex">外部碎片。</p></div>
+        <div class="qq" data-a="0"><p>为什么 C 的 malloc 不能用“紧凑”消除碎片？</p><ol><li>程序里的指针直接存着地址，挪了就失效</li><li>太慢</li><li>标准不允许</li></ol><p class="ex">要挪就得同时改所有指向它的指针，而分配器不知道它们在哪。</p></div>
+        <div class="qq" data-a="1"><p>上面典型题里，哪种算法满足了全部请求？</p><ol><li>首次适应</li><li>最佳适应</li><li>最坏适应</li></ol><p class="ex">见解答。</p></div>
+        <div class="qq" data-a="2"><p>malloc 是？</p><ol><li>一条机器指令</li><li>一个系统调用</li><li>C 标准库的函数，在用户态管理从系统批发来的内存</li></ol><p class="ex">底下才会用到系统调用。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c21-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">真实的分配器和自动回收</span><span class="tm">约 25 分钟</span><span class="sum">macOS 的分配器、jemalloc 和 tcmalloc 的思路；大块直接 mmap；引用计数和循环引用；追踪式垃圾回收；Rust 的所有权；Python 的两套办法。</span></div>
+    <div class="lyb">
+      <h3>真实的分配器</h3>
+      <p>真实世界的分配器比装置复杂得多，思路却相通：把常见的小请求按大小分成若干“级别”（比如 16、32、48……字节），每个级别从专门的页里切同样大小的格子，几乎没有外部碎片、找起来也快；给每个线程或每个核一份本地缓存，多线程不必抢一把锁；大块请求单独向系统要。macOS 的 libmalloc 把小对象分到“tiny”“small”等区域，Linux 的 glibc 用 ptmalloc，Facebook 用 jemalloc，谷歌用 tcmalloc。分配器的选择能让同一个服务器程序的内存占用和速度差出一截。</p>
+      <h3>谁来还：三种回答</h3>
+      <ul class="plain">
+        <li><b>程序员自己还</b>：C。最快、最灵活，也最容易出错。</li>
+        <li><b>引用计数</b>：每个对象记着有几个指针指向它，降到 0 就立刻回收。Swift 和 Objective-C 的 ARC、CPython 都用它。弱点是两个对象互相指着（循环引用）时计数永远不为 0，所以 CPython 另有一个定期运行的“循环垃圾收集器”，Swift 则要求程序员用 weak 打破循环。</li>
+        <li><b>追踪式垃圾回收</b>：定期从全局变量、栈上的变量出发，顺着指针把能找到的对象都标记一遍，找不到的就是垃圾。Java、Go、JavaScript 都用它的各种变体。程序员省心，代价是回收时可能有停顿、占用更多内存。追踪式回收器知道所有指针在哪，所以它<b>可以</b>挪动对象做紧凑，这是 C 做不到的。</li>
+        <li><b>所有权</b>：Rust 在编译时规定每块内存只有一个“主人”，主人离开作用域就自动释放，借用必须遵守编译器检查的规则。没有运行时的垃圾回收，也不会有泄漏之外的那几种错误（释放后使用、重复释放）。</li>
+      </ul>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>CS:APP 第九章 9.9 节“动态内存分配”（隐式空闲链表、边界标记，可以照着自己写一个 malloc）。</li>
+          <li>P. R. Wilson et al., “Dynamic Storage Allocation: A Survey and Critical Review”, 1995。</li>
+          <li>R. Jones, A. Hosking, E. Moss,《垃圾回收算法手册》。</li>
+        </ul>
+      </div>
+      <div class="pass" data-id="base-q21c">
+        <div class="qq" data-a="1"><p>纯引用计数解决不了的是？</p><ol><li>立刻回收</li><li>循环引用</li><li>多线程</li></ol><p class="ex">互相指着，计数永远不为 0。</p></div>
+        <div class="qq" data-a="0"><p>为什么追踪式垃圾回收器可以挪动对象？</p><ol><li>它知道所有指针在哪，可以一起改</li><li>它不在乎对错</li><li>它只回收小对象</li></ol><p class="ex">C 的分配器不知道指针在哪，所以不能挪。</p></div>
+        <div class="qq" data-a="2"><p>Rust 在什么时候检查内存的所有权规则？</p><ol><li>运行时</li><li>从不检查</li><li>编译时</li></ol><p class="ex">没有运行时的回收开销。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div data-l="1"><b>堆 <span class="en" data-say="heap">heap</span></b>程序自己借、自己还的那片内存。</div>
+    <div data-l="1"><b>内存泄漏 <span class="en" data-say="memory leak">memory leak</span></b>借了不还。</div>
+    <div data-l="1"><b>释放后使用 <span class="en" data-say="use after free">use after free</span></b>还了以后还在用。</div>
+    <div data-l="2"><b>碎片 <span class="en" data-say="fragmentation">fragmentation</span></b>内部碎片、外部碎片。</div>
+    <div data-l="2"><b>首次适应 <span class="en" data-say="first fit">first fit</span></b>从头找第一个够大的空闲块。</div>
+    <div data-l="3"><b>垃圾回收 <span class="en" data-say="garbage collection">garbage collection</span></b>自动找出没人用的内存并回收。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>栈自动收，堆要自己还；借了不还会泄漏，还了再用会出大事。</div>
+    <div><i>第二层带走</i>四种适应算法各有所长；外部碎片是连续分配的通病。</div>
+    <div><i>第三层带走</i>谁来还内存，是语言设计里最大的取舍之一：手动、计数、追踪、所有权。</div>
+  </div>
+</section>

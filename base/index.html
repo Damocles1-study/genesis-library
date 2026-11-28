@@ -444,6 +444,64 @@ table.carr td.cur{outline:3px solid var(--on);outline-offset:-2px}
 .spseg>div{padding:6px 2px;min-width:52px}
 .spseg>div+div{border-left:1.5px solid var(--ink-2)}
 .spseg small{display:block;font-size:11px;color:var(--ink-3)}
+.memmap{display:grid;gap:3px;max-width:420px;margin:6px auto 10px}
+.memmap .mm{display:flex;justify-content:space-between;align-items:baseline;gap:10px;border:1.5px solid var(--c);background:color-mix(in srgb,var(--c) 16%,var(--paper));border-radius:4px;padding:8px 12px;cursor:pointer;text-align:left;font-size:14px}
+.memmap .mm span{font-size:12px;color:var(--ink-3)}
+.memmap .mm-gap{min-height:64px;border-style:dashed;background:transparent}
+.memmap .mm-stack,.memmap .mm-heap{min-height:54px}
+.memmap .mm.on{box-shadow:inset 0 0 0 2px var(--c);background:color-mix(in srgb,var(--c) 32%,var(--paper))}
+.trwrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;align-items:start}
+@media (max-width:700px){.trwrap{grid-template-columns:1fr}}
+.trcode pre{font-size:12.5px;line-height:1.75;white-space:pre;margin:0}
+.trcode .ln{display:inline-block;min-width:100%;padding:0 4px;border-radius:3px}
+.trcode .ln.on{background:#6a4316;color:#fff}
+.trg{margin-bottom:8px;border:1px solid var(--rule);border-radius:5px;overflow:hidden}
+.trgt{font-size:12px;color:var(--ink-2);background:var(--paper-2);padding:3px 8px}
+.trmem{overflow-x:auto}
+table.trt{font-size:12.5px}
+table.trt td,table.trt th{padding:3px 6px;white-space:nowrap}
+table.trt tr.hl td{background:color-mix(in srgb,var(--on) 18%,transparent)}
+table.trt tr.tgt td{box-shadow:inset 0 0 0 1.5px var(--l2)}
+table.trt tr.tgt td:first-child::before{content:"▶ ";color:var(--l2)}
+.ptr{color:var(--l2);font-weight:600}
+.trout{font-size:14px;margin-top:4px}
+table.bg{border-collapse:collapse;font-size:11px}
+table.bg th{font-weight:400;color:var(--ink-3);padding:2px 4px;font-size:10.5px}
+table.bg td{border:1px solid var(--rule);width:56px;height:40px;text-align:center;line-height:1.15;padding:1px}
+table.bg td b{font-family:var(--f-mono);font-size:13px;display:block}
+table.bg td small{font-size:9px;color:var(--ink-3);white-space:nowrap}
+table.bg td.bo-a{background:color-mix(in srgb,var(--on) 18%,var(--paper))}
+table.bg td.bo-s{background:color-mix(in srgb,var(--l1) 18%,var(--paper))}
+table.bg td.bo-q{background:color-mix(in srgb,var(--l2) 18%,var(--paper))}
+table.bg td.bo-pad{background:repeating-linear-gradient(45deg,color-mix(in srgb,var(--l2) 18%,var(--paper)),color-mix(in srgb,var(--l2) 18%,var(--paper)) 4px,var(--paper) 4px,var(--paper) 8px)}
+table.bg td.bo-gap,table.bg td.bo-other{background:var(--paper-2)}
+table.bg td.sel{outline:3px solid var(--red);outline-offset:-3px}
+.heapbar{display:grid;grid-template-columns:repeat(16,minmax(0,1fr));gap:2px;margin:10px 0}
+.heapbar .hc{height:30px;border-radius:2px;font-size:11px;font-family:var(--f-mono);display:grid;place-items:center;color:var(--ink-3)}
+.heapbar .hc.f{background:var(--paper-2);border:1px dashed var(--rule)}
+.heapbar .hc.u{background:color-mix(in srgb,var(--c) 30%,var(--paper));color:var(--ink)}
+.heapbar .hc.hd.u{background:var(--c);color:#fff;font-weight:600}
+.heapbar .hc.hd.f{border-style:solid;border-color:var(--ink-3);color:var(--ink-2)}
+.heapptrs{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0}
+.bfwrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:12px;align-items:start}
+@media (max-width:700px){.bfwrap{grid-template-columns:1fr}}
+.bfwrap pre{font-size:12px;margin:2px 0 8px}
+.ldmap{max-width:460px;margin:10px auto}
+.ldrow{display:grid;grid-template-columns:5em minmax(0,1fr) auto;gap:8px;align-items:baseline;border-left:5px solid var(--c);background:color-mix(in srgb,var(--c) 12%,var(--paper));padding:4px 10px;border-radius:0 4px 4px 0;font-size:13px}
+.ldrow .m{font-family:var(--f-mono);font-size:12.5px;overflow-wrap:anywhere}
+.ldrow span:last-child{font-size:12px;color:var(--ink-3)}
+.ldgap{position:relative;border-left:1px dashed var(--rule);margin-left:2px}
+.ldgap span{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:10.5px;color:var(--ink-3)}
+.lldbwrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:12px;align-items:start;margin:6px 0}
+@media (max-width:760px){.lldbwrap{grid-template-columns:1fr}}
+.lldbsrc{font-size:12px;line-height:1.7;margin:0;white-space:pre}
+.lldbsrc .ln{display:inline-block;min-width:100%;padding:0 4px;border-radius:3px}
+.lldbsrc .ln.on{background:#6a4316;color:#fff}
+.lldbterm{background:var(--code-bg);border-radius:5px;padding:6px 8px}
+.lldbout{margin:0;padding:0;background:transparent;font-size:12px;line-height:1.6;max-height:280px;min-height:160px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}
+.lldbin{display:flex;gap:6px;align-items:center;border-top:1px solid #4a453a;padding-top:6px;margin-top:4px}
+.lldbin span{font-family:var(--f-mono);font-size:12.5px;color:var(--code-dim)}
+.lldbin input{flex:1;min-width:0;background:transparent;border:0;color:var(--code-ink);font-family:var(--f-mono);font-size:13.5px;outline:none}
 table.pt{font-size:12px;min-width:520px}
 table.pt td,table.pt th{padding:3px 2px;border:1px solid var(--rule);min-width:30px}
 table.pt td.st{font-family:var(--f-mono);font-size:11px;font-weight:600}
@@ -2601,7 +2659,7 @@ const grp = (s, k) => s.replace(new RegExp('(.{' + (k || 4) + '})(?=.)', 'g'), '
 /* ---------- 全书目录（四个网页共用） ---------- */
 const PFILE = ['index', 'two', 'three', 'four'];
 const PAGE = (() => { const m = location.pathname.match(/\/(two|three|four)\.html/); return m ? PFILE.indexOf(m[1]) + 1 : 1; })();
-const READY = 2; // 已经写好的部数
+const READY = 3; // 已经写好的部数
 const PURL = {}; PFILE.forEach((f, i) => PURL[i + 1] = i ? f + '.html' : './');
 const PARTS = [
   {k: '位', s: '数据：数、字、图、声音都是比特 · 九章'},
@@ -2876,6 +2934,24 @@ dev('#mooreFig', fig => {
   const pick = i => { const c = CHIPS[i]; $$('circle', svg).forEach(el => el.setAttribute('r', +el.dataset.i === i ? 10 : 7)); say.innerHTML = '<b>' + c[2] + '</b>（' + c[0] + ' 年）：约 ' + c[1].toLocaleString() + ' 个晶体管。' + c[3] + (i ? '　是 4004 的 ' + Math.round(c[1] / 2300).toLocaleString() + ' 倍。' : ''); };
   svg.addEventListener('click', e => { const c = e.target.closest('circle[data-i]'); if (c) pick(+c.dataset.i); });
   pick(9);
+});
+
+/* ---------- 第三部封面：内存地图 ---------- */
+const MEMMAP = [
+  ['栈', 'stack', '高地址，往下长', '函数里的局部变量、参数、返回地址。每调用一个函数就往下长一截（一个“栈帧”），函数返回就退回去。大小有限（主线程默认约 8 MB），递归太深会撑爆。', 'c20', 'var(--l3)'],
+  ['（空着）', 'gap', '', '栈和堆中间是一大片还没用的地址。64 位的地址空间极大，这片空地远比你的内存条大，因为它们是“虚拟地址”（第二十七章）。共享库（比如 printf 所在的系统库）也映射在这一带。', 'c27', 'var(--paper-2)'],
+  ['堆', 'heap', '往上长', 'malloc 借来的内存。不会随函数返回自动消失，要自己 free；忘了还就是“内存泄漏”。Python 的列表、字典也都住在堆上。', 'c21', 'var(--l2)'],
+  ['未初始化数据', 'bss', '', '没给初值的全局变量和静态变量，程序启动时统一清零。文件里不用存它们的内容，只记一个大小。', 'c23', 'var(--gold)'],
+  ['已初始化数据', 'data', '', '给了初值的全局变量和静态变量，比如 int count = 10;。它们的初值存在可执行文件里，加载时抄进内存。', 'c23', 'var(--gold)'],
+  ['只读数据', 'rodata', '', '字符串字面量（"你好"）和 const 常量。不许写，写了程序会崩。', 'c19', 'var(--ter)'],
+  ['代码', 'text', '低地址', '编译出来的机器指令，也就是第十四章看到的那些。只读、可执行。main 函数就住在这里。', 'c22', 'var(--main)']
+];
+dev('#mapFig', fig => {
+  const box = $('.memmap', fig), say = $('.say', fig);
+  box.innerHTML = MEMMAP.map((m, i) => '<button class="mm mm-' + m[1] + '" data-i="' + i + '" style="--c:' + m[5] + '"><b>' + m[0] + '</b><span>' + m[2] + '</span></button>').join('');
+  const pick = i => { const m = MEMMAP[i]; $$('.mm', box).forEach(b => b.classList.toggle('on', +b.dataset.i === i)); say.innerHTML = '<b>' + m[0] + '</b>：' + m[3] + ' <a data-c="' + m[4] + '">（' + TOC.find(x => x.id === m[4]).t + '）</a>'; const a = $('a', say); if (chapPage[m[4]] > READY) a.title = '写作中'; else a.href = href(m[4]); };
+  box.addEventListener('click', e => { const b = e.target.closest('.mm'); if (b) pick(+b.dataset.i); });
+  pick(0);
 });
 
 /* ---------- 第零章：按下 A 键以后 ---------- */
@@ -3994,6 +4070,354 @@ dev('#splitFig', fig => {
   }
   [sA, sC, sB, sW, sD, sX].forEach(el => el.addEventListener('input', go));
   go();
+});
+
+/* ---------- 第十七章：类型的尺子 ---------- */
+dev('#typeFig', fig => {
+  const inp = $('#tyIn'), bb = $('.tybytes', fig), out = $('.kv', fig), say = $('.say', fig);
+  const T = [['char', 1, 1, 'i'], ['unsigned char', 1, 0, 'i'], ['short', 2, 1, 'i'], ['int', 4, 1, 'i'], ['unsigned int', 4, 0, 'i'], ['long', 8, 1, 'i'], ['float', 4, 1, 'f'], ['double', 8, 1, 'f']];
+  let t = 3;
+  function go(){
+    const [name, n, sg, kind] = T[t], s = inp.value.trim();
+    let bytes = [], back, rng, note = '';
+    if (kind === 'i') {
+      const N = BigInt(n * 8), M = 1n << N;
+      const lo = sg ? -(M >> 1n) : 0n, hi = sg ? (M >> 1n) - 1n : M - 1n;
+      rng = lo.toLocaleString() + ' 到 ' + hi.toLocaleString();
+      let v; try { if (/^[+-]?\d+$/.test(s)) v = BigInt(s); else if (/^'.'$/.test(s)) v = BigInt(s.codePointAt(1)); else if (/^[+-]?\d*\.\d+$/.test(s)) { v = BigInt(Math.trunc(parseFloat(s))); note = '小数赋给整数类型，小数部分向零截掉了。'; } else throw 0; } catch (e) { say.textContent = '请输入一个整数（也可以写 \'A\' 这样的字符）。'; bb.innerHTML = ''; out.innerHTML = ''; return; }
+      let u = ((v % M) + M) % M; for (let i = 0; i < n; i++) bytes.push(Number((u >> BigInt(8 * i)) & 255n));
+      const r = sg && u >= (M >> 1n) ? u - M : u; back = r.toString();
+      if (v < lo || v > hi) note += ' <b style="color:var(--red)">' + v + ' 超出了 ' + name + ' 的范围</b>，只留下低 ' + n * 8 + ' 位，读回来变成了 ' + back + '（第三章的“转过钟面”）。';
+      if (n === 1 && r >= 32 && r < 127) note += ' 当字符看是 \'' + esc(String.fromCharCode(Number(r))) + '\'。';
+    } else {
+      const x = parseFloat(s); if (isNaN(x) && !/nan/i.test(s)) { say.textContent = '请输入一个数。'; bb.innerHTML = ''; out.innerHTML = ''; return; }
+      const dv = new DataView(new ArrayBuffer(8)); if (n === 4) dv.setFloat32(0, x, true); else dv.setFloat64(0, x, true);
+      for (let i = 0; i < n; i++) bytes.push(dv.getUint8(i));
+      back = String(n === 4 ? dv.getFloat32(0, true) : dv.getFloat64(0, true)); rng = n === 4 ? '约 ±3.4 × 10^38，约 7 位有效数字' : '约 ±1.8 × 10^308，约 16 位有效数字';
+      if (back !== String(x)) note = '存进去再读出来不完全一样：' + name + ' 的精度有限（第四章）。';
+    }
+    const base = 0x16fdff3a0;
+    bb.innerHTML = '<div class="bitrow" style="gap:6px">' + bytes.map((b, i) => '<span class="bit on" style="width:auto;padding:4px 8px;cursor:default"><b style="font-size:17px">' + hex2(b) + '</b><small>0x' + (base + i).toString(16) + '</small></span>').join('') + '</div>';
+    kv(out, [['sizeof(' + name + ')', n + ' 字节'], ['能装', rng], ['读回来', back]]);
+    say.innerHTML = '在内存里从低地址到高地址依次是上面这些字节（小端：低位字节在前）。' + (note ? '<br>' + note : '');
+  }
+  btnRow($('[data-m]', fig), T.map(x => x[0]), 3, i => { t = i; go(); });
+  inp.addEventListener('input', go); go();
+});
+
+/* ---------- 第十八章起共用：内存跟踪器 ----------
+   memTrace(fig, programs)：programs = [{name, code:[行], steps:[{line, groups:[{t, cells:[{a, n, ty, v, to, hl}]}], out, note}]}]
+   cell.to 是指针指向的地址（会把那个格子标出来），hl 表示这一步刚改过。 */
+const ahex = a => '0x' + a.toString(16);
+function memTrace(fig, P){
+  const box = $('.trace', fig);
+  let pi = 0, k = 0;
+  box.innerHTML = '<div class="trwrap"><div class="trcode"></div><div class="trmem"></div></div><div class="btns"><button class="btn" data-d="-1">上一步</button><button class="btn pri" data-d="1">下一步</button><button class="btn" data-d="0">从头</button><span class="dim trn" style="font-size:13px;align-self:center"></span></div><div class="say"></div>';
+  const codeEl = $('.trcode', box), memEl = $('.trmem', box), say = $('.say', box), num = $('.trn', box);
+  function draw(){
+    const p = P[pi], s = p.steps[k];
+    codeEl.innerHTML = '<pre class="out">' + p.code.map((l, i) => '<span class="ln' + (i === s.line ? ' on' : '') + '">' + esc(l) + '</span>').join('\n') + '</pre>';
+    const targets = new Set(); s.groups.forEach(g => g.cells.forEach(c => { if (c.to !== undefined && c.to !== null) targets.add(c.to); }));
+    memEl.innerHTML = s.groups.map(g => '<div class="trg"><div class="trgt">' + g.t + '</div><table class="t trt"><tr><th>地址</th><th>名字</th><th>类型</th><th>值</th></tr>' + g.cells.map(c => '<tr class="' + (targets.has(c.a) ? 'tgt ' : '') + (c.hl ? 'hl' : '') + '"><td class="m">' + ahex(c.a) + '</td><td class="m">' + esc(c.n) + '</td><td class="m dim">' + esc(c.ty) + '</td><td class="m">' + (c.to !== undefined && c.to !== null ? '<span class="ptr">' + ahex(c.to) + ' →</span>' : esc(String(c.v))) + '</td></tr>').join('') + '</table></div>').join('') + (s.out ? '<div class="trout"><span class="dim">屏幕上：</span><code>' + esc(s.out) + '</code></div>' : '');
+    say.innerHTML = s.note || '';
+    num.textContent = '第 ' + (k + 1) + ' / ' + p.steps.length + ' 步';
+  }
+  $('.btns', box).addEventListener('click', e => { const b = e.target.closest('button[data-d]'); if (!b) return; const d = +b.dataset.d; k = d === 0 ? 0 : clamp(k + d, 0, P[pi].steps.length - 1); draw(); });
+  const m = $('[data-m]', fig); if (m && P.length > 1) btnRow(m, P.map(p => p.name), 0, i => { pi = i; k = 0; draw(); });
+  draw();
+}
+/* 小工具：按顺序生成步骤。cells 用对象记，snap() 拍一张快照 */
+function traceBuilder(){
+  const groups = [], steps = []; let changed = new Set();
+  return {
+    group(t){ groups.push({t, cells: []}); return groups.length - 1; },
+    drop(gi){ groups.splice(gi, 1); },
+    set(gi, a, n, ty, v, to){ const g = groups[gi]; let c = g.cells.find(x => x.a === a); if (!c) { c = {a, n, ty}; g.cells.push(c); g.cells.sort((x, y) => y.a - x.a); } c.n = n; c.ty = ty; c.v = v; c.to = to; changed.add(a); },
+    val(gi, a, v){ const c = groups[gi].cells.find(x => x.a === a); c.v = v; changed.add(a); },
+    snap(line, note, out){ steps.push({line, note, out, groups: groups.map(g => ({t: g.t, cells: g.cells.map(c => Object.assign({}, c, {hl: changed.has(c.a)}))}))}); changed = new Set(); },
+    steps
+  };
+}
+
+dev('#ptrFig', fig => {
+  const X = 0x16fdff3ac, Y = 0x16fdff3a8, PP = 0x16fdff3a0;
+  let b = traceBuilder(), g = b.group('main 的局部变量（在栈上）');
+  b.set(g, X, 'x', 'int', '?'); b.set(g, Y, 'y', 'int', '?'); b.set(g, PP, 'p', 'int *', '?');
+  b.snap(0, '进入 main。三个局部变量已经有了位置，但还没赋值，里面是以前留下的随机数据（“?”）。读没初始化的变量是未定义行为。');
+  b.val(g, X, 5); b.snap(1, 'x 的 4 个字节里写进 5。');
+  b.set(g, PP, 'p', 'int *', null, X); b.snap(2, 'p 里存的是 x 的地址 ' + ahex(X) + '。高亮的那一行就是 p 指向的格子。');
+  b.val(g, X, 9); b.snap(3, '*p = 9：顺着 p 找到 ' + ahex(X) + '，把 9 写进去。没有提到 x 的名字，x 却变了。');
+  b.val(g, Y, 10); b.snap(4, '*p 读出 9，加 1 得 10，写进 y。');
+  b.set(g, PP, 'p', 'int *', null, Y); b.snap(5, 'p 改成指向 y。指针可以随时改指别处。');
+  b.val(g, Y, 20); b.snap(6, '*p = *p * 2：读出 y 的 10，乘 2，写回 y。');
+  b.snap(7, '打印 x 和 y。', '9 20');
+  const P1 = {name: '指针的基本用法', code: ['int main(void) {', '    int x = 5;', '    int *p = &x;', '    *p = 9;', '    int y = *p + 1;', '    p = &y;', '    *p = *p * 2;', '    printf("%d %d\\n", x, y);', '}'], steps: b.steps};
+
+  b = traceBuilder(); const gm = b.group('main 的栈帧');
+  b.set(gm, X, 'x', 'int', 1); b.set(gm, Y, 'y', 'int', 2); b.snap(3, 'main 里 x = 1，y = 2。');
+  let gs = b.group('swap_bad 的栈帧'); b.set(gs, 0x16fdff37c, 'a', 'int', 1); b.set(gs, 0x16fdff378, 'b', 'int', 2); b.set(gs, 0x16fdff374, 't', 'int', '?');
+  b.snap(0, '调用 swap_bad(x, y)：它有自己的栈帧，a、b 是 x、y 的<b>复印件</b>，住在别的地址。');
+  b.val(gs, 0x16fdff374, 1); b.val(gs, 0x16fdff37c, 2); b.val(gs, 0x16fdff378, 1); b.snap(0, '函数体执行完：a 和 b 换了。可是 main 里的 x、y 一点没动。');
+  b.drop(1); b.snap(4, 'swap_bad 返回，它的栈帧被收回，复印件连同交换结果一起消失。x 还是 1，y 还是 2。');
+  gs = b.group('swap 的栈帧'); b.set(gs, 0x16fdff380, 'a', 'int *', null, X); b.set(gs, 0x16fdff378, 'b', 'int *', null, Y); b.set(gs, 0x16fdff374, 't', 'int', '?');
+  b.snap(1, '调用 swap(&x, &y)：这次复印的是<b>地址</b>。a 指向 x，b 指向 y。');
+  b.val(gs, 0x16fdff374, 1); b.val(gm, X, 2); b.val(gm, Y, 1); b.snap(1, 't = *a 取出 1；*a = *b 把 y 的 2 写进 x；*b = t 把 1 写进 y。改的是 main 里的原件。');
+  b.drop(1); b.snap(5, 'swap 返回。x = 2，y = 1，真的换了。');
+  const P2 = {name: 'swap 两种写法', code: ['void swap_bad(int a, int b) { int t = a; a = b; b = t; }', 'void swap(int *a, int *b) { int t = *a; *a = *b; *b = t; }', 'int main(void) {', '    int x = 1, y = 2;', '    swap_bad(x, y);', '    swap(&x, &y);', '}'], steps: b.steps};
+  memTrace(fig, [P1, P2]);
+});
+
+/* ---------- 第十九章：一字节一字节看内存 ---------- */
+dev('#arrFig', fig => {
+  const grid = $('.bytegrid', fig), out = $('.kv', fig), say = $('.say', fig);
+  const BASE = 0x16fdff3a0, LO = -8, HI = 40;
+  const B = {}, OWN = {};
+  const put = (off, bytes, own, lab) => bytes.forEach((b, i) => { B[off + i] = b; OWN[off + i] = [own, lab ? lab(i) : '']; });
+  put(-8, [0x00, 0x00, 0x00, 0x00, 0xa8, 0xf3, 0xdf, 0x6f], 'other', () => '别的');
+  [10, 20, 30, 40].forEach((v, k) => put(k * 4, [v, 0, 0, 0], 'a', i => i ? '' : 'a[' + k + ']'));
+  put(16, [72, 105, 33, 0], 's', i => ["s[0] 'H'", "s[1] 'i'", "s[2] '!'", "s[3] \\0"][i]);
+  put(20, [0x5c, 0x01, 0x00, 0x00], 'gap', () => '空隙');
+  put(24, [65], 'q', () => "q.tag 'A'"); put(25, [0xbe, 0xef, 0x11], 'pad', () => '填充');
+  put(28, [7, 0, 0, 0], 'q', i => i ? '' : 'q.x'); put(32, [66], 'q', () => "q.y 'B'"); put(33, [0x02, 0x00, 0x00], 'pad', () => '填充');
+  put(36, [0x30, 0xf4, 0xdf, 0x6f], 'other', () => '别的');
+  const NAME = {a: '数组 a', s: '字符串 s', q: '结构体 q', pad: 'q 里的填充', gap: '变量之间的空隙', other: '不属于这几个变量的内存'};
+  function draw(i){
+    const st = 4 * i, sel = new Set([st, st + 1, st + 2, st + 3]);
+    const W = grid.clientWidth < 520 ? 4 : 8;
+    let h = '<table class="bg"><tr><th></th>' + Array.from({length: W}, (_, c) => '<th>+' + c + '</th>').join('') + '</tr>';
+    for (let r = LO; r < HI; r += W) {
+      h += '<tr><th class="m">' + ahex(BASE + r) + '</th>';
+      for (let c = 0; c < W; c++) { const o = r + c, [own, lab] = OWN[o]; h += '<td class="bo-' + own + (sel.has(o) ? ' sel' : '') + '" title="' + esc(lab) + '"><b>' + hex2(B[o]) + '</b><small>' + esc(lab) + '</small></td>'; }
+      h += '</tr>';
+    }
+    grid.innerHTML = h + '</table>';
+    const inside = [...sel].every(o => o >= LO && o < HI);
+    const val = inside ? ((B[st] | B[st + 1] << 8 | B[st + 2] << 16 | B[st + 3] << 24) | 0) : null;
+    const owners = [...new Set([...sel].filter(o => OWN[o]).map(o => NAME[OWN[o][0]]))];
+    kv(out, [['a[' + i + '] 的地址', ahex(BASE) + ' + ' + i + ' × 4 = ' + ahex(BASE + st)], ['读出来的 int', val === null ? '（超出这张图了）' : val], ['这 4 个字节属于', owners.join('、') || '（图外）']]);
+    say.innerHTML = i >= 0 && i <= 3 ? '在数组里面，读到的就是 a[' + i + ']。' : '<b style="color:var(--red)">越界了。</b>C 照样按“首地址 + i × 4”算出地址去读，读到的是' + (owners.join('、') || '图外的内存') + '的字节，拼成了一个毫无意义的 int。如果是写，就会悄悄把那里改掉。' + (i === 4 ? '　a[4] 正好落在字符串 s 上：72、105、33、0 拼起来是 ' + val + '。' : '');
+  }
+  const get = slider('arI', null, draw);
+  addEventListener('resize', () => draw(get()));
+});
+
+/* ---------- 第二十章：栈的一生 ---------- */
+dev('#stackFig', fig => {
+  const code1 = ['int fact(int n) {', '    if (n <= 1) return 1;', '    return n * fact(n - 1);', '}', 'int main(void) {', '    int r = fact(3);', '    printf("%d\\n", r);', '}'];
+  const R = 0x16fdff3ac, top = 0x16fdff390;
+  const frame = (b, k, n, ret) => { const base = top - k * 32, gi = b.group('fact(' + n + ') 的栈帧 · sp = ' + ahex(base)); b.set(gi, base + 24, '返回地址', '（存的 x30）', ret); b.set(gi, base + 16, '旧帧指针', '（存的 x29）', ahex(k ? top - (k - 1) * 32 + 16 : 0x16fdff3c0)); b.set(gi, base + 12, 'n', 'int', n); return gi; };
+  let b = traceBuilder(); const gm = b.group('main 的栈帧 · sp = 0x16fdff3a0');
+  b.set(gm, R, 'r', 'int', '?'); b.snap(5, '程序从 main 开始，栈上只有 main 的栈帧。它要调用 fact(3)。');
+  frame(b, 0, 3, 'main 第 6 行'); b.snap(0, '调用 fact(3)：栈往下长出一个新栈帧，存进“做完回到 main 第 6 行”（返回地址）、调用者的帧指针，以及参数 n = 3。');
+  frame(b, 1, 2, 'fact 第 3 行'); b.snap(2, 'n = 3 不 ≤ 1，要算 3 × fact(2)，先调用 fact(2)：又叠一层。注意这一层的返回地址是“回到 fact 的第 3 行”，它有自己的 n = 2。');
+  frame(b, 2, 1, 'fact 第 3 行'); b.snap(2, '同样，调用 fact(1)，叠第三层。现在栈上有四个栈帧，最上面（地址最低）的是最新的。');
+  b.snap(1, 'n = 1，到终点了，返回 1。这是第一次“揭掉盘子”。');
+  b.drop(3); b.snap(2, 'fact(1) 的栈帧被收回，回到 fact(2) 的第 3 行：2 × 1 = 2，返回 2。');
+  b.drop(2); b.snap(2, '回到 fact(3)：3 × 2 = 6，返回 6。');
+  b.drop(1); b.val(gm, R, 6); b.snap(5, '最后一个 fact 的栈帧也收回了，回到 main 第 6 行，r = 6。栈又只剩 main 的栈帧。');
+  b.snap(6, '打印结果。', '6');
+  const P1 = {name: '递归求阶乘', code: code1, steps: b.steps};
+
+  const code2 = ['void dive(int n) {', '    dive(n + 1);      /* 忘了写终点 */', '}', 'int main(void) {', '    dive(1);', '}'];
+  b = traceBuilder(); b.group('main 的栈帧'); b.snap(4, '调用 dive(1)。');
+  for (let k = 0; k < 4; k++) { const base = top - k * 32, gi = b.group('dive(' + (k + 1) + ') · sp = ' + ahex(base)); b.set(gi, base + 24, '返回地址', '', k ? 'dive 第 2 行' : 'main 第 5 行'); b.set(gi, base + 12, 'n', 'int', k + 1); b.snap(1, k ? '又调用自己，再叠一层。sp 又往下走了 32 字节。' : '进入 dive(1)，它马上调用 dive(2)……'); }
+  b.snap(1, '……就这样叠了二十几万层（8 MB ÷ 每层 32 字节 ≈ 26 万）。');
+  b.snap(1, '<b style="color:var(--red)">sp 越过了栈的底线</b>，碰到了一片故意不映射的“警戒区”。系统立刻终止程序：Segmentation fault（在 Xcode 里显示 EXC_BAD_ACCESS）。这就是栈溢出。');
+  const P2 = {name: '没有终点的递归', code: code2, steps: b.steps};
+  memTrace(fig, [P1, P2]);
+});
+
+/* ---------- 第二十一章：分配器 ---------- */
+dev('#heapFig', fig => {
+  const bar = $('.heapbar', fig), ptrs = $('.heapptrs', fig), out = $('.kv', fig), say = $('.say', fig), inp = $('#hpN'), coal = $('#hpC');
+  const U = 32, ALGS = ['首次适应', '邻近适应（第二层）', '最佳适应（第二层）', '最坏适应（第二层）'];
+  const COLS = ['var(--on)', 'var(--l2)', 'var(--l1)', 'var(--l3)', 'var(--gold)', 'var(--ter)'];
+  let blocks, nid, alg = 0, rover = 0;
+  const reset = () => { blocks = [{s: 0, n: U, used: false}]; nid = 1; rover = 0; };
+  function malloc(bytes){
+    const need = Math.max(2, Math.ceil(bytes / 8) + 1);
+    const free = blocks.filter(b => !b.used && b.n >= need);
+    let pick = null;
+    if (!free.length) return {ok: false, need};
+    if (alg === 0) pick = free[0];
+    if (alg === 1) pick = free.find(b => b.s >= rover) || free[0];
+    if (alg === 2) pick = free.reduce((a, b) => b.n < a.n ? b : a);
+    if (alg === 3) pick = free.reduce((a, b) => b.n > a.n ? b : a);
+    const i = blocks.indexOf(pick), id = nid++;
+    if (pick.n - need >= 2) { blocks.splice(i, 1, {s: pick.s, n: need, used: true, id, req: bytes}, {s: pick.s + need, n: pick.n - need, used: false}); }
+    else { pick.used = true; pick.id = id; pick.req = bytes; }
+    rover = pick.s + need;
+    return {ok: true, id, need, at: pick.s};
+  }
+  function free(id){
+    const i = blocks.findIndex(b => b.id === id); if (i < 0) return;
+    const b = blocks[i]; b.used = false; delete b.id; delete b.req;
+    if (coal.checked) {
+      if (blocks[i + 1] && !blocks[i + 1].used) { b.n += blocks[i + 1].n; blocks.splice(i + 1, 1); }
+      if (blocks[i - 1] && !blocks[i - 1].used) { blocks[i - 1].n += b.n; blocks.splice(i, 1); }
+    }
+  }
+  function draw(msg){
+    let h = '';
+    blocks.forEach(b => { for (let k = 0; k < b.n; k++) { const head = k === 0, col = b.used ? COLS[(b.id - 1) % COLS.length] : null; h += '<div class="hc' + (b.used ? ' u' : ' f') + (head ? ' hd' : '') + '" style="' + (col ? '--c:' + col : '') + '" title="' + ahex(0x600000004000 + (b.s + k) * 8) + '">' + (head ? (b.used ? 'p' + b.id : b.n) : '') + '</div>'; } });
+    bar.innerHTML = h;
+    const used = blocks.filter(b => b.used);
+    ptrs.innerHTML = used.length ? used.map(b => '<button class="btn" data-f="' + b.id + '" style="border-color:' + COLS[(b.id - 1) % COLS.length] + '">free(p' + b.id + ')　' + b.req + ' 字节</button>').join('') : '<span class="dim" style="font-size:13px">（还没有借出去的内存）</span>';
+    const req = used.reduce((a, b) => a + b.req, 0), occ = used.reduce((a, b) => a + b.n * 8, 0), freeB = blocks.filter(b => !b.used), ft = freeB.reduce((a, b) => a + b.n * 8, 0), fmax = Math.max(0, ...freeB.map(b => (b.n - 1) * 8));
+    kv(out, [['程序要的', req + ' 字节'], ['实际占用', occ + ' 字节'], ['内部碎片', (occ - req) + ' 字节'], ['空闲总共', ft + ' 字节，' + freeB.length + ' 块'], ['最大一次能借', fmax + ' 字节']]);
+    if (msg) say.innerHTML = msg;
+  }
+  btnRow($('[data-alg]', fig), ALGS, 0, i => { alg = i; draw('换成了“' + ALGS[i] + '”，接着借试试。'); });
+  ptrs.addEventListener('click', e => { const b = e.target.closest('[data-f]'); if (!b) return; free(+b.dataset.f); draw('还回了 p' + b.dataset.f + '。' + (coal.checked ? '如果它旁边也是空地，就合并成一大块。' : '没有合并：相邻的空地仍然各算各的，碎片更多。')); });
+  $('.row', fig).addEventListener('click', e => { const b = e.target.closest('button[data-x]'); if (!b) return; const x = b.dataset.x;
+    if (x === 'reset') { reset(); draw('清空了，整块 256 字节都是空地（第一格是它的账本）。'); }
+    if (x === 'm') { const n = Math.max(1, Math.min(240, parseInt(inp.value, 10) || 1)); const r = malloc(n); draw(r.ok ? 'malloc(' + n + ')：要 ' + Math.ceil(n / 8) + ' 格放数据、1 格放账本，按“' + ALGS[alg] + '”找到从第 ' + r.at + ' 格开始的空地，借给 p' + r.id + '。' + (n % 8 ? ' 因为按 8 字节一格分，多给的 ' + (Math.ceil(n / 8) * 8 - n) + ' 字节就是内部碎片。' : '') : '<b style="color:var(--red)">malloc(' + n + ') 失败，返回 NULL。</b>要 ' + r.need + ' 格连续的空地，可是没有一块够大' + (blocks.filter(b => !b.used).reduce((a, b) => a + b.n, 0) >= r.need ? '——虽然空地加起来是够的。这就是<b>外部碎片</b>。' : '。')); }
+    if (x === 'demo') { reset(); alg = 0; $$('[data-alg] button', fig).forEach((bb, i) => bb.classList.toggle('on', i === 0)); coal.checked = true; [40, 40, 40, 40, 40].forEach(n => malloc(n)); free(2); free(4); const r = malloc(64); draw('演示：连借 5 块各 40 字节，再还掉 p2 和 p4。现在空地一共 ' + blocks.filter(b => !b.used).reduce((a, b) => a + b.n * 8, 0) + ' 字节，可是 malloc(64) ' + (r.ok ? '成功了' : '<b style="color:var(--red)">失败</b>') + '：空地被切成了不相邻的几小块，没有一块够 64 字节。这就是外部碎片。'); }
+  });
+  reset(); draw('点 malloc 借一块。悬停在格子上能看到它的地址。');
+});
+
+/* ---------- 第二十二章：一个程序的四步 ---------- */
+dev('#buildFig', fig => {
+  const src = $('.bfsrc', fig), out = $('.bfout', fig), say = $('.say', fig);
+  const FILES = '<div class="dim" style="font-size:12px">util.h</div><pre class="out">int square(int x);</pre><div class="dim" style="font-size:12px">util.c</div><pre class="out">#include "util.h"\nint square(int x) { return x * x; }</pre><div class="dim" style="font-size:12px">main.c</div><pre class="out">#include &lt;stdio.h&gt;\n#include "util.h"\n#define TIMES 3\nint main(void) {\n    printf("%d\\n", square(TIMES));\n    return 0;\n}</pre>';
+  const ST = [
+    ['源代码', '', '三个文件：util.h 只有一句声明，util.c 有 square 的定义，main.c 用到了 square 和 printf。', ''],
+    ['① 预处理', '% clang -E main.c', '（前面几百行是 stdio.h 的内容）\n...\nint printf(const char * restrict, ...);\n...\n# 2 "main.c" 2\n# 1 "./util.h" 1\nint square(int x);\n# 3 "main.c" 2\n\nint main(void) {\n    printf("%d\\n", square(3));\n    return 0;\n}', '#include 被替换成了文件内容，TIMES 被替换成了 3，注释没了。以 # 和数字开头的行是给编译器的“这一段来自哪个文件第几行”的记号，报错时用得上。输出仍然是 C 代码。'],
+    ['② 编译', '% clang -S main.c -o main.s', '_main:\n    stp   x29, x30, [sp, #-32]!\n    mov   x29, sp\n    mov   w0, #3\n    bl    _square          ; 调用 square：地址还不知道\n    …                      ; 把结果交给 printf\n    adrp  x0, l_.str@PAGE\n    add   x0, x0, l_.str@PAGEOFF\n    bl    _printf          ; 调用 printf：地址也不知道\n    mov   w0, #0\n    ldp   x29, x30, [sp], #32\n    ret\nl_.str:\n    .asciz "%d\\n"', 'C 变成了汇编（示意，不同版本的 clang 会有差别）。<code>bl _square</code>、<code>bl _printf</code> 只写了名字，因为编译 main.c 时根本看不到它们的代码。字符串 "%d\\n" 被放进了一个只读的数据节。'],
+    ['③ 汇编', '% clang -c main.c util.c\n% nm main.o util.o', 'main.o:\n0000000000000000 T _main\n                 U _printf\n                 U _square\n\nutil.o:\n0000000000000000 T _square', '汇编变成了机器码，存进 main.o 和 util.o。nm 列出符号表：main.o 定义了 _main（T），却用到了两个它没有的符号 _printf 和 _square（U）。两个文件的地址都从 0 开始，因为还没排在一起。'],
+    ['④ 链接', '% clang main.o util.o -o prog\n% nm prog\n% otool -L prog\n% ./prog', '0000000100000000 T __mh_execute_header\n0000000100003f50 T _main\n                 U _printf\n0000000100003f90 T _square\n\nprog:\n    /usr/lib/libSystem.B.dylib (…)\n\n9', '链接器把 main.o 和 util.o 排进同一个文件，给 _main、_square 分配了地址（示意），把 bl _square 里空着的地址填好。_printf 仍然是 U：它在系统的动态库 libSystem 里，要等程序运行时由 dyld 接上（下一章）。'],
+    ['忘了链接 util.o', '% clang main.o -o prog', 'Undefined symbols for architecture arm64:\n  "_square", referenced from:\n      _main in main.o\nld: symbol(s) not found for architecture arm64\nclang: error: linker command failed with exit code 1', '链接器找遍你给的文件和系统库，没有一个定义 _square，只好报错。这不是语法错误，编译早就通过了；是“拼图少了一块”。解决：把 util.o 加上，或者检查函数名拼写、头文件里的声明和定义是否一致。']
+  ];
+  function show(i){
+    const s = ST[i];
+    src.innerHTML = FILES;
+    out.innerHTML = i ? '<div class="dim" style="font-size:12px">命令</div><pre class="sh">' + esc(s[1]) + '</pre><div class="dim" style="font-size:12px">输出（示意）</div><pre class="out">' + esc(s[2]) + '</pre>' : '<p class="dim" style="font-size:14px">点上面的“① 预处理”开始。</p>';
+    say.innerHTML = s[3] || s[2];
+  }
+  btnRow($('[data-m]', fig), ST.map(s => s[0]), 0, show);
+  show(0);
+});
+
+/* ---------- 第二十三章：你的程序住在哪儿 ---------- */
+dev('#loadFig', fig => {
+  const ta = $('#ldIn'), map = $('.ldmap', fig), say = $('.say', fig);
+  const EG = 'main   0x104b8be8c\nmsg    0x104b8bf9c\ng_init 0x104b90000\ng_zero 0x104b90004\nheap   0x600000c84000\nlocal  0x16b2772cc\nprintf 0x18c3a9a60';
+  const KIND = {main: ['代码（__TEXT）', 'var(--main)'], msg: ['只读数据（字符串）', 'var(--ter)'], g_init: ['数据（__DATA）', 'var(--gold)'], g_zero: ['未初始化数据', 'var(--gold)'], heap: ['堆', 'var(--l2)'], local: ['栈', 'var(--l3)'], printf: ['系统库（共享缓存）', 'var(--grn)']};
+  function draw(){
+    const rows = ta.value.split('\n').map(l => l.trim().match(/^(\S+)\s+(0x[0-9a-f]+)/i)).filter(Boolean).map(m => ({n: m[1], a: BigInt(m[2])}));
+    if (rows.length < 2) { map.innerHTML = ''; say.textContent = '至少要两行“名字 地址”。'; return; }
+    rows.sort((x, y) => (y.a > x.a ? 1 : y.a < x.a ? -1 : 0));
+    let h = '';
+    rows.forEach((r, i) => {
+      if (i) { const gap = rows[i - 1].a - r.a, d = gap > 0n ? gap.toString().length - 1 : 0; h += '<div class="ldgap" style="height:' + (16 + d * 5) + 'px"><span>相差约 10^' + d + ' 字节</span></div>'; }
+      const k = KIND[r.n] || ['?', 'var(--ink-3)'];
+      h += '<div class="ldrow" style="--c:' + k[1] + '"><b>' + esc(r.n) + '</b><span class="m">0x' + r.a.toString(16) + '</span><span>' + k[0] + '</span></div>';
+    });
+    map.innerHTML = '<div class="dim" style="font-size:12px">↑ 高地址</div>' + h + '<div class="dim" style="font-size:12px">↓ 低地址</div>';
+    const g = n => rows.find(r => r.n === n);
+    let m = '';
+    if (g('main') && g('g_init')) m += 'main（代码）和全局变量离得很近，它们来自同一个可执行文件，被一起装进内存，只差几页。';
+    if (g('heap') && g('local')) m += (g('heap').a > g('local').a ? ' 这台机器上堆在栈的上面，和教科书的图正好相反。' : ' 这台机器上栈在堆的上面，和教科书的图一样。');
+    if (g('printf') && g('main')) m += ' printf 不在你的程序里，而在系统库的共享缓存那一片，离 main 很远。';
+    say.innerHTML = m || '按地址从高到低排好了。';
+  }
+  $('.btns', fig).addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; if (b.dataset.x === 'eg') ta.value = EG; draw(); });
+  ta.value = EG; draw();
+});
+
+/* ---------- 第二十四章：模拟 lldb ---------- */
+dev('#lldbFig', fig => {
+  const SRC = ['#include <stdio.h>', 'int sum(int *a, int n) {', '    int s = 0;', '    for (int i = 0; i <= n; i++)', '        s += a[i];', '    return s;', '}', 'int main(void) {', '    int a[4] = {3, 1, 4, 1};', '    int total = sum(a, 4);', '    printf("平均 %d\\n", total / 4);', '    return 0;', '}'];
+  const srcEl = $('.lldbsrc', fig), outEl = $('.lldbout', fig), inp = $('#lldbCmd'), say = $('.say', fig);
+  const A = [3, 1, 4, 1], JUNK = 32760, AADDR = '0x000000016fdff3a0';
+  /* 事件：程序停在“即将执行某一行”时的状态 */
+  const EV = []; const push = (fn, line, v) => EV.push({fn, line, v: Object.assign({}, v)});
+  push('main', 9, {a: null, total: null});
+  push('main', 10, {a: A, total: null});
+  let s = null, i = null; push('sum', 3, {s, i}); s = 0; push('sum', 4, {s, i});
+  for (i = 0; ; ) { push('sum', 5, {s, i}); s += i < 4 ? A[i] : JUNK; push('sum', 4, {s, i}); i++; if (!(i <= 4)) break; }
+  push('sum', 6, {s, i: null}); const total = s;
+  push('main', 11, {a: A, total}); push('main', 12, {a: A, total});
+  const OUTPUT_AT = EV.length - 1; // 执行完第 11 行时打印
+  let bps = [], pos = -1, done = false, printed = false;
+  const pid = 4242;
+  const log = t => { outEl.textContent += t + '\n'; outEl.scrollTop = outEl.scrollHeight; };
+  function showSrc(){ const cur = pos >= 0 && !done ? EV[pos].line : -1; srcEl.innerHTML = SRC.map((l, k) => { const n = k + 1; return '<span class="ln' + (n === cur ? ' on' : '') + '">' + (bps.includes(n) ? '●' : ' ') + String(n).padStart(3) + '  ' + esc(l) + '</span>'; }).join('\n'); }
+  const frameLine = e => e.fn === 'sum' ? 'frame #0: 0x0000000100003e' + (60 + e.line * 4).toString(16) + ' avg`sum(a=' + AADDR + ', n=4) at avg.c:' + e.line : 'frame #0: 0x0000000100003f' + (10 + e.line * 4).toString(16) + ' avg`main at avg.c:' + e.line;
+  function stopReport(why){
+    const e = EV[pos];
+    log('Process ' + pid + ' stopped\n* thread #1, queue = \'com.apple.main-thread\', stop reason = ' + why + '\n    ' + frameLine(e));
+    for (let n = Math.max(1, e.line - 2); n <= Math.min(SRC.length, e.line + 2); n++) log((n === e.line ? '-> ' : '   ') + String(n).padStart(3) + '   ' + SRC[n - 1]);
+  }
+  function advance(to, why){
+    if (pos < OUTPUT_AT && to >= OUTPUT_AT && !printed) { log('平均 ' + Math.trunc(total / 4)); printed = true; }
+    if (to >= EV.length) { pos = EV.length - 1; done = true; log('Process ' + pid + ' exited with status = 0 (0x00000000)'); showSrc(); return; }
+    pos = to; stopReport(why); showSrc();
+  }
+  const depth = k => EV[k].fn === 'sum' ? 1 : 0;
+  function nextIdx(pred){ for (let k = pos + 1; k < EV.length; k++) if (pred(k)) return k; return EV.length; }
+  function val(name){
+    const e = EV[pos], v = e.v;
+    let m;
+    if ((m = name.match(/^([a-z]+)\s*\[\s*(\w+)\s*\]$/))) {
+      const base = m[1], idx = /^\d+$/.test(m[2]) ? +m[2] : v[m[2]];
+      if (base !== 'a') return null; if (idx === null || idx === undefined) return 'error: use of undeclared identifier \'' + m[2] + '\'';
+      if (e.fn === 'main' && !v.a) return '(int) ' + (idx < 4 ? 0 : JUNK);
+      return '(int) ' + (idx >= 0 && idx < 4 ? A[idx] : idx === 4 ? JUNK : 1769235297);
+    }
+    if (e.fn === 'sum') {
+      if (name === 'a') return '(int *) ' + AADDR; if (name === 'n') return '(int) 4';
+      if (name === 's') return '(int) ' + (v.s === null ? 1 : v.s);
+      if (name === 'i') return v.i === null ? (e.line === 6 ? 'error: use of undeclared identifier \'i\'（i 只在 for 循环里有）' : '(int) 0') : '(int) ' + v.i;
+      if (name === '*a') return '(int) 3';
+    } else {
+      if (name === 'a') return '(int[4]) ' + (v.a ? '([0] = 3, [1] = 1, [2] = 4, [3] = 1)' : '([0] = 0, [1] = 0, [2] = 0, [3] = 0)');
+      if (name === 'total') return '(int) ' + (v.total === null ? 0 : v.total);
+    }
+    return 'error: use of undeclared identifier \'' + name + '\'';
+  }
+  function exec(cmd){
+    cmd = cmd.trim(); if (!cmd) return; log('(lldb) ' + cmd);
+    const [c0, ...rest] = cmd.split(/\s+/), arg = rest.join(' ');
+    const running = pos >= 0 && !done;
+    if (c0 === 'restart') { reset(); return; }
+    if (['help', 'h'].includes(c0)) { log('本模拟支持：b <行号或函数名>、run (r)、next (n)、step (s)、continue (c)、finish、p <变量或 a[下标]>、frame variable (v)、bt、list (l)、breakpoint list、quit (q)'); return; }
+    if (['b', 'br', 'break', 'breakpoint'].includes(c0)) {
+      let line = null; const a2 = arg.replace(/^set\s+(--line|-l)\s+/, '').replace(/^set\s+(--name|-n)\s+/, '');
+      if (arg === 'list') { log(bps.length ? bps.map((n, k) => (k + 1) + ': file = \'avg.c\', line = ' + n).join('\n') : 'No breakpoints currently set.'); return; }
+      if (/^\d+$/.test(a2)) line = +a2; else if (a2 === 'main') line = 9; else if (a2 === 'sum') line = 3;
+      if (!line || line < 1 || line > SRC.length) { log('error: 没找到这个位置。试试 b 5 或 b sum'); return; }
+      const ok = EV.some(e => e.line === line); if (!bps.includes(line)) bps.push(line);
+      log('Breakpoint ' + bps.length + ': ' + (ok ? 'where = avg`' + (line < 8 ? 'sum' : 'main') + ' at avg.c:' + line + ', address = 0x0000000100003' + (line < 8 ? 'e' : 'f') + (60 + line * 4).toString(16) : 'no locations (pending).（这一行没有可执行的代码）'));
+      showSrc(); return;
+    }
+    if (['r', 'run', 'process'].includes(c0)) {
+      if (running) { log('（程序已经在运行。想从头来，点“重来”）'); return; }
+      pos = -1; done = false; printed = false; log('Process ' + pid + ' launched: \'/Users/you/base/avg\' (arm64)');
+      const k = nextIdx(k => bps.includes(EV[k].line)); advance(k, 'breakpoint ' + (bps.indexOf(EV[Math.min(k, EV.length - 1)].line) + 1) + '.1'); return;
+    }
+    if (!running && ['n', 'next', 's', 'step', 'c', 'continue', 'finish', 'p', 'print', 'v', 'frame', 'bt', 'thread'].includes(c0)) { log('error: Command requires a process which is currently stopped.（先 run）'); return; }
+    if (['n', 'next'].includes(c0)) { const d = depth(pos); advance(nextIdx(k => depth(k) <= d), 'step over'); return; }
+    if (['s', 'step'].includes(c0)) { advance(pos + 1, 'step in'); return; }
+    if (['finish'].includes(c0)) { const d = depth(pos); if (!d) { log('error: 已经在最外层的 main 里了'); return; } advance(nextIdx(k => depth(k) < d), 'step out'); if (!done) log('Return value: (int) $0 = ' + total); return; }
+    if (['c', 'continue'].includes(c0)) { log('Process ' + pid + ' resuming'); advance(nextIdx(k => bps.includes(EV[k].line)), 'breakpoint'); return; }
+    if (['p', 'print', 'po', 'expr'].includes(c0)) { const r = val(arg); log(r === null ? 'error: 本模拟只认识变量名和 a[下标]' : r); hint(arg); return; }
+    if (['v', 'frame'].includes(c0)) { const e = EV[pos]; log(e.fn === 'sum' ? '(int *) a = ' + AADDR + '\n(int) n = 4\n(int) s = ' + (e.v.s ?? 1) + (e.v.i !== null ? '\n(int) i = ' + e.v.i : '') : '(int[4]) a = ' + val('a').slice(8) + '\n(int) total = ' + (e.v.total ?? 0)); return; }
+    if (['bt', 'thread'].includes(c0)) { const e = EV[pos]; log('* thread #1, queue = \'com.apple.main-thread\'\n  * ' + frameLine(e) + (e.fn === 'sum' ? '\n    frame #1: 0x0000000100003f38 avg`main at avg.c:10\n    frame #2: 0x000000018c2b3154 dyld`start + 2476' : '\n    frame #1: 0x000000018c2b3154 dyld`start + 2476')); return; }
+    if (['l', 'list'].includes(c0)) { SRC.forEach((l, k) => log(String(k + 1).padStart(3) + '   ' + l)); return; }
+    if (['q', 'quit', 'exit'].includes(c0)) { log('（真的 lldb 会退出。这里点“重来”从头开始）'); return; }
+    log('error: \'' + c0 + '\' is not a valid command.（输入 help 看本模拟支持的命令）');
+  }
+  function hint(arg){
+    const e = EV[pos];
+    if (/a\s*\[\s*4\s*\]/.test(arg)) say.innerHTML = 'a[4] 越界了，读到的是数组后面的内存里碰巧留着的数（这里是 ' + JUNK + '），它被加进了 s。问题出在第 4 行的条件 <code>i &lt;= n</code>，应该是 <code>i &lt; n</code>。';
+    else if (e.fn === 'sum' && e.line === 5 && e.v.i === 4) say.innerHTML = '<b>抓住了！</b>i 已经是 4，下一步要读 a[4]，可是 a 只有 a[0] 到 a[3]。试试 <code>p a[4]</code> 看看读到了什么。问题出在第 4 行的条件 <code>i &lt;= n</code>，应该是 <code>i &lt; n</code>。';
+  }
+  function reset(){ bps = []; pos = -1; done = false; printed = false; outEl.textContent = '(lldb) target create "avg"\nCurrent executable set to \'/Users/you/base/avg\' (arm64).\n'; showSrc(); say.innerHTML = '提示：先设断点，再 run。停下以后用 p 看变量，用 continue 跑到下一次断点。'; }
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') { exec(inp.value); inp.value = ''; } });
+  $('.btns', fig).addEventListener('click', e => { const b = e.target.closest('button[data-c]'); if (b) { exec(b.dataset.c); inp.focus({preventScroll: true}); } });
+  reset();
 });
 
 })();

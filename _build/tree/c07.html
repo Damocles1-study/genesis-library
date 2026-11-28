@@ -1,0 +1,191 @@
+<section class="chap" id="c22" data-vol="卷六 · 招 · 动态规划">
+  <div class="chead">
+    <div class="big">规</div>
+    <div>
+      <div class="no">卷六 · 第二十二章</div>
+      <h2>动态规划</h2>
+      <dl><dt>讲什么</dt><dd>把算过的记下来；爬楼梯有几种走法；走格子有几条路；背包的表格；状态、转移、起点、顺序四件事；最长公共子序列、最长上升子序列、编辑距离；面试最怕的题怎样拆</dd><dt>装置</dt><dd>爬楼梯；走格子；背包的表格</dd></dl>
+      <div class="crs" data-c="结构 数学"></div>
+      <div class="lvs"><a data-l="1" href="#c22-1">第一层 · 40 分钟</a><a data-l="2" href="#c22-2">第二层 · 65 分钟</a><a data-l="3" href="#c22-3">第三层 · 20 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>回溯试了六十九次才找到最好的背包。东西再多一点，岂不是要试一辈子？</span></div>
+    <div class="l"><i class="j">舅</i><span>它试的很多路，其实是在重复算同一件事。把算过的写在表上，就不用再算了。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>用“把算过的记下来”算出爬楼梯有几种走法，说出为什么比直接递归快得多。</li>
+      <li><span class="lg lg1">一</span>在方格上填出“只许往右、往下走，有几条路”的表。</li>
+      <li><span class="lg lg2">二</span>按“状态、转移、起点、顺序”写出 0/1 背包、最长公共子序列、最长上升子序列、编辑距离的动态规划。</li>
+      <li><span class="lg lg2">二</span>说出记忆化搜索和自底向上填表的区别；把二维表压成一维（滚动数组）。</li>
+      <li><span class="lg lg3">三</span>说出“动态规划”这个名字的来历；它在生物信息学、语音识别和 diff 里的用处。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c22-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：递归（第七章）、列表</span><span class="tm">约 40 分钟</span></div>
+    <div class="lyb">
+      <h3>爬楼梯</h3>
+      <p>一段楼梯有 10 级，每次可以上 1 级或 2 级。一共有几种走法？</p>
+      <p>想最后一步：最后一步要么是从第 9 级上 1 级，要么是从第 8 级上 2 级。所以：</p>
+      <p class="big1" style="text-align:center">走到第 10 级的走法 ＝ 走到第 9 级的走法 ＋ 走到第 8 级的走法</p>
+      <p>每一级都是这样。走到第 1 级只有 1 种，走到第 2 级有 2 种（1+1 或 2）。用递归写，一下就写出来了：<code>ways(n) = ways(n − 1) + ways(n − 2)</code>。</p>
+      <h3>直接递归，重复算了好多遍</h3>
+      <p>可是这样跑，n 一大就慢得要命。算 ways(10) 要算 ways(9) 和 ways(8)；算 ways(9) 又要算一遍 ways(8)……同一个 ways(5)，被重复算了好几次。n 是 40 的时候，要调用一亿多次。</p>
+      <p>办法很简单：<b>算过的写在一张表上</b>。从下往上填：第 1 级 1 种，第 2 级 2 种，第 3 级 = 2 + 1 = 3 种，第 4 级 = 3 + 2 = 5 种……每一格只算一次，第 40 级只要 40 步。</p>
+      <p>这种“把大问题拆成同样的小问题，小问题的答案记下来、不算第二遍”的办法，叫<b>动态规划</b>。</p>
+      <div class="fig" id="dpFig">
+        <div class="fig-label">装置 · 第二十二章</div>
+        <h4>爬楼梯；走格子；背包的表格</h4>
+        <p class="how">“爬楼梯”：拖动台阶数，比一比直接递归和填表各算了多少次。“走格子”：只许往右、往下走，每格的数是从左上角走到这一格有几条路；点格子放石头再看。“背包的表格”是第二层的主线第 22 步。</p>
+        <div class="btns" data-m></div>
+        <div class="dpbody"></div>
+        <div class="say"></div>
+      </div>
+      <h3>走格子</h3>
+      <p>方格岛上，从左上角走到右下角，只许往右、往下走，有几条路？</p>
+      <p>还是想最后一步：走到某一格，要么是从它左边那格往右走一步来的，要么是从它上面那格往下走一步来的。所以：</p>
+      <p class="big1" style="text-align:center">这一格的路数 ＝ 左边一格的路数 ＋ 上面一格的路数</p>
+      <p>从左上角开始，一行一行填。第一行、第一列都只有 1 条路（只能一直往右或一直往下）。有石头的格子填 0：走不进去。主线第 22 步算出：在方格岛上从 (2, 1) 走到 (13, 7)，一共 246 条路。</p>
+      <div class="mc">
+        <h5>递归和表格</h5>
+        <p>第七章说：递归要“相信自己”，假设小问题已经会做了。动态规划多做了一件事：把每个小问题的答案存起来。《一块一块》<a href="../block/ten.html#c80">第八十章</a>里画过“分叉的树”：直接递归的爬楼梯也是一棵分叉的树，树上一大半的枝是重复的。</p>
+      </div>
+      <div class="try">
+        <div class="th"><b>两种写法比一比</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+<pre class="code" data-k="stairs.py">calls = 0
+def ways(n):                 # 直接递归
+    global calls
+    calls += 1
+    if n &lt;= 2:
+        return n
+    return ways(n - 1) + ways(n - 2)
+
+def ways_table(n):           # 填表
+    t = [0, 1, 2]
+    for i in range(3, n + 1):
+        t.append(t[i - 1] + t[i - 2])
+    return t[n]
+
+print(ways(30), '直接递归调用了', calls, '次')
+print(ways_table(30), '填表只算了 30 格')</pre>
+          <p>把 30 改成 35，再改成 100（只跑填表那一行！）。直接递归跑 35 要好几秒，填表跑 100 一眨眼。</p>
+        </div>
+      </div>
+      <div class="task" data-id="tree-t22a">
+        <div class="th"><b>纸上填格子</b></div>
+        <div class="tb"><p>在方格纸上画一个 5 × 5 的格子，涂黑两格当石头。从左上角开始，只许往右、往下，按“左边 + 上面”填出每格的路数。右下角是几？再在装置里画同样的格子对一对。</p></div>
+      </div>
+      <div class="pass" data-id="tree-q22a">
+        <div class="qq" data-in="89"><p>每次上 1 级或 2 级，走到第 10 级有几种走法？</p><p class="ex">1, 2, 3, 5, 8, 13, 21, 34, 55, 89。</p></div>
+        <div class="qq" data-a="1"><p>直接递归算爬楼梯为什么慢？</p><ol><li>加法太难</li><li>同样的小问题被重复算了很多遍</li></ol><p class="ex">ways(5) 被算了好多次。</p></div>
+        <div class="qq" data-a="0"><p>动态规划的关键是？</p><ol><li>把算过的小问题的答案记下来</li><li>每一步拣眼前最好的</li></ol><p class="ex">后一个是贪心。</p></div>
+        <div class="qq" data-a="2"><p>只许往右、往下走，一格的路数等于？</p><ol><li>左边的路数</li><li>上面的路数</li><li>左边 + 上面</li></ol><p class="ex">最后一步要么从左来，要么从上来。</p></div>
+        <div class="qq" data-in="0"><p>有石头的格子，路数填几？</p><p class="ex">0：走不进去。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c22-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">算法设计 · 面试和机试的重点</span><span class="tm">约 65 分钟</span><span class="sum">动态规划的两个前提和四个要素；记忆化搜索和自底向上；0/1 背包和一维滚动数组；完全背包；最长公共子序列；最长上升子序列 O(n²) 和 O(n log n)；编辑距离；怎样一步步拆一道新题。</span></div>
+    <div class="lyb">
+      <h3>两个前提，四个要素</h3>
+      <p>能用动态规划的问题要有：<b>最优子结构</b>（大问题的最优解由小问题的最优解组成，第二十一章）和<b>重叠子问题</b>（同一个小问题会被反复用到，否则直接分治就行）。写一道动态规划，就是想清楚四件事：</p>
+      <ol class="plain">
+        <li><b>状态</b>：dp[…] 表示什么。这是最难的一步。</li>
+        <li><b>转移</b>：dp[…] 怎样由更小的状态算出来。通常想“最后一步”。</li>
+        <li><b>起点</b>：最小的状态是多少。</li>
+        <li><b>顺序</b>：按什么顺序填表，保证用到的格子已经算好了。</li>
+      </ol>
+      <p>两种写法：<b>记忆化搜索</b>（递归 + 一个字典，自顶向下，只算用得到的状态，Python 里可以加 <code>@functools.cache</code>）；<b>自底向上填表</b>（循环，没有递归开销，方便压缩空间）。</p>
+      <h3>0/1 背包</h3>
+      <p>状态 dp[i][c]：只考虑前 i 件物品、容量为 c 时的最大价值。转移：第 i 件不拿，dp[i−1][c]；拿（若 wᵢ ≤ c），dp[i−1][c−wᵢ] + vᵢ；取大者。起点 dp[0][c] = 0。O(n × C)。</p>
+<pre class="code" data-k="knap.py">def knap01(items, C):
+    dp = [0] * (C + 1)                    # 一维：dp[c] 就是“到目前为止”的 dp[i][c]
+    for w, v in items:
+        for c in range(C, w - 1, -1):     # 倒着循环！保证 dp[c - w] 还是上一行的值
+            dp[c] = max(dp[c], dp[c - w] + v)
+    return dp[C]</pre>
+      <div class="pit"><h5>正着循环就成了完全背包</h5><p>一维写法里 c 从大到小，dp[c − w] 还没被这件物品更新过，相当于每件只用一次。c 从小到大，dp[c − w] 可能已经用过这件物品，相当于每件可以用无限次：这正是<b>完全背包</b>（比如找零钱的“最少硬币数”）。一个循环方向，两种问题。</p></div>
+      <h3>三道经典题</h3>
+      <ul class="plain">
+        <li><b>最长公共子序列（LCS）</b>：两个串 a、b。dp[i][j] = a 前 i 个和 b 前 j 个的 LCS 长度。a[i] = b[j] 时 dp[i−1][j−1] + 1，否则 max(dp[i−1][j], dp[i][j−1])。O(mn)。</li>
+        <li><b>最长上升子序列（LIS）</b>：dp[i] = 以第 i 个数结尾的 LIS 长度 = 1 + max{dp[j] : j &lt; i 且 a[j] &lt; a[i]}，O(n²)。更快的办法：维护数组 tail[k] = “长度为 k+1 的上升子序列结尾最小是多少”，每来一个数用二分（第二十四章）找到位置替换，O(n log n)。</li>
+        <li><b>编辑距离</b>：把串 a 变成串 b 最少要几次插入、删除、替换。dp[i][j] = min(dp[i−1][j] + 1, dp[i][j−1] + 1, dp[i−1][j−1] + (a[i] ≠ b[j]))。拼写检查和 DNA 比对的基础。</li>
+      </ul>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）容量 7，物品（重量, 价值）：(1, 1)、(3, 4)、(4, 5)、(5, 7)。用 0/1 背包求最大价值，写出最后一行 dp[4][0..7]。（2）求 "GRASS" 和 "GLASS" 的编辑距离、"GRASSLAND" 和 "GLASSBAND" 的 LCS 长度。</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）逐行：只有 (1,1)：[0,1,1,1,1,1,1,1]。加 (3,4)：[0,1,1,4,5,5,5,5]。加 (4,5)：[0,1,1,4,5,6,6,9]。加 (5,7)：c=5：max(6, dp[0]+7=7)=7；c=6：max(6, dp[1]+7=8)=8；c=7：max(9, dp[2]+7=8)=9。dp[4] = [0,1,1,4,5,7,8,9]，最大价值 9（拿 (3,4) 和 (4,5)）。</p>
+          <p>（2）GRASS → GLASS 只要把 R 换成 L，编辑距离 1。"GRASSLAND" 和 "GLASSBAND" 的 LCS 是 GASSAND，长度 7（第一个串的 R、L 和第二个串的 L、B 各不在里面）。</p>
+        </div></details>
+      </div>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>碰到一道没见过的“最大／最小／有几种”的题，怎样判断能不能用动态规划、怎样下手？</p>
+        <details><summary>看要点</summary><div><p>① 先写暴力递归（回溯）：它在每一步做什么选择？② 看递归函数的参数：如果参数组合的种类不多（比如 i 和 c），而同一组参数会被反复调用，就有重叠子问题；这组参数就是状态。③ 加记忆化，就得到了动态规划；再看能不能改成循环、压缩空间。④ 说出状态数 × 每个状态的转移代价 = 时间复杂度。面试时把这个思路讲出来，比直接背出答案更受欢迎。</p></div></details>
+      </div>
+      <div class="pass" data-id="tree-q22b">
+        <div class="qq" data-a="1"><p>0/1 背包用一维数组时，容量 c 的循环方向是？</p><ol><li>从小到大</li><li>从大到小</li></ol><p class="ex">保证每件物品只用一次；从小到大是完全背包。</p></div>
+        <div class="qq" data-a="0"><p>n 件物品、容量 C 的 0/1 背包，动态规划的时间复杂度是？</p><ol><li>O(nC)</li><li>O(2ⁿ)</li><li>O(n log n)</li></ol><p class="ex">表格 n × C，每格 O(1)。</p></div>
+        <div class="qq" data-in="9"><p>典型题（1）的最大价值是？</p><p class="ex">拿 (3,4) 和 (4,5)，重 7，价值 9。</p></div>
+        <div class="qq" data-a="2"><p>能用动态规划的问题，除了最优子结构，还要有？</p><ol><li>贪心选择性质</li><li>负权边</li><li>重叠子问题</li></ol><p class="ex">没有重叠，直接分治就够了。</p></div>
+        <div class="qq" data-in="4"><p>序列 3, 1, 4, 1, 5, 9, 2, 6 的最长上升子序列长度是？</p><p class="ex">例如 1, 4, 5, 9 或 1, 4, 5, 6，长度 4。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c22-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">名字的来历和真实用途</span><span class="tm">约 20 分钟</span><span class="sum">贝尔曼为什么叫它“动态规划”；diff 和 LCS；生物信息学的序列比对；语音识别和维特比算法；空间优化和希尔施伯格的技巧。</span></div>
+    <div class="lyb">
+      <h3>名字的来历</h3>
+      <p>“动态规划”是 1950 年代美国数学家贝尔曼在兰德公司起的名字。据他在自传里的说法，当时的国防部长不喜欢“研究”“数学”这类词，他想找一个听起来很厉害、又没人会反对的名字：“规划”（programming）在当时指“制定计划、排表”，和写程序无关；“动态”听起来很积极。所以这个名字本身并不说明方法是什么。这个故事来自贝尔曼 1984 年的自传，细节有人质疑过。</p>
+      <h3>到处都在用</h3>
+      <ul class="plain">
+        <li><b>diff 和 git</b>：比较两个文件改了哪些行，本质上是最长公共子序列（实际用的是迈尔斯 1986 年更快的算法）。</li>
+        <li><b>生物信息学</b>：两条 DNA 或蛋白质序列的比对（尼德曼-翁施 1970、史密斯-沃特曼 1981），就是带打分规则的编辑距离。</li>
+        <li><b>语音识别和通信</b>：维特比算法在“隐藏状态”组成的网格上找最可能的那条路径，手机信号的纠错解码也用它。</li>
+        <li><b>空间优化</b>：LCS 的表是 m × n，两个长串时放不下。只求长度时用两行滚动；要求出序列本身，希尔施伯格（1975）用分治把空间降到 O(m + n)、时间不变。</li>
+      </ul>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>R. Bellman, <i>Dynamic Programming</i>, 1957；<i>Eye of the Hurricane</i>（自传），1984。</li>
+          <li>S. B. Needleman, C. D. Wunsch, “A general method applicable to the search for similarities in the amino acid sequence of two proteins”, 1970。</li>
+          <li>E. W. Myers, “An O(ND) Difference Algorithm and Its Variations”, <i>Algorithmica</i>, 1986。</li>
+          <li>D. S. Hirschberg, “A linear space algorithm for computing maximal common subsequences”, <i>CACM</i>, 1975。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="main" data-step="22">
+    <div class="mh"><b>主线 · 第 22 步</b><span>最划算的背包</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给方格岛加上：<i>动态规划</i></p>
+      <p><code>knapsack</code> 填一张 7 × 9 的表，每格只算一次，得到和回溯一样的 14，再倒着找出拿了哪些；<code>count_ways</code> 按“左边加上面”数出从 (2, 1) 只往右、往下走到 (13, 7) 有 246 条路。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 island.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>把 knapsack 改成一维数组（容量倒着循环）；再写完全背包和“最少几个硬币”，用第二十一章的币制验证贪心在哪些金额上出错。</div>
+    </div>
+  </div>
+  <div class="words">
+    <div data-l="1"><b>动态规划 <span class="en" data-say="dynamic programming">dynamic programming</span></b>把算过的小问题记下来，不算第二遍。</div>
+    <div data-l="1"><b>记忆化 <span class="en" data-say="memoization">memoization</span></b>递归时把答案存起来。</div>
+    <div data-l="1"><b>表格 <span class="en" data-say="table">table</span></b>一格一个小问题的答案。</div>
+    <div data-l="2"><b>状态 <span class="en" data-say="state">state</span></b>dp[…] 表示的那个小问题。</div>
+    <div data-l="2"><b>转移 <span class="en" data-say="transition">transition</span></b>由小状态算大状态的式子。</div>
+    <div data-l="2"><b>最长公共子序列 <span class="en" data-say="longest common subsequence">longest common subsequence</span></b>LCS。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>想最后一步：这一格 = 左边 + 上面；算过的写在表上，每格只算一次。</div>
+    <div><i>第二层带走</i>状态、转移、起点、顺序；先写暴力递归再加记忆化；一维背包倒着循环。</div>
+    <div><i>第三层带走</i>名字和方法无关；diff、DNA 比对、语音识别都在填一张表。</div>
+  </div>
+</section>

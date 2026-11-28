@@ -1,0 +1,196 @@
+<section class="chap" id="c21" data-vol="卷六 · 招 · 贪心和回溯">
+  <div class="vol-h">
+    <div class="k">卷六</div>
+    <h2>招</h2>
+    <p>前面每一章讲一种结构；这一卷讲两种想办法的套路。贪心：每一步拣眼前最好的；回溯：每条路都试一试，走不通就退回来；动态规划：把算过的记下来，不算第二遍。</p>
+  </div>
+  <div class="chead">
+    <div class="big">贪</div>
+    <div>
+      <div class="no">卷六 · 第二十一章</div>
+      <h2>贪心和回溯</h2>
+      <dl><dt>讲什么</dt><dd>每一步拣眼前最好的：找零钱、装背包；什么时候贪心是对的，什么时候会上当；活动安排；回溯：每条路都试，走不通就退回来；剪枝；N 皇后</dd><dt>装置</dt><dd>找零钱；装背包</dd></dl>
+      <div class="crs" data-c="结构 数学"></div>
+      <div class="lvs"><a data-l="1" href="#c21-1">第一层 · 35 分钟</a><a data-l="2" href="#c21-2">第二层 · 50 分钟</a><a data-l="3" href="#c21-3">第三层 · 20 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>背包只能背 8 斤。我先拿最值钱的船桨，再把剩下的空塞满。</span></div>
+    <div class="l"><i class="j">舅</i><span>听起来很聪明。可是镐和灯一起背，比船桨加一堆零碎更有用。眼前最好的，不一定是整体最好的。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>说出贪心是什么，举出一个贪心能找到最好答案的例子，和一个会上当的例子。</li>
+      <li><span class="lg lg1">一</span>说出回溯是什么：一条路一条路地试，走不通就退回上一步。</li>
+      <li><span class="lg lg2">二</span>说出贪心正确需要的两个性质；用交换论证证明活动安排的“最早结束优先”是对的。</li>
+      <li><span class="lg lg2">二</span>写出回溯的框架，解子集、排列、N 皇后；说出剪枝怎样省时间。</li>
+      <li><span class="lg lg3">三</span>说出拟阵和贪心的关系；为什么背包问题是 NP 难的，却又能用动态规划解。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c21-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：递归（第七章）</span><span class="tm">约 35 分钟</span></div>
+    <div class="lyb">
+      <h3>拣眼前最好的</h3>
+      <p>商店找零钱，要找 18 元，硬币有 10 元、5 元、1 元。售货员会先拿一个最大的 10 元，还差 8 元；再拿最大的 5 元，还差 3 元；再拿三个 1 元。一共 5 个硬币，这就是最少的。</p>
+      <p>每一步都拣<b>眼前看起来最好</b>的那个，不回头、不反悔，这种想办法的套路叫<b>贪心</b>。前面已经见过好几次：哈夫曼每次合并最小的两个，迪杰斯特拉每次定下最近的，克鲁斯卡尔每次挑最短的路。它们都是对的。</p>
+      <h3>贪心也会上当</h3>
+      <p>换一套硬币：4 元、3 元、1 元，找 6 元。贪心先拿 4 元，还差 2 元，再拿两个 1 元：3 个硬币。可是两个 3 元只要 2 个！</p>
+      <p>背包也是：背包最多 8 斤，船桨 5 斤、有用程度 10；镐 4 斤、7；灯 4 斤、7；还有几样小零碎。贪心先拿“每斤最有用”的船桨，剩下 3 斤只能装零碎，一共 13；可是镐加灯正好 8 斤，一共 14。</p>
+      <p>贪心又快又简单，但它只看眼前。用之前要想清楚：眼前最好的，会不会把以后更好的路堵死了？</p>
+      <h3>回溯：每条路都试一试</h3>
+      <p>怎样才能保证找到最好的？笨办法是把所有可能都试一遍。可以像走迷宫一样有条理地试：</p>
+      <ul class="plain">
+        <li>第一样东西，先试“拿”，再往下想第二样；</li>
+        <li>第二样，也先试“拿”……装不下了，就<b>退回来</b>，改成“不拿”，再往下试；</li>
+        <li>每试完一种完整的装法，就和目前最好的比一比。</li>
+      </ul>
+      <p>这种“往前试，走不通就退回上一步换一条路”的办法叫<b>回溯</b>。它和第十七章的深度优先是一回事：只是走的不是地图，而是“每样拿不拿”组成的一棵选择树。它一定能找到最好的，代价是可能要试很多很多次：六样东西就有 2⁶ = 64 种装法，三十样就有十亿多种。</p>
+      <p>聪明一点的回溯会<b>剪枝</b>：某条路已经装不下了，或者就算后面全拿也比不过目前最好的，就别再往下试了。</p>
+      <div class="fig" id="greedyFig">
+        <div class="fig-label">装置 · 第二十一章</div>
+        <h4>找零钱；装背包</h4>
+        <p class="how">“找零钱”：选一套硬币和要找的钱，比一比贪心找了几个、最少要几个。“装背包”：自己点东西装，再看贪心和回溯各装了什么，回溯一共试了几次。</p>
+        <div class="btns" data-m></div>
+        <div class="grbody"></div>
+        <div class="say"></div>
+      </div>
+      <div class="mc">
+        <h5>迷宫和回溯</h5>
+        <p>第十七章的深度优先走迷宫，走到死路就退回上一个岔口：那就是回溯。《一块一块》<a href="../block/ten.html#c80">第八十章</a>的汉诺塔用的是递归，回溯也常写成递归：试一种选择，递归下去，回来以后撤销这个选择，再试下一种。</p>
+      </div>
+      <div class="try">
+        <div class="th"><b>主线第 21 步：装背包</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+          <p>下载本章末尾“主线 · 第 21 步”的完整文件运行：贪心装了船桨、面包、绳子，有用程度 13；回溯试了 69 次，找到镐加灯，有用程度 14。读一读 <code>best</code> 函数：它对每样东西都试“不拿”和“拿”两种，递归下去。</p>
+        </div>
+      </div>
+      <div class="task" data-id="tree-t21a">
+        <div class="th"><b>考考贪心</b></div>
+        <div class="tb"><p>用 1 元、5 元、10 元找 1 到 30 元，贪心都对吗？再设计一套硬币（比如 1、7、10），找出一个让贪心上当的金额。在装置里验证。</p></div>
+      </div>
+      <div class="pass" data-id="tree-q21a">
+        <div class="qq" data-a="0"><p>贪心是？</p><ol><li>每一步拣眼前最好的，不回头</li><li>把所有可能都试一遍</li></ol><p class="ex">只看眼前。</p></div>
+        <div class="qq" data-in="5"><p>用 10、5、1 元找 18 元，贪心用几个硬币？</p><p class="ex">10 + 5 + 1 + 1 + 1，5 个，也是最少的。</p></div>
+        <div class="qq" data-a="1"><p>用 4、3、1 元找 6 元，贪心对吗？</p><ol><li>对，3 个最少</li><li>不对，两个 3 元只要 2 个</li></ol><p class="ex">贪心先拿 4 元，把更好的路堵死了。</p></div>
+        <div class="qq" data-a="1"><p>回溯走不通的时候怎么办？</p><ol><li>停下来</li><li>退回上一步，换一种选择</li></ol><p class="ex">像走迷宫退回岔口。</p></div>
+        <div class="qq" data-in="64"><p>6 样东西，每样“拿”或“不拿”，一共有几种装法？</p><p class="ex">2⁶ = 64。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c21-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">算法设计 · 面试和机试</span><span class="tm">约 50 分钟</span><span class="sum">贪心选择性质和最优子结构；活动安排问题和交换论证；分数背包能贪心、0/1 背包不能；回溯的通用框架；子集、排列、N 皇后；剪枝和分支限界。</span></div>
+    <div class="lyb">
+      <h3>贪心什么时候对</h3>
+      <p>一个问题能用贪心，通常要满足两条：</p>
+      <ol class="plain">
+        <li><b>贪心选择性质</b>：总存在一个最优解，它的第一步就是贪心的那个选择。</li>
+        <li><b>最优子结构</b>：做出这一步以后，剩下的问题仍是同类问题，且原问题的最优解包含子问题的最优解。</li>
+      </ol>
+      <p>证明第一条最常用<b>交换论证</b>：拿一个任意的最优解，把它的第一步换成贪心的选择，证明结果不会变差。</p>
+      <h3>活动安排</h3>
+      <p>一个场地，n 个活动各有开始和结束时间，互相重叠的不能都安排，最多安排几个？贪心：<b>按结束时间从早到晚排序</b>，能放就放。证明：设最优解里最早结束的活动是 x，贪心选的是结束最早的 g，f(g) ≤ f(x)；把最优解里的 x 换成 g，g 不会和后面的冲突（因为 g 结束得更早），个数不变，仍然最优。于是第一步贪心不吃亏，剩下的是同类子问题。O(n log n)。按“开始最早”或“持续最短”贪心都是错的，可以各举一个反例。</p>
+      <div class="tbl">
+        <table class="t">
+          <tr><th>问题</th><th>贪心对吗</th></tr>
+          <tr><td>分数背包（东西可以切开拿）</td><td>对：按单位价值从高到低拿</td></tr>
+          <tr><td>0/1 背包（只能整个拿）</td><td>不对：用动态规划（第二十二章）或回溯</td></tr>
+          <tr><td>找零钱（1、5、10、20、50、100 这类“规范”币制）</td><td>对</td></tr>
+          <tr><td>找零钱（任意币值）</td><td>不一定：用动态规划</td></tr>
+          <tr><td>哈夫曼、普里姆、克鲁斯卡尔、迪杰斯特拉（非负权）</td><td>对</td></tr>
+        </table>
+      </div>
+      <h3>回溯的框架</h3>
+<pre class="code" data-k="backtrack.py">def backtrack(path, choices):
+    if 到达终点(path):
+        记录答案(path); return
+    for c in choices:
+        if 不合法(path, c): continue        # 剪枝
+        path.append(c)                       # 做选择
+        backtrack(path, 下一步的选择)
+        path.pop()                           # 撤销选择
+
+# 例：N 皇后（每行放一个，列和两条对角线都不能冲突）
+def queens(n):
+    cols, d1, d2, out = set(), set(), set(), []
+    def go(r, place):
+        if r == n: out.append(place[:]); return
+        for c in range(n):
+            if c in cols or r - c in d1 or r + c in d2: continue
+            cols.add(c); d1.add(r - c); d2.add(r + c); place.append(c)
+            go(r + 1, place)
+            cols.remove(c); d1.remove(r - c); d2.remove(r + c); place.pop()
+    go(0, [])
+    return out
+
+print(len(queens(8)))   # 92</pre>
+      <p>子集（每个元素选或不选，2ⁿ 种）、排列（n! 种）、组合总和、数独，都是这个框架。<b>剪枝</b>是回溯的灵魂：可行性剪枝（已经违反约束）和最优性剪枝（就算剩下的都最好也超不过当前最优，即“分支限界”的思想）。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）活动（开始, 结束）：(1, 4)、(3, 5)、(0, 6)、(5, 7)、(3, 9)、(5, 9)、(6, 10)、(8, 11)。用贪心最多能安排几个？是哪几个？（2）分数背包：容量 10，物品（重量, 价值）为 (5, 30)、(4, 20)、(6, 18)。最大价值是多少？</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）按结束时间排序：(1,4)、(3,5)、(0,6)、(5,7)、(3,9)、(5,9)、(6,10)、(8,11)。选 (1,4)；下一个开始 ≥ 4 且结束最早的是 (5,7)；再下一个开始 ≥ 7 的是 (8,11)。共 3 个。</p>
+          <p>（2）单位价值 6、5、3。拿全部的 (5,30)、(4,20)，剩 1 的容量拿 (6,18) 的 1/6，价值 3。共 53。</p>
+        </div></details>
+      </div>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>给一组不重复的数，返回所有的子集。时间复杂度是多少？</p>
+        <details><summary>看要点</summary><div><p>回溯：对第 i 个数选或不选，递归到 n 时记录。也可以迭代：从 [[]] 开始，每来一个数，把已有的每个子集复制一份加上它。还可以用二进制：0 到 2ⁿ − 1 的每个数，第 i 位为 1 就选第 i 个（《地基》第七章的位运算）。共 2ⁿ 个子集，每个平均长度 n/2，输出本身就要 O(n · 2ⁿ)。</p></div></details>
+      </div>
+      <div class="pass" data-id="tree-q21b">
+        <div class="qq" data-a="1"><p>活动安排问题，正确的贪心策略是？</p><ol><li>开始最早优先</li><li>结束最早优先</li><li>持续最短优先</li></ol><p class="ex">结束最早，给后面留出最多的时间。</p></div>
+        <div class="qq" data-a="0"><p>哪一种背包可以用“单位价值从高到低”的贪心得到最优？</p><ol><li>分数背包</li><li>0/1 背包</li></ol><p class="ex">0/1 背包贪心可能上当。</p></div>
+        <div class="qq" data-in="92"><p>8 皇后问题一共有几个解？</p><p class="ex">92 个（去掉旋转和翻转后是 12 个本质不同的解）。</p></div>
+        <div class="qq" data-a="2"><p>回溯里“撤销选择”这一步的作用是？</p><ol><li>节省内存</li><li>让程序更快</li><li>回到做选择之前的状态，好试下一种选择</li></ol><p class="ex">退回岔口，再走另一条路。</p></div>
+        <div class="qq" data-a="0"><p>证明贪心正确，最常用的办法是？</p><ol><li>交换论证</li><li>多试几个例子</li></ol><p class="ex">例子只能找反例，不能证明。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c21-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">贪心的理论、难问题</span><span class="tm">约 20 分钟</span><span class="sum">拟阵：贪心为什么在生成树上总是对的；背包问题是 NP 难的；伪多项式时间；近似算法。</span></div>
+    <div class="lyb">
+      <h3>拟阵</h3>
+      <p>有没有一个统一的理由说明“为什么克鲁斯卡尔的贪心总是对的”？有：<b>拟阵</b>。粗略地说，如果一个问题里“可行的集合”满足：可行集的子集也可行、小的可行集总能从大的可行集里借一个元素扩充，那么“按权从大到小、能加就加”的贪心一定得到最优解。图里“不含圈的边集”就构成一个拟阵（图拟阵），所以最大（最小）生成树可以贪心。0/1 背包的可行集不满足第二条，所以贪心会上当。</p>
+      <h3>难问题</h3>
+      <p>0/1 背包是 <b>NP 难</b>的：至今不知道有没有对 n 和数字位数都是多项式时间的算法（这是“P 是否等于 NP”的一部分）。下一章的动态规划能在 O(n × 容量) 时间内解它，但容量是一个<b>数值</b>，写下它只要 log(容量) 位，所以这叫“伪多项式时间”：容量是十亿时就不行了。实践中对这类问题常用近似算法（保证不比最优差多少）、分支限界和整数规划求解器。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>J. Edmonds, “Matroids and the greedy algorithm”, <i>Mathematical Programming</i>, 1971。</li>
+          <li>《算法导论》第 16 章（贪心算法、拟阵）、第 34 章（NP 完全性）。</li>
+          <li>M. R. Garey, D. S. Johnson, <i>Computers and Intractability</i>, 1979。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="main" data-step="21">
+    <div class="mh"><b>主线 · 第 21 步</b><span>装背包</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给方格岛加上：<i>贪心和回溯</i></p>
+      <p><code>greedy</code> 按“每斤多有用”从高到低装，得 13；<code>best</code> 用回溯把每样拿不拿都试一遍，试了 69 次，找到镐加灯，得 14。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 island.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>给 best 加上最优性剪枝（剩下的全拿也超不过当前最好就退回），统计试的次数降了多少；随机 25 样东西，比较有无剪枝的时间。</div>
+    </div>
+  </div>
+  <div class="words">
+    <div data-l="1"><b>贪心 <span class="en" data-say="greedy">greedy</span></b>每一步拣眼前最好的。</div>
+    <div data-l="1"><b>回溯 <span class="en" data-say="backtracking">backtracking</span></b>试一条路，走不通就退回来换一条。</div>
+    <div data-l="1"><b>剪枝 <span class="en" data-say="pruning">pruning</span></b>明知走不通的路，别再往下试。</div>
+    <div data-l="1"><b>背包问题 <span class="en" data-say="knapsack problem">knapsack problem</span></b>背得动的前提下，装最有用的。</div>
+    <div data-l="2"><b>最优子结构 <span class="en" data-say="optimal substructure">optimal substructure</span></b>大问题的最优解包含小问题的最优解。</div>
+    <div data-l="3"><b>拟阵 <span class="en" data-say="matroid">matroid</span></b>能保证贪心正确的一种结构。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>贪心快，但只看眼前，可能上当；回溯慢，但一定找到最好的；剪枝让回溯快一点。</div>
+    <div><i>第二层带走</i>贪心要有贪心选择性质和最优子结构，用交换论证证明；回溯是“做选择、递归、撤销”。</div>
+    <div><i>第三层带走</i>拟阵上贪心总是对的；0/1 背包是 NP 难的，动态规划只是伪多项式。</div>
+  </div>
+</section>

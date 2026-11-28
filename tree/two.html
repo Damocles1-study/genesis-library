@@ -2361,7 +2361,7 @@ const grp = (s, k) => s.replace(new RegExp('(.{' + (k || 4) + '})(?=.)', 'g'), '
 const BOOK = 'tree';   // 系列共用的本机记录里，id 前缀是 tree-
 const PFILE = ['index', 'two', 'three', 'four'];
 const PAGE = (() => { const m = location.pathname.match(/\/(two|three|four)\.html/); return m ? PFILE.indexOf(m[1]) + 1 : 1; })();
-const READY = 2; // 已经写好的部数
+const READY = 3; // 已经写好的部数
 const PURL = {}; PFILE.forEach((f, i) => PURL[i + 1] = i ? f + '.html' : './');
 const PARTS = [
   {k: '线', s: '一个接一个：复杂度、数组、链表、栈、队列、字符串、递归 · 八章'},
@@ -2758,6 +2758,40 @@ dev('#treeCountFig', fig => {
     kv(kvb, [['层数', h], ['最下面一层', (2 ** (h - 1)).toLocaleString('en-US') + ' 个'], ['一共能装', big + ' 个'], ['找一个最多走', h + ' 步']]);
     say.textContent = h > 5 ? '图里只画了前 5 层。' + h + ' 层的树能装 ' + big + ' 个结点，可从根走到最下面只要 ' + h + ' 步。' : '每多一层，能装的结点就差不多翻一倍。';
   });
+});
+
+/* ---------- 第三部封面：七座桥 ---------- */
+dev('#bridgeFig', fig => {
+  const svg = $('svg', fig), say = $('.say', fig);
+  const LAND = {A: [320, 50, '北岸'], B: [320, 250, '南岸'], C: [180, 150, '岛'], D: [500, 150, '东边']};
+  const BASE = [['A', 'C', -30], ['A', 'C', 30], ['B', 'C', -30], ['B', 'C', 30], ['A', 'D', 0], ['B', 'D', 0], ['C', 'D', 0]];
+  let E, used, at, trail;
+  function reset(extra){ E = BASE.map(e => e.slice()); if (extra) E.push(['A', 'B', 0]); used = E.map(() => false); at = null; trail = []; draw(); say.textContent = extra ? '加了一座北岸到南岸的桥，现在是八座。选一块地出发。' : '先点一块地（圆）当起点。'; }
+  const deg = k => E.filter(e => e[0] === k || e[1] === k).length;
+  function draw(){
+    let h = '<path d="M0,115 C160,95 220,120 320,115 C420,110 520,130 640,110 L640,185 C520,200 420,180 320,185 C220,190 160,205 0,185 Z" fill="color-mix(in srgb,var(--t-w) 40%,transparent)"/>';
+    E.forEach((e, i) => { const a = LAND[e[0]], b = LAND[e[1]]; const mx = (a[0] + b[0]) / 2 + e[2] * (a[1] === b[1] ? 0 : 1), my = (a[1] + b[1]) / 2 + (a[1] === b[1] ? e[2] : 0); h += '<path d="M' + a[0] + ',' + a[1] + ' Q' + (mx + (e[2] ? e[2] : 0)) + ',' + my + ' ' + b[0] + ',' + b[1] + '" fill="none" stroke="' + (used[i] ? 'var(--main)' : 'var(--ink-3)') + '" stroke-width="' + (used[i] ? 6 : 4) + '" stroke-dasharray="' + (used[i] ? '0' : '2 0') + '" data-e="' + i + '" style="cursor:pointer"/>'; h += '<path d="M' + a[0] + ',' + a[1] + ' Q' + (mx + (e[2] ? e[2] : 0)) + ',' + my + ' ' + b[0] + ',' + b[1] + '" fill="none" stroke="transparent" stroke-width="18" data-e="' + i + '" style="cursor:pointer"/>'; });
+    Object.keys(LAND).forEach(k => { const [x, y, n] = LAND[k]; h += '<circle cx="' + x + '" cy="' + y + '" r="24" fill="' + (at === k ? 'var(--main)' : 'var(--t-g)') + '" stroke="var(--ink-3)" data-l="' + k + '" style="cursor:pointer"/>' + txt(x, y + 4, n, {s: 12, c: at === k ? 'var(--paper)' : 'var(--t-ink)', halo: false, w: 1}) + txt(x + 34, y - 18, deg(k) + ' 座桥', {s: 11, c: 'var(--ink-3)'}); });
+    svg.innerHTML = h;
+  }
+  svg.addEventListener('click', ev => {
+    const l = ev.target.closest('[data-l]'), b = ev.target.closest('[data-e]');
+    if (l && at === null) { at = l.dataset.l; trail = [LAND[at][2]]; draw(); say.textContent = '从' + LAND[at][2] + '出发。点一座连着它的桥。'; return; }
+    if (b) {
+      if (at === null) { say.textContent = '先点一块地当起点。'; return; }
+      const i = +b.dataset.e, e = E[i];
+      if (used[i]) { say.textContent = '这座桥已经走过了。'; return; }
+      if (e[0] !== at && e[1] !== at) { say.textContent = '这座桥不连着你现在站的' + LAND[at][2] + '。'; return; }
+      used[i] = true; at = e[0] === at ? e[1] : e[0]; trail.push(LAND[at][2]); draw();
+      const left = used.filter(u => !u).length;
+      const can = E.some((x, k) => !used[k] && (x[0] === at || x[1] === at));
+      say.textContent = trail.join(' → ') + '。' + (left === 0 ? '每座桥都正好走了一次！' : can ? '还剩 ' + left + ' 座桥。' : '走不下去了：' + LAND[at][2] + '连着的桥都走过了，还剩 ' + left + ' 座没走。点“重来”换个走法，或者点“为什么走不成”。');
+    }
+  });
+  $('[data-x="r"]', fig).addEventListener('click', () => reset(E.length > 7));
+  $('[data-x="add"]', fig).addEventListener('click', () => reset(true));
+  $('[data-x="why"]', fig).addEventListener('click', () => { const odd = Object.keys(LAND).filter(k => deg(k) % 2); say.textContent = '欧拉的想法：每路过一块地，总是走进去一座桥、走出来一座桥，要用掉两座。所以除了起点和终点，每块地连着的桥数都必须是双数。现在连着单数座桥的地有 ' + odd.length + ' 块（' + odd.map(k => LAND[k][2]).join('、') + '）。' + (odd.length === 0 ? '一块都没有：从哪儿出发都能走完，还能回到起点。' : odd.length === 2 ? '正好两块：从其中一块出发，到另一块结束，就能走完。' : '超过两块，怎么走都走不成。这是图论的第一个定理：只看“点”和“线”，不看地有多大、桥有多长。'); });
+  reset(false);
 });
 
 /* ---------- 主线：方格岛，一章加一个功能 ----------
@@ -3578,6 +3612,245 @@ dev('#btreeFig', fig => {
   $('[data-x="many"]', fig).addEventListener('click', () => { root = {keys: [], kids: []}; splits = 0; hl = null; for (let k = 1; k <= 20; k++) { log = []; insert(k); } draw(); say.textContent = '按顺序插了 1 到 20：树高 ' + height(root) + '，所有叶子都在同一层。和第十章歪成一根棍的搜索树比一比。'; });
   $('[data-x="clr"]', fig).addEventListener('click', clear);
   clear();
+});
+
+/* ---------- 第十六章：岛上的地点和路 ---------- */
+/* 公用：六个地方的图（第十六—二十章都用） */
+const PLACES = ['家', '湖边', '石山', '沙滩', '树林', '码头'];
+const PLACE_XY = {'家': [110, 60], '湖边': [110, 200], '石山': [300, 40], '沙滩': [330, 220], '树林': [330, 130], '码头': [530, 150]};
+const ROADS = [['家', '湖边', 4], ['家', '石山', 3], ['家', '树林', 5], ['湖边', '沙滩', 6], ['石山', '树林', 2], ['树林', '沙滩', 4], ['沙滩', '码头', 2], ['石山', '码头', 9]];
+/* 画一张小图：opt {edges, directed, mark(v)->类名, emark(i)->类名, label(v)->小字, click(v), H} */
+function drawGraph(svg, opt){
+  const H = opt.H || 260; svg.setAttribute('viewBox', '0 0 640 ' + H);
+  const xy = opt.xy || PLACE_XY, edges = opt.edges || ROADS; let h = '<defs><marker id="arrowG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--ink-3)"/></marker></defs>';
+  edges.forEach((e, i) => { const a = xy[e[0]], b = xy[e[1]], m = opt.emark ? opt.emark(i) : ''; const dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy), ux = dx / L, uy = dy / L; const x1 = a[0] + ux * 24, y1 = a[1] + uy * 24, x2 = b[0] - ux * 26, y2 = b[1] - uy * 26;
+    h += '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 + '" stroke="' + (m === 'hl' ? 'var(--main)' : m === 'ok' ? 'var(--l1)' : m === 'dim' ? 'var(--rule)' : 'var(--ink-3)') + '" stroke-width="' + (m === 'hl' || m === 'ok' ? 4 : 1.8) + '"' + (opt.directed ? ' marker-end="url(#arrowG)"' : '') + '/>';
+    if (e[2] !== undefined) h += txt((a[0] + b[0]) / 2 - uy * 10, (a[1] + b[1]) / 2 + ux * 10 + 4, e[2], {s: 12, c: 'var(--ink-2)', w: 1}); });
+  Object.keys(xy).forEach(v => { const [x, y] = xy[v], m = opt.mark ? opt.mark(v) : ''; h += '<circle cx="' + x + '" cy="' + y + '" r="22" fill="' + (m === 'hl' ? 'var(--main)' : m === 'ok' ? 'var(--l1)' : m === 'v' ? 'color-mix(in srgb,var(--ter) 30%,var(--card))' : m === 'q' ? 'color-mix(in srgb,var(--main) 15%,var(--card))' : 'var(--card)') + '" stroke="var(--ter)" stroke-width="1.6"' + (m === 'q' ? ' stroke-dasharray="4 3"' : '') + ' data-v="' + v + '" style="cursor:pointer"/>' + txt(x, y + 4.5, v, {s: 13, c: (m === 'hl' || m === 'ok') ? 'var(--paper)' : 'var(--ink)', halo: false, w: 1}); if (opt.label) { const l = opt.label(v); if (l !== '' && l != null) h += txt(x, y - 28, l, {s: 12, c: 'var(--main)', w: 1}); } });
+  svg.innerHTML = h;
+  if (opt.click && !svg._clk) { svg._clk = 1; svg.addEventListener('click', ev => { const c = ev.target.closest('[data-v]'); if (c) svg._onclick(c.dataset.v); }); }
+  if (opt.click) svg._onclick = opt.click;
+}
+dev('#graphFig', fig => {
+  const svg = $('svg.gview', fig), al = $('.adjl', fig), am = $('.adjm', fig), say = $('.say', fig), db = $('[data-x="dir"]', fig);
+  let dir = false, sel = null;
+  function draw(){
+    const nb = v => ROADS.filter(e => e[0] === v || (!dir && e[1] === v)).map(e => e[0] === v ? [e[1], e[2]] : [e[0], e[2]]);
+    drawGraph(svg, {directed: dir, mark: v => v === sel ? 'hl' : sel && nb(sel).some(x => x[0] === v) ? 'v' : '', emark: i => sel && (ROADS[i][0] === sel || (!dir && ROADS[i][1] === sel)) ? 'hl' : '', click: v => { sel = v; draw(); const n = nb(v); say.textContent = v + (dir ? ' 出发能直接到：' : ' 连着：') + (n.length ? n.map(x => x[0] + '（' + x[1] + '）').join('、') : '哪儿也去不了') + '。' + (dir ? '出度' : '度') + '是 ' + n.length + '。'; }});
+    al.innerHTML = PLACES.map(v => '<div style="font-size:13.5px;font-family:var(--f-mono);' + (v === sel ? 'color:var(--main);font-weight:700' : '') + '">' + v + ' → ' + (nb(v).map(x => x[0] + ' ' + x[1]).join('，') || '∅') + '</div>').join('');
+    const M = PLACES.map(a => PLACES.map(b => { const e = ROADS.find(x => (x[0] === a && x[1] === b) || (!dir && x[0] === b && x[1] === a)); return e ? e[2] : 0; }));
+    am.innerHTML = '<table class="t c" style="font-family:var(--f-mono);font-size:12.5px"><tr><th></th>' + PLACES.map(p => '<th>' + p[0] + '</th>').join('') + '</tr>' + PLACES.map((p, i) => '<tr' + (p === sel ? ' style="background:var(--hl)"' : '') + '><th>' + p + '</th>' + M[i].map(v => '<td>' + (v || '·') + '</td>').join('') + '</tr>').join('') + '</table>';
+  }
+  db.addEventListener('click', () => { dir = !dir; db.textContent = '单行道：' + (dir ? '开' : '关'); draw(); say.textContent = dir ? '每条路只能顺着箭头走。表格不再对称：家→湖边有路，湖边→家没有。' : '无向图：表格沿对角线对称。'; });
+  draw(); say.textContent = '点一个地方看看。';
+});
+
+/* ---------- 第十七章：团团来找你（BFS / DFS） ---------- */
+const WALK = '.:=';
+function gridNb(g, x, y){ const out = []; [[1, 0], [-1, 0], [0, 1], [0, -1]].forEach(([dx, dy]) => { const nx = x + dx, ny = y + dy; if (g[ny] && g[ny][nx] !== undefined && WALK.includes(g[ny][nx])) out.push([nx, ny]); }); return out; }
+dev('#chaseFig', fig => {
+  const map = $('#chMap'), kvb = $('.kv', fig), say = $('.say', fig);
+  const S = [12, 6], T = [7, 3];
+  let mode = 0, grid, order = {}, path = {}, timer = null;
+  btnRow($('[data-m]', fig), ['广度优先（队列）', '深度优先（栈）'], 0, i => { mode = i; clearRun(); draw(); });
+  function clearRun(){ if (timer) clearTimeout(timer); timer = null; order = {}; path = {}; }
+  function draw(cur){ isleDraw(map, grid, {px: T[0], py: T[1], mobs: [S], label: (x, y) => order[x + ',' + y] && !(x === S[0] && y === S[1]) ? String(order[x + ',' + y]) : '', mark: (x, y) => (path[x + ',' + y] ? 'path' : '') + (cur && cur[0] === x && cur[1] === y ? ' hl' : ''), click: (x, y) => { if (timer) return; if ((x === S[0] && y === S[1]) || (x === T[0] && y === T[1])) return; if (grid[y][x] === '.') grid[y][x] = '#'; else if (grid[y][x] === '#' && ISLAND[y][x] !== '#') grid[y][x] = '.'; else return; clearRun(); draw(); say.textContent = '改了地图。再点“找”。'; }}); }
+  function reset(){ clearRun(); grid = isleGrid(ISLAND); draw(); kv(kvb, [['看了几格', 0], ['找到的路', '—']]); say.textContent = '团团在 (12, 6)，你在 (7, 3)。点“找”。'; }
+  function go(){
+    if (timer) return; clearRun();
+    const g = grid.map(r => r.slice()); g[T[1]][T[0]] = '.';
+    const ev = [], came = {}; const k0 = S.join(','); came[k0] = null;
+    if (mode === 0) { const q = [S]; while (q.length) { const c = q.shift(); ev.push(c); if (c[0] === T[0] && c[1] === T[1]) break; gridNb(g, c[0], c[1]).forEach(n => { const k = n.join(','); if (!(k in came)) { came[k] = c.join(','); q.push(n); } }); } }
+    else { const st = [S]; const seen = {}; while (st.length) { const c = st.pop(); const k = c.join(','); if (seen[k]) continue; seen[k] = 1; ev.push(c); if (c[0] === T[0] && c[1] === T[1]) break; gridNb(g, c[0], c[1]).reverse().forEach(n => { const nk = n.join(','); if (!seen[nk]) { came[nk] = k; st.push(n); } }); } }
+    let i = 0;
+    const tick = () => {
+      if (i >= ev.length) {
+        const tk = T.join(',');
+        if (!(tk in came) || !ev.some(c => c.join(',') === tk)) { say.textContent = '走遍了能走到的格子，也没找到你：路被堵死了。'; kv(kvb, [['看了几格', ev.length], ['找到的路', '没有']]); timer = null; return; }
+        let c = tk, steps = 0; while (c) { path[c] = 1; c = came[c]; steps++; }
+        draw(); timer = null;
+        kv(kvb, [['看了几格', ev.length], ['找到的路', (steps - 1) + ' 步']]);
+        say.textContent = mode === 0 ? '找到了！广度优先一圈一圈往外，第一次碰到你时走的就是最短的路：' + (steps - 1) + ' 步。红框是顺着“从哪来”倒着画出来的。' : '找到了，可是这条路 ' + (steps - 1) + ' 步：深度优先一条路走到黑，找到的路不一定最短。换成广度优先比一比。';
+        return;
+      }
+      const c = ev[i]; order[c.join(',')] = ++i; draw(c);
+      kv(kvb, [['看了几格', i], ['找到的路', '找着呢……']]);
+      timer = setTimeout(tick, 90);
+    };
+    tick();
+  }
+  $('[data-x="go"]', fig).addEventListener('click', go);
+  $('[data-x="r"]', fig).addEventListener('click', reset);
+  reset();
+});
+
+/* ---------- 第十八章：迪杰斯特拉一步一步 ---------- */
+dev('#dijFig', fig => {
+  const svg = $('svg.dij', fig), tab = $('#djTab'), say = $('.say', fig);
+  const adj = {}; PLACES.forEach(p => adj[p] = []); ROADS.forEach(([a, b, w]) => { adj[a].push([b, w]); adj[b].push([a, w]); });
+  let dist, prev, done, rows, pick, cur;
+  function reset(){ dist = {}; prev = {}; done = {}; PLACES.forEach(p => { dist[p] = Infinity; prev[p] = null; }); dist['家'] = 0; rows = []; cur = null; pick = null; draw(); say.textContent = '起点“家”写 0，别的都写 ∞。点“下一步”。'; }
+  const fmt = v => v === Infinity ? '∞' : String(v);
+  function draw(){
+    const onPath = {}; const pathE = {};
+    if (pick && dist[pick] < Infinity) { let p = pick; while (prev[p]) { onPath[p] = 1; pathE[[p, prev[p]].sort().join()] = 1; p = prev[p]; } onPath['家'] = 1; }
+    drawGraph(svg, {mark: v => v === cur ? 'hl' : done[v] ? 'ok' : dist[v] < Infinity ? 'q' : '', label: v => fmt(dist[v]), emark: i => { const e = ROADS[i]; if (pick) return pathE[[e[0], e[1]].sort().join()] ? 'hl' : 'dim'; return (cur && (e[0] === cur || e[1] === cur)) ? 'hl' : ''; }, click: v => { if (Object.keys(done).length < PLACES.length) { say.textContent = '先把所有地方都定下来。'; return; } pick = v; draw(); let p = v, path = []; while (p) { path.unshift(p); p = prev[p]; } say.textContent = '家到' + v + '最短 ' + dist[v] + ' 步：' + path.join(' → ') + '。'; }});
+    tab.innerHTML = '<table class="t c" style="font-size:13px"><tr><th>第几步</th><th>定下</th>' + PLACES.map(p => '<th>' + p + '</th>').join('') + '</tr>' + rows.map((r, k) => '<tr><td>' + (k + 1) + '</td><td><b>' + r.pick + '</b></td>' + PLACES.map(p => '<td' + (r.fix[p] ? ' style="color:var(--l1);font-weight:700"' : '') + '>' + r.d[p] + '</td>').join('') + '</tr>').join('') + '</table>';
+  }
+  function step(){
+    const left = PLACES.filter(p => !done[p]);
+    if (!left.length) { say.textContent = '全部定下了。点一个地方看最短的路。'; return; }
+    let u = left[0]; left.forEach(p => { if (dist[p] < dist[u]) u = p; });
+    done[u] = true; cur = u; const changed = [];
+    adj[u].forEach(([v, w]) => { if (!done[v] && dist[u] + w < dist[v]) { changed.push(v + ' ' + fmt(dist[v]) + '→' + (dist[u] + w)); dist[v] = dist[u] + w; prev[v] = u; } });
+    const d = {}, fix = {}; PLACES.forEach(p => { d[p] = done[p] && p !== u ? '—' : fmt(dist[p]) + (prev[p] && p !== '家' && !done[p] ? '（' + prev[p][0] + '）' : ''); fix[p] = p === u; });
+    d[u] = fmt(dist[u]);
+    rows.push({pick: u, d, fix}); pick = null; draw();
+    say.textContent = '没定下的里面，' + u + ' 最小（' + dist[u] + '），定下它。' + (changed.length ? '经过它更近的：' + changed.join('，') + '。' : '经过它没有让谁更近。') + (Object.keys(done).length === PLACES.length ? ' 全部定下了，点一个地方看路。' : '');
+  }
+  $('[data-x="s"]', fig).addEventListener('click', step);
+  $('[data-x="r"]', fig).addEventListener('click', reset);
+  reset();
+});
+
+/* ---------- 第十九章：修路（克鲁斯卡尔、普里姆） ---------- */
+dev('#mstFig', fig => {
+  const svg = $('svg.mst', fig), kvb = $('.kv', fig), say = $('.say', fig);
+  let mode = 0, state;
+  btnRow($('[data-m]', fig), ['克鲁斯卡尔', '普里姆（从家开始）'], 0, i => { mode = i; reset(); });
+  function reset(){
+    const order = ROADS.map((e, i) => i).sort((a, b) => ROADS[a][2] - ROADS[b][2] || a - b);
+    const P = {}; PLACES.forEach(p => P[p] = p);
+    state = {order, k: 0, P, take: {}, skip: {}, inT: {'家': true}, total: 0, n: 0};
+    draw(); kv(kvb, [['修了几条', 0], ['总长', 0]]);
+    say.textContent = mode === 0 ? '所有路按长短排好：' + order.map(i => ROADS[i][0][0] + ROADS[i][1][0] + ROADS[i][2]).join('、') + '。点“下一步”。' : '从“家”开始。每一步在“连上的”和“没连上的”之间挑最短的路。';
+  }
+  const find = a => { while (state.P[a] !== a) a = state.P[a]; return a; };
+  function draw(hl){ drawGraph(svg, {mark: v => mode === 1 ? (state.inT[v] ? 'ok' : '') : '', emark: i => i === hl ? 'hl' : state.take[i] ? 'ok' : state.skip[i] ? 'dim' : '', label: v => mode === 0 && state.n ? find(v)[0] : ''}); }
+  function step(){
+    if (state.n >= PLACES.length - 1) { say.textContent = '已经修了 ' + state.n + ' 条，所有地方都连上了。总长 ' + state.total + '。'; return; }
+    if (mode === 0) {
+      const i = state.order[state.k++], [a, b, w] = ROADS[i];
+      if (find(a) === find(b)) { state.skip[i] = 1; draw(i); say.textContent = a + '—' + b + '（' + w + '）：两头已经连着了（队长都是' + find(a) + '），修了会成圈，跳过。'; return; }
+      state.P[find(a)] = find(b); state.take[i] = 1; state.n++; state.total += w; draw(i);
+      say.textContent = a + '—' + b + '（' + w + '）：两头还不连着，修！' + (state.n === PLACES.length - 1 ? '修够 5 条了，停。总长 ' + state.total + '。' : '');
+    } else {
+      let best = -1; ROADS.forEach((e, i) => { if (state.inT[e[0]] !== state.inT[e[1]] && (best < 0 || e[2] < ROADS[best][2])) best = i; });
+      const [a, b, w] = ROADS[best], nw = state.inT[a] ? b : a;
+      const cands = ROADS.filter(e => state.inT[e[0]] !== state.inT[e[1]]).map(e => e[0][0] + e[1][0] + e[2]).join('、');
+      state.inT[nw] = true; state.take[best] = 1; state.n++; state.total += w; draw(best);
+      say.textContent = '跨在两边的路有：' + cands + '。最短的是 ' + a + '—' + b + '（' + w + '），把' + nw + '拉进来。' + (state.n === PLACES.length - 1 ? '所有地方都连上了，总长 ' + state.total + '。' : '');
+    }
+    kv(kvb, [['修了几条', state.n], ['总长', state.total]]);
+  }
+  $('[data-x="s"]', fig).addEventListener('click', step);
+  $('[data-x="r"]', fig).addEventListener('click', reset);
+  reset();
+});
+
+/* ---------- 第二十章：合成顺序（拓扑排序） ---------- */
+dev('#topoFig', fig => {
+  const svg = $('svg.topo', fig), ordEl = $('#tpOrd'), say = $('.say', fig);
+  const XY = {'木': [70, 40], '沙': [70, 140], '石': [70, 240], '木板': [230, 40], '玻璃': [230, 140], '石砖': [230, 240], '木棍': [390, 70], '灯': [460, 170], '小屋': [580, 140]};
+  const BASE = [['木', '木板'], ['沙', '玻璃'], ['石', '石砖'], ['木板', '木棍'], ['玻璃', '灯'], ['木棍', '灯'], ['石砖', '小屋'], ['木板', '小屋'], ['灯', '小屋']];
+  let E, indeg, done, order, cyc;
+  function reset(c){ cyc = !!c; E = BASE.slice(); if (cyc) E.push(['木棍', '木']); indeg = {}; Object.keys(XY).forEach(v => indeg[v] = 0); E.forEach(e => indeg[e[1]]++); done = {}; order = []; draw(); say.textContent = cyc ? '配方写错了：木头要用木棍造（木棍 → 木），木棍又要用木板、木板要用木头。现在从头试试。' : '每样东西上面是“还差几样”。虚线框的现在就能做。'; }
+  const ready = () => Object.keys(XY).filter(v => !done[v] && indeg[v] === 0);
+  function draw(hl){ const rd = ready(); drawGraph(svg, {xy: XY, edges: E.map(e => [e[0], e[1]]), directed: true, H: 280, mark: v => v === hl ? 'hl' : done[v] ? 'ok' : rd.includes(v) ? 'q' : '', emark: i => done[E[i][0]] ? 'dim' : '', label: v => done[v] ? '' : String(indeg[v])}); ordEl.innerHTML = order.map((v, k) => '<span>' + v + '<small>' + (k + 1) + '</small></span>').join(''); }
+  function step(){
+    const rd = ready();
+    if (!rd.length) { const left = Object.keys(XY).filter(v => !done[v]); say.textContent = left.length ? '没有“还差 0 样”的了，可还剩 ' + left.join('、') + ' 没做：它们在一个圈里互相等。排不出来！' : '全部做完了：' + order.join(' → ') + '。'; return false; }
+    const v = rd[0]; done[v] = true; order.push(v); const dec = [];
+    E.forEach(e => { if (e[0] === v) { indeg[e[1]]--; dec.push(e[1] + '（还差 ' + indeg[e[1]] + '）'); } });
+    draw(v); say.textContent = '做' + v + '。' + (dec.length ? '用它的东西少差一样：' + dec.join('、') + '。' : '没有东西用它。') + (Object.keys(done).length === Object.keys(XY).length ? ' 全部做完了！' : '');
+    return true;
+  }
+  $('[data-x="s"]', fig).addEventListener('click', step);
+  $('[data-x="all"]', fig).addEventListener('click', () => { let k = 0; while (step() && k++ < 20); });
+  $('[data-x="cyc"]', fig).addEventListener('click', () => reset(true));
+  $('[data-x="r"]', fig).addEventListener('click', () => reset(false));
+  reset(false);
+});
+
+/* ---------- 第二十一章：找零钱；装背包 ---------- */
+const BAG_ITEMS = [['船桨', 5, 10], ['镐', 4, 7], ['灯', 4, 7], ['面包', 1, 1], ['绳子', 2, 2], ['地图', 1, 1]];
+dev('#greedyFig', fig => {
+  const body = $('.grbody', fig), say = $('.say', fig);
+  function coins(){
+    const SETS = [[10, 5, 1], [4, 3, 1], [10, 7, 1], [25, 10, 1]];
+    let si = 0;
+    body.innerHTML = '<div class="btns" data-c></div><label class="lab">要找 <b id="cnAO"></b> 元</label><input type="range" id="cnA" min="1" max="40" value="6"><div class="cells" id="cnG"></div><div class="cells" id="cnB"></div>';
+    const run = () => {
+      const S = SETS[si], a = +$('#cnA').value; $('#cnAO').textContent = a;
+      const g = []; let r = a; S.forEach(c => { while (r >= c) { g.push(c); r -= c; } });
+      const best = Array(a + 1).fill(Infinity), from = Array(a + 1).fill(0); best[0] = 0;
+      for (let x = 1; x <= a; x++) S.forEach(c => { if (c <= x && best[x - c] + 1 < best[x]) { best[x] = best[x - c] + 1; from[x] = c; } });
+      const b = []; let x = a; while (x > 0) { b.push(from[x]); x -= from[x]; }
+      $('#cnG').innerHTML = '<span class="dim" style="border:0">贪心：</span>' + g.map(c => '<span>' + c + '</span>').join('') + '<span class="dim" style="border:0">' + g.length + ' 个</span>';
+      $('#cnB').innerHTML = '<span class="dim" style="border:0">最少：</span>' + b.map(c => '<span class="hl">' + c + '</span>').join('') + '<span class="dim" style="border:0">' + b.length + ' 个</span>';
+      say.textContent = g.length === b.length ? '这次贪心找对了。' : '贪心上当了！它先拿了最大的 ' + g[0] + '，结果多用了 ' + (g.length - b.length) + ' 个硬币。（“最少”是用下一章的动态规划算出来的。）';
+    };
+    btnRow($('[data-c]', body), SETS.map(s => s.join('、') + ' 元'), 0, i => { si = i; run(); });
+    $('#cnA').addEventListener('input', run); run();
+  }
+  function bag(){
+    let mine = {};
+    body.innerHTML = '<div class="bgw"><p class="dim" style="font-size:13.5px;margin:.2em 0">背包最多 8 斤。点东西装进去或拿出来。</p><div class="bag" id="bgItems"></div><div class="btns"><button class="btn" data-b="g">贪心装</button><button class="btn" data-b="t">回溯找最好的</button><button class="btn" data-b="c">倒空</button></div><div class="kv"></div></div>';
+    const show = (pick, msg) => {
+      $('#bgItems').innerHTML = BAG_ITEMS.map(([n, w, v]) => '<span data-n="' + n + '" class="' + (pick[n] ? 'on' : '') + '" style="cursor:pointer">' + n + ' ' + w + '斤 · ' + v + '</span>').join('');
+      const W = BAG_ITEMS.filter(i => pick[i[0]]).reduce((s, i) => s + i[1], 0), V = BAG_ITEMS.filter(i => pick[i[0]]).reduce((s, i) => s + i[2], 0);
+      kv($('.kv', body), [['重量', W + ' / 8 斤'], ['有用程度', V]]);
+      if (msg) say.textContent = msg; else say.textContent = W > 8 ? '背不动了！超了 ' + (W - 8) + ' 斤。' : '现在有用程度 ' + V + '。你能装到多少？';
+    };
+    $('.bgw', body).addEventListener('click', e => {
+      const s = e.target.closest('[data-n]'); if (s) { mine[s.dataset.n] = !mine[s.dataset.n]; show(mine); return; }
+      const b = e.target.closest('[data-b]'); if (!b) return;
+      if (b.dataset.b === 'c') { mine = {}; show(mine); }
+      if (b.dataset.b === 'g') { const pick = {}; let w = 0; const order = BAG_ITEMS.slice().sort((a, c) => c[2] / c[1] - a[2] / a[1]); const log = []; order.forEach(([n, wt, v]) => { if (w + wt <= 8) { pick[n] = true; w += wt; log.push(n + '（每斤 ' + (v / wt).toFixed(2) + '）拿'); } else log.push(n + ' 装不下'); }); mine = pick; show(pick, '贪心按“每斤多有用”从高到低：' + log.join('，') + '。'); }
+      if (b.dataset.b === 't') { let best = -1, bestPick = null, tried = 0, cut = 0; const go = (i, w, v, pick) => { tried++; if (w > 8) { cut++; return; } if (i === BAG_ITEMS.length) { if (v > best) { best = v; bestPick = Object.assign({}, pick); } return; } go(i + 1, w, v, pick); pick[BAG_ITEMS[i][0]] = true; go(i + 1, w + BAG_ITEMS[i][1], v + BAG_ITEMS[i][2], pick); delete pick[BAG_ITEMS[i][0]]; }; go(0, 0, 0, {}); mine = bestPick; show(bestPick, '回溯把“每样拿不拿”都试了一遍：一共走了 ' + tried + ' 步，其中 ' + cut + ' 次一装就超重、马上退回来（剪枝）。最好的装法有用程度 ' + best + '。'); }
+    });
+    show(mine);
+  }
+  btnRow($('[data-m]', fig), ['找零钱', '装背包'], 0, i => [coins, bag][i]());
+  coins();
+});
+
+/* ---------- 第二十二章：爬楼梯；走格子；背包的表格 ---------- */
+dev('#dpFig', fig => {
+  const body = $('.dpbody', fig), say = $('.say', fig);
+  function stairs(){
+    body.innerHTML = '<label class="lab">台阶数 n = <b id="stNO"></b></label><input type="range" id="stN" min="1" max="40" value="10"><div class="cells" id="stT"></div><div class="kv"></div>';
+    slider('stN', null, n => {
+      const t = [0, 1, 2]; for (let i = 3; i <= n; i++) t.push(t[i - 1] + t[i - 2]);
+      const calls = [0, 1, 1]; for (let i = 3; i <= n; i++) calls.push(1 + calls[i - 1] + calls[i - 2]);
+      $('#stT').innerHTML = t.slice(1, n + 1).map((v, i) => '<span class="' + (i === n - 1 ? 'hl' : '') + '">' + v.toLocaleString('en-US') + '<small>第 ' + (i + 1) + ' 级</small></span>').join('');
+      kv($('.kv', body), [['走法', t[n].toLocaleString('en-US')], ['直接递归调用', calls[n].toLocaleString('en-US') + ' 次'], ['填表算了', n + ' 格']]);
+      say.textContent = n < 15 ? '每一格 = 前一格 + 前两格。' : '直接递归要调用 ' + calls[n].toLocaleString('en-US') + ' 次，填表只算 ' + n + ' 格。';
+    });
+  }
+  function grid(){
+    const H = 6, W = 8; let rock = {'2,1': 1, '4,3': 1, '6,2': 1};
+    body.innerHTML = '<div class="isle" id="dpMap"></div><div class="btns"><button class="btn" data-g="fill">一格一格填</button><button class="btn" data-g="clr">拿掉石头</button></div>';
+    const map = $('#dpMap', body); let timer = null;
+    const calc = () => { const w = {}; for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { const k = x + ',' + y; w[k] = rock[k] ? 0 : (x === 0 && y === 0) ? 1 : (w[(x - 1) + ',' + y] || 0) + (w[x + ',' + (y - 1)] || 0); } return w; };
+    const g = () => Array.from({length: H}, (_, y) => Array.from({length: W}, (_, x) => rock[x + ',' + y] ? '#' : '.'));
+    const draw = upto => { const w = calc(); isleDraw(map, g(), {label: (x, y) => (upto === undefined || y * W + x <= upto) ? String(w[x + ',' + y]) : '', mark: (x, y) => upto !== undefined && y * W + x === upto ? 'hl' : '', click: (x, y) => { if (timer || (x === 0 && y === 0) || (x === W - 1 && y === H - 1)) return; const k = x + ',' + y; if (rock[k]) delete rock[k]; else rock[k] = 1; draw(); say.textContent = '右下角现在有 ' + calc()[(W - 1) + ',' + (H - 1)] + ' 条路。'; }}); };
+    $('[data-g="fill"]', body).addEventListener('click', () => { if (timer) return; let i = 0; const w = calc(); const tick = () => { if (i >= W * H) { timer = null; draw(); say.textContent = '填完了：右下角有 ' + w[(W - 1) + ',' + (H - 1)] + ' 条路。'; return; } const x = i % W, y = Math.floor(i / W); draw(i); say.textContent = rock[x + ',' + y] ? '(' + x + ', ' + y + ') 是石头：0。' : x === 0 && y === 0 ? '起点：1 条。' : '(' + x + ', ' + y + ') = 左边 ' + (w[(x - 1) + ',' + y] || 0) + ' + 上面 ' + (w[x + ',' + (y - 1)] || 0) + ' = ' + w[x + ',' + y] + '。'; i++; timer = setTimeout(tick, 220); }; tick(); });
+    $('[data-g="clr"]', body).addEventListener('click', () => { if (timer) return; rock = {}; draw(); say.textContent = '没有石头时，8 × 6 的格子从左上到右下有 ' + calc()[(W - 1) + ',' + (H - 1)] + ' 条路。'; });
+    draw(); say.textContent = '点“一格一格填”，或者点格子放石头。右下角有 ' + calc()[(W - 1) + ',' + (H - 1)] + ' 条路。';
+  }
+  function knap(){
+    const C = 8;
+    body.innerHTML = '<p class="dim" style="font-size:13.5px;margin:.2em 0">背包最多 8 斤，物品就是第二十一章那六样。第 i 行第 c 列：只看前 i 样、能背 c 斤时最多多有用。点一格，看它是从哪两格算出来的。</p><div class="tbl scroll-x" id="kpT"></div>';
+    const n = BAG_ITEMS.length, t = Array.from({length: n + 1}, () => Array(C + 1).fill(0));
+    for (let i = 1; i <= n; i++) { const [, w, v] = BAG_ITEMS[i - 1]; for (let c = 0; c <= C; c++) { t[i][c] = t[i - 1][c]; if (w <= c && t[i - 1][c - w] + v > t[i][c]) t[i][c] = t[i - 1][c - w] + v; } }
+    const draw = (si, sc) => { const from = {}; if (si) { from[(si - 1) + ',' + sc] = 1; const w = BAG_ITEMS[si - 1][1]; if (w <= sc) from[(si - 1) + ',' + (sc - w)] = 1; }
+      $('#kpT', body).innerHTML = '<table class="t c" style="font-family:var(--f-mono);font-size:12.5px;min-width:340px"><tr><th></th>' + Array.from({length: C + 1}, (_, c) => '<th>' + c + '斤</th>').join('') + '</tr>' + t.map((row, i) => '<tr><th style="white-space:nowrap">' + (i ? BAG_ITEMS[i - 1][0] + ' ' + BAG_ITEMS[i - 1][1] + '/' + BAG_ITEMS[i - 1][2] : '不拿') + '</th>' + row.map((v, c) => '<td data-i="' + i + '" data-c="' + c + '" style="cursor:pointer;' + (i === si && c === sc ? 'background:var(--main);color:var(--paper)' : from[i + ',' + c] ? 'background:var(--hl)' : '') + '">' + v + '</td>').join('') + '</tr>').join('') + '</table>'; };
+    $('#kpT', body).addEventListener('click', e => { const td = e.target.closest('td[data-i]'); if (!td) return; const i = +td.dataset.i, c = +td.dataset.c; draw(i, c); if (!i) { say.textContent = '第 0 行：什么都不看，有用程度都是 0。'; return; } const [nm, w, v] = BAG_ITEMS[i - 1]; say.textContent = '第 ' + i + ' 行第 ' + c + ' 列 = ' + t[i][c] + '：不拿' + nm + '是上一行同一列的 ' + t[i - 1][c] + (w <= c ? '；拿' + nm + '是上一行第 ' + (c - w) + ' 列的 ' + t[i - 1][c - w] + ' 加 ' + v + ' = ' + (t[i - 1][c - w] + v) : '；' + nm + '有 ' + w + ' 斤，背不下') + '。取大的。'; });
+    draw(); say.textContent = '右下角 ' + t[n][C] + ' 就是答案：和回溯找到的一样，可是每格只算了一次（' + (n + 1) * (C + 1) + ' 格）。';
+  }
+  btnRow($('[data-m]', fig), ['爬楼梯', '走格子', '背包的表格（第二层）'], 0, i => [stairs, grid, knap][i]());
+  stairs();
 });
 
 })();

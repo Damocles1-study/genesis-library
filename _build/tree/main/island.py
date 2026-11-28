@@ -711,6 +711,284 @@ def demo():
         print('  页：', p)
     print('找 42：', idx_find(42), '，读了', READS['n'], '次硬盘；找', keys[3], '：', idx_find(keys[3]))
 
+#>> 16
+# ---------- 第 16 步 · 图：岛上的地点和路 ----------
+# 点：岛上的六个地方。边：两地之间有路，数字是要走几步。
+PLACES = ['家', '湖边', '石山', '沙滩', '树林', '码头']
+ROADS = [('家', '湖边', 4), ('家', '石山', 3), ('家', '树林', 5), ('湖边', '沙滩', 6),
+         ('石山', '树林', 2), ('树林', '沙滩', 4), ('沙滩', '码头', 2), ('石山', '码头', 9)]
+
+
+def build_graph(roads):
+    """邻接表：每个地方 → [(邻居, 距离), …]"""
+    g = {p: [] for p in PLACES}
+    for a, b, w in roads:
+        g[a].append((b, w))
+        g[b].append((a, w))            # 无向图：两头都记
+    return g
+
+
+def build_matrix(roads):
+    """邻接矩阵：m[i][j] 是第 i 个地方到第 j 个地方的距离，0 表示没有路"""
+    n = len(PLACES)
+    m = [[0] * n for _ in range(n)]
+    for a, b, w in roads:
+        i, j = PLACES.index(a), PLACES.index(b)
+        m[i][j] = m[j][i] = w
+    return m
+
+
+def grid_neighbors(grid, x, y):
+    """方格地图也是一张图：每块能走的地，和它上下左右能走的地之间有一条边"""
+    out = []
+    for dx, dy in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
+        nx, ny = x + dx, y + dy
+        if 0 <= ny < len(grid) and 0 <= nx < len(grid[0]) and grid[ny][nx] in '.:@=':
+            out.append((nx, ny))
+    return out
+
+
+def demo():
+    g = build_graph(ROADS)
+    for p in PLACES:
+        print(p, '→', ', '.join(f'{q}({w})' for q, w in g[p]), f'  度 {len(g[p])}')
+    print('邻接矩阵：')
+    for row in build_matrix(ROADS):
+        print(' '.join(f'{v:2}' for v in row))
+    grid = make_map(ISLAND)
+    print('(7, 3) 能走到的邻居：', grid_neighbors(grid, 7, 3))
+
+#>> 17
+# ---------- 第 17 步 · 广度优先：团团来找你 ----------
+def bfs_path(grid, start, goal):
+    """从 start 一圈一圈往外找，第一次碰到 goal 时走的就是最少步数的路"""
+    q = deque([start])
+    came = {start: None}               # 每一格是从哪一格走来的
+    while q:
+        cur = q.popleft()
+        if cur == goal:
+            break
+        for nb in grid_neighbors(grid, cur[0], cur[1]):
+            if nb not in came:
+                came[nb] = cur
+                q.append(nb)
+    if goal not in came:
+        return None
+    path = []
+    cur = goal
+    while cur is not None:             # 顺着“从哪来”倒着走回起点
+        path.append(cur)
+        cur = came[cur]
+    return path[::-1]
+
+
+def draw_path(grid, path, mark='*'):
+    g = [[('.' if c == '@' else c) for c in row] for row in grid]
+    for x, y in path[1:-1]:
+        g[y][x] = mark
+    sx, sy = path[0]
+    gx, gy = path[-1]
+    g[sy][sx] = 'o'                    # 团团
+    g[gy][gx] = '@'
+    show(g)
+
+
+def demo():
+    grid = make_map(ISLAND)
+    path = bfs_path(grid, (12, 6), (7, 3))
+    print('团团从 (12, 6) 到你那儿，最少走', len(path) - 1, '步：')
+    draw_path(grid, path)
+
+#>> 18
+# ---------- 第 18 步 · 迪杰斯特拉：走最省力的路 ----------
+import heapq
+COST = {'.': 1, '@': 1, '=': 1, ':': 3}   # 草地 1，沙地走起来累，算 3
+
+
+def dijkstra_path(grid, start, goal):
+    dist = {start: 0}
+    came = {start: None}
+    pq = [(0, start)]
+    done = set()
+    while pq:
+        d, cur = heapq.heappop(pq)      # 每次拿出“目前最近”的那一格
+        if cur in done:
+            continue
+        done.add(cur)
+        if cur == goal:
+            break
+        for nb in grid_neighbors(grid, cur[0], cur[1]):
+            nd = d + COST[grid[nb[1]][nb[0]]]
+            if nb not in dist or nd < dist[nb]:
+                dist[nb] = nd
+                came[nb] = cur
+                heapq.heappush(pq, (nd, nb))
+    path, cur = [], goal
+    while cur is not None:
+        path.append(cur)
+        cur = came[cur]
+    return path[::-1], dist[goal]
+
+
+def effort(grid, path):
+    return sum(COST[grid[y][x]] for x, y in path[1:])
+
+
+def demo():
+    grid = make_map(ISLAND)
+    a, b = (8, 1), (13, 5)
+    p1 = bfs_path(grid, a, b)
+    p2, cost = dijkstra_path(grid, a, b)
+    print(f'步数最少的路：{len(p1) - 1} 步，费力 {effort(grid, p1)}')
+    draw_path(grid, p1)
+    print(f'最省力的路：{len(p2) - 1} 步，费力 {cost}')
+    draw_path(grid, p2)
+
+#>> 19
+# ---------- 第 19 步 · 最小生成树：用最少的路把村子连起来 ----------
+VILLAGES = {'甲村': (2, 2), '乙村': (9, 1), '丙村': (12, 4), '丁村': (4, 6), '戊村': (10, 7)}
+
+
+def kruskal(villages):
+    names = list(villages)
+    edges = []
+    for i in range(len(names)):
+        for j in range(i + 1, len(names)):
+            (x1, y1), (x2, y2) = villages[names[i]], villages[names[j]]
+            edges.append((abs(x1 - x2) + abs(y1 - y2), names[i], names[j]))
+    edges.sort()                       # 从最短的路开始挑
+    PARENT.clear()                     # 用第 14 步的并查集
+    for n in names:
+        PARENT[n] = n
+    chosen = []
+    for w, a, b in edges:
+        if union(a, b):                # 两头还不连着，才修这条路
+            chosen.append((a, b, w))
+    return chosen
+
+
+def demo():
+    roads = kruskal(VILLAGES)
+    for a, b, w in roads:
+        print(f'修 {a}—{b}，长 {w}')
+    print('一共修', len(roads), '条路，总长', sum(w for a, b, w in roads))
+
+#>> 20
+# ---------- 第 20 步 · 拓扑排序：先造什么，后造什么 ----------
+def craft_order(goal):
+    """把造 goal 要用到的东西排个先后：一样东西的材料都有了，才能造它"""
+    need = {}
+    stack = [goal]
+    while stack:                       # 先找出要用到的所有东西
+        item = stack.pop()
+        if item in need:
+            continue
+        need[item] = [c for c, n in RECIPES.get(item, [])]
+        stack.extend(need[item])
+    indeg = {item: len(need[item]) for item in need}     # 还差几样材料
+    users = {item: [] for item in need}
+    for item in need:
+        for c in need[item]:
+            users[c].append(item)
+    q = deque(sorted(i for i in need if indeg[i] == 0))  # 原料：不用等
+    order = []
+    while q:
+        item = q.popleft()
+        order.append(item)
+        for u in users[item]:
+            indeg[u] = indeg[u] - 1
+            if indeg[u] == 0:
+                q.append(u)
+    if len(order) < len(need):
+        return None                    # 有东西永远等不到材料：配方里有环
+    return order
+
+
+def demo():
+    print('造小屋的顺序：', ' → '.join(craft_order('小屋')))
+    RECIPES['木'] = [('木棍', 1)]       # 故意写错：木要用木棍造，木棍又要用木
+    print('配方写成一个圈以后：', craft_order('小屋'))
+    del RECIPES['木']
+
+#>> 21
+# ---------- 第 21 步 · 贪心和回溯：背包装什么 ----------
+ITEMS = [('船桨', 5, 10), ('镐', 4, 7), ('灯', 4, 7), ('面包', 1, 1), ('绳子', 2, 2), ('地图', 1, 1)]
+BAG = 8                                # 背包最多背 8 斤；每样是 (名字, 斤, 有用程度)
+
+
+def greedy(items, cap):
+    """贪心：先拿“每斤最有用”的，拿得动就拿"""
+    pick, w, v = [], 0, 0
+    for name, wt, val in sorted(items, key=lambda t: t[2] / t[1], reverse=True):
+        if w + wt <= cap:
+            pick.append(name)
+            w, v = w + wt, v + val
+    return pick, v
+
+
+TRIED = {'n': 0}
+
+
+def best(items, cap, i=0):
+    """回溯：每样东西都试一试“拿”和“不拿”，走不通就退回来"""
+    TRIED['n'] = TRIED['n'] + 1
+    if i == len(items):
+        return [], 0
+    name, wt, val = items[i]
+    skip_pick, skip_v = best(items, cap, i + 1)          # 不拿第 i 样
+    if wt <= cap:
+        take_pick, take_v = best(items, cap - wt, i + 1)  # 拿第 i 样
+        if take_v + val > skip_v:
+            return [name] + take_pick, take_v + val
+    return skip_pick, skip_v
+
+
+def demo():
+    g, gv = greedy(ITEMS, BAG)
+    print('贪心：', g, '有用程度', gv)
+    b, bv = best(ITEMS, BAG)
+    print('回溯：', b, '有用程度', bv, f'（试了 {TRIED["n"]} 次）')
+
+#>> 22
+# ---------- 第 22 步 · 动态规划：把算过的记下来 ----------
+def knapsack(items, cap):
+    """table[i][c]：只看前 i 样、背包能背 c 斤时，最多多有用"""
+    n = len(items)
+    table = [[0] * (cap + 1) for _ in range(n + 1)]
+    for i in range(1, n + 1):
+        name, wt, val = items[i - 1]
+        for c in range(cap + 1):
+            table[i][c] = table[i - 1][c]                        # 不拿
+            if wt <= c and table[i - 1][c - wt] + val > table[i][c]:
+                table[i][c] = table[i - 1][c - wt] + val         # 拿
+    pick, c = [], cap                                            # 倒着找出拿了哪些
+    for i in range(n, 0, -1):
+        if table[i][c] != table[i - 1][c]:
+            pick.append(items[i - 1][0])
+            c = c - items[i - 1][1]
+    return pick[::-1], table[n][cap], table
+
+
+def count_ways(grid, sx, sy, gx, gy):
+    """只许往右、往下走，从 (sx, sy) 到 (gx, gy) 有几条路"""
+    ways = {}
+    for y in range(sy, gy + 1):
+        for x in range(sx, gx + 1):
+            if grid[y][x] not in '.:@':
+                ways[(x, y)] = 0
+            elif (x, y) == (sx, sy):
+                ways[(x, y)] = 1
+            else:
+                ways[(x, y)] = ways.get((x - 1, y), 0) + ways.get((x, y - 1), 0)
+    return ways[(gx, gy)]
+
+
+def demo():
+    pick, v, table = knapsack(ITEMS, BAG)
+    print('动态规划：', pick, '有用程度', v, f'（表格 {len(table)}×{len(table[0])}，每格算一次）')
+    grid = make_map(ISLAND)
+    print('从 (2, 1) 只往右、往下走到 (13, 7)，有', count_ways(grid, 2, 1, 13, 7), '条路')
+
 #>> 0
 if __name__ == '__main__':
     demo()

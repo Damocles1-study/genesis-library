@@ -1,0 +1,174 @@
+<section class="chap" id="c17" data-vol="卷五 · 网 · 广度和深度">
+  <div class="chead">
+    <div class="big">搜</div>
+    <div>
+      <div class="no">卷五 · 第十七章</div>
+      <h2>广度和深度</h2>
+      <dl><dt>讲什么</dt><dd>从一个点出发走遍一张图；广度优先：一圈一圈往外（队列）；深度优先：一条路走到黑再回头（栈）；团团怎样找到你；记住“从哪来”就能画出路；连通分量；408 的遍历序列</dd><dt>装置</dt><dd>团团来找你</dd></dl>
+      <div class="crs" data-c="结构"></div>
+      <div class="lvs"><a data-l="1" href="#c17-1">第一层 · 35 分钟</a><a data-l="2" href="#c17-2">第二层 · 55 分钟</a><a data-l="3" href="#c17-3">第三层 · 20 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>团团每次都朝我直直地冲过来，碰到石头就卡住。笨死了。</span></div>
+    <div class="l"><i class="j">舅</i><span>它只会看方向，不会找路。教它两招：一圈一圈地找，或者一条路走到底、不行再回头。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>说出广度优先和深度优先各怎样走、各用什么帮忙（队列、栈）。</li>
+      <li><span class="lg lg1">一</span>说出为什么广度优先找到的路步数最少，怎样靠“从哪来”把路画出来。</li>
+      <li><span class="lg lg2">二</span>写出邻接表和邻接矩阵上的 BFS、DFS，说出复杂度；按给定的存储结构写出遍历序列。</li>
+      <li><span class="lg lg2">二</span>用 BFS 求无权图的最短路径、用遍历求连通分量个数、用 DFS 判断有向图有没有环。</li>
+      <li><span class="lg lg3">三</span>说出双向广度优先和迭代加深；深度优先的时间戳和边的四种分类。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c17-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：队列和倒水（第五章）、栈（第四章）、图（第十六章）</span><span class="tm">约 35 分钟</span></div>
+    <div class="lyb">
+      <h3>走遍一张图</h3>
+      <p>从一个点出发，把能走到的点都走一遍，叫<b>图的遍历</b>。和树的遍历（第九章）不一样的是：图里可能有圈，绕着绕着会回到走过的地方。所以要<b>做记号</b>：走过的点记下来，下次碰到就不再走。</p>
+      <h3>广度优先：一圈一圈往外</h3>
+      <p>第五章倒水时已经见过它了：先看离起点一步远的所有点，再看两步远的，再看三步远的……用一个<b>队列</b>排队，先看到的先往外扩。</p>
+      <p>因为是一圈一圈往外找的，<b>第一次碰到目标时，走的一定是步数最少的路</b>。</p>
+      <h3>深度优先：一条路走到黑</h3>
+      <p>走迷宫的老办法：看到一条没走过的路就走进去，一直往前走；走到死路，就<b>退回上一个岔口</b>，换一条没走过的路。用一个<b>栈</b>记着回去的路（第七章的油漆桶用的就是这个办法）。</p>
+      <p>深度优先也能走遍所有的点，但它找到目标时走的路，不一定最短。</p>
+      <h3>把路画出来</h3>
+      <p>找到了目标，可是怎么知道路是怎么走的？办法是：每走到一个新的格子，都记一下“我是从哪一格走过来的”。找到目标以后，从目标开始，顺着“从哪来”一格一格倒着走回起点，再把这串格子反过来，就是路。</p>
+      <div class="fig" id="chaseFig">
+        <div class="fig-label">装置 · 第十七章</div>
+        <h4>团团来找你</h4>
+        <p class="how">团团（紫色）要走到你（橙色）身边。选“广度优先”或“深度优先”，点“找”，看它按什么顺序看格子（格子上的数是第几个被看的），最后找到的路是红框。点地图可以放石头（再点拿掉）。</p>
+        <div class="btns" data-m></div>
+        <div class="isle" id="chMap"></div>
+        <div class="btns"><button class="btn pri" data-x="go">找</button><button class="btn" data-x="r">重来</button></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+      <div class="mc">
+        <h5>迷宫和油漆桶</h5>
+        <p>《一块一块》<a href="../block/ten.html#c78">第七十八章</a>里，你用广度优先走过一个迷宫。第七章的油漆桶，用递归（或自己的栈）就是深度优先，用队列就是广度优先：同一个“走遍”，两种顺序。</p>
+      </div>
+      <div class="try">
+        <div class="th"><b>主线第 17 步：团团来找你</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+          <p>下载本章末尾“主线 · 第 17 步”的完整文件运行：团团从 (12, 6) 出发，用广度优先找到你，最少 8 步，路用 <code>*</code> 画在地图上。读一读 <code>bfs_path</code>：<code>came</code> 这个字典就是“每一格是从哪来的”，最后的 while 循环倒着走回起点。</p>
+        </div>
+      </div>
+      <div class="task" data-id="tree-t17a">
+        <div class="th"><b>纸上的迷宫</b></div>
+        <div class="tb"><p>在方格纸上画一个小迷宫。先用深度优先走一遍（规定先往右、再往下、再往左、再往上），每走一格写一个数；再用广度优先从起点一圈一圈写上步数。两种办法找到出口时，各写了多少个数？哪种找到的路更短？</p></div>
+      </div>
+      <div class="pass" data-id="tree-q17a">
+        <div class="qq" data-a="1"><p>遍历一张图，为什么要给走过的点做记号？</p><ol><li>为了好看</li><li>图里有圈，不做记号会绕回来、走不完</li></ol><p class="ex">树没有圈，图有。</p></div>
+        <div class="qq" data-a="0"><p>广度优先用什么帮忙？</p><ol><li>队列</li><li>栈</li></ol><p class="ex">一圈一圈，先进先出。</p></div>
+        <div class="qq" data-a="1"><p>深度优先走到死路，怎么办？</p><ol><li>停下来</li><li>退回上一个岔口，换一条路</li></ol><p class="ex">用栈记着回去的路。</p></div>
+        <div class="qq" data-a="0"><p>哪一种找到的路一定步数最少？</p><ol><li>广度优先</li><li>深度优先</li></ol><p class="ex">一圈一圈往外，第一次碰到就是最近的。</p></div>
+        <div class="qq" data-a="1"><p>找到目标以后，怎样知道路是怎么走的？</p><ol><li>重新走一遍</li><li>顺着每格记下的“从哪来”倒着走回起点</li></ol><p class="ex">再把这串格子反过来。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c17-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">对照 408：图的遍历及其应用</span><span class="tm">约 55 分钟</span><span class="sum">BFS 和 DFS 的代码；在邻接表和邻接矩阵上的复杂度；广度优先生成树、深度优先生成树；遍历序列不唯一；无权单源最短路径；连通分量；有向图判环。</span></div>
+    <div class="lyb">
+      <h3>代码和复杂度</h3>
+<pre class="code" data-k="traverse.c">int visited[MAXV];
+void BFS(Graph *G, int v) {                 /* 邻接表 */
+    int Q[MAXV], f = 0, r = 0;
+    visit(v); visited[v] = 1; Q[r++] = v;
+    while (f &lt; r) {
+        int u = Q[f++];
+        for (ArcNode *p = G-&gt;adj[u].first; p; p = p-&gt;next)
+            if (!visited[p-&gt;to]) { visit(p-&gt;to); visited[p-&gt;to] = 1; Q[r++] = p-&gt;to; }
+    }
+}
+void DFS(Graph *G, int v) {
+    visit(v); visited[v] = 1;
+    for (ArcNode *p = G-&gt;adj[v].first; p; p = p-&gt;next)
+        if (!visited[p-&gt;to]) DFS(G, p-&gt;to);
+}
+void traverse(Graph *G) {                   /* 非连通图：每个没访问过的顶点开一次 */
+    for (int v = 0; v &lt; G-&gt;n; v++) visited[v] = 0;
+    for (int v = 0; v &lt; G-&gt;n; v++) if (!visited[v]) BFS(G, v);   /* 调用次数 = 连通分量个数 */
+}</pre>
+      <p>BFS 是在<b>入队时</b>就标记 visited，否则同一个顶点可能被多次入队。复杂度：邻接表 O(n + e)，邻接矩阵 O(n²)（每个顶点要扫一整行）。空间：BFS 的队列、DFS 的递归栈，最坏都是 O(n)。</p>
+      <p>遍历时走过的边构成<b>广度优先生成树</b>和<b>深度优先生成树</b>（非连通时是生成森林）。邻接矩阵是唯一的，所以给定起点，基于矩阵的遍历序列和生成树唯一；邻接表不唯一，所以基于它的遍历序列和生成树都不唯一。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>无向图的顶点为 1—7，边为 (1,2)(1,3)(2,4)(2,5)(3,6)(5,6)(6,7)。邻接表中每个顶点的边表按顶点编号从小到大排列。（1）从顶点 1 出发，写出 BFS 和 DFS 序列。（2）BFS 生成树的高度是多少（根为第 1 层）？（3）若删去边 (5,6)，从 1 出发的 DFS 序列是什么？</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）BFS：1，然后 2、3，然后 2 的邻居 4、5，3 的邻居 6，然后 6 的邻居 7：1 2 3 4 5 6 7。DFS：1 → 2 → 4（4 没有未访问邻居，回到 2）→ 5 → 6（5 的邻居 6）→ 3（6 的邻居按编号：3 未访问）→ 回到 6 → 7。序列 1 2 4 5 6 3 7。</p>
+          <p>（2）BFS 树：1；2、3；4、5、6；7。高度 4。</p>
+          <p>（3）1 → 2 → 4 → 回 2 → 5（5 没有其他邻居）→ 回 1 → 3 → 6 → 7：1 2 4 5 3 6 7。</p>
+        </div></details>
+      </div>
+      <h3>几个应用</h3>
+      <ul class="plain">
+        <li><b>无权图的单源最短路径</b>：BFS，d[v] = d[u] + 1，第一次被发现时就是最短。</li>
+        <li><b>连通分量个数</b>：外层循环里调用 BFS 或 DFS 的次数。</li>
+        <li><b>判断顶点 i 到 j 是否有路径</b>：从 i 遍历，看 j 是否被访问。</li>
+        <li><b>有向图判环</b>：DFS 时给顶点三种颜色：白（未访问）、灰（在递归栈里）、黑（已完成）。若沿边走到一个<b>灰色</b>顶点，就有环。也可以用拓扑排序判断（第二十章）。无向图判环：DFS 时遇到一个已访问、且不是父结点的邻居，就有环；或者看边数是否 ≥ n（连通时）。</li>
+      </ul>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>“单词接龙”：给一个起始词、一个目标词和一个词表，每次只能改一个字母，且中间的词都要在词表里，最少几步变到目标？</p>
+        <details><summary>看要点</summary><div><p>把每个词看成图的顶点，只差一个字母的两个词之间有边，求无权最短路径：BFS。建图不必两两比较：对每个词，把每个位置分别换成通配符（如 h*t），同一个模式下的词互为邻居。词表很大时可以用双向 BFS（第三层），从两头同时扩，相遇就停。</p></div></details>
+      </div>
+      <div class="pass" data-id="tree-q17b">
+        <div class="qq" data-a="0"><p>用邻接表存图，BFS 的时间复杂度是？</p><ol><li>O(n + e)</li><li>O(n²)</li><li>O(e log n)</li></ol><p class="ex">每个顶点入队一次，每条边看一到两次。</p></div>
+        <div class="qq" data-a="1"><p>用邻接矩阵存图，DFS 的时间复杂度是？</p><ol><li>O(n + e)</li><li>O(n²)</li></ol><p class="ex">每个顶点要扫一整行。</p></div>
+        <div class="qq" data-a="2"><p>基于邻接表的遍历序列唯一吗？</p><ol><li>唯一</li><li>和起点无关</li><li>不唯一，取决于边表的顺序</li></ol><p class="ex">邻接表本身不唯一。</p></div>
+        <div class="qq" data-in="3"><p>对一个无向图调用 traverse，外层循环一共调用了 3 次 BFS，这个图有几个连通分量？</p><p class="ex">每次调用走完一个连通分量。</p></div>
+        <div class="qq" data-a="0"><p>DFS 判断有向图有环：走到一个什么颜色的顶点说明有环？</p><ol><li>灰色（还在递归栈里）</li><li>黑色（已经完成）</li><li>白色</li></ol><p class="ex">指回了正在访问的祖先。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c17-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">搜索的变种</span><span class="tm">约 20 分钟</span><span class="sum">双向 BFS 为什么快；迭代加深：用深度优先的内存做广度优先的事；DFS 的时间戳和树边、后向边、前向边、横叉边；强连通分量。</span></div>
+    <div class="lyb">
+      <h3>双向 BFS 和迭代加深</h3>
+      <p>每个点平均有 b 个邻居、目标在 d 步之外时，BFS 大约要看 b<sup>d</sup> 个点。从起点和终点<b>同时</b>各扩 d/2 步，只要看约 2b<sup>d/2</sup> 个点：b = 10、d = 6 时，从一百万降到两千。这是社交网络里算“你和他隔着几个人”的办法。</p>
+      <p>BFS 要把一整圈都放进队列，内存可能爆掉；DFS 省内存，但找到的不是最短。<b>迭代加深</b>：先做只许走 1 步的 DFS，再做只许走 2 步的……重复的工作看起来很多，但最后一圈占了绝大部分，总代价和 BFS 同一个量级，内存却只要 O(d)。下棋程序常用它。</p>
+      <h3>DFS 的时间戳</h3>
+      <p>给每个顶点记下“第一次到达”和“完成”的时间。有向图的边按此分四类：树边、后向边（指向祖先，说明有环）、前向边（指向后代）、横叉边（指向已完成的别的分支）。塔扬 1972 年用 DFS 在 O(n + e) 时间内求出全部<b>强连通分量</b>，这类线性时间的图算法几乎都建立在 DFS 的这些性质上。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>E. F. Moore, “The shortest path through a maze”, 1959（广度优先的早期出处之一）。</li>
+          <li>R. E. Tarjan, “Depth-First Search and Linear Graph Algorithms”, <i>SIAM J. Computing</i>, 1972。</li>
+          <li>R. E. Korf, “Depth-first iterative-deepening”, <i>Artificial Intelligence</i>, 1985。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="main" data-step="17">
+    <div class="mh"><b>主线 · 第 17 步</b><span>团团追你</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给方格岛加上：<i>广度优先找路</i></p>
+      <p><code>bfs_path</code> 从团团的位置一圈一圈往外找，<code>came</code> 记下每一格是从哪来的；找到你以后倒着走回起点，<code>draw_path</code> 用 * 把路画在地图上。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 island.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>用 C 写 BFS（用第五章的循环队列）；再写 DFS 版本，对 100 个随机起点比较两者找到的路的平均长度和访问的格子数。</div>
+    </div>
+  </div>
+  <div class="words">
+    <div data-l="1"><b>广度优先搜索 <span class="en" data-say="breadth-first search">breadth-first search</span></b>BFS，一圈一圈往外。</div>
+    <div data-l="1"><b>深度优先搜索 <span class="en" data-say="depth-first search">depth-first search</span></b>DFS，一条路走到黑再回头。</div>
+    <div data-l="1"><b>访问过 <span class="en" data-say="visited">visited</span></b>给走过的点做的记号。</div>
+    <div data-l="1"><b>路径 <span class="en" data-say="path">path</span></b>从起点到终点经过的一串点。</div>
+    <div data-l="2"><b>生成树 <span class="en" data-say="spanning tree">spanning tree</span></b>包含所有顶点的极小连通子图。</div>
+    <div data-l="3"><b>强连通分量 <span class="en" data-say="strongly connected component">strongly connected component</span></b>彼此都能到达的一组顶点。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>走过要做记号；一圈一圈用队列，最先碰到的最近；一条路走到黑用栈；记下“从哪来”就能画出路。</div>
+    <div><i>第二层带走</i>BFS 入队时标记；邻接表 O(n + e)、矩阵 O(n²)；矩阵上的序列唯一，邻接表上的不唯一；灰色顶点说明有环。</div>
+    <div><i>第三层带走</i>从两头一起找快得多；迭代加深用 DFS 的内存做 BFS 的事；线性时间的图算法大多靠 DFS 的时间戳。</div>
+  </div>
+</section>

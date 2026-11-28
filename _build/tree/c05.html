@@ -1,0 +1,179 @@
+<section class="chap" id="c20" data-vol="卷五 · 网 · 拓扑排序和关键路径">
+  <div class="chead">
+    <div class="big">序</div>
+    <div>
+      <div class="no">卷五 · 第二十章</div>
+      <h2>拓扑排序和关键路径</h2>
+      <dl><dt>讲什么</dt><dd>先做什么、后做什么；材料齐了才能造；每次挑一个“不用再等”的；有圈就排不出来；AOV 网和 AOE 网；最早和最晚开工时间；关键路径：最拖后腿的那一串</dd><dt>装置</dt><dd>合成顺序</dd></dl>
+      <div class="crs" data-c="结构 系统"></div>
+      <div class="lvs"><a data-l="1" href="#c20-1">第一层 · 30 分钟</a><a data-l="2" href="#c20-2">第二层 · 60 分钟</a><a data-l="3" href="#c20-3">第三层 · 15 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>我想先造灯，可是灯要玻璃，玻璃要沙子，沙子还没挖……</span></div>
+    <div class="l"><i class="j">舅</i><span>把“谁要等谁”画成箭头，再一样一样地挑“现在就能做的”，顺序就排出来了。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>把“谁要等谁”画成一张有向图，排出一个能做的先后顺序。</li>
+      <li><span class="lg lg1">一</span>说出为什么配方里有圈就排不出来。</li>
+      <li><span class="lg lg2">二</span>写出用入度和队列的拓扑排序，说出复杂度，判断拓扑序列是否唯一、用它判环。</li>
+      <li><span class="lg lg2">二</span>在 AOE 网上手算事件的最早、最晚发生时间和活动的余量，找出关键路径。</li>
+      <li><span class="lg lg3">三</span>说出 make、包管理器和电子表格怎样用拓扑排序。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c20-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：有向图（第十六章）、配方树（第八章）、队列（第五章）</span><span class="tm">约 30 分钟</span></div>
+    <div class="lyb">
+      <h3>谁要等谁</h3>
+      <p>造小屋要石砖、木板和灯；灯要玻璃和木棍；玻璃要沙子……把每一样东西画成一个点，从“材料”向“用它造出来的东西”画一个箭头：沙 → 玻璃 → 灯 → 小屋。箭头的意思是：<b>箭头尾巴上的做好了，箭头那头的才能做</b>。</p>
+      <p>这是一张有向图。我们要排出一个顺序，让每一样东西都排在它的所有材料后面。这叫<b>拓扑排序</b>。</p>
+      <h3>每次挑一个“不用再等”的</h3>
+      <p>给每样东西数一数“还差几样材料”（有几个箭头指着它）：</p>
+      <ol class="plain">
+        <li>找出所有“还差 0 样”的：它们现在就能做（挖来的原料木、沙、石就是）。</li>
+        <li>做一样，排进顺序里。它做好了，用它的那些东西就“少差了一样”：把它们的数减 1。</li>
+        <li>有谁变成 0 了，就加进“现在就能做”的队伍。</li>
+        <li>重复，直到全部排完。</li>
+      </ol>
+      <p>排出来的顺序可能不止一种：木、沙、石谁先挖都行。只要每样都排在材料后面，就是对的。</p>
+      <h3>有圈就排不出来</h3>
+      <p>要是配方写错了：木头要用木棍造，木棍又要用木头造。木头等木棍，木棍等木头，谁也等不到对方，永远排不出来。在图上，这就是一个<b>圈</b>。所以拓扑排序还能用来检查：排到最后，还有东西没排进去，就说明有圈。</p>
+      <div class="fig" id="topoFig">
+        <div class="fig-label">装置 · 第二十章</div>
+        <h4>合成顺序</h4>
+        <p class="how">每样东西上面的数是“还差几样材料”。点“做一样”，从“现在就能做的”（虚线框）里挑一样做掉，看别的数怎样变小。点“配方写错”加一个圈试试。</p>
+        <div class="btns"><button class="btn pri" data-x="s">做一样</button><button class="btn" data-x="all">全部做完</button><button class="btn" data-x="cyc">配方写错（加一个圈）</button><button class="btn" data-x="r">从头</button></div>
+        <svg class="topo" viewBox="0 0 640 280" role="img" aria-label="合成顺序"></svg>
+        <div class="cells" id="tpOrd"></div>
+        <div class="say"></div>
+      </div>
+      <div class="mc">
+        <h5>上学前的早上</h5>
+        <p>穿袜子要在穿鞋前面，穿衬衫要在系红领巾前面，刷牙和吃早饭谁先都行。早上的事也是一张有向图，你每天都在做拓扑排序。选课时“先修课”、做一桌菜时“先切再炒”，都是。</p>
+      </div>
+      <div class="try">
+        <div class="th"><b>主线第 20 步：合成顺序</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+          <p>下载本章末尾“主线 · 第 20 步”的完整文件运行：它从第 8 步的配方表里找出造小屋要用的所有东西，按“还差几样材料”排出顺序：木 → 沙 → 石 → 木板 → 玻璃 → 石砖 → 木棍 → 灯 → 小屋。再故意把配方写成一个圈，函数返回 None：排不出来。</p>
+        </div>
+      </div>
+      <div class="task" data-id="tree-t20a">
+        <div class="th"><b>早上的拓扑排序</b></div>
+        <div class="tb"><p>写下你早上要做的七八件事（起床、穿衣服、刷牙、洗脸、吃早饭、背书包、穿鞋、出门……），把“必须先做”的关系画成箭头。用“每次挑一个不用再等的”排出两种不同的顺序。</p></div>
+      </div>
+      <div class="pass" data-id="tree-q20a">
+        <div class="qq" data-a="0"><p>箭头“沙 → 玻璃”是什么意思？</p><ol><li>沙子有了，才能做玻璃</li><li>玻璃做好了，才能挖沙</li></ol><p class="ex">尾巴做好了，箭头那头的才能做。</p></div>
+        <div class="qq" data-a="1"><p>拓扑排序每一步挑哪样东西？</p><ol><li>最难做的</li><li>还差 0 样材料的</li></ol><p class="ex">现在就能做的。</p></div>
+        <div class="qq" data-a="1"><p>拓扑排序的顺序唯一吗？</p><ol><li>唯一</li><li>不一定，可能有好几种</li></ol><p class="ex">木、沙、石谁先挖都行。</p></div>
+        <div class="qq" data-a="0"><p>排到最后还有东西没排进去，说明什么？</p><ol><li>图里有圈</li><li>东西太多了</li></ol><p class="ex">圈上的东西互相等，谁也等不到。</p></div>
+        <div class="qq" data-in="0"><p>挖来的原料（木、沙、石）“还差几样材料”？</p><p class="ex">0：没有箭头指着它们，一开始就能做。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c20-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">对照 408：拓扑排序、关键路径</span><span class="tm">约 60 分钟</span><span class="sum">AOV 网；用入度和队列（或栈）的拓扑排序 O(n + e)；DFS 逆后序；唯一性和判环；AOE 网的 ve、vl、e、l、余量；关键路径和关键活动；缩短工期的注意事项。</span></div>
+    <div class="lyb">
+      <h3>拓扑排序</h3>
+      <p>用顶点表示活动、有向边表示“前后关系”的 DAG（有向无环图）叫 <b>AOV 网</b>。</p>
+<pre class="code" data-k="topo.c">int topo(Graph *G, int order[]) {
+    int indeg[MAXV] = {0}, S[MAXV], top = -1, cnt = 0;
+    for (int v = 0; v &lt; G-&gt;n; v++)
+        for (ArcNode *p = G-&gt;adj[v].first; p; p = p-&gt;next) indeg[p-&gt;to]++;
+    for (int v = 0; v &lt; G-&gt;n; v++) if (indeg[v] == 0) S[++top] = v;   /* 用栈或队列都行 */
+    while (top &gt;= 0) {
+        int v = S[top--]; order[cnt++] = v;
+        for (ArcNode *p = G-&gt;adj[v].first; p; p = p-&gt;next)
+            if (--indeg[p-&gt;to] == 0) S[++top] = p-&gt;to;
+    }
+    return cnt == G-&gt;n;          /* 输出的顶点数小于 n：有回路 */
+}</pre>
+      <ul class="plain">
+        <li>复杂度：邻接表 O(n + e)，邻接矩阵 O(n²)。</li>
+        <li>另一种求法：DFS，按顶点“完成”的先后记下，再<b>逆序</b>输出（逆后序）就是拓扑序列。</li>
+        <li>拓扑序列<b>唯一</b>的充分条件：每一步入度为 0 的顶点都只有一个（此时序列是一条哈密顿路径）。注意：拓扑序列唯一，不能推出图是一条链（比如 a→b、a→c、b→c 序列唯一但不是链）。</li>
+        <li>若有向图的邻接矩阵是三角矩阵（主对角线以下全是 0），则一定存在拓扑序列；反之，存在拓扑序列的图，适当编号后邻接矩阵可以是三角矩阵。</li>
+      </ul>
+      <h3>关键路径</h3>
+      <p>用<b>边</b>表示活动、边的权表示活动持续时间、顶点表示事件（“某些活动已经完成”）的带权 DAG 叫 <b>AOE 网</b>。只有一个入度为 0 的源点（开工）和一个出度为 0 的汇点（完工）。从源点到汇点的最长路径叫<b>关键路径</b>，它的长度就是完成整个工程的最短时间；关键路径上的活动叫<b>关键活动</b>，拖一天，整个工程就拖一天。</p>
+      <ol class="plain">
+        <li>事件的最早发生时间 <b>ve</b>：按拓扑序，ve(源) = 0，ve(k) = max{ve(j) + 活动 j→k 的时间}。</li>
+        <li>事件的最迟发生时间 <b>vl</b>：按逆拓扑序，vl(汇) = ve(汇)，vl(k) = min{vl(j) − 活动 k→j 的时间}。</li>
+        <li>活动 a = (k → j) 的最早开始 e(a) = ve(k)，最迟开始 l(a) = vl(j) − 时间。</li>
+        <li>余量 d(a) = l(a) − e(a)。d = 0 的就是关键活动。</li>
+      </ol>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>方格岛上盖一间房，AOE 网有事件 v1—v6，活动：a1 = v1→v2（4 天）、a2 = v1→v3（3）、a3 = v2→v4（2）、a4 = v3→v4（4）、a5 = v2→v5（3）、a6 = v4→v6（3）、a7 = v5→v6（5）。求各事件的 ve、vl，各活动的余量，关键路径和工期。若把 a4 缩短 1 天，工期变吗？</p>
+        <details><summary>看解答</summary><div>
+          <p>ve：v1 = 0，v2 = 4，v3 = 3，v4 = max(4 + 2, 3 + 4) = 7，v5 = 4 + 3 = 7，v6 = max(7 + 3, 7 + 5) = 12。</p>
+          <p>vl：v6 = 12，v5 = 12 − 5 = 7，v4 = 12 − 3 = 9，v3 = 9 − 4 = 5，v2 = min(9 − 2, 7 − 3) = 4，v1 = min(4 − 4, 5 − 3) = 0。</p>
+          <p>余量 l − e：a1 0 − 0 = 0；a2 2 − 0 = 2；a3 7 − 4 = 3；a4 5 − 3 = 2；a5 4 − 4 = 0；a6 9 − 7 = 2；a7 7 − 7 = 0。关键活动 a1、a5、a7，关键路径 v1 → v2 → v5 → v6，工期 12 天。a4 不是关键活动，缩短它工期不变。</p>
+        </div></details>
+      </div>
+      <div class="pit"><h5>缩短关键活动不一定缩短工期</h5><p>网里可能有好几条关键路径。缩短某个关键活动，只有它在<b>所有</b>关键路径上时才一定能缩短工期；缩得太多，它还可能变成非关键活动，关键路径换成了别的。</p></div>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>课程表：有 n 门课和若干“先修”关系，问能否修完所有课；能的话给出一个顺序。</p>
+        <details><summary>看要点</summary><div><p>建有向图（先修课 → 后续课），做拓扑排序：能排完 n 门就可以，序列就是修课顺序；排不完说明有环。O(n + e)。追问“最少要几个学期（每学期课数不限）”：就是 DAG 上的最长路径（以顶点数计），按拓扑序做一遍动态规划（第二十二章），也就是关键路径的思路。</p></div></details>
+      </div>
+      <div class="pass" data-id="tree-q20b">
+        <div class="qq" data-a="0"><p>用邻接表做拓扑排序，时间复杂度是？</p><ol><li>O(n + e)</li><li>O(n²)</li><li>O(n log n)</li></ol><p class="ex">每个顶点、每条边各处理一次。</p></div>
+        <div class="qq" data-a="1"><p>AOE 网中，关键路径是从源点到汇点的？</p><ol><li>最短路径</li><li>最长路径</li></ol><p class="ex">最长的那条决定了工期。</p></div>
+        <div class="qq" data-in="12"><p>典型题中，工期是几天？</p><p class="ex">ve(v6) = 12。</p></div>
+        <div class="qq" data-a="2"><p>活动 a = (k→j) 的最迟开始时间 l(a) = ？</p><ol><li>ve(k)</li><li>vl(k)</li><li>vl(j) − 持续时间</li></ol><p class="ex">要赶上终点事件的最迟时间。</p></div>
+        <div class="qq" data-a="1"><p>拓扑序列唯一，能推出图是一条链吗？</p><ol><li>能</li><li>不能</li></ol><p class="ex">a→b、a→c、b→c：序列 a b c 唯一，但有三条边。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c20-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">真实世界的依赖</span><span class="tm">约 15 分钟</span><span class="sum">make 和构建系统；包管理器解依赖；电子表格按依赖重算；康 1962 年的算法和计划评审技术。</span></div>
+    <div class="lyb">
+      <h3>到处都是依赖图</h3>
+      <ul class="plain">
+        <li><b>构建系统</b>：make 读取“目标依赖哪些文件”（《地基》第二十二章的 Makefile），按拓扑序编译，只重编译那些依赖变了的；还能把没有先后关系的任务并行做。</li>
+        <li><b>包管理器</b>：pip、Homebrew 安装一个包之前，要先装好它依赖的包；版本约束让问题变得难得多（一般情况下是 NP 完全的，所以真实的包管理器要用 SAT 求解器之类的办法）。</li>
+        <li><b>电子表格</b>：A1 = B1 + C1，改了 B1，A1 要重算；表格软件维护单元格之间的依赖图，按拓扑序重算，发现循环引用就报错。</li>
+      </ul>
+      <h3>来历</h3>
+      <p>入度加队列的拓扑排序常归功于康（A. B. Kahn）1962 年的论文。关键路径法（CPM）和计划评审技术（PERT）在 1950 年代末由杜邦公司和美国海军的北极星导弹项目分别发展出来，用来管理成千上万项任务的工程。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>A. B. Kahn, “Topological sorting of large networks”, <i>CACM</i>, 1962。</li>
+          <li>J. E. Kelley, M. R. Walker, “Critical-Path Planning and Scheduling”, 1959。</li>
+          <li>GNU make 手册的“规则”一章。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="main" data-step="20">
+    <div class="mh"><b>主线 · 第 20 步</b><span>合成顺序</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给方格岛加上：<i>拓扑排序</i></p>
+      <p><code>craft_order</code> 从配方表里找出造小屋要用的东西，按“还差几样材料”一样一样排出顺序；故意把配方写成一个圈，就排不出来，返回 None。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 island.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>再用 DFS 的逆后序求一次拓扑序列；给每样东西加上“制作时间”，算出造小屋的关键路径和最短工期。</div>
+    </div>
+  </div>
+  <div class="words">
+    <div data-l="1"><b>拓扑排序 <span class="en" data-say="topological sort">topological sort</span></b>每样都排在它要等的东西后面。</div>
+    <div data-l="1"><b>入度 <span class="en" data-say="in-degree">in-degree</span></b>有几个箭头指着它：还差几样。</div>
+    <div data-l="1"><b>有向无环图 <span class="en" data-say="directed acyclic graph">directed acyclic graph</span></b>DAG，有方向、没有圈。</div>
+    <div data-l="2"><b>关键路径 <span class="en" data-say="critical path">critical path</span></b>AOE 网上最长的那条，决定工期。</div>
+    <div data-l="2"><b>余量 <span class="en" data-say="slack">slack</span></b>活动最多能拖几天。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>谁等谁画成箭头；每次挑一个不用再等的；有圈就永远排不完。</div>
+    <div><i>第二层带走</i>入度加队列 O(n + e)；ve 正着取大，vl 倒着取小，余量为 0 的是关键活动。</div>
+    <div><i>第三层带走</i>编译、装软件、算表格，背后都是一次拓扑排序。</div>
+  </div>
+</section>

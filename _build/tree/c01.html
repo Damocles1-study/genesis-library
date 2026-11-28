@@ -1,0 +1,200 @@
+<section class="chap" id="c16" data-vol="卷五 · 网 · 图怎样存">
+  <div class="vol-h">
+    <div class="k">卷五</div>
+    <h2>网</h2>
+    <p>点和线连成一张网。先学怎样把网存进电脑，再学怎样走遍它、找最短的路、修最省的路网、排出做事的先后。</p>
+  </div>
+  <div class="chead">
+    <div class="big">图</div>
+    <div>
+      <div class="no">卷五 · 第十六章</div>
+      <h2>图怎样存</h2>
+      <dl><dt>讲什么</dt><dd>点和线：图；有向的和无向的，带长度的和不带长度的；度；用一张表（邻接矩阵）和用一串名单（邻接表）存图；方格地图也是一张图；连通、生成树和几种特殊的图</dd><dt>装置</dt><dd>岛上的地点和路</dd></dl>
+      <div class="crs" data-c="结构 数学 网络"></div>
+      <div class="lvs"><a data-l="1" href="#c16-1">第一层 · 30 分钟</a><a data-l="2" href="#c16-2">第二层 · 55 分钟</a><a data-l="3" href="#c16-3">第三层 · 20 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>地铁线路图上，站是圆点，线路是连线。站在哪个方向、隔多远，好像都不太准。</span></div>
+    <div class="l"><i class="j">舅</i><span>因为坐地铁只关心“哪两站连着”。只留点和线，扔掉别的，这就是图。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>说出图是什么，什么是有向图、带权图、度。</li>
+      <li><span class="lg lg1">一</span>用邻接表和邻接矩阵存一张小图，说出方格地图怎样看成一张图。</li>
+      <li><span class="lg lg2">二</span>说出完全图、连通分量、强连通、生成树的定义和边数；用握手定理和“保证连通至少几条边”解题。</li>
+      <li><span class="lg lg2">二</span>比较邻接矩阵、邻接表、十字链表、邻接多重表的空间和适用场合。</li>
+      <li><span class="lg lg3">三</span>说出 CSR 压缩存储；图数据库和网页排名把什么看成图。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c16-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：列表和字典、树（第八章）</span><span class="tm">约 30 分钟</span></div>
+    <div class="lyb">
+      <h3>点和线</h3>
+      <p>方格岛上有六个地方：家、湖边、石山、沙滩、树林、码头。有的地方之间有小路，有的没有。把每个地方画成一个<b>点</b>，有路就连一条<b>线</b>，就得到一张<b>图</b>。</p>
+      <p>树也是一种图，只是规矩多：有一个根，每个结点只有一个爸爸，没有圈。图没有这些规矩：谁都可以和谁连，可以绕成圈，也可以分成几块互不相连。</p>
+      <div class="mc">
+        <h5>你见过的图</h5>
+        <p>封面的七座桥就是一张图：四块地是点，七座桥是线。地铁图、班里谁和谁是好朋友、网页之间的链接，都是图。《地基》<a href="../base/four.html#c30">第三十章</a>的网络，一台台电脑和路由器连成的，也是一张图。</p>
+      </div>
+      <h3>几种图</h3>
+      <ul class="plain">
+        <li><b>无向图</b>：线没有方向，A 能到 B，B 就能到 A。岛上的小路。</li>
+        <li><b>有向图</b>：线有方向，画成箭头。单行道、传送门（只能从这头进、那头出）、“我关注了你，你没关注我”。</li>
+        <li><b>带权图</b>：每条线上写一个数，比如路有多长、要走几步。</li>
+      </ul>
+      <p>一个点连着几条线，叫这个点的<b>度</b>。封面上的“岛”连着 5 座桥，度是 5。</p>
+      <h3>怎样存进电脑：两种办法</h3>
+      <p><b>办法一：名单</b>（邻接表）。每个点后面跟一串名单，写着它连着谁：</p>
+<pre class="out" data-k="邻接表">家   → 湖边 4，石山 3，树林 5
+湖边 → 家 4，沙滩 6
+石山 → 家 3，树林 2，码头 9
+……</pre>
+      <p><b>办法二：表格</b>（邻接矩阵）。画一张方表，行和列都是这六个地方；第 i 行第 j 列写着“i 到 j 的路有多长”，没有路就写 0。</p>
+      <p>名单省地方：只写真有的路。表格查起来快：“家和码头之间有没有路？”看一格就知道。地方很多、路很少的时候（大多数真实的图都这样），用名单；地方少、路很多的时候，用表格。</p>
+      <div class="fig" id="graphFig">
+        <div class="fig-label">装置 · 第十六章</div>
+        <h4>岛上的地点和路</h4>
+        <p class="how">点一个地方，看它连着谁、度是几；下面同时显示邻接表和邻接矩阵里对应的那一行。打开“单行道”，看有向图的表格为什么不再左右对称。</p>
+        <div class="btns"><button class="btn" data-x="dir">单行道：关</button></div>
+        <svg class="gview" viewBox="0 0 640 260" role="img" aria-label="岛上的地点和路"></svg>
+        <div class="twocol"><div><h5>邻接表</h5><div class="adjl"></div></div><div><h5>邻接矩阵</h5><div class="adjm scroll-x"></div></div></div>
+        <div class="say"></div>
+      </div>
+      <h3>方格地图也是一张图</h3>
+      <p>方格岛的每一块能走的地都是一个点，和它上下左右能走的地之间有一条线。这张图很大（一百多个点），但每个点最多 4 条线，所以不用真的把名单写出来：要知道某一格连着谁，现算就行。主线第 16 步的 <code>grid_neighbors</code> 就是这样“现算”的。</p>
+      <div class="try">
+        <div class="th"><b>用字典存一张图</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+<pre class="code" data-k="graph.py">roads = [('家', '湖边', 4), ('家', '石山', 3), ('石山', '树林', 2)]
+g = {}
+for a, b, w in roads:
+    g.setdefault(a, []).append((b, w))
+    g.setdefault(b, []).append((a, w))   # 无向：两头都记一笔
+for place in g:
+    print(place, '连着', g[place], '度是', len(g[place]))</pre>
+          <p>把第四行删掉（只记一头），它就变成了一张有向图。主线第 16 步把六个地方、八条路都存了进去，还打出了邻接矩阵。</p>
+        </div>
+      </div>
+      <div class="task" data-id="tree-t16a">
+        <div class="th"><b>画一张朋友图</b></div>
+        <div class="tb"><p>把你的五六个朋友（或家人）画成点，谁和谁认识就连一条线。数一数每个人的度。再把所有人的度加起来：是线的条数的几倍？为什么？</p></div>
+      </div>
+      <div class="pass" data-id="tree-q16a">
+        <div class="qq" data-a="1"><p>图由什么组成？</p><ol><li>根和叶子</li><li>点和线</li></ol><p class="ex">点（顶点）和线（边）。</p></div>
+        <div class="qq" data-a="0"><p>单行道、传送门这样有方向的，是哪种图？</p><ol><li>有向图</li><li>无向图</li></ol><p class="ex">线有方向，画成箭头。</p></div>
+        <div class="qq" data-in="5"><p>封面上的“岛”连着 5 座桥，它的度是几？</p><p class="ex">连着几条线，度就是几。</p></div>
+        <div class="qq" data-a="0"><p>地方很多、路很少，用哪种办法存更省地方？</p><ol><li>名单（邻接表）</li><li>表格（邻接矩阵）</li></ol><p class="ex">名单只写真有的路。</p></div>
+        <div class="qq" data-a="1"><p>方格地图上，一块地最多连着几块地？</p><ol><li>2 块</li><li>4 块</li><li>8 块</li></ol><p class="ex">上下左右四块（本书只许这样走）。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c16-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">对照 408：图的基本概念、图的存储</span><span class="tm">约 55 分钟</span><span class="sum">简单图、完全图、子图、连通、强连通、生成树和生成森林、度和握手定理、路径和回路；邻接矩阵、邻接表、十字链表、邻接多重表；几道边数的计算题。</span></div>
+    <div class="lyb">
+      <h3>基本概念</h3>
+      <ul class="plain">
+        <li>图 G = (V, E)，|V| = n 个顶点、|E| = e 条边；408 讨论的都是<b>简单图</b>（无重边、无自环）。线性表可以是空表、树可以是空树，但<b>图的顶点集不能为空</b>（边集可以）。</li>
+        <li><b>完全图</b>：无向完全图有 n(n − 1)/2 条边；有向完全图有 n(n − 1) 条弧。</li>
+        <li><b>连通</b>（无向）：任意两点之间有路径。极大连通子图叫<b>连通分量</b>。<b>强连通</b>（有向）：任意两点 u、v 之间，u 到 v、v 到 u 都有路径；极大的叫强连通分量。</li>
+        <li><b>生成树</b>：连通图的极小连通子图，包含全部 n 个顶点、恰好 n − 1 条边；多一条边就有回路，少一条就不连通。非连通图的各分量的生成树组成<b>生成森林</b>。</li>
+        <li><b>度</b>：无向图中所有顶点的度之和 = 2e（握手定理）；有向图中入度之和 = 出度之和 = e。</li>
+        <li>路径长度是边数；第一个和最后一个顶点相同的叫回路；顶点不重复的叫简单路径。n 个顶点的图，边数大于 n − 1 就一定有回路。</li>
+      </ul>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）无向图有 16 条边，度为 4 的顶点 3 个、度为 3 的顶点 4 个，其余顶点的度都小于 3，问图至少有几个顶点？（2）n = 8 个顶点的无向图，至少要几条边才能保证它一定连通（不管边怎么连）？（3）有向图有 n 个顶点，要保证它是强连通的，至少要几条弧？</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）度之和 = 32；已知 3 × 4 + 4 × 3 = 24，剩下 8 要由度 ≤ 2 的顶点提供，每个至多 2，至少 4 个。共 3 + 4 + 4 = 11 个。</p>
+          <p>（2）最坏情况：7 个顶点组成完全图（21 条边），第 8 个孤立。再加 1 条就一定连通：(n − 1)(n − 2)/2 + 1 = 22。</p>
+          <p>（3）n 条，连成一个有向环。（n 个顶点的无向图要连通至少 n − 1 条边，这是另一个问法。）</p>
+        </div></details>
+      </div>
+      <h3>四种存储</h3>
+      <div class="tbl">
+        <table class="t">
+          <tr><th></th><th>邻接矩阵</th><th>邻接表</th><th>十字链表</th><th>邻接多重表</th></tr>
+          <tr><td>用于</td><td>有向、无向</td><td>有向、无向</td><td>有向图</td><td>无向图</td></tr>
+          <tr><td>空间</td><td>O(n²)</td><td>无向 O(n + 2e)，有向 O(n + e)</td><td>O(n + e)</td><td>O(n + e)</td></tr>
+          <tr><td>找邻边</td><td>扫一行 O(n)</td><td>扫一条链</td><td>出弧、入弧都方便</td><td>每条边只存一次</td></tr>
+          <tr><td>判断 (i, j) 有没有边</td><td>O(1)</td><td>扫 i 的链</td><td>—</td><td>—</td></tr>
+          <tr><td>适合</td><td>稠密图</td><td>稀疏图</td><td>要同时找入度和出度</td><td>要方便地删边、标记边</td></tr>
+        </table>
+      </div>
+      <ul class="plain">
+        <li><b>邻接矩阵</b>：无向图的矩阵对称，可以只存上（或下）三角（第二章的压缩存储）；第 i 行非零元个数是顶点 i 的度（有向图：行是出度，列是入度）。若 A 是邻接矩阵（0/1），A<sup>k</sup> 的 [i][j] 元素是从 i 到 j 长度为 k 的路径条数。</li>
+        <li><b>邻接表</b>：顶点表（数组）+ 每个顶点一条边表（链表）。有向图的邻接表求出度容易、求入度要扫全部，可以另建逆邻接表。邻接表不唯一（边表里的顺序随意），所以由邻接表得到的遍历序列也不唯一。</li>
+        <li><b>十字链表</b>：有向图的每条弧是一个结点，同时挂在“弧尾的出弧链”和“弧头的入弧链”上。</li>
+        <li><b>邻接多重表</b>：无向图的每条边只用一个结点，同时挂在两个端点的链上（邻接表里每条边要存两次）。</li>
+      </ul>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>一个社交网络有 10 亿个用户，平均每人 200 个好友。用邻接矩阵还是邻接表存？大概要多少空间？</p>
+        <details><summary>看要点</summary><div><p>邻接矩阵 10<sup>18</sup> 个格子，即使每格 1 比特也要约 125 PB，不可能。邻接表：边数约 10<sup>9</sup> × 200 / 2 = 10<sup>11</sup> 条，每条存两次、每个 id 8 字节，约 1.6 TB，还要分布到很多台机器上。可以再提 CSR 压缩（第三层）和按用户 id 分片存储。</p></div></details>
+      </div>
+      <div class="pass" data-id="tree-q16b">
+        <div class="qq" data-in="45"><p>10 个顶点的无向完全图有几条边？</p><p class="ex">10 × 9 / 2 = 45。</p></div>
+        <div class="qq" data-a="2"><p>无向图有 e 条边，所有顶点的度之和是？</p><ol><li>e</li><li>e/2</li><li>2e</li></ol><p class="ex">每条边给两个端点各贡献 1 度。</p></div>
+        <div class="qq" data-in="9"><p>10 个顶点的连通图，生成树有几条边？</p><p class="ex">n − 1 = 9。</p></div>
+        <div class="qq" data-a="1"><p>有向图用邻接表存，求某顶点的入度要？</p><ol><li>看它自己的边表长度</li><li>扫描所有顶点的边表</li></ol><p class="ex">边表是出边。可另建逆邻接表。</p></div>
+        <div class="qq" data-a="0"><p>下列说法错误的是？</p><ol><li>图的顶点集可以为空</li><li>图的边集可以为空</li><li>无向图的邻接矩阵是对称的</li></ol><p class="ex">408 约定图不能没有顶点。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c16-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">大图的存法</span><span class="tm">约 20 分钟</span><span class="sum">CSR：把邻接表压成两个数组；欧拉和图论的开端；网页排名把网看成一张图；图数据库。</span></div>
+    <div class="lyb">
+      <h3>CSR</h3>
+      <p>邻接表用链表，每条边一个结点、一个指针，又散又慢（第三章第三层）。真正处理大图的程序常用 <b>CSR</b>（压缩稀疏行）：把所有顶点的邻居一个接一个排进一个大数组 <code>adj</code>，再用一个长 n + 1 的数组 <code>start</code> 记着第 i 个顶点的邻居从 <code>adj</code> 的哪里开始。顶点 i 的邻居就是 <code>adj[start[i] : start[i+1]]</code>，连续存放、对缓存友好。缺点是加边删边很贵，适合“建好以后只读”的图。科学计算里的稀疏矩阵、图神经网络框架都用它。</p>
+<pre class="code" data-k="csr.py">def to_csr(n, edges):
+    deg = [0] * n
+    for a, b in edges: deg[a] += 1
+    start = [0] * (n + 1)
+    for i in range(n): start[i + 1] = start[i] + deg[i]
+    adj, fill = [0] * len(edges), start[:-1]
+    for a, b in edges:
+        adj[fill[a]] = b; fill[a] += 1
+    return start, adj</pre>
+      <h3>图论的开端，和今天的图</h3>
+      <p>欧拉 1736 年关于七座桥的文章被看作图论的开端（封面装置）。今天，谷歌早年的网页排名算法把整个网络看成一张有向图：被很多重要网页链接的网页更重要，是一个在图上反复迭代的计算。社交网络推荐“你可能认识的人”、导航软件、芯片布线、蛋白质相互作用，都是图上的问题。专门存图的“图数据库”（如 Neo4j）让“朋友的朋友的朋友”这类查询变得直接。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>L. Euler, “Solutio problematis ad geometriam situs pertinentis”, 1736（发表于 1741 年的圣彼得堡科学院纪要）。</li>
+          <li>S. Brin, L. Page, “The Anatomy of a Large-Scale Hypertextual Web Search Engine”, 1998。</li>
+          <li>Y. Saad, <i>Iterative Methods for Sparse Linear Systems</i>（CSR 等稀疏格式）。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="main" data-step="16">
+    <div class="mh"><b>主线 · 第 16 步</b><span>传送门</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给方格岛加上：<i>一张地点和路的图</i></p>
+      <p>六个地方、八条路：<code>build_graph</code> 存成邻接表，<code>build_matrix</code> 存成邻接矩阵，打出每个地方的度；<code>grid_neighbors</code> 把方格地图当成一张图，现算一格的邻居。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 island.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>用 C 分别写邻接矩阵和邻接表（数组加链表）两种存法；再写一个 CSR 版本，比较三种在 1000×1000 方格图上的内存占用。</div>
+    </div>
+  </div>
+  <div class="words">
+    <div data-l="1"><b>图 <span class="en" data-say="graph">graph</span></b>点和连着点的线。</div>
+    <div data-l="1"><b>顶点 <span class="en" data-say="vertex">vertex</span></b>图里的点；边是 <span class="en" data-say="edge">edge</span>。</div>
+    <div data-l="1"><b>有向图 <span class="en" data-say="directed graph">directed graph</span></b>线有方向的图。</div>
+    <div data-l="1"><b>度 <span class="en" data-say="degree">degree</span></b>一个点连着几条线。</div>
+    <div data-l="1"><b>邻接表 <span class="en" data-say="adjacency list">adjacency list</span></b>每个点后面一串邻居名单。</div>
+    <div data-l="2"><b>邻接矩阵 <span class="en" data-say="adjacency matrix">adjacency matrix</span></b>一张 n × n 的表。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>图只留点和线；路少用名单，路多用表格；方格地图的邻居可以现算。</div>
+    <div><i>第二层带走</i>度之和 = 2e；生成树 n − 1 条边；保证连通要 (n−1)(n−2)/2 + 1 条；稠密用矩阵，稀疏用表。</div>
+    <div><i>第三层带走</i>大图压成两个连续的数组；网页、社交、导航都是图上的问题。</div>
+  </div>
+</section>

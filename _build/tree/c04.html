@@ -1,0 +1,177 @@
+<section class="chap" id="c19" data-vol="卷五 · 网 · 最小生成树">
+  <div class="chead">
+    <div class="big">桥</div>
+    <div>
+      <div class="no">卷五 · 第十九章</div>
+      <h2>最小生成树</h2>
+      <dl><dt>讲什么</dt><dd>用最少的路把所有村子连起来；克鲁斯卡尔：从最短的路挑起，不成圈就修；普里姆：从一个村子长出去，每次接上最近的新村子；为什么这样贪心是对的；什么时候答案唯一</dd><dt>装置</dt><dd>修路</dd></dl>
+      <div class="crs" data-c="结构 网络"></div>
+      <div class="lvs"><a data-l="1" href="#c19-1">第一层 · 30 分钟</a><a data-l="2" href="#c19-2">第二层 · 50 分钟</a><a data-l="3" href="#c19-3">第三层 · 20 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>岛上六个地方，要修路把它们都连起来。每两个地方之间都修一条？</span></div>
+    <div class="l"><i class="j">舅</i><span>那太费石头了。只要能从任何一个地方走到任何一个地方就行，路的总长越短越好。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>说出什么是“生成树”：把所有点连起来、又没有圈；用克鲁斯卡尔的办法在小地图上挑出总长最短的路。</li>
+      <li><span class="lg lg1">一</span>说出克鲁斯卡尔为什么要用并查集：判断一条路会不会成圈。</li>
+      <li><span class="lg lg2">二</span>手算普里姆和克鲁斯卡尔每一步选了哪条边；说出两者的复杂度和适用场合。</li>
+      <li><span class="lg lg2">二</span>判断最小生成树是否唯一；说出 MST 性质（切分性质）。</li>
+      <li><span class="lg lg3">三</span>说出博鲁夫卡 1926 年为什么要算这个；最小生成树和迷宫生成、聚类的关系。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c19-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：图（第十六章）、并查集（第十四章）</span><span class="tm">约 30 分钟</span></div>
+    <div class="lyb">
+      <h3>连起来，又不多修</h3>
+      <p>六个地方，要让每个地方都能走到别的任何地方。最少要修几条路？5 条：连着 n 个点又没有圈，正好 n − 1 条线，这样的一组线叫<b>生成树</b>（它是一棵树：第八章说过，树没有圈）。多修一条就有圈了，圈上总有一条是多余的；少修一条就断开了。</p>
+      <p>可以修的路有很多种组法。在所有组法里，<b>路的总长最短</b>的那一种，叫<b>最小生成树</b>。</p>
+      <h3>克鲁斯卡尔：从最短的挑起</h3>
+      <ol class="plain">
+        <li>把所有能修的路按长度从短到长排好。</li>
+        <li>从最短的开始，一条一条看：这条路的两头<b>已经连着了</b>吗？
+          <ul class="plain"><li>没连着：修！</li><li>已经连着（修了就会成圈）：跳过。</li></ul></li>
+        <li>修够 n − 1 条就停。</li>
+      </ol>
+      <p>“两头连没连着”怎么判断？第十四章的并查集正好干这个：找两头的队长，一样就是连着。</p>
+      <h3>普里姆：从一个村子长出去</h3>
+      <p>另一种办法：先选一个地方当起点。每一步，在“已经连上的地方”和“还没连上的地方”之间的所有路里，挑最短的一条修上，把那个新地方拉进来。重复，直到所有地方都连上。像一棵树从一个点慢慢长大。</p>
+      <p>两种办法挑的顺序不一样，但修出来的总长一样短。</p>
+      <div class="fig" id="mstFig">
+        <div class="fig-label">装置 · 第十九章</div>
+        <h4>修路</h4>
+        <p class="how">选一种办法，点“下一步”。绿色的路是修好的，划掉的路是“两头已经连着”而跳过的。下面写着每一步为什么这样选。</p>
+        <div class="btns" data-m></div>
+        <svg class="mst" viewBox="0 0 640 260" role="img" aria-label="最小生成树"></svg>
+        <div class="btns"><button class="btn pri" data-x="s">下一步</button><button class="btn" data-x="r">从头</button></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+      <div class="mc">
+        <h5>这一招叫“贪心”</h5>
+        <p>两种办法都是每一步拣“眼前最好的”（最短的那条），从不回头改。这种想办法的套路叫<b>贪心</b>。第十三章的哈夫曼、第十八章的迪杰斯特拉也是贪心。贪心不总是对的，第二十一章会讲什么时候能用。</p>
+      </div>
+      <div class="try">
+        <div class="th"><b>主线第 19 步：修路</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+          <p>岛上有五个村子。下载本章末尾“主线 · 第 19 步”的完整文件运行：它算出每两个村子之间的距离（横着差几格加竖着差几格），按长短排好，用第 14 步的并查集一条一条挑，最后修 4 条路、总长 24。</p>
+        </div>
+      </div>
+      <div class="task" data-id="tree-t19a">
+        <div class="th"><b>纸上修路</b></div>
+        <div class="tb"><p>在纸上画 5 个点，每两个点之间连一条线，随便写上长度（1 到 9）。先用克鲁斯卡尔挑出最小生成树，再从另一个点出发用普里姆挑一遍。两次挑出来的路一样吗？总长一样吗？</p></div>
+      </div>
+      <div class="pass" data-id="tree-q19a">
+        <div class="qq" data-in="5"><p>把 6 个地方连起来、又没有圈，要修几条路？</p><p class="ex">n − 1 = 5。</p></div>
+        <div class="qq" data-a="0"><p>克鲁斯卡尔从哪条路开始挑？</p><ol><li>最短的</li><li>最长的</li><li>离起点最近的</li></ol><p class="ex">按长度从短到长。</p></div>
+        <div class="qq" data-a="1"><p>一条路的两头已经连着了，克鲁斯卡尔怎么办？</p><ol><li>照样修</li><li>跳过，修了会成圈</li></ol><p class="ex">成圈的路是多余的。</p></div>
+        <div class="qq" data-a="2"><p>判断“两头连没连着”，用第几章的结构？</p><ol><li>堆</li><li>栈</li><li>并查集</li></ol><p class="ex">找两头的队长。</p></div>
+        <div class="qq" data-a="0"><p>普里姆和克鲁斯卡尔修出来的总长？</p><ol><li>一样短</li><li>普里姆的更短</li><li>克鲁斯卡尔的更短</li></ol><p class="ex">都是最小生成树，总长一样。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c19-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">对照 408：最小生成树（普里姆、克鲁斯卡尔）</span><span class="tm">约 50 分钟</span><span class="sum">最小生成树的性质；普里姆 O(n²)；克鲁斯卡尔 O(e log e)；稠密图和稀疏图；唯一性的判断；常见的选择题陷阱。</span></div>
+    <div class="lyb">
+      <h3>性质</h3>
+      <ul class="plain">
+        <li>最小生成树不一定唯一；当图中各边权值<b>互不相等</b>时唯一。权值有相同的也可能唯一。</li>
+        <li>边的权值之和总是唯一的（最小值只有一个）。</li>
+        <li>边数 = 顶点数 − 1。</li>
+        <li><b>MST 性质</b>（切分性质）：把顶点分成两部分 U 和 V − U，横跨两部分的边里权值最小的那条 (u, v)，一定存在一棵包含它的最小生成树。普里姆和克鲁斯卡尔的正确性都基于它。</li>
+      </ul>
+      <h3>两种算法</h3>
+<pre class="code" data-k="prim.c">int prim(int G[][N], int n) {             /* 邻接矩阵；lowcost[v] = v 到已选集合的最小边权 */
+    int lowcost[N], in[N] = {0}, total = 0;
+    in[0] = 1;
+    for (int v = 0; v &lt; n; v++) lowcost[v] = G[0][v];
+    for (int k = 1; k &lt; n; k++) {
+        int u = -1;
+        for (int v = 0; v &lt; n; v++) if (!in[v] &amp;&amp; (u == -1 || lowcost[v] &lt; lowcost[u])) u = v;
+        in[u] = 1; total += lowcost[u];
+        for (int v = 0; v &lt; n; v++) if (!in[v] &amp;&amp; G[u][v] &lt; lowcost[v]) lowcost[v] = G[u][v];
+    }
+    return total;
+}</pre>
+      <div class="tbl">
+        <table class="t">
+          <tr><th></th><th>普里姆</th><th>克鲁斯卡尔</th></tr>
+          <tr><td>思路</td><td>从一个顶点长出去，每次加最近的顶点</td><td>边按权排序，不成环就加</td></tr>
+          <tr><td>复杂度</td><td>O(n²)（与边数无关）；用堆 O(e log n)</td><td>O(e log e)（排序为主，加并查集）</td></tr>
+          <tr><td>适合</td><td>稠密图</td><td>稀疏图</td></tr>
+        </table>
+      </div>
+      <p>注意普里姆的“lowcost”和迪杰斯特拉的“dist”长得很像，区别在更新式：普里姆是 lowcost[v] = min(lowcost[v], G[u][v])（到<b>集合</b>的距离），迪杰斯特拉是 dist[v] = min(dist[v], dist[u] + G[u][v])（到<b>起点</b>的距离）。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>无向带权图顶点 A—F，边：AB 6、AC 1、AD 5、BC 5、BE 3、CD 5、CE 6、CF 4、DF 2、EF 6。（1）用普里姆从 A 出发，依次加入的边是？总权值？（2）用克鲁斯卡尔，依次加入的边是？（3）这棵最小生成树唯一吗？</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）A 的边中 AC 1 最小，加 C；集合 {A,C} 的外连边：AB 6、AD 5、BC 5、CD 5、CE 6、CF 4 → CF 4，加 F；再看 DF 2 → 加 D；剩 B、E：AB 6、BC 5、CE 6、EF 6、（D 的边 AD、CD 两头都在集合里）→ BC 5，加 B；最后 BE 3 → 加 E。依次 AC、CF、DF、BC、BE，总权 1+4+2+5+3 = 15。</p>
+          <p>（2）按权排序：AC 1、DF 2、BE 3、CF 4，再 5 的有 AD、BC、CD：AD 两头 A、D 已连通（A-C-F-D），跳过；BC 连接 {A,C,D,F} 和 {B,E}，加入；CD 已连通跳过。依次 AC、DF、BE、CF、BC，总权 15。</p>
+          <p>（3）唯一。权为 5 的三条边里，只有 BC 能连接两部分，AD 和 CD 都会成环；其余边权互不相同，没有别的选择。</p>
+        </div></details>
+      </div>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>给 n 个城市的坐标，修路的费用是两城之间的欧几里得距离，求连通所有城市的最小费用。n = 10<sup>5</sup> 时怎样做？</p>
+        <details><summary>看要点</summary><div><p>完全图有 n²/2 ≈ 5 × 10<sup>9</sup> 条边，不能全建。n 不大（几千）时用 O(n²) 的普里姆，不用显式存边。n 很大时利用几何性质：欧几里得最小生成树一定是德劳内三角剖分的子图，剖分只有 O(n) 条边，再跑克鲁斯卡尔，总共 O(n log n)。面试里说出“完全图别建边，用 O(n²) 普里姆”通常就够了。</p></div></details>
+      </div>
+      <div class="pass" data-id="tree-q19b">
+        <div class="qq" data-a="0"><p>稠密图求最小生成树，更适合哪种算法？</p><ol><li>普里姆</li><li>克鲁斯卡尔</li></ol><p class="ex">普里姆 O(n²) 与边数无关。</p></div>
+        <div class="qq" data-a="1"><p>克鲁斯卡尔的时间复杂度主要取决于？</p><ol><li>顶点数的平方</li><li>边的排序 O(e log e)</li></ol><p class="ex">排序之后每条边一次并查集操作。</p></div>
+        <div class="qq" data-a="2"><p>下列说法正确的是？</p><ol><li>最小生成树一定唯一</li><li>有相同权值的边，最小生成树一定不唯一</li><li>最小生成树的总权值唯一</li></ol><p class="ex">树可能不唯一，总权值唯一。</p></div>
+        <div class="qq" data-in="15"><p>典型题中，最小生成树的总权值是？</p><p class="ex">1 + 2 + 3 + 4 + 5 = 15。</p></div>
+        <div class="qq" data-a="1"><p>普里姆每加入一个顶点 u，更新 lowcost[v] 用的是？</p><ol><li>lowcost[u] + G[u][v]</li><li>G[u][v]</li></ol><p class="ex">到集合的距离，不累加。累加的是迪杰斯特拉。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c19-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">来历和用处</span><span class="tm">约 20 分钟</span><span class="sum">博鲁夫卡 1926 年为摩拉维亚的电网设计的算法；普里姆、克鲁斯卡尔、贾尼克；随机迷宫；单链接聚类。</span></div>
+    <div class="lyb">
+      <h3>为电网而生</h3>
+      <p>最早的最小生成树算法是捷克数学家博鲁夫卡 1926 年为摩拉维亚地区设计电力网络时提出的：每一轮，每个连通块各自挑出连向外面的最短边，同时加上，块的个数至少减半，O(e log n)。1930 年贾尼克提出了后来被称为“普里姆算法”的办法（普里姆 1957 年、迪杰斯特拉 1959 年各自重新发现），1956 年克鲁斯卡尔提出了按边排序的办法。博鲁夫卡的算法因为每个块可以同时挑边，今天在并行计算里又重新流行。</p>
+      <h3>迷宫和聚类</h3>
+      <p>给方格地图上每两个相邻格子之间的“墙”随机一个权值，求最小生成树，把树边上的墙拆掉：得到的就是一个“完美迷宫”（任意两格之间恰好一条路）。用随机化的克鲁斯卡尔或普里姆，能生成风格不同的迷宫。数据分析里的<b>单链接聚类</b>：先求最小生成树，再删掉最长的 k − 1 条边，剩下的 k 块就是 k 个簇。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>O. Borůvka, “O jistém problému minimálním”, 1926。</li>
+          <li>J. B. Kruskal, “On the shortest spanning subtree of a graph and the traveling salesman problem”, 1956。</li>
+          <li>R. C. Prim, “Shortest connection networks and some generalizations”, 1957。</li>
+          <li>R. L. Graham, P. Hell, “On the History of the Minimum Spanning Tree Problem”, 1985。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="main" data-step="19">
+    <div class="mh"><b>主线 · 第 19 步</b><span>修路</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给方格岛加上：<i>最小生成树</i></p>
+      <p><code>kruskal</code> 算出五个村子两两之间的距离，从短到长排好，用第 14 步的并查集判断“两头连没连着”，修 4 条路，总长 24。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 island.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>再写一个普里姆，确认总长相同；随机生成 1000 个村子，比较两种算法的时间，并画出一条“稠密和稀疏”的分界。</div>
+    </div>
+  </div>
+  <div class="words">
+    <div data-l="1"><b>生成树 <span class="en" data-say="spanning tree">spanning tree</span></b>连起所有点、没有圈的 n − 1 条线。</div>
+    <div data-l="1"><b>最小生成树 <span class="en" data-say="minimum spanning tree">minimum spanning tree</span></b>总长最短的生成树，MST。</div>
+    <div data-l="1"><b>圈 <span class="en" data-say="cycle">cycle</span></b>能绕回起点的一串线。</div>
+    <div data-l="1"><b>贪心 <span class="en" data-say="greedy">greedy</span></b>每一步拣眼前最好的。</div>
+    <div data-l="2"><b>切分 <span class="en" data-say="cut">cut</span></b>把顶点分成两部分。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>n 个点用 n − 1 条线连起来就够；从最短的挑起，成圈就跳过；成不成圈问并查集。</div>
+    <div><i>第二层带走</i>普里姆 O(n²) 适合稠密，克鲁斯卡尔 O(e log e) 适合稀疏；树可能不唯一，总权值唯一。</div>
+    <div><i>第三层带走</i>最小生成树为电网而生，今天还在拆迷宫的墙、给数据分簇。</div>
+  </div>
+</section>

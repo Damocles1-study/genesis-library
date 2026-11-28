@@ -1,0 +1,174 @@
+<section class="chap" id="c29" data-vol="卷七 · 并发">
+  <div class="chead">
+    <div class="big">并</div>
+    <div>
+      <div class="no">第二十九章</div>
+      <h2>并发</h2>
+      <dl><dt>讲什么</dt><dd>两个线程各加一万次，结果不到两万；count++ 其实是三条指令；竞态和临界区；锁；信号量和 P、V；生产者和消费者；死锁的四个条件；银行家算法；原子指令、内存顺序和线程消毒器</dd><dt>装置</dt><dd>两个人同时记账 · 银行家算法</dd></dl>
+      <div class="crs" data-c="系统 组成"></div>
+      <div class="lvs"><a data-l="1" href="#c29-1">第一层 · 45 分钟</a><a data-l="2" href="#c29-2">第二层 · 65 分钟</a><a data-l="3" href="#c29-3">第三层 · 25 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>我让两个线程一起数数，各数一万下，最后却只有一万三千多。电脑会数错？</span></div>
+    <div class="l"><i class="j">舅</i><span>电脑没数错，是你俩抢着在同一张纸上写字。今天讲怎样排队用那张纸。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>解释为什么两个线程同时 count++ 会丢数；用锁修好它。</li>
+      <li><span class="lg lg1">一</span>说出死锁是什么，举一个生活里的例子。</li>
+      <li><span class="lg lg2">二</span>用信号量的 P、V 操作写出生产者消费者、读者写者等同步问题；说出死锁的四个必要条件，用银行家算法判断安全状态。</li>
+      <li><span class="lg lg3">三</span>说出原子指令、内存顺序、伪共享和线程消毒器。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c29-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：线程（第二十六章）、汇编（第十四章）</span><span class="tm">约 45 分钟</span></div>
+    <div class="lyb">
+      <h3>count++ 是三步</h3>
+      <p>C 里的 <code>count++</code> 看起来是一步，翻译成机器指令却是三步（第十四章）：<b>读</b>（把 count 从内存读进寄存器）、<b>加</b>（寄存器加一）、<b>写</b>（把寄存器写回内存）。两个线程同时做，可能这样交错：A 读到 5，B 也读到 5；A 加成 6 写回；B 也加成 6 写回。两个人各加了一次，count 却只多了 1。这种结果取决于“谁先谁后”的错误叫<b>竞态</b>（race condition），会改共享数据的那段代码叫<b>临界区</b>。</p>
+      <div class="fig" id="raceFig">
+        <div class="fig-label">装置 · 第二十九章 · 一</div>
+        <h4>两个人同时记账</h4>
+        <p class="how">两个线程都要执行 count++（读、加、写三步），count 一开始是 0。你来当调度器：点“A 走一步”“B 走一步”决定谁先执行，看最后 count 是 1 还是 2。再点“随机交错一千次”看看结果的分布；打开“加锁”再试。</p>
+        <div class="btns"><button class="btn pri" data-x="A">A 走一步</button><button class="btn pri" data-x="B">B 走一步</button><button class="btn" data-x="reset">重来</button><button class="btn" data-x="many">随机交错一千次</button><label class="dim" style="font-size:13px;align-self:center"><input type="checkbox" id="rcLock"> 加锁</label></div>
+        <div class="race"></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+      <h3>锁</h3>
+      <p>解决办法是规定“同一时刻只许一个线程在临界区里”，叫<b>互斥</b>。最常用的工具是<b>锁</b>（mutex）：进临界区前先上锁，出来时开锁；锁已经被别人上了，就等着。像只有一把钥匙的厕所。C 里用 pthread 库：</p>
+      <pre class="code" data-k="race.c">#include &lt;stdio.h&gt;
+#include &lt;pthread.h&gt;
+long count = 0;
+pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;
+void *work(void *arg) {
+    for (int i = 0; i &lt; 1000000; i++) {
+        /* pthread_mutex_lock(&amp;m); */
+        count++;
+        /* pthread_mutex_unlock(&amp;m); */
+    }
+    return NULL;
+}
+int main(void) {
+    pthread_t a, b;
+    pthread_create(&amp;a, NULL, work, NULL);
+    pthread_create(&amp;b, NULL, work, NULL);
+    pthread_join(a, NULL); pthread_join(b, NULL);
+    printf("count = %ld（应该是 2000000）\n", count);
+    return 0;
+}</pre>
+      <div class="try">
+        <div class="th"><b>亲手制造一次竞态</b><span class="tm">15 分钟</span></div>
+        <div class="tb">
+<pre class="sh" data-k="终端"><span class="p">% </span>clang -O0 race.c -o race &amp;&amp; ./race &amp;&amp; ./race &amp;&amp; ./race
+<span class="p">% </span>clang -O0 -g -fsanitize=thread race.c -o race &amp;&amp; ./race</pre>
+          <p>运行几次，结果每次都不一样，而且都小于 2000000。第二条用“线程消毒器”编译，它会报告 <code>WARNING: ThreadSanitizer: data race</code>，指出两个线程在哪一行同时读写了 count。然后把两行注释打开（加上锁），重新编译，结果就总是 2000000 了，只是慢了不少：锁是有代价的。</p>
+        </div>
+      </div>
+      <h3>死锁</h3>
+      <p>锁多了又有新麻烦。两个人吃饭，桌上一把刀一把叉，都要刀叉齐了才能吃。甲拿了刀等叉，乙拿了叉等刀，两人都不肯放下，就这样一直等下去，这叫<b>死锁</b>。十字路口四个方向的车都开进路口一半、互相堵死，也是死锁。程序里两个线程各持一把锁、又去要对方那把，就会卡住不动，而且没有报错。最简单的预防办法：大家约好<b>按同样的顺序</b>拿锁（都先拿刀再拿叉）。</p>
+      <div class="task" data-id="base-t29a">
+        <div class="th"><b>找出交错</b></div>
+        <div class="tb"><p>在装置里，找出至少三种不同的点击顺序让 count 最后是 1，再找出两种让它是 2。然后数一数：A、B 各三步，一共有多少种交错顺序？（提示：从 6 步里选出哪 3 步是 A 的，组合数 C(6, 3) = 20。）其中有几种结果是 2？</p></div>
+      </div>
+      <div class="pass" data-id="base-q29a">
+        <div class="qq" data-in="3"><p>count++ 在机器里大约是几步？</p><p class="ex">读、加、写。</p></div>
+        <div class="qq" data-a="1"><p>两个线程各执行一次 count++（count 原来是 0），结果可能是？</p><ol><li>只能是 2</li><li>1 或 2</li><li>0</li></ol><p class="ex">交错不同结果不同。</p></div>
+        <div class="qq" data-a="0"><p>同一时刻只许一个线程进入临界区，叫？</p><ol><li>互斥</li><li>并行</li><li>调度</li></ol><p class="ex">锁就是实现互斥的工具。</p></div>
+        <div class="qq" data-a="2"><p>甲拿着刀等叉、乙拿着叉等刀，叫？</p><ol><li>竞态</li><li>饥饿</li><li>死锁</li></ol><p class="ex">都在等对方，谁也动不了。</p></div>
+        <div class="qq" data-a="1"><p>预防上面那种死锁的简单办法是？</p><ol><li>多买几把刀</li><li>大家按同样的顺序拿锁</li><li>不用锁</li></ol><p class="ex">破坏“循环等待”。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c29-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 操作系统 · 进程同步与死锁</span><span class="tm">约 65 分钟</span><span class="sum">同步和互斥的四条准则；软件和硬件实现互斥；信号量和 P、V；生产者消费者、读者写者、哲学家进餐；管程；死锁的四个必要条件；预防、避免（银行家算法）、检测与解除。</span></div>
+    <div class="lyb">
+      <h3>临界区的准则和实现</h3>
+      <p>四条准则：<b>空闲让进</b>、<b>忙则等待</b>、<b>有限等待</b>、<b>让权等待</b>（进不去时让出处理器，不要空转）。软件办法有 Peterson 算法（两个线程，用 flag 和 turn 两个变量）；硬件办法有关中断（只适用于单处理器内核）和原子指令：<b>TestAndSet</b>、<b>Swap</b>（交换），用它们做的自旋锁会“忙等”，不满足让权等待。</p>
+      <h3>信号量</h3>
+      <p>信号量 S 是一个整数加一个等待队列，只能用两个原子操作访问：<b>P(S)</b>（wait）：S 减 1，若 S &lt; 0 则把自己阻塞进队列；<b>V(S)</b>（signal）：S 加 1，若 S ≤ 0 则唤醒队列里的一个。S 为负时，其绝对值就是等待的进程数。用法：</p>
+      <ul class="plain">
+        <li><b>互斥</b>：mutex 初值 1，临界区前 P、后 V。</li>
+        <li><b>同步</b>（前驱关系，A 做完 B 才能做）：S 初值 0，A 做完 V(S)，B 开始前 P(S)。</li>
+        <li><b>资源计数</b>：初值为资源个数。</li>
+      </ul>
+      <pre class="code" data-k="生产者-消费者（缓冲区 n 格）">semaphore mutex = 1, empty = n, full = 0;
+producer: while (1) { 生产一个; P(empty); P(mutex); 放进缓冲区; V(mutex); V(full); }
+consumer: while (1) { P(full); P(mutex); 取出一个; V(mutex); V(empty); 消费它; }</pre>
+      <p>易错点：P(empty) 和 P(mutex) 的顺序不能颠倒，否则缓冲区满时生产者拿着 mutex 阻塞在 empty 上，消费者拿不到 mutex 取不走东西，死锁。V 操作的顺序则无所谓。<b>读者写者</b>（读者可以同时读，写者要独占）用一个 count 记读者数，第一个读者 P(rw)、最后一个读者 V(rw)；<b>哲学家进餐</b>（五个人五根筷子）的经典解法是限制最多四人同时拿筷子，或奇数号先拿左边、偶数号先拿右边。管程把共享数据和对它的操作封装在一起，同一时刻只允许一个进程在管程内，用条件变量 wait、signal 做同步（Java 的 synchronized 就是这个思想）。</p>
+      <h3>死锁</h3>
+      <p>四个<b>必要条件</b>（缺一个就不会死锁）：互斥、不剥夺、请求并保持、循环等待。对策：<b>预防</b>（破坏某个条件，如一次申请所有资源破坏“请求并保持”、按编号顺序申请破坏“循环等待”）；<b>避免</b>（每次分配前检查分配后是否仍处于<b>安全状态</b>，即存在一个让所有进程都能完成的顺序，银行家算法）；<b>检测与解除</b>（允许发生，定期画资源分配图化简找死锁，再撤销进程或剥夺资源）。安全状态一定不会死锁；不安全状态不一定会死锁，但有可能。</p>
+      <div class="fig" id="bankFig">
+        <div class="fig-label">装置 · 第二十九章 · 二</div>
+        <h4>银行家算法</h4>
+        <p class="how">五个进程、三类资源。表里是“已分配”和“最大需求”，下面是“可用”。点“检查安全性”找安全序列；也可以让某个进程提出一个请求，看系统答不答应。表里的数字都能改。</p>
+        <div class="bank scroll-x"></div>
+        <div class="row"><label class="dim" style="font-size:13px">请求：进程</label><select id="bkP" style="width:auto"></select><input type="text" id="bkR" value="1 0 1" style="width:7em;font-family:var(--f-mono)" aria-label="请求向量"><button class="btn pri" data-x="req">提出请求</button><button class="btn" data-x="safe">检查安全性</button><button class="btn" data-x="reset">恢复原表</button></div>
+        <div class="say"></div>
+      </div>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）信号量 S 初值为 3，当前值为 −2，有几个可用资源、几个进程在等待？（2）系统有 3 个同类资源，被 n 个进程共享，每个进程最多需要 2 个。n 最大为多少时一定不会死锁？（3）对上面装置里的初始状态，P1 请求 (1, 0, 1) 能否立即分配？P3 请求 (1, 0, 0) 呢？</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）没有可用资源，2 个进程在等。</p>
+          <p>（2）最坏情况每个进程都拿到 1 个、再要 1 个：只要 3 ≥ n × (2 − 1) + 1，即 n ≤ 2 时一定有人能拿齐。n = 2。一般地，m 个资源、n 个进程每个最多要 k 个，n(k − 1) + 1 ≤ m 时不会死锁。</p>
+          <p>（3）初始状态安全（如 P3、P1、P4、P0、P2）。P1 请求 (1, 0, 1) ≤ 它的需求 (1, 1, 2)，也 ≤ 可用 (2, 2, 1)，但假装分配后可用变为 (1, 2, 0)，没有一个进程的剩余需求能被满足，状态不安全，所以<b>不能</b>分配，P1 要等。P3 请求 (1, 0, 0)：假装分配后可用 (1, 2, 1)，P3 的剩余需求 (1, 1, 1) 能满足，接着 P1、P4、P0、P2 都能完成，安全，可以分配。用装置验证。</p>
+        </div></details>
+      </div>
+      <div class="pass" data-id="base-q29b">
+        <div class="qq" data-in="2"><p>信号量当前值为 −2，有几个进程在等？</p><p class="ex">负值的绝对值。</p></div>
+        <div class="qq" data-a="1"><p>生产者里 P(empty) 和 P(mutex) 颠倒会怎样？</p><ol><li>没影响</li><li>缓冲区满时可能死锁</li><li>变快</li></ol><p class="ex">拿着锁去等空位，消费者进不来。</p></div>
+        <div class="qq" data-a="2"><p>下面哪个不是死锁的必要条件？</p><ol><li>互斥</li><li>循环等待</li><li>先来先服务</li></ol><p class="ex">另外两个是不剥夺、请求并保持。</p></div>
+        <div class="qq" data-a="0"><p>银行家算法属于？</p><ol><li>死锁避免</li><li>死锁预防</li><li>死锁检测</li></ol><p class="ex">分配前检查是否安全。</p></div>
+        <div class="qq" data-a="1"><p>系统处于不安全状态，说明？</p><ol><li>一定已经死锁</li><li>可能发生死锁</li><li>不会死锁</li></ol><p class="ex">不安全不等于死锁。</p></div>
+        <div class="qq" data-in="2"><p>8 个同类资源，每个进程最多需要 4 个，最多几个进程共享时一定不会死锁？</p><p class="ex">n(4 − 1) + 1 ≤ 8，即 3n ≤ 7，n 最大为 2。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c29-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">多核下的真相</span><span class="tm">约 25 分钟</span><span class="sum">原子指令：arm64 的 LDADD 和 CAS；内存顺序：x86 的 TSO 和 ARM 的弱序；为什么双重检查锁会出错；伪共享；无锁数据结构；用消息代替共享。</span></div>
+    <div class="lyb">
+      <h3>原子指令</h3>
+      <p>锁本身是怎么做的？处理器提供“读、改、写一步完成、中间不会被插队”的<b>原子指令</b>。arm64 从 ARMv8.1 起有 <code>ldadd</code>（原子加）、<code>cas</code>（比较并交换：如果内存里还是我以为的那个值，就换成新值，否则失败）等。C11 的 <code>&lt;stdatomic.h&gt;</code> 里，<code>atomic_fetch_add(&amp;count, 1)</code> 在 Apple Silicon 上会编译成一条 ldadd，比加锁快得多。用 <code>clang -O2 -S</code> 可以看到。</p>
+      <h3>内存顺序</h3>
+      <p>更隐蔽的问题：为了快，处理器和编译器会重排读写的顺序（第十五章的乱序执行），单线程看不出来，多线程就可能看到“先写的后到”。x86 的规则比较严格（TSO，第十四章 Rosetta 那一段），ARM 是弱序的，允许更多重排。所以在 Mac 上，一个“在 x86 上从没出过错”的无锁程序可能会出错。正确的做法是用原子变量并指定内存顺序（acquire、release），或者干脆用锁，让编译器和处理器插入必要的屏障。经典的反例是“双重检查锁定”：不加正确的屏障，另一个线程可能拿到一个指针却看到对象还没初始化完。</p>
+      <h3>别抢同一行</h3>
+      <p>第十六章的<b>伪共享</b>在这里正式登场：两个线程各自累加自己的计数器，计数器却挨在同一个缓存行里，两个核为了这一行来回抢，比真共享还慢。把每个线程的计数器放到不同的缓存行（Apple Silicon 上间隔 128 字节），各自算完最后再加起来，常常快得多。更进一步的思路是不共享：Go 语言的口号是“不要用共享内存来通信，要用通信来共享内存”，各线程通过消息队列（channel）传数据。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>OSTEP 第 26—32 章（并发、锁、条件变量、信号量、常见并发问题）。</li>
+          <li>E. W. Dijkstra, “Cooperating Sequential Processes”, 1965（信号量、哲学家进餐的前身）；E. W. Dijkstra 1965 年提出的银行家算法。</li>
+          <li>Paul E. McKenney,《深入理解并行编程》；Hans Boehm, “Threads Cannot Be Implemented as a Library”, PLDI 2005。</li>
+        </ul>
+      </div>
+      <div class="pass" data-id="base-q29c">
+        <div class="qq" data-a="1"><p>CAS（比较并交换）的作用是？</p><ol><li>比较两个字符串</li><li>内存里还是预期的值时才换成新值，整个过程原子完成</li><li>交换两个寄存器</li></ol><p class="ex">无锁算法的基础。</p></div>
+        <div class="qq" data-a="0"><p>和 x86 相比，ARM 的内存顺序？</p><ol><li>更弱，允许更多重排</li><li>更强</li><li>一样</li></ol><p class="ex">所以有些程序在 x86 上碰巧没事、在 Mac 上出错。</p></div>
+        <div class="qq" data-a="2"><p>各线程的计数器放在不同缓存行，是为了避免？</p><ol><li>死锁</li><li>竞态</li><li>伪共享</li></ol><p class="ex">不同变量挤在一行里互相拖慢。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div data-l="1"><b>竞态 <span class="en" data-say="race condition">race condition</span></b>结果取决于谁先谁后的错误。</div>
+    <div data-l="1"><b>锁 <span class="en" data-say="mutex">mutex</span></b>同一时刻只许一个线程进入。</div>
+    <div data-l="1"><b>死锁 <span class="en" data-say="deadlock">deadlock</span></b>互相等对方，谁也动不了。</div>
+    <div data-l="2"><b>信号量 <span class="en" data-say="semaphore">semaphore</span></b>一个整数加等待队列，用 P、V 操作。</div>
+    <div data-l="2"><b>临界区 <span class="en" data-say="critical section">critical section</span></b>访问共享数据的那段代码。</div>
+    <div data-l="3"><b>原子操作 <span class="en" data-say="atomic operation">atomic operation</span></b>中间不会被打断的读改写。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>count++ 是三步，两个人一起做就会丢；锁让大家排队，死锁让大家干等。</div>
+    <div><i>第二层带走</i>先 P 资源再 P 互斥；四个条件缺一不死锁；安全状态有一条人人能完成的路。</div>
+    <div><i>第三层带走</i>多核上连“先写后读”的顺序都不可信，要用原子操作和屏障说清楚。</div>
+  </div>
+</section>

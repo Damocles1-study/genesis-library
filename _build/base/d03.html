@@ -1,0 +1,162 @@
+<section class="chap" id="c27" data-vol="卷七 · 虚拟内存">
+  <div class="chead">
+    <div class="big">虚</div>
+    <div>
+      <div class="no">第二十七章</div>
+      <h2>虚拟内存</h2>
+      <dl><dt>讲什么</dt><dd>每个进程都以为自己独占一整片内存；把内存切成一页一页；页表把虚拟页号翻译成物理页框号；TLB 是页表的缓存；缺页和换出；页面置换：先进先出、最近最久未使用、最佳、时钟；多级页表；写时复制和内存压缩</dd><dt>装置</dt><dd>地址翻译 · 页面置换</dd></dl>
+      <div class="crs" data-c="系统 组成"></div>
+      <div class="lvs"><a data-l="1" href="#c27-1">第一层 · 45 分钟</a><a data-l="2" href="#c27-2">第二层 · 60 分钟</a><a data-l="3" href="#c27-3">第三层 · 25 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>第十八章说 %p 打出来的是“虚拟地址”。那真的地址在哪儿？</span></div>
+    <div class="l"><i class="j">舅</i><span>在一张翻译表里。每个进程拿到的都是一本“假的门牌号簿”，处理器每次访问内存时，都偷偷查表换成真的门牌号。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>说出虚拟内存解决了哪几个问题；把一个虚拟地址拆成页号和页内偏移，查表得到物理地址。</li>
+      <li><span class="lg lg1">一</span>说出“缺页”是怎么回事，内存不够时系统会怎样。</li>
+      <li><span class="lg lg2">二</span>做页表和多级页表的位数计算；计算有 TLB 时的有效访问时间；用 FIFO、LRU、OPT、时钟算缺页次数，说出 Belady 异常。</li>
+      <li><span class="lg lg3">三</span>说出写时复制、内存映射文件、macOS 的内存压缩和交换。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c27-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：内存（第十二章）、缓存（第十六章）、进程（第二十六章）</span><span class="tm">约 45 分钟</span></div>
+    <div class="lyb">
+      <h3>为什么要“假”地址</h3>
+      <p>如果几百个进程都直接用真实的物理地址，会有三个麻烦：谁都能改别人的内存（不安全）；每个程序都得知道自己被装在哪儿（第二十三章的重定位）；内存被切得七零八落（第二十一章的外部碎片）。<b>虚拟内存</b>一次解决三件事：给每个进程一片自己的、从 0 开始的、很大的<b>虚拟地址空间</b>；处理器每次访问内存时，由一个叫 MMU（内存管理单元）的硬件把虚拟地址翻译成物理地址。翻译表由操作系统维护，每个进程一张，别人的表你查不到，自然改不了别人的内存。</p>
+      <h3>分页</h3>
+      <p>一个字节一个字节地翻译，表太大了。所以把虚拟空间和物理内存都切成同样大小的块：虚拟的叫<b>页</b>，物理的叫<b>页框</b>。Apple Silicon 的 Mac 一页 16 KB（第十二章 pagesize 命令打出的 16384），很多 x86 电脑和手机是 4 KB。翻译表只要记“第几页放在第几个页框”，这张表叫<b>页表</b>。</p>
+      <p>一个虚拟地址拆成两段：高位是<b>页号</b>，低位是<b>页内偏移</b>（页有 16 KB = 2<sup>14</sup> 字节，偏移就是低 14 位）。用页号查页表得到页框号，再接上原来的偏移，就是物理地址。偏移原样不动，因为页和页框一样大。</p>
+      <div class="fig" id="vmFig">
+        <div class="fig-label">装置 · 第二十七章 · 一</div>
+        <h4>地址翻译</h4>
+        <p class="how">一台玩具机器：虚拟地址 16 位，一页 4 KB（偏移 12 位，页号 4 位，16 页）。右边是这个进程的页表，“—”表示这一页现在不在内存里。输入一个十六进制的虚拟地址，看它怎样被拆开、查表、拼成物理地址。</p>
+        <div class="row"><label class="dim" style="font-size:13px">虚拟地址 0x</label><input type="text" id="vmIn" value="3A7C" maxlength="4" style="width:6em;font-family:var(--f-mono)"><button class="btn" data-v="1234">1234</button><button class="btn" data-v="5FFF">5FFF</button><button class="btn" data-v="2000">2000</button></div>
+        <div class="vmwrap"><div class="vmsteps"></div><div class="vmpt"></div></div>
+        <div class="say"></div>
+      </div>
+      <h3>缺页：页不在家</h3>
+      <p>页表里还可以记“这一页暂时不在内存里，在硬盘上”。程序访问到这样的页，MMU 翻译不出来，产生一个<b>缺页</b>异常（第二十五章的“故障”）。内核接手：找一个空页框（没有就挑一页“请出去”写回硬盘），把需要的页从硬盘读进来，改好页表，再让那条指令重新执行一遍。程序完全感觉不到，只是那一下慢了很多。所以电脑能运行“比内存还大”的程序：常用的页留在内存，不常用的放在硬盘上。代价是：如果要用的页总在内存和硬盘之间来回搬，电脑会卡得几乎不动，这叫<b>抖动</b>。</p>
+      <div class="try">
+        <div class="th"><b>看缺页</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+<pre class="sh" data-k="终端"><span class="p">% </span>pagesize
+<span class="p">% </span>vm_stat
+<span class="p">% </span>/usr/bin/time -l ls 2&gt;&amp;1 | grep -i "page"</pre>
+          <p><code>vm_stat</code> 里的 Pageins（从硬盘读进来的页数）、Swapins、Swapouts、Pages compressed（第三层）都是开机以来的累计。<code>time -l</code> 运行一个命令并报告它的资源使用，“page reclaims”和“page faults”就是它的缺页次数（大部分只是第一次碰到某页时建立映射，不用读硬盘）。打开“活动监视器”的“内存”页，下面的“内存压力”图：绿色是够用，黄色红色说明在大量压缩和交换。</p>
+        </div>
+      </div>
+      <div class="task" data-id="base-t27a">
+        <div class="th"><b>自己翻译一个地址</b></div>
+        <div class="tb"><p>在纸上用装置里的页表，把虚拟地址 0x4ABC 翻译成物理地址：先写成 16 位二进制，拆出高 4 位页号和低 12 位偏移，查表，拼起来。再用装置验证。最后想一想：如果一页 16 KB、地址 64 位，偏移有几位？</p></div>
+      </div>
+      <div class="pass" data-id="base-q27a">
+        <div class="qq" data-a="1"><p>把虚拟地址翻译成物理地址的硬件叫？</p><ol><li>ALU</li><li>MMU</li><li>DMA</li></ol><p class="ex">内存管理单元。</p></div>
+        <div class="qq" data-in="14"><p>一页 16 KB，页内偏移有几位？</p><p class="ex">16 KB = 2<sup>14</sup>。</p></div>
+        <div class="qq" data-a="0"><p>翻译时哪一部分原样不动？</p><ol><li>页内偏移</li><li>页号</li><li>都要变</li></ol><p class="ex">页和页框一样大。</p></div>
+        <div class="qq" data-a="2"><p>访问的页不在内存里，会发生什么？</p><ol><li>程序崩溃</li><li>读到 0</li><li>缺页异常，内核把页读进来后重新执行那条指令</li></ol><p class="ex">程序感觉不到，只是慢了一下。</p></div>
+        <div class="qq" data-a="1"><p>为什么一个进程改不了另一个进程的内存？</p><ol><li>它不知道地址</li><li>每个进程有自己的页表，查不到别人的页框</li><li>内存是只读的</li></ol><p class="ex">隔离是虚拟内存的主要好处之一。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c27-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 操作系统 · 内存管理 · 408 计组 · 虚拟存储器</span><span class="tm">约 60 分钟</span><span class="sum">页表项里有什么；页表多大、为什么要多级页表；TLB 和有效访问时间；缺页处理；页面置换算法 OPT、FIFO、LRU、CLOCK 和改进型 CLOCK；Belady 异常；工作集和抖动；分段和段页式。</span></div>
+    <div class="lyb">
+      <h3>页表项和页表的大小</h3>
+      <p>页表项除了页框号，还有：<b>有效位</b>（在不在内存）、<b>访问位</b>（最近被访问过没有，置换算法用）、<b>修改位</b>（脏位，换出时要不要写回）、<b>保护位</b>（可读、可写、可执行，第十三章的 W^X 就靠它）。页表大小 = 页表项个数 × 每项字节数。32 位地址、4 KB 页：2<sup>20</sup> 项 × 4 字节 = 4 MB，每个进程都要一张，而且大部分是空的。所以用<b>多级页表</b>：把页号再切成几段，第一级表指向第二级表，没用到的区域连第二级表都不必建。arm64 和 x86-64 常用四级页表（48 位虚拟地址）。代价是一次翻译要多访问几次内存，于是有了 TLB。</p>
+      <h3>TLB</h3>
+      <p><b>快表</b>（TLB）是页表项的缓存（第十六章），通常是全相联或高相联度的小表，几十到上千项。翻译时先查 TLB，命中就直接得到页框号；不命中再查内存里的页表，并把结果放进 TLB。设 TLB 访问时间 t、内存访问时间 m、TLB 命中率 h，一级页表时：有效访问时间 = h(t + m) + (1 − h)(t + 2m)（若并行查 TLB 和页表，式子略有不同，按题意）。</p>
+      <h3>页面置换</h3>
+      <ul class="plain">
+        <li><b>OPT</b>（最佳）：换出将来最长时间不会用到的页。缺页最少，但要预知未来，只能作为比较的基准。</li>
+        <li><b>FIFO</b>：换出最早进来的页。简单，但可能把常用页换掉；会出现 <b>Belady 异常</b>：给更多的页框，缺页次数反而增加。</li>
+        <li><b>LRU</b>（最近最久未使用）：换出最长时间没被访问的页。效果接近 OPT，但每次访问都要记时间或调整栈，硬件代价高。</li>
+        <li><b>CLOCK</b>（最近未用）：页框排成一圈，每页一个访问位，指针转圈：访问位为 1 就清零跳过，为 0 就换出它。<b>改进型 CLOCK</b> 同时看访问位和修改位，优先换出 (0, 0)，其次 (0, 1)，因为没改过的页换出不用写回硬盘。</li>
+      </ul>
+      <div class="fig" id="replFig">
+        <div class="fig-label">装置 · 第二十七章 · 二</div>
+        <h4>页面置换</h4>
+        <p class="how">输入一串页面访问序列（空格隔开）和页框数，选一种算法，看每一步内存里有哪些页、哪一步缺页（红）。“Belady 例子”用 FIFO 比较 3 个和 4 个页框。</p>
+        <div class="btns" data-m></div>
+        <div class="row"><input type="text" id="rpSeq" value="7 0 1 2 0 3 0 4 2 3 0 3 2 1 2 0 1 7 0 1" style="flex:1 1 16em;font-family:var(--f-mono)" aria-label="访问序列"><label class="dim" style="font-size:13px">页框</label><input type="number" id="rpN" value="3" min="1" max="6" style="width:4em"><button class="btn" data-x="bel">Belady 例子</button></div>
+        <div class="repl scroll-x"></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+      <h3>工作集、抖动和分段</h3>
+      <p>进程在一段时间里经常访问的那些页叫<b>工作集</b>。分给它的页框少于工作集，就会频繁缺页（抖动）；系统应当减少同时运行的进程，让每个进程的工作集都放得下。另一种划分方式是<b>分段</b>：按程序的逻辑单位（代码段、数据段、栈段）分成大小不等的段，便于共享和保护，但会有外部碎片；<b>段页式</b>先分段再在段内分页，兼顾两者。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）某系统虚拟地址 32 位、页大小 4 KB、页表项 4 字节，采用二级页表，每个页表恰好占一页。虚拟地址怎样划分？（2）TLB 访问 10 ns，内存访问 100 ns，TLB 命中率 90%，一级页表，求有效访问时间。（3）页框数为 3，访问序列 1 2 3 4 1 2 5 1 2 3 4 5，分别用 FIFO 和 LRU 求缺页次数；页框数改为 4 时 FIFO 缺页多少次？</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）偏移 12 位；一页 4 KB 能放 1024 个 4 字节的页表项，每级 10 位。划分为 10 | 10 | 12。</p>
+          <p>（2）0.9 × (10 + 100) + 0.1 × (10 + 200) = 99 + 21 = 120 ns。</p>
+          <p>（3）FIFO（3 框）：9 次；LRU（3 框）：10 次；FIFO（4 框）：10 次，页框多了反而缺页更多，这就是 Belady 异常。可以在上面的装置里逐步验证。</p>
+        </div></details>
+      </div>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>为什么需要虚拟内存？缺页之后发生了什么？</p>
+        <details><summary>看要点</summary><div><p>隔离与保护（各自的地址空间、页级权限）、简化编程和链接加载（每个进程地址从固定位置开始，无需重定位）、更好地利用物理内存（分页消除外部碎片、按需加载、共享库和写时复制共享页面）、能运行比物理内存大的程序。缺页：MMU 发现有效位为 0 → 产生缺页异常进入内核 → 检查地址是否合法（非法则发 SIGSEGV 段错误）→ 找空闲页框，没有则按置换算法选牺牲页、脏的写回 → 从磁盘（交换区或文件）读入 → 更新页表和 TLB → 返回用户态重新执行引起缺页的指令。</p></div></details>
+      </div>
+      <div class="pass" data-id="base-q27b">
+        <div class="qq" data-in="120|120ns"><p>上面典型题（2）的有效访问时间是多少 ns？</p><p class="ex">99 + 21。</p></div>
+        <div class="qq" data-a="1"><p>会出现 Belady 异常的是？</p><ol><li>LRU</li><li>FIFO</li><li>OPT</li></ol><p class="ex">栈式算法（LRU、OPT）不会。</p></div>
+        <div class="qq" data-a="2"><p>改进型 CLOCK 最优先换出的是？</p><ol><li>访问位 1、修改位 1</li><li>访问位 0、修改位 1</li><li>访问位 0、修改位 0</li></ol><p class="ex">没用过、也没改过，换出不用写回。</p></div>
+        <div class="qq" data-in="4"><p>32 位地址、4 KB 页、页表项 4 字节，一级页表有多少 MB？</p><p class="ex">2<sup>20</sup> × 4 B = 4 MB。</p></div>
+        <div class="qq" data-a="0"><p>多级页表主要解决？</p><ol><li>页表太大，大部分是空的</li><li>翻译太快</li><li>TLB 太大</li></ol><p class="ex">代价是多访问几次内存。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c27-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">现代系统的玩法</span><span class="tm">约 25 分钟</span><span class="sum">写时复制；内存映射文件和共享库；macOS 先压缩再交换；大页和 16 KB 页的取舍；页表隔离。</span></div>
+    <div class="lyb">
+      <h3>页表能做的花样</h3>
+      <ul class="plain">
+        <li><b>写时复制</b>：fork（第二十六章）后父子进程的页表指向同一批页框，全部标为只读；谁先写，就触发一次保护异常，内核这才复制那一页、改成可写。</li>
+        <li><b>内存映射文件</b>：<code>mmap</code> 把一个文件映射进地址空间，读写内存就是读写文件，页按需从磁盘读入。程序的代码段就是这样从可执行文件映射进来的，所以 100 个进程运行同一个程序、用同一个共享库，物理内存里只有一份代码。</li>
+        <li><b>按需分配</b>：malloc 一大块内存时，系统只是在页表里记下“这一片归你了”，真正碰到某一页才分配页框。所以第一次写一个大数组会产生很多缺页（第一层 time -l 看到的大部分就是这种）。</li>
+      </ul>
+      <h3>macOS：先压缩，再交换</h3>
+      <p>内存紧张时，macOS 不急着把页写到硬盘，而是先把不常用的页压缩（文本、零页压缩率很高），放在内存里一个专门的区域，需要时再解压，比读硬盘快得多。压缩也不够了，才写进固态硬盘上的交换文件。所以 8 GB 的 M1 Air 也能同时开不少东西；但长时间大量交换会增加固态硬盘的写入量。活动监视器里的“已压缩”和“已使用的交换”就是这两项。</p>
+      <h3>页的大小怎么选</h3>
+      <p>页大：页表小、TLB 能覆盖更多内存、读磁盘一次读得多；但页内浪费（内部碎片）大。Apple Silicon 选了 16 KB，一个 TLB 项覆盖的内存是 4 KB 页的四倍；数据库和虚拟机等大内存程序还会用 2 MB 甚至 1 GB 的“大页”。另外，第十五章说的熔断漏洞公开以后，很多系统把内核和用户态程序的页表彻底分开（内核页表隔离），每次系统调用都要切换页表，这是安全和速度的又一次交换。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>OSTEP 第 13—23 章（地址空间、分页、TLB、多级页表、交换和置换策略）。</li>
+          <li>L. A. Belady et al., “An Anomaly in Space-Time Characteristics of Certain Programs Running in a Paging Machine”, <i>CACM</i>, 1969；P. J. Denning, “The Working Set Model for Program Behavior”, 1968。</li>
+        </ul>
+      </div>
+      <div class="pass" data-id="base-q27c">
+        <div class="qq" data-a="0"><p>100 个进程运行同一个程序，物理内存里代码有几份？</p><ol><li>通常一份，共享映射</li><li>100 份</li><li>看程序</li></ol><p class="ex">代码段是只读映射的。</p></div>
+        <div class="qq" data-a="2"><p>macOS 内存紧张时首先做的是？</p><ol><li>杀掉程序</li><li>写进交换文件</li><li>压缩不常用的页</li></ol><p class="ex">先压缩，再交换。</p></div>
+        <div class="qq" data-a="1"><p>页越大，下面哪个会变大？</p><ol><li>页表的项数</li><li>页内的浪费（内部碎片）</li><li>TLB 缺失次数</li></ol><p class="ex">页表小了、TLB 覆盖大了，但浪费多了。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div data-l="1"><b>虚拟内存 <span class="en" data-say="virtual memory">virtual memory</span></b>每个进程一片自己的地址空间，硬件查表翻译。</div>
+    <div data-l="1"><b>页 / 页框</b><span class="en" data-say="page">page</span>、<span class="en" data-say="frame">frame</span>：虚拟和物理内存切成的同样大的块。</div>
+    <div data-l="1"><b>页表 <span class="en" data-say="page table">page table</span></b>页号到页框号的翻译表。</div>
+    <div data-l="1"><b>缺页 <span class="en" data-say="page fault">page fault</span></b>要的页不在内存里。</div>
+    <div data-l="2"><b>快表 <span class="en" data-say="translation lookaside buffer">TLB</span></b>页表项的缓存。</div>
+    <div data-l="2"><b>抖动 <span class="en" data-say="thrashing">thrashing</span></b>页在内存和硬盘之间来回搬，什么也干不了。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>地址 = 页号 + 偏移；查表换页号，偏移不动；不在家就缺页。</div>
+    <div><i>第二层带走</i>多级页表省空间，TLB 省时间；FIFO 有 Belady 异常，LRU 没有。</div>
+    <div><i>第三层带走</i>一张页表，撑起了隔离、共享、写时复制、按需加载和压缩。</div>
+  </div>
+</section>

@@ -1,0 +1,174 @@
+<div class="vol-h" data-vol="卷七 · 操作系统">
+  <div class="k">卷七</div>
+  <h2>操作系统</h2>
+  <p>四楼。几百个程序要共用一个处理器、一块内存、一块硬盘，谁来分？卷七讲操作系统的五件大事：守门（系统调用）、分时间（进程和调度）、分内存（虚拟内存）、管文件（文件系统）、调停（并发）。这一卷开始要用到 Linux，第一章就教你在 Mac 上开一台。</p>
+</div>
+
+<section class="chap" id="c25" data-vol="卷七 · 内核和系统调用">
+  <div class="chead">
+    <div class="big">核</div>
+    <div>
+      <div class="no">第二十五章</div>
+      <h2>内核和系统调用</h2>
+      <dl><dt>讲什么</dt><dd>用户态和内核态：普通程序不许直接碰硬件；系统调用像银行柜台；中断：硬件举手；在 Mac 上开一台 Linux；用 strace 看程序请内核做了什么；408 的中断和异常、中断处理过程、特权指令；宏内核和微内核；系统调用有多贵</dd><dt>装置</dt><dd>这一行会不会进内核</dd></dl>
+      <div class="crs" data-c="系统 组成"></div>
+      <div class="lvs"><a data-l="1" href="#c25-1">第一层 · 50 分钟</a><a data-l="2" href="#c25-2">第二层 · 50 分钟</a><a data-l="3" href="#c25-3">第三层 · 25 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>printf 是怎么把字放到屏幕上的？它能直接去改显存吗？</span></div>
+    <div class="l"><i class="j">舅</i><span>不能，普通程序连硬件的边都碰不到。它得填一张单子，递给操作系统，请它代办。这张单子叫系统调用。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>说出用户态和内核态的区别，为什么要这样分；说出系统调用和中断各是什么。</li>
+      <li><span class="lg lg1">一</span>在 Mac 上开一台 Linux，用 strace 看一个程序做了哪些系统调用。</li>
+      <li><span class="lg lg2">二</span>区分中断、陷阱、故障、终止；按顺序写出中断处理过程；判断哪些是特权指令。</li>
+      <li><span class="lg lg3">三</span>说出宏内核、微内核和 XNU；知道系统调用的代价，以及 vDSO 这类绕开它的办法。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c25-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：程序的加载（第二十三章）</span><span class="tm">约 50 分钟</span></div>
+    <div class="lyb">
+      <h3>两种身份</h3>
+      <p>如果每个程序都能随便指挥硬盘、改别人的内存，一个写错的程序就能把整台电脑搞垮，一个坏程序就能偷走所有人的数据。所以处理器有两种运行身份（在 arm64 上叫“异常级别”，EL0 和 EL1）：</p>
+      <ul class="plain">
+        <li><b>用户态</b>：你的程序、浏览器、游戏都在这里。只能算数、读写自己的内存，有些指令根本不许执行（比如直接操作外设、改内存映射）。</li>
+        <li><b>内核态</b>：操作系统的核心部分（<b>内核</b>）在这里运行，什么都能做。macOS 的内核叫 XNU，Linux 的内核就叫 Linux。</li>
+      </ul>
+      <p>这像银行：顾客（程序）不能自己走进金库（硬件），要在柜台填单子，由柜员（内核）检查后代办。</p>
+      <h3>系统调用：柜台</h3>
+      <p>程序要读文件、写屏幕、联网、要内存、开新程序，都要发起<b>系统调用</b>：把“我要办什么事”（一个编号）和参数放进约定的寄存器，执行一条特殊的指令（arm64 上是 <code>svc</code>），处理器立刻切换到内核态，跳到内核里事先设好的入口。内核检查请求合不合法、办完，再切回用户态，把结果交还给程序。printf 自己先把字排好，最后调用一次 write 系统调用，请内核把这些字节交给终端。</p>
+      <h3>中断：硬件举手</h3>
+      <p>反过来，硬件也有事要找内核：键盘被按下了、网卡收到了数据、硬盘读完了、定时器的时间到了。它们会发出<b>中断</b>信号，处理器放下手上的程序（不管它是谁），切到内核去处理，处理完再回来接着做。第零章“按下 A 键以后”的第四步就是它。定时器中断尤其重要：每隔几毫秒响一次，内核借机决定要不要换一个程序来跑（下一章）。</p>
+      <div class="fig" id="sysFig">
+        <div class="fig-label">装置 · 第二十五章</div>
+        <h4>这一行会不会进内核</h4>
+        <p class="how">点一行 C 代码，看它是不是要请内核帮忙、用的是哪个系统调用，以及在 Linux 上用 strace 能看到什么样的记录（示意）。</p>
+        <div class="btns" data-m></div>
+        <div class="sysflow"></div>
+        <div class="say"></div>
+      </div>
+      <h3>在 Mac 上开一台 Linux</h3>
+      <p>为了安全，macOS 默认不让普通用户跟踪程序的系统调用（第二十三章的系统完整性保护）。这一部有不少实验用 Linux 更方便，而且以后的《调度》《包》两本书也会用到它。办法有几种：</p>
+      <ul class="plain">
+        <li><b>Lima</b>（推荐）：开源的命令行工具，在 Mac 上用苹果自带的虚拟化功能跑一台 Linux 虚拟机，装好以后在终端里一条命令就能进去。</li>
+        <li><b>UTM</b>：有窗口界面的虚拟机软件，可以装带桌面的 Linux。</li>
+        <li><b>容器</b>：Docker Desktop、OrbStack 等，适合跑单个程序；新版 macOS 上苹果也提供了自己的容器工具，用法以官方说明为准。</li>
+        <li><b>远程</b>：学校或云服务器上的 Linux，用 <code>ssh 用户名@地址</code> 登录。</li>
+      </ul>
+      <div class="try">
+        <div class="th"><b>用 Lima 开一台 Linux，看系统调用</b><span class="tm">30 分钟 · 要下载几百 MB · 需要 Homebrew</span></div>
+        <div class="tb">
+          <ol class="steps">
+            <li>安装并启动（第一次会问用哪个配置，选默认的即可；要下载系统镜像，等几分钟）：
+<pre class="sh" data-k="Mac 终端"><span class="p">% </span>brew install lima
+<span class="p">% </span>limactl start
+<span class="p">% </span>lima</pre>
+            最后一条进入 Linux，提示符会变。你在 Mac 上的家目录在里面也能看到（默认只读）。退出用 <code>exit</code>，关掉虚拟机用 <code>limactl stop</code>。</li>
+            <li>在 Linux 里装工具，然后看 <code>ls</code> 做了哪些系统调用：
+<pre class="sh" data-k="Linux 里"><span class="p">$ </span>sudo apt update &amp;&amp; sudo apt install -y strace gcc
+<span class="p">$ </span>strace -c ls
+<span class="p">$ </span>strace -e trace=openat,write ls</pre>
+            <code>-c</code> 统计每种系统调用的次数；<code>-e trace=</code> 只看指定的几种。你会看到 ls 打开了一串库文件和当前目录（openat）、读目录内容（getdents64）、最后一次 write 把文件名写到屏幕。</li>
+            <li>把第十七章的 hello.c 拷进来编译，<code>strace ./hello</code>：除了加载时打开库的那些，你的 printf 只对应一行 <code>write(1, "你好，C！\n…", …)</code>。1 是“标准输出”的编号。</li>
+          </ol>
+        </div>
+      </div>
+      <div class="task" data-id="base-t25a">
+        <div class="th"><b>数一数系统调用</b></div>
+        <div class="tb"><p>写一个 C 程序，用循环调用 1000 次 <code>printf("x\n")</code>，用 <code>strace -c</code> 看 write 被调用了几次。再把输出重定向到文件：<code>strace -c ./prog &gt; out.txt</code>，次数变了吗？（提示：输出到文件时，C 库会先攒一大块再一次写出去，这叫缓冲，就是为了少进几次内核。）</p></div>
+      </div>
+      <div class="pass" data-id="base-q25a">
+        <div class="qq" data-a="1"><p>普通程序在哪种状态下运行？</p><ol><li>内核态</li><li>用户态</li><li>都可以</li></ol><p class="ex">只有内核在内核态。</p></div>
+        <div class="qq" data-a="0"><p>程序想读文件，要怎么办？</p><ol><li>发起系统调用，请内核代办</li><li>直接给硬盘发指令</li><li>读不了</li></ol><p class="ex">像在银行柜台填单子。</p></div>
+        <div class="qq" data-a="2"><p>键盘被按下时，通知处理器的方式是？</p><ol><li>系统调用</li><li>程序一直去问</li><li>中断</li></ol><p class="ex">硬件举手。</p></div>
+        <div class="qq" data-a="1"><p>printf 最后请内核做的是哪个系统调用？</p><ol><li>read</li><li>write</li><li>fork</li></ol><p class="ex">把字节写到标准输出。</p></div>
+        <div class="qq" data-a="0"><p>x = a + b 这样的计算要进内核吗？</p><ol><li>不要，用户态就能算</li><li>要</li><li>要看 a 有多大</li></ol><p class="ex">只碰自己的内存和寄存器，不用请人。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c25-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 计组 · 中断 · 408 操作系统 · 第一章</span><span class="tm">约 50 分钟</span><span class="sum">操作系统的四个特征；中断和异常的分类；中断处理的完整过程；中断向量和屏蔽；特权指令；系统调用就是陷入；一道判断题和一道排序题。</span></div>
+    <div class="lyb">
+      <h3>操作系统的特征和功能</h3>
+      <p>408 的说法：操作系统的基本特征是<b>并发</b>（宏观上同时运行多个程序）、<b>共享</b>（资源被多个程序共用，分互斥共享和同时共享）、<b>虚拟</b>（把一个物理实体变成多个逻辑上的对应物，如虚拟处理器、虚拟内存）、<b>异步</b>（程序走走停停，以不可预知的速度推进），其中并发和共享是最基本的、互为存在条件。它的功能是管理处理器、存储器、文件、设备，并向上提供接口（命令接口和程序接口，后者就是系统调用）。</p>
+      <h3>中断和异常</h3>
+      <ul class="plain">
+        <li><b>中断</b>（外中断）：来自处理器外部、和当前指令无关的事件，如 I/O 完成、定时器、键盘。处理完回到被打断的下一条指令。分为可屏蔽中断（可以暂时关掉不响应）和不可屏蔽中断（如掉电）。</li>
+        <li><b>异常</b>（内中断）：执行当前指令引起的。① <b>陷阱</b>（陷入）：程序有意引起的，如系统调用、断点（第二十四章的 brk），处理完回到下一条指令；② <b>故障</b>：可能被修复的错误，如缺页（第二十七章）、除以零，修复后<b>重新执行</b>引起故障的那条指令；③ <b>终止</b>：无法恢复的错误，如硬件故障，程序被终止。</li>
+      </ul>
+      <h3>中断处理过程</h3>
+      <p>408 计组常考的顺序（单重中断）：中断请求 → 中断判优（多个请求同时来，选优先级最高的）→ CPU 在一条指令执行完后响应（检查有无中断请求，且中断允许）→ <b>中断隐指令</b>（硬件自动完成：关中断、保存断点（PC 和程序状态）、识别中断源并送出中断服务程序的入口地址）→ 中断服务程序：保存现场（通用寄存器等）→ 若允许多重中断则开中断 → 执行设备服务 → 关中断 → 恢复现场 → 开中断 → 中断返回。入口地址常通过<b>中断向量表</b>查得：每种中断一个编号，表里存着对应服务程序的地址。多重中断时，可以用<b>中断屏蔽字</b>动态调整各中断源的处理优先级。</p>
+      <h3>特权指令</h3>
+      <p>只能在内核态执行的指令叫特权指令：I/O 指令、开关中断、修改页表基址寄存器（换地址空间）、停机、设置时钟等。用户态程序执行它们会引发异常。“访管指令”（系统调用指令，arm64 的 svc、x86 的 syscall）本身不是特权指令，它恰恰是用户态程序进入内核的合法途径。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）判断下列事件是中断还是异常，若是异常属于哪一类：① 程序执行 svc 请求读文件；② 访问的页不在内存中；③ 定时器时间片到；④ 整数除以零；⑤ 网卡收到一个数据包；⑥ 内存校验发现无法纠正的错误。（2）下列哪些指令只能在内核态执行：读时钟、写时钟、关中断、算术加法、修改页表基址寄存器、发出系统调用的指令。（3）把下列步骤按中断响应和处理的顺序排列：A 保存现场；B 关中断并保存断点（硬件）；C 执行中断服务；D 恢复现场；E 中断返回；F 识别中断源取得入口地址。</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）① 异常 · 陷阱；② 异常 · 故障（缺页，处理后重新执行该指令）；③ 中断；④ 异常 · 故障（多数系统直接终止该程序）；⑤ 中断；⑥ 异常 · 终止。</p>
+          <p>（2）写时钟、关中断、修改页表基址寄存器。读时钟、加法、系统调用指令都可以在用户态执行。</p>
+          <p>（3）B → F → A → C → D → E（单重中断，开关中断的细节按题目要求补充）。</p>
+        </div></details>
+      </div>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>系统调用和普通函数调用有什么区别？</p>
+        <details><summary>看要点</summary><div><p>普通函数调用在用户态内跳转，用 bl / call，开销是几个时钟周期；系统调用通过陷入指令切换到内核态，要保存用户态的寄存器、切换栈、检查参数、可能还要切换地址空间相关的东西，返回时再恢复，开销大一到两个数量级（几百纳秒级）。系统调用的入口由内核固定，参数通过寄存器传递，编号决定办什么事。C 库函数（如 printf、fopen）是对系统调用（write、openat）的包装，常带缓冲以减少进入内核的次数。</p></div></details>
+      </div>
+      <div class="pass" data-id="base-q25b">
+        <div class="qq" data-a="1"><p>缺页属于？</p><ol><li>外中断</li><li>故障</li><li>陷阱</li><li>终止</li></ol><p class="ex">处理完重新执行引起它的那条指令。</p></div>
+        <div class="qq" data-a="2"><p>系统调用属于？</p><ol><li>外中断</li><li>故障</li><li>陷阱</li></ol><p class="ex">程序有意引起，处理完回到下一条指令。</p></div>
+        <div class="qq" data-a="0"><p>中断隐指令由谁完成？</p><ol><li>硬件</li><li>中断服务程序</li><li>用户程序</li></ol><p class="ex">关中断、保存断点、取入口地址都是硬件自动做的。</p></div>
+        <div class="qq" data-a="1"><p>下面哪条不是特权指令？</p><ol><li>关中断</li><li>访管指令（发起系统调用）</li><li>I/O 指令</li></ol><p class="ex">它就是给用户态用的。</p></div>
+        <div class="qq" data-a="0"><p>操作系统最基本的两个特征是？</p><ol><li>并发和共享</li><li>虚拟和异步</li><li>共享和虚拟</li></ol><p class="ex">互为存在条件。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c25-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">内核的结构和代价</span><span class="tm">约 25 分钟</span><span class="sum">宏内核、微内核和 XNU；macOS 和 Linux 在 arm64 上发起系统调用的不同；一次系统调用有多贵；vDSO 和批处理；熔断之后的页表隔离。</span></div>
+    <div class="lyb">
+      <h3>宏内核和微内核</h3>
+      <p><b>宏内核</b>把进程管理、内存、文件系统、网络协议、驱动全放在内核态的一个大程序里，彼此直接调用，快，但任何一个驱动出错都可能拖垮整个系统。Linux 是宏内核。<b>微内核</b>只在内核态保留最少的东西（进程间通信、基本调度和内存），文件系统、驱动等都作为用户态的服务进程，靠消息互相请求，更可靠但消息传递有开销。macOS 的 XNU 是混合的：底层是卡内基梅隆大学的 Mach 微内核，上面叠了来自 BSD Unix 的部分，但为了速度两者都运行在内核态。</p>
+      <h3>同一件事，两种叫法</h3>
+      <p>在 arm64 上，Linux 把系统调用号放在 x8、执行 <code>svc #0</code>；macOS 把调用号放在 x16、执行 <code>svc #0x80</code>。编号也不同（Linux 的 write 是 64 号，macOS 的 write 是 4 号）。这也是为什么 Linux 的程序不能直接在 macOS 上运行，即使处理器一样。macOS 不保证系统调用号稳定，程序应该通过系统库（libSystem）去调用。</p>
+      <h3>一次系统调用有多贵</h3>
+      <p>进出一次内核大约要几百纳秒，比一次普通函数调用贵一百倍以上。2018 年熔断漏洞（第十五章）公开后，很多系统在进入内核时还要切换一套页表（内核页表隔离），代价更大。所以有许多“少进内核”的办法：C 库的缓冲（上面的任务）；Linux 的 vDSO 把“读当前时间”这类只读的操作做成映射到每个进程里的一小段代码，根本不进内核；一次系统调用提交一批请求（Linux 的 io_uring）。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>Remzi H. Arpaci-Dusseau, Andrea C. Arpaci-Dusseau,《操作系统导论》（OSTEP，网上免费）第 6 章“受限直接执行”。</li>
+          <li>Jonathan Levin,《深入解析 Mac OS X &amp; iOS 操作系统》（XNU 的结构）；Linux 的 <code>man 2 syscall</code>（各架构的调用约定表）。</li>
+          <li>Lima 项目文档（lima-vm.io）。</li>
+        </ul>
+      </div>
+      <div class="pass" data-id="base-q25c">
+        <div class="qq" data-a="1"><p>macOS 的 XNU 内核是？</p><ol><li>纯微内核</li><li>Mach 和 BSD 组合的混合内核</li><li>Linux 的分支</li></ol><p class="ex">两部分都跑在内核态。</p></div>
+        <div class="qq" data-in="x16"><p>macOS arm64 上系统调用号放在哪个寄存器？</p><p class="ex">x16（Linux 是 x8）。</p></div>
+        <div class="qq" data-a="2"><p>vDSO 的作用是？</p><ol><li>加密系统调用</li><li>让程序更大</li><li>让一些只读的操作不进内核就能完成</li></ol><p class="ex">比如读当前时间。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div data-l="1"><b>内核 <span class="en" data-say="kernel">kernel</span></b>操作系统在内核态运行的核心部分。</div>
+    <div data-l="1"><b>系统调用 <span class="en" data-say="system call">system call</span></b>程序请内核代办事情的入口。</div>
+    <div data-l="1"><b>中断 <span class="en" data-say="interrupt">interrupt</span></b>硬件打断处理器、请内核处理。</div>
+    <div data-l="1"><b>虚拟机 <span class="en" data-say="virtual machine">virtual machine</span></b>在一台电脑里模拟出的另一台电脑。</div>
+    <div data-l="2"><b>陷阱 / 故障 / 终止</b><span class="en" data-say="trap">trap</span>、<span class="en" data-say="fault">fault</span>、<span class="en" data-say="abort">abort</span>，三类异常。</div>
+    <div data-l="3"><b>微内核 <span class="en" data-say="microkernel">microkernel</span></b>内核只留最少的功能，其余做成服务进程。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>程序在用户态，碰硬件要请内核；系统调用是柜台，中断是硬件举手。</div>
+    <div><i>第二层带走</i>陷阱回下一条，故障重做这一条，终止就结束；中断隐指令由硬件完成。</div>
+    <div><i>第三层带走</i>进一次内核很贵，所以好的系统和库都在想办法少进。</div>
+  </div>
+</section>

@@ -1,0 +1,163 @@
+<section class="chap" id="c26" data-vol="卷七 · 进程和线程">
+  <div class="chead">
+    <div class="big">程</div>
+    <div>
+      <div class="no">第二十六章</div>
+      <h2>进程和线程</h2>
+      <dl><dt>讲什么</dt><dd>进程是“正在运行的程序”加上它的一切家当；轮流用处理器，快到看起来同时；进程的五种状态；fork、exec、wait；线程：同一个家里的几个干活的人；调度：先来先服务、短作业优先、时间片轮转、优先级、多级反馈队列；Apple Silicon 的大小核</dd><dt>装置</dt><dd>调度模拟器</dd></dl>
+      <div class="crs" data-c="系统"></div>
+      <div class="lvs"><a data-l="1" href="#c26-1">第一层 · 45 分钟</a><a data-l="2" href="#c26-2">第二层 · 60 分钟</a><a data-l="3" href="#c26-3">第三层 · 25 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>我的 MacBook Air 有 8 个核，可是活动监视器里有好几百个程序在跑。核不够分啊。</span></div>
+    <div class="l"><i class="j">舅</i><span>轮流用。每个只跑几毫秒就换下一个，换得太快，你就觉得它们同时在跑。管这件事的就是调度。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>说出程序和进程的区别；用 ps、活动监视器看进程；说出“轮流”为什么看起来像“同时”。</li>
+      <li><span class="lg lg1">一</span>用调度模拟器比较几种排队办法谁等得最久。</li>
+      <li><span class="lg lg2">二</span>画出进程状态图；计算各种调度算法的周转时间和等待时间；说出 fork 之后父子进程的关系；区分进程和线程。</li>
+      <li><span class="lg lg3">三</span>说出上下文切换的开销、Linux 的完全公平调度和 macOS 在大小核之间怎样分配任务。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c26-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：内核和系统调用（第二十五章）</span><span class="tm">约 45 分钟</span></div>
+    <div class="lyb">
+      <h3>程序和进程</h3>
+      <p>硬盘上的 hello 是一个<b>程序</b>，一个静静躺着的文件。运行它，操作系统就造出一个<b>进程</b>：正在运行的程序，加上它的一切家当：自己的地址空间（第二十三章的那张内存地图）、寄存器的值、打开的文件、一个编号（进程号 PID）。同一个程序运行两次，就是两个进程，互不相干。内核为每个进程记一份档案，叫<b>进程控制块</b>（PCB）。</p>
+      <h3>轮流，快到像同时</h3>
+      <p>一个核同一时刻只能执行一个进程的指令。内核让每个进程跑一小段（比如几毫秒），定时器中断一响（第二十五章），就把它的寄存器存进它的档案，换另一个进程的寄存器进来接着跑。这叫<b>上下文切换</b>。一秒钟换几百上千次，在人看来就是所有程序同时在动。一个进程在等东西（等你按键、等硬盘、等网络）时，也会主动让出处理器，免得白占着。</p>
+      <div class="try">
+        <div class="th"><b>看看你的 Mac 在跑什么</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+<pre class="sh" data-k="终端"><span class="p">% </span>ps aux | wc -l
+<span class="p">% </span>ps -o pid,ppid,stat,comm -p $$
+<span class="p">% </span>top -o cpu -n 10</pre>
+          <p>第一行数一数有多少个进程（几百个很正常）。第二行看当前这个 shell 自己：<code>$$</code> 是它的进程号，PPID 是“父进程”的号码，它是被终端 App 造出来的。<code>top</code> 按处理器占用排序实时显示（按 <kbd>q</kbd> 退出）。打开“活动监视器”，点“CPU”页，下面的图里能看到每个核的忙闲；双击一个进程能看到它打开了哪些文件。</p>
+        </div>
+      </div>
+      <h3>谁先跑：调度</h3>
+      <p>好几个进程都等着用处理器，先给谁？这就是<b>调度</b>。像食堂排队：</p>
+      <ul class="plain">
+        <li><b>先来先服务</b>：按到达顺序。公平，但一个要打很多菜的人排在前面，后面只买一个包子的人也得等他。</li>
+        <li><b>短作业优先</b>：活少的先做。大家平均等的时间最短，但活多的人可能一直被插队。</li>
+        <li><b>时间片轮转</b>：每人轮流服务一小会儿，没做完的回到队尾。谁都不会等太久，这是今天电脑最基本的做法。</li>
+      </ul>
+      <div class="fig" id="schedFig">
+        <div class="fig-label">装置 · 第二十六章</div>
+        <h4>调度模拟器</h4>
+        <p class="how">几个进程在不同时刻到达，各要用处理器若干个时间单位。选一种调度算法，看下面的甘特图（每一格是一个时间单位，格子里是谁在用处理器），和每个进程的等待时间、周转时间。可以改表里的数字。</p>
+        <div class="btns" data-m></div>
+        <div class="row"><label class="dim" style="font-size:13px">时间片</label><input type="number" id="scQ" value="2" min="1" max="8" style="width:4.5em"><button class="btn" data-x="ex1">例子一</button><button class="btn" data-x="ex2">例子二（一个长作业先到）</button></div>
+        <div class="scin scroll-x"></div>
+        <div class="gantt scroll-x"></div>
+        <div class="scout scroll-x"></div>
+        <div class="say"></div>
+      </div>
+      <div class="task" data-id="base-t26a">
+        <div class="th"><b>谁最吃亏</b></div>
+        <div class="tb"><p>在模拟器里用“例子二”，分别看先来先服务、短作业优先、时间片轮转三种办法下，那个长作业和几个短作业各等了多久。写下你觉得最公平的是哪种、为什么。再把时间片改成 1 和 8，看看轮转会变成什么样（时间片太大就变回了先来先服务）。</p></div>
+      </div>
+      <div class="pass" data-id="base-q26a">
+        <div class="qq" data-a="1"><p>同一个程序同时运行两次，有几个进程？</p><ol><li>1</li><li>2</li><li>看程序大小</li></ol><p class="ex">每次运行都是一个独立的进程。</p></div>
+        <div class="qq" data-a="0"><p>内核把一个进程的寄存器存起来、换另一个进来，叫？</p><ol><li>上下文切换</li><li>系统调用</li><li>编译</li></ol><p class="ex">context switch。</p></div>
+        <div class="qq" data-a="2"><p>每人轮流服务一小会儿、没做完回到队尾的是？</p><ol><li>先来先服务</li><li>短作业优先</li><li>时间片轮转</li></ol><p class="ex">round robin。</p></div>
+        <div class="qq" data-a="1"><p>让大家平均等待时间最短的是？</p><ol><li>先来先服务</li><li>短作业优先</li><li>随机</li></ol><p class="ex">但长作业可能一直等（饥饿）。</p></div>
+        <div class="qq" data-a="0"><p>进程在等键盘输入时，处理器会？</p><ol><li>被让给别的进程</li><li>一直空转等它</li><li>关机</li></ol><p class="ex">等待时让出处理器。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c26-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 操作系统 · 进程管理 · 处理机调度</span><span class="tm">约 60 分钟</span><span class="sum">PCB 和进程的五种状态；fork、exec、wait 和僵尸进程、孤儿进程；进程和线程；调度的指标：周转时间、带权周转时间、等待时间、响应时间；抢占和非抢占；高响应比优先、优先级、多级反馈队列；一道计算题。</span></div>
+    <div class="lyb">
+      <h3>进程的状态</h3>
+      <p>五种状态：<b>创建</b>、<b>就绪</b>（万事俱备只差处理器）、<b>运行</b>、<b>阻塞</b>（等待某个事件，如 I/O 完成，给它处理器也没用）、<b>终止</b>。转换：就绪 → 运行（被调度选中）；运行 → 就绪（时间片用完或被抢占）；运行 → 阻塞（请求 I/O、等待资源，主动的）；阻塞 → 就绪（等的事件发生了，被动的）。注意<b>阻塞不能直接变运行</b>，必须先回就绪队列排队；<b>就绪也不能直接变阻塞</b>。PCB 里记着进程号、状态、寄存器现场、优先级、内存和打开文件的信息，是进程存在的唯一标志。</p>
+      <h3>fork、exec、wait</h3>
+      <pre class="code" data-k="C（在 Linux 或 Mac 上都能运行）">#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/wait.h&gt;
+int main(void) {
+    int x = 100;
+    pid_t id = fork();                  /* 从这里开始，变成了两个进程 */
+    if (id == 0) {                      /* 子进程里 fork 返回 0 */
+        x++;
+        printf("子进程 %d：x = %d\n", getpid(), x);
+        execlp("echo", "echo", "我变成了 echo", (char *)NULL);   /* 换成另一个程序 */
+    } else {                            /* 父进程里 fork 返回子进程的号码 */
+        wait(NULL);                     /* 等子进程结束 */
+        printf("父进程 %d：x = %d\n", getpid(), x);
+    }
+    return 0;
+}</pre>
+      <p>fork 把调用它的进程复制一份（地址空间、打开的文件都复制，现代系统用写时复制，第二十七章），两份都从 fork 返回处接着跑：子进程里返回 0，父进程里返回子进程的 PID。子进程改 x 不影响父进程（各有一份）。exec（第二十三章）把子进程换成别的程序。shell 运行每条命令都是这样：fork，子进程 exec，父进程 wait。子进程结束而父进程还没 wait，它的档案还留着，叫<b>僵尸进程</b>；父进程先死了，子进程被系统的第一个进程（macOS 上的 launchd）收养，叫<b>孤儿进程</b>。</p>
+      <h3>进程和线程</h3>
+      <p><b>线程</b>是进程里的一条执行流。一个进程可以有好几个线程，它们<b>共享</b>同一个地址空间、打开的文件，各自有自己的栈和寄存器。所以线程之间传数据很方便（直接读写同一块内存），切换也比进程便宜；代价是一个线程写坏内存会拖垮整个进程，几个线程同时改同一个变量会出乱子（第二十九章）。408 的说法：进程是<b>资源分配</b>的基本单位，线程是<b>调度</b>的基本单位（引入线程以后）。浏览器给每个网页开一个进程，是为了一个网页崩了不连累别的。</p>
+      <h3>调度算法和指标</h3>
+      <p>周转时间 = 完成时间 − 到达时间；带权周转时间 = 周转时间 ÷ 实际运行时间；等待时间 = 周转时间 − 运行时间（不考虑 I/O）；响应时间 = 第一次被调度的时间 − 到达时间。算法：先来先服务（FCFS，非抢占，对长作业有利）；短作业优先（SJF，非抢占；抢占式叫最短剩余时间优先 SRTN）；<b>高响应比优先</b>（响应比 = (等待时间 + 要求服务时间) ÷ 要求服务时间，兼顾短作业和等得久的长作业，不会饥饿）；优先级调度（可抢占或不可抢占，可能饥饿，用“老化”缓解）；时间片轮转（RR）；<b>多级反馈队列</b>（多个队列优先级递减、时间片递增，新进程进最高队列，用完时间片还没完就降一级：照顾短作业和交互式进程，又不饿死长作业，是很多真实系统的原型）。装置里可以算前五种。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>四个进程到达时间和运行时间如下：P1(0, 7)、P2(2, 4)、P3(4, 1)、P4(5, 4)。分别求 FCFS、非抢占 SJF、时间片为 2 的 RR 下的平均周转时间。（RR 约定：同一时刻新到达的进程排在刚用完时间片的进程前面。）</p>
+        <details><summary>看解答</summary><div>
+          <p><b>FCFS</b>：P1 0—7，P2 7—11，P3 11—12，P4 12—16。周转 7、9、8、11，平均 8.75。</p>
+          <p><b>SJF</b>：0 时只有 P1，运行到 7；此时 P2(4)、P3(1)、P4(4) 都到了，选 P3（7—8），再在 P2、P4 中选先到的 P2（8—12），P4（12—16）。周转 7、10、4、11，平均 8。</p>
+          <p><b>RR(2)</b>：0—2 P1；2 时 P2 到，P2 排在 P1 前：2—4 P2；4 时 P3 到，队列 P1、P3（P3 新到排在刚用完的 P2 前）、P2 → 4—6 P1；5 时 P4 到，6 时队列 P3、P2、P4、P1 → 6—7 P3（完成）；7—9 P2（完成）；9—11 P4；11—13 P1；13—15 P4（完成）；15—16 P1（完成）。周转 P1 16、P2 7、P3 3、P4 10，平均 9。具体顺序依赖约定，可以把这组数输进装置对照（装置采用同样的约定）。</p>
+        </div></details>
+      </div>
+      <div class="pass" data-id="base-q26b">
+        <div class="qq" data-a="2"><p>下列哪个状态转换不可能直接发生？</p><ol><li>运行 → 阻塞</li><li>阻塞 → 就绪</li><li>阻塞 → 运行</li></ol><p class="ex">要先回就绪队列。</p></div>
+        <div class="qq" data-in="0"><p>fork 在子进程里返回几？</p><p class="ex">父进程里返回子进程的 PID。</p></div>
+        <div class="qq" data-a="1"><p>同一进程的线程之间共享的是？</p><ol><li>栈</li><li>地址空间和打开的文件</li><li>寄存器</li></ol><p class="ex">栈和寄存器各自一份。</p></div>
+        <div class="qq" data-in="3"><p>等待了 4、要求服务 2 的作业，响应比是多少？</p><p class="ex">(4 + 2) ÷ 2 = 3。</p></div>
+        <div class="qq" data-a="0"><p>既照顾短作业、又不会让长作业饿死，还不需要事先知道运行时间的是？</p><ol><li>多级反馈队列</li><li>短作业优先</li><li>先来先服务</li></ol><p class="ex">SJF 要事先知道运行时间，还会饿死长作业。</p></div>
+        <div class="qq" data-in="1.75"><p>某进程到达 0、运行 4、完成于 7，带权周转时间是多少？</p><p class="ex">周转 7，7 ÷ 4 = 1.75。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c26-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">真实的调度器</span><span class="tm">约 25 分钟</span><span class="sum">上下文切换的直接和间接开销；Linux 的完全公平调度和 EEVDF；macOS 的服务质量等级和大小核；写时复制让 fork 变便宜；为什么有了 posix_spawn。</span></div>
+    <div class="lyb">
+      <h3>切换不是免费的</h3>
+      <p>上下文切换的直接开销是保存和恢复寄存器、进出内核，几微秒；更大的是间接开销：新进程的数据不在缓存里（第十六章），TLB 也要重新热起来（第二十七章）。所以时间片不能太短，否则大部分时间都花在切换上。</p>
+      <h3>真实的调度器</h3>
+      <p>Linux 从 2007 年起用“完全公平调度器”（CFS）：给每个进程记一个“虚拟运行时间”，总是挑虚拟时间最少的那个来跑，优先级高的虚拟时间涨得慢；2023 年起逐步换成更注重延迟的 EEVDF。macOS 让程序给每个任务标一个“服务质量”等级（用户交互、用户发起、实用工具、后台），调度器据此决定谁先跑、放在哪种核上。</p>
+      <p>Apple Silicon 有<b>性能核</b>和<b>能效核</b>（第零章第三层）。后台的照片索引、备份这类任务被放到能效核上慢慢做，省电；你正在点的界面放到性能核上。在活动监视器里打开“CPU 历史记录”窗口，能看到两组核分别有多忙。</p>
+      <h3>fork 的代价</h3>
+      <p>复制一个几 GB 的进程听起来很贵，实际上 fork 只复制页表，父子共享所有物理页面，标成只读；谁先写某一页，才真正复制那一页（<b>写时复制</b>，第二十七章）。fork 之后马上 exec 的话，几乎什么都不用复制。即便如此，对大进程 fork 仍有开销，所以有了一步完成“新建并运行”的 posix_spawn，macOS 上推荐用它。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>OSTEP 第 4—10 章（进程、调度、多级反馈队列、彩票调度）。</li>
+          <li>Apple 开发者文档 “Energy Efficiency Guide for Mac Apps” 中关于服务质量等级的说明。</li>
+        </ul>
+      </div>
+      <div class="pass" data-id="base-q26c">
+        <div class="qq" data-a="1"><p>时间片设得太短会怎样？</p><ol><li>更公平没有坏处</li><li>大量时间花在上下文切换上</li><li>程序跑不了</li></ol><p class="ex">还会冲掉缓存。</p></div>
+        <div class="qq" data-a="0"><p>Linux 的 CFS 每次挑谁运行？</p><ol><li>虚拟运行时间最少的</li><li>进程号最小的</li><li>最先到达的</li></ol><p class="ex">谁欠得多先补谁。</p></div>
+        <div class="qq" data-a="2"><p>写时复制让 fork 变便宜，是因为？</p><ol><li>不复制任何东西</li><li>压缩了内存</li><li>只复制页表，谁写哪一页才复制哪一页</li></ol><p class="ex">copy-on-write。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div data-l="1"><b>进程 <span class="en" data-say="process">process</span></b>正在运行的程序和它的一切家当。</div>
+    <div data-l="1"><b>上下文切换 <span class="en" data-say="context switch">context switch</span></b>换一个进程上处理器。</div>
+    <div data-l="1"><b>调度 <span class="en" data-say="scheduling">scheduling</span></b>决定下一个轮到谁。</div>
+    <div data-l="2"><b>线程 <span class="en" data-say="thread">thread</span></b>进程里的一条执行流，共享地址空间。</div>
+    <div data-l="2"><b>周转时间 <span class="en" data-say="turnaround time">turnaround time</span></b>从到达到完成用了多久。</div>
+    <div data-l="3"><b>写时复制 <span class="en" data-say="copy on write">copy-on-write</span></b>先共享，谁写才复制。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>进程是运行中的程序；轮流得够快，就像同时。</div>
+    <div><i>第二层带走</i>阻塞要先回就绪；周转 = 完成 − 到达；多级反馈队列兼顾各方。</div>
+    <div><i>第三层带走</i>切换有隐形的代价；今天的调度还要决定放在大核还是小核上。</div>
+  </div>
+</section>

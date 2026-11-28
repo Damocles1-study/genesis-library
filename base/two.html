@@ -502,6 +502,67 @@ table.bg td.sel{outline:3px solid var(--red);outline-offset:-3px}
 .lldbin{display:flex;gap:6px;align-items:center;border-top:1px solid #4a453a;padding-top:6px;margin-top:4px}
 .lldbin span{font-family:var(--f-mono);font-size:12.5px;color:var(--code-dim)}
 .lldbin input{flex:1;min-width:0;background:transparent;border:0;color:var(--code-ink);font-family:var(--f-mono);font-size:13.5px;outline:none}
+.osmap{display:grid;gap:6px;max-width:560px;margin:6px auto 10px}
+.osmap .om{border:1.5px solid var(--rule);background:var(--paper);border-radius:5px;padding:8px 10px;cursor:pointer;font-size:14px;text-align:center}
+.osmap .om.on{border-color:var(--main);background:color-mix(in srgb,var(--main) 14%,var(--paper))}
+.osmap .om-sys{border-style:dashed}
+.osmap .omk{border:2px solid var(--ter);border-radius:6px;padding:6px;background:color-mix(in srgb,var(--ter) 8%,var(--card))}
+.osmap .omkh{font-size:12px;color:var(--ter);text-align:center;margin-bottom:4px}
+.osmap .omg{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:6px}
+.slw{display:flex;align-items:stretch;gap:6px;margin:10px 0;flex-wrap:wrap}
+.slw .sl{flex:1 1 140px;border:1.5px solid var(--rule);border-radius:6px;padding:8px 10px;background:var(--paper);opacity:.55}
+.slw .sl.on{opacity:1;border-color:var(--main);background:color-mix(in srgb,var(--main) 12%,var(--paper))}
+.slw .sl b{display:block;font-size:14px}
+.slw .sl small{display:block;font-size:12px;color:var(--ink-2);font-family:var(--f-mono);overflow-wrap:anywhere}
+.slw .sa{align-self:center;color:var(--ink-3)}
+@media (max-width:560px){.slw .sa{display:none}}
+.gt{display:flex;margin:10px 0}
+.gt .gc{min-width:30px;flex:0 0 30px;border:1px solid var(--rule);border-right:0;text-align:center;line-height:1.2;padding-top:4px;position:relative;height:44px;background:var(--paper)}
+.gt .gc b{font-size:11.5px;font-family:var(--f-mono)}
+.gt .gc small{position:absolute;left:-4px;bottom:-16px;font-size:10px;color:var(--ink-3)}
+.gt .gc.end{border:0;border-left:1px solid var(--rule);background:transparent;min-width:10px;flex-basis:10px}
+.gantt{padding-bottom:18px}
+.vmwrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:start;margin:8px 0}
+@media (max-width:560px){.vmwrap{grid-template-columns:1fr}}
+.vmrow{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:baseline;padding:6px 0;border-bottom:1px dashed var(--rule)}
+.vmrow span{font-size:13px;color:var(--ink-3);min-width:5em}
+table.rp{font-size:12px}
+table.rp td,table.rp th{padding:3px 5px;border:1px solid var(--rule);min-width:26px}
+table.rp td.nw{background:color-mix(in srgb,var(--on) 25%,transparent)}
+table.rp sup{font-size:9px;color:var(--ink-3)}
+.inbars{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:6px;margin:10px 0}
+.inbars div{background:var(--paper);border-left:4px solid var(--ter);border-radius:0 4px 4px 0;padding:6px 10px;font-size:13px;line-height:1.5}
+.inbars b{display:block}.inbars span{display:block;font-family:var(--f-mono);font-size:12px;overflow-wrap:anywhere}.inbars small{color:var(--ink-3)}
+.rcw{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:10px;align-items:center;margin:10px 0}
+.rc{border:1.5px solid var(--rule);border-radius:6px;padding:8px 10px;background:var(--paper);font-size:13px;line-height:1.7}
+.rc b{display:block;font-size:14px}
+.rc .dn{color:var(--ink-3);text-decoration:line-through}
+.rc .nx{color:var(--main);font-weight:700}
+.rc small{color:var(--ink-2);font-family:var(--f-mono)}
+.rcm{text-align:center;border:2px solid var(--ter);border-radius:6px;padding:8px 10px;background:color-mix(in srgb,var(--ter) 10%,var(--card))}
+.rcm span{display:block;font-size:11px;color:var(--ink-3)}
+.rcm b{font-family:var(--f-mono);font-size:16px;white-space:nowrap}
+@media (max-width:520px){.rcw{grid-template-columns:1fr 1fr}.rcm{grid-column:1/-1;order:-1}}
+.rclog{font-size:13px;line-height:1.7;color:var(--ink-2);background:var(--paper);border-radius:5px;padding:6px 10px}
+.fig table.bk input{width:2.4em;padding:2px;font-family:var(--f-mono);text-align:center;border:1px solid var(--rule);border-radius:3px;background:var(--paper);margin:0 1px}
+table.bk{min-width:440px}
+.encap{margin:10px 0}
+.encap .ec{border:2px solid var(--c,var(--rule));border-radius:6px;padding:6px 8px;margin:4px 0;background:color-mix(in srgb,var(--c,var(--paper)) 8%,var(--card))}
+.encap .ec.l1{--c:var(--l2)}.encap .ec.l2{--c:var(--l1)}.encap .ec.l3{--c:var(--l3)}.encap .ec.data{--c:var(--on);text-align:center}
+.encap .ec b{font-size:13px;color:var(--ink)}
+.encap .ec span{display:block;font-size:13.5px}
+.encap .eh small{display:block;font-size:11.5px;color:var(--ink-2);font-family:var(--f-mono);overflow-wrap:anywhere;line-height:1.5}
+.encap .et{font-size:11.5px;color:var(--ink-3);text-align:right}
+.encap .ec.bits code{display:block;font-size:11.5px;overflow-wrap:anywhere;margin-top:4px}
+.snbits{margin:8px 0}
+.snr{display:flex;gap:10px;align-items:baseline;padding:2px 0;white-space:nowrap}
+.snr span{font-size:12px;color:var(--ink-3);min-width:4.5em}
+.snr code{font-size:12.5px;background:none;letter-spacing:.02em}
+.snr i{font-style:normal}.snr i.nw{color:var(--l2);font-weight:700}.snr i.ho{color:var(--ink-3)}
+.enwrap{display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);gap:14px;align-items:start}
+@media (max-width:560px){.enwrap{grid-template-columns:1fr}}
+.enfl .fl{grid-template-columns:1fr;padding:5px 10px}
+.enstep{min-height:120px}
 table.pt{font-size:12px;min-width:520px}
 table.pt td,table.pt th{padding:3px 2px;border:1px solid var(--rule);min-width:30px}
 table.pt td.st{font-family:var(--f-mono);font-size:11px;font-weight:600}
@@ -2211,7 +2272,7 @@ const grp = (s, k) => s.replace(new RegExp('(.{' + (k || 4) + '})(?=.)', 'g'), '
 /* ---------- 全书目录（四个网页共用） ---------- */
 const PFILE = ['index', 'two', 'three', 'four'];
 const PAGE = (() => { const m = location.pathname.match(/\/(two|three|four)\.html/); return m ? PFILE.indexOf(m[1]) + 1 : 1; })();
-const READY = 3; // 已经写好的部数
+const READY = 4; // 已经写好的部数
 const PURL = {}; PFILE.forEach((f, i) => PURL[i + 1] = i ? f + '.html' : './');
 const PARTS = [
   {k: '位', s: '数据：数、字、图、声音都是比特 · 九章'},
@@ -2447,7 +2508,7 @@ function bitRow(box, opt){
 
 /* ---------- 封面：系列路线图 ---------- */
 const SERIES = [
-  {no: 1, k: '地基', s: '程序员眼中的一台计算机', st: '写作中', dep: [], d: '比特和数据的表示、逻辑门到处理器、C 和内存、编译链接、操作系统和网络的总图。后面每一本都会回到这里的某一章往深处挖。'},
+  {no: 1, k: '地基', s: '程序员眼中的一台计算机', st: '已完结', dep: [], d: '比特和数据的表示、逻辑门到处理器、C 和内存、编译链接、操作系统和网络的总图。后面每一本都会回到这里的某一章往深处挖。'},
   {no: 2, k: '链与树', s: '数据结构与算法', st: '计划', dep: [1], d: '数组、链表、栈、队列、树、图、查找、排序、复杂度。入门层用 Python 和可视化，本科层对照 408 数据结构、配手写代码题，深入层讲工程里的实现和竞赛常用的技巧。紧接着《地基》读：写代码的本事越早练越值钱，后面的操作系统也要用到队列和树。'},
   {no: 3, k: '芯', s: '计算机组成', st: '计划', dep: [1], d: '把《地基》第二部的门、存储器、处理器、流水线、缓存挖深：数据通路、控制器、中断、总线和输入输出。对照 408 计算机组成原理。'},
   {no: 4, k: '调度', s: '操作系统', st: '计划', dep: [1, 2, 3], d: '进程和线程、调度、同步和死锁、内存管理、文件系统、输入输出。要用到组成里的中断和地址翻译、数据结构里的队列和树。对照 408 操作系统，在 Mac 上开 Linux 做实验。'},
@@ -2504,6 +2565,26 @@ dev('#mapFig', fig => {
   const pick = i => { const m = MEMMAP[i]; $$('.mm', box).forEach(b => b.classList.toggle('on', +b.dataset.i === i)); say.innerHTML = '<b>' + m[0] + '</b>：' + m[3] + ' <a data-c="' + m[4] + '">（' + TOC.find(x => x.id === m[4]).t + '）</a>'; const a = $('a', say); if (chapPage[m[4]] > READY) a.title = '写作中'; else a.href = href(m[4]); };
   box.addEventListener('click', e => { const b = e.target.closest('.mm'); if (b) pick(+b.dataset.i); });
   pick(0);
+});
+
+/* ---------- 第四部封面：四楼在管什么 ---------- */
+const OSMAP = [
+  ['apps', '五楼 · 应用', '浏览器、音乐、终端、你写的程序……它们只能在“用户态”运行，想碰硬件必须请操作系统帮忙。', 'c25'],
+  ['sys', '系统调用', '程序和操作系统之间的一扇窗口：“帮我读这个文件”“帮我开一个网络连接”“给我一块内存”。', 'c25'],
+  ['proc', '进程和调度', '谁现在用处理器、用多久、下一个轮到谁。', 'c26'],
+  ['mem', '虚拟内存', '给每个程序一张自己的地址空间，翻译成真正的物理内存，不够了就换到磁盘。', 'c27'],
+  ['fs', '文件系统', '把磁盘上的一块块数据组织成文件和文件夹。', 'c28'],
+  ['sync', '并发', '几个程序（或线程）同时改同一样东西时，怎样不乱。', 'c29'],
+  ['net', '网络', '把比特打包，通过网卡送出这栋楼，送到另一台电脑。', 'c30'],
+  ['hw', '三楼以下 · 硬件', '处理器、内存、硬盘、网卡、键盘屏幕（第二部）。只有内核能直接指挥它们。', 'c25']
+];
+dev('#osFig', fig => {
+  const box = $('.osmap', fig), say = $('.say', fig);
+  const btn = i => '<button class="om om-' + OSMAP[i][0] + '" data-i="' + i + '"><b>' + OSMAP[i][1] + '</b></button>';
+  box.innerHTML = btn(0) + btn(1) + '<div class="omk"><div class="omkh">四楼 · 操作系统内核</div><div class="omg">' + [2, 3, 4, 5, 6].map(btn).join('') + '</div></div>' + btn(7);
+  const pick = i => { const m = OSMAP[i]; $$('.om', box).forEach(b => b.classList.toggle('on', +b.dataset.i === i)); say.innerHTML = '<b>' + m[1] + '</b>：' + m[2] + ' <a>（' + TOC.find(x => x.id === m[3]).t + '）</a>'; const a = $('a', say); if (chapPage[m[3]] <= READY) a.href = href(m[3]); };
+  box.addEventListener('click', e => { const b = e.target.closest('.om'); if (b) pick(+b.dataset.i); });
+  pick(3);
 });
 
 /* ---------- 第零章：按下 A 键以后 ---------- */
@@ -3970,6 +4051,374 @@ dev('#lldbFig', fig => {
   inp.addEventListener('keydown', e => { if (e.key === 'Enter') { exec(inp.value); inp.value = ''; } });
   $('.btns', fig).addEventListener('click', e => { const b = e.target.closest('button[data-c]'); if (b) { exec(b.dataset.c); inp.focus({preventScroll: true}); } });
   reset();
+});
+
+/* ---------- 第二十五章：这一行会不会进内核 ---------- */
+dev('#sysFig', fig => {
+  const flow = $('.sysflow', fig), say = $('.say', fig);
+  const L = [
+    ['x = a + b;', 0, '', '', '只用到寄存器和自己的内存，处理器在用户态一条 add 就算完了，不需要麻烦内核。'],
+    ['printf("hi\\n");', 1, 'write', 'write(1, "hi\\n", 3) = 3', 'C 库先在用户态把要打印的字排好，放进一个缓冲区；输出到终端时遇到换行就调用一次 write，请内核把这 3 个字节交给终端。1 是“标准输出”。'],
+    ['FILE *f = fopen("a.txt", "r");', 1, 'openat', 'openat(AT_FDCWD, "a.txt", O_RDONLY) = 3', '打开文件要检查权限、在磁盘上找到它，只有内核能做。内核返回一个小整数 3（文件描述符），以后读写都用这个号码。'],
+    ['char *p = malloc(16);', 2, '（多数时候没有）', 'brk(NULL) = 0x55…　　（只在第一次或要大块时出现）', '分配器手里通常有从内核批发来的存货，直接零售，不进内核；存货不够或者要一大块时，才用 brk 或 mmap 向内核批发（第二十一章）。'],
+    ['sleep(1);', 1, 'clock_nanosleep', 'clock_nanosleep(CLOCK_REALTIME, 0, {tv_sec=1, …}, …) = 0', '“让我睡一秒”是对调度的请求：内核把这个程序挂起，一秒后再叫醒（下一章）。'],
+    ['pid_t id = fork();', 1, 'clone', 'clone(…, flags=…|SIGCHLD, …) = 12346', '复制出一个新进程要内核来做（下一章）。Linux 上 C 库的 fork 是用 clone 系统调用实现的。'],
+    ['exit(0);', 1, 'exit_group', 'exit_group(0) = ?', '程序结束也要告诉内核，由它收回内存、关掉文件，把退出码交给父进程。“= ?” 表示这个调用不会返回。']
+  ];
+  function show(i){
+    const [code, k, sc, st, msg] = L[i];
+    const lane = (t, on, sub) => '<div class="sl' + (on ? ' on' : '') + '"><b>' + t + '</b><small>' + sub + '</small></div>';
+    flow.innerHTML = '<div class="slw">' + lane('你的代码', true, esc(code)) + '<span class="sa">→</span>' + lane('C 库（用户态）', k > 0, k ? '排版、缓冲、整理参数' : '用不上') + '<span class="sa">→</span>' + lane('内核（内核态）', k === 1, k === 1 ? '系统调用：' + sc : k === 2 ? '多数时候不来' : '不来') + '</div>' +
+      (st ? '<div class="dim" style="font-size:12px;margin-top:8px">Linux 上 strace 看到的（示意）</div><pre class="out">' + esc(st) + '</pre>' : '');
+    say.innerHTML = msg + (k === 1 ? '<br><span class="dim" style="font-size:13px">在 macOS 的 arm64 上，C 库会把系统调用号放进 x16、参数放进 x0 起的寄存器，再执行 <code>svc #0x80</code>；Linux 上是 x8 和 <code>svc #0</code>（第三层）。</span>' : '');
+  }
+  btnRow($('[data-m]', fig), L.map(x => x[0].length > 18 ? x[0].slice(0, 16) + '…' : x[0]), 1, show);
+  show(1);
+});
+
+/* ---------- 第二十六章：调度模拟器 ---------- */
+dev('#schedFig', fig => {
+  const inBox = $('.scin', fig), gBox = $('.gantt', fig), oBox = $('.scout', fig), say = $('.say', fig), qIn = $('#scQ');
+  const ALGS = ['先来先服务', '短作业优先', '最短剩余时间优先（第二层）', '高响应比优先（第二层）', '时间片轮转'];
+  const EX1 = [[0, 7], [2, 4], [4, 1], [5, 4]], EX2 = [[0, 10], [1, 2], [2, 1], [3, 2]];
+  let P = EX1.map(x => x.slice()), alg = 0;
+  const COL = ['var(--on)', 'var(--l2)', 'var(--l1)', 'var(--l3)', 'var(--gold)'];
+  function drawIn(){
+    inBox.innerHTML = '<table class="t c" style="max-width:420px;margin:8px 0"><tr><th>进程</th><th>到达时间</th><th>要运行</th><th></th></tr>' + P.map((p, i) => '<tr><td style="color:' + COL[i] + ';font-weight:700">P' + (i + 1) + '</td><td><input type="number" min="0" max="30" value="' + p[0] + '" data-i="' + i + '" data-k="0" style="width:4em"></td><td><input type="number" min="1" max="20" value="' + p[1] + '" data-i="' + i + '" data-k="1" style="width:4em"></td><td>' + (P.length > 2 ? '<button class="btn" data-del="' + i + '">删</button>' : '') + '</td></tr>').join('') + '</table>' + (P.length < 5 ? '<button class="btn" data-add>加一个进程</button>' : '');
+  }
+  function run(){
+    const n = P.length, rem = P.map(p => p[1]), done = Array(n).fill(null), first = Array(n).fill(null), seg = [];
+    let t = 0, cur = -1, left = n, q = [], inQ = Array(n).fill(false), slice = 0;
+    const Q = Math.max(1, parseInt(qIn.value, 10) || 2);
+    const arrive = tt => P.forEach((p, i) => { if (p[0] === tt && !inQ[i]) { q.push(i); inQ[i] = true; } });
+    if (alg === 4) arrive(0);
+    let guard = 0;
+    while (left && guard++ < 500) {
+      let pick = -1;
+      const ready = P.map((p, i) => i).filter(i => P[i][0] <= t && rem[i] > 0);
+      if (alg === 4) {
+        if (cur >= 0 && rem[cur] > 0 && slice < Q) pick = cur;
+        else { if (cur >= 0 && rem[cur] > 0) q.push(cur); pick = q.length ? q.shift() : -1; slice = 0; }
+      } else if (alg === 2) {
+        if (ready.length) pick = ready.reduce((a, b) => rem[b] < rem[a] || (rem[b] === rem[a] && P[b][0] < P[a][0]) ? b : a);
+      } else {
+        if (cur >= 0 && rem[cur] > 0) pick = cur;
+        else if (ready.length) {
+          if (alg === 0) pick = ready.reduce((a, b) => P[b][0] < P[a][0] ? b : a);
+          if (alg === 1) pick = ready.reduce((a, b) => P[b][1] < P[a][1] || (P[b][1] === P[a][1] && P[b][0] < P[a][0]) ? b : a);
+          if (alg === 3) { const rr = i => (t - P[i][0] + P[i][1]) / P[i][1]; pick = ready.reduce((a, b) => rr(b) > rr(a) ? b : a); }
+        }
+      }
+      if (pick >= 0 && first[pick] === null) first[pick] = t;
+      seg.push(pick); if (pick >= 0) { rem[pick]--; slice++; }
+      cur = pick; t++;
+      if (alg === 4) arrive(t);
+      if (pick >= 0 && rem[pick] === 0) { done[pick] = t; left--; cur = -1; slice = 0; }
+    }
+    return {seg, done, first};
+  }
+  function draw(){
+    const {seg, done, first} = run();
+    gBox.innerHTML = '<div class="gt">' + seg.map((p, t) => '<div class="gc" style="' + (p >= 0 ? 'background:color-mix(in srgb,' + COL[p] + ' 35%,var(--paper))' : '') + '"><b>' + (p >= 0 ? 'P' + (p + 1) : '·') + '</b><small>' + t + '</small></div>').join('') + '<div class="gc end"><small>' + seg.length + '</small></div></div>';
+    const rows = P.map((p, i) => { const ta = done[i] - p[0]; return [i, done[i], ta, ta - p[1], ta / p[1], first[i] - p[0]]; });
+    const avg = k => (rows.reduce((s, r) => s + r[k], 0) / rows.length).toFixed(2);
+    oBox.innerHTML = '<table class="t c" style="max-width:560px;margin:8px 0"><tr><th>进程</th><th>完成</th><th>周转</th><th>等待</th><th>带权周转</th><th>响应</th></tr>' + rows.map(r => '<tr><td style="color:' + COL[r[0]] + ';font-weight:700">P' + (r[0] + 1) + '</td><td>' + r[1] + '</td><td>' + r[2] + '</td><td>' + r[3] + '</td><td>' + r[4].toFixed(2) + '</td><td>' + r[5] + '</td></tr>').join('') + '<tr style="font-weight:700"><td>平均</td><td></td><td>' + avg(2) + '</td><td>' + avg(3) + '</td><td>' + avg(4) + '</td><td>' + avg(5) + '</td></tr></table>';
+    say.innerHTML = ['按到达顺序，一个做完再做下一个。', '处理器空出来时，在已经到达的进程里挑要运行时间最短的，挑中了就做完。', '随时比较：谁剩下的最少谁先做，新来的短作业可以抢占正在运行的。', '处理器空出来时，挑响应比 =（已等待 + 要运行）÷ 要运行 最大的，等得越久越占优势。', '每次最多做一个时间片，没做完排到队尾；同一时刻新到的进程排在刚用完时间片的前面。'][alg] + ' 一共用了 ' + seg.length + ' 个时间单位，“·”表示处理器空闲。';
+  }
+  inBox.addEventListener('input', e => { const x = e.target.closest('input[data-i]'); if (!x) return; const v = parseInt(x.value, 10); if (isNaN(v)) return; P[+x.dataset.i][+x.dataset.k] = Math.max(+x.dataset.k, Math.min(+x.dataset.k ? 20 : 30, v)); draw(); });
+  inBox.addEventListener('click', e => { const d = e.target.closest('[data-del]'), a = e.target.closest('[data-add]'); if (d) { P.splice(+d.dataset.del, 1); drawIn(); draw(); } if (a) { P.push([P.length * 2, 3]); drawIn(); draw(); } });
+  $('.row', fig).addEventListener('click', e => { const b = e.target.closest('[data-x]'); if (!b) return; P = (b.dataset.x === 'ex1' ? EX1 : EX2).map(x => x.slice()); drawIn(); draw(); });
+  qIn.addEventListener('input', draw);
+  btnRow($('[data-m]', fig), ALGS, 0, i => { alg = i; draw(); });
+  drawIn(); draw();
+});
+
+/* ---------- 第二十七章 ---------- */
+dev('#vmFig', fig => {
+  const inp = $('#vmIn'), st = $('.vmsteps', fig), pt = $('.vmpt', fig), say = $('.say', fig);
+  const PT = [5, 2, null, 9, 12, 7, null, 0, 3, null, 14, 1, null, 6, 11, null];
+  function go(){
+    const s = inp.value.trim().replace(/^0x/i, '');
+    if (!/^[0-9a-f]{1,4}$/i.test(s)) { st.innerHTML = ''; say.textContent = '请输入 1 到 4 位十六进制数（0000—FFFF）。'; return; }
+    const va = parseInt(s, 16), vpn = va >> 12, off = va & 0xFFF, f = PT[vpn];
+    pt.innerHTML = '<table class="t c" style="font-size:12.5px"><tr><th>页号</th><th>页框号</th><th>有效</th></tr>' + PT.map((x, i) => '<tr' + (i === vpn ? ' style="background:var(--hl);font-weight:700"' : '') + '><td class="m">' + i + '</td><td class="m">' + (x === null ? '—' : x) + '</td><td>' + (x === null ? 0 : 1) + '</td></tr>').join('') + '</table>';
+    const b = bin(va, 16);
+    let h = '<div class="vmrow"><span>虚拟地址</span><code>0x' + pad(s.toUpperCase(), 4) + '</code><code><b style="color:var(--l2)">' + b.slice(0, 4) + '</b> ' + grp(b.slice(4)) + '</code></div>';
+    h += '<div class="vmrow"><span>拆开</span><code>页号 ' + vpn + '</code><code>偏移 0x' + pad(off.toString(16).toUpperCase(), 3) + '</code></div>';
+    if (f === null) { h += '<div class="vmrow"><span>查页表</span><code style="color:var(--red)">第 ' + vpn + ' 项无效</code></div>'; say.innerHTML = '<b style="color:var(--red)">缺页！</b>第 ' + vpn + ' 页不在内存里。MMU 产生缺页异常，内核找一个页框、把这一页从硬盘读进来、填好页表，再让这条指令重新执行（第二层）。'; }
+    else { const pa = (f << 12) | off; h += '<div class="vmrow"><span>查页表</span><code>页框 ' + f + '</code></div><div class="vmrow"><span>物理地址</span><code>0x' + pad(pa.toString(16).toUpperCase(), 4) + '</code><code><b style="color:var(--on)">' + bin(f, 4) + '</b> ' + grp(b.slice(4)) + '</code></div>'; say.innerHTML = '高 4 位的页号 ' + vpn + ' 换成了页框号 ' + f + '，低 12 位的偏移原样照抄。'; }
+    st.innerHTML = h;
+  }
+  inp.addEventListener('input', go);
+  $$('[data-v]', fig).forEach(b => b.addEventListener('click', () => { inp.value = b.dataset.v; go(); }));
+  go();
+});
+
+dev('#replFig', fig => {
+  const seqIn = $('#rpSeq'), nIn = $('#rpN'), box = $('.repl', fig), out = $('.kv', fig), say = $('.say', fig);
+  const ALGS = ['FIFO', 'LRU', 'OPT', 'CLOCK'];
+  let alg = 0;
+  function sim(seq, n, a){
+    let fr = [], meta = [], ptr = 0, faults = 0; const cols = [];
+    seq.forEach((p, t) => {
+      let hit = fr.indexOf(p), victim = null;
+      if (hit >= 0) { if (a === 1) meta[hit] = t; if (a === 3) meta[hit] = 1; }
+      else {
+        faults++;
+        if (fr.length < n) { fr.push(p); meta.push(a === 3 ? 1 : t); if (a === 3) ptr = fr.length % n; }
+        else {
+          let k;
+          if (a === 0) { k = meta.indexOf(Math.min(...meta)); }
+          if (a === 1) { k = meta.indexOf(Math.min(...meta)); }
+          if (a === 2) { let far = -1; fr.forEach((q, i) => { const nx = seq.indexOf(q, t + 1), d = nx < 0 ? Infinity : nx; if (d > far) { far = d; k = i; } }); }
+          if (a === 3) { while (meta[ptr] === 1) { meta[ptr] = 0; ptr = (ptr + 1) % n; } k = ptr; ptr = (ptr + 1) % n; }
+          victim = fr[k]; fr[k] = p; meta[k] = a === 3 ? 1 : t;
+        }
+      }
+      cols.push({p, fr: fr.slice(), bits: a === 3 ? meta.slice() : null, fault: hit < 0, victim});
+    });
+    return {faults, cols};
+  }
+  function draw(){
+    const seq = seqIn.value.trim().split(/[\s,]+/).filter(Boolean), n = Math.max(1, Math.min(6, parseInt(nIn.value, 10) || 3));
+    if (!seq.length) return;
+    const r = sim(seq, n, alg);
+    let h = '<table class="t c rp"><tr><th>访问</th>' + r.cols.map(c => '<th class="m">' + esc(c.p) + '</th>').join('') + '</tr>';
+    for (let k = 0; k < n; k++) h += '<tr><th>框 ' + k + '</th>' + r.cols.map(c => '<td class="m' + (c.fault && c.fr[k] === c.p ? ' nw' : '') + '">' + (c.fr[k] !== undefined ? esc(c.fr[k]) + (c.bits ? '<sup>' + c.bits[k] + '</sup>' : '') : '') + '</td>').join('') + '</tr>';
+    h += '<tr><th>缺页</th>' + r.cols.map(c => '<td>' + (c.fault ? '<b style="color:var(--red)">✗</b>' : '') + '</td>').join('') + '</tr></table>';
+    box.innerHTML = h;
+    const all = ALGS.map((_, a) => sim(seq, n, a).faults);
+    kv(out, [['缺页次数', r.faults + ' / ' + seq.length], ['缺页率', (r.faults / seq.length * 100).toFixed(0) + '%'], ['四种算法', ALGS.map((x, a) => x + ' ' + all[a]).join('　')]]);
+    say.innerHTML = ['FIFO：换出最早进来的那一页。', 'LRU：换出最久没被访问的那一页。', 'OPT：往后看，换出最晚才会再用到（或再也用不到）的那一页。它要预知未来，只用来做比较的标准。', 'CLOCK：上标是访问位。指针转圈，遇到 1 就清成 0 跳过，遇到 0 就换出。'][alg] + ' 红色的叉表示这一步缺页，浅色底是刚换进来的页。';
+  }
+  btnRow($('[data-m]', fig), ALGS, 0, i => { alg = i; draw(); });
+  $('[data-x="bel"]', fig).addEventListener('click', () => {
+    seqIn.value = '1 2 3 4 1 2 5 1 2 3 4 5'; alg = 0; $$('[data-m] button', fig).forEach((b, i) => b.classList.toggle('on', i === 0));
+    const f3 = sim(seqIn.value.split(' '), 3, 0).faults, f4 = sim(seqIn.value.split(' '), 4, 0).faults;
+    nIn.value = 4; draw(); say.innerHTML += '<br><b>Belady 异常</b>：同一串访问，FIFO 用 3 个页框缺页 ' + f3 + ' 次，用 4 个页框反而缺页 ' + f4 + ' 次。';
+  });
+  [seqIn, nIn].forEach(el => el.addEventListener('input', draw));
+  draw();
+});
+
+/* ---------- 第二十八章：索引节点能装多大的文件 ---------- */
+dev('#inodeFig', fig => {
+  const box = $('.inode', fig), out = $('.kv', fig), say = $('.say', fig);
+  const fill = (id, arr, f, def) => { const s = $('#' + id); s.innerHTML = arr.map(x => '<option value="' + x + '"' + (x === def ? ' selected' : '') + '>' + f(x) + '</option>').join(''); s.style.width = 'auto'; return s; };
+  const sB = fill('inB', [512, 1024, 2048, 4096, 8192, 16384], x => x >= 1024 ? x / 1024 + ' KB' : x + ' B', 4096), sP = fill('inP', [2, 4, 8], x => x + ' 字节', 4), sL = fill('inL', [0, 1, 2, 3], x => x ? x + ' 级' : '没有', 3);
+  const sD = $('#inD'), sO = $('#inO');
+  const human = b => { const u = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB']; let i = 0, x = Number(b); while (x >= 1024 && i < u.length - 1) { x /= 1024; i++; } return (x >= 100 ? x.toFixed(0) : x.toFixed(2).replace(/\.?0+$/, '')) + ' ' + u[i]; };
+  function go(){
+    const B = BigInt(sB.value), p = BigInt(sP.value), D = BigInt(Math.max(0, Math.min(16, parseInt(sD.value, 10) || 0))), L = +sL.value, n = B / p;
+    const lv = [D]; for (let k = 1; k <= L; k++) lv.push(n ** BigInt(k));
+    const total = lv.reduce((a, b) => a + b, 0n);
+    box.innerHTML = '<div class="inbars">' + lv.map((c, k) => '<div><b>' + (k ? k + ' 级间接' : '直接') + '</b><span>' + c.toLocaleString() + ' 块</span><small>' + human(c * B) + '</small></div>').join('') + '</div>';
+    let msg = '一个索引块放 ' + n + ' 个块号（' + B + ' ÷ ' + p + '）。';
+    const off = /^\d+$/.test(sO.value.trim()) ? BigInt(sO.value.trim()) : null;
+    if (off === null) msg += ' 偏移请写成整数字节数。';
+    else {
+      const blk = off / B; let acc = 0n, lvl = -1;
+      for (let k = 0; k < lv.length; k++) { if (blk < acc + lv[k]) { lvl = k; break; } acc += lv[k]; }
+      msg += '<br>偏移 ' + off.toLocaleString() + ' 在第 ' + blk.toLocaleString() + ' 块（从 0 数）。' + (lvl < 0 ? ' <b style="color:var(--red)">超出了最大文件长度。</b>' : ' 前面的范围加起来是 ' + acc.toLocaleString() + ' 块，所以它落在<b>' + (lvl ? lvl + ' 级间接' : '直接指针') + '</b>里：inode 在内存中时，要先读 ' + lvl + ' 个索引块，再读 1 个数据块，一共访问磁盘 <b>' + (lvl + 1) + '</b> 次。');
+    }
+    kv(out, [['最多能有', total.toLocaleString() + ' 块'], ['最大文件长度', human(total * B)]]);
+    say.innerHTML = msg;
+  }
+  [sB, sP, sL, sD, sO].forEach(el => el.addEventListener('input', go));
+  go();
+});
+
+/* ---------- 第二十九章 ---------- */
+dev('#raceFig', fig => {
+  const box = $('.race', fig), out = $('.kv', fig), say = $('.say', fig), lockC = $('#rcLock');
+  const STEPS = ['读 count 到寄存器', '寄存器加 1', '把寄存器写回 count'];
+  let S;
+  const reset = () => { S = {count: 0, A: {pc: 0, r: null}, B: {pc: 0, r: null}, lock: null, log: []}; };
+  function step(who){
+    const T = S[who], other = who === 'A' ? 'B' : 'A';
+    if (T.pc >= 3) return '线程 ' + who + ' 已经做完了。';
+    if (lockC.checked && T.pc === 0 && S.lock && S.lock !== who) return '线程 ' + who + ' 想进临界区，但锁在线程 ' + other + ' 手里，只好等着（点另一个线程）。';
+    if (lockC.checked && T.pc === 0) S.lock = who;
+    if (T.pc === 0) T.r = S.count; else if (T.pc === 1) T.r++; else { S.count = T.r; if (lockC.checked) S.lock = null; }
+    S.log.push(who + '：' + STEPS[T.pc] + (T.pc === 0 ? '（读到 ' + T.r + '）' : T.pc === 1 ? '（变成 ' + T.r + '）' : '（count = ' + S.count + '）'));
+    T.pc++;
+    return null;
+  }
+  function draw(msg){
+    const col = who => { const T = S[who]; return '<div class="rc"><b>线程 ' + who + (S.lock === who ? ' 🔒' : '') + '</b>' + STEPS.map((s, i) => '<div class="' + (i < T.pc ? 'dn' : i === T.pc ? 'nx' : '') + '">' + (i + 1) + '. ' + s + '</div>').join('') + '<small>寄存器：' + (T.r === null ? '—' : T.r) + '</small></div>'; };
+    box.innerHTML = '<div class="rcw">' + col('A') + '<div class="rcm"><span>内存</span><b>count = ' + S.count + '</b></div>' + col('B') + '</div><div class="rclog">' + (S.log.map((l, i) => (i + 1) + '. ' + l).join('<br>') || '<span class="dim">（还没开始）</span>') + '</div>';
+    const fin = S.A.pc === 3 && S.B.pc === 3;
+    if (msg) say.innerHTML = msg;
+    else if (fin) say.innerHTML = S.count === 2 ? '<b>count = 2</b>，这次顺序碰巧没出问题：一个线程完整做完三步，另一个才开始读。' : '<b style="color:var(--red)">count = 1，丢了一次！</b>两个线程都在对方写回之前读到了旧值，各自加一后写回，后写的盖掉了先写的。';
+    else say.innerHTML = '点按钮让某个线程执行下一步。' + (lockC.checked ? '加了锁：一个线程读之前先拿锁，写完才放。' : '');
+  }
+  $('.btns', fig).addEventListener('click', e => {
+    const b = e.target.closest('button[data-x]'); if (!b) return; const x = b.dataset.x;
+    if (x === 'reset') { reset(); draw(); return; }
+    if (x === 'many') {
+      const tally = {1: 0, 2: 0};
+      for (let k = 0; k < 1000; k++) { reset(); let g = 0; while ((S.A.pc < 3 || S.B.pc < 3) && g++ < 50) { const who = S.A.pc >= 3 ? 'B' : S.B.pc >= 3 ? 'A' : Math.random() < .5 ? 'A' : 'B'; step(who); } tally[S.count]++; }
+      kv(out, [['count = 2', tally[2] + ' 次'], ['count = 1（丢数）', tally[1] + ' 次']]);
+      reset(); draw(lockC.checked ? '加锁以后，一千次全部是 2。' : '随机交错一千次，有相当一部分丢了数。真实的程序里两个线程各加一百万次，丢掉的就成千上万。');
+      return;
+    }
+    const m = step(x); draw(m);
+  });
+  lockC.addEventListener('change', () => { reset(); out.innerHTML = ''; draw(); });
+  reset(); draw();
+});
+
+dev('#bankFig', fig => {
+  const box = $('.bank', fig), say = $('.say', fig), selP = $('#bkP'), reqIn = $('#bkR');
+  const INIT = {alloc: [[1, 0, 1], [2, 1, 0], [1, 1, 2], [0, 2, 1], [1, 0, 0]], max: [[4, 2, 3], [3, 2, 2], [5, 3, 3], [2, 3, 2], [2, 2, 1]], avail: [2, 2, 1]};
+  let S = JSON.parse(JSON.stringify(INIT));
+  selP.innerHTML = [0, 1, 2, 3, 4].map(i => '<option value="' + i + '"' + (i === 1 ? ' selected' : '') + '>P' + i + '</option>').join('');
+  const need = st => st.max.map((m, i) => m.map((x, j) => x - st.alloc[i][j]));
+  function safe(st){
+    const N = need(st), work = st.avail.slice(), fin = Array(5).fill(false), seq = [], trace = [];
+    let moved = true;
+    while (moved) { moved = false; for (let i = 0; i < 5; i++) if (!fin[i] && N[i].every((x, j) => x <= work[j])) { const before = work.join(', '); st.alloc[i].forEach((x, j) => work[j] += x); fin[i] = true; seq.push('P' + i); trace.push('P' + i + ' 的剩余需求 (' + N[i].join(', ') + ') ≤ 可用 (' + before + ')，让它做完并归还，可用变为 (' + work.join(', ') + ')'); moved = true; } }
+    return {ok: fin.every(Boolean), seq, trace};
+  }
+  function draw(){
+    const N = need(S);
+    const cell = (m, i, k) => m[i].map((x, j) => '<input type="number" min="0" max="9" value="' + x + '" data-m="' + k + '" data-i="' + i + '" data-j="' + j + '">').join('');
+    box.innerHTML = '<table class="t c bk"><tr><th></th><th>已分配 A B C</th><th>最大需求 A B C</th><th>还需要 A B C</th></tr>' + [0, 1, 2, 3, 4].map(i => '<tr><th>P' + i + '</th><td>' + cell(S.alloc, i, 'alloc') + '</td><td>' + cell(S.max, i, 'max') + '</td><td class="m">' + N[i].join(' ') + '</td></tr>').join('') + '<tr><th>可用</th><td>' + S.avail.map((x, j) => '<input type="number" min="0" max="9" value="' + x + '" data-m="avail" data-j="' + j + '">').join('') + '</td><td></td><td></td></tr></table>';
+  }
+  box.addEventListener('input', e => { const x = e.target.closest('input'); if (!x) return; const v = Math.max(0, parseInt(x.value, 10) || 0); if (x.dataset.m === 'avail') S.avail[+x.dataset.j] = v; else S[x.dataset.m][+x.dataset.i][+x.dataset.j] = v; draw(); });
+  $('.row', fig).addEventListener('click', e => {
+    const b = e.target.closest('button[data-x]'); if (!b) return; const x = b.dataset.x;
+    if (x === 'reset') { S = JSON.parse(JSON.stringify(INIT)); draw(); say.textContent = '恢复了原来的表。'; return; }
+    if (need(S).some(r => r.some(v => v < 0))) { say.textContent = '有进程的“已分配”超过了“最大需求”，先改正表。'; return; }
+    if (x === 'safe') { const r = safe(JSON.parse(JSON.stringify(S))); say.innerHTML = (r.ok ? '<b>安全</b>，安全序列之一：' + r.seq.join(' → ') + '。' : '<b style="color:var(--red)">不安全</b>：' + (r.seq.length ? '只有 ' + r.seq.join('、') + ' 能做完，剩下的谁也满足不了。' : '一个进程的剩余需求都满足不了。')) + '<br><span class="dim" style="font-size:13px">' + r.trace.join('；') + '</span>'; return; }
+    const i = +selP.value, req = reqIn.value.trim().split(/[\s,]+/).map(Number);
+    if (req.length !== 3 || req.some(v => isNaN(v) || v < 0)) { say.textContent = '请求写成三个数，比如 1 0 1。'; return; }
+    const N = need(S);
+    if (req.some((v, j) => v > N[i][j])) { say.innerHTML = '<b style="color:var(--red)">出错</b>：P' + i + ' 请求的比它声明的剩余需求 (' + N[i].join(', ') + ') 还多。'; return; }
+    if (req.some((v, j) => v > S.avail[j])) { say.innerHTML = '可用资源 (' + S.avail.join(', ') + ') 不够，P' + i + ' 只能等。'; return; }
+    const T = JSON.parse(JSON.stringify(S)); req.forEach((v, j) => { T.avail[j] -= v; T.alloc[i][j] += v; });
+    const r = safe(JSON.parse(JSON.stringify(T)));
+    if (r.ok) { S = T; draw(); say.innerHTML = '假装分配后可用变为 (' + T.avail.join(', ') + ')，仍然<b>安全</b>（' + r.seq.join(' → ') + '），所以<b>真的分配</b>了。'; }
+    else say.innerHTML = '假装分配后可用变为 (' + T.avail.join(', ') + ')，<b style="color:var(--red)">不安全</b>' + (r.seq.length ? '（只有 ' + r.seq.join('、') + ' 能做完）' : '（没有一个进程能做完）') + '。虽然资源够，系统也<b>拒绝</b>这次分配，让 P' + i + ' 等着。这就是“避免”：宁可慢一点，也不走进可能死锁的状态。';
+  });
+  draw();
+});
+
+/* ---------- 第三十章：一层一层套信封 ---------- */
+dev('#encapFig', fig => {
+  const inp = $('#ecIn'), box = $('.encap', fig), out = $('.kv', fig), say = $('.say', fig);
+  const L = [
+    ['应用层', 0, 0, '', '你的程序（比如聊天 App）把要说的话交给系统。这一层的“首部”由应用自己约定，这里先不算。'],
+    ['传输层 · TCP 首部', 20, 0, '源端口 52341　目的端口 443　序号 1001　确认号 7731　标志 ACK PSH　窗口 65535　校验和', 'TCP 加上 20 字节的首部：端口号说明交给对方电脑上的哪个程序，序号用来把包排好顺序、发现丢了哪个（下一章）。'],
+    ['网络层 · IP 首部', 20, 0, '版本 4　首部长 20　总长度　TTL 64　协议 TCP　源 IP 192.168.1.23　目的 IP 17.253.144.10', 'IP 再加 20 字节：写着发件人和收件人的 IP 地址。TTL 每过一个路由器减 1，减到 0 就丢掉，防止包在网络里兜圈子（traceroute 正是利用它）。'],
+    ['链路层 · 以太网帧', 14, 4, '目的 MAC 3c:22:fb:00:aa:01（你家路由器）　源 MAC a4:83:e7:12:34:56（你的 Mac）　类型 IPv4 …… 尾部：CRC-32 校验', '链路层加 14 字节的首部和 4 字节的尾部：MAC 地址只管“这一段”从谁到谁（你的 Mac 到路由器），每过一个路由器就换一次；尾部是第八章的 CRC，收方用它检查这一帧有没有被噪声打坏。（Wi-Fi 的帧首部更长，这里按以太网算。）'],
+    ['物理层 · 比特', 0, 0, '', '最后整帧变成一串比特，变成网线上的电压、光纤里的光或者 Wi-Fi 的无线电波（第一章、第六章）。Wi-Fi 和以太网在前面还会加一段用来同步的“前导码”。']
+  ];
+  let k = 0;
+  function draw(){
+    const data = new TextEncoder().encode(inp.value || ' '), n = data.length;
+    let hdr = 0, tl = 0; for (let i = 1; i <= Math.min(k, 3); i++) { hdr += L[i][1]; tl += L[i][2]; }
+    let inner = '<div class="ec data"><b>数据</b><span>“' + esc(inp.value) + '”　' + n + ' 字节</span></div>';
+    for (let i = 1; i <= Math.min(k, 3); i++) inner = '<div class="ec l' + i + '"><div class="eh"><b>' + L[i][0] + '（' + L[i][1] + ' 字节）</b><small>' + L[i][3] + '</small></div>' + inner + (L[i][2] ? '<div class="et">尾部 ' + L[i][2] + ' 字节</div>' : '') + '</div>';
+    if (k === 4) { const frame = new Uint8Array(14 + 20 + 20 + n + 4); for (let i = 0; i < frame.length; i++) frame[i] = i < 54 ? (i * 37 + 11) & 255 : i < 54 + n ? data[i - 54] : 0xA5; inner += '<div class="ec bits"><b>物理层发出的比特（开头一段）</b><code>' + [...frame.slice(0, 8)].map(b => bin(b, 8)).join(' ') + ' …</code></div>'; }
+    box.innerHTML = inner;
+    const total = n + hdr + tl;
+    kv(out, [['现在在', L[k][0].split(' · ')[0]], ['数据', n + ' 字节'], ['加上的首部和尾部', hdr + tl + ' 字节'], ['一共', total + ' 字节'], ['数据占', (n / total * 100).toFixed(0) + '%']]);
+    say.innerHTML = L[k][4];
+  }
+  $('.btns', fig).addEventListener('click', e => { const b = e.target.closest('button[data-d]'); if (!b) return; const d = +b.dataset.d; k = d === 0 ? 0 : clamp(k + d, 0, 4); draw(); });
+  inp.addEventListener('input', draw);
+  draw();
+});
+
+/* ---------- 第三十一章 ---------- */
+dev('#subnetFig', fig => {
+  const ipIn = $('#snIP'), nIn = $('#snN'), ip2In = $('#snIP2'), bits = $('.snbits', fig), out = $('.kv', fig), say = $('.say', fig);
+  const parse = s => { const m = String(s).trim().match(/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/); if (!m) return null; const a = m.slice(1).map(Number); if (a.some(x => x > 255)) return null; return ((a[0] << 24) >>> 0) + (a[1] << 16) + (a[2] << 8) + a[3]; };
+  const dot = v => [24, 16, 8, 0].map(s => (v >>> s) & 255).join('.');
+  function go(){
+    const ip = parse(ipIn.value), n = Math.max(0, Math.min(32, parseInt(nIn.value, 10) || 0));
+    if (ip === null) { bits.innerHTML = ''; out.innerHTML = ''; say.textContent = '请输入形如 192.168.1.23 的 IPv4 地址。'; return; }
+    const mask = n ? (0xFFFFFFFF << (32 - n)) >>> 0 : 0, net = (ip & mask) >>> 0, bc = (net | (~mask >>> 0)) >>> 0;
+    const b = bin(ip, 32), mb = bin(mask, 32);
+    const show = (lab, s, cut) => '<div class="snr"><span>' + lab + '</span><code>' + s.split('').map((c, i) => (i && i % 8 === 0 ? '.' : '') + '<i class="' + (i < cut ? 'nw' : 'ho') + '">' + c + '</i>').join('') + '</code></div>';
+    bits.innerHTML = show('IP', b, n) + show('掩码', mb, n) + show('网络地址', bin(net, 32), n);
+    const hosts = n >= 31 ? (n === 31 ? 2 : 1) : 2 ** (32 - n) - 2;
+    kv(out, [['子网掩码', dot(mask)], ['网络地址', dot(net) + '/' + n], ['广播地址', dot(bc)], ['可用主机', n >= 31 ? '（特殊情况）' : dot(net + 1) + ' — ' + dot(bc - 1)], ['可用主机数', hosts.toLocaleString()]]);
+    let m = '蓝色是网络号（前 ' + n + ' 位），灰色是主机号。IP 和掩码按位与，就把主机号清成了 0，得到网络地址；主机号全置 1 就是广播地址。';
+    const ip2 = parse(ip2In.value);
+    if (ip2 !== null) { const same = ((ip2 & mask) >>> 0) === net; m += '<br>' + ip2In.value + ' 的网络号是 ' + dot((ip2 & mask) >>> 0) + '，' + (same ? '<b>和第一个在同一个子网</b>，可以直接通信（链路层用 ARP 找到对方的 MAC 就行）。' : '<b style="color:var(--red)">不在同一个子网</b>，要先把包交给路由器（默认网关）转发。'); }
+    say.innerHTML = m;
+  }
+  [ipIn, nIn, ip2In].forEach(el => el.addEventListener('input', go));
+  go();
+});
+
+dev('#tcpFig', fig => {
+  const svg = $('svg', fig), say = $('.say', fig);
+  const M = [
+    ['c', 'SYN', 'seq = 1000', '客户端想建立连接，发 SYN，随机选一个初始序号 1000。'],
+    ['s', 'SYN + ACK', 'seq = 5000, ack = 1001', '服务器同意，也选自己的初始序号 5000；ack = 1001 表示“1000 号我收到了，下一个要 1001”（SYN 占一个序号）。'],
+    ['c', 'ACK', 'seq = 1001, ack = 5001', '客户端确认服务器的 SYN。三次握手完成，双方都知道对方能收能发、也知道了对方的起始序号。'],
+    ['c', '数据 100 字节', 'seq = 1001, ack = 5001', '客户端发 100 字节数据（比如一个网页请求），这些字节的编号是 1001 到 1100。'],
+    ['s', 'ACK（加 300 字节数据）', 'seq = 5001, ack = 1101', '服务器确认收到 1100 及以前的所有字节（ack = 1101），顺便带上 300 字节的回复，编号 5001 到 5300。'],
+    ['c', 'FIN', 'seq = 1101, ack = 5301', '客户端说完了，发 FIN（同样占一个序号）。ack = 5301 确认收到了服务器的 300 字节。'],
+    ['s', 'ACK', 'seq = 5301, ack = 1102', '服务器确认客户端的 FIN。现在客户端到服务器这个方向关闭了，但服务器还可以继续发数据（半关闭）。'],
+    ['s', 'FIN', 'seq = 5301, ack = 1102', '服务器也发完了，发 FIN。'],
+    ['c', 'ACK', 'seq = 1102, ack = 5302', '客户端确认，然后进入 TIME_WAIT，等两倍的报文最长寿命（2MSL）才真正关闭，以防这个 ACK 丢了、服务器重发 FIN 时没人回应。']
+  ];
+  let k = 0;
+  function draw(){
+    let h = '<line x1="90" y1="40" x2="90" y2="320" stroke="var(--ink-3)" stroke-width="2"/><line x1="470" y1="40" x2="470" y2="320" stroke="var(--ink-3)" stroke-width="2"/>' + txt(90, 26, '客户端', {s: 14, w: true}) + txt(470, 26, '服务器', {s: 14, w: true});
+    h += '<defs><marker id="ta" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="var(--main)"/></marker><marker id="tb" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="var(--rule)"/></marker></defs>';
+    M.forEach((m, i) => {
+      if (i > k) return; const y = 50 + i * 30, cur = i === k, c = m[0] === 'c';
+      h += '<line x1="' + (c ? 92 : 468) + '" y1="' + y + '" x2="' + (c ? 466 : 94) + '" y2="' + (y + 22) + '" stroke="' + (cur ? 'var(--main)' : 'var(--rule)') + '" stroke-width="' + (cur ? 2.5 : 1.5) + '" marker-end="url(#' + (cur ? 'ta' : 'tb') + ')"/>';
+      h += txt(280, y + 6, m[1] + '　' + m[2], {s: 11.5, c: cur ? 'var(--ink)' : 'var(--ink-3)', w: cur});
+    });
+    const st = k <= 1 ? '握手中' : k <= 4 ? '已建立连接' : k <= 7 ? '挥手中' : 'TIME_WAIT';
+    h += txt(40, 300, '', {s: 1}) + txt(280, 322, '状态：' + st, {s: 12, c: 'var(--ter)'});
+    svg.innerHTML = h;
+    say.innerHTML = '<b>第 ' + (k + 1) + ' / ' + M.length + ' 步</b>　' + M[k][3];
+  }
+  $('.btns', fig).addEventListener('click', e => { const b = e.target.closest('button[data-d]'); if (!b) return; const d = +b.dataset.d; k = d === 0 ? 0 : clamp(k + d, 0, M.length - 1); draw(); });
+  draw();
+});
+
+/* ---------- 尾声：按下回车以后 ---------- */
+dev('#enterFig', fig => {
+  const fl = $('.enfl', fig), stepEl = $('.enstep', fig), say = $('.say', fig);
+  const FL = ['楼外 · 网络', '五楼 · 应用', '四楼 · 系统', '三楼 · 指令', '二楼 · 电路', '一楼 · 开关'];
+  /* [楼层下标, 标题, 说明, 章节们] */
+  const ST = [
+    [5, '回车键的开关合上', '键帽下的触点接通，键盘芯片扫描到它，把按键码按 USB 或蓝牙的格式一位一位送进电脑。', ['c1', 'c9']],
+    [2, '中断', '接口电路打断处理器，内核的中断处理程序收下这个按键，变成一个事件。', ['c25']],
+    [1, '浏览器收到事件', '浏览器是一个（其实是好几个）进程，它的界面线程收到“按下回车”，读出地址栏里的字符（UTF-8 编码），解析出协议 https、域名 www.apple.com、路径 /。', ['c26', 'c5']],
+    [0, '查 DNS', '先看缓存；没有的话，通过 UDP 53 号端口问 DNS 服务器，一路问到负责 apple.com 的服务器，得到一个 IP 地址。', ['c31']],
+    [2, '系统调用：建立连接', '浏览器调用 socket、connect，请内核建立到那个 IP 的 443 号端口的连接。', ['c25']],
+    [0, 'TCP 三次握手，TLS 握手', 'SYN、SYN + ACK、ACK；接着 TLS：服务器出示证书，双方协商出加密用的密钥。', ['c31']],
+    [1, '发出 HTTP 请求', '浏览器写好请求“GET / HTTP/2 ……”，交给内核。', ['c30']],
+    [2, '一层一层套信封', '内核的网络协议栈加上 TCP 首部、IP 首部，网卡驱动再加上链路层的首部和 CRC。', ['c30', 'c8']],
+    [4, '变成无线电波', 'Wi-Fi 芯片把比特变成电磁波；每个符号带几个比特，受噪声和带宽的限制。', ['c1', 'c6']],
+    [0, '路由器一站一站转', '家里的路由器把私有地址换成公网地址（NAT），之后每个路由器按目的 IP 查表、往下一站转，可能穿过海底光缆。', ['c31', 'c30']],
+    [2, '服务器那边', '服务器的网卡收到包、内核拆开信封交给服务进程；服务进程的某个线程（加着锁）从文件系统或缓存里拿出网页，写回去。', ['c26', 'c28', 'c29']],
+    [0, '回来的包', '网页被切成很多包回来，TCP 按序号排好、确认、丢了就重传，拥塞控制决定发多快。', ['c31']],
+    [1, '解析网页', '浏览器解析 HTML 和 CSS，在堆上建起几万个对象；用到的内存页第一次被碰到时，内核才分配页框。', ['c21', 'c27']],
+    [3, '执行 JavaScript', '脚本先被解释执行，常用的部分被即时编译成 arm64 机器指令（要遵守 W^X），在流水线上乱序执行，数据尽量待在缓存里。', ['c13', 'c14', 'c15', 'c16']],
+    [1, '解码图片、排版文字', 'JPEG、PNG 解码成像素；字体的轮廓被光栅化成带抗锯齿的像素。', ['c6']],
+    [4, '画到屏幕上', 'GPU 把像素写进帧缓冲，显示电路每秒刷新几十到一百多次，几百万个像素的红绿蓝小点按数字亮起来。网页出现了。', ['c6', 'c0']]
+  ];
+  fl.innerHTML = FL.map((f, i) => '<div class="fl" data-i="' + i + '"><b>' + f + '</b><span></span></div>').join('');
+  let k = -1;
+  function show(){
+    $$('.fl', fl).forEach((el, i) => el.classList.toggle('on', k >= 0 && ST[k][0] === i));
+    if (k < 0) { stepEl.innerHTML = '<p class="dim">一共 ' + ST.length + ' 步。点“下一步”，按下回车。</p>'; say.textContent = ''; return; }
+    const s = ST[k];
+    stepEl.innerHTML = '<div class="dim" style="font-size:12px">第 ' + (k + 1) + ' / ' + ST.length + ' 步 · ' + FL[s[0]] + '</div><h4 style="margin:.2em 0">' + s[1] + '</h4><p style="margin:0;font-size:15px">' + s[2] + '</p>';
+    say.innerHTML = '复习：' + s[3].map(id => { const t = TOC.find(x => x.id === id); return '<a href="' + href(id) + '">' + t.n + ' · ' + t.t + '</a>'; }).join('　');
+  }
+  $('.btns', fig).addEventListener('click', e => { const b = e.target.closest('button[data-d]'); if (!b) return; const d = +b.dataset.d; k = d === 0 ? -1 : clamp(k + d, -1, ST.length - 1); show(); });
+  show();
 });
 
 })();

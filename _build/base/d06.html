@@ -1,0 +1,161 @@
+<div class="vol-h" data-vol="卷八 · 网络">
+  <div class="k">卷八</div>
+  <h2>网络</h2>
+  <p>走出这栋楼。比特要从你的 Mac 到达地球另一边的服务器，要穿过 Wi-Fi、路由器、海底光缆。卷八讲它们怎样被一层一层装进“信封”、怎样认路、怎样保证不丢；最后一章把全书走一遍。</p>
+</div>
+
+<section class="chap" id="c30" data-vol="卷八 · 分层和包">
+  <div class="chead">
+    <div class="big">包</div>
+    <div>
+      <div class="no">第三十章</div>
+      <h2>分层和包</h2>
+      <dl><dt>讲什么</dt><dd>寄一封信要几层人帮忙；网络也分层：应用、传输、网络、链路、物理；每一层给数据套一层信封；把大数据切成小包；ping 和 traceroute；OSI 七层和 TCP/IP；四种时延和往返时间；用 tcpdump 抓包；端到端原则</dd><dt>装置</dt><dd>一层一层套信封</dd></dl>
+      <div class="crs" data-c="网络"></div>
+      <div class="lvs"><a data-l="1" href="#c30-1">第一层 · 45 分钟</a><a data-l="2" href="#c30-2">第二层 · 50 分钟</a><a data-l="3" href="#c30-3">第三层 · 25 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>我和豆子用平板联机玩，消息是怎么从我家跑到他家的？</span></div>
+    <div class="l"><i class="j">舅</i><span>像寄信：你只管写信，有人帮你装信封、写地址，有人分拣，有人开车。网络也是一层一层的人在帮忙，每一层只管自己那一件事。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>说出网络五层各管什么；画出一条消息怎样被一层一层套上“信封”。</li>
+      <li><span class="lg lg1">一</span>用 ping 和 traceroute 看数据走了多久、经过了哪些路由器。</li>
+      <li><span class="lg lg2">二</span>对照 OSI 七层和 TCP/IP；算发送时延、传播时延和时延带宽积；说出各层的数据单元叫什么。</li>
+      <li><span class="lg lg3">三</span>在 Mac 上用 tcpdump 抓一个包；说出分组交换的来历和端到端原则。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c30-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：比特和字节（第一部）、系统调用（第二十五章）</span><span class="tm">约 45 分钟</span></div>
+    <div class="lyb">
+      <h3>寄一封信</h3>
+      <p>你写好信，装进信封，写上地址交给邮局；邮局分拣，装进邮袋；卡车把邮袋运到另一个城市；那边再一层一层拆开，最后你的朋友读到信。每一层只管自己的事：写信的人不管卡车走哪条路，司机也不拆信。网络也是这样<b>分层</b>的，这是第零章“抽象”的又一次应用。常用的五层（从上往下）：</p>
+      <div class="tbl"><table class="t"><tr><th>层</th><th>管什么</th><th>像寄信里的</th><th>例子</th></tr>
+        <tr><td><b>应用层</b></td><td>程序之间说什么话</td><td>信的内容和格式</td><td>网页（HTTP）、域名（DNS）、邮件</td></tr>
+        <tr><td><b>传输层</b></td><td>交给对方电脑上的哪个程序；要不要保证不丢、按顺序</td><td>收件人姓名、挂号信</td><td>TCP、UDP</td></tr>
+        <tr><td><b>网络层</b></td><td>从这台电脑到那台电脑，一路怎样转</td><td>邮政编码和分拣</td><td>IP</td></tr>
+        <tr><td><b>链路层</b></td><td>相邻的两台设备之间怎样传一帧</td><td>一段段的运输车</td><td>以太网、Wi-Fi</td></tr>
+        <tr><td><b>物理层</b></td><td>比特怎样变成电压、光、无线电</td><td>公路</td><td>网线、光纤、无线电波</td></tr></table></div>
+      <p>你会在这张表里看到老朋友：物理层要解决第一章的“噪声和分档”、第六章的“每秒能送多少比特”；链路层用第八章的 CRC 检查每一帧有没有错；传输层要靠第二十五章的系统调用请内核收发。</p>
+      <h3>一层一层套信封</h3>
+      <p>发送时，数据从上往下走，每经过一层就在前面加一段这一层的“信封”（<b>首部</b>），写上这一层要用的信息，叫<b>封装</b>。到了对方，从下往上走，每一层拆掉自己那层信封，把里面的交给上一层。中间的路由器只拆到网络层，看看 IP 地址决定往哪转，再重新装上链路层的信封送出去。</p>
+      <div class="fig" id="encapFig">
+        <div class="fig-label">装置 · 第三十章</div>
+        <h4>一层一层套信封</h4>
+        <p class="how">在框里写一句话，点“下一层”，看它往下走时每一层加了什么首部、一共变成多少字节。首部里的地址和端口是示意。</p>
+        <input type="text" id="ecIn" value="今晚八点上线" aria-label="要发送的消息">
+        <div class="btns"><button class="btn" data-d="-1">上一层</button><button class="btn pri" data-d="1">下一层</button><button class="btn" data-d="0">回到应用层</button></div>
+        <div class="encap"></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+      <h3>切成小包</h3>
+      <p>一张照片几 MB，不会作为一整块发出去，而是切成很多个一千多字节的<b>包</b>（分组），每个包都套好信封、各自上路，可能走不同的路，到了再按编号拼起来。好处是：一条线路可以让很多人的包轮流用，谁也不独占；某个包丢了只要重发那一个。这叫<b>分组交换</b>。打电话的老办法是先接通一整条线路、独占到挂断为止，叫电路交换。</p>
+      <div class="try">
+        <div class="th"><b>ping 和 traceroute</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+<pre class="sh" data-k="终端"><span class="p">% </span>ping -c 4 www.apple.com
+<span class="p">% </span>traceroute -m 15 www.apple.com</pre>
+          <p><code>ping</code> 给对方发几个小包，对方原样回一个，打出每次一来一回用了多少毫秒（<b>往返时间</b>）。<code>traceroute</code> 列出包一路经过的路由器，每一行是一跳，后面是到那一跳的往返时间；有的路由器不回答，显示 <code>* * *</code>。看看从你家出去，前几跳是你家的路由器、运营商的设备……再试一个很远的网站，比较往返时间。光在光纤里每毫秒只走约 200 公里，所以到大洋彼岸的往返怎么也要一百多毫秒。</p>
+        </div>
+      </div>
+      <div class="task" data-id="base-t30a">
+        <div class="th"><b>算一算开销</b></div>
+        <div class="tb"><p>在装置里发一个只有 1 个字的消息，看最后一共多少字节、真正的数据占多少比例。再发一句长一点的话比较一下。想一想：为什么网络游戏常把好几条小消息攒在一起发？</p></div>
+      </div>
+      <div class="pass" data-id="base-q30a">
+        <div class="qq" data-a="2"><p>“从这台电脑到那台电脑，一路怎样转”是哪一层的事？</p><ol><li>应用层</li><li>链路层</li><li>网络层</li></ol><p class="ex">IP 在网络层。</p></div>
+        <div class="qq" data-a="0"><p>发送时每经过一层就在前面加一段首部，叫？</p><ol><li>封装</li><li>压缩</li><li>加密</li></ol><p class="ex">接收时一层层拆开。</p></div>
+        <div class="qq" data-a="1"><p>中间的路由器通常拆到哪一层？</p><ol><li>应用层</li><li>网络层</li><li>物理层</li></ol><p class="ex">看 IP 地址决定往哪转。</p></div>
+        <div class="qq" data-a="1"><p>大文件切成很多小包各自上路，叫？</p><ol><li>电路交换</li><li>分组交换</li><li>文件系统</li></ol><p class="ex">一条线路可以被很多人轮流用。</p></div>
+        <div class="qq" data-a="0"><p>ping 打出的毫秒数表示？</p><ol><li>一来一回的时间</li><li>网速</li><li>包的大小</li></ol><p class="ex">往返时间（RTT）。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c30-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 计算机网络 · 体系结构</span><span class="tm">约 50 分钟</span><span class="sum">OSI 七层、TCP/IP 四层和教学用的五层；协议、服务、接口；各层的数据单元；发送时延、传播时延、排队和处理时延；时延带宽积和往返时间；三道计算题。</span></div>
+    <div class="lyb">
+      <h3>几种分层模型</h3>
+      <p>国际标准化组织的 <b>OSI 参考模型</b>分七层：物理、数据链路、网络、传输、会话、表示、应用。实际流行的 <b>TCP/IP</b> 模型分四层：网络接口、网际（IP）、传输、应用（会话和表示的功能并入了应用层）。教材常用两者折中的<b>五层</b>：物理、数据链路、网络、传输、应用。各层的数据单元：应用层叫报文，传输层叫报文段（TCP）或用户数据报（UDP），网络层叫分组或 IP 数据报，链路层叫帧，物理层是比特。</p>
+      <p>三个概念：<b>协议</b>是对等实体（两台机器的同一层）之间通信的规则，由语法、语义、同步三要素组成，是“水平”的；<b>服务</b>是下层为上层提供的功能，是“垂直”的；上下层之间交换信息的地方叫<b>服务访问点</b>（接口）。第 n 层使用第 n − 1 层的服务、按第 n 层的协议和对方的第 n 层通信。</p>
+      <h3>时延</h3>
+      <ul class="plain">
+        <li><b>发送时延</b>（传输时延）= 数据长度 ÷ 发送速率（带宽）：把一个包的所有比特推上线路要多久。</li>
+        <li><b>传播时延</b> = 信道长度 ÷ 电磁波在信道中的传播速率（光纤和铜线里约 2 × 10<sup>8</sup> m/s）：一个比特从一头跑到另一头要多久。</li>
+        <li><b>排队时延</b>和<b>处理时延</b>：在路由器里排队等候、检查转发要多久，随拥塞情况变化。</li>
+        <li>总时延是四者之和。<b>时延带宽积</b> = 传播时延 × 带宽：“线路里能同时装下多少比特”。<b>往返时间</b> RTT：从发出到收到确认的时间。</li>
+      </ul>
+      <p>直觉：带宽像马路的车道数，传播时延像马路的长度。车道再多，从北京开到广州也要那么久；文件很大时，发送时延（车流量）才是瓶颈。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）主机 A 经一条长 2000 km 的光纤链路（传播速率 2 × 10<sup>8</sup> m/s，带宽 100 Mb/s）向 B 发送一个 10<sup>6</sup> 字节的文件，忽略首部和处理时延，从 A 开始发送到 B 收完最后一个比特要多久？（2）这条链路的时延带宽积是多少比特？（3）若 A 和 B 之间经过一个存储转发的路由器（两段链路各 1000 km、带宽都是 100 Mb/s），文件作为一个整体转发，所需时间又是多少？</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）发送时延 = 8 × 10<sup>6</sup> b ÷ 10<sup>8</sup> b/s = 0.08 s；传播时延 = 2 × 10<sup>6</sup> m ÷ 2 × 10<sup>8</sup> m/s = 0.01 s；共 0.09 s。</p>
+          <p>（2）0.01 s × 10<sup>8</sup> b/s = 10<sup>6</sup> 比特。</p>
+          <p>（3）存储转发要先完整收下再发：两次发送时延 2 × 0.08 = 0.16 s，加两段传播 0.005 + 0.005 = 0.01 s，共 0.17 s。如果把文件切成很多小分组，分组可以在两段链路上“流水”地走（第十五章！），总时间接近 0.08 + 0.01 + 一个小分组的发送时延，这就是分组交换的好处之一。</p>
+        </div></details>
+      </div>
+      <div class="pass" data-id="base-q30b">
+        <div class="qq" data-in="7"><p>OSI 参考模型分几层？</p><p class="ex">物理、数据链路、网络、传输、会话、表示、应用。</p></div>
+        <div class="qq" data-a="1"><p>数据链路层的数据单元叫？</p><ol><li>报文段</li><li>帧</li><li>分组</li></ol><p class="ex">网络层是分组，传输层是报文段。</p></div>
+        <div class="qq" data-a="0"><p>协议是？</p><ol><li>对等层之间通信的规则（水平的）</li><li>下层给上层的功能（垂直的）</li><li>一根网线</li></ol><p class="ex">服务才是垂直的。</p></div>
+        <div class="qq" data-in="0.08|0.08s|80ms"><p>1 MB（按 10<sup>6</sup> 字节）的数据以 100 Mb/s 发送，发送时延是多少秒？</p><p class="ex">8 × 10<sup>6</sup> ÷ 10<sup>8</sup>。</p></div>
+        <div class="qq" data-a="2"><p>带宽提高十倍，哪种时延不变？</p><ol><li>发送时延</li><li>总时延</li><li>传播时延</li></ol><p class="ex">光跑那么远就是要那么久。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c30-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">抓包和设计哲学</span><span class="tm">约 25 分钟</span><span class="sum">在 Mac 上用 tcpdump 抓真实的包；Wireshark；分组交换的来历；端到端原则；为什么中间的网络“傻”、两头的电脑“聪明”。</span></div>
+    <div class="lyb">
+      <h3>亲眼看一个包</h3>
+      <div class="try">
+        <div class="th"><b>抓包</b><span class="tm">15 分钟 · 要输入密码</span></div>
+        <div class="tb">
+<pre class="sh" data-k="终端（开两个窗口）"><span class="p">% </span>sudo tcpdump -i en0 -n -c 6 icmp
+<span class="p">% </span>ping -c 3 www.apple.com</pre>
+          <p>在第一个窗口运行 tcpdump（en0 一般是 Mac 的 Wi-Fi 网卡，<code>ifconfig</code> 可以确认），它会等着；在第二个窗口 ping，第一个窗口就打出 6 行：3 个请求（echo request）、3 个回复（echo reply），带着源地址和目的地址。加 <code>-X</code> 可以看到每个包的十六进制内容（第二章的 xxd 样式），里面能认出 IP 首部开头的 <code>45</code>（版本 4、首部 5 × 4 = 20 字节）。抓包会看到别人的网络流量，只在自己的网络、自己的设备上做。图形界面的抓包工具 Wireshark 能把每一层的首部逐字段解释出来，很适合配合第三十一章读。</p>
+        </div>
+      </div>
+      <h3>分组交换和端到端</h3>
+      <p>二十世纪六十年代，美国的保罗·巴兰和英国的唐纳德·戴维斯各自提出了把消息切成小块分别传送的想法，前者着眼于网络在部分节点被摧毁时仍能工作，后者起了“分组”这个名字。1969 年的阿帕网把它变成了现实（这段历史在《计算机创世记》里）。</p>
+      <p>1984 年，萨尔茨、里德和克拉克的论文《系统设计中的端到端论点》总结了互联网的一个核心思想：像“保证不丢、按顺序、加密”这类功能，只有通信的两端才能真正做对，所以应该放在两端的电脑里（传输层、应用层），中间的网络只管尽力把包往前送，可以丢、可以乱序。“傻网络、聪明终端”让互联网能容纳当初没人想到的应用；代价是每个应用都得自己处理丢包和重传，下一章的 TCP 就是干这个的。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>J. H. Saltzer, D. P. Reed, D. D. Clark, “End-to-End Arguments in System Design”, <i>ACM TOCS</i>, 1984。</li>
+          <li>James F. Kurose, Keith W. Ross,《计算机网络：自顶向下方法》第一章；谢希仁《计算机网络》第一章（408 常用教材）。</li>
+          <li><code>man tcpdump</code>；Wireshark 官方文档。</li>
+        </ul>
+      </div>
+      <div class="pass" data-id="base-q30c">
+        <div class="qq" data-a="1"><p>IP 首部的第一个字节常是 0x45，其中 5 表示？</p><ol><li>IP 第 5 版</li><li>首部长 5 × 4 = 20 字节</li><li>5 跳</li></ol><p class="ex">高 4 位是版本 4，低 4 位是首部长度（以 4 字节为单位）。</p></div>
+        <div class="qq" data-a="0"><p>端到端原则主张“保证不丢”这类功能放在？</p><ol><li>通信的两端</li><li>每个路由器</li><li>网线里</li></ol><p class="ex">中间网络只尽力转发。</p></div>
+        <div class="qq" data-a="2"><p>“分组”这个词是谁起的？</p><ol><li>保罗·巴兰</li><li>阿帕网</li><li>唐纳德·戴维斯</li></ol><p class="ex">巴兰也独立提出了类似思想。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div data-l="1"><b>协议 <span class="en" data-say="protocol">protocol</span></b>双方约定好的通信规则。</div>
+    <div data-l="1"><b>分层 <span class="en" data-say="layering">layering</span></b>每层只管一件事，用下层的服务。</div>
+    <div data-l="1"><b>封装 <span class="en" data-say="encapsulation">encapsulation</span></b>每层在前面加自己的首部。</div>
+    <div data-l="1"><b>包 <span class="en" data-say="packet">packet</span></b>切成小块各自上路的数据。</div>
+    <div data-l="2"><b>时延 <span class="en" data-say="latency">latency</span></b>发送、传播、排队、处理。</div>
+    <div data-l="3"><b>端到端 <span class="en" data-say="end to end">end-to-end</span></b>可靠性等功能放在通信的两端。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>网络像寄信，一层一层套信封；数据切成小包各自上路。</div>
+    <div><i>第二层带走</i>发送时延看带宽，传播时延看距离；存储转发要整包收完再发。</div>
+    <div><i>第三层带走</i>傻网络、聪明终端：中间只管送，两头管对错。</div>
+  </div>
+</section>

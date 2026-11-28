@@ -1,0 +1,170 @@
+<section class="chap" id="c26" data-vol="卷八 · 排 · 快速排序">
+  <div class="chead">
+    <div class="big">快</div>
+    <div>
+      <div class="no">卷八 · 第二十六章</div>
+      <h2>快速排序</h2>
+      <dl><dt>讲什么</dt><dd>挑一个当标杆，比它小的站左边、大的站右边，两边各自再这样排；一趟划分怎样做；为什么平均很快、最坏很慢；随便挑标杆；找第 k 小的数</dd><dt>装置</dt><dd>快速排序</dd></dl>
+      <div class="crs" data-c="结构"></div>
+      <div class="lvs"><a data-l="1" href="#c26-1">第一层 · 30 分钟</a><a data-l="2" href="#c26-2">第二层 · 55 分钟</a><a data-l="3" href="#c26-3">第三层 · 20 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>体育课排队，老师说：“比小明矮的站左边，比他高的站右边。”一下就分好了一大半。</span></div>
+    <div class="l"><i class="j">舅</i><span>然后左边那一队、右边那一队，再各找一个人当“小明”。这就是快速排序。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>用“挑一个当标杆，小的站左、大的站右”讲清楚快速排序，手排一组数。</li>
+      <li><span class="lg lg1">一</span>说出为什么本来排好的数，标杆总挑第一个时会很慢。</li>
+      <li><span class="lg lg2">二</span>写出 408 风格的一趟划分，写出每趟结果；说出最好、平均、最坏复杂度和空间、稳定性。</li>
+      <li><span class="lg lg2">二</span>用快速选择在平均 O(n) 时间里找第 k 小的数；判断一个序列是不是某趟快排的结果。</li>
+      <li><span class="lg lg3">三</span>说出霍尔发明快排的经过；三路划分和内省排序。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c26-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：递归和分治（第七章）、简单排序（第二十五章）</span><span class="tm">约 30 分钟</span></div>
+    <div class="lyb">
+      <h3>挑一个当标杆</h3>
+      <ol class="plain">
+        <li>从一堆数里挑一个当<b>标杆</b>（比如第一个）。</li>
+        <li>比标杆小的都放到它左边，大的都放到它右边。这一步叫<b>划分</b>。划分完，标杆就站在了它最终该站的位置。</li>
+        <li>左边那一堆、右边那一堆，各自再用同样的办法排（第七章的递归：相信自己）。</li>
+        <li>一堆只剩 0 个或 1 个，就不用排了（终点）。</li>
+      </ol>
+      <p>这是 1959 年英国人霍尔想出来的，叫<b>快速排序</b>。它把一个大问题分成两个小问题，是第七章说的分治。</p>
+      <h3>为什么快</h3>
+      <p>如果每次标杆都正好在中间，一堆就分成差不多一样大的两堆：一千个分成两个五百，再分成四个二百五……分十来层就分到底了，每一层所有的数加起来只比较一遍：大约 1000 × 10 次。简单排序要大约 1000 × 1000 / 2 次。</p>
+      <h3>什么时候慢</h3>
+      <p>可是如果数本来就排好了，每次挑第一个当标杆，它就是最小的：左边一个都没有，右边是剩下的全部。每次只少了一个，要分一千层，比较五十万次，和简单排序一样慢。</p>
+      <p>办法是：<b>随便挑一个当标杆</b>（随机挑），或者挑头、中、尾三个里中间大的那个。这样不管数据长什么样，都很难每次都挑到最小的。</p>
+      <div class="fig" id="quickFig">
+        <div class="fig-label">装置 · 第二十六章</div>
+        <h4>快速排序</h4>
+        <p class="how">深褐色是标杆，浅褐色是正在划分的那一段，黄色是正在和标杆比的数，绿色是已经站到最终位置的。换“倒着的”数据，比一比标杆挑第一个和随便挑，各比了多少次。</p>
+        <div class="btns" data-a></div>
+        <div class="btns" data-d></div>
+        <div class="bars"></div>
+        <div class="btns"><button class="btn pri" data-x="s">走一步</button><button class="btn" data-x="run">自己跑 / 停</button><button class="btn" data-x="r">换一组数</button></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+      <div class="mc">
+        <h5>主线第 26 步</h5>
+        <p>主线这一步用 500 个数做了实验：乱的数，标杆挑第一个比了约 5000 次；排好的数，标杆挑第一个比了 124750 次，正好是 500 × 499 / 2；改成随便挑，又回到四五千次。</p>
+      </div>
+      <div class="task" data-id="tree-t26a">
+        <div class="th"><b>按身高排队</b></div>
+        <div class="tb"><p>拿 10 张写着不同数字的纸条（代替身高）打乱。挑第一张当标杆，把其余的分到左右两堆；再对每一堆重复，直到每堆只剩一张。数一数你一共分了几轮。再按 1 到 10 排好的顺序做一遍，又分了几轮？</p></div>
+      </div>
+      <div class="pass" data-id="tree-q26a">
+        <div class="qq" data-a="0"><p>快速排序一趟划分以后，标杆在哪儿？</p><ol><li>在它最终的位置</li><li>在最前面</li><li>在最后面</li></ol><p class="ex">左边都比它小、右边都比它大。</p></div>
+        <div class="qq" data-a="1"><p>快速排序是哪一种想办法的套路？</p><ol><li>贪心</li><li>分治</li><li>动态规划</li></ol><p class="ex">分成两堆，各自再排。</p></div>
+        <div class="qq" data-a="1"><p>数本来就排好了，标杆总挑第一个，会怎样？</p><ol><li>特别快</li><li>特别慢，每次只少一个</li></ol><p class="ex">左边空、右边是剩下的全部。</p></div>
+        <div class="qq" data-a="0"><p>怎样避免最慢的情况？</p><ol><li>随便挑标杆</li><li>每次挑最小的当标杆</li></ol><p class="ex">随机挑，很难每次都挑到最小的。</p></div>
+        <div class="qq" data-in="1959"><p>霍尔是哪一年想出快速排序的？</p><p class="ex">1959 年（1961 年发表）。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c26-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">对照 408：交换排序（快速排序）</span><span class="tm">约 55 分钟</span><span class="sum">408 风格的划分（挖坑填数）；每趟结果；递归深度和空间；最好 O(n log n)、最坏 O(n²)；不稳定；“第 k 趟后有几个元素到了最终位置”；快速选择。</span></div>
+    <div class="lyb">
+      <h3>一趟划分</h3>
+<pre class="code" data-k="quick.c">int partition(int a[], int lo, int hi) {
+    int p = a[lo];                         /* 标杆，lo 处成了一个“坑” */
+    while (lo &lt; hi) {
+        while (lo &lt; hi &amp;&amp; a[hi] &gt;= p) hi--;
+        a[lo] = a[hi];                     /* 右边比标杆小的填到左边的坑 */
+        while (lo &lt; hi &amp;&amp; a[lo] &lt;= p) lo++;
+        a[hi] = a[lo];                     /* 左边比标杆大的填到右边的坑 */
+    }
+    a[lo] = p;                             /* 标杆归位 */
+    return lo;
+}
+void quick_sort(int a[], int lo, int hi) {
+    if (lo &lt; hi) { int m = partition(a, lo, hi); quick_sort(a, lo, m - 1); quick_sort(a, m + 1, hi); }
+}</pre>
+      <ul class="plain">
+        <li><b>时间</b>：每层划分共 O(n)。每次划分均匀时递归深度 log n，O(n log n)；每次划分极不均匀（初始有序或逆序，取首元素为标杆）时深度 n，O(n²)。平均 O(n log n)，是内部排序中平均性能最好的。</li>
+        <li><b>空间</b>：递归栈，最好 O(log n)、最坏 O(n)。（先递归短的那一段、长的用循环，可以保证 O(log n)。）</li>
+        <li><b>不稳定</b>：例如 {3, 2, 2'}，标杆 3，第一趟 2' 被填到最前面，得 {2', 2, 3}。</li>
+        <li>每一趟（对每一段的一次划分）至少把一个元素（标杆）放到最终位置。408 常问“第二趟结束后，下列哪个序列可能是结果”：第 k 趟结束后，至少有 k 个元素在最终位置；若某一趟的标杆在一端（另一段为空），下一趟只对一段划分，最终位置的元素就少。</li>
+      </ul>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）对 {38, 12, 61, 27, 50, 9, 44, 33} 用上面的 partition 做第一趟划分（标杆取第一个），写出结果。（2）一组数用快速排序（标杆取每段的第一个）排完前两趟以后，下面哪个<b>不可能</b>是当时的样子：A. {5, 2, 12, 28, 16, 32, 72, 60} B. {2, 16, 5, 28, 12, 60, 32, 72} C. {2, 12, 16, 5, 28, 32, 72, 60} D. {5, 2, 16, 12, 28, 60, 32, 72}。</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）p = 38。hi 从 33 开始，33 &lt; 38 填到 0 号：{33, 12, 61, 27, 50, 9, 44, _}；lo 往右，61 &gt; 38 填到 7 号；hi 往左，44 ≥ 38 跳过，9 &lt; 38 填到 2 号；lo 往右，27 跳过，50 &gt; 38 填到 5 号；hi 左移碰到 lo（4 号），停，标杆放 4 号：{33, 12, 9, 27, 38, 50, 44, 61}。</p>
+          <p>（2）排好后是 {2, 5, 12, 16, 28, 32, 60, 72}。先在每个选项里找出“已在最终位置”的元素：左边的都比它小、右边的都比它大，而且位置和排好后一样。A：12、32；B：2、72；C：2、28、32；D：28、72。</p>
+          <p>再想两趟能产生什么：第一趟定下一个标杆。如果它不在两端，第二趟要对左右两段各划分一次，两段里各会再定下一个，至少共 3 个；如果它在一端，第二趟只划分一段，至少共 2 个，而且其中一个在最前或最后。A 只有 2 个，又都不在两端，不可能。B（2 和 72 在两端）、D（72 在末端、28 是第二趟的标杆）、C（第一趟 28，第二趟左段定下 2、右段定下 32）都可能。答案 A。做这类题的要领：先数“左小右大”的元素，再对照“不在端点就要 3 个、在端点至少 2 个”。</p>
+        </div></details>
+      </div>
+      <h3>快速选择</h3>
+      <p>找第 k 小的数，不必全排好：划分一次，标杆落在位置 m。若 m = k，就是它；若 k &lt; m，只去左边找；否则只去右边找。每次只递归一边，平均 n + n/2 + n/4 + … = O(n)，最坏 O(n²)（同样用随机标杆避免）。还有一种最坏也是 O(n) 的“中位数的中位数”算法（1973），常数大，主要有理论意义。</p>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>只有 0、1、2 三种值的数组，一遍扫描排好（荷兰国旗问题）。</p>
+        <details><summary>看要点</summary><div><p>三个指针：lo 左边全是 0，hi 右边全是 2，i 扫描。a[i] = 0 就和 a[lo] 交换、lo 和 i 都加一；a[i] = 2 就和 a[hi] 交换、hi 减一（i 不动，换来的还没看）；a[i] = 1 就 i 加一。O(n)、O(1)。这就是快排的“三路划分”，迪杰斯特拉提出的，有大量重复元素时快排用它就不会退化。</p></div></details>
+      </div>
+      <div class="pass" data-id="tree-q26b">
+        <div class="qq" data-a="2"><p>快速排序在什么情况下最慢？</p><ol><li>数据随机</li><li>每次划分都均匀</li><li>初始有序且总取首元素为标杆</li></ol><p class="ex">每次划分一边为空，O(n²)。</p></div>
+        <div class="qq" data-a="1"><p>快速排序的平均空间复杂度是？</p><ol><li>O(1)</li><li>O(log n)</li><li>O(n)</li></ol><p class="ex">递归栈的深度。</p></div>
+        <div class="qq" data-a="1"><p>快速排序稳定吗？</p><ol><li>稳定</li><li>不稳定</li></ol><p class="ex">远距离的填坑会打乱相同元素。</p></div>
+        <div class="qq" data-in="33,12,9,27,38,50,44,61|33 12 9 27 38 50 44 61"><p>典型题（1）第一趟划分的结果是？（逗号或空格隔开）</p><p class="ex">{33, 12, 9, 27, 38, 50, 44, 61}。</p></div>
+        <div class="qq" data-a="0"><p>快速选择找第 k 小，平均时间复杂度是？</p><ol><li>O(n)</li><li>O(n log n)</li><li>O(k log n)</li></ol><p class="ex">每次只递归一边。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c26-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">来历和工业界的快排</span><span class="tm">约 20 分钟</span><span class="sum">霍尔在莫斯科做机器翻译时想到快排；内省排序：快排太深就换堆排序；双轴快排和模式击败快排；Python 为什么不用快排。</span></div>
+    <div class="lyb">
+      <h3>来历</h3>
+      <p>1959 年，霍尔作为交换学生在莫斯科国立大学，参与一个机器翻译项目，需要把要翻译的句子里的单词排好序，再去磁带上的词典里查。他先想到插入排序，觉得太慢，于是想出了快速排序；但当时用的 Mercury Autocode 语言不支持递归，直到回英国学了 ALGOL 60，才把它清楚地写了出来，1961 年发表在《ACM 通讯》上。</p>
+      <h3>工业界的快排</h3>
+      <ul class="plain">
+        <li><b>内省排序</b>（introsort，1997）：先快排，递归深度超过 2 log n 时改用堆排序（第二十八章），保证最坏 O(n log n)；小段用插入排序。C++ 的 <code>std::sort</code> 多用它。</li>
+        <li><b>双轴快排</b>：Java 7 起对基本类型用两个标杆分成三段。</li>
+        <li><b>模式击败快排</b>（pdqsort，2016）：能识别已经有序、重复很多等模式，Rust 和 Go 的不稳定排序用它或它的变种。</li>
+        <li>Python 的 <code>sorted</code> 要求<b>稳定</b>，而快排不稳定，所以用的是归并加插入的 Timsort（第二十七章）。</li>
+      </ul>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>C. A. R. Hoare, “Algorithm 64: Quicksort”, <i>CACM</i>, 1961；“Quicksort”, <i>The Computer Journal</i>, 1962。</li>
+          <li>D. R. Musser, “Introspective Sorting and Selection Algorithms”, 1997。</li>
+          <li>M. Blum 等, “Time bounds for selection”, 1973。</li>
+          <li>O. Peters, “Pattern-defeating Quicksort”, 2021。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="main" data-step="26">
+    <div class="mh"><b>主线 · 第 26 步</b><span>快速排序</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给方格岛加上：<i>快速排序</i></p>
+      <p><code>quick</code> 用挖坑填数的办法划分。500 个排好的数：标杆挑第一个比了 124750 次（= 500 × 499 / 2），改成随便挑只要四千多次。</p>
+      <div class="who1"><b>第一层</b>这一步可以先下载“到这一步的完整文件”运行，看懂演示，再读新加的那一段。想挑战就自己打。</div>
+      <div class="who2"><b>第二层</b>用 C 写快排，加上“小段用插入排序”和“先递归短的一段”，量递归深度；再写快速选择找中位数。</div>
+    </div>
+  </div>
+  <div class="words">
+    <div data-l="1"><b>快速排序 <span class="en" data-say="quicksort">quicksort</span></b>挑标杆，小的左、大的右，两边再排。</div>
+    <div data-l="1"><b>标杆 <span class="en" data-say="pivot">pivot</span></b>划分时用来比的那个数（枢轴）。</div>
+    <div data-l="1"><b>划分 <span class="en" data-say="partition">partition</span></b>把小的放一边、大的放另一边。</div>
+    <div data-l="2"><b>快速选择 <span class="en" data-say="quickselect">quickselect</span></b>只往一边递归，找第 k 小。</div>
+    <div data-l="3"><b>内省排序 <span class="en" data-say="introsort">introsort</span></b>快排太深就换成堆排序。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>挑一个当标杆，小的站左、大的站右，两边再各自这样排；随便挑标杆，就很难碰上最慢的情况。</div>
+    <div><i>第二层带走</i>平均 O(n log n)、最坏 O(n²)、空间 O(log n)、不稳定；每趟至少一个元素归位；找第 k 小用快速选择。</div>
+    <div><i>第三层带走</i>真实的快排会自己“退路”：太深换堆排序、小段换插入排序；要稳定就用 Timsort。</div>
+  </div>
+</section>

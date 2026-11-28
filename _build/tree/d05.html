@@ -1,0 +1,159 @@
+<section class="chap" id="c27" data-vol="卷八 · 排 · 归并排序">
+  <div class="chead">
+    <div class="big">归</div>
+    <div>
+      <div class="no">卷八 · 第二十七章</div>
+      <h2>归并排序</h2>
+      <dl><dt>讲什么</dt><dd>两摞排好的牌合成一摞：只比两摞的最上面；对半分到底，再一层一层合起来；为什么总是 n log n；内存装不下的时候：外部排序、多路归并、败者树、置换选择、最佳归并树</dd><dt>装置</dt><dd>归并排序</dd></dl>
+      <div class="crs" data-c="结构 系统"></div>
+      <div class="lvs"><a data-l="1" href="#c27-1">第一层 · 30 分钟</a><a data-l="2" href="#c27-2">第二层 · 65 分钟</a><a data-l="3" href="#c27-3">第三层 · 20 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>我和豆子各有一张排好的排行榜，要合成一张总榜。</span></div>
+    <div class="l"><i class="j">舅</i><span>两张榜各看第一名，谁少谁先上总榜。一直这样比，一遍就合好了。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>把两摞排好的牌合成一摞，说出为什么只要比两摞最上面的那张。</li>
+      <li><span class="lg lg1">一</span>用“对半分到底，再一层层合起来”讲清楚归并排序；说出内存装不下时怎么排。</li>
+      <li><span class="lg lg2">二</span>写出二路归并排序，写出每一趟的结果；说出它的复杂度、空间和稳定性。</li>
+      <li><span class="lg lg2">二</span>计算外部排序的归并趟数和读写次数；说出败者树、置换-选择排序、最佳归并树各解决什么问题。</li>
+      <li><span class="lg lg3">三</span>说出 Python 的 Timsort 怎样利用数据里已经排好的段；外部排序在数据库和大数据里的样子。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c27-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：递归和分治（第七章）、简单排序（第二十五章）</span><span class="tm">约 30 分钟</span></div>
+    <div class="lyb">
+      <h3>两摞合成一摞</h3>
+      <p>桌上有两摞牌，每一摞都已经从小到大排好，最小的在最上面。要合成一摞排好的：只要看两摞<b>最上面</b>那张，拿小的那张放到新的一摞上；再看两摞最上面那张，拿小的……一摞拿完了，另一摞剩下的直接放上去。</p>
+      <p>为什么只看最上面的？因为每一摞都排好了，最上面那张就是这一摞里最小的，两个“最小的”里更小的那个，一定是所有牌里最小的。这一步叫<b>归并</b>，两摞一共 n 张，最多比 n 次。</p>
+      <h3>对半分到底，再一层层合起来</h3>
+      <p>一摞乱的牌怎么办？把它分成两半，两半各自排好（第七章：相信自己），再归并成一摞。一半怎么排好？再分成两半……分到每摞只有一张，一张牌天然是排好的。然后一层一层往回合：一张一张合成两张，两张两张合成四张……这叫<b>归并排序</b>。</p>
+      <p>一千张牌，对半分大约 10 层；每一层把所有牌合一遍，最多比 1000 次。一共大约 1000 × 10 次。不管牌一开始是乱的、排好的还是倒着的，都是这么多：它不会像快速排序那样碰上最慢的情况。代价是合的时候要一块空地方放新的一摞。</p>
+      <div class="fig" id="mergeFig">
+        <div class="fig-label">装置 · 第二十七章</div>
+        <h4>归并排序</h4>
+        <p class="how">浅褐色是正在合并的那一段：左右两半已经各自排好，黄色是正在比的两张“最上面的牌”。换各种数据看看，归并排序的比较次数几乎不变；再和快速排序、插入排序比一比。</p>
+        <div class="btns" data-a></div>
+        <div class="btns" data-d></div>
+        <div class="bars"></div>
+        <div class="btns"><button class="btn pri" data-x="s">走一步</button><button class="btn" data-x="run">自己跑 / 停</button><button class="btn" data-x="r">换一组数</button></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+      <h3>桌子太小了：外部排序</h3>
+      <p>图书馆要把一万本书按编号排好，可是桌子上一次只能摊开一百本。办法是：每次拿一百本到桌上排好，捆成一捆放回书架，这样得到一百捆排好的书；然后每捆只拿最上面一本到桌上，一百本里挑编号最小的放上新书架，再从那一捆补一本上来……这就是第十二章说的“多路归并”，用堆挑最小的最方便。</p>
+      <p>电脑也是这样：数据太多、内存装不下的时候，先一块一块读进内存排好、写回硬盘，再把这些排好的块归并起来。这叫<b>外部排序</b>。主线第 27 步假装内存一次只能装 4 个数，把 11 个数切成三段排好，再用堆归并。</p>
+      <div class="mc">
+        <h5>稳定的排序</h5>
+        <p>归并时，两摞最上面一样大，先拿左边那摞的，一样大的先后就不会变：归并排序是稳定的（第二十五章）。这也是 Python 的 <code>sorted</code> 选它当底子的原因。</p>
+      </div>
+      <div class="task" data-id="tree-t27a">
+        <div class="th"><b>合两摞牌</b></div>
+        <div class="tb"><p>拿 8 张扑克牌，先分成 4 摞、每摞 2 张，各自排好；再两两合成 2 摞（每次只比最上面的）；最后合成 1 摞。数一数一共比了几次。和第二十五章用插入排序排 8 张牌比一比。</p></div>
+      </div>
+      <div class="pass" data-id="tree-q27a">
+        <div class="qq" data-a="0"><p>合并两摞排好的牌，每次比哪两张？</p><ol><li>两摞最上面的（最小的）</li><li>两摞最下面的</li><li>随便两张</li></ol><p class="ex">两个“最小的”里更小的就是所有牌里最小的。</p></div>
+        <div class="qq" data-a="1"><p>归并排序要分到每摞几张才停？</p><ol><li>两张</li><li>一张</li></ol><p class="ex">一张牌天然是排好的。</p></div>
+        <div class="qq" data-a="0"><p>数据本来就是倒着的，归并排序会变慢很多吗？</p><ol><li>不会，次数差不多</li><li>会，和快排最慢一样</li></ol><p class="ex">它总是对半分。</p></div>
+        <div class="qq" data-a="1"><p>归并排序的代价是？</p><ol><li>不稳定</li><li>要一块额外的地方放合并的结果</li></ol><p class="ex">它是稳定的，代价是额外空间。</p></div>
+        <div class="qq" data-a="2"><p>数据太多、内存装不下，怎么排？</p><ol><li>没办法</li><li>只排一部分</li><li>先分块排好写回硬盘，再多路归并</li></ol><p class="ex">外部排序。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c27-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">对照 408：归并排序、外部排序</span><span class="tm">约 65 分钟</span><span class="sum">二路归并的代码和趟数；O(n log n)、O(n) 空间、稳定；外部排序的两个阶段和读写次数；多路归并和败者树；置换-选择排序生成更长的初始归并段；最佳归并树和虚段。</span></div>
+    <div class="lyb">
+      <h3>二路归并排序</h3>
+<pre class="code" data-k="merge.c">int B[MAXN];                                   /* 辅助数组 */
+void merge(int A[], int lo, int mid, int hi) {
+    for (int k = lo; k &lt;= hi; k++) B[k] = A[k];
+    int i = lo, j = mid + 1, k = lo;
+    while (i &lt;= mid &amp;&amp; j &lt;= hi) A[k++] = (B[i] &lt;= B[j]) ? B[i++] : B[j++];   /* &lt;= 保证稳定 */
+    while (i &lt;= mid) A[k++] = B[i++];
+    while (j &lt;= hi)  A[k++] = B[j++];
+}
+void merge_sort(int A[], int lo, int hi) {
+    if (lo &lt; hi) { int mid = (lo + hi) / 2; merge_sort(A, lo, mid); merge_sort(A, mid + 1, hi); merge(A, lo, mid, hi); }
+}</pre>
+      <p>n 个元素的二路归并排序要 ⌈log₂n⌉ 趟，每趟 O(n)，时间总是 O(n log n)（最好、最坏、平均都一样）；空间 O(n)；<b>稳定</b>。k 路归并排序的趟数是 ⌈log<sub>k</sub>n⌉。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）对 {38, 12, 61, 27, 50, 9, 44, 33} 做自底向上的二路归并排序，写出每一趟的结果。（2）设内存工作区能放 3 个记录，对输入序列 {29, 14, 35, 8, 41, 22, 17, 50, 3, 26, 44, 11} 做置换-选择排序，得到哪几个初始归并段？（3）有 8 个初始归并段，长度（块数）为 2, 3, 6, 9, 12, 17, 18, 24，做 3 路归并，画出最佳归并树，求总的读写块数。</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）第一趟：{12, 38}、{27, 61}、{9, 50}、{33, 44}；第二趟：{12, 27, 38, 61}、{9, 33, 44, 50}；第三趟：{9, 12, 27, 33, 38, 44, 50, 61}。</p>
+          <p>（2）工作区先放 29, 14, 35。每次输出工作区里“不小于上一个输出”的最小记录，再读入一个补位；没有可输出的，这一段结束。段一：14, 29, 35, 41（此时工作区为 8, 22, 17，都小于 41）；段二：8, 17, 22, 26, 44, 50；段三：3, 11。三段长度 4、6、2；内存只能放 3 个，却生成了长 6 的段：置换-选择排序生成的段平均长约为内存的两倍。</p>
+          <p>（3）(8 − 1) mod (3 − 1) = 1 ≠ 0，要补 3 − 1 − 1 = 1 个长度为 0 的虚段。像哈夫曼树一样每次合并最小的 3 个：{0, 2, 3} → 5；{5, 6, 9} → 20；{12, 17, 18} → 47；{20, 24, 47} → 91。带权路径长度 = 各次合并之和 = 5 + 20 + 47 + 91 = 163，每块读一次写一次，总读写 2 × 163 = 326 块。</p>
+        </div></details>
+      </div>
+      <h3>外部排序</h3>
+      <p>两个阶段：① 生成初始归并段（读入内存、内部排序或置换-选择排序、写回）；② 多趟归并。时间主要花在<b>读写外存</b>上，所以要减少归并的趟数：r 个初始段、k 路归并，趟数 = ⌈log<sub>k</sub>r⌉。两个办法：</p>
+      <ul class="plain">
+        <li><b>增大 k</b>：但 k 路归并时，每选一个最小记录要比较 k − 1 次，k 大了内部比较变多。<b>败者树</b>解决这个问题：一棵完全二叉树，叶子是 k 个归并段当前的记录，分支结点记“比赛的败者”、胜者继续往上比，根上方记最终胜者。选出一个以后，只需沿它所在的叶子到根重新比一遍，比较 ⌈log₂k⌉ 次。总比较次数不再随 k 线性增长。</li>
+        <li><b>减少 r</b>：用<b>置换-选择排序</b>生成更长的初始段（平均是工作区大小的两倍）。</li>
+      </ul>
+      <p>初始段长短不一时，合并的顺序影响读写总量。把每段的长度当成权，构造 k 叉哈夫曼树（第十三章），叫<b>最佳归并树</b>，读写次数 = 2 × 带权路径长度。若 (r − 1) mod (k − 1) = u ≠ 0，补 k − u − 1 个长度为 0 的虚段。</p>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>给一个链表排序，要求 O(n log n) 时间。用什么排序？</p>
+        <details><summary>看要点</summary><div><p>归并排序最合适：用快慢指针找中点断开（第三章），两半各自排好，再合并两个有序链表；合并时只改指针，不需要辅助数组。自底向上的写法（每次合并长度 1、2、4……的段）可以做到 O(1) 额外空间。快速排序在链表上不好选标杆、不能随机访问，堆排序需要随机访问。</p></div></details>
+      </div>
+      <div class="pass" data-id="tree-q27b">
+        <div class="qq" data-in="3"><p>8 个元素做二路归并排序，需要几趟？</p><p class="ex">⌈log₂8⌉ = 3。</p></div>
+        <div class="qq" data-a="0"><p>归并排序的空间复杂度是？</p><ol><li>O(n)</li><li>O(log n)</li><li>O(1)</li></ol><p class="ex">需要辅助数组。</p></div>
+        <div class="qq" data-in="3"><p>有 100 个初始归并段，做 5 路归并，需要几趟？</p><p class="ex">⌈log₅100⌉ = 3（5² = 25 &lt; 100 ≤ 125）。</p></div>
+        <div class="qq" data-a="1"><p>败者树的作用是？</p><ol><li>减少初始归并段的个数</li><li>让 k 路归并选最小值的比较次数降到 log₂k</li></ol><p class="ex">减少段数的是置换-选择排序。</p></div>
+        <div class="qq" data-in="0"><p>9 个初始归并段做 3 路归并，构造最佳归并树要补几个虚段？</p><p class="ex">(9 − 1) mod (3 − 1) = 0，正好，不用补。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c27-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">Timsort 和大数据排序</span><span class="tm">约 20 分钟</span><span class="sum">彼得斯 2002 年为 Python 写的 Timsort：找出已有的有序段，再归并；“飞奔”模式；它曾被发现的一个虫子；数据库和 MapReduce 里的外部排序。</span></div>
+    <div class="lyb">
+      <h3>Timsort</h3>
+      <p>真实的数据很少是完全随机的：常常有一段已经排好、一段倒着排好。2002 年，彼得斯为 Python 写的 Timsort 抓住了这一点：先从左往右扫，找出天然的有序段（倒序的就翻过来），太短的段用折半插入排序补到一个最小长度；然后用一个栈管理这些段，按规则归并相邻的段，保证归并平衡。合并时如果发现一边连续赢了很多次，就切换到“飞奔”模式，用指数查找（第二十四章）一次跳过一大块。对已经排好的数据它是 O(n)，最坏仍是 O(n log n)，而且稳定。Java 对对象数组、Android、V8 引擎（JavaScript 的 <code>sort</code>）后来也用了它。2015 年，有研究者用形式化验证工具发现 Timsort 维持栈平衡的规则有一个漏洞，在特别构造的超大数组上会出错，Python 和 Java 随后都修正了。</p>
+      <h3>大数据排序</h3>
+      <p>数据库执行 ORDER BY 时内存不够，就做外部排序（写临时文件再归并）。MapReduce 和 Spark 的“洗牌”阶段，每台机器先把自己的数据按键排好、切块，再把同一个键范围的块送到同一台机器上归并：这就是第二层讲的两个阶段，只是“硬盘”换成了一整个机群。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>J. von Neumann 1945 年就为 EDVAC 写过归并排序程序（据克努特考证）。</li>
+          <li>T. Peters, CPython 源码 <code>Objects/listsort.txt</code>（Timsort 的设计说明）。</li>
+          <li>S. de Gouw 等, “OpenJDK's java.utils.Collection.sort() is broken”, CAV 2015。</li>
+          <li>D. E. Knuth, <i>The Art of Computer Programming</i>, Vol. 3, 5.4（外部排序、败者树、置换选择）。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="main" data-step="27">
+    <div class="mh"><b>主线 · 第 27 步</b><span>归并</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给方格岛加上：<i>归并排序和外部排序</i></p>
+      <p><code>merge</code> 合并两张排好的榜，<code>merge_sort</code> 对半分到底再合起来；<code>external_sort</code> 假装内存只装得下 4 个，先切成小段排好，再用堆做多路归并。</p>
+      <div class="who1"><b>第一层</b>这一步可以先下载“到这一步的完整文件”运行，看懂演示，再读新加的那一段。想挑战就自己打。</div>
+      <div class="who2"><b>第二层</b>把一百万个随机数写进文件，内存只许放十万个，用 C 实现真正的外部排序（分块排序写临时文件 + 多路归并），统计读写次数。</div>
+    </div>
+  </div>
+  <div class="words">
+    <div data-l="1"><b>归并 <span class="en" data-say="merge">merge</span></b>把两摞排好的合成一摞。</div>
+    <div data-l="1"><b>归并排序 <span class="en" data-say="merge sort">merge sort</span></b>对半分到底，再一层层合起来。</div>
+    <div data-l="1"><b>外部排序 <span class="en" data-say="external sorting">external sorting</span></b>内存装不下时，分块排好再归并。</div>
+    <div data-l="2"><b>归并段 <span class="en" data-say="run">run</span></b>一段排好的数据。</div>
+    <div data-l="2"><b>败者树 <span class="en" data-say="loser tree">loser tree</span></b>多路归并时快速选出最小的。</div>
+    <div data-l="3"><b>Timsort</b>Python 的排序：找天然的有序段再归并。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>两摞排好的只比最上面的；分到一张再一层层合；总是 n log n、稳定，代价是要一块空地方。</div>
+    <div><i>第二层带走</i>二路归并 ⌈log₂n⌉ 趟；外部排序看读写次数：败者树让 k 变大不吃亏，置换选择让段变长，最佳归并树补虚段。</div>
+    <div><i>第三层带走</i>真实的数据本来就有很多有序段，Timsort 利用它们；大数据的排序就是外部排序放大到一个机群。</div>
+  </div>
+</section>

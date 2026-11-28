@@ -691,3 +691,15 @@ details.opt>div{padding:2px 0 8px;font-size:15.5px;line-height:1.8}
 .kmprow b.ok{background:color-mix(in srgb,var(--l1) 30%,transparent)}
 .kmprow b.no{background:color-mix(in srgb,var(--red) 35%,transparent)}
 .kmprow b.sk{color:var(--ink-3)}
+.bars{display:flex;align-items:flex-end;gap:2px;height:180px;margin:.6em 0;padding:0 2px;border-bottom:1px solid var(--rule)}
+.bars .br{flex:1;min-width:0;background:color-mix(in srgb,var(--ter) 55%,var(--card));border-radius:3px 3px 0 0;position:relative;transition:height .08s}
+.bars .br span{position:absolute;top:-16px;left:0;right:0;text-align:center;font-family:var(--f-mono);font-size:10px;color:var(--ink-3)}
+.bars .br.cmp{background:var(--gold)}
+.bars .br.sw{background:var(--red)}
+.bars .br.piv{background:var(--main)}
+.bars .br.rng{background:color-mix(in srgb,var(--main) 30%,var(--card))}
+.bars .br.ok{background:var(--l1)}
+.bkts{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin:.5em 0}
+.bkts>div{border:1px solid var(--rule);border-radius:5px;padding:2px 4px;min-height:3em;font-family:var(--f-mono);font-size:12.5px;background:var(--card)}
+.bkts>div b{display:block;font-size:11px;color:var(--ink-3)}
+@media (min-width:560px){.bkts{grid-template-columns:repeat(10,1fr)}}

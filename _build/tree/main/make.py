@@ -31,7 +31,7 @@ for n in range(LAST + 1):
         only = [l for l in only]
     open(os.path.join(OUT, 'd%02d.py' % n), 'w', encoding='utf-8').write('# 第 %d 步新写的代码\n' % n + re.sub(r'\n{4,}', '\n\n\n', '\n'.join(only).strip('\n')) + '\n')
 print('ok', LAST + 1, '个文件 →', os.path.normpath(OUT))
-INPUTS = {}   # 第几步要从键盘读命令：步号 → 测试时喂进去的输入
+INPUTS = {29: 'n\n'}   # 第几步要从键盘读命令：步号 → 测试时喂进去的输入
 if '--test' in sys.argv:
     tmp = tempfile.mkdtemp()
     for n in range(LAST + 1):

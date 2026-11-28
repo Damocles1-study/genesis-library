@@ -24,7 +24,7 @@ const grp = (s, k) => s.replace(new RegExp('(.{' + (k || 4) + '})(?=.)', 'g'), '
 const BOOK = 'tree';   // 系列共用的本机记录里，id 前缀是 tree-
 const PFILE = ['index', 'two', 'three', 'four'];
 const PAGE = (() => { const m = location.pathname.match(/\/(two|three|four)\.html/); return m ? PFILE.indexOf(m[1]) + 1 : 1; })();
-const READY = 3; // 已经写好的部数
+const READY = 4; // 已经写好的部数
 const PURL = {}; PFILE.forEach((f, i) => PURL[i + 1] = i ? f + '.html' : './');
 const PARTS = [
   {k: '线', s: '一个接一个：复杂度、数组、链表、栈、队列、字符串、递归 · 八章'},

@@ -1,0 +1,173 @@
+<section class="chap" id="c28" data-vol="卷八 · 排 · 堆排序和不比较的排序">
+  <div class="chead">
+    <div class="big">桶</div>
+    <div>
+      <div class="no">卷八 · 第二十八章</div>
+      <h2>堆排序和不比较的排序</h2>
+      <dl><dt>讲什么</dt><dd>用堆排序：每次拿走最大的；不比大小也能排：数一数（计数排序）、按位分进桶里（基数排序）；为什么比大小的排序最快也要 n log n；七种排序的总表和怎样选</dd><dt>装置</dt><dd>堆排序；按位分桶</dd></dl>
+      <div class="crs" data-c="结构 数学"></div>
+      <div class="lvs"><a data-l="1" href="#c28-1">第一层 · 30 分钟</a><a data-l="2" href="#c28-2">第二层 · 60 分钟</a><a data-l="3" href="#c28-3">第三层 · 15 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>邮递员分信，不是两封两封比的，而是按地址扔进一个一个格子里。</span></div>
+    <div class="l"><i class="j">舅</i><span>对。只要知道东西长什么样，有时候根本不用比大小，就能排得更快。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>说出堆排序怎样用堆一个一个拿出最大的。</li>
+      <li><span class="lg lg1">一</span>用“数一数”和“按个位、十位分桶”给一组数排序，说出它们为什么不用比大小。</li>
+      <li><span class="lg lg2">二</span>写出堆排序，写出建堆和每一趟的结果；写出基数排序每一趟分配和收集的结果。</li>
+      <li><span class="lg lg2">二</span>默写七种排序的复杂度、空间和稳定性总表，按场合选择排序算法；说出比较排序的下界 ⌈log₂ n!⌉。</li>
+      <li><span class="lg lg3">三</span>说出桶排序的期望复杂度；真实的程序怎样给整数和字符串排序。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c28-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：堆（第十二章）、队列（第五章）</span><span class="tm">约 30 分钟</span></div>
+    <div class="lyb">
+      <h3>堆排序</h3>
+      <p>第十二章的堆，最大（或最小）的总在最上面。那排序就简单了：把所有数放进一个堆，然后一个一个从堆顶拿出来，拿出来的顺序就是排好的。</p>
+      <p>聪明的做法是不用另开一块地方：就在原来的数组里建一个“大的在上面”的堆；把堆顶（最大的）和最后一个交换，最大的就到了最后；把剩下的修成堆，再把堆顶换到倒数第二个……这叫<b>堆排序</b>。每次修堆只走树的高度那么多步，一共大约 n × log n 步，而且不管数据长什么样都是这么多。</p>
+      <div class="fig" id="heapSortFig">
+        <div class="fig-label">装置 · 第二十八章 · 一</div>
+        <h4>堆排序</h4>
+        <p class="how">看堆排序先把数组修成一个堆（大的在前面），再把最大的一个一个换到后面（绿色）。和快速排序、归并排序比一比。</p>
+        <div class="btns" data-a></div>
+        <div class="btns" data-d></div>
+        <div class="bars"></div>
+        <div class="btns"><button class="btn pri" data-x="s">走一步</button><button class="btn" data-x="run">自己跑 / 停</button><button class="btn" data-x="r">换一组数</button></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+      <h3>数一数：计数排序</h3>
+      <p>方格岛的完工步数都在 0 到 150 之间。准备 151 个计数器，看一个成绩，就给那个计数器加一。最后从 0 数到 150，每个数出现几次就写几遍。从头到尾<b>一次也没比大小</b>。主线第 28 步就是这样做的。</p>
+      <h3>按位分桶：基数排序</h3>
+      <p>邮局分信的办法：准备 10 个桶，编号 0 到 9。先看每个数的<b>个位</b>，扔进对应的桶；再从 0 号桶到 9 号桶按顺序倒出来。然后看<b>十位</b>，再分一次、倒一次；然后看百位……最后一次倒出来，就排好了。这叫<b>基数排序</b>。</p>
+      <p>为什么对？关键是“倒出来”要按先进先出（第五章的队列）：十位一样的数，在十位这一趟里保持着个位那一趟排好的先后。</p>
+      <div class="fig" id="radixFig">
+        <div class="fig-label">装置 · 第二十八章 · 二</div>
+        <h4>按位分桶</h4>
+        <p class="how">点“分进桶里”，按当前这一位把数扔进 0—9 号桶；点“倒出来”，按 0 到 9 的顺序收回来。个位、十位、百位各做一次。</p>
+        <div class="cells" id="rdLine"></div>
+        <div class="bkts" id="rdB"></div>
+        <div class="btns"><button class="btn pri" data-x="d">分进桶里</button><button class="btn" data-x="c">倒出来</button><button class="btn" data-x="r">换一组数</button></div>
+        <div class="say"></div>
+      </div>
+      <h3>比大小的排序有多快</h3>
+      <p>只靠“比一比谁大”来排序，就像玩二十个问题的猜谜：每比一次，只能得到“是”或“不是”。n 个数有很多很多种排列，要从里面猜出唯一正确的那一种，至少要问大约 n × log n 次。所以快速排序、归并排序、堆排序已经是比大小的排序里最快的一类了。计数排序和基数排序快得多，是因为它们<b>不比大小</b>，而是利用了“数字只有 0 到 9”“成绩在 0 到 150 之间”这些额外的信息。</p>
+      <div class="mc">
+        <h5>老式的分卡机</h5>
+        <p>二十世纪初，霍勒瑞斯（他的机器帮美国统计了 1890 年的人口普查）的公司做出了打孔卡片分类机：每次按卡片上的一列孔位把卡片分进十几个槽里，再按顺序收起来，一列一列地分。这正是用机器做的基数排序（打孔卡片的故事见书房里的《计算机创世记》）。</p>
+      </div>
+      <div class="task" data-id="tree-t28a">
+        <div class="th"><b>纸上分桶</b></div>
+        <div class="tb"><p>写 8 张纸条：218、504、73、916、342、85、507、260（73 看成 073）。在桌上摆 10 个格子，按个位分一次、按顺序收；按十位分一次、收；按百位分一次、收。最后是不是排好了？</p></div>
+      </div>
+      <div class="pass" data-id="tree-q28a">
+        <div class="qq" data-a="0"><p>堆排序每次把哪一个换到后面？</p><ol><li>堆顶（最大的）</li><li>最小的</li><li>随便一个</li></ol><p class="ex">大的在上面的堆，堆顶最大。</p></div>
+        <div class="qq" data-a="1"><p>计数排序要比大小吗？</p><ol><li>要</li><li>不用，只是数每个数出现几次</li></ol><p class="ex">一次也不比。</p></div>
+        <div class="qq" data-a="0"><p>基数排序先看哪一位？</p><ol><li>个位</li><li>最高位</li></ol><p class="ex">从低位到高位（这是最常用的做法）。</p></div>
+        <div class="qq" data-a="1"><p>基数排序从桶里倒出来时，要按什么规矩？</p><ol><li>后进先出</li><li>先进先出</li></ol><p class="ex">保持上一趟排好的先后。</p></div>
+        <div class="qq" data-a="2"><p>为什么计数排序可以比快速排序还快？</p><ol><li>它运气好</li><li>它的代码更短</li><li>它利用了“数在一个小范围里”这个额外信息，不靠比大小</li></ol><p class="ex">比大小的排序最快也要约 n log n 次。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c28-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">对照 408：选择排序（堆排序）、基数排序、各种内部排序的比较</span><span class="tm">约 60 分钟</span><span class="sum">堆排序的建堆和调整；O(n log n)、O(1)、不稳定；基数排序的分配和收集、LSD 和 MSD、O(d(n + r))；计数排序；比较排序的判定树下界；七种排序总表；怎样选。</span></div>
+    <div class="lyb">
+      <h3>堆排序</h3>
+<pre class="code" data-k="heapsort.c">void heap_sort(int A[], int n) {               /* A[1..n]，大根堆；sift_down 见第十二章 */
+    for (int k = n / 2; k &gt;= 1; k--) sift_down(A, k, n);   /* 建堆 O(n) */
+    for (int i = n; i &gt; 1; i--) {
+        int t = A[1]; A[1] = A[i]; A[i] = t;    /* 堆顶换到最后 */
+        sift_down(A, 1, i - 1);                  /* 剩下的修成堆 */
+    }
+}</pre>
+      <p>建堆 O(n)，n − 1 次调整各 O(log n)：总时间 O(n log n)（最好、最坏、平均都是）；空间 O(1)；<b>不稳定</b>。适合“从很多数里只要前几个”的场合（选出前 k 个只要 O(n + k log n)）。</p>
+      <h3>基数排序</h3>
+      <p>关键字拆成 d 位，每位取值有 r 种（十进制 r = 10）。<b>最低位优先</b>（LSD）：从最低位到最高位，每一趟先<b>分配</b>（按这一位扔进 r 个队列）、再<b>收集</b>（按队列顺序首尾相接）。一趟分配 O(n)、收集 O(r)，共 O(d(n + r))；空间 O(r)（用链式队列）；<b>稳定</b>。最高位优先（MSD）先按最高位分组，组内递归，适合字符串。基数排序不是基于比较的。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）对 {38, 12, 61, 27, 50, 9, 44, 33}（下标从 0）用堆排序升序排序，写出初始大根堆和第一趟（堆顶换到最后并调整）以后的序列。（2）对 {218, 504, 73, 916, 342, 85, 507, 260} 做 LSD 基数排序，写出前两趟收集以后的结果。</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）从下标 3 往前下沉：27 与孩子 33 交换；61 比孩子 9、44 都大；12 与较大的孩子 50 交换；38 与孩子 61 交换，再与孩子 44 交换。初始堆 {61, 50, 44, 33, 12, 9, 38, 27}。第一趟：61 与 27 交换，对前 7 个调整：27 与 50 交换，再与 33 交换，得 {50, 33, 44, 27, 12, 9, 38, 61}。</p>
+          <p>（2）按个位：0:260；2:342；3:73；4:504；5:85；6:916；7:507；8:218，收集得 {260, 342, 73, 504, 85, 916, 507, 218}。按十位：0:504, 507；1:916, 218；4:342；6:260；7:73；8:85，收集得 {504, 507, 916, 218, 342, 260, 73, 85}。（第三趟按百位后即有序。）</p>
+        </div></details>
+      </div>
+      <h3>比较排序的下界</h3>
+      <p>任何基于比较的排序都可以画成一棵<b>判定树</b>：每个内部结点是一次比较，每个叶子是一种排列。n 个元素有 n! 种排列，二叉树要有 n! 个叶子，高度至少 ⌈log₂ n!⌉ ≈ n log₂n − 1.44n。所以比较排序最坏至少要 Ω(n log n) 次比较。例如 n = 5：⌈log₂120⌉ = 7 次。</p>
+      <h3>七种排序总表</h3>
+      <div class="tbl w">
+        <table class="t">
+          <tr><th>排序</th><th>最好</th><th>平均</th><th>最坏</th><th>空间</th><th>稳定</th></tr>
+          <tr><td>直接插入</td><td>O(n)</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td><td>是</td></tr>
+          <tr><td>希尔</td><td colspan="3">依赖增量，约 O(n<sup>1.3</sup>)，最坏 O(n²)</td><td>O(1)</td><td>否</td></tr>
+          <tr><td>冒泡</td><td>O(n)</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td><td>是</td></tr>
+          <tr><td>快速</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n²)</td><td>O(log n)</td><td>否</td></tr>
+          <tr><td>简单选择</td><td>O(n²)</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td><td>否</td></tr>
+          <tr><td>堆</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n log n)</td><td>O(1)</td><td>否</td></tr>
+          <tr><td>二路归并</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n)</td><td>是</td></tr>
+          <tr><td>基数</td><td colspan="3">O(d(n + r))</td><td>O(r)</td><td>是</td></tr>
+        </table>
+      </div>
+      <p>口诀之一：“快些（希尔）选一堆（堆）”不稳定。怎样选：n 小（≤ 50 左右）用直接插入或简单选择；基本有序用直接插入或冒泡；n 大用快速、堆或归并，要稳定选归并，要省空间选堆，平均最快是快速；关键字位数少、取值范围小用基数或计数。与初始序列无关的：简单选择的比较次数、堆排序和归并排序的时间。</p>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>一亿个手机号（11 位数字）要去重并排好序，内存有限，怎么做？</p>
+        <details><summary>看要点</summary><div><p>手机号的取值范围有限，可以用<b>位图</b>（《地基》第七章第三层）：每个可能的号码一个比特，出现过就置 1，最后从小到大扫一遍为 1 的位，天然去重且有序。按 10<sup>11</sup> 个可能值算约 12.5 GB，太大；可以按号段（前三位）分桶，每次只处理一个号段的位图（约 125 MB），这就是计数排序 + 分桶的思路。没有范围信息时，就用外部排序（第二十七章）。</p></div></details>
+      </div>
+      <div class="pass" data-id="tree-q28b">
+        <div class="qq" data-a="1"><p>下列排序中，空间复杂度为 O(1)、时间最坏也是 O(n log n) 的是？</p><ol><li>快速排序</li><li>堆排序</li><li>归并排序</li></ol><p class="ex">快排最坏 O(n²)，归并要 O(n) 空间。</p></div>
+        <div class="qq" data-a="2"><p>下列排序中稳定的是？</p><ol><li>堆排序</li><li>快速排序</li><li>基数排序</li></ol><p class="ex">基数排序靠先进先出的收集保持稳定。</p></div>
+        <div class="qq" data-in="7"><p>对 5 个元素做基于比较的排序，最坏情况下至少要比较几次？</p><p class="ex">⌈log₂5!⌉ = ⌈log₂120⌉ = 7。</p></div>
+        <div class="qq" data-a="0"><p>d 位、每位 r 种取值的 n 个关键字，LSD 基数排序的时间是？</p><ol><li>O(d(n + r))</li><li>O(n log n)</li><li>O(n²)</li></ol><p class="ex">d 趟，每趟分配 n、收集 r。</p></div>
+        <div class="qq" data-a="1"><p>时间复杂度与初始序列无关的是？</p><ol><li>直接插入排序</li><li>堆排序</li><li>快速排序</li></ol><p class="ex">堆排序最好最坏都是 O(n log n)。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c28-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">线性时间排序的真实用法</span><span class="tm">约 15 分钟</span><span class="sum">桶排序的期望 O(n)；后缀数组和字符串排序；GPU 上的基数排序；标准库为什么还是用比较排序。</span></div>
+    <div class="lyb">
+      <p><b>桶排序</b>：数据在 [0, 1) 上均匀分布时，分成 n 个桶，每桶期望 O(1) 个元素，桶内插入排序，期望 O(n)。分布不均时退化。</p>
+      <p><b>基数排序的真实用法</b>：GPU 上给几亿个整数或浮点数排序，最快的往往是基数排序（每一趟都是规整的并行计数和搬运，第十五章说的“规整访问”）；数据库给整数键排序、字符串处理里构造后缀数组，也常用基数排序的思想。</p>
+      <p><b>标准库为什么还用比较排序</b>：比较排序只需要一个“比大小”的函数，适用于任何类型；基数排序要知道键的内部结构（多少位、什么编码），而且要额外的空间。所以 Python、C++、Java 的通用排序函数都是比较排序，专门的场合才用基数排序。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>H. H. Seward, 1954 年麻省理工学院硕士论文（计数排序和基数排序在计算机上的早期描述）。</li>
+          <li>《算法导论》第 8 章（线性时间排序、比较排序的下界）。</li>
+          <li>D. Merrill, A. Grimshaw, “High Performance and Scalable Radix Sorting”, 2011（GPU 基数排序）。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="main" data-step="28">
+    <div class="mh"><b>主线 · 第 28 步</b><span>计数排序</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给方格岛加上：<i>堆排序和计数排序</i></p>
+      <p><code>heap_sort</code> 在原数组上建大根堆，把最大的一个一个换到后面；<code>counting_sort</code> 数一数每个步数出现几次，一次也不比较。两种结果和 sorted 一样。</p>
+      <div class="who1"><b>第一层</b>这一步可以先下载“到这一步的完整文件”运行，看懂演示，再读新加的那一段。想挑战就自己打。</div>
+      <div class="who2"><b>第二层</b>用 C 写 LSD 基数排序（按字节分 256 个桶），和快排比较一千万个 32 位整数的时间。</div>
+    </div>
+  </div>
+  <div class="words">
+    <div data-l="1"><b>堆排序 <span class="en" data-say="heapsort">heapsort</span></b>建堆，再一个一个把最大的换到后面。</div>
+    <div data-l="1"><b>计数排序 <span class="en" data-say="counting sort">counting sort</span></b>数一数每个数出现几次。</div>
+    <div data-l="1"><b>基数排序 <span class="en" data-say="radix sort">radix sort</span></b>按个位、十位……分桶再收集。</div>
+    <div data-l="1"><b>桶 <span class="en" data-say="bucket">bucket</span></b>放同一类东西的格子。</div>
+    <div data-l="2"><b>下界 <span class="en" data-say="lower bound">lower bound</span></b>无论怎样做至少要多少步。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>堆排序一个一个拿最大的；不比大小也能排：数一数，或者按位分桶、先进先出地倒出来。</div>
+    <div><i>第二层带走</i>堆排序 O(n log n)、O(1)、不稳定；基数排序 O(d(n + r))、稳定；比较排序至少 ⌈log₂ n!⌉ 次；“快些选一堆”不稳定。</div>
+    <div><i>第三层带走</i>线性时间的排序靠额外的信息；通用的排序函数为了适用一切，还是比大小。</div>
+  </div>
+</section>

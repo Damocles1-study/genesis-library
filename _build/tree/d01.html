@@ -1,0 +1,176 @@
+<section class="chap" id="c23" data-vol="卷七 · 找 · 散列表">
+  <div class="vol-h">
+    <div class="k">卷七</div>
+    <h2>找</h2>
+    <p>找东西有两条路：让名字直接告诉你它在哪儿（散列），或者先排好序、每次排除一半（二分）。</p>
+  </div>
+  <div class="chead">
+    <div class="big">散</div>
+    <div>
+      <div class="no">卷七 · 第二十三章</div>
+      <h2>散列表</h2>
+      <dl><dt>讲什么</dt><dd>用名字算出格子号；两个名字算到同一格怎么办：挂一串，或者往后找空位；太挤了就换大柜子；Python 的字典；408 的散列函数、冲突处理和平均查找长度</dd><dt>装置</dt><dd>名字放进哪一格</dd></dl>
+      <div class="crs" data-c="结构"></div>
+      <div class="lvs"><a data-l="1" href="#c23-1">第一层 · 30 分钟</a><a data-l="2" href="#c23-2">第二层 · 60 分钟</a><a data-l="3" href="#c23-3">第三层 · 20 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>背包里有几十样东西。我想知道有几个沙子，要从头翻到尾吗？</span></div>
+    <div class="l"><i class="j">舅</i><span>给每样东西一个固定的抽屉，抽屉号用名字算出来。要找沙子，算一下就知道打开哪一个。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>说出散列表的想法：用名字算出格子号，找的时候直接打开那一格。</li>
+      <li><span class="lg lg1">一</span>说出“冲突”是什么，以及挂一串（拉链）和往后找空位（开放定址）两种办法。</li>
+      <li><span class="lg lg2">二</span>写出除留余数法、线性探测、平方探测、拉链法；手算查找成功和失败的平均查找长度。</li>
+      <li><span class="lg lg2">二</span>说出装填因子和“堆积”；开放定址为什么不能真的删除。</li>
+      <li><span class="lg lg3">三</span>说出 Python 字典怎样实现；散列洪水攻击和随机种子；一致性散列和 LRU 缓存。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c23-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：数组（第二章）、文字是编号（《地基》第五章）、余数</span><span class="tm">约 30 分钟</span></div>
+    <div class="lyb">
+      <h3>名字算出抽屉号</h3>
+      <p>一排 8 个抽屉，编号 0 到 7。规定一个算法：把名字里每个字的编号（《地基》第五章）乘上它是第几个字，加起来，再除以 8，<b>余数</b>就是抽屉号。“沙”算出来是 1，就放进 1 号抽屉。</p>
+      <p>以后要找沙，再算一遍，还是 1，直接打开 1 号抽屉。不用一个一个翻，抽屉再多也只要算一次。这样的一排抽屉叫<b>散列表</b>（也叫哈希表），把名字变成抽屉号的算法叫<b>散列函数</b>。</p>
+      <h3>撞到同一个抽屉</h3>
+      <p>名字有无数种，抽屉只有 8 个，总会有两个名字算出同一个号，叫<b>冲突</b>。两种办法：</p>
+      <ul class="plain">
+        <li><b>挂一串</b>（拉链法）：每个抽屉里放一串链表（第三章），算到同一格的都挂上去。找的时候打开那一格，在这一小串里找。</li>
+        <li><b>往后找空位</b>（开放定址）：这一格被占了，就看下一格；还被占了，再看下一格……找的时候也照这样往后找，碰到空格就说明没有。</li>
+      </ul>
+      <p>只要散列函数把名字分得够匀、抽屉不太挤，每一串都很短，找起来几乎就是一步。东西太多、抽屉太挤的时候，就换一排两倍多的抽屉，把东西重新放一遍。</p>
+      <div class="fig" id="hashFig">
+        <div class="fig-label">装置 · 第二十三章</div>
+        <h4>名字放进哪一格</h4>
+        <p class="how">输入一个名字放进去，看它算出几号、撞没撞上别人。换一种解决冲突的办法，或者换一个更笨的散列函数（只看第一个字），看看会怎样。</p>
+        <div class="btns" data-m></div>
+        <div class="btns" data-f></div>
+        <div class="row"><input type="text" id="hsIn" value="沙" style="width:8em" aria-label="名字"><button class="btn pri" data-x="put">放进去</button><button class="btn" data-x="find">找</button><button class="btn" data-x="many">放一堆</button><button class="btn" data-x="clr">清空</button></div>
+        <div class="hslots"></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+      <div class="mc">
+        <h5>Python 的字典</h5>
+        <p>《一块一块》<a href="../block/ten.html#c77">第七十七章</a>你用过字典：<code>bag['沙'] = 5</code>。字典就是一个散列表，Python 替你算了抽屉号、处理了冲突、满了自动换大。主线第 23 步自己写了一个，用的是挂一串的办法。</p>
+      </div>
+      <div class="try">
+        <div class="th"><b>看看 Python 算出的数</b><span class="tm">5 分钟</span></div>
+        <div class="tb">
+<pre class="sh" data-k="python3"><span class="p">&gt;&gt;&gt; </span>hash(42)
+<span class="o">42</span>
+<span class="p">&gt;&gt;&gt; </span>hash('沙') % 8
+<span class="p">&gt;&gt;&gt; </span>hash('沙') % 8</pre>
+          <p><code>hash</code> 就是 Python 的散列函数。整数的散列就是它自己。字符串的散列每次打开 Python 都不一样（为了安全，第三层讲），可是同一次运行里，同一个名字算出来总是一样的。</p>
+        </div>
+      </div>
+      <div class="task" data-id="tree-t23a">
+        <div class="th"><b>纸上的抽屉</b></div>
+        <div class="tb"><p>画 7 个抽屉（0 到 6），规则是“数除以 7 的余数”。依次放进 15、22、8、29、3、36，用“往后找空位”的办法。哪几个数撞了？找 36 要看几个抽屉？</p></div>
+      </div>
+      <div class="pass" data-id="tree-q23a">
+        <div class="qq" data-a="0"><p>散列表找东西，为什么快？</p><ol><li>用名字直接算出在哪一格</li><li>东西都排好了序</li></ol><p class="ex">算一次就知道打开哪一格。</p></div>
+        <div class="qq" data-a="1"><p>两个名字算出同一个格子号，叫什么？</p><ol><li>溢出</li><li>冲突</li></ol><p class="ex">冲突（碰撞）。</p></div>
+        <div class="qq" data-a="0"><p>拉链法怎样处理冲突？</p><ol><li>同一格的挂成一串</li><li>往后找空位</li></ol><p class="ex">往后找空位是开放定址。</p></div>
+        <div class="qq" data-in="1"><p>规则是“除以 7 的余数”，22 放进几号抽屉？</p><p class="ex">22 = 3 × 7 + 1，余 1。</p></div>
+        <div class="qq" data-a="1"><p>抽屉太挤了，怎么办？</p><ol><li>不管它</li><li>换一排更多的抽屉，全部重新放</li></ol><p class="ex">扩容以后重新算每个名字的格子号。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c23-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">对照 408：散列（Hash）表</span><span class="tm">约 60 分钟</span><span class="sum">散列函数的四种构造；除留余数法 p 的选取；线性探测、平方探测、双散列、伪随机序列；拉链法；堆积；开放定址的逻辑删除；装填因子；查找成功和失败的 ASL 怎样算。</span></div>
+    <div class="lyb">
+      <h3>散列函数</h3>
+      <ul class="plain">
+        <li><b>直接定址</b>：H(k) = a·k + b。不会冲突，但关键字分布稀疏时浪费空间。</li>
+        <li><b>除留余数</b>（最常用）：H(k) = k mod p。p 取<b>不大于表长 m、最接近 m 的质数</b>，让余数分布得匀。</li>
+        <li><b>数字分析</b>：关键字的某几位分布均匀时，取这几位（比如手机号的后四位）。</li>
+        <li><b>平方取中</b>：取 k² 的中间几位，每一位都受 k 的所有位影响。</li>
+      </ul>
+      <h3>处理冲突</h3>
+      <p><b>开放定址</b>：Hᵢ = (H(k) + dᵢ) mod m，i = 1, 2, …</p>
+      <ul class="plain">
+        <li><b>线性探测</b>：dᵢ = 1, 2, 3, …。简单，但会产生<b>堆积</b>（聚集）：一段连续被占的位置越来越长，后来的同义词和非同义词都挤在后面。</li>
+        <li><b>平方探测</b>：dᵢ = 1², −1², 2², −2², …（表长要是形如 4k + 3 的质数才能探测到所有位置）。能减少堆积，但不一定能探测到全部单元。</li>
+        <li><b>双散列</b>：dᵢ = i × H₂(k)，第二个散列函数决定步长。</li>
+        <li><b>伪随机序列</b>：dᵢ 取一个伪随机数列。</li>
+      </ul>
+      <p>开放定址法<b>不能真的删除</b>元素：删掉以后那一格变空，会截断别的元素的探测序列，使它们“找不到”。只能做删除标记（逻辑删除），定期整理。</p>
+      <p><b>拉链法</b>：同义词串成链表。不会堆积，适合经常插入删除、表长不确定的情况。</p>
+      <p><b>装填因子</b> α = 表中记录数 n / 表长 m。散列表的平均查找长度只取决于 α，不直接取决于 n 或 m：α 越大越挤，冲突越多。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>关键字 {25, 13, 40, 7, 33, 18, 61, 2} 依次存入长度为 11 的散列表（下标 0—10），H(k) = k mod 11，用线性探测处理冲突。（1）画出散列表。（2）求等概率下查找成功和查找失败的平均查找长度（与空单元的比较也算一次）。（3）若改用拉链法（新结点插在链尾），查找成功的 ASL 是多少？</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）25 → 3；13 → 2；40 → 7；7 → 7 冲突，→ 8；33 → 0；18 → 7、8 都占，→ 9；61 → 6；2 → 2、3 都占，→ 4。表：0:33、2:13、3:25、4:2、6:61、7:40、8:7、9:18，其余空。</p>
+          <p>（2）各元素的比较次数：33:1、13:1、25:1、2:3、61:1、40:1、7:2、18:3，成功 ASL = 13/8。失败：从每个可能的散列地址 0—10 出发，数到碰上空单元为止：地址 0 → 2 次（0、1），1 → 1，2 → 4（2、3、4、5），3 → 3，4 → 2，5 → 1，6 → 5（6—10），7 → 4，8 → 3，9 → 2，10 → 1，合计 28，失败 ASL = 28/11。</p>
+          <p>（3）链：0:33；2:13→2；3:25；6:61；7:40→7→18。成功 ASL = (1 + 1 + 2 + 1 + 1 + 1 + 2 + 3)/8 = 12/8 = 1.5。</p>
+        </div></details>
+      </div>
+      <div class="pit"><h5>失败 ASL 的分母</h5><p>失败 ASL 的分母是“散列函数可能算出的地址个数”，即 p（模数），不一定是表长 m。表长 13、H(k) = k mod 11 时，失败只可能从 0—10 这 11 个地址出发，分母是 11。另外，拉链法查找失败时，和空指针比较一般不计次数，各教材口径不同，按题目说明为准。</p></div>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>设计一个 LRU 缓存：容量 k，get 和 put 都要 O(1)，满了淘汰最久没用的。</p>
+        <details><summary>看要点</summary><div><p>散列表 + 双向链表。散列表从键找到链表结点；链表按使用时间排，最近用的放头部。get 时把结点移到头部；put 时若已存在就更新并移到头部，否则插入头部，超过 k 就删掉尾部结点并从散列表里删去。两个结构各管一件事，正好是第三章说的“链表的好处在 O(1) 拼接”。Python 可以直接用 <code>collections.OrderedDict</code>。</p></div></details>
+      </div>
+      <div class="pass" data-id="tree-q23b">
+        <div class="qq" data-a="1"><p>表长 m = 15，用除留余数法，p 最好取？</p><ol><li>15</li><li>13</li><li>16</li></ol><p class="ex">不大于 m 的最大质数。</p></div>
+        <div class="qq" data-a="0"><p>线性探测容易产生什么问题？</p><ol><li>堆积（聚集）</li><li>表长不够</li><li>不能插入</li></ol><p class="ex">连续被占的一段越来越长。</p></div>
+        <div class="qq" data-a="2"><p>散列表的平均查找长度主要取决于？</p><ol><li>表长 m</li><li>记录数 n</li><li>装填因子 α</li></ol><p class="ex">α = n/m。</p></div>
+        <div class="qq" data-a="1"><p>开放定址法中删除一个元素，应该？</p><ol><li>直接置空</li><li>做删除标记</li></ol><p class="ex">置空会截断别人的探测路线。</p></div>
+        <div class="qq" data-in="13/8|1.625"><p>典型题中，查找成功的 ASL 是？（分数或小数）</p><p class="ex">13/8 = 1.625。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c23-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">真实的散列表</span><span class="tm">约 20 分钟</span><span class="sum">CPython 字典的开放定址和“扰动”；散列洪水攻击和 PYTHONHASHSEED；一致性散列；布隆过滤器。</span></div>
+    <div class="lyb">
+      <h3>Python 的字典</h3>
+      <p>CPython 的 dict 用开放定址：探测序列不是简单加一，而是 <code>i = (5·i + 1 + perturb) mod 2ᵏ</code>，perturb 是散列值的高位、每次右移 5 位，这样散列值的每一位最终都会影响探测路线。表长总是 2 的幂（取模变成按位与），装填超过 2/3 就扩容。3.6 起，散列表里只存一个小小的下标，真正的键值对按插入顺序放在另一个紧凑数组里，省内存，也让字典保持插入顺序（3.7 起写进语言规范）。</p>
+      <h3>散列洪水</h3>
+      <p>如果攻击者知道你的散列函数，就能故意造出成千上万个散列值相同的键，让散列表退化成链表，每次插入 O(n)，服务器被拖垮。2011 年的一次安全演讲演示了很多网页框架都有这个问题。办法是给散列函数加一个每次启动随机生成的“种子”：Python 3.3 起字符串散列默认随机化（环境变量 <code>PYTHONHASHSEED</code> 可以固定它），3.4 起用 SipHash，这就是第一层试验里“每次打开 Python 都不一样”的原因。</p>
+      <h3>一致性散列和布隆过滤器</h3>
+      <p>把数据分到 N 台服务器上，用 k mod N 的话，加一台服务器几乎所有数据都要搬家。<b>一致性散列</b>（1997）把服务器和数据都散列到一个圆环上，每个数据归顺时针方向的下一台服务器，加减一台只影响相邻的一小段。<b>布隆过滤器</b>（1970，《地基》第七章第三层）用几个散列函数在一个比特数组上做记号，能用极少的内存回答“肯定没有”或“可能有”。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>CPython 源码 <code>Objects/dictobject.c</code> 开头的长篇注释。</li>
+          <li>A. Klink, J. Wälde, “Efficient Denial of Service Attacks on Web Application Platforms”, 28C3, 2011。</li>
+          <li>D. Karger 等, “Consistent Hashing and Random Trees”, STOC 1997。</li>
+          <li>J.-P. Aumasson, D. J. Bernstein, “SipHash: a fast short-input PRF”, 2012。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="main" data-step="23">
+    <div class="mh"><b>主线 · 第 23 步</b><span>自己的散列表</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给方格岛加上：<i>用散列表做背包</i></p>
+      <p><code>h</code> 把名字变成格子号（每个字的编号乘位置，加起来，除以格子数取余）；<code>ht_put</code> 撞了就挂在这一格的链上，放得太挤（超过四分之三）就把格子数翻倍、全部重放；<code>ht_get</code> 算一下就找到。</p>
+      <div class="who1"><b>第一层</b>这一步可以先下载“到这一步的完整文件”运行，看懂演示，再读新加的那一段。想挑战就自己打。</div>
+      <div class="who2"><b>第二层</b>用 C 写同样的拉链散列表，再写一个线性探测版本；随机放一万个名字，统计不同装填因子下的平均查找长度。</div>
+    </div>
+  </div>
+  <div class="words">
+    <div data-l="1"><b>散列表 <span class="en" data-say="hash table">hash table</span></b>用名字算出格子号的一排格子。</div>
+    <div data-l="1"><b>散列函数 <span class="en" data-say="hash function">hash function</span></b>把名字变成格子号的算法。</div>
+    <div data-l="1"><b>冲突 <span class="en" data-say="collision">collision</span></b>两个名字算出同一个号。</div>
+    <div data-l="2"><b>拉链法 <span class="en" data-say="separate chaining">separate chaining</span></b>同一格的挂成一串。</div>
+    <div data-l="2"><b>开放定址 <span class="en" data-say="open addressing">open addressing</span></b>被占了就按规则往后找空位。</div>
+    <div data-l="2"><b>装填因子 <span class="en" data-say="load factor">load factor</span></b>放了多少 ÷ 一共多少格。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>名字算出抽屉号，算一次就找到；撞了就挂一串或往后找；挤了就换大。</div>
+    <div><i>第二层带走</i>p 取不大于 m 的最大质数；线性探测会堆积；开放定址只能逻辑删除；ASL 看装填因子，失败的分母是 p。</div>
+    <div><i>第三层带走</i>公开的散列函数会被攻击，所以要加随机种子；分布式系统用一致性散列。</div>
+  </div>
+</section>

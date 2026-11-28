@@ -706,6 +706,18 @@ details.opt>div{padding:2px 0 8px;font-size:15.5px;line-height:1.8}
 .kmprow b.ok{background:color-mix(in srgb,var(--l1) 30%,transparent)}
 .kmprow b.no{background:color-mix(in srgb,var(--red) 35%,transparent)}
 .kmprow b.sk{color:var(--ink-3)}
+.bars{display:flex;align-items:flex-end;gap:2px;height:180px;margin:.6em 0;padding:0 2px;border-bottom:1px solid var(--rule)}
+.bars .br{flex:1;min-width:0;background:color-mix(in srgb,var(--ter) 55%,var(--card));border-radius:3px 3px 0 0;position:relative;transition:height .08s}
+.bars .br span{position:absolute;top:-16px;left:0;right:0;text-align:center;font-family:var(--f-mono);font-size:10px;color:var(--ink-3)}
+.bars .br.cmp{background:var(--gold)}
+.bars .br.sw{background:var(--red)}
+.bars .br.piv{background:var(--main)}
+.bars .br.rng{background:color-mix(in srgb,var(--main) 30%,var(--card))}
+.bars .br.ok{background:var(--l1)}
+.bkts{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin:.5em 0}
+.bkts>div{border:1px solid var(--rule);border-radius:5px;padding:2px 4px;min-height:3em;font-family:var(--f-mono);font-size:12.5px;background:var(--card)}
+.bkts>div b{display:block;font-size:11px;color:var(--ink-3)}
+@media (min-width:560px){.bkts{grid-template-columns:repeat(10,1fr)}}
 </style>
 </head>
 <body>
@@ -2149,7 +2161,7 @@ const grp = (s, k) => s.replace(new RegExp('(.{' + (k || 4) + '})(?=.)', 'g'), '
 const BOOK = 'tree';   // 系列共用的本机记录里，id 前缀是 tree-
 const PFILE = ['index', 'two', 'three', 'four'];
 const PAGE = (() => { const m = location.pathname.match(/\/(two|three|four)\.html/); return m ? PFILE.indexOf(m[1]) + 1 : 1; })();
-const READY = 3; // 已经写好的部数
+const READY = 4; // 已经写好的部数
 const PURL = {}; PFILE.forEach((f, i) => PURL[i + 1] = i ? f + '.html' : './');
 const PARTS = [
   {k: '线', s: '一个接一个：复杂度、数组、链表、栈、队列、字符串、递归 · 八章'},
@@ -2580,6 +2592,19 @@ dev('#bridgeFig', fig => {
   $('[data-x="add"]', fig).addEventListener('click', () => reset(true));
   $('[data-x="why"]', fig).addEventListener('click', () => { const odd = Object.keys(LAND).filter(k => deg(k) % 2); say.textContent = '欧拉的想法：每路过一块地，总是走进去一座桥、走出来一座桥，要用掉两座。所以除了起点和终点，每块地连着的桥数都必须是双数。现在连着单数座桥的地有 ' + odd.length + ' 块（' + odd.map(k => LAND[k][2]).join('、') + '）。' + (odd.length === 0 ? '一块都没有：从哪儿出发都能走完，还能回到起点。' : odd.length === 2 ? '正好两块：从其中一块出发，到另一块结束，就能走完。' : '超过两块，怎么走都走不成。这是图论的第一个定理：只看“点”和“线”，不看地有多大、桥有多长。'); });
   reset(false);
+});
+
+/* ---------- 第四部封面：找一个名字，三种办法 ---------- */
+dev('#findFig', fig => {
+  const box = $('.growbars', fig), say = $('.say', fig);
+  const NS = [10, 100, 1000, 1e4, 1e5, 1e6, 1e7, 1e8, 1e9, 1e10];
+  const fmt = v => v >= 1e8 ? (v / 1e8) + ' 亿' : v >= 1e4 ? (v / 1e4) + ' 万' : String(v);
+  slider('fdN', k => fmt(NS[k]), k => {
+    const n = NS[k];
+    const rows = [['一个一个看', n], ['对半猜（要先排好序）', Math.ceil(Math.log2(n + 1))], ['散列表（平均）', 1]];
+    box.innerHTML = rows.map(([name, v]) => '<div class="gb"><span class="gn">' + name + '</span><span class="gt"><i style="width:' + Math.max(1, Math.log10(Math.max(1, v)) / 10 * 100) + '%"></i></span><span class="gv">最多看 ' + fmt(v) + ' 次</span></div>').join('');
+    say.textContent = n <= 100 ? '名字少的时候，三种都很快。' : '一百亿个名字：一个一个看要看一百亿次，对半猜 34 次，散列表平均一两次就到。代价呢？第二十三、二十四章讲。';
+  });
 });
 
 /* ---------- 主线：方格岛，一章加一个功能 ----------
@@ -3639,6 +3664,239 @@ dev('#dpFig', fig => {
   }
   btnRow($('[data-m]', fig), ['爬楼梯', '走格子', '背包的表格（第二层）'], 0, i => [stairs, grid, knap][i]());
   stairs();
+});
+
+/* ---------- 第二十三章：名字放进哪一格 ---------- */
+dev('#hashFig', fig => {
+  const slotsEl = $('.hslots', fig), kvb = $('.kv', fig), say = $('.say', fig), inp = $('#hsIn');
+  const M = 8; let mode = 0, fn = 0, T, last = null;
+  const H = s => { if (fn === 1) return s.charCodeAt(0) % M; let t = 0; [...s].forEach((c, i) => t += c.codePointAt(0) * (i + 1)); return t % M; };
+  btnRow($('[data-m]', fig), ['挂一串（拉链）', '往后找空位（线性探测）'], 0, i => { mode = i; clear(); });
+  btnRow($('[data-f]', fig), ['每个字 × 位置，加起来', '只看第一个字（笨）'], 0, i => { fn = i; clear(); });
+  function clear(){ T = mode === 0 ? Array.from({length: M}, () => []) : Array(M).fill(null); last = null; draw(); say.textContent = '空的。放几个名字进去。'; }
+  function draw(probe){
+    probe = probe || [];
+    slotsEl.innerHTML = '<div class="cells" style="flex-direction:column;align-items:stretch;max-width:26rem;margin:.6em auto">' + Array.from({length: M}, (_, i) => {
+      const items = mode === 0 ? T[i] : (T[i] ? [T[i]] : []);
+      return '<span style="text-align:left;display:flex;gap:6px;align-items:center" class="' + (probe.includes(i) ? (probe[probe.length - 1] === i ? 'hl' : 'mv') : '') + '"><b style="font-family:var(--f-mono);color:var(--ink-3);width:1.4em">' + i + '</b>' + (items.length ? items.map(x => '<span style="border:1px solid var(--ter);border-radius:4px;padding:0 6px;min-width:0' + (x === last ? ';background:var(--hl)' : '') + '">' + x + '</span>').join('<span style="color:var(--ter)">→</span>') : '<span class="dim">空</span>') + '</span>';
+    }).join('') + '</div>';
+    const n = mode === 0 ? T.reduce((s, c) => s + c.length, 0) : T.filter(Boolean).length;
+    const longest = mode === 0 ? Math.max(...T.map(c => c.length)) : 0;
+    kv(kvb, [['放了几个', n], ['装填因子', (n / M).toFixed(2)], [mode === 0 ? '最长的一串' : '空格', mode === 0 ? longest : M - n]]);
+  }
+  function put(s){
+    if (!s) return;
+    const h = H(s);
+    if (mode === 0) { if (T[h].includes(s)) { say.textContent = s + ' 已经在 ' + h + ' 号了。'; return; } const hit = T[h].length; T[h].push(s); last = s; draw([h]); say.textContent = '“' + s + '”算出 ' + h + ' 号。' + (hit ? '撞上了 ' + T[h].slice(0, -1).join('、') + '：挂在这一串的后面。' : '空的，直接放。'); return; }
+    if (T.filter(Boolean).length >= M) { say.textContent = '满了！真实的散列表早该换大了。'; return; }
+    const probe = []; let i = h; while (T[i] !== null) { if (T[i] === s) { say.textContent = s + ' 已经在 ' + i + ' 号了。'; return; } probe.push(i); i = (i + 1) % M; }
+    probe.push(i); T[i] = s; last = s; draw(probe);
+    say.textContent = '“' + s + '”算出 ' + h + ' 号。' + (probe.length > 1 ? '被占了，往后找：看了 ' + probe.length + ' 格，放在 ' + i + ' 号。' : '空的，直接放。');
+  }
+  function find(s){
+    const h = H(s);
+    if (mode === 0) { const k = T[h].indexOf(s); draw([h]); say.textContent = '算出 ' + h + ' 号，打开它，' + (k >= 0 ? '在这一串的第 ' + (k + 1) + ' 个找到了“' + s + '”。' : '这一串里没有“' + s + '”。'); return; }
+    const probe = []; let i = h; while (T[i] !== null && probe.length < M) { probe.push(i); if (T[i] === s) { draw(probe); say.textContent = '算出 ' + h + ' 号，往后看了 ' + probe.length + ' 格，找到了“' + s + '”。'; return; } i = (i + 1) % M; }
+    probe.push(i); draw(probe); say.textContent = '算出 ' + h + ' 号，一直往后看，碰到空格（' + i + ' 号）：没有“' + s + '”。看了 ' + probe.length + ' 格。';
+  }
+  $('[data-x="put"]', fig).addEventListener('click', () => put(inp.value.trim()));
+  $('[data-x="find"]', fig).addEventListener('click', () => find(inp.value.trim()));
+  $('[data-x="many"]', fig).addEventListener('click', () => { clear(); ['石', '木', '沙', '灯', '镐', '面包', '绳子'].forEach(put); say.textContent = (fn === 1 ? '只看第一个字时，' : '') + '放了 7 样。' + (mode === 1 ? '注意被占的格子连成了一长串：这就是“堆积”。' : '看看最长的一串有多长。'); });
+  $('[data-x="clr"]', fig).addEventListener('click', clear);
+  clear();
+});
+
+/* ---------- 第二十四章：二分查找；判定树 ---------- */
+dev('#bsFig', fig => {
+  const body = $('.bsbody', fig), say = $('.say', fig);
+  function search(){
+    const A = [31, 35, 38, 42, 42, 47, 50, 56, 61, 70, 77, 85, 90, 96, 120];
+    body.innerHTML = '<div class="row"><label class="dim" style="font-size:13px">你用了几步</label><input type="number" id="bsX" value="42" style="width:6em"><button class="btn pri" data-b="s">走一步</button><button class="btn" data-b="r">从头</button></div><div class="cells" id="bsArr"></div><div class="kv"></div>';
+    let lo, hi, mid, looks, done;
+    const draw = () => { $('#bsArr', body).innerHTML = A.map((v, i) => '<span class="' + (i === mid ? 'hl' : i < lo || i >= hi ? 'dim' : '') + '" style="' + (i === lo && !done ? 'border-color:var(--l2);' : '') + (i === hi - 1 && !done ? 'box-shadow:inset 0 -3px 0 var(--on);' : '') + '">' + v + '<small>' + i + (i === lo ? ' lo' : '') + (i === hi ? ' hi' : '') + '</small></span>').join('') + (hi === A.length ? '<span class="dim">·<small>' + A.length + ' hi</small></span>' : ''); kv($('.kv', body), [['lo', lo], ['hi', hi], ['看了几次', looks]]); };
+    const reset = () => { lo = 0; hi = A.length; mid = -1; looks = 0; done = false; draw(); say.textContent = '答案一定在 [lo, hi] 里：比你少的人数在 0 到 ' + A.length + ' 之间。点“走一步”。'; };
+    $('[data-b="r"]', body).onclick = reset; $('#bsX', body).oninput = reset;
+    $('[data-b="s"]', body).onclick = () => {
+      const x = +$('#bsX', body).value; if (done) return;
+      if (lo >= hi) { done = true; mid = -1; draw(); say.textContent = 'lo 和 hi 碰到一起了：比你少的有 ' + lo + ' 个人，你用 ' + x + ' 步能排第 ' + (lo + 1) + ' 名。只看了 ' + looks + ' 次。'; return; }
+      mid = Math.floor((lo + hi) / 2); looks++;
+      if (A[mid] < x) { say.textContent = '中间第 ' + mid + ' 个是 ' + A[mid] + '，比 ' + x + ' 少：它和它左边的都比你少，lo = ' + (mid + 1) + '。'; lo = mid + 1; }
+      else { say.textContent = '中间第 ' + mid + ' 个是 ' + A[mid] + '，不比 ' + x + ' 少：答案在它或它左边，hi = ' + mid + '。'; hi = mid; }
+      draw();
+    };
+    reset();
+  }
+  function tree(){
+    body.innerHTML = '<label class="lab">n = <b id="dtNO"></b></label><input type="range" id="dtN" min="1" max="20" value="12"><svg viewBox="0 0 640 220" role="img" aria-label="判定树"></svg><div class="kv"></div>';
+    slider('dtN', null, n => {
+      const nodes = {}; let sum = 0, fsum = 0;
+      const build = (lo, hi, d) => { if (lo > hi) { fsum += d - 1; return null; } const m = Math.floor((lo + hi) / 2); sum += d; nodes[m] = {k: String(m), l: build(lo, m - 1, d + 1), r: build(m + 1, hi, d + 1)}; return m; };
+      const root = build(1, n, 1);
+      drawBinTree($('svg', body), nodes, root, {W: 640, H: 220});
+      const g = (a, b) => { const r = (x, y) => y ? r(y, x % y) : x; const k = r(a, b); return (a / k) + '/' + (b / k); };
+      kv($('.kv', body), [['高度', Math.ceil(Math.log2(n + 1))], ['成功 ASL', g(sum, n)], ['失败 ASL', g(fsum, n + 1)]]);
+      say.textContent = '每个结点是一次比较的位置（下标从 1，mid = ⌊(low+high)/2⌋）。查找成功比较的次数是它的层数；失败停在某个空孩子上，比较次数是它双亲的层数。';
+    });
+  }
+  btnRow($('[data-m]', fig), ['二分查找', '判定树（第二层）'], 0, i => [search, tree][i]());
+  search();
+});
+
+/* ---------- 第二十五—二十八章共用：排序的动画 ----------
+   每个算法是一个生成器函数 gen(a, E)：直接改数组 a，同时往 E 里记事件：
+   ['c', i, j] 比较；['s', i, j] 交换；['w', i, v] 写入；['k', i] 这一格排好了；['r', lo, hi] 正在处理的范围；['p', i] 标杆 */
+const SORTS = {
+  '插入': (a, E) => { for (let i = 1; i < a.length; i++) { const x = a[i]; let j = i - 1; while (j >= 0) { E.push(['c', j, j + 1]); if (a[j] > x) { a[j + 1] = a[j]; E.push(['w', j + 1, a[j]]); j--; } else break; } a[j + 1] = x; E.push(['w', j + 1, x]); } },
+  '冒泡': (a, E) => { for (let end = a.length - 1; end > 0; end--) { let sw = false; for (let i = 0; i < end; i++) { E.push(['c', i, i + 1]); if (a[i] > a[i + 1]) { [a[i], a[i + 1]] = [a[i + 1], a[i]]; E.push(['s', i, i + 1]); sw = true; } } E.push(['k', end]); if (!sw) break; } },
+  '选择': (a, E) => { for (let i = 0; i < a.length - 1; i++) { let m = i; for (let j = i + 1; j < a.length; j++) { E.push(['c', m, j]); if (a[j] < a[m]) m = j; } if (m !== i) { [a[i], a[m]] = [a[m], a[i]]; E.push(['s', i, m]); } E.push(['k', i]); } },
+  '希尔': (a, E) => { for (let g = Math.floor(a.length / 2); g > 0; g = Math.floor(g / 2)) { for (let i = g; i < a.length; i++) { const x = a[i]; let j = i - g; while (j >= 0) { E.push(['c', j, j + g]); if (a[j] > x) { a[j + g] = a[j]; E.push(['w', j + g, a[j]]); j -= g; } else break; } a[j + g] = x; E.push(['w', j + g, x]); } } },
+  '快速': (a, E, pick) => { const q = (lo, hi) => { if (lo >= hi) { if (lo === hi) E.push(['k', lo]); return; } E.push(['r', lo, hi]); if (pick === 'random') { const k = lo + Math.floor(Math.random() * (hi - lo + 1)); [a[lo], a[k]] = [a[k], a[lo]]; E.push(['s', lo, k]); } const p = a[lo]; E.push(['p', lo]); let i = lo, j = hi; while (i < j) { while (i < j) { E.push(['c', j, -1]); if (a[j] >= p) j--; else break; } a[i] = a[j]; E.push(['w', i, a[j]]); while (i < j) { E.push(['c', i, -1]); if (a[i] <= p) i++; else break; } a[j] = a[i]; E.push(['w', j, a[i]]); } a[i] = p; E.push(['w', i, p]); E.push(['k', i]); q(lo, i - 1); q(i + 1, hi); }; q(0, a.length - 1); },
+  '归并': (a, E) => { const ms = (lo, hi) => { if (lo >= hi) return; const m = Math.floor((lo + hi) / 2); ms(lo, m); ms(m + 1, hi); E.push(['r', lo, hi]); const t = []; let i = lo, j = m + 1; while (i <= m && j <= hi) { E.push(['c', i, j]); if (a[i] <= a[j]) t.push(a[i++]); else t.push(a[j++]); } while (i <= m) t.push(a[i++]); while (j <= hi) t.push(a[j++]); t.forEach((v, k) => { a[lo + k] = v; E.push(['w', lo + k, v]); }); }; ms(0, a.length - 1); },
+  '堆': (a, E) => { const n = a.length; const sink = (k, n) => { while (2 * k + 1 < n) { let c = 2 * k + 1; if (c + 1 < n) { E.push(['c', c, c + 1]); if (a[c + 1] > a[c]) c++; } E.push(['c', k, c]); if (a[k] >= a[c]) break; [a[k], a[c]] = [a[c], a[k]]; E.push(['s', k, c]); k = c; } }; for (let k = Math.floor(n / 2) - 1; k >= 0; k--) sink(k, n); for (let end = n - 1; end > 0; end--) { [a[0], a[end]] = [a[end], a[0]]; E.push(['s', 0, end]); E.push(['k', end]); sink(0, end); } E.push(['k', 0]); }
+};
+function sortViz(fig, names, opt){
+  opt = opt || {};
+  const box = $('.bars', fig), kvb = $('.kv', fig), say = $('.say', fig);
+  let alg = names[0], data = 0, base, a, E, at, timer = null, cmp, wr, done, rng0 = rng(25);
+  const N = opt.n || 16;
+  const DATA = ['随机', '几乎排好', '倒着的', '很多一样的'];
+  const make = () => { const r = []; for (let i = 0; i < N; i++) r.push(data === 0 ? 5 + Math.floor(rng0() * 95) : data === 1 ? 6 * i + 5 : data === 2 ? 100 - 6 * i : 10 + 20 * Math.floor(rng0() * 4)); if (data === 1) { const i = Math.floor(rng0() * (N - 1)); [r[i], r[i + 1]] = [r[i + 1], r[i]]; } return r; };
+  function prep(fresh){ if (timer) clearInterval(timer); timer = null; if (fresh) base = make(); a = base.slice(); E = []; const t = a.slice(); SORTS[alg](t, E, opt.pick && opt.pick()); at = 0; cmp = 0; wr = 0; done = {}; draw(); say.textContent = (opt.hint && opt.hint(alg)) || '点“走一步”或“自己跑”。'; }
+  function draw(hi){ hi = hi || {}; const mx = Math.max(...a, 1); box.innerHTML = a.map((v, i) => '<div class="br' + (hi[i] ? ' ' + hi[i] : '') + (done[i] ? ' ok' : '') + '" style="height:' + (10 + v / mx * 90) + '%"><span>' + v + '</span></div>').join(''); kv(kvb, [['比较', cmp], ['挪动（交换算两次）', wr], ['一共要', E.filter(e => e[0] === 'c').length + ' 次比较']]); }
+  function step(){
+    if (at >= E.length) { a.forEach((_, i) => done[i] = 1); draw(); say.textContent = '排好了：比较 ' + cmp + ' 次，挪动 ' + wr + ' 次。' + ((opt.end && opt.end(alg, cmp)) || ''); return false; }
+    const e = E[at++], hi = {};
+    if (e[0] === 'c') { cmp++; hi[e[1]] = 'cmp'; if (e[2] >= 0) hi[e[2]] = 'cmp'; }
+    if (e[0] === 's') { [a[e[1]], a[e[2]]] = [a[e[2]], a[e[1]]]; wr += 2; hi[e[1]] = 'sw'; hi[e[2]] = 'sw'; }
+    if (e[0] === 'w') { a[e[1]] = e[2]; wr++; hi[e[1]] = 'sw'; }
+    if (e[0] === 'k') done[e[1]] = 1;
+    if (e[0] === 'p') hi[e[1]] = 'piv';
+    if (e[0] === 'r') { for (let i = e[1]; i <= e[2]; i++) hi[i] = 'rng'; }
+    draw(hi); return true;
+  }
+  btnRow($('[data-a]', fig), names, 0, i => { alg = names[i]; prep(false); });
+  btnRow($('[data-d]', fig), DATA, 0, i => { data = i; prep(true); });
+  $('[data-x="s"]', fig).addEventListener('click', () => { if (!timer) step(); });
+  $('[data-x="run"]', fig).addEventListener('click', () => { if (timer) { clearInterval(timer); timer = null; return; } timer = setInterval(() => { if (!step()) { clearInterval(timer); timer = null; } }, opt.speed || 70); });
+  $('[data-x="r"]', fig).addEventListener('click', () => prep(true));
+  return {prep, setAlg: n => { alg = n; prep(false); }};
+}
+dev('#sort1Fig', fig => {
+  sortViz(fig, ['插入', '冒泡', '选择', '希尔'], {
+    hint: a => ({'插入': '插入：像整理手里的牌，把每张牌往左插到合适的位置。', '冒泡': '冒泡：相邻两个比，大的往后换，每一趟把最大的“冒”到最后。', '选择': '选择：每一趟挑出最小的，放到前面。', '希尔': '希尔：先让隔得远的几个排一排，再缩小间隔，最后一趟就是普通的插入排序。'})[a],
+    end: (a, c) => a === '选择' ? ' 选择排序不管数据长什么样，比较次数都一样。' : a === '插入' ? ' 换成“几乎排好”的数据再试，插入排序会快得多。' : ''
+  }).prep(true);
+});
+
+/* ---------- 第二十六章：快速排序 ---------- */
+dev('#quickFig', fig => {
+  let pick = 'first';
+  const v = sortViz(fig, ['标杆挑第一个', '标杆随便挑'], {
+    pick: () => pick,
+    hint: () => pick === 'first' ? '每一段都拿第一个当标杆。' : '每一段都随便挑一个当标杆（先换到最前面）。',
+    end: (a, c) => pick === 'first' ? ' 换成“倒着的”数据，再看比较次数。' : ' 随便挑标杆，倒着的数据也不怕了。'
+  });
+  SORTS['标杆挑第一个'] = (a, E) => SORTS['快速'](a, E, 'first');
+  SORTS['标杆随便挑'] = (a, E) => SORTS['快速'](a, E, 'random');
+  $$('[data-a] button', fig).forEach((b, i) => b.addEventListener('click', () => { pick = i ? 'random' : 'first'; }, true));
+  v.prep(true);
+});
+
+/* ---------- 第二十七章：归并排序 ---------- */
+dev('#mergeFig', fig => {
+  sortViz(fig, ['归并', '快速', '插入'], {
+    hint: a => a === '归并' ? '归并：先把左右两半各自排好（递归），再像合两摞牌一样合起来。' : a === '快速' ? '快速排序（标杆挑第一个），拿来比一比。' : '插入排序，拿来比一比。',
+    end: a => a === '归并' ? ' 换成“倒着的”或“几乎排好”的数据，归并的比较次数变化不大。' : ''
+  }).prep(true);
+});
+
+/* ---------- 第二十八章：堆排序；按位分桶 ---------- */
+dev('#heapSortFig', fig => {
+  sortViz(fig, ['堆', '快速', '归并'], {
+    hint: a => a === '堆' ? '堆排序：先把数组修成大根堆（红色是下沉时的交换），再把堆顶换到后面。' : '拿来比一比。',
+    end: a => a === '堆' ? ' 堆排序的比较次数也几乎不随数据变化。' : ''
+  }).prep(true);
+});
+dev('#radixFig', fig => {
+  const line = $('#rdLine'), bk = $('#rdB'), say = $('.say', fig);
+  const r = rng(28);
+  let A, B, pos, stage;
+  const NAME = ['个位', '十位', '百位'];
+  const dig = (v, p) => Math.floor(v / Math.pow(10, p)) % 10;
+  const pad3 = v => String(v).padStart(3, '0');
+  function reset(first){ A = first ? [218, 504, 73, 916, 342, 85, 507, 260] : Array.from({length: 9}, () => 1 + Math.floor(r() * 999)); B = null; pos = 0; stage = 'd'; draw(); say.textContent = '先按个位分进桶里。'; }
+  function draw(){
+    line.innerHTML = A ? A.map(v => '<span>' + (pos < 3 ? pad3(v).split('').map((c, i) => i === 2 - pos ? '<b style="color:var(--main)">' + c + '</b>' : c).join('') : pad3(v)) + '</span>').join('') : '';
+    bk.innerHTML = Array.from({length: 10}, (_, d) => '<div><b>' + d + ' 号</b>' + (B ? B[d].map(pad3).join('<br>') : '') + '</div>').join('');
+  }
+  $('[data-x="d"]', fig).addEventListener('click', () => {
+    if (pos >= 3) { say.textContent = '三位都做完了，已经排好。'; return; }
+    if (stage !== 'd') { say.textContent = '先把桶里的倒出来。'; return; }
+    B = Array.from({length: 10}, () => []); A.forEach(v => B[dig(v, pos)].push(v)); A = null; stage = 'c'; draw();
+    say.textContent = '按' + NAME[pos] + '分好了。每个桶是一个队列：先扔进去的在上面。';
+  });
+  $('[data-x="c"]', fig).addEventListener('click', () => {
+    if (stage !== 'c') { say.textContent = '先分进桶里。'; return; }
+    A = []; B.forEach(q => A.push(...q)); B = null; pos++; stage = 'd'; draw();
+    say.textContent = pos < 3 ? '按 0 到 9 号桶的顺序倒出来了。现在按' + NAME[pos] + '再分一次。' : '三趟做完：' + A.join('、') + '。一次大小都没比，就排好了！';
+  });
+  $('[data-x="r"]', fig).addEventListener('click', () => reset(false));
+  reset(true);
+});
+
+/* ---------- 尾声：方格岛（完整版） ---------- */
+dev('#gameFig', fig => {
+  const map = $('#gmMap'), bagEl = $('#gmBag'), say = $('.say', fig), boardEl = $('#gmBoard');
+  const DIG = {'#': '石', 'T': '木', ':': '沙'}, BACK = {'石': '#', '木': 'T', '沙': ':'};
+  const NEED = {'镐': {'石': 2, '木': 2}, '灯': {'沙': 2, '木': 1}};
+  const KEY = 'genesis-tree-board';
+  let g, me, face, mob, turn, bag, undo, won;
+  const loadBoard = () => { try { const b = JSON.parse(localStorage.getItem(KEY) || 'null'); if (Array.isArray(b)) return b; } catch (e) {} return [31, 35, 42, 50, 61]; };
+  const saveBoard = b => { try { localStorage.setItem(KEY, JSON.stringify(b)); } catch (e) {} };
+  function reset(){ g = isleGrid(ISLAND); me = [7, 3]; face = [1, 0]; mob = [12, 6]; turn = 0; bag = new Map(); undo = []; won = false; draw('造一把镐和一盏灯。先往左走，去挖那几块石头。'); }
+  const showBoard = (hl) => { const b = loadBoard(); boardEl.innerHTML = '<span class="dim" style="border:0">排行榜（步数）：</span>' + b.map((v, i) => '<span class="' + (i === hl ? 'hl' : '') + '">' + v + '<small>第 ' + (i + 1) + '</small></span>').join(''); };
+  function draw(msg){
+    isleDraw(map, g, {px: me[0], py: me[1], mobs: [mob], mark: (x, y) => x === me[0] + face[0] && y === me[1] + face[1] ? 'hl' : ''});
+    const items = [...bag.entries()].filter(e => e[1] > 0);
+    bagEl.innerHTML = '第 ' + turn + ' 步 · 背包：' + (items.length ? items.map(([k, v]) => '<span>' + k + ' × ' + v + '</span>').join('') : '<span class="dim" style="border:0">空</span>');
+    if (msg) say.textContent = msg;
+  }
+  function bfsNext(){ const q = [mob], came = {}; came[mob.join()] = null; while (q.length) { const c = q.shift(); if (c[0] === me[0] && c[1] === me[1]) break; gridNb(g, c[0], c[1]).forEach(n => { const k = n.join(); if (!(k in came)) { came[k] = c.join(); q.push(n); } }); } let k = me.join(); if (!(k in came)) return null; let prev = null; while (came[k] !== null) { prev = k; k = came[k]; } return prev ? prev.split(',').map(Number) : null; }
+  function move(dx, dy){
+    if (won) return;
+    face = [dx, dy]; const nx = me[0] + dx, ny = me[1] + dy;
+    if (g[ny] && (g[ny][nx] === '.') && !(nx === mob[0] && ny === mob[1])) me = [nx, ny];
+    turn++; let msg = '';
+    if (turn % 3 === 0) { const n = bfsNext(); if (n) mob = n; if (mob[0] === me[0] && mob[1] === me[1]) { let best = null, most = 0; bag.forEach((v, k) => { if (v > most && !NEED[k]) { best = k; most = v; } }); if (best) { bag.set(best, most - 1); msg = '团团追上你，抱走了一个' + best + '，跑回家了！'; } else msg = '团团追上你，可你背包里没有原料，它跑回家了。'; mob = [12, 6]; } }
+    draw(msg || (g[ny] && DIG[g[ny][nx]] ? '面前是' + DIG[g[ny][nx]] + '，按“挖”。' : ''));
+  }
+  function dig(){
+    if (won) return;
+    const fx = me[0] + face[0], fy = me[1] + face[1], t = g[fy] && g[fy][fx];
+    if (!DIG[t]) { draw('面前（亮框的那格）没有能挖的。'); return; }
+    g[fy][fx] = '.'; bag.set(DIG[t], (bag.get(DIG[t]) || 0) + 1); undo.push([fx, fy, t]);
+    draw('挖到一个' + DIG[t] + '。背包用名字找格子（散列表）。');
+  }
+  function back(){ const u = undo.pop(); if (!u) { draw('没有可以撤销的挖。'); return; } g[u[1]][u[0]] = u[2]; bag.set(DIG[u[2]], Math.max(0, (bag.get(DIG[u[2]]) || 0) - 1)); draw('撤销了一次挖：从栈顶拿下一张卡片。'); }
+  function craft(item){
+    if (won) return;
+    const need = NEED[item], lack = Object.keys(need).filter(k => (bag.get(k) || 0) < need[k]);
+    if (lack.length) { draw('造' + item + '要：' + Object.keys(need).map(k => k + need[k]).join('、') + '。还差：' + lack.map(k => k + (need[k] - (bag.get(k) || 0))).join('、') + '。'); return; }
+    Object.keys(need).forEach(k => bag.set(k, bag.get(k) - need[k])); bag.set(item, 1); undo = [];
+    if (bag.get('镐') && bag.get('灯')) {
+      won = true; const b = loadBoard(); let lo = 0, hi = b.length; while (lo < hi) { const m = (lo + hi) >> 1; if (b[m] < turn) lo = m + 1; else hi = m; } b.splice(lo, 0, turn); saveBoard(b.slice(0, 12));
+      draw('完工！用了 ' + turn + ' 步。二分查找：排行榜第 ' + (lo + 1) + ' 名。'); showBoard(lo); return;
+    }
+    draw('造好了' + item + '（配方树后序算原料，拓扑排序排先后）。还差' + (item === '镐' ? '灯' : '镐') + '。');
+  }
+  $$('.pad button', fig).forEach(b => b.addEventListener('click', () => { const k = b.dataset.k; move(k === 'left' ? -1 : k === 'right' ? 1 : 0, k === 'up' ? -1 : k === 'down' ? 1 : 0); }));
+  document.addEventListener('keydown', e => { if (e.target.closest && e.target.closest('input,textarea')) return; const r = fig.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return; const m = {ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1]}[e.key]; if (m) { e.preventDefault(); move(m[0], m[1]); } else if (e.key === 'x' || e.key === ' ') { e.preventDefault(); dig(); } });
+  $('[data-x="dig"]', fig).addEventListener('click', dig);
+  $('[data-x="undo"]', fig).addEventListener('click', back);
+  $('[data-x="pick"]', fig).addEventListener('click', () => craft('镐'));
+  $('[data-x="lamp"]', fig).addEventListener('click', () => craft('灯'));
+  $('[data-x="new"]', fig).addEventListener('click', reset);
+  showBoard(-1); reset();
 });
 
 })();

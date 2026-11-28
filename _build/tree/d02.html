@@ -1,0 +1,176 @@
+<section class="chap" id="c24" data-vol="卷七 · 找 · 查找">
+  <div class="chead">
+    <div class="big">分</div>
+    <div>
+      <div class="no">卷七 · 第二十四章</div>
+      <h2>查找</h2>
+      <dl><dt>讲什么</dt><dd>一个一个找；排好序以后对半找；排行榜上查名次；二分的边界为什么难写对；判定树和平均查找长度；分块查找；面试里的二分变形</dd><dt>装置</dt><dd>二分查找；判定树</dd></dl>
+      <div class="crs" data-c="结构"></div>
+      <div class="lvs"><a data-l="1" href="#c24-1">第一层 · 30 分钟</a><a data-l="2" href="#c24-2">第二层 · 60 分钟</a><a data-l="3" href="#c24-3">第三层 · 20 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>对半猜我早就会了，第一章就玩过。</span></div>
+    <div class="l"><i class="j">舅</i><span>玩会和写对是两回事。有位很有名的程序员说过，大多数人写的二分都有虫子。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>用顺序查找和二分查找找一个数，说出二分查找为什么要先排好序。</li>
+      <li><span class="lg lg1">一</span>用二分在排行榜上查出“能排第几名”，说出 lo、hi 两个指针各是什么意思。</li>
+      <li><span class="lg lg2">二</span>算顺序查找、折半查找、分块查找的成功和失败 ASL；画出折半查找的判定树。</li>
+      <li><span class="lg lg2">二</span>写对“第一个大于等于 x 的位置”，解旋转数组、二分答案这类面试题。</li>
+      <li><span class="lg lg3">三</span>说出二分查找里一个藏了二十年的溢出虫子；插值查找和指数查找。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c24-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：数步数（第一章）、数组（第二章）</span><span class="tm">约 30 分钟</span></div>
+    <div class="lyb">
+      <h3>一个一个找</h3>
+      <p>东西没排序，只能从头一个一个看，叫<b>顺序查找</b>。运气好第一个就是，运气差看到最后。n 个东西，平均要看一半。</p>
+      <h3>对半找</h3>
+      <p>东西排好了序，就能用第一章的“对半猜”：看中间那个，比要找的大就去左半边找，小就去右半边找。每看一次，剩下的少一半，叫<b>二分查找</b>。一百万个，最多看 20 次。</p>
+      <p>可是它有个前提：<b>必须先排好序</b>。乱的东西对半猜，看了中间那个也不知道该往哪边走。</p>
+      <h3>排行榜上第几名</h3>
+      <p>方格岛的排行榜按“用了几步完工”从少到多排好。你用了 42 步，能排第几名？就是问：有几个人比你少？</p>
+      <p>用两个指针：<b>lo</b> 和 <b>hi</b>，答案一定在它们之间。每次看中间 mid：</p>
+      <ul class="plain">
+        <li>mid 那个人的步数比你少：答案在 mid 右边，lo = mid + 1；</li>
+        <li>不比你少：答案在 mid 或它左边，hi = mid。</li>
+      </ul>
+      <p>lo 和 hi 碰到一起时，就是比你少的人数，再加 1 就是你的名次。</p>
+      <div class="fig" id="bsFig">
+        <div class="fig-label">装置 · 第二十四章</div>
+        <h4>二分查找；判定树</h4>
+        <p class="how">“二分查找”：输入一个步数，点“走一步”，看 lo（蓝）、hi（橙）、mid（深色）怎样移动。“判定树”是第二层的：拖动 n，看折半查找每一步可能比较的位置组成的树。</p>
+        <div class="btns" data-m></div>
+        <div class="bsbody"></div>
+        <div class="say"></div>
+      </div>
+      <div class="pit"><h5>二分为什么难写对</h5><p>写二分最容易错在边界上：hi 是“最后一个还可能是答案的”还是“它后面那一个”？循环条件写 lo &lt; hi 还是 lo &lt;= hi？mid 加不加一？只要一处不配套，就会少找一个、多找一个，或者永远停不下来。办法是先说清楚“答案一定在 [lo, hi] 里”这句话，每一行都守住它。</p></div>
+      <div class="try">
+        <div class="th"><b>Python 自带的二分</b><span class="tm">5 分钟</span></div>
+        <div class="tb">
+<pre class="sh" data-k="python3"><span class="p">&gt;&gt;&gt; </span>import bisect
+<span class="p">&gt;&gt;&gt; </span>board = [31, 35, 38, 42, 42, 47, 50]
+<span class="p">&gt;&gt;&gt; </span>bisect.bisect_left(board, 42)
+<span class="o">3</span>
+<span class="p">&gt;&gt;&gt; </span>bisect.insort(board, 40)
+<span class="p">&gt;&gt;&gt; </span>board
+<span class="o">[31, 35, 38, 40, 42, 42, 47, 50]</span></pre>
+          <p><code>bisect_left</code> 就是主线第 24 步的 <code>rank</code>：有 3 个比 42 少，42 排第 4 名。<code>insort</code> 用二分找到位置，再插进去（插入还是要挪一串，第二章）。</p>
+        </div>
+      </div>
+      <div class="task" data-id="tree-t24a">
+        <div class="th"><b>查字典</b></div>
+        <div class="tb"><p>拿一本纸质字典（或一本按页码排的书），找一个字，数一数你翻了几次。你是从第一页一页一页翻的，还是“对半翻”的？再请家人想一个页码，你用二分在 7 次以内翻到。</p></div>
+      </div>
+      <div class="pass" data-id="tree-q24a">
+        <div class="qq" data-a="1"><p>二分查找的前提是？</p><ol><li>东西很多</li><li>东西已经排好序</li></ol><p class="ex">乱的东西对半猜，不知道往哪边走。</p></div>
+        <div class="qq" data-in="20"><p>一百万个排好序的数，二分查找最多看几次？</p><p class="ex">2²⁰ ≈ 一百万，20 次。</p></div>
+        <div class="qq" data-a="0"><p>中间那个人比你用的步数少，答案在哪边？</p><ol><li>右边</li><li>左边</li></ol><p class="ex">比你少的都在左边，你的位置在它右边。</p></div>
+        <div class="qq" data-in="4"><p>排行榜 31, 35, 38, 42, 42, 47，你用 40 步，排第几名？</p><p class="ex">31、35、38 比你少，3 个人，你排第 4。</p></div>
+        <div class="qq" data-a="1"><p>顺序查找 n 个东西，平均要看？</p><ol><li>1 个</li><li>一半</li><li>log n 个</li></ol><p class="ex">平均 (n+1)/2。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c24-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">对照 408：顺序查找、折半查找、分块查找</span><span class="tm">约 60 分钟</span><span class="sum">哨兵；无序表和有序表的顺序查找 ASL；折半查找的代码和判定树；判定树是平衡树、高度 ⌈log₂(n+1)⌉；成功和失败 ASL 的手算；分块查找和最优块长；面试的二分模板和变形。</span></div>
+    <div class="lyb">
+      <h3>顺序查找</h3>
+      <p>在 a[0] 放要找的关键字作<b>哨兵</b>，从 a[n] 往前找，循环里不用判断越界，找到下标 0 就是失败。等概率时：成功 ASL = (n + 1)/2；失败要比 n + 1 次。若表<b>有序</b>，查找失败时遇到第一个比它大的就能停：失败结点有 n + 1 个，ASL<sub>失败</sub> = (1 + 2 + … + n + n)/(n + 1) = n/2 + n/(n + 1)。顺序查找对顺序存储和链式存储都适用。</p>
+      <h3>折半查找</h3>
+<pre class="code" data-k="bsearch.c">int bsearch(int a[], int n, int key) {      /* a[0..n-1] 升序 */
+    int lo = 0, hi = n - 1;
+    while (lo &lt;= hi) {                       /* 答案若在，一定在 [lo, hi] */
+        int mid = lo + (hi - lo) / 2;         /* 不写 (lo+hi)/2，防止溢出（第三层）*/
+        if (a[mid] == key) return mid;
+        if (a[mid] &lt; key) lo = mid + 1; else hi = mid - 1;
+    }
+    return -1;
+}</pre>
+      <p>折半查找只适用于<b>有序的顺序表</b>（链表不能随机访问）。把每次比较的 mid 画成一棵二叉树，叫<b>判定树</b>：根是第一次比较的位置，左子树是比它小的一半。判定树是一棵平衡二叉树（408 约定 mid = ⌊(low + high)/2⌋ 时，每个结点的右子树结点数等于或比左子树多一个），高度 ⌈log₂(n + 1)⌉；查找成功的比较次数是结点的层数，失败的比较次数是失败结点双亲的层数。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）对 12 个元素的有序表做折半查找（mid = ⌊(low + high)/2⌋，下标 1—12），画出判定树，求成功和失败的 ASL。（2）有 10000 个记录，分块查找，块内和索引都顺序查找，块长取多少时 ASL 最小？最小是多少？</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）第一层 6；第二层 3、9；第三层 1、4、7、11；第四层 2、5、8、10、12。成功 ASL = (1 + 2×2 + 3×4 + 4×5)/12 = 37/12。失败结点 13 个：第四层 5 个结点各有 2 个空孩子（比较 4 次），共 10 个；第三层 1、4、7 各缺一个左孩子（比较 3 次），共 3 个。失败 ASL = (10×4 + 3×3)/13 = 49/13。</p>
+          <p>（2）块长 s、块数 b = n/s，ASL = (b + 1)/2 + (s + 1)/2，s = √n = 100 时最小，ASL = 50.5 + 50.5 = 101。若索引表用折半查找，ASL ≈ ⌈log₂(b + 1)⌉ + (s + 1)/2。</p>
+        </div></details>
+      </div>
+      <h3>面试里的二分</h3>
+      <p>面试题很少问“找到 x”，常问“找到第一个满足某条件的位置”。只要条件在数组上是“前面都不满足、后面都满足”（单调），就能二分。一个不容易错的模板：</p>
+<pre class="code" data-k="lower_bound.py">def first_true(lo, hi, ok):       # 在 [lo, hi) 里找第一个 ok(i) 为真的 i；都不真就返回 hi
+    while lo &lt; hi:
+        mid = (lo + hi) // 2
+        if ok(mid): hi = mid         # mid 可能就是答案，留着
+        else: lo = mid + 1           # mid 肯定不是
+    return lo
+# 第一个 &gt;= x 的位置：first_true(0, len(a), lambda i: a[i] &gt;= x)</pre>
+      <p>变形：<b>旋转数组</b>（[4, 5, 6, 7, 0, 1, 2] 里找最小值或找 x：比较 mid 和右端，判断哪一半是有序的）；<b>二分答案</b>（“最少要多大的背包才能在 D 天内运完”：答案越大越容易满足，对答案本身二分，每次用 O(n) 检查）。</p>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>一个排好序的数组里有重复元素，求 x 出现了几次，要求 O(log n)。</p>
+        <details><summary>看要点</summary><div><p>两次二分：第一个 ≥ x 的位置 L，第一个 &gt; x 的位置 R，次数 R − L。用上面的模板，条件分别是 a[i] ≥ x 和 a[i] &gt; x。Python 里就是 <code>bisect_right(a, x) - bisect_left(a, x)</code>。</p></div></details>
+      </div>
+      <div class="pass" data-id="tree-q24b">
+        <div class="qq" data-a="1"><p>折半查找适用于？</p><ol><li>有序的链表</li><li>有序的顺序表</li><li>任何线性表</li></ol><p class="ex">要能随机访问中间那个。</p></div>
+        <div class="qq" data-in="4"><p>n = 12 时折半查找判定树的高度是？</p><p class="ex">⌈log₂13⌉ = 4。</p></div>
+        <div class="qq" data-in="37/12"><p>典型题（1）中，查找成功的 ASL 是？（写成分数）</p><p class="ex">37/12。</p></div>
+        <div class="qq" data-a="0"><p>分块查找时，块和块之间要满足？</p><ol><li>块间有序，块内可以无序</li><li>块内有序，块间无序</li><li>都要有序</li></ol><p class="ex">前一块的最大值小于后一块的最小值。</p></div>
+        <div class="qq" data-a="2"><p>n 个记录分块查找（都顺序查找），最优块长是？</p><ol><li>n/2</li><li>log n</li><li>√n</li></ol><p class="ex">(n/s + s)/2 在 s = √n 时最小。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c24-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">藏了二十年的虫子</span><span class="tm">约 20 分钟</span><span class="sum">本特利的课堂实验；Java 标准库 2006 年发现的中点溢出；插值查找和指数查找；树、散列、二分怎样选。</span></div>
+    <div class="lyb">
+      <h3>二分查找的虫子</h3>
+      <p>本特利在《编程珠玑》（1986）里写道：他让上百个专业程序员当场写二分查找，大约九成的人写出了有虫子的代码。更有意思的是 2006 年：谷歌的布洛赫发现，Java 标准库（以及《编程珠玑》里的那个版本）里的二分查找有一个虫子，藏了将近二十年：<code>mid = (low + high) / 2</code> 在数组超过十亿个元素时，low + high 会超过 int 的上限变成负数（《地基》第三章的溢出）。改成 <code>low + (high − low) / 2</code> 或无符号右移才对。这也是《地基》第三章第三层提到的那个例子。</p>
+      <h3>别的查找</h3>
+      <ul class="plain">
+        <li><b>插值查找</b>：在电话簿里找“张”，你不会翻到正中间，而会翻到靠后的地方。按值估计位置：mid = lo + (x − a[lo]) × (hi − lo) / (a[hi] − a[lo])。数据均匀分布时平均 O(log log n)，分布不均时最坏 O(n)。</li>
+        <li><b>指数查找</b>：不知道数组多长（或答案离开头很近）时，先看 1、2、4、8……找到一个大于 x 的位置，再在最后一段里二分。O(log i)，i 是答案的位置。</li>
+      </ul>
+      <h3>怎样选</h3>
+      <p>只查不改：排好序的数组加二分，省内存、对缓存友好。又查又改、要有序：平衡树（第十一章）或 B+ 树（第十五章）。只要“有没有”“是多少”、不要顺序：散列表（第二十三章），平均 O(1)。这本书的几十种结构，最后都落在这样的取舍上。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>J. Bentley, <i>Programming Pearls</i>, 1986, 第 4 章。</li>
+          <li>J. Bloch, “Extra, Extra - Read All About It: Nearly All Binary Searches and Mergesorts are Broken”, Google Research Blog, 2006。</li>
+          <li>D. E. Knuth, <i>The Art of Computer Programming</i>, Vol. 3, 6.2.1（二分查找的历史：1946 年就有人提到，第一个没有虫子的版本到 1962 年才发表）。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="main" data-step="24">
+    <div class="mh"><b>主线 · 第 24 步</b><span>查名次</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给方格岛加上：<i>二分查找</i></p>
+      <p><code>rank</code> 在排好的排行榜上用 lo、hi 两个指针对半找，返回“比你少的有几个”。十万个成绩里查名次，只看了 16 次。</p>
+      <div class="who1"><b>第一层</b>这一步可以先下载“到这一步的完整文件”运行，看懂演示，再读新加的那一段。想挑战就自己打。</div>
+      <div class="who2"><b>第二层</b>用 C 写 lower_bound 和 upper_bound，用随机数组和暴力结果对拍一万次；把中点写成 (lo + hi) / 2，构造一个会溢出的例子。</div>
+    </div>
+  </div>
+  <div class="words">
+    <div data-l="1"><b>顺序查找 <span class="en" data-say="linear search">linear search</span></b>一个一个看。</div>
+    <div data-l="1"><b>二分查找 <span class="en" data-say="binary search">binary search</span></b>排好序以后每次看中间。</div>
+    <div data-l="1"><b>名次 <span class="en" data-say="rank">rank</span></b>比你少的人数加 1。</div>
+    <div data-l="2"><b>判定树 <span class="en" data-say="decision tree">decision tree</span></b>折半查找每一步比较的位置组成的树。</div>
+    <div data-l="2"><b>哨兵 <span class="en" data-say="sentinel">sentinel</span></b>放在边上、省掉越界判断的那个值。</div>
+    <div data-l="2"><b>分块查找 <span class="en" data-say="block search">block search</span></b>块间有序、块内无序，先查索引再查块。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>没排序只能一个一个找；排好序就对半找；先说清“答案在 [lo, hi] 里”再写代码。</div>
+    <div><i>第二层带走</i>折半判定树高 ⌈log₂(n+1)⌉，失败比较次数看失败结点的双亲；分块最优块长 √n；面试的二分是“找第一个为真的位置”。</div>
+    <div><i>第三层带走</i>一行求中点藏了二十年的溢出；只查用二分，又查又改用树，只问有没有用散列。</div>
+  </div>
+</section>

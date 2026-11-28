@@ -989,6 +989,407 @@ def demo():
     grid = make_map(ISLAND)
     print('从 (2, 1) 只往右、往下走到 (13, 7)，有', count_ways(grid, 2, 1, 13, 7), '条路')
 
+#>> 23
+# ---------- 第 23 步 · 散列表：自己做一个背包 ----------
+SIZE0 = 8
+
+
+def h(name, size):
+    """把名字变成格子号：每个字的编号乘上它的位置，加起来，再除以格子数取余"""
+    total = 0
+    for i, c in enumerate(name):
+        total = total + ord(c) * (i + 1)
+    return total % size
+
+
+def ht_new(size=SIZE0):
+    return {'slots': [[] for _ in range(size)], 'n': 0}
+
+
+def ht_put(t, name, count):
+    slot = t['slots'][h(name, len(t['slots']))]
+    for pair in slot:
+        if pair[0] == name:          # 已经有了：改个数
+            pair[1] = count
+            return
+    slot.append([name, count])       # 没有：挂在这一格的链上
+    t['n'] = t['n'] + 1
+    if t['n'] > len(t['slots']) * 0.75:          # 太挤了：格子数翻倍，全部重新放
+        old = t['slots']
+        t['slots'] = [[] for _ in range(len(old) * 2)]
+        t['n'] = 0
+        for s in old:
+            for k, v in s:
+                ht_put(t, k, v)
+
+
+def ht_get(t, name, default=0):
+    for k, v in t['slots'][h(name, len(t['slots']))]:
+        if k == name:
+            return v
+    return default
+
+
+def ht_show(t):
+    for i, s in enumerate(t['slots']):
+        print(f'{i:2}:', ' → '.join(f'{k}×{v}' for k, v in s) or '（空）')
+
+
+def demo():
+    bag = ht_new()
+    for name, n in [('石', 3), ('木', 2), ('沙', 5), ('灯', 1), ('镐', 1), ('面包', 4)]:
+        ht_put(bag, name, n)
+    ht_show(bag)
+    print('沙有', ht_get(bag, '沙'), '个；船有', ht_get(bag, '船'), '个')
+    for name, n in [('绳子', 1), ('地图', 1), ('花', 6)]:
+        ht_put(bag, name, n)
+    print('放了 9 样以后，格子数变成', len(bag['slots']))
+
+#>> 24
+# ---------- 第 24 步 · 二分查找：排行榜上第几名 ----------
+LOOKS = {'n': 0}
+
+
+def rank(scores, s):
+    """scores 从小到大排好（用的步数，越少越好）。返回比 s 小的有几个：s 能排第几名就是它 + 1"""
+    lo, hi = 0, len(scores)          # 答案在 [lo, hi] 之间
+    while lo < hi:
+        mid = (lo + hi) // 2
+        LOOKS['n'] = LOOKS['n'] + 1
+        if scores[mid] < s:
+            lo = mid + 1
+        else:
+            hi = mid
+    return lo
+
+
+def demo():
+    board = [31, 35, 38, 42, 42, 47, 50, 56, 61, 70, 77, 85, 90, 96, 120]
+    for s in [40, 42, 20, 200]:
+        LOOKS['n'] = 0
+        r = rank(board, s)
+        print(f'用 {s} 步完工：排第 {r + 1} 名（看了 {LOOKS["n"]} 次）')
+    import random
+    random.seed(24)
+    big = sorted(random.sample(range(10 ** 6), 100000))
+    LOOKS['n'] = 0
+    rank(big, 500000)
+    print('十万个成绩里查名次，看了', LOOKS['n'], '次')
+
+#>> 25
+# ---------- 第 25 步 · 简单排序：插入、冒泡、选择 ----------
+def insertion(a):
+    a = a[:]
+    cmp = 0
+    for i in range(1, len(a)):
+        x = a[i]
+        j = i - 1
+        while j >= 0:
+            cmp = cmp + 1
+            if a[j][1] > x[1]:         # 比 x 大的往后挪
+                a[j + 1] = a[j]
+                j = j - 1
+            else:
+                break
+        a[j + 1] = x
+    return a, cmp
+
+
+def bubble(a):
+    a = a[:]
+    cmp = 0
+    for end in range(len(a) - 1, 0, -1):
+        swapped = False
+        for i in range(end):
+            cmp = cmp + 1
+            if a[i][1] > a[i + 1][1]:
+                a[i], a[i + 1] = a[i + 1], a[i]
+                swapped = True
+        if not swapped:                # 一趟都没换：已经排好了
+            break
+    return a, cmp
+
+
+def selection(a):
+    a = a[:]
+    cmp = 0
+    for i in range(len(a) - 1):
+        m = i
+        for j in range(i + 1, len(a)):
+            cmp = cmp + 1
+            if a[j][1] < a[m][1]:
+                m = j
+        a[i], a[m] = a[m], a[i]
+    return a, cmp
+
+
+PLAYERS = [('小格', 42), ('豆子', 35), ('阿蓝', 50), ('小米', 35), ('舅舅', 61), ('团团', 42), ('阿圆', 31)]
+
+
+def demo():
+    for f in [insertion, bubble, selection]:
+        out, cmp = f(PLAYERS)
+        print(f'{f.__name__:9}', ' '.join(f'{n}{s}' for n, s in out), f'比了 {cmp} 次')
+    print('注意：豆子和小米都是 35，选择排序把他们的先后换了（不稳定）')
+
+#>> 26
+# ---------- 第 26 步 · 快速排序 ----------
+QCMP = {'n': 0}
+
+
+def quick(a, lo=0, hi=None, pick='first'):
+    if hi is None:
+        hi = len(a) - 1
+    if lo >= hi:
+        return a
+    if pick == 'random':
+        import random
+        k = random.randint(lo, hi)
+        a[lo], a[k] = a[k], a[lo]
+    pivot = a[lo]                    # 挑一个当标杆
+    i, j = lo, hi
+    while i < j:                     # 小的放左边，大的放右边
+        while i < j and a[j] >= pivot:
+            QCMP['n'] = QCMP['n'] + 1
+            j = j - 1
+        a[i] = a[j]
+        while i < j and a[i] <= pivot:
+            QCMP['n'] = QCMP['n'] + 1
+            i = i + 1
+        a[j] = a[i]
+    a[i] = pivot                     # 标杆站到它最终的位置
+    quick(a, lo, i - 1, pick)
+    quick(a, i + 1, hi, pick)
+    return a
+
+
+def demo():
+    import random
+    random.seed(26)
+    data = [random.randint(1, 100) for _ in range(12)]
+    print('排之前：', data)
+    print('排之后：', quick(data[:]))
+    for name, arr in [('乱的', [random.randint(1, 10000) for _ in range(500)]), ('排好的', list(range(500)))]:
+        QCMP['n'] = 0
+        quick(arr[:])
+        first = QCMP['n']
+        QCMP['n'] = 0
+        quick(arr[:], pick='random')
+        print(f'500 个{name}数：标杆挑第一个，比了 {first} 次；随便挑，比了 {QCMP["n"]} 次')
+
+#>> 27
+# ---------- 第 27 步 · 归并：把几张排好的榜合成一张 ----------
+def merge(a, b):
+    out, i, j = [], 0, 0
+    while i < len(a) and j < len(b):
+        if a[i] <= b[j]:              # 一样大时先拿左边的：稳定
+            out.append(a[i])
+            i = i + 1
+        else:
+            out.append(b[j])
+            j = j + 1
+    return out + a[i:] + b[j:]
+
+
+def merge_sort(a):
+    if len(a) <= 1:
+        return a
+    mid = len(a) // 2
+    return merge(merge_sort(a[:mid]), merge_sort(a[mid:]))
+
+
+def external_sort(data, memory=4):
+    """内存一次只装得下 memory 个：先切成小段各自排好，再多路归并"""
+    runs = [sorted(data[k:k + memory]) for k in range(0, len(data), memory)]
+    print('排好的小段：', runs)
+    return list(heapq.merge(*runs))   # 第 12 步的堆做多路归并
+
+
+def demo():
+    print(merge([31, 42, 61], [35, 35, 50, 70]))
+    print(merge_sort([42, 35, 50, 35, 61, 42, 31, 90, 12]))
+    print('外部排序：', external_sort([42, 35, 50, 35, 61, 42, 31, 90, 12, 77, 8]))
+
+#>> 28
+# ---------- 第 28 步 · 堆排序和计数排序 ----------
+def heap_sort(a):
+    a = a[:]
+    n = len(a)
+
+    def sink(k, n):
+        while 2 * k + 1 < n:
+            c = 2 * k + 1
+            if c + 1 < n and a[c + 1] > a[c]:
+                c = c + 1
+            if a[k] >= a[c]:
+                break
+            a[k], a[c] = a[c], a[k]
+            k = c
+    for k in range(n // 2 - 1, -1, -1):  # 建大根堆
+        sink(k, n)
+    for end in range(n - 1, 0, -1):      # 把最大的换到最后，再把剩下的修成堆
+        a[0], a[end] = a[end], a[0]
+        sink(0, end)
+    return a
+
+
+def counting_sort(a, top=150):
+    """步数都在 0 到 top 之间：数一数每个数出现几次，再按顺序写出来。一次都不比较"""
+    cnt = [0] * (top + 1)
+    for x in a:
+        cnt[x] = cnt[x] + 1
+    out = []
+    for v in range(top + 1):
+        out.extend([v] * cnt[v])
+    return out
+
+
+def demo():
+    import random
+    random.seed(28)
+    data = [random.randint(20, 120) for _ in range(15)]
+    print('堆排序：  ', heap_sort(data))
+    print('计数排序：', counting_sort(data))
+    print('和 sorted 一样吗？', heap_sort(data) == counting_sort(data) == sorted(data))
+
+#>> 29
+# ---------- 第 29 步 · 完工：一个能玩的方格岛 ----------
+DIRS = {'w': (0, -1), 's': (0, 1), 'a': (-1, 0), 'd': (1, 0)}
+DIG = {'#': '石', 'T': '木', ':': '沙'}
+GOAL = ['镐', '灯']
+BOARD = [31, 35, 38, 42, 47, 50, 56, 61, 70, 85]       # 排行榜：以前的人完工用了几步
+
+
+def new_game():
+    g = make_map(ISLAND)
+    g[3][7] = '.'
+    return {'grid': g, 'me': (7, 3), 'face': (1, 0), 'mob': (12, 6), 'turn': 0,
+            'bag': ht_new(), 'undo': [], 'msg': '', 'won': False}
+
+
+def mob_step(st):
+    """团团用广度优先朝你走一步；每 3 步才动一次，追上了就抱走一样最多的东西，回家睡觉"""
+    if st['turn'] % 3:
+        return
+    path = bfs_path(st['grid'], st['mob'], st['me'])
+    if path and len(path) > 1:
+        st['mob'] = path[1]
+    if st['mob'] == st['me']:
+        best, most = None, 0
+        for s in st['bag']['slots']:
+            for k, v in s:
+                if v > most and k not in GOAL:
+                    best, most = k, v
+        if best:
+            ht_put(st['bag'], best, most - 1)
+            st['msg'] = f'团团抱走了一个{best}，跑回家了'
+        st['mob'] = (12, 6)
+
+
+def can_make(st, item):
+    need = raw(item)                      # 第 9 步：后序遍历算原料
+    return all(ht_get(st['bag'], k) >= n for k, n in need.items()), need
+
+
+def act(st, cmd):
+    st['msg'] = ''
+    words = cmd.split()
+    if not words:
+        return
+    c = words[0]
+    g = st['grid']
+    x, y = st['me']
+    if c in DIRS:
+        dx, dy = DIRS[c]
+        st['face'] = (dx, dy)
+        nx, ny = x + dx, y + dy
+        if g[ny][nx] in '.=' and (nx, ny) != st['mob']:
+            st['me'] = (nx, ny)
+        st['turn'] = st['turn'] + 1
+        mob_step(st)
+    elif c == 'x':                         # 挖面前那一格
+        fx, fy = x + st['face'][0], y + st['face'][1]
+        t = g[fy][fx]
+        if t in DIG:
+            g[fy][fx] = '.'
+            ht_put(st['bag'], DIG[t], ht_get(st['bag'], DIG[t]) + 1)
+            st['undo'].append((fx, fy, t))      # 第 4 步：撤销栈
+            st['msg'] = f'挖到一个{DIG[t]}'
+        else:
+            st['msg'] = '面前没有能挖的'
+    elif c == 'z':
+        if st['undo']:
+            fx, fy, t = st['undo'].pop()
+            g[fy][fx] = t
+            ht_put(st['bag'], DIG[t], max(0, ht_get(st['bag'], DIG[t]) - 1))
+            st['msg'] = '撤销了一次挖'
+    elif c == 'c' and len(words) > 1:
+        item = words[1]
+        ok, need = can_make(st, item)
+        if item not in RECIPES:
+            st['msg'] = f'没有{item}的配方'
+        elif ok:
+            for k, n in need.items():
+                ht_put(st['bag'], k, ht_get(st['bag'], k) - n)
+            ht_put(st['bag'], item, ht_get(st['bag'], item) + 1)
+            st['undo'].clear()
+            st['msg'] = f'造好了{item}！顺序是：' + ' → '.join(craft_order(item))   # 第 20 步
+        else:
+            st['msg'] = f'造{item}要：' + '、'.join(f'{k}{n}' for k, n in need.items())
+    if all(ht_get(st['bag'], k) > 0 for k in GOAL):
+        st['won'] = True
+
+
+def screen(st):
+    g = [row[:] for row in st['grid']]
+    mx, my = st['mob']
+    g[my][mx] = 'o'
+    x, y = st['me']
+    g[y][x] = '@'
+    show(g)
+    items = [f'{k}{v}' for s in st['bag']['slots'] for k, v in s if v]
+    print(f"第 {st['turn']} 步  背包：{' '.join(items) or '空'}  {st['msg']}")
+
+
+def finish(st):
+    r = rank(BOARD, st['turn'])           # 第 24 步：二分查名次
+    BOARD.insert(r, st['turn'])
+    print(f"完工！用了 {st['turn']} 步，排行榜第 {r + 1} 名：{BOARD}")
+
+
+def play():
+    st = new_game()
+    print('目标：造一把镐和一盏灯。w a s d 走，x 挖面前一格，z 撤销，c 镐 / c 灯 造东西，q 不玩了')
+    while not st['won']:
+        screen(st)
+        try:
+            cmd = input('> ').strip()
+        except EOFError:
+            return
+        if cmd == 'q':
+            return
+        act(st, cmd)
+    screen(st)
+    finish(st)
+
+
+SCRIPT = ['a', 'a', 'x', 'a', 'x', 'w', 'x', 'w', 'w', 'd', 'x', 'd', 'x',
+          'd', 'd', 'd', 'x', 'd', 'x', 'c 镐', 'c 灯']
+
+
+def demo():
+    if input('自己玩吗？(y/n) ').strip() == 'y':
+        play()
+        return
+    st = new_game()
+    for cmd in SCRIPT:
+        act(st, cmd)
+        if st['msg']:
+            print(f"> {cmd:4} {st['msg']}")
+    screen(st)
+    if st['won']:
+        finish(st)
+
 #>> 0
 if __name__ == '__main__':
     demo()

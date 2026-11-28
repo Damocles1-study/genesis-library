@@ -1,0 +1,187 @@
+<section class="chap" id="c25" data-vol="卷八 · 排 · 简单排序">
+  <div class="vol-h">
+    <div class="k">卷八</div>
+    <h2>排</h2>
+    <p>把一堆东西排整齐，是电脑最常做的事之一。先看三种人人都会想到的办法，再看两种“分而治之”的快办法，最后看两种根本不用比大小的办法。</p>
+  </div>
+  <div class="chead">
+    <div class="big">排</div>
+    <div>
+      <div class="no">卷八 · 第二十五章</div>
+      <h2>简单排序</h2>
+      <dl><dt>讲什么</dt><dd>像整理扑克牌一样插入；大的往后冒泡；每次挑最小的放前面；希尔排序：先远后近；比了几次、挪了几次；两个一样大的会不会换位置（稳定）</dd><dt>装置</dt><dd>四种简单排序</dd></dl>
+      <div class="crs" data-c="结构"></div>
+      <div class="lvs"><a data-l="1" href="#c25-1">第一层 · 30 分钟</a><a data-l="2" href="#c25-2">第二层 · 55 分钟</a><a data-l="3" href="#c25-3">第三层 · 15 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>排行榜要从少到多排。我打牌的时候，每摸一张就插到手里合适的地方。</span></div>
+    <div class="l"><i class="j">舅</i><span>这就是插入排序。你天天都在用，只是没起名字。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>说出插入、冒泡、选择三种排序各怎样做，手排一组数。</li>
+      <li><span class="lg lg1">一</span>说出什么是“稳定”：一样大的两个，排完以后先后不变。</li>
+      <li><span class="lg lg2">二</span>写出直接插入、折半插入、希尔、冒泡、简单选择排序，写出每一趟的结果；记住它们的复杂度和稳定性。</li>
+      <li><span class="lg lg2">二</span>说出哪种排序每一趟都能把一个元素放到最终位置、哪种在数据基本有序时最快。</li>
+      <li><span class="lg lg3">三</span>说出为什么真实的排序函数在小数组上改用插入排序；希尔排序的间隔序列。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c25-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：数组（第二章）、两层循环（第一章）</span><span class="tm">约 30 分钟</span></div>
+    <div class="lyb">
+      <h3>插入：整理扑克牌</h3>
+      <p>手里的牌已经排好了。摸到一张新牌，从右往左看，比它大的都往右挪一格，直到碰到不比它大的，把新牌放进空出来的位置。每张牌都这样做一遍，整手牌就排好了。这叫<b>插入排序</b>。</p>
+      <p>如果牌本来就差不多排好了，每张新牌几乎不用挪，插入排序就特别快。</p>
+      <h3>冒泡：大的往后冒</h3>
+      <p>从左往右，每两个挨着的比一比，左边的大就交换。走完一趟，最大的那个就像水里的气泡一样“冒”到了最后。再走一趟，第二大的冒到倒数第二……一趟都没交换，就说明已经排好了，可以停。这叫<b>冒泡排序</b>。</p>
+      <h3>选择：每次挑最小的</h3>
+      <p>从所有的里挑出最小的，放到第 1 个位置；从剩下的里挑最小的，放到第 2 个位置……这叫<b>选择排序</b>。它不管数据长什么样，每一趟都要把剩下的全看一遍。</p>
+      <div class="fig" id="sort1Fig">
+        <div class="fig-label">装置 · 第二十五章</div>
+        <h4>四种简单排序</h4>
+        <p class="how">选一种排序和一种数据，点“走一步”或“自己跑”。黄色是正在比的两个，红色是被挪动的，绿色是已经排在最终位置的。看看各比了多少次、挪了多少次。“希尔”是第二层的。</p>
+        <div class="btns" data-a></div>
+        <div class="btns" data-d></div>
+        <div class="bars"></div>
+        <div class="btns"><button class="btn pri" data-x="s">走一步</button><button class="btn" data-x="run">自己跑 / 停</button><button class="btn" data-x="r">换一组数</button></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+      <h3>稳定不稳定</h3>
+      <p>排行榜上，豆子和小米都是 35 步，豆子先完工，排在小米前面。排完以后，豆子还在小米前面吗？如果一样大的两个，<b>排完以后先后顺序不变</b>，这种排序就叫<b>稳定</b>的。</p>
+      <p>插入和冒泡是稳定的：它们只在“左边比右边大”的时候才交换，一样大的不换。选择排序不稳定：它把最小的直接换到前面，可能把一个一样大的从前面换到后面去了。主线第 25 步里，选择排序就把豆子和小米的先后换了。</p>
+      <div class="mc">
+        <h5>为什么要稳定</h5>
+        <p>在表格软件里，先按“名字”排一次，再按“分数”排一次：如果第二次排序是稳定的，分数一样的人仍然按名字排着。很多时候我们要按好几个条件排，稳定的排序让这件事变得简单。</p>
+      </div>
+      <div class="try">
+        <div class="th"><b>主线第 25 步：排行榜</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+          <p>下载本章末尾“主线 · 第 25 步”的完整文件运行：七个人的成绩分别用插入、冒泡、选择排一遍，打出结果和比较次数。插入只比了 15 次，冒泡和选择都比了 21 次；选择排序把两个 35 的先后换了。</p>
+        </div>
+      </div>
+      <div class="task" data-id="tree-t25a">
+        <div class="th"><b>扑克牌排序比赛</b></div>
+        <div class="tb"><p>拿 8 张扑克牌打乱，用插入排序排一次，数一数你“往右挪”了几次；再打乱，用选择排序排一次，数一数你“看”了几张牌。哪一种更累？</p></div>
+      </div>
+      <div class="pass" data-id="tree-q25a">
+        <div class="qq" data-a="0"><p>整理扑克牌时“摸一张插一张”，是哪种排序？</p><ol><li>插入排序</li><li>选择排序</li><li>冒泡排序</li></ol><p class="ex">插入排序。</p></div>
+        <div class="qq" data-a="1"><p>冒泡排序走完第一趟，哪个数到了最终位置？</p><ol><li>最小的</li><li>最大的</li></ol><p class="ex">最大的冒到了最后。</p></div>
+        <div class="qq" data-a="1"><p>冒泡排序什么时候可以提前停？</p><ol><li>走完一半</li><li>一趟都没有交换</li></ol><p class="ex">没交换说明已经排好了。</p></div>
+        <div class="qq" data-a="0"><p>一样大的两个排完以后先后不变，叫？</p><ol><li>稳定</li><li>原地</li><li>快速</li></ol><p class="ex">稳定。</p></div>
+        <div class="qq" data-a="2"><p>数据已经差不多排好了，哪种最快？</p><ol><li>选择排序</li><li>冒泡和选择一样快</li><li>插入排序</li></ol><p class="ex">每张新牌几乎不用挪。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c25-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">对照 408：插入排序、交换排序（冒泡）、选择排序（简单选择）</span><span class="tm">约 55 分钟</span><span class="sum">直接插入、折半插入、希尔排序；冒泡排序的提前结束；简单选择排序；每一趟结果的手写；最好最坏和平均复杂度、空间和稳定性；“每趟确定一个元素最终位置”的判断。</span></div>
+    <div class="lyb">
+      <h3>插入类</h3>
+<pre class="code" data-k="sort.c">void insert_sort(int a[], int n) {                 /* 直接插入 */
+    for (int i = 1; i &lt; n; i++) {
+        int x = a[i], j = i - 1;
+        while (j &gt;= 0 &amp;&amp; a[j] &gt; x) { a[j + 1] = a[j]; j--; }
+        a[j + 1] = x;
+    }
+}
+void shell_sort(int a[], int n) {                  /* 希尔：对每个间隔做插入排序 */
+    for (int d = n / 2; d &gt;= 1; d /= 2)
+        for (int i = d; i &lt; n; i++) {
+            int x = a[i], j = i - d;
+            while (j &gt;= 0 &amp;&amp; a[j] &gt; x) { a[j + d] = a[j]; j -= d; }
+            a[j + d] = x;
+        }
+}</pre>
+      <ul class="plain">
+        <li><b>直接插入</b>：最好（已有序）比较 n − 1 次、O(n)；最坏（逆序）O(n²)；平均 O(n²)；稳定。适用于顺序表和链表。</li>
+        <li><b>折半插入</b>：用二分找插入位置，比较次数降到 O(n log n)，但元素移动次数不变，总体仍 O(n²)；稳定。只适用于顺序表。</li>
+        <li><b>希尔排序</b>：按间隔 d 分组，组内插入排序，d 逐步缩小到 1。时间依赖于间隔序列，n 在某个范围内约 O(n<sup>1.3</sup>)，最坏 O(n²)；<b>不稳定</b>（相同元素可能被分到不同组）；只适用于顺序表。</li>
+      </ul>
+      <h3>冒泡和简单选择</h3>
+      <ul class="plain">
+        <li><b>冒泡</b>：每趟把最大（或最小）的元素放到最终位置；某一趟没有交换就结束。最好 O(n)（一趟），最坏、平均 O(n²)；稳定。</li>
+        <li><b>简单选择</b>：比较次数总是 n(n − 1)/2，与初始序列无关；移动次数最多 3(n − 1)（每趟一次交换）；O(n²)；<b>不稳定</b>。例子：2, 2', 1，第一趟把 1 和 2 交换，得 1, 2', 2。</li>
+      </ul>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>对序列 {38, 12, 61, 27, 50, 9, 44, 33} 升序排序。（1）直接插入排序进行两趟以后的结果；（2）冒泡排序（从前往后、大的往后）第一趟以后；（3）简单选择排序第一趟以后；（4）希尔排序第一趟（d = 4）以后。</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）第一趟插入 12：12, 38；第二趟插入 61，不动：{12, 38, 61, 27, 50, 9, 44, 33}。</p>
+          <p>（2）38↔12，38 &lt; 61，61↔27，61↔50，61↔9，61↔44，61↔33：{12, 38, 27, 50, 9, 44, 33, 61}。</p>
+          <p>（3）最小的 9 和第一个 38 交换：{9, 12, 61, 27, 50, 38, 44, 33}。</p>
+          <p>（4）分组 (38, 50)、(12, 9)、(61, 44)、(27, 33)，组内排好：{38, 9, 44, 27, 50, 12, 61, 33}。</p>
+        </div></details>
+      </div>
+      <div class="tbl">
+        <table class="t">
+          <tr><th>排序</th><th>最好</th><th>平均</th><th>最坏</th><th>空间</th><th>稳定</th><th>每趟定一个最终位置</th></tr>
+          <tr><td>直接插入</td><td>O(n)</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td><td>是</td><td>否</td></tr>
+          <tr><td>折半插入</td><td>O(n log n)*</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td><td>是</td><td>否</td></tr>
+          <tr><td>希尔</td><td>—</td><td>约 O(n<sup>1.3</sup>)</td><td>O(n²)</td><td>O(1)</td><td>否</td><td>否</td></tr>
+          <tr><td>冒泡</td><td>O(n)</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td><td>是</td><td>是</td></tr>
+          <tr><td>简单选择</td><td>O(n²)</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td><td>否</td><td>是</td></tr>
+        </table>
+      </div>
+      <p class="dim" style="font-size:14px">* 折半插入的比较次数，移动仍是 O(n²)。插入排序每趟只保证前面一段有序，不保证某个元素已在最终位置（后面可能还有更小的插进来）。</p>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>数组里每个元素离它排好以后的位置最多差 k（k 远小于 n），怎样排得快？</p>
+        <details><summary>看要点</summary><div><p>插入排序：每个元素最多往前挪 k 次，O(nk)。更快：维护一个大小为 k + 1 的小根堆（第十二章），每次弹出堆顶放到结果里、再放进下一个元素，O(n log k)。</p></div></details>
+      </div>
+      <div class="pass" data-id="tree-q25b">
+        <div class="qq" data-a="2"><p>下列排序中不稳定的是？</p><ol><li>直接插入</li><li>冒泡</li><li>简单选择</li></ol><p class="ex">选择排序的远距离交换会打乱相同元素的次序。</p></div>
+        <div class="qq" data-in="28"><p>8 个元素做简单选择排序，一共比较几次？</p><p class="ex">n(n−1)/2 = 28，与初始序列无关。</p></div>
+        <div class="qq" data-a="0"><p>初始序列已经有序时，直接插入排序比较几次？</p><ol><li>n − 1</li><li>n(n−1)/2</li><li>0</li></ol><p class="ex">每个元素和前一个比一次就停。</p></div>
+        <div class="qq" data-a="1"><p>折半插入排序相比直接插入，减少了什么？</p><ol><li>移动次数</li><li>比较次数</li></ol><p class="ex">只是找位置变快，挪动一样多。</p></div>
+        <div class="qq" data-a="1"><p>希尔排序稳定吗？</p><ol><li>稳定</li><li>不稳定</li></ol><p class="ex">相同元素可能被分到不同组。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c25-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">小数组和间隔序列</span><span class="tm">约 15 分钟</span><span class="sum">为什么快速排序和 Timsort 在小段上改用插入排序；希尔 1959 年的论文和后来的间隔序列；排序网络。</span></div>
+    <div class="lyb">
+      <p><b>小数组用插入排序</b>：插入排序常数很小、顺序访问内存、对几乎有序的数据是 O(n)。所以真实的排序函数（C++ 的 introsort、Python 的 Timsort、Java 的双轴快排）在小于十几、几十个元素的小段上都改用插入排序（Timsort 用折半插入）。复杂度表上的 O(n²) 在 n = 16 时并不吃亏。</p>
+      <p><b>希尔排序</b>：希尔 1959 年提出时用的是 n/2、n/4……这个序列，最坏 O(n²)。后来人们找到更好的间隔：克努特的 1, 4, 13, 40, …（h = 3h + 1）、塞奇威克的序列（最坏 O(n<sup>4/3</sup>)）、修拉 2001 年用实验找出的 1, 4, 10, 23, 57, 132, 301, 701。希尔排序到底能有多快，至今没有完全的理论答案。</p>
+      <p><b>排序网络</b>：一组固定的“比较交换器”，不管数据是什么都按同样的顺序比较，适合做成硬件电路或在 GPU 上并行（双调排序）。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>D. L. Shell, “A High-Speed Sorting Procedure”, <i>CACM</i>, 1959。</li>
+          <li>M. Ciura, “Best Increments for the Average Case of Shellsort”, 2001。</li>
+          <li>D. E. Knuth, <i>The Art of Computer Programming</i>, Vol. 3, 5.2。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="main" data-step="25">
+    <div class="mh"><b>主线 · 第 25 步</b><span>简单排序</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给方格岛加上：<i>插入、冒泡、选择</i></p>
+      <p>七个人的成绩分别用 <code>insertion</code>、<code>bubble</code>、<code>selection</code> 排序并数比较次数：插入 15 次，冒泡、选择各 21 次；选择排序把两个 35 的先后换了。</p>
+      <div class="who1"><b>第一层</b>这一步可以先下载“到这一步的完整文件”运行，看懂演示，再读新加的那一段。想挑战就自己打。</div>
+      <div class="who2"><b>第二层</b>用 C 写这三种和希尔排序，分别在随机、几乎有序、逆序的数据上量比较次数和时间，画一张表。</div>
+    </div>
+  </div>
+  <div class="words">
+    <div data-l="1"><b>排序 <span class="en" data-say="sort">sort</span></b>按大小排整齐。</div>
+    <div data-l="1"><b>插入排序 <span class="en" data-say="insertion sort">insertion sort</span></b>摸一张插一张。</div>
+    <div data-l="1"><b>冒泡排序 <span class="en" data-say="bubble sort">bubble sort</span></b>大的往后冒。</div>
+    <div data-l="1"><b>选择排序 <span class="en" data-say="selection sort">selection sort</span></b>每次挑最小的放前面。</div>
+    <div data-l="1"><b>稳定 <span class="en" data-say="stable">stable</span></b>一样大的先后不变。</div>
+    <div data-l="2"><b>希尔排序 <span class="en" data-say="Shell sort">Shell sort</span></b>先隔得远地排，再缩小间隔。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>插入像整理牌，冒泡大的往后冒，选择每次挑最小；一样大的先后不变叫稳定。</div>
+    <div><i>第二层带走</i>三种都是 O(n²)；插入和冒泡最好 O(n)、稳定；选择比较次数固定、不稳定；冒泡和选择每趟定一个最终位置。</div>
+    <div><i>第三层带走</i>O(n²) 的插入排序是快排序的好帮手：小段交给它。</div>
+  </div>
+</section>

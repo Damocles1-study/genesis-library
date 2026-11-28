@@ -1,0 +1,220 @@
+<section class="chap" id="c6" data-vol="卷二 · 进与出 · 字符串">
+  <div class="chead">
+    <div class="big">串</div>
+    <div>
+      <div class="no">卷二 · 第六章</div>
+      <h2>字符串</h2>
+      <dl><dt>讲什么</dt><dd>一串字就是一个数组；在告示牌上找一个词：一格一格对过去；比错了能不能不从头来：KMP 和 next 数组；408 的 next 和 nextval；字符串哈希</dd><dt>装置</dt><dd>找词：笨办法和 KMP 比一比</dd></dl>
+      <div class="crs" data-c="结构"></div>
+      <div class="lvs"><a data-l="1" href="#c6-1">第一层 · 35 分钟</a><a data-l="2" href="#c6-2">第二层 · 60 分钟</a><a data-l="3" href="#c6-3">第三层 · 25 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>⌘F 一按，几万字的网页里马上就找到了那个词。它是一个字一个字比的吗？</span></div>
+    <div class="l"><i class="j">舅</i><span>最笨的办法是。不过有人想出了一个聪明的办法：比错了，不用从头再来。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>用“把词卡在告示牌下面滑着比”的办法，在一句话里找一个词，数出比了几次。</li>
+      <li><span class="lg lg1">一</span>说出 KMP 的想法：比错了的时候，已经对上的那几个字告诉我们可以往后跳多远。（大人陪着读）</li>
+      <li><span class="lg lg2">二</span>手算一个模式串的部分匹配值、408 约定的 next 数组和 nextval 数组；说出朴素匹配和 KMP 的复杂度。</li>
+      <li><span class="lg lg2">二</span>写出 KMP 的 C 代码，并解释主串指针为什么从不回退。</li>
+      <li><span class="lg lg3">三</span>说出 Rabin-Karp 的滚动哈希、Boyer-Moore 从后往前比的想法，和多个词一起找的 AC 自动机用在哪儿。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c6-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：数组（第二章）、文字是编号（《地基》第五章）</span><span class="tm">约 35 分钟</span></div>
+    <div class="lyb">
+      <h3>一串字</h3>
+      <p>一句话 <code>"the lake"</code>，在电脑里就是一排挨着的字：t、h、e、空格、l、a、k、e。每个字是一个编号（《地基》第五章），整句话是一个数组，叫<b>字符串</b>。</p>
+      <p>方格岛上立着几块告示牌。主线第 6 步要做的事：找出哪几块牌子上写着 <code>lake</code>（湖）。</p>
+
+      <h3>笨办法：滑着比</h3>
+      <p>把要找的词写在一张小纸条上，卡在告示牌那句话的最左边，一个字一个字地比：</p>
+      <ul class="plain">
+        <li>全都一样：找到了！</li>
+        <li>有一个不一样：纸条往右挪一格，<b>从纸条的第一个字重新比</b>。</li>
+        <li>纸条挪出了句子的末尾：没有这个词。</li>
+      </ul>
+      <p>这个办法一定找得到，也很好写。可是有时候它很浪费。</p>
+
+      <h3>浪费在哪儿</h3>
+      <p>在 <code>aaaaaaaaab</code> 里找 <code>aaab</code>：纸条卡在开头，a、a、a 都对上了，第四个 a 不是 b，错了。挪一格，又从头比 a、a、a……每次都要比好几个，才发现最后一个不对。</p>
+      <p>可是我们<b>明明已经知道</b>刚才那几个字都是 a。挪一格以后，纸条的前两个 a 正好对着已经比过的两个 a，根本不用再比。</p>
+      <p>1977 年，三位科学家（克努特、莫里斯、普拉特）把这个想法写成了一个办法，用他们名字的头一个字母，叫 <b>KMP</b>：</p>
+      <p class="big1">比错了的时候，看看已经对上的那一段：它的<b>结尾</b>有没有一截，正好和词的<b>开头</b>一样？有的话，把纸条挪过去，让词的开头对着那一截，接着往下比，不用从头来。</p>
+      <p>例子：词是 <code>abab</code>，已经对上了 <code>aba</code>，第四个字错了。<code>aba</code> 的结尾有一个 <code>a</code>，和词的开头 <code>a</code> 一样。所以纸条直接往右挪两格，让词开头的 a 对着那个 a，从词的第二个字 b 接着比。</p>
+      <p>每个词都可以提前算好一张表：对上了几个字以后比错了，该退回到词的第几个字接着比。这张表叫 <b>next</b>。有了它，句子里的每个字最多被比少数几次，再也不会一遍一遍从头比。</p>
+      <div class="fig" id="kmpFig">
+        <div class="fig-label">装置 · 第六章</div>
+        <h4>找词：笨办法和 KMP 比一比</h4>
+        <p class="how">上面是句子，下面是滑着比的词。绿色是对上的字，红色是比错的字，灰色是 KMP 已经知道、不用再比的字。点“走一步”，或者“走完”，看两种办法各比了多少次。</p>
+        <div class="row"><label class="dim" style="font-size:13px">句子</label><input type="text" id="kmT" value="abababcababd" style="font-family:var(--f-mono);flex:1" aria-label="句子"></div>
+        <div class="row"><label class="dim" style="font-size:13px">词　</label><input type="text" id="kmP" value="ababd" style="font-family:var(--f-mono);flex:1" aria-label="要找的词"></div>
+        <div class="btns" data-m></div>
+        <div class="kmprow" id="kmRow"></div>
+        <div class="btns"><button class="btn pri" data-x="s">走一步</button><button class="btn" data-x="all">走完</button><button class="btn" data-x="r">从头</button></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+      <div class="try">
+        <div class="th"><b>在告示牌里找词</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+<pre class="code" data-k="signs.py">signs = ['welcome to the grid island',
+         'the lake is deep, do not swim',
+         'ducks like the grass near the lake']
+
+def find(text, word):
+    for i in range(len(text) - len(word) + 1):   # 纸条卡在第 i 个字
+        k = 0
+        while k &lt; len(word) and text[i + k] == word[k]:
+            k = k + 1
+        if k == len(word):
+            return i                             # 全都对上了
+    return -1
+
+for s in signs:
+    print(find(s, 'lake'), s)</pre>
+          <p>打出 −1 的那块牌子上没有 lake。Python 自带的 <code>s.find('lake')</code> 做的是同一件事（用了更快的办法）。</p>
+        </div>
+      </div>
+      <div class="task" data-id="tree-t6a">
+        <div class="th"><b>纸条游戏</b></div>
+        <div class="tb"><p>在一张长纸条上写 <code>abaabaabab</code>，在一张短纸条上写 <code>abab</code>。用笨办法滑着比，每比一个字画一道，数一数一共比了几次。再在装置里输入同样的句子和词，看 KMP 比了几次。</p></div>
+      </div>
+      <div class="pass" data-id="tree-q6a">
+        <div class="qq" data-a="0"><p>电脑里的一句话，是怎样存的？</p><ol><li>一排挨着的字（数组）</li><li>一张图片</li></ol><p class="ex">字符串就是装着字的数组。</p></div>
+        <div class="qq" data-a="1"><p>笨办法比错了以后怎样做？</p><ol><li>纸条挪到比错的地方</li><li>纸条往右挪一格，从词的第一个字重新比</li></ol><p class="ex">挪一格，从头比。</p></div>
+        <div class="qq" data-a="0"><p>KMP 比错了以后，靠什么决定往哪儿跳？</p><ol><li>已经对上的那一段，结尾和词的开头一样的部分</li><li>随便跳</li></ol><p class="ex">已经对上的字我们都知道，不用再比。</p></div>
+        <div class="qq" data-in="next"><p>KMP 提前算好的那张表，叫什么？</p><p class="ex">next。</p></div>
+        <div class="qq" data-a="1"><p>KMP 是哪三个人名字的头一个字母？</p><ol><li>三个城市</li><li>克努特、莫里斯、普拉特</li></ol><p class="ex">Knuth、Morris、Pratt，1977 年一起发表。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c6-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">对照 408：串的模式匹配</span><span class="tm">约 60 分钟</span><span class="sum">串的存储；朴素匹配 O(nm)；前缀、后缀和部分匹配值；408 约定（下标从 1）的 next 数组和由来；nextval 的优化；KMP 的 C 代码和 O(n + m)。</span></div>
+    <div class="lyb">
+      <h3>串和朴素匹配</h3>
+      <p>串是由零个或多个字符组成的有限序列。存储方式有定长顺序存储（定长数组，超长截断）、堆分配存储（malloc 一块，按需大小）、块链存储（链表，每个结点放若干字符，最后一块不满时用特殊字符补齐）。408 的串题几乎都是模式匹配：在主串 S（长 n）里找模式串 T（长 m）第一次出现的位置。</p>
+      <p>朴素匹配：主串指针 i、模式指针 j；相等则都后移；不等则 <b>i 回退</b>到这一趟开始位置的下一个（i = i − j + 2，下标从 1），j 回到 1。最坏比较 (n − m + 1) × m 次，O(nm)；一般情况下比较次数接近 n + m。</p>
+
+      <h3>部分匹配值和 next</h3>
+      <p>一个串的<b>前缀</b>是除最后一个字符外的所有头部子串，<b>后缀</b>是除第一个字符外的所有尾部子串。<b>部分匹配值</b>（PM）是“最长的相等前后缀”的长度。对模式串的每一个前缀求部分匹配值，就得到部分匹配表。</p>
+      <p>以 T = <code>abaabc</code> 为例（位置 1—6）：</p>
+      <div class="tbl">
+        <table class="t c">
+          <tr><th>j</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+          <tr><th>T[j]</th><td>a</td><td>b</td><td>a</td><td>a</td><td>b</td><td>c</td></tr>
+          <tr><th>前 j 个字符的 PM</th><td>0</td><td>0</td><td>1</td><td>1</td><td>2</td><td>0</td></tr>
+          <tr><th>next[j]（408 约定）</th><td>0</td><td>1</td><td>1</td><td>2</td><td>2</td><td>3</td></tr>
+          <tr><th>nextval[j]</th><td>0</td><td>1</td><td>0</td><td>2</td><td>1</td><td>3</td></tr>
+        </table>
+      </div>
+      <p>next[j] 的意思：<b>在 T[j] 处失配时，下一次用 T[next[j]] 和主串的当前字符比</b>（主串指针不动）。它等于“前 j − 1 个字符的部分匹配值 + 1”：已经匹配的 j − 1 个字符里，最长相等前后缀有 k 个，就让模式的前 k 个对着主串里已经匹配的后 k 个，下一个该比的是 T[k + 1]。规定 next[1] = 0：第一个字符就失配，模式不动、主串后移一位，再从 T[1] 比。所以 408 的 next 就是把 PM 表右移一位、第一个填 0（实际计算中填 −1 再整体加 1）。</p>
+      <div class="pit"><h5>三种 next，先看清是哪一种</h5><p>① 408 和严蔚敏教材：下标从 1，next[1] = 0，如上表；② 很多 0 下标的代码（包括本书主线）：直接用部分匹配表 pm[j]，失配时 j = pm[j − 1]；③ 有的书把②整体右移，next[0] = −1。三种只差一个平移，本质相同。考试按第一种，答题前看清题目给的下标起点。</p></div>
+      <p><b>nextval</b>：若失配位置的字符 T[j] 和 T[next[j]] 相同，那跳过去以后必然再失配一次，不如直接跳得更远。规则：nextval[1] = 0；j ≥ 2 时，若 T[j] == T[next[j]]，nextval[j] = nextval[next[j]]，否则 nextval[j] = next[j]。</p>
+<pre class="code" data-k="kmp.c">/* 下标从 1：T[1..m]，S[1..n]。T[0]、S[0] 不用 */
+void get_next(const char *T, int m, int next[]) {
+    int i = 1, j = 0; next[1] = 0;
+    while (i &lt; m) {
+        if (j == 0 || T[i] == T[j]) { i++; j++; next[i] = j; }
+        else j = next[j];
+    }
+}
+int kmp(const char *S, int n, const char *T, int m, const int next[]) {
+    int i = 1, j = 1;
+    while (i &lt;= n &amp;&amp; j &lt;= m) {
+        if (j == 0 || S[i] == T[j]) { i++; j++; }
+        else j = next[j];           /* 主串指针 i 不回退 */
+    }
+    return j &gt; m ? i - m : 0;      /* 匹配成功返回位置，否则 0 */
+}</pre>
+      <p>复杂度：求 next 是 O(m)，匹配是 O(n)，合计 O(n + m)。为什么匹配是 O(n)？i 只增不减，最多增 n 次；j 每次增加都伴随 i 增加，每次 <code>j = next[j]</code> 都让 j 至少减 1，而 j 不会小于 0，所以减的次数不超过增的次数。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）求模式串 <code>aabaaab</code> 的 next 数组和 nextval 数组（408 约定）。（2）主串 <code>aabaabaaab</code>，用 KMP（用 next）匹配 <code>aabaaab</code>，第一次失配发生在主串的第几个字符、模式的第几个字符？失配后模式串的哪个字符和主串的这个字符比？</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）T = a a b a a a b（1—7）。前 j 个字符的 PM：a 0，aa 1，aab 0，aaba 1，aabaa 2，aabaaa 2，aabaaab 3。next[j] = 前 j − 1 个的 PM + 1：next = 0 1 2 1 2 3 3。nextval：j = 2，T2 = a = T[next=1] = a → nextval[1] = 0；j = 3，T3 = b ≠ T2 = a → 2；j = 4，T4 = a = T1 → 0；j = 5，T5 = a = T2 → nextval[2] = 0；j = 6，T6 = a ≠ T3 = b → 3；j = 7，next[7] = 3，T7 = b 和 T3 = b 相同 → nextval[3] = 2。nextval = 0 0 2 0 0 3 2。</p>
+          <p>（2）S = a a b a a b a a a b。前 5 个 aabaa 都匹配；S6 = b，T6 = a，失配：主串第 6 个、模式第 6 个。next[6] = 3，下一次用 T3 = b 和 S6 = b 比，相等，继续。</p>
+        </div></details>
+      </div>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>判断字符串 s2 是不是 s1 经过“循环移位”得到的（比如 "waterbottle" 和 "erbottlewat"），只许调用一次子串查找。</p>
+        <details><summary>看要点</summary><div><p>先比长度，不等直接否。相等时，s2 是 s1 的循环移位，当且仅当 s2 是 s1 + s1 的子串。用 KMP 查找，O(n)。</p></div></details>
+      </div>
+      <div class="pass" data-id="tree-q6b">
+        <div class="qq" data-in="01123|0 1 1 2 3|0,1,1,2,3"><p>模式串 <code>ababc</code> 的 next 数组（408 约定，下标从 1）是？依次写出 5 个数。</p><p class="ex">next[1] = 0；之后是“前 j−1 个字符的部分匹配值 + 1”：a 0、ab 0、aba 1、abab 2，各加 1。next = 0 1 1 2 3。</p></div>
+        <div class="qq" data-a="1"><p>KMP 匹配过程中，主串指针会回退吗？</p><ol><li>会</li><li>不会</li></ol><p class="ex">失配时只移动模式指针 j。</p></div>
+        <div class="qq" data-a="2"><p>主串长 n、模式长 m，KMP 的时间复杂度是？</p><ol><li>O(nm)</li><li>O(n log m)</li><li>O(n + m)</li></ol><p class="ex">求 next O(m)，匹配 O(n)。</p></div>
+        <div class="qq" data-a="0"><p>串 <code>aabaa</code> 的最长相等前后缀长度（部分匹配值）是？</p><ol><li>2</li><li>3</li><li>1</li></ol><p class="ex">前缀 aa 和后缀 aa 相等；aab 和 baa 不等。</p></div>
+        <div class="qq" data-a="1"><p>nextval 相对 next 的改进，解决的是什么问题？</p><ol><li>next 数组算错了</li><li>T[j] 和 T[next[j]] 相同时，跳过去必然再失配</li></ol><p class="ex">相同就直接再往前跳。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c6-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">实用的字符串算法</span><span class="tm">约 25 分钟</span><span class="sum">Rabin-Karp 的滚动哈希；Boyer-Moore 和 Horspool：从后往前比，一次跳一大截；AC 自动机：一次找很多个词；真实的 find 和 grep 用的是什么。</span></div>
+    <div class="lyb">
+      <h3>滚动哈希</h3>
+      <p>把长度为 m 的子串看成一个 b 进制的大数，对一个大素数取模，得到它的“指纹”。窗口往右滑一格时，新指纹可以由旧指纹 O(1) 算出：减去最左边那个字符的贡献，乘 b，加上新字符。先比指纹，指纹相同再逐字核对（不同的串可能撞上同一个指纹）。期望 O(n + m)，最坏 O(nm)。它的长处是能同时找很多个等长的词，以及判断两个长串里有没有相同的长片段（论文查重、文件去重）。</p>
+<pre class="code" data-k="rk.py">def rabin_karp(s, t, b=256, mod=1_000_000_007):
+    n, m = len(s), len(t)
+    if m &gt; n: return -1
+    hi = pow(b, m - 1, mod)
+    ht = hs = 0
+    for i in range(m):
+        ht = (ht * b + ord(t[i])) % mod
+        hs = (hs * b + ord(s[i])) % mod
+    for i in range(n - m + 1):
+        if hs == ht and s[i:i + m] == t: return i
+        if i + m &lt; n:
+            hs = ((hs - ord(s[i]) * hi) * b + ord(s[i + m])) % mod
+    return -1</pre>
+      <h3>从后往前比</h3>
+      <p>Boyer-Moore（1977）反过来，从模式的<b>最后一个</b>字符开始比。如果主串里对着的字符根本不在模式里，模式可以一下跳过整整 m 格。英文文本里这种情况很常见，所以平均比较次数常常<b>少于 n</b>：模式越长，跳得越远。它的简化版 Horspool 只用“坏字符”一张表，好写又快，很多 <code>grep</code> 和编辑器的查找用的是它的变种。</p>
+      <h3>一次找很多个词</h3>
+      <p>聊天过滤要在一句话里同时找几千个敏感词。一个一个用 KMP 找太慢。AC 自动机（Aho-Corasick，1975）把所有词建成一棵字典树（第八章的树），再给每个结点加上类似 next 的“失配指针”，扫一遍文本就能找出所有词的所有出现，O(文本长 + 词的总长 + 出现次数)。<code>fgrep</code> 最早就是用它实现的。</p>
+      <p>真实的库函数往往混合使用：CPython 的 <code>str.find</code> 在 3.10 以后对长模式用“双向”（Two-Way）算法，短模式用简化的 Boyer-Moore-Horspool；glibc 的 <code>memmem</code> 也用 Two-Way，它在最坏情况下也是线性的，而且只用 O(1) 额外空间。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>D. E. Knuth, J. H. Morris, V. R. Pratt, “Fast Pattern Matching in Strings”, <i>SIAM Journal on Computing</i>, 1977。</li>
+          <li>R. S. Boyer, J. S. Moore, “A Fast String Searching Algorithm”, <i>CACM</i>, 1977。</li>
+          <li>R. M. Karp, M. O. Rabin, “Efficient randomized pattern-matching algorithms”, <i>IBM J. Res. Dev.</i>, 1987。</li>
+          <li>A. V. Aho, M. J. Corasick, “Efficient String Matching: An Aid to Bibliographic Search”, <i>CACM</i>, 1975。</li>
+          <li>CPython 源码 <code>Objects/stringlib/fastsearch.h</code>。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="main" data-step="6">
+    <div class="mh"><b>主线 · 第 6 步</b><span>告示牌搜索</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给方格岛加上：<i>笨办法和 KMP</i></p>
+      <p><code>find_slow</code> 滑着比，<code>make_next</code> 算部分匹配表，<code>find_kmp</code> 比错了不从头来。demo 在一长串 a 里找 aaaaaaaaab，两种办法各比了几次。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 island.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>用 C 写 408 约定（下标从 1）的 next 和 nextval，对一千个随机短串和这里的 0 下标表互相核对；统计两种办法在随机文本上的平均比较次数。</div>
+    </div>
+  </div>
+  <div class="words">
+    <div data-l="1"><b>字符串 <span class="en" data-say="string">string</span></b>一排挨着的字。</div>
+    <div data-l="1"><b>匹配 <span class="en" data-say="match">match</span></b>在一串字里找到另一串字。</div>
+    <div data-l="1"><b>前缀和后缀 <span class="en" data-say="prefix, suffix">prefix, suffix</span></b>开头的一截和结尾的一截。</div>
+    <div data-l="2"><b>部分匹配值 <span class="en" data-say="partial match">partial match</span></b>最长的相等前后缀有几个字。</div>
+    <div data-l="2"><b>模式串 <span class="en" data-say="pattern">pattern</span></b>要找的那个串。</div>
+    <div data-l="3"><b>滚动哈希 <span class="en" data-say="rolling hash">rolling hash</span></b>窗口滑一格，指纹 O(1) 更新。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>找词就是把纸条滑着比；比错了，已经对上的字告诉你可以跳多远。</div>
+    <div><i>第二层带走</i>next[j] = 前 j−1 个字符的部分匹配值 + 1；主串指针从不回退，所以是 O(n + m)。</div>
+    <div><i>第三层带走</i>实际的查找混合使用 Horspool、Two-Way 和哈希；很多个词一起找用 AC 自动机。</div>
+  </div>
+</section>

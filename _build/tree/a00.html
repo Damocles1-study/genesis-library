@@ -1,0 +1,71 @@
+<section class="hero" id="top">
+  <div class="eyebrow">创世书房 · 一层一层 · 计算机学习系列 · 第二本</div>
+  <h1>链与树<span class="sm">东西怎样摆，事情怎样做</span></h1>
+  <div class="part">第一部 · 线</div>
+  <p class="lead">同样一千个名字，摆成一排、串成一串、分成一棵树，找起来的快慢可以差上百倍。东西怎样摆，叫<b>数据结构</b>；事情怎样做，叫<b>算法</b>。这本书把常用的几十种摆法和做法，一样一样拆开讲。</p>
+  <p class="lead">它是“一层一层”系列的第二本，站在《地基》上面：《地基》讲电脑怎样存一个数、一个格子怎样有号码、函数怎样叠盘子；这一本讲怎样把成千上万个数摆好、找快、排齐。写给两种读者：<b>小学高年级起步的初学者</b>（会一点 Python 就够了），和<b>想把基础重新打牢的计算机专业学生</b>。</p>
+</section>
+
+<section class="wide" id="howto">
+  <h3>每一节都分三层</h3>
+  <p>和《地基》一样：同一个题目，从浅到深写三遍。页眉右边的“层 一 二 三”决定默认读到哪一层（这个选择整个系列共用）。先选一下你是谁：</p>
+  <div class="who">
+    <button data-d="1"><span class="k">第一层 · 入门</span><b>我刚开始</b>会一点 Python（变量、列表、循环、函数）。每章读第一层，玩装置，做任务和闯关，再做章末的“主线”。</button>
+    <button data-d="2"><span class="k">第二层 · 本科</span><b>我在学专业课</b>要应付 408、复试和面试。第二层对照考纲，配原创典型题和面试题，主线用 C 再写一遍。</button>
+    <button data-d="3"><span class="k">第三层 · 深入</span><b>我想挖到底</b>想知道真实的程序（Python、Linux、数据库）里怎样用这些结构，以及它们是怎样被想出来的。</button>
+  </div>
+  <ul class="plain">
+    <li><b>第一层</b>：从一开始就写给四年级起步、有大人陪着的读者：句子短，一段只讲一个新东西，例子用方格岛、我的世界和小蟒；不用 C，也不用在终端里编译。</li>
+    <li><b>第二层</b>：对照考研 408 数据结构考纲和常见面试题，每章有原创的典型题和讲解，代码给 C 和 Python 两种。</li>
+    <li><b>第三层</b>：复杂度的证明、真实系统的源码和做法、这些想法是谁、怎样想出来的。</li>
+  </ul>
+</section>
+
+<section class="wide" id="route">
+  <h3>读法：两条路线</h3>
+  <div class="route">
+    <div class="r1"><b>小学生路线 · 只读第一层</b>
+      <p><b>先打底</b>（读过就跳过）：</p>
+      <ul>
+        <li>《一块一块》<a href="../block/ten.html">第十部《程》</a>：变量、判断、循环、函数、列表、字典、队列、查找排序、递归。这本书的第一层处处用到它们。</li>
+        <li>《地基》第一层的<a href="../base/">第一章（比特）</a>、<a href="../base/two.html#c12">第十二章（内存）</a>、<a href="../base/three.html#c18">第十八章（指针）</a>、<a href="../base/three.html#c20">第二十章（栈）</a>：格子有号码、纸条上写着号码、一摞盘子。</li>
+      </ul>
+      <p><b>再读这本书</b>，从第零章往下，每章只读第一层：</p>
+      <div class="chips" data-route="kid"></div>
+      <p>灰框的章，第一层有一处要多动脑（比如字符串匹配的“不从头来”），最好有大人一起读。每章这样读：读第一层 → 玩装置 → 做任务和闯关 → 做章末的“主线”。一次三四十分钟就好。</p>
+    </div>
+    <div class="r2"><b>大学生路线 · 从第二层读起</b>
+      <p><b>先打底</b>：《地基》第三部的第二层（C 的数组、指针、结构体、栈和堆）和第十六章（缓存）。这本书的 C 代码默认你会这些。</p>
+      <p><b>第一层</b>扫一眼，闯关全对就跳过；<b>第二层</b>细读，做每章的典型题和面试题；第二层的代码在 Mac 上用 clang 编译跑一遍。</p>
+      <p><b>第三层什么时候值得细看</b>：准备算法面试时，看复杂度的证明和变形题；做后端、数据库、系统方向时，看散列表、B+ 树、堆和图在真实软件里的样子；读到“为什么要这样设计”答不上来的时候。</p>
+      <p><b>主线</b>：每步的“第二层”那一行是给你的：用 C 写、加单元测试、用 git 记录、量运行时间，复杂度和面试题挂在对应的步骤上。</p>
+    </div>
+  </div>
+</section>
+
+<section class="wide" id="mainline">
+  <h3>主线：方格岛</h3>
+  <p>上一本《地基》的主线，搭了一台玩具电脑“小机”，还给它装了一块 8×8 的屏幕。这一本把屏幕放大成一座 16×10 的小岛，在上面做一个方格小游戏：你在岛上走来走去，挖石头、放沙子、倒水、填湖，后面跟着一队小鸭子；岛上有会追你的“团团”，有要修路的村子，有一棵合成配方的树，还有一张排行榜。</p>
+  <p>每一种数据结构，在游戏里都有用处：地图是二维数组，鸭子队伍是链表，撤销是栈，水流是队列，配方是树，定时事件是堆，数岛是并查集，团团找你是图上的最短路，背包是散列表，排行榜要排序和二分。每章末尾的“主线 · 第 N 步”说这一章给游戏加了什么，每一步都有可以下载运行的完整代码。</p>
+  <div class="kit" id="kitFig"></div>
+  <p class="dim" id="kitSay" style="font-size:14px"></p>
+</section>
+
+<section class="fig" id="coverFig">
+  <div class="fig-label">装置 · 封面</div>
+  <h4>先玩一玩方格岛</h4>
+  <p class="how">这是书读完时游戏的一个小样。用方向键（或下面的按钮）走；选“挖”再走向一块石头、树或沙，就把它收进背包；选“放”再朝一个方向走，就把背包里选中的东西放下；“倒水”在你脚下倒一桶水，看它一圈一圈流开；“撤销”退回上一步。每个按钮后面写着它用了哪一章的结构。</p>
+  <div class="btns" data-m></div>
+  <div class="isle" id="cvMap"></div>
+  <div class="pad"><button data-k="up" aria-label="上">↑</button><button data-k="left" aria-label="左">←</button><button data-k="down" aria-label="下">↓</button><button data-k="right" aria-label="右">→</button></div>
+  <div class="bag" id="cvBag"></div>
+  <div class="say"></div>
+</section>
+
+<section class="wide">
+  <h3>四部</h3>
+  <div class="partnav"></div>
+  <div class="achv"></div>
+  <h3>目录</h3>
+  <ol class="toc" id="toc"></ol>
+</section>

@@ -1,0 +1,203 @@
+<section class="chap" id="c5" data-vol="卷二 · 进与出 · 队列">
+  <div class="chead">
+    <div class="big">队</div>
+    <div>
+      <div class="no">卷二 · 第五章</div>
+      <h2>队列</h2>
+      <dl><dt>讲什么</dt><dd>先来先走；从队尾进、从队头出；水一圈一圈流开，就是“广度优先”；列表的 pop(0) 为什么慢；循环队列怎样判满判空；链队列；双端队列</dd><dt>装置</dt><dd>倒一桶水；循环队列</dd></dl>
+      <div class="crs" data-c="结构 系统"></div>
+      <div class="lvs"><a data-l="1" href="#c5-1">第一层 · 35 分钟</a><a data-l="2" href="#c5-2">第二层 · 55 分钟</a><a data-l="3" href="#c5-3">第三层 · 25 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>往池塘里扔一块石头，水波一圈一圈地往外走。</span></div>
+    <div class="l"><i class="j">舅</i><span>先被碰到的水先往外推，后碰到的后推。电脑模拟这件事，要排一个队。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>说出队列的规矩“先进先出”，和栈比一比。</li>
+      <li><span class="lg lg1">一</span>用队列让水在方格岛上一圈一圈流开，说出每格上的数是什么意思。</li>
+      <li><span class="lg lg2">二</span>写出循环队列的入队、出队、判空、判满和求长度；说出三种区分满和空的办法。</li>
+      <li><span class="lg lg2">二</span>判断输入受限、输出受限的双端队列能不能得到某个序列。</li>
+      <li><span class="lg lg3">三</span>说出环形缓冲区为什么常把长度取成 2 的幂；单生产者单消费者的队列为什么可以不加锁。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c5-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：栈（第四章）、Python 的列表</span><span class="tm">约 35 分钟</span></div>
+    <div class="lyb">
+      <h3>先来先走</h3>
+      <p>食堂排队：新来的人站到<b>队尾</b>，打到饭的人从<b>队头</b>离开。先来的先走。这种队伍叫<b>队列</b>（queue）。</p>
+      <ul class="plain">
+        <li><b>入队</b>：站到队尾。</li>
+        <li><b>出队</b>：从队头离开。</li>
+      </ul>
+      <p>和栈比一比：栈是一摞盘子，一头进出，<b>后进先出</b>；队列是一条队伍，一头进、另一头出，<b>先进先出</b>。</p>
+      <div class="mc">
+        <h5>你见过的队列</h5>
+        <p>《地基》<a href="../base/four.html#c26">第二十六章</a>的“先来先跑”，就是一个排队的队列。我的世界的服务器收到很多玩家的操作，也是排成队一个一个处理的。</p>
+      </div>
+
+      <h3>倒一桶水</h3>
+      <p>主线第 5 步：在方格岛的草地上倒一桶水，让它一圈一圈地流开。</p>
+      <p>办法是排一个队：</p>
+      <ol class="plain">
+        <li>倒水的那一格先变成水，排进队。</li>
+        <li>从队头拿出一格，看它上下左右四个邻居：是草地的，变成水，排到队尾。</li>
+        <li>重复第 2 步，直到队伍空了（或者流够了几圈）。</li>
+      </ol>
+      <p>因为先排进去的先往外流，离倒水点近的格子总是先变成水，远的后变成水：水就一圈一圈地流开了。这种“先把近的都看完，再看远一点的”的办法，叫<b>广度优先</b>。第三部还会用它让会动的小家伙找到你。</p>
+      <div class="fig" id="pourFig">
+        <div class="fig-label">装置 · 第五章 · 一</div>
+        <h4>倒一桶水</h4>
+        <p class="how">点一块草地倒水，再一步一步走。格子上的数，是水第几圈流到这里；虚线框是排在队里、还没往外流的格子。下面一排是队列本身，左边是队头。</p>
+        <div class="isle" id="pfMap"></div>
+        <div class="btns"><button class="btn pri" data-x="s">走一步</button><button class="btn" data-x="all">一口气流完</button><button class="btn" data-x="r">重来</button></div>
+        <div class="cells" id="pfQ"></div>
+        <div class="say"></div>
+      </div>
+      <p>格子上的数还有一个意思：从倒水点走到这一格，<b>最少要走几步</b>（只能上下左右走、只能走草地）。广度优先一圈一圈地往外找，第一次碰到某一格时，走的一定是最短的路。</p>
+
+      <h3>别用 pop(0) 排队</h3>
+      <p>用 Python 的列表当队列，入队是 <code>append</code>，出队是 <code>pop(0)</code>：拿走第 0 个。可是第二章说过，数组拿走最前面一个，后面的全都要往前挪一格。队伍有一万人，每出队一次就要挪一万次。</p>
+      <p>Python 有专门排队用的 <code>deque</code>（读作“迪克”，双端队列）：<code>popleft()</code> 从左边拿走一个，不用挪别人。</p>
+      <div class="try">
+        <div class="th"><b>用 deque 排队</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+<pre class="code" data-k="queue.py">from collections import deque
+
+q = deque()
+q.append('小灰')         # 入队
+q.append('小白')
+q.append('小黄')
+print(q.popleft())       # 出队：小灰，先来的先走
+print(q)                 # 还剩小白、小黄</pre>
+          <p>再试试：把 <code>popleft()</code> 换成 <code>pop()</code>，出来的是谁？这时它像栈还是像队列？</p>
+        </div>
+      </div>
+      <div class="task" data-id="tree-t5a">
+        <div class="th"><b>纸上倒水</b></div>
+        <div class="tb"><p>在方格纸上画一个 6 × 6 的小池塘，涂黑几格当石头。在某一格写 0，然后一圈一圈往外写 1、2、3……（只能上下左右走，不能穿过石头）。写完用装置的地图对一对你的办法：有没有哪一格被写了两个数？为什么不会？</p></div>
+      </div>
+      <div class="pass" data-id="tree-q5a">
+        <div class="qq" data-a="0"><p>队列的规矩是？</p><ol><li>先进先出</li><li>后进先出</li></ol><p class="ex">先来的先走。后进先出是栈。</p></div>
+        <div class="qq" data-a="1"><p>新来的人站到队列的哪一头？</p><ol><li>队头</li><li>队尾</li></ol><p class="ex">从队尾进，从队头出。</p></div>
+        <div class="qq" data-a="0"><p>倒水时，为什么离得近的格子先变成水？</p><ol><li>先排进队的先往外流</li><li>近的格子比较低</li></ol><p class="ex">先进先出：近的先排进去，就先往外流。</p></div>
+        <div class="qq" data-in="3"><p>水第 3 圈流到某一格，从倒水点走到这一格最少要几步？</p><p class="ex">3 步：圈数就是最少步数。</p></div>
+        <div class="qq" data-a="1"><p>Python 里排队，为什么最好用 deque 的 popleft()，而不是列表的 pop(0)？</p><ol><li>pop(0) 会报错</li><li>pop(0) 要把后面的全都往前挪</li></ol><p class="ex">列表是数组，拿走最前面要挪一串（第二章）。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c5-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">对照 408：队列；栈和队列的应用</span><span class="tm">约 55 分钟</span><span class="sum">顺序队列的假溢出；循环队列的取模、三种判满办法和长度公式；链队列；双端队列和受限的双端队列；队列在层序遍历、广度优先、缓冲区里的用处。</span></div>
+    <div class="lyb">
+      <h3>循环队列</h3>
+      <p>用数组存队列，front 指队头元素，rear 指队尾元素的下一个位置。入队 rear++，出队 front++。问题是两个指针都只往后走：前面出队空出来的位置用不上，rear 到了数组末尾就“满了”，其实前面还空着，叫<b>假溢出</b>。</p>
+      <p>办法是把数组首尾接成一个环，下标对 MaxSize 取模：</p>
+<pre class="code" data-k="cqueue.c">#define M 8
+typedef struct { int data[M]; int front, rear; } SqQueue;
+void init(SqQueue *Q) { Q-&gt;front = Q-&gt;rear = 0; }
+int  empty(SqQueue *Q) { return Q-&gt;front == Q-&gt;rear; }
+int  full(SqQueue *Q)  { return (Q-&gt;rear + 1) % M == Q-&gt;front; }   /* 牺牲一个单元 */
+int  enqueue(SqQueue *Q, int x) { if (full(Q)) return 0; Q-&gt;data[Q-&gt;rear] = x; Q-&gt;rear = (Q-&gt;rear + 1) % M; return 1; }
+int  dequeue(SqQueue *Q, int *x) { if (empty(Q)) return 0; *x = Q-&gt;data[Q-&gt;front]; Q-&gt;front = (Q-&gt;front + 1) % M; return 1; }
+int  length(SqQueue *Q) { return (Q-&gt;rear - Q-&gt;front + M) % M; }</pre>
+      <p>front == rear 既可能是空也可能是满，必须想办法区分：</p>
+      <ol class="plain">
+        <li><b>牺牲一个单元</b>（最常用）：约定“rear 的下一个是 front”就算满，最多存 M − 1 个。满：(rear + 1) % M == front；空：front == rear。</li>
+        <li><b>增设 size</b>：空 size == 0，满 size == M。</li>
+        <li><b>增设 tag</b>：最近一次是入队 tag = 1、出队 tag = 0。front == rear 时，tag == 1 是满，tag == 0 是空。</li>
+      </ol>
+      <div class="pit"><h5>rear 指哪儿</h5><p>有的题让 rear 指向<b>队尾元素本身</b>（初始 rear = M − 1、front = 0）。这时入队是先 rear = (rear + 1) % M 再存，长度是 (rear − front + 1 + M) % M。做题第一步：看清 front、rear 各指什么，用“队列里只有一个元素”的情况检验公式。</p></div>
+      <div class="fig" id="ringFig">
+        <div class="fig-label">装置 · 第五章 · 二</div>
+        <h4>循环队列</h4>
+        <p class="how">8 个格子接成一个环，用“牺牲一个单元”的办法。点入队、出队，看 front（蓝）和 rear（橙）怎样绕圈，下面算出长度和判空判满。</p>
+        <svg class="ring" viewBox="0 0 300 220" role="img" aria-label="循环队列"></svg>
+        <div class="btns"><button class="btn pri" data-x="in">入队</button><button class="btn" data-x="out">出队</button><button class="btn" data-x="r">重来</button></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+
+      <h3>链队列</h3>
+      <p>带头结点的单链表，加一个 front 指头结点、一个 rear 指最后一个结点。入队在 rear 后面接；出队删 front-&gt;next。要注意：<b>出队的正好是最后一个结点时</b>，要把 rear 改回指向头结点，否则 rear 变成悬空指针。判空：front == rear。</p>
+
+      <h3>双端队列</h3>
+      <p>两端都能进出的叫双端队列。还有两种受限的：<b>输入受限</b>（只能一端进、两端都能出）和<b>输出受限</b>（两端都能进、只能一端出）。408 常问“1, 2, 3, 4 依次进入，能不能得到某个输出序列”。做法是模拟：输出受限时，想好每个数从左还是从右进，看队头（出口那一端）的顺序；输入受限时，看每次该出的数是不是在两端之一。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）循环队列存放在数组 A[0..19] 中，采用牺牲一个单元的办法，front 指队头元素、rear 指队尾元素的下一个位置。现在 front = 17、rear = 6，队列里有几个元素？再入队 12 个元素，会发生什么？（2）元素 1, 2, 3, 4 依次进入一个<b>输出受限</b>的双端队列（两端都能进，只能从左端出），能否得到输出序列 4, 2, 1, 3？能否得到 4, 1, 3, 2？</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）(6 − 17 + 20) % 20 = 9 个。最多能存 19 个，还能入队 10 个，第 11 个入队时队满，入队失败。</p>
+          <p>（2）只能从左端出，所以 4 先出，意味着 1, 2, 3, 4 都已进去，而且 4 在最左边：4 是从左端进的。要得到 4, 2, 1, 3：队里从左到右应是 4 2 1 3。试：1 进（队：1），2 从左进（2 1），3 从右进（2 1 3），4 从左进（4 2 1 3）。可以。要得到 4, 1, 3, 2：队里从左到右应是 4 1 3 2，但 1 和 2 的相对位置：2 进来时只能在 1 的左边或右边；若 2 在 1 右边，3 要插在 1 和 2 之间，而 3 只能从两端进，不可能。所以 4, 1, 3, 2 不行。</p>
+        </div></details>
+      </div>
+      <h3>队列的用处</h3>
+      <ul class="plain">
+        <li>树的层序遍历（第九章）、图的广度优先搜索（第十七章）。</li>
+        <li>操作系统里的就绪队列、打印队列（《地基》第二十六章）；主机和外设之间的缓冲区：生产快、消费慢时先排着（《地基》第二十九章的生产者消费者）。</li>
+        <li>页面置换的先进先出算法（《地基》第二十七章）。</li>
+      </ul>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>只用两个栈实现一个队列，入队和出队的均摊复杂度是多少？</p>
+        <details><summary>看要点</summary><div><p>栈 A 管入队：push 进 A。栈 B 管出队：B 空时，把 A 里的元素全部弹出压进 B（顺序就反过来了），再从 B 弹出；B 不空就直接从 B 弹出。每个元素最多被压入 A、弹出 A、压入 B、弹出 B 各一次，所以均摊每次 O(1)，单次最坏 O(n)。反过来用两个队列实现栈，push 或 pop 有一个要 O(n)。</p></div></details>
+      </div>
+      <div class="pass" data-id="tree-q5b">
+        <div class="qq" data-a="1"><p>循环队列（数组长 M，牺牲一个单元），队满的条件是？</p><ol><li>front == rear</li><li>(rear + 1) % M == front</li><li>rear == M − 1</li></ol><p class="ex">rear 的下一个就是 front，算满。</p></div>
+        <div class="qq" data-in="5"><p>M = 10，front = 7，rear = 2（rear 指队尾元素的下一个），队列长度是？</p><p class="ex">(2 − 7 + 10) % 10 = 5。</p></div>
+        <div class="qq" data-a="0"><p>顺序队列 rear 到了数组末尾、前面却还有空位，这叫？</p><ol><li>假溢出</li><li>上溢</li><li>下溢</li></ol><p class="ex">假溢出，用循环队列解决。</p></div>
+        <div class="qq" data-a="2"><p>链队列出队时，什么情况下要修改 rear？</p><ol><li>每次都要</li><li>从不</li><li>出队的是最后一个结点时</li></ol><p class="ex">删完队列为空，rear 要指回头结点。</p></div>
+        <div class="qq" data-a="1"><p>用两个栈实现队列，出队的均摊复杂度是？</p><ol><li>O(n)</li><li>O(1)</li><li>O(log n)</li></ol><p class="ex">每个元素最多倒腾一次，均摊 O(1)。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c5-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">环形缓冲区、无锁队列</span><span class="tm">约 25 分钟</span><span class="sum">长度取 2 的幂，用按位与代替取模；单生产者单消费者为什么可以不加锁；Linux 的 kfifo；deque 的分块实现。</span></div>
+    <div class="lyb">
+      <h3>2 的幂和按位与</h3>
+      <p>环形缓冲区在操作系统和网络里到处都是：网卡收包、音频播放、日志。取模 <code>% M</code> 要做除法，比较慢。如果 M 是 2 的幂，<code>x % M</code> 等于 <code>x &amp; (M − 1)</code>（《地基》第七章的掩码），一条指令。Linux 的 <code>kfifo</code> 更进一步：in 和 out 两个计数器只增不减（无符号数自然绕回，《地基》第三章），元素个数就是 <code>in − out</code>，下标是 <code>in &amp; (M − 1)</code>。这样满和空不会混淆，也不用牺牲一个单元。</p>
+      <h3>单生产者单消费者</h3>
+      <p>如果只有一个线程往里放（只改 in）、一个线程往外拿（只改 out），两个变量各只有一个写者，就不会出现《地基》第二十九章那种“两个人同时改一个数”的竞态。只要保证“先写好数据、再更新 in”的顺序被对方看到（需要内存屏障或原子操作的 release/acquire 语义，《地基》第二十九章第三层），就可以完全不加锁。多个生产者或多个消费者时，就要用原子的比较并交换或者加锁了。</p>
+      <h3>deque 是怎样做的</h3>
+      <p>CPython 的 <code>collections.deque</code> 是一个双向链表，但每个结点不是一个元素，而是一块能放 64 个元素的数组。这样两端操作都是 O(1)，又比“一个元素一个结点”省内存、对缓存更友好。代价是按下标访问中间的元素要 O(n)。C++ 的 <code>std::deque</code> 用的是“一组固定大小的块 + 一个块指针数组”，可以 O(1) 按下标访问。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>Linux 源码 <code>include/linux/kfifo.h</code>、<code>lib/kfifo.c</code>。</li>
+          <li>CPython 源码 <code>Modules/_collectionsmodule.c</code> 开头关于块大小的注释。</li>
+          <li>L. Lamport, “Specifying Concurrent Program Modules”, 1983：单生产者单消费者环形缓冲区的经典分析。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="main" data-step="5">
+    <div class="mh"><b>主线 · 第 5 步</b><span>水流</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给方格岛加上：<i>一圈一圈流开的队列</i></p>
+      <p><code>pour</code> 用 <code>deque</code> 做队列：倒水的格子先入队，每次从队头拿一格，把它的草地邻居变成水、排到队尾，最多流 <code>rounds</code> 圈。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 island.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>用 C 的循环队列实现 <code>pour</code>。队列开多大才一定够？（提示：每一格最多入队一次。）再让它返回每一格的圈数（最短距离）。</div>
+    </div>
+  </div>
+  <div class="words">
+    <div data-l="1"><b>队列 <span class="en" data-say="queue">queue</span></b>一头进、一头出，先进先出。</div>
+    <div data-l="1"><b>入队 <span class="en" data-say="enqueue">enqueue</span></b>站到队尾；出队是 <span class="en" data-say="dequeue">dequeue</span>。</div>
+    <div data-l="1"><b>广度优先 <span class="en" data-say="breadth-first">breadth-first</span></b>先把近的都看完，再看远一点的。</div>
+    <div data-l="2"><b>循环队列 <span class="en" data-say="circular queue">circular queue</span></b>数组首尾接成环的队列。</div>
+    <div data-l="2"><b>双端队列 <span class="en" data-say="deque">deque</span></b>两端都能进出。</div>
+    <div data-l="3"><b>环形缓冲区 <span class="en" data-say="ring buffer">ring buffer</span></b>操作系统和网络里的循环队列。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>队列先来先走；水一圈一圈流开，就是广度优先；圈数就是最少步数。</div>
+    <div><i>第二层带走</i>循环队列靠取模；牺牲一个单元来区分满和空；长度 (rear − front + M) % M。</div>
+    <div><i>第三层带走</i>长度取 2 的幂，取模变按位与；一写一读的环形队列可以不加锁。</div>
+  </div>
+</section>

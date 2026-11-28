@@ -1,0 +1,265 @@
+<section class="chap" id="c2" data-vol="卷一 · 量与排 · 数组">
+  <div class="chead">
+    <div class="big">排</div>
+    <div>
+      <div class="no">卷一 · 第二章</div>
+      <h2>数组</h2>
+      <dl><dt>讲什么</dt><dd>一排挨着的格子；为什么拿第 i 个只要一步，插队却要挪一大串；把地图拉成一长排；会长大的数组；顺序表的插入删除；特殊矩阵的压缩存储</dd><dt>装置</dt><dd>插队；地图拉成一排</dd></dl>
+      <div class="crs" data-c="结构 组成"></div>
+      <div class="lvs"><a data-l="1" href="#c2-1">第一层 · 35 分钟</a><a data-l="2" href="#c2-2">第二层 · 60 分钟</a><a data-l="3" href="#c2-3">第三层 · 30 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>食堂排队，有人插到最前面，后面所有人都得往后退一步。</span></div>
+    <div class="l"><i class="j">舅</i><span>数组就是这么一支队伍。所以往数组中间插东西，又慢又讨人嫌。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>说出数组为什么拿第 i 个只要一步，往中间插一个要挪一串。</li>
+      <li><span class="lg lg1">一</span>把地图的 (x, y) 换成一长排里的第几格，再换回来。</li>
+      <li><span class="lg lg2">二</span>写出顺序表的插入、删除、按值查找，算出平均移动次数；做 408 常见的顺序表算法题。</li>
+      <li><span class="lg lg2">二</span>写出对称矩阵、三角矩阵、三对角矩阵压缩存储的下标公式；说出稀疏矩阵的三元组表。</li>
+      <li><span class="lg lg3">三</span>说出 Python 的 list 里放的是什么、怎样扩容；“结构体的数组”和“数组的结构体”为什么快慢不同。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c2-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：内存是带号码的柜子（《地基》第十二章）</span><span class="tm">约 35 分钟</span></div>
+    <div class="lyb">
+      <h3>一排挨着的格子</h3>
+      <p><b>数组</b>就是一排挨着的格子，每格放一样东西，编号从 0 开始。Python 的列表就是一种数组。</p>
+      <p>《地基》里说过，内存是一排带号码的柜子。数组就占着其中挨着的一段：第 0 格在某个号码，第 1 格紧挨着它，第 2 格再紧挨着……</p>
+
+      <h3>拿第 i 个：一步</h3>
+      <p>要拿第 i 个，电脑不用一格一格地数。它知道第 0 格在哪儿，每格多大，一算就知道：</p>
+      <p class="big1" style="text-align:center">第 i 格的位置 ＝ 第 0 格的位置 ＋ i × 每格的大小</p>
+      <p>一次乘法、一次加法，直接跳过去。所以不管数组有 10 个还是 100 万个，拿第 i 个都只要一步：常数。</p>
+
+      <h3>插队：要挪一串</h3>
+      <p>可是要往中间插一个，就麻烦了。格子是挨着的，没有空隙。要在第 2 格插一个新的，原来第 2 格以后的东西都得往后挪一格，而且要<b>从最后一个开始挪</b>，不然会把后面的东西盖掉。</p>
+      <p>插在最前面，所有东西都要挪；插在最后面，一个都不用挪。删掉中间一个也一样：后面的都要往前挪一格，把空补上。</p>
+      <div class="fig" id="arrFig">
+        <div class="fig-label">装置 · 第二章 · 一</div>
+        <h4>插队</h4>
+        <p class="how">下面是方格岛的快捷栏，一个数组。选一种操作和位置 i，点“做”，看哪些格子被碰到了（红色是被挪动的）。数一数，每种操作挪了几次。</p>
+        <div class="btns" data-m></div>
+        <label class="lab">位置 i = <b id="arIO"></b></label>
+        <input type="range" id="arI" min="0" max="7" value="2">
+        <div class="cells" id="arCells"></div>
+        <div class="btns"><button class="btn pri" data-x="go">做</button><button class="btn" data-x="reset">重来</button></div>
+        <div class="say"></div>
+      </div>
+      <div class="mc">
+        <h5>快捷栏插东西</h5>
+        <p>在我的世界里，往快捷栏放东西时，游戏只是把东西放进一个空格，不会把后面的都往后挪。因为“挪一串”太慢、又会把玩家放好的位置全打乱。数组的使用者常这样做：能放在空位或末尾，就别插到中间。</p>
+      </div>
+
+      <h3>把地图拉成一排</h3>
+      <p>方格岛是 10 行，每行 16 格。电脑的内存只是一长排，二维的地图要怎样放进去？最常见的办法是<b>一行接一行</b>：先放第 0 行的 16 格，再放第 1 行……</p>
+      <p>这样，(x, y) 那一格就是一长排里的第 <code>y × 16 + x</code> 格：先跳过 y 整行，再往右走 x 格。反过来，第 i 格就是 <code>x = i % 16</code>、<code>y = i // 16</code>（<code>%</code> 是余数，<code>//</code> 是整除）。</p>
+      <div class="fig" id="flatFig">
+        <div class="fig-label">装置 · 第二章 · 二</div>
+        <h4>地图拉成一排</h4>
+        <p class="how">点地图上的一格，看它在下面那一长排里是第几格；也可以在长排里拖动，看它对应地图上的哪一格。</p>
+        <div class="isle" id="flMap"></div>
+        <label class="lab">一长排里的第 i 格：<b id="flIO"></b></label>
+        <input type="range" id="flI" min="0" max="159" value="55">
+        <div class="say"></div>
+      </div>
+      <div class="try">
+        <div class="th"><b>在 Python 里数挪了几次</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+<pre class="code" data-k="insert.py">bar = ['石', '沙', '木', '草', '花']
+moves = 0
+
+def insert(i, item):
+    global moves
+    bar.append(None)                 # 先在最后加一个空位
+    k = len(bar) - 1
+    while k &gt; i:                     # 从后往前挪
+        bar[k] = bar[k - 1]
+        moves = moves + 1
+        k = k - 1
+    bar[i] = item
+
+insert(0, '鸭')
+print(bar, '挪了', moves, '次')</pre>
+          <p>改成 <code>insert(5, '鸭')</code>（插到最后）再试，挪了几次？Python 自带的 <code>bar.insert(0, '鸭')</code> 做的也是这件事，只是你看不见。</p>
+        </div>
+      </div>
+      <div class="task" data-id="tree-t2a">
+        <div class="th"><b>排队换位置</b></div>
+        <div class="tb"><p>请五个家人（或五个玩偶）排成一排，从 0 号到 4 号。新来一个人要插到 1 号的位置：指挥大家从最后一个开始，每人往后挪一步。数一数挪了几次。如果从前面开始挪，会发生什么？</p></div>
+      </div>
+      <div class="pass" data-id="tree-q2a">
+        <div class="qq" data-a="0"><p>数组的格子在内存里是怎样放的？</p><ol><li>挨着放</li><li>随便放</li></ol><p class="ex">挨着放，所以能一下算出第 i 格在哪儿。</p></div>
+        <div class="qq" data-a="0"><p>数组有 100 万个，拿第 i 个要几步？</p><ol><li>一步</li><li>i 步</li><li>100 万步</li></ol><p class="ex">一步：位置 = 开头 + i × 每格大小。</p></div>
+        <div class="qq" data-a="1"><p>往数组最前面插一个，要挪多少个？</p><ol><li>一个都不用</li><li>所有的都要往后挪</li></ol><p class="ex">所有的都要挪；插在最后面才一个都不用挪。</p></div>
+        <div class="qq" data-a="1"><p>往中间插的时候，从哪个开始挪？</p><ol><li>从前面开始</li><li>从最后一个开始</li></ol><p class="ex">从最后一个开始，不然会把后面的东西盖掉。</p></div>
+        <div class="qq" data-in="55"><p>方格岛每行 16 格，(x=7, y=3) 是一长排里的第几格？</p><p class="ex">3 × 16 + 7 = 55。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c2-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">对照 408：线性表的顺序表示；数组和特殊矩阵</span><span class="tm">约 60 分钟</span><span class="sum">线性表的定义和基本操作；顺序表的静态和动态分配；插入、删除的平均移动次数；三道经典算法题的双指针写法；按行、按列存储的地址公式；对称、三角、三对角矩阵的压缩；稀疏矩阵的三元组。</span></div>
+    <div class="lyb">
+      <h3>线性表和顺序表</h3>
+      <p><b>线性表</b>是 n（≥ 0）个相同类型数据元素的有限序列。除第一个元素外每个元素有唯一的直接前驱，除最后一个外每个有唯一的直接后继。注意 408 的约定：线性表的位序从 <b>1</b> 开始，数组下标从 0 开始，写代码时别差一位。</p>
+      <p>用顺序存储实现的线性表叫<b>顺序表</b>：</p>
+<pre class="code" data-k="sqlist.c">#define MAXSIZE 100
+typedef struct {
+    int data[MAXSIZE];   /* 静态分配：大小编译时定死 */
+    int length;
+} SqList;
+
+typedef struct {
+    int *data;           /* 动态分配：用 malloc 申请，满了可以 realloc 换一块更大的 */
+    int capacity, length;
+} SeqList;</pre>
+      <p>动态分配仍然是顺序存储：换大以后元素还是连续的，只是整体搬到了一块新地方（《地基》第二十一章的堆）。</p>
+
+      <h3>插入和删除</h3>
+<pre class="code" data-k="sqlist.c">/* 在第 i 个位置（1 ≤ i ≤ length+1）插入 e */
+int insert(SqList *L, int i, int e) {
+    if (i &lt; 1 || i &gt; L-&gt;length + 1 || L-&gt;length &gt;= MAXSIZE) return 0;
+    for (int j = L-&gt;length; j &gt;= i; j--)    /* 从最后一个往后挪 */
+        L-&gt;data[j] = L-&gt;data[j - 1];
+    L-&gt;data[i - 1] = e;
+    L-&gt;length++;
+    return 1;
+}
+/* 删除第 i 个（1 ≤ i ≤ length），用 *e 带回 */
+int delete(SqList *L, int i, int *e) {
+    if (i &lt; 1 || i &gt; L-&gt;length) return 0;
+    *e = L-&gt;data[i - 1];
+    for (int j = i; j &lt; L-&gt;length; j++)     /* 后面的往前挪 */
+        L-&gt;data[j - 1] = L-&gt;data[j];
+    L-&gt;length--;
+    return 1;
+}</pre>
+      <p>在第 i 个位置插入要移动 n − i + 1 个元素。插入位置有 n + 1 种，等概率时平均移动 <b>n/2</b> 次；删除第 i 个移动 n − i 个，n 种位置，平均 <b>(n − 1)/2</b> 次。两者都是 O(n)。按位置取值 O(1)（随机存取），按值查找平均 (n + 1)/2 次比较，O(n)。</p>
+
+      <h3>三道经典题：双指针</h3>
+      <p>顺序表的算法题，很多都可以用“一个读、一个写”的两个下标在一遍之内做完，时间 O(n)、空间 O(1)。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）删除顺序表中所有值在 [s, t] 之间的元素，要求时间 O(n)、空间 O(1)。（2）把数组 A[0..n−1] 循环右移 k 位（0 &lt; k &lt; n），空间 O(1)。（3）两个升序数组 A、B 各有 n 个数，找出合并以后的第 n 小的数（下中位数），要求尽量快。</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）读指针 i 从头走到尾，写指针 k 记“留下的有几个”：A[i] 不在 [s, t] 内就 <code>A[k++] = A[i]</code>，最后 length = k。每个元素只看一次。</p>
+<pre class="code" data-k="del.c">int k = 0;
+for (int i = 0; i &lt; L-&gt;length; i++)
+    if (L-&gt;data[i] &lt; s || L-&gt;data[i] &gt; t) L-&gt;data[k++] = L-&gt;data[i];
+L-&gt;length = k;</pre>
+          <p>（2）三次逆置：先整体逆置，再分别逆置前 k 个和后 n − k 个。例如 1 2 3 4 5 右移 2：整体逆置 5 4 3 2 1，前 2 个逆置 4 5，后 3 个逆置 1 2 3，得 4 5 1 2 3。每次逆置是首尾两个下标往中间走、交换，总共约 n 次交换，O(n) 时间、O(1) 空间。（左移 k 位就是右移 n − k 位。）</p>
+          <p>（3）O(n) 的做法：两个指针像合并一样往前走 n 步。更快的做法是二分：比较 A 和 B 的中位数 a、b；若 a = b 即为所求；若 a &lt; b，答案不可能在 A 的前半段和 B 的后半段，各舍去相同的个数，规模减半，O(log n)。写对舍去时奇偶长度的处理是这题的难点：保证两边舍去的个数相等。</p>
+        </div></details>
+      </div>
+
+      <h3>数组的地址公式</h3>
+      <p>二维数组 A[0..m−1][0..n−1]，每个元素占 L 个字节，起始地址 LOC：</p>
+      <ul class="plain">
+        <li><b>按行优先</b>（C、Python 的二维列表的“逻辑顺序”）：LOC(i, j) = LOC + (i × n + j) × L。</li>
+        <li><b>按列优先</b>（Fortran、MATLAB）：LOC(i, j) = LOC + (j × m + i) × L。</li>
+      </ul>
+      <div class="pit"><h5>下标从几开始</h5><p>题目里的数组常从 1 开始（A[1..m][1..n]），公式要写成 (i − 1) × n + (j − 1)。先看清题目的下界，再套公式；算完用 A[1][1] 和最后一个元素检验一下。</p></div>
+
+      <h3>特殊矩阵的压缩存储</h3>
+      <p>有些矩阵有一半是重复的或者是 0，没必要全存。把它们压进一个一维数组 B，关键是写出 a<sub>ij</sub> 在 B 里的下标 k。下面都设矩阵 n 阶、下标从 1 开始、B 的下标从 0 开始、按行优先存：</p>
+      <div class="tbl">
+        <table class="t">
+          <tr><th>矩阵</th><th>存哪些</th><th>元素个数</th><th>a<sub>ij</sub> 的下标 k</th></tr>
+          <tr><td>对称矩阵（a<sub>ij</sub> = a<sub>ji</sub>）</td><td>下三角（含对角线）</td><td>n(n+1)/2</td><td>i ≥ j 时 k = i(i−1)/2 + j − 1；i &lt; j 时交换 i、j</td></tr>
+          <tr><td>下三角矩阵（上方全是常数 c）</td><td>下三角 + 最后一格放 c</td><td>n(n+1)/2 + 1</td><td>i ≥ j 时同上；i &lt; j 时 k = n(n+1)/2</td></tr>
+          <tr><td>上三角矩阵（下方全是 c）</td><td>上三角 + 最后一格放 c</td><td>n(n+1)/2 + 1</td><td>i ≤ j 时 k = (i−1)(2n−i+2)/2 + j − i；i &gt; j 时 k = n(n+1)/2</td></tr>
+          <tr><td>三对角矩阵（|i − j| ≤ 1 才非零）</td><td>三条对角线</td><td>3n − 2</td><td>k = 2i + j − 3</td></tr>
+        </table>
+      </div>
+      <p>不要死背：下三角“第 i 行前面有 1 + 2 + … + (i − 1) 个元素，再往右数 j − 1 个”；上三角“第 i 行前面有 n + (n−1) + … + (n−i+2) 个元素，再往右数 j − i 个”；三对角“第 i 行前面有 3(i−1) − 1 个，再往右数 j − i + 1 个”。每次推一遍，再拿 a<sub>11</sub>、a<sub>nn</sub> 检验。</p>
+      <p><b>稀疏矩阵</b>：非零元素很少且没有规律，用<b>三元组表</b>（行, 列, 值）按行优先存非零元素，再记上矩阵的行数和列数；也可以用十字链表。三元组表失去了随机存取的能力。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）10 阶对称矩阵 A（下标从 1 开始）按行优先压缩存储下三角到 B[0..54]，a<sub>3,7</sub> 存在 B 的第几个位置？（2）8 阶三对角矩阵按行优先压缩到 B[0..21]，B[11] 存的是哪个元素？</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）a<sub>3,7</sub> = a<sub>7,3</sub>，i = 7、j = 3：k = 7 × 6 / 2 + 3 − 1 = 23。</p>
+          <p>（2）k = 2i + j − 3 = 11，且 |i − j| ≤ 1。试 i = 5：j = 11 + 3 − 10 = 4，满足，是 a<sub>5,4</sub>。检验：第 1 行 2 个、第 2—4 行各 3 个，共 11 个（B[0..10]），第 5 行的第一个就是 B[11] = a<sub>5,4</sub>。</p>
+        </div></details>
+      </div>
+      <div class="pass" data-id="tree-q2b">
+        <div class="qq" data-a="1"><p>长度为 n 的顺序表，在各位置插入的概率相等，平均移动几个元素？</p><ol><li>(n−1)/2</li><li>n/2</li><li>(n+1)/2</li><li>n</li></ol><p class="ex">n+1 种插入位置，移动 n, n−1, …, 0 个，平均 n/2。删除是 (n−1)/2。</p></div>
+        <div class="qq" data-a="0"><p>顺序表最大的优点是？</p><ol><li>随机存取</li><li>插入删除快</li><li>不需要连续空间</li></ol><p class="ex">按位置 O(1) 存取。</p></div>
+        <div class="qq" data-in="1088"><p>二维数组 A[0..9][0..19] 每个元素 4 字节，按行优先，起始地址 1000，A[1][2]（行 1 列 2）的地址是？</p><p class="ex">1000 + (1 × 20 + 2) × 4 = 1088。按列优先则是 1000 + (2 × 10 + 1) × 4 = 1084。本题答案 1088。</p></div>
+        <div class="qq" data-in="28"><p>n 阶三对角矩阵压缩存储需要 3n − 2 个单元。10 阶需要几个？</p><p class="ex">3 × 10 − 2 = 28。</p></div>
+        <div class="qq" data-a="2"><p>把数组循环左移 p 位、空间 O(1)，最常用的办法是？</p><ol><li>开一个新数组</li><li>每次左移一位、重复 p 次</li><li>三次逆置</li></ol><p class="ex">三次逆置 O(n)。逐位移动是 O(pn)。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c2-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">真实语言里的数组、内存布局</span><span class="tm">约 30 分钟</span><span class="sum">Python 的 list 里放的是指针；array 模块和 NumPy 放的是数；扩容的过度分配；结构体的数组和数组的结构体；为什么连续存放在今天格外快。</span></div>
+    <div class="lyb">
+      <h3>Python 的 list 放的是什么</h3>
+      <p>CPython 的 <code>list</code> 是一块连续的数组，可里面存的不是数本身，而是<b>指向对象的指针</b>（每个 8 字节）。<code>[1, 2, 3]</code> 里的 1、2、3 是三个各自住在堆上的整数对象。所以 list 能装不同类型的东西，代价是每个元素多一次“照着纸条找过去”，而且对象散落在内存各处，缓存不友好。</p>
+      <p>要存大量同类型的数，用标准库的 <code>array.array('i')</code>，或者 NumPy 的数组：它们把数直接挨着放，省空间、算得快，NumPy 还能用 SIMD 指令一次算好几个。</p>
+      <div class="try">
+        <div class="th"><b>量一量占多少内存</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+<pre class="code" data-k="size.py">import sys, array
+n = 1_000_000
+lst = list(range(n))
+arr = array.array('i', range(n))
+print('list 本身', sys.getsizeof(lst) // 1024, 'KB（只算指针数组）')
+print('再加上一百万个 int 对象，约', (sys.getsizeof(lst) + n * sys.getsizeof(10**6)) // 1024, 'KB')
+print('array(\'i\')', sys.getsizeof(arr) // 1024, 'KB')
+a = []
+last = sys.getsizeof(a)
+for i in range(40):
+    a.append(i)
+    s = sys.getsizeof(a)
+    if s != last:
+        print('长度', len(a), '时扩容，现在', s, '字节'); last = s</pre>
+          <p>最后一段打出 list 扩容的时刻：容量不是每次加一，而是按比例多要一些（第一章第三层的均摊分析）。具体数字随 CPython 版本略有不同。</p>
+        </div>
+      </div>
+      <h3>结构体的数组，数组的结构体</h3>
+      <p>游戏里有一万只鸭子，每只有 x、y、颜色、名字。可以存成“一万个结构体排成一排”（AoS，array of structures），也可以存成“四个数组，各有一万个”（SoA，structure of arrays）。如果某个循环只更新所有鸭子的 x、y，SoA 让要用的数挨在一起，每次读进缓存的 128 字节（Apple Silicon 的缓存行，《地基》第十六章）全是有用的；AoS 会把名字、颜色也一起读进来，浪费带宽。游戏引擎和数据库的“列式存储”都是这个想法。</p>
+      <h3>为什么连续存放格外快</h3>
+      <p>现代处理器访问内存的代价，和“访问的是不是挨着的”关系极大：顺序访问能被预取器提前搬进缓存，随机跳着访问每次都可能要等上百个时钟周期。所以数组的常数常常比链表小一个数量级，这也是第三章链表的第三层要讨论的。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>CPython 源码 <code>Objects/listobject.c</code> 里的 <code>list_resize</code> 及其注释。</li>
+          <li>U. Drepper, “What Every Programmer Should Know About Memory”, 2007。</li>
+          <li>Mike Acton, “Data-Oriented Design and C++”, CppCon 2014 演讲。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="main" data-step="2">
+    <div class="mh"><b>主线 · 第 2 步</b><span>一长排格子</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给方格岛加上：<i>地图拉成一排、快捷栏插队</i></p>
+      <p><code>CELLS</code> 把地图拉成一长排，<code>at(x, y)</code> 和 <code>put(x, y, t)</code> 用 <code>y × 16 + x</code> 找格子；<code>hotbar_insert</code> 往快捷栏里插东西，数一数后面的挪了几次。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 island.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>在 C 里 <code>malloc(W * H)</code> 一块，写 <code>AT(x, y)</code> 宏；实现顺序表的 insert 和 delete，随机插入一万次，统计平均移动次数，和 n/2 比较。</div>
+    </div>
+  </div>
+  <div class="words">
+    <div data-l="1"><b>数组 <span class="en" data-say="array">array</span></b>一排挨着的格子，从 0 编号。</div>
+    <div data-l="1"><b>下标 <span class="en" data-say="index">index</span></b>格子的编号。</div>
+    <div data-l="1"><b>插入 <span class="en" data-say="insert">insert</span></b>放进中间某个位置，后面的要挪。</div>
+    <div data-l="2"><b>顺序表 <span class="en" data-say="sequential list">sequential list</span></b>用顺序存储实现的线性表。</div>
+    <div data-l="2"><b>行优先 <span class="en" data-say="row-major">row-major</span></b>二维数组一行接一行地存。</div>
+    <div data-l="2"><b>稀疏矩阵 <span class="en" data-say="sparse matrix">sparse matrix</span></b>几乎全是 0 的矩阵。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>数组挨着放：拿第 i 个一步，插队要挪一串；(x, y) 是一长排里的第 y × 宽 + x 格。</div>
+    <div><i>第二层带走</i>顺序表插入平均挪 n/2、删除 (n−1)/2；一读一写两个下标解决一大类题；压缩矩阵的公式现推现验。</div>
+    <div><i>第三层带走</i>Python 的 list 里放的是指针；要快就让要用的数挨在一起。</div>
+  </div>
+</section>

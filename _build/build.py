@@ -16,6 +16,7 @@
     python3 _build/build.py block1 block2 block3 block4      # 《一块一块》故事四部
     python3 _build/build.py block5 block6 block7 block8 block9 block10   # 《一块一块》指南六部
     python3 _build/build.py base1 base2 base3 base4   # 一层一层系列 ·《地基》四部
+    python3 _build/build.py tree1 tree2 tree3 tree4   # 一层一层系列 ·《链与树》四部
 """
 import os, re, sys
 
@@ -86,6 +87,11 @@ BOOKS = {
     'base2': ('base', 'base/two.html', ['top2.html', 'css.html', 'bar.html'] + ['b%02d.html' % i for i in range(10)]),
     'base3': ('base', 'base/three.html', ['top3.html', 'css.html', 'bar.html'] + ['c%02d.html' % i for i in range(10)]),
     'base4': ('base', 'base/four.html', ['top4.html', 'css.html', 'bar.html'] + ['d%02d.html' % i for i in range(10)]),
+    # 一层一层 · 第二本《链与树》（线 / 树 / 图 / 找），脚本拆在 _build/tree/js/*.js，主线代码在 _build/tree/main/
+    'tree1': ('tree', 'tree/index.html', ['top1.html', 'css.html', 'bar.html'] + ['a%02d.html' % i for i in range(10)]),
+    'tree2': ('tree', 'tree/two.html', ['top2.html', 'css.html', 'bar.html'] + ['b%02d.html' % i for i in range(10)]),
+    'tree3': ('tree', 'tree/three.html', ['top3.html', 'css.html', 'bar.html'] + ['c%02d.html' % i for i in range(9)]),
+    'tree4': ('tree', 'tree/four.html', ['top4.html', 'css.html', 'bar.html'] + ['d%02d.html' % i for i in range(9)]),
 }
 DRAFT = '--draft' in sys.argv  # 写到一半时跳过缺失段落和锚点检查
 

@@ -1,0 +1,257 @@
+<section class="chap" id="c3" data-vol="卷一 · 量与排 · 链表">
+  <div class="chead">
+    <div class="big">链</div>
+    <div>
+      <div class="no">卷一 · 第三章</div>
+      <h2>链表</h2>
+      <dl><dt>讲什么</dt><dd>不挨着也能排成一队：每个人手里拿一张写着下一个人在哪儿的纸条；头插、尾插、找第几个；单链表、双链表、循环链表；逆置、快慢指针、判环</dd><dt>装置</dt><dd>鸭子队伍</dd></dl>
+      <div class="crs" data-c="结构 组成"></div>
+      <div class="lvs"><a data-l="1" href="#c3-1">第一层 · 35 分钟</a><a data-l="2" href="#c3-2">第二层 · 60 分钟</a><a data-l="3" href="#c3-3">第三层 · 25 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>寻宝游戏！第一张纸条说“去书架”，书架上的纸条说“去冰箱”……</span></div>
+    <div class="l"><i class="j">舅</i><span>那一串纸条就是一个链表。宝藏可以藏在家里任何地方，不用挨着，可是你得一张一张地找过去。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>用“寻宝纸条”讲清楚链表：每个结点记着下一个在哪儿。</li>
+      <li><span class="lg lg1">一</span>说出链表和数组各自什么快、什么慢。</li>
+      <li><span class="lg lg2">二</span>用 C 写出带头结点单链表的头插、尾插、查找、插入、删除；写对双链表插入时四个指针的顺序。</li>
+      <li><span class="lg lg2">二</span>用快慢指针找中点、找倒数第 k 个、判断有没有环；原地逆置单链表。</li>
+      <li><span class="lg lg3">三</span>说出 Linux 内核的“侵入式链表”是怎样做的；为什么实际程序里链表常常比数组慢。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c3-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：指针是写着号码的纸条（《地基》第十八章）、数组（第二章）</span><span class="tm">约 35 分钟</span></div>
+    <div class="lyb">
+      <h3>寻宝纸条</h3>
+      <p>寻宝游戏里，第一张纸条写着“去书架”；书架上有第二张，写着“去冰箱”；冰箱上有第三张……最后一张写着“宝藏在这里”。</p>
+      <p>这一串纸条可以藏在家里的任何地方，不用挨着。只要每一张都写清楚<b>下一张在哪儿</b>，就能一张一张找下去。</p>
+      <p>这就是<b>链表</b>。链表里的每一个东西叫一个<b>结点</b>，每个结点里有两样：</p>
+      <ul class="plain">
+        <li>它自己的东西（比如一只鸭子的名字）；</li>
+        <li>一张纸条，写着<b>下一个结点在哪儿</b>。最后一个结点的纸条是空的，表示“到头了”。</li>
+      </ul>
+      <p>另外还要记着第一个结点在哪儿，叫<b>头</b>（head）。没有头，就不知道从哪儿开始找。</p>
+      <div class="mc">
+        <h5>纸条就是指针</h5>
+        <p>《地基》<a href="../base/three.html#c18">第十八章</a>说，写着柜子号码的纸条叫指针。链表就是一串用指针连起来的结点。在 Python 里不用写指针：一个变量“指着”一个字典或列表，就是一张纸条。</p>
+      </div>
+
+      <h3>鸭子队伍</h3>
+      <p>方格岛上，三只小鸭子跟在你身后。主线第 3 步就用链表来存这支队伍：每只鸭子记着自己站在哪儿，还拿着一张纸条，写着下一只是谁。</p>
+      <p>你往前走一步，队伍怎样跟上？不用把每只鸭子都挪一遍，只要两件事：</p>
+      <ol class="plain">
+        <li>在你刚才站的地方，加一只新的“头鸭子”，让它的纸条指着原来的第一只。</li>
+        <li>把最后一只拿走。</li>
+      </ol>
+      <p>看起来，就像整支队伍跟着你挪了一步。</p>
+
+      <h3>什么快，什么慢</h3>
+      <p><b>加到最前面很快</b>：新结点的纸条写上“原来的头”，再把头改成新结点。两步，不管链表有多长。数组插到最前面，要挪一整串（第二章）。</p>
+      <p><b>找第 k 个很慢</b>：没有“开头 + k × 大小”这种算法，因为结点不挨着。只能从头开始，照着纸条一个一个走，走 k 步。数组一步就到。</p>
+      <p><b>拿走最后一个也慢</b>：要先从头走到倒数第二个，才能把它的纸条改成空的。</p>
+      <div class="tbl">
+        <table class="t">
+          <tr><th></th><th>数组</th><th>链表</th></tr>
+          <tr><td>拿第 k 个</td><td>一步</td><td>从头走 k 步</td></tr>
+          <tr><td>加到最前面</td><td>挪一整串</td><td>两步</td></tr>
+          <tr><td>放在内存里</td><td>要一整块挨着的</td><td>哪儿有空放哪儿</td></tr>
+          <tr><td>每个东西多占的地方</td><td>没有</td><td>一张纸条</td></tr>
+        </table>
+      </div>
+      <div class="fig" id="listFig">
+        <div class="fig-label">装置 · 第三章</div>
+        <h4>鸭子队伍</h4>
+        <p class="how">每个方框是一只鸭子（一个结点），箭头是纸条。点按钮试试每种操作，看“走了几步”：从头照着纸条走一格，算一步。最后试试“倒过来”，看纸条怎样一张一张掉头。</p>
+        <div class="btns" data-m></div>
+        <div class="chain" id="lsChain"></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+      <div class="try">
+        <div class="th"><b>用字典做结点</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+<pre class="code" data-k="ducks.py">c = {'name': '小黄', 'next': None}
+b = {'name': '小白', 'next': c}
+a = {'name': '小灰', 'next': b}
+head = a
+
+node = head
+while node is not None:          # 照着纸条一个一个走
+    print(node['name'])
+    node = node['next']
+
+head = {'name': '小新', 'next': head}   # 头插：两步</pre>
+          <p>运行，打出三只鸭子的名字。在最后一行后面再加一个同样的 while 循环，看看小新是不是排到了最前面。</p>
+        </div>
+      </div>
+      <div class="task" data-id="tree-t3a">
+        <div class="th"><b>做一串寻宝纸条</b></div>
+        <div class="tb"><p>写五张纸条，藏在家里五个地方，每张写下一张在哪儿，最后一张写“宝藏”。请家人从第一张开始找。然后在第二张和第三张之间加一个新地点：你只需要改哪一张纸条？</p></div>
+      </div>
+      <div class="pass" data-id="tree-q3a">
+        <div class="qq" data-a="1"><p>链表的每个结点里，除了自己的东西，还有什么？</p><ol><li>它是第几个</li><li>下一个结点在哪儿</li><li>整个链表有多长</li></ol><p class="ex">一张纸条（指针），写着下一个在哪儿。</p></div>
+        <div class="qq" data-a="0"><p>链表的结点在内存里要不要挨着？</p><ol><li>不用</li><li>要</li></ol><p class="ex">不用，靠纸条连起来。</p></div>
+        <div class="qq" data-a="1"><p>在链表里找第 100 个，要怎样？</p><ol><li>一步算出来</li><li>从头照着纸条走 100 步</li></ol><p class="ex">结点不挨着，只能一个一个走。</p></div>
+        <div class="qq" data-a="0"><p>往最前面加一个，链表和数组谁快？</p><ol><li>链表</li><li>数组</li></ol><p class="ex">链表两步；数组要挪一整串。</p></div>
+        <div class="qq" data-in="头|head|头结点"><p>记着“第一个结点在哪儿”的那个变量，通常叫什么？</p><p class="ex">头（head）。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c3-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">对照 408：线性表的链式表示 · 面试高频</span><span class="tm">约 60 分钟</span><span class="sum">单链表结点和头结点的好处；头插法、尾插法建表；按序号和按值查找；插入删除和“偷梁换柱”的前插；双链表四个指针的顺序；循环链表、静态链表；逆置、快慢指针、判环、合并有序链表。</span></div>
+    <div class="lyb">
+      <h3>单链表</h3>
+<pre class="code" data-k="list.c">typedef struct LNode {
+    int data;
+    struct LNode *next;
+} LNode, *LinkList;</pre>
+      <p>多数教材和 408 默认<b>带头结点</b>：在第一个数据结点前面放一个不存数据的结点，头指针指着它。好处：① 在第一个位置插入删除和在别处一样，不用特殊处理；② 空表和非空表的处理统一（空表时头结点的 next 为 NULL）。判空：带头结点 <code>L-&gt;next == NULL</code>，不带头结点 <code>L == NULL</code>。</p>
+<pre class="code" data-k="list.c">/* 头插法：每个新结点插在头结点后面。读入顺序和链表顺序相反 */
+LinkList build_head(int *a, int n) {
+    LinkList L = malloc(sizeof(LNode)); L-&gt;next = NULL;
+    for (int i = 0; i &lt; n; i++) {
+        LNode *s = malloc(sizeof(LNode)); s-&gt;data = a[i];
+        s-&gt;next = L-&gt;next; L-&gt;next = s;
+    }
+    return L;
+}
+/* 尾插法：多一个尾指针 r，顺序和读入一致 */
+LinkList build_tail(int *a, int n) {
+    LinkList L = malloc(sizeof(LNode)); LNode *r = L;
+    for (int i = 0; i &lt; n; i++) {
+        LNode *s = malloc(sizeof(LNode)); s-&gt;data = a[i];
+        r-&gt;next = s; r = s;
+    }
+    r-&gt;next = NULL;
+    return L;
+}</pre>
+      <p>按序号查找、按值查找都要从头走，O(n)。<b>插入</b>：在第 i 个位置插入，先找到第 i − 1 个结点 p，再 <code>s-&gt;next = p-&gt;next; p-&gt;next = s;</code>，两句不能颠倒（颠倒了 p 原来的后继就丢了）。找位置 O(n)，真正插入 O(1)。<b>删除</b>第 i 个：找到第 i − 1 个 p，<code>q = p-&gt;next; p-&gt;next = q-&gt;next; free(q);</code>。</p>
+      <div class="pit"><h5>只给了 p 本身，要在 p 前面插入或删除 p</h5><p>单链表找不到前驱。技巧是“偷梁换柱”：在 p 后面插入新结点 s，再交换 p 和 s 的数据，效果等同于插在 p 前面，O(1)。删除 p：把后继 q 的数据抄进 p，再删掉 q。但 p 是最后一个结点时不能这样删，只能从头找前驱。</p></div>
+
+      <h3>双链表和循环链表</h3>
+      <p>双链表每个结点多一个 prior 指针，可以 O(1) 找前驱。在 p 之后插入 s，四句的一种正确顺序：</p>
+<pre class="code" data-k="dlist.c">s-&gt;next = p-&gt;next;           /* ① s 先接上 p 的后继 */
+if (p-&gt;next) p-&gt;next-&gt;prior = s;  /* ② 后继回指 s（p 是尾结点时没有后继）*/
+s-&gt;prior = p;                 /* ③ */
+p-&gt;next = s;                  /* ④ 最后才改 p-&gt;next */</pre>
+      <p>原则：在 <code>p-&gt;next</code> 被改掉之前，先用完它。删除 p 的后继 q：<code>p-&gt;next = q-&gt;next; if (q-&gt;next) q-&gt;next-&gt;prior = p; free(q);</code>。</p>
+      <p><b>循环单链表</b>：最后一个结点指回头结点，判空是 <code>L-&gt;next == L</code>。常只设尾指针 r：头是 <code>r-&gt;next</code>，这样在头和尾插入都是 O(1)。<b>循环双链表</b>：头结点的 prior 指向尾结点。</p>
+      <p><b>静态链表</b>：用数组存结点，“指针”是下一个元素的下标（游标），−1 或 0 表示结束。适合没有指针的语言，或者要预先分配好空间的场合（比如操作系统的 FAT 文件分配表，《地基》第二十八章）。</p>
+
+      <h3>快慢指针和几道高频题</h3>
+<pre class="code" data-k="list.c">/* 原地逆置（带头结点）：一个一个摘下来，头插回去 */
+void reverse(LinkList L) {
+    LNode *p = L-&gt;next, *r; L-&gt;next = NULL;
+    while (p) { r = p-&gt;next; p-&gt;next = L-&gt;next; L-&gt;next = p; p = r; }
+}
+/* 找中点：慢的走一步，快的走两步；快的到头时慢的在中间 */
+LNode *middle(LinkList L) {
+    LNode *slow = L-&gt;next, *fast = L-&gt;next;
+    while (fast &amp;&amp; fast-&gt;next) { slow = slow-&gt;next; fast = fast-&gt;next-&gt;next; }
+    return slow;
+}
+/* 判环（弗洛伊德）：有环则快慢终会相遇 */
+int has_cycle(LinkList L) {
+    LNode *slow = L, *fast = L;
+    while (fast &amp;&amp; fast-&gt;next) {
+        slow = slow-&gt;next; fast = fast-&gt;next-&gt;next;
+        if (slow == fast) return 1;
+    }
+    return 0;
+}</pre>
+      <ul class="plain">
+        <li><b>倒数第 k 个</b>：快指针先走 k 步，然后两个一起走，快的到头时慢的就是倒数第 k 个。一遍扫描。</li>
+        <li><b>环的入口</b>：相遇以后，一个指针回到头，两个都每次走一步，再次相遇处就是入口。（设头到入口 a、入口到相遇点 b、环长 c，快走的路程是慢的两倍：2(a + b) = a + b + kc，得 a = kc − b，即从相遇点再走 a 步正好回到入口。）</li>
+        <li><b>合并两个有序链表</b>：两个指针比较，小的接到结果后面，O(m + n)。</li>
+        <li><b>两个链表的第一个公共结点</b>：先求长度差 d，长的先走 d 步，再一起走到相遇。</li>
+      </ul>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>带头结点的单链表 L 有 n 个结点（n ≥ 2）。设计一个时间 O(n)、空间 O(1) 的算法，把它重排成 a₁, aₙ, a₂, aₙ₋₁, a₃, … 的顺序（第一个、最后一个、第二个、倒数第二个……交替）。</p>
+        <details><summary>看解答</summary><div>
+          <p>三步：① 用快慢指针找到中点，把链表断成前后两半；② 原地逆置后一半；③ 两个指针交替地把后一半的结点插进前一半。每一步都是 O(n)，只用了几个指针。</p>
+<pre class="code" data-k="reorder.c">void reorder(LinkList L) {
+    LNode *slow = L, *fast = L;
+    while (fast-&gt;next &amp;&amp; fast-&gt;next-&gt;next) { slow = slow-&gt;next; fast = fast-&gt;next-&gt;next; }
+    LNode *q = slow-&gt;next, *r; slow-&gt;next = NULL;   /* 断开，q 是后一半 */
+    LNode *rev = NULL;
+    while (q) { r = q-&gt;next; q-&gt;next = rev; rev = q; q = r; }   /* 逆置后一半 */
+    LNode *p = L-&gt;next;
+    while (rev) { r = rev-&gt;next; rev-&gt;next = p-&gt;next; p-&gt;next = rev; p = rev-&gt;next; rev = r; }
+}</pre>
+          <p>自己用 1 2 3 4 5 走一遍：前一半 1 2 3、后一半 4 5 逆置成 5 4，交替插入得 1 5 2 4 3。</p>
+        </div></details>
+      </div>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>只给你单链表中间某个结点的指针（不是头），怎样删除它？有什么限制？</p>
+        <details><summary>看要点</summary><div><p>把后继结点的值复制到这个结点，再删除后继（“偷梁换柱”），O(1)。限制：不能删除最后一个结点（没有后继可以抄）；如果外面还有别的指针指着那个后继结点，会出问题；结点里的数据很大、或者不能复制（比如有身份的对象）时也不合适。面试时把这些限制说出来，比只给答案加分。</p></div></details>
+      </div>
+      <div class="pass" data-id="tree-q3b">
+        <div class="qq" data-a="1"><p>带头结点的单链表 L 为空的条件是？</p><ol><li>L == NULL</li><li>L-&gt;next == NULL</li><li>L-&gt;next == L</li></ol><p class="ex">头结点还在，只是后面没有结点。L-&gt;next == L 是循环链表的判空。</p></div>
+        <div class="qq" data-a="0"><p>用头插法依次插入 1, 2, 3，链表从头到尾是？</p><ol><li>3, 2, 1</li><li>1, 2, 3</li></ol><p class="ex">头插法顺序相反。</p></div>
+        <div class="qq" data-a="2"><p>在单链表中 p 所指结点后面插入 s，正确的是？</p><ol><li>p-&gt;next = s; s-&gt;next = p-&gt;next;</li><li>s-&gt;next = p; p-&gt;next = s;</li><li>s-&gt;next = p-&gt;next; p-&gt;next = s;</li></ol><p class="ex">先让 s 接上 p 原来的后继，再改 p-&gt;next。</p></div>
+        <div class="qq" data-a="1"><p>设尾指针的循环单链表，在表头和表尾插入的时间分别是？</p><ol><li>O(1)、O(n)</li><li>O(1)、O(1)</li><li>O(n)、O(1)</li></ol><p class="ex">头就是 r-&gt;next，两处都能直接拿到。</p></div>
+        <div class="qq" data-a="0"><p>判断单链表有没有环，空间 O(1) 的办法是？</p><ol><li>快慢指针</li><li>把走过的结点放进集合</li><li>先逆置再看</li></ol><p class="ex">快慢指针（弗洛伊德判圈）。用集合要 O(n) 空间。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c3-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">真实系统里的链表</span><span class="tm">约 25 分钟</span><span class="sum">Linux 内核的侵入式链表和 container_of；为什么链表在今天的处理器上常常输给数组；什么时候链表真的好用。</span></div>
+    <div class="lyb">
+      <h3>侵入式链表</h3>
+      <p>教科书的链表是“结点里装着数据”。Linux 内核反过来：数据结构里嵌一个只有两个指针的 <code>struct list_head { struct list_head *next, *prev; }</code>。一个进程描述符可以同时挂在好几条链上（运行队列、父子关系、同一个组……），每条链用它里面不同的 <code>list_head</code> 字段。顺着链走到某个 list_head 以后，用 <code>container_of(ptr, type, member)</code> 宏减去这个字段在结构体里的偏移（<code>offsetof</code>），就得到整个结构体的地址。好处是链表代码只写一份、不用为每种数据单独 malloc 结点。</p>
+<pre class="code" data-k="container_of.c">#include &lt;stddef.h&gt;
+#define container_of(ptr, type, member) \
+    ((type *)((char *)(ptr) - offsetof(type, member)))
+
+struct list_head { struct list_head *next, *prev; };
+struct duck { int x, y; struct list_head line; };   /* 鸭子挂在队伍链上 */
+/* 给出 line 的地址 p，就能拿回整只鸭子：container_of(p, struct duck, line) */</pre>
+      <h3>链表为什么常常更慢</h3>
+      <p>复杂度表上，链表在“已知位置插入删除”上赢数组。但实际程序要先<b>找到</b>那个位置，而沿着链表走，每一步都是一次难以预测的内存访问：结点散落在堆里，预取器猜不到下一个在哪儿，每一步都可能缓存未命中（《地基》第十六章）。C++ 之父斯特劳斯特鲁普做过一个有名的演示：随机位置插入删除几万个整数，vector 比 list 快得多，因为 vector 挪动的是连续内存，比追指针便宜。</p>
+      <p>链表真正好用的场合：元素很大或不能移动（别处有指针指着它）；需要在已经拿在手里的位置 O(1) 拼接、摘除（LRU 缓存用“散列表 + 双链表”，第二十三章）；内存分配器的空闲链表（《地基》第二十一章）；无锁并发数据结构。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>Linux 源码 <code>include/linux/list.h</code>。</li>
+          <li>B. Stroustrup, “Why you should avoid Linked Lists”, GoingNative 2012 演讲。</li>
+          <li>R. W. Floyd 的判圈算法常被归于他，但最早的出处并不确定（Knuth 在《计算机程序设计艺术》第二卷提到时归于 Floyd）。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="main" data-step="3">
+    <div class="mh"><b>主线 · 第 3 步</b><span>鸭子队伍</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给方格岛加上：<i>跟着你走的链表</i></p>
+      <p>每只鸭子是一个字典结点 <code>{x, y, next}</code>。你走一步：<code>add_duck</code> 在你原来的位置头插一只新鸭子，<code>drop_last</code> 拿走最后一只，队伍就跟上了。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 island.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b><code>drop_last</code> 现在是 O(n)。用 C 写一个带尾指针的双链表，让它变成 O(1)；再想一想：为什么单链表加了尾指针还不够？</div>
+    </div>
+  </div>
+  <div class="words">
+    <div data-l="1"><b>链表 <span class="en" data-say="linked list">linked list</span></b>用纸条（指针）一个接一个串起来的一队。</div>
+    <div data-l="1"><b>结点 <span class="en" data-say="node">node</span></b>链表里的一个东西：自己的数据 + 下一个在哪儿。</div>
+    <div data-l="1"><b>头 <span class="en" data-say="head">head</span></b>记着第一个结点在哪儿。</div>
+    <div data-l="2"><b>头结点 <span class="en" data-say="dummy head">dummy head</span></b>放在最前面、不存数据的结点，让插入删除写法统一。</div>
+    <div data-l="2"><b>双链表 <span class="en" data-say="doubly linked list">doubly linked list</span></b>每个结点前后各一张纸条。</div>
+    <div data-l="2"><b>快慢指针 <span class="en" data-say="fast and slow pointers">fast and slow pointers</span></b>一个走一步、一个走两步。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>链表是一串寻宝纸条：加到最前面两步，找第 k 个要走 k 步。</div>
+    <div><i>第二层带走</i>改指针前先用完它；带头结点让边界统一；快慢指针解决中点、倒数第 k 个、判环。</div>
+    <div><i>第三层带走</i>复杂度表上赢，不等于跑得快；链表的好处在“不搬动”和“O(1) 拼接”。</div>
+  </div>
+</section>

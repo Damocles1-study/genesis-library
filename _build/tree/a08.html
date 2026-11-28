@@ -1,0 +1,214 @@
+<section class="chap" id="c7" data-vol="卷二 · 进与出 · 递归和分治">
+  <div class="chead">
+    <div class="big">递</div>
+    <div>
+      <div class="no">卷二 · 第七章</div>
+      <h2>递归和分治</h2>
+      <dl><dt>讲什么</dt><dd>自己叫自己：三条规矩；油漆桶填色；递归太深会爆栈，改成自己拿一个栈；把大问题对半分：分治；递推式和主定理；快速幂、汉诺塔</dd><dt>装置</dt><dd>油漆桶</dd></dl>
+      <div class="crs" data-c="结构 数学"></div>
+      <div class="lvs"><a data-l="1" href="#c7-1">第一层 · 35 分钟</a><a data-l="2" href="#c7-2">第二层 · 55 分钟</a><a data-l="3" href="#c7-3">第三层 · 25 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>画图软件里的油漆桶，点一下，整块地方都涂满了。它怎么知道哪儿是边？</span></div>
+    <div class="l"><i class="j">舅</i><span>它只管四件事：涂自己，再叫四个邻居“你们也照这样做”。剩下的，邻居会去叫邻居。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>说出写递归的三条规矩，用递归写出油漆桶填色。</li>
+      <li><span class="lg lg1">一</span>说出递归太深为什么会出错，并把它改成“自己拿一个栈”的写法。</li>
+      <li><span class="lg lg2">二</span>画递归树、用主定理解常见的递推式；写出快速幂和汉诺塔，算出汉诺塔的移动次数。</li>
+      <li><span class="lg lg2">二</span>把任意递归改写成用栈的非递归形式；说出尾递归是什么。</li>
+      <li><span class="lg lg3">三</span>说出主定理的来历和适用范围；举出一个分治让乘法变快的例子。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c7-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：函数、栈（《地基》第二十章、本书第四章）</span><span class="tm">约 35 分钟</span></div>
+    <div class="lyb">
+      <h3>自己叫自己</h3>
+      <p>一个函数在自己里面又叫了自己，叫<b>递归</b>。听起来会没完没了，可是只要守三条规矩，它就会好好地停下来：</p>
+      <ol class="plain">
+        <li><b>有终点</b>：有一种情况，不用再叫自己，直接给出答案。</li>
+        <li><b>每次变小</b>：每次叫自己，问题都要比原来小一点，离终点近一点。</li>
+        <li><b>相信自己</b>：写的时候，假设“小一点的问题”自己已经会做了，只管怎样用它的答案。</li>
+      </ol>
+      <div class="mc">
+        <h5>你写过的递归</h5>
+        <p>在《一块一块》<a href="../block/ten.html#c80">第八十章</a>里，你用小蟒算过阶乘、搬过汉诺塔、画过分叉的树。《地基》<a href="../base/three.html#c20">第二十章</a>说，每叫一次函数，栈上就多一个盘子。递归叠得太深，盘子会倒。</p>
+      </div>
+
+      <h3>油漆桶</h3>
+      <p>主线第 7 步：方格岛上有一个小湖，我们想用油漆桶把整个湖“涂”成沙地。规则是：从你点的那一格开始，把<b>连着的</b>所有水格都换成沙。</p>
+      <p>用递归，只要想清楚“一格”的事：</p>
+      <ul class="plain">
+        <li><b>终点</b>：这一格出了地图，或者不是水，什么也不做，回去。</li>
+        <li>否则：把这一格换成沙，然后对上、下、左、右四个邻居，各叫一次自己。</li>
+      </ul>
+<pre class="code" data-k="fill.py">def fill(grid, x, y):
+    if y &lt; 0 or y &gt;= len(grid) or x &lt; 0 or x &gt;= len(grid[0]):
+        return                    # 出了地图：终点
+    if grid[y][x] != '~':
+        return                    # 不是水：终点
+    grid[y][x] = ':'              # 涂成沙
+    fill(grid, x + 1, y)          # 相信自己：邻居们交给“自己”去涂
+    fill(grid, x - 1, y)
+    fill(grid, x, y + 1)
+    fill(grid, x, y - 1)</pre>
+      <p>为什么一定会停？每涂一格，水就少一格（每次变小），水总有涂完的时候；涂过的格子已经是沙，再叫到它时直接回去（终点）。</p>
+      <div class="fig" id="fillFig">
+        <div class="fig-label">装置 · 第七章</div>
+        <h4>油漆桶</h4>
+        <p class="how">点一格水（或草地），看油漆桶怎样一格一格涂开。格子上的数是第几个被涂的。右边的数是“现在叠了几层”：递归时就是栈上有几个盘子。换成“自己的栈”和“队列”再点一次，比比涂的顺序。</p>
+        <div class="btns" data-m></div>
+        <div class="isle" id="flMap7"></div>
+        <div class="btns"><button class="btn" data-x="fast">快一点</button><button class="btn" data-x="r">重来</button></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+
+      <h3>叠得太深</h3>
+      <p>小湖只有 6 格，递归最多叠十来层。可是在一块 200 × 200 的大草地上用油漆桶，递归会一层套一层地叠下去，叠几万层。Python 叠到一千层左右就会喊停，报 <code>RecursionError</code>。</p>
+      <p>办法是不让函数自己叫自己，而是<b>自己拿一个栈</b>（第四章），记着“还要去涂哪些格子”：</p>
+<pre class="code" data-k="fill.py">def fill_stack(grid, x, y):
+    todo = [(x, y)]               # 还要去看的格子
+    while todo:
+        x, y = todo.pop()
+        if y &lt; 0 or y &gt;= len(grid) or x &lt; 0 or x &gt;= len(grid[0]) or grid[y][x] != '~':
+            continue
+        grid[y][x] = ':'
+        todo.extend([(x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)])</pre>
+      <p>这个栈放在堆上（《地基》第二十一章），想放多少放多少，不会被一千层的限制卡住。把 <code>todo.pop()</code> 换成从队头拿（第五章的队列），就变成了一圈一圈涂开：和倒水一模一样。</p>
+
+      <h3>对半分：分治</h3>
+      <p>递归还有一种常见的用法：把一个大问题<b>分成两半</b>，两半各自用同样的办法解决，再把两个答案<b>合起来</b>。这叫<b>分治</b>（分而治之）。</p>
+      <p>例子：一摞 1000 张卷子，要找最高分。可以请两个同学，一人拿 500 张去找；他们又各自请两个同学……最后每人只拿一张，最高分就是自己。答案一层一层报上来，每层只要比一下两个数。第一章的“对半猜”，和第二十七章的归并排序，都是分治。</p>
+      <div class="try">
+        <div class="th"><b>递归和栈，各填一次</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+          <p>下载本章末尾“主线 · 第 7 步”的完整文件运行。它先用递归把小湖填成沙，再在 200 × 200 的草地上各试一次递归和自己的栈。你会看到递归报 RecursionError，自己的栈填满了 40000 格。</p>
+        </div>
+      </div>
+      <div class="task" data-id="tree-t7a">
+        <div class="th"><b>纸上的油漆桶</b></div>
+        <div class="tb"><p>在方格纸上画一个形状不规则的“湖”。从湖里一格开始，用递归的规则涂：每涂一格，写上第几个；然后按“右、左、下、上”的顺序去叫邻居（叫到的那个先涂完它能涂的，才轮到下一个邻居）。涂完以后，和装置里“递归”的顺序比一比。</p></div>
+      </div>
+      <div class="pass" data-id="tree-q7a">
+        <div class="qq" data-a="1"><p>函数在自己里面又叫了自己，叫什么？</p><ol><li>循环</li><li>递归</li><li>分治</li></ol><p class="ex">递归。分治是递归的一种用法。</p></div>
+        <div class="qq" data-a="0"><p>递归一定要有什么，才会停下来？</p><ol><li>终点：不用再叫自己的情况</li><li>很多参数</li></ol><p class="ex">没有终点就会一直叠下去。</p></div>
+        <div class="qq" data-a="2"><p>油漆桶遇到不是水的格子，怎样做？</p><ol><li>把它也涂了</li><li>报错</li><li>什么也不做，回去</li></ol><p class="ex">那是终点之一。</p></div>
+        <div class="qq" data-a="0"><p>递归叠得太深报 RecursionError，怎么办？</p><ol><li>改成自己拿一个栈</li><li>换一台快一点的电脑</li></ol><p class="ex">自己的栈放在堆上，不受递归层数限制。</p></div>
+        <div class="qq" data-a="1"><p>把大问题分成两半，各自解决，再合起来，这叫？</p><ol><li>倒水</li><li>分治</li></ol><p class="ex">分而治之。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c7-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 的递归与算法分析 · 机试和面试</span><span class="tm">约 55 分钟</span><span class="sum">递归树和递推式；主定理三种情况；汉诺塔 2ⁿ − 1；快速幂；递归改非递归的通用办法；尾递归；递归的空间复杂度。</span></div>
+    <div class="lyb">
+      <h3>递推式和递归树</h3>
+      <p>递归算法的时间，常写成 T(n) = a·T(n/b) + f(n)：分成 a 个规模为 n/b 的子问题，分和合花 f(n)。画<b>递归树</b>：根的代价 f(n)，下面 a 个孩子各 f(n/b)，树高 log<sub>b</sub>n，把每层的代价加起来。例如 T(n) = 2T(n/2) + n：每层合计 n，共 log₂n 层，总共 O(n log n)。</p>
+      <p><b>主定理</b>（简化版）：比较 f(n) 和 n<sup>log<sub>b</sub>a</sup>。</p>
+      <ol class="plain">
+        <li>f(n) 比 n<sup>log<sub>b</sub>a</sup> 小一个多项式因子：T(n) = Θ(n<sup>log<sub>b</sub>a</sup>)（叶子主导）。</li>
+        <li>两者同阶，f(n) = Θ(n<sup>log<sub>b</sub>a</sup>)：T(n) = Θ(n<sup>log<sub>b</sub>a</sup> log n)（每层一样多）。</li>
+        <li>f(n) 大一个多项式因子（且满足正则条件）：T(n) = Θ(f(n))（根主导）。</li>
+      </ol>
+      <div class="tbl">
+        <table class="t">
+          <tr><th>递推式</th><th>例子</th><th>结果</th></tr>
+          <tr><td>T(n) = T(n/2) + 1</td><td>二分查找</td><td>O(log n)</td></tr>
+          <tr><td>T(n) = 2T(n/2) + 1</td><td>分治求最大值、二叉树遍历</td><td>O(n)</td></tr>
+          <tr><td>T(n) = 2T(n/2) + n</td><td>归并排序、快排的最好情况</td><td>O(n log n)</td></tr>
+          <tr><td>T(n) = T(n−1) + n</td><td>快排的最坏情况、选择排序</td><td>O(n²)（不能用主定理，直接展开）</td></tr>
+          <tr><td>T(n) = 2T(n−1) + 1</td><td>汉诺塔</td><td>2ⁿ − 1</td></tr>
+          <tr><td>T(n) = T(n−1) + T(n−2) + 1</td><td>直接递归求斐波那契</td><td>指数级，约 1.618ⁿ</td></tr>
+        </table>
+      </div>
+      <h3>汉诺塔和快速幂</h3>
+<pre class="code" data-k="hanoi.c">void hanoi(int n, char from, char via, char to) {
+    if (n == 0) return;
+    hanoi(n - 1, from, to, via);      /* 上面 n-1 个先挪到中间 */
+    printf("%d: %c -&gt; %c\n", n, from, to);
+    hanoi(n - 1, via, from, to);      /* 再从中间挪到目标 */
+}
+long long power(long long x, int n) {  /* 快速幂：O(log n) */
+    if (n == 0) return 1;
+    long long h = power(x, n / 2);
+    return n % 2 ? h * h * x : h * h;
+}</pre>
+      <p>汉诺塔移动次数 M(n) = 2M(n−1) + 1，M(0) = 0，解得 M(n) = 2ⁿ − 1；递归深度 n，空间 O(n)。快速幂每次把指数减半，乘法 O(log n) 次。注意 <code>power</code> 只递归一次，再用 h × h；写成 <code>power(x, n/2) * power(x, n/2)</code> 会变成 T(n) = 2T(n/2) + 1 = O(n)，白费了。</p>
+      <h3>递归改非递归</h3>
+      <p>通用办法是<b>用栈模拟调用栈</b>：每个栈元素记下“参数 + 这一层做到哪一步了”（相当于返回地址）。循环：取栈顶，按它的进度做下一步；要递归就把新的一层压栈；这一层做完就弹出。油漆桶这类“各个子调用之间互不依赖、也不用汇总结果”的递归，可以直接把所有子任务压栈，像上面的 <code>fill_stack</code>。需要先算子问题再汇总的（比如后序遍历，第九章），要多记一个“进度”。</p>
+      <p><b>尾递归</b>：递归调用是函数的最后一步、返回以后什么也不做（比如 <code>return f(n−1, acc*n)</code>）。这时当前栈帧可以复用，编译器能把它变成循环（《地基》第二十章第三层）。C 编译器在优化时常做，Python 解释器不做。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）求 T(n) = 4T(n/2) + n 和 T(n) = 3T(n/3) + n 的阶。（2）下面的函数调用 f(5) 时，f 一共被调用了几次？递归的最大深度是几？</p>
+<pre class="code" data-k="f.c">int f(int n) { if (n &lt;= 1) return 1; return f(n - 1) + f(n - 2); }</pre>
+        <details><summary>看解答</summary><div>
+          <p>（1）4T(n/2) + n：n<sup>log₂4</sup> = n²，f(n) = n 小，叶子主导，Θ(n²)。3T(n/3) + n：n<sup>log₃3</sup> = n，同阶，Θ(n log n)。</p>
+          <p>（2）设 C(n) 为调用 f(n) 引起的总调用次数：C(0) = C(1) = 1，C(n) = 1 + C(n−1) + C(n−2)。C(2) = 3，C(3) = 5，C(4) = 9，C(5) = 15。最大深度：f(5) → f(4) → f(3) → f(2) → f(1)，5 层（算上 f(5) 本身）。</p>
+        </div></details>
+      </div>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>给一个二维网格，'1' 是陆地、'0' 是水，求岛屿的个数（上下左右相连的陆地算一座岛）。网格可能很大，你的递归写法有什么风险？</p>
+        <details><summary>看要点</summary><div><p>遍历每一格，遇到没访问过的陆地就计数加一，并用油漆桶（DFS 或 BFS）把整座岛标记掉，总时间 O(行 × 列)。风险：递归 DFS 在一大片陆地上深度可达 O(行 × 列)，会栈溢出；改用显式栈或队列（BFS）。另一种解法是并查集（第十四章，主线第 14 步“数岛”）。</p></div></details>
+      </div>
+      <div class="pass" data-id="tree-q7b">
+        <div class="qq" data-a="2"><p>T(n) = 2T(n/2) + n 的解是？</p><ol><li>O(n)</li><li>O(n²)</li><li>O(n log n)</li></ol><p class="ex">每层 n、共 log n 层。</p></div>
+        <div class="qq" data-in="63"><p>6 个盘子的汉诺塔，最少移动几次？</p><p class="ex">2⁶ − 1 = 63。</p></div>
+        <div class="qq" data-a="0"><p>T(n) = T(n/2) + 1 的解是？</p><ol><li>O(log n)</li><li>O(n)</li><li>O(1)</li></ol><p class="ex">二分查找。</p></div>
+        <div class="qq" data-a="1"><p>递归求 n!，空间复杂度是？</p><ol><li>O(1)</li><li>O(n)</li><li>O(log n)</li></ol><p class="ex">深度 n，每层一个栈帧。</p></div>
+        <div class="qq" data-a="1"><p>快速幂写成 <code>return power(x, n/2) * power(x, n/2);</code>（偶数时），复杂度变成？</p><ol><li>还是 O(log n)</li><li>O(n)</li><li>O(n log n)</li></ol><p class="ex">T(n) = 2T(n/2) + 1 = O(n)。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c7-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">主定理的来历、分治乘法</span><span class="tm">约 25 分钟</span><span class="sum">主定理从哪儿来、什么时候不能用；卡拉楚巴乘法：把四次乘法变成三次；Python 大整数乘法就用它；递归深度和 sys.setrecursionlimit 的风险。</span></div>
+    <div class="lyb">
+      <h3>主定理的来历和限制</h3>
+      <p>“主定理”（Master Theorem）这个名字因《算法导论》而流行，其内容来自 1980 年本特利、哈肯和萨克斯的一篇论文。它只能处理 a ≥ 1、b &gt; 1、子问题规模相等的情形；T(n) = T(n−1) + n 这种“减一”的不行，T(n) = T(n/3) + T(2n/3) + n 这种不等分的也不行（后者可以画递归树：每层不超过 n、高约 log<sub>3/2</sub>n，结果 Θ(n log n)；更一般的有 Akra-Bazzi 定理）。f(n) 和 n<sup>log<sub>b</sub>a</sup> 只差一个 log 因子的“缝隙”情形，简化版主定理也不适用。</p>
+      <h3>卡拉楚巴乘法</h3>
+      <p>小学的竖式乘法，两个 n 位数相乘要 n² 次一位乘法。1960 年，23 岁的苏联学生卡拉楚巴发现：把两个数各劈成高低两半，x = a·B + b，y = c·B + d，那么 xy = ac·B² + (ad + bc)·B + bd，而 ad + bc = (a + b)(c + d) − ac − bd。于是只要 ac、bd、(a + b)(c + d) <b>三次</b>乘法，而不是四次。T(n) = 3T(n/2) + O(n) = O(n<sup>log₂3</sup>) ≈ O(n<sup>1.585</sup>)。据说他的老师柯尔莫哥洛夫原本猜想 n² 是下界，这个结果出来以后他亲自把论文推荐发表。CPython 的大整数在位数较多时就用卡拉楚巴乘法（源码 <code>Objects/longobject.c</code> 里的 <code>k_mul</code>）。</p>
+      <h3>别随便调高递归上限</h3>
+      <p><code>sys.setrecursionlimit(100000)</code> 能让 Python 不再早早报 RecursionError，但它不会让 C 层面的栈变大：Python 函数调用会占用解释器自己的 C 栈，叠得太深时整个进程会直接段错误崩溃（新版本 CPython 对此有所改进，但仍不建议依赖）。深度可能很大时，改写成显式栈才是正路。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>J. L. Bentley, D. Haken, J. B. Saxe, “A General Method for Solving Divide-and-Conquer Recurrences”, <i>SIGACT News</i>, 1980。</li>
+          <li>A. Karatsuba, Yu. Ofman, “Multiplication of Many-Digital Numbers by Automatic Computers”, 1962（俄文原文发表于苏联科学院报告）。</li>
+          <li>《算法导论》第 4 章（分治策略和主定理）。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="main" data-step="7">
+    <div class="mh"><b>主线 · 第 7 步</b><span>油漆桶</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给方格岛加上：<i>递归填湖，和自己的栈</i></p>
+      <p><code>fill</code> 用递归把连着的水涂成沙；在 200×200 的草地上它会报 RecursionError，<code>fill_stack</code> 自己拿一个栈，填满了 40000 格。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 island.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>用 C 写递归版，用 <code>ulimit -s</code> 查栈的大小，找出多大的地图会段错误；改成显式栈；再把栈换成队列，比较两种填法的访问顺序和最大占用。</div>
+    </div>
+  </div>
+  <div class="words">
+    <div data-l="1"><b>递归 <span class="en" data-say="recursion">recursion</span></b>函数在自己里面又叫了自己。</div>
+    <div data-l="1"><b>终点 <span class="en" data-say="base case">base case</span></b>不用再叫自己、直接给答案的情况。</div>
+    <div data-l="1"><b>油漆桶 <span class="en" data-say="flood fill">flood fill</span></b>把连着的同一种格子全部换掉。</div>
+    <div data-l="1"><b>分治 <span class="en" data-say="divide and conquer">divide and conquer</span></b>分成几份，分别解决，再合起来。</div>
+    <div data-l="2"><b>递推式 <span class="en" data-say="recurrence">recurrence</span></b>用 T(更小的 n) 表示 T(n) 的式子。</div>
+    <div data-l="2"><b>尾递归 <span class="en" data-say="tail recursion">tail recursion</span></b>递归调用是最后一步。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>递归三条规矩：有终点、每次变小、相信自己；叠得太深，就自己拿一个栈。</div>
+    <div><i>第二层带走</i>画递归树，或比较 f(n) 和 n<sup>log<sub>b</sub>a</sup>；减一的递推式直接展开；任何递归都能用栈改写。</div>
+    <div><i>第三层带走</i>主定理只管等分；分治的威力在于少做一次子问题：四次乘法变三次，复杂度就降了一个台阶。</div>
+  </div>
+</section>

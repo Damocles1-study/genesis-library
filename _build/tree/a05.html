@@ -1,0 +1,227 @@
+<section class="chap" id="c4" data-vol="卷二 · 进与出 · 栈">
+  <div class="vol-h">
+    <div class="k">卷二</div>
+    <h2>进与出</h2>
+    <p>有些队伍只许从一头进出，有些只许一头进、另一头出。规矩一加，反而好用了：撤销靠一摞，水流靠一队。再看一串字怎样找得快，和一个问题怎样拆成同样的小问题。</p>
+  </div>
+  <div class="chead">
+    <div class="big">栈</div>
+    <div>
+      <div class="no">卷二 · 第四章</div>
+      <h2>栈</h2>
+      <dl><dt>讲什么</dt><dd>后进先出；撤销和重做；括号是不是配对；算式怎样一步一步算；出栈的顺序有多少种；顺序栈、共享栈、链栈</dd><dt>装置</dt><dd>一摞盘子：撤销、括号配对、出栈序列</dd></dl>
+      <div class="crs" data-c="结构 组成"></div>
+      <div class="lvs"><a data-l="1" href="#c4-1">第一层 · 30 分钟</a><a data-l="2" href="#c4-2">第二层 · 60 分钟</a><a data-l="3" href="#c4-3">第三层 · 25 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>我在画图软件里按了十次 ⌘Z，最后画的那一笔最先没了。</span></div>
+    <div class="l"><i class="j">舅</i><span>你做过的事，一件一件摞在一起。撤销，就是从最上面拿一件。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>说出栈的规矩“后进先出”，用两摞盘子讲清楚撤销和重做。</li>
+      <li><span class="lg lg1">一</span>用一个栈判断一串括号是不是配对。</li>
+      <li><span class="lg lg2">二</span>写出顺序栈、共享栈、链栈的基本操作和判空判满条件；判断一个出栈序列是否可能，算出出栈序列的个数。</li>
+      <li><span class="lg lg2">二</span>把中缀表达式转成后缀表达式，再用栈求值。</li>
+      <li><span class="lg lg3">三</span>说出“栈式虚拟机”是什么；会用单调栈解“下一个更大的数”这类面试题。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c4-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：一摞盘子（《地基》第二十章）、Python 的列表</span><span class="tm">约 30 分钟</span></div>
+    <div class="lyb">
+      <h3>只许从一头进出</h3>
+      <p>一摞盘子：新的放在最上面，拿也从最上面拿。<b>后放上去的，先被拿走</b>。这种队伍叫<b>栈</b>（stack）。</p>
+      <p>栈只有两个动作：</p>
+      <ul class="plain">
+        <li><b>压栈</b>（push）：放一个到最上面。</li>
+        <li><b>弹栈</b>（pop）：从最上面拿走一个。</li>
+      </ul>
+      <p>中间的和下面的，碰都不许碰。规矩这么严，有什么用？用处很多。</p>
+      <div class="mc">
+        <h5>你见过的栈</h5>
+        <p>《地基》<a href="../base/three.html#c20">第二十章</a>：函数调用就是一摞盘子，最后叫的最先做完。《一块一块》<a href="../block/ten.html#c78">第七十八章</a>你用过栈和队列。在 Python 里，列表的 <code>append</code> 就是压栈，<code>pop()</code> 就是弹栈。</p>
+      </div>
+
+      <h3>撤销：做过的事摞成一摞</h3>
+      <p>在方格岛上，你每放一块石头、挖一块沙，就把“这一步怎样改回去”写在一张卡片上，放到一摞的最上面。</p>
+      <p>按“撤销”，就从最上面拿一张，照着改回去。最后做的事，最先被撤销。再按一次，撤销的是倒数第二件事。</p>
+      <p><b>重做</b>呢？再准备一摞。撤销时拿下来的卡片，不扔掉，放到“重做”那一摞上。按“重做”，就从那一摞拿回来。</p>
+      <p>还有一条规矩：撤销了几步以后，你又做了一件新的事，“重做”那一摞就要清空。因为你已经走上了另一条路，原来那些步子接不上了。</p>
+
+      <h3>括号配对</h3>
+      <p>写程序时，括号必须一对一对的：<code>(1 + [2 × 3])</code> 是对的，<code>(1 + [2 × 3)]</code> 就错了：方括号还没关，圆括号先关了。</p>
+      <p>用一个栈就能检查：从左往右读，</p>
+      <ul class="plain">
+        <li>看到左括号 <code>( [ {</code>，压栈；</li>
+        <li>看到右括号，看栈顶是不是和它配对的那种左括号：是，就弹掉；不是（或者栈是空的），就错了；</li>
+        <li>读完以后，栈必须是空的。还剩下左括号，说明有的没关。</li>
+      </ul>
+      <p>为什么是栈？因为<b>最后打开的括号，必须最先关上</b>，正好是后进先出。</p>
+      <div class="fig" id="stackFig">
+        <div class="fig-label">装置 · 第四章</div>
+        <h4>一摞盘子</h4>
+        <p class="how">选一个玩法。“撤销”：点下面一排格子放石头或挖掉，再试撤销和重做，看两摞卡片怎样变。“括号配对”：输入一串括号，一步一步看栈。“出栈序列”是第二层的玩法。</p>
+        <div class="btns" data-m></div>
+        <div class="stkbody"></div>
+        <div class="say"></div>
+      </div>
+      <div class="try">
+        <div class="th"><b>用列表当栈</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+<pre class="code" data-k="brackets.py">def ok(s):
+    pair = {')': '(', ']': '[', '}': '{'}
+    stack = []
+    for c in s:
+        if c in '([{':
+            stack.append(c)              # 左括号：压栈
+        elif c in ')]}':
+            if not stack or stack.pop() != pair[c]:
+                return False             # 栈空了，或者对不上
+    return not stack                     # 读完了，栈要是空的
+
+for s in ['(1+[2*3])', '(1+[2*3)]', '((1)', '{[()()]}']:
+    print(s, ok(s))</pre>
+          <p>运行，看四个结果对不对。再自己编几串试试。</p>
+        </div>
+      </div>
+      <div class="task" data-id="tree-t4a">
+        <div class="th"><b>盘子游戏</b></div>
+        <div class="tb"><p>拿 1、2、3 三张卡片，按 1、2、3 的顺序一张一张放到一摞上；中间随时可以从最上面拿一张出来排到桌上。试一试：桌上能不能排出 3、1、2？能排出哪几种顺序？（一共 6 种排法里，有一种排不出来。）</p></div>
+      </div>
+      <div class="pass" data-id="tree-q4a">
+        <div class="qq" data-a="1"><p>栈的规矩是？</p><ol><li>先进先出</li><li>后进先出</li></ol><p class="ex">后放上去的先拿走。</p></div>
+        <div class="qq" data-a="0"><p>Python 里，哪个当“弹栈”用？</p><ol><li>pop()</li><li>append()</li><li>insert(0, x)</li></ol><p class="ex">append 压栈，pop() 从最后拿走一个。</p></div>
+        <div class="qq" data-a="1"><p>撤销了两步以后，又放了一块新石头，“重做”那一摞会怎样？</p><ol><li>不变</li><li>清空</li></ol><p class="ex">走上了新的路，原来撤销掉的步子接不上了。</p></div>
+        <div class="qq" data-a="1"><p><code>([)]</code> 配对吗？</p><ol><li>配对</li><li>不配对</li></ol><p class="ex">读到 ) 时栈顶是 [，对不上。</p></div>
+        <div class="qq" data-a="0"><p>为什么括号配对要用栈？</p><ol><li>最后打开的括号必须最先关上</li><li>栈比较省内存</li></ol><p class="ex">后开先关，正是后进先出。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c4-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">对照 408：栈；栈在表达式求值、递归中的应用</span><span class="tm">约 60 分钟</span><span class="sum">顺序栈的两种 top 约定；共享栈的判满；链栈；出栈序列的合法性和卡特兰数；中缀转后缀的规则；后缀表达式求值；递归和栈。</span></div>
+    <div class="lyb">
+      <h3>顺序栈</h3>
+<pre class="code" data-k="stack.c">#define MAX 50
+typedef struct { int data[MAX]; int top; } SqStack;
+void init(SqStack *S) { S-&gt;top = -1; }            /* top 指向栈顶元素 */
+int  empty(SqStack *S) { return S-&gt;top == -1; }
+int  push(SqStack *S, int x) { if (S-&gt;top == MAX - 1) return 0; S-&gt;data[++S-&gt;top] = x; return 1; }
+int  pop(SqStack *S, int *x) { if (S-&gt;top == -1) return 0; *x = S-&gt;data[S-&gt;top--]; return 1; }</pre>
+      <p>另一种约定是 top 初始为 0、<b>指向栈顶元素的下一个位置</b>：入栈 <code>data[top++] = x</code>，出栈 <code>x = data[--top]</code>，栈空 <code>top == 0</code>，栈满 <code>top == MAX</code>。做题先看清用的是哪一种，元素个数分别是 top + 1 和 top。</p>
+      <p><b>共享栈</b>：两个栈共用一个数组，一个从 0 往上长（top0 初值 −1），一个从 MAX − 1 往下长（top1 初值 MAX），栈满条件 <code>top1 − top0 == 1</code>。两个栈此消彼长时能更充分地用空间，但只适合两个栈。</p>
+      <p><b>链栈</b>：用不带头结点的单链表，所有操作都在表头做，push 是头插、pop 是删第一个结点。不会栈满（除非内存耗尽）。</p>
+
+      <h3>出栈序列</h3>
+      <p>1, 2, …, n 依次入栈，中间随时可以出栈，能得到哪些出栈序列？</p>
+      <ul class="plain">
+        <li><b>判断一个序列是否可能</b>：模拟。按序列依次要出栈的数 x：若 x 还没入栈，就把它之前（含它）的数依次入栈，再弹出 x；若 x 已在栈里，它必须正好在栈顶，否则不可能。</li>
+        <li>一个快速的必要条件：对出栈序列里的任意一个数 x，排在它后面、且比它小的数，必须按<b>从大到小</b>的顺序出现。所以 3, 1, 2 不可能（3 后面的 1、2 是从小到大）。</li>
+        <li><b>个数</b>是卡特兰数 C<sub>n</sub> = C(2n, n) / (n + 1)：n = 3 时 5 种，n = 4 时 14 种，n = 5 时 42 种。</li>
+      </ul>
+
+      <h3>表达式求值</h3>
+      <p>中缀表达式 <code>3 + 4 × (2 − 1)</code> 对人友好，对电脑不友好：要看优先级和括号。<b>后缀表达式</b>（逆波兰式）把运算符放在两个运算数后面：<code>3 4 2 1 − × +</code>，不需要括号，从左往右用一个栈就能算：遇到数压栈；遇到运算符弹出两个数（先弹出的是右操作数），算完把结果压栈；最后栈里剩下的就是答案。</p>
+      <p><b>中缀转后缀</b>，用一个运算符栈，从左往右扫：</p>
+      <ol class="plain">
+        <li>遇到运算数，直接输出。</li>
+        <li>遇到 <code>(</code>，压栈。</li>
+        <li>遇到 <code>)</code>，依次弹出并输出栈里的运算符，直到弹出 <code>(</code>（括号不输出）。</li>
+        <li>遇到运算符 op，依次弹出并输出栈顶<b>优先级大于或等于</b> op 的运算符（遇到 <code>(</code> 或栈空停），再把 op 压栈。“等于也弹”保证了同级运算从左往右算。</li>
+        <li>扫完以后，把栈里剩下的运算符依次弹出输出。</li>
+      </ol>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）把 <code>a × (b + c) − d / e</code> 转成后缀表达式，写出转换过程中运算符栈的最大深度。（2）1, 2, 3, 4, 5 依次入栈，下列哪个出栈序列不可能：A. 2 3 1 5 4 B. 4 5 3 2 1 C. 3 1 2 4 5 D. 1 2 3 4 5。（3）一个栈的入栈序列是 1, 2, …, n，出栈序列的第一个是 n，那么第 i 个出栈的是？</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）a 输出；× 入栈；( 入栈；b 输出；+ 入栈（栈顶是 ( 不弹），此时栈为 × ( +，深度 3；c 输出；) 弹出 +，弹掉 (；− 来了，弹出优先级 ≥ − 的 ×，− 入栈；d 输出；/ 入栈（− 优先级低，不弹）；e 输出；最后弹出 /、−。结果 <code>a b c + × d e / −</code>，最大深度 3。</p>
+          <p>（2）C。3 先出，说明 1、2 已在栈里且 2 在 1 上面，下一个出栈不能是 1。</p>
+          <p>（3）第一个就是 n，说明 1 到 n 全部入栈后才开始出栈，出栈序列只能是 n, n−1, …, 1，第 i 个是 n − i + 1。</p>
+        </div></details>
+      </div>
+      <h3>递归和栈</h3>
+      <p>递归调用靠系统的调用栈保存每一层的现场（《地基》第二十章）。任何递归都可以改写成“用自己的栈模拟”的非递归形式，第七章会把油漆桶填色改写一遍。递归的代价是深度太大时栈溢出，以及重复计算（比如直接递归求斐波那契数，第二十二章用动态规划解决）。</p>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>设计一个栈，除了 push、pop、top 以外，还能在 O(1) 时间里返回当前栈中的最小值。</p>
+        <details><summary>看要点</summary><div><p>再开一个辅助栈 min：push(x) 时，若 min 为空或 x ≤ min 的栈顶，把 x 也压进 min；pop 时若弹出的值等于 min 的栈顶，min 也弹一次。getMin 返回 min 的栈顶。注意比较用 ≤，否则重复的最小值会出错。另一种做法是每个元素和“压入时的当前最小值”成对存放，空间多一倍但更简单。</p></div></details>
+      </div>
+      <div class="pass" data-id="tree-q4b">
+        <div class="qq" data-a="2"><p>1, 2, 3 依次入栈，不可能的出栈序列是？</p><ol><li>1 2 3</li><li>2 1 3</li><li>3 1 2</li><li>3 2 1</li></ol><p class="ex">3 先出时 1、2 都在栈里，2 在上面，接下来只能出 2。</p></div>
+        <div class="qq" data-in="14"><p>1, 2, 3, 4 依次入栈，一共有几种不同的出栈序列？</p><p class="ex">卡特兰数 C₄ = C(8,4)/5 = 70/5 = 14。</p></div>
+        <div class="qq" data-a="1"><p>共享栈（数组下标 0..MAX−1，两栈分别从两端往中间长），栈满的条件是？</p><ol><li>top0 == top1</li><li>top1 − top0 == 1</li><li>top0 == MAX − 1</li></ol><p class="ex">两个栈顶相邻时就没有空位了。</p></div>
+        <div class="qq" data-in="abc*+d-|a b c * + d -"><p><code>a + b × c − d</code> 的后缀表达式是？（不写空格也行）</p><p class="ex">× 先算：a b c × + d −。</p></div>
+        <div class="qq" data-in="14"><p>后缀表达式 <code>2 3 4 × +</code> 的值是？</p><p class="ex">3 × 4 = 12，2 + 12 = 14。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c4-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">栈式虚拟机、单调栈</span><span class="tm">约 25 分钟</span><span class="sum">CPython、JVM、WebAssembly 都是栈式虚拟机，用 dis 看 Python 的字节码；单调栈：一遍扫描解决“下一个更大的数”。</span></div>
+    <div class="lyb">
+      <h3>栈式虚拟机</h3>
+      <p>后缀表达式的求值办法，正是很多虚拟机执行代码的办法。CPython 把源码编译成字节码，字节码在一个“求值栈”上工作：</p>
+      <div class="try">
+        <div class="th"><b>看 Python 的字节码</b><span class="tm">5 分钟</span></div>
+        <div class="tb">
+<pre class="code" data-k="dis.py">import dis
+def f(a, b, c):
+    return a + b * c
+dis.dis(f)</pre>
+          <p>会看到大致这样的指令（名字随版本略有不同）：<code>LOAD_FAST a</code>、<code>LOAD_FAST b</code>、<code>LOAD_FAST c</code>、<code>BINARY_OP *</code>、<code>BINARY_OP +</code>、<code>RETURN_VALUE</code>。这就是后缀表达式 <code>a b c × +</code>：三个数压栈，乘法弹两个压一个，加法再弹两个压一个。</p>
+        </div>
+      </div>
+      <p>JVM 和 WebAssembly 也是栈式的；Lua 和安卓的 Dalvik 是寄存器式的。栈式的指令短（不用写操作数在哪个寄存器），编译器好写；寄存器式的指令条数少，解释执行更快。真实处理器（《地基》第十四章）都是寄存器式的。</p>
+      <h3>单调栈</h3>
+      <p>面试题：给一列数，对每个数求它右边第一个比它大的数。笨办法 O(n²)。单调栈 O(n)：从左往右扫，栈里存“还没找到答案的下标”，并保持对应的值从栈底到栈顶递减；新来的数 x 比栈顶大，就说明栈顶的答案是 x，弹出，继续比，直到不比栈顶大，再把 x 的下标压栈。每个下标最多进出栈一次，所以是 O(n)。</p>
+<pre class="code" data-k="next_greater.py">def next_greater(a):
+    ans = [-1] * len(a)
+    st = []                       # 存下标，对应的值从底到顶递减
+    for i, x in enumerate(a):
+        while st and a[st[-1]] &lt; x:
+            ans[st.pop()] = x
+        st.append(i)
+    return ans
+
+print(next_greater([2, 7, 3, 5, 4, 6, 8]))   # [7, 8, 5, 6, 6, 8, -1]</pre>
+      <p>“每日温度”“柱状图中最大的矩形”“接雨水”都是这一类。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>逆波兰表示法得名于波兰逻辑学家扬·武卡谢维奇 1920 年代提出的前缀记法；中缀转后缀的“调度场算法”由迪杰斯特拉在 1961 年左右提出。</li>
+          <li>Python 文档 <code>dis</code> 模块一节，列出了全部字节码指令。</li>
+          <li>卡特兰数：R. P. Stanley, <i>Catalan Numbers</i>, Cambridge University Press, 2015。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="main" data-step="4">
+    <div class="mh"><b>主线 · 第 4 步</b><span>撤销和重做</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给方格岛加上：<i>两个栈</i></p>
+      <p><code>change</code> 每改一格，就把 (x, y, 旧, 新) 压进 <code>UNDO</code>，并清空 <code>REDO</code>；<code>undo</code> 从 UNDO 弹出、改回去、压进 REDO；<code>redo</code> 反过来。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 island.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>用 C 写顺序栈，元素是结构体。只许撤销最近 100 步：满了要丢掉最旧的一步，这时栈还够用吗？（提示：最旧的在栈底，要换成第五章的循环队列或双端队列。）</div>
+    </div>
+  </div>
+  <div class="words">
+    <div data-l="1"><b>栈 <span class="en" data-say="stack">stack</span></b>只许从一头进出，后进先出。</div>
+    <div data-l="1"><b>压栈 <span class="en" data-say="push">push</span></b>放一个到最上面。</div>
+    <div data-l="1"><b>弹栈 <span class="en" data-say="pop">pop</span></b>从最上面拿走一个。</div>
+    <div data-l="1"><b>撤销 <span class="en" data-say="undo">undo</span></b>退回上一步；重做是 <span class="en" data-say="redo">redo</span>。</div>
+    <div data-l="2"><b>后缀表达式 <span class="en" data-say="postfix expression">postfix expression</span></b>运算符写在两个数后面，不用括号。</div>
+    <div data-l="3"><b>单调栈 <span class="en" data-say="monotonic stack">monotonic stack</span></b>栈里的值保持递增或递减。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>栈是一摞盘子：撤销拿最上面的，括号最后开的最先关。</div>
+    <div><i>第二层带走</i>先看清 top 的约定；出栈序列看“后面比它小的要从大到小”；中缀转后缀遇到优先级大于等于的就弹。</div>
+    <div><i>第三层带走</i>后缀表达式就是栈式虚拟机的指令；单调栈让每个元素只进出一次。</div>
+  </div>
+</section>

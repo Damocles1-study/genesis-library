@@ -1,0 +1,245 @@
+<section class="chap" id="c1" data-vol="卷一 · 量与排 · 数步数">
+  <div class="vol-h">
+    <div class="k">卷一</div>
+    <h2>量与排</h2>
+    <p>先学会量：一个做法要走多少步，东西多了会慢多少。再看最简单的两种摆法：挨着排的数组，和用纸条串起来的链表。</p>
+  </div>
+  <div class="chead">
+    <div class="big">步</div>
+    <div>
+      <div class="no">卷一 · 第一章</div>
+      <h2>数步数</h2>
+      <dl><dt>讲什么</dt><dd>同一件事有快有慢；数一数要走几步；东西多了十倍，步数会多几倍；常数、对数、线性、平方；大 O 记号；时间和空间复杂度</dd><dt>装置</dt><dd>猜数字；五种做法比一比</dd></dl>
+      <div class="crs" data-c="结构 数学"></div>
+      <div class="lvs"><a data-l="1" href="#c1-1">第一层 · 35 分钟</a><a data-l="2" href="#c1-2">第二层 · 50 分钟</a><a data-l="3" href="#c1-3">第三层 · 30 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>我的电脑一秒能算几十亿次，快慢还有什么好讲的？</span></div>
+    <div class="l"><i class="j">舅</i><span>一个做法要走 n 步，另一个要走 n × n 步。n 是一百万的时候，一个一眨眼，一个要算好几天。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>数出一段程序大概要走几步；说出东西多十倍时，步数多几倍。</li>
+      <li><span class="lg lg1">一</span>用“对半猜”在 7 次以内猜中 1 到 100 之间的数，说出它为什么快。</li>
+      <li><span class="lg lg2">二</span>用大 O 记号写出循环、嵌套循环、倍增循环的时间复杂度；按大小排好常见的阶。</li>
+      <li><span class="lg lg2">二</span>区分最好、最坏、平均复杂度和空间复杂度；做 408 的复杂度选择题。</li>
+      <li><span class="lg lg3">三</span>说出 O、Ω、Θ 的严格定义；用均摊分析说明动态数组为什么平均 O(1) 地往后加。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c1-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：乘法、Python 的 for 循环</span><span class="tm">约 35 分钟</span></div>
+    <div class="lyb">
+      <h3>同一件事，有快有慢</h3>
+      <p>主线第 1 步要做一件事：在方格岛上找到“你”在哪儿。</p>
+      <p>笨办法：从左上角开始，一格一格地看，看到 <code>@</code> 就停。小岛有 16 × 10 = 160 格，“你”在第 56 格，所以要看 56 次。</p>
+      <p>聪明办法：用一个变量一直记着你的位置。你走一步，就改一下它。要找的时候，看一眼这个变量就行：1 次。</p>
+      <p>小岛这么小，看 56 次和看 1 次，电脑都是一眨眼。可是地图变大呢？</p>
+      <div class="tbl">
+        <table class="t">
+          <tr><th>地图</th><th>一共几格</th><th>笨办法最多看几次</th><th>记着位置</th></tr>
+          <tr><td>10 × 10</td><td>100</td><td>100</td><td>1</td></tr>
+          <tr><td>100 × 100</td><td>1 万</td><td>1 万</td><td>1</td></tr>
+          <tr><td>1000 × 1000</td><td>100 万</td><td>100 万</td><td>1</td></tr>
+        </table>
+      </div>
+      <p>我的世界里的一个世界，有好几百万格那么宽。每走一步都要从头找一遍自己，游戏就卡住了。</p>
+
+      <h3>数步数，不看秒表</h3>
+      <p>为什么不直接用秒表量？因为同一个程序，在新电脑上快，在旧电脑上慢，今天快，明天慢。可是“要看几次”不会变。所以我们<b>数步数</b>：数一数，东西有 n 个的时候，大概要走几步。</p>
+      <p>最要紧的不是具体几步，而是<b>东西多了，步数怎样跟着变多</b>。常见的有四种：</p>
+      <div class="tbl">
+        <table class="t">
+          <tr><th>名字</th><th>东西多 10 倍，步数……</th><th>例子</th></tr>
+          <tr><td><b>常数</b></td><td>不变</td><td>看一眼记着的位置；拿列表的第 5 个</td></tr>
+          <tr><td><b>对数</b></td><td>只多几步</td><td>对半猜数字；在排好的名单里找名字</td></tr>
+          <tr><td><b>线性</b></td><td>也多 10 倍</td><td>一个一个地看</td></tr>
+          <tr><td><b>平方</b></td><td>多 100 倍</td><td>每两个人都握一次手</td></tr>
+        </table>
+      </div>
+
+      <h3>猜数字：对数为什么快</h3>
+      <p>我心里想一个 1 到 100 之间的数，你来猜，我只回答“大了”“小了”“对了”。</p>
+      <p>从 1 开始一个一个猜，最多要 100 次。聪明的猜法是<b>每次猜中间</b>：先猜 50，“大了”，就只剩 1 到 49；再猜 25……每猜一次，剩下的数就少一半。100 → 50 → 25 → 12 → 6 → 3 → 1，最多 7 次。</p>
+      <p>1 到 1000 呢？只要 10 次。1 到 100 万？20 次。东西多了一万倍，只多猜了十几次。这就是“对数”：要对半分几次才能分到只剩 1 个。</p>
+      <div class="mc">
+        <h5>二分查找</h5>
+        <p>在《一块一块》<a href="../block/ten.html#c79">第七十九章</a>里，你玩过猜数，用的就是这个办法，叫<b>二分查找</b>。这本书第二十四章还会回来细讲它，因为它很好懂，却很难写对。</p>
+      </div>
+      <div class="fig" id="guessFig">
+        <div class="fig-label">装置 · 第一章 · 一</div>
+        <h4>猜数字</h4>
+        <p class="how">电脑想好了一个 1 到 100 的数。在框里猜，看它说“大了”还是“小了”。猜中以后，点“看看对半猜”，看每次猜中间要几次。</p>
+        <div class="row"><input type="number" id="gsIn" min="1" max="100" style="width:6em" aria-label="猜的数"><button class="btn pri" data-x="go">猜</button><button class="btn" data-x="half">看看对半猜</button><button class="btn" data-x="new">换一个数</button></div>
+        <div class="cells" id="gsBar"></div>
+        <div class="say"></div>
+      </div>
+
+      <h3>平方：每两个人握一次手</h3>
+      <p>班里 n 个人，每两个人都要握一次手。10 个人握 45 次；100 个人握 4950 次；1000 个人握将近 50 万次。人多 10 倍，握手多 100 倍。</p>
+      <p>写成程序，就是一个循环里面再套一个循环：外面每走一圈，里面都要走一整圈。两层循环，常常就是平方。</p>
+      <div class="fig" id="growFig">
+        <div class="fig-label">装置 · 第一章 · 二</div>
+        <h4>五种做法比一比</h4>
+        <p class="how">拖动 n（东西有几个），看五种做法各要走几步。如果电脑一秒走一亿步，要多久？条的长度是按“位数”画的，每长一格，步数多 10 倍。</p>
+        <label class="lab">n = <b id="grNO"></b></label>
+        <input type="range" id="grN" min="0" max="60" value="20">
+        <div class="growbars"></div>
+        <div class="say"></div>
+      </div>
+      <div class="try">
+        <div class="th"><b>让 Python 帮你数步数</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+<pre class="code" data-k="steps.py">n = 100
+one = 0
+for i in range(n):
+    one = one + 1
+
+two = 0
+for i in range(n):
+    for j in range(n):
+        two = two + 1
+
+print('一层循环', one, '步；两层循环', two, '步')</pre>
+          <p>运行一次，再把 n 改成 1000 运行。一层循环多了几倍？两层循环多了几倍？</p>
+        </div>
+      </div>
+      <div class="task" data-id="tree-t1a">
+        <div class="th"><b>猜数字比赛</b></div>
+        <div class="tb"><p>和家里人玩猜数字：一个人想 1 到 100 的数，另一个人猜，只许回答“大了”“小了”。你用“每次猜中间”，对方随便猜，各玩三局，记下每局猜了几次。你有没有哪一局超过 7 次？</p></div>
+      </div>
+      <div class="pass" data-id="tree-q1a">
+        <div class="qq" data-a="1"><p>为什么数步数，不用秒表量时间？</p><ol><li>秒表太贵</li><li>同一个程序在不同电脑上快慢不同，步数不会变</li></ol><p class="ex">步数只看做法，不看电脑。</p></div>
+        <div class="qq" data-a="2"><p>东西多 10 倍，“一个一个地看”要多走几倍？</p><ol><li>不变</li><li>多几步</li><li>10 倍</li><li>100 倍</li></ol><p class="ex">线性：跟着东西一起多。</p></div>
+        <div class="qq" data-in="7|7次"><p>用“每次猜中间”，猜 1 到 100 之间的数，最多要几次？</p><p class="ex">100 → 50 → 25 → 12 → 6 → 3 → 1，7 次。</p></div>
+        <div class="qq" data-a="3"><p>每两个人握一次手，人多 10 倍，握手多几倍？</p><ol><li>不变</li><li>2 倍</li><li>10 倍</li><li>100 倍</li></ol><p class="ex">平方：大约多 100 倍。</p></div>
+        <div class="qq" data-a="0"><p>记着“你”的位置，要找你时看一眼就行，这是哪一种？</p><ol><li>常数</li><li>线性</li><li>平方</li></ol><p class="ex">常数：地图再大也只看一次。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c1-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">对照 408 数据结构第一章 · 面试</span><span class="tm">约 50 分钟</span><span class="sum">频度和 T(n)；大 O 的加法规则和乘法规则；常见阶的大小；三种典型循环怎样算；最好、最坏、平均；空间复杂度和原地工作；递推式先看一眼。</span></div>
+    <div class="lyb">
+      <h3>频度和时间复杂度</h3>
+      <p>一条语句被重复执行的次数叫它的<b>频度</b>。所有语句频度之和记作 <code>T(n)</code>，n 是问题规模。我们只关心 n 很大时 T(n) 怎样增长，所以只保留增长最快的那一项、去掉系数：T(n) = 3n² + 5n + 7，记作 <b>T(n) = O(n²)</b>。通常只看最深层循环里“基本运算”的执行次数就够了。</p>
+      <ul class="plain">
+        <li><b>加法规则</b>：T(n) = T₁(n) + T₂(n) = O(max(f(n), g(n)))。两段代码先后执行，取大的那个。</li>
+        <li><b>乘法规则</b>：T(n) = T₁(n) × T₂(n) = O(f(n) × g(n))。一段套在另一段的循环里，相乘。</li>
+      </ul>
+      <p>常见的阶从小到大：</p>
+      <p class="big1" style="text-align:center">O(1) &lt; O(log n) &lt; O(n) &lt; O(n log n) &lt; O(n²) &lt; O(n³) &lt; O(2ⁿ) &lt; O(n!) &lt; O(nⁿ)</p>
+      <p>口诀：“常对幂指阶”（常数、对数、幂函数、指数、阶乘）。log 的底数不影响阶（换底只差一个常数倍），一律写 log n，在计算机里默认以 2 为底。</p>
+
+      <h3>三种典型循环</h3>
+      <div class="tbl">
+        <table class="t">
+          <tr><th>写法</th><th>次数</th><th>复杂度</th></tr>
+          <tr><td><code>for (i = 0; i &lt; n; i++)</code></td><td>n</td><td>O(n)</td></tr>
+          <tr><td><code>for (i = 1; i &lt; n; i *= 2)</code></td><td>2<sup>k</sup> &lt; n，k ≈ log₂n</td><td>O(log n)</td></tr>
+          <tr><td><code>for (i = 0; i &lt; n; i++) for (j = 0; j &lt; i; j++)</code></td><td>0 + 1 + … + (n−1) = n(n−1)/2</td><td>O(n²)</td></tr>
+          <tr><td><code>for (i = 1; i &lt;= n; i *= 2) for (j = 0; j &lt; i; j++)</code></td><td>1 + 2 + 4 + … ≤ 2n</td><td>O(n)</td></tr>
+          <tr><td><code>while (i * i &lt;= n) i++;</code></td><td>i 到 √n 停</td><td>O(√n)</td></tr>
+        </table>
+      </div>
+      <div class="pit"><h5>第四行最容易错</h5><p>外层 log n 次，内层看起来像“最多 n 次”，于是有人答 O(n log n)。其实内层次数随 i 翻倍，总数是等比数列 1 + 2 + 4 + … + 2<sup>k</sup> &lt; 2 × 2<sup>k</sup> ≤ 2n，所以是 O(n)。遇到内层依赖外层变量的循环，老老实实把总次数加出来。</p></div>
+      <p>算法的执行时间还可能和输入的样子有关。在一个长度为 n 的数组里顺序找一个数：第一个就是它，1 次（<b>最好</b>）；不在里面或在最后，n 次（<b>最坏</b>）；各位置等概率，平均 (n+1)/2 次（<b>平均</b>）。没有特别说明时，一般讨论最坏情况。</p>
+
+      <h3>空间复杂度</h3>
+      <p>S(n) 是算法所需存储空间（除去输入本身）随 n 的增长。只用了几个变量，S(n) = O(1)，叫<b>原地工作</b>。注意递归：每层递归占一个栈帧（《地基》第二十章），递归深度为 d 时，空间至少 O(d)。递归求阶乘的空间是 O(n)，不是 O(1)。</p>
+      <h3>递推式先看一眼</h3>
+      <p>递归算法的时间常写成递推式。例如“把规模 n 的问题分成两半，各递归一次，再花 n 步合起来”：T(n) = 2T(n/2) + n，解出来是 O(n log n)（归并排序，第二十七章）。“每次只剩一半、只递归一边”：T(n) = T(n/2) + 1，是 O(log n)（二分）。第七章细讲怎样解。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>求下列程序段的时间复杂度（n ≥ 2）：</p>
+<pre class="code" data-k="t1.c">/* (1) */ int s = 0; for (int i = 1; i &lt;= n; i *= 3) s += i;
+/* (2) */ int c = 0; for (int i = 1; i &lt;= n; i++) for (int j = i; j &lt;= n; j += i) c++;
+/* (3) */ int x = n; int y = 0; while (x &gt;= (y + 1) * (y + 1)) y++;</pre>
+        <details><summary>看解答</summary><div>
+          <p>（1）i 取 1, 3, 9, …，3<sup>k</sup> ≤ n，循环 ⌊log₃n⌋ + 1 次，O(log n)。</p>
+          <p>（2）对每个 i，内层执行 ⌊n/i⌋ 次，总数 n/1 + n/2 + … + n/n = n × H(n)，H(n) 是调和级数 ≈ ln n，所以 O(n log n)。</p>
+          <p>（3）y 从 0 增加到 ⌊√n⌋ 左右就停，O(√n)。</p>
+        </div></details>
+      </div>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>“我的算法是 O(n)，你的是 O(n log n)，所以我的一定更快。”这话对吗？</p>
+        <details><summary>看要点</summary><div><p>不一定。大 O 隐藏了常数和低阶项，只说明 n 足够大以后的增长趋势。n 不大时，常数小的 O(n log n) 可能更快；内存访问模式（缓存命中率，《地基》第十六章）也会让常数差好几倍。正确的说法是：当 n 足够大时，O(n) 的算法终将快过 O(n log n) 的算法；实际选哪个，要结合规模和实测。可以举例：小数组上插入排序常比快速排序快，所以真实的排序函数在小规模时切换成插入排序。</p></div></details>
+      </div>
+      <div class="pass" data-id="tree-q1b">
+        <div class="qq" data-a="2"><p><code>for (i = 1; i &lt; n; i *= 2)</code> 的复杂度是？</p><ol><li>O(1)</li><li>O(n)</li><li>O(log n)</li><li>O(n²)</li></ol><p class="ex">i 每次翻倍，log₂n 次。</p></div>
+        <div class="qq" data-a="1"><p>T(n) = 5n log n + 100n + 3 的阶是？</p><ol><li>O(n)</li><li>O(n log n)</li><li>O(n²)</li></ol><p class="ex">保留增长最快的项。</p></div>
+        <div class="qq" data-a="0"><p><code>for (i = 1; i &lt;= n; i *= 2) for (j = 0; j &lt; i; j++) x++;</code> 的复杂度是？</p><ol><li>O(n)</li><li>O(n log n)</li><li>O(log n)</li></ol><p class="ex">1 + 2 + 4 + … ≤ 2n，O(n)。</p></div>
+        <div class="qq" data-a="3"><p>下列阶最大的是？</p><ol><li>O(n³)</li><li>O(n log n)</li><li>O(2ⁿ)</li><li>O(n!)</li></ol><p class="ex">常对幂指阶：阶乘最大（nⁿ 更大，但不在选项里）。</p></div>
+        <div class="qq" data-in="O(n)|o(n)|n"><p>递归求 n 的阶乘，空间复杂度是？（写成 O(…)）</p><p class="ex">递归深度 n，每层一个栈帧，O(n)。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c1-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">渐近记号、均摊分析、实测</span><span class="tm">约 30 分钟</span><span class="sum">O、Ω、Θ 的严格定义；均摊分析：动态数组加倍扩容，平均每次 O(1)；在 Mac 上用 timeit 量一量，看常数和缓存有多大影响。</span></div>
+    <div class="lyb">
+      <h3>三个记号</h3>
+      <ul class="plain">
+        <li><b>f(n) = O(g(n))</b>：存在正常数 c 和 n₀，使得对所有 n ≥ n₀，0 ≤ f(n) ≤ c·g(n)。上界。</li>
+        <li><b>f(n) = Ω(g(n))</b>：存在 c &gt; 0、n₀，n ≥ n₀ 时 f(n) ≥ c·g(n)。下界。</li>
+        <li><b>f(n) = Θ(g(n))</b>：同时是 O 和 Ω。紧确界。</li>
+      </ul>
+      <p>严格地说，“二分查找是 O(n)”也是对的（上界松了），只是没用。日常和考试里说的 O，大多其实指 Θ。“比较排序最坏要 Ω(n log n) 次比较”（第二十八章）是一个下界，意思是任何比较排序都快不过它。</p>
+
+      <h3>均摊分析</h3>
+      <p>Python 的 <code>append</code> 偶尔要把整个列表搬到更大的地方，这一次是 O(n)。那 append 还算 O(1) 吗？</p>
+      <p>假设每次满了就把容量翻倍。从空开始 append n 次，搬家发生在容量 1, 2, 4, …, 2<sup>k</sup>（≤ n）时，搬动的元素总数 1 + 2 + 4 + … + 2<sup>k</sup> &lt; 2n。加上 n 次普通写入，总代价 &lt; 3n，<b>平均每次 O(1)</b>。这叫<b>均摊</b>（聚合分析）。也可以用“记账法”：每次 append 预付 3 块钱，1 块付自己的写入，2 块存起来留给以后搬家，存款永远不会是负的。</p>
+      <p>扩容倍数不一定是 2：只要按比例（而不是每次加固定几个）扩容，均摊就是 O(1)；每次只多加 10 个，均摊会退化成 O(n)。CPython 的 list 大约按 1.125 倍扩容，Java 的 ArrayList 是 1.5 倍。</p>
+      <div class="try">
+        <div class="th"><b>量一量：大 O 和真实时间</b><span class="tm">15 分钟</span></div>
+        <div class="tb">
+<pre class="code" data-k="measure.py">import timeit
+for n in [1000, 10000, 100000]:
+    data = list(range(n))
+    s = set(data)
+    t_list = timeit.timeit(lambda: (n - 1) in data, number=200)
+    t_set = timeit.timeit(lambda: (n - 1) in s, number=200)
+    print(f'n={n:6}  列表里找: {t_list*1e3:7.2f} ms   集合里找: {t_set*1e3:6.3f} ms')</pre>
+          <p>在列表里找最后一个数是 O(n)，n 大 10 倍，时间也大约大 10 倍；在集合（散列表）里找是 O(1)，几乎不变。再试一个实验：同样 O(n²) 地遍历一个 2000 × 2000 的二维列表，按行（外层 y、内层 x）和按列走，比较时间。Python 里差别不如 C 明显，用《地基》第十六章的 C 程序对比更直观。</p>
+        </div>
+      </div>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>D. E. Knuth, “Big Omicron and Big Omega and Big Theta”, <i>SIGACT News</i>, 1976：渐近记号的规范用法。</li>
+          <li>R. E. Tarjan, “Amortized Computational Complexity”, <i>SIAM Journal on Algebraic and Discrete Methods</i>, 1985。</li>
+          <li>《算法导论》第 3 章（函数的增长）、第 17 章（均摊分析）。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="main" data-step="1">
+    <div class="mh"><b>主线 · 第 1 步</b><span>计步器</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给方格岛加上：<i>找到“你”要看几格</i></p>
+      <p><code>find_player</code> 一格一格地找 @，顺便数一数看了几格；再造 10×10、100×100、1000×1000 的大地图，看最坏要看多少格。最后用一个变量一直记着位置：只看 1 次。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 island.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>用 C 写同样的扫描，用 <code>clock()</code> 量 n 从 1000 到 8000 的时间，画出“n² 格子数—时间”的关系；说明为什么记着位置是 O(1)。</div>
+    </div>
+  </div>
+  <div class="words">
+    <div data-l="1"><b>常数 <span class="en" data-say="constant">constant</span></b>东西再多，步数也不变。</div>
+    <div data-l="1"><b>线性 <span class="en" data-say="linear">linear</span></b>东西多几倍，步数就多几倍。</div>
+    <div data-l="1"><b>对数 <span class="en" data-say="logarithmic">logarithmic</span></b>对半分几次才分到 1 个；东西多很多，步数只多一点。</div>
+    <div data-l="1"><b>二分查找 <span class="en" data-say="binary search">binary search</span></b>每次猜中间，剩下的少一半。</div>
+    <div data-l="2"><b>时间复杂度 <span class="en" data-say="time complexity">time complexity</span></b>T(n) 随 n 增长的阶，用大 O 写。</div>
+    <div data-l="3"><b>均摊 <span class="en" data-say="amortized">amortized</span></b>把偶尔一次的大代价，平摊到所有操作上看。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>数步数，不看秒表；最要紧的是东西多了，步数怎样跟着多。对半猜最快，握手最慢。</div>
+    <div><i>第二层带走</i>常对幂指阶；内层依赖外层的循环要把次数老老实实加出来；递归的空间看深度。</div>
+    <div><i>第三层带走</i>大 O 是上界，Θ 才是紧确界；偶尔的大代价可以均摊；常数和缓存决定了小规模时谁快。</div>
+  </div>
+</section>

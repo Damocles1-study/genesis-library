@@ -1,0 +1,4 @@
+有 lake： the lake is deep, do not swim
+有 lake： ducks like the grass near the lake
+在一长串 a 里找 aaaaaaaaab：笨办法比了 520 次，KMP 比了 112 次
+next 数组： [0, 0, 0, 1, 2, 0]

@@ -1,0 +1,229 @@
+<section class="chap" id="c8" data-vol="卷三 · 枝 · 树和二叉树">
+  <div class="vol-h">
+    <div class="k">卷三</div>
+    <h2>枝</h2>
+    <p>一层管一层的东西，到处都是：家谱、文件夹、配方、比赛的对阵表。先认识树的样子和几个名字，再学怎样一个不落地走遍一棵树，最后让树帮我们“找”：左边小、右边大，还要两边一样高。</p>
+  </div>
+  <div class="chead">
+    <div class="big">树</div>
+    <div>
+      <div class="no">卷三 · 第八章</div>
+      <h2>树和二叉树</h2>
+      <dl><dt>讲什么</dt><dd>根、孩子、叶子、深度和高度；合成配方是一棵树；二叉树和它的几条性质；满二叉树和完全二叉树；用数组和用纸条存一棵树；树、森林和二叉树怎样互相转换</dd><dt>装置</dt><dd>配方树；完全二叉树的编号</dd></dl>
+      <div class="crs" data-c="结构 数学"></div>
+      <div class="lvs"><a data-l="1" href="#c8-1">第一层 · 35 分钟</a><a data-l="2" href="#c8-2">第二层 · 60 分钟</a><a data-l="3" href="#c8-3">第三层 · 25 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>访达里的文件夹，一层套一层，像一棵倒着长的树。</span></div>
+    <div class="l"><i class="j">舅</i><span>计算机里的树都是倒着长的：根在最上面，叶子在最下面。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>说出根、孩子、父结点、叶子、深度、高度各是什么，在配方树上指出来。</li>
+      <li><span class="lg lg1">一</span>说出什么是二叉树，用“列表的列表”或字典存一棵小树。</li>
+      <li><span class="lg lg2">二</span>用“结点数 = 边数 + 1”和 n₀ = n₂ + 1 解题；算完全二叉树的高度、叶子数和编号关系。</li>
+      <li><span class="lg lg2">二</span>写出双亲表示、孩子表示、孩子兄弟表示；把树和森林转成二叉树。</li>
+      <li><span class="lg lg3">三</span>说出字典树（Trie）是什么、用在哪儿；n 个结点的二叉树一共有多少种形状。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c8-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：Python 的列表和字典、递归（第七章）</span><span class="tm">约 35 分钟</span></div>
+    <div class="lyb">
+      <h3>倒着长的树</h3>
+      <p>方格岛上要盖一间小屋。小屋要 4 块石砖、3 块木板和 1 盏灯；石砖要用石头做，灯要用玻璃和木棍做，玻璃要用沙子烧……把这些画出来，就是一棵树：</p>
+<pre class="out" data-k="配方树">小屋
+├── 石砖 ×4
+│   └── 石 ×2
+├── 木板 ×3
+│   └── 木
+└── 灯
+    ├── 玻璃
+    │   └── 沙 ×2
+    └── 木棍
+        └── 木板
+            └── 木</pre>
+      <p>计算机里的树都是倒着画的：<b>根</b>在最上面，往下分叉。树里的每一样东西叫一个<b>结点</b>。几个常用的名字：</p>
+      <ul class="plain">
+        <li><b>根</b>：最上面那个，没有“上级”。这里是小屋。</li>
+        <li><b>孩子</b>和<b>父结点</b>：灯下面连着玻璃和木棍，玻璃和木棍是灯的孩子，灯是它们的父结点。</li>
+        <li><b>叶子</b>：没有孩子的结点。这里是石、木、沙：要去岛上挖的原料。</li>
+        <li><b>深度</b>：从根往下走几步到它。根的深度是 0，灯是 1，玻璃是 2。</li>
+        <li><b>高度</b>：整棵树一共有几层。这棵树有 5 层（小屋、灯、木棍、木板、木）。</li>
+      </ul>
+      <div class="mc">
+        <h5>访达里的树</h5>
+        <p>《一块一块》<a href="../block/five.html#c36">第三十六章</a>：访达里的文件夹也是一棵树，根是磁盘，文件夹是分叉，文件是叶子。<a href="../block/ten.html#c77">第七十七章</a>你还用小蟒画过一棵可以展开的文件夹树。</p>
+      </div>
+      <div class="fig" id="recipeFig">
+        <div class="fig-label">装置 · 第八章 · 一</div>
+        <h4>配方树</h4>
+        <p class="how">点一个结点，看它的父结点、孩子、深度，和它下面那棵小树（叫<b>子树</b>）有多高。换一样要造的东西，看看它的树长什么样。</p>
+        <div class="btns" data-m></div>
+        <svg class="rtree" viewBox="0 0 640 260" role="img" aria-label="配方树"></svg>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+
+      <h3>每个结点最多两个孩子：二叉树</h3>
+      <p>如果每个结点<b>最多两个孩子</b>，而且分清了<b>左孩子</b>和<b>右孩子</b>，这样的树叫<b>二叉树</b>。比赛的淘汰赛对阵表就是一棵二叉树：每一场比赛的两个选手，来自下面两场比赛的胜者。</p>
+      <p>二叉树特别好用，后面几章的搜索树、堆、哈夫曼树都是二叉树。它有一个好性质：如果每一层都排满，第 1 层 1 个、第 2 层 2 个、第 3 层 4 个……每多一层，个数翻一倍。20 层就能装一百多万个结点，而从根走到最下面只要 20 步。</p>
+
+      <h3>在 Python 里存一棵树</h3>
+      <p>最直接的办法：每个结点是一个字典，里面记着自己的名字，和一个装着孩子的列表。</p>
+<pre class="code" data-k="tree.py">wood  = {'name': '木',   'kids': []}
+plank = {'name': '木板', 'kids': [wood]}
+stick = {'name': '木棍', 'kids': [plank]}
+
+def show(node, depth=0):
+    print('    ' * depth + node['name'])   # 深度越大，缩进越多
+    for kid in node['kids']:
+        show(kid, depth + 1)                  # 第七章的递归：孩子交给自己
+
+show(stick)</pre>
+      <p>主线第 8 步用的是另一种写法：一个“配方表”，写着每样东西要什么，<code>show_tree</code> 照着表一层一层往下画。两种写法存的是同一棵树。</p>
+      <div class="task" data-id="tree-t8a">
+        <div class="th"><b>画一棵家谱树</b></div>
+        <div class="tb"><p>以爷爷奶奶（或外公外婆）为根，画一棵你家的家谱树。数一数：根是谁？哪些人是叶子？你的深度是几？整棵树有几层？</p></div>
+      </div>
+      <div class="pass" data-id="tree-q8a">
+        <div class="qq" data-a="0"><p>计算机里画树，根在哪儿？</p><ol><li>最上面</li><li>最下面</li></ol><p class="ex">倒着画，根在最上面。</p></div>
+        <div class="qq" data-a="2"><p>配方树里，石、木、沙是什么结点？</p><ol><li>根</li><li>父结点</li><li>叶子</li></ol><p class="ex">没有孩子的是叶子。</p></div>
+        <div class="qq" data-in="0"><p>根的深度是几？</p><p class="ex">从根走 0 步到自己。</p></div>
+        <div class="qq" data-a="1"><p>二叉树的每个结点最多有几个孩子？</p><ol><li>1 个</li><li>2 个</li><li>随便几个</li></ol><p class="ex">最多两个，分左右。</p></div>
+        <div class="qq" data-a="1"><p>每一层都排满的二叉树，每多一层，结点个数大约怎样？</p><ol><li>多 1 个</li><li>翻一倍</li><li>不变</li></ol><p class="ex">1、2、4、8……翻一倍。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c8-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">对照 408：树的基本概念、二叉树、树和森林</span><span class="tm">约 60 分钟</span><span class="sum">度、层次、高度、有序树、森林；树的四条性质；二叉树的五条性质；满二叉树和完全二叉树的编号；顺序存储和二叉链表；双亲、孩子、孩子兄弟三种表示；树和森林转二叉树。</span></div>
+    <div class="lyb">
+      <h3>术语和树的性质</h3>
+      <p>结点的<b>度</b>是它的孩子个数，树的度是各结点度的最大值。度为 0 的是叶子（终端结点），度大于 0 的是分支结点。408 约定根在第 1 层（有的教材从 0 开始，看清题目），树的<b>高度</b>（深度）是最大层数。孩子有左右次序、不能交换的是有序树。<b>森林</b>是 m（≥ 0）棵互不相交的树。</p>
+      <ol class="plain">
+        <li>结点数 = 所有结点的度之和 + 1（除了根，每个结点上面恰好一条边）。</li>
+        <li>度为 m 的树（m 叉树）第 i 层至多 m<sup>i−1</sup> 个结点。</li>
+        <li>高度为 h 的 m 叉树至多 (m<sup>h</sup> − 1)/(m − 1) 个结点。</li>
+        <li>n 个结点的 m 叉树最小高度为 ⌈log<sub>m</sub>(n(m − 1) + 1)⌉。</li>
+      </ol>
+      <div class="pit"><h5>“度为 m 的树”和“m 叉树”</h5><p>度为 m 的树至少有一个结点的度是 m，而且至少有 m + 1 个结点；m 叉树只说“每个结点最多 m 个孩子”，可以是空树，也可以所有结点的度都小于 m。另外 m 叉树的孩子分次序，度为 m 的树不一定。</p></div>
+
+      <h3>二叉树的性质</h3>
+      <ol class="plain">
+        <li>非空二叉树上，<b>n₀ = n₂ + 1</b>（叶子比度为 2 的结点多一个）。证明：n = n₀ + n₁ + n₂，边数 n − 1 = n₁ + 2n₂，两式相减。</li>
+        <li>第 i 层至多 2<sup>i−1</sup> 个结点；高为 h 至多 2<sup>h</sup> − 1 个。</li>
+        <li><b>满二叉树</b>：每层都满，共 2<sup>h</sup> − 1 个结点。<b>完全二叉树</b>：除最后一层外都满，最后一层的结点都靠左。</li>
+        <li>完全二叉树按层从 1 编号：结点 i 的双亲是 ⌊i/2⌋，左孩子 2i，右孩子 2i + 1（若 ≤ n）；i ≤ ⌊n/2⌋ 的是分支结点，其余是叶子；度为 1 的结点最多一个（n 为偶数时有一个）。</li>
+        <li>n 个结点的完全二叉树，高度为 ⌈log₂(n + 1)⌉，也等于 ⌊log₂n⌋ + 1。</li>
+      </ol>
+      <div class="fig" id="cbtFig">
+        <div class="fig-label">装置 · 第八章 · 二</div>
+        <h4>完全二叉树的编号</h4>
+        <p class="how">拖动 n，看完全二叉树的样子；点一个结点，看它的双亲、孩子的编号，和它是不是叶子。下面一排是顺序存储的数组（下标从 1）。</p>
+        <label class="lab">n = <b id="cbNO"></b></label>
+        <input type="range" id="cbN" min="1" max="20" value="10">
+        <svg viewBox="0 0 640 200" role="img" aria-label="完全二叉树"></svg>
+        <div class="cells" id="cbArr"></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+      <h3>存储</h3>
+      <p><b>顺序存储</b>：按完全二叉树的编号放进数组，适合完全二叉树（堆，第十二章）；一般二叉树要补空位，最坏一个高 h 的“单支树”要 2<sup>h</sup> − 1 个位置。<b>二叉链表</b>：<code>struct BiTNode { int data; struct BiTNode *lchild, *rchild; };</code>，n 个结点有 2n 个指针域，用掉 n − 1 个，<b>空指针 n + 1 个</b>（第九章的线索二叉树就利用这些空指针）。</p>
+      <p>一般的树有三种表示：</p>
+      <ul class="plain">
+        <li><b>双亲表示法</b>：数组里每个结点记着双亲的下标（根记 −1）。找双亲 O(1)，找孩子要遍历整个数组。第十四章的并查集就是这种。</li>
+        <li><b>孩子表示法</b>：每个结点挂一个孩子链表。找孩子方便，找双亲难。</li>
+        <li><b>孩子兄弟表示法</b>（二叉树表示法）：每个结点两个指针，一个指向<b>第一个孩子</b>，一个指向<b>右边的下一个兄弟</b>。这样任何树都变成了一棵二叉树。</li>
+      </ul>
+      <h3>树、森林和二叉树的转换</h3>
+      <p>树转二叉树就是孩子兄弟表示法：“左孩子右兄弟”。口诀：兄弟相连，只留长子（和第一个孩子的连线），整体顺时针转 45°。树转成的二叉树，根没有右孩子。森林转二叉树：每棵树先各自转，再把第二棵树的根当作第一棵树根的右孩子，第三棵当作第二棵的右孩子……反过来也一样。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）一棵度为 3 的树，有 4 个度为 3 的结点、2 个度为 2 的结点、3 个度为 1 的结点，叶子有几个？（2）一棵完全二叉树有 700 个结点，叶子有几个？高度是多少？（3）一个森林有 3 棵树，结点数分别为 6、4、5，转成二叉树以后，根结点的右子树有几个结点？</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）总度数 = 4 × 3 + 2 × 2 + 3 × 1 = 19，结点数 = 20，叶子 = 20 − 4 − 2 − 3 = 11。</p>
+          <p>（2）分支结点是编号 1 到 ⌊700/2⌋ = 350，叶子 350 个。（也可以：n 为偶数，有一个度为 1 的结点，n₀ + n₂ = 699，n₀ = n₂ + 1，得 n₀ = 350。）高度 ⌈log₂701⌉ = 10（2⁹ = 512 ≤ 700 &lt; 1024）。</p>
+          <p>（3）根是第一棵树的根，它的左子树是第一棵树的其余 5 个结点，右子树是后两棵树：4 + 5 = 9 个。</p>
+        </div></details>
+      </div>
+      <div class="pass" data-id="tree-q8b">
+        <div class="qq" data-in="11"><p>二叉树有 10 个度为 2 的结点，叶子有几个？</p><p class="ex">n₀ = n₂ + 1 = 11。</p></div>
+        <div class="qq" data-in="7"><p>完全二叉树有 100 个结点，高度是？</p><p class="ex">2⁶ = 64 ≤ 100 &lt; 128，⌊log₂100⌋ + 1 = 7。</p></div>
+        <div class="qq" data-a="1"><p>完全二叉树（从 1 编号）中，结点 i 的左孩子编号是？</p><ol><li>i + 1</li><li>2i</li><li>2i + 1</li></ol><p class="ex">左 2i，右 2i + 1，双亲 ⌊i/2⌋。</p></div>
+        <div class="qq" data-in="21"><p>二叉链表存储 20 个结点的二叉树，有几个空指针？</p><p class="ex">2n − (n − 1) = n + 1 = 21。</p></div>
+        <div class="qq" data-a="0"><p>树转成二叉树以后，根结点的右子树？</p><ol><li>一定为空</li><li>一定不空</li></ol><p class="ex">根没有兄弟，右指针为空。森林转的才可能有。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c8-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">字典树、二叉树的计数</span><span class="tm">约 25 分钟</span><span class="sum">字典树：输入法、自动补全和路由表；n 个结点的二叉树有卡特兰数种；真实软件里到处都是树：文件系统、网页的 DOM、编译器的语法树。</span></div>
+    <div class="lyb">
+      <h3>字典树</h3>
+      <p>把一组单词按字母一层一层挂起来：根下面是首字母，第二层是第二个字母……一条从根往下的路就是一个单词（在结点上做个“到此是一个词”的标记）。这叫<b>字典树</b>（Trie）。查一个长度为 m 的词只要走 m 步，和一共有多少个词无关；更妙的是，走到某个结点，它下面的所有词都有同一个前缀，所以特别适合<b>自动补全</b>和输入法联想。第六章第三层的 AC 自动机就建在字典树上。网络路由器按 IP 地址前缀查路由表（《地基》第三十一章的最长前缀匹配），用的是它的变体（二进制字典树、压缩字典树）。</p>
+<pre class="code" data-k="trie.py">def add(trie, word):
+    node = trie
+    for c in word:
+        node = node.setdefault(c, {})
+    node['$'] = True               # 到此是一个词
+
+def complete(trie, prefix):
+    node = trie
+    for c in prefix:
+        if c not in node: return []
+        node = node[c]
+    out = []
+    def dfs(n, s):
+        if '$' in n: out.append(prefix + s)
+        for c in n:
+            if c != '$': dfs(n[c], s + c)
+    dfs(node, '')
+    return out
+
+t = {}
+for w in ['stone', 'stick', 'sand', 'sapling', 'ship']: add(t, w)
+print(complete(t, 'st'), complete(t, 'sa'))</pre>
+      <h3>有多少种形状</h3>
+      <p>n 个结点的二叉树，形状一共有多少种？选一个做根，左子树 i 个、右子树 n − 1 − i 个，b(n) = Σ b(i)·b(n − 1 − i)，b(0) = 1。这正是第四章出栈序列的卡特兰数：1, 1, 2, 5, 14, 42……这不是巧合：给定先序序列，中序序列的种数就等于出栈序列的种数（先序是入栈次序，中序是出栈次序），408 考过这样的题。</p>
+      <h3>到处都是树</h3>
+      <p>文件系统（《地基》第二十八章）、网页的 DOM（浏览器把 HTML 解析成一棵树）、编译器把源码解析成的语法树（系列第七本《翻译》）、JSON、公司的组织结构、决策树……认出一个问题“是一棵树”，往往就解决了一半。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>E. Fredkin, “Trie Memory”, <i>CACM</i>, 1960：trie 这个词取自 retrieval。</li>
+          <li>D. E. Knuth, <i>The Art of Computer Programming</i>, Vol. 1, 2.3（树）。</li>
+          <li>《算法导论》第 10 章、第 12 章。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="main" data-step="8">
+    <div class="mh"><b>主线 · 第 8 步</b><span>配方树</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给方格岛加上：<i>一棵合成配方的树</i></p>
+      <p><code>RECIPES</code> 写着每样东西要什么原料、各几个。<code>show_tree</code> 从“小屋”开始一层一层往下画，孩子往右缩进；<code>height</code> 用递归算出这棵树有几层。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 island.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>用 C 的“孩子兄弟表示法”存配方树（每个结点一个 first_child、一个 next_sibling 指针），写先根遍历打印；说出它对应的二叉树长什么样。</div>
+    </div>
+  </div>
+  <div class="words">
+    <div data-l="1"><b>树 <span class="en" data-say="tree">tree</span></b>一层管一层，根在最上面。</div>
+    <div data-l="1"><b>根 <span class="en" data-say="root">root</span></b>最上面、没有父结点的那个。</div>
+    <div data-l="1"><b>叶子 <span class="en" data-say="leaf">leaf</span></b>没有孩子的结点。</div>
+    <div data-l="1"><b>二叉树 <span class="en" data-say="binary tree">binary tree</span></b>每个结点最多两个孩子，分左右。</div>
+    <div data-l="2"><b>完全二叉树 <span class="en" data-say="complete binary tree">complete binary tree</span></b>除最后一层都满，最后一层靠左。</div>
+    <div data-l="3"><b>字典树 <span class="en" data-say="trie">trie</span></b>按字母一层层挂单词的树。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>树倒着画：根在上，叶在下；二叉树每层翻一倍，20 层装一百万个。</div>
+    <div><i>第二层带走</i>结点数 = 边数 + 1；n₀ = n₂ + 1；完全二叉树 i 的孩子是 2i 和 2i+1；任何树都能“左孩子右兄弟”地变成二叉树。</div>
+    <div><i>第三层带走</i>认出“这是一棵树”，问题就解决了一半；字典树按前缀找，和总词数无关。</div>
+  </div>
+</section>

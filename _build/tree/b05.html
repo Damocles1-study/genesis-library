@@ -1,0 +1,184 @@
+<section class="chap" id="c12" data-vol="卷四 · 根 · 堆和优先队列">
+  <div class="vol-h">
+    <div class="k">卷四</div>
+    <h2>根</h2>
+    <p>树还能做别的事：让最急的事总在最上面（堆），让常用的字用短码（哈夫曼树），一眨眼回答“这两个连不连着”（并查集），让放在硬盘上的东西三四步就能找到（B 树）。</p>
+  </div>
+  <div class="chead">
+    <div class="big">堆</div>
+    <div>
+      <div class="no">卷四 · 第十二章</div>
+      <h2>堆和优先队列</h2>
+      <dl><dt>讲什么</dt><dd>最小的总在最上面；堆是一棵放在数组里的完全二叉树；上浮和下沉；按时间发生的事件；建堆为什么只要线性时间；前 k 大；合并多个有序表</dd><dt>装置</dt><dd>堆：一棵树，一排格子</dd></dl>
+      <div class="crs" data-c="结构 系统"></div>
+      <div class="lvs"><a data-l="1" href="#c12-1">第一层 · 35 分钟</a><a data-l="2" href="#c12-2">第二层 · 55 分钟</a><a data-l="3" href="#c12-3">第三层 · 20 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>方格岛上的事情好多：树苗 5 刻以后长大，鸭子 8 刻以后下蛋，天 12 刻以后黑……</span></div>
+    <div class="l"><i class="j">舅</i><span>你不用把它们排好序。只要随时知道“下一件最早的事”是什么。这正是堆最擅长的。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>说出堆的规矩“爸爸比孩子小”，以及为什么最小的总在最上面。</li>
+      <li><span class="lg lg1">一</span>说出放一个进去（上浮）和拿走最小的（下沉）各怎样做；用堆按时间顺序处理方格岛上的事件。</li>
+      <li><span class="lg lg2">二</span>手算由一个序列建堆、插入、删除后的结果和比较次数；说明自底向上建堆为什么是 O(n)。</li>
+      <li><span class="lg lg2">二</span>用堆解前 k 大、合并 k 个有序表、数据流的中位数。</li>
+      <li><span class="lg lg3">三</span>说出 d 叉堆、配对堆的用处；操作系统的定时器为什么有时用“时间轮”。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c12-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：完全二叉树和它的编号（第八章）</span><span class="tm">约 35 分钟</span></div>
+    <div class="lyb">
+      <h3>最急的事在最上面</h3>
+      <p>医院的急诊室不是先来先看，而是<b>最急的先看</b>。这样的队伍叫<b>优先队列</b>：随时可以放进新的人，每次拿走的总是最急的那个。</p>
+      <p>方格岛也有一个这样的队伍：每件事带着一个“第几刻发生”，每次要拿出时间最早的那件。</p>
+      <p>每次都把所有事情排一遍序？太慢了。有一种更聪明的摆法，叫<b>堆</b>。</p>
+      <h3>爸爸比孩子小</h3>
+      <p>堆是一棵完全二叉树（第八章：一层一层排满，最后一层靠左），规矩只有一条：<b>每个结点都比它的孩子小</b>（或者相等）。</p>
+      <p>这样，根比它的孩子小，孩子又比孙子小……最小的那个一定在根上。要拿最早的事件，看一眼根就行。</p>
+      <p>注意：堆不要求左边比右边小，兄弟之间谁大谁小都行。它只是“大致”排好，所以维护起来特别便宜。</p>
+      <h3>放进去：上浮</h3>
+      <p>新来的放在最后一层最右边的空位（数组的末尾）。然后和爸爸比：比爸爸小，就和爸爸换位置。一直换，直到不比爸爸小，或者到了根。像一个气泡往上浮。</p>
+      <h3>拿走最小的：下沉</h3>
+      <p>拿走根以后，根空了。把最后一个结点搬到根上，然后和两个孩子里<b>更小的那个</b>比：比它大，就换下去。一直换，直到比两个孩子都小，或者到了最下面。</p>
+      <p>不管放还是拿，最多只走树的高度那么多步：一千件事，十来步。</p>
+      <div class="fig" id="heapFig">
+        <div class="fig-label">装置 · 第十二章</div>
+        <h4>堆：一棵树，一排格子</h4>
+        <p class="how">上面是树，下面是同一个堆存在数组里的样子（下标从 0：i 的孩子是 2i+1 和 2i+2，爸爸是 (i−1)÷2 取整）。点“放一件事”看上浮，点“拿走最早的”看下沉。</p>
+        <div class="btns"><button class="btn pri" data-x="push">放一件事</button><button class="btn" data-x="pop">拿走最早的</button><button class="btn" data-x="r">重来</button></div>
+        <svg class="heap" viewBox="0 0 640 200" role="img" aria-label="堆"></svg>
+        <div class="cells" id="hpArr"></div>
+        <div class="say"></div>
+      </div>
+      <div class="mc">
+        <h5>完全二叉树放在数组里</h5>
+        <p>第八章说过，完全二叉树按层编号以后，孩子和爸爸的编号能算出来，不用纸条。堆就是这样存的：一个普通的 Python 列表就够了。Python 自带的 <code>heapq</code> 就是在列表上做上浮和下沉。</p>
+      </div>
+      <div class="try">
+        <div class="th"><b>方格岛的闹钟</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+<pre class="code" data-k="events.py">import heapq
+events = []
+heapq.heappush(events, (8, '鸭子下了一个蛋'))
+heapq.heappush(events, (3, '雨停了'))
+heapq.heappush(events, (12, '天黑了'))
+heapq.heappush(events, (5, '树苗长成了树'))
+print(events)                     # 数组的样子：最小的在第 0 个
+while events:
+    t, what = heapq.heappop(events)
+    print('第', t, '刻：', what)</pre>
+          <p>放进去的时候是乱的，拿出来的时候是按时间排好的。主线第 12 步不用 heapq，自己写了上浮和下沉。</p>
+        </div>
+      </div>
+      <div class="task" data-id="tree-t12a">
+        <div class="th"><b>纸上建堆</b></div>
+        <div class="tb"><p>把 7、3、9、1、5 一个一个放进一个空堆，每放一个画一次树，标出上浮时换了哪几次。最后拿走最小的，再画一次。</p></div>
+      </div>
+      <div class="pass" data-id="tree-q12a">
+        <div class="qq" data-a="0"><p>小的在上面的堆里，最小的在哪儿？</p><ol><li>根</li><li>最后一个</li><li>不一定</li></ol><p class="ex">爸爸比孩子小，一层层下来，根最小。</p></div>
+        <div class="qq" data-a="1"><p>堆要求左孩子比右孩子小吗？</p><ol><li>要求</li><li>不要求</li></ol><p class="ex">只要求爸爸比孩子小。</p></div>
+        <div class="qq" data-a="1"><p>放进一个新的，先放在哪儿？</p><ol><li>根上</li><li>数组的末尾</li></ol><p class="ex">放在末尾，再上浮。</p></div>
+        <div class="qq" data-a="2"><p>下沉时，和哪个孩子换？</p><ol><li>左孩子</li><li>右孩子</li><li>两个孩子里更小的那个</li></ol><p class="ex">和更小的换，换上来的才比另一个孩子小。</p></div>
+        <div class="qq" data-a="0"><p>急诊室“最急的先看”，这种队伍叫？</p><ol><li>优先队列</li><li>栈</li><li>普通队列</li></ol><p class="ex">优先队列，常用堆来做。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c12-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">对照 408：堆、优先队列（堆排序见第二十八章）</span><span class="tm">约 55 分钟</span><span class="sum">大根堆和小根堆的定义；自底向上建堆和比较次数；插入和删除；建堆 O(n) 的证明；前 k 大、合并 k 个有序表、数据流中位数。</span></div>
+    <div class="lyb">
+      <h3>定义和建堆</h3>
+      <p>n 个关键字的序列 L[1..n]，若对所有 i 满足 L[i] ≥ L[2i] 且 L[i] ≥ L[2i+1]，叫<b>大根堆</b>；都 ≤ 叫<b>小根堆</b>。（408 的堆题多用大根堆、下标从 1。）</p>
+      <p><b>自底向上建堆</b>：从最后一个分支结点 ⌊n/2⌋ 开始，往前依次对每个结点做“下沉”（筛选）。下沉时，先比较两个孩子谁大（1 次比较），再和大的那个比（1 次比较），所以每下沉一层最多 2 次比较；只有一个孩子时 1 次。</p>
+<pre class="code" data-k="heap.c">void sift_down(int A[], int k, int n) {   /* 大根堆，下标从 1 */
+    int x = A[k];
+    for (int i = 2 * k; i &lt;= n; i *= 2) {
+        if (i &lt; n &amp;&amp; A[i] &lt; A[i + 1]) i++;     /* 挑大的孩子 */
+        if (x &gt;= A[i]) break;
+        A[k] = A[i]; k = i;                    /* 孩子上移，继续往下 */
+    }
+    A[k] = x;
+}
+void build(int A[], int n) { for (int k = n / 2; k &gt;= 1; k--) sift_down(A, k, n); }</pre>
+      <p><b>为什么建堆是 O(n)</b>：高度为 h 的结点最多 ⌈n / 2<sup>h+1</sup>⌉ 个，每个下沉至多 h 层，总代价 Σ h · n / 2<sup>h+1</sup> ≤ n · Σ h/2<sup>h+1</sup> = n（级数 Σ h/2<sup>h</sup> = 2）。直觉：一半的结点是叶子，根本不动；只有很少的结点要下沉很多层。逐个插入建堆是 O(n log n)。</p>
+      <p><b>插入</b>：放在末尾，上浮，O(log n)。<b>删除堆顶</b>：用最后一个元素替换堆顶，n 减 1，再从堆顶下沉，O(log n)。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）用自底向上的方法，把序列 {15, 9, 22, 7, 31, 18, 4, 26} 调整成大根堆，写出结果和关键字比较的总次数。（2）在（1）得到的大根堆中删除堆顶，写出调整后的堆。</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）n = 8，下标 1—8：15 9 22 7 31 18 4 26。从 k = 4 开始：A[4] = 7，只有左孩子 A[8] = 26，比较 1 次，7 &lt; 26，交换 → 15 9 22 26 31 18 4 7。k = 3：A[3] = 22，孩子 18、4，比较 18 和 4（1 次），22 和 18（1 次），不换。k = 2：A[2] = 9，孩子 26、31，比较（1 次）选 31，9 和 31（1 次），交换到位置 5；位置 5 没有孩子（10 &gt; 8）。→ 15 31 22 26 9 18 4 7。k = 1：15，孩子 31、22（1 次）选 31，15 和 31（1 次），交换到位置 2；位置 2 的孩子 26、9（1 次）选 26，15 和 26（1 次），交换到位置 4；位置 4 的孩子 A[8] = 7（只有一个，1 次），15 ≥ 7，停。结果 31 26 22 15 9 18 4 7。比较次数：1 + 2 + 2 + 5 = 10 次。</p>
+          <p>（2）把 7 放到堆顶，n = 7：7 26 22 15 9 18 4。7 的孩子 26、22 → 26，换；位置 2 的孩子 15、9 → 15，换；位置 4 的孩子是位置 8，超出 n，停。结果 26 15 22 7 9 18 4。</p>
+        </div></details>
+      </div>
+      <h3>几道常见题</h3>
+      <ul class="plain">
+        <li><b>n 个数里找前 k 大</b>：维护一个大小为 k 的<b>小根堆</b>，新数比堆顶大就替换堆顶再下沉。O(n log k)，适合数据流和内存装不下的情况。</li>
+        <li><b>合并 k 个有序表</b>：每个表的第一个元素入小根堆，每次弹出最小的，并把它所在表的下一个入堆。O(N log k)，N 是总个数。外部排序的多路归并（第二十七章）就是这样。</li>
+        <li><b>数据流的中位数</b>：一个大根堆存较小的一半、一个小根堆存较大的一半，保持两边个数差不超过 1，中位数在堆顶。每次插入 O(log n)。</li>
+      </ul>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>有一个 10 亿个整数的文件，内存只能放下 100 万个数，找出最大的 100 个。</p>
+        <details><summary>看要点</summary><div><p>一遍扫描，维护大小为 100 的小根堆：堆不满就放进去；满了且新数大于堆顶，就替换堆顶并下沉。最后堆里就是答案。时间 O(N log 100)，内存 O(100)。追问“要是找第 5 亿大”（中位数）：用快速选择（第二十六章）不行，因为内存不够；可以先按数值范围分桶统计个数，定位到某个桶再在桶内精确查找（计数排序的思路，第二十八章）。</p></div></details>
+      </div>
+      <div class="pass" data-id="tree-q12b">
+        <div class="qq" data-a="1"><p>自底向上建堆的时间复杂度是？</p><ol><li>O(n log n)</li><li>O(n)</li><li>O(log n)</li></ol><p class="ex">大多数结点在底部，下沉很少。</p></div>
+        <div class="qq" data-a="2"><p>序列 {9, 7, 8, 3, 6, 5}（下标从 1）是大根堆吗？</p><ol><li>不是，7 &lt; 8</li><li>不是，3 &lt; 6</li><li>是</li></ol><p class="ex">9 ≥ 7, 8；7 ≥ 3, 6；8 ≥ 5。兄弟之间不要求大小。</p></div>
+        <div class="qq" data-in="3"><p>n 个元素的大根堆，最后一个分支结点的下标是 ⌊n/2⌋。n = 7 时是几？</p><p class="ex">⌊7/2⌋ = 3。</p></div>
+        <div class="qq" data-a="0"><p>找 n 个数里最大的 k 个，最合适的是？</p><ol><li>大小为 k 的小根堆</li><li>大小为 k 的大根堆</li><li>把 n 个数全部排序</li></ol><p class="ex">小根堆的堆顶是“目前第 k 大”，新数比它大才进来。</p></div>
+        <div class="qq" data-a="1"><p>删除堆顶时，用哪个元素来补位？</p><ol><li>较小的孩子</li><li>最后一个元素</li><li>第二大的元素</li></ol><p class="ex">用最后一个元素补到堆顶，再下沉，保证还是完全二叉树。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c12-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">更多的堆、定时器</span><span class="tm">约 20 分钟</span><span class="sum">d 叉堆让树更矮；斐波那契堆和配对堆的“减小关键字”；heapq 的接口；操作系统和网络里的定时器：堆和时间轮。</span></div>
+    <div class="lyb">
+      <h3>d 叉堆和更花哨的堆</h3>
+      <p>每个结点 d 个孩子的堆更矮（log<sub>d</sub>n 层），上浮更快，下沉时每层要比 d 个孩子。插入多、删除少的场景（比如第十八章的迪杰斯特拉算法）用 4 叉堆常常更快，而且对缓存更友好。<b>斐波那契堆</b>（1984）把“减小某个关键字”做到均摊 O(1)，让迪杰斯特拉的理论复杂度降到 O(E + V log V)，但常数大、实际很少用；<b>配对堆</b>写起来简单，实测表现很好。</p>
+      <h3>heapq 的几个用法</h3>
+      <p><code>heapq</code> 只有小根堆。要大根堆，就把数取负再放进去。<code>heapq.nlargest(k, data)</code> 就是“大小为 k 的小根堆”的做法；<code>heapq.merge(*lists)</code> 是多路归并。元组按第一个元素比较，相同再比第二个：这就是主线第 12 步里“同一刻发生的两件事”能按名字排开的原因。如果第二个元素不能比较（比如是字典），要在中间加一个递增的序号。</p>
+      <h3>定时器</h3>
+      <p>操作系统和网络协议里有成千上万个定时器（TCP 的重传、连接超时……），大多数还没到期就被取消了。用堆，每次添加和删除都是 O(log n)。Linux 内核的普通定时器用的是<b>时间轮</b>（timer wheel）：像钟面一样分成很多格，每格挂一个链表，加入和取消都是 O(1)，代价是精度变粗；需要高精度的 hrtimer 则用第十一章的红黑树。Go 语言的运行时用的是 4 叉堆。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>J. W. J. Williams, “Algorithm 232: Heapsort”, <i>CACM</i>, 1964（二叉堆的出处）；R. W. Floyd, “Algorithm 245: Treesort 3”, 1964（线性时间建堆）。</li>
+          <li>M. L. Fredman, R. E. Tarjan, “Fibonacci heaps and their uses in improved network optimization algorithms”, 1984/1987。</li>
+          <li>G. Varghese, A. Lauck, “Hashed and hierarchical timing wheels”, 1987。</li>
+          <li>Python 文档 <code>heapq</code> 一节的“理论”部分。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="main" data-step="12">
+    <div class="mh"><b>主线 · 第 12 步</b><span>定时事件</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给方格岛加上：<i>自己写的堆</i></p>
+      <p><code>heap_push</code> 放在末尾再上浮，<code>heap_pop</code> 把最后一个搬到根再下沉。六件事乱着放进去，按时间顺序一件一件拿出来。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 island.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>用 C 写数组上的二叉堆，实现自底向上建堆；数一数建堆时的比较次数，验证它不超过 2n。</div>
+    </div>
+  </div>
+  <div class="words">
+    <div data-l="1"><b>堆 <span class="en" data-say="heap">heap</span></b>爸爸比孩子小（或大）的完全二叉树。</div>
+    <div data-l="1"><b>优先队列 <span class="en" data-say="priority queue">priority queue</span></b>每次拿走最急的那个。</div>
+    <div data-l="1"><b>上浮 <span class="en" data-say="sift up">sift up</span></b>和爸爸比，小就换上去；下沉是 <span class="en" data-say="sift down">sift down</span>。</div>
+    <div data-l="2"><b>大根堆 <span class="en" data-say="max-heap">max-heap</span></b>根最大；小根堆是 <span class="en" data-say="min-heap">min-heap</span>。</div>
+    <div data-l="2"><b>建堆 <span class="en" data-say="heapify">heapify</span></b>从最后一个分支结点往前逐个下沉。</div>
+    <div data-l="3"><b>时间轮 <span class="en" data-say="timer wheel">timer wheel</span></b>像钟面一样分格挂定时器。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>堆只管“爸爸比孩子小”，最小的就在根上；放进去上浮，拿出来下沉，都只走树高那么多步。</div>
+    <div><i>第二层带走</i>建堆从 ⌊n/2⌋ 往前下沉，O(n)；每下沉一层比两次；前 k 大用大小为 k 的小根堆。</div>
+    <div><i>第三层带走</i>堆有很多变种；定时器多数还没到期就被取消，所以内核用时间轮。</div>
+  </div>
+</section>

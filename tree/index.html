@@ -2800,7 +2800,7 @@ const grp = (s, k) => s.replace(new RegExp('(.{' + (k || 4) + '})(?=.)', 'g'), '
 const BOOK = 'tree';   // 系列共用的本机记录里，id 前缀是 tree-
 const PFILE = ['index', 'two', 'three', 'four'];
 const PAGE = (() => { const m = location.pathname.match(/\/(two|three|four)\.html/); return m ? PFILE.indexOf(m[1]) + 1 : 1; })();
-const READY = 1; // 已经写好的部数
+const READY = 2; // 已经写好的部数
 const PURL = {}; PFILE.forEach((f, i) => PURL[i + 1] = i ? f + '.html' : './');
 const PARTS = [
   {k: '线', s: '一个接一个：复杂度、数组、链表、栈、队列、字符串、递归 · 八章'},
@@ -3152,6 +3152,53 @@ dev('#coverFig', fig => {
   reset();
 });
 
+/* ---------- 第二部封面：一棵树能装多少 ---------- */
+/* 公用：画一棵二叉树。nodes：{id: {k, l, r}}，root；opt：{mark(id)->类名, sub(id)->小字, W, H} */
+function treeLayout(nodes, root){
+  const pos = {}; let col = 0; let maxd = 0;
+  const walk = (id, d) => { if (id == null || !nodes[id]) return; walk(nodes[id].l, d + 1); pos[id] = {x: col++, d}; maxd = Math.max(maxd, d); walk(nodes[id].r, d + 1); };
+  walk(root, 0);
+  return {pos, n: col, depth: maxd + 1};
+}
+function drawBinTree(svg, nodes, root, opt){
+  opt = opt || {};
+  const W = opt.W || 640, Hh = opt.H || 220;
+  const L = treeLayout(nodes, root);
+  if (!L.n) { svg.setAttribute('viewBox', '0 0 ' + W + ' 60'); svg.innerHTML = txt(W / 2, 34, '（空树）', {c: 'var(--ink-3)'}); return L; }
+  const dx = Math.min(56, (W - 40) / Math.max(1, L.n)), dy = Math.min(56, (Hh - 40) / Math.max(1, L.depth - 1 || 1));
+  const H = 40 + (L.depth - 1) * dy + 16;
+  svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+  const ox = (W - (L.n - 1) * dx) / 2;
+  const P = id => ({x: ox + L.pos[id].x * dx, y: 22 + L.pos[id].d * dy});
+  const r = Math.min(15, dx * 0.42 + 4);
+  let h = '';
+  Object.keys(L.pos).forEach(id => { const a = P(id); ['l', 'r'].forEach(s => { const c = nodes[id][s]; if (c != null && L.pos[c]) { const b = P(c); h += '<line x1="' + a.x + '" y1="' + a.y + '" x2="' + b.x + '" y2="' + b.y + '" stroke="var(--ink-3)" stroke-width="1.4"/>'; } }); });
+  Object.keys(L.pos).forEach(id => {
+    const a = P(id), m = opt.mark ? opt.mark(id) : '';
+    const fill = m === 'hl' ? 'var(--main)' : m === 'ok' ? 'var(--l1)' : m === 'v' ? 'color-mix(in srgb,var(--ter) 30%,var(--card))' : m === 'red' ? 'var(--red)' : 'var(--card)';
+    const ink = (m === 'hl' || m === 'ok' || m === 'red') ? 'var(--paper)' : 'var(--ink)';
+    h += '<circle cx="' + a.x + '" cy="' + a.y + '" r="' + r + '" fill="' + fill + '" stroke="' + (m ? 'var(--main)' : 'var(--ter)') + '" stroke-width="1.6" data-id="' + id + '" style="cursor:' + (opt.click ? 'pointer' : 'default') + '"/>';
+    h += txt(a.x, a.y + 4.5, nodes[id].k, {s: r > 12 ? 13 : 10, c: ink, w: 1, halo: false});
+    if (opt.sub) { const s = opt.sub(id); if (s !== '' && s != null) h += txt(a.x, a.y + r + 11, s, {s: 10, c: 'var(--ink-3)'}); }
+  });
+  svg.innerHTML = h;
+  if (opt.click && !svg._clk) { svg._clk = 1; svg.addEventListener('click', e => { const c = e.target.closest('[data-id]'); if (c) svg._onclick(c.dataset.id); }); }
+  if (opt.click) svg._onclick = opt.click;
+  return L;
+}
+dev('#treeCountFig', fig => {
+  const svg = $('svg', fig), kvb = $('.kv', fig), say = $('.say', fig);
+  slider('tcH', null, h => {
+    const nodes = {}; const show = Math.min(h, 5);
+    for (let i = 1; i < 2 ** show; i++) nodes[i] = {k: i < 100 ? String(i) : '', l: 2 * i < 2 ** show ? 2 * i : null, r: 2 * i + 1 < 2 ** show ? 2 * i + 1 : null};
+    drawBinTree(svg, nodes, 1, {W: 640, H: 200});
+    const total = 2 ** h - 1;
+    const big = total >= 1e8 ? (total / 1e8).toFixed(1) + ' 亿' : total >= 1e4 ? (total / 1e4).toFixed(1) + ' 万' : String(total);
+    kv(kvb, [['层数', h], ['最下面一层', (2 ** (h - 1)).toLocaleString('en-US') + ' 个'], ['一共能装', big + ' 个'], ['找一个最多走', h + ' 步']]);
+    say.textContent = h > 5 ? '图里只画了前 5 层。' + h + ' 层的树能装 ' + big + ' 个结点，可从根走到最下面只要 ' + h + ' 步。' : '每多一层，能装的结点就差不多翻一倍。';
+  });
+});
+
 /* ---------- 主线：方格岛，一章加一个功能 ----------
    每章末尾的 <div class="main" data-step="N"> 由 _build/tree/main/boxes.py 插入；
    分步代码由 _build/tree/main/make.py 生成到 tree/main/：sNN.py（第 0—N 步的完整文件）、dNN.py（第 N 步新写的）、oNN.txt（运行结果）。
@@ -3162,7 +3209,7 @@ const MAIN_PART = ['小岛地图', '计步器', '一长排格子', '鸭子队伍
   '传送门', '团团追你', '省力的路', '修路', '合成顺序', '装背包', '最划算的背包',
   '自己的散列表', '查名次', '简单排序', '快速排序', '归并', '计数排序', '完工'];
 const MAIN_SKIP = [];                 // 小学生可以先跳过的章
-const MAIN_ADULT = [6];               // 第一层要大人陪着多一点的章
+const MAIN_ADULT = [6, 11, 15];               // 第一层要大人陪着多一点的章
 const MAIN_RAMP = [];                 // 第二层开头有“入门版”的章（这本书没有）
 const mainDone = n => !!G.d.flag['tree-m' + n];
 const mPad = n => (n < 10 ? '0' : '') + n;
@@ -3621,6 +3668,355 @@ dev('#fillFig', fig => {
   $('[data-x="fast"]', fig).addEventListener('click', () => { speed = speed > 60 ? 40 : 220; $('[data-x="fast"]', fig).textContent = speed > 60 ? '快一点' : '慢一点'; });
   $('[data-x="r"]', fig).addEventListener('click', reset);
   reset();
+});
+
+/* ---------- 第八章：配方树；完全二叉树的编号 ---------- */
+const RECIPES = {'小屋': [['石砖', 4], ['木板', 3], ['灯', 1]], '灯': [['玻璃', 1], ['木棍', 1]], '镐': [['石砖', 1], ['木棍', 2]], '石砖': [['石', 2]], '玻璃': [['沙', 2]], '木棍': [['木板', 1]], '木板': [['木', 1]], '船': [['木板', 3], ['木棍', 1]]};
+/* 一般的树：nodes [{id, label, kids:[id], parent}]；返回位置 */
+function drawTree(svg, nodes, opt){
+  opt = opt || {};
+  const W = 640, byId = {}; nodes.forEach(n => byId[n.id] = n);
+  let leaf = 0; const pos = {}; let maxd = 0;
+  const walk = (id, d) => { const n = byId[id]; maxd = Math.max(maxd, d); if (!n.kids.length) { pos[id] = {x: leaf++, d}; return; } n.kids.forEach(k => walk(k, d + 1)); pos[id] = {x: (pos[n.kids[0]].x + pos[n.kids[n.kids.length - 1]].x) / 2, d}; };
+  walk(nodes[0].id, 0);
+  const dx = Math.min(80, (W - 60) / Math.max(1, leaf - 1)), dy = 46;
+  const H = 30 + maxd * dy + 30; svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+  const ox = (W - (leaf - 1) * dx) / 2, P = id => ({x: ox + pos[id].x * dx, y: 20 + pos[id].d * dy});
+  let h = '';
+  nodes.forEach(n => n.kids.forEach(k => { const a = P(n.id), b = P(k); h += '<line x1="' + a.x + '" y1="' + (a.y + 10) + '" x2="' + b.x + '" y2="' + (b.y - 10) + '" stroke="var(--ink-3)" stroke-width="1.3"/>'; if (opt.edge) { const t = opt.edge(n.id, k); if (t) h += txt((a.x + b.x) / 2 + 8, (a.y + b.y) / 2 + 4, t, {s: 10.5, c: 'var(--ink-3)'}); } }));
+  nodes.forEach(n => { const a = P(n.id), m = opt.mark ? opt.mark(n.id) : ''; const w = Math.max(30, n.label.length * 15 + 12);
+    h += '<rect x="' + (a.x - w / 2) + '" y="' + (a.y - 11) + '" width="' + w + '" height="22" rx="5" fill="' + (m === 'hl' ? 'var(--main)' : m === 'v' ? 'color-mix(in srgb,var(--main) 18%,var(--card))' : 'var(--card)') + '" stroke="' + (n.kids.length ? 'var(--ter)' : 'var(--l1)') + '" stroke-width="1.6" data-id="' + n.id + '" style="cursor:pointer"/>';
+    h += txt(a.x, a.y + 4.5, n.label, {s: 12.5, c: m === 'hl' ? 'var(--paper)' : 'var(--ink)', halo: false}); });
+  svg.innerHTML = h;
+  if (opt.click && !svg._clk) { svg._clk = 1; svg.addEventListener('click', e => { const c = e.target.closest('[data-id]'); if (c) svg._onclick(c.dataset.id); }); }
+  if (opt.click) svg._onclick = opt.click;
+}
+function recipeNodes(item){
+  const nodes = []; let k = 0;
+  const add = (name, cnt, parent, d) => { const id = 'r' + k++; const n = {id, name, cnt, parent, d, kids: [], label: name + (cnt > 1 ? '×' + cnt : '')}; nodes.push(n); (RECIPES[name] || []).forEach(([c, m]) => n.kids.push(add(c, m, id, d + 1))); return id; };
+  add(item, 1, null, 0);
+  return nodes;
+}
+dev('#recipeFig', fig => {
+  const svg = $('svg.rtree', fig), kvb = $('.kv', fig), say = $('.say', fig);
+  const ITEMS = ['小屋', '镐', '灯', '船'];
+  let nodes;
+  const ht = (id) => { const n = nodes.find(x => x.id === id); return n.kids.length ? 1 + Math.max(...n.kids.map(ht)) : 1; };
+  function show(item){
+    nodes = recipeNodes(item);
+    drawTree(svg, nodes, {click: pick});
+    kv(kvb, [['结点数', nodes.length], ['叶子（原料）', nodes.filter(n => !n.kids.length).length], ['整棵树高', ht(nodes[0].id) + ' 层']]);
+    say.textContent = '绿边框的是叶子（要挖的原料），蓝边框的有孩子。点一个结点看看。';
+  }
+  function pick(id){
+    const n = nodes.find(x => x.id === id), path = {}; let p = n; while (p) { path[p.id] = 1; p = p.parent ? nodes.find(x => x.id === p.parent) : null; }
+    drawTree(svg, nodes, {click: pick, mark: x => x === id ? 'hl' : path[x] ? 'v' : ''});
+    const par = n.parent ? nodes.find(x => x.id === n.parent) : null;
+    kv(kvb, [['名字', n.name], ['父结点', par ? par.name : '没有（它是根）'], ['孩子', n.kids.length ? n.kids.map(k => nodes.find(x => x.id === k).name).join('、') : '没有（它是叶子）'], ['深度', n.d], ['子树高', ht(id) + ' 层']]);
+    say.textContent = '浅色的是从根走到它的路：走了 ' + n.d + ' 步，所以深度是 ' + n.d + '。';
+  }
+  btnRow($('[data-m]', fig), ITEMS, 0, i => show(ITEMS[i]));
+  show('小屋');
+});
+dev('#cbtFig', fig => {
+  const svg = $('svg', fig), arr = $('#cbArr'), kvb = $('.kv', fig), say = $('.say', fig);
+  let n = 10, sel = null;
+  function draw(){
+    const nodes = {}; for (let i = 1; i <= n; i++) nodes[i] = {k: String(i), l: 2 * i <= n ? 2 * i : null, r: 2 * i + 1 <= n ? 2 * i + 1 : null};
+    const rel = {}; if (sel) { rel[sel] = 'hl'; if (sel > 1) rel[Math.floor(sel / 2)] = 'v'; if (2 * sel <= n) rel[2 * sel] = 'ok'; if (2 * sel + 1 <= n) rel[2 * sel + 1] = 'ok'; }
+    drawBinTree(svg, nodes, 1, {mark: id => rel[id] || '', click: id => { sel = +id; draw(); }});
+    arr.innerHTML = Array.from({length: n}, (_, k) => '<span class="' + (rel[k + 1] === 'hl' ? 'hl' : rel[k + 1] ? 'mv' : '') + '">' + (k + 1) + '<small>[' + (k + 1) + ']</small></span>').join('');
+    const h = Math.floor(Math.log2(n)) + 1;
+    if (sel) kv(kvb, [['结点', sel], ['双亲 ⌊i/2⌋', sel > 1 ? Math.floor(sel / 2) : '无（根）'], ['左孩子 2i', 2 * sel <= n ? 2 * sel : '无'], ['右孩子 2i+1', 2 * sel + 1 <= n ? 2 * sel + 1 : '无'], ['叶子？i > ⌊n/2⌋', sel > Math.floor(n / 2) ? '是' : '否']]);
+    else kv(kvb, [['n', n], ['高度 ⌊log₂n⌋+1', h], ['叶子 n − ⌊n/2⌋', n - Math.floor(n / 2)], ['度为 1 的结点', n % 2 === 0 ? 1 : 0]]);
+    say.textContent = sel ? '浅色是双亲，绿色是孩子。数组里它们的下标正好是 ⌊i/2⌋、2i、2i+1：不用指针也能找到。' : '点一个结点看看它的亲戚。';
+  }
+  slider('cbN', null, v => { n = v; if (sel > n) sel = null; draw(); });
+});
+
+/* ---------- 第九章：四种走法 ---------- */
+dev('#travFig', fig => {
+  const svg = $('svg.trav', fig), out = $('#trOut'), say = $('.say', fig);
+  const TREES = [
+    {name: '字母树', root: 'A', n: {A: {k: 'A', l: 'B', r: 'C'}, B: {k: 'B', l: 'D', r: 'E'}, C: {k: 'C', l: 'F', r: 'G'}, D: {k: 'D', l: null, r: 'H'}, E: {k: 'E', l: null, r: null}, F: {k: 'F', l: 'I', r: null}, G: {k: 'G', l: null, r: null}, H: {k: 'H', l: null, r: null}, I: {k: 'I', l: null, r: null}}},
+    {name: '算式树', root: 'm', n: {m: {k: '×', l: 'p', r: 's'}, p: {k: '+', l: 'a', r: 'b'}, s: {k: '−', l: 'c', r: 'd'}, a: {k: '3', l: null, r: null}, b: {k: '4', l: null, r: null}, c: {k: '5', l: null, r: null}, d: {k: '2', l: null, r: null}}},
+    {name: '自己画的树', root: 'A', n: {A: {k: 'A', l: 'B', r: 'C'}, B: {k: 'B', l: 'D', r: null}, C: {k: 'C', l: 'E', r: 'F'}, D: {k: 'D', l: null, r: null}, E: {k: 'E', l: null, r: null}, F: {k: 'F', l: null, r: null}}}
+  ];
+  const ORDERS = ['先序', '中序', '后序', '层序'];
+  let ord = 0, ti = 0, seq = [], at = 0, vals = {};
+  btnRow($('[data-m]', fig), ORDERS, 0, i => { ord = i; reset(); });
+  btnRow($('[data-t]', fig), TREES.map(t => t.name), 0, i => { ti = i; reset(); });
+  function build(){
+    const T = TREES[ti], n = T.n, s = [];
+    const pre = id => { if (!id) return; s.push(id); pre(n[id].l); pre(n[id].r); };
+    const ino = id => { if (!id) return; ino(n[id].l); s.push(id); ino(n[id].r); };
+    const post = id => { if (!id) return; post(n[id].l); post(n[id].r); s.push(id); };
+    const lev = () => { const q = [T.root]; while (q.length) { const id = q.shift(); s.push(id); if (n[id].l) q.push(n[id].l); if (n[id].r) q.push(n[id].r); } };
+    [pre, ino, post][ord] ? [pre, ino, post][ord](T.root) : lev();
+    if (ord === 3) { s.length = 0; lev(); }
+    return s;
+  }
+  function draw(){
+    const T = TREES[ti], seen = {}; seq.slice(0, at).forEach(id => seen[id] = 1);
+    const cur = at ? seq[at - 1] : null;
+    drawBinTree(svg, T.n, T.root, {W: 640, H: 220, mark: id => id === cur ? 'hl' : seen[id] ? 'v' : '', sub: id => ti === 1 && vals[id] !== undefined && !/\d/.test(T.n[id].k) ? '= ' + vals[id] : ''});
+    out.innerHTML = seq.map((id, k) => '<span class="' + (k === at - 1 ? 'hl' : k >= at ? 'dim' : '') + '">' + (k < at ? T.n[id].k : '?') + '<small>' + (k + 1) + '</small></span>').join('');
+  }
+  function reset(){ seq = build(); at = 0; vals = {}; draw(); say.textContent = ['先序：自己、左、右。', '中序：左、自己、右。', '后序：左、右、自己。', '层序：一层一层，从左到右。'][ord] + (ti === 1 && ord === 2 ? '后序走算式树：每走到一个运算符，它的两个孩子都已经算好了。' : ''); }
+  function step(){
+    if (at >= seq.length) return false;
+    at++;
+    const T = TREES[ti], id = seq[at - 1], nd = T.n[id];
+    if (ti === 1 && ord === 2 && !/\d/.test(nd.k)) { const a = vals[nd.l] !== undefined ? vals[nd.l] : +T.n[nd.l].k, b = vals[nd.r] !== undefined ? vals[nd.r] : +T.n[nd.r].k; vals[id] = nd.k === '+' ? a + b : nd.k === '−' ? a - b : a * b; say.textContent = '走到“' + nd.k + '”：左边是 ' + a + '，右边是 ' + b + '，算出 ' + vals[id] + '。'; }
+    else say.textContent = at === seq.length ? '走完了：' + seq.map(x => T.n[x].k).join(' ') + (ti === 1 ? (ord === 2 ? '。这就是第四章的后缀表达式，最后得 ' + vals[T.root] + '。' : ord === 0 ? '。这是前缀表达式。' : ord === 1 ? '。加上括号就是原来的算式 (3 + 4) × (5 − 2)。' : '。') : '。') : '看到 ' + nd.k + '。';
+    draw(); return true;
+  }
+  $('[data-x="s"]', fig).addEventListener('click', step);
+  $('[data-x="all"]', fig).addEventListener('click', () => { while (step()); });
+  $('[data-x="r"]', fig).addEventListener('click', reset);
+  reset();
+});
+
+/* ---------- 第十章：搜索树游乐场 ---------- */
+/* 公用：用 {id: {k, l, r}} 存的二叉搜索树。BT.insert 返回经过的 id 列表 */
+const BT = {
+  mk(){ return {n: {}, root: null, next: 1}; },
+  insert(t, key){ const path = []; let p = t.root, par = null, side = null; while (p != null) { path.push(p); if (key === t.n[p].k) return {path, dup: true}; par = p; side = key < t.n[p].k ? 'l' : 'r'; p = t.n[p][side]; } const id = 'b' + t.next++; t.n[id] = {k: key, l: null, r: null}; if (par == null) t.root = id; else t.n[par][side] = id; path.push(id); return {path, id}; },
+  find(t, key){ const path = []; let p = t.root; while (p != null) { path.push(p); if (key === t.n[p].k) return {path, id: p}; p = key < t.n[p].k ? t.n[p].l : t.n[p].r; } return {path, id: null}; },
+  height(t, id){ id = id === undefined ? t.root : id; return id == null ? 0 : 1 + Math.max(BT.height(t, t.n[id].l), BT.height(t, t.n[id].r)); },
+  ino(t, id, out){ out = out || []; id = id === undefined ? t.root : id; if (id != null) { BT.ino(t, t.n[id].l, out); out.push(t.n[id].k); BT.ino(t, t.n[id].r, out); } return out; },
+  depthSum(t, id, d){ id = id === undefined ? t.root : id; d = d || 1; return id == null ? 0 : d + BT.depthSum(t, t.n[id].l, d + 1) + BT.depthSum(t, t.n[id].r, d + 1); },
+  del(t, key){ let p = t.root, par = null, side = null; while (p != null && t.n[p].k !== key) { par = p; side = key < t.n[p].k ? 'l' : 'r'; p = t.n[p][side]; } if (p == null) return null; const nd = t.n[p]; let msg;
+    const replace = c => { if (par == null) t.root = c; else t.n[par][side] = c; };
+    if (nd.l == null && nd.r == null) { replace(null); msg = '它是叶子，直接删掉。'; }
+    else if (nd.l == null || nd.r == null) { replace(nd.l != null ? nd.l : nd.r); msg = '它只有一棵子树，让子树顶上来。'; }
+    else { let sp = p, s = nd.r; while (t.n[s].l != null) { sp = s; s = t.n[s].l; } nd.k = t.n[s].k; if (sp === p) t.n[sp].r = t.n[s].r; else t.n[sp].l = t.n[s].r; delete t.n[s]; msg = '它有两棵子树：用中序后继 ' + nd.k + '（右子树最左下的）顶替它，再删掉原来那个后继。'; return msg; }
+    delete t.n[p]; return msg; }
+};
+dev('#bstFig', fig => {
+  const svg = $('svg.bst', fig), ino = $('#bsIno'), kvb = $('.kv', fig), say = $('.say', fig), inp = $('#bsIn');
+  let t = BT.mk(), mark = {};
+  const r = rng(10);
+  function draw(){
+    drawBinTree(svg, t.n, t.root, {W: 640, H: 240, mark: id => mark[id] || ''});
+    const arr = BT.ino(t); const n = arr.length;
+    ino.innerHTML = n ? '<span class="dim" style="border:0">中序：</span>' + arr.map(v => '<span>' + v + '</span>').join('') : '';
+    kv(kvb, [['结点数', n], ['树高', BT.height(t)], ['平均查找长度（成功）', n ? (BT.depthSum(t) / n).toFixed(2) : '—'], ['匀称的树最矮能到', n ? Math.ceil(Math.log2(n + 1)) : '—']]);
+  }
+  const val = () => { const v = parseInt(inp.value, 10); return isNaN(v) ? null : v; };
+  $('[data-x="ins"]', fig).addEventListener('click', () => { const v = val(); if (v === null) return; if (Object.keys(t.n).length >= 31) { say.textContent = '树太大了，先清空。'; return; } const res = BT.insert(t, v); mark = {}; res.path.forEach(id => mark[id] = 'v'); if (!res.dup) mark[res.id] = 'hl'; draw(); say.textContent = res.dup ? v + ' 已经在树里了。' : '一路比下去：' + res.path.slice(0, -1).map(id => t.n[id].k + (v < t.n[id].k ? ' 往左' : ' 往右')).join('，') + (res.path.length > 1 ? '，' : '') + '走到空位，挂上 ' + v + '。'; });
+  $('[data-x="find"]', fig).addEventListener('click', () => { const v = val(); if (v === null) return; const res = BT.find(t, v); mark = {}; res.path.forEach(id => mark[id] = 'v'); if (res.id) mark[res.id] = 'ok'; draw(); say.textContent = (res.id ? '找到了 ' + v : '没有 ' + v) + '，比了 ' + res.path.length + ' 次：' + res.path.map(id => t.n[id].k).join(' → ') + '。'; });
+  $('[data-x="del"]', fig).addEventListener('click', () => { const v = val(); if (v === null) return; const m = BT.del(t, v); mark = {}; draw(); say.textContent = m === null ? '树里没有 ' + v + '。' : '删掉 ' + v + '：' + m; });
+  $('[data-x="rand"]', fig).addEventListener('click', () => { t = BT.mk(); const pool = []; while (pool.length < 10) { const x = 1 + Math.floor(r() * 99); if (!pool.includes(x)) pool.push(x); } pool.forEach(x => BT.insert(t, x)); mark = {}; draw(); say.textContent = '按这个顺序插的：' + pool.join(' ') + '。树高 ' + BT.height(t) + '。'; });
+  $('[data-x="sorted"]', fig).addEventListener('click', () => { t = BT.mk(); for (let x = 10; x <= 100; x += 10) BT.insert(t, x); mark = {}; draw(); say.textContent = '按 10、20、……100 的顺序插：树歪成了一根棍，高 10。找 100 要比 10 次。'; });
+  $('[data-x="clr"]', fig).addEventListener('click', () => { t = BT.mk(); mark = {}; draw(); say.textContent = '空树。插几个数试试。'; });
+  [50, 30, 70, 20, 40, 60, 80].forEach(x => BT.insert(t, x));
+  draw(); say.textContent = '这棵树是依次插入 50 30 70 20 40 60 80 得到的。';
+});
+
+/* ---------- 第十一章：会自己转的树（AVL） ---------- */
+dev('#avlFig', fig => {
+  const svg = $('svg.avl', fig), kvb = $('.kv', fig), say = $('.say', fig), inp = $('#avIn');
+  let n = {}, root = null, next = 1, log = [], plain = BT.mk();
+  const H = id => id == null ? 0 : n[id].h;
+  const upd = id => { n[id].h = 1 + Math.max(H(n[id].l), H(n[id].r)); };
+  const rotR = a => { const b = n[a].l; n[a].l = n[b].r; n[b].r = a; upd(a); upd(b); return b; };
+  const rotL = a => { const b = n[a].r; n[a].r = n[b].l; n[b].l = a; upd(a); upd(b); return b; };
+  function ins(p, k){
+    if (p == null) { const id = 'v' + next++; n[id] = {k, l: null, r: null, h: 1}; return id; }
+    if (k < n[p].k) n[p].l = ins(n[p].l, k); else if (k > n[p].k) n[p].r = ins(n[p].r, k); else return p;
+    upd(p); const bf = H(n[p].l) - H(n[p].r);
+    if (bf === 2) { if (k > n[n[p].l].k) { log.push('结点 ' + n[p].k + ' 左边重了 2，新数在它左孩子的右边：LR，先把左孩子左旋，再把 ' + n[p].k + ' 右旋。'); n[p].l = rotL(n[p].l); } else log.push('结点 ' + n[p].k + ' 左边重了 2，新数在它左孩子的左边：LL，把 ' + n[p].k + ' 右旋，它的左孩子 ' + n[n[p].l].k + ' 升上来。'); return rotR(p); }
+    if (bf === -2) { if (k < n[n[p].r].k) { log.push('结点 ' + n[p].k + ' 右边重了 2，新数在它右孩子的左边：RL，先把右孩子右旋，再把 ' + n[p].k + ' 左旋。'); n[p].r = rotR(n[p].r); } else log.push('结点 ' + n[p].k + ' 右边重了 2，新数在它右孩子的右边：RR，把 ' + n[p].k + ' 左旋，它的右孩子 ' + n[n[p].r].k + ' 升上来。'); return rotL(p); }
+    return p;
+  }
+  function draw(hl){
+    drawBinTree(svg, n, root, {W: 640, H: 240, mark: id => n[id].k === hl ? 'hl' : '', sub: id => String(H(n[id].l) - H(n[id].r))});
+    kv(kvb, [['结点数', Object.keys(n).length], ['AVL 树高', H(root)], ['同样的数插进普通搜索树，高', BT.height(plain)]]);
+  }
+  function insert(k){ if (Object.keys(n).length >= 31) { say.textContent = '树太大了，先清空。'; return; } log = []; root = ins(root, k); BT.insert(plain, k); draw(k); say.textContent = '插入 ' + k + '。' + (log.length ? log[log.length - 1] : '没有哪个结点歪到 2，不用转。'); }
+  $('[data-x="ins"]', fig).addEventListener('click', () => { const v = parseInt(inp.value, 10); if (!isNaN(v)) { insert(v); inp.value = v + 1; } });
+  $('[data-x="seq"]', fig).addEventListener('click', () => { n = {}; root = null; plain = BT.mk(); let rot = 0; for (let k = 1; k <= 15; k++) { log = []; root = ins(root, k); BT.insert(plain, k); rot += log.length; } draw(); say.textContent = '按顺序插了 1 到 15，一共转了 ' + rot + ' 次。AVL 树高 ' + H(root) + '，普通搜索树高 15。'; });
+  $('[data-x="clr"]', fig).addEventListener('click', () => { n = {}; root = null; plain = BT.mk(); draw(); inp.value = 1; say.textContent = '空树。从 1 开始一个一个插，看什么时候第一次转。'; });
+  draw(); say.textContent = '空树。从 1 开始一个一个插，看什么时候第一次转。';
+});
+
+/* ---------- 第十二章：堆，一棵树一排格子 ---------- */
+dev('#heapFig', fig => {
+  const svg = $('svg.heap', fig), arr = $('#hpArr'), say = $('.say', fig);
+  const EVENTS = ['雨停了', '树苗长大', '鸭子下蛋', '天黑了', '灯亮了', '沙晒干', '团团醒了', '水退了', '船造好', '花开了', '早上好', '风来了'];
+  let h, busy = false, ek = 0; const r = rng(12);
+  const wait = ms => new Promise(res => setTimeout(res, ms));
+  function draw(mark){
+    mark = mark || {};
+    const nodes = {}; h.forEach((e, i) => nodes[i] = {k: String(e[0]), l: 2 * i + 1 < h.length ? 2 * i + 1 : null, r: 2 * i + 2 < h.length ? 2 * i + 2 : null});
+    drawBinTree(svg, nodes, h.length ? 0 : null, {W: 640, H: 210, mark: id => mark[id] || ''});
+    arr.innerHTML = h.map((e, i) => '<span class="' + (mark[i] === 'hl' ? 'hl' : mark[i] ? 'mv' : '') + '">' + e[0] + '<small>[' + i + '] ' + e[1] + '</small></span>').join('') || '<span class="dim" style="border:0">空的</span>';
+  }
+  function reset(){ h = [[3, '雨停了'], [5, '树苗长大'], [12, '天黑了'], [8, '鸭子下蛋']]; ek = 4; draw(); say.textContent = '堆里有 4 件事，数字是“第几刻发生”。最早的在根上，也在数组的第 0 格。'; }
+  $('[data-x="push"]', fig).addEventListener('click', async () => {
+    if (busy) return; if (h.length >= 15) { say.textContent = '堆满了（这个装置最多 15 个），先拿走几个。'; return; }
+    busy = true; const t = 1 + Math.floor(r() * 20), what = EVENTS[ek++ % EVENTS.length];
+    h.push([t, what]); let i = h.length - 1; draw({[i]: 'hl'}); say.textContent = '新事件“' + what + '”（第 ' + t + ' 刻）放在数组末尾，第 ' + i + ' 格。'; await wait(600);
+    while (i > 0) { const p = Math.floor((i - 1) / 2); if (h[i][0] < h[p][0]) { say.textContent = t + ' 比爸爸 ' + h[p][0] + ' 小：换上去。'; [h[i], h[p]] = [h[p], h[i]]; draw({[p]: 'hl', [i]: 'v'}); i = p; await wait(600); } else { say.textContent = t + ' 不比爸爸 ' + h[p][0] + ' 小：停在这里。'; break; } }
+    if (i === 0) say.textContent = t + ' 浮到了根上：它现在是最早的事。';
+    draw({[i]: 'hl'}); busy = false;
+  });
+  $('[data-x="pop"]', fig).addEventListener('click', async () => {
+    if (busy || !h.length) { if (!h.length) say.textContent = '堆空了。'; return; }
+    busy = true; const top = h[0]; const last = h.pop();
+    if (!h.length) { draw(); say.textContent = '拿走了“' + top[1] + '”（第 ' + top[0] + ' 刻），堆空了。'; busy = false; return; }
+    h[0] = last; draw({0: 'hl'}); say.textContent = '拿走根上的“' + top[1] + '”（第 ' + top[0] + ' 刻）。把最后一个（' + last[0] + '）搬到根上。'; await wait(800);
+    let i = 0;
+    while (true) { const L = 2 * i + 1, R = 2 * i + 2; let s = i; if (L < h.length && h[L][0] < h[s][0]) s = L; if (R < h.length && h[R][0] < h[s][0]) s = R; if (s === i) { say.textContent = h[i][0] + ' 比孩子都小（或者没有孩子了）：停。现在最早的是第 ' + h[0][0] + ' 刻的“' + h[0][1] + '”。'; break; } say.textContent = h[i][0] + ' 比更小的孩子 ' + h[s][0] + ' 大：换下去。'; [h[i], h[s]] = [h[s], h[i]]; draw({[s]: 'hl', [i]: 'v'}); i = s; await wait(700); }
+    draw({[i]: 'hl'}); busy = false;
+  });
+  $('[data-x="r"]', fig).addEventListener('click', () => { if (!busy) reset(); });
+  reset();
+});
+
+/* ---------- 第十三章：造一棵哈夫曼树 ---------- */
+dev('#huffFig', fig => {
+  const svg = $('svg.huff', fig), inp = $('#hfIn'), codesEl = $('#hfCodes'), kvb = $('.kv', fig), say = $('.say', fig);
+  let forest, text, nk, last;
+  const show = c => c === ' ' ? '␣' : c;
+  function reset(){
+    text = inp.value || 'A'; const cnt = {};
+    [...text].forEach(c => cnt[c] = (cnt[c] || 0) + 1);
+    nk = 0; last = null;
+    forest = Object.keys(cnt).sort((a, b) => cnt[a] - cnt[b] || (a < b ? -1 : 1)).map(c => ({id: 'h' + nk++, w: cnt[c], ch: c, l: null, r: null}));
+    draw(); codesEl.innerHTML = ''; kv(kvb, [['不同的字', forest.length], ['一共几个字', text.length], ['每个字 8 位要', text.length * 8 + ' 位']]);
+    say.textContent = '每个字是一棵小树，数字是出现的次数。点“合并一次”。';
+  }
+  function draw(){
+    // 把森林里每棵树画成一排；用 drawBinTree 需要一棵树，这里拼一个看不见的根
+    const nodes = {};
+    const add = t => { nodes[t.id] = {k: t.ch !== undefined && t.ch !== null ? show(t.ch) + t.w : String(t.w), l: t.l ? t.l.id : null, r: t.r ? t.r.id : null}; if (t.l) add(t.l); if (t.r) add(t.r); };
+    forest.forEach(add);
+    // 森林串成一条“右链”画：每棵树并排
+    const W = 640; let h = ''; const widths = forest.map(t => { const L = treeLayout(nodes, t.id); return Math.max(1, L.n); });
+    const total = widths.reduce((a, b) => a + b, 0), depth = Math.max(...forest.map(t => treeLayout(nodes, t.id).depth));
+    const dx = Math.min(52, (W - 30) / Math.max(1, total)), dy = Math.min(46, 180 / Math.max(1, depth - 1 || 1));
+    const H = 36 + (depth - 1) * dy + 24; svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    let col = (W - (total - 1) * dx) / 2 - 0;
+    forest.forEach((t, k) => {
+      const L = treeLayout(nodes, t.id), P = id => ({x: col + L.pos[id].x * dx, y: 22 + L.pos[id].d * dy});
+      Object.keys(L.pos).forEach(id => { const a = P(id); ['l', 'r'].forEach((s, si) => { const c = nodes[id][s]; if (c) { const b = P(c); h += '<line x1="' + a.x + '" y1="' + a.y + '" x2="' + b.x + '" y2="' + b.y + '" stroke="var(--ink-3)" stroke-width="1.3"/>' + txt((a.x + b.x) / 2 + (si ? 7 : -7), (a.y + b.y) / 2, si ? '1' : '0', {s: 10.5, c: 'var(--main)', w: 1}); } }); });
+      Object.keys(L.pos).forEach(id => { const a = P(id), leaf = !nodes[id].l; const isNew = last && id === last; h += '<circle cx="' + a.x + '" cy="' + a.y + '" r="14" fill="' + (isNew ? 'var(--main)' : 'var(--card)') + '" stroke="' + (leaf ? 'var(--l1)' : 'var(--ter)') + '" stroke-width="1.6"/>' + txt(a.x, a.y + 4, nodes[id].k, {s: 11, c: isNew ? 'var(--paper)' : 'var(--ink)', halo: false, w: leaf ? 1 : 0}); });
+      col += widths[k] * dx;
+    });
+    svg.innerHTML = h;
+  }
+  function codes(){ const out = {}; const walk = (t, c) => { if (!t.l) { out[t.ch] = c || '0'; return; } walk(t.l, c + '0'); walk(t.r, c + '1'); }; walk(forest[0], ''); return out; }
+  function step(){
+    if (forest.length <= 1) return false;
+    forest.sort((a, b) => a.w - b.w);
+    const a = forest.shift(), b = forest.shift();
+    const t = {id: 'h' + nk++, w: a.w + b.w, ch: null, l: a, r: b}; last = t.id;
+    let i = 0; while (i < forest.length && forest[i].w <= t.w) i++; forest.splice(i, 0, t);
+    draw();
+    say.textContent = '最少的两棵是 ' + a.w + ' 和 ' + b.w + '：合成一棵，根上写 ' + t.w + '。' + (forest.length === 1 ? '只剩一棵树了！' : '还剩 ' + forest.length + ' 棵。');
+    if (forest.length === 1) {
+      const cs = codes(); const cnt = {}; [...text].forEach(c => cnt[c] = (cnt[c] || 0) + 1);
+      const keys = Object.keys(cs).sort((x, y) => cnt[y] - cnt[x]);
+      codesEl.innerHTML = keys.map(c => '<span>' + show(c) + ' → ' + cs[c] + '<small>' + cnt[c] + ' 次 × ' + cs[c].length + ' 位</small></span>').join('');
+      const bits = [...text].reduce((s, c) => s + cs[c].length, 0);
+      kv(kvb, [['每个字 8 位要', text.length * 8 + ' 位'], ['哈夫曼要', bits + ' 位'], ['省了', Math.round(100 - bits / text.length / 8 * 100) + '%'], ['平均每个字', (bits / text.length).toFixed(2) + ' 位']]);
+      say.textContent += ' 往左是 0、往右是 1，出现得多的字码最短。';
+    }
+    return true;
+  }
+  $('[data-x="s"]', fig).addEventListener('click', step);
+  $('[data-x="all"]', fig).addEventListener('click', () => { while (step()); });
+  $('[data-x="r"]', fig).addEventListener('click', reset);
+  $('[data-x="map"]', fig).addEventListener('click', () => { inp.value = ISLAND.join(''); reset(); });
+  inp.addEventListener('change', reset);
+  reset();
+});
+
+/* ---------- 第十四章：数岛（并查集） ---------- */
+dev('#ufFig', fig => {
+  const map = $('#ufMap'), kvb = $('.kv', fig), say = $('.say', fig);
+  let grid, P, groups, steps;
+  const key = (x, y) => y * 100 + x;
+  const find = a => { let r = a, s = 0; while (P[r] !== r) { r = P[r]; s++; } while (P[a] !== r) { const t = P[a]; P[a] = r; a = t; } steps += s; return r; };
+  const unite = (a, b) => { const ra = find(a), rb = find(b); if (ra !== rb) { P[ra] = rb; groups--; return true; } return false; };
+  const land = (x, y) => grid[y] && grid[y][x] !== undefined && grid[y][x] !== '~';
+  function rebuild(){ P = {}; groups = 0; steps = 0; for (let y = 0; y < grid.length; y++) for (let x = 0; x < grid[0].length; x++) if (land(x, y)) { P[key(x, y)] = key(x, y); groups++; } for (let y = 0; y < grid.length; y++) for (let x = 0; x < grid[0].length; x++) if (land(x, y)) { if (land(x + 1, y)) unite(key(x, y), key(x + 1, y)); if (land(x, y + 1)) unite(key(x, y), key(x, y + 1)); } }
+  function draw(hl){
+    const roots = {}; let k = 0; const L = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    for (let y = 0; y < grid.length; y++) for (let x = 0; x < grid[0].length; x++) if (land(x, y)) { const r = find(key(x, y)); if (!(r in roots)) roots[r] = L[k++ % 26]; }
+    isleDraw(map, grid, {label: (x, y) => land(x, y) ? roots[find(key(x, y))] : '', mark: (x, y) => hl && hl[0] === x && hl[1] === y ? 'hl' : '', click});
+    kv(kvb, [['岛的个数', groups], ['陆地格子', Object.keys(P).length]]);
+  }
+  function click(x, y){
+    if (x === 0 || y === 0 || x === grid[0].length - 1 || y === grid.length - 1) { say.textContent = '最外面一圈是大海，留着吧。'; return; }
+    if (grid[y][x] === '~') {
+      grid[y][x] = '='; P[key(x, y)] = key(x, y); groups++; steps = 0; let joined = 0;
+      [[1, 0], [-1, 0], [0, 1], [0, -1]].forEach(([dx, dy]) => { if (land(x + dx, y + dy) && unite(key(x, y), key(x + dx, y + dy))) joined++; });
+      draw([x, y]);
+      say.textContent = '在 (' + x + ', ' + y + ') 搭了一块桥。它先自己成一座“岛”，再和四周的陆地合并：' + (joined === 0 ? '四周没有陆地，多了一座小岛。' : joined === 1 ? '接上了一座岛，个数不变。' : '把 ' + joined + ' 座岛连成了一座，少了 ' + (joined - 1) + ' 座！') + ' 一共只改了 ' + joined + ' 张纸条。';
+    } else {
+      grid[y][x] = '~'; rebuild(); draw([x, y]);
+      say.textContent = '挖成了水。并查集不会“拆开”，只好全部重新合并一遍（真实程序里，挖比搭难办得多）。现在有 ' + groups + ' 座岛。';
+    }
+  }
+  $('[data-x="river"]', fig).addEventListener('click', () => { for (let y = 1; y < grid.length - 1; y++) grid[y][9] = '~'; rebuild(); draw(); say.textContent = '在第 9 列从上到下挖了一条河：现在有 ' + groups + ' 座岛。点河上的一格搭座桥试试。'; });
+  $('[data-x="r"]', fig).addEventListener('click', () => { grid = isleGrid(ISLAND); rebuild(); draw(); say.textContent = '现在有 ' + groups + ' 座岛（湖不算岛，湖周围的陆地连成一片）。'; });
+  grid = isleGrid(ISLAND); rebuild(); draw(); say.textContent = '现在有 ' + groups + ' 座岛。点水格搭桥，点陆地挖成水。';
+});
+
+/* ---------- 第十五章：会劈开的 B 树 ---------- */
+dev('#btreeFig', fig => {
+  const svg = $('svg.bt', fig), kvb = $('.kv', fig), say = $('.say', fig), inp = $('#btIn');
+  let M = 3, root, log, splits, hl = null;
+  const MS = [3, 5, 7];
+  btnRow($('[data-m]', fig), ['每页最多 2 个（3 阶）', '每页最多 4 个（5 阶）', '每页最多 6 个（7 阶）'], 0, i => { M = MS[i]; clear(); });
+  const leaf = n => !n.kids.length;
+  function ins(n, k){   // 返回 null 或 {mid, right}
+    let i = 0; while (i < n.keys.length && n.keys[i] < k) i++;
+    if (n.keys[i] === k) { log.push(k + ' 已经在树里了。'); return null; }
+    if (leaf(n)) n.keys.splice(i, 0, k);
+    else { const up = ins(n.kids[i], k); if (up) { n.keys.splice(i, 0, up.mid); n.kids.splice(i + 1, 0, up.right); } }
+    if (n.keys.length > M - 1) {
+      const c = Math.ceil(M / 2) - 1;   // 中间那个的下标
+      const mid = n.keys[c], right = {keys: n.keys.slice(c + 1), kids: n.kids.slice(c + 1)};
+      log.push('结点 [' + n.keys.join(' ') + '] 装了 ' + n.keys.length + ' 个，超过 ' + (M - 1) + ' 个：劈成 [' + n.keys.slice(0, c).join(' ') + '] 和 [' + right.keys.join(' ') + ']，中间的 ' + mid + ' 升到上一层。');
+      n.keys = n.keys.slice(0, c); n.kids = n.kids.slice(0, c + 1); splits++;
+      return {mid, right};
+    }
+    return null;
+  }
+  function insert(k){ log = []; const up = ins(root, k); if (up) { root = {keys: [up.mid], kids: [root, up.right]}; log.push('根也劈开了：上面长出一个新的根 [' + up.mid + ']，树高了一层。'); } }
+  const height = n => leaf(n) ? 1 : 1 + height(n.kids[0]);
+  const count = n => n.keys.length + n.kids.reduce((s, c) => s + count(c), 0);
+  const nodesN = n => 1 + n.kids.reduce((s, c) => s + nodesN(c), 0);
+  function draw(){
+    // 叶子从左到右排，父结点放在孩子中间
+    const W = 640, levels = height(root), pos = new Map(); let x = 0;
+    const kw = 22, pad = 6, gap = 12;
+    const width = n => n.keys.length * kw + pad * 2;
+    const place = (n, d) => { if (leaf(n)) { const w = Math.max(width(n), 26); pos.set(n, {x: x + w / 2, d, w}); x += w + gap; return; } n.kids.forEach(c => place(c, d + 1)); const a = pos.get(n.kids[0]).x, b = pos.get(n.kids[n.kids.length - 1]).x; pos.set(n, {x: (a + b) / 2, d, w: Math.max(width(n), 26)}); };
+    place(root, 0);
+    const totalW = x - gap, scale = Math.min(1, (W - 20) / Math.max(1, totalW));
+    const ox = (W - totalW * scale) / 2, dy = 58, H = 20 + (levels - 1) * dy + 40;
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    let h = '';
+    const P = n => { const p = pos.get(n); return {x: ox + p.x * scale, y: 16 + p.d * dy, w: p.w * scale}; };
+    const walk = n => { const a = P(n); n.kids.forEach((c, i) => { const b = P(c); const sx = a.x - a.w / 2 + pad * scale + i * kw * scale; h += '<line x1="' + sx + '" y1="' + (a.y + 22) + '" x2="' + b.x + '" y2="' + b.y + '" stroke="var(--ink-3)" stroke-width="1.2"/>'; walk(c); }); };
+    walk(root);
+    const box = n => { const a = P(n), on = hl && hl.has(n); h += '<rect x="' + (a.x - a.w / 2) + '" y="' + a.y + '" width="' + a.w + '" height="22" rx="4" fill="' + (on ? 'color-mix(in srgb,var(--main) 22%,var(--card))' : 'var(--card)') + '" stroke="' + (leaf(n) ? 'var(--l1)' : 'var(--ter)') + '" stroke-width="1.5"/>'; n.keys.forEach((k, i) => { const cx = a.x - a.w / 2 + (pad + kw * i + kw / 2) * scale; h += txt(cx, a.y + 15.5, k, {s: Math.max(9, 12 * scale), halo: false, mono: 1}); if (i) h += '<line x1="' + (cx - kw * scale / 2) + '" y1="' + (a.y + 4) + '" x2="' + (cx - kw * scale / 2) + '" y2="' + (a.y + 18) + '" stroke="var(--rule)"/>'; }); n.kids.forEach(box); };
+    box(root);
+    if (!root.keys.length) h += txt(W / 2, 46, '（空树，插几个数试试）', {c: 'var(--ink-3)'});
+    svg.innerHTML = h;
+    kv(kvb, [['关键字', count(root)], ['结点（页）', nodesN(root)], ['树高（层）', root.keys.length ? height(root) : 0], ['一共劈开过', splits + ' 次']]);
+  }
+  function clear(){ root = {keys: [], kids: []}; splits = 0; hl = null; draw(); inp.value = 10; say.textContent = '空树。每页最多 ' + (M - 1) + ' 个数，装到 ' + M + ' 个就要劈开。'; }
+  $('[data-x="ins"]', fig).addEventListener('click', () => { const v = parseInt(inp.value, 10); if (isNaN(v)) return; if (count(root) >= 40) { say.textContent = '树太大了，先清空。'; return; } hl = null; insert(v); draw(); say.textContent = '插入 ' + v + '。' + (log.length ? log.join(' ') : '放进最下面的一页，没有满，不用劈。'); inp.value = v + 5; });
+  $('[data-x="find"]', fig).addEventListener('click', () => { const v = parseInt(inp.value, 10); if (isNaN(v)) return; hl = new Set(); let n = root, reads = 0, found = false; while (n) { reads++; hl.add(n); let i = 0; while (i < n.keys.length && n.keys[i] < v) i++; if (n.keys[i] === v) { found = true; break; } if (leaf(n)) break; n = n.kids[i]; } draw(); say.textContent = (found ? '找到了 ' + v : '没有 ' + v) + '：读了 ' + reads + ' 页（浅色的那几页）。每读一页，在页里对半猜出该往哪个孩子走。'; });
+  $('[data-x="many"]', fig).addEventListener('click', () => { root = {keys: [], kids: []}; splits = 0; hl = null; for (let k = 1; k <= 20; k++) { log = []; insert(k); } draw(); say.textContent = '按顺序插了 1 到 20：树高 ' + height(root) + '，所有叶子都在同一层。和第十章歪成一根棍的搜索树比一比。'; });
+  $('[data-x="clr"]', fig).addEventListener('click', clear);
+  clear();
 });
 
 })();

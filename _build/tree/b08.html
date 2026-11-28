@@ -1,0 +1,171 @@
+<section class="chap" id="c15" data-vol="卷四 · 根 · B 树和 B+ 树">
+  <div class="chead">
+    <div class="big">页</div>
+    <div>
+      <div class="no">卷四 · 第十五章</div>
+      <h2>B 树和 B+ 树</h2>
+      <dl><dt>讲什么</dt><dd>硬盘喜欢一次读一大块；让每个结点装很多个数，树就又矮又胖；结点满了就从中间劈开；B 树的规矩和高度；删除时借和并；B+ 树：数据都在叶子上，叶子连成一串；数据库和文件系统的索引</dd><dt>装置</dt><dd>会劈开的 B 树</dd></dl>
+      <div class="crs" data-c="结构 系统"></div>
+      <div class="lvs"><a data-l="1" href="#c15-1">第一层 · 30 分钟</a><a data-l="2" href="#c15-2">第二层 · 65 分钟</a><a data-l="3" href="#c15-3">第三层 · 20 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>方格岛越做越大，存档文件有几百 MB 了。每次读一块地都要从硬盘里找，好慢。</span></div>
+    <div class="l"><i class="j">舅</i><span>硬盘最讨厌一次读一点点。要找得快，就得让每次读进来的一大块里，装尽量多有用的东西。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>说出为什么放在硬盘上的东西要用“又矮又胖”的树。</li>
+      <li><span class="lg lg1">一</span>在装置里看懂 B 树的插入：结点满了，从中间劈成两半，中间那个数升到上一层。</li>
+      <li><span class="lg lg2">二</span>说出 m 阶 B 树的定义，算 n 个关键字的 B 树的最大和最小高度；手画插入（分裂）和删除（借、合并）的过程。</li>
+      <li><span class="lg lg2">二</span>说出 B+ 树和 B 树的区别，以及 B+ 树为什么适合做数据库索引。</li>
+      <li><span class="lg lg3">三</span>估算一个三层的 B+ 树能装多少行；说出 LSM 树和 B+ 树各适合什么样的负载。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c15-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：二叉搜索树和平衡（第十、十一章）、内存和硬盘（《地基》第十二章）</span><span class="tm">约 30 分钟</span></div>
+    <div class="lyb">
+      <h3>硬盘喜欢一次读一大块</h3>
+      <p>《地基》说过，内存很快，硬盘慢得多。而且硬盘每次读，都是读<b>一大块</b>（叫一<b>页</b>，常见是几 KB 到十几 KB），哪怕你只要其中一个字节。</p>
+      <p>所以，放在硬盘上的东西，最要紧的不是“比较几次”，而是<b>读几次硬盘</b>。</p>
+      <p>二叉搜索树一个结点只放一个数，一百万个数要二十层，找一个数就要读二十次硬盘。太多了。</p>
+      <h3>又矮又胖的树</h3>
+      <p>办法是：让一个结点正好占一页，<b>里面装很多个排好序的数</b>，还有很多个孩子。一个结点装 1000 个数、1001 个孩子，第二层就有一千个结点，第三层一百万个……三层就能装下十亿个数。找一个数，只要读三次硬盘。</p>
+      <p>这种树叫 <b>B 树</b>。在一个结点里面，数是排好序的，可以用第一章的“对半猜”很快找到该往哪个孩子走。</p>
+      <h3>满了就劈开</h3>
+      <p>新数总是插在最下面一层的结点里。结点装满了怎么办？<b>从中间劈成两半</b>：左边一半、右边一半各自成一个结点，<b>正中间那个数升到上一层</b>，夹在这两个结点中间。如果上一层也满了，就接着劈；一直劈到根，根也满了，就劈开根，在上面再长出一个新的根，树就高了一层。</p>
+      <p>B 树是从上面长高的，所以它的所有叶子永远在同一层：永远是平衡的。</p>
+      <div class="fig" id="btreeFig">
+        <div class="fig-label">装置 · 第十五章</div>
+        <h4>会劈开的 B 树</h4>
+        <p class="how">每个方框是一个结点（一页），里面的数排好了序。输入一个数插进去，看结点满了怎样劈开、中间的数怎样升上去。“查找”会数一数读了几页。可以换成每页装得更多的树。</p>
+        <div class="btns" data-m></div>
+        <div class="row"><input type="number" id="btIn" value="10" style="width:6em" aria-label="数"><button class="btn pri" data-x="ins">插入</button><button class="btn" data-x="find">查找</button><button class="btn" data-x="many">按顺序插 1 到 20</button><button class="btn" data-x="clr">清空</button></div>
+        <svg class="bt" viewBox="0 0 640 200" role="img" aria-label="B 树"></svg>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+      <div class="mc">
+        <h5>主线第 15 步：分页的索引</h5>
+        <p>主线这一步给方格岛的存档做了一个两层的索引：下面一层是“页”，每页最多放 4 个区块编号，排好序；上面一层（根）记着每页的第一个编号。查一个区块：先读根，对半猜出在哪一页，再读那一页。不管有多少区块，都只读两次。页满了就从中间劈开，这正是 B+ 树（第二层）的样子。</p>
+      </div>
+      <div class="task" data-id="tree-t15a">
+        <div class="th"><b>图书馆的目录柜</b></div>
+        <div class="tb"><p>想象一个图书馆有一百万本书。目录柜有 1000 个抽屉，每个抽屉上写着这个抽屉里书名的范围；每个抽屉里有 1000 张卡片。找一本书，要打开几次抽屉？如果每个抽屉只放 2 张卡片（像二叉树），要打开几层？用装置里“每页 2 个”和“每页 4 个”的树各插 20 个数，比比高度。</p></div>
+      </div>
+      <div class="pass" data-id="tree-q15a">
+        <div class="qq" data-a="1"><p>东西放在硬盘上时，最要紧的是？</p><ol><li>比较的次数少</li><li>读硬盘的次数少</li></ol><p class="ex">读一次硬盘比在内存里比较慢得多。</p></div>
+        <div class="qq" data-a="0"><p>B 树的一个结点里放？</p><ol><li>很多个排好序的数</li><li>只放一个数</li></ol><p class="ex">一个结点一页，装满排好序的数。</p></div>
+        <div class="qq" data-a="2"><p>结点装满了以后，怎么办？</p><ol><li>扔掉一个数</li><li>挂到右边</li><li>从中间劈开，中间的数升到上一层</li></ol><p class="ex">劈开，中间的数升上去。</p></div>
+        <div class="qq" data-a="0"><p>B 树的叶子都在同一层吗？</p><ol><li>都在同一层</li><li>不一定</li></ol><p class="ex">它从根往上长高，所以永远平衡。</p></div>
+        <div class="qq" data-in="3"><p>每个结点 1000 个孩子，三层能装十亿个数。找一个数要读几次硬盘？</p><p class="ex">每层读一次，三次。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c15-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">对照 408：B 树及其基本操作、B+ 树的基本概念</span><span class="tm">约 65 分钟</span><span class="sum">m 阶 B 树的五条定义；关键字个数的范围；高度的上下界；插入时的分裂；删除时的借和合并；B+ 树的定义和与 B 树的区别；几道典型的计算题。</span></div>
+    <div class="lyb">
+      <h3>m 阶 B 树</h3>
+      <ol class="plain">
+        <li>每个结点至多 m 棵子树，即至多 m − 1 个关键字。</li>
+        <li>若根不是终端结点，则至少有 2 棵子树（1 个关键字）。</li>
+        <li>除根以外的所有非叶结点至少有 ⌈m/2⌉ 棵子树，即至少 ⌈m/2⌉ − 1 个关键字。</li>
+        <li>结点内关键字有序：K₁ &lt; K₂ &lt; …，子树 Pᵢ₋₁ 中的关键字都小于 Kᵢ，Pᵢ 中的都大于 Kᵢ。</li>
+        <li>所有叶结点都在同一层，不带信息（408 把它们看作查找失败到达的外部结点，计算高度时一般不算这一层）。</li>
+      </ol>
+      <p>例：5 阶 B 树，每个结点 2—4 个关键字（根 1—4 个）、非叶结点 3—5 棵子树。</p>
+      <h3>高度</h3>
+      <p>n 个关键字的 m 阶 B 树（n ≥ 1），高度 h（不含外部结点层）满足：</p>
+      <ul class="plain">
+        <li>最矮：每个结点都满，n ≤ m<sup>h</sup> − 1，所以 h ≥ log<sub>m</sub>(n + 1)。</li>
+        <li>最高：每个结点都最少。第 1 层 1 个结点，第 2 层至少 2 个，第 3 层至少 2⌈m/2⌉ 个……第 h + 1 层（外部结点）至少 2⌈m/2⌉<sup>h−1</sup> 个；外部结点个数正好是 n + 1，所以 n + 1 ≥ 2⌈m/2⌉<sup>h−1</sup>，h ≤ log<sub>⌈m/2⌉</sub>((n + 1)/2) + 1。</li>
+      </ul>
+      <h3>插入和删除</h3>
+      <p><b>插入</b>：先查找，定位到某个最底层的非叶结点，插进去。若该结点的关键字数超过 m − 1（变成 m 个），从中间位置 ⌈m/2⌉ 分裂：左边 ⌈m/2⌉ − 1 个关键字留在原结点，右边的放进新结点，第 ⌈m/2⌉ 个关键字插入父结点；父结点满了继续分裂，根分裂时树高加一。</p>
+      <p><b>删除</b>：若被删关键字不在最底层，用它的前驱或后继（必在最底层）替换，转成删最底层的关键字。在最底层删除后，若关键字数不少于 ⌈m/2⌉ − 1，结束；否则：</p>
+      <ul class="plain">
+        <li><b>兄弟够借</b>（相邻兄弟的关键字数 ≥ ⌈m/2⌉）：父结点里夹在中间的那个关键字下移到本结点，兄弟里最靠近的关键字上移到父结点（一次“左旋”或“右旋”）。</li>
+        <li><b>兄弟不够借</b>：本结点、相邻兄弟、父结点里夹在中间的关键字，三者合并成一个结点。父结点少了一个关键字，可能又不够了，继续向上调整；根的关键字被并完时，树高减一。</li>
+      </ul>
+      <h3>B+ 树</h3>
+      <p>408 采用的 m 阶 B+ 树定义：每个分支结点至多 m 棵子树；非叶根至少 2 棵子树，其他分支结点至少 ⌈m/2⌉ 棵；<b>结点的子树个数和关键字个数相等</b>；所有叶结点包含全部关键字和指向记录的指针，叶结点内关键字有序，相邻叶结点按大小链接；分支结点只有子结点的最大（或最小）关键字和指针，相当于索引。</p>
+      <div class="tbl">
+        <table class="t">
+          <tr><th></th><th>B 树</th><th>B+ 树</th></tr>
+          <tr><td>n 个关键字的结点</td><td>n + 1 棵子树</td><td>n 棵子树</td></tr>
+          <tr><td>关键字出现在</td><td>每个关键字只出现一次，可在任何层</td><td>都出现在叶子里，分支结点里的是重复的索引</td></tr>
+          <tr><td>查找</td><td>可能在中间层就找到</td><td>一定走到叶子，每次查找路径一样长</td></tr>
+          <tr><td>范围查询、顺序遍历</td><td>要中序遍历整棵树</td><td>找到起点后沿叶子链表往后读</td></tr>
+          <tr><td>分支结点能装的索引</td><td>少（还要放记录的指针）</td><td>多（只放索引），树更矮</td></tr>
+        </table>
+      </div>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）一棵 3 阶 B 树，高度为 4（不含外部结点），最少有几个关键字，最多有几个？（2）在一棵 5 阶 B 树中插入一个关键字，导致根结点分裂，问最少要分裂几个结点（设原来的高度为 3）？（3）一个含有 2025 个关键字的 6 阶 B 树，高度最大是多少？</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）最少：根 1 个关键字 2 棵子树，其余结点各 ⌈3/2⌉ − 1 = 1 个关键字、2 棵子树，就是一棵满二叉树：1 + 2 + 4 + 8 = 15 个结点各 1 个关键字，15 个。最多：每个结点 2 个关键字、3 棵子树：结点数 1 + 3 + 9 + 27 = 40，关键字 80 个（= 3⁴ − 1）。</p>
+          <p>（2）根分裂说明从插入的叶结点到根，每一层都分裂了：3 个结点（高度 3，每层一个）。</p>
+          <p>（3）⌈6/2⌉ = 3，h ≤ log₃((2025 + 1)/2) + 1 = log₃1013 + 1。3⁶ = 729 ≤ 1013 &lt; 2187 = 3⁷，所以 log₃1013 ≈ 6.3，h ≤ 7.3，最大高度 7。</p>
+        </div></details>
+      </div>
+      <div class="pass" data-id="tree-q15b">
+        <div class="qq" data-a="1"><p>5 阶 B 树中，非根结点最少有几个关键字？</p><ol><li>1</li><li>2</li><li>3</li></ol><p class="ex">⌈5/2⌉ − 1 = 2。</p></div>
+        <div class="qq" data-in="4"><p>m 阶 B 树的结点最多有几个关键字？m = 5 时是几？</p><p class="ex">m − 1 = 4。</p></div>
+        <div class="qq" data-a="0"><p>B+ 树适合范围查询，主要是因为？</p><ol><li>叶子结点按顺序链接在一起</li><li>树比较高</li><li>每个关键字只出现一次</li></ol><p class="ex">找到起点就能沿叶子往后读。</p></div>
+        <div class="qq" data-a="2"><p>在 B 树中删除一个关键字后，结点关键字太少，相邻兄弟也只有最少个数，应该？</p><ol><li>向兄弟借一个</li><li>什么也不做</li><li>和兄弟、父结点里中间的关键字合并</li></ol><p class="ex">兄弟不够借就合并。</p></div>
+        <div class="qq" data-a="1"><p>408 的 m 阶 B+ 树中，一个有 n 个关键字的分支结点有几棵子树？</p><ol><li>n + 1</li><li>n</li><li>n − 1</li></ol><p class="ex">B+ 树：关键字数 = 子树数。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c15-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">数据库和文件系统里的 B+ 树</span><span class="tm">约 20 分钟</span><span class="sum">MySQL InnoDB 的 16 KB 页和扇出；三层 B+ 树装两千多万行；聚簇索引和二级索引；APFS 的 B 树；为写多读少设计的 LSM 树。</span></div>
+    <div class="lyb">
+      <h3>估算一棵真实的 B+ 树</h3>
+      <p>MySQL 的 InnoDB 存储引擎默认一页 16 KB。分支结点里每项是“关键字 + 子页号”，以 8 字节整数主键加 6 字节指针、再加一些开销估算，一页能放约一千多项；叶子页里放的是整行数据，每行 1 KB 的话一页放十几行。三层：1170 × 1170 × 16 ≈ 两千多万行，根页常驻内存，查一行最多读两三次硬盘。这是常见的教学估算，实际数字随行的大小、填充率而变。</p>
+      <p>InnoDB 的主键索引是<b>聚簇索引</b>：叶子里直接放整行；其他列上的二级索引的叶子里放的是主键值，查到以后还要回到主键索引里再查一次（“回表”）。这也是为什么主键最好是递增的：新行总追加在最右边的叶子，不会让中间的页频繁分裂。</p>
+      <h3>文件系统</h3>
+      <p>苹果的 APFS（《地基》第二十八章）用写时复制的 B 树管理文件、目录和扩展属性；NTFS、ext4 的大目录索引、Btrfs 也都基于 B 树的变种。“B”到底代表什么，发明者拜尔和麦克雷特（1970 年在波音的科学研究实验室提出）从没明说过，有人猜是 Boeing、balanced、broad 或者 Bayer。</p>
+      <h3>LSM 树</h3>
+      <p>B+ 树每次写都要找到那一页、原地修改，随机写多的时候很吃力。LevelDB、RocksDB、HBase、Cassandra 用的 <b>LSM 树</b>（日志结构合并树）反过来：新数据先写进内存里的有序表，攒满了整块顺序写到硬盘成为一个有序文件，后台再把多个文件归并（第二十七章的归并）成更大的。写入快得多，读的时候可能要查好几个文件（用布隆过滤器加速，《地基》第七章第三层）。读多写少选 B+ 树，写多选 LSM 树。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>R. Bayer, E. McCreight, “Organization and Maintenance of Large Ordered Indexes”, <i>Acta Informatica</i>, 1972。</li>
+          <li>D. Comer, “The Ubiquitous B-Tree”, <i>ACM Computing Surveys</i>, 1979。</li>
+          <li>P. O'Neil 等, “The Log-Structured Merge-Tree (LSM-Tree)”, <i>Acta Informatica</i>, 1996。</li>
+          <li>MySQL 参考手册 InnoDB 一章（页大小、聚簇索引）。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="main" data-step="15">
+    <div class="mh"><b>主线 · 第 15 步</b><span>区块索引</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给方格岛加上：<i>两层的分页索引</i></p>
+      <p>存档按区块编号存。<code>idx_insert</code> 把编号放进排好序的页（每页最多 4 个），页满了从中间劈开；根记着每页的第一个编号。<code>idx_find</code> 只读两次：根一次，页一次。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 island.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>把它扩展成真正的 B+ 树（任意层数、叶子链表）；把每页写成一个文件，统计查找时打开文件的次数。</div>
+    </div>
+  </div>
+  <div class="words">
+    <div data-l="1"><b>页 <span class="en" data-say="page">page</span></b>硬盘一次读写的一大块。</div>
+    <div data-l="1"><b>B 树 <span class="en" data-say="B-tree">B-tree</span></b>每个结点装很多个数的平衡搜索树。</div>
+    <div data-l="1"><b>分裂 <span class="en" data-say="split">split</span></b>结点满了从中间劈开，中间的数升上去。</div>
+    <div data-l="2"><b>阶 <span class="en" data-say="order">order</span></b>m 阶：每个结点最多 m 棵子树。</div>
+    <div data-l="2"><b>B+ 树 <span class="en" data-say="B+ tree">B+ tree</span></b>数据都在叶子上、叶子连成一串的 B 树。</div>
+    <div data-l="3"><b>聚簇索引 <span class="en" data-say="clustered index">clustered index</span></b>叶子里直接放整行数据的索引。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>放在硬盘上，要数的是读了几页；一页装很多个数，树就又矮又胖；满了从中间劈开，树从上面长高。</div>
+    <div><i>第二层带走</i>m 阶 B 树每个结点 ⌈m/2⌉−1 到 m−1 个关键字；插入分裂、删除借和并；B+ 树数据全在叶子、叶子成链，适合范围查询。</div>
+    <div><i>第三层带走</i>三层 B+ 树装两千多万行；读多选 B+ 树，写多选 LSM 树。</div>
+  </div>
+</section>

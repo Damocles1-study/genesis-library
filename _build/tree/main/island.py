@@ -357,6 +357,360 @@ def demo():
     big = [['.'] * 200 for _ in range(200)]
     print('用自己的栈：填了', fill_stack(big, 0, 0, '.', ':'), '格')
 
+#>> 8
+# ---------- 第 8 步 · 树：合成配方 ----------
+# 每样东西要什么原料、各几个。没写在这里的（木、石、沙）是挖来的“原料”。
+RECIPES = {
+    '小屋': [('石砖', 4), ('木板', 3), ('灯', 1)],
+    '灯':   [('玻璃', 1), ('木棍', 1)],
+    '镐':   [('石砖', 1), ('木棍', 2)],
+    '石砖': [('石', 2)],
+    '玻璃': [('沙', 2)],
+    '木棍': [('木板', 1)],
+    '木板': [('木', 1)],
+}
+
+
+def show_tree(item, depth=0, count=1):
+    """把一样东西的配方画成一棵树：根在最上面，孩子往右缩进"""
+    print('    ' * depth + f'{item} ×{count}')
+    for child, n in RECIPES.get(item, []):
+        show_tree(child, depth + 1, n)
+
+
+def height(item):
+    """树有多高：叶子是 1，别的是“最高的孩子 + 1”"""
+    kids = RECIPES.get(item, [])
+    if not kids:
+        return 1
+    return 1 + max(height(c) for c, n in kids)
+
+
+def demo():
+    show_tree('小屋')
+    print('这棵树高', height('小屋'), '层')
+
+#>> 9
+# ---------- 第 9 步 · 遍历：算一算要挖多少原料 ----------
+def raw(item, times=1, total=None):
+    """后序遍历：先把孩子要的原料算清楚，再交给自己"""
+    if total is None:
+        total = {}
+    kids = RECIPES.get(item, [])
+    if not kids:                              # 叶子：原料
+        total[item] = total.get(item, 0) + times
+        return total
+    for child, n in kids:
+        raw(child, times * n, total)
+    return total
+
+
+def by_level(item):
+    """层序遍历：一层一层，用队列"""
+    q = deque([(item, 0)])
+    levels = {}
+    while q:
+        name, d = q.popleft()
+        levels.setdefault(d, []).append(name)
+        for child, n in RECIPES.get(name, []):
+            q.append((child, d + 1))
+    return levels
+
+
+def demo():
+    print('造一间小屋要挖：', raw('小屋'))
+    print('造一把镐要挖：', raw('镐'))
+    for d, names in by_level('小屋').items():
+        print('第', d, '层：', ' '.join(names))
+
+#>> 10
+# ---------- 第 10 步 · 二叉搜索树：图鉴 ----------
+# 每个结点 {'key': 名字, 'info': 说明, 'left': 小的那边, 'right': 大的那边}
+def bst_insert(node, key, info):
+    if node is None:
+        return {'key': key, 'info': info, 'left': None, 'right': None}
+    if key < node['key']:
+        node['left'] = bst_insert(node['left'], key, info)
+    elif key > node['key']:
+        node['right'] = bst_insert(node['right'], key, info)
+    else:
+        node['info'] = info
+    return node
+
+
+def bst_find(node, key):
+    steps = 0
+    while node is not None:
+        steps = steps + 1
+        if key == node['key']:
+            return node['info'], steps
+        node = node['left'] if key < node['key'] else node['right']
+    return None, steps
+
+
+def in_order(node, out):
+    """中序遍历：左、自己、右。二叉搜索树的中序正好是从小到大"""
+    if node is not None:
+        in_order(node['left'], out)
+        out.append(node['key'])
+        in_order(node['right'], out)
+    return out
+
+
+# 图鉴按拼音排：ya 鸭、tuan 团团……
+CREATURES = [('ya', '鸭子：跟着你走'), ('tuan', '团团：会追你'), ('shi', '石头：挖了能盖房'),
+             ('cao', '草：可以走'), ('shu', '树：挖了得木'), ('sha', '沙：烧成玻璃'),
+             ('shui', '水：会流开'), ('deng', '灯：晚上亮'), ('chuan', '船：过湖'), ('wu', '小屋')]
+
+
+def demo():
+    root = None
+    for key, info in CREATURES:
+        root = bst_insert(root, key, info)
+    print('按顺序列出：', in_order(root, []))
+    for key in ['sha', 'wu', 'long']:
+        info, steps = bst_find(root, key)
+        print(f'找 {key}：{info}（看了 {steps} 个结点）')
+
+#>> 11
+# ---------- 第 11 步 · 平衡树：排好序再插，图鉴会变成一根棍 ----------
+def h(node):
+    return node['h'] if node else 0
+
+
+def fix(node):
+    node['h'] = 1 + max(h(node['left']), h(node['right']))
+    return node
+
+
+def rot_right(y):
+    x = y['left']
+    y['left'] = x['right']
+    x['right'] = y
+    fix(y)
+    return fix(x)
+
+
+def rot_left(x):
+    y = x['right']
+    x['right'] = y['left']
+    y['left'] = x
+    fix(x)
+    return fix(y)
+
+
+def avl_insert(node, key):
+    if node is None:
+        return {'key': key, 'left': None, 'right': None, 'h': 1}
+    if key < node['key']:
+        node['left'] = avl_insert(node['left'], key)
+    elif key > node['key']:
+        node['right'] = avl_insert(node['right'], key)
+    else:
+        return node
+    fix(node)
+    bal = h(node['left']) - h(node['right'])
+    if bal > 1 and key < node['left']['key']:          # 左左：右旋
+        return rot_right(node)
+    if bal < -1 and key > node['right']['key']:        # 右右：左旋
+        return rot_left(node)
+    if bal > 1:                                        # 左右：先左旋左孩子，再右旋
+        node['left'] = rot_left(node['left'])
+        return rot_right(node)
+    if bal < -1:                                       # 右左
+        node['right'] = rot_right(node['right'])
+        return rot_left(node)
+    return node
+
+
+def bst_height(node):
+    if node is None:
+        return 0
+    return 1 + max(bst_height(node['left']), bst_height(node['right']))
+
+
+def demo():
+    names = [f'n{i:03}' for i in range(100)]          # 已经排好序的 100 个名字
+    plain, avl = None, None
+    for k in names:
+        plain = bst_insert(plain, k, '')
+        avl = avl_insert(avl, k)
+    print('排好序插进普通的二叉搜索树：高', bst_height(plain))
+    print('插进 AVL 树：高', h(avl))
+    print('找最后一个名字：普通树看', bst_find(plain, 'n099')[1], '个结点')
+
+#>> 12
+# ---------- 第 12 步 · 堆：按时间发生的事 ----------
+HEAP = []        # 一个“小的在上面”的堆，存 (时刻, 事情)
+
+
+def heap_push(item):
+    HEAP.append(item)
+    i = len(HEAP) - 1
+    while i > 0:                              # 上浮：比爸爸小就换上去
+        parent = (i - 1) // 2
+        if HEAP[i] < HEAP[parent]:
+            HEAP[i], HEAP[parent] = HEAP[parent], HEAP[i]
+            i = parent
+        else:
+            break
+
+
+def heap_pop():
+    top = HEAP[0]
+    last = HEAP.pop()
+    if HEAP:
+        HEAP[0] = last
+        i = 0
+        while True:                           # 下沉：和更小的孩子换
+            l, r = 2 * i + 1, 2 * i + 2
+            small = i
+            if l < len(HEAP) and HEAP[l] < HEAP[small]:
+                small = l
+            if r < len(HEAP) and HEAP[r] < HEAP[small]:
+                small = r
+            if small == i:
+                break
+            HEAP[i], HEAP[small] = HEAP[small], HEAP[i]
+            i = small
+    return top
+
+
+def demo():
+    for t, what in [(8, '鸭子下了一个蛋'), (3, '雨停了'), (12, '天黑了，灯亮了'),
+                    (5, '树苗长成了树'), (1, '早上好'), (5, '湖边的沙晒干了')]:
+        heap_push((t, what))
+    print('堆的样子（数组）：', [x[0] for x in HEAP])
+    while HEAP:
+        t, what = heap_pop()
+        print(f'第 {t} 刻：{what}')
+
+#>> 13
+# ---------- 第 13 步 · 哈夫曼编码：把存档变小 ----------
+def huffman(text):
+    """常见的字用短码，少见的用长码"""
+    count = {}
+    for c in text:
+        count[c] = count.get(c, 0) + 1
+    import heapq
+    pq = []
+    k = 0
+    for c, n in count.items():
+        heapq.heappush(pq, (n, k, c))        # k 只是为了次数相同时好比较
+        k = k + 1
+    while len(pq) > 1:                       # 每次拿两个最少的，合成一个
+        n1, _, a = heapq.heappop(pq)
+        n2, _, b = heapq.heappop(pq)
+        heapq.heappush(pq, (n1 + n2, k, (a, b)))
+        k = k + 1
+    codes = {}
+
+    def walk(node, code):
+        if isinstance(node, str):
+            codes[node] = code or '0'
+            return
+        walk(node[0], code + '0')
+        walk(node[1], code + '1')
+    walk(pq[0][2], '')
+    return codes, count
+
+
+def demo():
+    text = ''.join(ISLAND)
+    codes, count = huffman(text)
+    for c in sorted(codes, key=lambda c: -count[c]):
+        print(f'{c!r} 出现 {count[c]:3} 次，码 {codes[c]}')
+    bits = sum(len(codes[c]) for c in text)
+    print('每个字 8 位：', len(text) * 8, '位；哈夫曼：', bits, '位')
+    back = {v: k for k, v in codes.items()}
+    enc = ''.join(codes[c] for c in text)
+    cur, out = '', ''
+    for b in enc:
+        cur = cur + b
+        if cur in back:
+            out = out + back[cur]
+            cur = ''
+    print('解回来一样吗？', out == text)
+
+#>> 14
+# ---------- 第 14 步 · 并查集：数一数有几座岛 ----------
+PARENT = {}
+
+
+def find(a):
+    while PARENT[a] != a:
+        PARENT[a] = PARENT[PARENT[a]]        # 路径压缩：顺手让它指向爷爷
+        a = PARENT[a]
+    return a
+
+
+def union(a, b):
+    ra, rb = find(a), find(b)
+    if ra != rb:
+        PARENT[ra] = rb
+        return True
+    return False
+
+
+def count_islands(grid):
+    PARENT.clear()
+    land = [(x, y) for y in range(len(grid)) for x in range(len(grid[0])) if grid[y][x] != '~']
+    for p in land:
+        PARENT[p] = p
+    groups = len(land)
+    for x, y in land:
+        for nx, ny in [(x + 1, y), (x, y + 1)]:
+            if (nx, ny) in PARENT and union((x, y), (nx, ny)):
+                groups = groups - 1
+    return groups
+
+
+def demo():
+    grid = make_map(ISLAND)
+    print('现在有', count_islands(grid), '座岛')
+    for y in range(len(grid)):               # 挖一条从上到下的河
+        grid[y][9] = '~'
+    print('挖了一条河以后：', count_islands(grid), '座岛')
+    grid[4][9] = '='                         # 搭一座桥
+    print('搭了一座桥以后：', count_islands(grid), '座岛')
+
+#>> 15
+# ---------- 第 15 步 · 分页的索引：存档变大以后 ----------
+# 存档按区块存，每块有一个编号。索引分两层：页里放排好序的编号（最多 4 个），根里放每页的第一个编号。
+import bisect
+PAGES = [[]]
+ROOT = []
+READS = {'n': 0}
+
+
+def idx_insert(key):
+    i = max(0, bisect.bisect_right(ROOT, key) - 1) if ROOT else 0
+    page = PAGES[i]
+    bisect.insort(page, key)
+    if len(page) > 4:                         # 页满了：从中间劈成两页
+        left, right = page[:2], page[2:]
+        PAGES[i:i + 1] = [left, right]
+    ROOT[:] = [p[0] for p in PAGES]
+
+
+def idx_find(key):
+    READS['n'] = 1                            # 读根
+    i = max(0, bisect.bisect_right(ROOT, key) - 1)
+    READS['n'] = READS['n'] + 1               # 再读一页
+    return key in PAGES[i]
+
+
+def demo():
+    import random
+    random.seed(15)
+    keys = random.sample(range(100), 20)
+    for k in keys:
+        idx_insert(k)
+    print('根：', ROOT)
+    for p in PAGES:
+        print('  页：', p)
+    print('找 42：', idx_find(42), '，读了', READS['n'], '次硬盘；找', keys[3], '：', idx_find(keys[3]))
+
 #>> 0
 if __name__ == '__main__':
     demo()

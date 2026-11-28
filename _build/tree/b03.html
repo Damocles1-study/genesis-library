@@ -1,0 +1,165 @@
+<section class="chap" id="c10" data-vol="卷三 · 枝 · 二叉搜索树">
+  <div class="chead">
+    <div class="big">查</div>
+    <div>
+      <div class="no">卷三 · 第十章</div>
+      <h2>二叉搜索树</h2>
+      <dl><dt>讲什么</dt><dd>左边小、右边大；查找就像猜数字；插入和删除；中序遍历正好从小到大；排好序再插进去，树会变成一根棍；平均查找长度</dd><dt>装置</dt><dd>搜索树游乐场</dd></dl>
+      <div class="crs" data-c="结构"></div>
+      <div class="lvs"><a data-l="1" href="#c10-1">第一层 · 30 分钟</a><a data-l="2" href="#c10-2">第二层 · 55 分钟</a><a data-l="3" href="#c10-3">第三层 · 20 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>对半猜数字很快，可是要先把所有数排好序。我一会儿加一个、一会儿删一个，每次都重新排吗？</span></div>
+    <div class="l"><i class="j">舅</i><span>不用。把数挂在一棵树上：比它小的往左挂，比它大的往右挂。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>说出二叉搜索树的规矩“左小右大”，在树上找一个数、插进一个数。</li>
+      <li><span class="lg lg1">一</span>说出为什么排好序再插进去，树会变成一根棍、查找变慢。</li>
+      <li><span class="lg lg2">二</span>写出查找、插入、删除（三种情况）的代码；算查找成功和失败的平均查找长度。</li>
+      <li><span class="lg lg2">二</span>判断一个序列能不能是二叉搜索树上的查找路径；由序列构造搜索树。</li>
+      <li><span class="lg lg3">三</span>说出随机插入时树的期望高度；Python 为什么没有内置的搜索树。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c10-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：二叉树（第八章）、对半猜数字（第一章）</span><span class="tm">约 30 分钟</span></div>
+    <div class="lyb">
+      <h3>左边小，右边大</h3>
+      <p><b>二叉搜索树</b>是一棵守规矩的二叉树：对每一个结点，<b>它左边那一整片都比它小，右边那一整片都比它大</b>。</p>
+      <h3>找一个数：像猜数字</h3>
+      <p>从根开始比：要找的数比它小，就往左走；比它大，就往右走；一样，就找到了；走到空的地方，说明树里没有。</p>
+      <p>每走一步，就把另一边一整片都排除掉了，和第一章“对半猜”一模一样。树如果长得匀称，一百万个数也只要走二十来步。</p>
+      <h3>插一个数</h3>
+      <p>插入和查找走的是同一条路：一路比下去，走到空的地方，就把新数挂在那里。不用挪动任何别的数，也不用重新排序。</p>
+      <h3>中序遍历：从小到大</h3>
+      <p>第九章的中序遍历是“左、自己、右”。在二叉搜索树上，左边都比自己小、右边都比自己大，所以中序遍历打出来的，<b>正好是从小到大排好的</b>。主线第 10 步用它给方格岛做了一本按拼音排序的图鉴。</p>
+      <div class="fig" id="bstFig">
+        <div class="fig-label">装置 · 第十章</div>
+        <h4>搜索树游乐场</h4>
+        <p class="how">输入一个数，点“插入”或“查找”，看它走的路（深色）。点“随便插 10 个”和“按顺序插 10 个”，比一比两棵树的高度。第二层的读者可以试试“删除”。</p>
+        <div class="row"><input type="number" id="bsIn" value="42" style="width:6em" aria-label="数"><button class="btn pri" data-x="ins">插入</button><button class="btn" data-x="find">查找</button><button class="btn" data-x="del">删除</button></div>
+        <div class="btns"><button class="btn" data-x="rand">随便插 10 个</button><button class="btn" data-x="sorted">按顺序插 10 个</button><button class="btn" data-x="clr">清空</button></div>
+        <svg class="bst" viewBox="0 0 640 220" role="img" aria-label="二叉搜索树"></svg>
+        <div class="cells" id="bsIno"></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+
+      <h3>按顺序插进去，会变成一根棍</h3>
+      <p>如果数是按 1、2、3、4……的顺序插进去的：1 是根，2 比 1 大挂在右边，3 比 2 大又挂在右边……整棵树歪成了一根往右斜的棍子，和一个链表没两样。找最后一个数，要一个一个走过去。</p>
+      <p>树“歪”了，搜索树的好处就没了。怎样让它一直保持匀称？下一章讲。</p>
+      <div class="try">
+        <div class="th"><b>主线第 10 步：图鉴</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+          <p>下载本章末尾“主线 · 第 10 步”的完整文件运行。它把十样东西按拼音（ya 鸭、tuan 团团、shi 石……）插进一棵搜索树，用中序遍历按顺序列出来，再找 sha、wu 和一个不存在的 long，打出每次看了几个结点。</p>
+        </div>
+      </div>
+      <div class="task" data-id="tree-t10a">
+        <div class="th"><b>纸上的搜索树</b></div>
+        <div class="tb"><p>把 50、30、70、20、40、60、80 依次插进一棵空的搜索树，画出来。再把同样 7 个数按 20、30、40、50、60、70、80 的顺序插进另一棵空树，画出来。找 80，两棵树各要比几次？</p></div>
+      </div>
+      <div class="pass" data-id="tree-q10a">
+        <div class="qq" data-a="0"><p>二叉搜索树里，一个结点左边那一片的数都？</p><ol><li>比它小</li><li>比它大</li><li>随便</li></ol><p class="ex">左小右大。</p></div>
+        <div class="qq" data-a="1"><p>要找的数比当前结点大，往哪边走？</p><ol><li>左边</li><li>右边</li></ol><p class="ex">大的都在右边。</p></div>
+        <div class="qq" data-a="2"><p>对二叉搜索树做哪种遍历，正好从小到大？</p><ol><li>先序</li><li>后序</li><li>中序</li></ol><p class="ex">左、自己、右 = 小、中、大。</p></div>
+        <div class="qq" data-a="0"><p>插入一个新数，要不要挪动别的数？</p><ol><li>不用，挂在走到的空位上</li><li>要重新排序</li></ol><p class="ex">一路比下去，挂在空位上。</p></div>
+        <div class="qq" data-a="1"><p>按 1、2、3、4、5 的顺序插进空的搜索树，树会怎样？</p><ol><li>很匀称</li><li>歪成一根棍</li></ol><p class="ex">每个都挂在右边，和链表一样。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c10-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">对照 408：二叉排序树（BST）</span><span class="tm">约 55 分钟</span><span class="sum">查找、插入的递归和非递归写法；删除的三种情况；平均查找长度 ASL 的成功和失败；查找路径的合法性；最好和最坏的复杂度。</span></div>
+    <div class="lyb">
+      <h3>查找和插入</h3>
+<pre class="code" data-k="bst.c">typedef struct BSTNode { int key; struct BSTNode *l, *r; } BSTNode;
+BSTNode *search(BSTNode *T, int k) {
+    while (T &amp;&amp; k != T-&gt;key) T = k &lt; T-&gt;key ? T-&gt;l : T-&gt;r;
+    return T;
+}
+int insert(BSTNode **T, int k) {          /* 传指针的指针，才能改到空位本身 */
+    if (*T == NULL) { *T = malloc(sizeof(BSTNode)); (*T)-&gt;key = k; (*T)-&gt;l = (*T)-&gt;r = NULL; return 1; }
+    if (k == (*T)-&gt;key) return 0;         /* 已有，不插 */
+    return insert(k &lt; (*T)-&gt;key ? &amp;(*T)-&gt;l : &amp;(*T)-&gt;r, k);
+}</pre>
+      <h3>删除的三种情况</h3>
+      <ol class="plain">
+        <li>被删的是<b>叶子</b>：直接删。</li>
+        <li>只有<b>一棵子树</b>：让这棵子树顶替它的位置。</li>
+        <li>有<b>两棵子树</b>：用它的中序后继（右子树里最小的，即右子树最左下的结点）或中序前驱（左子树最大的）的值替换它，再去删掉那个后继（后继最多只有右子树，转成情况 1 或 2）。</li>
+      </ol>
+      <div class="pit"><h5>删了再插回去，树还一样吗？</h5><p>删除一个叶子再插回来，树不变。删除一个非叶子再插回来，它会变成叶子，树一般就变了。408 常拿这个出判断题。</p></div>
+      <h3>平均查找长度</h3>
+      <p><b>查找成功</b>的 ASL = Σ（每个结点的层数）/ n（等概率）。<b>查找失败</b>的 ASL：把每个空指针看成一个“失败结点”（n 个结点有 n + 1 个），失败时比较的次数等于失败结点所在的层数减一（也就是它双亲的层数），ASL<sub>失败</sub> = Σ（失败结点双亲的层数）/ (n + 1)。最好情况（树高 ⌈log₂(n+1)⌉）ASL 是 O(log n)，最坏（单支树）是 (n + 1)/2，O(n)。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）依次插入 45, 24, 53, 12, 37, 93, 30 构造二叉排序树，求查找成功和失败的 ASL。（2）在一棵二叉排序树上查找 58，下列哪个不可能是比较的序列：A. 90, 30, 70, 50, 58 B. 20, 80, 40, 70, 60, 58 C. 50, 70, 60, 65, 58 D. 10, 100, 30, 80, 50, 58。</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）树：45 为根；24 左、53 右；12 是 24 的左、37 是 24 的右；93 是 53 的右；30 是 37 的左。层数：45 第 1 层；24、53 第 2 层；12、37、93 第 3 层；30 第 4 层。成功 ASL = (1 + 2×2 + 3×3 + 4) / 7 = 18/7。失败结点 8 个：12 的两个（双亲第 3 层）、37 的右（3）、30 的两个（4）、53 的左（2）、93 的两个（3）。合计 3+3+3+4+4+2+3+3 = 25，ASL<sub>失败</sub> = 25/8。</p>
+          <p>（2）C。走到 70 往左到 60，意味着之后的数都在 (50, 70) 中且要和 58 一致：60 &gt; 58 往左，之后所有数都要小于 60，可下一个是 65，矛盾。检查法：每一步之后，可能的范围收窄成一个区间，后面的数必须落在区间里。</p>
+        </div></details>
+      </div>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>判断一棵二叉树是不是二叉搜索树。“每个结点比左孩子大、比右孩子小”够吗？</p>
+        <details><summary>看要点</summary><div><p>不够：要求的是整棵左子树都比它小。反例：根 10，左孩子 5，5 的右孩子 15。正确做法：① 中序遍历，检查是否严格递增，只需记住上一个值；② 递归传下界和上界，<code>ok(node, lo, hi)</code>，左子树用 (lo, node.key)，右子树用 (node.key, hi)。都是 O(n)。</p></div></details>
+      </div>
+      <div class="pass" data-id="tree-q10b">
+        <div class="qq" data-a="1"><p>删除有两棵子树的结点 p，通常用什么替换它？</p><ol><li>它的左孩子</li><li>它的中序后继（或前驱）</li><li>根</li></ol><p class="ex">后继是右子树最左下的结点，最多只有右孩子。</p></div>
+        <div class="qq" data-a="2"><p>n 个结点的二叉排序树，最坏查找长度是？</p><ol><li>O(1)</li><li>O(log n)</li><li>O(n)</li></ol><p class="ex">退化成单支树。</p></div>
+        <div class="qq" data-in="11"><p>n = 10 个结点的二叉排序树，有几个“失败结点”（空指针）？</p><p class="ex">n + 1 = 11。</p></div>
+        <div class="qq" data-a="0"><p>二叉排序树中，最小的关键字在哪儿？</p><ol><li>从根一直往左走到头</li><li>某个叶子，位置不定</li><li>根</li></ol><p class="ex">最左下；它不一定是叶子（可能有右孩子）。</p></div>
+        <div class="qq" data-a="1"><p>删除一个非叶子结点后再把它插回去，树和原来一样吗？</p><ol><li>一定一样</li><li>一般不一样</li></ol><p class="ex">它会变成叶子。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c10-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">随机树的高度、语言里的有序容器</span><span class="tm">约 20 分钟</span><span class="sum">随机顺序插入时，期望高度约 4.311 ln n；树堆用随机优先级保持平衡；C++ 的 map 和 Java 的 TreeMap 是红黑树，Python 标准库里没有，常用 bisect 或第三方的 sortedcontainers。</span></div>
+    <div class="lyb">
+      <h3>随机插入有多高</h3>
+      <p>n 个不同的数按随机顺序插入，平均查找长度大约 2 ln n ≈ 1.39 log₂n，和完美平衡的树只差约 39%；期望高度约 4.311 ln n（里德 2003 年给出了精确的渐近结果）。所以“数据本来就乱”的时候普通搜索树表现不错，怕的是有序或接近有序的输入：而现实里的数据偏偏常常是有序的（按时间来的编号、按字母排好的名单）。</p>
+      <h3>树堆</h3>
+      <p>树堆（Treap）给每个结点随机发一个“优先级”，要求按关键字是搜索树、按优先级是堆（第十二章），插入后用旋转（第十一章）维持。这样不管插入顺序如何，树的形状都相当于随机插入，期望高度 O(log n)。它好写，是算法竞赛里常用的平衡树。</p>
+      <h3>语言里的有序容器</h3>
+      <p>C++ 的 <code>std::map</code>、Java 的 <code>TreeMap</code> 都是红黑树（下一章），能按顺序遍历、找“比 x 大的最小的数”。Python 的标准库没有搜索树：常见做法是在排好序的列表上用 <code>bisect</code> 二分（插入 O(n)，但 n 不太大时很快，因为挪动的是连续内存），或者用第三方库 <code>sortedcontainers</code>，它用“分块的有序列表”实现，实测往往比树还快。这又是第二章“连续存放格外快”的一个例子。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>B. Reed, “The height of a random binary search tree”, <i>Journal of the ACM</i>, 2003。</li>
+          <li>R. Seidel, C. R. Aragon, “Randomized search trees”, <i>Algorithmica</i>, 1996（树堆）。</li>
+          <li>G. Jenks, sortedcontainers 文档中的性能比较和实现说明。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="main" data-step="10">
+    <div class="mh"><b>主线 · 第 10 步</b><span>图鉴</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给方格岛加上：<i>二叉搜索树</i></p>
+      <p>十样东西按拼音插进一棵搜索树（<code>bst_insert</code>），<code>in_order</code> 按顺序列出来，<code>bst_find</code> 查找并数一数看了几个结点。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 island.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>用 C 写搜索树的插入、查找和三种情况的删除；随机插入一千个数，统计平均查找长度，和 1.39 log₂n 比较。</div>
+    </div>
+  </div>
+  <div class="words">
+    <div data-l="1"><b>二叉搜索树 <span class="en" data-say="binary search tree">binary search tree</span></b>左边都小、右边都大的二叉树。</div>
+    <div data-l="1"><b>查找 <span class="en" data-say="search">search</span></b>从根开始，小往左、大往右。</div>
+    <div data-l="1"><b>退化 <span class="en" data-say="degenerate">degenerate</span></b>树歪成一根棍，和链表一样。</div>
+    <div data-l="2"><b>平均查找长度 <span class="en" data-say="average search length">average search length</span></b>ASL，平均要比几次。</div>
+    <div data-l="2"><b>中序后继 <span class="en" data-say="inorder successor">inorder successor</span></b>中序里紧跟在它后面的结点。</div>
+    <div data-l="3"><b>树堆 <span class="en" data-say="treap">treap</span></b>tree + heap，用随机优先级保持平衡。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>左小右大：找和插都像猜数字；中序正好从小到大；按顺序插会歪成一根棍。</div>
+    <div><i>第二层带走</i>删两棵子树的结点用中序后继顶替；失败 ASL 数空指针；查找路径每一步都把范围收窄成一个区间。</div>
+    <div><i>第三层带走</i>真实数据常常是有序的，所以要平衡；有时候分块的有序数组比树更快。</div>
+  </div>
+</section>

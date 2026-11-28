@@ -1,0 +1,4 @@
+按顺序列出： ['cao', 'chuan', 'deng', 'sha', 'shi', 'shu', 'shui', 'tuan', 'wu', 'ya']
+找 sha：沙：烧成玻璃（看了 5 个结点）
+找 wu：小屋（看了 3 个结点）
+找 long：None（看了 6 个结点）

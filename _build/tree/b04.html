@@ -1,0 +1,181 @@
+<section class="chap" id="c11" data-vol="卷三 · 枝 · 平衡树">
+  <div class="chead">
+    <div class="big">衡</div>
+    <div>
+      <div class="no">卷三 · 第十一章</div>
+      <h2>平衡树</h2>
+      <dl><dt>讲什么</dt><dd>让搜索树两边一样高；平衡因子；跷跷板一样的旋转：左左、右右、左右、右左；AVL 树最矮能有多矮；红黑树的规矩和它为什么被到处使用</dd><dt>装置</dt><dd>会自己转的树</dd></dl>
+      <div class="crs" data-c="结构"></div>
+      <div class="lvs"><a data-l="1" href="#c11-1">第一层 · 30 分钟</a><a data-l="2" href="#c11-2">第二层 · 65 分钟</a><a data-l="3" href="#c11-3">第三层 · 20 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>按顺序插进去就歪成一根棍，那别按顺序插不就好了？</span></div>
+    <div class="l"><i class="j">舅</i><span>数是别人给你的，你管不了它怎么来。只能让树自己发现歪了，自己扭回来。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>说出“平衡”是什么意思，为什么搜索树要保持平衡。</li>
+      <li><span class="lg lg1">一</span>在装置里看懂一次旋转：哪个结点升上去、哪个降下来，左小右大的规矩为什么没被打破。</li>
+      <li><span class="lg lg2">二</span>算平衡因子，判断插入后要做哪一种旋转（LL、RR、LR、RL）并画出结果；算高度为 h 的 AVL 树最少有几个结点。</li>
+      <li><span class="lg lg2">二</span>说出红黑树的五条性质、黑高，以及“最长路径不超过最短路径的两倍”。</li>
+      <li><span class="lg lg3">三</span>说出为什么标准库多用红黑树、数据库用 B+ 树；Linux 内核用红黑树做什么。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c11-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：二叉搜索树（第十章）</span><span class="tm">约 30 分钟</span></div>
+    <div class="lyb">
+      <h3>两边一样高</h3>
+      <p>上一章看到：搜索树如果歪成一根棍，找东西就和一个一个看一样慢。我们希望它一直<b>匀称</b>：每个结点左边那一片和右边那一片，高度差不多。这叫<b>平衡</b>。</p>
+      <p>1962 年，两位苏联数学家阿杰尔松-韦利斯基和兰迪斯想出了第一种会自己保持平衡的搜索树，用他们名字的头一个字母，叫 <b>AVL 树</b>。规矩是：每个结点左右两边的高度，<b>最多差 1</b>。</p>
+      <h3>歪了就转一下</h3>
+      <p>每插进一个新数，就从它往上一个一个看：有没有哪个结点，左右两边的高度差变成了 2？有，就在那里做一次<b>旋转</b>。</p>
+      <p>旋转像跷跷板：一边太重了，就把这一边的那个孩子提上来当“爸爸”，原来的爸爸降下去当它的孩子。神奇的是，转完以后，左小右大的规矩一点没坏，树却矮了一层。</p>
+      <p>例子：依次插 1、2、3。插完 3 以后，1 的右边高 2、左边高 0，歪了。把 2 提上来：2 当根，1 当它的左孩子，3 当它的右孩子。1 &lt; 2 &lt; 3，规矩没坏，树从 3 层变成 2 层。</p>
+      <div class="fig" id="avlFig">
+        <div class="fig-label">装置 · 第十一章</div>
+        <h4>会自己转的树</h4>
+        <p class="how">输入一个数插进 AVL 树。每个结点下面的小数字是“左边高 − 右边高”。歪了（变成 2 或 −2）的时候，树会转一下，下面会说是哪一种转法。点“按顺序插 1 到 15”，和上一章歪成一根棍的树比一比。</p>
+        <div class="row"><input type="number" id="avIn" value="1" style="width:6em" aria-label="数"><button class="btn pri" data-x="ins">插入</button><button class="btn" data-x="seq">按顺序插 1 到 15</button><button class="btn" data-x="clr">清空</button></div>
+        <svg class="avl" viewBox="0 0 640 220" role="img" aria-label="AVL 树"></svg>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+      <p>按顺序插 15 个数，普通搜索树高 15，AVL 树只有 4 层。主线第 11 步在 Python 里做了同一件事：100 个排好序的名字，普通搜索树高 100，AVL 树高 7。</p>
+      <div class="mc">
+        <h5>天平和跷跷板</h5>
+        <p>《一块一块》<a href="../block/nine.html#c70">第七十章</a>讲过杠杆和跷跷板：一边重，就往那边歪。平衡树做的事情就是：一发现哪边重了，马上把那边的一个结点提上来当支点。</p>
+      </div>
+      <div class="task" data-id="tree-t11a">
+        <div class="th"><b>转一转</b></div>
+        <div class="tb"><p>在纸上依次把 3、2、1 插进一棵 AVL 树：插完 1 以后哪个结点歪了？往哪边歪？画出转完以后的样子。再试 1、3、2：这次要转两下，在装置里看看是怎样转的。</p></div>
+      </div>
+      <div class="pass" data-id="tree-q11a">
+        <div class="qq" data-a="1"><p>为什么搜索树要保持平衡？</p><ol><li>为了好看</li><li>歪成一根棍就和一个一个找一样慢了</li></ol><p class="ex">平衡才能每一步排除一半。</p></div>
+        <div class="qq" data-in="1"><p>AVL 树规定，每个结点左右两边的高度最多差几？</p><p class="ex">1。</p></div>
+        <div class="qq" data-a="0"><p>旋转以后，“左小右大”的规矩还在吗？</p><ol><li>还在</li><li>被打破了</li></ol><p class="ex">旋转只改变谁是谁的爸爸，不改变中序的顺序。</p></div>
+        <div class="qq" data-a="2"><p>依次插入 1、2、3，转完以后根是几？</p><ol><li>1</li><li>3</li><li>2</li></ol><p class="ex">2 被提上来当根。</p></div>
+        <div class="qq" data-a="1"><p>AVL 这个名字是怎么来的？</p><ol><li>三个英文单词</li><li>两位数学家名字的头一个字母</li></ol><p class="ex">Adelson-Velsky 和 Landis，1962 年。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c11-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">对照 408：平衡二叉树、红黑树</span><span class="tm">约 65 分钟</span><span class="sum">平衡因子；最小不平衡子树；LL、RR、LR、RL 四种调整；删除后的调整；高度为 h 的最少结点数；红黑树的五条性质、黑高、插入的几种情况；AVL 和红黑树的比较。</span></div>
+    <div class="lyb">
+      <h3>平衡因子和四种调整</h3>
+      <p>结点的<b>平衡因子</b> = 左子树高度 − 右子树高度，AVL 树里只能是 −1、0、1。插入后，从新结点往上找到第一个平衡因子绝对值为 2 的结点 A，以 A 为根的子树叫<b>最小不平衡子树</b>，只调整它就够了（调整后它的高度恢复成插入前，上面的结点也就都平衡了）。按新结点插在 A 的哪一边分四种：</p>
+      <div class="tbl">
+        <table class="t">
+          <tr><th>类型</th><th>新结点插在</th><th>调整</th></tr>
+          <tr><td>LL</td><td>A 的左孩子 B 的左子树</td><td>右旋一次：B 上升为根，A 成为 B 的右孩子，B 原来的右子树挂到 A 的左边</td></tr>
+          <tr><td>RR</td><td>A 的右孩子 B 的右子树</td><td>左旋一次（与 LL 对称）</td></tr>
+          <tr><td>LR</td><td>A 的左孩子 B 的右子树（B 的右孩子 C）</td><td>先对 B 左旋，再对 A 右旋：C 升为根，B、A 分别成为 C 的左、右孩子</td></tr>
+          <tr><td>RL</td><td>A 的右孩子 B 的左子树（B 的左孩子 C）</td><td>先对 B 右旋，再对 A 左旋：C 升为根</td></tr>
+        </table>
+      </div>
+      <p>记法：LR 和 RL 的结果，都是“孙子”C 升到最上面，C 原来的左子树给了左边那个、右子树给了右边那个。</p>
+<pre class="code" data-k="avl.c">typedef struct N { int key, h; struct N *l, *r; } N;
+int H(N *p) { return p ? p-&gt;h : 0; }
+void upd(N *p) { p-&gt;h = 1 + (H(p-&gt;l) &gt; H(p-&gt;r) ? H(p-&gt;l) : H(p-&gt;r)); }
+N *rotR(N *a) { N *b = a-&gt;l; a-&gt;l = b-&gt;r; b-&gt;r = a; upd(a); upd(b); return b; }
+N *rotL(N *a) { N *b = a-&gt;r; a-&gt;r = b-&gt;l; b-&gt;l = a; upd(a); upd(b); return b; }
+N *insert(N *p, int k) {
+    if (!p) { p = calloc(1, sizeof(N)); p-&gt;key = k; p-&gt;h = 1; return p; }
+    if (k &lt; p-&gt;key) p-&gt;l = insert(p-&gt;l, k); else if (k &gt; p-&gt;key) p-&gt;r = insert(p-&gt;r, k); else return p;
+    upd(p);
+    int bf = H(p-&gt;l) - H(p-&gt;r);
+    if (bf == 2)  { if (k &gt; p-&gt;l-&gt;key) p-&gt;l = rotL(p-&gt;l); return rotR(p); }   /* LR 先左旋；LL 直接右旋 */
+    if (bf == -2) { if (k &lt; p-&gt;r-&gt;key) p-&gt;r = rotR(p-&gt;r); return rotL(p); }   /* RL 先右旋；RR 直接左旋 */
+    return p;
+}</pre>
+      <p>删除时可能要一路向上调整多次（最多 O(log n) 次旋转），插入最多调整一处。</p>
+      <h3>最少有几个结点</h3>
+      <p>设高度为 h 的 AVL 树最少有 N(h) 个结点：最“瘦”的树，根的一边高 h − 1、另一边高 h − 2，都要最瘦，所以 <b>N(h) = N(h−1) + N(h−2) + 1</b>，N(0) = 0，N(1) = 1：1, 2, 4, 7, 12, 20, 33, 54……（和斐波那契数只差 1：N(h) = F(h+2) − 1）。反过来，n 个结点的 AVL 树高度不超过约 1.44 log₂n，查找 O(log n)。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）依次插入 20, 10, 30, 5, 15, 12 构造 AVL 树，插入 12 时发生哪种不平衡？画出调整后的树。（2）高度为 6 的 AVL 树最少有几个结点？所有非叶结点的平衡因子都是 1 时，这棵树最少有几个结点？</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）插完前五个：20 为根，10（左）、30（右），5、15 是 10 的孩子。插 12：12 &lt; 20 → 10，&gt; 10 → 15，&lt; 15 → 15 的左。往上看：15 的因子 1，10 的因子 1 − 2 = −1，20 的因子 3 − 1 = 2，最小不平衡子树根是 20；12 插在 20 的左孩子 10 的右子树里：LR。C 是 15：15 升为根，10 成为左孩子（10 保留左孩子 5，并接过 15 原来的左子树 12 作右孩子），20 成为右孩子（右孩子 30）。结果：15（10（5，12），20（—，30））。</p>
+          <p>（2）N(6) = 20。平衡因子全是 1（或 0 只出现在叶子）的就是最瘦的 AVL 树本身，也是 20 个。</p>
+        </div></details>
+      </div>
+
+      <h3>红黑树</h3>
+      <p>408 从近年起考红黑树的基本性质。红黑树是一棵二叉搜索树，每个结点是红或黑，满足五条：</p>
+      <ol class="plain">
+        <li>每个结点是红色或黑色。</li>
+        <li>根是黑色。</li>
+        <li>叶结点（虚构的外部结点，即空指针 NIL）都是黑色。</li>
+        <li>红结点的两个孩子都是黑色（不能有两个相连的红结点）。</li>
+        <li>从任一结点到它下面每个 NIL 的路径上，黑结点个数相同。</li>
+      </ol>
+      <p>从某结点出发（不含它本身）到 NIL 路径上的黑结点数叫它的<b>黑高</b> bh。由性质 4、5：从根到 NIL 的最长路径（红黑相间）不超过最短路径（全黑）的两倍；n 个内部结点的红黑树高度 ≤ 2 log₂(n + 1)。红黑树只是“大致平衡”，所以插入删除时的旋转次数少：插入最多 2 次旋转，删除最多 3 次；其余调整只是改颜色。新插入的结点一律先涂红（不破坏性质 5），再按叔叔结点的颜色分情况：叔叔红，就把父亲和叔叔染黑、爷爷染红，问题上移；叔叔黑，就像 AVL 一样旋转一次或两次再改色。</p>
+      <div class="tbl">
+        <table class="t">
+          <tr><th></th><th>AVL 树</th><th>红黑树</th></tr>
+          <tr><td>平衡程度</td><td>严格：左右高度差 ≤ 1</td><td>大致：最长路径 ≤ 2 × 最短</td></tr>
+          <tr><td>查找</td><td>略快（树更矮）</td><td>略慢</td></tr>
+          <tr><td>插入删除</td><td>可能多次旋转</td><td>旋转次数少，常数小</td></tr>
+          <tr><td>常用在</td><td>查找多、改动少</td><td>标准库的有序容器、内核</td></tr>
+        </table>
+      </div>
+      <div class="pass" data-id="tree-q11b">
+        <div class="qq" data-in="12"><p>高度为 5 的 AVL 树最少有几个结点？</p><p class="ex">N(5) = N(4) + N(3) + 1 = 7 + 4 + 1 = 12。</p></div>
+        <div class="qq" data-a="2"><p>新结点插在最小不平衡子树根 A 的左孩子的右子树上，应做？</p><ol><li>LL 右旋</li><li>RR 左旋</li><li>LR 先左旋后右旋</li></ol><p class="ex">左孩子的右子树：LR。</p></div>
+        <div class="qq" data-a="1"><p>红黑树中，新插入的结点先涂成什么颜色？</p><ol><li>黑</li><li>红</li></ol><p class="ex">涂红不改变黑高，只可能违反“不能连红”。</p></div>
+        <div class="qq" data-a="0"><p>红黑树中，根到叶子的最长路径和最短路径的关系是？</p><ol><li>最长 ≤ 2 × 最短</li><li>相差不超过 1</li><li>没有关系</li></ol><p class="ex">最短全黑，最长红黑相间。</p></div>
+        <div class="qq" data-a="0"><p>一棵 AVL 树一定是红黑树吗？（能不能给每个结点涂上合适的颜色）</p><ol><li>能</li><li>不一定</li></ol><p class="ex">能。AVL 树总可以涂成合法的红黑树（经典结论）；反过来红黑树不一定是 AVL 树。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c11-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">红黑树在真实软件里</span><span class="tm">约 20 分钟</span><span class="sum">红黑树的来历和左倾红黑树；Linux 内核用红黑树管调度、内存区域和定时器；为什么数据库不用平衡二叉树而用 B+ 树。</span></div>
+    <div class="lyb">
+      <h3>来历</h3>
+      <p>红黑树源于 1972 年拜尔提出的“对称二叉 B 树”，1978 年吉巴斯和塞奇威克给它涂上了红黑两色，名字就这样来了。它其实是 2-3-4 树（第十五章的 B 树的一种）的二叉表示：一个黑结点加上它的红孩子，合起来就是 B 树的一个大结点。2008 年塞奇威克又提出“左倾红黑树”，只允许红链接朝左，代码短了很多，是教学里常用的版本。</p>
+      <h3>Linux 内核</h3>
+      <p>Linux 内核的 <code>lib/rbtree.c</code> 被大量使用：完全公平调度器 CFS 按“已经跑了多久”把进程挂在红黑树上，每次挑最左边（跑得最少）的那个（《地基》第二十六章）；进程的内存区域（mmap 出来的一段段虚拟地址，《地基》第二十七章）、高精度定时器、epoll 管理的文件描述符，也都用红黑树。这里用的是第三章说过的“侵入式”写法：rb_node 嵌在各种结构体里。</p>
+      <h3>为什么数据库不用它</h3>
+      <p>平衡二叉树一个结点只放一个关键字，一百万个数要二十层。在内存里二十次比较很快，可如果树放在硬盘上，每走一层就要读一次硬盘，二十次读盘就太慢了（《地基》第十六章的存储层次：硬盘比内存慢几个数量级）。所以放在硬盘上的索引，要让每个结点装下成百上千个关键字，树只有三四层高：这就是第十五章的 B 树和 B+ 树。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>Г. М. Адельсон-Вельский, Е. М. Ландис, «Один алгоритм организации информации», 1962（AVL 树的原始论文）。</li>
+          <li>L. J. Guibas, R. Sedgewick, “A Dichromatic Framework for Balanced Trees”, 1978。</li>
+          <li>R. Sedgewick, “Left-leaning Red-Black Trees”, 2008。</li>
+          <li>Linux 源码 <code>include/linux/rbtree.h</code>、<code>Documentation/core-api/rbtree.rst</code>。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="main" data-step="11">
+    <div class="mh"><b>主线 · 第 11 步</b><span>平衡的图鉴</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给方格岛加上：<i>AVL 树</i></p>
+      <p><code>avl_insert</code> 每插一个就检查平衡，歪了就用 <code>rot_left</code>、<code>rot_right</code> 转回来。100 个排好序的名字：普通搜索树高 100，AVL 树高 7。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 island.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>给 C 版 AVL 树加上删除；写一个检查函数，递归验证每个结点的平衡因子和搜索树性质，插删各一万次后跑一遍。</div>
+    </div>
+  </div>
+  <div class="words">
+    <div data-l="1"><b>平衡 <span class="en" data-say="balanced">balanced</span></b>每个结点左右两边差不多高。</div>
+    <div data-l="1"><b>旋转 <span class="en" data-say="rotation">rotation</span></b>把孩子提上来当爸爸，树矮一层，规矩不坏。</div>
+    <div data-l="1"><b>AVL 树 <span class="en" data-say="AVL tree">AVL tree</span></b>左右高度最多差 1 的搜索树。</div>
+    <div data-l="2"><b>平衡因子 <span class="en" data-say="balance factor">balance factor</span></b>左子树高 − 右子树高。</div>
+    <div data-l="2"><b>红黑树 <span class="en" data-say="red-black tree">red-black tree</span></b>用红黑两色保持大致平衡的搜索树。</div>
+    <div data-l="2"><b>黑高 <span class="en" data-say="black height">black height</span></b>到叶子路径上黑结点的个数。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>树歪了就转一下：孩子提上来，爸爸降下去，左小右大不变，树矮一层。</div>
+    <div><i>第二层带走</i>找最小不平衡子树，看新结点在它的哪个孙子那边：LL、RR 转一次，LR、RL 转两次；N(h) = N(h−1) + N(h−2) + 1。</div>
+    <div><i>第三层带走</i>严格平衡查得快，大致平衡改得快；放在硬盘上，就得让树又矮又胖。</div>
+  </div>
+</section>

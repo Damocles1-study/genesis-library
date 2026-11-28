@@ -1,0 +1,168 @@
+<section class="chap" id="c13" data-vol="卷四 · 根 · 哈夫曼编码">
+  <div class="chead">
+    <div class="big">码</div>
+    <div>
+      <div class="no">卷四 · 第十三章</div>
+      <h2>哈夫曼编码</h2>
+      <dl><dt>讲什么</dt><dd>常用的字用短码，少见的用长码；数一数每个字出现几次；每次把最少的两个合起来；从树上读出编码；为什么不会认错（前缀码）；带权路径长度；压缩一份存档</dd><dt>装置</dt><dd>造一棵哈夫曼树</dd></dl>
+      <div class="crs" data-c="结构 数学"></div>
+      <div class="lvs"><a data-l="1" href="#c13-1">第一层 · 35 分钟</a><a data-l="2" href="#c13-2">第二层 · 45 分钟</a><a data-l="3" href="#c13-3">第三层 · 25 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>方格岛的地图，十行字，一百六十个字母。存起来要一百六十个字节吗？</span></div>
+    <div class="l"><i class="j">舅</i><span>一半都是水。“水”这个字出现得这么多，给它一个最短的码，存档就能小好几倍。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>说出为什么常用的字该用短码；用“每次合并最少的两个”造一棵哈夫曼树，从树上读出每个字的码。</li>
+      <li><span class="lg lg1">一</span>说出为什么一串 0 和 1 能被唯一地读回来（没有一个码是另一个码的开头）。</li>
+      <li><span class="lg lg2">二</span>算带权路径长度 WPL；说出哈夫曼树的结点数、没有度为 1 的结点；判断一组编码是不是前缀码。</li>
+      <li><span class="lg lg2">二</span>说出哈夫曼树不唯一，但 WPL 唯一；做 408 常见的哈夫曼题。</li>
+      <li><span class="lg lg3">三</span>用“交换论证”说明哈夫曼为什么最优；说出 zip、gzip、PNG 里的 DEFLATE 怎样用到它；信息熵是压缩的下限。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c13-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：二进制（《地基》第一章）、树（第八章）、堆（第十二章）</span><span class="tm">约 35 分钟</span></div>
+    <div class="lyb">
+      <h3>常用的字用短码</h3>
+      <p>电报时代的摩尔斯电码，把最常用的英文字母 E 编成一个“点”，把少见的 Q 编成“划划点划”。这样发一封电报，总长度就短了。</p>
+      <p>电脑存文字，平常每个字母都用 8 个比特（一个字节，《地基》第二章），不管常用不常用。方格岛的地图一共 160 个字，其中水 <code>~</code> 有 80 个，草 <code>.</code> 有 58 个，你 <code>@</code> 只有 1 个。要是给水一个 1 位的码、给草一个 2 位的码，存档就小多了。</p>
+      <h3>造一棵哈夫曼树</h3>
+      <p>1952 年，麻省理工学院的研究生哈夫曼在一门课的期末作业里想出了最好的编法（据说老师说，写出来就可以不用考期末考试）：</p>
+      <ol class="plain">
+        <li>数一数每个字出现几次。每个字是一棵只有一个结点的小树，结点上写着次数。</li>
+        <li>挑出次数<b>最少的两棵</b>，合成一棵：新的根上写两棵次数的和，两棵分别当它的左右孩子。</li>
+        <li>重复第 2 步，直到只剩一棵树。</li>
+      </ol>
+      <p>然后从根往下走：往左走记一个 0，往右走记一个 1。走到某个字，一路记下的 0 和 1 就是它的码。出现得多的字合并得晚，离根近，码就短；出现得少的离根远，码就长。</p>
+      <div class="fig" id="huffFig">
+        <div class="fig-label">装置 · 第十三章</div>
+        <h4>造一棵哈夫曼树</h4>
+        <p class="how">在框里打一句话（或者选方格岛的地图）。点“合并一次”，看次数最少的两棵树怎样合起来；合完以后，下面列出每个字的码和存这句话一共要多少比特。</p>
+        <div class="row"><input type="text" id="hfIn" value="GRASS AND SAND" style="font-family:var(--f-mono);flex:1" aria-label="一句话"><button class="btn" data-x="map">用方格岛的地图</button></div>
+        <svg class="huff" viewBox="0 0 640 240" role="img" aria-label="哈夫曼树"></svg>
+        <div class="btns"><button class="btn pri" data-x="s">合并一次</button><button class="btn" data-x="all">一直合并</button><button class="btn" data-x="r">从头</button></div>
+        <div class="cells" id="hfCodes"></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+      <h3>为什么读得回来</h3>
+      <p>一串 <code>0110100…</code>，怎么知道在哪儿切开？因为在哈夫曼树上，<b>字都在叶子上</b>，一个字的码不会是另一个字的码的开头（走到叶子就停了，不会再往下走到别的字）。所以从头读，读到一个完整的码就切一刀，不会切错。这样的一组码叫<b>前缀码</b>。</p>
+      <p>反过来想：要是 A 的码是 <code>0</code>，B 的码是 <code>01</code>，读到 <code>01</code> 时，是 A 后面跟着一个 1 开头的字，还是 B？分不清了。</p>
+      <div class="mc">
+        <h5>省下的比特</h5>
+        <p>主线第 13 步对方格岛的地图做了哈夫曼编码：每个字 8 位要 1280 位，哈夫曼只要 281 位，少了四分之三还多；再一位一位解回来，和原来的地图一模一样。《地基》<a href="../base/#c6">第六章</a>说过，图片和声音能压缩，靠的就是“有规律、有重复”。</p>
+      </div>
+      <div class="task" data-id="tree-t13a">
+        <div class="th"><b>编一份自己的码</b></div>
+        <div class="tb"><p>把你的名字的拼音写下来（比如 <code>XIAOGE</code>），数每个字母出现几次，在纸上造一棵哈夫曼树，写出每个字母的码和整个名字的编码。再在装置里输入你的名字对一对：总比特数一样吗？（码可能不一样，总数一定一样。）</p></div>
+      </div>
+      <div class="pass" data-id="tree-q13a">
+        <div class="qq" data-a="0"><p>哈夫曼编码里，出现次数多的字，码？</p><ol><li>短</li><li>长</li><li>一样长</li></ol><p class="ex">常用的离根近，码短。</p></div>
+        <div class="qq" data-a="1"><p>造哈夫曼树时，每次合并哪两棵？</p><ol><li>次数最多的两棵</li><li>次数最少的两棵</li><li>随便两棵</li></ol><p class="ex">最少的两棵，让它们离根远。</p></div>
+        <div class="qq" data-a="0"><p>从根往下走，往左记 0、往右记 1，走到哪里停？</p><ol><li>走到一个字（叶子）</li><li>走到第 8 步</li></ol><p class="ex">字都在叶子上。</p></div>
+        <div class="qq" data-a="1"><p>A 的码是 0，B 的码是 01，会出什么问题？</p><ol><li>没问题</li><li>A 的码是 B 的码的开头，读的时候分不清</li></ol><p class="ex">前缀码要求没有一个码是另一个的开头。</p></div>
+        <div class="qq" data-in="1952"><p>哈夫曼是哪一年想出这个编法的？（写年份）</p><p class="ex">1952 年。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c13-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">对照 408：哈夫曼树和哈夫曼编码</span><span class="tm">约 45 分钟</span><span class="sum">路径长度和带权路径长度 WPL；构造过程；哈夫曼树的性质；前缀码的判断；固定长度编码和可变长度编码的比较；用小根堆实现。</span></div>
+    <div class="lyb">
+      <h3>WPL 和性质</h3>
+      <p>结点的<b>带权路径长度</b> = 从根到它的路径长度（边数）× 它的权。树的 <b>WPL</b> = 所有叶子的带权路径长度之和。给定 n 个权值，WPL 最小的二叉树叫<b>哈夫曼树</b>（最优二叉树）。用哈夫曼编码时，WPL 就是编码后的总比特数（权 = 出现次数）。</p>
+      <ul class="plain">
+        <li>n 个叶子要合并 n − 1 次，新增 n − 1 个结点，共 <b>2n − 1 个结点</b>。</li>
+        <li>哈夫曼树里<b>没有度为 1 的结点</b>（每个新结点都有两个孩子）。</li>
+        <li>权越小的叶子离根越远；权最小的两个叶子是兄弟，在最深的一层。</li>
+        <li>树不唯一（相同权值怎样挑、谁左谁右都可以），但 WPL 唯一。</li>
+        <li>WPL 也等于所有<b>非叶结点</b>的权值之和（每次合并产生的那个和）。这是手算 WPL 最快的办法。</li>
+      </ul>
+      <p>推广：m 叉哈夫曼树每次合并 m 个最小的。若 (n − 1) 不能被 (m − 1) 整除，要先补若干个权为 0 的“虚叶子”，让最后一次正好合并 m 个。</p>
+<pre class="code" data-k="huffman.py">import heapq
+def huffman_wpl(weights):
+    h = list(weights); heapq.heapify(h)      # 小根堆
+    wpl = 0
+    while len(h) &gt; 1:
+        a = heapq.heappop(h); b = heapq.heappop(h)
+        wpl += a + b                         # 每次合并的和加起来就是 WPL
+        heapq.heappush(h, a + b)
+    return wpl
+
+print(huffman_wpl([5, 9, 12, 13, 16, 45]))   # 224</pre>
+      <p>用小根堆，构造的时间是 O(n log n)。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）权值 {3, 8, 2, 7, 5, 10} 构造哈夫曼树，求 WPL 和权为 2 的叶子的编码长度。（2）下列哪组不是前缀码：A. {0, 10, 110, 111} B. {00, 01, 10, 11} C. {0, 01, 11} D. {1, 01, 000, 001}。（3）一棵哈夫曼树有 199 个结点，原来有几个权值？</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）2 + 3 = 5；{5, 5, 7, 8, 10}：5 + 5 = 10；{7, 8, 10, 10}：7 + 8 = 15；{10, 10, 15}：10 + 10 = 20；{15, 20}：35。WPL = 5 + 10 + 15 + 20 + 35 = 85。权 2 的叶子：2 → 5 → 10 → 20 → 35，路径长 4，编码长度 4。（两个 10 中哪个先合并都行，WPL 不变。）</p>
+          <p>（2）C：0 是 01 的前缀。</p>
+          <p>（3）2n − 1 = 199，n = 100。</p>
+        </div></details>
+      </div>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>为什么说哈夫曼算法是“贪心”的？它为什么是对的？</p>
+        <details><summary>看要点</summary><div><p>每一步只做眼前最好的选择：合并当前最小的两个，不回头。正确性靠两点：① 存在一棵最优树，其中权最小的两个叶子是最深一层的兄弟（交换论证：若不是，把它们和最深的叶子交换，WPL 不会变大）；② 把这两个合并成一个权为 a + b 的叶子后，原问题的最优解等于新问题的最优解加上 a + b（最优子结构）。第二十一章会系统讲“什么时候贪心是对的”。</p></div></details>
+      </div>
+      <div class="pass" data-id="tree-q13b">
+        <div class="qq" data-in="33"><p>权值 {1, 2, 3, 4, 5} 的哈夫曼树，WPL 是？</p><p class="ex">1+2=3；{3,3,4,5}：3+3=6；{4,5,6}：4+5=9；{6,9}：15。WPL = 3+6+9+15 = 33。</p></div>
+        <div class="qq" data-a="1"><p>哈夫曼树中有没有度为 1 的结点？</p><ol><li>可能有</li><li>没有</li></ol><p class="ex">每次合并产生的结点都有两个孩子。</p></div>
+        <div class="qq" data-in="15"><p>8 个权值构造的哈夫曼树，一共有几个结点？</p><p class="ex">2 × 8 − 1 = 15。</p></div>
+        <div class="qq" data-a="0"><p>同一组权值，哈夫曼树唯一吗？WPL 唯一吗？</p><ol><li>树不唯一，WPL 唯一</li><li>都唯一</li><li>都不唯一</li></ol><p class="ex">树的形状和左右可以不同，但最小的 WPL 只有一个值。</p></div>
+        <div class="qq" data-a="2"><p>哪一组是前缀码？</p><ol><li>{1, 10, 11}</li><li>{0, 00, 1}</li><li>{01, 10, 11, 001}</li></ol><p class="ex">第三组没有谁是谁的开头。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c13-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">真实的压缩</span><span class="tm">约 25 分钟</span><span class="sum">香农的信息熵是平均码长的下限，哈夫曼离它不到 1 位；DEFLATE = LZ77 + 哈夫曼，zip、gzip、PNG 都在用；规范哈夫曼码只传码长；算术编码和 ANS。</span></div>
+    <div class="lyb">
+      <h3>熵：压缩的下限</h3>
+      <p>香农 1948 年证明（《地基》第一章第三层的信息量）：一个字出现的概率是 p，它至少要 log₂(1/p) 位；一组字平均至少要 H = Σ p·log₂(1/p) 位，叫<b>信息熵</b>。任何无损编码的平均码长都不会低于 H，哈夫曼编码的平均码长在 H 和 H + 1 之间。方格岛地图的熵约 1.66 位每字，哈夫曼做到了 281/160 ≈ 1.76 位。</p>
+      <h3>DEFLATE</h3>
+      <p>单靠哈夫曼只利用了“有的字常见”，没有利用“有的片段重复出现”。DEFLATE（1990 年代，卡茨为 PKZIP 设计，RFC 1951）先用 LZ77 把重复的片段换成“往回多远、复制多长”，再对结果做哈夫曼编码。zip、gzip、PNG 图片、HTTP 的 gzip 压缩都是它。为了不用把整棵树存进文件，DEFLATE 用<b>规范哈夫曼码</b>：只记下每个字的码长，码本身按“码长从短到长、同长按字的顺序”重新排出来，解码器能还原出同样的码。</p>
+      <h3>比哈夫曼更好</h3>
+      <p>哈夫曼每个字至少 1 位；一个字的概率是 0.99 时，它浪费很大。<b>算术编码</b>把整条消息编成一个小数，能逼近熵到小数位；新一代的 <b>ANS</b>（非对称数字系统，杜达 2009 年起提出）速度接近哈夫曼、压缩率接近算术编码，被 Facebook 的 zstd、苹果的 LZFSE 采用。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>D. A. Huffman, “A Method for the Construction of Minimum-Redundancy Codes”, <i>Proceedings of the IRE</i>, 1952。</li>
+          <li>P. Deutsch, RFC 1951, “DEFLATE Compressed Data Format Specification”, 1996。</li>
+          <li>J. Duda, “Asymmetric numeral systems”, 2009 起的系列论文。</li>
+          <li>“写出来就不用考期末”的说法来自后来的采访和科普文章，细节各处略有不同。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="main" data-step="13">
+    <div class="mh"><b>主线 · 第 13 步</b><span>压缩存档</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给方格岛加上：<i>哈夫曼编码</i></p>
+      <p><code>huffman</code> 数出地图里每个字出现几次，用小根堆每次合并最少的两个，再从树上读出编码。地图从 1280 位压到 281 位，解回来一模一样。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 island.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>把编码结果真的按位写进一个二进制文件（8 位一组拼成字节），再读回来解码；比较文件大小，并算出地图的信息熵。</div>
+    </div>
+  </div>
+  <div class="words">
+    <div data-l="1"><b>编码 <span class="en" data-say="encoding">encoding</span></b>给每个字一串 0 和 1。</div>
+    <div data-l="1"><b>压缩 <span class="en" data-say="compression">compression</span></b>用更少的比特存同样的东西。</div>
+    <div data-l="1"><b>前缀码 <span class="en" data-say="prefix code">prefix code</span></b>没有一个码是另一个码的开头。</div>
+    <div data-l="2"><b>带权路径长度 <span class="en" data-say="weighted path length">weighted path length</span></b>WPL，叶子的权 × 深度之和。</div>
+    <div data-l="2"><b>哈夫曼树 <span class="en" data-say="Huffman tree">Huffman tree</span></b>WPL 最小的二叉树。</div>
+    <div data-l="3"><b>熵 <span class="en" data-say="entropy">entropy</span></b>平均每个字至少要几位。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>常用的短、少见的长；每次合并最少的两个；字都在叶子上，所以读得回来。</div>
+    <div><i>第二层带走</i>WPL = 每次合并的和加起来；2n − 1 个结点、没有度为 1 的；树不唯一，WPL 唯一。</div>
+    <div><i>第三层带走</i>熵是下限，哈夫曼离它不到一位；真实的压缩先去掉重复，再用短码。</div>
+  </div>
+</section>

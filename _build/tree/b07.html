@@ -1,0 +1,188 @@
+<section class="chap" id="c14" data-vol="卷四 · 根 · 并查集">
+  <div class="chead">
+    <div class="big">集</div>
+    <div>
+      <div class="no">卷四 · 第十四章</div>
+      <h2>并查集</h2>
+      <dl><dt>讲什么</dt><dd>这两块地连着吗？岛上有几座岛？每块地记着自己的“队长”；查找：顺着找到最上面的队长；合并：让一个队长听另一个的；路径压缩和按大小合并</dd><dt>装置</dt><dd>数岛</dd></dl>
+      <div class="crs" data-c="结构"></div>
+      <div class="lvs"><a data-l="1" href="#c14-1">第一层 · 30 分钟</a><a data-l="2" href="#c14-2">第二层 · 45 分钟</a><a data-l="3" href="#c14-3">第三层 · 20 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>我在岛中间挖了一条河，又搭了一座桥。现在到底是一座岛还是两座？</span></div>
+    <div class="l"><i class="j">舅</i><span>每挖一下、每搭一下都重新数一遍，太累了。让每块地记住自己“归谁管”，就能一眨眼回答。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>用“每个人记着自己的队长”讲清楚并查集的查找和合并。</li>
+      <li><span class="lg lg1">一</span>用并查集数出岛上有几座岛，搭桥以后马上知道少了一座。</li>
+      <li><span class="lg lg2">二</span>写出用双亲数组实现的查找、合并、按大小（或按秩）合并和路径压缩；说出它们的复杂度。</li>
+      <li><span class="lg lg2">二</span>用并查集解连通分量、判断加一条边会不会成环（第十九章的克鲁斯卡尔算法要用）。</li>
+      <li><span class="lg lg3">三</span>说出反阿克曼函数 α(n) 有多小；并查集在图像处理、编译器和物理模拟里的用处。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c14-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：树（第八章）、油漆桶（第七章）</span><span class="tm">约 30 分钟</span></div>
+    <div class="lyb">
+      <h3>两个问题</h3>
+      <p>方格岛上，常要回答两种问题：</p>
+      <ul class="plain">
+        <li>这两块地连着吗（能不能走过去）？</li>
+        <li>一共有几座岛？</li>
+      </ul>
+      <p>第七章的油漆桶能回答：从一块地开始涂，涂得到另一块就连着。可是每挖一条沟、每搭一座桥，都要从头涂一遍。有没有办法，<b>地形变一点，答案就跟着改一点</b>？</p>
+      <h3>每块地记着自己的队长</h3>
+      <p>想象每块地是一个小朋友。连在一起的小朋友组成一队，每队有一个<b>队长</b>。每个小朋友手里有一张纸条，写着“我听谁的”：可能直接写着队长，也可能写着另一个小朋友，那个小朋友再写着另一个……顺着纸条一直找上去，最后找到的那个“听自己的”人，就是队长。</p>
+      <ul class="plain">
+        <li><b>查找</b>：顺着纸条一直往上找，找到队长。</li>
+        <li><b>问两块地连不连着</b>：各找各的队长，队长是同一个人，就连着。</li>
+        <li><b>合并</b>（搭了一座桥，两队连起来）：各找各的队长，让其中一个队长的纸条改成写另一个队长。两队就变成了一队。</li>
+      </ul>
+      <p>这种结构叫<b>并查集</b>：“并”是合并，“查”是查找。每队其实是一棵树，队长是根，纸条就是第八章说的“指向双亲”。</p>
+      <h3>走捷径：路径压缩</h3>
+      <p>纸条一层套一层，找队长就要走好多步。办法是：找到队长以后，顺手让路上经过的每个人都把纸条改成<b>直接写队长</b>。下次再找，一步就到。这叫<b>路径压缩</b>。</p>
+      <div class="fig" id="ufFig">
+        <div class="fig-label">装置 · 第十四章</div>
+        <h4>数岛</h4>
+        <p class="how">每块陆地上的字母是它的队长所在的那座岛（同一个字母就是同一座岛）。点水格搭一座桥（变成陆地），点陆地挖成水，看岛的个数怎样变。也可以点“挖一条河”。</p>
+        <div class="btns"><button class="btn" data-x="river">挖一条河</button><button class="btn" data-x="r">重来</button></div>
+        <div class="isle" id="ufMap"></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+      <div class="mc">
+        <h5>两种办法比一比</h5>
+        <p>挖成水会把一座岛拆开，并查集不会“拆”，所以装置在挖的时候是从头重新合并的；搭桥只会把岛连起来，并查集只要合并一次，一眨眼就好。真实的游戏里，很多“连不连得上”的问题都只会越连越多，正好用得上它。</p>
+      </div>
+      <div class="try">
+        <div class="th"><b>主线第 14 步：数岛</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+          <p>下载本章末尾“主线 · 第 14 步”的完整文件运行：它先数出 1 座岛；在第 9 列从上到下挖一条河，变成 2 座；再在河上搭一座桥，又变回 1 座。读一读 <code>find</code> 里那一行 <code>PARENT[a] = PARENT[PARENT[a]]</code>：它让每个人的纸条改成写“爷爷”，是一种简单的路径压缩。</p>
+        </div>
+      </div>
+      <div class="task" data-id="tree-t14a">
+        <div class="th"><b>教室里的队长游戏</b></div>
+        <div class="tb"><p>请家人（或玩偶）当 6 个小朋友，每人手里一张纸条，一开始都写自己的名字（自己是自己的队长）。按顺序“交朋友”：1 和 2、3 和 4、2 和 4、5 和 6。每交一次朋友，就让一个队长的纸条改成另一个队长。最后有几队？谁和谁一队？</p></div>
+      </div>
+      <div class="pass" data-id="tree-q14a">
+        <div class="qq" data-a="0"><p>怎样判断两块地连不连着？</p><ol><li>各找各的队长，看是不是同一个</li><li>看它们离得近不近</li></ol><p class="ex">队长相同就在同一队。</p></div>
+        <div class="qq" data-a="1"><p>合并两队时，怎样做？</p><ol><li>把两队所有人的纸条都改一遍</li><li>让一个队长的纸条写上另一个队长</li></ol><p class="ex">只改一张纸条。</p></div>
+        <div class="qq" data-a="0"><p>找到队长以后，让路上的人都直接写队长，这叫？</p><ol><li>路径压缩</li><li>旋转</li></ol><p class="ex">下次一步就到。</p></div>
+        <div class="qq" data-a="1"><p>队长是“听自己的”那个人，在树里它是？</p><ol><li>叶子</li><li>根</li></ol><p class="ex">每一队是一棵树，队长是根。</p></div>
+        <div class="qq" data-in="2"><p>6 个人，交朋友：1 和 2、3 和 4、2 和 4、5 和 6。最后有几队？</p><p class="ex">{1, 2, 3, 4} 和 {5, 6}，两队。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c14-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">对照 408：并查集（树的应用）</span><span class="tm">约 45 分钟</span><span class="sum">双亲数组表示；根结点存负的集合大小；查找、合并；按大小合并让树高 ≤ log n；路径压缩；两者合用的 α(n)；判环和连通分量。</span></div>
+    <div class="lyb">
+      <h3>双亲数组</h3>
+      <p>用第八章的双亲表示法：数组 S[i] 存结点 i 的双亲下标，根的 S[i] 为负数，绝对值是这个集合的元素个数（只存 −1 的写法也常见）。</p>
+<pre class="code" data-k="uf.c">#define N 100
+int S[N];
+void init(void) { for (int i = 0; i &lt; N; i++) S[i] = -1; }
+int find(int x) {                       /* 路径压缩：两遍，先找根，再把路上的都直接挂到根 */
+    int root = x;
+    while (S[root] &gt;= 0) root = S[root];
+    while (x != root) { int t = S[x]; S[x] = root; x = t; }
+    return root;
+}
+void unite(int a, int b) {              /* 按大小合并：小树挂到大树下面 */
+    int ra = find(a), rb = find(b);
+    if (ra == rb) return;
+    if (S[ra] &gt; S[rb]) { int t = ra; ra = rb; rb = t; }   /* S 是负数，越小表示越大 */
+    S[ra] += S[rb];
+    S[rb] = ra;
+}</pre>
+      <h3>复杂度</h3>
+      <div class="tbl">
+        <table class="t">
+          <tr><th>做法</th><th>find 最坏</th></tr>
+          <tr><td>朴素（随便挂）</td><td>O(n)：可能挂成一条链</td></tr>
+          <tr><td>按大小（或按秩、按高度）合并</td><td>O(log n)：一个结点所在的树每变深一层，树的大小至少翻倍</td></tr>
+          <tr><td>按大小合并 + 路径压缩</td><td>均摊 O(α(n))，实际上可看成常数</td></tr>
+        </table>
+      </div>
+      <p>408 的题常问：按大小（或高度）合并的并查集，n 个元素时树高最多 ⌊log₂n⌋ + 1（只算根是 1 层时）。</p>
+      <h3>用处</h3>
+      <ul class="plain">
+        <li><b>连通分量个数</b>：每条边做一次合并，最后根的个数就是分量数。</li>
+        <li><b>判断加边是否成环</b>：边 (u, v) 的两个端点已经在同一集合，加上就成环。第十九章的克鲁斯卡尔算法就是这样挑边的。</li>
+        <li><b>等价类</b>：“a 等于 b、b 等于 c”这样的关系，问 a 和 c 等不等。</li>
+      </ul>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>元素 0—7，初始各自成集合，用“按大小合并、大小相同时把第二个参数的根挂到第一个参数的根下面”、不做路径压缩，依次执行 unite(0,1)、unite(2,3)、unite(4,5)、unite(6,7)、unite(1,3)、unite(5,7)、unite(3,7)。最后的树高是多少？find(7) 要经过几个结点？</p>
+        <details><summary>看解答</summary><div>
+          <p>unite(0,1)：0 为根、1 挂在 0 下；同理 2←3、4←5、6←7。unite(1,3)：根 0 和根 2，大小都是 2，2 挂到 0 下：0 的子树 {1, 2(3)}，大小 4。unite(5,7)：4 和 6，6 挂到 4 下。unite(3,7)：find(3) = 0，find(7) = 4，大小都是 4，4 挂到 0 下。最终树：0 是根；0 的孩子 1、2、4；2 的孩子 3；4 的孩子 5、6；6 的孩子 7。树高 4（根算第 1 层），find(7) 经过 7 → 6 → 4 → 0 共 4 个结点。8 个元素，树高 = log₂8 + 1 = 4，正好达到上界。</p>
+        </div></details>
+      </div>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>一个社交网络有 n 个人，给出一串“某年某月 a 和 b 成为好友”的记录（按时间排好）。问最早什么时候所有人都连在一起了？</p>
+        <details><summary>看要点</summary><div><p>按时间顺序逐条合并，用一个计数器记录当前集合个数（初始 n，每次真正合并减一）。计数器第一次变成 1 时，就是答案。O(m α(n))。如果记录没有排序，先按时间排序 O(m log m)。</p></div></details>
+      </div>
+      <div class="pass" data-id="tree-q14b">
+        <div class="qq" data-a="1"><p>并查集的双亲数组中，根结点的 S[i] 一般存什么？</p><ol><li>0</li><li>负数（常为集合大小的相反数）</li><li>自己的下标</li></ol><p class="ex">负数表示“没有双亲”；也有让根指向自己的写法。</p></div>
+        <div class="qq" data-a="2"><p>只做按大小合并、不做路径压缩，find 的最坏复杂度是？</p><ol><li>O(1)</li><li>O(n)</li><li>O(log n)</li></ol><p class="ex">每变深一层，所在树的大小至少翻倍。</p></div>
+        <div class="qq" data-a="0"><p>判断无向图加入边 (u, v) 是否成环，用并查集怎样做？</p><ol><li>看 find(u) 是否等于 find(v)</li><li>看 u、v 的度数</li></ol><p class="ex">已经连通，再连就成环。</p></div>
+        <div class="qq" data-in="3"><p>10 个元素，做了 7 次真正的合并（每次都合并了两个不同的集合），还剩几个集合？</p><p class="ex">10 − 7 = 3。</p></div>
+        <div class="qq" data-a="1"><p>同时用按秩合并和路径压缩，单次操作的均摊复杂度是？</p><ol><li>O(log n)</li><li>O(α(n))，几乎是常数</li><li>O(n)</li></ol><p class="ex">α 是反阿克曼函数，增长极慢。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c14-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">α(n) 和真实用途</span><span class="tm">约 20 分钟</span><span class="sum">塔扬 1975 年的分析：α(n) 在宇宙里的原子数那么大时也不超过 4；而且这是下界；连通区域标记、编译器的类型合一、渗流模拟。</span></div>
+    <div class="lyb">
+      <h3>α(n) 有多小</h3>
+      <p>1975 年，塔扬证明了按秩合并加路径压缩时，m 次操作的总时间是 O(m α(n))，α 是阿克曼函数的反函数。阿克曼函数增长快得吓人，所以它的反函数增长慢得吓人：对所有能想象的 n（比宇宙里原子的个数还大很多），α(n) ≤ 4。1989 年弗雷德曼和萨克斯又证明这是下界：任何并查集都做不到真正的常数。这是“理论上不是常数、实际上就是常数”的著名例子。</p>
+      <h3>真实用途</h3>
+      <ul class="plain">
+        <li><b>图像的连通区域标记</b>：两遍扫描像素，第一遍给相邻的同色像素合并标签，第二遍统一成根的标签。OCR、医学图像里数细胞，都这样做。</li>
+        <li><b>编译器的类型推断</b>：“这个变量的类型和那个变量一样”就是一次合并（合一算法）。</li>
+        <li><b>渗流模拟</b>：一张随机打孔的网格，什么时候从上到下连通？物理学家用并查集算临界概率（约 0.5927）。</li>
+        <li><b>迷宫生成</b>：从“全是墙”开始，随机拆墙，只拆两边还不连通的墙，最后正好得到一个完美迷宫（这也是第十九章最小生成树的思想）。</li>
+      </ul>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>B. A. Galler, M. J. Fischer, “An improved equivalence algorithm”, <i>CACM</i>, 1964。</li>
+          <li>R. E. Tarjan, “Efficiency of a Good But Not Linear Set Union Algorithm”, <i>Journal of the ACM</i>, 1975。</li>
+          <li>M. Fredman, M. Saks, “The cell probe complexity of dynamic data structures”, 1989。</li>
+          <li>R. Sedgewick, K. Wayne, <i>Algorithms</i> 第 1.5 节的渗流例子。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="main" data-step="14">
+    <div class="mh"><b>主线 · 第 14 步</b><span>数岛</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给方格岛加上：<i>并查集</i></p>
+      <p><code>count_islands</code> 给每块陆地一个队长，相邻的陆地合并，最后数有几个队长。挖一条河变成 2 座岛，搭一座桥又变回 1 座。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 island.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>用 C 写按大小合并加路径压缩的并查集；在 1000×1000 的随机地图上数岛，和油漆桶的做法比较时间。</div>
+    </div>
+  </div>
+  <div class="words">
+    <div data-l="1"><b>并查集 <span class="en" data-say="union-find">union-find</span></b>能合并、能查“在不在一起”的结构。</div>
+    <div data-l="1"><b>查找 <span class="en" data-say="find">find</span></b>顺着纸条找到队长（根）。</div>
+    <div data-l="1"><b>合并 <span class="en" data-say="union">union</span></b>让一个队长听另一个的。</div>
+    <div data-l="1"><b>路径压缩 <span class="en" data-say="path compression">path compression</span></b>路上的人都直接写队长。</div>
+    <div data-l="2"><b>按秩合并 <span class="en" data-say="union by rank">union by rank</span></b>矮的树挂到高的树下面。</div>
+    <div data-l="2"><b>连通分量 <span class="en" data-say="connected component">connected component</span></b>彼此连通的一组。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>每个人记着自己听谁的，顺着找到队长；队长一样就是一队；合并只改一张纸条。</div>
+    <div><i>第二层带走</i>按大小合并让树高 ≤ log n，再加路径压缩就是 α(n)；加边前先查是否同根，就能判环。</div>
+    <div><i>第三层带走</i>α(n) 不超过 4：理论上不是常数，实际上就是常数。</div>
+  </div>
+</section>

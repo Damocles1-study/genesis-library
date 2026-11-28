@@ -1,0 +1,232 @@
+<section class="chap" id="c9" data-vol="卷三 · 枝 · 遍历">
+  <div class="chead">
+    <div class="big">遍</div>
+    <div>
+      <div class="no">卷三 · 第九章</div>
+      <h2>遍历</h2>
+      <dl><dt>讲什么</dt><dd>一个不落地走遍一棵树：先序、中序、后序、层序；算一算盖小屋要挖多少原料；不用递归怎样遍历；从两种遍历序列还原一棵树；表达式树；线索二叉树</dd><dt>装置</dt><dd>四种走法</dd></dl>
+      <div class="crs" data-c="结构"></div>
+      <div class="lvs"><a data-l="1" href="#c9-1">第一层 · 35 分钟</a><a data-l="2" href="#c9-2">第二层 · 65 分钟</a><a data-l="3" href="#c9-3">第三层 · 20 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>盖一间小屋到底要挖多少块石头？我数了三遍，三遍都不一样。</span></div>
+    <div class="l"><i class="j">舅</i><span>你是东一下西一下数的。要按一个固定的顺序走遍这棵树，一个也不漏、一个也不重。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>说出先序、后序、层序三种走法各是“先看谁”，在二叉树上写出四种遍历的顺序。</li>
+      <li><span class="lg lg1">一</span>用后序遍历算出盖一间小屋要挖多少原料。</li>
+      <li><span class="lg lg2">二</span>写出三种遍历的递归和非递归代码、层序遍历代码；由先序（或后序）加中序还原二叉树。</li>
+      <li><span class="lg lg2">二</span>说出中序线索二叉树怎样找后继；说出树、森林的遍历和对应二叉树的遍历的关系。</li>
+      <li><span class="lg lg3">三</span>说出不用栈、只用 O(1) 空间的 Morris 遍历的想法；用 Python 的生成器写遍历。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c9-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：树（第八章）、递归（第七章）、队列（第五章）</span><span class="tm">约 35 分钟</span></div>
+    <div class="lyb">
+      <h3>走遍一棵树</h3>
+      <p>按一个固定的顺序，把树上每个结点都看一遍，不漏也不重，叫<b>遍历</b>。走法有好几种，区别只在于：<b>先看自己，还是先看孩子</b>。</p>
+      <ul class="plain">
+        <li><b>先序</b>：先看自己，再一个一个看孩子（每个孩子也照这样做）。像读目录：先读章名，再读章里的小节。</li>
+        <li><b>后序</b>：先把孩子都看完，最后看自己。像盖房子：材料都备齐了，才能造这一样东西。</li>
+        <li><b>层序</b>：一层一层看：先看根，再看第二层的所有结点，再看第三层……要用第五章的队列。</li>
+      </ul>
+      <p>二叉树还有一种：<b>中序</b>，先看左孩子那一边，再看自己，最后看右孩子那一边。下一章会看到，它有一个神奇的用处。</p>
+      <div class="fig" id="travFig">
+        <div class="fig-label">装置 · 第九章</div>
+        <h4>四种走法</h4>
+        <p class="how">选一种走法，点“走一步”，看结点被看到的顺序（深色是正在看的，浅色是看过的）。下面一排就是遍历出来的序列。换成“算式树”，看后序遍历怎样一步一步把算式算出来。</p>
+        <div class="btns" data-m></div>
+        <div class="btns" data-t></div>
+        <svg class="trav" viewBox="0 0 640 220" role="img" aria-label="二叉树"></svg>
+        <div class="cells" id="trOut"></div>
+        <div class="btns"><button class="btn pri" data-x="s">走一步</button><button class="btn" data-x="all">走完</button><button class="btn" data-x="r">从头</button></div>
+        <div class="say"></div>
+      </div>
+      <div class="mc">
+        <h5>递归写起来只差一行</h5>
+        <p>三种走法的递归代码几乎一样，只是“看自己”那一行放的位置不同：放在最前面是先序，放在两个孩子中间是中序，放在最后是后序。第七章的“相信自己”在这里特别好用。</p>
+      </div>
+<pre class="code" data-k="walk.py">def pre(node):                   # 先序：自己、左、右
+    if node is None: return
+    print(node['k'], end=' ')
+    pre(node['left'])
+    pre(node['right'])
+
+def post(node):                  # 后序：左、右、自己
+    if node is None: return
+    post(node['left'])
+    post(node['right'])
+    print(node['k'], end=' ')</pre>
+
+      <h3>盖一间小屋要挖多少</h3>
+      <p>主线第 9 步。想知道“一间小屋”要挖多少块石头、多少块木头、多少把沙，就要走遍配方树。用哪种走法？</p>
+      <p>要算一样东西要多少原料，得先知道它的每一样材料要多少原料：<b>先孩子，后自己</b>，是后序。还要注意数量会一层一层乘起来：小屋要 4 块石砖，每块石砖要 2 块石头，所以光石砖这一支就要 8 块石头。</p>
+<pre class="code" data-k="raw.py">def raw(item, times, total):
+    kids = RECIPES.get(item, [])
+    if not kids:                       # 叶子：是原料，记下来
+        total[item] = total.get(item, 0) + times
+        return
+    for child, n in kids:              # 先把每个孩子算清楚
+        raw(child, times * n, total)</pre>
+      <p>运行主线第 9 步的文件，打出：造一间小屋要挖石 8、木 4、沙 2。再用层序打出每一层都有什么。</p>
+      <div class="try">
+        <div class="th"><b>动手走一棵树</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+          <p>在纸上画一棵二叉树：根是 A，A 的左孩子 B、右孩子 C，B 的左孩子 D，C 的左孩子 E、右孩子 F。先自己写出先序、中序、后序、层序四个序列，再在装置里选“自己画的树”，对一对答案。</p>
+        </div>
+      </div>
+      <div class="task" data-id="tree-t9a">
+        <div class="th"><b>造一把船要挖多少</b></div>
+        <div class="tb"><p>配方表里，船要 3 块木板和 1 根木棍，木棍要 1 块木板，木板要 1 块木。先在纸上用后序算出造一条船要挖几块木，再在主线第 9 步的文件里加一行 <code>print(raw('船'))</code>（要先把船的配方加进 RECIPES）验证。</p></div>
+      </div>
+      <div class="pass" data-id="tree-q9a">
+        <div class="qq" data-a="0"><p>先序遍历是？</p><ol><li>先看自己，再看孩子</li><li>先看孩子，再看自己</li><li>一层一层看</li></ol><p class="ex">先序：自己最先。</p></div>
+        <div class="qq" data-a="1"><p>算“一样东西要多少原料”，用哪种走法？</p><ol><li>先序</li><li>后序</li><li>层序</li></ol><p class="ex">先把材料算清楚，再算自己：后序。</p></div>
+        <div class="qq" data-a="2"><p>层序遍历要用什么帮忙？</p><ol><li>栈</li><li>数组</li><li>队列</li></ol><p class="ex">一层一层，先进先出：队列。</p></div>
+        <div class="qq" data-in="DBAECF|D B A E C F"><p>根 A，A 的左孩子 B、右孩子 C，B 的左孩子 D，C 的左孩子 E、右孩子 F。中序序列是？（不写空格也行）</p><p class="ex">左、自己、右：D B A E C F。</p></div>
+        <div class="qq" data-in="8"><p>小屋要 4 块石砖，每块石砖要 2 块石头。光石砖这一支要几块石头？</p><p class="ex">4 × 2 = 8，数量一层一层乘起来。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c9-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">对照 408：二叉树的遍历、线索二叉树、树和森林的遍历</span><span class="tm">约 65 分钟</span><span class="sum">三种遍历的非递归写法；层序遍历；由遍历序列构造二叉树；表达式树；中序线索化和找后继；树的先根、后根和森林的先序、中序；几道常见算法题。</span></div>
+    <div class="lyb">
+      <h3>非递归遍历</h3>
+      <p>递归遍历的时间 O(n)，空间是递归深度 O(h)（最坏 O(n)）。非递归写法用一个栈模拟：</p>
+<pre class="code" data-k="trav.c">void inorder(BiTree T) {           /* 中序：一路向左压栈，弹出访问，转向右子树 */
+    BiTNode *st[100]; int top = -1; BiTNode *p = T;
+    while (p || top &gt;= 0) {
+        if (p) { st[++top] = p; p = p-&gt;lchild; }
+        else { p = st[top--]; visit(p); p = p-&gt;rchild; }
+    }
+}
+void preorder(BiTree T) {          /* 先序：访问放在压栈的时候 */
+    BiTNode *st[100]; int top = -1; BiTNode *p = T;
+    while (p || top &gt;= 0) {
+        if (p) { visit(p); st[++top] = p; p = p-&gt;lchild; }
+        else { p = st[top--]; p = p-&gt;rchild; }
+    }
+}
+void postorder(BiTree T) {         /* 后序：要知道右子树是不是刚访问过 */
+    BiTNode *st[100]; int top = -1; BiTNode *p = T, *r = NULL;
+    while (p || top &gt;= 0) {
+        if (p) { st[++top] = p; p = p-&gt;lchild; }
+        else {
+            p = st[top];
+            if (p-&gt;rchild &amp;&amp; p-&gt;rchild != r) p = p-&gt;rchild;
+            else { top--; visit(p); r = p; p = NULL; }
+        }
+    }
+}</pre>
+      <p>后序非递归有一个重要的性质：<b>访问某个结点时，栈里从底到顶正好是从根到它的路径</b>。所以“求根到某结点的路径”“求两个结点的最近公共祖先”都可以用它。层序遍历用队列：根入队；出队一个就访问它，再把它的左右孩子入队。</p>
+
+      <h3>由遍历序列构造二叉树</h3>
+      <p><b>先序 + 中序</b>、<b>后序 + 中序</b>、<b>层序 + 中序</b>都能唯一确定一棵二叉树；先序 + 后序不能（分不清只有一个孩子时是左还是右）。做法：先序的第一个（或后序的最后一个）是根；在中序里找到根，左边是左子树、右边是右子树；按个数把先序（后序）也切开，递归。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）二叉树的先序序列为 E B A D C F H G，中序序列为 A B C D E F G H，求后序序列。（2）一棵二叉树的先序和后序序列正好相反，这棵树有什么特点？（3）设计算法求二叉树中值为 x 的结点的所有祖先，说明为什么用后序非递归遍历。</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）根 E；中序里 E 左边 A B C D 是左子树、右边 F G H 是右子树。左子树先序 B A D C：根 B，中序 A | B | C D，左 A；右子树先序 D C，根 D，中序 C D，C 是 D 的左孩子。右子树先序 F H G：根 F，中序 F 右边 G H，F 没有左子树；H 为根，中序 G H，G 是 H 的左孩子。后序：A C D B G H F E。</p>
+          <p>（2）先序“根左右”、后序“左右根”。两者正好相反，要求每个结点都只有一个孩子（左右都可以），也就是说树的高度等于结点数，是一条“单支”。</p>
+          <p>（3）后序非递归访问到 x 时，栈里从底到顶就是根到 x 的路径，把栈里的结点依次输出就是所有祖先。O(n) 时间，O(h) 空间。</p>
+        </div></details>
+      </div>
+
+      <h3>表达式树</h3>
+      <p>算式 (3 + 4) × (5 − 2) 可以画成一棵二叉树：叶子是数，分支结点是运算符。它的先序是前缀表达式 × + 3 4 − 5 2，后序是第四章的后缀表达式 3 4 + 5 2 − ×，中序（加上括号）就是原来的中缀表达式。后序遍历同时求值：先算左右子树，再用根的运算符合起来。</p>
+
+      <h3>线索二叉树</h3>
+      <p>二叉链表有 n + 1 个空指针（第八章）。把空的左指针改成指向某种遍历次序下的<b>前驱</b>，空的右指针指向<b>后继</b>，并用两个标志位 ltag、rtag 区分“是孩子还是线索”，就得到线索二叉树。以中序线索为例，找结点 p 的后继：若 rtag = 1，右指针就是后继；否则后继是右子树里“最左下”的结点。这样不用栈就能 O(1) 空间地按中序走遍整棵树。先序线索树找后继容易，找前驱要知道双亲；后序线索树找后继要知道双亲（408 常问这一点：后序线索二叉树仍需要栈或三叉链表才能完整遍历）。</p>
+
+      <h3>树和森林的遍历</h3>
+      <div class="tbl">
+        <table class="t">
+          <tr><th>树</th><th>森林</th><th>对应的二叉树</th></tr>
+          <tr><td>先根遍历</td><td>先序遍历</td><td>先序遍历</td></tr>
+          <tr><td>后根遍历</td><td>中序遍历（也叫后序遍历，教材叫法不一）</td><td>中序遍历</td></tr>
+        </table>
+      </div>
+      <p>树的层次遍历对应二叉树的什么？没有简单的对应。</p>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>判断一棵二叉树是不是完全二叉树。</p>
+        <details><summary>看要点</summary><div><p>层序遍历，把空孩子也入队（用 NULL 占位）。一旦出队遇到 NULL，后面就不能再出现非空结点；如果出现了，就不是完全二叉树。O(n)。另一种：给结点按完全二叉树编号（根 1，孩子 2i、2i+1），看最大编号是否等于结点数。</p></div></details>
+      </div>
+      <div class="pass" data-id="tree-q9b">
+        <div class="qq" data-a="2"><p>下列哪两种序列不能唯一确定一棵二叉树？</p><ol><li>先序和中序</li><li>后序和中序</li><li>先序和后序</li></ol><p class="ex">没有中序，分不清左右。</p></div>
+        <div class="qq" data-in="DBEFCA|D B E F C A"><p>先序 A B D C E F，中序 D B A E C F，后序是？</p><p class="ex">根 A；左子树 B D（B 的左孩子 D），右子树 C E F（C 的左 E、右 F）。后序 D B E F C A。</p></div>
+        <div class="qq" data-a="1"><p>树的后根遍历，对应它转成的二叉树的？</p><ol><li>先序遍历</li><li>中序遍历</li><li>后序遍历</li></ol><p class="ex">左孩子右兄弟：后根 = 二叉树中序。</p></div>
+        <div class="qq" data-a="0"><p>后序非递归遍历访问结点 p 时，栈里是？</p><ol><li>从根到 p 的路径</li><li>p 的所有孩子</li><li>p 的兄弟</li></ol><p class="ex">所以能求祖先、最近公共祖先。</p></div>
+        <div class="qq" data-a="1"><p>中序线索二叉树中，结点 p 的 rtag = 0（有右孩子），它的后继是？</p><ol><li>它的右孩子</li><li>右子树中最左下的结点</li><li>它的双亲</li></ol><p class="ex">中序下右子树最先访问的是最左下的那个。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c9-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">Morris 遍历、生成器</span><span class="tm">约 20 分钟</span><span class="sum">Morris 遍历：临时把空指针当线索，O(1) 空间中序遍历；Python 的 yield from 写遍历；访问者模式。</span></div>
+    <div class="lyb">
+      <h3>Morris 遍历</h3>
+      <p>1979 年，莫里斯提出一种不用栈、也不改变树最终形状的中序遍历：走到结点 p 时，如果它有左子树，就找到左子树里最右的结点（p 的中序前驱），把那个结点空着的右指针临时指回 p（一条临时线索），然后去左子树；等从那条线索回到 p 时，再把它改回空。每条边最多走三次，时间 O(n)，额外空间 O(1)。面试偶尔会问“O(1) 空间中序遍历”，答的就是它。</p>
+<pre class="code" data-k="morris.py">def morris_inorder(root):
+    out, p = [], root
+    while p:
+        if p['left'] is None:
+            out.append(p['k']); p = p['right']
+        else:
+            q = p['left']
+            while q['right'] and q['right'] is not p:
+                q = q['right']
+            if q['right'] is None:           # 第一次来：搭线索，往左走
+                q['right'] = p; p = p['left']
+            else:                            # 顺着线索回来：拆线索，访问，往右走
+                q['right'] = None; out.append(p['k']); p = p['right']
+    return out</pre>
+      <h3>生成器</h3>
+      <p>Python 里可以把遍历写成生成器，用的人一次拿一个结点，不用先把所有结点放进列表：</p>
+<pre class="code" data-k="gen.py">def inorder(node):
+    if node:
+        yield from inorder(node['left'])
+        yield node['k']
+        yield from inorder(node['right'])</pre>
+      <p>这其实是把递归的“走到哪儿了”交给生成器保存。编译器处理语法树时常用的“访问者模式”（visitor pattern），也是把“怎样走”和“走到每个结点做什么”分开。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>J. M. Morris, “Traversing binary trees simply and cheaply”, <i>Information Processing Letters</i>, 1979。</li>
+          <li>A. J. Perlis, C. Thornton, “Symbol manipulation by threaded lists”, <i>CACM</i>, 1960：线索二叉树的来历。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="main" data-step="9">
+    <div class="mh"><b>主线 · 第 9 步</b><span>算原料</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给方格岛加上：<i>后序遍历和层序遍历</i></p>
+      <p><code>raw</code> 用后序遍历算出造一样东西要挖多少原料，数量一层一层乘起来；<code>by_level</code> 用队列一层一层列出配方树的结点。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 island.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>把 raw 改成非递归：用栈模拟后序遍历；再用记忆化（第二十二章）避免对同一种材料重复展开，比较两种写法的调用次数。</div>
+    </div>
+  </div>
+  <div class="words">
+    <div data-l="1"><b>遍历 <span class="en" data-say="traversal">traversal</span></b>按固定顺序把每个结点看一遍。</div>
+    <div data-l="1"><b>先序 <span class="en" data-say="preorder">preorder</span></b>自己最先；后序是 <span class="en" data-say="postorder">postorder</span>。</div>
+    <div data-l="1"><b>中序 <span class="en" data-say="inorder">inorder</span></b>左、自己、右。</div>
+    <div data-l="1"><b>层序 <span class="en" data-say="level order">level order</span></b>一层一层看，用队列。</div>
+    <div data-l="2"><b>线索二叉树 <span class="en" data-say="threaded binary tree">threaded binary tree</span></b>空指针改指前驱和后继。</div>
+    <div data-l="2"><b>表达式树 <span class="en" data-say="expression tree">expression tree</span></b>叶子是数、分支是运算符。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>先序先自己，后序先孩子，层序一层一层；算原料用后序，数量一层层乘起来。</div>
+    <div><i>第二层带走</i>有中序才能还原；后序非递归时栈里就是根到当前的路径；树的后根对应二叉树的中序。</div>
+    <div><i>第三层带走</i>空着的指针也是资源：线索树和 Morris 遍历都靠它省掉了栈。</div>
+  </div>
+</section>

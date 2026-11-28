@@ -1,0 +1,202 @@
+<section class="chap" id="c8" data-vol="卷二 · 比特会翻">
+  <div class="chead">
+    <div class="big">错</div>
+    <div>
+      <div class="no">第八章</div>
+      <h2>比特会翻</h2>
+      <dl><dt>讲什么</dt><dd>噪声、划痕和宇宙射线会把 0 翻成 1；说三遍；奇偶校验和条形码的最后一位；码距；海明码：不但发现，还能改正；CRC 循环冗余校验；ECC 内存、二维码、校验和与哈希</dd><dt>装置</dt><dd>奇偶校验 · 海明码 · CRC 除法</dd></dl>
+      <div class="crs" data-c="组成 网络 数学"></div>
+      <div class="lvs"><a data-l="1" href="#c8-1">第一层 · 45 分钟</a><a data-l="2" href="#c8-2">第二层 · 60 分钟</a><a data-l="3" href="#c8-3">第三层 · 30 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>第一章说数字信号不怕抖。那比特就永远不会出错了？</span></div>
+    <div class="l"><i class="j">舅</i><span>抖得小的时候不会。可是光盘有划痕、电线有雷击、内存会被宇宙里飞来的粒子打中。比特会翻，所以要有办法发现它，最好还能改回来。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>给一串比特加上奇偶校验位，并检查收到的有没有错；算出商品条形码的最后一位。</li>
+      <li><span class="lg lg1">一</span>说出“只能发现错误”和“能改正错误”的区别，以及代价是多带几位。</li>
+      <li><span class="lg lg2">二</span>用码距判断一种编码能检几位、纠几位；编出海明码并找出错位；做 CRC 的模 2 除法。</li>
+      <li><span class="lg lg3">三</span>说出 ECC 内存、二维码纠错和比特抢注；分清校验和与密码学哈希。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c8-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：二进制、异或（第七章）</span><span class="tm">约 45 分钟</span></div>
+    <div class="lyb">
+      <h3>说三遍</h3>
+      <p>你在嘈杂的操场上喊同学，怕他听错，会怎么办？多喊几遍。电脑也可以这样：每个比特发三遍，0 发成 000，1 发成 111。收到 010，三个里两个是 0，就当它是 0。这样，三个里错一个也能改回来。</p>
+      <p>可是代价太大了：要送 1 个比特的信息，得占 3 个比特的地方，三分之二都是“废话”。有没有更省的办法？</p>
+      <h3>奇偶校验：多带一位</h3>
+      <p>换一个思路：不求改正，先求<b>发现</b>。每发 7 个比特，后面加 1 个比特，让这 8 个比特里 1 的个数总是<b>偶数</b>。这个加上去的比特叫<b>校验位</b>。</p>
+      <ul class="plain">
+        <li>要发 <code>1011001</code>，里面有 4 个 1，已经是偶数，校验位填 0：发 <code>10110010</code>。</li>
+        <li>要发 <code>1011011</code>，有 5 个 1，校验位填 1 凑成偶数：发 <code>10110111</code>。</li>
+      </ul>
+      <p>收的一方数一数 1 的个数：如果是奇数，就知道路上出错了，请对方再发一遍。只多带了 1 位，就能发现任何<b>一个</b>比特的错误。它的弱点是：如果正好错了两个比特，1 的个数又变回偶数，就发现不了；而且它只知道“有错”，不知道“错在哪一位”，改不回来。算校验位其实就是把所有比特<b>异或</b>起来（第七章）：异或的结果正好表示“1 的个数是不是奇数”。</p>
+
+      <div class="fig" id="parityFig">
+        <div class="fig-label">装置 · 第八章 · 一</div>
+        <h4>奇偶校验</h4>
+        <p class="how">上面一排是要发的 7 个数据比特，可以点。点“发出去”，最后一个紫框是自动算出的校验位。然后在“收到的”那一排上点一下或两下，假装路上有噪声把比特翻了，看收方能不能发现。</p>
+        <div class="lab2">要发的数据</div><div class="pData"></div>
+        <div class="btns" style="justify-content:center"><button class="btn pri" data-x="send">发出去</button><button class="btn" data-x="rand">随机来一串</button></div>
+        <div class="lab2">收到的（点一下 = 被噪声翻了）</div><div class="pRecv"></div>
+        <div class="say"></div>
+      </div>
+
+      <div class="story">
+        <h5>条形码的最后一位</h5>
+        <p>超市商品上 13 位的条形码（EAN-13），最后一位就是校验码。算法是：把前 12 位里第 1、3、5……位（奇数位）加起来，再把第 2、4、6……位（偶数位）加起来乘 3，两个和相加；校验码就是让总和凑到 10 的倍数还差的那个数。收银机扫完自动算一遍，对不上就“嘀”一声让你重扫。身份证号的最后一位也是校验码（算法不同，用的是除以 11 的余数，所以会出现 X 代表 10）。</p>
+      </div>
+      <div class="task" data-id="base-t8a">
+        <div class="th"><b>验一个条形码</b></div>
+        <div class="tb"><p>找一包零食或一本书，抄下条形码下面的 13 位数字。按上面的方法用前 12 位算出校验码，和第 13 位对一对。可以用 Python 帮忙：</p>
+<pre class="code" data-k="Python">code = "6901234567892"     # 换成你抄的
+s = sum(int(c) for c in code[0:12:2]) + 3 * sum(int(c) for c in code[1:12:2])
+print((10 - s % 10) % 10, "应该等于", code[12])</pre>
+        <p>（上面的号码是编的，拿来试算法用。）</p></div>
+      </div>
+      <div class="pass" data-id="base-q8a">
+        <div class="qq" data-in="1"><p>偶校验：数据 <code>1101000</code>，校验位填几？</p><p class="ex">有 3 个 1，是奇数，填 1 凑成偶数。</p></div>
+        <div class="qq" data-a="1"><p>偶校验收到 <code>10110110</code>，说明？</p><ol><li>没有错</li><li>出错了</li><li>错了两位</li></ol><p class="ex">数一数有 5 个 1，是奇数，不对。</p></div>
+        <div class="qq" data-a="2"><p>奇偶校验发现不了哪种情况？</p><ol><li>错一位</li><li>错三位</li><li>错两位</li></ol><p class="ex">错两位时 1 的个数的奇偶不变。</p></div>
+        <div class="qq" data-a="0"><p>“每个比特发三遍”比奇偶校验强在哪里？</p><ol><li>能改正一个错误</li><li>更省地方</li><li>能发现任何错误</li></ol><p class="ex">多数表决能改错，但是要多占两倍的地方。</p></div>
+        <div class="qq" data-a="1"><p>算奇偶校验位，其实是把所有比特做什么运算？</p><ol><li>与</li><li>异或</li><li>或</li></ol><p class="ex">异或的结果正好是“1 的个数是奇数吗”。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。第二部会从晶体管开始造电路。</div>
+
+  <section class="ly" data-l="2" id="c8-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 计组 · 校验码 · 计网 · 差错控制</span><span class="tm">约 60 分钟</span><span class="sum">码距和检错纠错能力；海明码的校验位数、分组和纠错；CRC 的模 2 除法和它能检出什么；三道典型题。</span></div>
+    <div class="lyb">
+      <h3>码距</h3>
+      <p>两个等长码字有几位不同，叫它们的<b>海明距离</b>（= popcount(a ^ b)）。一种编码里所有合法码字两两之间的最小距离，叫这种编码的<b>码距</b> d。</p>
+      <ul class="plain">
+        <li>要能<b>检出</b> e 位错误，需要 d ≥ e + 1（错 e 位跳不到另一个合法码字上）。</li>
+        <li>要能<b>纠正</b> t 位错误，需要 d ≥ 2t + 1（错 t 位后离原码字最近，不会被误认成别的码字）。</li>
+        <li>要纠正 t 位同时检出 e 位（e &gt; t），需要 d ≥ e + t + 1。</li>
+      </ul>
+      <p>不加校验的编码 d = 1，什么也检不出；奇偶校验 d = 2，能检 1 位；三遍重复 d = 3，能纠 1 位；海明码 d = 3，能纠 1 位而代价小得多；再加一个总的奇偶位，d = 4，可以纠 1 位同时检 2 位（SECDED）。</p>
+      <h3>海明码</h3>
+      <p>1950 年，贝尔实验室的理查德·海明受够了一件事：他周末提交给继电器计算机的计算任务，常常因为读卡出错被直接中止，没人在场重来。他想：机器既然能发现错，为什么不能自己改？于是有了海明码。</p>
+      <ol class="plain">
+        <li><b>校验位个数</b>：n 位数据配 k 位校验，要求 2<sup>k</sup> ≥ n + k + 1（k 位校验的“指认”结果要能区分“没错”和 n + k 个位置中任一个出错）。4 位数据要 3 位校验，8 位数据要 4 位，16 位要 5 位，64 位要 7 位。</li>
+        <li><b>位置</b>：把码字从 1 开始编号，校验位放在 1、2、4、8……（2 的幂）上，数据位依次填进其余位置。</li>
+        <li><b>分组</b>：位置号的二进制里第 i 位是 1 的所有位置，归第 i 组，由校验位 P<sub>2<sup>i</sup></sub> 负责：P1 管 1、3、5、7……，P2 管 2、3、6、7……，P4 管 4、5、6、7……。每组做偶校验。</li>
+        <li><b>纠错</b>：收方对每组重新做异或，得到的 k 位结果（从高到低排）叫<b>校正因子</b>。全 0 说明没错；否则它的值正好是出错的位置号，把那一位翻回来即可。</li>
+      </ol>
+      <div class="fig" id="hamFig">
+        <div class="fig-label">装置 · 第八章 · 二</div>
+        <h4>海明码（7, 4）</h4>
+        <p class="how">点上面四个数据位设置数据，下面自动编成 7 位海明码（紫色是校验位，标着它管哪几位）。在“收到的”一排点任意一位，模拟出错，看校正因子怎样指出出错的位置。</p>
+        <div class="lab2">数据 D1 D2 D3 D4</div><div class="hData"></div>
+        <div class="lab2">发出的码字（位置 1—7）</div><div class="hSend"></div>
+        <div class="lab2">收到的（点一下 = 出错）</div><div class="hRecv"></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+      <h3>CRC：循环冗余校验</h3>
+      <p>网络和磁盘上，错误常常是一小串连着坏（突发错误），海明码不擅长。CRC 把一串比特看成一个多项式的系数（1101 看成 x<sup>3</sup> + x<sup>2</sup> + 1），用“模 2 除法”求余数：</p>
+      <div class="bridge" data-k="数学">
+        <h5>模 2 运算：加法就是异或</h5>
+        <p>只有 0 和 1、算完只看奇偶的世界里，1 + 1 = 0，没有进位也没有借位，所以加法和减法都是异或。做“除法”时，每一步看当前最高位：是 1 就异或上除数，是 0 就异或上 0，然后往下移一位。比普通的长除法还简单。</p>
+      </div>
+      <ol class="plain">
+        <li>收发双方约定一个 r + 1 位的<b>生成多项式</b> G（最高位和最低位都是 1）。</li>
+        <li>发方在数据后面补 r 个 0，用 G 做模 2 除法，得到 r 位余数，这就是 CRC 校验码；把它接在数据后面发出去（补的 0 换成余数）。</li>
+        <li>收方用 G 去除收到的整串，余数为 0 就认为没错。</li>
+      </ol>
+      <p>为什么整串能被 G 整除？补 0 再加上余数，等于“被除数减去余数”，模 2 下减法就是加法，自然整除。r 位的 CRC 能检出所有单个错误、所有长度不超过 r 的突发错误；G 含因子 (x + 1) 时还能检出所有奇数个错误。以太网用的是 32 位的 CRC-32。CRC 只用来检错，发现错了就要求重发（第四部讲）。</p>
+      <div class="fig" id="crcFig">
+        <div class="fig-label">装置 · 第八章 · 三</div>
+        <h4>CRC 除法</h4>
+        <p class="how">输入数据和生成多项式（都写成二进制），看模 2 除法的每一步。然后在最下面的“收到的帧”里点几位制造错误，看余数还是不是 0。</p>
+        <div class="row"><label class="dim" style="font-size:13px">数据</label><input type="text" id="crcD" value="101001" style="flex:1 1 9em;font-family:var(--f-mono)" aria-label="数据比特"><label class="dim" style="font-size:13px">生成多项式</label><input type="text" id="crcG" value="1101" style="flex:0 1 7em;font-family:var(--f-mono)" aria-label="生成多项式"></div>
+        <div class="hexv crcdiv" style="margin-top:8px"></div>
+        <div class="lab2">收到的帧（点一下 = 出错）</div><div class="cRecv"></div>
+        <div class="say"></div>
+      </div>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）对 16 位数据采用海明码纠一位错，至少需要几位校验位？若要纠一位错同时检两位错呢？（2）数据为 101001，生成多项式 G(x) = x<sup>3</sup> + x<sup>2</sup> + 1，求 CRC 校验码和发送的比特串。（3）某编码的码距为 4，它最多能检出几位错误？最多能纠正几位？能否同时纠一位、检两位？</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）2<sup>k</sup> ≥ 16 + k + 1：k = 5 时 32 ≥ 22 成立，k = 4 时 16 &lt; 21 不成立，所以 5 位。SECDED 再加 1 位总校验，6 位。</p>
+          <p>（2）G = 1101，r = 3，被除数 101001 000。模 2 除法余数为 001（装置里可以一步步看）。发送 101001 001。</p>
+          <p>（3）d = 4：检错 e ≤ d − 1 = 3 位；纠错 t ≤ (d − 1)/2 = 1 位；纠 1 检 2 需要 d ≥ 2 + 1 + 1 = 4，可以。</p>
+        </div></details>
+      </div>
+      <div class="pass" data-id="base-q8b">
+        <div class="qq" data-in="2"><p><code>1011001</code> 和 <code>1001011</code> 的海明距离是？</p><p class="ex">异或得 0010010，有 2 个 1，距离是 2。</p></div>
+        <div class="qq" data-in="4"><p>8 位数据用海明码纠一位错，至少要几位校验位？</p><p class="ex">2<sup>4</sup> = 16 ≥ 8 + 4 + 1 = 13。</p></div>
+        <div class="qq" data-a="1"><p>码距为 3 的编码最多能纠正几位错误？</p><ol><li>0</li><li>1</li><li>2</li></ol><p class="ex">d ≥ 2t + 1，t = 1。</p></div>
+        <div class="qq" data-in="5"><p>（7, 4）海明码的校正因子算出来是 101，说明哪个位置出错？</p><p class="ex">101 = 5，第 5 位。</p></div>
+        <div class="qq" data-in="0"><p>模 2 运算里，1 + 1 等于几？</p><p class="ex">没有进位，就是异或：0。</p></div>
+        <div class="qq" data-a="2"><p>收方用生成多项式除收到的整串，余数为 0，说明？</p><ol><li>一定没有错</li><li>一定有错</li><li>认为没有错（极少数错误恰好整除时漏检）</li></ol><p class="ex">CRC 不能保证 100% 检出，但对随机错误漏检的概率极低。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c8-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">真实系统里的纠错</span><span class="tm">约 30 分钟</span><span class="sum">ECC 内存和谷歌的内存错误研究；宇宙射线和一次选举；比特抢注；二维码和光盘里的里德-所罗门码；校验和、CRC 和密码学哈希各防什么。</span></div>
+    <div class="lyb">
+      <h3>内存真的会出错</h3>
+      <p>服务器普遍使用 <b>ECC 内存</b>：每 64 位数据配 8 位校验（72, 64），用的正是“海明码 + 总校验位”的 SECDED 思路，能纠正一位、发现两位错误，内存控制器在读的时候自动完成。多数笔记本和台式机的内存不带这种校验。2009 年谷歌发表了一项对自家数据中心内存的大规模研究，发现内存错误比人们以为的常见得多：每年大约三分之一的机器至少遇到一次可纠正的内存错误。没有 ECC 的机器，这些错误就悄悄地留在了数据里。</p>
+      <p>来源之一是宇宙射线：高能粒子打到大气层产生的中子能翻转芯片里的一个存储单元。海拔越高越常见，所以飞机和卫星上的电子设备要特别加固。常被提起的一个例子是：2003 年比利时一次选举中，某地一位候选人凭空多出了 4096 票，正好是 2<sup>12</sup>，调查认为是一个比特被翻转了，据说可能是宇宙射线所致（确切原因没有定论）。</p>
+      <h3>比特抢注</h3>
+      <p>2011 年，安全研究员阿尔乔姆·迪纳堡做了一个实验：他注册了一批和热门网站域名只差一个比特的域名（比如某个字母的 ASCII 码翻了一位），结果真的陆续收到了来自世界各地的访问请求，因为那些设备内存里的域名被翻错了一位，又没有 ECC 来纠正。他把这叫“比特抢注”。</p>
+      <h3>里德-所罗门码</h3>
+      <p>海明码一次只纠一位，划痕却会一下毁掉一大片。1960 年提出的<b>里德-所罗门码</b>按“字节”而不是比特来纠错，能纠正成片的错误。CD 用两层里德-所罗门码再加上交错存放，能修复长约两毫米的划痕；二维码有四个纠错等级（L、M、Q、H），最高可以在约 30% 的码块损坏时还原内容，所以有人在二维码中间放一个图标照样扫得出来；深空探测器回传数据，也靠它和别的编码叠在一起。</p>
+      <h3>校验和、CRC、哈希</h3>
+      <ul class="plain">
+        <li><b>校验和</b>：把数据按 16 位加起来。互联网的 IP、TCP、UDP 用的是“反码求和”，第三章的反码在这里还活着（第三十一章）。计算极快，检错能力较弱。</li>
+        <li><b>CRC</b>：检测随机的、突发的传输错误很强，但它是线性的，任何人都能故意改数据再改 CRC 让它对上。</li>
+        <li><b>密码学哈希</b>（如 SHA-256）：设计成“故意找两个内容哈希相同”在计算上做不到，用来防篡改。下载软件时网站给出的 SHA-256 值，就是让你自己算一遍对一对。</li>
+      </ul>
+      <div class="try">
+        <div class="th"><b>给文件算“指纹”</b><span class="tm">5 分钟</span></div>
+        <div class="tb">
+<pre class="sh" data-k="终端"><span class="p">% </span>cd ~/base
+<span class="p">% </span>cksum hi.txt
+<span class="p">% </span>shasum -a 256 hi.txt
+<span class="p">% </span>echo hellp &gt; hj.txt &amp;&amp; shasum -a 256 hj.txt</pre>
+          <p><code>cksum</code> 打出一个 CRC 值和文件大小；<code>shasum -a 256</code> 打出 64 个十六进制数字的 SHA-256。把 hello 改成 hellp，只差一个字母（o 和 p 的 ASCII 码 6F、70 其实差了好几位），SHA-256 却面目全非，这叫“雪崩效应”。</p>
+        </div>
+      </div>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>R. W. Hamming, “Error Detecting and Error Correcting Codes”, <i>Bell System Technical Journal</i>, 1950。</li>
+          <li>B. Schroeder, E. Pinheiro, W.-D. Weber, “DRAM Errors in the Wild: A Large-Scale Field Study”, SIGMETRICS 2009。</li>
+          <li>Artem Dinaburg, “Bitsquatting: DNS Hijacking without Exploitation”, Black Hat 2011。</li>
+          <li>I. S. Reed, G. Solomon, “Polynomial Codes over Certain Finite Fields”, 1960；ISO/IEC 18004（QR 码）。</li>
+        </ul>
+      </div>
+      <div class="pass" data-id="base-q8c">
+        <div class="qq" data-in="8"><p>常见的 ECC 内存每 64 位数据配几位校验位？</p><p class="ex">(72, 64)，8 位。</p></div>
+        <div class="qq" data-a="1"><p>要防止别人故意篡改下载的文件，应该核对？</p><ol><li>CRC</li><li>SHA-256 这样的密码学哈希</li><li>文件大小</li></ol><p class="ex">CRC 防随机错误，不防故意篡改。</p></div>
+        <div class="qq" data-a="0"><p>二维码中间盖住一个小图标还能扫出来，靠的是？</p><ol><li>里德-所罗门纠错码</li><li>奇偶校验</li><li>手机猜的</li></ol><p class="ex">二维码最高约 30% 的纠错能力。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div data-l="1"><b>校验位 <span class="en" data-say="parity bit">parity bit</span></b>为了发现错误多带的那一位。</div>
+    <div data-l="1"><b>检错和纠错</b>只知道“错了”和能改回来，<span class="en" data-say="error detection">detection</span> 和 <span class="en" data-say="error correction">correction</span>。</div>
+    <div data-l="2"><b>码距 <span class="en" data-say="minimum distance">minimum distance</span></b>合法码字之间最少差几位。</div>
+    <div data-l="2"><b>海明码 <span class="en" data-say="Hamming code">Hamming code</span></b>校验位放在 2 的幂的位置，能纠一位错。</div>
+    <div data-l="2"><b>CRC</b>循环冗余校验，模 2 除法的余数。</div>
+    <div data-l="3"><b>哈希 <span class="en" data-say="hash">hash</span></b>把任意长的数据变成固定长的“指纹”。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>多带一位能发现错，多带几位能改正错；可靠是用“废话”换来的。</div>
+    <div><i>第二层带走</i>检 e 位要码距 e+1，纠 t 位要 2t+1；海明码的校正因子就是出错的位置号。</div>
+    <div><i>第三层带走</i>防意外用校验，防坏人用哈希；比特翻转在真实世界里天天发生。</div>
+  </div>
+</section>

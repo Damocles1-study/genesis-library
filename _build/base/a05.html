@@ -1,0 +1,225 @@
+<section class="chap" id="c4" data-vol="卷一 · 小数点">
+  <div class="chead">
+    <div class="big">点</div>
+    <div>
+      <div class="no">第四章</div>
+      <h2>小数点</h2>
+      <dl><dt>讲什么</dt><dd>二进制小数；0.1 为什么写不尽；定点和浮点；IEEE 754 单精度和双精度；0.1 + 0.2；怎样比较两个小数；舍入、非规格化数、累加误差和一枚没拦住的导弹</dd><dt>装置</dt><dd>把 0.1 加一万次 · IEEE 754 拆解器</dd></dl>
+      <div class="crs" data-c="组成 数学"></div>
+      <div class="lvs"><a data-l="1" href="#c4-1">第一层 · 45 分钟</a><a data-l="2" href="#c4-2">第二层 · 60 分钟</a><a data-l="3" href="#c4-3">第三层 · 40 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>舅舅，Python 坏了。我输入 0.1 + 0.2，它说 0.30000000000000004。</span></div>
+    <div class="l"><i class="j">舅</i><span>它没坏，它很诚实。你用十进制写过 1 ÷ 3 吗？</span></div>
+    <div class="l"><i class="g">格</i><span>0.3333……写不完。</span></div>
+    <div class="l"><i class="j">舅</i><span>对。在二进制里，0.1 就是那个写不完的数。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>把 0.5、0.25、0.625 这样的数写成二进制小数；说出 0.1 为什么写不尽。</li>
+      <li><span class="lg lg1">一</span>知道比较两个小数不能用 <code>==</code>，会用“差得足够小”来比。</li>
+      <li><span class="lg lg2">二</span>把一个十进制数写成 IEEE 754 单精度的十六进制，反过来也行；说出特殊值和范围；讲出浮点加法的五步。</li>
+      <li><span class="lg lg3">三</span>说出“舍入到偶数”和非规格化数的用意；用补偿求和减小累加误差；讲清爱国者导弹的故事。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c4-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：二进制、分数</span><span class="tm">约 45 分钟</span></div>
+    <div class="lyb">
+      <h3>二进制的小数</h3>
+      <p>十进制里，小数点右边第一位是十分之一，第二位是百分之一。二进制同理，只是每次除以 2：小数点右边第一位是 1/2，第二位是 1/4，第三位是 1/8……</p>
+      <ul class="plain">
+        <li><code>0.1</code>（二进制）= 1/2 = 0.5</li>
+        <li><code>0.01</code> = 1/4 = 0.25；<code>0.11</code> = 1/2 + 1/4 = 0.75</li>
+        <li><code>0.101</code> = 1/2 + 1/8 = 0.625</li>
+        <li><code>10.1</code> = 2 + 0.5 = 2.5</li>
+      </ul>
+      <p>能用 1/2、1/4、1/8 这些“一半的一半”凑出来的数，二进制都能写完。可是十进制的 0.1，也就是十分之一，凑不出来：0.0001100110011……永远循环下去。就像十进制写不完 1/3 一样，<b>二进制写不完 1/10</b>。电脑的存储是有限的，只好在某一位截断，存进去的其实是一个“非常接近 0.1”的数。</p>
+      <p>0.1 和 0.2 各差一点点，加起来的误差刚好露了出来，于是 0.30000000000000004。这不是 Python 的毛病，几乎所有编程语言、所有电脑都一样。</p>
+
+      <h3>小数点会浮动</h3>
+      <div class="bridge" data-k="数学">
+        <h5>科学计数法</h5>
+        <p>光速约 300000000 米每秒，写成 3 × 10<sup>8</sup>；一粒细菌约 0.000002 米，写成 2 × 10<sup>−6</sup>。前面那个数叫<b>有效数字</b>，后面 10 的几次方叫<b>指数</b>。指数一变，小数点就跟着左右挪：这就是“浮动的小数点”。</p>
+      </div>
+      <p>电脑存小数也用科学计数法，只是底数是 2：先存一个正负号，再存指数，再存有效数字。比如 6.5 = 110.1（二进制）= 1.101 × 2<sup>2</sup>，就存“正、指数 2、有效数字 1.101”。这种存法叫<b>浮点数</b>（<span class="en" data-say="floating point">floating point</span>），Python 里带小数点的数（<code>float</code>）都是这样存的。</p>
+      <p>好处是范围特别大：同样 64 个比特，既能存 10<sup>300</sup> 这么大的数，也能存 10<sup>−300</sup> 这么小的数。代价是有效数字的位数固定（大约 16 位十进制数字），<b>数越大，能分辨的最小差别也越大</b>。离 0 很近时，相邻两个能存的数挨得很密；离 0 很远时，相邻两个数中间隔得很开。很多 3D 游戏里，人走到离出生点特别远的地方，东西会开始抖，就是因为坐标数太大，能分辨的最小一步变粗了。</p>
+
+      <div class="fig" id="sumFig">
+        <div class="fig-label">装置 · 第四章 · 一</div>
+        <h4>把 0.1 加一万次</h4>
+        <p class="how">从 0 开始，一次一次加 0.1。按道理加 N 次应该正好是 N ÷ 10。看看电脑算出来差了多少。“单精度”是 32 位的浮点数，“双精度”是 64 位的（Python 的 float）。</p>
+        <label class="lab">加几次：<b id="smNO"></b></label>
+        <input type="range" id="smN" min="1" max="6" step="1" value="4">
+        <div class="kv"></div>
+        <svg viewBox="0 0 640 200" role="img" aria-label="误差随次数增长"></svg>
+        <div class="say"></div>
+      </div>
+
+      <h3>怎样比较两个小数</h3>
+      <p>既然算出来的小数常常差一点点，就不要问“它们相等吗”，而要问“<b>它们差得足够小吗</b>”。</p>
+      <div class="try">
+        <div class="th"><b>看看 0.1 到底存成了什么</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+<pre class="sh" data-k="python3"><span class="p">&gt;&gt;&gt; </span>0.1 + 0.2
+<span class="o">0.30000000000000004</span>
+<span class="p">&gt;&gt;&gt; </span>0.1 + 0.2 == 0.3
+<span class="o">False</span>
+<span class="p">&gt;&gt;&gt; </span>abs((0.1 + 0.2) - 0.3) &lt; 1e-9
+<span class="o">True</span>
+<span class="p">&gt;&gt;&gt; </span>import math
+<span class="p">&gt;&gt;&gt; </span>math.isclose(0.1 + 0.2, 0.3)
+<span class="o">True</span>
+<span class="p">&gt;&gt;&gt; </span>from decimal import Decimal
+<span class="p">&gt;&gt;&gt; </span>Decimal(0.1)
+<span class="o">Decimal('0.1000000000000000055511151231257827021181583404541015625')</span></pre>
+          <p><code>1e-9</code> 是 1 × 10<sup>−9</sup>，十亿分之一。最后一行把电脑里那个“0.1”精确地展开：它比 0.1 大一丁点。还有一个小发现：<code>0.5 + 0.25 == 0.75</code> 是 <code>True</code>，因为这几个数二进制都写得完。</p>
+        </div>
+      </div>
+      <div class="pit">
+        <h5>钱不要用浮点数存</h5>
+        <p>算钱时，一分钱也不能差。常见做法是用整数存“分”（12.30 元存成 1230），或者用专门的十进制小数类型（Python 的 <code>Decimal</code>，数据库的 DECIMAL）。</p>
+      </div>
+      <div class="task" data-id="base-t4a">
+        <div class="th"><b>找一找写得完的小数</b></div>
+        <div class="tb"><p>在 Python 里试：0.5 + 0.25、0.1 + 0.7、0.125 + 0.375、0.3 − 0.1，哪几个结果是“干净”的？把干净的那几个写成二进制小数，看看它们有什么共同点。</p></div>
+      </div>
+      <div class="pass" data-id="base-q4a">
+        <div class="qq" data-in="0.75"><p>二进制小数 <code>0.11</code> 是十进制的几？</p><p class="ex">1/2 + 1/4 = 0.75。</p></div>
+        <div class="qq" data-in="0.101"><p>十进制 0.625 写成二进制小数是？</p><p class="ex">0.5 + 0.125 = 1/2 + 1/8：0.101。</p></div>
+        <div class="qq" data-a="1"><p>为什么电脑存不准 0.1？</p><ol><li>0.1 太小了</li><li>1/10 在二进制里是无限循环小数，只能截断</li><li>Python 的 bug</li></ol><p class="ex">就像十进制写不完 1/3。</p></div>
+        <div class="qq" data-a="2"><p>比较两个算出来的小数 a 和 b，最好怎样写？</p><ol><li>a == b</li><li>a &gt; b</li><li>abs(a − b) &lt; 一个很小的数</li></ol><p class="ex">问“差得够不够小”。Python 里也可以用 math.isclose。</p></div>
+        <div class="qq" data-a="0"><p>浮点数离 0 越远，相邻两个能存的数之间的距离会？</p><ol><li>越大</li><li>越小</li><li>不变</li></ol><p class="ex">有效数字的位数固定，数越大，最后一位代表的量越大。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c4-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 计组 · 浮点数的表示和运算</span><span class="tm">约 60 分钟</span><span class="sum">定点和浮点；规格化；IEEE 754 单双精度的格式、偏置、隐藏位、特殊值、范围和精度；十进制和十六进制互换；浮点加减五步；int 转 float 会丢精度。</span></div>
+    <div class="lyb">
+      <h3>定点和浮点</h3>
+      <p><b>定点数</b>的小数点位置固定：定点整数（小数点在最低位之后）和定点小数（小数点在符号位之后），第三章的补码讲的都是定点数。定点数的问题是范围和精度只能二选一。<b>浮点数</b>把数写成 N = (−1)<sup>S</sup> × M × R<sup>E</sup>：S 是符号，M 是尾数，R 是基数（通常为 2），E 是阶码。阶码的位数决定范围，尾数的位数决定精度。</p>
+      <p><b>规格化</b>：为了让尾数的有效位尽量多、表示唯一，要求尾数最高位是有效数字（基数为 2 时，原码尾数最高数值位为 1）。尾数不满足时左移、阶码减一（左规）；尾数溢出时右移、阶码加一（右规）。</p>
+      <h3>IEEE 754</h3>
+      <div class="tbl w"><table class="t"><tr><th></th><th>符号 S</th><th>阶码 e</th><th>尾数 f</th><th>偏置</th><th>规格化数的值</th></tr>
+        <tr><td>单精度（float，32 位）</td><td>1 位</td><td>8 位</td><td>23 位</td><td>127</td><td>(−1)<sup>S</sup> × 1.f × 2<sup>e−127</sup></td></tr>
+        <tr><td>双精度（double，64 位）</td><td>1 位</td><td>11 位</td><td>52 位</td><td>1023</td><td>(−1)<sup>S</sup> × 1.f × 2<sup>e−1023</sup></td></tr>
+      </table></div>
+      <ul class="plain">
+        <li><b>隐藏位</b>：规格化数的尾数总是 1.xxx，开头的 1 不存，白赚一位精度。所以单精度实际有 24 位有效位（约 7 位十进制），双精度 53 位（约 15—17 位十进制）。</li>
+        <li><b>偏置</b>：阶码用移码的变体存，偏置是 2<sup>k−1</sup> − 1（单精度 127），而不是第三章移码的 2<sup>k−1</sup>。这样全 0 和全 1 两种阶码可以留作特殊用途。</li>
+        <li><b>特殊值</b>：e 全 0、f = 0 表示 ±0；e 全 0、f ≠ 0 是<b>非规格化数</b>，值为 (−1)<sup>S</sup> × 0.f × 2<sup>−126</sup>（注意不是 −127）；e 全 1、f = 0 表示 ±∞；e 全 1、f ≠ 0 表示 NaN（不是一个数，如 0/0）。</li>
+        <li><b>范围</b>（单精度）：最大约 (2 − 2<sup>−23</sup>) × 2<sup>127</sup> ≈ 3.4 × 10<sup>38</sup>；最小正规格化数 2<sup>−126</sup> ≈ 1.18 × 10<sup>−38</sup>；最小正非规格化数 2<sup>−149</sup> ≈ 1.4 × 10<sup>−45</sup>。双精度最大约 1.8 × 10<sup>308</sup>。</li>
+      </ul>
+      <p><b>十进制 → 单精度</b>的步骤，以 −0.75 为例：① 写成二进制 −0.11；② 规格化 −1.1 × 2<sup>−1</sup>；③ S = 1，e = −1 + 127 = 126 = 0111 1110，f = 1000…0（23 位，去掉隐藏的 1）；④ 拼起来 1 01111110 10000000000000000000000，四位一组 → <b>0xBF400000</b>。</p>
+
+      <div class="fig" id="fltFig">
+        <div class="fig-label">装置 · 第四章 · 二</div>
+        <h4>IEEE 754 拆解器</h4>
+        <p class="how">输入一个十进制数（也可以输入 inf、nan，或者 0x 开头的十六进制位模式），看它被存成哪些比特：紫色是符号，蓝色是阶码，黄色是尾数。单精度模式下可以直接点比特。下面列出电脑里真正存的那个数，和你输入的差了多少。</p>
+        <div class="btns" data-m></div>
+        <div class="row"><input type="text" id="flIn" value="0.1" style="flex:1 1 10em;font-family:var(--f-mono)" aria-label="输入的数"></div>
+        <div class="fbits"></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+
+      <h3>浮点加减的五步</h3>
+      <ol class="plain">
+        <li><b>对阶</b>：小阶向大阶看齐，阶小的尾数右移、阶码加一，直到两个阶码相等。为什么不让大阶向小阶看齐？大阶的尾数要左移，高位会丢，误差大；小阶右移只丢低位。</li>
+        <li><b>尾数加减</b>。</li>
+        <li><b>规格化</b>：结果不是 1.xxx 的形式，就左规或右规。</li>
+        <li><b>舍入</b>：右移时丢掉的低位要处理，IEEE 754 默认“就近舍入，一样近时取偶数”（第三层）。</li>
+        <li><b>溢出判断</b>：阶码超过最大值是上溢（结果为 ±∞），小于最小值是下溢（变成非规格化数或 0）。浮点数的溢出看阶码，不看尾数。</li>
+      </ol>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）单精度浮点数的位模式为 0xC1480000，它表示的十进制数是多少？（2）把 12.375 表示成 IEEE 754 单精度，写出十六进制。（3）int 型变量 i = 16777217（2<sup>24</sup> + 1），执行 <code>float f = i; int j = f;</code> 后 j 是多少？为什么？</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）1100 0001 0100 1000 0…：S = 1；e = 1000 0010 = 130，指数 130 − 127 = 3；f = 1001 0…，尾数 1.1001<sub>2</sub> = 1.5625。值 = −1.5625 × 2<sup>3</sup> = −12.5。</p>
+          <p>（2）12.375 = 1100.011<sub>2</sub> = 1.100011 × 2<sup>3</sup>；S = 0，e = 130 = 1000 0010，f = 1000 1100 0…。拼成 0 10000010 10001100000000000000000 = 0100 0001 0100 0110 0000 … → 0x41460000。</p>
+          <p>（3）j = 16777216。2<sup>24</sup> + 1 的二进制有 25 位有效数字，单精度只有 24 位，最后一位的 1 被舍入掉（一样近，取偶数），f = 2<sup>24</sup>。结论：int（32 位）转 float 可能丢精度，转 double（53 位有效位）不会；float 转 int 会截掉小数，超出范围时结果未定义。</p>
+        </div></details>
+      </div>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>为什么 0.1 + 0.2 != 0.3？代码里应该怎样比较两个浮点数？存金额用什么类型？</p>
+        <details><summary>看要点</summary><div><p>0.1、0.2、0.3 都不能被二进制有限表示，存的是各自最近的双精度数；0.1 和 0.2 的舍入误差同向，加起来恰好落到 0.3 最近那个双精度数的下一个。比较用相对误差加绝对误差：<code>|a − b| ≤ max(rel × max(|a|, |b|), abs_tol)</code>，只用一个固定的 1e-9 在数很大或很小时都会出问题。金额用整数（以分为单位）或十进制定点类型。</p></div></details>
+      </div>
+      <div class="pass" data-id="base-q4b">
+        <div class="qq" data-in="127"><p>IEEE 754 单精度的阶码偏置是多少？</p><p class="ex">2<sup>8−1</sup> − 1 = 127。</p></div>
+        <div class="qq" data-in="24"><p>单精度浮点数实际有几位有效二进制位（含隐藏位）？</p><p class="ex">23 位尾数加 1 位隐藏位，24 位。</p></div>
+        <div class="qq" data-in="-12.5"><p>单精度 0xC1480000 表示的数是？</p><p class="ex">见上面典型题（1）。</p></div>
+        <div class="qq" data-in="40a00000|0x40a00000"><p>5.0 的单精度十六进制是？</p><p class="ex">5 = 101 = 1.01 × 2<sup>2</sup>，e = 129 = 1000 0001，f = 0100…：0 10000001 0100… = 0x40A00000。</p></div>
+        <div class="qq" data-a="2"><p>阶码全 1、尾数不全为 0 表示什么？</p><ol><li>无穷大</li><li>最大的数</li><li>NaN</li></ol><p class="ex">尾数为 0 是 ±∞，不为 0 是 NaN。</p></div>
+        <div class="qq" data-a="0"><p>浮点加法对阶时，为什么是小阶向大阶看齐？</p><ol><li>右移只丢低位，误差小</li><li>左移更快</li><li>这是随便规定的</li></ol><p class="ex">大阶向小阶看齐要把尾数左移，丢的是高位。</p></div>
+        <div class="qq" data-a="1"><p>32 位 int 转换成下面哪种类型一定不会丢精度？</p><ol><li>float</li><li>double</li><li>short</li></ol><p class="ex">double 有 53 位有效位，装得下 32 位整数。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c4-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">舍入、下溢、误差分析、事故</span><span class="tm">约 40 分钟</span><span class="sum">舍入到偶数和保护位；非规格化数和逐级下溢；加法不满足结合律、补偿求和；爱国者导弹；半精度和 bfloat16；奔腾除法 bug。</span></div>
+    <div class="lyb">
+      <h3>舍入到偶数</h3>
+      <p>IEEE 754 规定了几种舍入方式，默认是“就近舍入，一样近时取偶数”（尾数最后一位为 0 的那个）。为什么不用小学的四舍五入？因为“五入”总是往一个方向偏，大量运算后误差会系统性地往上漂；取偶数让一半往上、一半往下，平均下来抵消。硬件在做运算时会多留三位：保护位（guard）、舍入位（round）和粘滞位（sticky，右移时只要丢掉的位里有一个 1，它就是 1），用它们判断“是不是正好一半”。Python 的 <code>round(2.5)</code> 得 2、<code>round(3.5)</code> 得 4，也是这个规则。</p>
+      <h3>非规格化数</h3>
+      <p>没有非规格化数时，最小的正数 2<sup>−126</sup> 和 0 之间是一道悬崖：两个不相等的小数相减，结果可能直接变成 0，于是 <code>x != y</code> 而 <code>x − y == 0</code>，后面一除就出事。非规格化数用 0.f × 2<sup>−126</sup> 把这道悬崖铺成一段均匀的斜坡，叫“逐级下溢”。这是 IEEE 754 的主要设计者威廉·卡亨坚持加进去的，当年有厂商嫌它难实现而反对。代价是：一些处理器处理非规格化数很慢，图形和音频程序常打开“清零”（flush-to-zero）模式，主动放弃它换速度。</p>
+      <h3>加法不满足结合律</h3>
+      <p>(a + b) + c 和 a + (b + c) 可能不同：<code>(1e16 + 1) − 1e16</code> 得 0，<code>1e16 + (1 − 1e16)</code> 也不是 1。所以并行求和（把数组分给多个核各自加再合并）每次结果可能有细微差别，编译器默认也不敢重排浮点运算（除非你打开 <code>-ffast-math</code>）。大量小数累加时，可以用威廉·卡亨提出的<b>补偿求和</b>：额外用一个变量记下每一步被舍掉的部分，下一步再补回去。</p>
+      <pre class="code" data-k="Python · 补偿求和">def kahan_sum(xs):
+    s = 0.0; c = 0.0          # c 记着被舍掉的零头
+    for x in xs:
+        y = x - c
+        t = s + y
+        c = (t - s) - y       # (t - s) 是真正加进去的，减去 y 得到丢掉的
+        s = t
+    return s
+print(sum([0.1] * 10000), kahan_sum([0.1] * 10000))</pre>
+      <p>Python 自带的 <code>math.fsum</code> 用的是更精确的办法，结果是“正确舍入”的。第一层的装置里也能切换到补偿求和看效果。</p>
+      <h3>爱国者导弹</h3>
+      <p>1991 年 2 月 25 日，海湾战争中，沙特宰赫兰的一套爱国者防空系统没有拦截一枚飞来的飞毛腿导弹，导弹击中美军营房，28 名士兵死亡。美国审计总署 1992 年的报告查明：系统用整数记录开机以来过了多少个“十分之一秒”，换算成秒时要乘以 0.1，而 0.1 存在一个 24 位的定点寄存器里，被截断了，每乘一次差大约 0.000000095 秒。系统连续开机约 100 小时，累计误差约 0.34 秒；飞毛腿每秒飞一千多米，跟踪窗口算偏了好几百米，雷达认为“那里没有目标”。修补软件在事发后第二天才送到。一个第一层就能讲明白的道理，代价是 28 条命。</p>
+      <h3>更短的浮点数</h3>
+      <p>人工智能把浮点数又变短了：半精度 FP16 是 1 + 5 + 10 位；谷歌提出的 bfloat16 是 1 + 8 + 7 位，阶码和单精度一样宽（范围一样大），尾数只留 7 位（精度很低）。神经网络对精度不敏感、对范围和速度很敏感，所以这么砍很划算。再往下还有 8 位、4 位的格式。Apple 芯片的神经网络引擎也主要用低精度运算。</p>
+      <div class="story">
+        <h5>奔腾除法 bug</h5>
+        <p>1994 年，数学教授托马斯·奈斯利在算素数相关的数时发现，英特尔奔腾处理器的浮点除法偶尔会算错，原因是除法电路里用来查表的一张表缺了几项。错误很罕见，但英特尔起初只答应给“证明自己需要”的用户换芯片，引起众怒，最后改为无条件更换，为此计提了约 4.75 亿美元。此后芯片厂商开始大量用形式化验证来检查算术电路。</p>
+      </div>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>David Goldberg, “What Every Computer Scientist Should Know About Floating-Point Arithmetic”, <i>ACM Computing Surveys</i>, 1991。</li>
+          <li>IEEE Std 754-2019；William Kahan 的讲义和访谈（他因此获得 1989 年图灵奖）。</li>
+          <li>U.S. GAO, “Patriot Missile Defense: Software Problem Led to System Failure at Dhahran, Saudi Arabia”, GAO/IMTEC-92-26, 1992。</li>
+          <li>Python 官方教程“浮点数算术：争议和限制”一章。</li>
+        </ul>
+      </div>
+      <div class="pass" data-id="base-q4c">
+        <div class="qq" data-in="2"><p>Python 里 <code>round(2.5)</code> 的结果是？</p><p class="ex">一样近时取偶数，2.5 → 2。</p></div>
+        <div class="qq" data-a="1"><p>非规格化数主要解决什么问题？</p><ol><li>让大数更精确</li><li>填平 0 和最小规格化数之间的悬崖，使 x ≠ y 时 x − y ≠ 0</li><li>表示 NaN</li></ol><p class="ex">逐级下溢。</p></div>
+        <div class="qq" data-a="0"><p>爱国者导弹的误差来自？</p><ol><li>0.1 在 24 位定点寄存器里被截断，误差随开机时间累积</li><li>雷达坏了</li><li>整数溢出</li></ol><p class="ex">每次换算差约 10<sup>−7</sup> 秒，100 小时累积到 0.34 秒。</p></div>
+        <div class="qq" data-in="8"><p>bfloat16 的阶码有几位？</p><p class="ex">8 位，和单精度一样，所以范围一样大。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div data-l="1"><b>浮点数 <span class="en" data-say="floating point">floating point</span></b>用“符号、指数、有效数字”存的小数。</div>
+    <div data-l="1"><b>精度 <span class="en" data-say="precision">precision</span></b>能分辨多小的差别。</div>
+    <div data-l="2"><b>阶码 <span class="en" data-say="exponent">exponent</span></b>2 的几次方那个“几”，带偏置存。</div>
+    <div data-l="2"><b>尾数 <span class="en" data-say="mantissa">mantissa</span></b>有效数字部分，也叫 significand。</div>
+    <div data-l="2"><b>规格化 <span class="en" data-say="normalized">normalized</span></b>尾数写成 1.xxx 的样子。</div>
+    <div data-l="3"><b>舍入 <span class="en" data-say="rounding">rounding</span></b>放不下的位怎样处理。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>二进制写不完 0.1，就像十进制写不完 1/3；比较小数要问“差得够不够小”。</div>
+    <div><i>第二层带走</i>单精度 1 + 8 + 23，偏置 127，隐藏一个 1；溢出看阶码。</div>
+    <div><i>第三层带走</i>每一步的误差都很小，累积起来可能要命；误差要主动去算，不能只是祈祷。</div>
+  </div>
+</section>

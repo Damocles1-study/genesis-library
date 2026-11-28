@@ -1,0 +1,202 @@
+<div class="vol-h" data-vol="卷二 · 物">
+  <div class="k">卷二</div>
+  <h2>物</h2>
+  <p>数之外的东西：文字、图片、声音。它们进了电脑，也都变成数，变成比特。卷二讲怎样约定“哪个数代表什么”，怎样对一串比特做手术（位运算），以及比特出了错怎样发现、怎样改回来。</p>
+</div>
+
+<section class="chap" id="c5" data-vol="卷二 · 文字">
+  <div class="chead">
+    <div class="big">文</div>
+    <div>
+      <div class="no">第五章</div>
+      <h2>文字</h2>
+      <dl><dt>讲什么</dt><dd>每个字一个编号；ASCII；汉字和国标码；Unicode 和 UTF-8；乱码是用错了表；“长度”的三种答案；锟斤拷、烫烫烫和长得一样的字母</dd><dt>装置</dt><dd>字的身份证 · 乱码制造机</dd></dl>
+      <div class="crs" data-c="组成 网络"></div>
+      <div class="lvs"><a data-l="1" href="#c5-1">第一层 · 45 分钟</a><a data-l="2" href="#c5-2">第二层 · 50 分钟</a><a data-l="3" href="#c5-3">第三层 · 30 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>第零章说，按 A 以后，备忘录记下的是 97。为什么是 97？</span></div>
+    <div class="l"><i class="j">舅</i><span>因为六十多年前，一群人坐下来排了一张表。今天看看这张表，和它后来长成的那张有十几万个字的大表。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>用 <code>ord</code> 和 <code>chr</code> 查一个字的编号；说出 A、a、0 的 ASCII 码。</li>
+      <li><span class="lg lg1">一</span>解释为什么一个汉字在文件里占 3 个字节，什么是乱码。</li>
+      <li><span class="lg lg2">二</span>手算一个字的 UTF-8 和 UTF-16 编码；分清字符集和编码；算区位码、国标码、机内码。</li>
+      <li><span class="lg lg3">三</span>说出规范化、字素簇、同形字攻击；知道锟斤拷和烫烫烫是怎样来的。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c5-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：字节、十六进制（第二章）</span><span class="tm">约 45 分钟</span></div>
+    <div class="lyb">
+      <h3>每个字一个编号</h3>
+      <p>电脑只能存数。要存文字，就得先约定一张表：哪个数代表哪个字。存的时候查表把字换成数，显示的时候再查表把数换回字。这张表叫<b>字符编码</b>。</p>
+      <p>最有名的一张是 1963 年美国定的 <b>ASCII</b>（美国信息交换标准代码，读作“阿斯克”）。它用 7 个比特，一共 128 个编号，装下了英文大小写字母、数字、标点，和一些控制用的符号（比如换行）：</p>
+      <div class="tbl"><table class="t c"><tr><th>字符</th><td>空格</td><td>0</td><td>9</td><td>A</td><td>B</td><td>Z</td><td>a</td><td>b</td><td>z</td><td>换行</td></tr><tr><th>十进制</th><td>32</td><td>48</td><td>57</td><td>65</td><td>66</td><td>90</td><td>97</td><td>98</td><td>122</td><td>10</td></tr><tr><th>十六进制</th><td class="m">20</td><td class="m">30</td><td class="m">39</td><td class="m">41</td><td class="m">42</td><td class="m">5A</td><td class="m">61</td><td class="m">62</td><td class="m">7A</td><td class="m">0A</td></tr></table></div>
+      <p>这张表排得很聪明：字母按顺序排，所以“B 比 A 大 1”，排序时直接比编号就行；大写和小写正好差 32，也就是只差一个比特（第七章用它玩一个小把戏）；数字 0 到 9 是 48 到 57，把字符 '7' 变成数 7，只要减去 48。第二章看到的 <code>68 65 6c 6c 6f</code>，就是 hello 五个字母的 ASCII 码。</p>
+      <h3>汉字怎么办</h3>
+      <p>128 个编号装不下汉字。常用汉字就有好几千个，一个字节 256 种也不够，得用两个字节（65536 种）。1980 年中国发布了 <b>GB 2312</b>（“国标”），收了 6763 个汉字，每个字两个字节。后来扩展成 GBK、GB 18030，收的字越来越多。日本、韩国、台湾也各有各的表。</p>
+      <p>麻烦来了：同样两个字节，在这张表里是“中”，在那张表里是别的字。用 A 表写的文件拿 B 表去读，就是一堆莫名其妙的字，这叫<b>乱码</b>。</p>
+      <h3>一张表装下全世界：Unicode</h3>
+      <p>1991 年起，一群公司和专家开始编一张总表：<b>Unicode</b>（统一码）。它给世界上每一种文字的每一个字一个唯一的编号，叫<b>码位</b>，写成 U+ 加十六进制：A 是 U+0041，汉是 U+6C49，😀 是 U+1F600。今天这张表已经有十五万多个字符，包括甲骨文之外的很多古文字、数学符号和表情符号。</p>
+      <p>编号有了，怎样存成字节？最流行的办法叫 <b>UTF-8</b>：英文字母还是 1 个字节（和 ASCII 完全一样），大部分汉字 3 个字节，表情符号 4 个字节。第二章的小侦探活里，<code>echo -n 你好 | xxd</code> 打出 6 个字节，就是因为两个汉字各占 3 个。今天绝大多数网页和 Mac 上的文本文件都用 UTF-8。</p>
+
+      <div class="fig" id="encFig">
+        <div class="fig-label">装置 · 第五章 · 一</div>
+        <h4>字的身份证</h4>
+        <p class="how">打几个字（英文、汉字、表情都行），看每个字的 Unicode 码位，和它用 UTF-8 存成哪几个字节。点表里的一行，看那个字的码位是怎样“拆”进字节里的（第二层）。</p>
+        <input type="text" id="encIn" value="Aa汉😀" aria-label="要看的字">
+        <div class="enc scroll-x"></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+
+      <div class="try">
+        <div class="th"><b>在 Python 里查编号</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+<pre class="sh" data-k="python3"><span class="p">&gt;&gt;&gt; </span>ord('A'), ord('a'), ord('0')
+<span class="o">(65, 97, 48)</span>
+<span class="p">&gt;&gt;&gt; </span>chr(97)
+<span class="o">'a'</span>
+<span class="p">&gt;&gt;&gt; </span>hex(ord('汉'))
+<span class="o">'0x6c49'</span>
+<span class="p">&gt;&gt;&gt; </span>'汉'.encode('utf-8')
+<span class="o">b'\xe6\xb1\x89'</span>
+<span class="p">&gt;&gt;&gt; </span>'汉'.encode('gbk')
+<span class="o">b'\xba\xba'</span>
+<span class="p">&gt;&gt;&gt; </span>len('你好'), len('你好'.encode('utf-8'))
+<span class="o">(2, 6)</span>
+<span class="p">&gt;&gt;&gt; </span>ord('7') - ord('0')
+<span class="o">7</span></pre>
+          <p><code>ord</code> 查编号，<code>chr</code> 反过来。“汉”在 UTF-8 里是 3 个字节 E6 B1 89，在 GBK 里是 2 个字节 BA BA，同一个字两张表两种存法。<code>len('你好')</code> 是 2 个字，变成字节却是 6 个。</p>
+        </div>
+      </div>
+
+      <div class="fig" id="mojiFig">
+        <div class="fig-label">装置 · 第五章 · 二</div>
+        <h4>乱码制造机</h4>
+        <p class="how">把一句话用一张表“写”成字节，再故意用另一张表去“读”。你在网上见过的乱码，大多就是这样来的。</p>
+        <input type="text" id="mjIn" value="你好，世界" aria-label="要变成乱码的话">
+        <div class="btns" data-m></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+      <div class="task" data-id="base-t5a">
+        <div class="th"><b>给自己的名字查编号</b></div>
+        <div class="tb"><p>用 Python 查出你名字里每个字的码位（<code>hex(ord('字'))</code>），再看它的 UTF-8 字节（<code>'字'.encode()</code>）。然后用 <code>echo -n 你的名字 &gt; name.txt</code> 建个文件，<code>xxd name.txt</code> 对一对。</p></div>
+      </div>
+      <div class="pass" data-id="base-q5a">
+        <div class="qq" data-in="65"><p>大写字母 A 的 ASCII 码是十进制的几？</p><p class="ex">65，十六进制 41。</p></div>
+        <div class="qq" data-in="98"><p>小写字母 b 的 ASCII 码是几？（提示：a 是 97）</p><p class="ex">字母按顺序排，98。</p></div>
+        <div class="qq" data-in="32"><p>同一个字母的大写和小写，ASCII 码差多少？</p><p class="ex">a − A = 97 − 65 = 32。</p></div>
+        <div class="qq" data-a="1"><p>一个常用汉字用 UTF-8 存，一般占几个字节？</p><ol><li>1</li><li>3</li><li>8</li></ol><p class="ex">大部分汉字 3 个字节。英文 1 个，表情符号 4 个。</p></div>
+        <div class="qq" data-a="2"><p>乱码最常见的原因是？</p><ol><li>文件坏了</li><li>字体没装</li><li>用一张编码表写，用另一张编码表读</li></ol><p class="ex">同样的字节，不同的表翻出不同的字。</p></div>
+        <div class="qq" data-a="0"><p>Unicode 给每个字一个唯一的编号，这个编号叫？</p><ol><li>码位</li><li>字节</li><li>字体</li></ol><p class="ex">码位（code point），写作 U+ 加十六进制。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c5-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 计组 · 字符与汉字编码 · 面试</span><span class="tm">约 50 分钟</span><span class="sum">字符集和编码方案；UTF-8 的规则和它为什么好；UTF-16 和代理对；BOM；三种语言里的“长度”；区位码、国标码、机内码。</span></div>
+    <div class="lyb">
+      <h3>字符集和编码是两回事</h3>
+      <p><b>字符集</b>回答“有哪些字、各是几号”，Unicode 是字符集，码位范围 U+0000 到 U+10FFFF（约 111 万个位置，目前用了一小部分）。<b>编码方案</b>回答“几号怎样存成字节”：UTF-8、UTF-16、UTF-32 是同一个字符集的三种存法。GBK、GB 18030 则既是字符集又是编码。面试问“Unicode 和 UTF-8 的区别”，就答这一句。</p>
+      <h3>UTF-8 的规则</h3>
+      <div class="tbl"><table class="t"><tr><th>码位范围</th><th>字节数</th><th>字节的样子（x 填码位的二进制）</th></tr>
+        <tr><td class="m">U+0000—007F</td><td>1</td><td class="m">0xxxxxxx</td></tr>
+        <tr><td class="m">U+0080—07FF</td><td>2</td><td class="m">110xxxxx 10xxxxxx</td></tr>
+        <tr><td class="m">U+0800—FFFF</td><td>3</td><td class="m">1110xxxx 10xxxxxx 10xxxxxx</td></tr>
+        <tr><td class="m">U+10000—10FFFF</td><td>4</td><td class="m">11110xxx 10xxxxxx 10xxxxxx 10xxxxxx</td></tr>
+      </table></div>
+      <p>例：汉 U+6C49 = 0110 1100 0100 1001，落在第三行。把 16 位从左到右填进 1110<u>0110</u> 10<u>110001</u> 10<u>001001</u>，得 E6 B1 89。</p>
+      <p>这套规则的好处：① 和 ASCII 完全兼容，老的英文程序照样能用；② 第一个字节的开头几个 1 说明一共几个字节，后续字节都以 10 开头，从任何位置开始读都能找到下一个字的起点（“自同步”），丢了一个字节只坏一个字；③ 除了 U+0000 本身，编码里不会出现 0 字节，C 语言用 0 表示字符串结尾的老习惯不受影响；④ 按字节比较的顺序和按码位比较的顺序一致；⑤ 没有字节序问题。</p>
+      <h3>UTF-16 和代理对</h3>
+      <p>UTF-16 用 2 个字节存 U+0000—FFFF（这一段叫“基本多文种平面”，BMP），超出的部分用两个 2 字节单元（<b>代理对</b>）：码位减去 0x10000 得到 20 位，高 10 位加上 0xD800 作第一个单元，低 10 位加上 0xDC00 作第二个单元。😀 U+1F600：减去 0x10000 得 0xF600 = 0000111101 1000000000，高 10 位 0x3D → D83D，低 10 位 0x200 → DE00。Java、JavaScript、Windows 内部都用 UTF-16。</p>
+      <p>UTF-16 有字节序问题，所以文件开头常放一个 <b>BOM</b>（字节序标记，U+FEFF）：大端存成 FE FF，小端存成 FF FE。UTF-8 不需要 BOM，但 Windows 的记事本以前爱在 UTF-8 文件开头加 EF BB BF，这三个字节会让一些 Mac 和 Linux 上的程序出错。</p>
+      <h3>“长度”的三种答案</h3>
+      <div class="tbl"><table class="t"><tr><th>"A汉😀" 的长度</th><th>数的是</th><th>结果</th></tr>
+        <tr><td>Python <code>len(s)</code></td><td>码位</td><td>3</td></tr>
+        <tr><td>JavaScript、Java <code>s.length</code></td><td>UTF-16 单元</td><td>4（😀 占两个）</td></tr>
+        <tr><td>C <code>strlen(s)</code>（UTF-8 源文件）</td><td>字节</td><td>8（1 + 3 + 4）</td></tr>
+      </table></div>
+      <p>数据库字段“最多 20 个字”，到底是 20 个字节还是 20 个字？截断一个字符串时会不会切在一个汉字中间？这些都是真实项目里的 bug 来源。</p>
+      <h3>区位码、国标码、机内码</h3>
+      <p>GB 2312 把汉字排在 94 × 94 的表里，“第几区第几位”就是<b>区位码</b>（十进制，如“啊”在 16 区 01 位，1601）。为了避开 ASCII 的控制字符，区号和位号各加 32（0x20），得到<b>国标码</b>（啊：0x10+0x20 = 0x30，0x01+0x20 = 0x21，国标码 3021H）。为了和 ASCII 区分（ASCII 的最高位是 0），两个字节的最高位都置 1，即再加 0x80，得到计算机里实际存的<b>机内码</b>（啊：B0A1H）。总结：国标码 = 区位码（各自转十六进制）+ 2020H，机内码 = 国标码 + 8080H。</p>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）é 的码位是 U+00E9，写出它的 UTF-8 编码。（2）某汉字的区位码是 2630，求它的国标码和机内码。（3）字符串 "Hi你好👋" 在 UTF-8 和 UTF-16（不含 BOM）下各占多少字节？在 Python 和 JavaScript 里长度各是多少？</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）0xE9 = 000 1110 1001，落在两字节那行：110<u>00011</u> 10<u>101001</u> = C3 A9。</p>
+          <p>（2）区号 26 = 0x1A，位号 30 = 0x1E；国标码 = 1A1EH + 2020H = 3A3EH；机内码 = 3A3EH + 8080H = BABEH。</p>
+          <p>（3）H、i 各 1 字节，你、好各 3 字节，👋（U+1F44B）4 字节：UTF-8 共 12 字节。UTF-16：前四个字各 2 字节，👋 是代理对 4 字节，共 12 字节（巧合相同）。Python len = 5，JavaScript length = 6。</p>
+        </div></details>
+      </div>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>UTF-8 为什么能“自同步”？给你一个字节数组中间的一个位置，怎样找到下一个字符的开头？</p>
+        <details><summary>看要点</summary><div><p>后续字节都是 10xxxxxx，首字节要么是 0xxxxxxx，要么以 11 开头。从任意位置往后跳过所有满足 <code>(b &amp; 0xC0) == 0x80</code> 的字节，遇到的第一个不满足的字节就是下一个字符的开头。往前找同理。</p></div></details>
+      </div>
+      <div class="pass" data-id="base-q5b">
+        <div class="qq" data-in="c3 a9|c3a9"><p>U+00E9 的 UTF-8 编码是？（写两个字节的十六进制）</p><p class="ex">C3 A9。</p></div>
+        <div class="qq" data-in="3"><p>U+4E2D（中）的 UTF-8 编码有几个字节？</p><p class="ex">0800—FFFF 之间，3 个字节（E4 B8 AD）。</p></div>
+        <div class="qq" data-a="1"><p>UTF-8 的后续字节都以什么开头？</p><ol><li>0</li><li>10</li><li>110</li><li>1110</li></ol><p class="ex">10xxxxxx。</p></div>
+        <div class="qq" data-in="2"><p>JavaScript 里 <code>"😀".length</code> 是几？</p><p class="ex">UTF-16 代理对，两个单元。</p></div>
+        <div class="qq" data-in="b0a1|b0a1h"><p>“啊”的国标码是 3021H，它的机内码是？</p><p class="ex">3021H + 8080H = B0A1H。</p></div>
+        <div class="qq" data-a="0"><p>下面哪个说法正确？</p><ol><li>Unicode 是字符集，UTF-8 是它的一种编码方案</li><li>UTF-8 是字符集，Unicode 是编码方案</li><li>UTF-8 和 Unicode 是同一个东西</li></ol><p class="ex">一个管编号，一个管存法。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c5-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">规范化、字素、安全、历史</span><span class="tm">约 30 分钟</span><span class="sum">一个 é 两种写法和规范化；用户眼里的“一个字”可能是好几个码位；长得一样的字母和看不见的方向符；锟斤拷、烫烫烫；UTF-8 是在餐馆的餐垫上设计的。</span></div>
+    <div class="lyb">
+      <h3>一个字，两种写法</h3>
+      <p>é 可以是一个码位 U+00E9，也可以是 e（U+0065）加上一个“组合用的尖音符”（U+0301）。屏幕上一模一样，字节却不同，直接比较会说它们不相等。Unicode 定义了<b>规范化</b>：NFC 尽量合成一个码位，NFD 尽量拆开。Mac 的老文件系统 HFS+ 存文件名时会把它们分解成近似 NFD 的形式，今天的 APFS 保留原样但比较时不区分；于是同一个带重音或带特殊符号的文件名，在 Mac 和 Linux 之间同步时偶尔会“变成两个文件”，Git 为此在 Mac 上默认打开了 <code>core.precomposeunicode</code>。Python 里用 <code>unicodedata.normalize('NFC', s)</code> 统一。</p>
+      <h3>用户眼里的“一个字”</h3>
+      <p>👨‍👩‍👧 看起来是一个表情，其实是“男人、零宽连接符、女人、零宽连接符、女孩”五个码位；🇨🇳 这样的国旗是两个“区域指示符”码位。用户眼里的一个字叫<b>字素簇</b>（grapheme cluster）。Python 的 <code>len</code> 数码位，所以 <code>len('👨‍👩‍👧')</code> 是 5；Swift 的 <code>String.count</code> 数字素簇，得 1。做文本编辑器、按“字数”截断评论时，要按字素簇来切，否则会把一个家庭表情切成一个孤零零的男人。</p>
+      <h3>长得一样的字母</h3>
+      <p>西里尔字母的 а（U+0430）和拉丁字母 a（U+0061）几乎看不出区别。坏人可以注册一个用西里尔字母拼的域名，看起来和某个银行的网址一模一样，这叫<b>同形字攻击</b>。浏览器的对策是：域名里混用多种文字时，显示成以 <code>xn--</code> 开头的 Punycode 原形。2021 年，研究人员还公布了“特洛伊源码”攻击：在源代码的注释或字符串里藏进 Unicode 的“从右往左”方向控制符，让代码在编辑器里显示的顺序和编译器读到的顺序不一样，审代码的人看到的逻辑是假的。许多编辑器和编译器因此加了警告。</p>
+      <h3>锟斤拷和烫烫烫</h3>
+      <p>当程序把读不懂的字节换成 Unicode 的“替换字符”� (U+FFFD) 时，它的 UTF-8 是 EF BF BD；两个连在一起是 EF BF BD EF BF BD，再被当成 GBK 读，两个字节一组就成了“锟斤拷”。至于“烫烫烫”：微软的 Visual C++ 在调试模式下，会把还没初始化的栈内存填成 0xCC，堆内存填成 0xCD；如果程序不小心把这些内存当字符串打印出来，在中文 Windows（GBK）下 CC CC 显示为“烫”，CD CD 显示为“屯”。看到满屏的“烫烫烫”，说明你在读一块没写过的内存，第三部讲。</p>
+      <div class="story">
+        <h5>餐垫上的 UTF-8</h5>
+        <p>1992 年 9 月，贝尔实验室的肯·汤普森和罗布·派克听说标准组织要定一种 Unicode 的存储方案，觉得草案不够好。据派克回忆，两人在新泽西一家餐馆吃晚饭时，汤普森在餐垫上画出了今天 UTF-8 的位模式，当晚他们就在自己的 Plan 9 操作系统里实现了它，几天后整个系统都换成了 UTF-8。这两个人，一个是 Unix 和 C 语言前身 B 语言的作者，一个后来和汤普森一起设计了 Go 语言。</p>
+      </div>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>The Unicode Standard，及 Unicode 标准附件 #15（规范化）、#29（文本分段与字素簇）。</li>
+          <li>Rob Pike, “UTF-8 history”（1993—2003 年间的邮件，网上可查）。</li>
+          <li>Nicholas Boucher, Ross Anderson, “Trojan Source: Invisible Vulnerabilities”, 2021。</li>
+          <li>Joel Spolsky, “The Absolute Minimum Every Software Developer Absolutely, Positively Must Know About Unicode and Character Sets”, 2003。</li>
+        </ul>
+      </div>
+      <div class="pass" data-id="base-q5c">
+        <div class="qq" data-a="1"><p>两个看起来一样的“é”比较结果不相等，最可能的原因是？</p><ol><li>字体不同</li><li>一个是单个码位，一个是 e 加组合符号，需要规范化</li><li>大小写不同</li></ol><p class="ex">NFC 和 NFD。</p></div>
+        <div class="qq" data-in="5"><p>Python 里 <code>len('👨‍👩‍👧')</code> 是几？</p><p class="ex">三个人加两个零宽连接符，五个码位。</p></div>
+        <div class="qq" data-a="0"><p>“锟斤拷”是怎样来的？</p><ol><li>替换字符 � 的 UTF-8 字节被当成 GBK 读</li><li>烫的繁体</li><li>内存没初始化</li></ol><p class="ex">EF BF BD EF BF BD 按 GBK 两字节一组读出“锟斤拷”。烫烫烫才是没初始化的内存。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div data-l="1"><b>字符 <span class="en" data-say="character">character</span></b>一个字、一个字母、一个符号。</div>
+    <div data-l="1"><b>编码 <span class="en" data-say="encoding">encoding</span></b>字和数之间的那张对照表。</div>
+    <div data-l="1"><b>码位 <span class="en" data-say="code point">code point</span></b>Unicode 给每个字的编号。</div>
+    <div data-l="1"><b>乱码 <span class="en" data-say="mojibake">mojibake</span></b>用错了编码表读出来的字。英文借的是日语词。</div>
+    <div data-l="2"><b>代理对 <span class="en" data-say="surrogate pair">surrogate pair</span></b>UTF-16 用两个单元表示一个大码位。</div>
+    <div data-l="3"><b>字素簇 <span class="en" data-say="grapheme cluster">grapheme cluster</span></b>用户眼里的“一个字”。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>文字就是查表：字换成编号，编号存成字节；表用错了就是乱码。</div>
+    <div><i>第二层带走</i>Unicode 管编号，UTF-8 管存法；UTF-8 兼容 ASCII、能自同步、没有字节序。</div>
+    <div><i>第三层带走</i>“一个字”至少有字节、码位、字素三种数法；字符串处理的 bug 多半出在数错了。</div>
+  </div>
+</section>

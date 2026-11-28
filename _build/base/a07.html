@@ -1,0 +1,202 @@
+<section class="chap" id="c6" data-vol="卷二 · 图和声音">
+  <div class="chead">
+    <div class="big">色</div>
+    <div>
+      <div class="no">第六章</div>
+      <h2>图和声音</h2>
+      <dl><dt>讲什么</dt><dd>像素和红绿蓝；分辨率；一张图多少字节；声音是振动，采样和量化；采样要多快（奈奎斯特）；压缩：游程、有损和无损；伽马、JPEG 和“不可能什么都压小”</dd><dt>装置</dt><dd>像素画板 · 采样器</dd></dl>
+      <div class="crs" data-c="组成 网络 物理"></div>
+      <div class="lvs"><a data-l="1" href="#c6-1">第一层 · 50 分钟</a><a data-l="2" href="#c6-2">第二层 · 50 分钟</a><a data-l="3" href="#c6-3">第三层 · 30 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>我截了一张屏幕的图，3 MB。这 3 MB 里装的是什么？</span></div>
+    <div class="l"><i class="j">舅</i><span>几百万个小方格的颜色。不过如果老老实实全存下来，要比 3 MB 大得多。今天看看图和声音怎样变成数，又怎样被“挤”小。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>用红、绿、蓝三个 0—255 的数写出一种颜色；算出一张没压缩的图要多少字节。</li>
+      <li><span class="lg lg1">一</span>说出“采样”和“量化”是什么；知道 CD 每秒采样 44100 次。</li>
+      <li><span class="lg lg2">二</span>算显存容量和带宽、音频数据率；用奈奎斯特定理和香农定理算信道的极限速率；说出有损和无损压缩的区别。</li>
+      <li><span class="lg lg3">三</span>讲出 JPEG 的几步；用鸽笼原理证明没有一种压缩能把所有文件都变小。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c6-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：字节、十六进制</span><span class="tm">约 50 分钟</span></div>
+    <div class="lyb">
+      <h3>屏幕是一张方格纸</h3>
+      <p>拿放大镜贴近屏幕看，会看到密密麻麻的小方格，每个方格只有一种颜色。这样的方格叫<b>像素</b>（<span class="en" data-say="pixel">pixel</span>，picture element 的缩写）。一张图片，就是一张填满了颜色的方格纸。方格有多少，叫<b>分辨率</b>：13 英寸的 MacBook Air M1 屏幕是横 2560 个、竖 1600 个，一共四百多万个像素。</p>
+      <div class="bridge" data-s="电" data-k="物理">
+        <h5>红、绿、蓝三种光</h5>
+        <p>我们的眼睛里有三种感光细胞，分别对红光、绿光、蓝光最敏感。所以只要用这三种光按不同的强弱混在一起，就能骗过眼睛，让它看到几乎任何颜色：红加绿是黄，红加蓝是品红，三种开到最亮是白，全关是黑。这和画画调颜料不一样：颜料越混越暗，光越混越亮。屏幕上每个像素里，其实都有红、绿、蓝三个更小的发光点。</p>
+      </div>
+      <p>每种光的强弱用一个字节表示，0 是不亮，255 是最亮。一个像素就是三个字节：(255, 136, 0) 是橙色。写成十六进制就是网页里常见的 <code>#FF8800</code>。三个字节一共能表示 256 × 256 × 256 = 16777216 种颜色，一千六百多万种。</p>
+
+      <div class="fig" id="pixFig">
+        <div class="fig-label">装置 · 第六章 · 一</div>
+        <h4>像素画板</h4>
+        <p class="how">拖动三个滑块调出颜色，点方格涂色（按住拖动可以连着涂）。右边是这幅画在内存里的样子：每个像素三个字节。下面算出它有多少字节，以及用“游程编码”（第二层）能省多少。</p>
+        <div class="pixwrap">
+          <div><div class="pixgrid" role="grid" aria-label="8 乘 8 的像素画板"></div>
+            <div class="row" style="margin-top:8px"><span class="swatch" style="width:34px;height:34px;border-radius:4px;border:1px solid var(--rule)"></span><code class="pixhex"></code></div>
+            <label class="lab">红 R：<b id="pxRO"></b></label><input type="range" id="pxR" min="0" max="255" value="224">
+            <label class="lab">绿 G：<b id="pxGO"></b></label><input type="range" id="pxG" min="0" max="255" value="96">
+            <label class="lab">蓝 B：<b id="pxBO"></b></label><input type="range" id="pxB" min="0" max="255" value="32">
+            <div class="btns"><button class="btn" data-x="clear">清空</button><button class="btn" data-x="smile">画个笑脸</button><button class="btn" data-x="fill">全涂成这个颜色</button></div>
+          </div>
+          <div class="hexv pixdump"></div>
+        </div>
+        <div class="kv"></div>
+      </div>
+
+      <p>算一算你的 Mac 屏幕：2560 × 1600 × 3 ≈ 1230 万字节，大约 12 MB。可是你截一张全屏的图，文件只有两三 MB，甚至更小。少掉的部分去哪儿了？被<b>压缩</b>了：图里有大片一样的颜色，可以用更短的写法记下来。“这一行接下来 500 个像素都是白的”，比把 500 个 (255, 255, 255) 一个一个写出来短得多。</p>
+
+      <h3>声音是空气在抖</h3>
+      <div class="bridge" data-s="电" data-k="物理">
+        <h5>振动、频率和响度</h5>
+        <p>敲一下桌子，桌面在抖，推着旁边的空气一疏一密地传开，传到耳朵里推动鼓膜，你就听到了声音。每秒抖多少次叫<b>频率</b>，单位赫兹（Hz）：抖得越快，声音越尖。抖得越厉害，声音越响。人耳大约能听到每秒 20 次到 20000 次的振动；年纪越大，能听到的最高频率越低。</p>
+      </div>
+      <p>麦克风把空气压力的变化变成电压的变化，画出来是一条弯弯曲曲的线。电脑存不了一条连续的线，只能每隔一小段时间量一次它有多高，记下一个数。这叫<b>采样</b>（<span class="en" data-say="sampling">sampling</span>）。每次量出来的高度也不能无限精确，只能归到某一档，这叫<b>量化</b>。</p>
+      <p>CD 的做法是：每秒采样 44100 次，每次用 16 位（65536 档）记高度，左右两个声道各记一份。一秒钟就是 44100 × 2 × 2 = 176400 字节，一首四分钟的歌约 42 MB。MP3、AAC 这些格式能把它压到几 MB，靠的是去掉人耳听不出来的部分。</p>
+
+      <div class="fig" id="sampFig">
+        <div class="fig-label">装置 · 第六章 · 二</div>
+        <h4>采样器</h4>
+        <p class="how">灰线是真实的声音（一个单纯的音）。红点是采样的时刻和量到的值，红色台阶是电脑“以为”的声音。调低采样率和位数，看台阶离灰线有多远；点“听”比较一下（先把音量调小）。</p>
+        <label class="lab">声音的频率：<b id="spFO"></b></label><input type="range" id="spF" min="1" max="12" value="3">
+        <label class="lab">每秒采样几次：<b id="spSO"></b></label><input type="range" id="spS" min="0" max="7" value="5">
+        <label class="lab">每次用几位：<b id="spBO"></b></label><input type="range" id="spB" min="1" max="8" value="3">
+        <svg viewBox="0 0 640 220" role="img" aria-label="声音波形和采样"></svg>
+        <div class="btns"><button class="btn pri" data-p="orig">听原声</button><button class="btn" data-p="samp">听采样后的</button></div>
+        <div class="say"></div>
+      </div>
+
+      <div class="try">
+        <div class="th"><b>量一量你的截图</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+          <ol class="steps">
+            <li>按 <kbd>⌘</kbd> + <kbd>⇧</kbd> + <kbd>3</kbd> 截一张全屏图，它会出现在桌面上。</li>
+            <li>在终端里看它有多大、有多少像素（把文件名换成你的截图的名字，可以直接把文件拖进终端窗口）：
+<pre class="sh" data-k="终端"><span class="p">% </span>ls -l ~/Desktop/*.png
+<span class="p">% </span>sips -g pixelWidth -g pixelHeight 截图文件名.png</pre></li>
+            <li>用宽 × 高 × 3 算出“没压缩”要多少字节，除以文件实际的字节数，就是压缩了多少倍。再截一张全是文字的网页、一张照片，比一比哪张压得更厉害，想想为什么。</li>
+          </ol>
+        </div>
+      </div>
+      <div class="task" data-id="base-t6a">
+        <div class="th"><b>调出三种颜色</b></div>
+        <div class="tb"><p>在像素画板里调出：黄色、紫色、灰色。写下它们的十六进制。想一想：灰色的三个数有什么共同点？</p></div>
+      </div>
+      <div class="pass" data-id="base-q6a">
+        <div class="qq" data-a="2"><p>屏幕上的颜色由哪三种光混出来？</p><ol><li>红、黄、蓝</li><li>黑、白、灰</li><li>红、绿、蓝</li></ol><p class="ex">光的三原色是红绿蓝，颜料才是红黄蓝。</p></div>
+        <div class="qq" data-in="#ffffff|ffffff|#fff"><p>白色的十六进制颜色是？</p><p class="ex">三种光都最亮：#FFFFFF。</p></div>
+        <div class="qq" data-in="300"><p>一张 10 × 10 像素、每像素 3 字节、没压缩的图，有多少字节？</p><p class="ex">10 × 10 × 3 = 300。</p></div>
+        <div class="qq" data-a="0"><p>每隔一段时间量一次声音的高度，这叫？</p><ol><li>采样</li><li>压缩</li><li>编码</li></ol><p class="ex">量高度归到某一档才叫量化。</p></div>
+        <div class="qq" data-in="44100"><p>CD 每秒采样多少次？</p><p class="ex">44100 次。</p></div>
+        <div class="qq" data-a="1"><p>屏幕截图的文件比“宽 × 高 × 3”小很多，主要是因为？</p><ol><li>截图丢了一半像素</li><li>压缩：一样的颜色用更短的写法记</li><li>Mac 只存黑白</li></ol><p class="ex">PNG 是无损压缩，一个像素也没丢。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c6-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 计组 I/O · 计网 物理层</span><span class="tm">约 50 分钟</span><span class="sum">显存容量和带宽；音频数据率；采样定理和混叠；奈奎斯特和香农的信道极限（第一章“分几档”的回声）；无损和有损压缩，游程编码。</span></div>
+    <div class="lyb">
+      <h3>显存的容量和带宽</h3>
+      <p>显示器显示的画面先放在<b>显示存储器</b>（帧缓冲）里。容量 = 分辨率 × 每像素位数（色深）÷ 8；如果要同时存好几帧（双缓冲），再乘帧数。带宽 = 容量 × 刷新率，表示每秒至少要从显存读出多少数据送给屏幕。考题常加一个条件，例如“显示器读显存的时间只占 50%”，那么实际需要的带宽要再乘 2。</p>
+      <p>色深和颜色数的关系：n 位能表示 2<sup>n</sup> 种颜色，所以“65536 色”是 16 位，“真彩色”是 24 位。</p>
+      <h3>音频的数据率</h3>
+      <p>数据率 = 采样频率 × 量化位数 × 声道数（单位比特每秒）。CD：44100 × 16 × 2 = 1411200 b/s，约 1411 kb/s。这就是为什么 128 kb/s 的 MP3 被说成“压缩了十倍左右”。</p>
+      <h3>采样要多快：奈奎斯特</h3>
+      <p><b>采样定理</b>：要从采样值无失真地恢复一个最高频率为 f<sub>max</sub> 的信号，采样频率必须大于 2f<sub>max</sub>。采样太慢，高频信号会伪装成一个低频信号，叫<b>混叠</b>。电影里飞转的车轮看上去在慢慢倒转，就是摄像机每秒 24 帧的采样跟不上车轮的转速。CD 选 44.1 kHz，正是要大于人耳上限 20 kHz 的两倍，再留一点余量给滤波器。第一层装置里，把频率调高、采样率调低，就能看到红台阶变成一个慢得多的波。</p>
+      <h3>信道的极限：第一章的回声</h3>
+      <p>网络里有同样的问题，只是方向反过来：一根线每秒最多能送多少比特？408 计算机网络的物理层有两个定理：</p>
+      <ul class="plain">
+        <li><b>奈奎斯特定理</b>（无噪声）：带宽为 W Hz 的理想低通信道，最多每秒传 2W 个码元；每个码元有 V 种状态（电平）时，极限数据率 = 2W log<sub>2</sub>V b/s。</li>
+        <li><b>香农定理</b>（有噪声）：信道容量 C = W log<sub>2</sub>(1 + S/N) b/s，S/N 是信噪比。信噪比常用分贝表示：dB = 10 log<sub>10</sub>(S/N)，30 dB 即 S/N = 1000。</li>
+      </ul>
+      <p>奈奎斯特说“电平分得越多越快”，香农说“噪声给分档的多少设了天花板”。这正是第一章“两档还是十档”的装置：没有噪声时，分十档每个信号带 3.32 比特；噪声一大，分多了就认不清。香农定理把这个直觉变成了一个精确的上限。</p>
+      <h3>压缩</h3>
+      <ul class="plain">
+        <li><b>无损压缩</b>：解压后一个比特都不差。游程编码（RLE）把连续重复的值写成“个数 + 值”；霍夫曼编码给常出现的符号短码、不常出现的长码（《链与树》讲）；ZIP、PNG 用的 DEFLATE 是“找重复出现过的片段，用‘往前多少、长多少’代替”加霍夫曼。文本、程序、表格只能用无损。</li>
+        <li><b>有损压缩</b>：丢掉人感觉不到（或不太在意）的信息，压缩比高得多。JPEG（照片）、MP3 / AAC（音乐）、H.264 / HEVC（视频）都是。反复有损压缩会越来越糊。</li>
+        <li>压缩比 = 原始大小 ÷ 压缩后大小。像素画板里的“游程编码”就是最简单的无损压缩：一大片一样的颜色压得很好，花花绿绿的图可能反而变大（每个像素都要多存一个“个数”）。</li>
+      </ul>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）某显示器分辨率 1920 × 1080，24 位真彩色，刷新率 60 Hz，采用双缓冲。求显存至少多大、显示需要的带宽是多少（读显存的时间只占总时间的 50%）？（2）3 分钟的立体声音频，采样频率 48 kHz、量化 24 位，不压缩要多少字节？（3）某信道带宽 4 kHz，信噪比 30 dB，若用 16 种电平传输，按奈奎斯特和香农分别算出的极限数据率是多少？实际上限是哪个？</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）一帧 1920 × 1080 × 3 = 6220800 字节 ≈ 5.93 MiB，双缓冲 ≈ 11.9 MiB，所以至少 12 MB 量级（按题目给的选项取 16 MB 这类 2 的幂）。带宽：每秒要读 60 帧（只读正在显示的那一帧）= 6220800 × 60 ≈ 373 MB/s；只占一半时间，需要约 746 MB/s。</p>
+          <p>（2）48000 × 24 × 2 × 180 ÷ 8 = 51840000 字节，约 51.8 MB（约 49.4 MiB）。</p>
+          <p>（3）奈奎斯特：2 × 4000 × log<sub>2</sub>16 = 32 kb/s。香农：S/N = 1000，C = 4000 × log<sub>2</sub>1001 ≈ 4000 × 9.97 ≈ 39.9 kb/s。实际上限取两者较小的：32 kb/s（这时限制来自电平数；增加电平最多也只能逼近 39.9 kb/s）。</p>
+        </div></details>
+      </div>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>PNG 和 JPEG 分别适合什么图？</p>
+        <details><summary>看要点</summary><div><p>PNG 无损，支持透明，适合截图、图标、文字、线条图（大片同色、边缘锐利）；JPEG 有损，适合照片（颜色渐变多、人眼不在意细小误差），在文字和锐利边缘处会出现“振铃”毛刺。照片存 PNG 文件会很大，截图存 JPEG 会糊。现代还有 WebP、AVIF、HEIC（iPhone 默认）等兼顾两者的格式。</p></div></details>
+      </div>
+      <div class="pass" data-id="base-q6b">
+        <div class="qq" data-in="16"><p>“65536 色”需要每像素几位？</p><p class="ex">2<sup>16</sup> = 65536。</p></div>
+        <div class="qq" data-in="1411200"><p>CD 音频的数据率是多少 b/s？（44.1 kHz，16 位，双声道）</p><p class="ex">44100 × 16 × 2 = 1411200。</p></div>
+        <div class="qq" data-a="1"><p>信号最高频率 8 kHz，要无失真恢复，采样频率至少应大于？</p><ol><li>8 kHz</li><li>16 kHz</li><li>4 kHz</li></ol><p class="ex">大于两倍最高频率。</p></div>
+        <div class="qq" data-in="24|24kb/s|24kbps"><p>带宽 3 kHz 的无噪声信道，用 16 种电平，极限数据率是多少 kb/s？</p><p class="ex">2 × 3000 × 4 = 24000 b/s。</p></div>
+        <div class="qq" data-in="1000"><p>信噪比 30 dB 对应的 S/N 是多少？</p><p class="ex">10 log<sub>10</sub>(S/N) = 30，S/N = 10<sup>3</sup>。</p></div>
+        <div class="qq" data-a="0"><p>下面哪种数据只能用无损压缩？</p><ol><li>程序文件</li><li>照片</li><li>电影</li></ol><p class="ex">程序错一个比特都可能跑不起来。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c6-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">颜色科学、编解码、证明</span><span class="tm">约 30 分钟</span><span class="sum">像素值和亮度不是正比（伽马）；JPEG 的五步；人耳的掩蔽效应；用鸽笼原理证明压缩的极限；字体是怎样画成像素的。</span></div>
+    <div class="lyb">
+      <h3>128 不是一半亮</h3>
+      <p>像素值 128 发出的光，并不是 255 的一半，而只有大约五分之一。原因是人眼对暗处的变化更敏感，sRGB 标准用一条约等于 2.2 次方的曲线（伽马）分配 256 档，让更多的档留给暗部。后果：如果直接拿像素值做平均（比如缩小图片、模糊、混合两种颜色），结果会偏暗，边缘出现灰黑的边。正确做法是先把像素值换算到“线性光”空间，算完再换回来。Mac 的屏幕和照片还常用比 sRGB 更宽的 Display P3 色域，同样的 (255, 0, 0) 在两种色域里是两种红。</p>
+      <h3>JPEG 的五步</h3>
+      <ol class="plain">
+        <li>把 RGB 换成亮度 Y 和两个色差 Cb、Cr。</li>
+        <li>人眼对颜色的细节远不如对明暗敏感，所以色差横竖各砍一半分辨率（4:2:0 子采样），数据一下少了一半。</li>
+        <li>把图切成 8 × 8 的小块，每块做一次离散余弦变换（DCT），把“64 个像素”变成“64 个由平缓到剧烈的花纹的强弱”。</li>
+        <li><b>量化</b>：用一张表把每个系数除一下再取整，剧烈花纹（高频）除得狠，大多变成 0。只有这一步是有损的，“画质”滑块调的就是这张表。</li>
+        <li>按“之”字形把系数排成一串（让一长串 0 挨在一起），用游程编码加霍夫曼编码无损压缩。</li>
+      </ol>
+      <p>MP3 和 AAC 的思路类似，换成了“心理声学模型”：响的声音会把频率相近的弱声音“盖住”（掩蔽效应），被盖住的部分不用存。</p>
+      <h3>没有一种压缩能把所有文件都变小</h3>
+      <p>证明只要鸽笼原理：长度恰好为 n 比特的文件有 2<sup>n</sup> 个；长度小于 n 比特的文件一共只有 2<sup>0</sup> + 2<sup>1</sup> + … + 2<sup>n−1</sup> = 2<sup>n</sup> − 1 个。如果一种无损压缩把每个 n 比特的文件都变短，就要把 2<sup>n</sup> 个文件放进 2<sup>n</sup> − 1 个“笼子”，必有两个文件压成同一个结果，解压时就分不清了。所以任何无损压缩都必然让一些文件变大（好的压缩器会加一个标记位，碰到压不动的就原样存，最多大一点点）。能压，是因为现实中的数据有规律、熵低；随机数据和已经压缩过的数据压不动。广告说“任何文件都能压缩 90%”的，一定是骗局。</p>
+      <h3>字体怎样变成像素</h3>
+      <p>第零章里“备忘录找出 a 的形状”：字体文件里存的不是像素，而是轮廓线，用贝塞尔曲线描述（TrueType 用二次曲线，PostScript 系的用三次曲线）。显示时要“光栅化”：算出哪些像素落在轮廓里面。边缘上只盖住一部分的像素，涂成介于字色和底色之间的颜色，叫抗锯齿。以前 macOS 还会分别控制每个像素里的红绿蓝小点来做“亚像素抗锯齿”，让字更锐利；2018 年的 macOS Mojave 默认关掉了它，因为高分辨率的 Retina 屏幕已经不需要了。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>C. E. Shannon, “Communication in the Presence of Noise”, 1949（采样定理与信道容量）。</li>
+          <li>ITU-T T.81（JPEG 标准）；Wallace, “The JPEG Still Picture Compression Standard”, 1991。</li>
+          <li>IEC 61966-2-1（sRGB）；Charles Poynton 关于伽马的 FAQ。</li>
+        </ul>
+      </div>
+      <div class="pass" data-id="base-q6c">
+        <div class="qq" data-a="2"><p>JPEG 的哪一步是有损的？</p><ol><li>DCT 变换</li><li>霍夫曼编码</li><li>量化</li></ol><p class="ex">DCT 和霍夫曼都可逆，量化取整才丢信息（色度子采样也丢，但那一步严格说在变换之前）。</p></div>
+        <div class="qq" data-in="7"><p>长度小于 3 比特的二进制串（含空串）一共有几个？</p><p class="ex">1 + 2 + 4 = 7 = 2<sup>3</sup> − 1，比长度为 3 的 8 个少一个。</p></div>
+        <div class="qq" data-a="1"><p>直接对 sRGB 像素值求平均来缩小图片，结果通常会？</p><ol><li>偏亮</li><li>偏暗</li><li>完全正确</li></ol><p class="ex">像素值和光强不是正比，要先换算到线性空间。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div data-l="1"><b>像素 <span class="en" data-say="pixel">pixel</span></b>图片里一个只有一种颜色的小方格。</div>
+    <div data-l="1"><b>分辨率 <span class="en" data-say="resolution">resolution</span></b>横竖各有多少像素。</div>
+    <div data-l="1"><b>采样 <span class="en" data-say="sampling">sampling</span></b>每隔一段时间量一次。</div>
+    <div data-l="1"><b>压缩 <span class="en" data-say="compression">compression</span></b>用更短的写法存同样（或差不多）的东西。</div>
+    <div data-l="2"><b>混叠 <span class="en" data-say="aliasing">aliasing</span></b>采样太慢，高频装成了低频。</div>
+    <div data-l="2"><b>信噪比 <span class="en" data-say="signal to noise ratio">SNR</span></b>信号和噪声的功率之比。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>图是方格纸，每格三个字节；声音是每秒量几万次的高度。</div>
+    <div><i>第二层带走</i>采样要快过两倍最高频率；奈奎斯特管电平数，香农管噪声给的天花板。</div>
+    <div><i>第三层带走</i>压缩靠的是规律；随机的东西谁也压不小。</div>
+  </div>
+</section>

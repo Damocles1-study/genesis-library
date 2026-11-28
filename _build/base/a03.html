@@ -1,0 +1,222 @@
+<section class="chap" id="c2" data-vol="卷一 · 一个字节">
+  <div class="chead">
+    <div class="big">字</div>
+    <div>
+      <div class="no">第二章</div>
+      <h2>一个字节</h2>
+      <dl><dt>讲什么</dt><dd>八个比特一捆；十六进制是给人看的二进制；文件就是一串字节；KB 和 KiB；大端和小端；文件开头的“魔数”</dd><dt>装置</dt><dd>十六进制查看器 · 大端还是小端</dd></dl>
+      <div class="crs" data-c="组成 系统"></div>
+      <div class="lvs"><a data-l="1" href="#c2-1">第一层 · 45 分钟</a><a data-l="2" href="#c2-2">第二层 · 40 分钟</a><a data-l="3" href="#c2-3">第三层 · 30 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>第零章里内存那个数 8589934592，好长。</span></div>
+    <div class="l"><i class="j">舅</i><span>它单位是字节。今天把它变短：先学一种给人看的写法，再拿放大镜看看一个文件里到底装着什么。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>说出一个字节有几个比特、能表示几种情况；在二进制和十六进制之间换算。</li>
+      <li><span class="lg lg1">一</span>用 <code>xxd</code> 看一个文件的每一个字节，知道换行也是一个字节。</li>
+      <li><span class="lg lg2">二</span>分清 KB 和 KiB、比特每秒和字节每秒；画出一个数在大端和小端机器内存里的样子。</li>
+      <li><span class="lg lg3">三</span>用文件开头的魔数认出 PNG、ZIP、Mach-O；讲出 PNG 魔数每个字节的用意。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c2-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：二进制（第一章）</span><span class="tm">约 45 分钟</span></div>
+    <div class="lyb">
+      <h3>八个比特一捆</h3>
+      <p>一个比特太小，干不了什么事。电脑通常把<b>八个比特捆成一捆</b>来用，这一捆叫一个<b>字节</b>（<span class="en" data-say="byte">byte</span>）。一个字节有 2<sup>8</sup> = 256 种样子，可以表示 0 到 255 的一个数，或者一个英文字母、一个数字、一个标点（第五章讲怎样表示）。</p>
+      <p>为什么是八个？早年的电脑各有各的捆法，六个、七个、九个都有。1964 年，IBM 推出 System/360 系列电脑，规定一个字节就是 8 位；这个系列卖得极好，大家就都跟着用了。8 还是 2 的整数次方，切成两半是 4 位，正好配十六进制。</p>
+      <h3>十六进制：给人看的二进制</h3>
+      <p>二进制对电脑方便，对人眼太累：<code>1011010011110001</code>，数都数不清。于是人们每 4 位分一组，每组换成一个符号。4 位有 16 种样子，0 到 9 不够用，就借 A、B、C、D、E、F 表示 10 到 15。这就是<b>十六进制</b>（<span class="en" data-say="hexadecimal">hexadecimal</span>，常简称 hex）。</p>
+      <div class="tbl"><table class="t c" style="min-width:520px"><tr><th>二进制</th><td class="m">0000</td><td class="m">0001</td><td class="m">…</td><td class="m">1001</td><td class="m">1010</td><td class="m">1011</td><td class="m">1100</td><td class="m">1101</td><td class="m">1110</td><td class="m">1111</td></tr><tr><th>十六进制</th><td class="m">0</td><td class="m">1</td><td>…</td><td class="m">9</td><td class="m">A</td><td class="m">B</td><td class="m">C</td><td class="m">D</td><td class="m">E</td><td class="m">F</td></tr><tr><th>十进制</th><td>0</td><td>1</td><td>…</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td></tr></table></div>
+      <p>上面那串就变成：<code>1011 0100 1111 0001</code> → <code>B4F1</code>。一个字节正好是<b>两个十六进制数字</b>，从 <code>00</code> 到 <code>FF</code>。为了不和十进制搞混，程序里写十六进制常在前面加 <code>0x</code>：<code>0xFF</code> 就是 255。网页上的颜色 <code>#FF8800</code> 也是十六进制，三个字节分别是红、绿、蓝（第六章）。</p>
+      <p>只要背熟 A 到 F 是 10 到 15，再记住 8、4、2、1 四个位权，二进制和十六进制就能心算互换：<code>C</code> 是 12 = 8 + 4，所以是 <code>1100</code>。</p>
+
+      <h3>文件就是一串字节</h3>
+      <p>你电脑里的每一个文件，照片、歌、Word 文档、游戏存档，打开来看，都只是一长串字节。区别只在于怎样“读”这串字节：当成文字读，当成像素读，还是当成声音读。下面亲眼看看。</p>
+      <div class="try">
+        <div class="th"><b>拿放大镜看一个文件</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+          <ol class="steps">
+            <li>在终端里进入练习文件夹，建一个只写着 hello 的文件：
+<pre class="sh" data-k="终端"><span class="p">% </span>cd ~/base
+<span class="p">% </span>echo hello &gt; hi.txt
+<span class="p">% </span>ls -l hi.txt
+<span class="o">-rw-r--r--  1 you  staff  6 11 28 20:00 hi.txt</span></pre>
+            中间那个 <code>6</code> 是文件大小：6 个字节。可是 hello 只有 5 个字母？</li>
+            <li>用 <code>xxd</code> 看每一个字节：
+<pre class="sh" data-k="终端"><span class="p">% </span>xxd hi.txt
+<span class="o">00000000: 6865 6c6c 6f0a                           hello.</span></pre>
+            最左边 <code>00000000</code> 是“从第几个字节开始”；中间每两个十六进制数字是一个字节：<code>68</code> 是 h，<code>65</code> 是 e，<code>6c</code> 是 l……最后多出来的 <code>0a</code> 就是第六个字节：<b>换行</b>。<code>echo</code> 在末尾自动加了一个换行。右边是把这些字节当成文字的样子，认不出的字节显示成点。</li>
+            <li>再试一个：<code>echo -n hello | xxd</code>（<code>-n</code> 表示不加换行），这回只有 5 个字节。</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="fig" id="hexFig">
+        <div class="fig-label">装置 · 第二章 · 一</div>
+        <h4>十六进制查看器</h4>
+        <p class="how">和 <code>xxd</code> 一样：左边是位置，中间是字节，右边是当成文字的样子。在框里打字（中文也可以），或者看看几个示例文件的开头，或者选一个你电脑上的小文件。文件只在你的浏览器里读，不会上传到任何地方。</p>
+        <div class="btns" data-m></div>
+        <textarea id="hexIn" rows="2" aria-label="要看的文字">hello 你好</textarea>
+        <div class="row" style="margin:6px 0"><label class="btn" style="cursor:pointer">选一个文件<input type="file" id="hexFile" style="display:none"></label><span class="dim" id="hexInfo" style="font-size:13px"></span></div>
+        <div class="hexv" id="hexOut"></div>
+        <div class="say"></div>
+      </div>
+
+      <h3>KB、MB、GB</h3>
+      <p>字节多了要用大单位。按国际单位制，千（K）是 1000，兆（M）是一百万，吉（G）是十亿。可是电脑喜欢 2 的整数次方，2<sup>10</sup> = 1024 正好接近 1000，所以很多年里人们也把 1024 字节叫 1 KB。于是同一个“KB”有两种意思，至今还在打架：</p>
+      <ul class="plain">
+        <li>内存一般按 1024 算：你的 8 GB 内存 = 8 × 1024 × 1024 × 1024 = 8589934592 字节。第零章那个怪数就是这么来的。</li>
+        <li>硬盘厂商按 1000 算：标着 512 GB 的硬盘，是 512000000000 字节左右。</li>
+        <li>Mac 的“关于本机”和访达，从 2009 年起也改成按 1000 算，所以和硬盘盒子上写的对得上；Windows 按 1024 算却仍然写 GB，于是同一块硬盘在 Windows 上显得“缩水”了。</li>
+      </ul>
+      <div class="task" data-id="base-t2a">
+        <div class="th"><b>两件小侦探活</b></div>
+        <div class="tb"><ol><li>回到第零章记下的内存字节数，除以 1024 三次，看看是不是正好等于你的内存 GB 数。</li><li>在终端里输入 <code>echo -n 你好 | xxd</code>，数一数两个汉字一共占几个字节。第五章揭晓为什么。</li></ol></div>
+      </div>
+      <div class="pass" data-id="base-q2a">
+        <div class="qq" data-in="8"><p>一个字节有几个比特？</p><p class="ex">8 个。</p></div>
+        <div class="qq" data-in="255"><p><code>0xFF</code> 是十进制的几？</p><p class="ex">F 是 15，15 × 16 + 15 = 255，也就是一个字节最大的数。</p></div>
+        <div class="qq" data-in="a5|0xa5"><p>二进制 <code>1010 0101</code> 写成十六进制是？</p><p class="ex">1010 是 A（10），0101 是 5：A5。</p></div>
+        <div class="qq" data-in="1100|00001100"><p>十六进制 <code>C</code> 写成 4 位二进制是？</p><p class="ex">C 是 12 = 8 + 4：1100。</p></div>
+        <div class="qq" data-a="1"><p>文件里只写了 <code>hi</code> 两个字母，用 <code>echo hi &gt; a.txt</code> 建的。文件有几个字节？</p><ol><li>2</li><li>3</li><li>16</li></ol><p class="ex">h、i，再加 echo 自动补的换行 0a，一共 3 个字节。</p></div>
+        <div class="qq" data-a="0"><p>为什么标着 512 GB 的硬盘，在 Windows 里显示不到 500 GB？</p><ol><li>厂商按 1000 算，Windows 按 1024 算</li><li>硬盘坏了一部分</li><li>Windows 占掉了</li></ol><p class="ex">512×10<sup>9</sup> ÷ 2<sup>30</sup> ≈ 476.8，Windows 把这个数写成“GB”。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c2-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 计组 · 存储单位、字节序、编址</span><span class="tm">约 40 分钟</span><span class="sum">KB 和 KiB、比特每秒和字节每秒；字、字长、按字节编址；大端和小端；判断本机字节序。</span></div>
+    <div class="lyb">
+      <h3>两套前缀和两种“每秒”</h3>
+      <p>1998 年国际电工委员会（IEC）定了一套二进制前缀：KiB = 2<sup>10</sup>、MiB = 2<sup>20</sup>、GiB = 2<sup>30</sup>、TiB = 2<sup>40</sup>，而 KB、MB 回归 10<sup>3</sup>、10<sup>6</sup>。Linux 的不少工具和 macOS 的部分命令会写 KiB、Gi，教材和考题却大多还写 KB 并按 2<sup>10</sup> 算。做题时的习惯：<b>说容量（主存、Cache、页）按 2 的幂，说速率（主频、带宽、传输率）按 10 的幂</b>，题目另有说明的从说明。</p>
+      <p>还要分清小写 b 和大写 B：b 是比特，B 是字节。家里宽带“100 Mbps”是每秒 100×10<sup>6</sup> 比特，除以 8 才是 12.5 MB/s，这就是下载速度看起来只有十几兆的原因。</p>
+      <h3>字、字长、编址</h3>
+      <p><b>字长</b>是 CPU 一次能处理的二进制位数，通常等于通用寄存器的宽度。Apple Silicon 是 64 位，寄存器 64 位，地址也按 64 位算。<b>字</b>的长度没有统一规定：408 题里一个“字”可能是 16 位或 32 位，要看题目；x86 的老传统里 word 是 16 位；ARM 的 word 是 32 位。</p>
+      <p>现代机器几乎都<b>按字节编址</b>：每个地址对应一个字节，一个 4 字节的整数占四个连续地址，它的“地址”指最小的那个。按字编址的机器（每个地址一个字）在考题里也会出现，换算时注意：容量 ÷ 编址单位 = 地址个数，log<sub>2</sub>(地址个数) = 地址位数。</p>
+      <h3>大端和小端</h3>
+      <p>一个多字节的数放进按字节编址的内存，先放哪头？0x12345678 存在地址 0x100 开始的四个字节里：</p>
+      <ul class="plain">
+        <li><b>大端</b>（big-endian）：高位字节放低地址。0x100 → 12，0x101 → 34，0x102 → 56，0x103 → 78。像人写数字一样“从大头开始”。网络协议规定在线上传输时用大端，所以大端也叫“网络字节序”。</li>
+        <li><b>小端</b>（little-endian）：低位字节放低地址。0x100 → 78，0x101 → 56，0x102 → 34，0x103 → 12。x86 和 Apple Silicon（ARM 在 macOS 下运行于小端模式）都是小端。</li>
+      </ul>
+      <p>字节序只影响“多字节的数在内存里的排法”，不影响一个字节内部的比特顺序，也不影响字符串（字符串本来就是一个字节一个字节按顺序放的）。</p>
+      <div class="fig" id="endianFig">
+        <div class="fig-label">装置 · 第二章 · 二</div>
+        <h4>大端还是小端</h4>
+        <p class="how">输入一个十六进制数，选它占几个字节，看它在两种机器的内存里怎样排。下面是同一串字节被“读错字节序”时会变成什么数。</p>
+        <div class="row"><input type="text" id="enIn" value="12345678" style="flex:1 1 10em;font-family:var(--f-mono)" aria-label="十六进制数"><select id="enW" style="flex:0 0 7em" aria-label="几个字节"><option value="2">2 字节</option><option value="4" selected>4 字节</option><option value="8">8 字节</option></select><input type="text" id="enA" value="0x100" style="flex:0 0 6em;font-family:var(--f-mono)" aria-label="起始地址"></div>
+        <div class="endian scroll-x"></div>
+        <div class="say"></div>
+      </div>
+      <div class="try">
+        <div class="th"><b>问问本机是哪一端</b><span class="tm">5 分钟</span></div>
+        <div class="tb">
+<pre class="sh" data-k="python3"><span class="p">&gt;&gt;&gt; </span>import sys
+<span class="p">&gt;&gt;&gt; </span>sys.byteorder
+<span class="o">'little'</span>
+<span class="p">&gt;&gt;&gt; </span>(0x12345678).to_bytes(4, 'little').hex(' ')
+<span class="o">'78 56 34 12'</span>
+<span class="p">&gt;&gt;&gt; </span>(0x12345678).to_bytes(4, 'big').hex(' ')
+<span class="o">'12 34 56 78'</span>
+<span class="p">&gt;&gt;&gt; </span>int.from_bytes(bytes([0x78, 0x56, 0x34, 0x12]), 'big') == 0x78563412
+<span class="o">True</span></pre>
+          <p>第三部学了 C 以后，还会用指针直接看一个 int 的第一个字节是多少。</p>
+        </div>
+      </div>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>某计算机按字节编址、采用小端方式。一个 32 位整数 x = 0xA1B2C3D4 存放在地址 0x2000 开始的单元中，一个 16 位整数 y = 0x00FF 紧随其后存放。问：（1）地址 0x2001 中的字节是什么？（2）地址 0x2004 中的字节是什么？（3）如果改成大端，这两个地址中分别是什么？</p>
+        <details><summary>看解答</summary><div>
+          <p>小端低位在低地址：0x2000 D4，0x2001 C3，0x2002 B2，0x2003 A1；y 从 0x2004 开始：0x2004 FF，0x2005 00。所以（1）C3，（2）FF。</p>
+          <p>大端：0x2000 A1，0x2001 B2，0x2002 C3，0x2003 D4，0x2004 00，0x2005 FF。（3）B2 和 00。</p>
+        </div></details>
+      </div>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>怎样用 C 判断本机是大端还是小端？网络编程里为什么要 htonl？</p>
+        <details><summary>看要点</summary><div>
+          <pre class="code" data-k="C">unsigned int x = 1;
+if (*(unsigned char *)&amp;x == 1) puts("little"); else puts("big");</pre>
+          <p>取 x 的地址，当成指向单个字节的指针，看最低地址那个字节：是 1 说明低位在低地址，小端。（也可以用 union。）网络协议规定多字节字段用大端传输，主机可能是小端，所以发送前用 htonl / htons（host to network long / short）转换，接收后用 ntohl / ntohs 转回来；在大端主机上它们什么也不做。</p>
+        </div></details>
+      </div>
+      <div class="pass" data-id="base-q2b">
+        <div class="qq" data-in="c3|0xc3"><p>小端机器，0xA1B2C3D4 存在 0x10 开始的四个字节，地址 0x11 的字节是？（只写两位十六进制）</p><p class="ex">小端：0x10 D4，0x11 C3。</p></div>
+        <div class="qq" data-in="12.5"><p>100 Mbps 的网络，理想情况下每秒能传多少 MB（按 10<sup>6</sup>）？</p><p class="ex">100 ÷ 8 = 12.5。</p></div>
+        <div class="qq" data-a="2"><p>“网络字节序”指的是？</p><ol><li>小端</li><li>随机</li><li>大端</li></ol><p class="ex">网络协议规定用大端。</p></div>
+        <div class="qq" data-in="20"><p>主存容量 1 MB，按字节编址，地址至少要几位？</p><p class="ex">1 MB = 2<sup>20</sup> 字节，2<sup>20</sup> 个地址，20 位。</p></div>
+        <div class="qq" data-in="19"><p>同样 1 MB 主存，字长 16 位、按字编址，地址至少几位？</p><p class="ex">一个地址对应 2 字节，地址个数 2<sup>20</sup> ÷ 2 = 2<sup>19</sup>，19 位。</p></div>
+        <div class="qq" data-a="1"><p>字符串 "AB" 在大端和小端机器的内存里排列一样吗？</p><ol><li>不一样，小端会倒过来</li><li>一样，字符串是一个字节一个字节按顺序放的</li></ol><p class="ex">字节序只管一个多字节的数内部怎样排。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c2-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">文件格式、词源</span><span class="tm">约 30 分钟</span><span class="sum">魔数：PNG、ZIP、ELF、Mach-O；PNG 那八个字节各防什么；cafebabe；“字节”和“端”这两个词的来历。</span></div>
+    <div class="lyb">
+      <h3>文件开头的魔数</h3>
+      <p>既然文件都是一串字节，程序怎样知道一个文件是图片还是压缩包？靠后缀名（.png）只是约定，随便就能改。更靠得住的是文件开头的几个固定字节，叫<b>魔数</b>（magic number）。<code>file</code> 命令就是查一张魔数表来认文件的。</p>
+      <div class="tbl"><table class="t"><tr><th>格式</th><th>开头的字节</th><th>备注</th></tr>
+        <tr><td>PNG</td><td class="m">89 50 4E 47 0D 0A 1A 0A</td><td>中间三个是 “PNG”</td></tr>
+        <tr><td>JPEG</td><td class="m">FF D8 FF</td><td></td></tr>
+        <tr><td>ZIP</td><td class="m">50 4B 03 04</td><td>“PK”，作者 Phil Katz 的缩写；.docx .xlsx .jar 其实都是 ZIP</td></tr>
+        <tr><td>PDF</td><td class="m">25 50 44 46</td><td>“%PDF”</td></tr>
+        <tr><td>ELF（Linux 程序）</td><td class="m">7F 45 4C 46</td><td>0x7F 加 “ELF”</td></tr>
+        <tr><td>Mach-O 64 位（Mac 程序）</td><td class="m">CF FA ED FE</td><td>就是小端写下的 0xFEEDFACF</td></tr>
+        <tr><td>通用二进制（Mac）</td><td class="m">CA FE BA BE</td><td>一个文件里装着几种处理器的程序；Java 的 .class 文件也用这个魔数</td></tr>
+      </table></div>
+      <p>PNG 那八个字节是精心设计的：第一个字节 0x89 最高位是 1，如果文件经过只能传 7 位的老式通道，这一位被抹掉，一眼就能发现；接着的 “PNG” 让人用文本编辑器打开也认得出；<code>0D 0A</code>（回车换行）和后面单独的 <code>0A</code>，用来发现传输途中换行被自动转换过；<code>1A</code> 在老的 DOS 里表示“文件结束”，用 type 命令显示 PNG 时会在这里停下，不会把乱码刷满屏幕。</p>
+      <div class="try">
+        <div class="th"><b>认几个文件</b><span class="tm">5 分钟</span></div>
+        <div class="tb">
+<pre class="sh" data-k="终端"><span class="p">% </span>file /bin/ls
+<span class="o">/bin/ls: Mach-O universal binary with 2 architectures: …</span>
+<span class="p">% </span>xxd -l 16 /bin/ls
+<span class="o">00000000: cafe babe 0000 0002 …</span>
+<span class="p">% </span>cp hi.txt fake.png &amp;&amp; file fake.png
+<span class="o">fake.png: ASCII text</span></pre>
+          <p><code>-l 16</code> 只看前 16 个字节。<code>/bin/ls</code> 是一个通用二进制，开头是大端写的 0xCAFEBABE，后面的 2 表示里面装了两种处理器的版本（英特尔和 Apple Silicon）。把文本文件改名叫 fake.png 骗不过 <code>file</code>。</p>
+        </div>
+      </div>
+      <h3>两个词的来历</h3>
+      <p>“byte”是 IBM 的维尔纳·布赫霍尔茨 1956 年在设计 Stretch 计算机时起的，故意把 bite（咬一口）改拼成 byte，免得和 bit 看错。那时一个 byte 的位数还不固定。正因为 byte 曾经不一定是 8 位，网络标准里至今用 <b>octet</b>（八位组）来指“正好 8 位”。</p>
+      <p>“大端、小端”出自《格列佛游记》：小人国为吃鸡蛋该先敲大头还是小头打了一场仗。1980 年，丹尼·科恩写了一篇《论圣战，并呼吁和平》，借这个典故讽刺工程师为字节序吵个不停，这两个词就这样留了下来。这件事本身也是一个教训：两种做法各有道理时，重要的不是谁对，而是大家约定好一种（网络字节序）。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>PNG 规范（W3C / ISO 15948）中 “PNG file signature” 一节的设计说明。</li>
+          <li>Danny Cohen, “On Holy Wars and a Plea for Peace”, IEN 137, 1980。</li>
+          <li>macOS 上 <code>man file</code>、<code>man xxd</code>；<code>/usr/include/mach-o/loader.h</code> 和 <code>fat.h</code> 里定义了 Mach-O 的魔数（装了命令行工具后，可在 <code>xcrun --show-sdk-path</code> 给出的目录下找到）。</li>
+        </ul>
+      </div>
+      <div class="pass" data-id="base-q2c">
+        <div class="qq" data-a="1"><p>.docx 文件用 <code>xxd</code> 看开头，最可能是？</p><ol><li>25 50 44 46</li><li>50 4B 03 04</li><li>89 50 4E 47</li></ol><p class="ex">.docx 是一个 ZIP 压缩包，里面装着一堆 XML 文件。</p></div>
+        <div class="qq" data-a="0"><p>PNG 魔数第一个字节是 0x89 而不是普通字母，主要为了？</p><ol><li>发现文件被只能传 7 位的通道破坏</li><li>让文件更小</li><li>表示图片的宽度</li></ol><p class="ex">0x89 最高位是 1，被抹成 0 就能发现。</p></div>
+        <div class="qq" data-in="octet"><p>网络标准里，“正好 8 位”用哪个英文词？</p><p class="ex">octet，因为早年的 byte 不一定是 8 位。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div data-l="1"><b>字节 <span class="en" data-say="byte">byte</span></b>8 个比特一捆，最常用的单位。</div>
+    <div data-l="1"><b>十六进制 <span class="en" data-say="hexadecimal">hexadecimal</span></b>每 4 位写成一个 0—F 的符号。</div>
+    <div data-l="1"><b>文件 <span class="en" data-say="file">file</span></b>存在硬盘上的一串字节，加一个名字。</div>
+    <div data-l="2"><b>字节序 <span class="en" data-say="endianness">endianness</span></b>多字节的数先放高位还是低位。</div>
+    <div data-l="2"><b>字长 <span class="en" data-say="word size">word size</span></b>CPU 一次处理的位数。</div>
+    <div data-l="3"><b>魔数 <span class="en" data-say="magic number">magic number</span></b>文件开头用来认格式的固定字节。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>8 比特一字节，一字节两个十六进制数字；文件就是一串字节。</div>
+    <div><i>第二层带走</i>容量按 2 的幂、速率按 10 的幂；小端低位在低地址，网络用大端。</div>
+    <div><i>第三层带走</i>后缀名是约定，魔数才是证据；约定好一种，比争论哪种对更重要。</div>
+  </div>
+</section>

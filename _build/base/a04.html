@@ -1,0 +1,240 @@
+<section class="chap" id="c3" data-vol="卷一 · 负数">
+  <div class="chead">
+    <div class="big">负</div>
+    <div>
+      <div class="no">第三章</div>
+      <h2>负数</h2>
+      <dl><dt>讲什么</dt><dd>只有 0 和 1，负号写在哪儿；钟面和“模”；补码：取反加一；溢出；原码反码补码移码；标志位和溢出判断；C 语言里有符号溢出为什么危险</dd><dt>装置</dt><dd>四位的钟面 · 八位加法器和标志位</dd></dl>
+      <div class="crs" data-c="组成 数学"></div>
+      <div class="lvs"><a data-l="1" href="#c3-1">第一层 · 50 分钟</a><a data-l="2" href="#c3-2">第二层 · 60 分钟</a><a data-l="3" href="#c3-3">第三层 · 40 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>八个开关只能表示 0 到 255。可是游戏里坐标有负数，y 能到 −64，那是怎么存的？</span></div>
+    <div class="l"><i class="j">舅</i><span>电脑里没有负号，只有 0 和 1。今天要用一个钟，把负数“藏”进正数里。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>用钟面讲清楚“往回拨 3 格等于往前拨 9 格”；用“取反加一”写出一个负数的补码。</li>
+      <li><span class="lg lg1">一</span>说出 8 位补码能表示的范围，知道加过头会“溢出”。</li>
+      <li><span class="lg lg2">二</span>写出原码、反码、补码、移码及它们的范围；用三种方法判断溢出；读懂 ZF、SF、CF、OF。</li>
+      <li><span class="lg lg3">三</span>说明 C 里无符号溢出和有符号溢出的区别；写出不会溢出的二分查找中点。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c3-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：二进制（第一章）</span><span class="tm">约 50 分钟</span></div>
+    <div class="lyb">
+      <h3>最直接的办法，和它的麻烦</h3>
+      <p>最容易想到的：拿出最左边一位当“符号”，0 表示正，1 表示负，剩下的位写大小。8 位里，<code>0000 0011</code> 是 +3，<code>1000 0011</code> 是 −3。这叫<b>原码</b>。</p>
+      <p>它有两个麻烦。第一，<code>0000 0000</code> 是 +0，<code>1000 0000</code> 是 −0，一个零有两种写法，比较“等不等于零”时很别扭。第二，做加法前得先看符号：同号就加，异号就要比大小、大的减小的、再决定结果的符号。电路要为这些情况各造一套，又大又慢。有没有办法让<b>减法也只用加法器</b>？</p>
+
+      <h3>钟面的秘密</h3>
+      <p>墙上的钟现在指着 5 点。要往回拨 3 小时，可以逆着拨 3 格；也可以顺着拨 9 格，同样到 2 点。在钟面上，<b>减 3 和加 9 是一回事</b>，因为 3 + 9 = 12，正好转一整圈。数学上说：在“模 12”的世界里，−3 和 9 相等。</p>
+      <div class="bridge" data-k="数学">
+        <h5>模：转一圈回到原处</h5>
+        <p>“模 12”就是只关心除以 12 的余数。14 点就是下午 2 点，因为 14 除以 12 余 2。星期也是模 7：今天星期三，过 10 天是星期几？10 除以 7 余 3，星期三往后 3 天，星期六。电脑里 4 个比特的数，一共 16 种，从 0000 数到 1111 再加一就回到 0000，它活在“模 16”的世界里；8 个比特是“模 256”。</p>
+      </div>
+      <p>4 个比特像一个有 16 格的钟面。我们约定：把钟面右半边（0 到 7）当正数，左半边（8 到 15）当负数。−3 写成哪一格？往回拨 3 格，就是 16 − 3 = 13，<code>1101</code>。这种写法叫<b>补码</b>。</p>
+      <p>好处马上就来了：算 5 + (−3)，就是 0101 + 1101 = 1 0010，第五位放不下被扔掉，剩下 <code>0010</code>，正好是 2。<b>减法变成了加法</b>，而且零只有一种写法 <code>0000</code>。</p>
+
+      <div class="fig" id="wheelFig">
+        <div class="fig-label">装置 · 第三章 · 一</div>
+        <h4>四位的钟面</h4>
+        <p class="how">指针指着的那一格就是现在的 4 个比特。外圈是把它当成“没有负数”时的值（0 到 15），内圈是当成补码时的值（−8 到 7）。点按钮转动指针，看什么时候会“翻过头”。</p>
+        <svg viewBox="0 0 360 360" class="wheel" role="img" aria-label="四位补码钟面" style="max-width:360px;margin:0 auto"></svg>
+        <div class="btns" style="justify-content:center"><button class="btn" data-d="-1">−1</button><button class="btn" data-d="1">+1</button><button class="btn" data-d="3">+3</button><button class="btn" data-d="-3">−3</button><button class="btn" data-d="8">+8</button></div>
+        <div class="say"></div>
+      </div>
+
+      <h3>取反加一</h3>
+      <p>每次都去算“16 − 3”太累。有个速算法：<b>先写出正数，把每一位都翻过来（0 变 1，1 变 0），再加一</b>。</p>
+      <ul class="plain">
+        <li>4 位的 −3：3 是 <code>0011</code>，翻过来 <code>1100</code>，加一 <code>1101</code>。和上面一样。</li>
+        <li>8 位的 −1：1 是 <code>0000 0001</code>，翻过来 <code>1111 1110</code>，加一 <code>1111 1111</code>。<b>全是 1 就是 −1</b>，这个值得记住。</li>
+        <li>8 位的 −64（游戏里最低的 y）：64 是 <code>0100 0000</code>，翻过来 <code>1011 1111</code>，加一 <code>1100 0000</code>。</li>
+      </ul>
+      <p>为什么灵？把一个数和它“翻过来”的样子加在一起，每一位都是 1，也就是 1111，再加一就是 1 0000，转了一整圈回到 0。所以“翻过来再加一”正好是它的相反数。</p>
+      <p>8 位补码能表示 −128 到 +127：正数最大 <code>0111 1111</code> = 127，负数最小 <code>1000 0000</code> = −128。负数比正数多一个，因为零占了正数那边的一格。看最左边一位就知道正负：0 是正（或零），1 是负。</p>
+
+      <h3>溢出：翻过头了</h3>
+      <p>127 再加 1 会怎样？<code>0111 1111</code> + 1 = <code>1000 0000</code>，这在补码里是 −128。一个很大的正数，加一变成了很小的负数，这叫<b>溢出</b>。电脑不会自己报错，它只是忠实地转过了那一格。</p>
+      <div class="story">
+        <h5>江南 Style 撑爆了计数器</h5>
+        <p>视频网站 YouTube 早年用 32 位补码记播放次数，最大能记 2<sup>31</sup> − 1 = 2147483647，二十一亿多。2014 年 12 月，一首韩国歌的视频播放量逼近这个数，网站宣布把计数器换成了 64 位，最大约 9.2 × 10<sup>18</sup>。工程师当年觉得“不会有视频被看二十亿次”，结果有了。</p>
+      </div>
+      <div class="try">
+        <div class="th"><b>在 Python 里看补码</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+          <p>Python 的整数可以无限大，从来不溢出，所以要自己“截”出 8 位来看。<code>&amp; 0xFF</code> 的意思是只留最低 8 位（第七章讲 &amp;）：</p>
+<pre class="sh" data-k="python3"><span class="p">&gt;&gt;&gt; </span>bin(-3 &amp; 0xF)
+<span class="o">'0b1101'</span>
+<span class="p">&gt;&gt;&gt; </span>bin(-1 &amp; 0xFF)
+<span class="o">'0b11111111'</span>
+<span class="p">&gt;&gt;&gt; </span>bin(-64 &amp; 0xFF)
+<span class="o">'0b11000000'</span>
+<span class="p">&gt;&gt;&gt; </span>(127 + 1) &amp; 0xFF
+<span class="o">128</span>
+<span class="p">&gt;&gt;&gt; </span>int.from_bytes(bytes([128]), 'big', signed=True)
+<span class="o">-128</span></pre>
+          <p>最后一行：同一个字节 128（<code>1000 0000</code>），按“有符号”来读就是 −128。<b>比特本身没有正负，正负是读它的人约定的。</b></p>
+        </div>
+      </div>
+      <div class="task" data-id="base-t3a">
+        <div class="th"><b>手写三个补码</b></div>
+        <div class="tb"><p>用“取反加一”在纸上写出 8 位补码的 −5、−100、−128，再用上面的 Python 写法检查。写 −128 时会发现一件怪事：128 本身就放不进 8 位补码。想一想，为什么 −128 还是能写出来？（提示：看钟面，−128 和 +128 是同一格。）</p></div>
+      </div>
+      <div class="pass" data-id="base-q3a">
+        <div class="qq" data-in="1101"><p>4 位补码里，−3 写成什么？</p><p class="ex">3 = 0011，取反 1100，加一 1101。也就是 16 − 3 = 13。</p></div>
+        <div class="qq" data-in="11111111|1111 1111"><p>8 位补码里，−1 写成什么？</p><p class="ex">全是 1。</p></div>
+        <div class="qq" data-a="2"><p>8 位补码能表示的范围是？</p><ol><li>0 到 255</li><li>−127 到 127</li><li>−128 到 127</li></ol><p class="ex">负数多一个：−128 是 1000 0000。</p></div>
+        <div class="qq" data-a="0"><p>补码最大的好处是？</p><ol><li>减法可以用加法做，零只有一种写法</li><li>比原码短</li><li>能表示小数</li></ol><p class="ex">一个加法器就够，加上一个负数就是减法。</p></div>
+        <div class="qq" data-in="-128"><p>8 位补码，127 + 1 的结果读出来是几？</p><p class="ex">0111 1111 + 1 = 1000 0000，读作 −128。溢出了。</p></div>
+        <div class="qq" data-a="1"><p>今天星期五，过 15 天是星期几？</p><ol><li>星期五</li><li>星期六</li><li>星期日</li></ol><p class="ex">15 除以 7 余 1，往后 1 天。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c3-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 计组 · 定点数的表示和运算</span><span class="tm">约 60 分钟</span><span class="sum">原码、反码、补码、移码的定义和范围；求补的几种方法；符号扩展；补码加减；三种溢出判断；ZF、SF、CF、OF；无符号和有符号混用的坑。</span></div>
+    <div class="lyb">
+      <h3>四种编码</h3>
+      <p>设机器数 n 位，最高位是符号位。对整数 x：</p>
+      <div class="tbl w"><table class="t"><tr><th>编码</th><th>正数</th><th>负数</th><th>零</th><th>n 位整数的范围</th></tr>
+        <tr><td>原码</td><td>符号 0 + 绝对值</td><td>符号 1 + 绝对值</td><td>两个</td><td>−(2<sup>n−1</sup>−1) ～ 2<sup>n−1</sup>−1</td></tr>
+        <tr><td>反码</td><td>同原码</td><td>原码数值位逐位取反</td><td>两个</td><td>同原码</td></tr>
+        <tr><td>补码</td><td>同原码</td><td>2<sup>n</sup> + x（反码 + 1）</td><td>一个</td><td>−2<sup>n−1</sup> ～ 2<sup>n−1</sup>−1</td></tr>
+        <tr><td>移码</td><td colspan="2">x + 2<sup>n−1</sup>（补码的符号位取反）</td><td>一个</td><td>同补码</td></tr>
+      </table></div>
+      <p>定点小数（小数点在符号位之后）同理：n 位补码小数的范围是 −1 ～ 1 − 2<sup>−(n−1)</sup>，原码是 −(1 − 2<sup>−(n−1)</sup>) ～ 1 − 2<sup>−(n−1)</sup>。补码能表示 −1、原码不能，和整数里补码多一个 −2<sup>n−1</sup> 是一回事。</p>
+      <p>移码的用处：把所有数“抬高”2<sup>n−1</sup>，使得移码的大小顺序和真值的大小顺序一致，直接按无符号比较就行。浮点数的阶码就用它（第四章，IEEE 754 的偏置是 2<sup>n−1</sup>−1，略有不同，注意）。</p>
+      <h3>求补和变号</h3>
+      <ul class="plain">
+        <li>由原码求补码：符号位不变，数值位取反加一。快捷法：<b>从右往左，第一个 1 及它右边的 0 不变，左边的数值位全取反</b>。例：[−0101100]原 = 1 0101100 → 补码 1 1010100。</li>
+        <li>由 [x]补 求 [−x]补：<b>连同符号位一起</b>取反加一。例：[x]补 = 1101 → [−x]补 = 0011。注意 −2<sup>n−1</sup> 变号后还是自己（8 位 −128 取反加一还是 1000 0000），这是溢出。</li>
+        <li>由补码求真值：符号位为 1 时，真值 = −2<sup>n−1</sup> + 其余各位的权值之和。例：1101 = −8 + 4 + 1 = −3。把最高位的权看成负的，这是最快的读法。</li>
+      </ul>
+      <h3>扩展：变宽的时候补什么</h3>
+      <p>8 位变 16 位：无符号数高位补 0（<b>零扩展</b>）；补码高位补符号位（<b>符号扩展</b>）。−3 的 8 位补码 1111 1101 → 1111 1111 1111 1101，仍是 −3。原码扩展则是符号位移到最高位、中间补 0。C 里 <code>char c = -3; int i = c;</code> 做的就是符号扩展；<code>unsigned char</code> 赋给 int 做零扩展。</p>
+      <h3>补码加减和溢出判断</h3>
+      <p>[x + y]补 = [x]补 + [y]补（mod 2<sup>n</sup>），[x − y]补 = [x]补 + [−y]补。只要结果在范围内，这两个式子就成立；超出范围就是溢出。只有<b>同号相加</b>（或异号相减）才可能溢出。判断方法：</p>
+      <ol class="plain">
+        <li><b>看符号</b>：两个加数符号相同，结果符号却不同，就溢出。</li>
+        <li><b>看进位</b>：最高位（符号位）产生的进位 C<sub>n</sub> 和次高位向最高位的进位 C<sub>n−1</sub> 不同，就溢出：V = C<sub>n</sub> ⊕ C<sub>n−1</sub>。这是硬件实际用的办法。</li>
+        <li><b>双符号位</b>（变形补码、模 4 补码）：用两位符号位运算，结果符号位 00 正、11 负、01 正溢出、10 负溢出。</li>
+      </ol>
+      <h3>标志位</h3>
+      <p>处理器做完加减法，会顺手在“标志寄存器”里记下几件事。以 x86 的叫法：</p>
+      <ul class="plain">
+        <li><b>ZF</b>（零）：结果全是 0。<b>SF</b>（符号）：结果最高位。</li>
+        <li><b>CF</b>（进位/借位）：把操作数当无符号数时，加法最高位有进位，或减法不够减有借位。CF = 1 表示<b>无符号</b>运算溢出了。</li>
+        <li><b>OF</b>（溢出）：把操作数当补码时溢出了，OF = C<sub>n</sub> ⊕ C<sub>n−1</sub>。</li>
+      </ul>
+      <p>同一次加法，硬件同时算出 CF 和 OF，它不知道你心里把这串比特当无符号还是有符号。条件跳转指令替你选：无符号比较看 CF（和 ZF），有符号比较看 SF ⊕ OF（和 ZF）。ARM 的四个标志叫 N、Z、C、V，对应 SF、ZF、CF、OF；有一处不同：ARM 做减法时 C = 1 表示<b>没有</b>借位，正好和 x86 相反，读汇编时留意。</p>
+      <div class="fig" id="flagsFig">
+        <div class="fig-label">装置 · 第三章 · 二</div>
+        <h4>八位加法器和标志位</h4>
+        <p class="how">输入两个数（十进制，可以是负数；也可以写 0b 开头的二进制或 0x 开头的十六进制），它们会被截成 8 位。选加法或减法，看竖式里每一位的进位、结果分别当无符号和有符号时是几，以及四个标志位为什么是这个值。</p>
+        <div class="row"><input type="text" id="flA" value="100" style="flex:1 1 6em;font-family:var(--f-mono)" aria-label="第一个数"><select id="flOp" style="flex:0 0 5em" aria-label="运算"><option value="+">+</option><option value="-">−</option></select><input type="text" id="flB" value="50" style="flex:1 1 6em;font-family:var(--f-mono)" aria-label="第二个数"></div>
+        <div class="btns" data-ex></div>
+        <div class="adder scroll-x"></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+      <div class="pit">
+        <h5>有符号和无符号混在一起</h5>
+        <p>C 里一个 int 和一个 unsigned int 比较时，int 会先被转成 unsigned。于是 <code>-1 &lt; 1u</code> 的结果是假：−1 的 32 位补码全是 1，当成无符号是 4294967295。同理 <code>for (unsigned i = n - 1; i &gt;= 0; i--)</code> 永远不会停，因为无符号数永远 ≥ 0，减到 0 再减一就绕回最大值。还有 <code>strlen(s) - 1</code>：strlen 返回无符号的 size_t，空字符串时它绕回一个巨大的数。</p>
+      </div>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>（1）8 位机器数 1000 0000 分别作为原码、反码、补码、移码时，真值各是多少？（2）8 位补码运算 x = 100，y = 50，求 x + y 和 x − y 的机器数及 CF、OF。（3）C 程序中 <code>short s = -2; unsigned int u = s;</code> 执行后 u 的十六进制值是多少？</p>
+        <details><summary>看解答</summary><div>
+          <p>（1）原码：−0；反码：−127（数值位取反得 1111111 = 127）；补码：−128；移码：真值 = 机器数 − 128 = 0。</p>
+          <p>（2）x = 0110 0100，y = 0011 0010。x + y = 1001 0110：两个正数相加得到负数，OF = 1；最高位没有进位，CF = 0。按无符号读是 150（正确），按有符号读是 −106（溢出）。x − y = x + [−y]补 = 0110 0100 + 1100 1110 = 1 0011 0010，结果 0011 0010 = 50，OF = 0；加法器最高位有进位，x86 的约定下减法 CF 表示借位，100 ≥ 50 没有借位，CF = 0（ARM 下 C = 1）。</p>
+          <p>（3）short 先按符号扩展到 32 位：0xFFFFFFFE，再按位不变地当成 unsigned，u = 0xFFFFFFFE（4294967294）。规则：先扩展（按原类型的符号性），再改变解释。</p>
+        </div></details>
+      </div>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>计算机里为什么用补码表示整数？</p>
+        <details><summary>看要点</summary><div><p>① 零的表示唯一；② 减法可以转成加法，加法器不需要关心符号，一个电路同时服务有符号和无符号运算（结果的比特完全一样，只是标志位解读不同）；③ 符号位可以和数值位一起参与运算，不需要单独处理；④ 比原码、反码多表示一个数。本质是模 2<sup>n</sup> 的同余：−x 和 2<sup>n</sup> − x 在模 2<sup>n</sup> 下相等。</p></div></details>
+      </div>
+      <div class="pass" data-id="base-q3b">
+        <div class="qq" data-in="-127"><p>8 位反码 1000 0000 的真值是？</p><p class="ex">数值位取反得 111 1111 = 127，符号为负：−127。</p></div>
+        <div class="qq" data-in="11111011|1111 1011"><p>写出 −5 的 8 位补码。</p><p class="ex">0000 0101 → 取反 1111 1010 → 加一 1111 1011。</p></div>
+        <div class="qq" data-a="1"><p>两个补码数相加，下面哪种情况<b>不可能</b>溢出？</p><ol><li>正 + 正</li><li>正 + 负</li><li>负 + 负</li></ol><p class="ex">异号相加，结果的绝对值不会超过较大那个，不会溢出。</p></div>
+        <div class="qq" data-in="-75"><p>8 位补码 1011 0101 的真值是？</p><p class="ex">−128 + 32 + 16 + 4 + 1 = −75。</p></div>
+        <div class="qq" data-a="2"><p>无符号数比较大小，条件跳转主要看哪个标志？</p><ol><li>OF</li><li>SF</li><li>CF</li></ol><p class="ex">无符号看 CF（借位），有符号看 SF ⊕ OF。</p></div>
+        <div class="qq" data-in="1111111111111101|1111 1111 1111 1101|fffd|0xfffd"><p>8 位补码 1111 1101 符号扩展到 16 位是？</p><p class="ex">高位补符号位 1：1111 1111 1111 1101，仍是 −3。</p></div>
+        <div class="qq" data-a="0"><p>C 里 <code>-1 &lt; 1u</code> 的值是？</p><ol><li>0（假）</li><li>1（真）</li><li>编译错误</li></ol><p class="ex">−1 被转成 unsigned，变成 4294967295，比 1 大。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c3-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">C 标准、编译器、事故</span><span class="tm">约 40 分钟</span><span class="sum">补码为什么在数学上是对的；C 的有符号溢出是未定义行为，编译器会利用它；怎样安全地检测溢出；二分查找中点的著名 bug；阿丽亚娜 5 号。</span></div>
+    <div class="lyb">
+      <h3>补码为什么是对的</h3>
+      <p>n 位整数的加减乘，本质上是在模 2<sup>n</sup> 的整数环里运算。在这个环里，每个数都有唯一的加法逆元，−x 和 2<sup>n</sup> − x 是同一个元素。补码只是给每个剩余类挑了一个代表：把 0 到 2<sup>n−1</sup>−1 那一半当正数，另一半当负数。因为加法、减法、乘法（取低 n 位）都和“挑哪个代表”无关，同一个加法器、同一个乘法器既能算无符号数也能算补码，只有比较、除法、右移和变宽时才需要知道符号。早年 CDC 6600、PDP-1、UNIVAC 1100 系列用反码；IBM System/360 用补码；到今天，几乎所有处理器都是补码，C23 和 C++20 标准也正式规定了有符号整数必须用补码表示。</p>
+      <h3>C 里的两种溢出</h3>
+      <p>C 标准规定：<b>无符号整数溢出</b>按模 2<sup>n</sup> 回绕，是合法的；<b>有符号整数溢出</b>是“未定义行为”（UB），标准不管会发生什么。即使 C23 规定了补码表示，溢出仍然是 UB。编译器会利用这一点做优化：既然“有符号数不会溢出”，那么 <code>x + 1 &gt; x</code> 就永远为真，可以直接删掉判断。</p>
+      <div class="try">
+        <div class="th"><b>看编译器删掉你的检查</b><span class="tm">10 分钟 · 需要第三部的 C 基础</span></div>
+        <div class="tb">
+          <p>在 <code>~/base</code> 里新建 <code>ub.c</code>（可以用 <code>nano ub.c</code>，写完按 <kbd>⌃</kbd>+<kbd>O</kbd> 回车保存、<kbd>⌃</kbd>+<kbd>X</kbd> 退出）：</p>
+<pre class="code" data-k="ub.c">#include &lt;stdio.h&gt;
+#include &lt;limits.h&gt;
+int will_wrap(int x) { return x + 1 &lt; x; }   /* 想检查 x+1 会不会溢出 */
+int main(void) {
+    printf("%d\n", will_wrap(INT_MAX));
+    int r;
+    printf("%d\n", __builtin_add_overflow(INT_MAX, 1, &amp;r));
+    return 0;
+}</pre>
+<pre class="sh" data-k="终端"><span class="p">% </span>clang -O0 ub.c -o ub &amp;&amp; ./ub
+<span class="p">% </span>clang -O2 ub.c -o ub &amp;&amp; ./ub
+<span class="p">% </span>clang -O2 -fsanitize=undefined ub.c -o ub &amp;&amp; ./ub</pre>
+          <p>不优化时第一行常打印 1；开了 <code>-O2</code>，编译器认定 <code>x + 1 &lt; x</code> 不可能成立，直接返回 0，你的检查就这样消失了。第二行用编译器内置的 <code>__builtin_add_overflow</code>，它保证正确报告溢出（打印 1）。第三条命令打开“未定义行为消毒器”，运行时会指出哪一行溢出了。具体打印什么取决于编译器版本，这正是“未定义”的意思。</p>
+        </div>
+      </div>
+      <p>写安全代码的几个办法：用 <code>__builtin_add_overflow</code> 一类的内置函数（C23 里标准化成了 <code>ckd_add</code>）；运算前先比较，如 <code>if (x &gt; INT_MAX - y)</code>；必须回绕时用无符号数；调试时打开 <code>-fsanitize=undefined</code>；GCC 和 Clang 还有 <code>-fwrapv</code>，让有符号溢出也按补码回绕，代价是少一些优化。</p>
+      <h3>二分查找的中点</h3>
+      <p>2006 年，约书亚·布洛赫在谷歌的博客上写道：Java 标准库里的二分查找有个 bug，潜伏了大约九年。问题出在 <code>int mid = (low + high) / 2;</code>：数组超过 2<sup>30</sup> 个元素时，<code>low + high</code> 可能超过 2<sup>31</sup> − 1，溢出成负数，数组下标越界。这一行几乎在每本教科书里都出现过。改法：<code>mid = low + (high - low) / 2</code>，或者在 Java 里用无符号右移 <code>(low + high) &gt;&gt;&gt; 1</code>。面试写二分查找，写出前一种会被看作基本功。</p>
+      <h3>阿丽亚娜 5 号</h3>
+      <p>1996 年 6 月 4 日，欧洲的阿丽亚娜 5 号火箭首飞，起飞约 40 秒后偏离航向、自毁。调查报告查明：惯性参考系统里有一段从阿丽亚娜 4 号沿用的代码，把一个 64 位浮点数（与水平速度有关）转换成 16 位有符号整数；新火箭飞得更快，这个值超出了 16 位能表示的范围，转换引发异常，主备两套系统运行同一份软件，相继停机，飞控收到了被当成飞行数据的诊断信息。这段代码在阿丽亚娜 4 号上从未出问题，因为那枚火箭的速度根本到不了那个范围。教训有两条：换了环境，旧代码的假设要重新检查；两套一模一样的备份，挡不住同一个 bug。</p>
+      <div class="read">
+        <h5>出处与延伸</h5>
+        <ul>
+          <li>ISO/IEC 9899:2024（C23）关于整数表示与 <code>&lt;stdckdint.h&gt;</code> 的条款；Clang 文档 “UndefinedBehaviorSanitizer”。</li>
+          <li>Joshua Bloch, “Extra, Extra – Read All About It: Nearly All Binary Searches and Mergesorts are Broken”, Google Research Blog, 2006。</li>
+          <li>J. L. Lions 等，“ARIANE 5 Flight 501 Failure: Report by the Inquiry Board”, 1996。</li>
+          <li>CS:APP 第二章“信息的表示和处理”有大量关于整数溢出与类型转换的练习。</li>
+        </ul>
+      </div>
+      <div class="pass" data-id="base-q3c">
+        <div class="qq" data-a="1"><p>C 标准里，下面哪种是未定义行为？</p><ol><li>unsigned int 加到超过最大值</li><li>int 加到超过最大值</li><li>int 赋值给 long</li></ol><p class="ex">无符号溢出按模回绕，是定义好的；有符号溢出是 UB。</p></div>
+        <div class="qq" data-a="2"><p>下面哪种写法求二分查找的中点不会溢出？</p><ol><li>(low + high) / 2</li><li>(low + high) * 0.5</li><li>low + (high − low) / 2</li></ol><p class="ex">high − low 不会超过数组长度。</p></div>
+        <div class="qq" data-a="0"><p>阿丽亚娜 5 号首飞失败的直接原因是？</p><ol><li>64 位浮点数转 16 位有符号整数时超出范围</li><li>燃料泄漏</li><li>单位换算把英尺当成米</li></ol><p class="ex">一次没有保护的类型转换溢出。（单位换算出错的是 1999 年的火星气候轨道器，另一件事。）</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div data-l="1"><b>补码 <span class="en" data-say="two's complement">two's complement</span></b>负数 −x 写成 2<sup>n</sup> − x；速算：取反加一。</div>
+    <div data-l="1"><b>溢出 <span class="en" data-say="overflow">overflow</span></b>结果超出能表示的范围，转过了头。</div>
+    <div data-l="1"><b>模 <span class="en" data-say="modulo">modulo</span></b>只看除以某个数的余数。</div>
+    <div data-l="2"><b>符号扩展 <span class="en" data-say="sign extension">sign extension</span></b>变宽时高位补符号位。</div>
+    <div data-l="2"><b>标志位 <span class="en" data-say="flags">flags</span></b>运算后记下的 ZF、SF、CF、OF。</div>
+    <div data-l="3"><b>未定义行为 <span class="en" data-say="undefined behavior">undefined behavior</span></b>标准不规定会发生什么的情况。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>补码就是钟面：往回拨 3 格等于往前拨 13 格；比特没有正负，正负是约定。</div>
+    <div><i>第二层带走</i>同一次加法，CF 管无符号、OF 管有符号；同号相加变号就是溢出。</div>
+    <div><i>第三层带走</i>C 的有符号溢出是 UB，编译器会删掉你“事后检查”的代码；要事前检查。</div>
+  </div>
+</section>

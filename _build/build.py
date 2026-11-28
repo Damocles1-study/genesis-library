@@ -15,6 +15,7 @@
     python3 _build/build.py can1 can2 can3            # 《能不能》三部
     python3 _build/build.py block1 block2 block3 block4      # 《一块一块》故事四部
     python3 _build/build.py block5 block6 block7 block8 block9 block10   # 《一块一块》指南六部
+    python3 _build/build.py base1 base2 base3 base4   # 一层一层系列 ·《地基》四部
 """
 import os, re, sys
 
@@ -80,6 +81,11 @@ BOOKS = {
     'block8': ('block', 'block/eight.html', ['top8.html', 'css.html', 'bar.html'] + ['h%02d.html' % i for i in range(10)]),
     'block9': ('block', 'block/nine.html', ['top9.html', 'css.html', 'bar.html'] + ['i%02d.html' % i for i in range(7)]),
     'block10': ('block', 'block/ten.html', ['top10.html', 'css.html', 'bar.html'] + ['j%02d.html' % i for i in range(13)]),
+    # 一层一层 · 计算机学习系列第一本《地基》（位 / 门 / 程 / 系），脚本拆在 _build/base/js/*.js
+    'base1': ('base', 'base/index.html', ['top1.html', 'css.html', 'bar.html'] + ['a%02d.html' % i for i in range(11)]),
+    'base2': ('base', 'base/two.html', ['top2.html', 'css.html', 'bar.html'] + ['b%02d.html' % i for i in range(10)]),
+    'base3': ('base', 'base/three.html', ['top3.html', 'css.html', 'bar.html'] + ['c%02d.html' % i for i in range(10)]),
+    'base4': ('base', 'base/four.html', ['top4.html', 'css.html', 'bar.html'] + ['d%02d.html' % i for i in range(10)]),
 }
 DRAFT = '--draft' in sys.argv  # 写到一半时跳过缺失段落和锚点检查
 

@@ -1,0 +1,236 @@
+<section class="chap" id="c0" data-vol="序 · 五层楼">
+  <div class="chead">
+    <div class="big">楼</div>
+    <div>
+      <div class="no">序 · 第零章</div>
+      <h2>五层楼</h2>
+      <dl><dt>讲什么</dt><dd>一台计算机从下往上有五层楼；按下一个键以后，消息怎样一层一层往上走；这本书和后面几本书各管哪几层；把 Mac 准备好</dd><dt>装置</dt><dd>按下 A 键以后</dd></dl>
+      <div class="crs" data-c="组成 系统 网络"></div>
+      <div class="lvs"><a data-l="1" href="#c0-1">第一层 · 40 分钟</a><a data-l="2" href="#c0-2">第二层 · 40 分钟</a><a data-l="3" href="#c0-3">第三层 · 30 分钟</a></div>
+    </div>
+  </div>
+
+  <div class="desk">
+    <div class="l"><i class="g">格</i><span>Python 我会写一点了。可是我在键盘上按一个 A，电脑到底是怎么“知道”的？</span></div>
+    <div class="l"><i class="j">舅</i><span>我也想重新弄明白。考试的时候我背过很多名词，可是没有从头到尾走过一遍。我们一起，从最底下往上走。</span></div>
+    <div class="l"><i class="g">格</i><span>最底下是什么？</span></div>
+    <div class="l"><i class="j">舅</i><span>开关。几十亿个开关。</span></div>
+  </div>
+
+  <div class="goal">
+    <h5>学完这一章，你能……</h5>
+    <ul>
+      <li><span class="lg lg1">一</span>说出一台计算机的五层楼，每层楼大概在干什么。</li>
+      <li><span class="lg lg1">一</span>打开终端，查出自己的 Mac 是什么芯片、有多少内存；装好写 C 程序要用的工具。</li>
+      <li><span class="lg lg2">二</span>把五层楼对上 408 的四门课；用“指令数 × CPI ÷ 主频”算程序的运行时间。</li>
+      <li><span class="lg lg3">三</span>说出“抽象会漏”是什么意思，举一个底层细节冒上来影响程序的例子。</li>
+    </ul>
+  </div>
+
+  <section class="ly" data-l="1" id="c0-1">
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">不需要任何前置知识</span><span class="tm">约 40 分钟</span></div>
+    <div class="lyb">
+      <h3>一栋五层楼</h3>
+      <p>把一台电脑想成一栋楼。你平时只在顶楼活动：打开浏览器、写 Python、玩游戏。可是你在顶楼做的每一件事，都要一层一层往下传，最后变成最底下几十亿个开关的开和关。</p>
+      <div class="tbl">
+        <table class="t">
+          <tr><th>楼层</th><th>住着什么</th><th>它只懂什么</th><th>本书哪一部讲</th></tr>
+          <tr><td><b>五楼 · 应用</b></td><td>你用的程序：浏览器、备忘录、游戏、你写的 Python</td><td>“打开文件”“画一个按钮”</td><td>第三部</td></tr>
+          <tr><td><b>四楼 · 系统</b></td><td>操作系统 macOS：管程序、内存、文件、网络</td><td>“给这个程序一块内存”</td><td>第四部</td></tr>
+          <tr><td><b>三楼 · 指令</b></td><td>处理器能直接执行的指令</td><td>“把这两个数加起来”“跳到第 7 条”</td><td>第二、三部</td></tr>
+          <tr><td><b>二楼 · 电路</b></td><td>逻辑门、加法器、存储器、处理器</td><td>“这根线有电，那根线没电”</td><td>第二部</td></tr>
+          <tr><td><b>一楼 · 开关</b></td><td>晶体管：一个用电控制的开关</td><td>开，或者关</td><td>第二部</td></tr>
+        </table>
+      </div>
+      <p>每层楼只跟楼上楼下打交道。写 Python 的人不用知道晶体管长什么样，就像开车的人不用会修发动机。这种“只看自己这一层，下面的事交给下面”的办法，叫<b>抽象</b>。它是计算机能变得这么复杂、却还能被人造出来的秘诀。</p>
+      <p>那第一部讲什么？讲在楼里上上下下跑的那样东西：<b>比特</b>。数字、字母、图片、声音，进了电脑都变成一串 0 和 1。先弄清楚“东西怎样变成比特”，再去看每层楼怎样处理它们。</p>
+      <p>楼和楼之间还有路：网络。你的电脑和别人的电脑，通过网络把比特送来送去，这是第四部的后半。</p>
+
+      <div class="fig" id="keyFig">
+        <div class="fig-label">装置 · 第零章</div>
+        <h4>按下 A 键以后</h4>
+        <p class="how">点“下一步”，看一次按键怎样从一楼走到五楼，再变成屏幕上的一个字母。每一步后面写着这本书哪一章会讲清楚它。</p>
+        <div class="floors"></div>
+        <div class="btns"><button class="btn" data-k="-1">上一步</button><button class="btn pri" data-k="1">下一步</button><button class="btn" data-k="0">从头</button></div>
+        <div class="say"></div>
+      </div>
+      <p>整个过程，从你按下去到屏幕上出现 a，一般只要几毫秒到几十毫秒。一毫秒是千分之一秒。这一路上，比特被翻译了好几次：按键码、事件、字符编号、字体的形状、像素的颜色。这本书就是把这几次翻译一个一个拆开看。</p>
+
+      <h3>这本书怎样读</h3>
+      <ul class="plain">
+        <li><b>三层</b>：每章分第一层（入门）、第二层（本科）、第三层（深入）。初学者读完第一层就去下一章，第二、三层先跳过，以后再回来。</li>
+        <li><b>在 Mac 上试</b>：深蓝色标题的框，照着一步一步做。黑底的框是要在终端里输入的东西：<code>%</code> 是终端的提示符，不用输入；灰色的字是电脑回答的。</li>
+        <li><b>过渡</b>：要用到别的学科（电、数学、逻辑、物理）时，先用一个黄框讲个大概。</li>
+        <li><b>装置</b>：网页里能动手玩的小机器。<b>闯关</b>：每一层末尾的小测验，做完记在浏览器里。</li>
+        <li><b>英文</b>：带 🔊 的英文词，点一下会念出来。计算机的词大多来自英文，顺手记住。</li>
+      </ul>
+
+      <h3>把 Mac 准备好</h3>
+      <div class="try">
+        <div class="th"><b>打开终端，问问你的 Mac 是谁</b><span class="tm">5 分钟</span></div>
+        <div class="tb">
+          <ol class="steps">
+            <li>按 <kbd>⌘</kbd> + <kbd>空格</kbd>，打 <code>终端</code> 或 <code>Terminal</code>，回车。</li>
+            <li>输入下面几行，每行回车一次：
+<pre class="sh" data-k="终端"><span class="p">% </span>uname -m
+<span class="o">arm64</span>
+<span class="p">% </span>sysctl -n machdep.cpu.brand_string
+<span class="o">Apple M1</span>
+<span class="p">% </span>sysctl -n hw.memsize
+<span class="o">8589934592</span>
+<span class="p">% </span>sw_vers -productVersion</pre>
+            </li>
+            <li><code>arm64</code> 说明你的处理器是“ARM 64 位”那一家（第十四章讲）；第二行是芯片的名字；第三行是内存有多少<b>字节</b>，8589934592 字节就是 8 GB（第二章讲为什么是这个怪数）；最后一行是 macOS 的版本号。你的输出和上面不一样没关系，每台 Mac 不同。</li>
+          </ol>
+        </div>
+      </div>
+      <div class="try">
+        <div class="th"><b>装上写程序要用的工具</b><span class="tm">10—30 分钟</span></div>
+        <div class="tb">
+          <ol class="steps">
+            <li>在终端里输入下面这行，回车。会弹出一个窗口问要不要安装“命令行开发者工具”，点“安装”。要输入电脑的密码，<b>小朋友请叫大人来</b>。下载要等一会儿。
+<pre class="sh" data-k="终端"><span class="p">% </span>xcode-select --install</pre>
+            如果它说 <code>already installed</code>（已经装过了），直接下一步。</li>
+            <li>装好以后，检查三样东西：
+<pre class="sh" data-k="终端"><span class="p">% </span>clang --version
+<span class="p">% </span>python3 --version
+<span class="p">% </span>git --version</pre>
+            三行都打出版本号就对了。<code>clang</code> 是把 C 语言翻译成机器指令的编译器，第三部要用；<code>python3</code> 这一部就要用；<code>git</code> 用来保存代码的历史，以后会用。</li>
+            <li>建一个练习用的文件夹，以后的实验都在这里做：
+<pre class="sh" data-k="终端"><span class="p">% </span>mkdir -p ~/base
+<span class="p">% </span>cd ~/base
+<span class="p">% </span>pwd</pre></li>
+          </ol>
+        </div>
+      </div>
+      <div class="os">Windows 上可以用 PowerShell，或者装 WSL（微软出的“Windows 里的 Linux”）；Linux 上打开终端，用系统的包管理器装 <code>gcc</code>（或 <code>clang</code>）和 <code>python3</code>。书里的命令以 Mac 为准，有区别的地方会写出来。</div>
+      <div class="task" data-id="base-t0a">
+        <div class="th"><b>记下你的 Mac</b></div>
+        <div class="tb"><p>在一张纸上（或者备忘录里）写下：芯片叫什么、内存多少字节、macOS 版本、clang 和 python3 的版本号。第二章学完字节以后，回来把内存的字节数换算成 GB，看看对不对。</p></div>
+      </div>
+
+      <div class="pass" data-id="base-q0a">
+        <div class="qq" data-a="2"><p>五层楼里，“处理器能直接执行的指令”住在几楼？</p><ol><li>一楼</li><li>二楼</li><li>三楼</li><li>五楼</li></ol><p class="ex">三楼是指令。一楼是开关（晶体管），二楼是用开关搭成的电路，四楼是操作系统，五楼是应用程序。</p></div>
+        <div class="qq" data-a="1"><p>“写 Python 的人不用知道晶体管长什么样”，这种办法叫什么？</p><ol><li>编码</li><li>抽象</li><li>压缩</li></ol><p class="ex">抽象：每一层只看自己这一层，下面的细节交给下面。</p></div>
+        <div class="qq" data-a="0"><p>macOS 属于哪一层楼？</p><ol><li>四楼 · 系统</li><li>五楼 · 应用</li><li>二楼 · 电路</li></ol><p class="ex">操作系统管程序、内存、文件和网络，是四楼。</p></div>
+        <div class="qq" data-in="arm64"><p>在 Apple Silicon 的 Mac 上，终端里输入 <code>uname -m</code>，回答的是什么？</p><p class="ex">arm64。处理器是 ARM 这一家的 64 位指令集。老一点的英特尔 Mac 会回答 x86_64。</p></div>
+        <div class="qq" data-a="2"><p>终端框里每行前面的 <code>%</code> 要不要输入？</p><ol><li>要</li><li>只有第一行要</li><li>不要，它是提示符</li></ol><p class="ex">% 是终端在说“请输入”。只输入 % 后面的字。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c0-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">对照 408 计组第一章 · 面试</span><span class="tm">约 40 分钟</span><span class="sum">五层楼和 408 四门课的对应；多级层次结构、翻译和解释；冯·诺依曼结构预告；性能指标：主频、CPI、MIPS、CPU 时间。</span></div>
+    <div class="lyb">
+      <h3>五层楼和四门课</h3>
+      <p>考研 408 的四门课（数据结构、计算机组成原理、操作系统、计算机网络），其实是这栋楼的不同切面。先把位置摆对，以后学哪门课都知道自己站在哪儿。</p>
+      <div class="tbl">
+        <table class="t">
+          <tr><th>课</th><th>管哪几层楼</th><th>本书</th><th>本系列</th></tr>
+          <tr><td>计算机组成原理</td><td>一楼到三楼：数据的表示、电路、处理器、存储器、指令</td><td>第一、二部</td><td>《芯》</td></tr>
+          <tr><td>操作系统</td><td>四楼，以及它怎样借助三楼的机制（中断、地址翻译）</td><td>第四部前半</td><td>《调度》</td></tr>
+          <tr><td>计算机网络</td><td>楼和楼之间</td><td>第四部后半</td><td>《包》</td></tr>
+          <tr><td>数据结构</td><td>五楼里组织数据的办法，但它的效率取决于下面几层（内存、缓存）</td><td>第三部打底</td><td>《链与树》</td></tr>
+        </table>
+      </div>
+      <h3>多级层次结构，翻译和解释</h3>
+      <p>教材里常把计算机画成一叠“虚拟机器”：最底下是硬件直接执行的机器语言（再往下是控制它的微程序或硬连线逻辑），往上依次是操作系统、汇编语言、高级语言，最上面是应用。每一级对上一级来说就是一台“机器”：写 Python 的人面对的是一台“Python 机器”。</p>
+      <p>上一级的程序要变成下一级能执行的东西，有两种办法：</p>
+      <ul class="plain">
+        <li><b>翻译</b>（编译）：一次性把整个程序翻成下一级的语言，存起来以后再执行。C 用 clang 编译成机器指令，就是翻译。汇编语言到机器语言的翻译叫<b>汇编</b>。</li>
+        <li><b>解释</b>：一边读一边执行，读一句做一句。传统的命令行脚本是解释执行的。</li>
+      </ul>
+      <p>真实系统常常混着用：CPython 先把 Python 源码编译成“字节码”，再由一个用 C 写的解释器一条一条执行字节码；Java 先编译成字节码，再由虚拟机解释或即时编译成机器指令。考题里问“翻译程序和解释程序的区别”，答“是否生成目标程序”即可。</p>
+      <h3>冯·诺依曼结构（预告）</h3>
+      <p>1945 年，冯·诺依曼起草的 EDVAC 报告草稿描述了一种结构：<b>运算器、控制器、存储器、输入设备、输出设备</b>五大部件；<b>指令和数据都用二进制，放在同一个存储器里</b>，按地址访问；指令按顺序执行（可以跳转）。这就是“存储程序”的思想，今天几乎所有电脑都还是这个样子。现代的说法常把运算器和控制器合起来叫 CPU，把存储器分成主存和外存。第十三章会亲手造一台这样的小机器。</p>
+      <h3>性能指标</h3>
+      <p>408 第一章必考的几个量：</p>
+      <ul class="plain">
+        <li><b>主频</b> f：时钟每秒跳几下，单位 Hz。3 GHz 就是每秒 3×10<sup>9</sup> 下。<b>时钟周期</b> T = 1/f。</li>
+        <li><b>CPI</b>（每条指令平均几个时钟周期）。</li>
+        <li><b>CPU 时间</b> = 指令条数 × CPI × T = 指令条数 × CPI ÷ f。这是唯一靠得住的性能衡量：主频高不一定快，CPI 也要看。</li>
+        <li><b>MIPS</b>（每秒百万条指令）= f ÷ (CPI × 10<sup>6</sup>)。不同指令集的 MIPS 不能直接比，因为一条指令干的活不一样多。</li>
+        <li>注意单位：说存储容量时 K、M、G 常按 2<sup>10</sup>、2<sup>20</sup>、2<sup>30</sup>；说主频、速率时按 10<sup>3</sup>、10<sup>6</sup>、10<sup>9</sup>。第二章细讲。</li>
+      </ul>
+      <div class="exam">
+        <div class="eh">典型题 · 原创</div>
+        <p>某程序在一台主频 2 GHz 的机器上执行，共执行 4×10<sup>9</sup> 条指令，其中 50% 是运算指令（CPI = 1），30% 是访存指令（CPI = 3），20% 是转移指令（CPI = 2）。求平均 CPI、CPU 时间和 MIPS。</p>
+        <details><summary>看解答</summary><div>
+          <p>平均 CPI = 0.5×1 + 0.3×3 + 0.2×2 = 0.5 + 0.9 + 0.4 = 1.8。</p>
+          <p>CPU 时间 = 4×10<sup>9</sup> × 1.8 ÷ (2×10<sup>9</sup>) = 3.6 秒。</p>
+          <p>MIPS = 2×10<sup>9</sup> ÷ (1.8 × 10<sup>6</sup>) ≈ 1111。</p>
+          <p>常见错误：把各类 CPI 直接平均成 (1+3+2)/3 = 2，忘了按比例加权。</p>
+        </div></details>
+      </div>
+      <div class="exam iv">
+        <div class="eh">面试题</div>
+        <p>从按下电源键到看到登录界面，大致发生了什么？（以 Apple Silicon 的 Mac 为例）</p>
+        <details><summary>看要点</summary><div>
+          <p>芯片里固化的 Boot ROM 先运行，检查并加载下一级的引导程序（LLB、iBoot），每一级都校验下一级的签名；iBoot 加载 macOS 内核；内核初始化内存管理、驱动，启动第一个用户进程 <code>launchd</code>（进程号 1）；launchd 再按配置启动各种后台服务和登录窗口。PC 上类似：固件（UEFI）→ 引导程序 → 内核 → 第一个用户进程（Linux 上常是 systemd）。答出“固件 → 引导 → 内核 → 第一个用户进程”这条链和“逐级校验”就够了，第二十五章细讲。</p>
+        </div></details>
+      </div>
+      <div class="pass" data-id="base-q0b">
+        <div class="qq" data-in="1.8"><p>某机器上 60% 的指令 CPI 为 1，40% 的指令 CPI 为 3，平均 CPI 是多少？</p><p class="ex">0.6×1 + 0.4×3 = 1.8。</p></div>
+        <div class="qq" data-a="1"><p>编译执行和解释执行的根本区别是？</p><ol><li>编译执行更慢</li><li>编译会生成一个目标程序，解释不生成，边读边执行</li><li>解释只能用于汇编语言</li></ol><p class="ex">是否生成目标程序。</p></div>
+        <div class="qq" data-a="2"><p>冯·诺依曼结构最核心的思想是？</p><ol><li>用晶体管代替电子管</li><li>用十进制计算</li><li>存储程序：指令和数据都以二进制放在同一个存储器里</li></ol><p class="ex">存储程序。</p></div>
+        <div class="qq" data-in="2|2s|2秒"><p>主频 1 GHz，程序执行 10<sup>9</sup> 条指令，平均 CPI = 2，CPU 时间是多少秒？</p><p class="ex">10<sup>9</sup> × 2 ÷ 10<sup>9</sup> = 2 秒。</p></div>
+        <div class="qq" data-a="0"><p>为什么不同指令集的机器不能只比 MIPS？</p><ol><li>一条指令完成的工作量不同</li><li>MIPS 的单位不一样</li><li>MIPS 只能用来比内存</li></ol><p class="ex">一条复杂指令可能顶好几条简单指令，比“每秒多少条”没有意义，要比完成同一个程序的 CPU 时间。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ly" data-l="3" id="c0-3">
+    <div class="lyh"><b>第三层 · 深入</b><span class="tg">原理、工程、出处</span><span class="tm">约 30 分钟</span><span class="sum">抽象会漏：下面的细节会冒上来；一个量出缓存行大小的命令；这套书参考了哪些经典教材和公开课。</span></div>
+    <div class="lyb">
+      <h3>抽象会漏</h3>
+      <p>2002 年，程序员乔尔·斯波尔斯基写了一篇短文，提出“抽象泄漏定律”：所有不平凡的抽象，在某种程度上都会漏。意思是，下面那层楼的细节总会在某个时候冒上来，逼你去懂它。这本书里会反复碰到：</p>
+      <ul class="plain">
+        <li>在 Python 里 <code>0.1 + 0.2 == 0.3</code> 是 <code>False</code>：浮点数的表示冒上来了（第四章）。</li>
+        <li>两段一模一样的二维数组求和，一段按行遍历、一段按列遍历，速度可以差好几倍：缓存冒上来了（第十六章）。</li>
+        <li>一个计数器加到二十一亿多突然变成负数：补码和字长冒上来了（第三章）。</li>
+        <li>两个线程各自给同一个变量加一万次，结果不到两万：内存和指令的细节冒上来了（第二十九章）。</li>
+      </ul>
+      <p>所以“重打基础”不是背更多名词，而是在每个抽象漏掉的地方，知道往下看哪一层。</p>
+      <div class="try">
+        <div class="th"><b>问问 Mac 的缓存</b><span class="tm">3 分钟</span></div>
+        <div class="tb">
+          <pre class="sh" data-k="终端"><span class="p">% </span>sysctl hw.cachelinesize hw.l1dcachesize hw.l2cachesize
+<span class="p">% </span>sysctl hw.perflevel0 hw.perflevel1 2&gt;/dev/null | grep -i cache</pre>
+          <p>第一行给出缓存行大小和一级、二级数据缓存的大小（单位字节）。Apple Silicon 有“性能核”和“能效核”两种核心，第二行分别列出它们的缓存。缓存行在 Apple Silicon 上多半是 128 字节，英特尔机器多半是 64 字节。先记下来，第十六章会用程序把它“量”出来，和这里的数对一对。</p>
+        </div>
+      </div>
+      <div class="read">
+        <h5>延伸阅读（本书参考，但不照搬）</h5>
+        <ul>
+          <li>Bryant、O'Hallaron《深入理解计算机系统》（CS:APP），以及卡内基梅隆大学的 15-213 课程：本书“程序员眼中的系统”这个视角就来自这里。</li>
+          <li>Nisan、Schocken《计算机系统要素》（Nand2Tetris）：从与非门一路搭到操作系统，第二部的思路受它启发。</li>
+          <li>Petzold《编码》：写给普通读者的“从电报到计算机”，适合第一层读者的课外书。</li>
+          <li>Patterson、Hennessy《计算机组成与设计》：第二部的第二、三层。</li>
+          <li>哈佛 CS50、MIT 6.004 和 6.1910 等公开课：网上可以免费看。</li>
+          <li>Joel Spolsky, “The Law of Leaky Abstractions”, 2002。</li>
+        </ul>
+      </div>
+      <div class="pass" data-id="base-q0c">
+        <div class="qq" data-a="1"><p>“抽象泄漏定律”说的是？</p><ol><li>抽象层越多越安全</li><li>下层的细节总会在某些时候影响上层，逼你去了解它</li><li>内存会泄漏</li></ol><p class="ex">任何不平凡的抽象都会在某种程度上漏出底层细节。</p></div>
+        <div class="qq" data-a="0"><p>Apple Silicon 的 Mac 上有哪两种 CPU 核心？</p><ol><li>性能核和能效核</li><li>整数核和浮点核</li><li>内核和外核</li></ol><p class="ex">性能核（performance）快、耗电多，能效核（efficiency）慢、省电；系统把任务在两种核之间分配。</p></div>
+        <div class="qq" data-a="2"><p>下面哪一件事<b>不是</b>本书举的“抽象会漏”的例子？</p><ol><li>0.1 + 0.2 不等于 0.3</li><li>按列遍历数组更慢</li><li>Python 的缩进必须对齐</li></ol><p class="ex">缩进是 Python 语法本身的规定，不是下层细节冒上来。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="words-h">这一章的新词</div>
+  <div class="words">
+    <div data-l="1"><b>比特 <span class="en" data-say="bit">bit</span></b>一个 0 或 1，电脑里最小的一份信息。</div>
+    <div data-l="1"><b>抽象 <span class="en" data-say="abstraction">abstraction</span></b>只看这一层，把下面的细节藏起来。</div>
+    <div data-l="1"><b>终端 <span class="en" data-say="terminal">terminal</span></b>用打字给电脑下命令的窗口。</div>
+    <div data-l="1"><b>编译器 <span class="en" data-say="compiler">compiler</span></b>把程序翻译成机器指令的程序，比如 clang。</div>
+    <div data-l="2"><b>时钟周期 <span class="en" data-say="clock cycle">clock cycle</span></b>处理器的时钟跳一下的时间，主频的倒数。</div>
+    <div data-l="2"><b>CPI</b>每条指令平均要几个时钟周期（cycles per instruction）。</div>
+  </div>
+  <div class="seal">
+    <div><i>第一层带走</i>电脑是一栋五层楼：开关、电路、指令、系统、应用；每层只跟楼上楼下说话。</div>
+    <div><i>第二层带走</i>CPU 时间 = 指令数 × CPI ÷ 主频；比快慢要比同一个程序的时间。</div>
+    <div><i>第三层带走</i>抽象总会漏；重打基础，就是知道漏了以后往下看哪一层。</div>
+  </div>
+</section>

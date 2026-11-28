@@ -42,6 +42,7 @@
         <div class="say"></div>
       </div>
       <p>这一切，通常在一两秒之内完成。最快的一步（一次加法）不到一纳秒，最慢的一步（跨越大洋的往返）要一百多毫秒，相差一亿倍以上；整个过程里，比特被翻译了无数次：按键码、字符、数据包、电压、光、无线电、HTML、像素。这就是“抽象”的力量：每一层只管自己的事，合起来却完成了一件谁也说不全的复杂事情。</p>
+      <details class="opt"><summary>和大人一起：用 curl 把这一路走一遍（终端）</summary><div>
       <div class="try">
         <div class="th"><b>用 curl 走一遍</b><span class="tm">10 分钟</span></div>
         <div class="tb">
@@ -49,6 +50,7 @@
           <p><code>curl</code> 是一个不画网页的“浏览器”，<code>-v</code> 让它把过程都说出来，<code>-o /dev/null</code> 把网页内容扔掉。你会依次看到：解析域名得到的 IP 地址（第三十一章）、连接 443 端口（TCP 握手）、TLS 握手和服务器证书的名字（第三十一章第三层）、以 <code>&gt;</code> 开头的请求（GET / HTTP/2 和一串首部）、以 <code>&lt;</code> 开头的回复（状态码 200 或 301、内容类型、长度）。再试试 <code>curl -w '%{time_namelookup} %{time_connect} %{time_appconnect} %{time_total}\n' -o /dev/null -s https://www.apple.com</code>，看查 DNS、TCP 连接、TLS 握手、整个下载各用了多少秒。</p>
         </div>
       </div>
+      </div></details>
       <h3>这本书的地图</h3>
       <div class="tbl w"><table class="t"><tr><th>楼层</th><th>这本书哪里讲</th><th>往下读系列里的</th></tr>
         <tr><td>楼里跑的东西：比特</td><td>第一部《位》：数、负数、小数、文字、图和声音、位运算、校验</td><td>《芯》（数据的表示和运算）、《算筹》</td></tr>
@@ -129,6 +131,15 @@
   </section>
 
   <div class="words-h">这一章的新词</div>
+  <div class="main" data-step="32">
+    <div class="mh"><b>主线 · 第 32 步</b><span>外壳</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给小机装上：<i>外壳（shell）</i></p>
+      <p>最后一步：<code>shell()</code> 读你敲的命令：ls、cat、run、rm、send、exit。<code>run hi.xj</code> 从文件系统里取出程序，建一个进程，经过页表和内核，打出 HI!。小机装好了。</p>
+      <div class="who1"><b>第一层</b>这一步可以先下载“到这一步的完整文件”运行，看懂演示，再读新加的那一段。想挑战就自己打。</div>
+      <div class="who2"><b>第二层</b>用 C 重写小机（至少 CPU 和汇编器），配上 Makefile 和测试；比一比 Python 版和 C 版把“乘法”程序跑一百万次各要多久。</div>
+    </div>
+  </div>
   <div class="words">
     <div data-l="1"><b>网址 <span class="en" data-say="URL">URL</span></b>协议、域名、路径拼成的地址。</div>
     <div data-l="1"><b>浏览器 <span class="en" data-say="browser">browser</span></b>取回网页、把它画成像素的程序。</div>

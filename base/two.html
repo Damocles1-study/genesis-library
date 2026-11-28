@@ -581,6 +581,72 @@ table.pt td.stall{background:repeating-linear-gradient(45deg,var(--paper-2),var(
 :root[data-theme="dark"] .chead .big{background:color-mix(in srgb,var(--main) 22%,var(--card));color:var(--main);box-shadow:5px 5px 0 color-mix(in srgb,var(--ter) 40%,var(--paper))}
 :root[data-theme="dark"] .pass .ph{background:color-mix(in srgb,var(--c,var(--main)) 22%,var(--card));color:var(--c,var(--main))}
 :root[data-theme="dark"] .pass.ok .ph{background:color-mix(in srgb,var(--gold) 22%,var(--card));color:var(--gold)}
+
+/* ---------- 2026-11-28 修订：给小学生的第一层 ---------- */
+/* 起步：从第二层读起的人先读这一段（原来的大学入门版第一层，挪到这里） */
+.ramp{border:1.5px dashed var(--l2);border-radius:8px;padding:4px 14px 6px;margin:0 0 2em;background:color-mix(in srgb,var(--l2) 4%,transparent)}
+.ramp>.rh{font-size:13px;color:var(--l2);margin:6px 0 .2em;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.ramp>.rh b{font-family:var(--f-display);font-size:17px}
+.ramp>.rh::before{content:"起步";font-size:11.5px;letter-spacing:.12em;color:var(--paper);background:var(--l2);border-radius:2px;padding:1px 6px}
+/* 先跳过：这一章的第一层只讲个大概 */
+.skip{max-width:38rem;margin:.6em auto 1.4em;border:2px solid var(--gold);border-radius:8px;padding:8px 14px;background:color-mix(in srgb,var(--gold) 9%,var(--card));font-size:15.5px;line-height:1.75}
+.skip b:first-child{display:block;font-family:var(--f-display);font-size:17px;color:var(--gold);margin-bottom:.2em}
+.skip p{margin:0 0 .4em}
+/* 你见过的：接到《一块一块》里的红石、方块、小蟒 */
+.mc{--c:var(--l1);max-width:38rem;margin:1.4em auto;padding:8px 14px 4px;border-left:5px solid var(--c);background:color-mix(in srgb,var(--c) 8%,var(--card));border-radius:0 6px 6px 0;font-size:15.5px;line-height:1.8}
+.mc h5{margin:0 0 .3em;font-family:var(--f-display);font-size:17px;color:var(--c);display:flex;gap:8px;align-items:baseline}
+.mc h5::before{content:"你见过的";font-family:var(--f-sans);font-size:11.5px;letter-spacing:.08em;color:var(--paper);background:var(--c);border-radius:2px;padding:1px 6px}
+.mc p{margin:0 0 .5em}
+/* 大人陪着可以试（可选） */
+details.opt{max-width:38rem;margin:1.2em auto;border:1px solid var(--rule);border-radius:6px;background:var(--card);padding:0 14px}
+details.opt>summary{cursor:pointer;padding:7px 0;font-size:15px;color:var(--ink-2);list-style:none}
+details.opt>summary::-webkit-details-marker{display:none}
+details.opt>summary::before{content:"可选 ▸";font-size:11.5px;letter-spacing:.08em;color:var(--paper);background:var(--ink-3);border-radius:2px;padding:1px 6px;margin-right:8px}
+details.opt[open]>summary::before{content:"可选 ▾"}
+details.opt>div{padding:2px 0 8px;font-size:15.5px;line-height:1.8}
+.lyb .big1{font-size:19px;line-height:1.8}
+/* 主线：一台小机，一章装一个零件 */
+.main{max-width:44rem;margin:2.2em auto 1.6em;border:2px solid var(--main);border-radius:10px;background:var(--card);overflow:hidden}
+.main .mh{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;padding:8px 14px;background:color-mix(in srgb,var(--main) 12%,var(--card));border-bottom:1px solid color-mix(in srgb,var(--main) 30%,var(--rule))}
+.main .mh b{font-family:var(--f-display);font-size:18px;color:var(--main)}
+.main .mh span{font-size:15.5px;font-weight:700}
+.main .mh small{margin-left:auto;font-size:12.5px;color:var(--ink-3)}
+.main .mb{padding:8px 14px 4px;font-size:15.5px;line-height:1.8}
+.main .mb>p{margin:0 0 .6em}
+.main .part-of{color:var(--ink-2)}
+.main .part-of i{font-style:normal;font-weight:700;color:var(--main)}
+.main .who1,.main .who2{border-left:3px solid var(--l1);padding-left:10px;margin:.4em 0 .7em}
+.main .who2{border-color:var(--l2)}
+.main .who1 b,.main .who2 b{font-size:12.5px;letter-spacing:.06em;color:var(--l1);margin-right:6px}
+.main .who2 b{color:var(--l2)}
+.main .mf{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 14px 10px;border-top:1px dashed var(--rule);font-size:13.5px;color:var(--ink-3)}
+.main .mf .btn.done{background:var(--l1);color:var(--paper);border-color:var(--l1)}
+.main .mview{margin:0 14px 10px}
+.main .mview pre{max-height:420px;overflow:auto}
+.mbar{display:flex;gap:2px;flex:1 1 140px;min-width:120px}
+.mbar i{flex:1;height:8px;border-radius:2px;background:var(--off)}
+.mbar i.on{background:var(--l1)}
+.mbar i.me{outline:2px solid var(--main);outline-offset:1px}
+/* 读法 */
+.route{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));margin:1em 0}
+.route>div{border:1.5px solid var(--rule);border-radius:8px;padding:8px 14px;background:var(--card);font-size:15px;line-height:1.75}
+.route>div>b{display:block;font-family:var(--f-display);font-size:18px;margin-bottom:.2em}
+.route>div.r1{border-color:var(--l1)}.route>div.r1>b{color:var(--l1)}
+.route>div.r2{border-color:var(--l2)}.route>div.r2>b{color:var(--l2)}
+.route ol,.route ul{margin:.2em 0 .5em;padding-left:1.3em}
+.route li{margin:.15em 0}
+.chips{display:flex;flex-wrap:wrap;gap:4px;margin:.3em 0 .6em}
+.chips a,.chips span{font-size:13px;text-decoration:none;border:1px solid var(--rule);border-radius:999px;padding:0 8px;white-space:nowrap}
+.chips .k1{border-color:var(--l1);color:var(--l1)}
+.chips .ks{border-color:var(--gold);color:var(--gold);border-style:dashed}
+.chips .ko{border-color:var(--ink-3);color:var(--ink-3)}
+/* 小机装配图 */
+.kit{display:grid;grid-template-columns:repeat(auto-fill,minmax(5.4rem,1fr));gap:6px;margin:.6em 0}
+.kit a{display:block;text-decoration:none;border:1.5px solid var(--rule);border-radius:6px;padding:4px 6px;font-size:12.5px;line-height:1.35;background:var(--card);color:var(--ink-3);min-height:3.4em}
+.kit a b{display:block;font-family:var(--f-mono);font-size:11px;font-weight:400}
+.kit a.on{border-color:var(--l1);color:var(--ink);background:color-mix(in srgb,var(--l1) 12%,var(--card))}
+.kit a.on b{color:var(--l1)}
+.kit .kh{grid-column:1/-1;font-size:13px;color:var(--ink-2);margin-top:4px}
 </style>
 </head>
 <body>
@@ -641,7 +707,7 @@ table.pt td.stall{background:repeating-linear-gradient(45deg,var(--paper-2),var(
       <h2>晶体管</h2>
       <dl><dt>讲什么</dt><dd>电压、电流和电阻；用电控制电：继电器；没有零件会动的开关：晶体管；串联是与、并联是或；CMOS 的非门、与非门、或非门；与非是万能的；逻辑代数；门延迟和功耗；为什么主频不再往上涨</dd><dt>装置</dt><dd>CMOS 门电路</dd></dl>
       <div class="crs" data-c="组成 物理 数学"></div>
-      <div class="lvs"><a data-l="1" href="#c9-1">第一层 · 50 分钟</a><a data-l="2" href="#c9-2">第二层 · 45 分钟</a><a data-l="3" href="#c9-3">第三层 · 30 分钟</a></div>
+      <div class="lvs"><a data-l="1" href="#c9-1">第一层 · 30 分钟</a><a data-l="2" href="#c9-2">第二层 · 95 分钟</a><a data-l="3" href="#c9-3">第三层 · 30 分钟</a></div>
     </div>
   </div>
 
@@ -653,16 +719,102 @@ table.pt td.stall{background:repeating-linear-gradient(45deg,var(--paper-2),var(
   <div class="goal">
     <h5>学完这一章，你能……</h5>
     <ul>
-      <li><span class="lg lg1">一</span>用水管讲清电压、电流和电阻；说出继电器和晶体管都是“用电控制电的开关”。</li>
-      <li><span class="lg lg1">一</span>用串联和并联搭出与、或；看懂一个 CMOS 非门为什么输出总和输入相反。</li>
+      <li><span class="lg lg1">一</span>说出晶体管是“用电按的开关”；用两个开关串起来、并排接，讲清楚与和或。</li>
+      <li><span class="lg lg1">一</span>只用与非门，搭出非门和与门。</li>
+      <li><span class="lg lg2">二</span>用水管讲清电压、电流和电阻；说出继电器和晶体管都是“用电控制电的开关”。</li>
+      <li><span class="lg lg2">二</span>用串联和并联搭出与、或；看懂一个 CMOS 非门为什么输出总和输入相反。</li>
       <li><span class="lg lg2">二</span>用逻辑代数化简表达式；证明与非门是完备的；说出门延迟和动态功耗公式。</li>
       <li><span class="lg lg3">三</span>说出 MOS 管怎样导通；解释摩尔定律和登纳德缩放，以及工艺“几纳米”为什么不是真实尺寸。</li>
     </ul>
   </div>
 
   <section class="ly" data-l="1" id="c9-1">
-    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：与或非（第七章）</span><span class="tm">约 50 分钟</span></div>
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：与、或、非（第七章）</span><span class="tm">约 30 分钟</span></div>
     <div class="lyb">
+<h3>不用手按的开关</h3>
+      <p>你家的电灯开关，是用手按的。电脑里有几百亿个开关，谁也按不过来。</p>
+      <p>所以电脑要一种特别的开关：<b>不用手，用电来按</b>。这根线有电，那根线就接通；这根线没电，那根线就断开。</p>
+      <p>这样，一个开关的输出，就能去按下一个开关。一个接一个，不需要人。</p>
+      <div class="mc">
+        <h5>红石火把</h5>
+        <p>在《一块一块》里，你用过红石火把：它下面的方块有电，火把就灭；没电，火把就亮。这就是一个“用电按的开关”，而且是一个“非”。红石电脑就是用很多这样的开关搭的（<a href="../block/two.html#c10">第十章《门》</a>）。</p>
+      </div>
+
+      <h3>晶体管</h3>
+      <p>今天的电脑里，这种开关叫<b>晶体管</b>。它用一种叫<b>硅</b>的材料做成，沙子里就有很多硅。</p>
+      <p>晶体管有三只脚。中间那只像一道闸门：给它电，另外两只脚之间就接通；不给电，就断开。</p>
+      <p>它没有会动的零件，又小又快。你的 Mac 的芯片只有指甲盖那么大，里面却有一百多亿个晶体管。</p>
+      <div class="story">
+        <h5>以前用过的开关</h5>
+        <p>最早的电脑用<b>继电器</b>：通了电就变成磁铁，把一片铁吸过来，“咔哒”一声接通。后来用<b>电子管</b>，像一个个小灯泡，没有会动的零件，快多了，可是又大又烫，还常常烧坏。晶体管比它们都小、都快、都省电。</p>
+      </div>
+
+      <h3>串起来是“与”，并排是“或”</h3>
+      <p>拿两个开关 A、B，再拿一盏灯：</p>
+      <ul class="plain">
+        <li><b>一前一后串在一根线上</b>：A 和 B 都合上，电才过得去，灯才亮。这就是“与”。</li>
+        <li><b>并排接成两条路</b>：随便合上哪一个，电都能从那条路过去，灯就亮。这就是“或”。</li>
+      </ul>
+      <p>把开关换成晶体管，就有了不用手按的“与门”和“或门”。再加上把 1 变成 0 的“非门”，第七章的那几种操作，全都能用晶体管搭出来。</p>
+
+      <h3>看看芯片里的门</h3>
+      <p>真正的芯片里，晶体管有两种：一种是“给电才通”，另一种正好反过来，“不给电才通”。两种配成一对，一个通的时候另一个就断，这样很省电。这种搭法叫 <b>CMOS</b>。</p>
+      <p>下面的装置画的就是它。你不用记住每个管子，只要看两件事：哪些管子通了（绿色），输出是 1 还是 0。</p>
+<div class="fig" id="cmosFig">
+        <div class="fig-label">装置 · 第九章</div>
+        <h4>CMOS 门电路</h4>
+        <p class="how">选一种门，点 A、B 切换输入。绿色的管子是接通的，灰色是断开的；橙色的线说明输出被连到了电源（1）还是地（0）。右边的真值表标出现在这一行。</p>
+        <div class="btns" data-m></div>
+        <div class="row" style="justify-content:center"><button class="btn" data-in="A">A = 0</button><button class="btn" data-in="B">B = 0</button></div>
+        <div class="cmoswrap"><svg viewBox="0 0 360 330" class="cmos" role="img" aria-label="CMOS 电路"></svg><div class="tt"></div></div>
+        <div class="say"></div>
+      </div>
+      <p>先选“非门”，点 A，看输出是不是总和 A 反着。再选“与非门”：只有 A 和 B 都是 1 的时候，输出才是 0。</p>
+
+      <h3>与非门是万能的</h3>
+      <p>“与非”就是先“与”、再“非”。很神奇：<b>只用与非门，就能搭出所有别的门</b>。</p>
+      <ul class="plain">
+        <li>非：把与非门的两个输入接在一起。</li>
+        <li>与：与非后面再接一个非。</li>
+        <li>或：A 和 B 各自先“非”一下，再一起与非。</li>
+      </ul>
+      <div class="try">
+        <div class="th"><b>用 Python 搭门</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+          <p>打开 IDLE（或者《一块一块》第十部的<a href="../block/ten.html">小蟒游乐场</a>），输入下面几行，运行：</p>
+<pre class="code" data-k="gates.py">def NAND(a, b):
+    if a == 1 and b == 1:
+        return 0
+    return 1
+
+def NOT(a):
+    return NAND(a, a)
+
+for a in [0, 1]:
+    print(a, NOT(a))</pre>
+          <p>打出 <code>0 1</code> 和 <code>1 0</code>，非门就搭好了。接着自己写一个 <code>AND(a, b)</code>，只许用 <code>NAND</code> 和 <code>NOT</code>，再用四种输入试一遍。</p>
+        </div>
+      </div>
+      <div class="task" data-id="base-t9k">
+        <div class="th"><b>家里的门电路</b></div>
+        <div class="tb"><p>在纸上画两张小电路图：两个开关串联、一盏灯（与）；两个开关并联、一盏灯（或）。再找一找家里的例子：楼梯上下两个开关管一盏灯，是第七章的哪一种？（提示：随便按哪个，灯都会变。）</p></div>
+      </div>
+      <div class="pass" data-id="base-q9k">
+        <div class="qq" data-a="1"><p>电脑里的开关是谁来按的？</p><ol><li>人的手</li><li>电</li><li>风</li></ol><p class="ex">电：一根线有没有电，决定另一根线通不通。</p></div>
+        <div class="qq" data-a="0"><p>两个开关一前一后串在一根线上，灯什么时候亮？</p><ol><li>两个都合上</li><li>随便合上一个</li><li>两个都断开</li></ol><p class="ex">串着的时候，电要穿过两个开关，所以两个都要合上。这是“与”。</p></div>
+        <div class="qq" data-a="1"><p>红石火把下面的方块有电时，火把会怎样？</p><ol><li>亮</li><li>灭</li></ol><p class="ex">有电就灭，没电就亮，所以红石火把是一个“非”。</p></div>
+        <div class="qq" data-a="2"><p>今天的电脑里用的开关叫什么？</p><ol><li>继电器</li><li>电子管</li><li>晶体管</li></ol><p class="ex">晶体管。继电器和电子管是更早的电脑用的。</p></div>
+        <div class="qq" data-in="与非|与非门|nand"><p>只用哪一种门，就能搭出所有别的门？</p><p class="ex">与非门（NAND）。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c9-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">数字逻辑基础 · 面试</span><span class="tm">约 95 分钟</span><span class="sum">逻辑代数的基本定律和化简；最小项和真值表；与非门的完备性；门延迟、扇出；动态功耗 P ≈ αCV²f 和“功耗墙”。</span></div>
+    <div class="lyb">
+      <div class="ramp">
+        <div class="rh"><b>入门版</b>从第二层读起的人先读这一段。它是这一章原来的第一层：给大学生和初中以上读者的入门；本章第一层改写成了给小学生的版本。</div>
       <h3>电是怎样流的</h3>
       <div class="bridge" data-s="电" data-k="物理">
         <h5>电压、电流、电阻</h5>
@@ -688,15 +840,7 @@ table.pt td.stall{background:repeating-linear-gradient(45deg,var(--paper-2),var(
       <p>“非”稍微巧一点：输入是 1 时要让输出变成 0。用一个 P 管和一个 N 管叠起来：P 管接在电源（1）和输出之间，N 管接在输出和地（0）之间，两个管子的栅极接在一起当输入。输入是 0：P 管通、N 管断，输出被连到电源，是 1。输入是 1：P 管断、N 管通，输出被连到地，是 0。总有一个通、一个断，所以这种搭法叫 <b>CMOS</b>（互补的 MOS）：它几乎不费电，只有在切换的一瞬间才有电流。</p>
       <p>同样的思路：两个 N 管串联接地、两个 P 管并联接电源，就是<b>与非门</b>（先“与”再“非”）；反过来，N 管并联、P 管串联，就是<b>或非门</b>。在 CMOS 里，与非和或非比与、或更“天然”，要得到“与”，就在与非后面再接一个非门。</p>
 
-      <div class="fig" id="cmosFig">
-        <div class="fig-label">装置 · 第九章</div>
-        <h4>CMOS 门电路</h4>
-        <p class="how">选一种门，点 A、B 切换输入。绿色的管子是接通的，灰色是断开的；橙色的线说明输出被连到了电源（1）还是地（0）。右边的真值表标出现在这一行。</p>
-        <div class="btns" data-m></div>
-        <div class="row" style="justify-content:center"><button class="btn" data-in="A">A = 0</button><button class="btn" data-in="B">B = 0</button></div>
-        <div class="cmoswrap"><svg viewBox="0 0 360 330" class="cmos" role="img" aria-label="CMOS 电路"></svg><div class="tt"></div></div>
-        <div class="say"></div>
-      </div>
+      <p class="dim" style="font-size:14px">（装置“CMOS 门电路”留在本章第一层，展开第一层就能玩。）</p>
 
       <h3>与非是万能的</h3>
       <p>只要有足够多的与非门，就能搭出任何一种逻辑：</p>
@@ -734,13 +878,9 @@ for a in (0, 1):
         <div class="qq" data-in="0"><p>NAND(1, 1) 等于几？</p><p class="ex">先与得 1，再非得 0。</p></div>
         <div class="qq" data-a="1"><p>继电器、电子管、晶体管的共同点是？</p><ol><li>都用硅做</li><li>都是用电控制电的开关</li><li>都会咔哒响</li></ol><p class="ex">一个开关的输出能控制下一个开关，才能一级一级搭成电脑。</p></div>
       </div>
-    </div>
-  </section>
-  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+    
+      </div>
 
-  <section class="ly" data-l="2" id="c9-2">
-    <div class="lyh"><b>第二层 · 本科</b><span class="tg">数字逻辑基础 · 面试</span><span class="tm">约 45 分钟</span><span class="sum">逻辑代数的基本定律和化简；最小项和真值表；与非门的完备性；门延迟、扇出；动态功耗 P ≈ αCV²f 和“功耗墙”。</span></div>
-    <div class="lyb">
       <h3>逻辑代数</h3>
       <p>写法约定：A·B（或 AB）表示与，A + B 表示或，A′（或 Ā）表示非。基本定律：</p>
       <div class="tbl"><table class="t"><tr><th>名称</th><th>与的形式</th><th>或的形式</th></tr>
@@ -812,16 +952,27 @@ for a in (0, 1):
   </section>
 
   <div class="words-h">这一章的新词</div>
+  <div class="main" data-step="9">
+    <div class="mh"><b>主线 · 第 9 步</b><span>与非门</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给小机装上：<i>与非门</i></p>
+      <p>只写一个 <code>NAND</code>，再用它搭出 <code>NOT</code>、<code>AND</code>、<code>OR</code>、<code>XOR</code>。从这一步起，小机的电路全用与非门搭。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 xiaoji.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>数一数一个 XOR 用了几个与非门；用第九章第二层的逻辑代数证明 OR 那一行是对的。</div>
+    </div>
+  </div>
   <div class="words">
-    <div data-l="1"><b>晶体管 <span class="en" data-say="transistor">transistor</span></b>用电控制的开关，没有会动的零件。</div>
-    <div data-l="1"><b>电压 / 电流 / 电阻</b><span class="en" data-say="voltage">voltage</span>、<span class="en" data-say="current">current</span>、<span class="en" data-say="resistance">resistance</span>。</div>
-    <div data-l="1"><b>门 <span class="en" data-say="logic gate">logic gate</span></b>实现一种逻辑运算的小电路。</div>
-    <div data-l="1"><b>与非 <span class="en" data-say="NAND">NAND</span></b>先与再非；只用它就能搭出一切。</div>
+    <div data-l="1"><b>晶体管 <span class="en" data-say="transistor">transistor</span></b>用电控制的开关，你的 Mac 的芯片里有一百多亿个。</div>
+    <div data-l="1"><b>与非门 <span class="en" data-say="NAND">NAND</span></b>先与、再非；只用它就能搭出所有别的门。</div>
+    <div data-l="2"><b>晶体管 <span class="en" data-say="transistor">transistor</span></b>用电控制的开关，没有会动的零件。</div>
+    <div data-l="2"><b>电压 / 电流 / 电阻</b><span class="en" data-say="voltage">voltage</span>、<span class="en" data-say="current">current</span>、<span class="en" data-say="resistance">resistance</span>。</div>
+    <div data-l="2"><b>门 <span class="en" data-say="logic gate">logic gate</span></b>实现一种逻辑运算的小电路。</div>
+    <div data-l="2"><b>与非 <span class="en" data-say="NAND">NAND</span></b>先与再非；只用它就能搭出一切。</div>
     <div data-l="2"><b>传播延迟 <span class="en" data-say="propagation delay">propagation delay</span></b>输入变化到输出变化要的时间。</div>
     <div data-l="3"><b>光刻 <span class="en" data-say="lithography">lithography</span></b>用光把电路图案“印”到硅片上。</div>
   </div>
   <div class="seal">
-    <div><i>第一层带走</i>晶体管是用电控制的开关；串联是与，并联是或，一上一下是非。</div>
+    <div><i>第一层带走</i>晶体管是用电按的开关；串起来是与，并排是或，与非门能搭出一切。</div>
     <div><i>第二层带走</i>与非单独就完备；功耗 ∝ CV²f，所以主频撞了墙。</div>
     <div><i>第三层带走</i>摩尔定律是经济规律不是物理定律；工艺名字只是代号。</div>
   </div>
@@ -1020,6 +1171,15 @@ endmodule</pre></li>
   </section>
 
   <div class="words-h">这一章的新词</div>
+  <div class="main" data-step="10">
+    <div class="mh"><b>主线 · 第 10 步</b><span>加法器</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给小机装上：<i>8 位加法器</i></p>
+      <p>用门搭出全加器，再把 8 个排成一排，就是 <code>add8</code>。demo 把 256 × 256 道加法全算一遍，和 Python 自己算的对答案，一道都不错。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 xiaoji.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>加一个“做减法”的开关：B 先过异或门，最低位的进位设成 1。再算一算：最坏的时候，进位要传几级？</div>
+    </div>
+  </div>
   <div class="words">
     <div data-l="1"><b>加法器 <span class="en" data-say="adder">adder</span></b>半加器、全加器，以及它们串成的多位加法器。</div>
     <div data-l="1"><b>进位 <span class="en" data-say="carry">carry</span></b>往高一位进的那个 1。</div>
@@ -1197,6 +1357,15 @@ endmodule</pre>
   </section>
 
   <div class="words-h">这一章的新词</div>
+  <div class="main" data-step="11">
+    <div class="mh"><b>主线 · 第 11 步</b><span>寄存器</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给小机装上：<i>寄存器和时钟</i></p>
+      <p><code>REG</code> 有“门口的数” d 和“存进去的数” q。只有时钟跳一下（<code>tick()</code>），q 才会变。demo 用它做了一个计数器。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 xiaoji.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>用第十一章的两个或非门锁存器，写一个真正的 D 触发器函数换掉 REG；说清为什么要在时钟跳变的那一下才存。</div>
+    </div>
+  </div>
   <div class="words">
     <div data-l="1"><b>锁存器 <span class="en" data-say="latch">latch</span></b>能记住一个比特的最简单电路。</div>
     <div data-l="1"><b>触发器 <span class="en" data-say="flip-flop">flip-flop</span></b>只在时钟沿记下输入的存储单元。</div>
@@ -1225,7 +1394,7 @@ endmodule</pre>
       <h2>存储器</h2>
       <dl><dt>讲什么</dt><dd>一排带门牌号的小柜子：地址和数据；读和写；SRAM、DRAM、闪存；存储器的指标；DRAM 的刷新和地址复用；用小芯片拼大内存：位扩展、字扩展；多体交叉；行缓冲、Rowhammer 和统一内存</dd><dt>装置</dt><dd>十六格内存 · 拼一块内存</dd></dl>
       <div class="crs" data-c="组成 系统"></div>
-      <div class="lvs"><a data-l="1" href="#c12-1">第一层 · 40 分钟</a><a data-l="2" href="#c12-2">第二层 · 60 分钟</a><a data-l="3" href="#c12-3">第三层 · 30 分钟</a></div>
+      <div class="lvs"><a data-l="1" href="#c12-1">第一层 · 30 分钟</a><a data-l="2" href="#c12-2">第二层 · 100 分钟</a><a data-l="3" href="#c12-3">第三层 · 30 分钟</a></div>
     </div>
   </div>
 
@@ -1237,25 +1406,34 @@ endmodule</pre>
   <div class="goal">
     <h5>学完这一章，你能……</h5>
     <ul>
-      <li><span class="lg lg1">一</span>说出地址、数据、读、写各是什么；算出 n 根地址线能找到多少格。</li>
-      <li><span class="lg lg1">一</span>说出 SRAM、DRAM、闪存各用在哪儿、为什么。</li>
+      <li><span class="lg lg1">一</span>把内存讲成一排带号码的柜子：说出“读”和“写”各是什么意思。</li>
+      <li><span class="lg lg1">一</span>说出内存和硬盘的区别：断电以后谁还记得。</li>
+      <li><span class="lg lg2">二</span>说出地址、数据、读、写各是什么；算出 n 根地址线能找到多少格。</li>
+      <li><span class="lg lg2">二</span>说出 SRAM、DRAM、闪存各用在哪儿、为什么。</li>
       <li><span class="lg lg2">二</span>用小芯片做位扩展、字扩展和字位同时扩展，写出片选逻辑和每组的地址范围；解释 DRAM 刷新和多体交叉。</li>
       <li><span class="lg lg3">三</span>说出 DRAM 的行缓冲和 Rowhammer；知道固态硬盘为什么要“先擦后写”。</li>
     </ul>
   </div>
 
   <section class="ly" data-l="1" id="c12-1">
-    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：寄存器（第十一章）、译码器（第十章）</span><span class="tm">约 40 分钟</span></div>
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：二进制（第一章）、字节（第二章）</span><span class="tm">约 30 分钟</span></div>
     <div class="lyb">
-      <h3>一排带门牌号的柜子</h3>
-      <p>把内存想成一排很长很长的小柜子，每个柜子里放一个字节，每个柜子有一个编号，从 0 开始数，这个编号叫<b>地址</b>。处理器和内存之间只做两件事：</p>
+<h3>一排带号码的柜子</h3>
+      <p>学校门口有一排储物柜，每个柜子都有号码。你说“3 号柜”，大家就知道是哪一个。</p>
+      <p><b>内存</b>就是一排很长很长的小柜子。每个柜子里放<b>一个字节</b>（8 个比特，第二章）。柜子的号码叫<b>地址</b>，从 0 开始数。</p>
+      <p>处理器和内存之间，只做两件事：</p>
       <ul class="plain">
-        <li><b>读</b>：“把第 1000 号柜子里的东西给我看看。”</li>
-        <li><b>写</b>：“把 65 放进第 1000 号柜子。”原来的东西被覆盖。</li>
+        <li><b>读</b>：“把 3 号柜里的东西给我看看。”看完了，东西还在柜子里。</li>
+        <li><b>写</b>：“把 72 放进 3 号柜。”原来的东西被换掉了。</li>
       </ul>
-      <p>它们之间连着三组线：<b>地址线</b>（说是哪一格）、<b>数据线</b>（把内容送来送去）、<b>控制线</b>（说是读还是写）。地址线有 n 根，就能说出 2<sup>n</sup> 个不同的地址。你的 8 GB 内存有 8 × 2<sup>30</sup> = 2<sup>33</sup> 个字节，至少需要 33 位地址。</p>
-      <p>内存收到地址以后，用第十章的<b>译码器</b>把地址变成“第几根线亮”，那根线打开对应那一格，数据就从那一格出来（读），或者写进那一格（写）。</p>
-      <div class="fig" id="ramFig">
+      <div class="mc">
+        <h5>物品栏的格子</h5>
+        <p>我的世界里，物品栏的每一格也有号码：0 到 35（<a href="../block/six.html#c45">第四十五章</a>）。内存也一样，只是格子多得多：8 GB 的内存，有八十多亿个格子。</p>
+      </div>
+
+      <h3>玩一块 16 格的内存</h3>
+      <p>下面这块内存只有 16 格。号码用 4 根“地址线”来说：4 个比特正好能数 0 到 15（第一章）。</p>
+<div class="fig" id="ramFig">
         <div class="fig-label">装置 · 第十二章 · 一</div>
         <h4>十六格内存</h4>
         <p class="how">一块只有 16 格、每格 8 位的小内存。点地址线设置地址（4 根线，0—15），译码器会点亮那一格。设好数据后点“写”，或者直接点“读”。</p>
@@ -1266,6 +1444,63 @@ endmodule</pre>
         </div>
         <div class="say"></div>
       </div>
+      <p>试试看：把地址拨到 3，把数据拨成 72，点“写”。再把地址拨到别的格子，然后拨回 3，点“读”。72 还在。</p>
+      <p>再点“写进 HI!”，看看 H、I、! 三个字母的编号（第五章）住进了哪几格。</p>
+
+      <h3>一断电就忘</h3>
+      <p>内存很快，可它有一个毛病：<b>一断电，里面的东西全没了</b>。</p>
+      <p>所以写作业的时候要点“保存”。保存，就是把内存里的东西抄到硬盘上。硬盘慢一些，可是断了电也记得。</p>
+      <div class="tbl">
+        <table class="t tt">
+          <tr><th></th><th>快不快</th><th>断电以后</th><th>放什么</th></tr>
+          <tr><td><b>内存</b></td><td>很快</td><td>全忘了</td><td>正在用的程序和东西</td></tr>
+          <tr><td><b>硬盘</b>（固态硬盘、U 盘）</td><td>慢一些</td><td>还记得</td><td>存起来的文件</td></tr>
+        </table>
+      </div>
+      <div class="try">
+        <div class="th"><b>用 Python 造一块内存</b><span class="tm">5 分钟</span></div>
+        <div class="tb">
+          <p>在终端里输入 <code>python3</code>，一行一行输入：</p>
+<pre class="sh" data-k="python3"><span class="p">&gt;&gt;&gt; </span>mem = bytearray(16)
+<span class="p">&gt;&gt;&gt; </span>mem[3] = 72
+<span class="p">&gt;&gt;&gt; </span>mem[4] = 73
+<span class="p">&gt;&gt;&gt; </span>mem[3]
+<span class="o">72</span>
+<span class="p">&gt;&gt;&gt; </span>mem
+<span class="o">bytearray(b'\x00\x00\x00HI\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')</span></pre>
+          <p><code>bytearray(16)</code> 就是 16 个格子，每格一个字节，一开始都是 0。最后一行里，<code>\x00</code> 是一个 0；72 和 73 正好是 H 和 I 的编号，Python 就直接写成了字母。</p>
+          <p>想知道你的 Mac 有多少内存：点屏幕左上角的苹果标志，选“关于本机”。</p>
+        </div>
+      </div>
+      <div class="task" data-id="base-t12k">
+        <div class="th"><b>内存游戏</b></div>
+        <div class="tb"><p>在纸上画 16 个格子，写上 0 到 15。请家里一个人当“处理器”，只许说两种话：“写，几号，几”和“读，几号”。你当“内存”，只许改那一格、念那一格。玩五分钟，再换过来。</p></div>
+      </div>
+      <div class="pass" data-id="base-q12k">
+        <div class="qq" data-in="地址|address"><p>内存里每个格子的号码叫什么？</p><p class="ex">地址。</p></div>
+        <div class="qq" data-a="1"><p>内存的第一个格子是几号？</p><ol><li>1 号</li><li>0 号</li></ol><p class="ex">从 0 开始数。</p></div>
+        <div class="qq" data-a="0"><p>“读”了 3 号格以后，3 号格里的东西怎样了？</p><ol><li>还在</li><li>没了</li></ol><p class="ex">读只是看一眼，东西还在。写才会换掉它。</p></div>
+        <div class="qq" data-a="2"><p>4 根地址线，能说出几个不同的地址？</p><ol><li>4 个</li><li>8 个</li><li>16 个</li></ol><p class="ex">4 个比特有 16 种样子：0 到 15。</p></div>
+        <div class="qq" data-a="0"><p>为什么写完作业要点“保存”？</p><ol><li>内存一断电就忘，要抄到硬盘上</li><li>保存能让电脑变快</li></ol><p class="ex">保存就是把内存里的东西写到硬盘上。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c12-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 计组 · 主存储器</span><span class="tm">约 100 分钟</span><span class="sum">存取时间、存取周期、带宽；SRAM 和 DRAM 的原理；DRAM 的三种刷新方式和行列地址复用；主存和 CPU 的连接：位扩展、字扩展、字位同时扩展、线选和译码片选；低位交叉的多体存储器。</span></div>
+    <div class="lyb">
+      <div class="ramp">
+        <div class="rh"><b>入门版</b>从第二层读起的人先读这一段。它是这一章原来的第一层：给大学生和初中以上读者的入门；本章第一层改写成了给小学生的版本。</div>
+      <h3>一排带门牌号的柜子</h3>
+      <p>把内存想成一排很长很长的小柜子，每个柜子里放一个字节，每个柜子有一个编号，从 0 开始数，这个编号叫<b>地址</b>。处理器和内存之间只做两件事：</p>
+      <ul class="plain">
+        <li><b>读</b>：“把第 1000 号柜子里的东西给我看看。”</li>
+        <li><b>写</b>：“把 65 放进第 1000 号柜子。”原来的东西被覆盖。</li>
+      </ul>
+      <p>它们之间连着三组线：<b>地址线</b>（说是哪一格）、<b>数据线</b>（把内容送来送去）、<b>控制线</b>（说是读还是写）。地址线有 n 根，就能说出 2<sup>n</sup> 个不同的地址。你的 8 GB 内存有 8 × 2<sup>30</sup> = 2<sup>33</sup> 个字节，至少需要 33 位地址。</p>
+      <p>内存收到地址以后，用第十章的<b>译码器</b>把地址变成“第几根线亮”，那根线打开对应那一格，数据就从那一格出来（读），或者写进那一格（写）。</p>
+      <p class="dim" style="font-size:14px">（装置“十六格内存”留在本章第一层，展开第一层就能玩。）</p>
       <h3>三种存储</h3>
       <div class="tbl"><table class="t"><tr><th></th><th>一个比特用什么存</th><th>断电以后</th><th>快慢</th><th>用在哪儿</th></tr>
         <tr><td><b>SRAM</b></td><td>六个晶体管（两个非门互相撑着，像第十一章的锁存器）</td><td>丢失</td><td>最快</td><td>处理器里的缓存（第十六章）</td></tr>
@@ -1293,13 +1528,9 @@ endmodule</pre>
         <div class="qq" data-a="0"><p>断电以后还记得内容的是？</p><ol><li>闪存</li><li>DRAM</li><li>SRAM</li></ol><p class="ex">闪存把电荷关在一个绝缘的“笼子”里。</p></div>
         <div class="qq" data-a="1"><p>内存从地址找到那一格，用的是第十章的哪种电路？</p><ol><li>加法器</li><li>译码器</li><li>多路选择器</li></ol><p class="ex">译码器把 n 位地址变成 2<sup>n</sup> 根线里的一根。</p></div>
       </div>
-    </div>
-  </section>
-  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+    
+      </div>
 
-  <section class="ly" data-l="2" id="c12-2">
-    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 计组 · 主存储器</span><span class="tm">约 60 分钟</span><span class="sum">存取时间、存取周期、带宽；SRAM 和 DRAM 的原理；DRAM 的三种刷新方式和行列地址复用；主存和 CPU 的连接：位扩展、字扩展、字位同时扩展、线选和译码片选；低位交叉的多体存储器。</span></div>
-    <div class="lyb">
       <h3>指标</h3>
       <ul class="plain">
         <li><b>存取时间</b>：从发出读写命令到完成操作的时间。<b>存取周期</b>：连续两次独立访问之间的最短间隔，存取周期 = 存取时间 + 恢复时间，所以存取周期 ≥ 存取时间（DRAM 读出是破坏性的，要写回，恢复时间更长）。</li>
@@ -1380,16 +1611,27 @@ endmodule</pre>
   </section>
 
   <div class="words-h">这一章的新词</div>
+  <div class="main" data-step="12">
+    <div class="mh"><b>主线 · 第 12 步</b><span>内存</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给小机装上：<i>16 格内存</i></p>
+      <p><code>MEM</code> 是 16 个格子，<code>read(a)</code>、<code>write(a, v)</code> 读写一格。小机以后读内存都走 read：这样后面才能在中间插进缓存和页表。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 xiaoji.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>地址超过 15 该怎么办？加检查和测试。想一想：为什么要让所有读写都走同一个函数？</div>
+    </div>
+  </div>
   <div class="words">
-    <div data-l="1"><b>地址 <span class="en" data-say="address">address</span></b>每一格存储的编号。</div>
-    <div data-l="1"><b>内存 <span class="en" data-say="memory">memory</span></b>断电就丢、处理器直接读写的存储。</div>
-    <div data-l="1"><b>刷新 <span class="en" data-say="refresh">refresh</span></b>DRAM 定期读出再写回，补上漏掉的电荷。</div>
+    <div data-l="1"><b>地址 <span class="en" data-say="address">address</span></b>内存里每一格的号码，从 0 开始数。</div>
+    <div data-l="1"><b>内存 <span class="en" data-say="memory">memory</span></b>放正在用的东西，很快，一断电就忘。</div>
+    <div data-l="2"><b>地址 <span class="en" data-say="address">address</span></b>每一格存储的编号。</div>
+    <div data-l="2"><b>内存 <span class="en" data-say="memory">memory</span></b>断电就丢、处理器直接读写的存储。</div>
+    <div data-l="2"><b>刷新 <span class="en" data-say="refresh">refresh</span></b>DRAM 定期读出再写回，补上漏掉的电荷。</div>
     <div data-l="2"><b>片选 <span class="en" data-say="chip select">chip select</span></b>决定这一次访问选中哪块芯片的信号。</div>
     <div data-l="2"><b>交叉编址 <span class="en" data-say="interleaving">interleaving</span></b>相邻地址放在不同的存储体里。</div>
     <div data-l="3"><b>磨损均衡 <span class="en" data-say="wear leveling">wear leveling</span></b>让闪存的每一块被均匀地擦写。</div>
   </div>
   <div class="seal">
-    <div><i>第一层带走</i>内存是一排带门牌号的柜子；n 根地址线管 2<sup>n</sup> 格。</div>
+    <div><i>第一层带走</i>内存是一排带号码的柜子；读不拿走，写会盖掉；断电就忘，所以要保存。</div>
     <div><i>第二层带走</i>片数 = 字的倍数 × 位的倍数；低位地址进芯片，高位地址去译码片选。</div>
     <div><i>第三层带走</i>每种存储都有怪脾气：DRAM 会漏、会被敲翻，闪存要先擦后写。</div>
   </div>
@@ -1593,6 +1835,15 @@ while True:
   </section>
 
   <div class="words-h">这一章的新词</div>
+  <div class="main" data-step="13">
+    <div class="mh"><b>主线 · 第 13 步</b><span>大脑</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给小机装上：<i>控制器：取指、译码、执行</i></p>
+      <p>最要紧的一步。<code>CPU</code> 记着 PC 和 ACC；<code>step()</code> 取指、译码、执行；<code>run()</code> 一直走到 HLT。装进第十三章的“倒数”程序，它打出 5 4 3 2 1。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 xiaoji.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>用 C 写一遍同样的循环（第十七章以后就会了）；把 if/elif 换成“函数表”，比一比两种写法。</div>
+    </div>
+  </div>
   <div class="words">
     <div data-l="1"><b>指令 <span class="en" data-say="instruction">instruction</span></b>处理器能执行的一条最小命令。</div>
     <div data-l="1"><b>程序计数器 <span class="en" data-say="program counter">program counter</span></b>PC，记着下一条指令的位置。</div>
@@ -1615,7 +1866,7 @@ while True:
       <h2>指令和汇编</h2>
       <dl><dt>讲什么</dt><dd>从小机到真正的处理器；汇编语言是给指令起的名字；在 Mac 上让 clang 吐出 arm64 汇编；寄存器；条件跳转和第三章的标志位；指令格式和扩展操作码；九种寻址方式；精简和复杂指令集；一条指令的 32 个比特；Rosetta 2</dd><dt>装置</dt><dd>C 和汇编对照 · 寻址方式</dd></dl>
       <div class="crs" data-c="组成 系统"></div>
-      <div class="lvs"><a data-l="1" href="#c14-1">第一层 · 50 分钟</a><a data-l="2" href="#c14-2">第二层 · 60 分钟</a><a data-l="3" href="#c14-3">第三层 · 30 分钟</a></div>
+      <div class="lvs"><a data-l="1" href="#c14-1">第一层 · 30 分钟</a><a data-l="2" href="#c14-2">第二层 · 110 分钟</a><a data-l="3" href="#c14-3">第三层 · 30 分钟</a></div>
     </div>
   </div>
 
@@ -1627,16 +1878,75 @@ while True:
   <div class="goal">
     <h5>学完这一章，你能……</h5>
     <ul>
-      <li><span class="lg lg1">一</span>用 <code>clang -S</code> 在 Mac 上看一个 C 函数的 arm64 汇编，认出 add、cmp、b、ldr、ret 这几种指令。</li>
-      <li><span class="lg lg1">一</span>说出汇编和机器指令的关系，寄存器和内存的区别。</li>
+      <li><span class="lg lg1">一</span>把小机的指令和汇编名字互相翻译。</li>
+      <li><span class="lg lg1">一</span>说出 Python 的 if 和 while，最后都变成了跳转指令。</li>
+      <li><span class="lg lg2">二</span>用 <code>clang -S</code> 在 Mac 上看一个 C 函数的 arm64 汇编，认出 add、cmp、b、ldr、ret 这几种指令。</li>
+      <li><span class="lg lg2">二</span>说出汇编和机器指令的关系，寄存器和内存的区别。</li>
       <li><span class="lg lg2">二</span>设计扩展操作码；对九种寻址方式算出有效地址和访存次数；比较精简指令集和复杂指令集。</li>
       <li><span class="lg lg3">三</span>把一条 arm64 指令拆成 32 个比特；说出 Rosetta 2 怎样让英特尔的程序在 Apple Silicon 上跑。</li>
     </ul>
   </div>
 
   <section class="ly" data-l="1" id="c14-1">
-    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：小机（第十三章）</span><span class="tm">约 50 分钟</span></div>
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：小机（第十三章）</span><span class="tm">约 30 分钟</span></div>
     <div class="lyb">
+<h3>给指令起名字</h3>
+      <p>第十三章的小机，只认一个个字节：<code>1E</code> 是“把第 14 格装进 ACC”，<code>3F</code> 是“加上第 15 格”。这些数，人很难记。</p>
+      <p>于是人们给每种指令起了一个短名字：<code>LDA 14</code>、<code>ADD 15</code>。用这些名字写的程序，叫<b>汇编语言</b>（assembly）。</p>
+      <p>名字只是给人看的。要运行，还得把名字翻回数。做这件事的程序叫<b>汇编器</b>。它像查字典：LDA 是 1，14 是 E，拼起来就是 <code>1E</code>。</p>
+      <div class="tbl">
+        <table class="t tt">
+          <tr><th>汇编</th><th>翻成的字节</th><th>意思</th></tr>
+          <tr><td><code>LDA 14</code></td><td><code>1E</code></td><td>把第 14 格装进 ACC</td></tr>
+          <tr><td><code>ADD 15</code></td><td><code>3F</code></td><td>ACC 加上第 15 格</td></tr>
+          <tr><td><code>OUT</code></td><td><code>90</code></td><td>打印 ACC</td></tr>
+          <tr><td><code>HLT</code></td><td><code>00</code></td><td>停机</td></tr>
+        </table>
+      </div>
+      <div class="mc">
+        <h5>命令方块里的命令</h5>
+        <p>在《一块一块》第六部里，你写过 <code>/tp</code>、<code>/give</code> 这样的命令：一个英文动词，后面跟着“对谁”“到哪儿”。汇编也是这样：LDA、ADD、JMP 是动词，后面的数是“对哪一格”。</p>
+      </div>
+
+      <h3>自己当一回汇编器</h3>
+      <p>拿出纸和笔，查第十三章的指令表，把下面三行翻成十六进制：</p>
+<pre class="code" data-k="小机">LDI 5
+OUT
+HLT</pre>
+      <details class="opt"><summary>翻好了，对答案</summary><div><p>LDI 是 5 号，后面跟 5，所以是 <code>55</code>；OUT 是 <code>90</code>；HLT 是 <code>00</code>。换成十进制是 85、144、0。</p><p>到第十三章的<a data-c="c13" href="#c13">小机模拟器</a>里，把这三行写进“自己写程序”的框，点“装进内存”，再点“一直走”，它会打出 5。把三行换成 <code>85</code>、<code>144</code>、<code>0</code> 三个数，效果一模一样：名字和数，说的是同一件事。</p></div></details>
+
+      <h3>真电脑也有汇编</h3>
+      <p>你的 Mac 的处理器也有自己的指令，比小机多得多，有好几百种，名字也不一样：<code>add</code> 是加，<code>ldr</code> 是装进来，<code>str</code> 是存进去，<code>b</code> 是跳。</p>
+      <p>不同家的处理器，指令不一样。Apple Silicon 用的是 ARM 家的指令；以前的英特尔 Mac 用的是 x86 家的指令。两家互相不认识对方的指令。</p>
+      <p>现在几乎没人用汇编写整个程序，太累了。人们写 Python、C，再交给别的程序一路翻成指令。第三部会讲 C 怎样被翻成指令；想现在就看看真的汇编长什么样，第二层开头有在 Mac 上看的办法。</p>
+
+      <h3>跳一跳：判断和循环</h3>
+      <p>小机有两种跳：<code>JMP</code> 是“一定跳”；<code>JZ</code>、<code>JN</code> 是“满足条件才跳”。Python 里的 <code>if</code> 和 <code>while</code>，翻成指令以后，就是这些跳。</p>
+<pre class="code" data-k="countdown.py">n = 5
+while n != 0:
+    print(n)
+    n = n - 1</pre>
+      <p>拿它和小机的“倒数”程序比一比：<code>print</code> 变成了 OUT；<code>n - 1</code> 变成了 SUB；<code>while</code> 变成了两次跳：减到 0 就用 JZ 跳出去，没到 0 就用 JMP 跳回开头。</p>
+      <div class="task" data-id="base-t14k">
+        <div class="th"><b>改一改倒数程序</b></div>
+        <div class="tb"><p>在小机模拟器里选“倒数”，把第 15 格的 5 改成 3，让它打出 3、2、1。再想一想：要让它打出 5、3、1（每次减 2），要改哪一格？试一试，看会不会停不下来（提示：5、3、1 再减 2 是多少？）。</p></div>
+      </div>
+      <div class="pass" data-id="base-q14k">
+        <div class="qq" data-a="0"><p>用 LDA、ADD 这样的名字写的程序，叫什么？</p><ol><li>汇编语言</li><li>Python</li><li>十六进制</li></ol><p class="ex">汇编语言：给指令起了名字。</p></div>
+        <div class="qq" data-in="汇编器|assembler"><p>把名字翻回数的程序叫什么？</p><p class="ex">汇编器。</p></div>
+        <div class="qq" data-a="1"><p>小机的 OUT 翻成哪个字节？</p><ol><li>00</li><li>90</li><li>1E</li></ol><p class="ex">OUT 是 9 号指令，后面不用跟格子，所以是 90。</p></div>
+        <div class="qq" data-a="0"><p>Python 的 while 循环翻成指令以后，靠什么回到开头？</p><ol><li>跳转指令</li><li>OUT</li><li>HLT</li></ol><p class="ex">靠跳：JMP 跳回开头，JZ 在该停的时候跳出去。</p></div>
+        <div class="qq" data-a="0"><p>Apple Silicon 的 Mac 用的是哪一家的指令？</p><ol><li>ARM</li><li>x86</li></ol><p class="ex">ARM。以前的英特尔 Mac 用 x86。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c14-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 计组 · 指令系统</span><span class="tm">约 110 分钟</span><span class="sum">指令格式：零到三地址；定长和扩展操作码的设计；九种寻址方式的有效地址和访存次数；arm64 里的寻址写法；相对寻址的偏移量；精简和复杂指令集。</span></div>
+    <div class="lyb">
+      <div class="ramp">
+        <div class="rh"><b>入门版</b>从第二层读起的人先读这一段。它是这一章原来的第一层：给大学生和初中以上读者的入门；本章第一层改写成了给小学生的版本。</div>
       <h3>汇编：给指令起名字</h3>
       <p>小机的指令是一个个字节，0x1E、0x3F，人看不懂。所以我们给它们起了名字：LDA 14、ADD 15。这种“用名字写机器指令”的语言叫<b>汇编语言</b>（<span class="en" data-say="assembly language">assembly language</span>），把它翻译成字节的程序叫<b>汇编器</b>。汇编和机器指令基本上是一一对应的：一行汇编就是一条指令。</p>
       <p>真正的处理器和小机比，主要多了这些：</p>
@@ -1688,13 +1998,9 @@ int sum(int *a, int n) {
         <div class="qq" data-a="2"><p>arm64 里比较两个无符号数，“小于就跳”应该用？</p><ol><li>b.lt</li><li>b.ne</li><li>b.lo</li></ol><p class="ex">lt 是有符号的小于，lo（lower）是无符号的。</p></div>
         <div class="qq" data-a="1"><p>为什么编译器尽量把变量放在寄存器里？</p><ol><li>寄存器更大</li><li>寄存器在处理器里面，比内存快得多</li><li>内存会丢数据</li></ol><p class="ex">快一百倍左右。</p></div>
       </div>
-    </div>
-  </section>
-  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+    
+      </div>
 
-  <section class="ly" data-l="2" id="c14-2">
-    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 计组 · 指令系统</span><span class="tm">约 60 分钟</span><span class="sum">指令格式：零到三地址；定长和扩展操作码的设计；九种寻址方式的有效地址和访存次数；arm64 里的寻址写法；相对寻址的偏移量；精简和复杂指令集。</span></div>
-    <div class="lyb">
       <h3>指令格式</h3>
       <p>一条指令 = 操作码 + 地址码。按地址码的个数分：<b>零地址</b>（如 HLT，或者堆栈机里的 ADD，操作数隐含在栈顶）、<b>一地址</b>（如小机的 ADD a，另一个操作数隐含在累加器）、<b>二地址</b>（A1 ← A1 op A2，x86 常见）、<b>三地址</b>（A3 ← A1 op A2，arm64 的 add w0, w1, w2）。地址越多，一条指令做的事越完整，但指令越长。</p>
       <p><b>扩展操作码</b>：指令字长固定时，让操作码长度随地址个数变化——地址少的指令，把省下来的地址位挪给操作码。设计时，短操作码必须留出一些编码作为“扩展标志”，长操作码以它们开头，保证任何一个短操作码都不是长操作码的前缀，译码才不会混淆。</p>
@@ -1788,16 +2094,27 @@ int sum(int *a, int n) {
   </section>
 
   <div class="words-h">这一章的新词</div>
+  <div class="main" data-step="14">
+    <div class="mh"><b>主线 · 第 14 步</b><span>汇编器</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给小机装上：<i>汇编器</i></p>
+      <p><code>asm()</code> 把 <code>LDA 14</code> 这样的汇编翻成字节，<code>disasm()</code> 再翻回来。从此给小机写程序，不用再算十六进制了。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 xiaoji.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>给 asm 加报错：不认识的指令、超出 0—15 的地址，都要说出是第几行。</div>
+    </div>
+  </div>
   <div class="words">
-    <div data-l="1"><b>汇编语言 <span class="en" data-say="assembly language">assembly</span></b>用名字写的机器指令。</div>
-    <div data-l="1"><b>寄存器 <span class="en" data-say="register">register</span></b>处理器内部最快的几十个小存储。</div>
-    <div data-l="1"><b>条件跳转 <span class="en" data-say="conditional branch">conditional branch</span></b>看标志位决定跳不跳。</div>
+    <div data-l="1"><b>汇编语言 <span class="en" data-say="assembly">assembly</span></b>给指令起了名字的写法，比如 LDA 14。</div>
+    <div data-l="1"><b>汇编器 <span class="en" data-say="assembler">assembler</span></b>把汇编翻成字节的程序。</div>
+    <div data-l="2"><b>汇编语言 <span class="en" data-say="assembly language">assembly</span></b>用名字写的机器指令。</div>
+    <div data-l="2"><b>寄存器 <span class="en" data-say="register">register</span></b>处理器内部最快的几十个小存储。</div>
+    <div data-l="2"><b>条件跳转 <span class="en" data-say="conditional branch">conditional branch</span></b>看标志位决定跳不跳。</div>
     <div data-l="2"><b>寻址方式 <span class="en" data-say="addressing mode">addressing mode</span></b>从指令里的地址码求出操作数位置的规则。</div>
     <div data-l="2"><b>精简指令集 <span class="en" data-say="RISC">RISC</span></b>指令少而规整、定长、只用 load/store 访存。</div>
     <div data-l="3"><b>调用约定 <span class="en" data-say="calling convention">calling convention</span></b>参数和返回值放在哪儿的约定。</div>
   </div>
   <div class="seal">
-    <div><i>第一层带走</i>汇编就是给指令起名字；if 和循环最后都变成 cmp 加条件跳转。</div>
+    <div><i>第一层带走</i>汇编是给指令起的名字；if 和 while 最后都变成“跳”。</div>
     <div><i>第二层带走</i>扩展操作码留扩展位；有效地址看寻址方式，访存次数要算对。</div>
     <div><i>第三层带走</i>每条指令都是 32 个比特的约定；为了兼容，连硬件都肯开后门。</div>
   </div>
@@ -1978,6 +2295,15 @@ int main(void) {
   </section>
 
   <div class="words-h">这一章的新词</div>
+  <div class="main" data-step="15">
+    <div class="mh"><b>主线 · 第 15 步</b><span>节拍器</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给小机装上：<i>节拍计数</i></p>
+      <p><code>beats()</code> 数一数：一条做完再做下一条要几拍；三条叠着做（流水线）要几拍。每跳一次，已经取进来的两条要扔掉，白费两拍。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 xiaoji.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>按第十五章第二层的公式算加速比；改写“倒数”，让它少跳几次，看拍数怎样变。</div>
+    </div>
+  </div>
   <div class="words">
     <div data-l="1"><b>流水线 <span class="en" data-say="pipeline">pipeline</span></b>把一件事切成几段，几件事错开同时做。</div>
     <div data-l="1"><b>吞吐率 <span class="en" data-say="throughput">throughput</span></b>单位时间完成多少。</div>
@@ -2174,6 +2500,15 @@ int main(void) {
   </section>
 
   <div class="words-h">这一章的新词</div>
+  <div class="main" data-step="16">
+    <div class="mh"><b>主线 · 第 16 步</b><span>缓存</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给小机装上：<i>缓存</i></p>
+      <p>在 read 前面放一个小抽屉 <code>CACHE</code>：用过的格子先放进抽屉，下次直接拿。demo 比一比抽屉放 4 格和放 8 格：4 格时一次都没拿到，因为循环里用到的格子比抽屉多，刚放进去就被挤走了。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 xiaoji.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>改成第十六章第二层的直接映射和 2 路组相联，分别统计“倒数”和“乘法”两个程序的命中率。</div>
+    </div>
+  </div>
   <div class="words">
     <div data-l="1"><b>缓存 <span class="en" data-say="cache">cache</span></b>放在手边的小而快的存储。</div>
     <div data-l="1"><b>局部性 <span class="en" data-say="locality">locality</span></b>刚用过的、旁边的，很快还会用。</div>
@@ -2586,6 +2921,74 @@ dev('#osFig', fig => {
   box.addEventListener('click', e => { const b = e.target.closest('.om'); if (b) pick(+b.dataset.i); });
   pick(3);
 });
+
+/* ---------- 主线：一台小机，一章装一个零件（2026-11-28 加） ----------
+   每章末尾的 <div class="main" data-step="N"> 由 _build/base/main/boxes.py 插入；
+   分步代码由 _build/base/main/make.py 生成到 base/main/：sNN.py（第 0—N 步的完整文件）、dNN.py（第 N 步新写的）、oNN.txt（运行结果）。
+   “装好了”记在系列共用的 genesis-layer-log 里：G.d.flag['base-mN']。 */
+const MAIN_N = 33;
+const MAIN_PART = ['工作台', '开关排', '十六进制屏', '8 位钟面', '只用整数', '字表 ASCII', '8×8 屏幕', '运算器', '校验位',
+  '与非门', '加法器', '寄存器', '16 格内存', '控制器', '汇编器', '节拍计数', '缓存',
+  '名字和标签', '指针指令', '字串', '栈', '堆', '链接器', '装载器', '调试器',
+  '内核', '进程', '页表', '文件系统', '锁', '电线和帧', '地址簿', '外壳'];
+const MAIN_SKIP = [22, 23, 27];                 // 小学生可以先跳过的章
+const MAIN_ADULT = [3, 4, 10, 11, 13, 17, 18];  // 第一层要大人陪着多一点的章
+const MAIN_RAMP = [9, 12, 14, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 31]; // 第二层开头有“入门版”的章
+const mainDone = n => !!G.d.flag['base-m' + n];
+const mPad = n => (n < 10 ? '0' : '') + n;
+function mainBar(me){ let h = ''; for (let i = 0; i < MAIN_N; i++) h += '<i class="' + (mainDone(i) ? 'on' : '') + (i === me ? ' me' : '') + '" title="第 ' + i + ' 步 · ' + MAIN_PART[i] + '"></i>'; return h; }
+function mEsc(s){ return s.replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+$$('.main[data-step]').forEach(box => {
+  const n = +box.dataset.step;
+  const done = () => Object.keys(G.d.flag).filter(k => /^base-m\d+$/.test(k)).length;
+  $('.mh', box).insertAdjacentHTML('beforeend', '<small>第 ' + n + ' / ' + (MAIN_N - 1) + ' 步</small>');
+  const f = document.createElement('div'); f.className = 'mf';
+  f.innerHTML = '<button class="btn" data-v="d">这一步的新代码</button><button class="btn" data-v="o">应该看到</button>' +
+    '<a class="btn" href="main/s' + mPad(n) + '.py" download="xiaoji_s' + mPad(n) + '.py">到这一步的完整文件</a>' +
+    '<button class="btn" data-x="done"></button><span class="mbar"></span><span class="mcnt"></span>';
+  box.appendChild(f);
+  const view = document.createElement('div'); view.className = 'mview'; view.hidden = true; box.appendChild(view);
+  const b = $('[data-x="done"]', f);
+  const show = () => { const on = mainDone(n); b.textContent = on ? '✓ 装好了' : '我装好了'; b.classList.toggle('done', on); $('.mbar', f).innerHTML = mainBar(n); $('.mcnt', f).textContent = '已装 ' + done() + ' / ' + MAIN_N; };
+  box._show = show;
+  b.addEventListener('click', () => { const k = 'base-m' + n; if (G.d.flag[k]) delete G.d.flag[k]; else G.d.flag[k] = TODAY(); G.save(); });
+  let cur = '';
+  $$('[data-v]', f).forEach(btn => btn.addEventListener('click', () => {
+    const v = btn.dataset.v;
+    if (cur === v) { view.hidden = true; cur = ''; return; }
+    cur = v; view.hidden = false; view.innerHTML = '<p class="dim" style="font-size:13px">读取中……</p>';
+    const url = 'main/' + (v === 'd' ? 'd' : 'o') + mPad(n) + (v === 'd' ? '.py' : '.txt');
+    fetch(url).then(r => { if (!r.ok) throw 0; return r.text(); }).then(t => {
+      view.innerHTML = '<pre class="' + (v === 'd' ? 'code' : 'out') + '" data-k="' + (v === 'd' ? 'xiaoji.py · 第 ' + n + ' 步新加的' : '运行 xiaoji_s' + mPad(n) + '.py') + '">' + mEsc(t) + '</pre>';
+      const pre = $('pre', view);
+      if (v === 'd') { const c = document.createElement('button'); c.className = 'cp'; c.type = 'button'; c.textContent = '复制'; c.addEventListener('click', () => { (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(() => { c.textContent = '已复制'; setTimeout(() => c.textContent = '复制', 1200); }, () => { c.textContent = '请手动选中'; }); }); pre.appendChild(c); }
+    }).catch(() => { view.innerHTML = '<p class="dim" style="font-size:14px">读不到这个文件（直接双击打开网页时会这样）。可以点“到这一步的完整文件”下载，或者去 <code>base/main/</code> 文件夹里找。</p>'; });
+  }));
+  show();
+});
+/* 封面：小机装配图 */
+dev('#kitFig', box => {
+  const rows = [[0, 8, '第一部 · 位：数据'], [9, 16, '第二部 · 门：硬件'], [17, 24, '第三部 · 程：程序'], [25, 32, '第四部 · 系：系统和网络']];
+  const draw = () => {
+    let h = '';
+    rows.forEach(r => { h += '<div class="kh">' + r[2] + '</div>'; for (let i = r[0]; i <= r[1]; i++) h += '<a href="' + href('c' + i) + '" class="' + (mainDone(i) ? 'on' : '') + '"><b>第 ' + i + ' 步</b>' + MAIN_PART[i] + '</a>'; });
+    box.innerHTML = h;
+    const say = $('#kitSay'); if (say) { const k = Object.keys(G.d.flag).filter(x => /^base-m\d+$/.test(x)).length; say.textContent = k ? '已经装好 ' + k + ' / ' + MAIN_N + ' 个零件。' + (k === MAIN_N ? '小机装好了！下一本《链与树》，在它的屏幕上做一个游戏。' : '') : '还没开始。从第零章末尾的“主线 · 第 0 步”开始。'; }
+  };
+  box._show = draw; draw();
+});
+/* 封面：读法里的章节小签 */
+$$('.chips[data-route]').forEach(box => {
+  const kind = box.dataset.route;
+  box.innerHTML = chapList.map(x => {
+    const n = +x.id.slice(1);
+    let cls = 'k1', tag = '';
+    if (kind === 'kid') { if (MAIN_SKIP.includes(n)) { cls = 'ks'; tag = ' · 先跳过'; } else if (MAIN_ADULT.includes(n)) { cls = 'ko'; tag = ' · 大人陪着'; } }
+    if (kind === 'uni') { if (MAIN_RAMP.includes(n)) { cls = 'ko'; tag = ' · 先读入门版'; } else cls = ''; }
+    return '<a class="' + cls + '" href="' + href(x.id) + '">' + n + ' ' + x.t + tag + '</a>';
+  }).join('');
+});
+{ const _ra = refreshAchv; refreshAchv = function(){ _ra(); $$('.main[data-step]').forEach(b => b._show && b._show()); const k = $('#kitFig'); if (k && k._show) k._show(); }; }
 
 /* ---------- 第零章：按下 A 键以后 ---------- */
 dev('#keyFig', fig => {

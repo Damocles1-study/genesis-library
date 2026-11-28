@@ -6,7 +6,7 @@
       <h2>指令和汇编</h2>
       <dl><dt>讲什么</dt><dd>从小机到真正的处理器；汇编语言是给指令起的名字；在 Mac 上让 clang 吐出 arm64 汇编；寄存器；条件跳转和第三章的标志位；指令格式和扩展操作码；九种寻址方式；精简和复杂指令集；一条指令的 32 个比特；Rosetta 2</dd><dt>装置</dt><dd>C 和汇编对照 · 寻址方式</dd></dl>
       <div class="crs" data-c="组成 系统"></div>
-      <div class="lvs"><a data-l="1" href="#c14-1">第一层 · 50 分钟</a><a data-l="2" href="#c14-2">第二层 · 60 分钟</a><a data-l="3" href="#c14-3">第三层 · 30 分钟</a></div>
+      <div class="lvs"><a data-l="1" href="#c14-1">第一层 · 30 分钟</a><a data-l="2" href="#c14-2">第二层 · 110 分钟</a><a data-l="3" href="#c14-3">第三层 · 30 分钟</a></div>
     </div>
   </div>
 
@@ -18,16 +18,75 @@
   <div class="goal">
     <h5>学完这一章，你能……</h5>
     <ul>
-      <li><span class="lg lg1">一</span>用 <code>clang -S</code> 在 Mac 上看一个 C 函数的 arm64 汇编，认出 add、cmp、b、ldr、ret 这几种指令。</li>
-      <li><span class="lg lg1">一</span>说出汇编和机器指令的关系，寄存器和内存的区别。</li>
+      <li><span class="lg lg1">一</span>把小机的指令和汇编名字互相翻译。</li>
+      <li><span class="lg lg1">一</span>说出 Python 的 if 和 while，最后都变成了跳转指令。</li>
+      <li><span class="lg lg2">二</span>用 <code>clang -S</code> 在 Mac 上看一个 C 函数的 arm64 汇编，认出 add、cmp、b、ldr、ret 这几种指令。</li>
+      <li><span class="lg lg2">二</span>说出汇编和机器指令的关系，寄存器和内存的区别。</li>
       <li><span class="lg lg2">二</span>设计扩展操作码；对九种寻址方式算出有效地址和访存次数；比较精简指令集和复杂指令集。</li>
       <li><span class="lg lg3">三</span>把一条 arm64 指令拆成 32 个比特；说出 Rosetta 2 怎样让英特尔的程序在 Apple Silicon 上跑。</li>
     </ul>
   </div>
 
   <section class="ly" data-l="1" id="c14-1">
-    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：小机（第十三章）</span><span class="tm">约 50 分钟</span></div>
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：小机（第十三章）</span><span class="tm">约 30 分钟</span></div>
     <div class="lyb">
+<h3>给指令起名字</h3>
+      <p>第十三章的小机，只认一个个字节：<code>1E</code> 是“把第 14 格装进 ACC”，<code>3F</code> 是“加上第 15 格”。这些数，人很难记。</p>
+      <p>于是人们给每种指令起了一个短名字：<code>LDA 14</code>、<code>ADD 15</code>。用这些名字写的程序，叫<b>汇编语言</b>（assembly）。</p>
+      <p>名字只是给人看的。要运行，还得把名字翻回数。做这件事的程序叫<b>汇编器</b>。它像查字典：LDA 是 1，14 是 E，拼起来就是 <code>1E</code>。</p>
+      <div class="tbl">
+        <table class="t tt">
+          <tr><th>汇编</th><th>翻成的字节</th><th>意思</th></tr>
+          <tr><td><code>LDA 14</code></td><td><code>1E</code></td><td>把第 14 格装进 ACC</td></tr>
+          <tr><td><code>ADD 15</code></td><td><code>3F</code></td><td>ACC 加上第 15 格</td></tr>
+          <tr><td><code>OUT</code></td><td><code>90</code></td><td>打印 ACC</td></tr>
+          <tr><td><code>HLT</code></td><td><code>00</code></td><td>停机</td></tr>
+        </table>
+      </div>
+      <div class="mc">
+        <h5>命令方块里的命令</h5>
+        <p>在《一块一块》第六部里，你写过 <code>/tp</code>、<code>/give</code> 这样的命令：一个英文动词，后面跟着“对谁”“到哪儿”。汇编也是这样：LDA、ADD、JMP 是动词，后面的数是“对哪一格”。</p>
+      </div>
+
+      <h3>自己当一回汇编器</h3>
+      <p>拿出纸和笔，查第十三章的指令表，把下面三行翻成十六进制：</p>
+<pre class="code" data-k="小机">LDI 5
+OUT
+HLT</pre>
+      <details class="opt"><summary>翻好了，对答案</summary><div><p>LDI 是 5 号，后面跟 5，所以是 <code>55</code>；OUT 是 <code>90</code>；HLT 是 <code>00</code>。换成十进制是 85、144、0。</p><p>到第十三章的<a data-c="c13" href="#c13">小机模拟器</a>里，把这三行写进“自己写程序”的框，点“装进内存”，再点“一直走”，它会打出 5。把三行换成 <code>85</code>、<code>144</code>、<code>0</code> 三个数，效果一模一样：名字和数，说的是同一件事。</p></div></details>
+
+      <h3>真电脑也有汇编</h3>
+      <p>你的 Mac 的处理器也有自己的指令，比小机多得多，有好几百种，名字也不一样：<code>add</code> 是加，<code>ldr</code> 是装进来，<code>str</code> 是存进去，<code>b</code> 是跳。</p>
+      <p>不同家的处理器，指令不一样。Apple Silicon 用的是 ARM 家的指令；以前的英特尔 Mac 用的是 x86 家的指令。两家互相不认识对方的指令。</p>
+      <p>现在几乎没人用汇编写整个程序，太累了。人们写 Python、C，再交给别的程序一路翻成指令。第三部会讲 C 怎样被翻成指令；想现在就看看真的汇编长什么样，第二层开头有在 Mac 上看的办法。</p>
+
+      <h3>跳一跳：判断和循环</h3>
+      <p>小机有两种跳：<code>JMP</code> 是“一定跳”；<code>JZ</code>、<code>JN</code> 是“满足条件才跳”。Python 里的 <code>if</code> 和 <code>while</code>，翻成指令以后，就是这些跳。</p>
+<pre class="code" data-k="countdown.py">n = 5
+while n != 0:
+    print(n)
+    n = n - 1</pre>
+      <p>拿它和小机的“倒数”程序比一比：<code>print</code> 变成了 OUT；<code>n - 1</code> 变成了 SUB；<code>while</code> 变成了两次跳：减到 0 就用 JZ 跳出去，没到 0 就用 JMP 跳回开头。</p>
+      <div class="task" data-id="base-t14k">
+        <div class="th"><b>改一改倒数程序</b></div>
+        <div class="tb"><p>在小机模拟器里选“倒数”，把第 15 格的 5 改成 3，让它打出 3、2、1。再想一想：要让它打出 5、3、1（每次减 2），要改哪一格？试一试，看会不会停不下来（提示：5、3、1 再减 2 是多少？）。</p></div>
+      </div>
+      <div class="pass" data-id="base-q14k">
+        <div class="qq" data-a="0"><p>用 LDA、ADD 这样的名字写的程序，叫什么？</p><ol><li>汇编语言</li><li>Python</li><li>十六进制</li></ol><p class="ex">汇编语言：给指令起了名字。</p></div>
+        <div class="qq" data-in="汇编器|assembler"><p>把名字翻回数的程序叫什么？</p><p class="ex">汇编器。</p></div>
+        <div class="qq" data-a="1"><p>小机的 OUT 翻成哪个字节？</p><ol><li>00</li><li>90</li><li>1E</li></ol><p class="ex">OUT 是 9 号指令，后面不用跟格子，所以是 90。</p></div>
+        <div class="qq" data-a="0"><p>Python 的 while 循环翻成指令以后，靠什么回到开头？</p><ol><li>跳转指令</li><li>OUT</li><li>HLT</li></ol><p class="ex">靠跳：JMP 跳回开头，JZ 在该停的时候跳出去。</p></div>
+        <div class="qq" data-a="0"><p>Apple Silicon 的 Mac 用的是哪一家的指令？</p><ol><li>ARM</li><li>x86</li></ol><p class="ex">ARM。以前的英特尔 Mac 用 x86。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c14-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 计组 · 指令系统</span><span class="tm">约 110 分钟</span><span class="sum">指令格式：零到三地址；定长和扩展操作码的设计；九种寻址方式的有效地址和访存次数；arm64 里的寻址写法；相对寻址的偏移量；精简和复杂指令集。</span></div>
+    <div class="lyb">
+      <div class="ramp">
+        <div class="rh"><b>入门版</b>从第二层读起的人先读这一段。它是这一章原来的第一层：给大学生和初中以上读者的入门；本章第一层改写成了给小学生的版本。</div>
       <h3>汇编：给指令起名字</h3>
       <p>小机的指令是一个个字节，0x1E、0x3F，人看不懂。所以我们给它们起了名字：LDA 14、ADD 15。这种“用名字写机器指令”的语言叫<b>汇编语言</b>（<span class="en" data-say="assembly language">assembly language</span>），把它翻译成字节的程序叫<b>汇编器</b>。汇编和机器指令基本上是一一对应的：一行汇编就是一条指令。</p>
       <p>真正的处理器和小机比，主要多了这些：</p>
@@ -79,13 +138,9 @@ int sum(int *a, int n) {
         <div class="qq" data-a="2"><p>arm64 里比较两个无符号数，“小于就跳”应该用？</p><ol><li>b.lt</li><li>b.ne</li><li>b.lo</li></ol><p class="ex">lt 是有符号的小于，lo（lower）是无符号的。</p></div>
         <div class="qq" data-a="1"><p>为什么编译器尽量把变量放在寄存器里？</p><ol><li>寄存器更大</li><li>寄存器在处理器里面，比内存快得多</li><li>内存会丢数据</li></ol><p class="ex">快一百倍左右。</p></div>
       </div>
-    </div>
-  </section>
-  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+    
+      </div>
 
-  <section class="ly" data-l="2" id="c14-2">
-    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 计组 · 指令系统</span><span class="tm">约 60 分钟</span><span class="sum">指令格式：零到三地址；定长和扩展操作码的设计；九种寻址方式的有效地址和访存次数；arm64 里的寻址写法；相对寻址的偏移量；精简和复杂指令集。</span></div>
-    <div class="lyb">
       <h3>指令格式</h3>
       <p>一条指令 = 操作码 + 地址码。按地址码的个数分：<b>零地址</b>（如 HLT，或者堆栈机里的 ADD，操作数隐含在栈顶）、<b>一地址</b>（如小机的 ADD a，另一个操作数隐含在累加器）、<b>二地址</b>（A1 ← A1 op A2，x86 常见）、<b>三地址</b>（A3 ← A1 op A2，arm64 的 add w0, w1, w2）。地址越多，一条指令做的事越完整，但指令越长。</p>
       <p><b>扩展操作码</b>：指令字长固定时，让操作码长度随地址个数变化——地址少的指令，把省下来的地址位挪给操作码。设计时，短操作码必须留出一些编码作为“扩展标志”，长操作码以它们开头，保证任何一个短操作码都不是长操作码的前缀，译码才不会混淆。</p>
@@ -179,16 +234,27 @@ int sum(int *a, int n) {
   </section>
 
   <div class="words-h">这一章的新词</div>
+  <div class="main" data-step="14">
+    <div class="mh"><b>主线 · 第 14 步</b><span>汇编器</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给小机装上：<i>汇编器</i></p>
+      <p><code>asm()</code> 把 <code>LDA 14</code> 这样的汇编翻成字节，<code>disasm()</code> 再翻回来。从此给小机写程序，不用再算十六进制了。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 xiaoji.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>给 asm 加报错：不认识的指令、超出 0—15 的地址，都要说出是第几行。</div>
+    </div>
+  </div>
   <div class="words">
-    <div data-l="1"><b>汇编语言 <span class="en" data-say="assembly language">assembly</span></b>用名字写的机器指令。</div>
-    <div data-l="1"><b>寄存器 <span class="en" data-say="register">register</span></b>处理器内部最快的几十个小存储。</div>
-    <div data-l="1"><b>条件跳转 <span class="en" data-say="conditional branch">conditional branch</span></b>看标志位决定跳不跳。</div>
+    <div data-l="1"><b>汇编语言 <span class="en" data-say="assembly">assembly</span></b>给指令起了名字的写法，比如 LDA 14。</div>
+    <div data-l="1"><b>汇编器 <span class="en" data-say="assembler">assembler</span></b>把汇编翻成字节的程序。</div>
+    <div data-l="2"><b>汇编语言 <span class="en" data-say="assembly language">assembly</span></b>用名字写的机器指令。</div>
+    <div data-l="2"><b>寄存器 <span class="en" data-say="register">register</span></b>处理器内部最快的几十个小存储。</div>
+    <div data-l="2"><b>条件跳转 <span class="en" data-say="conditional branch">conditional branch</span></b>看标志位决定跳不跳。</div>
     <div data-l="2"><b>寻址方式 <span class="en" data-say="addressing mode">addressing mode</span></b>从指令里的地址码求出操作数位置的规则。</div>
     <div data-l="2"><b>精简指令集 <span class="en" data-say="RISC">RISC</span></b>指令少而规整、定长、只用 load/store 访存。</div>
     <div data-l="3"><b>调用约定 <span class="en" data-say="calling convention">calling convention</span></b>参数和返回值放在哪儿的约定。</div>
   </div>
   <div class="seal">
-    <div><i>第一层带走</i>汇编就是给指令起名字；if 和循环最后都变成 cmp 加条件跳转。</div>
+    <div><i>第一层带走</i>汇编是给指令起的名字；if 和 while 最后都变成“跳”。</div>
     <div><i>第二层带走</i>扩展操作码留扩展位；有效地址看寻址方式，访存次数要算对。</div>
     <div><i>第三层带走</i>每条指令都是 32 个比特的约定；为了兼容，连硬件都肯开后门。</div>
   </div>

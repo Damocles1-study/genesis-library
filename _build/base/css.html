@@ -566,3 +566,69 @@ table.pt td.stall{background:repeating-linear-gradient(45deg,var(--paper-2),var(
 :root[data-theme="dark"] .chead .big{background:color-mix(in srgb,var(--main) 22%,var(--card));color:var(--main);box-shadow:5px 5px 0 color-mix(in srgb,var(--ter) 40%,var(--paper))}
 :root[data-theme="dark"] .pass .ph{background:color-mix(in srgb,var(--c,var(--main)) 22%,var(--card));color:var(--c,var(--main))}
 :root[data-theme="dark"] .pass.ok .ph{background:color-mix(in srgb,var(--gold) 22%,var(--card));color:var(--gold)}
+
+/* ---------- 2026-11-28 修订：给小学生的第一层 ---------- */
+/* 起步：从第二层读起的人先读这一段（原来的大学入门版第一层，挪到这里） */
+.ramp{border:1.5px dashed var(--l2);border-radius:8px;padding:4px 14px 6px;margin:0 0 2em;background:color-mix(in srgb,var(--l2) 4%,transparent)}
+.ramp>.rh{font-size:13px;color:var(--l2);margin:6px 0 .2em;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.ramp>.rh b{font-family:var(--f-display);font-size:17px}
+.ramp>.rh::before{content:"起步";font-size:11.5px;letter-spacing:.12em;color:var(--paper);background:var(--l2);border-radius:2px;padding:1px 6px}
+/* 先跳过：这一章的第一层只讲个大概 */
+.skip{max-width:38rem;margin:.6em auto 1.4em;border:2px solid var(--gold);border-radius:8px;padding:8px 14px;background:color-mix(in srgb,var(--gold) 9%,var(--card));font-size:15.5px;line-height:1.75}
+.skip b:first-child{display:block;font-family:var(--f-display);font-size:17px;color:var(--gold);margin-bottom:.2em}
+.skip p{margin:0 0 .4em}
+/* 你见过的：接到《一块一块》里的红石、方块、小蟒 */
+.mc{--c:var(--l1);max-width:38rem;margin:1.4em auto;padding:8px 14px 4px;border-left:5px solid var(--c);background:color-mix(in srgb,var(--c) 8%,var(--card));border-radius:0 6px 6px 0;font-size:15.5px;line-height:1.8}
+.mc h5{margin:0 0 .3em;font-family:var(--f-display);font-size:17px;color:var(--c);display:flex;gap:8px;align-items:baseline}
+.mc h5::before{content:"你见过的";font-family:var(--f-sans);font-size:11.5px;letter-spacing:.08em;color:var(--paper);background:var(--c);border-radius:2px;padding:1px 6px}
+.mc p{margin:0 0 .5em}
+/* 大人陪着可以试（可选） */
+details.opt{max-width:38rem;margin:1.2em auto;border:1px solid var(--rule);border-radius:6px;background:var(--card);padding:0 14px}
+details.opt>summary{cursor:pointer;padding:7px 0;font-size:15px;color:var(--ink-2);list-style:none}
+details.opt>summary::-webkit-details-marker{display:none}
+details.opt>summary::before{content:"可选 ▸";font-size:11.5px;letter-spacing:.08em;color:var(--paper);background:var(--ink-3);border-radius:2px;padding:1px 6px;margin-right:8px}
+details.opt[open]>summary::before{content:"可选 ▾"}
+details.opt>div{padding:2px 0 8px;font-size:15.5px;line-height:1.8}
+.lyb .big1{font-size:19px;line-height:1.8}
+/* 主线：一台小机，一章装一个零件 */
+.main{max-width:44rem;margin:2.2em auto 1.6em;border:2px solid var(--main);border-radius:10px;background:var(--card);overflow:hidden}
+.main .mh{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;padding:8px 14px;background:color-mix(in srgb,var(--main) 12%,var(--card));border-bottom:1px solid color-mix(in srgb,var(--main) 30%,var(--rule))}
+.main .mh b{font-family:var(--f-display);font-size:18px;color:var(--main)}
+.main .mh span{font-size:15.5px;font-weight:700}
+.main .mh small{margin-left:auto;font-size:12.5px;color:var(--ink-3)}
+.main .mb{padding:8px 14px 4px;font-size:15.5px;line-height:1.8}
+.main .mb>p{margin:0 0 .6em}
+.main .part-of{color:var(--ink-2)}
+.main .part-of i{font-style:normal;font-weight:700;color:var(--main)}
+.main .who1,.main .who2{border-left:3px solid var(--l1);padding-left:10px;margin:.4em 0 .7em}
+.main .who2{border-color:var(--l2)}
+.main .who1 b,.main .who2 b{font-size:12.5px;letter-spacing:.06em;color:var(--l1);margin-right:6px}
+.main .who2 b{color:var(--l2)}
+.main .mf{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 14px 10px;border-top:1px dashed var(--rule);font-size:13.5px;color:var(--ink-3)}
+.main .mf .btn.done{background:var(--l1);color:var(--paper);border-color:var(--l1)}
+.main .mview{margin:0 14px 10px}
+.main .mview pre{max-height:420px;overflow:auto}
+.mbar{display:flex;gap:2px;flex:1 1 140px;min-width:120px}
+.mbar i{flex:1;height:8px;border-radius:2px;background:var(--off)}
+.mbar i.on{background:var(--l1)}
+.mbar i.me{outline:2px solid var(--main);outline-offset:1px}
+/* 读法 */
+.route{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));margin:1em 0}
+.route>div{border:1.5px solid var(--rule);border-radius:8px;padding:8px 14px;background:var(--card);font-size:15px;line-height:1.75}
+.route>div>b{display:block;font-family:var(--f-display);font-size:18px;margin-bottom:.2em}
+.route>div.r1{border-color:var(--l1)}.route>div.r1>b{color:var(--l1)}
+.route>div.r2{border-color:var(--l2)}.route>div.r2>b{color:var(--l2)}
+.route ol,.route ul{margin:.2em 0 .5em;padding-left:1.3em}
+.route li{margin:.15em 0}
+.chips{display:flex;flex-wrap:wrap;gap:4px;margin:.3em 0 .6em}
+.chips a,.chips span{font-size:13px;text-decoration:none;border:1px solid var(--rule);border-radius:999px;padding:0 8px;white-space:nowrap}
+.chips .k1{border-color:var(--l1);color:var(--l1)}
+.chips .ks{border-color:var(--gold);color:var(--gold);border-style:dashed}
+.chips .ko{border-color:var(--ink-3);color:var(--ink-3)}
+/* 小机装配图 */
+.kit{display:grid;grid-template-columns:repeat(auto-fill,minmax(5.4rem,1fr));gap:6px;margin:.6em 0}
+.kit a{display:block;text-decoration:none;border:1.5px solid var(--rule);border-radius:6px;padding:4px 6px;font-size:12.5px;line-height:1.35;background:var(--card);color:var(--ink-3);min-height:3.4em}
+.kit a b{display:block;font-family:var(--f-mono);font-size:11px;font-weight:400}
+.kit a.on{border-color:var(--l1);color:var(--ink);background:color-mix(in srgb,var(--l1) 12%,var(--card))}
+.kit a.on b{color:var(--l1)}
+.kit .kh{grid-column:1/-1;font-size:13px;color:var(--ink-2);margin-top:4px}

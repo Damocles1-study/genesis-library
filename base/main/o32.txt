@@ -1,0 +1,18 @@
+（交互：输入 ls、cat readme.txt、run hi.xj、run count.xj、send jiujiu hello、exit 以后）
+小机外壳。输入 help 看能做什么。
+
+xiaoji%   2   18 字节  count.xj
+  1   18 字节  hi.xj
+  3   37 字节  readme.txt
+
+xiaoji% try: ls, run hi.xj, send jiujiu hello
+
+xiaoji% HI!
+
+xiaoji% [count.xj] 1
+[count.xj] 2
+[count.xj] 3
+
+xiaoji% 回信： hello
+
+xiaoji% 再见。文件存在 disk.json 里，下次还在。

@@ -206,6 +206,15 @@ if (*(unsigned char *)&amp;x == 1) puts("little"); else puts("big");</pre>
   </section>
 
   <div class="words-h">这一章的新词</div>
+  <div class="main" data-step="2">
+    <div class="mh"><b>主线 · 第 2 步</b><span>十六进制显示</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给小机装上：<i>十六进制屏</i></p>
+      <p><code>hx(b)</code> 把一个字节写成两位十六进制；<code>dump(mem)</code> 像 xxd 那样，一行打 8 个字节。以后看小机的内存，全靠它。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 xiaoji.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>让 dump 在右边像 xxd 那样，把能显示的字节打成字符，其余打成点；和 <code>xxd</code> 的输出对一对。</div>
+    </div>
+  </div>
   <div class="words">
     <div data-l="1"><b>字节 <span class="en" data-say="byte">byte</span></b>8 个比特一捆，最常用的单位。</div>
     <div data-l="1"><b>十六进制 <span class="en" data-say="hexadecimal">hexadecimal</span></b>每 4 位写成一个 0—F 的符号。</div>

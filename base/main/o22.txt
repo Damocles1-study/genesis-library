@@ -1,0 +1,17 @@
+ 0  56  LDI 6
+ 1  D4  CALL 4
+ 2  90  OUT 0
+ 3  00  HLT 0
+ 4  27  STA 7
+ 5  37  ADD 7
+ 6  E0  RET 0
+ 7  00  HLT 0
+ 8  00  HLT 0
+ 9  00  HLT 0
+10  00  HLT 0
+11  00  HLT 0
+12  00  HLT 0
+13  00  HLT 0
+14  00  HLT 0
+15  00  HLT 0
+OUT 12

@@ -6,7 +6,7 @@
       <h2>调试</h2>
       <dl><dt>讲什么</dt><dd>找虫子的心态：先复现、再缩小、再假设、再验证；printf 大法；lldb：断点、单步、看变量、看调用栈；条件断点和观察点；看寄存器、看内存、看汇编；段错误怎么查；断点是怎样实现的；调试信息</dd><dt>装置</dt><dd>模拟 lldb</dd></dl>
       <div class="crs" data-c="系统 组成"></div>
-      <div class="lvs"><a data-l="1" href="#c24-1">第一层 · 50 分钟</a><a data-l="2" href="#c24-2">第二层 · 40 分钟</a><a data-l="3" href="#c24-3">第三层 · 25 分钟</a></div>
+      <div class="lvs"><a data-l="1" href="#c24-1">第一层 · 30 分钟</a><a data-l="2" href="#c24-2">第二层 · 90 分钟</a><a data-l="3" href="#c24-3">第三层 · 25 分钟</a></div>
     </div>
   </div>
 
@@ -18,16 +18,89 @@
   <div class="goal">
     <h5>学完这一章，你能……</h5>
     <ul>
-      <li><span class="lg lg1">一</span>用“复现、缩小、假设、验证”的办法找虫子；在 Mac 上用 lldb 设断点、单步、打印变量、看调用栈。</li>
-      <li><span class="lg lg1">一</span>在模拟的 lldb 里把一个越界的虫子找出来。</li>
+      <li><span class="lg lg1">一</span>用“再现、缩小、猜、验证”四步，找出一只真虫子。</li>
+      <li><span class="lg lg1">一</span>会用 print 和断点，看程序走到了哪儿、变量是多少。</li>
+      <li><span class="lg lg2">二</span>用“复现、缩小、假设、验证”的办法找虫子；在 Mac 上用 lldb 设断点、单步、打印变量、看调用栈。</li>
+      <li><span class="lg lg2">二</span>在模拟的 lldb 里把一个越界的虫子找出来。</li>
       <li><span class="lg lg2">二</span>用条件断点、观察点、内存和寄存器命令；按步骤排查段错误。</li>
       <li><span class="lg lg3">三</span>说出软件断点、单步和硬件观察点是怎样实现的；知道调试信息存在哪里。</li>
     </ul>
   </div>
 
   <section class="ly" data-l="1" id="c24-1">
-    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：C、数组（第十九章）、栈（第二十章）</span><span class="tm">约 50 分钟</span></div>
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：Python 的 for 循环和列表</span><span class="tm">约 30 分钟</span></div>
     <div class="lyb">
+<h3>虫子</h3>
+      <p>程序里的错误，叫 <b>bug</b>（虫子）。1947 年，一台计算机出了故障，工程师在一个继电器里找到一只飞蛾，把它贴在了工作日志上。“bug”这个词其实更早就有人用，可这只飞蛾让它出了名。</p>
+      <p>找虫子、改虫子，叫<b>调试</b>（debug）。会写程序的人，有一大半时间其实在调试。</p>
+      <div class="mc">
+        <h5>捉虫</h5>
+        <p>在<a href="../block/ten.html#c81">第八十一章《错》</a>里，你捉过五只虫子，读过 Python 的报错。这一章换一种虫子：程序不报错，可答案不对。这种最难找。</p>
+      </div>
+
+      <h3>找虫子的四步</h3>
+      <ol class="plain">
+        <li><b>再现</b>：先找到一个每次都会出错的办法。</li>
+        <li><b>缩小</b>：把没关系的部分去掉，换成简单的数，看虫子还在不在。</li>
+        <li><b>猜</b>：说出一个具体的怀疑，比如“我觉得有一个分数没加进去”。</li>
+        <li><b>验证</b>：把变量打印出来看，看猜得对不对。猜错了，就回到第 3 步。</li>
+      </ol>
+
+      <h3>抓一只真虫子</h3>
+<pre class="code" data-k="avg.py">scores = [80, 95, 70]
+total = 0
+for i in range(1, len(scores)):
+    total = total + scores[i]
+print('平均分', total / len(scores))</pre>
+      <p>运行，打出“平均分 55.0”。三个分数都不低，平均怎么才 55？</p>
+      <p>按四步来：</p>
+      <ol class="plain">
+        <li>再现：每次运行都是 55.0，好办。</li>
+        <li>缩小：把分数改成 <code>[10, 10, 10]</code>，平均应该是 10，结果打出 6.666……虫子还在。</li>
+        <li>猜：是不是有一个分数没加进去？</li>
+        <li>验证：在循环里加一行 <code>print(i, scores[i])</code>，看它打出了哪几个。</li>
+      </ol>
+      <details class="opt"><summary>找到了吗？对答案</summary><div><p>只打出了 1 和 2，第 0 个没有加。因为 <code>range(1, 3)</code> 从 1 开始。改成 <code>range(len(scores))</code>，或者干脆写 <code>for s in scores: total = total + s</code>。</p></div></details>
+
+      <h3>让程序一步一步走</h3>
+      <p>用 print 很好使，可每次都要改程序。还有一种工具，叫<b>调试器</b>：它能让程序走到某一行就停下（这叫<b>断点</b>），然后你一步一步往下走，随时看每个变量是多少。</p>
+      <div class="try">
+        <div class="th"><b>Python 自带的调试器</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+          <p>在 avg.py 的循环里加一行 <code>breakpoint()</code>：</p>
+<pre class="code" data-k="avg.py">for i in range(1, len(scores)):
+    breakpoint()
+    total = total + scores[i]</pre>
+          <p>在终端里运行 <code>python3 avg.py</code>，它会停下来，出现 <code>(Pdb)</code> 提示符。试试这几个命令，每个打完按回车：</p>
+          <ul class="plain">
+            <li><code>p i</code>：看 i 是多少（p 是 print）。</li>
+            <li><code>p total</code>：看 total 是多少。</li>
+            <li><code>c</code>：继续走，到下一次断点再停（c 是 continue）。</li>
+            <li><code>q</code>：不看了，退出（q 是 quit）。</li>
+          </ul>
+          <p>第一次停下时 i 就已经是 1 了：虫子当场被抓住。C 程序在 Mac 上用的调试器叫 lldb，第二层开头有一个能在网页里玩的。</p>
+        </div>
+      </div>
+      <div class="task" data-id="base-t24k">
+        <div class="th"><b>给家里人藏一只虫子</b></div>
+        <div class="tb"><p>先把 avg.py 改对。然后故意藏一只新虫子（比如把 <code>/</code> 写成 <code>//</code>，或者把 <code>total = 0</code> 写成 <code>total = 1</code>），请家里人用四步把它找出来。你当“出题人”，只许回答“对”或“不对”。</p></div>
+      </div>
+      <div class="pass" data-id="base-q24k">
+        <div class="qq" data-in="bug|虫子|臭虫|错误"><p>程序里的错误，英文叫什么？</p><p class="ex">bug，虫子。</p></div>
+        <div class="qq" data-a="0"><p>找虫子的第一步是什么？</p><ol><li>先让它每次都能出现</li><li>把整个程序重写一遍</li></ol><p class="ex">再现。抓不住的虫子没法找。</p></div>
+        <div class="qq" data-a="0"><p><code>range(1, 3)</code> 会给出哪些数？</p><ol><li>1、2</li><li>1、2、3</li><li>0、1、2</li></ol><p class="ex">从 1 开始，到 3 之前停。</p></div>
+        <div class="qq" data-in="断点|breakpoint"><p>让程序走到某一行就停下，这叫设一个什么？</p><p class="ex">断点。</p></div>
+        <div class="qq" data-a="0"><p>Python 停在断点上，想看变量 i 是多少，输入什么？</p><ol><li>p i</li><li>q</li></ol><p class="ex">p i。q 是退出。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。第三部的第一层读完了！</div>
+
+  <section class="ly" data-l="2" id="c24-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">调试的进阶工具 · 面试</span><span class="tm">约 90 分钟</span><span class="sum">条件断点；观察点；看寄存器、内存和汇编；段错误的排查步骤；断言和单元测试；二分查找出错的提交。</span></div>
+    <div class="lyb">
+      <div class="ramp">
+        <div class="rh"><b>入门版</b>从第二层读起的人先读这一段。它是这一章原来的第一层：给大学生和初中以上读者的入门；本章第一层改写成了给小学生的版本。</div>
       <h3>找虫子的四步</h3>
       <p>程序里的错误叫 bug（虫子），找错误叫调试（debug）。据说这个词和 1947 年一台计算机里真的夹住的一只飞蛾有关（《一块一块》里讲过，那只飞蛾被贴在了工作日志上）。不管多厉害的程序员，调试都按这几步：</p>
       <ol class="plain">
@@ -75,13 +148,9 @@
         <div class="qq" data-in="bt"><p>在 lldb 里查看调用栈的命令是？（两个字母）</p><p class="ex">backtrace。</p></div>
         <div class="qq" data-a="1"><p>avg.c 的虫子在哪里？</p><ol><li>printf 的格式</li><li>循环条件 i &lt;= n 多读了一个 a[4]</li><li>整数除法</li></ol><p class="ex">应该是 i &lt; n。</p></div>
       </div>
-    </div>
-  </section>
-  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。第三部的第一层读完了！</div>
+    
+      </div>
 
-  <section class="ly" data-l="2" id="c24-2">
-    <div class="lyh"><b>第二层 · 本科</b><span class="tg">调试的进阶工具 · 面试</span><span class="tm">约 40 分钟</span><span class="sum">条件断点；观察点；看寄存器、内存和汇编；段错误的排查步骤；断言和单元测试；二分查找出错的提交。</span></div>
-    <div class="lyb">
       <h3>更多的 lldb</h3>
       <ul class="plain">
         <li><b>条件断点</b>：循环一万次，只在第 9999 次出错。<code>br set -l 5 -c 'i == 9999'</code>，只有条件成立时才停。</li>
@@ -136,16 +205,27 @@
   </section>
 
   <div class="words-h">这一章的新词</div>
+  <div class="main" data-step="24">
+    <div class="mh"><b>主线 · 第 24 步</b><span>调试器</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给小机装上：<i>调试器</i></p>
+      <p><code>trace()</code> 每走一步，打出 PC、ACC 和下一条指令；<code>BREAK</code> 里放断点，走到就停。像 lldb，只是小得多。</p>
+      <div class="who1"><b>第一层</b>这一步可以先下载“到这一步的完整文件”运行，看懂演示，再读新加的那一段。想挑战就自己打。</div>
+      <div class="who2"><b>第二层</b>做一个交互的 debug()：输入 n 走一步、c 继续、p 格号看内存、b 格号设断点。</div>
+    </div>
+  </div>
   <div class="words">
-    <div data-l="1"><b>调试 <span class="en" data-say="debug">debug</span></b>找出并改掉程序里的错误。</div>
-    <div data-l="1"><b>断点 <span class="en" data-say="breakpoint">breakpoint</span></b>让程序运行到这里停下。</div>
-    <div data-l="1"><b>单步 <span class="en" data-say="step">step</span></b>一次只执行一行（或一条指令）。</div>
-    <div data-l="1"><b>调用栈 <span class="en" data-say="backtrace">backtrace</span></b>当前所有栈帧，从里到外。</div>
+    <div data-l="1"><b>调试 <span class="en" data-say="debug">debug</span></b>找出并改掉程序里的错。</div>
+    <div data-l="1"><b>断点 <span class="en" data-say="breakpoint">breakpoint</span></b>让程序走到这里就停下。</div>
+    <div data-l="2"><b>调试 <span class="en" data-say="debug">debug</span></b>找出并改掉程序里的错误。</div>
+    <div data-l="2"><b>断点 <span class="en" data-say="breakpoint">breakpoint</span></b>让程序运行到这里停下。</div>
+    <div data-l="2"><b>单步 <span class="en" data-say="step">step</span></b>一次只执行一行（或一条指令）。</div>
+    <div data-l="2"><b>调用栈 <span class="en" data-say="backtrace">backtrace</span></b>当前所有栈帧，从里到外。</div>
     <div data-l="2"><b>观察点 <span class="en" data-say="watchpoint">watchpoint</span></b>某个变量一被改就停下。</div>
     <div data-l="3"><b>调试信息 <span class="en" data-say="debug information">debug info</span></b>地址和源代码行、变量之间的对照表。</div>
   </div>
   <div class="seal">
-    <div><i>第一层带走</i>复现、缩小、假设、验证；猜十次不如停下来看一眼。</div>
+    <div><i>第一层带走</i>调试是四步：再现、缩小、猜、验证；看到的比猜到的可靠。</div>
     <div><i>第二层带走</i>段错误先上地址消毒器，再 bt、再看指针；观察点专抓被悄悄改写的变量。</div>
     <div><i>第三层带走</i>断点是调试器偷偷改写的一条指令；优化让程序快，也让它难调。</div>
   </div>

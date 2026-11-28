@@ -62,6 +62,8 @@
         <li><b>在 Mac 上试</b>：深蓝色标题的框，照着一步一步做。黑底的框是要在终端里输入的东西：<code>%</code> 是终端的提示符，不用输入；灰色的字是电脑回答的。</li>
         <li><b>过渡</b>：要用到别的学科（电、数学、逻辑、物理）时，先用一个黄框讲个大概。</li>
         <li><b>装置</b>：网页里能动手玩的小机器。<b>闯关</b>：每一层末尾的小测验，做完记在浏览器里。</li>
+        <li><b>主线</b>：每章末尾有一个“主线”框。跟着它，一章给一台叫“小机”的玩具电脑装一个零件，读完全书，它会算数、能跑程序、有自己的小外壳，还能和另一台小机互发消息。</li>
+        <li><b>读法</b>：封面上有<a href="#route">小学生路线和大学生路线</a>：先读哪几章，哪几章可以先跳过。</li>
         <li><b>英文</b>：带 🔊 的英文词，点一下会念出来。计算机的词大多来自英文，顺手记住。</li>
       </ul>
 
@@ -220,6 +222,15 @@
   </section>
 
   <div class="words-h">这一章的新词</div>
+  <div class="main" data-step="0">
+    <div class="mh"><b>主线 · 第 0 步</b><span>开工</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给小机装上：<i>工作台</i></p>
+      <p>在终端里输入 <code>mkdir -p ~/base/xiaoji</code> 建一个文件夹。打开 IDLE，新建文件，存进这个文件夹，名字叫 <code>xiaoji.py</code>。写一个 <code>demo()</code>，让它打印“小机，开工！”，最后两行写 <code>if __name__ == '__main__':</code> 和 <code>demo()</code>，运行。以后每一步，都往这个文件里加一段新代码，加在最后那两行的<b>上面</b>。每一步都会写一个新的 <code>demo()</code>，它会盖掉上一步的，所以运行时只演示最新的那一步。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 xiaoji.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>把这个文件夹变成 git 仓库（<code>git init</code>），以后每装好一步就 <code>git commit</code> 一次，写清这一步装了什么。</div>
+    </div>
+  </div>
   <div class="words">
     <div data-l="1"><b>比特 <span class="en" data-say="bit">bit</span></b>一个 0 或 1，电脑里最小的一份信息。</div>
     <div data-l="1"><b>抽象 <span class="en" data-say="abstraction">abstraction</span></b>只看这一层，把下面的细节藏起来。</div>

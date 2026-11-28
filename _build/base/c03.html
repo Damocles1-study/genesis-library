@@ -6,7 +6,7 @@
       <h2>数组、字符串和结构体</h2>
       <dl><dt>讲什么</dt><dd>数组是一排挨着的格子；a[i] 的地址怎样算；C 不检查越界；字符串是以 0 结尾的字符数组；结构体把几样东西捆在一起；二维数组按行存；数组和指针的区别；内存对齐和填充；缓冲区溢出、莫里斯蠕虫和心脏出血</dd><dt>装置</dt><dd>一字节一字节看内存</dd></dl>
       <div class="crs" data-c="组成 结构 系统"></div>
-      <div class="lvs"><a data-l="1" href="#c19-1">第一层 · 50 分钟</a><a data-l="2" href="#c19-2">第二层 · 50 分钟</a><a data-l="3" href="#c19-3">第三层 · 25 分钟</a></div>
+      <div class="lvs"><a data-l="1" href="#c19-1">第一层 · 30 分钟</a><a data-l="2" href="#c19-2">第二层 · 100 分钟</a><a data-l="3" href="#c19-3">第三层 · 25 分钟</a></div>
     </div>
   </div>
 
@@ -18,16 +18,74 @@
   <div class="goal">
     <h5>学完这一章，你能……</h5>
     <ul>
-      <li><span class="lg lg1">一</span>算出 a[i] 的地址；说出 C 的数组越界会发生什么。</li>
-      <li><span class="lg lg1">一</span>说出字符串 "Hi" 在内存里占几个字节、为什么。</li>
+      <li><span class="lg lg1">一</span>说出数组为什么从 0 数、为什么挨着住；越界是什么，为什么危险。</li>
+      <li><span class="lg lg1">一</span>说出 C 的字符串最后为什么有一个 0；结构体就是“打包”。</li>
+      <li><span class="lg lg2">二</span>算出 a[i] 的地址；说出 C 的数组越界会发生什么。</li>
+      <li><span class="lg lg2">二</span>说出字符串 "Hi" 在内存里占几个字节、为什么。</li>
       <li><span class="lg lg2">二</span>算二维数组元素的地址；区分数组和指针；算出结构体的 sizeof（含填充）。</li>
       <li><span class="lg lg3">三</span>讲清楚缓冲区溢出怎样被利用，以及栈保护、不可执行栈等对策。</li>
     </ul>
   </div>
 
   <section class="ly" data-l="1" id="c19-1">
-    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：指针（第十八章）、ASCII（第五章）</span><span class="tm">约 50 分钟</span></div>
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：地址（第十二章）、指针（第十八章）、Python 的列表</span><span class="tm">约 30 分钟</span></div>
     <div class="lyb">
+<h3>一排挨着的格子</h3>
+      <p>Python 的列表你用过：<code>bar = [3, 5, 7]</code>，<code>bar[0]</code> 是 3。C 里也有这样的东西，叫<b>数组</b>（array）：</p>
+<pre class="code" data-k="arr.c">int a[3] = {3, 5, 7};</pre>
+      <p>数组里的几个数，在内存里是<b>挨着住</b>的：a[0] 住在某一格，a[1] 紧挨着它，a[2] 再紧挨着 a[1]。</p>
+      <p>所以电脑找 a[2] 特别快：从 a[0] 往后数两个就到，不用一个一个去找。也正因为这样，第一个是 a[0]：它离开头“0 步”。</p>
+      <div class="mc">
+        <h5>快捷栏</h5>
+        <p>我的世界的快捷栏有 9 格，编号 0 到 8（<a href="../block/ten.html#c76">第七十六章</a>的快捷栏列表）。第一格是 0 号，不是 1 号。数组也一样。</p>
+      </div>
+
+      <h3>C 不帮你看门</h3>
+      <p>Python 很小心。bar 只有 3 个，你要 <code>bar[5]</code>，它马上报错：</p>
+<pre class="sh" data-k="python3"><span class="p">&gt;&gt;&gt; </span>bar = [3, 5, 7]
+<span class="p">&gt;&gt;&gt; </span>bar[5]
+<span class="o">IndexError: list index out of range</span></pre>
+      <p>C 不管这件事。a 只有 3 个，你要 a[5]，它就真的往后数 5 格，把那里住着的不管什么东西拿给你：可能是别的变量，可能是乱七八糟的数。往那里写东西更糟，会把别人的东西盖掉。</p>
+      <p>这叫<b>越界</b>。它是 C 程序最常见、也最危险的错误之一，很多电脑病毒就是从这个空子钻进来的（第二层讲）。</p>
+<div class="fig" id="arrFig">
+        <div class="fig-label">装置 · 第十九章</div>
+        <h4>一字节一字节看内存</h4>
+        <p class="how">下面是三个局部变量在内存里的一种可能的排法，每格一个字节：一个 int 数组、一个字符串、一个结构体（灰色斜线是“填充”字节，第二层讲）。拖动下标 i，看 a[i] 算出的地址落在哪里；超出 0—3 时，看看读到了谁的字节。</p>
+        <label class="lab">下标 i = <b id="arIO"></b></label>
+        <input type="range" id="arI" min="-2" max="9" value="1">
+        <div class="bytegrid scroll-x"></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+      <p>在装置里把 i 往大了拖，超过 3 以后，看 a[i] 读到了谁的地盘。</p>
+
+      <h3>字符串：最后放一个 0</h3>
+      <p>一串字，在 C 里就是一个装着字符的数组。<code>"HI"</code> 存成三格：H（72）、I（73），还有一个 <b>0</b>。</p>
+      <p>最后这个 0 是一块“到此为止”的牌子：C 读一串字，读到 0 就停。忘了这块牌子，程序就会一直往后读，读出一堆乱码。</p>
+
+      <h3>结构体：打一个包</h3>
+      <p>有些东西总是一起出现：一个玩家有血量，有 x 坐标，有 y 坐标。C 可以把它们捆成一包，叫<b>结构体</b>（struct），像一个分了几个小口袋的背包，每个口袋有名字：</p>
+<pre class="code" data-k="player.c">struct player { int hp; int x; int y; };</pre>
+      <div class="task" data-id="base-t19k">
+        <div class="th"><b>谁会报错</b></div>
+        <div class="tb"><p>在 Python 里建 <code>bar = [3, 5, 7]</code>，分别试 <code>bar[0]</code>、<code>bar[2]</code>、<code>bar[3]</code>、<code>bar[-1]</code>、<code>bar[10]</code>。记下哪些拿到了数、哪些报错。<code>bar[-1]</code> 拿到的是谁？想一想：换成 C，报错的那几个会怎样？</p></div>
+      </div>
+      <div class="pass" data-id="base-q19k">
+        <div class="qq" data-a="0"><p>数组的第一个是几号？</p><ol><li>0 号</li><li>1 号</li></ol><p class="ex">0 号：它离开头 0 步。</p></div>
+        <div class="qq" data-a="0"><p>数组里的数，在内存里怎样住？</p><ol><li>挨着住</li><li>随便住</li></ol><p class="ex">挨着住，所以找第几个特别快。</p></div>
+        <div class="qq" data-a="1"><p>C 的数组只有 3 个，你去拿第 5 个，会怎样？</p><ol><li>马上报错</li><li>真的去拿后面那格里的东西</li></ol><p class="ex">C 不检查越界，会把后面不管什么东西拿给你。</p></div>
+        <div class="qq" data-in="0"><p>C 的字符串最后放一个什么数，当“到此为止”的牌子？</p><p class="ex">0。</p></div>
+        <div class="qq" data-a="0"><p>把血量、x、y 捆成一包，C 里叫什么？</p><ol><li>结构体</li><li>指针</li></ol><p class="ex">结构体（struct）。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c19-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">数据结构的数组存储 · 408 计组的对齐</span><span class="tm">约 100 分钟</span><span class="sum">二维数组按行存和按列存的地址公式；对称和三角矩阵的压缩存储；数组名什么时候是指针；字符串函数和长度限制；内存对齐的规则和结构体大小。</span></div>
+    <div class="lyb">
+      <div class="ramp">
+        <div class="rh"><b>入门版</b>从第二层读起的人先读这一段。它是这一章原来的第一层：给大学生和初中以上读者的入门；本章第一层改写成了给小学生的版本。</div>
       <h3>数组：一排挨着的格子</h3>
       <p><code>int a[4] = {10, 20, 30, 40};</code> 在内存里要 4 × 4 = 16 个连在一起的字节，a[0] 在最前面，a[1] 紧跟在后面……于是第 i 个元素的地址很好算：</p>
       <p style="text-align:center;font-family:var(--f-mono)">a[i] 的地址 = a 的首地址 + i × 每个元素的字节数</p>
@@ -45,16 +103,7 @@
 struct student s = {"Xiao", 10, 1.42};
 printf("%s %d %.2f\n", s.name, s.age, s.height);</pre>
       <p>结构体的成员也是挨着放的，用点号访问。通过指针访问写 <code>p-&gt;age</code>，等价于 <code>(*p).age</code>。</p>
-      <div class="fig" id="arrFig">
-        <div class="fig-label">装置 · 第十九章</div>
-        <h4>一字节一字节看内存</h4>
-        <p class="how">下面是三个局部变量在内存里的一种可能的排法，每格一个字节：一个 int 数组、一个字符串、一个结构体（灰色斜线是“填充”字节，第二层讲）。拖动下标 i，看 a[i] 算出的地址落在哪里；超出 0—3 时，看看读到了谁的字节。</p>
-        <label class="lab">下标 i = <b id="arIO"></b></label>
-        <input type="range" id="arI" min="-2" max="9" value="1">
-        <div class="bytegrid scroll-x"></div>
-        <div class="kv"></div>
-        <div class="say"></div>
-      </div>
+      <p class="dim" style="font-size:14px">（装置“一字节一字节看内存”留在本章第一层，展开第一层就能玩。）</p>
       <div class="try">
         <div class="th"><b>越界和字符串的结尾</b><span class="tm">15 分钟</span></div>
         <div class="tb">
@@ -84,13 +133,9 @@ int main(void) {
         <div class="qq" data-in="3"><p>上一题的 strlen(s) 是几？</p><p class="ex">数到 0 为止，不算 0。</p></div>
         <div class="qq" data-a="0"><p><code>p-&gt;age</code> 等价于？</p><ol><li>(*p).age</li><li>*p.age</li><li>&amp;p.age</li></ol><p class="ex">点号优先级比星号高，所以要加括号，箭头是简写。</p></div>
       </div>
-    </div>
-  </section>
-  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+    
+      </div>
 
-  <section class="ly" data-l="2" id="c19-2">
-    <div class="lyh"><b>第二层 · 本科</b><span class="tg">数据结构的数组存储 · 408 计组的对齐</span><span class="tm">约 50 分钟</span><span class="sum">二维数组按行存和按列存的地址公式；对称和三角矩阵的压缩存储；数组名什么时候是指针；字符串函数和长度限制；内存对齐的规则和结构体大小。</span></div>
-    <div class="lyb">
       <h3>二维数组的地址</h3>
       <p><code>int m[R][C]</code> 在 C 里<b>按行存放</b>（行优先）：先放第 0 行的 C 个元素，再放第 1 行……所以 <code>LOC(m[i][j]) = LOC(m[0][0]) + (i × C + j) × L</code>（L 是每个元素的字节数）。Fortran、MATLAB 是按列存放的：<code>LOC = LOC(m[0][0]) + (j × R + i) × L</code>。第十六章说按行遍历快，就是因为 C 按行存。数据结构课的题目常把下标从 1 开始、或者给定 m[1..R][1..C]，套公式前先把下标换成“前面有几个元素”。</p>
       <p><b>压缩存储</b>：n 阶对称矩阵只存下三角（含对角线），共 n(n + 1)/2 个元素；按行存放时，a<sub>ij</sub>（i ≥ j，下标从 1 开始）在一维数组里的下标（从 0 开始）是 i(i − 1)/2 + j − 1。三角矩阵、三对角矩阵同理推导。这类题的方法都一样：数清楚它前面有几个元素。</p>
@@ -163,16 +208,28 @@ int main(void) {
   </section>
 
   <div class="words-h">这一章的新词</div>
+  <div class="main" data-step="19">
+    <div class="mh"><b>主线 · 第 19 步</b><span>字串</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给小机装上：<i>字串打印</i></p>
+      <p>新指令 <code>OUTC</code> 把 ACC 当成一个字打出来。内存里放着 72、73、33、0，程序用 LDP 一个一个往后拿，拿到 0 就停：小机打出了 HI!</p>
+      <div class="who1"><b>第一层</b>这一步可以先下载“到这一步的完整文件”运行，看懂演示，再读新加的那一段。想挑战就自己打。</div>
+      <div class="who2"><b>第二层</b>给小机写一个“数一数字串有多长”的程序；忘了结尾的 0 会怎样？对照第十九章的越界。</div>
+    </div>
+  </div>
   <div class="words">
-    <div data-l="1"><b>数组 <span class="en" data-say="array">array</span></b>一排挨着的同类型格子。</div>
-    <div data-l="1"><b>越界 <span class="en" data-say="out of bounds">out of bounds</span></b>下标超出数组的范围。</div>
-    <div data-l="1"><b>字符串 <span class="en" data-say="string">string</span></b>C 里是以 0 结尾的 char 数组。</div>
-    <div data-l="1"><b>结构体 <span class="en" data-say="struct">struct</span></b>把几样东西捆成一个整体。</div>
+    <div data-l="1"><b>数组 <span class="en" data-say="array">array</span></b>一排挨着住的同一种东西。</div>
+    <div data-l="1"><b>越界 <span class="en" data-say="out of bounds">out of bounds</span></b>去拿数组外面的格子。</div>
+    <div data-l="1"><b>结构体 <span class="en" data-say="struct">struct</span></b>把几样东西捆成一包。</div>
+    <div data-l="2"><b>数组 <span class="en" data-say="array">array</span></b>一排挨着的同类型格子。</div>
+    <div data-l="2"><b>越界 <span class="en" data-say="out of bounds">out of bounds</span></b>下标超出数组的范围。</div>
+    <div data-l="2"><b>字符串 <span class="en" data-say="string">string</span></b>C 里是以 0 结尾的 char 数组。</div>
+    <div data-l="2"><b>结构体 <span class="en" data-say="struct">struct</span></b>把几样东西捆成一个整体。</div>
     <div data-l="2"><b>对齐 <span class="en" data-say="alignment">alignment</span></b>数据放在它大小的整数倍地址上。</div>
     <div data-l="3"><b>缓冲区溢出 <span class="en" data-say="buffer overflow">buffer overflow</span></b>写过了数组的边界。</div>
   </div>
   <div class="seal">
-    <div><i>第一层带走</i>a[i] 在首地址加 i 个元素处；C 不检查越界；字符串靠结尾的 0。</div>
+    <div><i>第一层带走</i>数组挨着住，从 0 数；C 不帮你看门，越界要自己当心；字符串以 0 结尾。</div>
     <div><i>第二层带走</i>地址公式数清“前面有几个”；结构体按最大成员对齐，字段从大到小排最省。</div>
     <div><i>第三层带走</i>一次没做的边界检查，可以让整个互联网出血。</div>
   </div>

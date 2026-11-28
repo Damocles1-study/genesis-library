@@ -186,6 +186,15 @@ print((10 - s % 10) % 10, "应该等于", code[12])</pre>
   </section>
 
   <div class="words-h">这一章的新词</div>
+  <div class="main" data-step="8">
+    <div class="mh"><b>主线 · 第 8 步</b><span>校验位</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给小机装上：<i>校验位</i></p>
+      <p><code>parity(b)</code> 数一数有几个 1；<code>seal(b)</code> 存的时候多带一位；<code>check()</code> 发现被翻了一位的字节。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 xiaoji.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>换成第八章的海明码（7, 4），让它能改正一位错；写测试，把 16 种数据 × 7 个出错位置全试一遍。</div>
+    </div>
+  </div>
   <div class="words">
     <div data-l="1"><b>校验位 <span class="en" data-say="parity bit">parity bit</span></b>为了发现错误多带的那一位。</div>
     <div data-l="1"><b>检错和纠错</b>只知道“错了”和能改回来，<span class="en" data-say="error detection">detection</span> 和 <span class="en" data-say="error correction">correction</span>。</div>

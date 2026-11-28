@@ -6,7 +6,7 @@
       <h2>加载</h2>
       <dl><dt>讲什么</dt><dd>敲下 ./prog 以后：操作系统读文件头、把各段放进内存、准备好栈、请动态链接器接上库、跳到 main；argc 和 argv；退出码；程序的内存地图在真机上长什么样；408 的三种装入方式；代码签名和隔离属性</dd><dt>装置</dt><dd>你的程序住在哪儿</dd></dl>
       <div class="crs" data-c="系统"></div>
-      <div class="lvs"><a data-l="1" href="#c23-1">第一层 · 40 分钟</a><a data-l="2" href="#c23-2">第二层 · 45 分钟</a><a data-l="3" href="#c23-3">第三层 · 25 分钟</a></div>
+      <div class="lvs"><a data-l="1" href="#c23-1">第一层 · 10 分钟</a><a data-l="2" href="#c23-2">第二层 · 85 分钟</a><a data-l="3" href="#c23-3">第三层 · 25 分钟</a></div>
     </div>
   </div>
 
@@ -18,16 +18,47 @@
   <div class="goal">
     <h5>学完这一章，你能……</h5>
     <ul>
-      <li><span class="lg lg1">一</span>说出运行一个程序时操作系统做的几件事；用 argc、argv 读命令行参数，用退出码报告成败。</li>
-      <li><span class="lg lg1">一</span>打印自己程序里各种东西的地址，把它们放到内存地图上。</li>
+      <li><span class="lg lg1">一</span>说出程序文件和正在运行的程序（进程）有什么不同（这一章小学生可以先跳过）。</li>
+      <li><span class="lg lg2">二</span>说出运行一个程序时操作系统做的几件事；用 argc、argv 读命令行参数，用退出码报告成败。</li>
+      <li><span class="lg lg2">二</span>打印自己程序里各种东西的地址，把它们放到内存地图上。</li>
       <li><span class="lg lg2">二</span>说出绝对装入、可重定位装入、动态运行时装入的区别；用 vmmap 和 otool 看真实的布局和加载命令。</li>
       <li><span class="lg lg3">三</span>说出 macOS 为什么要求代码签名，隔离属性和门禁是做什么的。</li>
     </ul>
   </div>
 
   <section class="ly" data-l="1" id="c23-1">
-    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：内存地图（第三部封面）、链接（第二十二章）</span><span class="tm">约 40 分钟</span></div>
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">小学生可以先跳过</span><span class="tm">约 10 分钟</span></div>
     <div class="lyb">
+<div class="skip"><b>小学生：这一章可以先跳过</b><p>程序怎样被放进内存，要用到可执行文件的格式和内存地图，建议初中以后再细读。下面几段只讲个大概。</p></div>
+      <h3>菜谱和做菜</h3>
+      <p>硬盘上的程序文件，像一本<b>菜谱</b>：上面写着要做什么，可它自己不会动。你双击它，或者在终端里敲它的名字，操作系统才把它“做”起来：</p>
+      <ol class="plain">
+        <li>打开文件，看开头几个字节对不对得上“程序”的暗号（第二章说的魔数）；</li>
+        <li>在内存里划出一块地方；</li>
+        <li>把菜谱里的指令和数据抄进去；</li>
+        <li>准备好栈（第二十章）；</li>
+        <li>跳到第一条指令，开始执行。</li>
+      </ol>
+      <p>正在“做”的程序，有一个名字，叫<b>进程</b>（第二十六章）。同一本菜谱，可以同时做好几份：开两个终端窗口，就是两个进程。</p>
+      <details class="opt"><summary>看一眼程序文件的暗号</summary><div>
+<pre class="sh" data-k="终端"><span class="p">% </span>xxd -l 4 /bin/ls
+<span class="o">00000000: cafe babe                                ....</span></pre>
+        <p><code>/bin/ls</code> 就是你常用的 ls 命令。它开头的四个字节是 <code>cafe babe</code>，Mac 一看就知道：这是一个程序，而且里面装着给好几种处理器的版本。</p>
+      </div></details>
+      <div class="pass" data-id="base-q23k">
+        <div class="qq" data-a="0"><p>硬盘上的程序文件像什么？</p><ol><li>菜谱</li><li>做好的菜</li></ol><p class="ex">菜谱：写着做法，自己不会动。</p></div>
+        <div class="qq" data-in="进程|process"><p>正在运行的程序叫什么？</p><p class="ex">进程。</p></div>
+        <div class="qq" data-a="0"><p>操作系统先看文件开头的什么，判断它是不是程序？</p><ol><li>魔数（暗号）</li><li>文件名的颜色</li></ol><p class="ex">魔数：开头几个固定的字节。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c23-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 操作系统 · 程序的装入 · 面试</span><span class="tm">约 85 分钟</span><span class="sum">逻辑地址和物理地址；绝对装入、可重定位装入、动态运行时装入；重定位寄存器；exec 做了什么；用 otool -l 和 vmmap 看真实的加载命令和布局。</span></div>
+    <div class="lyb">
+      <div class="ramp">
+        <div class="rh"><b>入门版</b>从第二层读起的人先读这一段。它是这一章原来的第一层：给大学生和初中以上读者的入门；本章第一层改写成了给小学生的版本。</div>
       <h3>敲下回车以后</h3>
       <ol class="plain">
         <li>终端里的 shell（zsh）请操作系统“新开一个进程，运行 ./prog”（第二十六章细讲）。</li>
@@ -86,13 +117,9 @@ int main(int argc, char **argv) {
         <div class="qq" data-a="0"><p>main 返回 0 表示？</p><ol><li>成功</li><li>失败</li><li>没有意义</li></ol><p class="ex">约定 0 是成功，用 echo $? 查看。</p></div>
         <div class="qq" data-a="1"><p>在 Apple Silicon 的 Mac 上，堆的地址比栈高，和教科书的图矛盾吗？</p><ol><li>矛盾，教科书错了</li><li>不矛盾，图讲的是有哪些区域，具体摆放各系统不同</li><li>是程序出错了</li></ol><p class="ex">区域的种类和作用是一样的。</p></div>
       </div>
-    </div>
-  </section>
-  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+    
+      </div>
 
-  <section class="ly" data-l="2" id="c23-2">
-    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 操作系统 · 程序的装入 · 面试</span><span class="tm">约 45 分钟</span><span class="sum">逻辑地址和物理地址；绝对装入、可重定位装入、动态运行时装入；重定位寄存器；exec 做了什么；用 otool -l 和 vmmap 看真实的加载命令和布局。</span></div>
-    <div class="lyb">
       <h3>逻辑地址和三种装入</h3>
       <p>编译链接出来的程序，里面的地址都是从某个约定的起点算起的<b>逻辑地址</b>；程序最终在内存里的位置是<b>物理地址</b>。从前者到后者的转换叫<b>重定位</b>。408 操作系统把装入分为三种：</p>
       <ul class="plain">
@@ -162,16 +189,26 @@ int main(int argc, char **argv) {
   </section>
 
   <div class="words-h">这一章的新词</div>
+  <div class="main" data-step="23">
+    <div class="mh"><b>主线 · 第 23 步</b><span>装载器</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给小机装上：<i>程序文件和装载器</i></p>
+      <p><code>save_prog</code> 把程序存成文件 hi.xj，开头两个字节是 X、J（魔数）；<code>load_file</code> 先看魔数，再把程序装进内存运行。用 <code>xxd hi.xj</code> 看看它。</p>
+      <div class="who1"><b>第一层</b>这一章小学生可以先跳过，这一步也一样：下载“到这一步的完整文件”，运行一下，看看效果就行。</div>
+      <div class="who2"><b>第二层</b>给文件格式加一个“入口地址”和一个校验和，装载时检查。</div>
+    </div>
+  </div>
   <div class="words">
-    <div data-l="1"><b>加载 <span class="en" data-say="load">load</span></b>把程序从文件搬进内存、准备好运行。</div>
-    <div data-l="1"><b>命令行参数 <span class="en" data-say="argument">argument</span></b>运行时跟在程序名后面的字。</div>
-    <div data-l="1"><b>退出码 <span class="en" data-say="exit status">exit status</span></b>程序结束时交回的一个数，0 是成功。</div>
+    <div data-l="1"><b>加载 <span class="en" data-say="load">load</span></b>把程序从硬盘抄进内存，准备开始运行。</div>
+    <div data-l="2"><b>加载 <span class="en" data-say="load">load</span></b>把程序从文件搬进内存、准备好运行。</div>
+    <div data-l="2"><b>命令行参数 <span class="en" data-say="argument">argument</span></b>运行时跟在程序名后面的字。</div>
+    <div data-l="2"><b>退出码 <span class="en" data-say="exit status">exit status</span></b>程序结束时交回的一个数，0 是成功。</div>
     <div data-l="2"><b>重定位 <span class="en" data-say="relocation">relocation</span></b>把逻辑地址变成真实地址。</div>
     <div data-l="2"><b>逻辑地址 <span class="en" data-say="logical address">logical address</span></b>程序里用的、从约定起点算起的地址。</div>
     <div data-l="3"><b>代码签名 <span class="en" data-say="code signing">code signing</span></b>证明程序没被改过、是谁发布的。</div>
   </div>
   <div class="seal">
-    <div><i>第一层带走</i>运行程序 = 读装箱单、摆进内存、接上库、跳到 main；结束时交回一个退出码。</div>
+    <div><i>第一层带走</i>程序是菜谱，进程是正在做的菜；加载就是把菜谱摆上灶台。</div>
     <div><i>第二层带走</i>动态重定位每次访存都加基址，所以程序装入后还能挪。</div>
     <div><i>第三层带走</i>今天的系统在“能不能运行”之前先问“这是不是原来那个程序”。</div>
   </div>

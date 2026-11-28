@@ -12,7 +12,7 @@
       <h2>存储器</h2>
       <dl><dt>讲什么</dt><dd>一排带门牌号的小柜子：地址和数据；读和写；SRAM、DRAM、闪存；存储器的指标；DRAM 的刷新和地址复用；用小芯片拼大内存：位扩展、字扩展；多体交叉；行缓冲、Rowhammer 和统一内存</dd><dt>装置</dt><dd>十六格内存 · 拼一块内存</dd></dl>
       <div class="crs" data-c="组成 系统"></div>
-      <div class="lvs"><a data-l="1" href="#c12-1">第一层 · 40 分钟</a><a data-l="2" href="#c12-2">第二层 · 60 分钟</a><a data-l="3" href="#c12-3">第三层 · 30 分钟</a></div>
+      <div class="lvs"><a data-l="1" href="#c12-1">第一层 · 30 分钟</a><a data-l="2" href="#c12-2">第二层 · 100 分钟</a><a data-l="3" href="#c12-3">第三层 · 30 分钟</a></div>
     </div>
   </div>
 
@@ -24,25 +24,34 @@
   <div class="goal">
     <h5>学完这一章，你能……</h5>
     <ul>
-      <li><span class="lg lg1">一</span>说出地址、数据、读、写各是什么；算出 n 根地址线能找到多少格。</li>
-      <li><span class="lg lg1">一</span>说出 SRAM、DRAM、闪存各用在哪儿、为什么。</li>
+      <li><span class="lg lg1">一</span>把内存讲成一排带号码的柜子：说出“读”和“写”各是什么意思。</li>
+      <li><span class="lg lg1">一</span>说出内存和硬盘的区别：断电以后谁还记得。</li>
+      <li><span class="lg lg2">二</span>说出地址、数据、读、写各是什么；算出 n 根地址线能找到多少格。</li>
+      <li><span class="lg lg2">二</span>说出 SRAM、DRAM、闪存各用在哪儿、为什么。</li>
       <li><span class="lg lg2">二</span>用小芯片做位扩展、字扩展和字位同时扩展，写出片选逻辑和每组的地址范围；解释 DRAM 刷新和多体交叉。</li>
       <li><span class="lg lg3">三</span>说出 DRAM 的行缓冲和 Rowhammer；知道固态硬盘为什么要“先擦后写”。</li>
     </ul>
   </div>
 
   <section class="ly" data-l="1" id="c12-1">
-    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：寄存器（第十一章）、译码器（第十章）</span><span class="tm">约 40 分钟</span></div>
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：二进制（第一章）、字节（第二章）</span><span class="tm">约 30 分钟</span></div>
     <div class="lyb">
-      <h3>一排带门牌号的柜子</h3>
-      <p>把内存想成一排很长很长的小柜子，每个柜子里放一个字节，每个柜子有一个编号，从 0 开始数，这个编号叫<b>地址</b>。处理器和内存之间只做两件事：</p>
+<h3>一排带号码的柜子</h3>
+      <p>学校门口有一排储物柜，每个柜子都有号码。你说“3 号柜”，大家就知道是哪一个。</p>
+      <p><b>内存</b>就是一排很长很长的小柜子。每个柜子里放<b>一个字节</b>（8 个比特，第二章）。柜子的号码叫<b>地址</b>，从 0 开始数。</p>
+      <p>处理器和内存之间，只做两件事：</p>
       <ul class="plain">
-        <li><b>读</b>：“把第 1000 号柜子里的东西给我看看。”</li>
-        <li><b>写</b>：“把 65 放进第 1000 号柜子。”原来的东西被覆盖。</li>
+        <li><b>读</b>：“把 3 号柜里的东西给我看看。”看完了，东西还在柜子里。</li>
+        <li><b>写</b>：“把 72 放进 3 号柜。”原来的东西被换掉了。</li>
       </ul>
-      <p>它们之间连着三组线：<b>地址线</b>（说是哪一格）、<b>数据线</b>（把内容送来送去）、<b>控制线</b>（说是读还是写）。地址线有 n 根，就能说出 2<sup>n</sup> 个不同的地址。你的 8 GB 内存有 8 × 2<sup>30</sup> = 2<sup>33</sup> 个字节，至少需要 33 位地址。</p>
-      <p>内存收到地址以后，用第十章的<b>译码器</b>把地址变成“第几根线亮”，那根线打开对应那一格，数据就从那一格出来（读），或者写进那一格（写）。</p>
-      <div class="fig" id="ramFig">
+      <div class="mc">
+        <h5>物品栏的格子</h5>
+        <p>我的世界里，物品栏的每一格也有号码：0 到 35（<a href="../block/six.html#c45">第四十五章</a>）。内存也一样，只是格子多得多：8 GB 的内存，有八十多亿个格子。</p>
+      </div>
+
+      <h3>玩一块 16 格的内存</h3>
+      <p>下面这块内存只有 16 格。号码用 4 根“地址线”来说：4 个比特正好能数 0 到 15（第一章）。</p>
+<div class="fig" id="ramFig">
         <div class="fig-label">装置 · 第十二章 · 一</div>
         <h4>十六格内存</h4>
         <p class="how">一块只有 16 格、每格 8 位的小内存。点地址线设置地址（4 根线，0—15），译码器会点亮那一格。设好数据后点“写”，或者直接点“读”。</p>
@@ -53,6 +62,63 @@
         </div>
         <div class="say"></div>
       </div>
+      <p>试试看：把地址拨到 3，把数据拨成 72，点“写”。再把地址拨到别的格子，然后拨回 3，点“读”。72 还在。</p>
+      <p>再点“写进 HI!”，看看 H、I、! 三个字母的编号（第五章）住进了哪几格。</p>
+
+      <h3>一断电就忘</h3>
+      <p>内存很快，可它有一个毛病：<b>一断电，里面的东西全没了</b>。</p>
+      <p>所以写作业的时候要点“保存”。保存，就是把内存里的东西抄到硬盘上。硬盘慢一些，可是断了电也记得。</p>
+      <div class="tbl">
+        <table class="t tt">
+          <tr><th></th><th>快不快</th><th>断电以后</th><th>放什么</th></tr>
+          <tr><td><b>内存</b></td><td>很快</td><td>全忘了</td><td>正在用的程序和东西</td></tr>
+          <tr><td><b>硬盘</b>（固态硬盘、U 盘）</td><td>慢一些</td><td>还记得</td><td>存起来的文件</td></tr>
+        </table>
+      </div>
+      <div class="try">
+        <div class="th"><b>用 Python 造一块内存</b><span class="tm">5 分钟</span></div>
+        <div class="tb">
+          <p>在终端里输入 <code>python3</code>，一行一行输入：</p>
+<pre class="sh" data-k="python3"><span class="p">&gt;&gt;&gt; </span>mem = bytearray(16)
+<span class="p">&gt;&gt;&gt; </span>mem[3] = 72
+<span class="p">&gt;&gt;&gt; </span>mem[4] = 73
+<span class="p">&gt;&gt;&gt; </span>mem[3]
+<span class="o">72</span>
+<span class="p">&gt;&gt;&gt; </span>mem
+<span class="o">bytearray(b'\x00\x00\x00HI\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')</span></pre>
+          <p><code>bytearray(16)</code> 就是 16 个格子，每格一个字节，一开始都是 0。最后一行里，<code>\x00</code> 是一个 0；72 和 73 正好是 H 和 I 的编号，Python 就直接写成了字母。</p>
+          <p>想知道你的 Mac 有多少内存：点屏幕左上角的苹果标志，选“关于本机”。</p>
+        </div>
+      </div>
+      <div class="task" data-id="base-t12k">
+        <div class="th"><b>内存游戏</b></div>
+        <div class="tb"><p>在纸上画 16 个格子，写上 0 到 15。请家里一个人当“处理器”，只许说两种话：“写，几号，几”和“读，几号”。你当“内存”，只许改那一格、念那一格。玩五分钟，再换过来。</p></div>
+      </div>
+      <div class="pass" data-id="base-q12k">
+        <div class="qq" data-in="地址|address"><p>内存里每个格子的号码叫什么？</p><p class="ex">地址。</p></div>
+        <div class="qq" data-a="1"><p>内存的第一个格子是几号？</p><ol><li>1 号</li><li>0 号</li></ol><p class="ex">从 0 开始数。</p></div>
+        <div class="qq" data-a="0"><p>“读”了 3 号格以后，3 号格里的东西怎样了？</p><ol><li>还在</li><li>没了</li></ol><p class="ex">读只是看一眼，东西还在。写才会换掉它。</p></div>
+        <div class="qq" data-a="2"><p>4 根地址线，能说出几个不同的地址？</p><ol><li>4 个</li><li>8 个</li><li>16 个</li></ol><p class="ex">4 个比特有 16 种样子：0 到 15。</p></div>
+        <div class="qq" data-a="0"><p>为什么写完作业要点“保存”？</p><ol><li>内存一断电就忘，要抄到硬盘上</li><li>保存能让电脑变快</li></ol><p class="ex">保存就是把内存里的东西写到硬盘上。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c12-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 计组 · 主存储器</span><span class="tm">约 100 分钟</span><span class="sum">存取时间、存取周期、带宽；SRAM 和 DRAM 的原理；DRAM 的三种刷新方式和行列地址复用；主存和 CPU 的连接：位扩展、字扩展、字位同时扩展、线选和译码片选；低位交叉的多体存储器。</span></div>
+    <div class="lyb">
+      <div class="ramp">
+        <div class="rh"><b>入门版</b>从第二层读起的人先读这一段。它是这一章原来的第一层：给大学生和初中以上读者的入门；本章第一层改写成了给小学生的版本。</div>
+      <h3>一排带门牌号的柜子</h3>
+      <p>把内存想成一排很长很长的小柜子，每个柜子里放一个字节，每个柜子有一个编号，从 0 开始数，这个编号叫<b>地址</b>。处理器和内存之间只做两件事：</p>
+      <ul class="plain">
+        <li><b>读</b>：“把第 1000 号柜子里的东西给我看看。”</li>
+        <li><b>写</b>：“把 65 放进第 1000 号柜子。”原来的东西被覆盖。</li>
+      </ul>
+      <p>它们之间连着三组线：<b>地址线</b>（说是哪一格）、<b>数据线</b>（把内容送来送去）、<b>控制线</b>（说是读还是写）。地址线有 n 根，就能说出 2<sup>n</sup> 个不同的地址。你的 8 GB 内存有 8 × 2<sup>30</sup> = 2<sup>33</sup> 个字节，至少需要 33 位地址。</p>
+      <p>内存收到地址以后，用第十章的<b>译码器</b>把地址变成“第几根线亮”，那根线打开对应那一格，数据就从那一格出来（读），或者写进那一格（写）。</p>
+      <p class="dim" style="font-size:14px">（装置“十六格内存”留在本章第一层，展开第一层就能玩。）</p>
       <h3>三种存储</h3>
       <div class="tbl"><table class="t"><tr><th></th><th>一个比特用什么存</th><th>断电以后</th><th>快慢</th><th>用在哪儿</th></tr>
         <tr><td><b>SRAM</b></td><td>六个晶体管（两个非门互相撑着，像第十一章的锁存器）</td><td>丢失</td><td>最快</td><td>处理器里的缓存（第十六章）</td></tr>
@@ -80,13 +146,9 @@
         <div class="qq" data-a="0"><p>断电以后还记得内容的是？</p><ol><li>闪存</li><li>DRAM</li><li>SRAM</li></ol><p class="ex">闪存把电荷关在一个绝缘的“笼子”里。</p></div>
         <div class="qq" data-a="1"><p>内存从地址找到那一格，用的是第十章的哪种电路？</p><ol><li>加法器</li><li>译码器</li><li>多路选择器</li></ol><p class="ex">译码器把 n 位地址变成 2<sup>n</sup> 根线里的一根。</p></div>
       </div>
-    </div>
-  </section>
-  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+    
+      </div>
 
-  <section class="ly" data-l="2" id="c12-2">
-    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 计组 · 主存储器</span><span class="tm">约 60 分钟</span><span class="sum">存取时间、存取周期、带宽；SRAM 和 DRAM 的原理；DRAM 的三种刷新方式和行列地址复用；主存和 CPU 的连接：位扩展、字扩展、字位同时扩展、线选和译码片选；低位交叉的多体存储器。</span></div>
-    <div class="lyb">
       <h3>指标</h3>
       <ul class="plain">
         <li><b>存取时间</b>：从发出读写命令到完成操作的时间。<b>存取周期</b>：连续两次独立访问之间的最短间隔，存取周期 = 存取时间 + 恢复时间，所以存取周期 ≥ 存取时间（DRAM 读出是破坏性的，要写回，恢复时间更长）。</li>
@@ -167,16 +229,27 @@
   </section>
 
   <div class="words-h">这一章的新词</div>
+  <div class="main" data-step="12">
+    <div class="mh"><b>主线 · 第 12 步</b><span>内存</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给小机装上：<i>16 格内存</i></p>
+      <p><code>MEM</code> 是 16 个格子，<code>read(a)</code>、<code>write(a, v)</code> 读写一格。小机以后读内存都走 read：这样后面才能在中间插进缓存和页表。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 xiaoji.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>地址超过 15 该怎么办？加检查和测试。想一想：为什么要让所有读写都走同一个函数？</div>
+    </div>
+  </div>
   <div class="words">
-    <div data-l="1"><b>地址 <span class="en" data-say="address">address</span></b>每一格存储的编号。</div>
-    <div data-l="1"><b>内存 <span class="en" data-say="memory">memory</span></b>断电就丢、处理器直接读写的存储。</div>
-    <div data-l="1"><b>刷新 <span class="en" data-say="refresh">refresh</span></b>DRAM 定期读出再写回，补上漏掉的电荷。</div>
+    <div data-l="1"><b>地址 <span class="en" data-say="address">address</span></b>内存里每一格的号码，从 0 开始数。</div>
+    <div data-l="1"><b>内存 <span class="en" data-say="memory">memory</span></b>放正在用的东西，很快，一断电就忘。</div>
+    <div data-l="2"><b>地址 <span class="en" data-say="address">address</span></b>每一格存储的编号。</div>
+    <div data-l="2"><b>内存 <span class="en" data-say="memory">memory</span></b>断电就丢、处理器直接读写的存储。</div>
+    <div data-l="2"><b>刷新 <span class="en" data-say="refresh">refresh</span></b>DRAM 定期读出再写回，补上漏掉的电荷。</div>
     <div data-l="2"><b>片选 <span class="en" data-say="chip select">chip select</span></b>决定这一次访问选中哪块芯片的信号。</div>
     <div data-l="2"><b>交叉编址 <span class="en" data-say="interleaving">interleaving</span></b>相邻地址放在不同的存储体里。</div>
     <div data-l="3"><b>磨损均衡 <span class="en" data-say="wear leveling">wear leveling</span></b>让闪存的每一块被均匀地擦写。</div>
   </div>
   <div class="seal">
-    <div><i>第一层带走</i>内存是一排带门牌号的柜子；n 根地址线管 2<sup>n</sup> 格。</div>
+    <div><i>第一层带走</i>内存是一排带号码的柜子；读不拿走，写会盖掉；断电就忘，所以要保存。</div>
     <div><i>第二层带走</i>片数 = 字的倍数 × 位的倍数；低位地址进芯片，高位地址去译码片选。</div>
     <div><i>第三层带走</i>每种存储都有怪脾气：DRAM 会漏、会被敲翻，闪存要先擦后写。</div>
   </div>

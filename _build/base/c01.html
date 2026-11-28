@@ -12,7 +12,7 @@
       <h2>第一个 C 程序</h2>
       <dl><dt>讲什么</dt><dd>为什么学 C；先编译再运行；变量要先说类型；类型就是占几个字节；printf 的格式；整数除法和溢出；读懂编译器的报错；隐式类型转换；LP64 和 Windows 的不同；C 标准的历史</dd><dt>装置</dt><dd>类型的尺子</dd></dl>
       <div class="crs" data-c="组成 结构"></div>
-      <div class="lvs"><a data-l="1" href="#c17-1">第一层 · 60 分钟</a><a data-l="2" href="#c17-2">第二层 · 45 分钟</a><a data-l="3" href="#c17-3">第三层 · 25 分钟</a></div>
+      <div class="lvs"><a data-l="1" href="#c17-1">第一层 · 35 分钟</a><a data-l="2" href="#c17-2">第二层 · 105 分钟</a><a data-l="3" href="#c17-3">第三层 · 25 分钟</a></div>
     </div>
   </div>
 
@@ -24,16 +24,97 @@
   <div class="goal">
     <h5>学完这一章，你能……</h5>
     <ul>
-      <li><span class="lg lg1">一</span>在 Mac 上写、编译、运行一个 C 程序；看懂最常见的几种编译错误。</li>
-      <li><span class="lg lg1">一</span>说出 char、int、long、double 各占几个字节，用 printf 打出整数、字符、小数和十六进制。</li>
+      <li><span class="lg lg1">一</span>说出“边读边翻”和“先全部翻好”的区别：Python 和 C 各是哪一种。</li>
+      <li><span class="lg lg1">一</span>说出 char、int、double 大概各占几个字节；（可选）和大人一起编译运行第一个 C 程序。</li>
+      <li><span class="lg lg2">二</span>在 Mac 上写、编译、运行一个 C 程序；看懂最常见的几种编译错误。</li>
+      <li><span class="lg lg2">二</span>说出 char、int、long、double 各占几个字节，用 printf 打出整数、字符、小数和十六进制。</li>
       <li><span class="lg lg2">二</span>算出带整数除法、取余、类型转换的表达式；说出常见的未定义行为。</li>
       <li><span class="lg lg3">三</span>说出 LP64 和 LLP64 的区别；知道 C 标准从 K&amp;R 到 C23 的演变。</li>
     </ul>
   </div>
 
   <section class="ly" data-l="1" id="c17-1">
-    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：Python 的变量、if、循环；字节（第二章）</span><span class="tm">约 60 分钟</span></div>
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：Python 的变量和 print（《一块一块》第十部）</span><span class="tm">约 35 分钟</span></div>
     <div class="lyb">
+<h3>两种翻译</h3>
+      <p>处理器只认指令（第十四章）。你写的 Python 也好，C 也好，都要翻成指令才能跑。翻译有两种办法：</p>
+      <ul class="plain">
+        <li><b>边读边翻</b>：读一句，翻一句，做一句，像同声传译。Python 大致就是这样。好处是写完马上能跑；坏处是慢一些。</li>
+        <li><b>先全部翻好</b>：把整个程序一次翻成指令，存成一个新文件，以后直接运行这个文件，像把一本外国书先翻译好再出版。C 就是这样。做这件事的程序叫<b>编译器</b>。好处是跑得特别快。</li>
+      </ul>
+      <p>为什么要学 C？因为 C 离机器很近。它要你亲手管“变量住在第几格”“一个数占几个字节”。学了 C，前面学过的字节、地址、补码，全都看得见、摸得着。操作系统，还有 Python 自己，很多都是用 C 写的。</p>
+
+      <h3>每个变量要说清楚多大</h3>
+      <p>Python 里写 <code>x = 5</code> 就行。C 里要写 <code>int x = 5;</code>：先说 x 是 <code>int</code>（整数），再给它 5。</p>
+      <p>为什么要说？因为 C 要提前知道，给 x 留几个格子。</p>
+      <div class="tbl">
+        <table class="t tt">
+          <tr><th>C 里写</th><th>意思</th><th>在 Mac 上占几个字节</th></tr>
+          <tr><td><code>char</code></td><td>一个字母，或者很小的整数</td><td>1</td></tr>
+          <tr><td><code>int</code></td><td>整数</td><td>4</td></tr>
+          <tr><td><code>long</code></td><td>大一点的整数</td><td>8</td></tr>
+          <tr><td><code>double</code></td><td>小数（第四章的浮点数）</td><td>8</td></tr>
+        </table>
+      </div>
+      <p>格子有限，数也就有上限。int 占 4 个字节，就是 32 个比特，最大大约 21 亿，正是第三章那个让视频计数器出问题的数。</p>
+<div class="fig" id="typeFig">
+        <div class="fig-label">装置 · 第十七章</div>
+        <h4>类型的尺子</h4>
+        <p class="how">选一种类型，输入一个值，看它在内存里占几个字节、每个字节是什么（小端，第二章），以及这种类型能装的范围。超出范围时看看会变成什么。</p>
+        <div class="btns" data-m></div>
+        <input type="text" id="tyIn" value="300" style="font-family:var(--f-mono)" aria-label="值">
+        <div class="tybytes"></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+      <p>在装置里选 <code>char</code>，输入 300，看它存进去以后读回来变成了几（1 个字节最多装到 255，第三章的钟面会转过头）。再选 <code>int</code> 试试同一个数。字节排列的顺序看不懂没关系，第二章第二层讲。</p>
+
+      <h3>第一个 C 程序（和大人一起）</h3>
+      <p>写 C 要用终端，还要第零章装好的 clang。这一节可以和大人一起做；也可以先跳过，第二层开头有更详细的版本。</p>
+      <div class="try">
+        <div class="th"><b>hello.c</b><span class="tm">15 分钟</span></div>
+        <div class="tb">
+          <ol class="steps">
+            <li>在终端里进入练习文件夹，用 nano 这个小编辑器新建文件：
+<pre class="sh" data-k="终端"><span class="p">% </span>cd ~/base
+<span class="p">% </span>nano hello.c</pre></li>
+            <li>照着打下面几行（注意每句后面的分号）：
+<pre class="code" data-k="hello.c">#include &lt;stdio.h&gt;
+int main(void) {
+    int age = 10;
+    printf("I am %d\n", age);
+    return 0;
+}</pre>
+            打完按 <kbd>⌃</kbd> + <kbd>O</kbd>，再按回车保存；按 <kbd>⌃</kbd> + <kbd>X</kbd> 退出。</li>
+            <li>先翻译，再运行：
+<pre class="sh" data-k="终端"><span class="p">% </span>clang hello.c -o hello
+<span class="p">% </span>./hello
+<span class="o">I am 10</span></pre>
+            <code>clang</code> 是编译器，<code>-o hello</code> 是说“翻好的文件叫 hello”，<code>./hello</code> 是运行它。<code>%d</code> 的意思是“这里放一个整数”，<code>\n</code> 是换行。</li>
+          </ol>
+          <p>和 Python 比一比：C 每句后面有分号；用花括号 <code>{ }</code> 把一段括起来，而不是靠缩进；要先编译，再运行。</p>
+        </div>
+      </div>
+      <div class="task" data-id="base-t17k">
+        <div class="th"><b>读一读编译器的报错</b></div>
+        <div class="tb"><p>把 hello.c 里 <code>int age = 10;</code> 后面的分号删掉，保存，再 <code>clang hello.c -o hello</code>。编译器会说哪一行出了错、少了什么（<code>expected ';'</code> 就是“这里应该有个分号”）。把分号加回去，再把 10 改成你的年龄，重新编译运行。</p></div>
+      </div>
+      <div class="pass" data-id="base-q17k">
+        <div class="qq" data-a="0"><p>C 程序要先做什么，才能运行？</p><ol><li>编译（先全部翻好）</li><li>存成一张图片</li></ol><p class="ex">先用编译器翻成指令，再运行翻好的文件。</p></div>
+        <div class="qq" data-in="编译器|compiler|clang"><p>把整个 C 程序翻成指令的程序叫什么？</p><p class="ex">编译器。Mac 上用的是 clang。</p></div>
+        <div class="qq" data-a="1"><p>在 Mac 上，int 占几个字节？</p><ol><li>1</li><li>4</li><li>8</li></ol><p class="ex">4 个字节，也就是 32 个比特。</p></div>
+        <div class="qq" data-a="0"><p>Python 和 C，哪个是“边读边翻”？</p><ol><li>Python</li><li>C</li></ol><p class="ex">Python 大致是边读边翻；C 是先全部翻好。</p></div>
+        <div class="qq" data-a="0"><p>C 里为什么要写 int？</p><ol><li>让编译器知道要给变量留几个格子</li><li>为了好看</li></ol><p class="ex">类型说清楚了，编译器才知道留多少字节、怎样读它。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c17-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">C 语言的“坑” · 面试和代码题必备</span><span class="tm">约 105 分钟</span><span class="sum">推荐的编译选项；整数提升和寻常算术转换；负数的除法和取余；赋值时的截断；printf 格式不匹配；常见的未定义行为清单。</span></div>
+    <div class="lyb">
+      <div class="ramp">
+        <div class="rh"><b>入门版</b>从第二层读起的人先读这一段。它是这一章原来的第一层：给大学生和初中以上读者的入门；本章第一层改写成了给小学生的版本。</div>
       <h3>为什么是 C</h3>
       <p>C 语言是 1972 年前后丹尼斯·里奇在贝尔实验室为了写 Unix 操作系统而设计的。五十多年过去，它还在一线：macOS 和 Linux 的内核、Python 解释器（官方版本叫 CPython，就是用 C 写的）、数据库、嵌入式设备里的程序，大多是 C 写的。它的特点是<b>离机器很近</b>：一个 int 就是内存里的 4 个字节，一次加法几乎就是一条 add 指令。所以它是看清“程序怎样在机器上跑”的最好窗口。</p>
       <h3>先编译，再运行</h3>
@@ -71,16 +152,7 @@ int main(void) {
         <tr><td class="m">float</td><td>4</td><td>单精度浮点（第四章）</td><td class="m">%f</td></tr>
         <tr><td class="m">double</td><td>8</td><td>双精度浮点，Python 的 float 就是它</td><td class="m">%f，%.3f 保留三位</td></tr>
         <tr><td class="m">unsigned int</td><td>4</td><td>0 到约 43 亿（不要负数）</td><td class="m">%u</td></tr></table></div>
-      <div class="fig" id="typeFig">
-        <div class="fig-label">装置 · 第十七章</div>
-        <h4>类型的尺子</h4>
-        <p class="how">选一种类型，输入一个值，看它在内存里占几个字节、每个字节是什么（小端，第二章），以及这种类型能装的范围。超出范围时看看会变成什么。</p>
-        <div class="btns" data-m></div>
-        <input type="text" id="tyIn" value="300" style="font-family:var(--f-mono)" aria-label="值">
-        <div class="tybytes"></div>
-        <div class="kv"></div>
-        <div class="say"></div>
-      </div>
+      <p class="dim" style="font-size:14px">（装置“类型的尺子”留在本章第一层，展开第一层就能玩。）</p>
       <h3>和 Python 不一样的地方</h3>
       <ul class="plain">
         <li><b>整数除法</b>：两个整数相除结果还是整数，小数直接扔掉。<code>7 / 2</code> 是 3（Python 3 里是 3.5，要写 <code>7 // 2</code> 才是 3）。想要小数，至少一边写成小数：<code>7 / 2.0</code>。</li>
@@ -124,13 +196,9 @@ int main(void) {
         <div class="qq" data-in="b"><p><code>char c = 'A'; c = c + 1;</code> 之后用 %c 打印 c，得到什么？</p><p class="ex">char 就是一个小整数，65 + 1 = 66，是 'B'。</p></div>
         <div class="qq" data-a="0"><p>编译时出现 warning，应该怎么办？</p><ol><li>认真看，多半是真问题</li><li>不用管，能编译出来就行</li><li>重装电脑</li></ol><p class="ex">很多 bug 编译器早就警告过了。</p></div>
       </div>
-    </div>
-  </section>
-  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+    
+      </div>
 
-  <section class="ly" data-l="2" id="c17-2">
-    <div class="lyh"><b>第二层 · 本科</b><span class="tg">C 语言的“坑” · 面试和代码题必备</span><span class="tm">约 45 分钟</span><span class="sum">推荐的编译选项；整数提升和寻常算术转换；负数的除法和取余；赋值时的截断；printf 格式不匹配；常见的未定义行为清单。</span></div>
-    <div class="lyb">
       <h3>编译选项</h3>
       <p>平时练习建议：<code>clang -std=c17 -Wall -Wextra -g -O0 x.c -o x</code>。<code>-std=c17</code> 指定标准；<code>-Wall -Wextra</code> 打开警告；<code>-g</code> 带上调试信息（第二十四章）；<code>-O0</code> 不优化，调试时变量不会被优化掉。查函数用法：<code>man 3 printf</code>（第 3 节是 C 库函数）。</p>
       <h3>隐式类型转换</h3>
@@ -194,16 +262,27 @@ int main(void) {
   </section>
 
   <div class="words-h">这一章的新词</div>
+  <div class="main" data-step="17">
+    <div class="mh"><b>主线 · 第 17 步</b><span>名字</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给小机装上：<i>两遍的汇编器</i></p>
+      <p>给格子起名字：<code>loop:</code>、<code>x:</code> 这样的“标签”。汇编器先走一遍，记下每个名字在第几格；再走一遍，真的翻译。写程序不用再死记格号了。</p>
+      <div class="who1"><b>第一层</b>这一步可以先下载“到这一步的完整文件”运行，看懂演示，再读新加的那一段。想挑战就自己打。</div>
+      <div class="who2"><b>第二层</b>这张“名字 → 格号”的表就是符号表。用 C 重写 asm，用结构体数组存符号表；想一想怎样找得更快（下一本《链与树》讲哈希表）。</div>
+    </div>
+  </div>
   <div class="words">
-    <div data-l="1"><b>编译 <span class="en" data-say="compile">compile</span></b>把源代码整个翻译成机器指令。</div>
-    <div data-l="1"><b>类型 <span class="en" data-say="type">type</span></b>决定占几个字节、怎样读这些字节。</div>
-    <div data-l="1"><b>源代码 <span class="en" data-say="source code">source code</span></b>人写的那份程序文本。</div>
-    <div data-l="1"><b>警告 <span class="en" data-say="warning">warning</span></b>编译器说“这里很可疑”。</div>
+    <div data-l="1"><b>编译器 <span class="en" data-say="compiler">compiler</span></b>把整个程序先翻成指令的程序，比如 clang。</div>
+    <div data-l="1"><b>类型 <span class="en" data-say="type">type</span></b>说清楚一个变量是什么、占几个字节。</div>
+    <div data-l="2"><b>编译 <span class="en" data-say="compile">compile</span></b>把源代码整个翻译成机器指令。</div>
+    <div data-l="2"><b>类型 <span class="en" data-say="type">type</span></b>决定占几个字节、怎样读这些字节。</div>
+    <div data-l="2"><b>源代码 <span class="en" data-say="source code">source code</span></b>人写的那份程序文本。</div>
+    <div data-l="2"><b>警告 <span class="en" data-say="warning">warning</span></b>编译器说“这里很可疑”。</div>
     <div data-l="2"><b>类型转换 <span class="en" data-say="type conversion">type conversion</span></b>运算或赋值时类型自动变换。</div>
     <div data-l="3"><b>数据模型 <span class="en" data-say="data model">data model</span></b>各种整数和指针在某平台上的位数约定。</div>
   </div>
   <div class="seal">
-    <div><i>第一层带走</i>C 先编译再运行；类型就是字节数加读法。</div>
+    <div><i>第一层带走</i>Python 边读边翻，C 先翻好再跑；C 要你说清楚每个变量占几格。</div>
     <div><i>第二层带走</i>整数除法向零取整；有符号无符号一混就出事；未定义行为不报错。</div>
     <div><i>第三层带走</i>别假设 long 有多长，用 stdint.h；一行 clang 背后是四个工具。</div>
   </div>

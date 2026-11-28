@@ -6,7 +6,7 @@
       <h2>并发</h2>
       <dl><dt>讲什么</dt><dd>两个线程各加一万次，结果不到两万；count++ 其实是三条指令；竞态和临界区；锁；信号量和 P、V；生产者和消费者；死锁的四个条件；银行家算法；原子指令、内存顺序和线程消毒器</dd><dt>装置</dt><dd>两个人同时记账 · 银行家算法</dd></dl>
       <div class="crs" data-c="系统 组成"></div>
-      <div class="lvs"><a data-l="1" href="#c29-1">第一层 · 45 分钟</a><a data-l="2" href="#c29-2">第二层 · 65 分钟</a><a data-l="3" href="#c29-3">第三层 · 25 分钟</a></div>
+      <div class="lvs"><a data-l="1" href="#c29-1">第一层 · 30 分钟</a><a data-l="2" href="#c29-2">第二层 · 110 分钟</a><a data-l="3" href="#c29-3">第三层 · 25 分钟</a></div>
     </div>
   </div>
 
@@ -18,19 +18,24 @@
   <div class="goal">
     <h5>学完这一章，你能……</h5>
     <ul>
-      <li><span class="lg lg1">一</span>解释为什么两个线程同时 count++ 会丢数；用锁修好它。</li>
-      <li><span class="lg lg1">一</span>说出死锁是什么，举一个生活里的例子。</li>
+      <li><span class="lg lg1">一</span>用“两个人同时记账”讲清楚，为什么一起改一个数会少算。</li>
+      <li><span class="lg lg1">一</span>说出锁怎样防止少算，死锁又是怎么来的。</li>
+      <li><span class="lg lg2">二</span>解释为什么两个线程同时 count++ 会丢数；用锁修好它。</li>
+      <li><span class="lg lg2">二</span>说出死锁是什么，举一个生活里的例子。</li>
       <li><span class="lg lg2">二</span>用信号量的 P、V 操作写出生产者消费者、读者写者等同步问题；说出死锁的四个必要条件，用银行家算法判断安全状态。</li>
       <li><span class="lg lg3">三</span>说出原子指令、内存顺序、伪共享和线程消毒器。</li>
     </ul>
   </div>
 
   <section class="ly" data-l="1" id="c29-1">
-    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：线程（第二十六章）、汇编（第十四章）</span><span class="tm">约 45 分钟</span></div>
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：进程和轮流（第二十六章）</span><span class="tm">约 30 分钟</span></div>
     <div class="lyb">
-      <h3>count++ 是三步</h3>
-      <p>C 里的 <code>count++</code> 看起来是一步，翻译成机器指令却是三步（第十四章）：<b>读</b>（把 count 从内存读进寄存器）、<b>加</b>（寄存器加一）、<b>写</b>（把寄存器写回内存）。两个线程同时做，可能这样交错：A 读到 5，B 也读到 5；A 加成 6 写回；B 也加成 6 写回。两个人各加了一次，count 却只多了 1。这种结果取决于“谁先谁后”的错误叫<b>竞态</b>（race condition），会改共享数据的那段代码叫<b>临界区</b>。</p>
-      <div class="fig" id="raceFig">
+<h3>两个人同时记账</h3>
+      <p>家里有一个存钱罐，账本上写着 100 元。妈妈往里放了 10 元，爸爸也放了 10 元，应该是 120 元。</p>
+      <p>可是记一笔账要三步：①看账本上是多少；②在心里加 10；③把新的数写回去。如果两人同时记：妈妈看到 100，爸爸也看到 100；妈妈写上 110，爸爸也写上 110。结果是 110，少了 10 元！</p>
+      <p>电脑里一模一样。两个线程（一个程序里同时在跑的两条“线”）一起给同一个数加一。“加一”其实也是三步：读、加、写。轮流的时候，要是在三步中间被换了人，就会少算。</p>
+      <p>这叫<b>竞态</b>：结果要看谁跑得快，每次都可能不一样。</p>
+<div class="fig" id="raceFig">
         <div class="fig-label">装置 · 第二十九章 · 一</div>
         <h4>两个人同时记账</h4>
         <p class="how">两个线程都要执行 count++（读、加、写三步），count 一开始是 0。你来当调度器：点“A 走一步”“B 走一步”决定谁先执行，看最后 count 是 1 还是 2。再点“随机交错一千次”看看结果的分布；打开“加锁”再试。</p>
@@ -39,6 +44,42 @@
         <div class="kv"></div>
         <div class="say"></div>
       </div>
+      <p>先当一回调度器：自己点“A 走一步”“B 走一步”，故意让它少算。再点“随机交错一千次”，看出错多少次。最后勾上“加锁”，再试一遍。</p>
+
+      <h3>锁：一次只许一个人</h3>
+      <p>办法是加一把<b>锁</b>，像厕所门上的锁：进去的人锁上门，别人只能在外面等；出来时开锁，下一个人再进。</p>
+      <p>把“读、加、写”三步放在锁里面，中间就不会被别人插进来了。</p>
+      <div class="mc">
+        <h5>最后一颗钻石</h5>
+        <p>服务器上，两个玩家同时去拿箱子里最后一颗钻石。服务器必须保证只有一个人拿到，不然钻石就变成了两颗。服务器怎样做到？办法和锁一样：一次只处理一个人拿东西。</p>
+      </div>
+
+      <h3>死锁：两个人都在等</h3>
+      <p>锁用不好，又会出新麻烦。小明手里有一根筷子，在等小红手里那根；小红手里有另一根，在等小明手里那根。谁都不肯先放下，就一直等下去，谁也吃不上饭。这叫<b>死锁</b>。</p>
+      <p>一个简单的办法：大家约好拿的顺序。比如筷子编上 1 号、2 号，规定都先拿 1 号、再拿 2 号。拿到 1 号的人一定能拿到 2 号；没拿到 1 号的人，手里什么也没有，只是等着。这样就卡不住了。</p>
+      <div class="task" data-id="base-t29k">
+        <div class="th"><b>演一遍记账</b></div>
+        <div class="tb"><p>和家里人各拿一张纸当“心里”，桌上放一张纸当“账本”，写着 0。两人都要做三遍“看账本、在自己纸上加 1、把结果写回账本”。请第三个人每隔几秒喊“换”，喊到谁谁才能走一步。最后账本应该是 6，实际是几？再加一把“锁”：一支笔，拿着笔的人才能看账本，做完一遍才交出去。</p></div>
+      </div>
+      <div class="pass" data-id="base-q29k">
+        <div class="qq" data-a="1"><p>“加一”在电脑里分几步？</p><ol><li>1 步</li><li>3 步：读、加、写</li></ol><p class="ex">读、加、写三步，中间可能被打断。</p></div>
+        <div class="qq" data-in="竞态|竞争|竞争条件|race condition"><p>结果要看谁跑得快、每次可能不一样，这叫什么？</p><p class="ex">竞态。</p></div>
+        <div class="qq" data-a="0"><p>锁有什么用？</p><ol><li>一次只许一个人改</li><li>让程序跑得更快</li></ol><p class="ex">一次只许一个人进去。其实还会慢一点，因为别人要等。</p></div>
+        <div class="qq" data-a="0"><p>两个人各拿一根筷子，等对方的那根，这叫什么？</p><ol><li>死锁</li><li>栈溢出</li></ol><p class="ex">死锁：大家互相等。</p></div>
+        <div class="qq" data-a="0"><p>防止死锁的一个办法是什么？</p><ol><li>大家约好拿的顺序</li><li>再多加几把锁</li></ol><p class="ex">约好顺序，就不会互相卡住。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c29-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 操作系统 · 进程同步与死锁</span><span class="tm">约 110 分钟</span><span class="sum">同步和互斥的四条准则；软件和硬件实现互斥；信号量和 P、V；生产者消费者、读者写者、哲学家进餐；管程；死锁的四个必要条件；预防、避免（银行家算法）、检测与解除。</span></div>
+    <div class="lyb">
+      <div class="ramp">
+        <div class="rh"><b>入门版</b>从第二层读起的人先读这一段。它是这一章原来的第一层：给大学生和初中以上读者的入门；本章第一层改写成了给小学生的版本。</div>
+      <h3>count++ 是三步</h3>
+      <p>C 里的 <code>count++</code> 看起来是一步，翻译成机器指令却是三步（第十四章）：<b>读</b>（把 count 从内存读进寄存器）、<b>加</b>（寄存器加一）、<b>写</b>（把寄存器写回内存）。两个线程同时做，可能这样交错：A 读到 5，B 也读到 5；A 加成 6 写回；B 也加成 6 写回。两个人各加了一次，count 却只多了 1。这种结果取决于“谁先谁后”的错误叫<b>竞态</b>（race condition），会改共享数据的那段代码叫<b>临界区</b>。</p>
+      <p class="dim" style="font-size:14px">（装置“两个人同时记账”留在本章第一层，展开第一层就能玩。）</p>
       <h3>锁</h3>
       <p>解决办法是规定“同一时刻只许一个线程在临界区里”，叫<b>互斥</b>。最常用的工具是<b>锁</b>（mutex）：进临界区前先上锁，出来时开锁；锁已经被别人上了，就等着。像只有一把钥匙的厕所。C 里用 pthread 库：</p>
       <pre class="code" data-k="race.c">#include &lt;stdio.h&gt;
@@ -82,13 +123,9 @@ int main(void) {
         <div class="qq" data-a="2"><p>甲拿着刀等叉、乙拿着叉等刀，叫？</p><ol><li>竞态</li><li>饥饿</li><li>死锁</li></ol><p class="ex">都在等对方，谁也动不了。</p></div>
         <div class="qq" data-a="1"><p>预防上面那种死锁的简单办法是？</p><ol><li>多买几把刀</li><li>大家按同样的顺序拿锁</li><li>不用锁</li></ol><p class="ex">破坏“循环等待”。</p></div>
       </div>
-    </div>
-  </section>
-  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+    
+      </div>
 
-  <section class="ly" data-l="2" id="c29-2">
-    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 操作系统 · 进程同步与死锁</span><span class="tm">约 65 分钟</span><span class="sum">同步和互斥的四条准则；软件和硬件实现互斥；信号量和 P、V；生产者消费者、读者写者、哲学家进餐；管程；死锁的四个必要条件；预防、避免（银行家算法）、检测与解除。</span></div>
-    <div class="lyb">
       <h3>临界区的准则和实现</h3>
       <p>四条准则：<b>空闲让进</b>、<b>忙则等待</b>、<b>有限等待</b>、<b>让权等待</b>（进不去时让出处理器，不要空转）。软件办法有 Peterson 算法（两个线程，用 flag 和 turn 两个变量）；硬件办法有关中断（只适用于单处理器内核）和原子指令：<b>TestAndSet</b>、<b>Swap</b>（交换），用它们做的自旋锁会“忙等”，不满足让权等待。</p>
       <h3>信号量</h3>
@@ -158,16 +195,28 @@ consumer: while (1) { P(full); P(mutex); 取出一个; V(mutex); V(empty); 消�
   </section>
 
   <div class="words-h">这一章的新词</div>
+  <div class="main" data-step="29">
+    <div class="mh"><b>主线 · 第 29 步</b><span>锁</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给小机装上：<i>共享内存和锁</i></p>
+      <p>两个进程共用一页，各给计数器加 2 次。不上锁，结果是 2；用 <code>SYS 4</code> 上锁、<code>SYS 5</code> 开锁，结果才是 4。</p>
+      <div class="who1"><b>第一层</b>这一步可以先下载“到这一步的完整文件”运行，看懂演示，再读新加的那一段。想挑战就自己打。</div>
+      <div class="who2"><b>第二层</b>故意造一个死锁：两把锁，两个进程拿的顺序相反；再按第二十九章的办法修好。</div>
+    </div>
+  </div>
   <div class="words">
-    <div data-l="1"><b>竞态 <span class="en" data-say="race condition">race condition</span></b>结果取决于谁先谁后的错误。</div>
-    <div data-l="1"><b>锁 <span class="en" data-say="mutex">mutex</span></b>同一时刻只许一个线程进入。</div>
-    <div data-l="1"><b>死锁 <span class="en" data-say="deadlock">deadlock</span></b>互相等对方，谁也动不了。</div>
+    <div data-l="1"><b>竞态 <span class="en" data-say="race condition">race condition</span></b>结果要看谁跑得快。</div>
+    <div data-l="1"><b>锁 <span class="en" data-say="lock">lock</span></b>一次只许一个人进去。</div>
+    <div data-l="1"><b>死锁 <span class="en" data-say="deadlock">deadlock</span></b>大家互相等，谁也动不了。</div>
+    <div data-l="2"><b>竞态 <span class="en" data-say="race condition">race condition</span></b>结果取决于谁先谁后的错误。</div>
+    <div data-l="2"><b>锁 <span class="en" data-say="mutex">mutex</span></b>同一时刻只许一个线程进入。</div>
+    <div data-l="2"><b>死锁 <span class="en" data-say="deadlock">deadlock</span></b>互相等对方，谁也动不了。</div>
     <div data-l="2"><b>信号量 <span class="en" data-say="semaphore">semaphore</span></b>一个整数加等待队列，用 P、V 操作。</div>
     <div data-l="2"><b>临界区 <span class="en" data-say="critical section">critical section</span></b>访问共享数据的那段代码。</div>
     <div data-l="3"><b>原子操作 <span class="en" data-say="atomic operation">atomic operation</span></b>中间不会被打断的读改写。</div>
   </div>
   <div class="seal">
-    <div><i>第一层带走</i>count++ 是三步，两个人一起做就会丢；锁让大家排队，死锁让大家干等。</div>
+    <div><i>第一层带走</i>“加一”是三步，被打断就会少算；锁让大家排队，乱排又会死锁。</div>
     <div><i>第二层带走</i>先 P 资源再 P 互斥；四个条件缺一不死锁；安全状态有一条人人能完成的路。</div>
     <div><i>第三层带走</i>多核上连“先写后读”的顺序都不可信，要用原子操作和屏障说清楚。</div>
   </div>

@@ -42,12 +42,19 @@
       <p>0.1 和 0.2 各差一点点，加起来的误差刚好露了出来，于是 0.30000000000000004。这不是 Python 的毛病，几乎所有编程语言、所有电脑都一样。</p>
 
       <h3>小数点会浮动</h3>
+      <p>电脑存小数的办法，叫<b>浮点数</b>（floating point）。Python 里带小数点的数（float）都是这样存的。你先记住两件事：</p>
+      <ul class="plain">
+        <li>它只记得前面大约十六位数字，再往后的就丢了。所以小数常常差一点点。</li>
+        <li>数越大，它能分辨的最小一步就越粗。很多 3D 游戏里，人走到离出生点特别特别远的地方，东西会开始发抖，就是因为坐标数太大，最小的一步变粗了。</li>
+      </ul>
+      <details class="opt"><summary>初中会学的：小数点为什么会“浮动”（科学计数法）</summary><div>
       <div class="bridge" data-k="数学">
         <h5>科学计数法</h5>
         <p>光速约 300000000 米每秒，写成 3 × 10<sup>8</sup>；一粒细菌约 0.000002 米，写成 2 × 10<sup>−6</sup>。前面那个数叫<b>有效数字</b>，后面 10 的几次方叫<b>指数</b>。指数一变，小数点就跟着左右挪：这就是“浮动的小数点”。</p>
       </div>
       <p>电脑存小数也用科学计数法，只是底数是 2：先存一个正负号，再存指数，再存有效数字。比如 6.5 = 110.1（二进制）= 1.101 × 2<sup>2</sup>，就存“正、指数 2、有效数字 1.101”。这种存法叫<b>浮点数</b>（<span class="en" data-say="floating point">floating point</span>），Python 里带小数点的数（<code>float</code>）都是这样存的。</p>
       <p>好处是范围特别大：同样 64 个比特，既能存 10<sup>300</sup> 这么大的数，也能存 10<sup>−300</sup> 这么小的数。代价是有效数字的位数固定（大约 16 位十进制数字），<b>数越大，能分辨的最小差别也越大</b>。离 0 很近时，相邻两个能存的数挨得很密；离 0 很远时，相邻两个数中间隔得很开。很多 3D 游戏里，人走到离出生点特别远的地方，东西会开始抖，就是因为坐标数太大，能分辨的最小一步变粗了。</p>
+      </div></details>
 
       <div class="fig" id="sumFig">
         <div class="fig-label">装置 · 第四章 · 一</div>
@@ -209,6 +216,15 @@ print(sum([0.1] * 10000), kahan_sum([0.1] * 10000))</pre>
   </section>
 
   <div class="words-h">这一章的新词</div>
+  <div class="main" data-step="4">
+    <div class="mh"><b>主线 · 第 4 步</b><span>只认整数</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给小机装上：<i>规矩：只用整数</i></p>
+      <p>小机不做小数。写 <code>to_cents('12.30')</code>，把“元”变成“分”，从头到尾不碰小数点。demo 里比一比：0.1 + 0.2 用小数算和用分算，结果有什么不同。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 xiaoji.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b><code>to_cents</code> 遇到 <code>'1.005'</code>、<code>'-0.5'</code>、<code>'abc'</code> 该怎么办？补上检查和测试。</div>
+    </div>
+  </div>
   <div class="words">
     <div data-l="1"><b>浮点数 <span class="en" data-say="floating point">floating point</span></b>用“符号、指数、有效数字”存的小数。</div>
     <div data-l="1"><b>精度 <span class="en" data-say="precision">precision</span></b>能分辨多小的差别。</div>

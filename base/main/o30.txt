@@ -1,0 +1,2 @@
+电线上的第一帧： {'packet': {'from': 'A', 'to': 'B', 'seq': 0, 'total': 4, 'data': [72, 69, 76, 76]}, 'check': 37}
+B 收到： HELLO, XIAOJI!

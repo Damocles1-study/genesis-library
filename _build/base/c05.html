@@ -6,7 +6,7 @@
       <h2>堆</h2>
       <dl><dt>讲什么</dt><dd>栈上的东西函数一返回就没了，堆上的东西要自己还；malloc 和 free；内存泄漏、释放后使用、重复释放；用地址消毒器和 leaks 抓虫；分配器怎样管一大块内存；首次适应、最佳适应、最坏适应、邻近适应；内部碎片和外部碎片；垃圾回收和所有权</dd><dt>装置</dt><dd>分配器</dd></dl>
       <div class="crs" data-c="系统 结构"></div>
-      <div class="lvs"><a data-l="1" href="#c21-1">第一层 · 45 分钟</a><a data-l="2" href="#c21-2">第二层 · 55 分钟</a><a data-l="3" href="#c21-3">第三层 · 25 分钟</a></div>
+      <div class="lvs"><a data-l="1" href="#c21-1">第一层 · 25 分钟</a><a data-l="2" href="#c21-2">第二层 · 100 分钟</a><a data-l="3" href="#c21-3">第三层 · 25 分钟</a></div>
     </div>
   </div>
 
@@ -18,16 +18,64 @@
   <div class="goal">
     <h5>学完这一章，你能……</h5>
     <ul>
-      <li><span class="lg lg1">一</span>用 malloc 借一块内存、用 free 还回去；说出栈和堆的区别。</li>
-      <li><span class="lg lg1">一</span>说出内存泄漏、释放后使用、重复释放是什么，用地址消毒器把它们抓出来。</li>
+      <li><span class="lg lg1">一</span>说出栈和堆的区别：什么东西要放在堆上。</li>
+      <li><span class="lg lg1">一</span>说出借了不还、还了还用、还两次这三种错。</li>
+      <li><span class="lg lg2">二</span>用 malloc 借一块内存、用 free 还回去；说出栈和堆的区别。</li>
+      <li><span class="lg lg2">二</span>说出内存泄漏、释放后使用、重复释放是什么，用地址消毒器把它们抓出来。</li>
       <li><span class="lg lg2">二</span>按首次、最佳、最坏、邻近适应模拟一串分配和释放；区分内部碎片和外部碎片。</li>
       <li><span class="lg lg3">三</span>说出真实的分配器怎样提速；比较引用计数、追踪式垃圾回收和 Rust 的所有权。</li>
     </ul>
   </div>
 
   <section class="ly" data-l="1" id="c21-1">
-    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：指针（第十八章）、栈（第二十章）</span><span class="tm">约 45 分钟</span></div>
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：栈（第二十章）</span><span class="tm">约 25 分钟</span></div>
     <div class="lyb">
+<h3>盘子装不下的东西</h3>
+      <p>栈上的盘子有个规矩：函数一做完，盘子就收走（第二十章）。可是有些东西要留得久一点，比如游戏里的地图，比如你一直往里加东西的列表。它们不能跟着盘子一起被收走。</p>
+      <p>这些东西放在内存里另一块大地方，叫<b>堆</b>（heap）。堆像图书馆：要用就<b>借</b>一块地方，用完了要<b>还</b>。C 里，借是 <code>malloc</code>（说要几个字节），还是 <code>free</code>。</p>
+
+      <h3>借了要还</h3>
+      <p>借和还，都要你自己记着。记错了会出三种事：</p>
+      <ul class="plain">
+        <li><b>借了不还</b>：这块地方一直被占着。程序跑得越久，占得越多，最后内存不够用。这叫<b>内存泄漏</b>。</li>
+        <li><b>还了还去用</b>：书已经还回去，又借给了别人，你还在上面写字。</li>
+        <li><b>还了两次</b>：管图书的人被弄糊涂了，账本乱掉。</li>
+      </ul>
+      <p>Python 替你记着这些：一样东西没人用了，它会自己收回去。所以写 Python 从来不用 free。C 不管，要你自己来。</p>
+
+      <h3>空地被切碎了</h3>
+<div class="fig" id="heapFig">
+        <div class="fig-label">装置 · 第二十一章</div>
+        <h4>分配器</h4>
+        <p class="how">一块 256 字节的“堆”，每格 8 字节。malloc 借内存时要先找一块够大的空地，每块前面还要多占一格放“账本”（这块多大、借出去没有）。借几次、还几次，看空地怎样被切成碎片；第二层再比较四种找空地的办法。</p>
+        <div class="btns" data-alg></div>
+        <div class="row"><label class="dim" style="font-size:13px">借多少字节</label><input type="number" id="hpN" value="24" min="1" max="240" style="width:6em"><button class="btn pri" data-x="m">malloc</button><button class="btn" data-x="demo">演示：碎片是怎样来的</button><button class="btn" data-x="reset">清空</button><label class="dim" style="font-size:13px"><input type="checkbox" id="hpC" checked> free 时合并相邻的空地</label></div>
+        <div class="heapbar"></div>
+        <div class="heapptrs"></div>
+        <div class="kv"></div>
+        <div class="say"></div>
+      </div>
+      <p>点“演示：碎片是怎样来的”，或者自己借几次、还几次。你会看到，空地被切成一小块一小块：空的加起来不少，可是哪一块都不够大，大东西还是放不下。这叫<b>碎片</b>。</p>
+      <div class="task" data-id="base-t21k">
+        <div class="th"><b>借座位</b></div>
+        <div class="tb"><p>在纸上画一排 16 个座位。按顺序给 A、B、C 三组各安排 4 个挨着的座位；然后 B 组走了；再来一个 6 个人的 D 组，要挨着坐。能坐下吗？空座一共有几个？再想一个办法让 D 组坐下（提示：让 C 组挪一挪）。</p></div>
+      </div>
+      <div class="pass" data-id="base-q21k">
+        <div class="qq" data-a="1"><p>要留得久的东西，放在哪儿？</p><ol><li>栈上</li><li>堆上</li></ol><p class="ex">堆：借了以后一直归你，直到你还。</p></div>
+        <div class="qq" data-in="free"><p>C 里“还”内存用哪个词？</p><p class="ex">free。借是 malloc。</p></div>
+        <div class="qq" data-a="0"><p>借了不还，叫什么？</p><ol><li>内存泄漏</li><li>栈溢出</li></ol><p class="ex">内存泄漏：占着的越来越多。</p></div>
+        <div class="qq" data-a="1"><p>写 Python 要不要自己 free？</p><ol><li>要</li><li>不用，它自己收</li></ol><p class="ex">不用。没人用的东西，Python 会自己收回去。</p></div>
+        <div class="qq" data-a="0"><p>空地加起来够大，大东西还是放不下，是因为什么？</p><ol><li>碎片</li><li>越界</li></ol><p class="ex">碎片：空地不连着。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c21-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 操作系统 · 动态分区分配 · 面试</span><span class="tm">约 100 分钟</span><span class="sum">分配器的账本：头部、空闲链表、切分和合并；首次适应、邻近适应、最佳适应、最坏适应的规则和优缺点；内部碎片和外部碎片；紧凑；一道模拟题。</span></div>
+    <div class="lyb">
+      <div class="ramp">
+        <div class="rh"><b>入门版</b>从第二层读起的人先读这一段。它是这一章原来的第一层：给大学生和初中以上读者的入门；本章第一层改写成了给小学生的版本。</div>
       <h3>栈不够用的时候</h3>
       <p>栈上的局部变量有两个限制：函数一返回就消失；大小要在写程序时就定下来，而且栈总共只有几 MB。可是很多东西不是这样的：用户要打开一张 4000 万像素的照片（几十 MB），一个游戏要存所有玩家的信息（人数一直在变），一个函数要造一个链表交给别人用（不能随着它返回而消失）。这些东西放在<b>堆</b>（<span class="en" data-say="heap">heap</span>）上：一大片由程序自己申请、自己归还的内存。第三部封面的内存地图里，堆在下面、往上长。</p>
       <h3>借和还</h3>
@@ -70,17 +118,7 @@ int main(int argc, char **argv) {
           <p><code>./bug a</code>：地址消毒器报 <code>heap-buffer-overflow</code>，指出是哪一行写过了头、那块内存是在哪一行借的。<code>./bug a b</code> 的第一个错误会先被抓住；把第 8 行注释掉再试，就会看到 <code>heap-use-after-free</code>。最后用 macOS 自带的 <code>leaks</code> 工具运行不带消毒器的版本，它会在程序结束时报告“1 leak”，并列出那 100 字节。在 Linux 上，同样的事可以用 Valgrind 或地址消毒器的泄漏检测。</p>
         </div>
       </div>
-      <div class="fig" id="heapFig">
-        <div class="fig-label">装置 · 第二十一章</div>
-        <h4>分配器</h4>
-        <p class="how">一块 256 字节的“堆”，每格 8 字节。malloc 借内存时要先找一块够大的空地，每块前面还要多占一格放“账本”（这块多大、借出去没有）。借几次、还几次，看空地怎样被切成碎片；第二层再比较四种找空地的办法。</p>
-        <div class="btns" data-alg></div>
-        <div class="row"><label class="dim" style="font-size:13px">借多少字节</label><input type="number" id="hpN" value="24" min="1" max="240" style="width:6em"><button class="btn pri" data-x="m">malloc</button><button class="btn" data-x="demo">演示：碎片是怎样来的</button><button class="btn" data-x="reset">清空</button><label class="dim" style="font-size:13px"><input type="checkbox" id="hpC" checked> free 时合并相邻的空地</label></div>
-        <div class="heapbar"></div>
-        <div class="heapptrs"></div>
-        <div class="kv"></div>
-        <div class="say"></div>
-      </div>
+      <p class="dim" style="font-size:14px">（装置“分配器”留在本章第一层，展开第一层就能玩。）</p>
       <div class="task" data-id="base-t21a">
         <div class="th"><b>一个会长大的数组</b></div>
         <div class="tb"><p>写一个程序，不断读入整数（用 scanf，读到 0 停），存进一个用 malloc 借来的数组。数组满了，就借一块两倍大的新内存（或者用 <code>realloc</code>），把旧的内容拷过去，free 旧的。最后打印所有数。这就是 Python 列表的 append 在底下做的事。写完用 <code>-fsanitize=address</code> 跑一遍，确认没有错误。</p></div>
@@ -92,13 +130,9 @@ int main(int argc, char **argv) {
         <div class="qq" data-a="1"><p>malloc 借不到内存时返回？</p><ol><li>0 字节的内存</li><li>NULL</li><li>程序立刻退出</li></ol><p class="ex">要检查返回值。</p></div>
         <div class="qq" data-a="0"><p>想在 Mac 上抓住越界和释放后使用，编译时加？</p><ol><li>-fsanitize=address</li><li>-O3</li><li>-o</li></ol><p class="ex">地址消毒器。</p></div>
       </div>
-    </div>
-  </section>
-  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+    
+      </div>
 
-  <section class="ly" data-l="2" id="c21-2">
-    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 操作系统 · 动态分区分配 · 面试</span><span class="tm">约 55 分钟</span><span class="sum">分配器的账本：头部、空闲链表、切分和合并；首次适应、邻近适应、最佳适应、最坏适应的规则和优缺点；内部碎片和外部碎片；紧凑；一道模拟题。</span></div>
-    <div class="lyb">
       <h3>分配器的账本</h3>
       <p>堆是一大块连续的内存，分配器要记住哪些段借出去了、哪些空着。最简单的做法：每块前面放一个<b>头部</b>，写着这块的大小和“已分配 / 空闲”标记，所有块首尾相接，从头部的大小就能跳到下一块（隐式空闲链表）。更快的做法把空闲块用指针串成链表（显式空闲链表），或者按大小分成好几条链（分离空闲链表）。</p>
       <ul class="plain">
@@ -173,16 +207,28 @@ int main(int argc, char **argv) {
   </section>
 
   <div class="words-h">这一章的新词</div>
+  <div class="main" data-step="21">
+    <div class="mh"><b>主线 · 第 21 步</b><span>堆</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给小机装上：<i>堆分配器</i></p>
+      <p><code>alloc(n, who)</code> 在 32 格的大地方里找 n 个挨着的空格借出去，<code>free(who)</code> 还回来。demo 里空格加起来有 16 个，却借不到 10 个：碎片。</p>
+      <div class="who1"><b>第一层</b>这一步可以先下载“到这一步的完整文件”运行，看懂演示，再读新加的那一段。想挑战就自己打。</div>
+      <div class="who2"><b>第二层</b>实现第二十一章第二层的最佳适应和最坏适应，对同一串借还请求比较碎片。</div>
+    </div>
+  </div>
   <div class="words">
-    <div data-l="1"><b>堆 <span class="en" data-say="heap">heap</span></b>程序自己借、自己还的那片内存。</div>
+    <div data-l="1"><b>堆 <span class="en" data-say="heap">heap</span></b>要用就借、用完要还的一大块内存。</div>
     <div data-l="1"><b>内存泄漏 <span class="en" data-say="memory leak">memory leak</span></b>借了不还。</div>
-    <div data-l="1"><b>释放后使用 <span class="en" data-say="use after free">use after free</span></b>还了以后还在用。</div>
+    <div data-l="1"><b>碎片 <span class="en" data-say="fragmentation">fragmentation</span></b>空地被切得太碎，大东西放不下。</div>
+    <div data-l="2"><b>堆 <span class="en" data-say="heap">heap</span></b>程序自己借、自己还的那片内存。</div>
+    <div data-l="2"><b>内存泄漏 <span class="en" data-say="memory leak">memory leak</span></b>借了不还。</div>
+    <div data-l="2"><b>释放后使用 <span class="en" data-say="use after free">use after free</span></b>还了以后还在用。</div>
     <div data-l="2"><b>碎片 <span class="en" data-say="fragmentation">fragmentation</span></b>内部碎片、外部碎片。</div>
     <div data-l="2"><b>首次适应 <span class="en" data-say="first fit">first fit</span></b>从头找第一个够大的空闲块。</div>
     <div data-l="3"><b>垃圾回收 <span class="en" data-say="garbage collection">garbage collection</span></b>自动找出没人用的内存并回收。</div>
   </div>
   <div class="seal">
-    <div><i>第一层带走</i>栈自动收，堆要自己还；借了不还会泄漏，还了再用会出大事。</div>
+    <div><i>第一层带走</i>堆是借来的地方，用完要还；Python 替你还，C 要你自己还。</div>
     <div><i>第二层带走</i>四种适应算法各有所长；外部碎片是连续分配的通病。</div>
     <div><i>第三层带走</i>谁来还内存，是语言设计里最大的取舍之一：手动、计数、追踪、所有权。</div>
   </div>

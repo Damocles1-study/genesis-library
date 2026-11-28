@@ -6,7 +6,7 @@
       <h2>进程和线程</h2>
       <dl><dt>讲什么</dt><dd>进程是“正在运行的程序”加上它的一切家当；轮流用处理器，快到看起来同时；进程的五种状态；fork、exec、wait；线程：同一个家里的几个干活的人；调度：先来先服务、短作业优先、时间片轮转、优先级、多级反馈队列；Apple Silicon 的大小核</dd><dt>装置</dt><dd>调度模拟器</dd></dl>
       <div class="crs" data-c="系统"></div>
-      <div class="lvs"><a data-l="1" href="#c26-1">第一层 · 45 分钟</a><a data-l="2" href="#c26-2">第二层 · 60 分钟</a><a data-l="3" href="#c26-3">第三层 · 25 分钟</a></div>
+      <div class="lvs"><a data-l="1" href="#c26-1">第一层 · 30 分钟</a><a data-l="2" href="#c26-2">第二层 · 105 分钟</a><a data-l="3" href="#c26-3">第三层 · 25 分钟</a></div>
     </div>
   </div>
 
@@ -18,16 +18,76 @@
   <div class="goal">
     <h5>学完这一章，你能……</h5>
     <ul>
-      <li><span class="lg lg1">一</span>说出程序和进程的区别；用 ps、活动监视器看进程；说出“轮流”为什么看起来像“同时”。</li>
-      <li><span class="lg lg1">一</span>用调度模拟器比较几种排队办法谁等得最久。</li>
+      <li><span class="lg lg1">一</span>说出进程是什么；几百个进程怎样轮流用几个核。</li>
+      <li><span class="lg lg1">一</span>比一比先来先跑、短的先跑、轮流跑三种排法，谁让大家等得少。</li>
+      <li><span class="lg lg2">二</span>说出程序和进程的区别；用 ps、活动监视器看进程；说出“轮流”为什么看起来像“同时”。</li>
+      <li><span class="lg lg2">二</span>用调度模拟器比较几种排队办法谁等得最久。</li>
       <li><span class="lg lg2">二</span>画出进程状态图；计算各种调度算法的周转时间和等待时间；说出 fork 之后父子进程的关系；区分进程和线程。</li>
       <li><span class="lg lg3">三</span>说出上下文切换的开销、Linux 的完全公平调度和 macOS 在大小核之间怎样分配任务。</li>
     </ul>
   </div>
 
   <section class="ly" data-l="1" id="c26-1">
-    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：内核和系统调用（第二十五章）</span><span class="tm">约 45 分钟</span></div>
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：内核（第二十五章）</span><span class="tm">约 30 分钟</span></div>
     <div class="lyb">
+<h3>一本菜谱，几锅菜</h3>
+      <p>程序是菜谱，<b>进程</b>是正在做的菜（第二十三章）。打开两个终端窗口，就是两个进程：同一本菜谱，各做各的。</p>
+      <p>你的 Mac 上，这会儿就有几百个进程在跑。</p>
+      <div class="try">
+        <div class="th"><b>数一数你的进程</b><span class="tm">5 分钟</span></div>
+        <div class="tb">
+          <p>打开“活动监视器”，点“CPU”。列表里每一行就是一个进程。点“% CPU”那一栏的标题排个序，看谁最忙。再点“进程名称”排序，找找你认识的：访达（Finder）、终端（Terminal）、你的浏览器。</p>
+        </div>
+      </div>
+
+      <h3>轮流，快到像同时</h3>
+      <p>处理器里真正干活的“核”只有几个（M1 有 8 个），进程却有几百个。怎么办？<b>轮流</b>。</p>
+      <p>每个进程跑一小会儿，几毫秒，就换下一个。换得太快了，你就觉得它们都在同时跑。</p>
+      <p>换人的时候，内核要把上一个进程做到哪儿了全记下来：做到第几条指令、手里的数是多少。下次轮到它，再原样摆回去。它自己根本不知道被打断过。</p>
+      <div class="mc">
+        <h5>游戏刻</h5>
+        <p>我的世界每秒有 20 个游戏刻（<a href="../block/two.html#c13">第十三章</a>）。每一刻，所有的生物、作物、红石都轮流更新一次。一个一个来，可是太快了，看上去就像大家在同时动。</p>
+      </div>
+
+      <h3>谁先跑：调度</h3>
+      <p>好几个进程都等着用处理器，先给谁？内核里管这件事的部分，叫<b>调度器</b>。排队有好几种排法：</p>
+      <ul class="plain">
+        <li><b>先来先跑</b>：谁先到谁先跑，跑完再下一个。最简单。可是一个很长的进程排在前面，后面的短进程就要等很久。</li>
+        <li><b>短的先跑</b>：最快能做完的先跑，大家平均等得最少。可是得先知道谁短。</li>
+        <li><b>轮流跑</b>：每人跑一小段，就排到队尾。谁都不会等太久。</li>
+      </ul>
+<div class="fig" id="schedFig">
+        <div class="fig-label">装置 · 第二十六章</div>
+        <h4>调度模拟器</h4>
+        <p class="how">几个进程在不同时刻到达，各要用处理器若干个时间单位。选一种调度算法，看下面的甘特图（每一格是一个时间单位，格子里是谁在用处理器），和每个进程的等待时间、周转时间。可以改表里的数字。</p>
+        <div class="btns" data-m></div>
+        <div class="row"><label class="dim" style="font-size:13px">时间片</label><input type="number" id="scQ" value="2" min="1" max="8" style="width:4.5em"><button class="btn" data-x="ex1">例子一</button><button class="btn" data-x="ex2">例子二（一个长作业先到）</button></div>
+        <div class="scin scroll-x"></div>
+        <div class="gantt scroll-x"></div>
+        <div class="scout scroll-x"></div>
+        <div class="say"></div>
+      </div>
+      <p>在装置里换一种排法，看彩色的条怎样排，再看下面“平均等待”哪种最小。表里的数字也能改。</p>
+      <div class="task" data-id="base-t26k">
+        <div class="th"><b>排队玩游戏机</b></div>
+        <div class="tb"><p>家里只有一台游戏机。哥哥要玩 30 分钟，妹妹要玩 5 分钟，你要玩 10 分钟，三个人同时来。分别按“先来先玩（哥哥、妹妹、你）”“短的先玩”“每人 5 分钟轮流”排一排，算出每个人等了多久、平均等多久。哪种排法平均等得最少？哪种最公平？</p></div>
+      </div>
+      <div class="pass" data-id="base-q26k">
+        <div class="qq" data-in="进程|process"><p>正在运行的程序叫什么？</p><p class="ex">进程。</p></div>
+        <div class="qq" data-a="0"><p>几百个进程，怎样共用几个核？</p><ol><li>轮流，每个跑一小会儿</li><li>只让最重要的那个跑</li></ol><p class="ex">轮流，换得快，就像同时。</p></div>
+        <div class="qq" data-a="0"><p>换人的时候，内核要做什么？</p><ol><li>把上一个做到哪儿记下来</li><li>把它关掉</li></ol><p class="ex">记下来，下次原样摆回去。</p></div>
+        <div class="qq" data-a="1"><p>如果知道谁短，哪种排法让大家平均等得最少？</p><ol><li>先来先跑</li><li>短的先跑</li></ol><p class="ex">短的先跑。</p></div>
+        <div class="qq" data-in="调度器|scheduler|调度"><p>管“下一个让谁跑”的那部分叫什么？</p><p class="ex">调度器。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c26-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 操作系统 · 进程管理 · 处理机调度</span><span class="tm">约 105 分钟</span><span class="sum">PCB 和进程的五种状态；fork、exec、wait 和僵尸进程、孤儿进程；进程和线程；调度的指标：周转时间、带权周转时间、等待时间、响应时间；抢占和非抢占；高响应比优先、优先级、多级反馈队列；一道计算题。</span></div>
+    <div class="lyb">
+      <div class="ramp">
+        <div class="rh"><b>入门版</b>从第二层读起的人先读这一段。它是这一章原来的第一层：给大学生和初中以上读者的入门；本章第一层改写成了给小学生的版本。</div>
       <h3>程序和进程</h3>
       <p>硬盘上的 hello 是一个<b>程序</b>，一个静静躺着的文件。运行它，操作系统就造出一个<b>进程</b>：正在运行的程序，加上它的一切家当：自己的地址空间（第二十三章的那张内存地图）、寄存器的值、打开的文件、一个编号（进程号 PID）。同一个程序运行两次，就是两个进程，互不相干。内核为每个进程记一份档案，叫<b>进程控制块</b>（PCB）。</p>
       <h3>轮流，快到像同时</h3>
@@ -48,17 +108,7 @@
         <li><b>短作业优先</b>：活少的先做。大家平均等的时间最短，但活多的人可能一直被插队。</li>
         <li><b>时间片轮转</b>：每人轮流服务一小会儿，没做完的回到队尾。谁都不会等太久，这是今天电脑最基本的做法。</li>
       </ul>
-      <div class="fig" id="schedFig">
-        <div class="fig-label">装置 · 第二十六章</div>
-        <h4>调度模拟器</h4>
-        <p class="how">几个进程在不同时刻到达，各要用处理器若干个时间单位。选一种调度算法，看下面的甘特图（每一格是一个时间单位，格子里是谁在用处理器），和每个进程的等待时间、周转时间。可以改表里的数字。</p>
-        <div class="btns" data-m></div>
-        <div class="row"><label class="dim" style="font-size:13px">时间片</label><input type="number" id="scQ" value="2" min="1" max="8" style="width:4.5em"><button class="btn" data-x="ex1">例子一</button><button class="btn" data-x="ex2">例子二（一个长作业先到）</button></div>
-        <div class="scin scroll-x"></div>
-        <div class="gantt scroll-x"></div>
-        <div class="scout scroll-x"></div>
-        <div class="say"></div>
-      </div>
+      <p class="dim" style="font-size:14px">（装置“调度模拟器”留在本章第一层，展开第一层就能玩。）</p>
       <div class="task" data-id="base-t26a">
         <div class="th"><b>谁最吃亏</b></div>
         <div class="tb"><p>在模拟器里用“例子二”，分别看先来先服务、短作业优先、时间片轮转三种办法下，那个长作业和几个短作业各等了多久。写下你觉得最公平的是哪种、为什么。再把时间片改成 1 和 8，看看轮转会变成什么样（时间片太大就变回了先来先服务）。</p></div>
@@ -70,13 +120,9 @@
         <div class="qq" data-a="1"><p>让大家平均等待时间最短的是？</p><ol><li>先来先服务</li><li>短作业优先</li><li>随机</li></ol><p class="ex">但长作业可能一直等（饥饿）。</p></div>
         <div class="qq" data-a="0"><p>进程在等键盘输入时，处理器会？</p><ol><li>被让给别的进程</li><li>一直空转等它</li><li>关机</li></ol><p class="ex">等待时让出处理器。</p></div>
       </div>
-    </div>
-  </section>
-  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+    
+      </div>
 
-  <section class="ly" data-l="2" id="c26-2">
-    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 操作系统 · 进程管理 · 处理机调度</span><span class="tm">约 60 分钟</span><span class="sum">PCB 和进程的五种状态；fork、exec、wait 和僵尸进程、孤儿进程；进程和线程；调度的指标：周转时间、带权周转时间、等待时间、响应时间；抢占和非抢占；高响应比优先、优先级、多级反馈队列；一道计算题。</span></div>
-    <div class="lyb">
       <h3>进程的状态</h3>
       <p>五种状态：<b>创建</b>、<b>就绪</b>（万事俱备只差处理器）、<b>运行</b>、<b>阻塞</b>（等待某个事件，如 I/O 完成，给它处理器也没用）、<b>终止</b>。转换：就绪 → 运行（被调度选中）；运行 → 就绪（时间片用完或被抢占）；运行 → 阻塞（请求 I/O、等待资源，主动的）；阻塞 → 就绪（等的事件发生了，被动的）。注意<b>阻塞不能直接变运行</b>，必须先回就绪队列排队；<b>就绪也不能直接变阻塞</b>。PCB 里记着进程号、状态、寄存器现场、优先级、内存和打开文件的信息，是进程存在的唯一标志。</p>
       <h3>fork、exec、wait</h3>
@@ -147,16 +193,27 @@ int main(void) {
   </section>
 
   <div class="words-h">这一章的新词</div>
+  <div class="main" data-step="26">
+    <div class="mh"><b>主线 · 第 26 步</b><span>进程</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给小机装上：<i>进程和调度器</i></p>
+      <p><code>spawn</code> 建进程，每个进程有自己的内存和寄存器；<code>schedule</code> 让它们轮流，每人走几条就换人。甲、乙两个程序的输出交错着打出来。</p>
+      <div class="who1"><b>第一层</b>这一步可以先下载“到这一步的完整文件”运行，看懂演示，再读新加的那一段。想挑战就自己打。</div>
+      <div class="who2"><b>第二层</b>换成第二十六章的其他排法（短的先跑、优先级），统计每个进程的周转时间。</div>
+    </div>
+  </div>
   <div class="words">
-    <div data-l="1"><b>进程 <span class="en" data-say="process">process</span></b>正在运行的程序和它的一切家当。</div>
-    <div data-l="1"><b>上下文切换 <span class="en" data-say="context switch">context switch</span></b>换一个进程上处理器。</div>
-    <div data-l="1"><b>调度 <span class="en" data-say="scheduling">scheduling</span></b>决定下一个轮到谁。</div>
+    <div data-l="1"><b>进程 <span class="en" data-say="process">process</span></b>正在运行的程序。</div>
+    <div data-l="1"><b>调度 <span class="en" data-say="scheduling">scheduling</span></b>决定下一个让谁跑。</div>
+    <div data-l="2"><b>进程 <span class="en" data-say="process">process</span></b>正在运行的程序和它的一切家当。</div>
+    <div data-l="2"><b>上下文切换 <span class="en" data-say="context switch">context switch</span></b>换一个进程上处理器。</div>
+    <div data-l="2"><b>调度 <span class="en" data-say="scheduling">scheduling</span></b>决定下一个轮到谁。</div>
     <div data-l="2"><b>线程 <span class="en" data-say="thread">thread</span></b>进程里的一条执行流，共享地址空间。</div>
     <div data-l="2"><b>周转时间 <span class="en" data-say="turnaround time">turnaround time</span></b>从到达到完成用了多久。</div>
     <div data-l="3"><b>写时复制 <span class="en" data-say="copy on write">copy-on-write</span></b>先共享，谁写才复制。</div>
   </div>
   <div class="seal">
-    <div><i>第一层带走</i>进程是运行中的程序；轮流得够快，就像同时。</div>
+    <div><i>第一层带走</i>几百个进程轮流用几个核，换得快就像同时；排队的法子决定谁等得久。</div>
     <div><i>第二层带走</i>阻塞要先回就绪；周转 = 完成 − 到达；多级反馈队列兼顾各方。</div>
     <div><i>第三层带走</i>切换有隐形的代价；今天的调度还要决定放在大核还是小核上。</div>
   </div>

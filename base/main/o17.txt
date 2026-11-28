@@ -1,0 +1,17 @@
+ 0  14  LDA 4
+ 1  35  ADD 5
+ 2  90  OUT 0
+ 3  00  HLT 0
+ 4  03  HLT 3
+ 5  04  HLT 4
+ 6  00  HLT 0
+ 7  00  HLT 0
+ 8  00  HLT 0
+ 9  00  HLT 0
+10  00  HLT 0
+11  00  HLT 0
+12  00  HLT 0
+13  00  HLT 0
+14  00  HLT 0
+15  00  HLT 0
+OUT 7

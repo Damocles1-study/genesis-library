@@ -186,6 +186,15 @@
   </section>
 
   <div class="words-h">这一章的新词</div>
+  <div class="main" data-step="5">
+    <div class="mh"><b>主线 · 第 5 步</b><span>文字</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给小机装上：<i>字表：ASCII</i></p>
+      <p><code>text_to_bytes</code> 把字变成编号，<code>bytes_to_text</code> 把编号变回字。小机只认 ASCII，遇到汉字就说“不认识”。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 xiaoji.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>让它支持 UTF-8：照第五章第二层的规则，自己把一个码位编成 1—4 个字节，再用 Python 的 <code>encode()</code> 对答案。</div>
+    </div>
+  </div>
   <div class="words">
     <div data-l="1"><b>字符 <span class="en" data-say="character">character</span></b>一个字、一个字母、一个符号。</div>
     <div data-l="1"><b>编码 <span class="en" data-say="encoding">encoding</span></b>字和数之间的那张对照表。</div>

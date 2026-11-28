@@ -12,7 +12,7 @@
       <h2>内核和系统调用</h2>
       <dl><dt>讲什么</dt><dd>用户态和内核态：普通程序不许直接碰硬件；系统调用像银行柜台；中断：硬件举手；在 Mac 上开一台 Linux；用 strace 看程序请内核做了什么；408 的中断和异常、中断处理过程、特权指令；宏内核和微内核；系统调用有多贵</dd><dt>装置</dt><dd>这一行会不会进内核</dd></dl>
       <div class="crs" data-c="系统 组成"></div>
-      <div class="lvs"><a data-l="1" href="#c25-1">第一层 · 50 分钟</a><a data-l="2" href="#c25-2">第二层 · 50 分钟</a><a data-l="3" href="#c25-3">第三层 · 25 分钟</a></div>
+      <div class="lvs"><a data-l="1" href="#c25-1">第一层 · 30 分钟</a><a data-l="2" href="#c25-2">第二层 · 100 分钟</a><a data-l="3" href="#c25-3">第三层 · 25 分钟</a></div>
     </div>
   </div>
 
@@ -24,16 +24,68 @@
   <div class="goal">
     <h5>学完这一章，你能……</h5>
     <ul>
-      <li><span class="lg lg1">一</span>说出用户态和内核态的区别，为什么要这样分；说出系统调用和中断各是什么。</li>
-      <li><span class="lg lg1">一</span>在 Mac 上开一台 Linux，用 strace 看一个程序做了哪些系统调用。</li>
+      <li><span class="lg lg1">一</span>用“柜台”讲清楚内核和普通程序，以及系统调用。</li>
+      <li><span class="lg lg1">一</span>说出中断就是硬件在“举手”；在活动监视器里看内核忙了多少。</li>
+      <li><span class="lg lg2">二</span>说出用户态和内核态的区别，为什么要这样分；说出系统调用和中断各是什么。</li>
+      <li><span class="lg lg2">二</span>在 Mac 上开一台 Linux，用 strace 看一个程序做了哪些系统调用。</li>
       <li><span class="lg lg2">二</span>区分中断、陷阱、故障、终止；按顺序写出中断处理过程；判断哪些是特权指令。</li>
       <li><span class="lg lg3">三</span>说出宏内核、微内核和 XNU；知道系统调用的代价，以及 vDSO 这类绕开它的办法。</li>
     </ul>
   </div>
 
   <section class="ly" data-l="1" id="c25-1">
-    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：程序的加载（第二十三章）</span><span class="tm">约 50 分钟</span></div>
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：程序和进程（第二十三章，读个大概就行）</span><span class="tm">约 30 分钟</span></div>
     <div class="lyb">
+<h3>两种身份</h3>
+      <p>在学校里，学生不能自己进教务处改成绩，也不能自己去仓库搬新书。要办这些事，得到窗口去，请老师办。</p>
+      <p>电脑里也分两种身份：</p>
+      <ul class="plain">
+        <li><b>内核</b>：操作系统最核心的那部分程序。它什么都能碰：内存、硬盘、网络、屏幕、键盘。</li>
+        <li><b>普通程序</b>：浏览器、游戏、你写的 Python。它们只能在自己那块内存里算东西，碰不到硬件，也碰不到别的程序的内存。</li>
+      </ul>
+      <p>处理器自己就知道“现在是谁在跑”。普通程序要是想偷偷碰硬件，处理器会马上拦下，交给内核处理。这样，一个程序写错了，最多自己出错，不会把整台电脑弄坏。</p>
+      <div class="mc">
+        <h5>服务器的管理员</h5>
+        <p>在<a href="../block/four.html#c29">第二十九章</a>开服务器的时候，你只把 op（管理员）给了自己：别的玩家不能用 /stop 关服务器，也不能给自己发钻石。内核就像管理员，普通程序就像普通玩家。</p>
+      </div>
+
+      <h3>系统调用：去柜台办事</h3>
+      <p>普通程序想读文件、往屏幕上写字、上网，怎么办？去“柜台”请内核帮忙。这叫<b>系统调用</b>。</p>
+      <p>你在 Python 里写一句 <code>print('hi')</code>，Python 最后会去柜台说：“请把 h、i 和一个换行，写到屏幕上。”内核检查一下，帮它写上去，再回到 Python。</p>
+
+      <h3>中断：硬件举手</h3>
+      <p>你按下一个键，键盘怎样告诉电脑？它不等电脑来问，而是“举手”：发一个信号。处理器放下手里的事，先让内核看看是什么事，处理完再回去接着做。这叫<b>中断</b>。</p>
+      <p>键盘、鼠标、网卡、计时的时钟，都靠举手来打断处理器。时钟每隔一小会儿就举一次手，内核就趁这个时候决定下一个让谁跑（第二十六章）。</p>
+      <div class="try">
+        <div class="th"><b>看看内核忙了多少</b><span class="tm">5 分钟</span></div>
+        <div class="tb">
+          <ol class="steps">
+            <li>按 <kbd>⌘</kbd> + <kbd>空格</kbd>，输入“活动监视器”，回车。</li>
+            <li>点上面的“CPU”。看窗口底下：有“系统”和“用户”两个百分数。“系统”是内核在忙，“用户”是普通程序在忙。</li>
+            <li>打开一个视频，或者拖着一个窗口晃来晃去，看这两个数怎样变。</li>
+          </ol>
+        </div>
+      </div>
+      <div class="task" data-id="base-t25k">
+        <div class="th"><b>谁要去柜台</b></div>
+        <div class="tb"><p>下面这些事，哪些普通程序自己就能做，哪些要请内核？（1）算 3 + 4；（2）把一句话写到屏幕上；（3）把一个列表排好序；（4）读一个文件；（5）连上一个网站。写下你的答案，再看第二层开头的装置“这一行会不会进内核”对一对。</p></div>
+      </div>
+      <div class="pass" data-id="base-q25k">
+        <div class="qq" data-in="内核|kernel"><p>操作系统里什么都能碰的那部分程序叫什么？</p><p class="ex">内核。</p></div>
+        <div class="qq" data-a="1"><p>普通程序想读一个文件，要怎样？</p><ol><li>自己去读硬盘</li><li>请内核帮忙（系统调用）</li></ol><p class="ex">普通程序碰不到硬件，要去柜台。</p></div>
+        <div class="qq" data-a="0"><p>Python 的 print，最后要不要请内核帮忙？</p><ol><li>要</li><li>不要</li></ol><p class="ex">要。往屏幕上写字是内核的事。</p></div>
+        <div class="qq" data-a="0"><p>键盘按下时“举手”告诉处理器，这叫什么？</p><ol><li>中断</li><li>溢出</li></ol><p class="ex">中断。</p></div>
+        <div class="qq" data-a="0"><p>为什么要分两种身份？</p><ol><li>一个程序写错了，不会弄坏整台电脑</li><li>让电脑更好看</li></ol><p class="ex">普通程序碰不到硬件和别人的内存，出错也只坏自己。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c25-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 计组 · 中断 · 408 操作系统 · 第一章</span><span class="tm">约 100 分钟</span><span class="sum">操作系统的四个特征；中断和异常的分类；中断处理的完整过程；中断向量和屏蔽；特权指令；系统调用就是陷入；一道判断题和一道排序题。</span></div>
+    <div class="lyb">
+      <div class="ramp">
+        <div class="rh"><b>入门版</b>从第二层读起的人先读这一段。它是这一章原来的第一层：给大学生和初中以上读者的入门；本章第一层改写成了给小学生的版本。</div>
       <h3>两种身份</h3>
       <p>如果每个程序都能随便指挥硬盘、改别人的内存，一个写错的程序就能把整台电脑搞垮，一个坏程序就能偷走所有人的数据。所以处理器有两种运行身份（在 arm64 上叫“异常级别”，EL0 和 EL1）：</p>
       <ul class="plain">
@@ -90,13 +142,9 @@
         <div class="qq" data-a="1"><p>printf 最后请内核做的是哪个系统调用？</p><ol><li>read</li><li>write</li><li>fork</li></ol><p class="ex">把字节写到标准输出。</p></div>
         <div class="qq" data-a="0"><p>x = a + b 这样的计算要进内核吗？</p><ol><li>不要，用户态就能算</li><li>要</li><li>要看 a 有多大</li></ol><p class="ex">只碰自己的内存和寄存器，不用请人。</p></div>
       </div>
-    </div>
-  </section>
-  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+    
+      </div>
 
-  <section class="ly" data-l="2" id="c25-2">
-    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 计组 · 中断 · 408 操作系统 · 第一章</span><span class="tm">约 50 分钟</span><span class="sum">操作系统的四个特征；中断和异常的分类；中断处理的完整过程；中断向量和屏蔽；特权指令；系统调用就是陷入；一道判断题和一道排序题。</span></div>
-    <div class="lyb">
       <h3>操作系统的特征和功能</h3>
       <p>408 的说法：操作系统的基本特征是<b>并发</b>（宏观上同时运行多个程序）、<b>共享</b>（资源被多个程序共用，分互斥共享和同时共享）、<b>虚拟</b>（把一个物理实体变成多个逻辑上的对应物，如虚拟处理器、虚拟内存）、<b>异步</b>（程序走走停停，以不可预知的速度推进），其中并发和共享是最基本的、互为存在条件。它的功能是管理处理器、存储器、文件、设备，并向上提供接口（命令接口和程序接口，后者就是系统调用）。</p>
       <h3>中断和异常</h3>
@@ -158,16 +206,28 @@
   </section>
 
   <div class="words-h">这一章的新词</div>
+  <div class="main" data-step="25">
+    <div class="mh"><b>主线 · 第 25 步</b><span>内核</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给小机装上：<i>内核和 SYS</i></p>
+      <p>新指令 <code>SYS</code>：普通程序不许自己 OUT，要用 <code>SYS 1</code> 请内核来打印。这是小机的第 16 种指令，4 位操作码全用完了。</p>
+      <div class="who1"><b>第一层</b>这一步可以先下载“到这一步的完整文件”运行，看懂演示，再读新加的那一段。想挑战就自己打。</div>
+      <div class="who2"><b>第二层</b>加一个“读键盘”的系统调用；想一想：为什么检查要放在内核里，而不能相信程序自己？</div>
+    </div>
+  </div>
   <div class="words">
-    <div data-l="1"><b>内核 <span class="en" data-say="kernel">kernel</span></b>操作系统在内核态运行的核心部分。</div>
-    <div data-l="1"><b>系统调用 <span class="en" data-say="system call">system call</span></b>程序请内核代办事情的入口。</div>
-    <div data-l="1"><b>中断 <span class="en" data-say="interrupt">interrupt</span></b>硬件打断处理器、请内核处理。</div>
-    <div data-l="1"><b>虚拟机 <span class="en" data-say="virtual machine">virtual machine</span></b>在一台电脑里模拟出的另一台电脑。</div>
+    <div data-l="1"><b>内核 <span class="en" data-say="kernel">kernel</span></b>操作系统里什么都能碰的那部分。</div>
+    <div data-l="1"><b>系统调用 <span class="en" data-say="system call">system call</span></b>普通程序请内核帮忙办事。</div>
+    <div data-l="1"><b>中断 <span class="en" data-say="interrupt">interrupt</span></b>硬件举手，打断处理器。</div>
+    <div data-l="2"><b>内核 <span class="en" data-say="kernel">kernel</span></b>操作系统在内核态运行的核心部分。</div>
+    <div data-l="2"><b>系统调用 <span class="en" data-say="system call">system call</span></b>程序请内核代办事情的入口。</div>
+    <div data-l="2"><b>中断 <span class="en" data-say="interrupt">interrupt</span></b>硬件打断处理器、请内核处理。</div>
+    <div data-l="2"><b>虚拟机 <span class="en" data-say="virtual machine">virtual machine</span></b>在一台电脑里模拟出的另一台电脑。</div>
     <div data-l="2"><b>陷阱 / 故障 / 终止</b><span class="en" data-say="trap">trap</span>、<span class="en" data-say="fault">fault</span>、<span class="en" data-say="abort">abort</span>，三类异常。</div>
     <div data-l="3"><b>微内核 <span class="en" data-say="microkernel">microkernel</span></b>内核只留最少的功能，其余做成服务进程。</div>
   </div>
   <div class="seal">
-    <div><i>第一层带走</i>程序在用户态，碰硬件要请内核；系统调用是柜台，中断是硬件举手。</div>
+    <div><i>第一层带走</i>普通程序不能自己碰硬件，要去柜台请内核；硬件有事就举手。</div>
     <div><i>第二层带走</i>陷阱回下一条，故障重做这一条，终止就结束；中断隐指令由硬件完成。</div>
     <div><i>第三层带走</i>进一次内核很贵，所以好的系统和库都在想办法少进。</div>
   </div>

@@ -6,7 +6,7 @@
       <h2>虚拟内存</h2>
       <dl><dt>讲什么</dt><dd>每个进程都以为自己独占一整片内存；把内存切成一页一页；页表把虚拟页号翻译成物理页框号；TLB 是页表的缓存；缺页和换出；页面置换：先进先出、最近最久未使用、最佳、时钟；多级页表；写时复制和内存压缩</dd><dt>装置</dt><dd>地址翻译 · 页面置换</dd></dl>
       <div class="crs" data-c="系统 组成"></div>
-      <div class="lvs"><a data-l="1" href="#c27-1">第一层 · 45 分钟</a><a data-l="2" href="#c27-2">第二层 · 60 分钟</a><a data-l="3" href="#c27-3">第三层 · 25 分钟</a></div>
+      <div class="lvs"><a data-l="1" href="#c27-1">第一层 · 10 分钟</a><a data-l="2" href="#c27-2">第二层 · 105 分钟</a><a data-l="3" href="#c27-3">第三层 · 25 分钟</a></div>
     </div>
   </div>
 
@@ -18,16 +18,39 @@
   <div class="goal">
     <h5>学完这一章，你能……</h5>
     <ul>
-      <li><span class="lg lg1">一</span>说出虚拟内存解决了哪几个问题；把一个虚拟地址拆成页号和页内偏移，查表得到物理地址。</li>
-      <li><span class="lg lg1">一</span>说出“缺页”是怎么回事，内存不够时系统会怎样。</li>
+      <li><span class="lg lg1">一</span>说出虚拟地址是“每个进程自己的假号码”，它为什么能保护别的程序（这一章小学生可以先跳过）。</li>
+      <li><span class="lg lg2">二</span>说出虚拟内存解决了哪几个问题；把一个虚拟地址拆成页号和页内偏移，查表得到物理地址。</li>
+      <li><span class="lg lg2">二</span>说出“缺页”是怎么回事，内存不够时系统会怎样。</li>
       <li><span class="lg lg2">二</span>做页表和多级页表的位数计算；计算有 TLB 时的有效访问时间；用 FIFO、LRU、OPT、时钟算缺页次数，说出 Belady 异常。</li>
       <li><span class="lg lg3">三</span>说出写时复制、内存映射文件、macOS 的内存压缩和交换。</li>
     </ul>
   </div>
 
   <section class="ly" data-l="1" id="c27-1">
-    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：内存（第十二章）、缓存（第十六章）、进程（第二十六章）</span><span class="tm">约 45 分钟</span></div>
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">小学生可以先跳过</span><span class="tm">约 10 分钟</span></div>
     <div class="lyb">
+<div class="skip"><b>小学生：这一章可以先跳过</b><p>虚拟内存是操作系统里最绕的一个主意，要用到二进制拆位、十六进制和页表，建议初中以后再细读。下面几段只讲个大概，读完就去下一章。</p></div>
+      <h3>每个进程都以为自己住一整栋楼</h3>
+      <p>你的 Mac 上有几百个进程。要是它们都直接用真的柜子号码，就会出乱子：一个程序写错一个号码，就改掉了别人的东西。</p>
+      <p>所以操作系统给每个进程变了个魔术：每个进程都以为自己住着一整栋楼，柜子从 0 号开始，大得用不完。这些号码是<b>假的</b>，叫<b>虚拟地址</b>。</p>
+      <p>进程说“我要 100 号柜”，处理器里一个小翻译员就去查这个进程自己的对照表：“它的 100 号，其实是真内存里的某某号。”对照表由内核来写，每个进程一本。你查不到别人的表，自然也碰不到别人的柜子。</p>
+      <h3>一页一页地记</h3>
+      <p>一个柜子一个柜子地记，表就太厚了。所以内存被切成一样大的<b>页</b>（Mac 上一页是 16384 个字节，第十二章用 <code>pagesize</code> 查过），对照表只记“第几页放在真内存的哪一块”。</p>
+      <p>有的页暂时不在内存里，放在硬盘上，用到时内核再把它搬回来。所以内存不够的时候，电脑还能接着跑，只是会变慢。</p>
+      <div class="pass" data-id="base-q27k">
+        <div class="qq" data-in="虚拟地址|假地址|virtual address"><p>每个进程看到的、假的地址叫什么？</p><p class="ex">虚拟地址。</p></div>
+        <div class="qq" data-a="0"><p>为什么一个进程碰不到别人的内存？</p><ol><li>每个进程有自己的对照表，查不到别人的</li><li>运气好</li></ol><p class="ex">对照表一个进程一本，别人的那本你查不到。</p></div>
+        <div class="qq" data-a="0"><p>内存不够的时候，有些页会被放到哪儿？</p><ol><li>硬盘上</li><li>直接扔掉</li></ol><p class="ex">放到硬盘上，用到时再搬回来，所以会变慢。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c27-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 操作系统 · 内存管理 · 408 计组 · 虚拟存储器</span><span class="tm">约 105 分钟</span><span class="sum">页表项里有什么；页表多大、为什么要多级页表；TLB 和有效访问时间；缺页处理；页面置换算法 OPT、FIFO、LRU、CLOCK 和改进型 CLOCK；Belady 异常；工作集和抖动；分段和段页式。</span></div>
+    <div class="lyb">
+      <div class="ramp">
+        <div class="rh"><b>入门版</b>从第二层读起的人先读这一段。它是这一章原来的第一层：给大学生和初中以上读者的入门；本章第一层改写成了给小学生的版本。</div>
       <h3>为什么要“假”地址</h3>
       <p>如果几百个进程都直接用真实的物理地址，会有三个麻烦：谁都能改别人的内存（不安全）；每个程序都得知道自己被装在哪儿（第二十三章的重定位）；内存被切得七零八落（第二十一章的外部碎片）。<b>虚拟内存</b>一次解决三件事：给每个进程一片自己的、从 0 开始的、很大的<b>虚拟地址空间</b>；处理器每次访问内存时，由一个叫 MMU（内存管理单元）的硬件把虚拟地址翻译成物理地址。翻译表由操作系统维护，每个进程一张，别人的表你查不到，自然改不了别人的内存。</p>
       <h3>分页</h3>
@@ -63,13 +86,9 @@
         <div class="qq" data-a="2"><p>访问的页不在内存里，会发生什么？</p><ol><li>程序崩溃</li><li>读到 0</li><li>缺页异常，内核把页读进来后重新执行那条指令</li></ol><p class="ex">程序感觉不到，只是慢了一下。</p></div>
         <div class="qq" data-a="1"><p>为什么一个进程改不了另一个进程的内存？</p><ol><li>它不知道地址</li><li>每个进程有自己的页表，查不到别人的页框</li><li>内存是只读的</li></ol><p class="ex">隔离是虚拟内存的主要好处之一。</p></div>
       </div>
-    </div>
-  </section>
-  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+    
+      </div>
 
-  <section class="ly" data-l="2" id="c27-2">
-    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 操作系统 · 内存管理 · 408 计组 · 虚拟存储器</span><span class="tm">约 60 分钟</span><span class="sum">页表项里有什么；页表多大、为什么要多级页表；TLB 和有效访问时间；缺页处理；页面置换算法 OPT、FIFO、LRU、CLOCK 和改进型 CLOCK；Belady 异常；工作集和抖动；分段和段页式。</span></div>
-    <div class="lyb">
       <h3>页表项和页表的大小</h3>
       <p>页表项除了页框号，还有：<b>有效位</b>（在不在内存）、<b>访问位</b>（最近被访问过没有，置换算法用）、<b>修改位</b>（脏位，换出时要不要写回）、<b>保护位</b>（可读、可写、可执行，第十三章的 W^X 就靠它）。页表大小 = 页表项个数 × 每项字节数。32 位地址、4 KB 页：2<sup>20</sup> 项 × 4 字节 = 4 MB，每个进程都要一张，而且大部分是空的。所以用<b>多级页表</b>：把页号再切成几段，第一级表指向第二级表，没用到的区域连第二级表都不必建。arm64 和 x86-64 常用四级页表（48 位虚拟地址）。代价是一次翻译要多访问几次内存，于是有了 TLB。</p>
       <h3>TLB</h3>
@@ -146,16 +165,27 @@
   </section>
 
   <div class="words-h">这一章的新词</div>
+  <div class="main" data-step="27">
+    <div class="mh"><b>主线 · 第 27 步</b><span>页表</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给小机装上：<i>页表</i></p>
+      <p>一页 4 格。每个进程一张页表，把它自己的 0—15 号翻成真内存 <code>PHYS</code> 里的格子，而且只给它要的那几页。丙去碰没给它的页，内核结束了它，甲、乙照常跑完。</p>
+      <div class="who1"><b>第一层</b>这一章小学生可以先跳过，这一步也一样：下载“到这一步的完整文件”，运行一下，看看效果就行。</div>
+      <div class="who2"><b>第二层</b>加一个 TLB 统计命中率；实现缺页时从“硬盘”把那一页调进来。</div>
+    </div>
+  </div>
   <div class="words">
-    <div data-l="1"><b>虚拟内存 <span class="en" data-say="virtual memory">virtual memory</span></b>每个进程一片自己的地址空间，硬件查表翻译。</div>
-    <div data-l="1"><b>页 / 页框</b><span class="en" data-say="page">page</span>、<span class="en" data-say="frame">frame</span>：虚拟和物理内存切成的同样大的块。</div>
-    <div data-l="1"><b>页表 <span class="en" data-say="page table">page table</span></b>页号到页框号的翻译表。</div>
-    <div data-l="1"><b>缺页 <span class="en" data-say="page fault">page fault</span></b>要的页不在内存里。</div>
+    <div data-l="1"><b>虚拟地址 <span class="en" data-say="virtual address">virtual address</span></b>每个进程自己的假号码，由硬件翻成真号码。</div>
+    <div data-l="1"><b>页 <span class="en" data-say="page">page</span></b>内存被切成的一样大的块。</div>
+    <div data-l="2"><b>虚拟内存 <span class="en" data-say="virtual memory">virtual memory</span></b>每个进程一片自己的地址空间，硬件查表翻译。</div>
+    <div data-l="2"><b>页 / 页框</b><span class="en" data-say="page">page</span>、<span class="en" data-say="frame">frame</span>：虚拟和物理内存切成的同样大的块。</div>
+    <div data-l="2"><b>页表 <span class="en" data-say="page table">page table</span></b>页号到页框号的翻译表。</div>
+    <div data-l="2"><b>缺页 <span class="en" data-say="page fault">page fault</span></b>要的页不在内存里。</div>
     <div data-l="2"><b>快表 <span class="en" data-say="translation lookaside buffer">TLB</span></b>页表项的缓存。</div>
     <div data-l="2"><b>抖动 <span class="en" data-say="thrashing">thrashing</span></b>页在内存和硬盘之间来回搬，什么也干不了。</div>
   </div>
   <div class="seal">
-    <div><i>第一层带走</i>地址 = 页号 + 偏移；查表换页号，偏移不动；不在家就缺页。</div>
+    <div><i>第一层带走</i>每个进程都以为自己住一整栋楼；硬件照着对照表，把假号码翻成真号码。</div>
     <div><i>第二层带走</i>多级页表省空间，TLB 省时间；FIFO 有 Belady 异常，LRU 没有。</div>
     <div><i>第三层带走</i>一张页表，撑起了隔离、共享、写时复制、按需加载和压缩。</div>
   </div>

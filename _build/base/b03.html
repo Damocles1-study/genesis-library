@@ -161,6 +161,15 @@ endmodule</pre>
   </section>
 
   <div class="words-h">这一章的新词</div>
+  <div class="main" data-step="11">
+    <div class="mh"><b>主线 · 第 11 步</b><span>寄存器</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给小机装上：<i>寄存器和时钟</i></p>
+      <p><code>REG</code> 有“门口的数” d 和“存进去的数” q。只有时钟跳一下（<code>tick()</code>），q 才会变。demo 用它做了一个计数器。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 xiaoji.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>用第十一章的两个或非门锁存器，写一个真正的 D 触发器函数换掉 REG；说清为什么要在时钟跳变的那一下才存。</div>
+    </div>
+  </div>
   <div class="words">
     <div data-l="1"><b>锁存器 <span class="en" data-say="latch">latch</span></b>能记住一个比特的最简单电路。</div>
     <div data-l="1"><b>触发器 <span class="en" data-say="flip-flop">flip-flop</span></b>只在时钟沿记下输入的存储单元。</div>

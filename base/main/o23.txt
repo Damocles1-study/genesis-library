@@ -1,0 +1,2 @@
+存好了 hi.xj，可以用  xxd hi.xj  看看
+HI!

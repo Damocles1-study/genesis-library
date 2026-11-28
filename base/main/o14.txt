@@ -1,0 +1,17 @@
+ 0  1E  LDA 14
+ 1  3F  ADD 15
+ 2  90  OUT 0
+ 3  00  HLT 0
+ 4  00  HLT 0
+ 5  00  HLT 0
+ 6  00  HLT 0
+ 7  00  HLT 0
+ 8  00  HLT 0
+ 9  00  HLT 0
+10  00  HLT 0
+11  00  HLT 0
+12  00  HLT 0
+13  00  HLT 0
+14  07  HLT 7
+15  05  HLT 5
+OUT 12

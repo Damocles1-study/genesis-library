@@ -6,7 +6,7 @@
       <h2>文件系统</h2>
       <dl><dt>讲什么</dt><dd>硬盘只认得“第几块”，文件系统把块组织成文件和文件夹；文件名不在文件里；inode；目录也是文件；硬链接和软链接；文件描述符；连续、链接、索引三种分配；FAT；多级索引能放多大的文件；空闲块的管理；APFS 的写时复制、快照和克隆</dd><dt>装置</dt><dd>索引节点能装多大的文件</dd></dl>
       <div class="crs" data-c="系统 结构"></div>
-      <div class="lvs"><a data-l="1" href="#c28-1">第一层 · 40 分钟</a><a data-l="2" href="#c28-2">第二层 · 55 分钟</a><a data-l="3" href="#c28-3">第三层 · 25 分钟</a></div>
+      <div class="lvs"><a data-l="1" href="#c28-1">第一层 · 30 分钟</a><a data-l="2" href="#c28-2">第二层 · 95 分钟</a><a data-l="3" href="#c28-3">第三层 · 25 分钟</a></div>
     </div>
   </div>
 
@@ -18,16 +18,75 @@
   <div class="goal">
     <h5>学完这一章，你能……</h5>
     <ul>
-      <li><span class="lg lg1">一</span>说出文件名、inode、数据块之间的关系；用 ls -i 和 ln 做硬链接和软链接。</li>
-      <li><span class="lg lg1">一</span>解释为什么改名快、拷贝慢，删除文件为什么常常能恢复。</li>
+      <li><span class="lg lg1">一</span>说出文件系统做的事：把文件名变成硬盘上的“第几块”。</li>
+      <li><span class="lg lg1">一</span>用 ls -i 和 ln，亲眼看到“名字不在文件里”。</li>
+      <li><span class="lg lg2">二</span>说出文件名、inode、数据块之间的关系；用 ls -i 和 ln 做硬链接和软链接。</li>
+      <li><span class="lg lg2">二</span>解释为什么改名快、拷贝慢，删除文件为什么常常能恢复。</li>
       <li><span class="lg lg2">二</span>比较连续、链接、索引三种分配方式；算多级索引能支持的最大文件、读某个位置要访问几次磁盘；说出位示图和空闲链表。</li>
       <li><span class="lg lg3">三</span>说出日志和写时复制怎样防止断电损坏，APFS 的快照和克隆是怎么做到的。</li>
     </ul>
   </div>
 
   <section class="ly" data-l="1" id="c28-1">
-    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：文件就是一串字节（第二章）</span><span class="tm">约 40 分钟</span></div>
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：文件就是一串字节（第二章）、访达和终端（《一块一块》第三十六、三十九章）</span><span class="tm">约 30 分钟</span></div>
     <div class="lyb">
+<h3>硬盘只认得“第几块”</h3>
+      <p>硬盘（Mac 里是固态硬盘）很笨，它只认得“第几块”。它被分成几百万个一样大的小块，从 0 开始编号。硬盘不知道什么是照片、什么是作业。</p>
+      <p>把“我的作业.txt”变成“第 381 块和第 382 块”，这件事是<b>文件系统</b>做的。它是操作系统的一部分。Mac 的文件系统叫 APFS。</p>
+
+      <h3>名字不在文件里</h3>
+      <p>文件系统像一座图书馆。书放在书架上；门口有一个目录柜，卡片上写着“《西游记》在 3 号书架第 5 格”。</p>
+      <p>文件也是这样：内容放在硬盘的某些块里；文件夹其实是一张“名字 → 编号”的表，就像目录柜。</p>
+      <p>所以给文件改名，只是改一下卡片上的字，书一动不动：再大的文件，改名也是一眨眼。复制就不一样了，要把整本书抄一遍，文件越大越慢。</p>
+      <p>扔进废纸篓也一样：文件只是被挪进了一个叫“废纸篓”的文件夹，卡片换了个地方，所以还能“放回原处”。</p>
+      <div class="mc">
+        <h5>访达里的树</h5>
+        <p>在<a href="../block/five.html#c36">第三十六章</a>里，你在访达里看过文件夹的树：根、文件夹、文件。树上的每一个文件夹，其实都是一张这样的“名字 → 编号”表。</p>
+      </div>
+      <div class="try">
+        <div class="th"><b>亲手看看编号</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+          <ol class="steps">
+            <li>在终端里进入练习文件夹，建一个文件，看它的编号：
+<pre class="sh" data-k="终端"><span class="p">% </span>cd ~/base
+<span class="p">% </span>echo hello &gt; a.txt
+<span class="p">% </span>ls -i a.txt
+<span class="o">12345678 a.txt</span></pre>
+            名字前面那个数就是这个文件的编号（叫 inode 号）。你的数会不一样。</li>
+            <li>再写一张卡片，指向同一个文件：
+<pre class="sh" data-k="终端"><span class="p">% </span>ln a.txt b.txt
+<span class="p">% </span>ls -i a.txt b.txt
+<span class="p">% </span>echo world &gt;&gt; a.txt
+<span class="p">% </span>cat b.txt</pre>
+            两个名字，编号一样。往 a.txt 后面加了一行 world，cat b.txt 也看到了：它们是同一份内容。</li>
+            <li>扔掉一张卡片：<code>rm a.txt</code>，再 <code>cat b.txt</code>。内容还在，因为还有一张卡片指着它。</li>
+          </ol>
+        </div>
+      </div>
+
+      <h3>程序怎样拿到文件：号码牌</h3>
+      <p>程序要读一个文件，先请内核“打开”它（系统调用，第二十五章）。内核给程序一个小号码，像餐厅给你的取餐牌，叫<b>文件描述符</b>。以后程序说“读 3 号”，内核就知道是哪个文件。</p>
+      <p>每个程序一开始就有三个现成的号码：0 号是键盘输入，1 号是屏幕输出，2 号是报错。</p>
+      <div class="task" data-id="base-t28k">
+        <div class="th"><b>改名快，复制慢</b></div>
+        <div class="tb"><p>在访达里找一个很大的文件（比如一段视频），先给它改个名字，再按 <kbd>⌘</kbd> + <kbd>D</kbd> 复制一份。哪个快？用这一章的图书馆讲给家里人听为什么。（复制完记得把那份多出来的删掉。）</p></div>
+      </div>
+      <div class="pass" data-id="base-q28k">
+        <div class="qq" data-a="0"><p>硬盘自己认得什么？</p><ol><li>第几块</li><li>文件名</li></ol><p class="ex">只认块号。名字是文件系统管的。</p></div>
+        <div class="qq" data-a="0"><p>文件的名字记在哪儿？</p><ol><li>文件夹那张“名字 → 编号”的表里</li><li>文件内容的最前面</li></ol><p class="ex">记在文件夹里，像目录柜的卡片。</p></div>
+        <div class="qq" data-a="0"><p>为什么很大的文件改名也很快？</p><ol><li>只改卡片，内容不动</li><li>电脑特别快</li></ol><p class="ex">改名只改卡片上的字。</p></div>
+        <div class="qq" data-in="inode|inode号|inode 号|编号"><p><code>ls -i</code> 在名字前面打出来的数叫什么？</p><p class="ex">inode 号，文件的编号。</p></div>
+        <div class="qq" data-a="1"><p>程序一开始就有的 1 号文件描述符是什么？</p><ol><li>键盘输入</li><li>屏幕输出</li></ol><p class="ex">0 号输入，1 号输出，2 号报错。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c28-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 操作系统 · 文件管理</span><span class="tm">约 95 分钟</span><span class="sum">文件的逻辑结构和物理结构；连续分配、链接分配（隐式和显式 FAT）、索引分配；多级索引和混合索引；最大文件长度和访问磁盘的次数；位示图和空闲链表；目录结构；打开文件表。</span></div>
+    <div class="lyb">
+      <div class="ramp">
+        <div class="rh"><b>入门版</b>从第二层读起的人先读这一段。它是这一章原来的第一层：给大学生和初中以上读者的入门；本章第一层改写成了给小学生的版本。</div>
       <h3>硬盘只认得“第几块”</h3>
       <p>对硬盘来说，没有文件，也没有文件夹，只有一长排编了号的<b>块</b>（常见 4 KB 一块），能做的只是“读第 n 块”“写第 n 块”。把这些块组织成“名叫作业.txt、有 12345 字节、放在文稿文件夹里”的样子，是操作系统里<b>文件系统</b>的工作。Mac 用的文件系统叫 APFS，Windows 常用 NTFS，Linux 常用 ext4，U 盘常用 exFAT。</p>
       <h3>名字不在文件里</h3>
@@ -66,13 +125,9 @@
         <div class="qq" data-in="1"><p>标准输出的文件描述符是几？</p><p class="ex">0 输入、1 输出、2 错误。</p></div>
         <div class="qq" data-a="1"><p>误删的文件为什么常常能恢复？</p><ol><li>系统自动备份</li><li>删除只是去掉目录项、标记块空闲，数据还在原地</li><li>不能恢复</li></ol><p class="ex">直到被新数据覆盖。</p></div>
       </div>
-    </div>
-  </section>
-  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+    
+      </div>
 
-  <section class="ly" data-l="2" id="c28-2">
-    <div class="lyh"><b>第二层 · 本科</b><span class="tg">408 操作系统 · 文件管理</span><span class="tm">约 55 分钟</span><span class="sum">文件的逻辑结构和物理结构；连续分配、链接分配（隐式和显式 FAT）、索引分配；多级索引和混合索引；最大文件长度和访问磁盘的次数；位示图和空闲链表；目录结构；打开文件表。</span></div>
-    <div class="lyb">
       <h3>三种分配方式</h3>
       <div class="tbl w"><table class="t"><tr><th>方式</th><th>怎样记</th><th>顺序访问</th><th>随机访问</th><th>问题</th></tr>
         <tr><td>连续分配</td><td>起始块号 + 长度</td><td>最快</td><td>直接算出块号</td><td>外部碎片（第二十一章）；文件难以增长</td></tr>
@@ -142,16 +197,27 @@
   </section>
 
   <div class="words-h">这一章的新词</div>
+  <div class="main" data-step="28">
+    <div class="mh"><b>主线 · 第 28 步</b><span>文件系统</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给小机装上：<i>文件系统</i></p>
+      <p><code>DISK</code> 里有两张表：内容（编号 → 字节）和目录（名字 → 编号）。<code>fs_link</code> 再起一个名字，<code>fs_rm</code> 删名字，没有名字指着了才真的删。<code>fs_sync</code> 存成 disk.json，关了再开还在。</p>
+      <div class="who1"><b>第一层</b>这一步可以先下载“到这一步的完整文件”运行，看懂演示，再读新加的那一段。想挑战就自己打。</div>
+      <div class="who2"><b>第二层</b>给每个文件记大小和修改时间；实现目录里套目录（路径 /a/b）。</div>
+    </div>
+  </div>
   <div class="words">
-    <div data-l="1"><b>文件系统 <span class="en" data-say="file system">file system</span></b>把磁盘块组织成文件和目录。</div>
-    <div data-l="1"><b>索引节点 <span class="en" data-say="inode">inode</span></b>文件的档案卡：大小、权限、数据块在哪。</div>
-    <div data-l="1"><b>链接 <span class="en" data-say="link">link</span></b>硬链接是同一个 inode 的又一个名字，软链接是一个路径。</div>
-    <div data-l="1"><b>文件描述符 <span class="en" data-say="file descriptor">file descriptor</span></b>打开文件后拿到的小整数。</div>
+    <div data-l="1"><b>文件系统 <span class="en" data-say="file system">file system</span></b>把文件名变成硬盘上“第几块”的那部分操作系统。</div>
+    <div data-l="1"><b>文件描述符 <span class="en" data-say="file descriptor">file descriptor</span></b>打开文件以后，内核给的号码牌。</div>
+    <div data-l="2"><b>文件系统 <span class="en" data-say="file system">file system</span></b>把磁盘块组织成文件和目录。</div>
+    <div data-l="2"><b>索引节点 <span class="en" data-say="inode">inode</span></b>文件的档案卡：大小、权限、数据块在哪。</div>
+    <div data-l="2"><b>链接 <span class="en" data-say="link">link</span></b>硬链接是同一个 inode 的又一个名字，软链接是一个路径。</div>
+    <div data-l="2"><b>文件描述符 <span class="en" data-say="file descriptor">file descriptor</span></b>打开文件后拿到的小整数。</div>
     <div data-l="2"><b>位示图 <span class="en" data-say="bitmap">bitmap</span></b>每块一个比特，记空闲还是占用。</div>
     <div data-l="3"><b>快照 <span class="en" data-say="snapshot">snapshot</span></b>整个宗卷在某一刻的只读样子。</div>
   </div>
   <div class="seal">
-    <div><i>第一层带走</i>名字在目录里，档案在 inode 里，内容在数据块里；改名快、拷贝慢。</div>
+    <div><i>第一层带走</i>硬盘只认块号；名字是卡片，内容是书：改名快，复制慢。</div>
     <div><i>第二层带走</i>混合索引：直接 + n + n² + n³ 块；算访存次数先算在哪一级。</div>
     <div><i>第三层带走</i>要么写日志，要么永不原地改；写了不等于落盘。</div>
   </div>

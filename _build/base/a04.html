@@ -224,6 +224,15 @@ int main(void) {
   </section>
 
   <div class="words-h">这一章的新词</div>
+  <div class="main" data-step="3">
+    <div class="mh"><b>主线 · 第 3 步</b><span>8 位的钟面</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给小机装上：<i>钟面：8 位绕一圈</i></p>
+      <p><code>wrap(v)</code> 只留 8 位：255 + 1 绕回 0，0 − 1 绕到 255。<code>signed(b)</code> 把 128—255 当成负数来读。小机的每一次加减都要经过它。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 xiaoji.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>用 <code>&amp; 0xFF</code> 改写 wrap，验证它对负数也和 <code>% 256</code> 一样；再写 <code>overflow(a, b)</code>，用第三章第二层的办法判断有符号加法溢出。</div>
+    </div>
+  </div>
   <div class="words">
     <div data-l="1"><b>补码 <span class="en" data-say="two's complement">two's complement</span></b>负数 −x 写成 2<sup>n</sup> − x；速算：取反加一。</div>
     <div data-l="1"><b>溢出 <span class="en" data-say="overflow">overflow</span></b>结果超出能表示的范围，转过了头。</div>

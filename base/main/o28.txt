@@ -1,0 +1,6 @@
+  1   18 字节  a.xj
+  1   18 字节  count.xj
+  2    5 字节  note.txt
+删掉 a.xj 以后：
+  1   18 字节  count.xj
+  2    5 字节  note.txt

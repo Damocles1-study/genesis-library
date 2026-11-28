@@ -1,0 +1,7 @@
+PC= 0  ACC=   0  下一条：LDA 15
+PC= 1  ACC=   5  下一条：OUT 0
+OUT 5
+PC= 2  ACC=   5  下一条：SUB 14
+PC= 3  ACC=   4  下一条：JZ 5
+停在断点 4
+PC= 4  ACC=   4  下一条：JMP 1

@@ -12,7 +12,7 @@
       <h2>编译和链接</h2>
       <dl><dt>讲什么</dt><dd>clang 的一行命令其实是四步：预处理、编译、汇编、链接；多个文件怎样拼在一起；头文件写什么；“找不到符号”是什么意思；符号表和重定位；静态库和动态库；static 和 extern；Makefile；Mach-O 的段和节、共享缓存、链接时优化</dd><dt>装置</dt><dd>一个程序的四步</dd></dl>
       <div class="crs" data-c="系统 组成"></div>
-      <div class="lvs"><a data-l="1" href="#c22-1">第一层 · 45 分钟</a><a data-l="2" href="#c22-2">第二层 · 50 分钟</a><a data-l="3" href="#c22-3">第三层 · 25 分钟</a></div>
+      <div class="lvs"><a data-l="1" href="#c22-1">第一层 · 10 分钟</a><a data-l="2" href="#c22-2">第二层 · 95 分钟</a><a data-l="3" href="#c22-3">第三层 · 25 分钟</a></div>
     </div>
   </div>
 
@@ -24,16 +24,42 @@
   <div class="goal">
     <h5>学完这一章，你能……</h5>
     <ul>
-      <li><span class="lg lg1">一</span>用 clang 的 -E、-S、-c 分别停在四步中的某一步，说出每一步输出的是什么。</li>
-      <li><span class="lg lg1">一</span>把程序拆成 .c 和 .h 两种文件，编译并链接起来；看懂 “Undefined symbols” 是什么错。</li>
+      <li><span class="lg lg1">一</span>说出把 C 变成程序的四步大概各做什么（这一章小学生可以先跳过）。</li>
+      <li><span class="lg lg2">二</span>用 clang 的 -E、-S、-c 分别停在四步中的某一步，说出每一步输出的是什么。</li>
+      <li><span class="lg lg2">二</span>把程序拆成 .c 和 .h 两种文件，编译并链接起来；看懂 “Undefined symbols” 是什么错。</li>
       <li><span class="lg lg2">二</span>用 nm 读符号表；说出重定位、静态库、动态库；用 static 和 extern 控制可见性；写一个简单的 Makefile。</li>
       <li><span class="lg lg3">三</span>说出 Mach-O 的段和节、dyld 共享缓存和位置无关代码。</li>
     </ul>
   </div>
 
   <section class="ly" data-l="1" id="c22-1">
-    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：C 程序（第十七章）、汇编（第十四章）</span><span class="tm">约 45 分钟</span></div>
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">小学生可以先跳过</span><span class="tm">约 10 分钟</span></div>
     <div class="lyb">
+<div class="skip"><b>小学生：这一章可以先跳过</b><p>编译和链接要用到很多 C 的细节，建议初中以后，或者学过一点 C 再回来细读。下面几段只讲个大概，读完就去下一章。</p></div>
+      <h3>出一本书的四步</h3>
+      <p>把一个 C 程序变成能运行的文件，clang 其实做了四步，像出一本书：</p>
+      <ol class="plain">
+        <li><b>准备</b>（预处理）：把文件开头 <code>#include</code> 说要用的东西抄进来，像把参考资料夹进稿子里。</li>
+        <li><b>翻译</b>（编译）：把 C 翻成汇编（第十四章）。</li>
+        <li><b>排字</b>（汇编）：把汇编翻成一个个字节。</li>
+        <li><b>装订</b>（链接）：一个程序常常分好几个文件来写，还要用到别人写好的东西，比如 printf。最后一步把它们装订成一本书，把“去第几页找 printf”这样的空填上。</li>
+      </ol>
+      <p>装订的时候，要是某一页写着“去找某某”，可是哪儿都找不到某某，就会报错：<code>Undefined symbols</code>，意思是“有个名字找不到”。</p>
+      <p>Python 程序没有这四步，它是边读边翻的（第十七章）。</p>
+      <div class="pass" data-id="base-q22k">
+        <div class="qq" data-in="链接|link|linking|装订"><p>把几个文件和别人写好的东西装订成一个程序，这一步叫什么？</p><p class="ex">链接。</p></div>
+        <div class="qq" data-a="0"><p>找不到某个名字时，链接这一步会报什么？</p><ol><li>Undefined symbols</li><li>IndexError</li></ol><p class="ex">Undefined symbols：有名字找不到。IndexError 是 Python 列表越界的报错。</p></div>
+        <div class="qq" data-a="0"><p>Python 程序有没有这四步？</p><ol><li>没有，它边读边翻</li><li>有</li></ol><p class="ex">没有。这四步是“先全部翻好”的语言（比如 C）才有的。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c22-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">链接 · 408 操作系统的“程序的链接” · 面试</span><span class="tm">约 95 分钟</span><span class="sum">符号表：定义的和未定义的；nm 的 T、U、D、B；重定位；同名符号冲突；static 和 extern；静态库和动态库；头文件保护；Makefile。</span></div>
+    <div class="lyb">
+      <div class="ramp">
+        <div class="rh"><b>入门版</b>从第二层读起的人先读这一段。它是这一章原来的第一层：给大学生和初中以上读者的入门；本章第一层改写成了给小学生的版本。</div>
       <h3>四步</h3>
       <ol class="plain">
         <li><b>预处理</b>：处理所有以 # 开头的行。<code>#include</code> 把另一个文件的内容原样抄进来，<code>#define</code> 把名字替换成文字，注释被删掉。输出还是 C 代码，只是长得多。</li>
@@ -90,13 +116,9 @@ int main(void) {
         <div class="qq" data-a="1"><p>头文件里通常放？</p><ol><li>函数的完整代码</li><li>函数的声明</li><li>main 函数</li></ol><p class="ex">定义只放在一个 .c 里。</p></div>
         <div class="qq" data-a="0"><p>printf 的机器码在哪儿？</p><ol><li>系统的 C 库里，链接时接上</li><li>stdio.h 里</li><li>每个程序自己写</li></ol><p class="ex">stdio.h 里只有声明。</p></div>
       </div>
-    </div>
-  </section>
-  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+    
+      </div>
 
-  <section class="ly" data-l="2" id="c22-2">
-    <div class="lyh"><b>第二层 · 本科</b><span class="tg">链接 · 408 操作系统的“程序的链接” · 面试</span><span class="tm">约 50 分钟</span><span class="sum">符号表：定义的和未定义的；nm 的 T、U、D、B；重定位；同名符号冲突；static 和 extern；静态库和动态库；头文件保护；Makefile。</span></div>
-    <div class="lyb">
       <h3>符号表和重定位</h3>
       <p>每个目标文件都带一张<b>符号表</b>，列出它<b>定义</b>了哪些全局符号（函数名、全局变量名）和<b>引用</b>了哪些别人定义的符号。用 <code>nm</code> 查看：<code>T</code> 是定义在代码段的函数，<code>D</code> 是有初值的全局变量（数据段），<code>B</code> 是没初值的全局变量（BSS），<code>U</code> 是“用到了但没定义”。链接器做两件事：<b>符号解析</b>（给每个 U 找到唯一的定义）和<b>重定位</b>（把各个 .o 的代码和数据排进最终文件，算出每个符号的地址，再把所有引用它的指令里空着的地址填上，目标文件里记着“哪些位置要填、填谁的地址”的<b>重定位表</b>）。</p>
       <h3>可见性：static 和 extern</h3>
@@ -179,16 +201,26 @@ clean:
   </section>
 
   <div class="words-h">这一章的新词</div>
+  <div class="main" data-step="22">
+    <div class="mh"><b>主线 · 第 22 步</b><span>链接器</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给小机装上：<i>链接器</i></p>
+      <p>把两份程序拼成一份：main 里用到 dbl，dbl 写在另一份里。<code>asm_part</code> 先把不认识的名字记下来，<code>link</code> 把两份接起来，再把空着的格号填上。</p>
+      <div class="who1"><b>第一层</b>这一章小学生可以先跳过，这一步也一样：下载“到这一步的完整文件”，运行一下，看看效果就行。</div>
+      <div class="who2"><b>第二层</b>第二份程序里的标签地址，为什么要从第一份的末尾接着算？给 lib 加一条内部跳转，说明重定位在做什么。</div>
+    </div>
+  </div>
   <div class="words">
-    <div data-l="1"><b>预处理 <span class="en" data-say="preprocess">preprocess</span></b>处理 # 开头的行，纯文字替换。</div>
-    <div data-l="1"><b>目标文件 <span class="en" data-say="object file">object file</span></b>编译好但还不能运行的 .o。</div>
-    <div data-l="1"><b>链接 <span class="en" data-say="link">link</span></b>把几个 .o 和库拼成可执行文件。</div>
-    <div data-l="1"><b>声明和定义</b><span class="en" data-say="declaration">declaration</span> 说“有这个东西”，<span class="en" data-say="definition">definition</span> 给出它本身。</div>
+    <div data-l="1"><b>链接 <span class="en" data-say="link">link</span></b>把几份程序“装订”成一个，填上空着的名字。</div>
+    <div data-l="2"><b>预处理 <span class="en" data-say="preprocess">preprocess</span></b>处理 # 开头的行，纯文字替换。</div>
+    <div data-l="2"><b>目标文件 <span class="en" data-say="object file">object file</span></b>编译好但还不能运行的 .o。</div>
+    <div data-l="2"><b>链接 <span class="en" data-say="link">link</span></b>把几个 .o 和库拼成可执行文件。</div>
+    <div data-l="2"><b>声明和定义</b><span class="en" data-say="declaration">declaration</span> 说“有这个东西”，<span class="en" data-say="definition">definition</span> 给出它本身。</div>
     <div data-l="2"><b>符号表 <span class="en" data-say="symbol table">symbol table</span></b>文件里定义了谁、用到了谁。</div>
     <div data-l="2"><b>动态库 <span class="en" data-say="dynamic library">dynamic library</span></b>运行时才装进来、多个程序共享的库。</div>
   </div>
   <div class="seal">
-    <div><i>第一层带走</i>预处理、编译、汇编、链接；头文件放声明，定义只写一份。</div>
+    <div><i>第一层带走</i>编译是翻译，链接是装订；找不到名字，就装订不上。</div>
     <div><i>第二层带走</i>链接 = 符号解析 + 重定位；静态库拷进来，动态库运行时接上。</div>
     <div><i>第三层带走</i>一个可执行文件是一份分好段的“装箱单”，动态库靠一层间接跳转随处安家。</div>
   </div>

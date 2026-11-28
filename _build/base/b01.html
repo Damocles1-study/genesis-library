@@ -12,7 +12,7 @@
       <h2>晶体管</h2>
       <dl><dt>讲什么</dt><dd>电压、电流和电阻；用电控制电：继电器；没有零件会动的开关：晶体管；串联是与、并联是或；CMOS 的非门、与非门、或非门；与非是万能的；逻辑代数；门延迟和功耗；为什么主频不再往上涨</dd><dt>装置</dt><dd>CMOS 门电路</dd></dl>
       <div class="crs" data-c="组成 物理 数学"></div>
-      <div class="lvs"><a data-l="1" href="#c9-1">第一层 · 50 分钟</a><a data-l="2" href="#c9-2">第二层 · 45 分钟</a><a data-l="3" href="#c9-3">第三层 · 30 分钟</a></div>
+      <div class="lvs"><a data-l="1" href="#c9-1">第一层 · 30 分钟</a><a data-l="2" href="#c9-2">第二层 · 95 分钟</a><a data-l="3" href="#c9-3">第三层 · 30 分钟</a></div>
     </div>
   </div>
 
@@ -24,16 +24,102 @@
   <div class="goal">
     <h5>学完这一章，你能……</h5>
     <ul>
-      <li><span class="lg lg1">一</span>用水管讲清电压、电流和电阻；说出继电器和晶体管都是“用电控制电的开关”。</li>
-      <li><span class="lg lg1">一</span>用串联和并联搭出与、或；看懂一个 CMOS 非门为什么输出总和输入相反。</li>
+      <li><span class="lg lg1">一</span>说出晶体管是“用电按的开关”；用两个开关串起来、并排接，讲清楚与和或。</li>
+      <li><span class="lg lg1">一</span>只用与非门，搭出非门和与门。</li>
+      <li><span class="lg lg2">二</span>用水管讲清电压、电流和电阻；说出继电器和晶体管都是“用电控制电的开关”。</li>
+      <li><span class="lg lg2">二</span>用串联和并联搭出与、或；看懂一个 CMOS 非门为什么输出总和输入相反。</li>
       <li><span class="lg lg2">二</span>用逻辑代数化简表达式；证明与非门是完备的；说出门延迟和动态功耗公式。</li>
       <li><span class="lg lg3">三</span>说出 MOS 管怎样导通；解释摩尔定律和登纳德缩放，以及工艺“几纳米”为什么不是真实尺寸。</li>
     </ul>
   </div>
 
   <section class="ly" data-l="1" id="c9-1">
-    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：与或非（第七章）</span><span class="tm">约 50 分钟</span></div>
+    <div class="lyh"><b>第一层 · 入门</b><span class="tg">要会：与、或、非（第七章）</span><span class="tm">约 30 分钟</span></div>
     <div class="lyb">
+<h3>不用手按的开关</h3>
+      <p>你家的电灯开关，是用手按的。电脑里有几百亿个开关，谁也按不过来。</p>
+      <p>所以电脑要一种特别的开关：<b>不用手，用电来按</b>。这根线有电，那根线就接通；这根线没电，那根线就断开。</p>
+      <p>这样，一个开关的输出，就能去按下一个开关。一个接一个，不需要人。</p>
+      <div class="mc">
+        <h5>红石火把</h5>
+        <p>在《一块一块》里，你用过红石火把：它下面的方块有电，火把就灭；没电，火把就亮。这就是一个“用电按的开关”，而且是一个“非”。红石电脑就是用很多这样的开关搭的（<a href="../block/two.html#c10">第十章《门》</a>）。</p>
+      </div>
+
+      <h3>晶体管</h3>
+      <p>今天的电脑里，这种开关叫<b>晶体管</b>。它用一种叫<b>硅</b>的材料做成，沙子里就有很多硅。</p>
+      <p>晶体管有三只脚。中间那只像一道闸门：给它电，另外两只脚之间就接通；不给电，就断开。</p>
+      <p>它没有会动的零件，又小又快。你的 Mac 的芯片只有指甲盖那么大，里面却有一百多亿个晶体管。</p>
+      <div class="story">
+        <h5>以前用过的开关</h5>
+        <p>最早的电脑用<b>继电器</b>：通了电就变成磁铁，把一片铁吸过来，“咔哒”一声接通。后来用<b>电子管</b>，像一个个小灯泡，没有会动的零件，快多了，可是又大又烫，还常常烧坏。晶体管比它们都小、都快、都省电。</p>
+      </div>
+
+      <h3>串起来是“与”，并排是“或”</h3>
+      <p>拿两个开关 A、B，再拿一盏灯：</p>
+      <ul class="plain">
+        <li><b>一前一后串在一根线上</b>：A 和 B 都合上，电才过得去，灯才亮。这就是“与”。</li>
+        <li><b>并排接成两条路</b>：随便合上哪一个，电都能从那条路过去，灯就亮。这就是“或”。</li>
+      </ul>
+      <p>把开关换成晶体管，就有了不用手按的“与门”和“或门”。再加上把 1 变成 0 的“非门”，第七章的那几种操作，全都能用晶体管搭出来。</p>
+
+      <h3>看看芯片里的门</h3>
+      <p>真正的芯片里，晶体管有两种：一种是“给电才通”，另一种正好反过来，“不给电才通”。两种配成一对，一个通的时候另一个就断，这样很省电。这种搭法叫 <b>CMOS</b>。</p>
+      <p>下面的装置画的就是它。你不用记住每个管子，只要看两件事：哪些管子通了（绿色），输出是 1 还是 0。</p>
+<div class="fig" id="cmosFig">
+        <div class="fig-label">装置 · 第九章</div>
+        <h4>CMOS 门电路</h4>
+        <p class="how">选一种门，点 A、B 切换输入。绿色的管子是接通的，灰色是断开的；橙色的线说明输出被连到了电源（1）还是地（0）。右边的真值表标出现在这一行。</p>
+        <div class="btns" data-m></div>
+        <div class="row" style="justify-content:center"><button class="btn" data-in="A">A = 0</button><button class="btn" data-in="B">B = 0</button></div>
+        <div class="cmoswrap"><svg viewBox="0 0 360 330" class="cmos" role="img" aria-label="CMOS 电路"></svg><div class="tt"></div></div>
+        <div class="say"></div>
+      </div>
+      <p>先选“非门”，点 A，看输出是不是总和 A 反着。再选“与非门”：只有 A 和 B 都是 1 的时候，输出才是 0。</p>
+
+      <h3>与非门是万能的</h3>
+      <p>“与非”就是先“与”、再“非”。很神奇：<b>只用与非门，就能搭出所有别的门</b>。</p>
+      <ul class="plain">
+        <li>非：把与非门的两个输入接在一起。</li>
+        <li>与：与非后面再接一个非。</li>
+        <li>或：A 和 B 各自先“非”一下，再一起与非。</li>
+      </ul>
+      <div class="try">
+        <div class="th"><b>用 Python 搭门</b><span class="tm">10 分钟</span></div>
+        <div class="tb">
+          <p>打开 IDLE（或者《一块一块》第十部的<a href="../block/ten.html">小蟒游乐场</a>），输入下面几行，运行：</p>
+<pre class="code" data-k="gates.py">def NAND(a, b):
+    if a == 1 and b == 1:
+        return 0
+    return 1
+
+def NOT(a):
+    return NAND(a, a)
+
+for a in [0, 1]:
+    print(a, NOT(a))</pre>
+          <p>打出 <code>0 1</code> 和 <code>1 0</code>，非门就搭好了。接着自己写一个 <code>AND(a, b)</code>，只许用 <code>NAND</code> 和 <code>NOT</code>，再用四种输入试一遍。</p>
+        </div>
+      </div>
+      <div class="task" data-id="base-t9k">
+        <div class="th"><b>家里的门电路</b></div>
+        <div class="tb"><p>在纸上画两张小电路图：两个开关串联、一盏灯（与）；两个开关并联、一盏灯（或）。再找一找家里的例子：楼梯上下两个开关管一盏灯，是第七章的哪一种？（提示：随便按哪个，灯都会变。）</p></div>
+      </div>
+      <div class="pass" data-id="base-q9k">
+        <div class="qq" data-a="1"><p>电脑里的开关是谁来按的？</p><ol><li>人的手</li><li>电</li><li>风</li></ol><p class="ex">电：一根线有没有电，决定另一根线通不通。</p></div>
+        <div class="qq" data-a="0"><p>两个开关一前一后串在一根线上，灯什么时候亮？</p><ol><li>两个都合上</li><li>随便合上一个</li><li>两个都断开</li></ol><p class="ex">串着的时候，电要穿过两个开关，所以两个都要合上。这是“与”。</p></div>
+        <div class="qq" data-a="1"><p>红石火把下面的方块有电时，火把会怎样？</p><ol><li>亮</li><li>灭</li></ol><p class="ex">有电就灭，没电就亮，所以红石火把是一个“非”。</p></div>
+        <div class="qq" data-a="2"><p>今天的电脑里用的开关叫什么？</p><ol><li>继电器</li><li>电子管</li><li>晶体管</li></ol><p class="ex">晶体管。继电器和电子管是更早的电脑用的。</p></div>
+        <div class="qq" data-in="与非|与非门|nand"><p>只用哪一种门，就能搭出所有别的门？</p><p class="ex">与非门（NAND）。</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+
+  <section class="ly" data-l="2" id="c9-2">
+    <div class="lyh"><b>第二层 · 本科</b><span class="tg">数字逻辑基础 · 面试</span><span class="tm">约 95 分钟</span><span class="sum">逻辑代数的基本定律和化简；最小项和真值表；与非门的完备性；门延迟、扇出；动态功耗 P ≈ αCV²f 和“功耗墙”。</span></div>
+    <div class="lyb">
+      <div class="ramp">
+        <div class="rh"><b>入门版</b>从第二层读起的人先读这一段。它是这一章原来的第一层：给大学生和初中以上读者的入门；本章第一层改写成了给小学生的版本。</div>
       <h3>电是怎样流的</h3>
       <div class="bridge" data-s="电" data-k="物理">
         <h5>电压、电流、电阻</h5>
@@ -59,15 +145,7 @@
       <p>“非”稍微巧一点：输入是 1 时要让输出变成 0。用一个 P 管和一个 N 管叠起来：P 管接在电源（1）和输出之间，N 管接在输出和地（0）之间，两个管子的栅极接在一起当输入。输入是 0：P 管通、N 管断，输出被连到电源，是 1。输入是 1：P 管断、N 管通，输出被连到地，是 0。总有一个通、一个断，所以这种搭法叫 <b>CMOS</b>（互补的 MOS）：它几乎不费电，只有在切换的一瞬间才有电流。</p>
       <p>同样的思路：两个 N 管串联接地、两个 P 管并联接电源，就是<b>与非门</b>（先“与”再“非”）；反过来，N 管并联、P 管串联，就是<b>或非门</b>。在 CMOS 里，与非和或非比与、或更“天然”，要得到“与”，就在与非后面再接一个非门。</p>
 
-      <div class="fig" id="cmosFig">
-        <div class="fig-label">装置 · 第九章</div>
-        <h4>CMOS 门电路</h4>
-        <p class="how">选一种门，点 A、B 切换输入。绿色的管子是接通的，灰色是断开的；橙色的线说明输出被连到了电源（1）还是地（0）。右边的真值表标出现在这一行。</p>
-        <div class="btns" data-m></div>
-        <div class="row" style="justify-content:center"><button class="btn" data-in="A">A = 0</button><button class="btn" data-in="B">B = 0</button></div>
-        <div class="cmoswrap"><svg viewBox="0 0 360 330" class="cmos" role="img" aria-label="CMOS 电路"></svg><div class="tt"></div></div>
-        <div class="say"></div>
-      </div>
+      <p class="dim" style="font-size:14px">（装置“CMOS 门电路”留在本章第一层，展开第一层就能玩。）</p>
 
       <h3>与非是万能的</h3>
       <p>只要有足够多的与非门，就能搭出任何一种逻辑：</p>
@@ -105,13 +183,9 @@ for a in (0, 1):
         <div class="qq" data-in="0"><p>NAND(1, 1) 等于几？</p><p class="ex">先与得 1，再非得 0。</p></div>
         <div class="qq" data-a="1"><p>继电器、电子管、晶体管的共同点是？</p><ol><li>都用硅做</li><li>都是用电控制电的开关</li><li>都会咔哒响</li></ol><p class="ex">一个开关的输出能控制下一个开关，才能一级一级搭成电脑。</p></div>
       </div>
-    </div>
-  </section>
-  <div class="stop"><b>第一层到这里结束。</b>往下是第二层（本科）和第三层（深入），先跳过完全没关系。</div>
+    
+      </div>
 
-  <section class="ly" data-l="2" id="c9-2">
-    <div class="lyh"><b>第二层 · 本科</b><span class="tg">数字逻辑基础 · 面试</span><span class="tm">约 45 分钟</span><span class="sum">逻辑代数的基本定律和化简；最小项和真值表；与非门的完备性；门延迟、扇出；动态功耗 P ≈ αCV²f 和“功耗墙”。</span></div>
-    <div class="lyb">
       <h3>逻辑代数</h3>
       <p>写法约定：A·B（或 AB）表示与，A + B 表示或，A′（或 Ā）表示非。基本定律：</p>
       <div class="tbl"><table class="t"><tr><th>名称</th><th>与的形式</th><th>或的形式</th></tr>
@@ -183,16 +257,27 @@ for a in (0, 1):
   </section>
 
   <div class="words-h">这一章的新词</div>
+  <div class="main" data-step="9">
+    <div class="mh"><b>主线 · 第 9 步</b><span>与非门</span></div>
+    <div class="mb">
+      <p class="part-of">这一步给小机装上：<i>与非门</i></p>
+      <p>只写一个 <code>NAND</code>，再用它搭出 <code>NOT</code>、<code>AND</code>、<code>OR</code>、<code>XOR</code>。从这一步起，小机的电路全用与非门搭。</p>
+      <div class="who1"><b>第一层</b>自己打：点下面的“这一步的新代码”，照着加进 xiaoji.py（加在最后那两行的上面），运行，和“应该看到”对一对。打错了找不出来，就下载“到这一步的完整文件”。</div>
+      <div class="who2"><b>第二层</b>数一数一个 XOR 用了几个与非门；用第九章第二层的逻辑代数证明 OR 那一行是对的。</div>
+    </div>
+  </div>
   <div class="words">
-    <div data-l="1"><b>晶体管 <span class="en" data-say="transistor">transistor</span></b>用电控制的开关，没有会动的零件。</div>
-    <div data-l="1"><b>电压 / 电流 / 电阻</b><span class="en" data-say="voltage">voltage</span>、<span class="en" data-say="current">current</span>、<span class="en" data-say="resistance">resistance</span>。</div>
-    <div data-l="1"><b>门 <span class="en" data-say="logic gate">logic gate</span></b>实现一种逻辑运算的小电路。</div>
-    <div data-l="1"><b>与非 <span class="en" data-say="NAND">NAND</span></b>先与再非；只用它就能搭出一切。</div>
+    <div data-l="1"><b>晶体管 <span class="en" data-say="transistor">transistor</span></b>用电控制的开关，你的 Mac 的芯片里有一百多亿个。</div>
+    <div data-l="1"><b>与非门 <span class="en" data-say="NAND">NAND</span></b>先与、再非；只用它就能搭出所有别的门。</div>
+    <div data-l="2"><b>晶体管 <span class="en" data-say="transistor">transistor</span></b>用电控制的开关，没有会动的零件。</div>
+    <div data-l="2"><b>电压 / 电流 / 电阻</b><span class="en" data-say="voltage">voltage</span>、<span class="en" data-say="current">current</span>、<span class="en" data-say="resistance">resistance</span>。</div>
+    <div data-l="2"><b>门 <span class="en" data-say="logic gate">logic gate</span></b>实现一种逻辑运算的小电路。</div>
+    <div data-l="2"><b>与非 <span class="en" data-say="NAND">NAND</span></b>先与再非；只用它就能搭出一切。</div>
     <div data-l="2"><b>传播延迟 <span class="en" data-say="propagation delay">propagation delay</span></b>输入变化到输出变化要的时间。</div>
     <div data-l="3"><b>光刻 <span class="en" data-say="lithography">lithography</span></b>用光把电路图案“印”到硅片上。</div>
   </div>
   <div class="seal">
-    <div><i>第一层带走</i>晶体管是用电控制的开关；串联是与，并联是或，一上一下是非。</div>
+    <div><i>第一层带走</i>晶体管是用电按的开关；串起来是与，并排是或，与非门能搭出一切。</div>
     <div><i>第二层带走</i>与非单独就完备；功耗 ∝ CV²f，所以主频撞了墙。</div>
     <div><i>第三层带走</i>摩尔定律是经济规律不是物理定律；工艺名字只是代号。</div>
   </div>

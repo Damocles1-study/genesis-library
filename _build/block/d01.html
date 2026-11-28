@@ -113,6 +113,17 @@ title @a title "欢迎来到工坊"</pre></li>
     </div>
   </div>
 
+  <div class="task" data-id="t25">
+    <div class="th"><b>写出你的第一个函数</b><span class="xp">★</span></div>
+    <div class="tb">
+      <ol>
+        <li>照着本章的步骤，建好 xiaoge_pack 文件夹、pack.mcmeta 和 hello.mcfunction（用“制作纯文本”）。</li>
+        <li>在游戏里 /reload，再 /function 你的名字空间:hello，看到那行大字。</li>
+        <li>用装置里的“一键盖塔”再写一个 tower 函数，把高度改一改再运行。</li>
+      </ol>
+    </div>
+  </div>
+
   <div class="gone">
     <h5><s>functions 文件夹</s></h5>
     <p>2024 年的 1.21 版本，把数据包里好几个文件夹的名字从复数改成了单数：<code>functions</code> 变成了 <code>function</code>。很多网上的老教程、老数据包还写着 functions，照着做就会“找不到函数”。这也是为什么做任何事之前，都要先看清楚教程是哪个版本的。</p>
@@ -126,6 +137,15 @@ title @a title "欢迎来到工坊"</pre></li>
   <div class="echo" data-k="联系">
     <div class="stamp">联系</div>
     <div><p class="rh">每秒二十次的函数，就是游戏自己的心跳</p><p>第十三章讲过，游戏每一刻把整个世界检查一遍。你写的 tick 函数，就是挤进这一遍检查里的一小段“你的规则”。游戏本身，其实也是一个巨大的、每秒运行二十次的函数。<em>你写的第一个 tick 函数，和做游戏的人写的程序，是同一种东西，只是小得多</em>。</p></div>
+  </div>
+
+  <div class="pass" data-id="q25">
+    <div class="qq" data-a="0"><p>用 Mac 的“文本编辑”写数据包，第一步要点什么？</p><ol><li>“格式”→“制作纯文本”</li><li>换一种好看的字体</li><li>把字加粗</li></ol><p class="ex">文本编辑默认写的是带格式的“富文本”，游戏读不懂。程序只认纯文本。</p></div>
+    <div class="qq" data-in="pack.mcmeta"><p>数据包的“身份证”文件叫什么名字？（带后缀）</p><p class="ex">pack.mcmeta，直接放在数据包文件夹里，写着“我是数据包，适合哪个版本”。</p></div>
+    <div class="qq" data-a="1"><p>函数文件里的命令，前面要不要加斜杠？</p><ol><li>要加</li><li>不加</li></ol><p class="ex">在聊天框里打命令要加斜杠，写进 .mcfunction 文件里不加。</p></div>
+    <div class="qq" data-a="1"><p>改了数据包里的文件以后，要在游戏里输入哪个命令重新读一遍？</p><ol><li>/stop</li><li>/reload</li><li>/time set day</li></ol><p class="ex">/reload 是“重新读取数据包”。改了文件，记得再 /reload 一次。</p></div>
+    <div class="qq" data-a="0"><p>xiaoge:hello 里，冒号前面的 xiaoge 叫什么？</p><ol><li>名字空间</li><li>后缀名</li><li>坐标</li></ol><p class="ex">名字空间是名字前面的“姓”，防止和别人的 hello 撞名字。游戏自己的姓是 minecraft。</p></div>
+    <div class="qq" data-in="function"><p>1.21 版本起，放函数的文件夹叫什么名字？（老版本多一个 s）</p><p class="ex">function。老教程写的 functions 多了一个 s，照着做就会“找不到函数”。</p></div>
   </div>
 
   <div class="words-h">这一章的新词</div>

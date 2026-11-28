@@ -6329,16 +6329,17 @@ dev('#bookFig', () => {
 /* 第八十二章：成就墙 */
 dev('#wallFig', () => {
   /* 每一部的任务和闯关个数（写书时数好的） */
-  const TOT = {5: [9, 8], 6: [10, 10], 7: [8, 8], 8: [8, 8], 9: [5, 5], 10: [0, 11]};
+  const TOT = {1: [9, 9], 2: [8, 8], 3: [8, 8], 4: [8, 8], 5: [9, 8], 6: [10, 10], 7: [8, 8], 8: [8, 8], 9: [5, 5], 10: [0, 11]};
   const partOf = id => { const m = id.match(/^[tq](\d+)/); return m ? chapPage['c' + m[1]] : null; };
   const cntT = {}, cntQ = {};
   Object.keys(G.d.task).forEach(k => { const p = partOf(k); if (p) cntT[p] = (cntT[p] || 0) + 1; });
   Object.keys(G.d.quiz).forEach(k => { const p = partOf(k); if (p) cntQ[p] = (cntQ[p] || 0) + 1; });
-  $('#wlParts').innerHTML = [5, 6, 7, 8, 9, 10].map(p => { const [tt, tq] = TOT[p], dt = cntT[p] || 0, dq = cntQ[p] || 0, pct = Math.round((dt + dq) / Math.max(1, tt + tq) * 100);
+  $('#wlParts').innerHTML = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(p => { const [tt, tq] = TOT[p], dt = cntT[p] || 0, dq = cntQ[p] || 0, pct = Math.round((dt + dq) / Math.max(1, tt + tq) * 100);
     return '<a href="' + PURL[p] + '"><b>' + PARTS[p - 1].k + '</b><small>第' + CN[p - 1] + '部</small><span class="pbar"><i style="width:' + pct + '%"></i></span><small>' + (tt ? '任务 ' + dt + '/' + tt + ' · ' : '') + '闯关 ' + dq + '/' + tq + '</small></a>'; }).join('');
   const q = id => !!G.d.quiz[id], qs = (a, b) => { for (let i = a; i <= b; i++) if (!G.d.quiz['q' + i]) return false; return true; };
   const sure = Object.values(G.d.srs).filter(x => x.b >= 4).length, mapN = Object.keys(G.d.flag).filter(k => /^m\d+$/.test(k)).length;
-  const B = [['⌘', '键盘手', '过了第 33、35 章的关', q('q33') && q('q35')], ['▤', '文件侦探', '过了第 36—38 章的关', qs(36, 38)], ['%', '终端新手', '过了第 39 章的关', q('q39')], ['✛', '坐标通', '坐标点点乐连对十题', !!G.d.flag.xyz], ['/', '命令师', '第六部十关全过', qs(41, 50)],
+  const B = [['▦', '老玩家', '第一部九关全过', qs(0, 8)], ['ϟ', '红石工程师', '第二部八关全过', qs(9, 16)], ['⌂', '出门的人', '第三部八关全过', qs(17, 24)], ['⊞', '工坊学徒', '第四部八关全过', qs(25, 32)],
+    ['⌘', '键盘手', '过了第 33、35 章的关', q('q33') && q('q35')], ['▤', '文件侦探', '过了第 36—38 章的关', qs(36, 38)], ['%', '终端新手', '过了第 39 章的关', q('q39')], ['✛', '坐标通', '坐标点点乐连对十题', !!G.d.flag.xyz], ['/', '命令师', '第六部十关全过', qs(41, 50)],
     ['A', '单词 50', '复习台里记牢 50 个词', sure >= 50], ['B', '单词 150', '记牢 150 个词', sure >= 150], ['∑', '数学地图', '在数学地图上打了 20 个勾', mapN >= 20], ['∠', '数学家', '第八部八关全过', qs(59, 66)], ['☼', '观察员', '第九部五关全过', qs(67, 71)],
     ['ƒ', '程序员', '过了第 72—75 章的关', qs(72, 75)], ['⇅', '算法', '过了第 79、80 章的关', q('q79') && q('q80')], ['✎', '捉虫人', '错题本里记了 3 条', G.d.bug.length >= 3], ['★', '自学者', '写下了下一个月的计划', !!G.d.flag.plan]];
   $('#wlBadges').innerHTML = B.map(b => '<div class="bd' + (b[3] ? ' on' : '') + '"><span>' + b[0] + '</span><b>' + b[1] + '</b><small>' + b[2] + '</small></div>').join('');

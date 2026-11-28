@@ -1189,6 +1189,17 @@ title @a title "欢迎来到工坊"</pre></li>
     </div>
   </div>
 
+  <div class="task" data-id="t25">
+    <div class="th"><b>写出你的第一个函数</b><span class="xp">★</span></div>
+    <div class="tb">
+      <ol>
+        <li>照着本章的步骤，建好 xiaoge_pack 文件夹、pack.mcmeta 和 hello.mcfunction（用“制作纯文本”）。</li>
+        <li>在游戏里 /reload，再 /function 你的名字空间:hello，看到那行大字。</li>
+        <li>用装置里的“一键盖塔”再写一个 tower 函数，把高度改一改再运行。</li>
+      </ol>
+    </div>
+  </div>
+
   <div class="gone">
     <h5><s>functions 文件夹</s></h5>
     <p>2024 年的 1.21 版本，把数据包里好几个文件夹的名字从复数改成了单数：<code>functions</code> 变成了 <code>function</code>。很多网上的老教程、老数据包还写着 functions，照着做就会“找不到函数”。这也是为什么做任何事之前，都要先看清楚教程是哪个版本的。</p>
@@ -1202,6 +1213,15 @@ title @a title "欢迎来到工坊"</pre></li>
   <div class="echo" data-k="联系">
     <div class="stamp">联系</div>
     <div><p class="rh">每秒二十次的函数，就是游戏自己的心跳</p><p>第十三章讲过，游戏每一刻把整个世界检查一遍。你写的 tick 函数，就是挤进这一遍检查里的一小段“你的规则”。游戏本身，其实也是一个巨大的、每秒运行二十次的函数。<em>你写的第一个 tick 函数，和做游戏的人写的程序，是同一种东西，只是小得多</em>。</p></div>
+  </div>
+
+  <div class="pass" data-id="q25">
+    <div class="qq" data-a="0"><p>用 Mac 的“文本编辑”写数据包，第一步要点什么？</p><ol><li>“格式”→“制作纯文本”</li><li>换一种好看的字体</li><li>把字加粗</li></ol><p class="ex">文本编辑默认写的是带格式的“富文本”，游戏读不懂。程序只认纯文本。</p></div>
+    <div class="qq" data-in="pack.mcmeta"><p>数据包的“身份证”文件叫什么名字？（带后缀）</p><p class="ex">pack.mcmeta，直接放在数据包文件夹里，写着“我是数据包，适合哪个版本”。</p></div>
+    <div class="qq" data-a="1"><p>函数文件里的命令，前面要不要加斜杠？</p><ol><li>要加</li><li>不加</li></ol><p class="ex">在聊天框里打命令要加斜杠，写进 .mcfunction 文件里不加。</p></div>
+    <div class="qq" data-a="1"><p>改了数据包里的文件以后，要在游戏里输入哪个命令重新读一遍？</p><ol><li>/stop</li><li>/reload</li><li>/time set day</li></ol><p class="ex">/reload 是“重新读取数据包”。改了文件，记得再 /reload 一次。</p></div>
+    <div class="qq" data-a="0"><p>xiaoge:hello 里，冒号前面的 xiaoge 叫什么？</p><ol><li>名字空间</li><li>后缀名</li><li>坐标</li></ol><p class="ex">名字空间是名字前面的“姓”，防止和别人的 hello 撞名字。游戏自己的姓是 minecraft。</p></div>
+    <div class="qq" data-in="function"><p>1.21 版本起，放函数的文件夹叫什么名字？（老版本多一个 s）</p><p class="ex">function。老教程写的 functions 多了一个 s，照着做就会“找不到函数”。</p></div>
   </div>
 
   <div class="words-h">这一章的新词</div>
@@ -1347,6 +1367,17 @@ turtle.done()</pre></li>
     </div>
   </div>
 
+  <div class="task" data-id="t26">
+    <div class="th"><b>让小海龟画螺旋</b><span class="xp">★</span></div>
+    <div class="tb">
+      <ol>
+        <li>请大人一起，从 python.org 装好 Python，打开 IDLE。</li>
+        <li>新建文件，照着本章抄下小海龟螺旋的程序，存成 spiral.py（别叫 turtle.py），运行。</li>
+        <li>把 90 改成 91 再运行一次；再试试让小海龟画一个五角星（每次转 144 度，重复 5 次）。</li>
+      </ol>
+    </div>
+  </div>
+
   <div class="gone">
     <h5><s>Python 2</s></h5>
     <p>Python 有过两个大版本。很多老教程里写着 <code>print "hello"</code>，不加括号，那是 Python 2 的写法。Python 2 在 2020 年 1 月 1 日正式“退休”，不再更新。现在装的都是 Python 3，要写成 <code>print("hello")</code>。看到老写法，就知道那篇教程至少是好几年前的了。</p>
@@ -1360,6 +1391,15 @@ turtle.done()</pre></li>
   <div class="echo" data-k="押韵">
     <div class="stamp">押韵</div>
     <div><p class="rh">程序写程序</p><p>二十世纪五十年代，美国的计算机先驱格蕾丝·霍珀想：既然写机器指令又难又容易错，为什么不写一个程序，让它把人看得懂的话翻译成机器指令？很多人觉得这不可能（书房里的<a href="../computer/#v7">《计算机创世记》卷七</a>讲了她的故事）。今天你用 Python 写出 setblock 命令，干的是同一件事：<em>让程序替你写那些又长又容易错的东西</em>。</p></div>
+  </div>
+
+  <div class="pass" data-id="q26">
+    <div class="qq" data-a="0"><p>Python 应该从哪里下载？</p><ol><li>Python 的官方网站 python.org</li><li>同学发来的压缩包</li><li>随便搜到的一个网站</li></ol><p class="ex">只从官网下载。安装时电脑会要密码，这一步让大人来。</p></div>
+    <div class="qq" data-in="1024"><p>在 Python 里输入 2 ** 10，答案是多少？（填一个数）</p><p class="ex">2 乘自己 10 次，是 1024。</p></div>
+    <div class="qq" data-a="2"><p>小海龟程序的文件，为什么不能存成 turtle.py？</p><ol><li>名字太短了</li><li>因为 turtle 是英文</li><li>Python 会以为你自己的文件就是“小海龟”，反而找不到真的那只</li></ol><p class="ex">换个名字，比如 spiral.py。</p></div>
+    <div class="qq" data-a="2"><p>Python 靠什么知道哪几行在“重复”里面？</p><ol><li>字的颜色</li><li>行号</li><li>缩进（前面空出来的空格）</li></ol><p class="ex">少一个空格、多一个空格，它就会报错。</p></div>
+    <div class="qq" data-a="0"><p>圆心在 (0, 0)、半径是 5，点 (3, 4) 在哪儿？</p><ol><li>正好在圆上</li><li>在圆外面</li><li>就是圆心</li></ol><p class="ex">3 × 3 + 4 × 4 = 9 + 16 = 25 = 5 × 5，所以它离圆心正好是 5。这就是勾股定理。</p></div>
+    <div class="qq" data-a="0"><p>运行时出现 SyntaxError，多半是因为什么？</p><ol><li>用了中文的引号或括号</li><li>电脑没电了</li><li>屏幕太暗</li></ol><p class="ex">Python 只认英文的 "" 和 ()。输入代码时，先把输入法切到英文。</p></div>
   </div>
 
   <div class="words-h">这一章的新词</div>
@@ -1480,6 +1520,17 @@ turtle.done()</pre></li>
     </div>
   </div>
 
+  <div class="task" data-id="t27">
+    <div class="th"><b>做一次视野和帧数实验</b><span class="xp">★</span></div>
+    <div class="tb">
+      <ol>
+        <li>站在同一个地方、看同一个方向，只改视野距离：4、8、12、16……</li>
+        <li>每个视野距离，等画面稳定以后看三次 fps，记下来。</li>
+        <li>把数字填进本章装置的表里，看看画出来的线是往下走的吗？</li>
+      </ol>
+    </div>
+  </div>
+
   <div class="gone">
     <h5><s>英特尔芯片的 Mac</s></h5>
     <p>从 2006 年到 2020 年，苹果电脑用的都是英特尔公司的芯片。2020 年底，苹果开始换成自己设计的 M1，到 2023 年，最后一种英特尔芯片的 Mac 也换掉了。这就是第十七章说的“两种芯片说的不是同一种话”，也是 Java 版要专门做一次“原生支持”的原因。</p>
@@ -1493,6 +1544,15 @@ turtle.done()</pre></li>
   <div class="echo" data-k="联系">
     <div class="stamp">联系</div>
     <div><p class="rh">从红石火把到八个核</p><p>第二部里，一根红石火把是一个开关，几十根拼成一个门，几千块方块拼成一台加法器，一秒钟走一步。小格手里这块芯片，有一百六十亿个开关，一秒钟三十多亿下拍子，八个核一起干活。它们的原理是一样的；<em>差别只在于，开关被做得越来越小，小到要用显微镜也看不见</em>。</p></div>
+  </div>
+
+  <div class="pass" data-id="q27">
+    <div class="qq" data-a="0"><p>电脑里专门画画面的是哪一个？</p><ol><li>GPU（图形处理器）</li><li>硬盘</li><li>CPU（中央处理器）</li></ol><p class="ex">CPU 照着程序算世界，GPU 有很多很多小核，一起分工画画面。</p></div>
+    <div class="qq" data-a="1"><p>游戏本身和你的存档，放在哪里？</p><ol><li>内存</li><li>硬盘</li></ol><p class="ex">硬盘是“不会忘的记忆”；内存放你周围的区块、怪物和物品，关机就忘。</p></div>
+    <div class="qq" data-in="fps"><p>游戏一秒钟画几张画面，叫帧数，英文缩写是什么？（三个字母）</p><p class="ex">fps。按 fn + F3，左上角就能看到，越高越流畅。</p></div>
+    <div class="qq" data-a="0"><p>做实验时，只改一样东西，别的都保持不变，叫什么？</p><ol><li>控制变量</li><li>求平均数</li><li>帧数</li></ol><p class="ex">还要量好几次、取平均、画成图。这是科学家做实验的三条规矩。</p></div>
+    <div class="qq" data-a="1"><p>为什么这本书说“不拆电脑”？</p><ol><li>电脑里面有红石</li><li>锂电池拆坏了可能发热、冒烟甚至起火，零件又焊在一起，修不回去</li><li>拆了会变成另一个版本</li></ol><p class="ex">想看里面长什么样，可以和大人一起看专业维修网站的拆机照片。</p></div>
+    <div class="qq" data-a="0"><p>内存已经够用了，再加内存，游戏会更快吗？</p><ol><li>不一定，这时候要看 CPU 和 GPU 忙不忙</li><li>一定会快很多</li></ol><p class="ex">就像书包够大以后，再换个更大的书包，你也不会走得更快。先找出瓶颈在哪儿。</p></div>
   </div>
 
   <div class="words-h">这一章的新词</div>
@@ -1614,6 +1674,17 @@ turtle.done()</pre></li>
     </div>
   </div>
 
+  <div class="task" data-id="t28">
+    <div class="th"><b>在终端里敲敲门</b><span class="xp">★</span></div>
+    <div class="tb">
+      <ol>
+        <li>在“系统设置”→“Wi-Fi”→“详细信息”里，找到“路由器”那一行的地址。</li>
+        <li>打开“终端”，输入 ping -c 4 加上那个地址，按回车。</li>
+        <li>把四次的 time= 记下来，算一算平均是多少毫秒。</li>
+      </ol>
+    </div>
+  </div>
+
   <div class="gone">
     <h5><s>假装在同一个局域网</s></h5>
     <p>很多年前，离得远的朋友想一起玩，又不会开服务器，就用一种“虚拟局域网”软件，让几台隔着很远的电脑假装连在同一个家里的网络上。很多老玩家都记得这种软件。后来，官方有了付费的私人服务器 Realms，Java 版也越来越容易自己开服务器（下一章），这种做法就少了。</p>
@@ -1627,6 +1698,15 @@ turtle.done()</pre></li>
   <div class="echo" data-k="联系">
     <div class="stamp">联系</div>
     <div><p class="rh">连光都要走一会儿</p><p>你抬头看见的月亮，是它一秒多以前的样子；看见的太阳，是八分多钟以前的样子。光已经是世界上最快的东西了，也还要花时间。<em>只要隔着距离，消息就会迟到</em>：电报、电话、网络、联机游戏，工程师们一直在和这件事较劲。第九章的中继器，第十三章的“等齐了再走”，说的都是它。</p></div>
+  </div>
+
+  <div class="pass" data-id="q28">
+    <div class="qq" data-a="0"><p>豆子的平板（基岩版）和小格的电脑（Java 版），能局域网联机吗？</p><ol><li>不能</li><li>能</li></ol><p class="ex">两套程序说的“话”不一样，互相听不懂。要都是 Java 版、版本号也一样。</p></div>
+    <div class="qq" data-a="1"><p>IP 地址像什么？</p><ol><li>电脑的名字</li><li>电脑的门牌号</li><li>电脑的密码</li></ol><p class="ex">192.168 开头的地址只在你家里有用，就像“3 号楼 201”只在小区里有意义。</p></div>
+    <div class="qq" data-in="25565"><p>我的世界服务器默认用几号端口？（填一个数）</p><p class="ex">25565 号窗口。“对局域网开放”时，游戏会自己挑一个空着的号码。</p></div>
+    <div class="qq" data-a="2"><p>1969 年，阿帕网上传出的第一句话是什么？</p><ol><li>LOGIN</li><li>HELLO</li><li>LO</li></ol><p class="ex">学生想打 LOGIN，刚打完 L 和 O，系统就崩溃了。</p></div>
+    <div class="qq" data-in="延迟"><p>一个小包裹从发出到收到要多久，叫什么？（两个字）</p><p class="ex">延迟，单位是毫秒（一千分之一秒）。同一个 Wi-Fi 下往往只有几毫秒。</p></div>
+    <div class="qq" data-a="0"><p>家里网速（带宽）很快，玩联机游戏就一定不卡吗？</p><ol><li>不一定，游戏更在乎延迟</li><li>一定不卡</li></ol><p class="ex">游戏的包裹都很小，路宽不宽没那么要紧，路长不长才要紧。</p></div>
   </div>
 
   <div class="words-h">这一章的新词</div>
@@ -1752,6 +1832,17 @@ op 小格的游戏名</pre>
     </div>
   </div>
 
+  <div class="task" data-id="t29">
+    <div class="th"><b>给你的服务器写三条规矩</b><span class="xp">★</span></div>
+    <div class="tb">
+      <ol>
+        <li>像第二十二章的公约一样，给服务器写三条规矩：比如不许拆别人的房子、吵架了怎么办。</li>
+        <li>请大人全程在旁边，照着本章的步骤开服务器，用 localhost 进去。</li>
+        <li>玩完了，在控制台输入 stop，看着它保存、关掉。</li>
+      </ol>
+    </div>
+  </div>
+
   <div class="gone">
     <h5><s>Bukkit</s></h5>
     <p>早年，很多开服务器的人不用官方的服务器程序，而是用玩家做的一个叫 Bukkit 的版本，它能装各种“插件”：小游戏、经济系统、保护领地。2014 年，因为一场关于代码授权的纠纷，Bukkit 停了下来，大家又换成了它的“后代”们。服务器的世界一直这样：官方做一部分，玩家做更多。</p>
@@ -1765,6 +1856,15 @@ op 小格的游戏名</pre>
   <div class="echo" data-k="生活">
     <div class="stamp">生活</div>
     <div><p class="rh">当主人，就要替客人着想</p><p>开了服务器，你就是主人：要定规矩、要备份、要决定谁能进来，有人吵架了要去管，世界坏了要去修。第十三章说过，不用的时钟要关掉，因为一台机器会拖慢所有人。<em>当管理员的第一课，不是技术，是责任</em>。</p></div>
+  </div>
+
+  <div class="pass" data-id="q29">
+    <div class="qq" data-a="2"><p>从哪个版本起，一个人玩的时候游戏里也藏着一个服务器？</p><ol><li>2009 年的第一版</li><li>2024 年的 1.21 版本</li><li>2012 年的 1.3 版本</li></ol><p class="ex">从此一个人玩和大家一起玩，用的是同一套规则。</p></div>
+    <div class="qq" data-a="2"><p>服务器程序 server.jar 应该从哪里下载？</p><ol><li>聊天里陌生人发的链接</li><li>一个“一键开服”的整合包网站</li><li>Minecraft 官网的“下载服务器”页面</li></ol><p class="ex">版本要和你的游戏一样。别从别的网站下载。</p></div>
+    <div class="qq" data-in="true"><p>读完用户协议、同意了，要把 eula=false 改成 eula= 什么？</p><p class="ex">true，就是“同意”。这一步请大人和你一起读。</p></div>
+    <div class="qq" data-a="0"><p>white-list=true 是什么意思？</p><ol><li>打开白名单：只有名单上的人能进来</li><li>把服务器关掉</li><li>把世界变成白色</li></ol><p class="ex">打开以后，连你自己也要先 whitelist add 加进去。</p></div>
+    <div class="qq" data-in="localhost"><p>在游戏里连自己这台电脑上的服务器，地址填什么？（英文）</p><p class="ex">localhost 的意思是“我自己这台电脑”。</p></div>
+    <div class="qq" data-a="2"><p>玩完了，怎样关服务器？</p><ol><li>拔掉电源</li><li>直接关掉终端窗口</li><li>在控制台输入 stop</li></ol><p class="ex">stop 会先保存世界再关掉。直接关窗口，可能丢掉最后一会儿盖的东西。</p></div>
   </div>
 
   <div class="words-h">这一章的新词</div>
@@ -1893,6 +1993,17 @@ op 小格的游戏名</pre>
     </div>
   </div>
 
+  <div class="task" data-id="t30">
+    <div class="th"><b>量一量游戏里的你走多快</b><span class="xp">★</span></div>
+    <div class="tb">
+      <ol>
+        <li>在一条笔直的路上，按 fn + F3，从 x = 0 走到 x = 100，请朋友按秒表。走三次，取平均。</li>
+        <li>速度 = 路程 ÷ 时间。再量跑步和潜行。</li>
+        <li>在小区里量一段路，量你自己真的走路一秒几米，和游戏里的你比一比。</li>
+      </ol>
+    </div>
+  </div>
+
   <div class="gone">
     <h5><s>亮度 7 就会出怪</s></h5>
     <p>2021 年的 1.18 版本以前，只要亮度在 7 以下，怪物就可能生成，玩家要把火把插得很密。1.18 把这个数改成了 0：只要有一点点光，就不会冒出怪物来，可是黑的地方更黑了。规则一改，所有老玩家防怪的办法都要跟着改。游戏的规则会变，自然的规律不会。</p>
@@ -1906,6 +2017,15 @@ op 小格的游戏名</pre>
   <div class="echo" data-k="联系">
     <div class="stamp">联系</div>
     <div><p class="rh">规则和规律</p><p>游戏里的一切都是“规则”：人写的，可以改，1.18 一改，怪物就换了地方出生。真实世界的一切是“规律”：没有人写，也没有人能改，人只能去发现它。科学家做的事，就像一个玩家在一个没有说明书的游戏里，靠做实验一点一点猜出它的代码。<em>你在方块世界里量速度、数燧石，练的正是这个本事</em>。</p></div>
+  </div>
+
+  <div class="pass" data-id="q30">
+    <div class="qq" data-in="4.3|4.35"><p>在游戏里走 100 格用了 23 秒，速度大约是每秒几格？（保留一位小数）</p><p class="ex">100 ÷ 23 ≈ 4.3。真实的大人走路大约每秒 1.4 米，游戏里的人差不多快三倍。</p></div>
+    <div class="qq" data-a="0"><p>主世界的 x = 800，换到下界是多少？</p><ol><li>100</li><li>800</li><li>6400</li></ol><p class="ex">下界走 1 格等于主世界走 8 格，所以 x 和 z 都除以 8；高度 y 不用变。</p></div>
+    <div class="qq" data-a="0"><p>真实世界里，不算空气阻力，下落的东西每过一秒，速度增加大约多少？</p><ol><li>9.8 米/秒</li><li>1 米/秒</li><li>100 米/秒</li></ol><p class="ex">这是自然规律，谁也改不了。游戏里的下落是做游戏的人写的规则。</p></div>
+    <div class="qq" data-a="2"><p>在游戏里，从多高以上掉下来会受伤？</p><ol><li>超过 1 格</li><li>超过 100 格</li><li>超过 3 格</li></ol><p class="ex">每多 1 格掉半颗心。第一次在高处搭东西，记得先在下面放一格水。</p></div>
+    <div class="qq" data-a="0"><p>1.18 版本以后，亮度是多少的地方才会生成怪物？</p><ol><li>0</li><li>7</li><li>15</li></ol><p class="ex">只要有一点点光，就不会冒出怪物。以前是亮度 7 以下就可能出怪。</p></div>
+    <div class="qq" data-a="1"><p>挖沙砾掉燧石的机会是十分之一。挖 10 块，一定正好掉 1 块吗？</p><ol><li>一定正好 1 块</li><li>不一定；挖得越多，比例越接近十分之一</li></ol><p class="ex">这就是概率，也是为什么科学家做实验要做很多次。</p></div>
   </div>
 
   <div class="words-h">这一章的新词</div>
@@ -2021,6 +2141,17 @@ op 小格的游戏名</pre>
     </div>
   </div>
 
+  <div class="task" data-id="t31">
+    <div class="th"><b>请 AI 讲一个词，再比一比</b><span class="xp">★</span></div>
+    <div class="tb">
+      <ol>
+        <li>用大人的账号，大人坐在旁边。</li>
+        <li>请 AI 用“给十岁小孩讲”的方式解释一个你不懂的词（比如“端口”）。不写你的真名、学校、住址。</li>
+        <li>再看看这本书第二十八章是怎么讲的：哪个更好懂？AI 有没有说错的地方？</li>
+      </ol>
+    </div>
+  </div>
+
   <div class="gone">
     <h5><s>会跳出来的回形针</s></h5>
     <p>二十多年前，电脑上写文档的软件里有一个小助手：一个长着大眼睛的回形针，你写字的时候它会跳出来问“看起来你在写一封信，需要帮忙吗？”很多人觉得它烦人，它猜得不准，又总在你不需要的时候出现。2007 年前后，它就被拿掉了。今天的 AI 助手比它聪明得多，可是那个教训还在：<em>帮手要等你问了才帮，而且要帮在点子上</em>。</p>
@@ -2034,6 +2165,15 @@ op 小格的游戏名</pre>
   <div class="echo" data-k="联系">
     <div class="stamp">联系</div>
     <div><p class="rh">从红石小机器人到你手边的 AI</p><p>第十四章的 CraftGPT，五百万个数，四亿块方块，回一句话要九年；你手边的 AI，大得多、快得多，一秒钟就回你一大段。它们干的是同一类事：从学过的文字里找规律，一个字一个字地接下去。<em>机器越会说话，人越要会提问、会判断</em>。这两样本事，AI 替不了你。</p></div>
+  </div>
+
+  <div class="pass" data-id="q31">
+    <div class="qq" data-a="0"><p>四年级的你想用 AI，按这一章的规矩应该怎样？</p><ol><li>用大人的账号，大人坐在旁边，一起问、一起看</li><li>用同学的账号</li><li>自己偷偷注册一个</li></ol><p class="ex">很多 AI 要求至少 13 岁，有的要满 18 岁。</p></div>
+    <div class="qq" data-a="1"><p>AI 说话的办法，简单说是怎样的？</p><ol><li>每句话都去问一个人</li><li>根据前面的字，一次一次地猜“下一个字最可能是什么”</li><li>打开你的游戏看一看</li></ol><p class="ex">它猜得很通顺，可是“猜得通顺”不等于“说得对”。</p></div>
+    <div class="qq" data-a="1"><p>AI 说错的时候，会怎样？</p><ol><li>会自己说“我错了”</li><li>语气和说对的时候一模一样，非常自信</li><li>会脸红</li></ol><p class="ex">所以要检查：代码在实验世界里一试就知道，事实去找可靠的来源。</p></div>
+    <div class="qq" data-a="2"><p>用 AI 帮忙学习，最好怎么用？</p><ol><li>让它替你写作业、写作文</li><li>它说什么就照抄什么</li><li>问它“为什么”、请它先给提示</li></ol><p class="ex">你自己想出来的，比别人告诉你的记得牢得多。</p></div>
+    <div class="qq" data-a="1"><p>小格照着 AI 写的数据包做，/reload 以后什么都没发生，错在哪儿？</p><ol><li>电脑没插电</li><li>文件夹写成了 functions，多了一个 s</li><li>游戏是中文的</li></ol><p class="ex">AI 不知道他玩的是哪个版本。AI 最常错的，就是和版本有关的地方。</p></div>
+    <div class="qq" data-in="验证|查证"><p>用实验或者可靠的资料，检查一句话对不对，叫什么？（两个字）</p><p class="ex">验证。AI 说的是“假设”，你去验证。</p></div>
   </div>
 
   <div class="words-h">这一章的新词</div>
@@ -2153,6 +2293,17 @@ op 小格的游戏名</pre>
     </div>
   </div>
 
+  <div class="task" data-id="t32">
+    <div class="th"><b>画你自己的自学地图</b><span class="xp">★</span></div>
+    <div class="tb">
+      <ol>
+        <li>在一张大纸上画：现在在哪儿，下一站去哪儿，想做出一个什么东西。</li>
+        <li>在本章的技能树上点亮你已经做到的格子，挑一个“现在可以去试”的，这个星期去做。</li>
+        <li>把地图贴在书桌旁边，和你的游戏公约贴在一起。</li>
+      </ol>
+    </div>
+  </div>
+
   <div class="gone">
     <h5><s>照着杂志敲代码</s></h5>
     <p>二十世纪八十年代，很多电脑杂志上会印整页整页的程序，读者照着一个字母一个字母地敲进电脑，敲完就能玩一个小游戏。敲错一个字，就要从头找。第一部第二章讲过，Notch 小时候就是这样学会编程的。后来有了网络，代码可以直接下载、复制，这种杂志就消失了。可是“一个字一个字敲、敲错了自己找”的那份功夫，到今天还是学编程最好的办法。</p>
@@ -2166,6 +2317,15 @@ op 小格的游戏名</pre>
   <div class="echo" data-k="押韵">
     <div class="stamp">押韵</div>
     <div><p class="rh">从 Infiniminer 到小格的跳跳乐</p><p>第一部第一章，一个美国年轻人做了一个挖矿小游戏，一个瑞典程序员玩了它，做出了方块世界。第一部第二章，一个七岁的孩子照着杂志敲代码。这一章，一个十岁的孩子在方块世界里做出了自己的小游戏，请朋友来玩。<em>每一个做东西的人，都是先玩了别人做的东西</em>。你玩了这么久，轮到你了。</p></div>
+  </div>
+
+  <div class="pass" data-id="q32">
+    <div class="qq" data-a="1"><p>下面哪一个，是麻省理工学院做的积木编程网站？</p><ol><li>Realms</li><li>Scratch</li><li>IDLE</li></ol><p class="ex">Realms 是官方的付费私人服务器，IDLE 是 Python 自带的写代码的程序。</p></div>
+    <div class="qq" data-a="1"><p>CS Unplugged 是什么？</p><ol><li>一种模组</li><li>“不插电的计算机课”，用纸牌、绳子、游戏学二进制和算法</li><li>一个服务器</li></ol><p class="ex">第十一章的猜数魔术就是这一类。</p></div>
+    <div class="qq" data-a="1"><p>你正在读的这本书，是用什么做的？</p><ol><li>红石</li><li>HTML、CSS 和一点点 JavaScript</li><li>Python 小海龟</li></ol><p class="ex">它是一堆网页。初中时，你也能做一个介绍自己作品集的网站。</p></div>
+    <div class="qq" data-in="开源"><p>把程序的源代码公开，让别人也能看、能改、能一起做，叫什么？（两个字）</p><p class="ex">开源。</p></div>
+    <div class="qq" data-a="0"><p>“学编程要趁早，晚了就来不及”，对吗？</p><ol><li>不对：很多厉害的程序员是中学、大学甚至工作以后才学的，喜欢和坚持更要紧</li><li>对，十岁以后就晚了</li></ol><p class="ex">一个星期做一个小东西，坚持一年，比一个暑假学十门课有用得多。</p></div>
+    <div class="qq" data-a="0"><p>技能树最右下角那一格是什么？</p><ol><li>我的作品</li><li>末影龙</li><li>一颗钻石</li></ol><p class="ex">它的意思不是“学完了”，而是：你已经有足够的本事，去做一个只属于你的东西了。</p></div>
   </div>
 
   <div class="words-h">这一章的新词</div>
@@ -2191,6 +2351,10 @@ op 小格的游戏名</pre>
 <!-- ============ 第四部 · 说明与出处（全书完） ============ -->
 <section class="chap" id="notes4" data-vol="第四部 · 说明">
   <div class="col">
+    <h3>这一部你做到了多少</h3>
+    <p>每一章末尾都有一张任务卡和一组闯关自测，这一部一共 8 张任务卡、8 关。做过的会记在这台电脑的浏览器里，第十部最后一章的成就墙会把十部加在一起。</p>
+    <div class="achv"></div>
+
     <h3>哪些是真的</h3>
     <ul class="plain">
       <li><b>编的</b>：小格、舅舅、妈妈、豆子和“存档”里的故事，包括暑假的工坊和最后的局域网派对。第二十七章实验表里一开始填的数字是编的示意。装置里的数据包、Python 程序、服务器设置是为了教学而写的例子。</li>
@@ -6562,16 +6726,17 @@ dev('#bookFig', () => {
 /* 第八十二章：成就墙 */
 dev('#wallFig', () => {
   /* 每一部的任务和闯关个数（写书时数好的） */
-  const TOT = {5: [9, 8], 6: [10, 10], 7: [8, 8], 8: [8, 8], 9: [5, 5], 10: [0, 11]};
+  const TOT = {1: [9, 9], 2: [8, 8], 3: [8, 8], 4: [8, 8], 5: [9, 8], 6: [10, 10], 7: [8, 8], 8: [8, 8], 9: [5, 5], 10: [0, 11]};
   const partOf = id => { const m = id.match(/^[tq](\d+)/); return m ? chapPage['c' + m[1]] : null; };
   const cntT = {}, cntQ = {};
   Object.keys(G.d.task).forEach(k => { const p = partOf(k); if (p) cntT[p] = (cntT[p] || 0) + 1; });
   Object.keys(G.d.quiz).forEach(k => { const p = partOf(k); if (p) cntQ[p] = (cntQ[p] || 0) + 1; });
-  $('#wlParts').innerHTML = [5, 6, 7, 8, 9, 10].map(p => { const [tt, tq] = TOT[p], dt = cntT[p] || 0, dq = cntQ[p] || 0, pct = Math.round((dt + dq) / Math.max(1, tt + tq) * 100);
+  $('#wlParts').innerHTML = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(p => { const [tt, tq] = TOT[p], dt = cntT[p] || 0, dq = cntQ[p] || 0, pct = Math.round((dt + dq) / Math.max(1, tt + tq) * 100);
     return '<a href="' + PURL[p] + '"><b>' + PARTS[p - 1].k + '</b><small>第' + CN[p - 1] + '部</small><span class="pbar"><i style="width:' + pct + '%"></i></span><small>' + (tt ? '任务 ' + dt + '/' + tt + ' · ' : '') + '闯关 ' + dq + '/' + tq + '</small></a>'; }).join('');
   const q = id => !!G.d.quiz[id], qs = (a, b) => { for (let i = a; i <= b; i++) if (!G.d.quiz['q' + i]) return false; return true; };
   const sure = Object.values(G.d.srs).filter(x => x.b >= 4).length, mapN = Object.keys(G.d.flag).filter(k => /^m\d+$/.test(k)).length;
-  const B = [['⌘', '键盘手', '过了第 33、35 章的关', q('q33') && q('q35')], ['▤', '文件侦探', '过了第 36—38 章的关', qs(36, 38)], ['%', '终端新手', '过了第 39 章的关', q('q39')], ['✛', '坐标通', '坐标点点乐连对十题', !!G.d.flag.xyz], ['/', '命令师', '第六部十关全过', qs(41, 50)],
+  const B = [['▦', '老玩家', '第一部九关全过', qs(0, 8)], ['ϟ', '红石工程师', '第二部八关全过', qs(9, 16)], ['⌂', '出门的人', '第三部八关全过', qs(17, 24)], ['⊞', '工坊学徒', '第四部八关全过', qs(25, 32)],
+    ['⌘', '键盘手', '过了第 33、35 章的关', q('q33') && q('q35')], ['▤', '文件侦探', '过了第 36—38 章的关', qs(36, 38)], ['%', '终端新手', '过了第 39 章的关', q('q39')], ['✛', '坐标通', '坐标点点乐连对十题', !!G.d.flag.xyz], ['/', '命令师', '第六部十关全过', qs(41, 50)],
     ['A', '单词 50', '复习台里记牢 50 个词', sure >= 50], ['B', '单词 150', '记牢 150 个词', sure >= 150], ['∑', '数学地图', '在数学地图上打了 20 个勾', mapN >= 20], ['∠', '数学家', '第八部八关全过', qs(59, 66)], ['☼', '观察员', '第九部五关全过', qs(67, 71)],
     ['ƒ', '程序员', '过了第 72—75 章的关', qs(72, 75)], ['⇅', '算法', '过了第 79、80 章的关', q('q79') && q('q80')], ['✎', '捉虫人', '错题本里记了 3 条', G.d.bug.length >= 3], ['★', '自学者', '写下了下一个月的计划', !!G.d.flag.plan]];
   $('#wlBadges').innerHTML = B.map(b => '<div class="bd' + (b[3] ? ' on' : '') + '"><span>' + b[0] + '</span><b>' + b[1] + '</b><small>' + b[2] + '</small></div>').join('');
